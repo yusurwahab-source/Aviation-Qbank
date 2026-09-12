@@ -9,6 +9,8 @@ import {
   smallint,
   text,
   timestamp,
+  uniqueIndex,
+  uuid,
   varchar,
 } from "drizzle-orm/pg-core";
 
@@ -87,3 +89,58 @@ export type AircraftRow = typeof aircraft.$inferSelect;
 export type AircraftInsert = typeof aircraft.$inferInsert;
 export type QuestionRow = typeof questions.$inferSelect;
 export type QuestionInsert = typeof questions.$inferInsert;
+
+/**
+ * Accounts.
+ *
+ * Email and password only, as agreed for Phase 2. `passwordHash` holds the
+ * self-describing scrypt string from `src/lib/password.ts`, never a password.
+ */
+export const users = pgTable(
+  "users",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    /** Always stored trimmed and lowercased; see `normaliseEmail`. */
+    email: varchar("email", { length: 254 }).notNull(),
+    passwordHash: text("password_hash").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    // One account per address. The database enforces this, not just the form:
+    // two simultaneous sign-ups for the same email must not both succeed.
+    uniqueIndex("users_email_unique").on(table.email),
+  ],
+);
+
+/**
+ * Logged-in sessions.
+ *
+ * Sessions live in the database rather than in a signed token so that logging
+ * out actually revokes access: the row is deleted and the session is gone
+ * everywhere, immediately.
+ *
+ * `id` is the SHA-256 of the cookie value, never the cookie value itself, so
+ * someone who reads this table still cannot pose as a logged-in user.
+ */
+export const sessions = pgTable(
+  "sessions",
+  {
+    id: varchar("id", { length: 64 }).primaryKey(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    // "Log out everywhere" and cleaning up a user's sessions on delete.
+    index("sessions_user_id_idx").on(table.userId),
+    // Sweeping expired rows.
+    index("sessions_expires_at_idx").on(table.expiresAt),
+  ],
+);
+
+export type UserRow = typeof users.$inferSelect;
+export type UserInsert = typeof users.$inferInsert;
+export type SessionRow = typeof sessions.$inferSelect;
