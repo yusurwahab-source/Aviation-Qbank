@@ -35,6 +35,7 @@ removing it again — no code was touched.
 |---|---|
 | `npm run dev` | Development server on http://localhost:3000 |
 | `npm run build` | Validates content, then builds for production |
+| `npm run vercel-build` | What the deploy runs: migrate, seed, then build. Not for local use. |
 | `npm run start` | Runs the production build |
 | `npm run setup` | `db:migrate` then `db:seed` — the one command after a fresh clone |
 | `npm run db:migrate` | Applies pending migrations from `/drizzle` |
@@ -132,6 +133,14 @@ answer key from the database scoped to the aircraft and to `published`.
 **Database errors are explained, not thrown at the user.** Pages that read the
 database catch failures and render `DatabaseUnavailable`, which names the two
 commands that fix it.
+
+**Deploying is how content ships.** Vercel runs `vercel-build`, which applies
+migrations and seeds `/content` before building. Pushing a question file to
+`main` therefore publishes it. The consequences are deliberate: the build fails
+if the database is unreachable, and a deploy always leaves the live database
+matching the files in the repository. A separate seed step someone has to
+remember would be the worse trade — a site that builds green with an empty
+question bank.
 
 **One feature per session, one pull request per feature. `main` always works.**
 
