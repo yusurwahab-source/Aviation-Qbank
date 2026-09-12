@@ -187,6 +187,30 @@ still sees their score, and the screen says plainly that it was not saved.
 Someone revising for a type rating will decide what to study from a history they
 believe is complete.
 
+**Log in is rate limited, and the check runs before the password is verified.**
+Verification costs half a second of CPU and 128 MB by design, so checking first
+is what stops a flood of guesses exhausting the server — the limit protects the
+machine as much as the accounts. Measured: a blocked attempt costs ~50ms against
+~774ms for one that proceeds.
+
+Three properties hold, and any change must keep all three:
+
+1. **Nothing is ever locked permanently.** Both rules expire on their own. This
+   is not a preference — there is no password reset, so a permanent lock would
+   be unrecoverable without deleting the user's row by hand.
+2. **Counting is keyed on the submitted email whether or not an account
+   exists.** Counting only real accounts would make the difference in behaviour
+   a way to discover which addresses are registered, undoing the property above.
+3. **The counters live in the database, never in memory.** On Vercel the app
+   runs as short-lived instances that share no memory, so an in-memory counter
+   would reset constantly and an attacker would walk straight past it.
+
+A correct password is refused while a block stands — otherwise a lucky guess
+during the block would still get in, which is the whole thing the limit exists
+to prevent. Succeeding clears that email's failures but deliberately leaves the
+address count, so one correct log in cannot reset the broad brake and carry on
+guessing other accounts.
+
 **One feature per session, one pull request per feature. `main` always works.**
 
 ## Layout
@@ -219,6 +243,8 @@ src/
     test-options.ts           Test length parsing and limits
     auth/
       credentials.ts          Email and password rules (pure, tested)
+      rate-limit-policy.ts    When to refuse a log in (pure, tested)
+      client-ip.ts            The caller's address, behind Vercel's proxy
       session.ts              Cookie and session table handling
 tests/                        Vitest unit tests
 ```
@@ -265,18 +291,23 @@ from inside the website, an admin panel gets added then — the `status`,
 
 ### Gaps left open by Phase 2, in priority order
 
-- **No rate limiting on log in.** Someone can try passwords as fast as the
-  server will hash them. The half-second scrypt cost is a brake, not a defence.
-  This is the first thing to add once accounts matter — before the site is
-  advertised to anyone.
+(Rate limiting on log in was the top item here and is now done — see the
+conventions above.)
+
 - **No password reset.** A user who forgets their password cannot get back in;
   their row has to be deleted by hand. Fixing it needs an email sender, which
   is a decision the owner has not been asked to make yet.
 - **No email verification.** Anyone can sign up with an address they do not own.
   Harmless while accounts hold nothing; it matters once they hold progress.
-- **Sessions are never swept.** `sweepExpiredSessions()` exists and is correct
-  but nothing calls it. Expired rows are ignored when reading, so this is
-  housekeeping, not correctness. A scheduled job can call it later.
+- **Nothing sweeps the housekeeping tables.** `sweepExpiredSessions()` and
+  `sweepLoginAttempts()` both exist and are correct, but nothing calls them.
+  Expired rows are ignored when reading, so this is tidiness rather than
+  correctness. A scheduled job can call them later.
+- **The limiter does not stop a distributed attack.** Thousands of addresses
+  each trying a few passwords from leaked credential lists would stay under
+  both thresholds. Defending that needs rejecting known-breached passwords or a
+  second factor — neither is needed at this size, but neither comes free with
+  what is built here.
 - **Practice does not require an account.** Deliberate: signing out must not
   take the question bank away. Signed-out tests are graded but recorded nowhere,
   and the result screen says so. Requiring a login to practise would be a

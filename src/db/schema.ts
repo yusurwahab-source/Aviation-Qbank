@@ -242,3 +242,38 @@ export type TestSessionRow = typeof testSessions.$inferSelect;
 export type TestSessionInsert = typeof testSessions.$inferInsert;
 export type AttemptRow = typeof attempts.$inferSelect;
 export type AttemptInsert = typeof attempts.$inferInsert;
+
+/**
+ * Failed log in attempts, for rate limiting.
+ *
+ * Only failures are recorded — a successful log in clears the user's row, so
+ * the table stays small and a person who simply mistyped once is not punished
+ * later.
+ *
+ * The counters live in the database rather than in memory on purpose. On
+ * Vercel the app runs as short-lived instances that do not share memory, so an
+ * in-memory counter would reset constantly and an attacker would walk straight
+ * past it.
+ */
+export const loginAttempts = pgTable(
+  "login_attempts",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    /**
+     * What is being counted: `ip:1.2.3.4` or `email:someone@example.com`.
+     * Emails are counted whether or not an account exists for them — counting
+     * only real accounts would make the difference in behaviour a way to
+     * discover which addresses are registered.
+     */
+    key: varchar("key", { length: 300 }).notNull(),
+    attemptedAt: timestamp("attempted_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    // The only query this table serves: recent failures for one key.
+    index("login_attempts_key_time_idx").on(table.key, table.attemptedAt),
+    // Sweeping rows that have aged out of every window.
+    index("login_attempts_time_idx").on(table.attemptedAt),
+  ],
+);
+
+export type LoginAttemptRow = typeof loginAttempts.$inferSelect;
