@@ -2,8 +2,15 @@
 
 import { redirect } from "next/navigation";
 
+import {
+  checkLoginAllowed,
+  clearFailedLogins,
+  recordFailedLogin,
+} from "@/db/login-attempts";
 import { createUser, findUserByEmail, updatePasswordHash } from "@/db/users";
+import { getClientIp } from "@/lib/auth/client-ip";
 import { logInSchema, signUpSchema } from "@/lib/auth/credentials";
+import { describeWait } from "@/lib/auth/rate-limit-policy";
 import { createSession, destroySession } from "@/lib/auth/session";
 import { hashPassword, needsRehash, unmatchableHash, verifyPassword } from "@/lib/password";
 
@@ -74,16 +81,36 @@ export async function logIn(
     return { fieldErrors, email };
   }
 
+  const ip = await getClientIp();
+
+  // Checked before the password is verified, not after. Verification costs
+  // about half a second of CPU and 128 MB by design, so refusing early is what
+  // stops a flood of guesses exhausting the server. The count is keyed on the
+  // submitted address whether or not an account exists, so a blocked response
+  // never reveals which addresses are registered.
+  const allowed = await checkLoginAllowed(ip, parsed.data.email);
+  if (!allowed.allowed) {
+    return {
+      error: `Too many failed attempts. Try again ${describeWait(allowed.retryAfterMs)}.`,
+      email,
+    };
+  }
+
   const user = await findUserByEmail(parsed.data.email);
 
   // Always hash, even with no account, so both failures cost the same.
   const isValid = await verifyPassword(parsed.data.password, user?.passwordHash ?? NO_SUCH_USER_HASH);
 
   if (!user || !isValid) {
+    await recordFailedLogin(ip, parsed.data.email);
     // One message for both cases: naming which half was wrong would confirm
     // whether an address has an account here.
     return { error: "Email or password is incorrect", email };
   }
+
+  // Knowing the password clears this address's failures, so someone who simply
+  // mistyped a few times is not held back on their next visit.
+  await clearFailedLogins(parsed.data.email);
 
   // Take the opportunity to upgrade a hash made with older, cheaper settings.
   if (needsRehash(user.passwordHash)) {
