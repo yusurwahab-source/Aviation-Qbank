@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { AccountMenu } from "@/components/account-menu";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -24,9 +26,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             >
               Aviation Question Bank
             </Link>
-            <span className="rounded-full bg-surface-muted px-2.5 py-1 text-xs font-medium text-muted-foreground">
-              Phase 1
-            </span>
+            <AccountMenu />
           </div>
         </header>
 
@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         <footer className="border-t border-border bg-surface">
           <div className="mx-auto w-full max-w-4xl px-5 py-4 text-xs text-muted-foreground">
-            Practice results are not saved yet. Accounts and progress tracking come next.
+            Practice results are not saved yet. Recording every answer comes next.
           </div>
         </footer>
       </body>

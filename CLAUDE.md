@@ -8,9 +8,9 @@ description of how the project is built, not a historical record.
 A web application where student pilots practise multiple-choice questions for
 aircraft type ratings. All user-facing content is in English.
 
-**Current state: Phase 1 is complete.** A user can choose an aircraft, answer
-questions one at a time, and see a result screen. There are no accounts and
-nothing is saved yet.
+**Current state: Phase 2 is complete.** A user can choose an aircraft, answer
+questions one at a time, and see a result screen. Accounts exist — sign up, log
+in, log out — but nothing is recorded against them yet. That is Phase 3.
 
 ## The rule that shapes everything: many aircraft
 
@@ -142,6 +142,24 @@ matching the files in the repository. A separate seed step someone has to
 remember would be the worse trade — a site that builds green with an empty
 question bank.
 
+**Passwords are hashed with scrypt from Node's own crypto, at OWASP's stated
+minimum cost (N=2^17, r=8, p=1 — about 128 MB and half a second per hash). No
+password library is installed: `src/lib/password.ts` is a pure, unit-tested
+module. Each hash stores the parameters it was made with, so the cost can be
+raised later and `needsRehash` upgrades stored passwords at the owner's next
+login without locking anyone out.**
+
+**Sessions live in the database, not in a signed token.** The cookie holds a
+random 256-bit value; the `sessions` table stores only its SHA-256. So reading
+the table gives an attacker nothing usable, and logging out actually revokes
+access everywhere rather than waiting for a token to expire.
+
+**Log in never reveals whether an email is registered.** Wrong password and
+unknown email return the same message, and an unknown email is still verified
+against `unmatchableHash()` so both cost the same time. Measured: 3.8% apart,
+well inside the noise. Anything that makes one path faster than the other
+reintroduces the leak.
+
 **One feature per session, one pull request per feature. `main` always works.**
 
 ## Layout
@@ -158,6 +176,7 @@ src/
     page.tsx                  Aircraft picker
     aircraft/[code]/          Aircraft overview
     aircraft/[code]/test/     Test runner, grading action, result screen
+    (auth)/                   Sign up, log in, log out
   components/                 Shared UI
   content/
     schema.ts                 THE question schema
@@ -165,10 +184,15 @@ src/
   db/
     schema.ts                 Drizzle tables
     queries.ts                Every read the app performs
+    users.ts                  Account reads and writes
     index.ts                  Connection pool
   lib/
     grading.ts                Scoring (pure, tested)
+    password.ts               scrypt hashing (pure, tested)
     test-options.ts           Test length parsing and limits
+    auth/
+      credentials.ts          Email and password rules (pure, tested)
+      session.ts              Cookie and session table handling
 tests/                        Vitest unit tests
 ```
 
@@ -176,7 +200,7 @@ tests/                        Vitest unit tests
 
 1. **Phase 1 — the core loop. Done.** Pick an aircraft, answer questions one by
    one, see a result screen. No accounts.
-2. **Phase 2 — accounts.** Sign up, log in, log out.
+2. **Phase 2 — accounts. Done.** Sign up, log in, log out.
 3. **Phase 3 — attempt recording.** Persist every answer: user, question,
    aircraft, selected option, correct or not, timestamp, test session.
 4. **Phase 4 — reports.** Overall score, performance by topic (the most
@@ -211,3 +235,20 @@ from inside the website, an admin panel gets added then — the `status`,
   `drizzle-kit`. It affects a development server only, never the deployed app.
   The fix is a breaking downgrade of `drizzle-kit`, so it is being left until
   upstream updates.
+
+### Gaps left open by Phase 2, in priority order
+
+- **No rate limiting on log in.** Someone can try passwords as fast as the
+  server will hash them. The half-second scrypt cost is a brake, not a defence.
+  This is the first thing to add once accounts matter — before the site is
+  advertised to anyone.
+- **No password reset.** A user who forgets their password cannot get back in;
+  their row has to be deleted by hand. Fixing it needs an email sender, which
+  is a decision the owner has not been asked to make yet.
+- **No email verification.** Anyone can sign up with an address they do not own.
+  Harmless while accounts hold nothing; it matters once they hold progress.
+- **Sessions are never swept.** `sweepExpiredSessions()` exists and is correct
+  but nothing calls it. Expired rows are ignored when reading, so this is
+  housekeeping, not correctness. A scheduled job can call it later.
+- **Practice does not require an account.** Deliberate: signing out must not
+  take the question bank away. Phase 3 decides whether recording requires one.
