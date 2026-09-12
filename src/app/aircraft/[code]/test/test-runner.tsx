@@ -19,10 +19,13 @@ export function TestRunner({
   aircraftCode,
   aircraftName,
   questions,
+  topic,
 }: {
   aircraftCode: string;
   aircraftName: string;
   questions: TestQuestion[];
+  /** Set when the student chose a single section. */
+  topic?: string;
 }) {
   const router = useRouter();
   const [index, setIndex] = useState(0);
@@ -119,7 +122,8 @@ export function TestRunner({
       <div className="mb-6">
         <div className="flex items-baseline justify-between gap-3">
           <p className="text-xs font-semibold uppercase tracking-wider text-brand">
-            {aircraftCode} · {aircraftName}
+            {aircraftCode}
+            {topic ? ` · ${topic}` : ` · ${aircraftName}`}
           </p>
           <p className="text-sm text-muted-foreground">
             Question {index + 1} of {questions.length}

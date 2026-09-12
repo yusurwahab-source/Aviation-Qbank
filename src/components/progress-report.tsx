@@ -98,6 +98,15 @@ export function ProgressReport({ data }: { data: ProgressReportData }) {
               <div className="mt-2">
                 <ScoreBar percentage={topic.percentage} tone="score" />
               </div>
+              {/* The point of showing a weak topic is being able to act on it. */}
+              {aircraftCode ? (
+                <Link
+                  href={`/aircraft/${aircraftCode}/test?topic=${encodeURIComponent(topic.topic)}`}
+                  className="mt-3 inline-block text-sm font-medium text-brand hover:underline"
+                >
+                  Practise {topic.topic} →
+                </Link>
+              ) : null}
             </li>
           ))}
         </ul>
