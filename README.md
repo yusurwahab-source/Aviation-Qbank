@@ -38,6 +38,30 @@ npm run dev        # http://localhost:3000
 If a page says the question bank is not available, `DATABASE_URL` is wrong or
 the database has not been set up — run `npm run setup` again and read the error.
 
+## Putting it online
+
+The site needs two things: somewhere to run (Vercel) and a database (Neon).
+Both have free plans, and neither needs anything installed on your computer.
+
+1. **Create the database.** Sign up at [neon.tech](https://neon.tech), create a
+   project, and copy its connection string. It looks like
+   `postgresql://user:password@host/dbname?sslmode=require`.
+2. **Create the site.** Sign up at [vercel.com](https://vercel.com) with your
+   GitHub account and import this repository.
+3. **Give the site the database.** In Vercel, under
+   Settings → Environment Variables, add a variable named `DATABASE_URL` and
+   paste the Neon connection string as its value.
+4. **Deploy.** Vercel builds the site and gives you a link.
+
+Every deploy runs `npm run vercel-build`, which applies any database migrations
+and loads `/content` into the database before building. So **deploying is also
+how questions get published**: edit a question file, push it to `main`, and the
+live site updates itself.
+
+If you deploy before adding `DATABASE_URL`, the build will fail — which is the
+intended behaviour. A site that builds successfully but has no questions in it
+would be worse.
+
 ## Adding or editing questions
 
 Questions are files in this repository, under `/content`. To change a question,
@@ -66,6 +90,7 @@ npm run check              # validate content + lint + typecheck + tests
 npm run validate:content   # check the question files only
 npm run db:seed            # load /content into the database
 npm run build              # production build (validates content first)
+npm run vercel-build       # what the deploy runs: migrate, seed, then build
 ```
 
 ## Built with
