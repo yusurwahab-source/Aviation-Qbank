@@ -123,6 +123,43 @@ export async function pickTestQuestions(code: string, limit: number): Promise<Te
 }
 
 /**
+ * Loads specific published questions by id, for a retry test.
+ *
+ * Sanitised exactly like `pickTestQuestions`: no answer key crosses to the
+ * browser. Ids that no longer exist, are drafts, or belong to another aircraft
+ * simply do not come back.
+ */
+export async function getTestQuestionsByIds(
+  code: string,
+  ids: string[],
+): Promise<TestQuestion[]> {
+  if (ids.length === 0) return [];
+  const db = getDb();
+
+  const rows = await db
+    .select({
+      id: questions.id,
+      topic: questions.topic,
+      subtopic: questions.subtopic,
+      question: questions.question,
+      options: questions.options,
+      difficulty: questions.difficulty,
+    })
+    .from(questions)
+    .where(
+      and(
+        eq(questions.aircraftCode, code.toUpperCase()),
+        eq(questions.status, "published"),
+        inArray(questions.id, ids),
+      ),
+    );
+
+  // Keep the order the caller asked for; `in` gives no ordering guarantee.
+  const byId = new Map(rows.map((row) => [row.id, row]));
+  return ids.map((id) => byId.get(id)).filter((row) => row !== undefined);
+}
+
+/**
  * Loads the answer key for a set of question ids.
  *
  * Scoped by aircraft and by `published` as well as by id, so a tampered

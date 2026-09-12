@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         <footer className="border-t border-border bg-surface">
           <div className="mx-auto w-full max-w-4xl px-5 py-4 text-xs text-muted-foreground">
-            Signed in, every answer is recorded. Reports on that history come next.
+            Signed in, every answer is recorded and shown in your progress.
           </div>
         </footer>
       </body>

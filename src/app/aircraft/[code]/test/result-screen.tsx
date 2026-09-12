@@ -105,6 +105,14 @@ export function ResultScreen({
         >
           Back to {aircraftCode}
         </Link>
+        {saveStatus === "saved" || saveStatus === "already-saved" ? (
+          <Link
+            href={`/progress/${aircraftCode}`}
+            className="rounded-lg border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+          >
+            See your progress
+          </Link>
+        ) : null}
       </div>
 
     </div>

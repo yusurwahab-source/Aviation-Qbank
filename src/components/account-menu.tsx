@@ -38,8 +38,11 @@ export async function AccountMenu() {
 
   return (
     <div className="flex items-center gap-3 text-sm">
+      <Link href="/progress" className="font-medium text-foreground hover:text-brand">
+        Progress
+      </Link>
       <span
-        className="max-w-[12rem] truncate text-muted-foreground"
+        className="hidden max-w-[12rem] truncate text-muted-foreground sm:inline"
         title={user.email}
       >
         {user.email}
