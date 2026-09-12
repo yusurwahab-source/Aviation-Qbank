@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+/*
+ * A small, deliberate palette: slate for surfaces, a deep instrument blue for
+ * actions, green and amber for right and wrong. Everything is defined as a
+ * token here so the whole app changes from one place.
+ */
+:root {
+  --background: #f6f7f9;
+  --surface: #ffffff;
+  --surface-muted: #eef1f5;
+  --border: #d9dee6;
+  --foreground: #101828;
+  --muted-foreground: #5a6472;
+  --brand: #12467b;
+  --brand-strong: #0d3459;
+  --brand-soft: #e8eff7;
+  --correct: #10704a;
+  --correct-soft: #e4f4ec;
+  --incorrect: #a8341f;
+  --incorrect-soft: #fbeae6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0c111a;
+    --surface: #151c28;
+    --surface-muted: #1d2634;
+    --border: #2a3445;
+    --foreground: #e8ecf3;
+    --muted-foreground: #9aa5b5;
+    --brand: #6aa7e6;
+    --brand-strong: #8fbef0;
+    --brand-soft: #17293d;
+    --correct: #5cc99a;
+    --correct-soft: #122c22;
+    --incorrect: #f08a72;
+    --incorrect-soft: #2e1a16;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-correct: var(--correct);
+  --color-correct-soft: var(--correct-soft);
+  --color-incorrect: var(--incorrect);
+  --color-incorrect-soft: var(--incorrect-soft);
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Keyboard users must always be able to see where they are. */
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
