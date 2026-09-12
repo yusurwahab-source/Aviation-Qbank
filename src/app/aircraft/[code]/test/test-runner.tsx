@@ -6,9 +6,8 @@ import { useCallback, useMemo, useState, useTransition } from "react";
 
 import { Badge, Card, DifficultyBadge } from "@/components/ui";
 import type { TestQuestion } from "@/db/queries";
-import type { TestResult } from "@/lib/grading";
 
-import { submitTest } from "./actions";
+import { submitTest, type SubmitTestOutput } from "./actions";
 import { ResultScreen } from "./result-screen";
 
 /**
@@ -28,7 +27,13 @@ export function TestRunner({
   const router = useRouter();
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [result, setResult] = useState<TestResult | null>(null);
+  const [result, setResult] = useState<SubmitTestOutput | null>(null);
+  /**
+   * Identifies this attempt at the test, so that a double-click or a retried
+   * request records it once rather than twice. Generated when the test starts
+   * and reset by `restart`.
+   */
+  const [clientTestId, setClientTestId] = useState(() => crypto.randomUUID());
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, startSubmitting] = useTransition();
   const [isRestarting, startRestarting] = useTransition();
@@ -54,6 +59,7 @@ export function TestRunner({
       try {
         const graded = await submitTest({
           aircraftCode,
+          clientTestId,
           answers: questions.map((question) => ({
             questionId: question.id,
             selectedOptionId: answers[question.id] ?? null,
@@ -65,7 +71,7 @@ export function TestRunner({
         setError("Your test could not be marked. Check your connection and try again.");
       }
     });
-  }, [aircraftCode, answers, questions]);
+  }, [aircraftCode, answers, clientTestId, questions]);
 
   /**
    * Starts a fresh test without leaving the page.
@@ -80,6 +86,8 @@ export function TestRunner({
     setAnswers({});
     setIndex(0);
     setError(null);
+    // A new test is a new thing to record, so it needs its own key.
+    setClientTestId(crypto.randomUUID());
     window.scrollTo({ top: 0 });
     startRestarting(() => {
       router.refresh();
@@ -92,6 +100,7 @@ export function TestRunner({
         aircraftCode={aircraftCode}
         aircraftName={aircraftName}
         result={result}
+        saveStatus={result.saveStatus}
         onRestart={restart}
       />
     );

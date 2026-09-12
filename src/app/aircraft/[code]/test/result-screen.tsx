@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Badge, Card, ScoreBar } from "@/components/ui";
 import type { GradedQuestion, TestResult } from "@/lib/grading";
 
+import type { SaveStatus } from "./actions";
+
 /**
  * The end-of-test screen: the score, how each topic went, and a full review of
  * every question with the explanation.
@@ -13,11 +15,14 @@ export function ResultScreen({
   aircraftCode,
   aircraftName,
   result,
+  saveStatus,
   onRestart,
 }: {
   aircraftCode: string;
   aircraftName: string;
   result: TestResult;
+  /** Whether this result reached the user's history. */
+  saveStatus: SaveStatus;
   /** Starts a fresh test in place; see `TestRunner.restart`. */
   onRestart: () => void;
 }) {
@@ -50,6 +55,8 @@ export function ResultScreen({
           <ScoreBar percentage={result.percentage} tone="score" />
         </div>
       </Card>
+
+      <SaveNotice status={saveStatus} />
 
       <section className="mt-8">
         <h2 className="text-sm font-semibold text-foreground">How each topic went</h2>
@@ -100,10 +107,51 @@ export function ResultScreen({
         </Link>
       </div>
 
-      <p className="mt-6 text-xs text-muted-foreground">
-        This score is not saved. Sign-in and progress tracking are the next phases of the build.
-      </p>
     </div>
+  );
+}
+
+/**
+ * Says plainly what happened to this result.
+ *
+ * A result that failed to save must never look like one that saved: someone
+ * studying towards a type rating will make decisions about what to revise based
+ * on a history they believe is complete.
+ */
+function SaveNotice({ status }: { status: SaveStatus }) {
+  if (status === "saved" || status === "already-saved") {
+    return (
+      <p className="mt-3 flex items-center gap-2 text-sm text-correct">
+        <span aria-hidden="true">✓</span>
+        Saved to your history.
+      </p>
+    );
+  }
+
+  if (status === "signed-out") {
+    return (
+      <p className="mt-3 text-sm text-muted-foreground">
+        This result was not saved.{" "}
+        <Link href="/login" className="font-medium text-brand hover:underline">
+          Log in
+        </Link>{" "}
+        or{" "}
+        <Link href="/signup" className="font-medium text-brand hover:underline">
+          create an account
+        </Link>{" "}
+        to keep a record of your practice.
+      </p>
+    );
+  }
+
+  return (
+    <p
+      role="alert"
+      className="mt-3 rounded-lg bg-incorrect-soft px-4 py-3 text-sm text-incorrect"
+    >
+      Your answers could not be saved to your history. The score above is still
+      correct, but this test will not appear in your progress.
+    </p>
   );
 }
 

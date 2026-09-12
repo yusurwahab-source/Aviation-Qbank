@@ -8,9 +8,10 @@ description of how the project is built, not a historical record.
 A web application where student pilots practise multiple-choice questions for
 aircraft type ratings. All user-facing content is in English.
 
-**Current state: Phase 2 is complete.** A user can choose an aircraft, answer
-questions one at a time, and see a result screen. Accounts exist — sign up, log
-in, log out — but nothing is recorded against them yet. That is Phase 3.
+**Current state: Phase 3 is complete.** A user can choose an aircraft, answer
+questions one at a time, and see a result screen. Accounts exist, and every
+answer a signed-in user submits is recorded. Nothing reads that history back
+yet — the report screens are Phase 4.
 
 ## The rule that shapes everything: many aircraft
 
@@ -124,7 +125,8 @@ them earlier is a bug, however convenient.
 
 **Grading is a pure function.** `src/lib/grading.ts` takes questions and answers
 and returns a result — no database, no React. It is unit tested, and Phase 3
-will reuse it unchanged when attempts start being recorded.
+reused it unchanged: `recordTestResult` writes the rows straight from its
+output.
 
 **Untrusted input is parsed, not trusted.** URL parameters go through
 `parseTestLength`; the server action parses its input with Zod and re-reads the
@@ -159,6 +161,31 @@ unknown email return the same message, and an unknown email is still verified
 against `unmatchableHash()` so both cost the same time. Measured: 3.8% apart,
 well inside the noise. Anything that makes one path faster than the other
 reintroduces the leak.
+
+**The attempt log is append-only, and stands on its own.** `attempts` rows
+describe what happened at a moment in time and are never updated. `topic` and
+`aircraftCode` are stored on the row rather than read through a join, and there
+is deliberately **no foreign key to `questions`**.
+
+The reason is concrete: `db:seed` deletes questions whose content files are
+gone. A foreign key would either erase a pilot's history (cascade) or fail the
+deploy (restrict). Neither is acceptable — editing content must never rewrite
+the past, and the past must never block an edit. This was verified by deleting a
+question, re-seeding, and confirming the attempt row and the topic report
+survived intact. Reports join to `questions` only when they need current
+wording, and skip questions that no longer exist.
+
+**One test can never be recorded twice.** The browser generates a
+`clientTestId` when a test starts; a unique index on `(user_id, client_test_id)`
+turns a double-click or a retried request into a no-op. Every report is built on
+this data, so a duplicated test would quietly corrupt all of them. The session
+row and all its attempts are written in one transaction — a half-written test
+would be worse than none.
+
+**A failed save is never dressed up as a success.** If recording fails, the user
+still sees their score, and the screen says plainly that it was not saved.
+Someone revising for a type rating will decide what to study from a history they
+believe is complete.
 
 **One feature per session, one pull request per feature. `main` always works.**
 
@@ -201,8 +228,8 @@ tests/                        Vitest unit tests
 1. **Phase 1 — the core loop. Done.** Pick an aircraft, answer questions one by
    one, see a result screen. No accounts.
 2. **Phase 2 — accounts. Done.** Sign up, log in, log out.
-3. **Phase 3 — attempt recording.** Persist every answer: user, question,
-   aircraft, selected option, correct or not, timestamp, test session.
+3. **Phase 3 — attempt recording. Done.** Every answer persisted: user,
+   question, aircraft, selected option, correct or not, timestamp, test session.
 4. **Phase 4 — reports.** Overall score, performance by topic (the most
    important view), progress over time, retry incorrect questions. Scoped per
    aircraft and overall.
@@ -251,4 +278,10 @@ from inside the website, an admin panel gets added then — the `status`,
   but nothing calls it. Expired rows are ignored when reading, so this is
   housekeeping, not correctness. A scheduled job can call it later.
 - **Practice does not require an account.** Deliberate: signing out must not
-  take the question bank away. Phase 3 decides whether recording requires one.
+  take the question bank away. Signed-out tests are graded but recorded nowhere,
+  and the result screen says so. Requiring a login to practise would be a
+  one-line guard in the test page if the owner ever wants it — but it trades
+  away everyone who wants to try the site before committing.
+- **Attempts are written at the end of a test, not as each answer is given.**
+  So an abandoned test records nothing, and a mid-test refresh still loses the
+  answers. Recording per answer would fix both and is the natural Phase 5 change.
