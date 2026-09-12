@@ -8,10 +8,11 @@ description of how the project is built, not a historical record.
 A web application where student pilots practise multiple-choice questions for
 aircraft type ratings. All user-facing content is in English.
 
-**Current state: Phase 3 is complete.** A user can choose an aircraft, answer
-questions one at a time, and see a result screen. Accounts exist, and every
-answer a signed-in user submits is recorded. Nothing reads that history back
-yet — the report screens are Phase 4.
+**Current state: Phase 4 is complete.** A user can choose an aircraft, answer
+questions one at a time, and see a result screen. Accounts exist, every answer a
+signed-in user submits is recorded, and `/progress` reads that history back:
+overall score, performance by topic, progress over time, and the questions worth
+retrying. What remains is Phase 5, refinement.
 
 ## The rule that shapes everything: many aircraft
 
@@ -211,6 +212,24 @@ to prevent. Succeeding clears that email's failures but deliberately leaves the
 address count, so one correct log in cannot reset the broad brake and carry on
 guessing other accounts.
 
+**Every report query takes a `userId` and filters on it.** A report is somebody's
+private study history; a missing user filter would show it to the wrong person.
+Tests assert this directly by giving two accounts different histories and
+checking neither can see the other's.
+
+**The retry list is "most recent answer was wrong", not "ever got wrong".** A
+question you have since answered correctly is not worth drilling again, and a
+list that never shrinks is one nobody uses. It joins to `questions`, so anything
+deleted from content drops out of the list while still counting in the totals —
+verified by deleting a question and checking both halves of that behaviour.
+
+**Charts are inline SVG, with no charting dependency.** One small line chart does
+not justify one, and this way the marks use the house palette directly. The
+conventions the chart follows — single series so no legend, 2px line, ≥8px
+markers with a 2px surface ring, ~10% area wash, hairline solid gridlines, only
+the endpoint labelled, and a table view as the accessible equal of the picture —
+are worth keeping if another chart is ever added.
+
 **One feature per session, one pull request per feature. `main` always works.**
 
 ## Layout
@@ -228,6 +247,7 @@ src/
     aircraft/[code]/          Aircraft overview
     aircraft/[code]/test/     Test runner, grading action, result screen
     (auth)/                   Sign up, log in, log out
+    progress/                 Reports, overall and per aircraft
   components/                 Shared UI
   content/
     schema.ts                 THE question schema
@@ -256,9 +276,9 @@ tests/                        Vitest unit tests
 2. **Phase 2 — accounts. Done.** Sign up, log in, log out.
 3. **Phase 3 — attempt recording. Done.** Every answer persisted: user,
    question, aircraft, selected option, correct or not, timestamp, test session.
-4. **Phase 4 — reports.** Overall score, performance by topic (the most
+4. **Phase 4 — reports. Done.** Overall score, performance by topic (the most
    important view), progress over time, retry incorrect questions. Scoped per
-   aircraft and overall.
+   aircraft (`/progress/[code]`) and overall (`/progress`).
 5. **Phase 5 — refinement.** Filter by topic and difficulty, test length, timed
    mode, review mid-test.
 
@@ -316,3 +336,9 @@ conventions above.)
 - **Attempts are written at the end of a test, not as each answer is given.**
   So an abandoned test records nothing, and a mid-test refresh still loses the
   answers. Recording per answer would fix both and is the natural Phase 5 change.
+- **Signing in does not return you where you were.** `/progress` sends a signed-out
+  visitor to `/login`, which then lands them on the home page. A `?next=` parameter
+  would fix it, and must only ever accept a relative path or it becomes an open
+  redirect.
+- **The progress chart plots the last 100 tests and no more.** Fine now; a date
+  filter is the honest answer once anyone exceeds that.
