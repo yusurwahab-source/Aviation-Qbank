@@ -86,7 +86,10 @@ export default async function AircraftPage({ params }: PageProps) {
       </Card>
 
       <section className="mt-6">
-        <h2 className="mb-3 text-sm font-semibold text-foreground">Topics in this bank</h2>
+        <h2 className="text-sm font-semibold text-foreground">Or sit one section on its own</h2>
+        <p className="mb-3 mt-1 text-sm text-muted-foreground">
+          A test drawn only from that section, so you can work on one system at a time.
+        </p>
         {topics.length === 0 ? (
           <EmptyState title="No topics yet">
             Add question files under <code className="font-mono">content/{plane.code.toLowerCase()}/questions/</code>{" "}
@@ -95,14 +98,19 @@ export default async function AircraftPage({ params }: PageProps) {
         ) : (
           <ul className="grid gap-2 sm:grid-cols-2">
             {topics.map((topic) => (
-              <li
-                key={topic.topic}
-                className="flex items-center justify-between rounded-lg border border-border bg-surface px-4 py-3"
-              >
-                <span className="text-sm font-medium text-foreground">{topic.topic}</span>
-                <Badge>
-                  {topic.questionCount} {topic.questionCount === 1 ? "question" : "questions"}
-                </Badge>
+              <li key={topic.topic}>
+                <Link
+                  href={`/aircraft/${plane.code}/test?topic=${encodeURIComponent(topic.topic)}&questions=${Math.min(
+                    DEFAULT_TEST_LENGTH,
+                    topic.questionCount,
+                  )}`}
+                  className="flex items-center justify-between gap-3 rounded-lg border border-border bg-surface px-4 py-3 transition hover:border-brand"
+                >
+                  <span className="text-sm font-medium text-foreground">{topic.topic}</span>
+                  <Badge>
+                    {topic.questionCount} {topic.questionCount === 1 ? "question" : "questions"}
+                  </Badge>
+                </Link>
               </li>
             ))}
           </ul>

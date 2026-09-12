@@ -279,8 +279,10 @@ tests/                        Vitest unit tests
 4. **Phase 4 — reports. Done.** Overall score, performance by topic (the most
    important view), progress over time, retry incorrect questions. Scoped per
    aircraft (`/progress/[code]`) and overall (`/progress`).
-5. **Phase 5 — refinement.** Filter by topic and difficulty, test length, timed
-   mode, review mid-test.
+5. **Phase 5 — refinement.** Filtering by topic is done: `?topic=` on the test
+   page sits one section only, reached from the aircraft page and from each row
+   of the progress report. Still to do: filter by difficulty, timed mode, review
+   mid-test.
 
 Do not start a phase until the previous one works.
 
@@ -301,9 +303,15 @@ from inside the website, an admin panel gets added then — the `status`,
   database row and fixes it properly.
 - **`order by random()`** picks test questions. Correct and fast for banks of
   this size; revisit if a bank ever reaches hundreds of thousands of questions.
-- **The DA40 questions are a starter set**, written to exercise the system.
-  They should be checked against the AFM before anyone studies from them. See
+- **Only the `Fuel System` questions come from the owner's source.** The other
+  topics were written to exercise the system and have not been checked against
+  the DA 40 D AFM. The `Powerplant` questions are drafted outright because they
+  describe a piston engine on AVGAS, which contradicts the diesel variant. See
   `content/README.md`.
+- **An aircraft's display name can change; its code must not.** The code is the
+  URL segment, the prefix of every question id, and the value stored on every
+  past attempt. Renaming the DA40 to the DA 40 D TDI changed `name` and
+  `variant` only.
 - **`npm audit` reports a moderate advisory** in `esbuild`, reached through
   `drizzle-kit`. It affects a development server only, never the deployed app.
   The fix is a breaking downgrade of `drizzle-kit`, so it is being left until

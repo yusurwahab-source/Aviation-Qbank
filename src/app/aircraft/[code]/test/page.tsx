@@ -6,7 +6,7 @@ import { EmptyState, PageHeading } from "@/components/ui";
 import { getAircraft, getTestQuestionsByIds, pickTestQuestions, type TestQuestion } from "@/db/queries";
 import { getQuestionIdsToRetry } from "@/db/reports";
 import { getCurrentUser } from "@/lib/auth/session";
-import { parseTestLength } from "@/lib/test-options";
+import { parseTestLength, parseTopic } from "@/lib/test-options";
 
 import { TestRunner } from "./test-runner";
 
@@ -14,7 +14,11 @@ export const dynamic = "force-dynamic";
 
 type PageProps = {
   params: Promise<{ code: string }>;
-  searchParams: Promise<{ questions?: string | string[]; from?: string | string[] }>;
+  searchParams: Promise<{
+    questions?: string | string[];
+    from?: string | string[];
+    topic?: string | string[];
+  }>;
 };
 
 export async function generateMetadata({ params }: PageProps) {
@@ -27,6 +31,9 @@ export default async function TestPage({ params, searchParams }: PageProps) {
   const aircraftCode = code.toUpperCase();
   const length = parseTestLength(query.questions);
   const retryOnly = (Array.isArray(query.from) ? query.from[0] : query.from) === "incorrect";
+  // Retry mode already narrows the set, so a topic on top of it would be
+  // two filters fighting; the retry list wins.
+  const topic = retryOnly ? undefined : parseTopic(query.topic);
 
   let plane;
   let questions: TestQuestion[];
@@ -44,7 +51,7 @@ export default async function TestPage({ params, searchParams }: PageProps) {
       const ids = user ? await getQuestionIdsToRetry(user.id, aircraftCode, length) : [];
       questions = ids.length > 0 ? await getTestQuestionsByIds(aircraftCode, ids) : [];
     } else {
-      questions = await pickTestQuestions(aircraftCode, length);
+      questions = await pickTestQuestions(aircraftCode, length, topic);
     }
   } catch (error) {
     if ((error as { digest?: string }).digest?.startsWith("NEXT_")) throw error;
@@ -64,7 +71,9 @@ export default async function TestPage({ params, searchParams }: PageProps) {
           title={
             retryOnly
               ? "Nothing to retry right now."
-              : "There are no published questions for this aircraft yet."
+              : topic
+                ? `There are no published questions in "${topic}" yet.`
+                : "There are no published questions for this aircraft yet."
           }
         >
           {retryOnly ? (
@@ -77,6 +86,17 @@ export default async function TestPage({ params, searchParams }: PageProps) {
                 Take a normal test
               </Link>{" "}
               instead.
+            </>
+          ) : topic ? (
+            <>
+              Check the section name, or{" "}
+              <Link
+                href={`/aircraft/${plane.code}`}
+                className="font-medium text-brand hover:underline"
+              >
+                pick another section
+              </Link>
+              .
             </>
           ) : (
             <Link href={`/aircraft/${plane.code}`} className="font-medium text-brand hover:underline">
@@ -93,6 +113,7 @@ export default async function TestPage({ params, searchParams }: PageProps) {
       aircraftCode={plane.code}
       aircraftName={plane.name}
       questions={questions}
+      topic={topic}
     />
   );
 }

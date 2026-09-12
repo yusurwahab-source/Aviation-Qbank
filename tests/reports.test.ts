@@ -1,10 +1,10 @@
 import { randomUUID } from "node:crypto";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 
-import { attempts, testSessions, users } from "@/db/schema";
+import { attempts, questions, testSessions, users } from "@/db/schema";
 
 /**
  * Integration tests for the reports.
@@ -28,6 +28,12 @@ describeWithDb("progress reports", () => {
   let userId: string;
   /** A second account, to prove reports never cross between users. */
   let otherUserId: string;
+  /**
+   * Two ids looked up from the seeded content rather than hard-coded.
+   * The retry list joins to `questions`, so those tests need questions that are
+   * really published — and which ones those are changes as content is edited.
+   */
+  let publishedIds: string[] = [];
 
   /**
    * A fixed history, so every expected number below is arithmetic rather than
@@ -109,6 +115,17 @@ describeWithDb("progress reports", () => {
       { questionId: "DA40-ELEC-8001", topic: "Electrical", isCorrect: true },
       { questionId: "DA40-ELEC-8002", topic: "Electrical", isCorrect: true },
     ]);
+
+    publishedIds = (
+      await db
+        .select({ id: questions.id })
+        .from(questions)
+        .where(
+          and(eq(questions.aircraftCode, "DA40"), eq(questions.status, "published")),
+        )
+        .orderBy(questions.id)
+        .limit(2)
+    ).map((row) => row.id);
   });
 
   afterAll(async () => {
@@ -198,8 +215,9 @@ describeWithDb("progress reports", () => {
     });
 
     it("drops a question once it is answered correctly again", async () => {
-      // Uses a real seeded question so the join to `questions` succeeds.
-      const realId = "DA40-ELEC-0001";
+      // A really published question, so the join to `questions` succeeds.
+      const realId = publishedIds[0];
+      expect(realId, "no published DA40 questions to test against").toBeDefined();
 
       await addTest(userId, "DA40", day(4), [
         { questionId: realId, topic: "Electrical", isCorrect: false },
@@ -215,12 +233,13 @@ describeWithDb("progress reports", () => {
     });
 
     it("counts how many times a question has been wrong", async () => {
-      const realId = "DA40-FUEL-0001";
+      const realId = publishedIds[1];
+      expect(realId, "need a second published DA40 question").toBeDefined();
       await addTest(userId, "DA40", day(6), [
-        { questionId: realId, topic: "Fuel", isCorrect: false },
+        { questionId: realId, topic: "Fuel System", isCorrect: false },
       ]);
       await addTest(userId, "DA40", day(7), [
-        { questionId: realId, topic: "Fuel", isCorrect: false },
+        { questionId: realId, topic: "Fuel System", isCorrect: false },
       ]);
 
       const retry = await reports.getQuestionsToRetry(userId, "DA40");

@@ -99,10 +99,18 @@ export async function listTopics(code: string): Promise<TopicSummary[]> {
 /**
  * Picks a random set of published questions for a test.
  *
+ * Pass `topic` to sit a test on one section only. The topic is matched exactly
+ * against the stored value, and reaches the database as a bound parameter, so
+ * an unknown topic simply returns nothing rather than widening the query.
+ *
  * `order by random()` is fine for banks of this size. If a bank ever grows to
  * hundreds of thousands of questions this is the query to revisit.
  */
-export async function pickTestQuestions(code: string, limit: number): Promise<TestQuestion[]> {
+export async function pickTestQuestions(
+  code: string,
+  limit: number,
+  topic?: string,
+): Promise<TestQuestion[]> {
   const db = getDb();
 
   return db
@@ -116,7 +124,11 @@ export async function pickTestQuestions(code: string, limit: number): Promise<Te
     })
     .from(questions)
     .where(
-      and(eq(questions.aircraftCode, code.toUpperCase()), eq(questions.status, "published")),
+      and(
+        eq(questions.aircraftCode, code.toUpperCase()),
+        eq(questions.status, "published"),
+        ...(topic ? [eq(questions.topic, topic)] : []),
+      ),
     )
     .orderBy(sql`random()`)
     .limit(limit);

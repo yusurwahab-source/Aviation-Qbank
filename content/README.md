@@ -47,13 +47,37 @@ but they never appear in a test.
 the filter does what it says: the DA40 folder holds 11 questions and a test can
 only ever draw on the 10 published ones.
 
-## About the DA40 sample questions
+## Which aircraft this bank is for
 
-These 11 questions are a **starter set written to exercise the system**, not a
-verified training product. They cover facts that are stable across DA40-180
-variants, but before this bank is used for real study every question should be
-checked against the Airplane Flight Manual for the specific airframe and serial
-number, and the `reference` field should be made precise (section and page).
+The aircraft is the **Diamond DA 40 D TDI** — the diesel variant with the
+TAE 125 engine, running on Jet A-1.
 
-The `reference` fields currently point at AFM sections by name rather than page
-number for that reason.
+The folder and the code stay `da40` / `DA40`. Only the display name changed. The
+code is the URL segment, the prefix of every question id, and the value stored on
+every past attempt, so changing it would break links and orphan history for no
+gain.
+
+## Drafted content, and why
+
+Two sets of questions are `draft`, so they are kept but never shown:
+
+- **All three `Powerplant` questions.** They describe a Lycoming IO-360 piston
+  engine running on AVGAS. The fuel questions describe a diesel that must never
+  see AVGAS. Both cannot be true of one aircraft, and showing a pilot both would
+  be worse than showing neither. They need rewriting for the TAE 125 before they
+  go back.
+- **`DA40-FUEL-0001` and `DA40-FUEL-0002`.** Superseded by the fuller set:
+  0001 duplicates 0102 and 0103, 0002 duplicates 0106.
+
+Nothing was deleted. Flip `status` back to `published` to restore any of them.
+
+## About the question set
+
+The 16 `Fuel System` questions came from the owner's own source file. They have
+no `reference` yet — adding the AFM section and page to each would make them
+markedly more useful to a student.
+
+The remaining `Airframe`, `Electrical` and `Flight Controls` questions were
+written to exercise the system and cover facts that are stable across DA40
+variants. They have not been checked against the DA 40 D AFM specifically, and
+should be before anyone studies from them.
