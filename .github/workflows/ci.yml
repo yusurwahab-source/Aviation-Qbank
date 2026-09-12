@@ -10,6 +10,27 @@ jobs:
     name: Validate, lint, typecheck, test
     runs-on: ubuntu-latest
 
+    # The attempt log's guarantees are database guarantees — a unique index and
+    # a transaction — so the tests that cover them need a real Postgres. Without
+    # one they skip themselves, which would quietly mean no coverage here.
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: qbank
+          POSTGRES_PASSWORD: qbank
+          POSTGRES_DB: aviation_qbank_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: postgresql://qbank:qbank@127.0.0.1:5432/aviation_qbank_test
+
     steps:
       - uses: actions/checkout@v4
 
@@ -28,7 +49,10 @@ jobs:
 
       - run: npm run typecheck
 
+      # Create the tables the integration tests write to.
+      - run: npm run db:migrate
+
       - run: npm run test
 
-      # The build needs no database: every page that reads one is dynamic.
+      # The build itself needs no database; every page that reads one is dynamic.
       - run: npm run build

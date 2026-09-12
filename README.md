@@ -8,7 +8,7 @@ Built to hold **many aircraft types** from the start. Only the Diamond DA40 is
 loaded today; adding an A320 or a B737 later means adding question files, not
 rewriting the application.
 
-## What works today (Phase 2)
+## What works today (Phase 3)
 
 - An aircraft picker, showing how many questions each type has
 - An aircraft page listing the topics in its bank
@@ -16,10 +16,11 @@ rewriting the application.
 - A result screen: your score, a breakdown by topic with the weakest first, and
   every question reviewed with the correct answer and an explanation
 - Accounts: sign up, log in, log out
+- Every answer a signed-in user submits is recorded
 
 Practising does not require an account — signing out never takes the question
-bank away. Results are still not saved to your account; recording every answer
-is Phase 3.
+bank away, and the result screen tells you whether the test was saved. Nothing
+reads that history back yet: the report screens are Phase 4.
 
 ## Running it on your own machine
 
