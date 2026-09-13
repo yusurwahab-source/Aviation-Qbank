@@ -176,6 +176,26 @@ onto the `test_sessions` row and be read from there rather than from the URL.
 Either way the answer is still recorded as it is given, so the resume and
 abandoned-test behaviour above is the same in both modes.
 
+**The question map never says more than the mode allows.** The test screen
+has a map behind the answered count: every question as a tile, coloured by
+state, click one to jump to it, plus a shortcut to the next unanswered.
+
+In study mode the tiles say which answers were right — the student was told at
+the time, so it gives nothing away and makes a useful picture of how the test
+is going. In exam mode they say only answered or not.
+
+That rule is not enforced by a condition anyone could forget to write. It
+falls out of where the information is: `questionStatus` reads `verdicts`,
+which is *only ever populated in study mode*, so in exam mode there is no
+branch that could leak correctness because the correctness is not there. It
+lives in `src/lib/question-status.ts` rather than inside the component
+precisely so it can be asserted directly, and it is — both in a unit test and
+in the browser.
+
+The map is collapsed by default and rendered only when opened: a test can be
+the whole bank, and a thousand tiles is not something to keep mounted beside
+a screen whose whole point is one question at a time.
+
 **A timed test's clock lives in the database, not in the browser.**
 `test_sessions` carries `startedAt` and `timeLimitSeconds`, written once when
 the session is created and never moved. The deadline is derived from them
@@ -416,6 +436,7 @@ src/
     index.ts                  Connection pool
   lib/
     grading.ts                Scoring (pure, tested)
+    question-status.ts        What the question map may say (pure, tested)
     password.ts               scrypt hashing (pure, tested)
     test-options.ts           Test length and section parsing, and test URLs
     auth/
@@ -443,9 +464,10 @@ tests/                        Vitest unit tests
    explanation appear under each question as soon as it is answered, and that
    question then settles — with an exam mode beside it that holds everything to
    the end; and a timed mode whose clock is held on the session row, so a
-   reload cannot reset it and running out hands the test in. Still to do:
-   filter by difficulty, and a way to jump between questions mid-test
-   (Previous/Next already works one at a time; a full overview does not yet).
+   reload cannot reset it and running out hands the test in; and a question map
+   for jumping between questions mid-test. Still to do: filter by difficulty —
+   the one item of the original Phase 5 list not built, and deliberately so,
+   the owner having set it aside.
 
 Do not start a phase until the previous one works.
 
