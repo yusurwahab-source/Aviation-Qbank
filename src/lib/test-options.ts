@@ -56,6 +56,57 @@ export const ALL_QUESTIONS = "all" as const;
 
 export type TestLength = number | typeof ALL_QUESTIONS;
 
+/**
+ * A test can be given a clock. `null` means untimed, which is the default —
+ * most practice is better without one, and a timer nobody asked for is just
+ * pressure.
+ *
+ * Kept in minutes at the edges because that is how a student thinks about it,
+ * and in seconds everywhere inside, because that is what arithmetic on a
+ * deadline wants.
+ */
+export type TimeLimit = number | null;
+
+/** One-tap limits, in minutes, beside the free number box. */
+export const TIME_LIMITS = [10, 20, 30, 60] as const;
+
+/**
+ * Long enough that nobody reaches it by choosing, short enough to bound what
+ * a hostile URL can ask the clock to hold. A day is well past any sitting.
+ */
+const MAX_TIME_LIMIT_MINUTES = 24 * 60;
+
+/**
+ * What a test of this many questions is worth, in minutes.
+ *
+ * Ninety seconds a question is the rough shape of a written type-rating
+ * paper, and it means the suggestion tracks the test the student just built
+ * rather than being a number picked out of the air. Rounded up to the minute,
+ * and never zero.
+ */
+export function suggestedMinutes(questionCount: number): number {
+  return Math.max(1, Math.ceil((questionCount * 90) / 60));
+}
+
+/**
+ * Turns an untrusted `?minutes=` value into a time limit, in seconds.
+ *
+ * Missing or unreadable means untimed — the same fallback the rest of this
+ * file uses, and the one that never takes something away from the student.
+ */
+export function parseTimeLimit(raw: string | string[] | undefined): TimeLimit {
+  const value = Array.isArray(raw) ? raw[0] : raw;
+  if (!value) return null;
+
+  const trimmed = value.trim();
+  if (!/^\d+$/.test(trimmed)) return null;
+
+  const minutes = Number.parseInt(trimmed, 10);
+  if (minutes < 1) return null;
+
+  return Math.min(minutes, MAX_TIME_LIMIT_MINUTES) * 60;
+}
+
 /** Longest topic the database column can hold; anything longer cannot match. */
 const MAX_TOPIC_LENGTH = 60;
 
@@ -116,6 +167,34 @@ export function resolveTestSize(requested: TestLength, available: number): numbe
 }
 
 /**
+ * When a timed test runs out, given when its clock started.
+ *
+ * Deliberately derived rather than stored: `startedAt` and `timeLimitSeconds`
+ * are written once, together, and the deadline follows from them. Storing a
+ * deadline instead would let the two drift apart, with no way to tell which
+ * was right.
+ */
+export function deadlineFrom(startedAt: Date, timeLimitSeconds: number): Date {
+  return new Date(startedAt.getTime() + timeLimitSeconds * 1000);
+}
+
+/** Seconds left on a deadline, never negative. Zero means time is up. */
+export function secondsLeft(deadline: Date, now: Date = new Date()): number {
+  return Math.max(0, Math.ceil((deadline.getTime() - now.getTime()) / 1000));
+}
+
+/** `m:ss`, or `h:mm:ss` once there is an hour to show. */
+export function formatRemaining(totalSeconds: number): string {
+  const seconds = Math.max(0, Math.floor(totalSeconds));
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const rest = seconds % 60;
+
+  const pad = (value: number) => String(value).padStart(2, "0");
+  return hours > 0 ? `${hours}:${pad(minutes)}:${pad(rest)}` : `${minutes}:${pad(rest)}`;
+}
+
+/**
  * Builds the URL for a test. Every link to a test goes through here, so the
  * shape of these parameters is decided in one place rather than spelled out at
  * each call site.
@@ -127,6 +206,8 @@ export function buildTestHref(
     length?: TestLength;
     retryOnly?: boolean;
     mode?: TestMode;
+    /** Minutes on the clock. Omitted or null means untimed. */
+    minutes?: number | null;
   } = {},
 ): string {
   const params = new URLSearchParams();
@@ -139,6 +220,8 @@ export function buildTestHref(
   if (options.mode !== undefined && options.mode !== DEFAULT_TEST_MODE) {
     params.set("mode", options.mode);
   }
+  // Same reasoning as the mode: untimed is the default, so it says nothing.
+  if (options.minutes) params.set("minutes", String(options.minutes));
 
   const query = params.toString();
   return `/aircraft/${aircraftCode}/test${query ? `?${query}` : ""}`;

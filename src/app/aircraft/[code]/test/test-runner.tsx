@@ -2,11 +2,16 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback, useMemo, useState, useTransition } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
 
 import { Badge, Card, DifficultyBadge } from "@/components/ui";
 import type { TestQuestion } from "@/db/queries";
-import { DEFAULT_TEST_MODE, type TestMode } from "@/lib/test-options";
+import {
+  DEFAULT_TEST_MODE,
+  formatRemaining,
+  secondsLeft,
+  type TestMode,
+} from "@/lib/test-options";
 
 import { answerQuestion, submitTest, type AnswerVerdict, type SubmitTestOutput } from "./actions";
 import { ResultScreen } from "./result-screen";
@@ -55,6 +60,17 @@ export function TestRunner({
    * the end. See `parseTestMode` — it is a setting, not an enforcement.
    */
   mode = DEFAULT_TEST_MODE,
+  /**
+   * Seconds the student asked for, or null for untimed. Sent with each answer
+   * so the server can stamp the clock when it creates the session; after that
+   * the server's own `expiresAt` is what the countdown follows.
+   */
+  timeLimitSeconds = null,
+  /**
+   * The deadline as the server holds it, when there is one to resume — an
+   * ISO string so it survives the server/client boundary unchanged.
+   */
+  initialExpiresAt = null,
 }: {
   aircraftCode: string;
   aircraftName: string;
@@ -65,6 +81,8 @@ export function TestRunner({
   initialAnswers?: Record<string, string>;
   initialVerdicts?: Record<string, AnswerVerdict>;
   mode?: TestMode;
+  timeLimitSeconds?: number | null;
+  initialExpiresAt?: string | null;
 }) {
   const router = useRouter();
   const [index, setIndex] = useState(() => {
@@ -83,6 +101,25 @@ export function TestRunner({
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, startSubmitting] = useTransition();
   const [isRestarting, startRestarting] = useTransition();
+  /**
+   * The deadline the countdown follows.
+   *
+   * On a resumed test this comes from the server and is authoritative — that
+   * is what stops a refresh handing out a fresh countdown. On a brand new
+   * one there is no session yet, so it starts from the requested limit
+   * counted from now, and is replaced by the server's own figure with the
+   * first answer.
+   */
+  const [deadline, setDeadline] = useState<Date | null>(() => {
+    if (initialExpiresAt) return new Date(initialExpiresAt);
+    if (timeLimitSeconds === null) return null;
+    return new Date(Date.now() + timeLimitSeconds * 1000);
+  });
+  const [remaining, setRemaining] = useState(() =>
+    deadline === null ? 0 : secondsLeft(deadline),
+  );
+  /** Set once when the clock runs out, so the auto-submit fires exactly once. */
+  const timeUpRef = useRef(false);
 
   /**
    * What this test is drawn from, for the header. Naming every section would
@@ -137,8 +174,14 @@ export function TestRunner({
         questionId,
         selectedOptionId: optionId,
         mode,
+        timeLimitSeconds,
       })
         .then((result) => {
+          // The server's clock replaces the browser's guess the moment there
+          // is one: the session now exists, and its startedAt is the truth.
+          if (result.status === "answered" && result.expiresAt) {
+            setDeadline(new Date(result.expiresAt));
+          }
           // `verdict` is null in exam mode — nothing to reveal, and nothing
           // to settle. "invalid" or "failed" leave the question open too;
           // Finish still grades it from the answer key either way.
@@ -154,7 +197,7 @@ export function TestRunner({
           setPending((current) => (current === questionId ? null : current));
         });
     },
-    [aircraftCode, clientTestId, mode, questions, verdicts],
+    [aircraftCode, clientTestId, mode, questions, timeLimitSeconds, verdicts],
   );
 
   const finish = useCallback(() => {
@@ -176,6 +219,34 @@ export function TestRunner({
       }
     });
   }, [aircraftCode, answers, clientTestId, questions]);
+
+  /**
+   * Runs the clock, and hands the test in when it reaches zero.
+   *
+   * Ticking once a second against a fixed deadline, rather than counting down
+   * a number, is what keeps it honest across a backgrounded tab or a sleeping
+   * laptop: the browser may miss a hundred ticks, and the next one still
+   * shows the right time — or finds the deadline already gone and submits.
+   *
+   * The auto-submit fires once. `timeUpRef` rather than state because a
+   * re-render must not be able to fire it a second time.
+   */
+  useEffect(() => {
+    if (deadline === null || result !== null) return;
+
+    const tick = () => {
+      const left = secondsLeft(deadline);
+      setRemaining(left);
+      if (left === 0 && !timeUpRef.current) {
+        timeUpRef.current = true;
+        finish();
+      }
+    };
+
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, [deadline, finish, result]);
 
   /**
    * Starts a fresh test without leaving the page.
@@ -232,8 +303,24 @@ export function TestRunner({
               <span className="text-muted-foreground"> · Exam</span>
             ) : null}
           </p>
-          <p className="text-sm text-muted-foreground">
-            Question {index + 1} of {questions.length}
+          <p className="flex items-baseline gap-3 text-sm text-muted-foreground">
+            {deadline !== null ? (
+              <span
+                // Announced politely rather than on every tick: a screen
+                // reader reading out each second would be unusable.
+                aria-live="off"
+                className={`font-mono font-semibold tabular-nums ${
+                  // The last minute is when it starts to matter.
+                  remaining <= 60 ? "text-incorrect" : "text-foreground"
+                }`}
+              >
+                <span className="sr-only">Time remaining: </span>
+                {formatRemaining(remaining)}
+              </span>
+            ) : null}
+            <span>
+              Question {index + 1} of {questions.length}
+            </span>
           </p>
         </div>
         <div
@@ -347,6 +434,15 @@ export function TestRunner({
           </div>
         ) : null}
       </Card>
+
+      {deadline !== null && remaining === 0 ? (
+        <p
+          className="mt-4 rounded-lg bg-incorrect-soft px-4 py-3 text-sm font-medium text-incorrect"
+          role="alert"
+        >
+          Time is up — handing in your test.
+        </p>
+      ) : null}
 
       {error ? (
         <p className="mt-4 rounded-lg bg-incorrect-soft px-4 py-3 text-sm text-incorrect" role="alert">

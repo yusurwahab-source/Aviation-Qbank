@@ -183,6 +183,20 @@ export const testSessions = pgTable(
     questionCount: smallint("question_count").notNull(),
     /** The exact questions given, in the order shown. Empty only pre-migration. */
     questionIds: text("question_ids").array().notNull().default(sql`'{}'::text[]`),
+    /**
+     * When the clock started, for a timed test. Set once, with the row, and
+     * never moved — that is the whole point: a refresh re-reads this rather
+     * than starting a fresh countdown in the browser.
+     *
+     * Null on an untimed test, and on every row written before timing existed.
+     */
+    startedAt: timestamp("started_at", { withTimezone: true }),
+    /**
+     * How long the student gave themselves, in seconds. Null means untimed.
+     * Stored alongside `startedAt` rather than as a deadline so the two
+     * always agree about which test they describe.
+     */
+    timeLimitSeconds: integer("time_limit_seconds"),
     /** Null means still in progress. Set once, at Finish, and never cleared. */
     completedAt: timestamp("completed_at", { withTimezone: true }),
   },

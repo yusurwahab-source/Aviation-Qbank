@@ -6,7 +6,7 @@ import { recordTestResult, saveAnswer as saveAnswerRow } from "@/db/attempts";
 import { getAnswerKey } from "@/db/queries";
 import { getCurrentUser } from "@/lib/auth/session";
 import { gradeTest, type TestResult } from "@/lib/grading";
-import { TEST_MODES } from "@/lib/test-options";
+import { TEST_MODES, deadlineFrom } from "@/lib/test-options";
 
 /**
  * Grading, both per question and for the finished test.
@@ -113,6 +113,12 @@ const answerSchema = z.object({
   selectedOptionId: z.string().max(4),
   /** Study marks as you go; exam holds everything back until Finish. */
   mode: z.enum(TEST_MODES),
+  /**
+   * Seconds the student asked for, or null for untimed. Only read when the
+   * session is created — after that the stored clock is the one that counts,
+   * which is what stops a reload from asking for a fresh countdown.
+   */
+  timeLimitSeconds: z.number().int().positive().max(24 * 60 * 60).nullable(),
 });
 
 export type AnswerQuestionInput = z.infer<typeof answerSchema>;
@@ -137,7 +143,18 @@ export type AnswerVerdict = {
 
 export type AnswerQuestionResult =
   /** `verdict` is present in study mode only; exam mode answers in silence. */
-  | { status: "answered"; verdict: AnswerVerdict | null; saved: AnswerSaveStatus }
+  | {
+      status: "answered";
+      verdict: AnswerVerdict | null;
+      saved: AnswerSaveStatus;
+      /**
+       * When this test runs out, as the server reckons it — the browser's
+       * countdown syncs to this rather than trusting its own start time.
+       * Null on an untimed test, and for a signed-out student, who has no
+       * session for the clock to live on.
+       */
+      expiresAt: string | null;
+    }
   /** The question is not a real, published question on this aircraft. */
   | { status: "invalid" }
   /** Nothing could be graded — the caller should leave the question open. */
@@ -176,8 +193,15 @@ export async function answerQuestion(
   input: AnswerQuestionInput,
 ): Promise<AnswerQuestionResult> {
   try {
-    const { aircraftCode, clientTestId, questionIds, questionId, selectedOptionId, mode } =
-      answerSchema.parse(input);
+    const {
+      aircraftCode,
+      clientTestId,
+      questionIds,
+      questionId,
+      selectedOptionId,
+      mode,
+      timeLimitSeconds,
+    } = answerSchema.parse(input);
 
     const [question] = await getAnswerKey(aircraftCode, [questionId]);
     if (!question) return { status: "invalid" };
@@ -196,12 +220,15 @@ export async function answerQuestion(
         : null;
 
     const user = await getCurrentUser();
-    if (!user) return { status: "answered", verdict, saved: "signed-out" };
+    // Signed out there is no session, so no server-held clock. The browser's
+    // own countdown is all there is — see the note in CLAUDE.md.
+    if (!user) return { status: "answered", verdict, saved: "signed-out", expiresAt: null };
 
     // Recorded before the answer is returned, so the attempt is on file
     // whether or not the student likes what they see. A failure here loses
     // the record, never the verdict — they still get told how they did.
     let saved: AnswerSaveStatus;
+    let expiresAt: string | null = null;
     try {
       const outcome = await saveAnswerRow({
         userId: user.id,
@@ -213,22 +240,29 @@ export async function answerQuestion(
         topic: question.topic,
         selectedOptionId,
         isCorrect,
+        timeLimitSeconds,
       });
 
-      saved =
-        outcome.status === "recorded"
-          ? "recorded"
-          : outcome.status === "closed"
-            ? "closed"
-            // "wrong-aircraft": the clientTestId in the URL belongs to a
-            // different aircraft's session. Not reachable by normal navigation.
-            : "failed";
+      if (outcome.status === "recorded") {
+        saved = "recorded";
+        // Whatever the client asked for, this is the clock that counts: the
+        // one stored when the session was created.
+        if (outcome.startedAt && outcome.timeLimitSeconds !== null) {
+          expiresAt = deadlineFrom(outcome.startedAt, outcome.timeLimitSeconds).toISOString();
+        }
+      } else if (outcome.status === "closed") {
+        saved = "closed";
+      } else {
+        // "wrong-aircraft": the clientTestId in the URL belongs to a
+        // different aircraft's session. Not reachable by normal navigation.
+        saved = "failed";
+      }
     } catch (error) {
       console.error("Failed to save an answer:", error);
       saved = "failed";
     }
 
-    return { status: "answered", verdict, saved };
+    return { status: "answered", verdict, saved, expiresAt };
   } catch (error) {
     console.error("Failed to answer a question:", error);
     return { status: "failed" };

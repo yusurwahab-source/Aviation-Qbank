@@ -234,6 +234,7 @@ describeWithDb("recordTestResult", () => {
       topic: "Electrical",
       selectedOptionId: "a",
       isCorrect: true,
+      timeLimitSeconds: null,
       ...over,
     });
 
@@ -339,6 +340,7 @@ describeWithDb("recordTestResult", () => {
         topic: "Electrical",
         selectedOptionId: "a",
         isCorrect: true,
+        timeLimitSeconds: null,
       });
 
       const result = gradeTest("DA40", questions, [
@@ -373,6 +375,7 @@ describeWithDb("recordTestResult", () => {
         topic: "Electrical",
         selectedOptionId: "a",
         isCorrect: true,
+        timeLimitSeconds: null,
       });
       const [beforeSession] = await sessionsFor(clientTestId);
       const [before] = await attemptsFor(beforeSession.id);
@@ -401,6 +404,7 @@ describeWithDb("recordTestResult", () => {
         topic: "Electrical",
         selectedOptionId: "a",
         isCorrect: true,
+        timeLimitSeconds: null,
       });
       const [beforeSession] = await sessionsFor(clientTestId);
       const [before] = await attemptsFor(beforeSession.id);
@@ -416,6 +420,106 @@ describeWithDb("recordTestResult", () => {
       const [after] = await attemptsFor(beforeSession.id);
       expect(after.selectedOptionId).toBe("b");
       expect(after.answeredAt.getTime()).toBeGreaterThan(before.answeredAt.getTime());
+    });
+  });
+
+  describe("the stored clock", () => {
+    it("stamps startedAt once, when the timed session is created", async () => {
+      const clientTestId = randomUUID();
+      const outcome = await saveAnswer({
+        userId,
+        clientTestId,
+        aircraftCode: "DA40",
+        questionIds: questions.map((q) => q.id),
+        questionCount: questions.length,
+        questionId: "DA40-ELEC-9001",
+        topic: "Electrical",
+        selectedOptionId: "a",
+        isCorrect: true,
+        timeLimitSeconds: 600,
+      });
+
+      expect(outcome.status).toBe("recorded");
+      const [session] = await sessionsFor(clientTestId);
+      expect(session.startedAt).toBeInstanceOf(Date);
+      expect(session.timeLimitSeconds).toBe(600);
+    });
+
+    it("does not move the clock on a later answer — this is the whole point", async () => {
+      // A reload that answered again must not buy the student more time. The
+      // clock belongs to the session, and the session is created once.
+      const clientTestId = randomUUID();
+      const base = {
+        userId,
+        clientTestId,
+        aircraftCode: "DA40",
+        questionIds: questions.map((q) => q.id),
+        questionCount: questions.length,
+        topic: "Electrical",
+        selectedOptionId: "a",
+        isCorrect: true,
+      };
+
+      await saveAnswer({ ...base, questionId: "DA40-ELEC-9001", timeLimitSeconds: 600 });
+      const [before] = await sessionsFor(clientTestId);
+
+      await new Promise((resolve) => setTimeout(resolve, 30));
+
+      // A second answer, even one claiming a much more generous limit.
+      const later = await saveAnswer({
+        ...base,
+        questionId: "DA40-ELEC-9002",
+        timeLimitSeconds: 99999,
+      });
+
+      const [after] = await sessionsFor(clientTestId);
+      expect(after.startedAt?.getTime()).toBe(before.startedAt?.getTime());
+      expect(after.timeLimitSeconds).toBe(600);
+      // And the outcome reports the stored clock, not the one just claimed.
+      expect(later.status === "recorded" && later.timeLimitSeconds).toBe(600);
+    });
+
+    it("leaves an untimed test with no clock at all", async () => {
+      const clientTestId = randomUUID();
+      await saveAnswer({
+        userId,
+        clientTestId,
+        aircraftCode: "DA40",
+        questionIds: [questions[0].id],
+        questionCount: 1,
+        questionId: "DA40-ELEC-9001",
+        topic: "Electrical",
+        selectedOptionId: "a",
+        isCorrect: true,
+        timeLimitSeconds: null,
+      });
+
+      const [session] = await sessionsFor(clientTestId);
+      expect(session.startedAt).toBeNull();
+      expect(session.timeLimitSeconds).toBeNull();
+    });
+
+    it("hands the clock back to a resume", async () => {
+      const clientTestId = randomUUID();
+      await saveAnswer({
+        userId,
+        clientTestId,
+        aircraftCode: "DA40",
+        questionIds: [questions[0].id],
+        questionCount: 1,
+        questionId: "DA40-ELEC-9001",
+        topic: "Electrical",
+        selectedOptionId: "a",
+        isCorrect: true,
+        timeLimitSeconds: 1200,
+      });
+
+      const lookup = await findSession(userId, "DA40", clientTestId);
+      expect(lookup.kind).toBe("resumable");
+      if (lookup.kind === "resumable") {
+        expect(lookup.startedAt).toBeInstanceOf(Date);
+        expect(lookup.timeLimitSeconds).toBe(1200);
+      }
     });
   });
 
@@ -437,6 +541,7 @@ describeWithDb("recordTestResult", () => {
         topic: "Electrical",
         selectedOptionId: "a",
         isCorrect: true,
+        timeLimitSeconds: null,
       });
 
       const lookup = await findSession(userId, "DA40", clientTestId);
@@ -469,6 +574,7 @@ describeWithDb("recordTestResult", () => {
         topic: "Electrical",
         selectedOptionId: "a",
         isCorrect: true,
+        timeLimitSeconds: null,
       });
 
       const lookup = await findSession(userId, "A320", clientTestId);
@@ -492,6 +598,7 @@ describeWithDb("recordTestResult", () => {
         topic: "Electrical",
         selectedOptionId: "a",
         isCorrect: true,
+        timeLimitSeconds: null,
       });
 
       const lookup = await findSession(other.id, "DA40", clientTestId);
@@ -514,6 +621,7 @@ describeWithDb("recordTestResult", () => {
         topic: "Electrical",
         selectedOptionId: "a",
         isCorrect: true,
+        timeLimitSeconds: null,
       });
       await saveAnswer({
         userId,
@@ -525,6 +633,7 @@ describeWithDb("recordTestResult", () => {
         topic: "Electrical",
         selectedOptionId: "b",
         isCorrect: false,
+        timeLimitSeconds: null,
       });
 
       const [session] = await sessionsFor(clientTestId);
@@ -544,6 +653,7 @@ describeWithDb("recordTestResult", () => {
         topic: "Fuel",
         selectedOptionId: "a",
         isCorrect: true,
+        timeLimitSeconds: null,
       });
 
       expect(await getSessionAnswers(session.id)).toEqual({
