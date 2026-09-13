@@ -176,22 +176,23 @@ No. 1 / No. 2 / No. 3 window numbering in `GEN-0016`, and the compressor-stage
 progression in `AIR-0002`. Eighteen questions in total. The even split is
 reached around them.
 
-Automatic Flight adds none to that list, and the reason is worth stating so it
-does not read as an oversight: its three numeric option sets (`AFS-0008`,
-`AFS-0042`, `AFS-0043`) arrive **scrambled in the source**, not ascending. There
-is no author ordering there to preserve, so they were treated as free like every
-other question in the section. Imposing an ascending order on them would be an
-editorial change rather than a conversion, and nobody asked for one — but it
-would make the bank read more uniformly, and it is the obvious thing to do if
-that inconsistency ever grates.
+Automatic Flight's numeric options are ascending too, but they did not arrive
+that way. Its quantity questions — altitudes, speeds, the bank angle range, the
+count of course selectors — came **scrambled** in the source, unlike the earlier
+sections. They were sorted ascending at the owner's request so the bank reads
+the same way throughout: `AFS-0008`, `0012`, `0023`, `0030`, `0031`, `0042`,
+`0043` and `0049`. An option naming no quantity goes last (`V1`,
+`Acceleration altitude`), and equal quantities keep their source order.
 
-One consequence in Airplane General is worth recording so it is not mistaken
-for an oversight: `GEN-0043`, `0044` and `0045` sit together in the file, all
-answer `C`, and each is a dimension whose true value falls third in an
-ascending list of four. No consistent ordering can break that run. It costs
-nothing in practice, because `pickTestQuestions` draws with `order by
-random()` — the order questions sit in a file is never the order a student
-meets them in. Air Systems has no run of three at all.
+This is the one place where a distractor's position was changed for a reason
+other than the answer spread, so it is the one place the "distractors keep their
+relative order" rule above does not hold. The correct answer is still the same
+sentence, and the section is still 15 of each letter — the eight were sorted
+first and the rest balanced around them.
+
+`GEN-0032` was deliberately left alone. Its options are *sets* of ELT
+frequencies ("121.5, 243.0 and 406 MHz" against "406 MHz only"), not points on a
+scale, so ordering them by a leading number would sort nothing meaningful.
 
 **Keep this property when adding a section.** An even spread is only worth
 having if the next chapter does not undo it.
