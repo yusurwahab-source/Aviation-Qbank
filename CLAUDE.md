@@ -25,7 +25,7 @@ retrying.
 ## The rule that shapes everything: many aircraft
 
 The platform supports several aircraft types, each with its own question bank.
-Two exist today — the DA40 and the B738 — and nothing in the code knows about
+Two exist today — the DA40 and the B737 — and nothing in the code knows about
 either.
 
 Every table, route, query and report is keyed by aircraft code:
@@ -38,9 +38,9 @@ Every table, route, query and report is keyed by aircraft code:
 **Adding an aircraft must stay a content-only job.** If a change would require
 editing application code to add a second or third type, it is the wrong change.
 This was first checked with a throwaway A320 folder; it is now settled by the
-B737-800, which was added as `content/b738/` alone — a manifest and one question
-file. No application code was touched, and the full test suite passed against a
-database holding both banks.
+B737-800, which was added as `content/b737/` alone — a manifest and its question
+files, one per FCOM chapter. No application code was touched, and the full test
+suite passed against a database holding both banks.
 
 ## Commands
 
@@ -507,6 +507,22 @@ markers with a 2px surface ring, ~10% area wash, hairline solid gridlines, only
 the endpoint labelled, and a table view as the accessible equal of the picture —
 are worth keeping if another chart is ever added.
 
+**A database ordering is never asserted against a JavaScript one.** Postgres
+sorts by the database's collation; `localeCompare` sorts by ICU's. They agree
+often enough to be mistaken for the same thing and then disagree on the first
+section name containing a space: under `en_US.utf8`, which is what CI's
+Postgres runs, a space is ignored at the first level, so `Airplane General`
+precedes `Air Systems` — while JavaScript puts `Air Systems` first. The
+`listTopics` test asserted a `order by topic` result against a
+`localeCompare`d expectation and passed for exactly as long as every section
+name was a single word.
+
+It now makes its two claims separately: the contents are compared with both
+sides sorted the same way in one language, and the ordering is compared
+against the database's own `order by`. Neither assertion depends on the two
+collations agreeing. Worth knowing that this cannot be caught on a machine
+whose only locales are `C` and `C.utf8` — under `C` the two orders coincide.
+
 **The integration tests run against a real Postgres with the content seeded.**
 Several of them — the reports, the retry list, the section queries — are about
 behaviour over real questions: which are published, which section they are in,
@@ -620,6 +636,20 @@ from inside the website, an admin panel gets added then — the `status`,
   URL segment, the prefix of every question id, and the value stored on every
   past attempt. Renaming the DA40 to the DA 40 D TDI changed `name` and
   `variant` only.
+
+  The 737 bank is the one exception, and it proves the rule rather than
+  softening it. It shipped as `B738` and was changed to `B737` at the owner's
+  request within hours, while the bank was one section old, nothing linked to
+  it and nobody had answered a question in it — so the rename cost two files
+  and 52 ids and orphaned no history. That window is now closed. `B737` is
+  published, and the next such request is a migration (rewriting
+  `attempts.aircraft_code` and every stored question id), not an edit.
+
+  Worth knowing if a second 737 variant is ever added: `B737` is the ICAO type
+  designator for the **-700**, and `B738` for the -800 this bank actually
+  covers. The code here names the *type rating*, which is the 737 family, so
+  `B737` is right for what the app is for — but the obvious code for a -700
+  bank is taken, and it would need a different one.
 - **`npm audit` reports a moderate advisory** in `esbuild`, reached through
   `drizzle-kit`. It affects a development server only, never the deployed app.
   The fix is a breaking downgrade of `drizzle-kit`, so it is being left until
