@@ -2,9 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { DatabaseUnavailable } from "@/components/database-unavailable";
-import { Badge, Card, EmptyState, PageHeading } from "@/components/ui";
+import { Card, EmptyState, PageHeading } from "@/components/ui";
 import { getAircraft, listTopics, type AircraftSummary, type TopicSummary } from "@/db/queries";
-import { DEFAULT_TEST_LENGTH, TEST_LENGTHS } from "@/lib/test-options";
+
+import { TestBuilder } from "./test-builder";
 
 export const dynamic = "force-dynamic";
 
@@ -35,8 +36,6 @@ export default async function AircraftPage({ params }: PageProps) {
 
   if (!plane) notFound();
 
-  const available = plane.publishedQuestions;
-
   return (
     <>
       <PageHeading
@@ -47,73 +46,24 @@ export default async function AircraftPage({ params }: PageProps) {
 
       <Card>
         <p className="text-sm text-muted-foreground">{plane.description}</p>
-
-        {available === 0 ? (
-          <p className="mt-4 text-sm text-muted-foreground">
-            This aircraft has no published questions yet.
-          </p>
-        ) : (
-          <>
-            <h2 className="mt-5 text-sm font-semibold text-foreground">Start a practice test</h2>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Questions are picked at random from the {available} published{" "}
-              {available === 1 ? "question" : "questions"} for this aircraft.
-            </p>
-
-            <div className="mt-4 flex flex-wrap gap-3">
-              {TEST_LENGTHS.filter((length) => length <= available || length === TEST_LENGTHS[0]).map(
-                (length) => {
-                  const count = Math.min(length, available);
-                  const isDefault = length === DEFAULT_TEST_LENGTH;
-                  return (
-                    <Link
-                      key={length}
-                      href={`/aircraft/${plane.code}/test?questions=${count}`}
-                      className={`rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
-                        isDefault
-                          ? "bg-brand text-white hover:bg-brand-strong"
-                          : "border border-border bg-surface text-foreground hover:border-brand hover:text-brand"
-                      }`}
-                    >
-                      {count} questions
-                    </Link>
-                  );
-                },
-              )}
-            </div>
-          </>
-        )}
       </Card>
 
       <section className="mt-6">
-        <h2 className="text-sm font-semibold text-foreground">Or sit one section on its own</h2>
-        <p className="mb-3 mt-1 text-sm text-muted-foreground">
-          A test drawn only from that section, so you can work on one system at a time.
+        <h2 className="text-lg font-semibold text-foreground">Build a practice test</h2>
+        <p className="mb-4 mt-1 text-sm text-muted-foreground">
+          Questions are picked at random from the sections you choose.
         </p>
+
         {topics.length === 0 ? (
-          <EmptyState title="No topics yet">
-            Add question files under <code className="font-mono">content/{plane.code.toLowerCase()}/questions/</code>{" "}
-            and run <code className="font-mono">npm run db:seed</code>.
+          <EmptyState title="No published questions yet">
+            Add question files under{" "}
+            <code className="font-mono">content/{plane.code.toLowerCase()}/questions/</code> and run{" "}
+            <code className="font-mono">npm run db:seed</code>.
           </EmptyState>
         ) : (
-          <ul className="grid gap-2 sm:grid-cols-2">
-            {topics.map((topic) => (
-              <li key={topic.topic}>
-                <Link
-                  href={`/aircraft/${plane.code}/test?topic=${encodeURIComponent(topic.topic)}&questions=${Math.min(
-                    DEFAULT_TEST_LENGTH,
-                    topic.questionCount,
-                  )}`}
-                  className="flex items-center justify-between gap-3 rounded-lg border border-border bg-surface px-4 py-3 transition hover:border-brand"
-                >
-                  <span className="text-sm font-medium text-foreground">{topic.topic}</span>
-                  <Badge>
-                    {topic.questionCount} {topic.questionCount === 1 ? "question" : "questions"}
-                  </Badge>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <Card>
+            <TestBuilder aircraftCode={plane.code} topics={topics} />
+          </Card>
         )}
       </section>
 

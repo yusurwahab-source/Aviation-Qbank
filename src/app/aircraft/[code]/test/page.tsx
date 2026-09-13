@@ -3,10 +3,16 @@ import { notFound } from "next/navigation";
 
 import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { EmptyState, PageHeading } from "@/components/ui";
-import { getAircraft, getTestQuestionsByIds, pickTestQuestions, type TestQuestion } from "@/db/queries";
+import {
+  countTestQuestions,
+  getAircraft,
+  getTestQuestionsByIds,
+  pickTestQuestions,
+  type TestQuestion,
+} from "@/db/queries";
 import { getQuestionIdsToRetry } from "@/db/reports";
 import { getCurrentUser } from "@/lib/auth/session";
-import { parseTestLength, parseTopic } from "@/lib/test-options";
+import { buildTestHref, parseTestLength, parseTopics, resolveTestSize } from "@/lib/test-options";
 
 import { TestRunner } from "./test-runner";
 
@@ -31,9 +37,9 @@ export default async function TestPage({ params, searchParams }: PageProps) {
   const aircraftCode = code.toUpperCase();
   const length = parseTestLength(query.questions);
   const retryOnly = (Array.isArray(query.from) ? query.from[0] : query.from) === "incorrect";
-  // Retry mode already narrows the set, so a topic on top of it would be
-  // two filters fighting; the retry list wins.
-  const topic = retryOnly ? undefined : parseTopic(query.topic);
+  // Retry mode already narrows the set, so sections on top of it would be two
+  // filters fighting; the retry list wins.
+  const topics = retryOnly ? [] : parseTopics(query.topic);
 
   let plane;
   let questions: TestQuestion[];
@@ -41,6 +47,13 @@ export default async function TestPage({ params, searchParams }: PageProps) {
   try {
     plane = await getAircraft(aircraftCode);
     if (!plane) notFound();
+
+    // How many questions the chosen sections actually hold. This is what turns
+    // "all questions" into a number, and what stops a request for 500 from
+    // meaning anything more than the bank.
+    const available = await countTestQuestions(aircraftCode, topics);
+    const size = resolveTestSize(length, available);
+
     // Only the question and its options cross to the browser. The correct
     // answer and the explanation stay on the server until the test is graded.
     if (retryOnly) {
@@ -48,10 +61,10 @@ export default async function TestPage({ params, searchParams }: PageProps) {
       // history. Signed out there is nothing to retry, so fall back to a normal
       // random test rather than showing an error.
       const user = await getCurrentUser();
-      const ids = user ? await getQuestionIdsToRetry(user.id, aircraftCode, length) : [];
+      const ids = user ? await getQuestionIdsToRetry(user.id, aircraftCode, size) : [];
       questions = ids.length > 0 ? await getTestQuestionsByIds(aircraftCode, ids) : [];
     } else {
-      questions = await pickTestQuestions(aircraftCode, length, topic);
+      questions = await pickTestQuestions(aircraftCode, size, topics);
     }
   } catch (error) {
     if ((error as { digest?: string }).digest?.startsWith("NEXT_")) throw error;
@@ -64,6 +77,7 @@ export default async function TestPage({ params, searchParams }: PageProps) {
   }
 
   if (questions.length === 0) {
+    const sections = topics.length > 0 ? topics.join(", ") : null;
     return (
       <>
         <PageHeading title={`${plane.name} practice test`} />
@@ -71,8 +85,8 @@ export default async function TestPage({ params, searchParams }: PageProps) {
           title={
             retryOnly
               ? "Nothing to retry right now."
-              : topic
-                ? `There are no published questions in "${topic}" yet.`
+              : sections
+                ? `There are no published questions in ${sections} yet.`
                 : "There are no published questions for this aircraft yet."
           }
         >
@@ -80,21 +94,21 @@ export default async function TestPage({ params, searchParams }: PageProps) {
             <>
               The last time you saw each question, you got it right.{" "}
               <Link
-                href={`/aircraft/${plane.code}/test`}
+                href={buildTestHref(plane.code)}
                 className="font-medium text-brand hover:underline"
               >
                 Take a normal test
               </Link>{" "}
               instead.
             </>
-          ) : topic ? (
+          ) : sections ? (
             <>
               Check the section name, or{" "}
               <Link
                 href={`/aircraft/${plane.code}`}
                 className="font-medium text-brand hover:underline"
               >
-                pick another section
+                choose different sections
               </Link>
               .
             </>
@@ -113,7 +127,7 @@ export default async function TestPage({ params, searchParams }: PageProps) {
       aircraftCode={plane.code}
       aircraftName={plane.name}
       questions={questions}
-      topic={topic}
+      topics={topics}
     />
   );
 }

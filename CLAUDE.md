@@ -8,11 +8,12 @@ description of how the project is built, not a historical record.
 A web application where student pilots practise multiple-choice questions for
 aircraft type ratings. All user-facing content is in English.
 
-**Current state: Phase 4 is complete.** A user can choose an aircraft, answer
-questions one at a time, and see a result screen. Accounts exist, every answer a
-signed-in user submits is recorded, and `/progress` reads that history back:
-overall score, performance by topic, progress over time, and the questions worth
-retrying. What remains is Phase 5, refinement.
+**Current state: Phase 4 is complete, and Phase 5 is under way.** A user can
+choose an aircraft, build a test from any combination of sections and any number
+of questions, answer them one at a time, and see a result screen. Accounts exist,
+every answer a signed-in user submits is recorded, and `/progress` reads that
+history back: overall score, performance by topic, progress over time, and the
+questions worth retrying.
 
 ## The rule that shapes everything: many aircraft
 
@@ -130,8 +131,34 @@ reused it unchanged: `recordTestResult` writes the rows straight from its
 output.
 
 **Untrusted input is parsed, not trusted.** URL parameters go through
-`parseTestLength`; the server action parses its input with Zod and re-reads the
-answer key from the database scoped to the aircraft and to `published`.
+`parseTestLength` and `parseTopics`; the server action parses its input with Zod
+and re-reads the answer key from the database scoped to the aircraft and to
+`published`.
+
+**A test is described by the URL, and the URL has no ceiling in it.** The test
+page takes `?topic=` repeated once per section and `?questions=` as any whole
+number or the word `all`. There is deliberately no maximum length constant: the
+real limit is how many questions exist, which `countTestQuestions` reports and
+`resolveTestSize` applies. A clamp in the parser would have had to guess a
+number, and would have been wrong the moment a bank grew past it.
+
+Two properties follow, and both are tested:
+
+1. **The button never promises more than it delivers.** The builder shows the
+   count for the current selection and puts that resolved number in the link, so
+   a request for 500 out of 4 says "only 4 available" on screen rather than
+   silently handing back a short test. `all` is the exception that stays a word
+   in the URL — its point is to follow the bank as it grows.
+2. **A mangled link still gives a test.** An unreadable length falls back to the
+   default, an unknown section name simply matches nothing, and no section at all
+   means every section. A student following a stale link gets questions, not an
+   error.
+
+**The per-section counts are sent once and the arithmetic happens in the
+browser.** `listTopics` already returns a count per section, so the running total
+updates on every tick without a request. The server still counts for itself when
+the test is built — the browser's figure decides what to show, never what to
+serve.
 
 **Database errors are explained, not thrown at the user.** Pages that read the
 database catch failures and render `DatabaseUnavailable`, which names the two
@@ -230,6 +257,14 @@ markers with a 2px surface ring, ~10% area wash, hairline solid gridlines, only
 the endpoint labelled, and a table view as the accessible equal of the picture —
 are worth keeping if another chart is ever added.
 
+**The integration tests run against a real Postgres with the content seeded.**
+Several of them — the reports, the retry list, the section queries — are about
+behaviour over real questions: which are published, which section they are in,
+what survives a question being deleted. They skip themselves when `DATABASE_URL`
+is unset, so CI sets one and runs `db:migrate` *and* `db:seed` before `npm run
+test`. Migrating without seeding leaves the tables empty, which does not make
+those tests pass — it makes them fail, because an empty bank is not a bank.
+
 **One feature per session, one pull request per feature. `main` always works.**
 
 ## Layout
@@ -260,7 +295,7 @@ src/
   lib/
     grading.ts                Scoring (pure, tested)
     password.ts               scrypt hashing (pure, tested)
-    test-options.ts           Test length parsing and limits
+    test-options.ts           Test length and section parsing, and test URLs
     auth/
       credentials.ts          Email and password rules (pure, tested)
       rate-limit-policy.ts    When to refuse a log in (pure, tested)
@@ -279,10 +314,10 @@ tests/                        Vitest unit tests
 4. **Phase 4 — reports. Done.** Overall score, performance by topic (the most
    important view), progress over time, retry incorrect questions. Scoped per
    aircraft (`/progress/[code]`) and overall (`/progress`).
-5. **Phase 5 — refinement.** Filtering by topic is done: `?topic=` on the test
-   page sits one section only, reached from the aircraft page and from each row
-   of the progress report. Still to do: filter by difficulty, timed mode, review
-   mid-test.
+5. **Phase 5 — refinement.** The test builder is done: the student picks any
+   sections and any number of questions, reached from the aircraft page and from
+   each row of the progress report. Still to do: filter by difficulty, timed
+   mode, review mid-test.
 
 Do not start a phase until the previous one works.
 
@@ -350,3 +385,13 @@ conventions above.)
   redirect.
 - **The progress chart plots the last 100 tests and no more.** Fine now; a date
   filter is the honest answer once anyone exceeds that.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

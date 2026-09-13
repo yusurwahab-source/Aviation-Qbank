@@ -19,13 +19,13 @@ export function TestRunner({
   aircraftCode,
   aircraftName,
   questions,
-  topic,
+  topics = [],
 }: {
   aircraftCode: string;
   aircraftName: string;
   questions: TestQuestion[];
-  /** Set when the student chose a single section. */
-  topic?: string;
+  /** The sections the student chose. Empty means the whole bank. */
+  topics?: string[];
 }) {
   const router = useRouter();
   const [index, setIndex] = useState(0);
@@ -40,6 +40,18 @@ export function TestRunner({
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, startSubmitting] = useTransition();
   const [isRestarting, startRestarting] = useTransition();
+
+  /**
+   * What this test is drawn from, for the header. Naming every section would
+   * outgrow the line as soon as a student picks several, so past one it says
+   * how many.
+   */
+  const scope =
+    topics.length === 0
+      ? aircraftName
+      : topics.length === 1
+        ? topics[0]
+        : `${topics.length} sections`;
 
   const current = questions[index];
   const isLast = index === questions.length - 1;
@@ -122,8 +134,7 @@ export function TestRunner({
       <div className="mb-6">
         <div className="flex items-baseline justify-between gap-3">
           <p className="text-xs font-semibold uppercase tracking-wider text-brand">
-            {aircraftCode}
-            {topic ? ` · ${topic}` : ` · ${aircraftName}`}
+            {aircraftCode} · {scope}
           </p>
           <p className="text-sm text-muted-foreground">
             Question {index + 1} of {questions.length}

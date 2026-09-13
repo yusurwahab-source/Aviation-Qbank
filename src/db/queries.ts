@@ -82,26 +82,56 @@ export async function getAircraft(code: string): Promise<AircraftSummary | null>
   return row ?? null;
 }
 
-/** Published question counts per topic, for the aircraft overview page. */
+/** Published question counts per topic, for the test builder. */
 export async function listTopics(code: string): Promise<TopicSummary[]> {
-  const db = getDb();
-
-  return db
-    .select({ topic: questions.topic, questionCount: count().as("question_count") })
+  const rows = await getDb()
+    .select({ topic: questions.topic, questionCount: count() })
     .from(questions)
     .where(
       and(eq(questions.aircraftCode, code.toUpperCase()), eq(questions.status, "published")),
     )
     .groupBy(questions.topic)
     .orderBy(asc(questions.topic));
+
+  return rows.map((row) => ({ topic: row.topic, questionCount: Number(row.questionCount) }));
+}
+
+/**
+ * The filter every user-facing question query shares: this aircraft, published
+ * only, and optionally narrowed to a set of sections.
+ *
+ * Topics reach the database as bound parameters. An empty list means every
+ * section rather than none — a link with no usable topic still gives a test.
+ */
+function publishedIn(code: string, topics: string[] = []) {
+  return and(
+    eq(questions.aircraftCode, code.toUpperCase()),
+    eq(questions.status, "published"),
+    ...(topics.length > 0 ? [inArray(questions.topic, topics)] : []),
+  );
+}
+
+/**
+ * How many questions a selection actually holds.
+ *
+ * The builder shows this to the student before they start, and the test page
+ * uses it to turn "all questions" into a real number.
+ */
+export async function countTestQuestions(code: string, topics: string[] = []): Promise<number> {
+  const [row] = await getDb()
+    .select({ total: count() })
+    .from(questions)
+    .where(publishedIn(code, topics));
+
+  return Number(row?.total ?? 0);
 }
 
 /**
  * Picks a random set of published questions for a test.
  *
- * Pass `topic` to sit a test on one section only. The topic is matched exactly
- * against the stored value, and reaches the database as a bound parameter, so
- * an unknown topic simply returns nothing rather than widening the query.
+ * Pass `topics` to draw from one section or several. The limit is applied by
+ * the database, so asking for more than exists simply returns everything that
+ * does — there is no ceiling to get wrong.
  *
  * `order by random()` is fine for banks of this size. If a bank ever grows to
  * hundreds of thousands of questions this is the query to revisit.
@@ -109,11 +139,11 @@ export async function listTopics(code: string): Promise<TopicSummary[]> {
 export async function pickTestQuestions(
   code: string,
   limit: number,
-  topic?: string,
+  topics: string[] = [],
 ): Promise<TestQuestion[]> {
-  const db = getDb();
+  if (limit <= 0) return [];
 
-  return db
+  return getDb()
     .select({
       id: questions.id,
       topic: questions.topic,
@@ -123,13 +153,7 @@ export async function pickTestQuestions(
       difficulty: questions.difficulty,
     })
     .from(questions)
-    .where(
-      and(
-        eq(questions.aircraftCode, code.toUpperCase()),
-        eq(questions.status, "published"),
-        ...(topic ? [eq(questions.topic, topic)] : []),
-      ),
-    )
+    .where(publishedIn(code, topics))
     .orderBy(sql`random()`)
     .limit(limit);
 }
