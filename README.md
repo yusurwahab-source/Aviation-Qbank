@@ -14,9 +14,10 @@ rewriting the application.
 - A test builder: tick the sections you want, and the number of questions
   available updates as you do. Choose any number of questions, or all of them
 - A practice test drawn at random from that selection, one question per screen
-- **The answer as you go**: pick an option and the correct answer and its
-  explanation appear straight away. That question is then settled — you can't
-  change it once you've seen the answer, so your score still means something
+- **Two ways to sit it.** *Study*: pick an option and the correct answer and
+  its explanation appear straight away — that question is then settled, so
+  your score still means something. *Exam*: nothing is shown until the end,
+  and you can change your mind on the way through, closer to the real thing
 - A result screen: your score, a breakdown by topic with the weakest first, and
   every question reviewed again with the correct answer and an explanation
 - Accounts: sign up, log in, log out

@@ -16,7 +16,13 @@ import {
 } from "@/db/queries";
 import { getQuestionIdsToRetry } from "@/db/reports";
 import { getCurrentUser } from "@/lib/auth/session";
-import { buildTestHref, parseTestLength, parseTopics, resolveTestSize } from "@/lib/test-options";
+import {
+  buildTestHref,
+  parseTestLength,
+  parseTestMode,
+  parseTopics,
+  resolveTestSize,
+} from "@/lib/test-options";
 
 import type { AnswerVerdict } from "./actions";
 import { TestRunner } from "./test-runner";
@@ -29,6 +35,8 @@ type PageProps = {
     questions?: string | string[];
     from?: string | string[];
     topic?: string | string[];
+    /** `study` (default) marks as you go; `exam` holds it all to the end. */
+    mode?: string | string[];
     /** Identifies this attempt at the test. See the note below `TestPage`. */
     t?: string | string[];
   }>;
@@ -72,6 +80,7 @@ export default async function TestPage({ params, searchParams }: PageProps) {
   const clientTestId = rawId;
 
   const length = parseTestLength(query.questions);
+  const mode = parseTestMode(query.mode);
   const retryOnly = (Array.isArray(query.from) ? query.from[0] : query.from) === "incorrect";
   // Retry mode already narrows the set, so sections on top of it would be two
   // filters fighting; the retry list wins.
@@ -108,11 +117,12 @@ export default async function TestPage({ params, searchParams }: PageProps) {
         Object.entries(saved).filter((entry): entry is [string, string] => entry[1] !== null),
       );
 
-      // These questions have already been answered once, and their answers
-      // already shown — so sending the key for *these* gives nothing away
-      // that the student has not already seen and paid for. Only these: the
-      // ones still to come are fetched without it, as always.
-      const answeredIds = Object.keys(initialAnswers);
+      // These questions have already been answered once, and — in study mode
+      // — their answers already shown, so sending the key for *these* gives
+      // nothing away that the student has not already seen and paid for.
+      // Only these: the ones still to come are fetched without it, as always.
+      // In exam mode nothing has been revealed yet, so nothing is sent.
+      const answeredIds = mode === "study" ? Object.keys(initialAnswers) : [];
       if (answeredIds.length > 0) {
         const key = await getAnswerKey(aircraftCode, answeredIds);
         initialVerdicts = Object.fromEntries(
@@ -218,6 +228,7 @@ export default async function TestPage({ params, searchParams }: PageProps) {
       clientTestId={clientTestId}
       initialAnswers={initialAnswers}
       initialVerdicts={initialVerdicts}
+      mode={mode}
     />
   );
 }

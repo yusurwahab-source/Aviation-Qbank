@@ -1,10 +1,44 @@
 /**
- * How a test is chosen: how many questions, and from which sections.
+ * How a test is chosen: how many questions, from which sections, and whether
+ * it marks as you go or holds everything to the end.
  *
  * Everything here parses untrusted URL parameters, so the rules are: never
  * throw, never return something the caller must re-check, and always fall back
  * to a test the student can actually sit rather than to an error.
  */
+
+/**
+ * The two ways to sit a test.
+ *
+ * `study` marks each question as it is answered — the correct answer and the
+ * explanation appear straight away, and that question then settles.
+ * `exam` holds everything back until Finish, so answers can still be changed
+ * on the way through, the way a real exam works.
+ *
+ * Study is the default: someone who has not chosen is practising, and
+ * practice is better with the explanation in front of them.
+ */
+export const TEST_MODES = ["study", "exam"] as const;
+
+export type TestMode = (typeof TEST_MODES)[number];
+
+export const DEFAULT_TEST_MODE: TestMode = "study";
+
+/**
+ * Turns an untrusted `?mode=` value into a mode.
+ *
+ * Note what this is and is not. It decides what the test *shows*, not what a
+ * student is *allowed* to see: a determined person could ask the server for
+ * study-mode feedback during an exam-mode test. That costs them nothing they
+ * could not get by starting a study-mode test instead, and it is their own
+ * practice they are spoiling — so this is a setting, not a security boundary,
+ * and is written here as one.
+ */
+export function parseTestMode(raw: string | string[] | undefined): TestMode {
+  const value = Array.isArray(raw) ? raw[0] : raw;
+  const trimmed = value?.trim().toLowerCase();
+  return TEST_MODES.includes(trimmed as TestMode) ? (trimmed as TestMode) : DEFAULT_TEST_MODE;
+}
 
 /** One-tap lengths offered beside the free number box. */
 export const TEST_LENGTHS = [5, 10, 20] as const;
@@ -88,13 +122,23 @@ export function resolveTestSize(requested: TestLength, available: number): numbe
  */
 export function buildTestHref(
   aircraftCode: string,
-  options: { topics?: string[]; length?: TestLength; retryOnly?: boolean } = {},
+  options: {
+    topics?: string[];
+    length?: TestLength;
+    retryOnly?: boolean;
+    mode?: TestMode;
+  } = {},
 ): string {
   const params = new URLSearchParams();
 
   if (options.retryOnly) params.set("from", "incorrect");
   for (const topic of options.topics ?? []) params.append("topic", topic);
   if (options.length !== undefined) params.set("questions", String(options.length));
+  // The default is left out: a plain URL means study, which keeps the common
+  // link short and makes `?mode=exam` mean something when it is there.
+  if (options.mode !== undefined && options.mode !== DEFAULT_TEST_MODE) {
+    params.set("mode", options.mode);
+  }
 
   const query = params.toString();
   return `/aircraft/${aircraftCode}/test${query ? `?${query}` : ""}`;

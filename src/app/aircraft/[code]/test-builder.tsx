@@ -8,14 +8,17 @@ import type { TopicSummary } from "@/db/queries";
 import {
   ALL_QUESTIONS,
   DEFAULT_TEST_LENGTH,
+  DEFAULT_TEST_MODE,
   TEST_LENGTHS,
   buildTestHref,
   resolveTestSize,
   type TestLength,
+  type TestMode,
 } from "@/lib/test-options";
 
 /**
- * Builds a test: which sections to draw from, and how many questions.
+ * Builds a test: which sections to draw from, how many questions, and whether
+ * it marks as you go or holds everything to the end.
  *
  * The whole point of this screen is that the student sees the consequence of
  * each choice before committing: ticking a section changes the number of
@@ -47,6 +50,7 @@ export function TestBuilder({
    * different figure.
    */
   const [typed, setTyped] = useState(String(DEFAULT_TEST_LENGTH));
+  const [mode, setMode] = useState<TestMode>(DEFAULT_TEST_MODE);
 
   const available = useMemo(
     () =>
@@ -85,6 +89,7 @@ export function TestBuilder({
     // many. "All" stays "all" — its whole point is to follow the bank as it
     // grows, which a frozen number would not.
     length: wantsAll ? ALL_QUESTIONS : size || DEFAULT_TEST_LENGTH,
+    mode,
   });
 
   return (
@@ -220,6 +225,51 @@ export function TestBuilder({
           </p>
         ) : null}
       </div>
+
+      <fieldset>
+        <legend className="text-sm font-semibold text-foreground">How to sit it</legend>
+        <div className="mt-3 grid gap-2 sm:grid-cols-2">
+          {(
+            [
+              {
+                value: "study" as const,
+                title: "Study",
+                detail:
+                  "The answer and the explanation appear as soon as you answer each question. That question is then settled.",
+              },
+              {
+                value: "exam" as const,
+                title: "Exam",
+                detail:
+                  "No answers until the end, and you can change your mind on the way through. Closer to sitting the real thing.",
+              },
+            ]
+          ).map((option) => {
+            const active = mode === option.value;
+            return (
+              <label
+                key={option.value}
+                className={`flex cursor-pointer gap-3 rounded-lg border p-4 transition ${
+                  active ? "border-brand bg-brand-soft" : "border-border bg-surface hover:border-brand"
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="test-mode"
+                  value={option.value}
+                  checked={active}
+                  onChange={() => setMode(option.value)}
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--brand)]"
+                />
+                <span>
+                  <span className="block text-sm font-medium text-foreground">{option.title}</span>
+                  <span className="mt-1 block text-sm text-muted-foreground">{option.detail}</span>
+                </span>
+              </label>
+            );
+          })}
+        </div>
+      </fieldset>
 
       {size > 0 ? (
         <Link

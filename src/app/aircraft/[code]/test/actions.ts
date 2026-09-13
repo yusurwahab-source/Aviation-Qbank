@@ -6,6 +6,7 @@ import { recordTestResult, saveAnswer as saveAnswerRow } from "@/db/attempts";
 import { getAnswerKey } from "@/db/queries";
 import { getCurrentUser } from "@/lib/auth/session";
 import { gradeTest, type TestResult } from "@/lib/grading";
+import { TEST_MODES } from "@/lib/test-options";
 
 /**
  * Grading, both per question and for the finished test.
@@ -110,6 +111,8 @@ const answerSchema = z.object({
   questionIds: z.array(z.string().max(40)).min(1).max(MAX_ANSWERS),
   questionId: z.string().max(40),
   selectedOptionId: z.string().max(4),
+  /** Study marks as you go; exam holds everything back until Finish. */
+  mode: z.enum(TEST_MODES),
 });
 
 export type AnswerQuestionInput = z.infer<typeof answerSchema>;
@@ -133,7 +136,8 @@ export type AnswerVerdict = {
 };
 
 export type AnswerQuestionResult =
-  | { status: "answered"; verdict: AnswerVerdict; saved: AnswerSaveStatus }
+  /** `verdict` is present in study mode only; exam mode answers in silence. */
+  | { status: "answered"; verdict: AnswerVerdict | null; saved: AnswerSaveStatus }
   /** The question is not a real, published question on this aircraft. */
   | { status: "invalid" }
   /** Nothing could be graded — the caller should leave the question open. */
@@ -148,7 +152,8 @@ export type AnswerSaveStatus =
   | "failed";
 
 /**
- * Grades one answer the moment it is given, and tells the student how they did.
+ * Records one answer the moment it is given, and — in study mode — tells the
+ * student how they did.
  *
  * This is the only path by which `correct` and `explanation` reach the
  * browser during a test, and it hands over exactly one question's worth,
@@ -157,29 +162,38 @@ export type AnswerSaveStatus =
  * committed to, and for a signed-in student that commitment is recorded
  * before the answer is returned.
  *
+ * In exam mode nothing is returned but the acknowledgement. The answer is
+ * still recorded — that is what a refresh resumes from and what an abandoned
+ * test keeps — it simply is not shown until Finish.
+ *
  * Grading re-reads the key from the database rather than trusting anything
  * the client claims, exactly as Finish does.
  *
- * Unlike recording, this runs for a signed-out student too — practice without
- * an account still teaches, it just leaves no history behind.
+ * Unlike recording, the marking runs for a signed-out student too — practice
+ * without an account still teaches, it just leaves no history behind.
  */
 export async function answerQuestion(
   input: AnswerQuestionInput,
 ): Promise<AnswerQuestionResult> {
   try {
-    const { aircraftCode, clientTestId, questionIds, questionId, selectedOptionId } =
+    const { aircraftCode, clientTestId, questionIds, questionId, selectedOptionId, mode } =
       answerSchema.parse(input);
 
     const [question] = await getAnswerKey(aircraftCode, [questionId]);
     if (!question) return { status: "invalid" };
 
     const isCorrect = selectedOptionId === question.correct;
-    const verdict: AnswerVerdict = {
-      isCorrect,
-      correctOptionId: question.correct,
-      explanation: question.explanation,
-      reference: question.reference,
-    };
+    // Built either way, because the recording needs `isCorrect` regardless —
+    // but only handed back in study mode.
+    const verdict: AnswerVerdict | null =
+      mode === "study"
+        ? {
+            isCorrect,
+            correctOptionId: question.correct,
+            explanation: question.explanation,
+            reference: question.reference,
+          }
+        : null;
 
     const user = await getCurrentUser();
     if (!user) return { status: "answered", verdict, saved: "signed-out" };
