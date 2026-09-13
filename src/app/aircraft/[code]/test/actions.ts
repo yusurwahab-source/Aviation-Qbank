@@ -8,11 +8,12 @@ import { getCurrentUser } from "@/lib/auth/session";
 import { gradeTest, type TestResult } from "@/lib/grading";
 
 /**
- * Grades a finished test and records it.
+ * Grading, both per question and for the finished test.
  *
- * Grading happens on the server for a reason: the browser is never sent the
- * correct answer or the explanation while a test is in progress, so the answers
- * cannot be read out of the page source.
+ * Grading happens on the server for a reason: the page itself never carries
+ * `correct` or `explanation`, so no amount of reading the source gets a
+ * student the answers. `answerQuestion` below hands back one question's key
+ * at a time, and only in reply to that question being answered.
  */
 
 /**
@@ -111,62 +112,111 @@ const answerSchema = z.object({
   selectedOptionId: z.string().max(4),
 });
 
-export type SaveAnswerInput = z.infer<typeof answerSchema>;
+export type AnswerQuestionInput = z.infer<typeof answerSchema>;
 
 /**
- * How saving one answer went. The caller (the test runner) is not meant to
- * show any of this to the student — Finish is the safety net that makes
- * everything right in the end, so a dropped call here is not an error the
- * student needs to see mid-test, only something to log.
+ * What answering one question tells the student back.
+ *
+ * `verdict` is the whole point: the correct option and the explanation, for
+ * the one question they have just answered. Nothing else about the test comes
+ * back with it.
+ *
+ * `saved` is bookkeeping the student never sees. Finish re-sends every answer
+ * and that write is the authoritative one, so a dropped save mid-test is
+ * something to log, not something to interrupt them about.
  */
-export type SaveAnswerStatus =
+export type AnswerVerdict = {
+  isCorrect: boolean;
+  correctOptionId: string;
+  explanation: string;
+  reference: string | null;
+};
+
+export type AnswerQuestionResult =
+  | { status: "answered"; verdict: AnswerVerdict; saved: AnswerSaveStatus }
+  /** The question is not a real, published question on this aircraft. */
+  | { status: "invalid" }
+  /** Nothing could be graded — the caller should leave the question open. */
+  | { status: "failed" };
+
+export type AnswerSaveStatus =
   | "recorded"
+  /** Graded and shown, but nobody is signed in, so there is nowhere to save it. */
   | "signed-out"
-  /** The question does not resolve to a real, published question on this aircraft. */
-  | "invalid"
   /** This test was already finished — a stray call from a stale tab. */
   | "closed"
   | "failed";
 
 /**
- * Saves one answer as soon as it is given, rather than waiting for Finish.
+ * Grades one answer the moment it is given, and tells the student how they did.
  *
- * Called after every selection in a running test. Grading happens the same
- * way it does at Finish — by re-reading the answer key from the database, not
- * by trusting anything the client claims about correctness — so a single
- * question is graded the instant it is answered, not just the whole test at
- * the end.
+ * This is the only path by which `correct` and `explanation` reach the
+ * browser during a test, and it hands over exactly one question's worth,
+ * in reply to that question actually being answered. There is no way to read
+ * ahead with it: the answer you get back is for the question you just
+ * committed to, and for a signed-in student that commitment is recorded
+ * before the answer is returned.
+ *
+ * Grading re-reads the key from the database rather than trusting anything
+ * the client claims, exactly as Finish does.
+ *
+ * Unlike recording, this runs for a signed-out student too — practice without
+ * an account still teaches, it just leaves no history behind.
  */
-export async function saveAnswer(input: SaveAnswerInput): Promise<SaveAnswerStatus> {
+export async function answerQuestion(
+  input: AnswerQuestionInput,
+): Promise<AnswerQuestionResult> {
   try {
     const { aircraftCode, clientTestId, questionIds, questionId, selectedOptionId } =
       answerSchema.parse(input);
 
-    const user = await getCurrentUser();
-    if (!user) return "signed-out";
-
     const [question] = await getAnswerKey(aircraftCode, [questionId]);
-    if (!question) return "invalid";
+    if (!question) return { status: "invalid" };
 
-    const outcome = await saveAnswerRow({
-      userId: user.id,
-      clientTestId,
-      aircraftCode,
-      questionIds,
-      questionCount: questionIds.length,
-      questionId,
-      topic: question.topic,
-      selectedOptionId,
-      isCorrect: selectedOptionId === question.correct,
-    });
+    const isCorrect = selectedOptionId === question.correct;
+    const verdict: AnswerVerdict = {
+      isCorrect,
+      correctOptionId: question.correct,
+      explanation: question.explanation,
+      reference: question.reference,
+    };
 
-    if (outcome.status === "recorded") return "recorded";
-    if (outcome.status === "closed") return "closed";
-    // "wrong-aircraft": the clientTestId in the URL belongs to a different
-    // aircraft's session. Should not happen through normal navigation.
-    return "invalid";
+    const user = await getCurrentUser();
+    if (!user) return { status: "answered", verdict, saved: "signed-out" };
+
+    // Recorded before the answer is returned, so the attempt is on file
+    // whether or not the student likes what they see. A failure here loses
+    // the record, never the verdict — they still get told how they did.
+    let saved: AnswerSaveStatus;
+    try {
+      const outcome = await saveAnswerRow({
+        userId: user.id,
+        clientTestId,
+        aircraftCode,
+        questionIds,
+        questionCount: questionIds.length,
+        questionId,
+        topic: question.topic,
+        selectedOptionId,
+        isCorrect,
+      });
+
+      saved =
+        outcome.status === "recorded"
+          ? "recorded"
+          : outcome.status === "closed"
+            ? "closed"
+            // "wrong-aircraft": the clientTestId in the URL belongs to a
+            // different aircraft's session. Not reachable by normal navigation.
+            : "failed";
+    } catch (error) {
+      console.error("Failed to save an answer:", error);
+      saved = "failed";
+    }
+
+    return { status: "answered", verdict, saved };
   } catch (error) {
-    console.error("Failed to save an answer:", error);
-    return "failed";
+    console.error("Failed to answer a question:", error);
+    return { status: "failed" };
   }
 }

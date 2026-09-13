@@ -7,18 +7,24 @@ import { useCallback, useMemo, useState, useTransition } from "react";
 import { Badge, Card, DifficultyBadge } from "@/components/ui";
 import type { TestQuestion } from "@/db/queries";
 
-import { saveAnswer, submitTest, type SubmitTestOutput } from "./actions";
+import { answerQuestion, submitTest, type AnswerVerdict, type SubmitTestOutput } from "./actions";
 import { ResultScreen } from "./result-screen";
 
 /**
  * Runs one practice test: one question on screen at a time, then a result
- * screen. Answers live in component state while the test is in progress.
+ * screen.
  *
- * A signed-in user's answers are also saved to the server as each one is
- * given, not only at Finish — see `saveAnswer` in `actions.ts`. That call is
- * fire-and-forget: a dropped one costs nothing, because Finish re-sends every
- * answer and that write is authoritative. The point of saving early is what
- * survives a refresh or an abandoned test, not what Finish depends on.
+ * Answering a question sends it to the server, which grades that one question
+ * and sends back the correct option and the explanation — shown immediately,
+ * under the question. The page never carries the answer key itself; it
+ * arrives a question at a time, in reply to being answered.
+ *
+ * Once revealed, a question is settled: its options stop responding. Letting
+ * a student switch to the answer they have just been shown would make every
+ * score, topic breakdown and retry list meaningless.
+ *
+ * For a signed-in student the answer is also recorded as it is given, which is
+ * what survives a refresh or an abandoned test.
  */
 export function TestRunner({
   aircraftCode,
@@ -35,8 +41,11 @@ export function TestRunner({
   clientTestId,
   /** Answers already recorded for this session — set only when resuming. */
   initialAnswers = {},
-  /** Whether there is anyone to save answers for. */
-  canRecord,
+  /**
+   * The verdicts for those answers. A resumed question was already answered,
+   * so its answer has already been revealed once and comes back revealed.
+   */
+  initialVerdicts = {},
 }: {
   aircraftCode: string;
   aircraftName: string;
@@ -45,7 +54,7 @@ export function TestRunner({
   topics?: string[];
   clientTestId: string;
   initialAnswers?: Record<string, string>;
-  canRecord: boolean;
+  initialVerdicts?: Record<string, AnswerVerdict>;
 }) {
   const router = useRouter();
   const [index, setIndex] = useState(() => {
@@ -56,6 +65,10 @@ export function TestRunner({
     return firstUnanswered === -1 ? questions.length - 1 : firstUnanswered;
   });
   const [answers, setAnswers] = useState<Record<string, string>>(initialAnswers);
+  /** Keyed by question id; a key present means that question is settled. */
+  const [verdicts, setVerdicts] = useState<Record<string, AnswerVerdict>>(initialVerdicts);
+  /** The question waiting on the server, so its options can show as busy. */
+  const [pending, setPending] = useState<string | null>(null);
   const [result, setResult] = useState<SubmitTestOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, startSubmitting] = useTransition();
@@ -76,32 +89,54 @@ export function TestRunner({
   const current = questions[index];
   const isLast = index === questions.length - 1;
   const answeredCount = Object.keys(answers).length;
+  /** The revealed answer for the question on screen, once it has one. */
+  const verdict = verdicts[current.id];
+  /** Settled: answered and revealed, so the choice no longer moves. */
+  const settled = verdict !== undefined;
+  const isChecking = pending === current.id;
   const progress = useMemo(
     () => Math.round(((index + 1) / questions.length) * 100),
     [index, questions.length],
   );
 
+  /**
+   * Answers the question on screen, and asks the server how it went.
+   *
+   * Unlike the earlier fire-and-forget save, this call is awaited: its reply
+   * is what the student is shown. Until it lands the question stays open, so
+   * a dropped call leaves them able to answer again rather than stuck looking
+   * at a question that will not respond.
+   */
   const select = useCallback(
     (questionId: string, optionId: string) => {
-      setAnswers((previous) => ({ ...previous, [questionId]: optionId }));
+      // Already answered and revealed — the choice is made and stands.
+      if (verdicts[questionId]) return;
 
-      if (canRecord) {
-        // Fire-and-forget: `saveAnswer` never throws (it catches internally
-        // and returns a status), so this only guards against the call itself
-        // failing to reach the server at all — offline, for instance.
-        saveAnswer({
-          aircraftCode,
-          clientTestId,
-          questionIds: questions.map((q) => q.id),
-          questionId,
-          selectedOptionId: optionId,
-        }).catch(() => {
-          // Nothing to show for this — Finish re-sends every answer and is
-          // the write that actually has to succeed.
+      setAnswers((previous) => ({ ...previous, [questionId]: optionId }));
+      setPending(questionId);
+
+      void answerQuestion({
+        aircraftCode,
+        clientTestId,
+        questionIds: questions.map((q) => q.id),
+        questionId,
+        selectedOptionId: optionId,
+      })
+        .then((result) => {
+          if (result.status === "answered") {
+            setVerdicts((previous) => ({ ...previous, [questionId]: result.verdict }));
+          }
+          // "invalid" or "failed": no verdict to show, so the question simply
+          // stays open. Finish still grades it from the answer key either way.
+        })
+        .catch(() => {
+          // Offline, most likely. Same handling: leave the question open.
+        })
+        .finally(() => {
+          setPending((current) => (current === questionId ? null : current));
         });
-      }
     },
-    [aircraftCode, canRecord, clientTestId, questions],
+    [aircraftCode, clientTestId, questions, verdicts],
   );
 
   const finish = useCallback(() => {
@@ -137,6 +172,8 @@ export function TestRunner({
   const restart = useCallback(() => {
     setResult(null);
     setAnswers({});
+    setVerdicts({});
+    setPending(null);
     setIndex(0);
     setError(null);
     window.scrollTo({ top: 0 });
@@ -202,19 +239,33 @@ export function TestRunner({
           {current.question}
         </h1>
 
-        <fieldset className="mt-5">
+        <fieldset className="mt-5" disabled={settled}>
           <legend className="sr-only">Choose one answer</legend>
           <div className="space-y-2.5">
             {current.options.map((option) => {
               const checked = answers[current.id] === option.id;
+              // Before the verdict lands, the chosen option is simply chosen.
+              // After it, the correct one is marked whether or not it was the
+              // one picked, and a wrong pick is marked as wrong.
+              const isAnswer = verdict ? option.id === verdict.correctOptionId : false;
+              const isWrongPick = verdict ? checked && !isAnswer : false;
+
+              const tone = isAnswer
+                ? "border-correct bg-correct-soft"
+                : isWrongPick
+                  ? "border-incorrect bg-incorrect-soft"
+                  : checked
+                    ? "border-brand bg-brand-soft"
+                    : settled
+                      ? "border-border bg-surface opacity-60"
+                      : "border-border bg-surface hover:border-brand";
+
               return (
                 <label
                   key={option.id}
-                  className={`flex cursor-pointer items-start gap-3 rounded-lg border p-3.5 transition ${
-                    checked
-                      ? "border-brand bg-brand-soft"
-                      : "border-border bg-surface hover:border-brand"
-                  }`}
+                  className={`flex items-start gap-3 rounded-lg border p-3.5 transition ${
+                    settled ? "cursor-default" : "cursor-pointer"
+                  } ${tone}`}
                 >
                   <input
                     type="radio"
@@ -224,17 +275,54 @@ export function TestRunner({
                     onChange={() => select(current.id, option.id)}
                     className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--brand)]"
                   />
-                  <span className="flex gap-2 text-sm text-foreground">
+                  <span className="flex flex-1 gap-2 text-sm text-foreground">
                     <span className="font-mono font-semibold uppercase text-muted-foreground">
                       {option.id}
                     </span>
-                    <span>{option.text}</span>
+                    <span className="flex-1">{option.text}</span>
+                    {isAnswer ? (
+                      <span className="text-xs font-semibold text-correct">Correct answer</span>
+                    ) : null}
+                    {isWrongPick ? (
+                      <span className="text-xs font-semibold text-incorrect">Your answer</span>
+                    ) : null}
                   </span>
                 </label>
               );
             })}
           </div>
         </fieldset>
+
+        {isChecking ? (
+          <p className="mt-4 text-sm text-muted-foreground" role="status">
+            Checking your answer…
+          </p>
+        ) : null}
+
+        {verdict ? (
+          <div
+            className={`mt-4 rounded-lg border-l-4 p-4 ${
+              verdict.isCorrect
+                ? "border-l-correct bg-correct-soft"
+                : "border-l-incorrect bg-incorrect-soft"
+            }`}
+            role="status"
+          >
+            <p
+              className={`text-sm font-semibold ${
+                verdict.isCorrect ? "text-correct" : "text-incorrect"
+              }`}
+            >
+              {verdict.isCorrect ? "Correct" : "Not quite"}
+            </p>
+            <p className="mt-2 text-sm text-foreground">{verdict.explanation}</p>
+            {verdict.reference ? (
+              <p className="mt-2 text-xs text-muted-foreground">
+                Reference: {verdict.reference}
+              </p>
+            ) : null}
+          </div>
+        ) : null}
       </Card>
 
       {error ? (

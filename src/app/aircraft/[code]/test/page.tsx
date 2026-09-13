@@ -9,6 +9,7 @@ import { findSession, getSessionAnswers } from "@/db/attempts";
 import {
   countTestQuestions,
   getAircraft,
+  getAnswerKey,
   getTestQuestionsByIds,
   pickTestQuestions,
   type TestQuestion,
@@ -17,6 +18,7 @@ import { getQuestionIdsToRetry } from "@/db/reports";
 import { getCurrentUser } from "@/lib/auth/session";
 import { buildTestHref, parseTestLength, parseTopics, resolveTestSize } from "@/lib/test-options";
 
+import type { AnswerVerdict } from "./actions";
 import { TestRunner } from "./test-runner";
 
 export const dynamic = "force-dynamic";
@@ -78,14 +80,13 @@ export default async function TestPage({ params, searchParams }: PageProps) {
   let plane;
   let questions: TestQuestion[];
   let initialAnswers: Record<string, string> = {};
-  let canRecord = false;
+  let initialVerdicts: Record<string, AnswerVerdict> = {};
 
   try {
     plane = await getAircraft(aircraftCode);
     if (!plane) notFound();
 
     const user = await getCurrentUser();
-    canRecord = user !== null;
 
     // A signed-in student resumes an in-progress test under this id rather
     // than drawing a new random set — that is what a mid-test refresh does
@@ -106,6 +107,26 @@ export default async function TestPage({ params, searchParams }: PageProps) {
       initialAnswers = Object.fromEntries(
         Object.entries(saved).filter((entry): entry is [string, string] => entry[1] !== null),
       );
+
+      // These questions have already been answered once, and their answers
+      // already shown — so sending the key for *these* gives nothing away
+      // that the student has not already seen and paid for. Only these: the
+      // ones still to come are fetched without it, as always.
+      const answeredIds = Object.keys(initialAnswers);
+      if (answeredIds.length > 0) {
+        const key = await getAnswerKey(aircraftCode, answeredIds);
+        initialVerdicts = Object.fromEntries(
+          key.map((question) => [
+            question.id,
+            {
+              isCorrect: initialAnswers[question.id] === question.correct,
+              correctOptionId: question.correct,
+              explanation: question.explanation,
+              reference: question.reference,
+            },
+          ]),
+        );
+      }
     } else {
       questions = [];
     }
@@ -196,7 +217,7 @@ export default async function TestPage({ params, searchParams }: PageProps) {
       topics={topics}
       clientTestId={clientTestId}
       initialAnswers={initialAnswers}
-      canRecord={canRecord}
+      initialVerdicts={initialVerdicts}
     />
   );
 }
