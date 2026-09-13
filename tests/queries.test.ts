@@ -92,23 +92,28 @@ describeWithDb("test question queries", () => {
   });
 
   describe("pickTestQuestions", () => {
+    // Every limit below is derived from the bank rather than written as a
+    // number. A literal here does not stay correct: `100` was fine until one
+    // aircraft's two largest sections held more than that between them, at
+    // which point this test failed on the limit rather than on the behaviour
+    // it is about.
     it("draws only from the sections asked for", async () => {
       if (byTopic.length < 2) return;
       const wanted = [byTopic[0].topic, byTopic[1].topic];
-      const picked = await queries.pickTestQuestions(code, 100, wanted);
+      const picked = await queries.pickTestQuestions(code, published, wanted);
 
       expect(picked.length).toBe(byTopic[0].questionCount + byTopic[1].questionCount);
       expect(picked.every((question) => wanted.includes(question.topic))).toBe(true);
     });
 
     it("treats no section as every section", async () => {
-      const picked = await queries.pickTestQuestions(code, 1000);
+      const picked = await queries.pickTestQuestions(code, published + 1);
       expect(picked).toHaveLength(published);
     });
 
     it("returns everything there is rather than failing on an over-large request", async () => {
       const section = byTopic[0];
-      const picked = await queries.pickTestQuestions(code, 10_000, [section.topic]);
+      const picked = await queries.pickTestQuestions(code, published + 1, [section.topic]);
       expect(picked).toHaveLength(section.questionCount);
     });
 
@@ -123,7 +128,7 @@ describeWithDb("test question queries", () => {
         .from(questions)
         .where(and(eq(questions.aircraftCode, code), eq(questions.status, "draft")));
 
-      const picked = await queries.pickTestQuestions(code, 1000);
+      const picked = await queries.pickTestQuestions(code, published + 1);
       const draftIds = new Set(drafts.map((row) => row.id));
       expect(picked.some((question) => draftIds.has(question.id))).toBe(false);
     });

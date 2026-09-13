@@ -25,7 +25,7 @@ retrying.
 ## The rule that shapes everything: many aircraft
 
 The platform supports several aircraft types, each with its own question bank.
-Two exist today — the DA40 and the B738 — and nothing in the code knows about
+Two exist today — the DA40 and the B737 — and nothing in the code knows about
 either.
 
 Every table, route, query and report is keyed by aircraft code:
@@ -38,9 +38,9 @@ Every table, route, query and report is keyed by aircraft code:
 **Adding an aircraft must stay a content-only job.** If a change would require
 editing application code to add a second or third type, it is the wrong change.
 This was first checked with a throwaway A320 folder; it is now settled by the
-B737-800, which was added as `content/b738/` alone — a manifest and one question
-file. No application code was touched, and the full test suite passed against a
-database holding both banks.
+B737-800, which was added as `content/b737/` alone — a manifest and its question
+files, one per FCOM chapter. No application code was touched, and the full test
+suite passed against a database holding both banks.
 
 ## Commands
 
@@ -620,6 +620,20 @@ from inside the website, an admin panel gets added then — the `status`,
   URL segment, the prefix of every question id, and the value stored on every
   past attempt. Renaming the DA40 to the DA 40 D TDI changed `name` and
   `variant` only.
+
+  The 737 bank is the one exception, and it proves the rule rather than
+  softening it. It shipped as `B738` and was changed to `B737` at the owner's
+  request within hours, while the bank was one section old, nothing linked to
+  it and nobody had answered a question in it — so the rename cost two files
+  and 52 ids and orphaned no history. That window is now closed. `B737` is
+  published, and the next such request is a migration (rewriting
+  `attempts.aircraft_code` and every stored question id), not an edit.
+
+  Worth knowing if a second 737 variant is ever added: `B737` is the ICAO type
+  designator for the **-700**, and `B738` for the -800 this bank actually
+  covers. The code here names the *type rating*, which is the 737 family, so
+  `B737` is right for what the app is for — but the obvious code for a -700
+  bank is taken, and it would need a different one.
 - **`npm audit` reports a moderate advisory** in `esbuild`, reached through
   `drizzle-kit`. It affects a development server only, never the deployed app.
   The fix is a breaking downgrade of `drizzle-kit`, so it is being left until

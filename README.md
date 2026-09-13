@@ -6,7 +6,8 @@ see how you did — including which topics let you down.
 
 Built to hold **many aircraft types** from the start. Two are loaded today — the
 Diamond DA40 and the Boeing 737-800 — and the second was added by writing
-question files, not by rewriting the application.
+question files, not by rewriting the application. It grows the same way: each
+FCOM chapter arrives as one more file in its folder.
 
 ## What works today
 
