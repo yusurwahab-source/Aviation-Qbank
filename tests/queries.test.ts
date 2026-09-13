@@ -130,7 +130,7 @@ describeWithDb("test question queries", () => {
 
     it("never selects the answer key", async () => {
       // The one property that must not regress: `correct` and `explanation`
-      // reach the browser only after a test is graded.
+      // reach the browser only in reply to a question actually being answered.
       const [question] = await queries.pickTestQuestions(code, 1);
       expect(question).toBeDefined();
       expect(Object.keys(question)).toEqual([
@@ -141,6 +141,61 @@ describeWithDb("test question queries", () => {
         "options",
         "difficulty",
       ]);
+    });
+  });
+
+  describe("getTestQuestionsByIds", () => {
+    /**
+     * The other way questions reach the browser: a retry test, and a resumed
+     * one. It has to hold exactly the same line as `pickTestQuestions` — it
+     * feeds the same screen.
+     */
+    it("never selects the answer key either", async () => {
+      const [first] = await queries.pickTestQuestions(code, 1);
+      const [question] = await queries.getTestQuestionsByIds(code, [first.id]);
+
+      expect(question).toBeDefined();
+      expect(Object.keys(question)).toEqual([
+        "id",
+        "topic",
+        "subtopic",
+        "question",
+        "options",
+        "difficulty",
+      ]);
+    });
+
+    it("returns the questions in the order asked for", async () => {
+      const picked = await queries.pickTestQuestions(code, 5);
+      if (picked.length < 2) return;
+
+      const wanted = picked.map((q) => q.id);
+      const got = await queries.getTestQuestionsByIds(code, wanted);
+      expect(got.map((q) => q.id)).toEqual(wanted);
+
+      // And reversed, to prove it is the caller's order and not the table's.
+      const reversed = [...wanted].reverse();
+      const gotReversed = await queries.getTestQuestionsByIds(code, reversed);
+      expect(gotReversed.map((q) => q.id)).toEqual(reversed);
+    });
+
+    it("drops ids that are drafts, missing, or another aircraft's", async () => {
+      const db = drizzle(pool);
+      const [draft] = await db
+        .select({ id: questions.id })
+        .from(questions)
+        .where(and(eq(questions.aircraftCode, code), eq(questions.status, "draft")))
+        .limit(1);
+
+      const [real] = await queries.pickTestQuestions(code, 1);
+      const asked = [real.id, "NOSUCH-QUES-0001", ...(draft ? [draft.id] : [])];
+
+      const got = await queries.getTestQuestionsByIds(code, asked);
+      expect(got.map((q) => q.id)).toEqual([real.id]);
+    });
+
+    it("returns nothing for an empty list, without touching the database", async () => {
+      expect(await queries.getTestQuestionsByIds(code, [])).toEqual([]);
     });
   });
 

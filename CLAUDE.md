@@ -9,12 +9,14 @@ A web application where student pilots practise multiple-choice questions for
 aircraft type ratings. All user-facing content is in English.
 
 **Current state: Phase 4 is complete, and Phase 5 is under way.** A user can
-choose an aircraft, build a test from any combination of sections and any number
-of questions, answer them one at a time, and see a result screen. Accounts exist,
-and a signed-in user's answers are recorded as each one is given — which means
-an abandoned test still counts and a mid-test refresh resumes rather than
-restarts. `/progress` reads that history back: overall score, performance by
-topic, progress over time, and the questions worth retrying.
+choose an aircraft, build a test from any combination of sections and any
+number of questions, and answer them one at a time — each answer marked
+straight away, with the correct option and the explanation — then see a result
+screen. Accounts exist, and a signed-in user's answers are recorded as each one
+is given, which means an abandoned test still counts and a mid-test refresh
+resumes rather than restarts. `/progress` reads that history back: overall
+score, performance by topic, progress over time, and the questions worth
+retrying.
 
 ## The rule that shapes everything: many aircraft
 
@@ -121,10 +123,35 @@ Two small deviations, both to remove a dependency rather than add one:
 
 ## Conventions
 
-**The answer key never reaches the browser mid-test.** `pickTestQuestions`
-selects only the columns a user may see. `correct` and `explanation` arrive only
-after the test is submitted and graded server-side. Anything that would send
-them earlier is a bug, however convenient.
+**The answer key is never in the page, and never arrives before it is
+earned.** This is the rule the whole test flow is built around, and it is
+worth stating precisely, because the app now shows a student the right answer
+the moment they answer each question.
+
+What has not changed: the page itself carries no answers. `pickTestQuestions`
+and `getTestQuestionsByIds` — the two queries that put questions on screen —
+select only the columns a student may see, and both are tested for it. No
+amount of reading the page source, at any point in a test, yields a single
+`correct` or `explanation`.
+
+What the key does travel in is the reply to `answerQuestion`, one question at
+a time, in response to that question actually being answered. There is no way
+to read ahead with it: the only answer it will give you is for the question
+you have just committed to, and for a signed-in student that commitment is
+recorded *before* the answer comes back. Asking to see an answer therefore
+costs you the attempt, which is exactly the trade a study tool should make.
+
+Two things follow, and both are tested in a browser:
+
+1. **A revealed question is settled.** Its options stop responding once the
+   answer is on screen. This is not politeness — clicking through to the
+   option you have just been shown would make every score, topic breakdown
+   and retry list in the app a fiction. Verified by answering a whole test
+   wrongly on purpose and then clicking the revealed answer on all 21 wrong
+   questions: the score stayed 1/22.
+2. **A resumed test comes back revealed, not reset.** Its already-answered
+   questions get their keys sent with the page, because those were revealed
+   once already and paid for; the questions still to come do not.
 
 **Grading is a pure function.** `src/lib/grading.ts` takes questions and answers
 and returns a result — no database, no React. It is unit tested, and Phase 3
@@ -155,7 +182,7 @@ Two properties follow, and both are tested:
    means every section. A student following a stale link gets questions, not an
    error.
 
-The same has to hold on the way back in: `submitTest` and `saveAnswer` accept
+The same has to hold on the way back in: `submitTest` and `answerQuestion` accept
 up to `MAX_ANSWERS` (5000) questions, not the 50 the submission schema was
 still capped at when this was first built. That leftover cap was dormant only
 because no aircraft's bank had grown past 50 yet — it would have rejected the
@@ -223,7 +250,7 @@ student can too, by going back a question.
 **A test is named by `?t=` in its own URL, not by state hidden in the
 browser.** `test/page.tsx` redirects once to add a freshly minted id if the URL
 doesn't have one, and that id is what every answer is saved under
-(`saveAnswer` in `actions.ts`, fire-and-forget on every selection) and what
+(`answerQuestion` in `actions.ts`, on every selection) and what
 Finish completes (`recordTestResult` in `db/attempts.ts`). Because the id lives
 in the URL, a mid-test refresh carries the same one — the test page looks it
 up (`findSession`), finds a session still in progress, and reloads the exact
@@ -360,12 +387,13 @@ tests/                        Vitest unit tests
    important view), progress over time, retry incorrect questions. Scoped per
    aircraft (`/progress/[code]`) and overall (`/progress`).
 5. **Phase 5 — refinement.** Done so far: the test builder (any sections, any
-   number of questions), and per-answer recording — a signed-in student's
-   answers save as they are given, so a refresh resumes the same test and an
-   abandoned one still counts. Still to do: filter by difficulty, timed mode,
-   and a way to review or jump between answered/unanswered questions mid-test
-   (going back one at a time with Previous already works; a full overview does
-   not yet).
+   number of questions); per-answer recording — a signed-in student's answers
+   save as they are given, so a refresh resumes the same test and an abandoned
+   one still counts; and immediate feedback — the correct answer and the
+   explanation appear under each question as soon as it is answered, and that
+   question then settles. Still to do: filter by difficulty, timed mode, and a
+   way to jump between questions mid-test (Previous/Next already works one at a
+   time; a full overview does not yet).
 
 Do not start a phase until the previous one works.
 
@@ -385,7 +413,7 @@ from inside the website, an admin panel gets added then — the `status`,
   Nothing is recorded for them, so there is nothing to resume from; a refresh
   simply draws a fresh random set, same as visiting the test page for the
   first time. A signed-in student does not have this problem any more — see
-  the note on `saveAnswer` and `?t=` in the conventions above.
+  the note on `answerQuestion` and `?t=` in the conventions above.
 - **`order by random()`** picks test questions. Correct and fast for banks of
   this size; revisit if a bank ever reaches hundreds of thousands of questions.
 - **Only the `Fuel System` questions come from the owner's source.** The other
