@@ -21,9 +21,9 @@ import {
   parseTestLength,
   deadlineFrom,
   parseTestMode,
-  parseTimeLimit,
   parseTopics,
   resolveTestSize,
+  timeLimitFor,
 } from "@/lib/test-options";
 
 import type { AnswerVerdict } from "./actions";
@@ -39,8 +39,6 @@ type PageProps = {
     topic?: string | string[];
     /** `study` (default) marks as you go; `exam` holds it all to the end. */
     mode?: string | string[];
-    /** Minutes on the clock. Absent means untimed. */
-    minutes?: string | string[];
     /** Identifies this attempt at the test. See the note below `TestPage`. */
     t?: string | string[];
   }>;
@@ -85,7 +83,6 @@ export default async function TestPage({ params, searchParams }: PageProps) {
 
   const length = parseTestLength(query.questions);
   const mode = parseTestMode(query.mode);
-  const timeLimitSeconds = parseTimeLimit(query.minutes);
   const retryOnly = (Array.isArray(query.from) ? query.from[0] : query.from) === "incorrect";
   // Retry mode already narrows the set, so sections on top of it would be two
   // filters fighting; the retry list wins.
@@ -96,10 +93,12 @@ export default async function TestPage({ params, searchParams }: PageProps) {
   let initialAnswers: Record<string, string> = {};
   let initialVerdicts: Record<string, AnswerVerdict> = {};
   /**
-   * The deadline as the server holds it, for a resumed timed test. This is
-   * the whole point of storing `startedAt`: a reload re-reads the original
-   * clock instead of starting a new one.
+   * The clock as the server holds it, for a resumed test. This is the whole
+   * point of storing `startedAt`: a reload re-reads the original clock
+   * instead of starting a new one. `initialExpiresAt` is null in study mode,
+   * which counts up from `initialStartedAt` and has nothing to run out of.
    */
+  let initialStartedAt: string | null = null;
   let initialExpiresAt: string | null = null;
 
   try {
@@ -133,8 +132,13 @@ export default async function TestPage({ params, searchParams }: PageProps) {
       // nothing away that the student has not already seen and paid for.
       // Only these: the ones still to come are fetched without it, as always.
       // In exam mode nothing has been revealed yet, so nothing is sent.
-      if (lookup.startedAt && lookup.timeLimitSeconds !== null) {
-        initialExpiresAt = deadlineFrom(lookup.startedAt, lookup.timeLimitSeconds).toISOString();
+      if (lookup.startedAt) {
+        initialStartedAt = lookup.startedAt.toISOString();
+        // The limit the session was created with, not one recomputed from
+        // today's bank: a resumed exam keeps the clock it started on.
+        if (lookup.timeLimitSeconds !== null) {
+          initialExpiresAt = deadlineFrom(lookup.startedAt, lookup.timeLimitSeconds).toISOString();
+        }
       }
 
       const answeredIds = mode === "study" ? Object.keys(initialAnswers) : [];
@@ -244,7 +248,12 @@ export default async function TestPage({ params, searchParams }: PageProps) {
       initialAnswers={initialAnswers}
       initialVerdicts={initialVerdicts}
       mode={mode}
-      timeLimitSeconds={timeLimitSeconds}
+      // Derived here rather than asked for: exam mode gets a minute a
+      // question, study mode gets no deadline at all. It is computed after
+      // the questions are drawn because it depends on how many there are —
+      // "all questions" is not a number until the bank has been counted.
+      timeLimitSeconds={timeLimitFor(mode, questions.length)}
+      initialStartedAt={initialStartedAt}
       initialExpiresAt={initialExpiresAt}
     />
   );

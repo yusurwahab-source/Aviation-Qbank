@@ -6,7 +6,7 @@ import { recordTestResult, saveAnswer as saveAnswerRow } from "@/db/attempts";
 import { getAnswerKey } from "@/db/queries";
 import { getCurrentUser } from "@/lib/auth/session";
 import { gradeTest, type TestResult } from "@/lib/grading";
-import { TEST_MODES, deadlineFrom } from "@/lib/test-options";
+import { TEST_MODES, deadlineFrom, timeLimitFor } from "@/lib/test-options";
 
 /**
  * Grading, both per question and for the finished test.
@@ -113,12 +113,6 @@ const answerSchema = z.object({
   selectedOptionId: z.string().max(4),
   /** Study marks as you go; exam holds everything back until Finish. */
   mode: z.enum(TEST_MODES),
-  /**
-   * Seconds the student asked for, or null for untimed. Only read when the
-   * session is created — after that the stored clock is the one that counts,
-   * which is what stops a reload from asking for a fresh countdown.
-   */
-  timeLimitSeconds: z.number().int().positive().max(24 * 60 * 60).nullable(),
 });
 
 export type AnswerQuestionInput = z.infer<typeof answerSchema>;
@@ -148,10 +142,15 @@ export type AnswerQuestionResult =
       verdict: AnswerVerdict | null;
       saved: AnswerSaveStatus;
       /**
+       * When this test began, as the server reckons it. Study mode counts up
+       * from here; it is also what the deadline below is derived from.
+       */
+      startedAt: string | null;
+      /**
        * When this test runs out, as the server reckons it — the browser's
        * countdown syncs to this rather than trusting its own start time.
-       * Null on an untimed test, and for a signed-out student, who has no
-       * session for the clock to live on.
+       * Null in study mode, which has no deadline, and for a signed-out
+       * student, who has no session for the clock to live on.
        */
       expiresAt: string | null;
     }
@@ -200,8 +199,13 @@ export async function answerQuestion(
       questionId,
       selectedOptionId,
       mode,
-      timeLimitSeconds,
     } = answerSchema.parse(input);
+
+    // The clock is a consequence of the mode, not something the caller gets
+    // to ask for: exam mode is a minute a question, study mode is untimed.
+    // Nothing in the request can change that, so there is no longer anything
+    // here to validate or to distrust.
+    const timeLimitSeconds = timeLimitFor(mode, questionIds.length);
 
     const [question] = await getAnswerKey(aircraftCode, [questionId]);
     if (!question) return { status: "invalid" };
@@ -222,12 +226,15 @@ export async function answerQuestion(
     const user = await getCurrentUser();
     // Signed out there is no session, so no server-held clock. The browser's
     // own countdown is all there is — see the note in CLAUDE.md.
-    if (!user) return { status: "answered", verdict, saved: "signed-out", expiresAt: null };
+    if (!user) {
+      return { status: "answered", verdict, saved: "signed-out", startedAt: null, expiresAt: null };
+    }
 
     // Recorded before the answer is returned, so the attempt is on file
     // whether or not the student likes what they see. A failure here loses
     // the record, never the verdict — they still get told how they did.
     let saved: AnswerSaveStatus;
+    let startedAt: string | null = null;
     let expiresAt: string | null = null;
     try {
       const outcome = await saveAnswerRow({
@@ -245,10 +252,14 @@ export async function answerQuestion(
 
       if (outcome.status === "recorded") {
         saved = "recorded";
-        // Whatever the client asked for, this is the clock that counts: the
-        // one stored when the session was created.
-        if (outcome.startedAt && outcome.timeLimitSeconds !== null) {
-          expiresAt = deadlineFrom(outcome.startedAt, outcome.timeLimitSeconds).toISOString();
+        // Whatever this request computed, this is the clock that counts: the
+        // one stored when the session was created. A test resumed after the
+        // bank changed keeps the limit it started with.
+        if (outcome.startedAt) {
+          startedAt = outcome.startedAt.toISOString();
+          if (outcome.timeLimitSeconds !== null) {
+            expiresAt = deadlineFrom(outcome.startedAt, outcome.timeLimitSeconds).toISOString();
+          }
         }
       } else if (outcome.status === "closed") {
         saved = "closed";
@@ -262,7 +273,7 @@ export async function answerQuestion(
       saved = "failed";
     }
 
-    return { status: "answered", verdict, saved, expiresAt };
+    return { status: "answered", verdict, saved, startedAt, expiresAt };
   } catch (error) {
     console.error("Failed to answer a question:", error);
     return { status: "failed" };

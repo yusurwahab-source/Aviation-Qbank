@@ -11,9 +11,9 @@ aircraft type ratings. All user-facing content is in English.
 **Current state: Phase 4 is complete, and Phase 5 is under way.** A user can
 choose an aircraft, build a test from any combination of sections and any
 number of questions, sit it either way — study, where each answer is marked
-straight away with the correct option and the explanation, or exam, where
-nothing is shown until the end — with or without a clock on it, and then see
-a result screen. Accounts exist,
+straight away with the correct option and the explanation and there is no
+time limit, or exam, where nothing is shown until the end and the clock gives
+one minute a question — and then see a result screen. Accounts exist,
 and a signed-in user's answers are recorded as each one is given, which means
 an abandoned test still counts and a mid-test refresh resumes rather than
 restarts. `/progress` reads that history back: overall
@@ -196,32 +196,64 @@ The map is collapsed by default and rendered only when opened: a test can be
 the whole bank, and a thousand tiles is not something to keep mounted beside
 a screen whose whole point is one question at a time.
 
-**A timed test's clock lives in the database, not in the browser.**
+**The clock belongs to exam mode, and it is not a setting.** Exam mode is
+timed at **one minute a question**; study mode is untimed and shows a counter
+that only counts up. Neither is chosen — both follow from the mode, through
+`timeLimitFor(mode, questionCount)`.
+
+That is the whole point of the change. A time limit the student picks is a
+limit they can pick their way around, and a test builder with a clock in it
+asks them to decide something they have no basis to decide. A minute a
+question needs no explanation and no arithmetic: twenty questions is twenty
+minutes. The Exam card in the builder states the figure for the test being
+built, so the consequence is on screen before the choice is made.
+
+Study mode's clock is a note, not a rule. It is rendered deliberately
+quieter — muted rather than bold, and it never turns red — because nothing
+hangs on it. There is no limit for it to reach.
+
+There is consequently no `?minutes=` parameter and no `parseTimeLimit`. A
+stale link carrying one is simply ignored, which is tested: `?minutes=99` on
+a five-question exam still gives five minutes. This is a *reduction* in
+untrusted input, not an unchecked one — the limit is now derived from a
+question count the database already bounds.
+
+**The clock itself lives in the database, not in the browser.**
 `test_sessions` carries `startedAt` and `timeLimitSeconds`, written once when
 the session is created and never moved. The deadline is derived from them
-(`deadlineFrom`), never stored — two columns that are written together cannot
+(`deadlineFrom`), never stored — two columns written together cannot
 disagree, whereas a stored deadline could drift from the limit beside it with
 no way to tell which was right.
 
-This is what a refresh runs into. Reload a timed test and the page re-reads
-the original `startedAt` and carries on counting from there; there is no path
-by which reloading hands out a fresh countdown. That matters for the honest
-student who refreshes by accident at least as much as for anyone trying it on
-purpose. Resume a test whose deadline has passed and it does not reopen — the
-clock reads zero, and it hands itself in.
+`startedAt` is stamped for **every** session, timed or not. It used to be
+null on an untimed test, which was fine when untimed meant "no clock at all";
+now study mode shows elapsed time, and that has to survive a refresh rather
+than restart at zero. Only `timeLimitSeconds` is optional, and only exam mode
+has one.
 
-The countdown ticks against a fixed deadline rather than decrementing a
-number, so a backgrounded tab or a sleeping laptop cannot slow it down: the
-browser may miss a hundred ticks and the next one still shows the right time.
-At zero the test submits itself, once — `timeUpRef`, not state, so no
+This is what a refresh runs into, both ways round. Reload an exam and the
+page re-reads the original `startedAt` and carries on counting down; reload a
+study test and the stopwatch continues rather than resetting. There is no
+path by which reloading hands out a fresh countdown. That matters for the
+honest student who refreshes by accident at least as much as for anyone
+trying it on purpose. Resume an exam whose deadline has passed and it does
+not reopen — the clock reads zero, and it hands itself in.
+
+A resumed test keeps the limit it *started* with, not one recomputed from
+today's bank. The stored `timeLimitSeconds` is read back; nothing recalculates
+it mid-test.
+
+Both clocks tick against a fixed instant rather than in- or decrementing a
+number, so a backgrounded tab or a sleeping laptop cannot slow either down:
+the browser may miss a hundred ticks and the next one still shows the right
+time. At zero the exam submits itself, once — `timeUpRef`, not state, so no
 re-render can fire it twice.
 
 Two edges worth knowing. A brand new test has no session until its first
-answer, so between opening it and answering, the countdown is the browser's
-own; the first answer replaces it with the server's. And a signed-out student
-has no session at all, so their clock is browser-only for the whole test —
-the same trade as everything else they do signed out, and for the same
-reason.
+answer, so between opening it and answering, the clock is the browser's own;
+the first answer replaces it with the server's. And a signed-out student has
+no session at all, so their clock is browser-only for the whole test — the
+same trade as everything else they do signed out, and for the same reason.
 
 **Grading is a pure function.** `src/lib/grading.ts` takes questions and answers
 and returns a result — no database, no React. It is unit tested, and Phase 3
@@ -438,7 +470,7 @@ src/
     grading.ts                Scoring (pure, tested)
     question-status.ts        What the question map may say (pure, tested)
     password.ts               scrypt hashing (pure, tested)
-    test-options.ts           Test length and section parsing, and test URLs
+    test-options.ts           Test length, sections, mode, the clock, and test URLs
     auth/
       credentials.ts          Email and password rules (pure, tested)
       rate-limit-policy.ts    When to refuse a log in (pure, tested)
@@ -463,9 +495,10 @@ tests/                        Vitest unit tests
    one still counts; and immediate feedback — the correct answer and the
    explanation appear under each question as soon as it is answered, and that
    question then settles — with an exam mode beside it that holds everything to
-   the end; and a timed mode whose clock is held on the session row, so a
-   reload cannot reset it and running out hands the test in; and a question map
-   for jumping between questions mid-test. Still to do: filter by difficulty —
+   the end; a clock that belongs to the mode rather than to a setting — a
+   minute a question in exam mode, a count-up note in study — held on the
+   session row, so a reload cannot reset it and running out hands the test in;
+   and a question map for jumping between questions mid-test. Still to do: filter by difficulty —
    the one item of the original Phase 5 list not built, and deliberately so,
    the owner having set it aside.
 

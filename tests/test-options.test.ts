@@ -5,15 +5,16 @@ import {
   DEFAULT_TEST_LENGTH,
   DEFAULT_TEST_MODE,
   buildTestHref,
+  EXAM_SECONDS_PER_QUESTION,
   deadlineFrom,
-  formatRemaining,
+  formatClock,
   parseTestLength,
   parseTestMode,
-  parseTimeLimit,
   parseTopics,
   resolveTestSize,
   secondsLeft,
-  suggestedMinutes,
+  secondsSince,
+  timeLimitFor,
 } from "@/lib/test-options";
 
 describe("parseTestLength", () => {
@@ -172,42 +173,33 @@ describe("buildTestHref with a mode", () => {
   });
 });
 
-describe("parseTimeLimit", () => {
-  it("reads minutes and answers in seconds", () => {
-    expect(parseTimeLimit("10")).toBe(600);
-    expect(parseTimeLimit("1")).toBe(60);
-    expect(parseTimeLimit(" 45 ")).toBe(2700);
+describe("timeLimitFor", () => {
+  it("gives an exam a minute a question", () => {
+    expect(timeLimitFor("exam", 20)).toBe(20 * 60);
+    expect(timeLimitFor("exam", 1)).toBe(60);
+    expect(timeLimitFor("exam", 60)).toBe(60 * 60);
   });
 
-  it("means untimed for anything missing or unreadable", () => {
-    // Untimed is the fallback that never takes something away from the
-    // student: a mangled link gives them a test with no clock, not a test
-    // that hands itself in unexpectedly.
-    for (const value of [undefined, "", "   ", "abc", "0", "-5", "1.5", "10min"]) {
-      expect(parseTimeLimit(value)).toBeNull();
+  it("leaves study mode untimed, whatever its size", () => {
+    // The rule the owner asked for: the clock belongs to the exam. In study
+    // mode the screen shows elapsed time and nothing hangs on it, so there is
+    // no limit for any length of test to produce.
+    for (const count of [1, 10, 500]) {
+      expect(timeLimitFor("study", count)).toBeNull();
     }
   });
 
-  it("caps an absurd request rather than holding a clock for a year", () => {
-    expect(parseTimeLimit("999999")).toBe(24 * 60 * 60);
+  it("never returns a clock that is already spent", () => {
+    // A zero-question test does not reach the runner, but a zero-second
+    // limit would expire the instant it was drawn, so it must not exist.
+    expect(timeLimitFor("exam", 0)).toBe(EXAM_SECONDS_PER_QUESTION);
   });
 
-  it("takes the first value when the parameter is repeated", () => {
-    expect(parseTimeLimit(["20", "60"])).toBe(1200);
-  });
-});
-
-describe("suggestedMinutes", () => {
-  it("scales with the test that was actually built", () => {
-    // Ninety seconds a question, rounded up to the minute.
-    expect(suggestedMinutes(20)).toBe(30);
-    expect(suggestedMinutes(40)).toBe(60);
-    expect(suggestedMinutes(22)).toBe(33);
-  });
-
-  it("never suggests zero", () => {
-    expect(suggestedMinutes(0)).toBe(1);
-    expect(suggestedMinutes(1)).toBe(2);
+  it("is a pure function of the mode and the count", () => {
+    // Which is the point of deriving it instead of parsing it: there is no
+    // request, stale link or edited URL that can produce a different answer
+    // for the same test.
+    expect(timeLimitFor("exam", 22)).toBe(timeLimitFor("exam", 22));
   });
 });
 
@@ -243,42 +235,66 @@ describe("deadlineFrom and secondsLeft", () => {
   });
 });
 
-describe("formatRemaining", () => {
+describe("formatClock", () => {
   it("shows minutes and seconds", () => {
-    expect(formatRemaining(600)).toBe("10:00");
-    expect(formatRemaining(59)).toBe("0:59");
-    expect(formatRemaining(61)).toBe("1:01");
-    expect(formatRemaining(0)).toBe("0:00");
+    expect(formatClock(600)).toBe("10:00");
+    expect(formatClock(59)).toBe("0:59");
+    expect(formatClock(61)).toBe("1:01");
+    expect(formatClock(0)).toBe("0:00");
   });
 
   it("grows an hours column only once there is one", () => {
-    expect(formatRemaining(3600)).toBe("1:00:00");
-    expect(formatRemaining(3661)).toBe("1:01:01");
-    expect(formatRemaining(3599)).toBe("59:59");
+    expect(formatClock(3600)).toBe("1:00:00");
+    expect(formatClock(3661)).toBe("1:01:01");
+    expect(formatClock(3599)).toBe("59:59");
   });
 
   it("never renders a negative clock", () => {
-    expect(formatRemaining(-5)).toBe("0:00");
+    expect(formatClock(-5)).toBe("0:00");
   });
 });
 
-describe("buildTestHref with a time limit", () => {
-  it("names the minutes in the URL", () => {
-    expect(buildTestHref("DA40", { length: 10, minutes: 20 })).toBe(
-      "/aircraft/DA40/test?questions=10&minutes=20",
+describe("secondsSince", () => {
+  const started = new Date("2026-01-01T12:00:00.000Z");
+
+  it("counts up from a fixed start", () => {
+    expect(secondsSince(started, started)).toBe(0);
+    expect(secondsSince(started, new Date("2026-01-01T12:05:00.000Z"))).toBe(300);
+    expect(secondsSince(started, new Date("2026-01-01T13:00:00.000Z"))).toBe(3600);
+  });
+
+  it("never goes negative on a clock skewed backwards", () => {
+    expect(secondsSince(started, new Date("2026-01-01T11:59:00.000Z"))).toBe(0);
+  });
+
+  it("is what makes a refresh show the same elapsed time", () => {
+    // The study-mode counterpart of the deadline property above: derived
+    // from a stored start, so re-reading it later — which is what a reload
+    // does — continues the count rather than restarting it.
+    const now = new Date("2026-01-01T12:07:30.000Z");
+    expect(secondsSince(started, now)).toBe(secondsSince(started, now));
+    expect(secondsSince(started, now)).toBe(450);
+  });
+});
+
+describe("buildTestHref no longer carries a clock", () => {
+  it("says nothing about time, because time is not a choice any more", () => {
+    // The limit follows the mode and the question count, so a URL that named
+    // minutes could only disagree with the test it opens.
+    for (const mode of ["study", "exam"] as const) {
+      const href = buildTestHref("DA40", { length: 10, mode });
+      expect(href).not.toContain("minutes");
+    }
+    expect(buildTestHref("DA40", { length: 10, mode: "exam" })).toBe(
+      "/aircraft/DA40/test?questions=10&mode=exam",
     );
   });
 
-  it("leaves untimed out, so an ordinary link stays short", () => {
-    expect(buildTestHref("DA40", { length: 10, minutes: null })).toBe(
-      "/aircraft/DA40/test?questions=10",
-    );
-    expect(buildTestHref("DA40", { length: 10 })).toBe("/aircraft/DA40/test?questions=10");
-  });
-
-  it("round-trips through the parser", () => {
-    const href = buildTestHref("DA40", { minutes: 45, mode: "exam" });
+  it("means the mode alone decides the clock", () => {
+    const href = buildTestHref("DA40", { length: 20, mode: "exam" });
     const query = new URLSearchParams(href.split("?")[1] ?? "");
-    expect(parseTimeLimit(query.get("minutes") ?? undefined)).toBe(45 * 60);
+    const mode = parseTestMode(query.get("mode") ?? undefined);
+    const length = parseTestLength(query.get("questions") ?? undefined);
+    expect(timeLimitFor(mode, length as number)).toBe(20 * 60);
   });
 });
