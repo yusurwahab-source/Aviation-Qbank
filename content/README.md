@@ -110,18 +110,39 @@ carried across as they were:
   ("Verify against your operator FCOM"). So it survives as a tag,
   **`verify-fcom`**, which is queryable rather than buried in prose.
 
-Nothing else was altered. Question text, options, correct answers, difficulty
-and explanations are byte-for-byte what the source file held; this was checked
-field by field after conversion, not assumed.
+Nothing else was altered on the way in. Question text, option text, correct
+answers, difficulty and explanations are byte-for-byte what the source file
+held; this was checked field by field after conversion, not assumed. The one
+later change is the order options appear in within a question, which is its own
+deliberate decision — see below.
 
-### Worth knowing before the next section is added
+### The correct answer is spread evenly across A-D
 
-**The correct answer is `B` in 32 of the 52 questions, and `D` in none of
-them.** A student who noticed would score well above their real knowledge by
-answering `B` throughout. This is a property of the source file and has been
-left exactly as written rather than quietly reshuffled — moving options around
-is an editorial change to the owner's content, not a conversion. It is worth
-evening out, here and in the sections still to come.
+The source file answered `B` in 32 of the 52 questions and `D` in none of them.
+A student who noticed could have scored well above their real knowledge by
+answering `B` throughout, so the options were redistributed at the owner's
+request: **13 questions each on A, B, C and D.**
+
+Only the *order* of the options changed. Every question keeps the same four
+option texts and the same correct answer — the sentence that was right before is
+still the one marked right, it has simply moved. The distractors also keep their
+relative order, so each question reads as its author wrote it.
+
+**Nine questions were left alone**, because their options carry their own order
+and scrambling them would make them harder to read for nothing: the ascending
+magnitudes (`0002` exits, `0005` seats, `0030` and `0036` durations, `0043`,
+`0044` and `0045` dimensions) and the No. 1 / No. 2 / No. 3 window numbering in
+`0016`. The even split above is reached around them.
+
+One consequence is worth recording so it is not mistaken for an oversight:
+`0043`, `0044` and `0045` sit together in the file, all answer `C`, and each is
+a dimension whose true value falls third in an ascending list of four. No
+consistent ordering can break that run. It costs nothing in practice, because
+`pickTestQuestions` draws with `order by random()` — the order questions sit in
+this file is never the order a student meets them in.
+
+**Keep this property when adding a section.** An even spread is only worth
+having if the next chapter does not undo it.
 
 The questions have no `reference` yet. Adding the FCOM chapter and page to each
 would make them markedly more useful, and none was invented during conversion.
