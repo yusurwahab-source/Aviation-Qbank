@@ -4,9 +4,9 @@ Multiple-choice practice questions for student pilots working towards an
 aircraft type rating. Choose an aircraft, answer questions one at a time, and
 see how you did — including which topics let you down.
 
-Built to hold **many aircraft types** from the start. Only the Diamond DA40 is
-loaded today; adding an A320 or a B737 later means adding question files, not
-rewriting the application.
+Built to hold **many aircraft types** from the start. Two are loaded today — the
+Diamond DA40 and the Boeing 737-800 — and the second was added by writing
+question files, not by rewriting the application.
 
 ## What works today
 

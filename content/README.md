@@ -14,9 +14,10 @@ content/
       airframe.json         <- one file per topic, each holding a JSON array
       electrical.json
       ...
-  a320/                     <- adding an aircraft means adding a folder
+  b738/                     <- adding an aircraft means adding a folder
     aircraft.json
     questions/
+      airplane-general.json
 ```
 
 Adding a second aircraft is a content job only. Nothing in the application code
@@ -47,7 +48,7 @@ but they never appear in a test.
 the filter does what it says: the DA40 folder holds 11 questions and a test can
 only ever draw on the 10 published ones.
 
-## Which aircraft this bank is for
+## The DA40 bank
 
 The aircraft is the **Diamond DA 40 D TDI** — the diesel variant with the
 TAE 125 engine, running on Jet A-1.
@@ -57,7 +58,7 @@ code is the URL segment, the prefix of every question id, and the value stored o
 every past attempt, so changing it would break links and orphan history for no
 gain.
 
-## Drafted content, and why
+### Drafted content, and why
 
 Two sets of questions are `draft`, so they are kept but never shown:
 
@@ -71,7 +72,7 @@ Two sets of questions are `draft`, so they are kept but never shown:
 
 Nothing was deleted. Flip `status` back to `published` to restore any of them.
 
-## About the question set
+### About the question set
 
 The 16 `Fuel System` questions came from the owner's own source file. They have
 no `reference` yet — adding the AFM section and page to each would make them
@@ -81,3 +82,67 @@ The remaining `Airframe`, `Electrical` and `Flight Controls` questions were
 written to exercise the system and cover facts that are stable across DA40
 variants. They have not been checked against the DA 40 D AFM specifically, and
 should be before anyone studies from them.
+
+## The B738 bank
+
+The aircraft is the **Boeing 737-800**, the stretched Next Generation variant
+with CFM56-7B engines. The code is `B738` — the ICAO type designator, and what
+the owner's own source file already used in every question id. `B737-800`, the
+name in the source file's `aircraft` column, cannot be the code: codes are the
+URL segment and the id prefix, so the schema allows only letters and digits.
+
+`Airplane General` is the first section, 52 questions, all published. It follows
+the FCOM chapter it is named after, so the remaining chapters can be added as
+further files beside it without disturbing this one.
+
+### What changed on the way in from the source file
+
+The source was a CSV, one row per question. Two things in it could not be
+carried across as they were:
+
+- **Question numbers were three digits** (`B738-GEN-001`); the schema requires
+  four. They are padded (`B738-GEN-0001`), which keeps the source ordering
+  exactly and leaves room for the bank to grow past 999.
+- **Seven ids carried an `L` marker** (`B738-GEN-L005`). An id has no room for
+  it — the last segment must be digits. The marker turned out to mean one
+  thing: every one of the seven, and none of the others, is a figure that
+  varies by operator or configuration, and says so in its explanation
+  ("Verify against your operator FCOM"). So it survives as a tag,
+  **`verify-fcom`**, which is queryable rather than buried in prose.
+
+Nothing else was altered on the way in. Question text, option text, correct
+answers, difficulty and explanations are byte-for-byte what the source file
+held; this was checked field by field after conversion, not assumed. The one
+later change is the order options appear in within a question, which is its own
+deliberate decision — see below.
+
+### The correct answer is spread evenly across A-D
+
+The source file answered `B` in 32 of the 52 questions and `D` in none of them.
+A student who noticed could have scored well above their real knowledge by
+answering `B` throughout, so the options were redistributed at the owner's
+request: **13 questions each on A, B, C and D.**
+
+Only the *order* of the options changed. Every question keeps the same four
+option texts and the same correct answer — the sentence that was right before is
+still the one marked right, it has simply moved. The distractors also keep their
+relative order, so each question reads as its author wrote it.
+
+**Nine questions were left alone**, because their options carry their own order
+and scrambling them would make them harder to read for nothing: the ascending
+magnitudes (`0002` exits, `0005` seats, `0030` and `0036` durations, `0043`,
+`0044` and `0045` dimensions) and the No. 1 / No. 2 / No. 3 window numbering in
+`0016`. The even split above is reached around them.
+
+One consequence is worth recording so it is not mistaken for an oversight:
+`0043`, `0044` and `0045` sit together in the file, all answer `C`, and each is
+a dimension whose true value falls third in an ascending list of four. No
+consistent ordering can break that run. It costs nothing in practice, because
+`pickTestQuestions` draws with `order by random()` — the order questions sit in
+this file is never the order a student meets them in.
+
+**Keep this property when adding a section.** An even spread is only worth
+having if the next chapter does not undo it.
+
+The questions have no `reference` yet. Adding the FCOM chapter and page to each
+would make them markedly more useful, and none was invented during conversion.
