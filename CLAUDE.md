@@ -25,7 +25,8 @@ retrying.
 ## The rule that shapes everything: many aircraft
 
 The platform supports several aircraft types, each with its own question bank.
-Only the DA40 exists today, but nothing in the code knows that.
+Two exist today — the DA40 and the B738 — and nothing in the code knows about
+either.
 
 Every table, route, query and report is keyed by aircraft code:
 
@@ -36,8 +37,10 @@ Every table, route, query and report is keyed by aircraft code:
 
 **Adding an aircraft must stay a content-only job.** If a change would require
 editing application code to add a second or third type, it is the wrong change.
-This was verified by adding an A320 folder, seeding, browsing it end to end, and
-removing it again — no code was touched.
+This was first checked with a throwaway A320 folder; it is now settled by the
+B737-800, which was added as `content/b738/` alone — a manifest and one question
+file. No application code was touched, and the full test suite passed against a
+database holding both banks.
 
 ## Commands
 
