@@ -36,6 +36,7 @@ export function AuthForm({
   pendingLabel,
   passwordHint,
   passwordAutoComplete,
+  passwordAside,
   footer,
 }: {
   action: (state: AuthFormState, formData: FormData) => Promise<AuthFormState>;
@@ -46,6 +47,8 @@ export function AuthForm({
   passwordHint?: string;
   /** Tells the browser's password manager whether to offer or to save. */
   passwordAutoComplete: "current-password" | "new-password";
+  /** Optional link beside the password label — "Forgotten?" on log in. */
+  passwordAside?: { label: string; href: string };
   footer: { text: string; linkLabel: string; href: string };
 }) {
   const [state, formAction] = useActionState<AuthFormState, FormData>(action, {});
@@ -88,9 +91,21 @@ export function AuthForm({
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-foreground">
-              Password
-            </label>
+            {/* Beside the label, where somebody who cannot remember their
+                password is already looking. */}
+            <div className="flex items-baseline justify-between gap-3">
+              <label htmlFor="password" className="block text-sm font-medium text-foreground">
+                Password
+              </label>
+              {passwordAside ? (
+                <Link
+                  href={passwordAside.href}
+                  className="text-sm font-medium text-brand hover:underline"
+                >
+                  {passwordAside.label}
+                </Link>
+              ) : null}
+            </div>
             <input
               id="password"
               name="password"

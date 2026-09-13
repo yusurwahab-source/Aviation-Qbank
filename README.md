@@ -30,6 +30,9 @@ rewriting the application.
 - A result screen: your score, a breakdown by topic with the weakest first, and
   every question reviewed again with the correct answer and an explanation
 - Accounts: sign up, log in, log out
+- **A way back in if you forget your password.** Ask for a link by email, set
+  a new password, and every other device is signed out. The link works once
+  and lasts an hour
 - Every answer a signed-in user gives is recorded as it's given, not only at
   the end — an abandoned test still counts, and refreshing mid-test resumes it
   rather than starting over
@@ -60,6 +63,12 @@ npm run dev        # http://localhost:3000
 If a page says the question bank is not available, `DATABASE_URL` is wrong or
 the database has not been set up — run `npm run setup` again and read the error.
 
+**Password reset needs no setup locally.** With no mail provider configured,
+the reset link is printed in the terminal running `npm run dev` instead of
+being sent. Copy it out and paste it into the browser. The screen says that
+this is what is happening, so it cannot be mistaken for a form that silently
+does nothing.
+
 ## Putting it online
 
 The site needs two things: somewhere to run (Vercel) and a database (Neon).
@@ -74,6 +83,26 @@ Both have free plans, and neither needs anything installed on your computer.
    Settings → Environment Variables, add a variable named `DATABASE_URL` and
    paste the Neon connection string as its value.
 4. **Deploy.** Vercel builds the site and gives you a link.
+
+### Turning on password reset emails
+
+Everything else works without this. Password reset does not: on the deployed
+site, an unconfigured sender writes the link to a log nobody can read.
+
+1. Sign up at [resend.com](https://resend.com) and verify a domain you own.
+   (A domain is theirs to check, not something this app can do for you.)
+2. Create an API key.
+3. In Vercel, under Settings → Environment Variables, add:
+   - `RESEND_API_KEY` — the key from step 2.
+   - `EMAIL_FROM` — an address at that verified domain, e.g.
+     `Aviation Question Bank <noreply@your-domain.com>`.
+   - `APP_URL` — only if the site is on a custom domain. Without it, links
+     point at the address Vercel reports, which is right for a
+     `*.vercel.app` site.
+4. Redeploy.
+
+Using a different provider means editing one file, `src/lib/email/send.ts`.
+Nothing else in the app knows how mail is sent.
 
 Every deploy runs `npm run vercel-build`, which applies any database migrations
 and loads `/content` into the database before building. So **deploying is also

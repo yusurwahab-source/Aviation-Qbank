@@ -16,7 +16,9 @@ time limit, or exam, where nothing is shown until the end and the clock gives
 one minute a question — and then see a result screen. Accounts exist,
 and a signed-in user's answers are recorded as each one is given, which means
 an abandoned test still counts and a mid-test refresh resumes rather than
-restarts. `/progress` reads that history back: overall
+restarts. Forgetting a password is recoverable: a one-time emailed link sets
+a new one and signs every other device out. `/progress` reads that history
+back: overall
 score, performance by topic, progress over time, and the questions worth
 retrying.
 
@@ -387,9 +389,13 @@ machine as much as the accounts. Measured: a blocked attempt costs ~50ms against
 
 Three properties hold, and any change must keep all three:
 
-1. **Nothing is ever locked permanently.** Both rules expire on their own. This
-   is not a preference — there is no password reset, so a permanent lock would
-   be unrecoverable without deleting the user's row by hand.
+1. **Nothing is ever locked permanently.** Both rules expire on their own.
+   This used to be load-bearing in the strongest sense: before password reset
+   existed, a permanent lock was unrecoverable without deleting the user's
+   row by hand. There is now a second way out — a reset clears the address's
+   failures, so somebody locked out by their own guessing can recover through
+   their inbox — but the rule stands on its own merits, since a lock that
+   needed an email to lift would fail anyone whose mail is not working.
 2. **Counting is keyed on the submitted email whether or not an account
    exists.** Counting only real accounts would make the difference in behaviour
    a way to discover which addresses are registered, undoing the property above.
@@ -402,6 +408,73 @@ during the block would still get in, which is the whole thing the limit exists
 to prevent. Succeeding clears that email's failures but deliberately leaves the
 address count, so one correct log in cannot reset the broad brake and carry on
 guessing other accounts.
+
+**A forgotten password is recoverable, by a link that is a one-time key.**
+`/forgot-password` emails a link; `/reset-password` spends it. The token is
+256 bits of randomness and **only its SHA-256 is stored**, in
+`password_reset_tokens` — the same design as session cookies, and for the
+same reason: reading the table tells you a reset was asked for and gives you
+nothing you could use.
+
+Five properties hold, and every one of them is asserted:
+
+1. **The request form never reveals who is registered.** Identical wording
+   for a real address and an unknown one, and — through
+   `withMinimumDuration` — identical timing. Sending mail costs a few hundred
+   milliseconds while finding no account costs almost nothing, so without the
+   floor the form would be a way to test a list of addresses. There is
+   deliberately no "no account with that email" branch in
+   `requestPasswordReset` to find. Measured in a browser: 0.3% apart.
+2. **A link works once.** `usedAt` is set inside the update's own `where`
+   clause (`usedAt is null`), so two submissions racing cannot both win — a
+   check followed by an update would let them. An *expired* link is claimed
+   by the attempt too, so retrying it cannot produce a different answer.
+3. **Only the newest link works.** Issuing one deletes the user's outstanding
+   links, so an older email is already dead and an account never has more
+   than one live key.
+4. **Using a link signs out every other session.** This is what makes a reset
+   a security measure rather than a convenience: changing the password while
+   leaving a thief's session alive would achieve nothing.
+5. **Opening the link does not spend it.** Arriving at the page looks the
+   token up but never marks it used — mail clients prefetch links, and a
+   reload must not be fatal. Only submitting the form spends it.
+
+Two smaller decisions worth keeping. The hour is checked *before* the new
+password is hashed, because hashing costs half a second and 128 MB and an
+invented token must not be able to buy that — the same reasoning as checking
+the rate limit before verifying a log in. And a successful reset clears the
+address's failed log ins: someone who has forgotten their password has very
+likely just hit the limit guessing it, and handing them a working password
+they are then refused would be absurd.
+
+The honest limit: a *send* that runs over the response floor is still
+distinguishable from one that never happened. That is a far smaller signal
+than the raw difference, and closing it entirely would mean queueing mail in
+a table of its own, which is not worth it at this size.
+
+**Reset requests are rate limited too, and the limit is about mail, not
+guessing.** Three an hour per address, fifteen per source. There is no
+failure to count here — every request naming a real account sends an email —
+so what the limit protects is somebody else's inbox, and this site's ability
+to be pointed at it. Counted on the submitted address whether or not an
+account exists, for exactly the same reason log in is.
+
+The counters share the `login_attempts` table under their own key prefixes
+(`reset-email:`, `reset-ip:`) rather than getting a table of their own, but
+deliberately *not* the same keys: sharing them would let failed log ins use
+up somebody's ability to ask for a reset, locking them out of the one route
+back in. `sweepLoginAttempts` now takes the longest window of every rule, or
+it would delete reset rows the limiter still needs.
+
+**Email has one interface and no dependency.** `sendEmail` in
+`src/lib/email/send.ts` posts to Resend with `fetch` when `RESEND_API_KEY`
+and `EMAIL_FROM` are set, and otherwise prints the whole message — link
+included — to the server log. The log route is not a stub that silently does
+nothing: it means a fresh clone has a working password reset with no account
+to open and no keys to obtain, and the request screen says plainly that this
+is what is happening. Changing provider is this one file. `sendEmail` never
+throws, because whether the mail went out must not change what the user is
+told.
 
 **Every report query takes a `userId` and filters on it.** A report is somebody's
 private study history; a missing user filter would show it to the wrong person.
@@ -465,15 +538,20 @@ src/
     schema.ts                 Drizzle tables
     queries.ts                Every read the app performs
     users.ts                  Account reads and writes
+    password-reset.ts         Issuing and spending reset links
     index.ts                  Connection pool
   lib/
+    email/
+      send.ts                 sendEmail: Resend, or the server log
+      reset-email.ts          The reset message (pure, tested)
     grading.ts                Scoring (pure, tested)
     question-status.ts        What the question map may say (pure, tested)
     password.ts               scrypt hashing (pure, tested)
     test-options.ts           Test length, sections, mode, the clock, and test URLs
     auth/
       credentials.ts          Email and password rules (pure, tested)
-      rate-limit-policy.ts    When to refuse a log in (pure, tested)
+      rate-limit-policy.ts    When to refuse a log in or a reset (pure, tested)
+      reset-policy.ts         Reset link lifetime and state (pure, tested)
       client-ip.ts            The caller's address, behind Vercel's proxy
       session.ts              Cookie and session table handling
 tests/                        Vitest unit tests
@@ -483,7 +561,8 @@ tests/                        Vitest unit tests
 
 1. **Phase 1 — the core loop. Done.** Pick an aircraft, answer questions one by
    one, see a result screen. No accounts.
-2. **Phase 2 — accounts. Done.** Sign up, log in, log out.
+2. **Phase 2 — accounts. Done.** Sign up, log in, log out, and — added
+   later, alongside Phase 5 — a password reset by emailed one-time link.
 3. **Phase 3 — attempt recording. Done.** Every answer persisted: user,
    question, aircraft, selected option, correct or not, timestamp, test session.
 4. **Phase 4 — reports. Done.** Overall score, performance by topic (the most
@@ -545,18 +624,25 @@ from inside the website, an admin panel gets added then — the `status`,
 
 ### Gaps left open by Phase 2, in priority order
 
-(Rate limiting on log in was the top item here and is now done — see the
-conventions above.)
+(Rate limiting on log in was the top item here, and password reset the
+second. Both are now done — see the conventions above.)
 
-- **No password reset.** A user who forgets their password cannot get back in;
-  their row has to be deleted by hand. Fixing it needs an email sender, which
-  is a decision the owner has not been asked to make yet.
+- **The deployed site needs a mail provider before password reset is any use
+  there.** Without `RESEND_API_KEY` and `EMAIL_FROM` the link goes to the
+  server log, which nobody but the owner can read. Locally that is the point;
+  in production it means the feature is present but unusable. See
+  `.env.example`.
+
 - **No email verification.** Anyone can sign up with an address they do not own.
   Harmless while accounts hold nothing; it matters once they hold progress.
-- **Nothing sweeps the housekeeping tables.** `sweepExpiredSessions()` and
-  `sweepLoginAttempts()` both exist and are correct, but nothing calls them.
+- **Nothing sweeps the housekeeping tables.** `sweepExpiredSessions()`,
+  `sweepLoginAttempts()` and `sweepExpiredResetTokens()` all exist and are
+  correct, but nothing calls them.
   Expired rows are ignored when reading, so this is tidiness rather than
   correctness. A scheduled job can call them later.
+- **No "your password was changed" email.** A reset tells the account's owner
+  nothing after the fact, so somebody who took over an inbox leaves no trace
+  in the other one. Worth adding now that there is a sender to add it with.
 - **The limiter does not stop a distributed attack.** Thousands of addresses
   each trying a few passwords from leaked credential lists would stay under
   both thresholds. Defending that needs rejecting known-breached passwords or a

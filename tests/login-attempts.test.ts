@@ -141,9 +141,12 @@ describeWithDb("login attempt counting", () => {
     expect((await limiter.checkLoginAllowed(ip, email)).allowed).toBe(true);
   });
 
-  it("sweeps rows that have aged out", async () => {
+  it("sweeps rows that have aged out of every window", async () => {
     await failTimes(2);
-    const past = new Date(Date.now() - RATE_LIMIT_RULES.perIp.windowMs - 60_000);
+    // Past the *longest* rule's window, not just the log-in ones. The table
+    // now also holds password reset requests, whose window is longer, and the
+    // sweep is deliberately keyed on the longest of them all.
+    const past = new Date(Date.now() - LONGEST_WINDOW_MS - 60_000);
     await db
       .update(loginAttempts)
       .set({ attemptedAt: past })
@@ -152,4 +155,39 @@ describeWithDb("login attempt counting", () => {
     const deleted = await limiter.sweepLoginAttempts();
     expect(deleted).toBeGreaterThanOrEqual(4);
   });
+
+  it("does not sweep a reset request that is still inside its own window", async () => {
+    // The reason the sweep takes the longest window rather than the log-in
+    // one. A reset request is counted for an hour; sweeping it after fifteen
+    // minutes would quietly hand back the ability to send more mail, which is
+    // the one thing that limit exists to stop.
+    await limiter.recordResetRequest(ip, email);
+
+    const anHourIsLonger = RATE_LIMIT_RULES.resetPerEmail.windowMs > RATE_LIMIT_RULES.perIp.windowMs;
+    expect(anHourIsLonger).toBe(true);
+
+    // Old enough for the log-in windows, young enough for the reset ones.
+    const between = new Date(Date.now() - RATE_LIMIT_RULES.perIp.windowMs - 60_000);
+    await db
+      .update(loginAttempts)
+      .set({ attemptedAt: between })
+      .where(inArray(loginAttempts.key, [limiter.resetIpKey(ip), limiter.resetEmailKey(email)]));
+
+    await limiter.sweepLoginAttempts();
+
+    const survivors = await db
+      .select({ id: loginAttempts.id })
+      .from(loginAttempts)
+      .where(eq(loginAttempts.key, limiter.resetEmailKey(email)));
+    expect(survivors).toHaveLength(1);
+
+    await db
+      .delete(loginAttempts)
+      .where(inArray(loginAttempts.key, [limiter.resetIpKey(ip), limiter.resetEmailKey(email)]));
+  });
 });
+
+/** The window the sweep is actually keyed on: the longest of every rule. */
+const LONGEST_WINDOW_MS = Math.max(
+  ...Object.values(RATE_LIMIT_RULES).map((rule) => rule.windowMs),
+);

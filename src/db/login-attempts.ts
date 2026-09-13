@@ -26,6 +26,22 @@ export function emailKey(email: string): string {
   return `email:${email}`;
 }
 
+/**
+ * Reset requests are counted under their own keys.
+ *
+ * Separate from the log-in keys on purpose: the two count different things
+ * with different limits, and sharing a key would let failed log ins use up
+ * somebody's ability to ask for a reset — locking them out of the one route
+ * back in, which is the opposite of what a reset is for.
+ */
+export function resetIpKey(ip: string): string {
+  return `reset-ip:${ip}`;
+}
+
+export function resetEmailKey(email: string): string {
+  return `reset-email:${email}`;
+}
+
 type KeyWindow = { key: string; since: Date };
 
 /**
@@ -90,6 +106,58 @@ export async function checkLoginAllowed(ip: string, email: string): Promise<Rate
   ]);
 }
 
+/**
+ * Whether a password reset may be requested for this address.
+ *
+ * Counted whether or not an account exists, for the same reason log in is:
+ * a limit that only applied to real accounts would make being refused a way
+ * to discover which addresses are registered.
+ */
+export async function checkResetAllowed(ip: string, email: string): Promise<RateLimitDecision> {
+  const now = new Date();
+  const windows: KeyWindow[] = [
+    { key: resetIpKey(ip), since: new Date(now.getTime() - RATE_LIMIT_RULES.resetPerIp.windowMs) },
+    {
+      key: resetEmailKey(email),
+      since: new Date(now.getTime() - RATE_LIMIT_RULES.resetPerEmail.windowMs),
+    },
+  ];
+
+  const counts = await countRecentFailures(windows);
+  const forIp = counts.get(windows[0].key) ?? { failures: 0, oldest: null };
+  const forEmail = counts.get(windows[1].key) ?? { failures: 0, oldest: null };
+
+  return combine([
+    decide(RATE_LIMIT_RULES.resetPerIp, forIp.failures, forIp.oldest, now),
+    decide(RATE_LIMIT_RULES.resetPerEmail, forEmail.failures, forEmail.oldest, now),
+  ]);
+}
+
+/**
+ * Records one reset request against both keys.
+ *
+ * Every request, not only the ones that found an account — otherwise the
+ * counter itself would reveal which addresses are registered, by refusing
+ * sooner for those.
+ */
+export async function recordResetRequest(ip: string, email: string): Promise<void> {
+  await getDb()
+    .insert(loginAttempts)
+    .values([{ key: resetIpKey(ip) }, { key: resetEmailKey(email) }]);
+}
+
+/**
+ * Clears an address's log-in failures after a successful password reset.
+ *
+ * Reaching a password through the inbox proves as much as knowing the old
+ * one did, so being locked out by failed guesses must not survive it — that
+ * lock is precisely what someone who has forgotten their password will have
+ * hit on the way here. The IP key is left alone, exactly as after a log in.
+ */
+export async function clearFailedLoginsAfterReset(email: string): Promise<void> {
+  await getDb().delete(loginAttempts).where(eq(loginAttempts.key, emailKey(email)));
+}
+
 /** Records one failed attempt against both keys. */
 export async function recordFailedLogin(ip: string, email: string): Promise<void> {
   await getDb()
@@ -114,8 +182,7 @@ export async function clearFailedLogins(email: string): Promise<void> {
  */
 export async function sweepLoginAttempts(): Promise<number> {
   const longestWindow = Math.max(
-    RATE_LIMIT_RULES.perIp.windowMs,
-    RATE_LIMIT_RULES.perEmail.windowMs,
+    ...Object.values(RATE_LIMIT_RULES).map((rule) => rule.windowMs),
   );
 
   const deleted = await getDb()
