@@ -52,6 +52,12 @@ jobs:
       # Create the tables the integration tests write to.
       - run: npm run db:migrate
 
+      # And load the question content into them. The report and query tests are
+      # about behaviour over real questions — which ones are published, which
+      # section they belong to, what happens when one is deleted — so an empty
+      # bank does not mean "nothing to check", it means those tests cannot run.
+      - run: npm run db:seed
+
       - run: npm run test
 
       # The build itself needs no database; every page that reads one is dynamic.

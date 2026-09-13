@@ -257,6 +257,14 @@ markers with a 2px surface ring, ~10% area wash, hairline solid gridlines, only
 the endpoint labelled, and a table view as the accessible equal of the picture —
 are worth keeping if another chart is ever added.
 
+**The integration tests run against a real Postgres with the content seeded.**
+Several of them — the reports, the retry list, the section queries — are about
+behaviour over real questions: which are published, which section they are in,
+what survives a question being deleted. They skip themselves when `DATABASE_URL`
+is unset, so CI sets one and runs `db:migrate` *and* `db:seed` before `npm run
+test`. Migrating without seeding leaves the tables empty, which does not make
+those tests pass — it makes them fail, because an empty bank is not a bank.
+
 **One feature per session, one pull request per feature. `main` always works.**
 
 ## Layout
