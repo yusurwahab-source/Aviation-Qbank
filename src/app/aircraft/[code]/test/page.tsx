@@ -19,7 +19,9 @@ import { getCurrentUser } from "@/lib/auth/session";
 import {
   buildTestHref,
   parseTestLength,
+  deadlineFrom,
   parseTestMode,
+  parseTimeLimit,
   parseTopics,
   resolveTestSize,
 } from "@/lib/test-options";
@@ -37,6 +39,8 @@ type PageProps = {
     topic?: string | string[];
     /** `study` (default) marks as you go; `exam` holds it all to the end. */
     mode?: string | string[];
+    /** Minutes on the clock. Absent means untimed. */
+    minutes?: string | string[];
     /** Identifies this attempt at the test. See the note below `TestPage`. */
     t?: string | string[];
   }>;
@@ -81,6 +85,7 @@ export default async function TestPage({ params, searchParams }: PageProps) {
 
   const length = parseTestLength(query.questions);
   const mode = parseTestMode(query.mode);
+  const timeLimitSeconds = parseTimeLimit(query.minutes);
   const retryOnly = (Array.isArray(query.from) ? query.from[0] : query.from) === "incorrect";
   // Retry mode already narrows the set, so sections on top of it would be two
   // filters fighting; the retry list wins.
@@ -90,6 +95,12 @@ export default async function TestPage({ params, searchParams }: PageProps) {
   let questions: TestQuestion[];
   let initialAnswers: Record<string, string> = {};
   let initialVerdicts: Record<string, AnswerVerdict> = {};
+  /**
+   * The deadline as the server holds it, for a resumed timed test. This is
+   * the whole point of storing `startedAt`: a reload re-reads the original
+   * clock instead of starting a new one.
+   */
+  let initialExpiresAt: string | null = null;
 
   try {
     plane = await getAircraft(aircraftCode);
@@ -122,6 +133,10 @@ export default async function TestPage({ params, searchParams }: PageProps) {
       // nothing away that the student has not already seen and paid for.
       // Only these: the ones still to come are fetched without it, as always.
       // In exam mode nothing has been revealed yet, so nothing is sent.
+      if (lookup.startedAt && lookup.timeLimitSeconds !== null) {
+        initialExpiresAt = deadlineFrom(lookup.startedAt, lookup.timeLimitSeconds).toISOString();
+      }
+
       const answeredIds = mode === "study" ? Object.keys(initialAnswers) : [];
       if (answeredIds.length > 0) {
         const key = await getAnswerKey(aircraftCode, answeredIds);
@@ -229,6 +244,8 @@ export default async function TestPage({ params, searchParams }: PageProps) {
       initialAnswers={initialAnswers}
       initialVerdicts={initialVerdicts}
       mode={mode}
+      timeLimitSeconds={timeLimitSeconds}
+      initialExpiresAt={initialExpiresAt}
     />
   );
 }

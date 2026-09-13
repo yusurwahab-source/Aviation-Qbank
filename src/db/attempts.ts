@@ -21,7 +21,13 @@ import type { TestResult } from "@/lib/grading";
 
 /** How one answer's save attempt went. */
 export type SaveAnswerOutcome =
-  | { status: "recorded"; testSessionId: string }
+  | {
+      status: "recorded";
+      testSessionId: string;
+      /** The clock as the server has it, for the browser to sync to. */
+      startedAt: Date | null;
+      timeLimitSeconds: number | null;
+    }
   /** The test this answer belongs to was already finished. Nothing written. */
   | { status: "closed" }
   /** The clientTestId belongs to a different aircraft. Nothing written. */
@@ -48,6 +54,8 @@ export async function saveAnswer(input: {
   topic: string;
   selectedOptionId: string;
   isCorrect: boolean;
+  /** Seconds on the clock, or null for an untimed test. */
+  timeLimitSeconds: number | null;
 }): Promise<SaveAnswerOutcome> {
   const db = getDb();
   const aircraftCode = input.aircraftCode.toUpperCase();
@@ -61,11 +69,21 @@ export async function saveAnswer(input: {
         clientTestId: input.clientTestId,
         questionCount: input.questionCount,
         questionIds: input.questionIds,
+        // The clock starts here, on the server, and is never moved again —
+        // which is what stops a refresh from handing out a fresh countdown.
+        startedAt: input.timeLimitSeconds === null ? null : sql`now()`,
+        timeLimitSeconds: input.timeLimitSeconds,
         // Explicit: this session is still being taken.
         completedAt: null,
       })
       .onConflictDoNothing({ target: [testSessions.userId, testSessions.clientTestId] })
-      .returning({ id: testSessions.id, aircraftCode: testSessions.aircraftCode, completedAt: testSessions.completedAt });
+      .returning({
+        id: testSessions.id,
+        aircraftCode: testSessions.aircraftCode,
+        completedAt: testSessions.completedAt,
+        startedAt: testSessions.startedAt,
+        timeLimitSeconds: testSessions.timeLimitSeconds,
+      });
 
     const session =
       inserted ??
@@ -75,6 +93,8 @@ export async function saveAnswer(input: {
             id: testSessions.id,
             aircraftCode: testSessions.aircraftCode,
             completedAt: testSessions.completedAt,
+            startedAt: testSessions.startedAt,
+            timeLimitSeconds: testSessions.timeLimitSeconds,
           })
           .from(testSessions)
           .where(
@@ -110,7 +130,12 @@ export async function saveAnswer(input: {
         },
       });
 
-    return { status: "recorded", testSessionId: session.id } as const;
+    return {
+      status: "recorded",
+      testSessionId: session.id,
+      startedAt: session.startedAt,
+      timeLimitSeconds: session.timeLimitSeconds,
+    } as const;
   });
 }
 
@@ -220,7 +245,14 @@ export async function recordTestResult(
 
 export type SessionLookup =
   /** A test in progress under this id — safe to resume. */
-  | { kind: "resumable"; id: string; questionIds: string[] }
+  | {
+      kind: "resumable";
+      id: string;
+      questionIds: string[];
+      /** Null on an untimed test; together these give the deadline. */
+      startedAt: Date | null;
+      timeLimitSeconds: number | null;
+    }
   /**
    * This id already names a session, but not one this page can use: it is
    * already finished, or it belongs to a different aircraft. The unique index
@@ -252,6 +284,8 @@ export async function findSession(
       aircraftCode: testSessions.aircraftCode,
       questionIds: testSessions.questionIds,
       completedAt: testSessions.completedAt,
+      startedAt: testSessions.startedAt,
+      timeLimitSeconds: testSessions.timeLimitSeconds,
     })
     .from(testSessions)
     .where(and(eq(testSessions.userId, userId), eq(testSessions.clientTestId, clientTestId)))
@@ -259,7 +293,13 @@ export async function findSession(
 
   if (!row) return { kind: "none" };
   if (row.completedAt === null && row.aircraftCode === aircraftCode.toUpperCase()) {
-    return { kind: "resumable", id: row.id, questionIds: row.questionIds };
+    return {
+      kind: "resumable",
+      id: row.id,
+      questionIds: row.questionIds,
+      startedAt: row.startedAt,
+      timeLimitSeconds: row.timeLimitSeconds,
+    };
   }
   return { kind: "taken" };
 }

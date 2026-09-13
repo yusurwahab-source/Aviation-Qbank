@@ -10,8 +10,10 @@ import {
   DEFAULT_TEST_LENGTH,
   DEFAULT_TEST_MODE,
   TEST_LENGTHS,
+  TIME_LIMITS,
   buildTestHref,
   resolveTestSize,
+  suggestedMinutes,
   type TestLength,
   type TestMode,
 } from "@/lib/test-options";
@@ -51,6 +53,11 @@ export function TestBuilder({
    */
   const [typed, setTyped] = useState(String(DEFAULT_TEST_LENGTH));
   const [mode, setMode] = useState<TestMode>(DEFAULT_TEST_MODE);
+  /**
+   * Minutes on the clock, or null for untimed — which is the default. A timer
+   * nobody asked for is just pressure.
+   */
+  const [minutes, setMinutes] = useState<number | null>(null);
 
   const available = useMemo(
     () =>
@@ -90,6 +97,7 @@ export function TestBuilder({
     // grows, which a frozen number would not.
     length: wantsAll ? ALL_QUESTIONS : size || DEFAULT_TEST_LENGTH,
     mode,
+    minutes,
   });
 
   return (
@@ -270,6 +278,61 @@ export function TestBuilder({
           })}
         </div>
       </fieldset>
+
+      <div>
+        <h3 className="text-sm font-semibold text-foreground">Time limit</h3>
+        <p className="mt-1 text-sm text-muted-foreground">
+          {minutes === null
+            ? "No clock — take as long as you like."
+            : `The test hands itself in after ${minutes} ${minutes === 1 ? "minute" : "minutes"}, wherever you have got to.`}
+        </p>
+
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setMinutes(null)}
+            aria-pressed={minutes === null}
+            className={`rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
+              minutes === null
+                ? "bg-brand text-white"
+                : "border border-border bg-surface text-foreground hover:border-brand hover:text-brand"
+            }`}
+          >
+            No limit
+          </button>
+
+          {TIME_LIMITS.map((limit) => (
+            <button
+              key={limit}
+              type="button"
+              onClick={() => setMinutes(limit)}
+              className={`rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
+                minutes === limit
+                  ? "bg-brand text-white"
+                  : "border border-border bg-surface text-foreground hover:border-brand hover:text-brand"
+              }`}
+            >
+              {limit} min
+            </button>
+          ))}
+
+          {/* Scales with the test they have actually built, rather than making
+              them work out what 22 questions is worth. */}
+          {size > 0 ? (
+            <button
+              type="button"
+              onClick={() => setMinutes(suggestedMinutes(size))}
+              className={`rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
+                minutes === suggestedMinutes(size)
+                  ? "bg-brand text-white"
+                  : "border border-border bg-surface text-foreground hover:border-brand hover:text-brand"
+              }`}
+            >
+              Exam pace · {suggestedMinutes(size)} min
+            </button>
+          ) : null}
+        </div>
+      </div>
 
       {size > 0 ? (
         <Link

@@ -12,7 +12,8 @@ aircraft type ratings. All user-facing content is in English.
 choose an aircraft, build a test from any combination of sections and any
 number of questions, sit it either way — study, where each answer is marked
 straight away with the correct option and the explanation, or exam, where
-nothing is shown until the end — and then see a result screen. Accounts exist,
+nothing is shown until the end — with or without a clock on it, and then see
+a result screen. Accounts exist,
 and a signed-in user's answers are recorded as each one is given, which means
 an abandoned test still counts and a mid-test refresh resumes rather than
 restarts. `/progress` reads that history back: overall
@@ -174,6 +175,33 @@ onto the `test_sessions` row and be read from there rather than from the URL.
 
 Either way the answer is still recorded as it is given, so the resume and
 abandoned-test behaviour above is the same in both modes.
+
+**A timed test's clock lives in the database, not in the browser.**
+`test_sessions` carries `startedAt` and `timeLimitSeconds`, written once when
+the session is created and never moved. The deadline is derived from them
+(`deadlineFrom`), never stored — two columns that are written together cannot
+disagree, whereas a stored deadline could drift from the limit beside it with
+no way to tell which was right.
+
+This is what a refresh runs into. Reload a timed test and the page re-reads
+the original `startedAt` and carries on counting from there; there is no path
+by which reloading hands out a fresh countdown. That matters for the honest
+student who refreshes by accident at least as much as for anyone trying it on
+purpose. Resume a test whose deadline has passed and it does not reopen — the
+clock reads zero, and it hands itself in.
+
+The countdown ticks against a fixed deadline rather than decrementing a
+number, so a backgrounded tab or a sleeping laptop cannot slow it down: the
+browser may miss a hundred ticks and the next one still shows the right time.
+At zero the test submits itself, once — `timeUpRef`, not state, so no
+re-render can fire it twice.
+
+Two edges worth knowing. A brand new test has no session until its first
+answer, so between opening it and answering, the countdown is the browser's
+own; the first answer replaces it with the server's. And a signed-out student
+has no session at all, so their clock is browser-only for the whole test —
+the same trade as everything else they do signed out, and for the same
+reason.
 
 **Grading is a pure function.** `src/lib/grading.ts` takes questions and answers
 and returns a result — no database, no React. It is unit tested, and Phase 3
@@ -414,9 +442,10 @@ tests/                        Vitest unit tests
    one still counts; and immediate feedback — the correct answer and the
    explanation appear under each question as soon as it is answered, and that
    question then settles — with an exam mode beside it that holds everything to
-   the end. Still to do: filter by difficulty, timed mode, and a way to jump
-   between questions mid-test (Previous/Next already works one at a time; a
-   full overview does not yet).
+   the end; and a timed mode whose clock is held on the session row, so a
+   reload cannot reset it and running out hands the test in. Still to do:
+   filter by difficulty, and a way to jump between questions mid-test
+   (Previous/Next already works one at a time; a full overview does not yet).
 
 Do not start a phase until the previous one works.
 
@@ -425,10 +454,12 @@ Do not start a phase until the previous one works.
 Payments, subscriptions, an admin panel, images in questions, mobile apps. The
 data model must not make these harder later, but none of them get built now.
 
-(Exam simulation was on this list until the owner asked for it. What exists is
-the honest half: a mode that withholds the answers until the end. A graded,
-invigilated, time-limited exam is still not built, and would need the mode on
-the session row rather than in the URL — see the conventions above.)
+(Exam simulation was on this list until the owner asked for it. What exists
+now is a mode that withholds the answers until the end, and a clock that is
+held on the session row and cannot be reset by reloading. What is still not
+built is an *invigilated* exam — one where the mode itself is enforced rather
+than chosen, which would mean moving `mode` onto the session row too, the way
+the clock already is. See the conventions above.)
 
 Questions are authored as repository files. If questions ever need to be written
 from inside the website, an admin panel gets added then — the `status`,

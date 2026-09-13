@@ -18,6 +18,9 @@ rewriting the application.
   its explanation appear straight away — that question is then settled, so
   your score still means something. *Exam*: nothing is shown until the end,
   and you can change your mind on the way through, closer to the real thing
+- **A clock, if you want one.** Set a time limit — or take the suggested exam
+  pace for the number of questions you picked — and the test hands itself in
+  when time runs out. Reloading the page does not give you more time
 - A result screen: your score, a breakdown by topic with the weakest first, and
   every question reviewed again with the correct answer and an explanation
 - Accounts: sign up, log in, log out
