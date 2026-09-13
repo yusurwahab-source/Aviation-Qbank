@@ -21,6 +21,10 @@ rewriting the application.
 - **A clock, if you want one.** Set a time limit — or take the suggested exam
   pace for the number of questions you picked — and the test hands itself in
   when time runs out. Reloading the page does not give you more time
+- **A map of the test.** Tap the answered count to see every question at once,
+  jump straight to any of them, or go to the next one you skipped. In study
+  mode it shows which you got right; in an exam it only shows what you have
+  answered
 - A result screen: your score, a breakdown by topic with the weakest first, and
   every question reviewed again with the correct answer and an explanation
 - Accounts: sign up, log in, log out

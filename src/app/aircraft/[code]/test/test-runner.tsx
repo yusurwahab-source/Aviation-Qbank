@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState, useTransition } from "react";
 
 import { Badge, Card, DifficultyBadge } from "@/components/ui";
 import type { TestQuestion } from "@/db/queries";
+import { unansweredCount } from "@/lib/question-status";
 import {
   DEFAULT_TEST_MODE,
   formatRemaining,
@@ -14,6 +15,7 @@ import {
 } from "@/lib/test-options";
 
 import { answerQuestion, submitTest, type AnswerVerdict, type SubmitTestOutput } from "./actions";
+import { QuestionNav } from "./question-nav";
 import { ResultScreen } from "./result-screen";
 
 /**
@@ -120,6 +122,12 @@ export function TestRunner({
   );
   /** Set once when the clock runs out, so the auto-submit fires exactly once. */
   const timeUpRef = useRef(false);
+  /**
+   * The map of the test, closed to start with. One question at a time is the
+   * point of this screen; the map is for going back to the ones you skipped.
+   */
+  const [showNav, setShowNav] = useState(false);
+  const navId = useId();
 
   /**
    * What this test is drawn from, for the header. Naming every section would
@@ -136,6 +144,10 @@ export function TestRunner({
   const current = questions[index];
   const isLast = index === questions.length - 1;
   const answeredCount = Object.keys(answers).length;
+  const remainingUnanswered = unansweredCount(
+    questions.map((question) => question.id),
+    answers,
+  );
   /** The revealed answer for the question on screen, once it has one. */
   const verdict = verdicts[current.id];
   /** Settled: answered and revealed, so the choice no longer moves. */
@@ -263,6 +275,7 @@ export function TestRunner({
     setAnswers({});
     setVerdicts({});
     setPending(null);
+    setShowNav(false);
     setIndex(0);
     setError(null);
     window.scrollTo({ top: 0 });
@@ -460,9 +473,16 @@ export function TestRunner({
           Previous
         </button>
 
-        <p className="order-last w-full text-center text-xs text-muted-foreground sm:order-none sm:w-auto">
+        <button
+          type="button"
+          onClick={() => setShowNav((open) => !open)}
+          aria-expanded={showNav}
+          aria-controls={navId}
+          className="order-last w-full text-center text-xs text-muted-foreground underline-offset-4 transition hover:text-brand hover:underline sm:order-none sm:w-auto"
+        >
           {answeredCount} of {questions.length} answered
-        </p>
+          {remainingUnanswered > 0 ? ` · ${remainingUnanswered} left` : ""}
+        </button>
 
         {isLast ? (
           <button
@@ -483,6 +503,21 @@ export function TestRunner({
             Next
           </button>
         )}
+      </div>
+
+      <div id={navId}>
+        {showNav ? (
+          <QuestionNav
+            questions={questions}
+            answers={answers}
+            verdicts={verdicts}
+            current={index}
+            onJump={(to) => {
+              setIndex(to);
+              window.scrollTo({ top: 0 });
+            }}
+          />
+        ) : null}
       </div>
 
       <p className="mt-6 text-center">
