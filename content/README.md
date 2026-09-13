@@ -20,6 +20,7 @@ content/
       airplane-general.json  <- one file per FCOM chapter
       air-systems.json
       anti-ice-and-rain.json
+      automatic-flight.json
 ```
 
 Adding a second aircraft is a content job only. Nothing in the application code
@@ -107,8 +108,9 @@ chapter is a new file and never a change to an existing one:
 | `airplane-general.json` | Airplane General | 52 |
 | `air-systems.json` | Air Systems | 67 |
 | `anti-ice-and-rain.json` | Anti-Ice and Rain | 40 |
+| `automatic-flight.json` | Automatic Flight | 60 |
 
-159 questions, all published.
+219 questions, all published.
 
 ### What changed on the way in from the source file
 
@@ -123,8 +125,9 @@ be carried across as they are, and both are handled the same way every time:
   sections so far: every marked question, and no unmarked one, is a figure
   that varies by operator or configuration and says so in its explanation
   ("Verify against your operator FCOM"). So it survives as a tag,
-  **`verify-fcom`** — queryable, rather than buried in prose. 16 questions
-  carry it: 7 in Airplane General, 6 in Air Systems, 3 in Anti-Ice and Rain.
+  **`verify-fcom`** — queryable, rather than buried in prose. 22 questions
+  carry it: 7 in Airplane General, 6 in Air Systems, 3 in Anti-Ice and Rain
+  and 6 in Automatic Flight.
 
 The source files also name the aircraft `B738`; that is rewritten to the bank's
 code on the way in.
@@ -137,8 +140,8 @@ deliberate decision — see below.
 
 ### The correct answer is spread evenly across A-D
 
-Every source file so far leans hard on one letter, and **not one of them has
-ever answered `D`**. A student who noticed could score well above their real
+The first three source files each leaned hard on one letter and **never once
+answered `D`**. A student who noticed could score well above their real
 knowledge without knowing the aircraft. So the options are redistributed as
 each section comes in:
 
@@ -147,7 +150,13 @@ each section comes in:
 | Airplane General | A 14 · B 32 · C 6 · D 0 | A 13 · B 13 · C 13 · D 13 |
 | Air Systems | A 36 · B 30 · C 1 · D 0 | A 17 · B 17 · C 17 · D 16 |
 | Anti-Ice and Rain | A 28 · B 10 · C 2 · D 0 | A 10 · B 10 · C 10 · D 10 |
-| **Whole bank** | **A 78 · B 72 · C 9 · D 0** | **A 40 · B 40 · C 40 · D 39** |
+| Automatic Flight | A 19 · B 9 · C 14 · D 18 | A 15 · B 15 · C 15 · D 15 |
+| **Whole bank** | **A 97 · B 81 · C 23 · D 18** | **A 55 · B 55 · C 55 · D 54** |
+
+**Automatic Flight arrived already spread**, using all four letters and
+scrambling its own numeric option sets — the first section to do so. It was
+still levelled, because the target is the bank's total rather than any one
+file's, but it needed far less moving than the three before it.
 
 **The arithmetic is over the whole bank, not one file.** A section is balanced
 against what the other sections already hold, so the total stays level as the
@@ -166,6 +175,15 @@ magnitudes (counts, durations, altitudes, pressures, rates, dimensions), the
 No. 1 / No. 2 / No. 3 window numbering in `GEN-0016`, and the compressor-stage
 progression in `AIR-0002`. Eighteen questions in total. The even split is
 reached around them.
+
+Automatic Flight adds none to that list, and the reason is worth stating so it
+does not read as an oversight: its three numeric option sets (`AFS-0008`,
+`AFS-0042`, `AFS-0043`) arrive **scrambled in the source**, not ascending. There
+is no author ordering there to preserve, so they were treated as free like every
+other question in the section. Imposing an ascending order on them would be an
+editorial change rather than a conversion, and nobody asked for one — but it
+would make the bank read more uniformly, and it is the obvious thing to do if
+that inconsistency ever grates.
 
 One consequence in Airplane General is worth recording so it is not mistaken
 for an oversight: `GEN-0043`, `0044` and `0045` sit together in the file, all
