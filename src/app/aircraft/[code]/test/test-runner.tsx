@@ -9,8 +9,9 @@ import type { TestQuestion } from "@/db/queries";
 import { unansweredCount } from "@/lib/question-status";
 import {
   DEFAULT_TEST_MODE,
-  formatRemaining,
+  formatClock,
   secondsLeft,
+  secondsSince,
   type TestMode,
 } from "@/lib/test-options";
 
@@ -63,15 +64,19 @@ export function TestRunner({
    */
   mode = DEFAULT_TEST_MODE,
   /**
-   * Seconds the student asked for, or null for untimed. Sent with each answer
-   * so the server can stamp the clock when it creates the session; after that
-   * the server's own `expiresAt` is what the countdown follows.
+   * The clock this test gets, in seconds, or null in study mode. Derived by
+   * the server from the mode and the question count — the browser is told
+   * what it is, it does not ask for one. Used only for the first render;
+   * once the session exists the server's own `expiresAt` is what counts.
    */
   timeLimitSeconds = null,
   /**
-   * The deadline as the server holds it, when there is one to resume — an
-   * ISO string so it survives the server/client boundary unchanged.
+   * When this test began, as the server holds it, when there is one to
+   * resume. Study mode counts up from here. ISO strings throughout so they
+   * survive the server/client boundary unchanged.
    */
+  initialStartedAt = null,
+  /** The deadline as the server holds it, on a resumed exam. */
   initialExpiresAt = null,
 }: {
   aircraftCode: string;
@@ -84,6 +89,7 @@ export function TestRunner({
   initialVerdicts?: Record<string, AnswerVerdict>;
   mode?: TestMode;
   timeLimitSeconds?: number | null;
+  initialStartedAt?: string | null;
   initialExpiresAt?: string | null;
 }) {
   const router = useRouter();
@@ -104,22 +110,36 @@ export function TestRunner({
   const [isSubmitting, startSubmitting] = useTransition();
   const [isRestarting, startRestarting] = useTransition();
   /**
-   * The deadline the countdown follows.
+   * The deadline the countdown follows, in exam mode. Null in study mode,
+   * which has nothing to run out of.
    *
    * On a resumed test this comes from the server and is authoritative — that
    * is what stops a refresh handing out a fresh countdown. On a brand new
-   * one there is no session yet, so it starts from the requested limit
-   * counted from now, and is replaced by the server's own figure with the
-   * first answer.
+   * one there is no session yet, so it starts from the limit counted from
+   * now, and is replaced by the server's own figure with the first answer.
    */
   const [deadline, setDeadline] = useState<Date | null>(() => {
     if (initialExpiresAt) return new Date(initialExpiresAt);
     if (timeLimitSeconds === null) return null;
     return new Date(Date.now() + timeLimitSeconds * 1000);
   });
+  /**
+   * When this sitting began, for the study-mode stopwatch. Same story as the
+   * deadline: the server's figure when there is one, this render otherwise,
+   * replaced by the server's with the first answer.
+   *
+   * Signed out there is never a server figure, so the count restarts on a
+   * refresh. Nothing is recorded for a signed-out student either, so there
+   * is nothing it could be measured against — and it is a note, not a limit.
+   */
+  const [startedAt, setStartedAt] = useState<Date>(() =>
+    initialStartedAt ? new Date(initialStartedAt) : new Date(),
+  );
+  /** Seconds shown: counting down in exam mode, up in study mode. */
   const [remaining, setRemaining] = useState(() =>
     deadline === null ? 0 : secondsLeft(deadline),
   );
+  const [elapsed, setElapsed] = useState(0);
   /** Set once when the clock runs out, so the auto-submit fires exactly once. */
   const timeUpRef = useRef(false);
   /**
@@ -186,11 +206,13 @@ export function TestRunner({
         questionId,
         selectedOptionId: optionId,
         mode,
-        timeLimitSeconds,
       })
         .then((result) => {
           // The server's clock replaces the browser's guess the moment there
           // is one: the session now exists, and its startedAt is the truth.
+          if (result.status === "answered" && result.startedAt) {
+            setStartedAt(new Date(result.startedAt));
+          }
           if (result.status === "answered" && result.expiresAt) {
             setDeadline(new Date(result.expiresAt));
           }
@@ -209,7 +231,7 @@ export function TestRunner({
           setPending((current) => (current === questionId ? null : current));
         });
     },
-    [aircraftCode, clientTestId, mode, questions, timeLimitSeconds, verdicts],
+    [aircraftCode, clientTestId, mode, questions, verdicts],
   );
 
   const finish = useCallback(() => {
@@ -233,20 +255,29 @@ export function TestRunner({
   }, [aircraftCode, answers, clientTestId, questions]);
 
   /**
-   * Runs the clock, and hands the test in when it reaches zero.
+   * Runs the clock, and — in exam mode — hands the test in when it reaches
+   * zero.
    *
-   * Ticking once a second against a fixed deadline, rather than counting down
-   * a number, is what keeps it honest across a backgrounded tab or a sleeping
-   * laptop: the browser may miss a hundred ticks, and the next one still
-   * shows the right time — or finds the deadline already gone and submits.
+   * Ticking once a second against a fixed instant, rather than incrementing
+   * or decrementing a number, is what keeps it honest across a backgrounded
+   * tab or a sleeping laptop: the browser may miss a hundred ticks, and the
+   * next one still shows the right time — or finds the deadline already gone
+   * and submits.
    *
    * The auto-submit fires once. `timeUpRef` rather than state because a
    * re-render must not be able to fire it a second time.
    */
   useEffect(() => {
-    if (deadline === null || result !== null) return;
+    if (result !== null) return;
 
     const tick = () => {
+      if (deadline === null) {
+        // Study mode: a note of how long this has taken, nothing more. It
+        // never reaches a limit, because there is not one.
+        setElapsed(secondsSince(startedAt));
+        return;
+      }
+
       const left = secondsLeft(deadline);
       setRemaining(left);
       if (left === 0 && !timeUpRef.current) {
@@ -258,7 +289,7 @@ export function TestRunner({
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, [deadline, finish, result]);
+  }, [deadline, finish, result, startedAt]);
 
   /**
    * Starts a fresh test without leaving the page.
@@ -328,9 +359,18 @@ export function TestRunner({
                 }`}
               >
                 <span className="sr-only">Time remaining: </span>
-                {formatRemaining(remaining)}
+                {formatClock(remaining)}
               </span>
-            ) : null}
+            ) : (
+              // Study mode: how long this has taken so far, and nothing
+              // hangs on it. Deliberately quieter than the exam countdown —
+              // same typeface, muted rather than bold, and it never turns
+              // red, because there is nothing to warn about.
+              <span aria-live="off" className="font-mono tabular-nums">
+                <span className="sr-only">Time taken so far: </span>
+                {formatClock(elapsed)}
+              </span>
+            )}
             <span>
               Question {index + 1} of {questions.length}
             </span>

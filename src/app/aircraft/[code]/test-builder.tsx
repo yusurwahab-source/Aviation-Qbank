@@ -10,10 +10,9 @@ import {
   DEFAULT_TEST_LENGTH,
   DEFAULT_TEST_MODE,
   TEST_LENGTHS,
-  TIME_LIMITS,
   buildTestHref,
   resolveTestSize,
-  suggestedMinutes,
+  timeLimitFor,
   type TestLength,
   type TestMode,
 } from "@/lib/test-options";
@@ -53,11 +52,6 @@ export function TestBuilder({
    */
   const [typed, setTyped] = useState(String(DEFAULT_TEST_LENGTH));
   const [mode, setMode] = useState<TestMode>(DEFAULT_TEST_MODE);
-  /**
-   * Minutes on the clock, or null for untimed — which is the default. A timer
-   * nobody asked for is just pressure.
-   */
-  const [minutes, setMinutes] = useState<number | null>(null);
 
   const available = useMemo(
     () =>
@@ -76,6 +70,13 @@ export function TestBuilder({
       : null;
 
   const size = requested === null ? 0 : resolveTestSize(requested, available);
+  /**
+   * What an exam of this size is worth, in minutes. Shown on the Exam card so
+   * the student sees the clock they are choosing before they choose it —
+   * there is nothing to set, only something to know.
+   */
+  const examSeconds = timeLimitFor("exam", size);
+  const examMinutes = size > 0 && examSeconds !== null ? examSeconds / 60 : 0;
   const shortened = requested !== null && requested !== ALL_QUESTIONS && requested > available;
 
   function toggle(topic: string) {
@@ -97,7 +98,6 @@ export function TestBuilder({
     // grows, which a frozen number would not.
     length: wantsAll ? ALL_QUESTIONS : size || DEFAULT_TEST_LENGTH,
     mode,
-    minutes,
   });
 
   return (
@@ -244,12 +244,21 @@ export function TestBuilder({
                 title: "Study",
                 detail:
                   "The answer and the explanation appear as soon as you answer each question. That question is then settled.",
+                clock: "No time limit. The clock on screen just counts how long you have taken.",
               },
               {
                 value: "exam" as const,
                 title: "Exam",
                 detail:
                   "No answers until the end, and you can change your mind on the way through. Closer to sitting the real thing.",
+                // A minute a question, so this tracks the test being built
+                // rather than being a separate thing to choose. Shown here
+                // because it is part of what picking Exam means.
+                clock: examMinutes
+                  ? `${examMinutes} ${examMinutes === 1 ? "minute" : "minutes"} for ${size} ${
+                      size === 1 ? "question" : "questions"
+                    } — one minute each. It hands itself in when the time is up.`
+                  : "One minute a question. It hands itself in when the time is up.",
               },
             ]
           ).map((option) => {
@@ -272,67 +281,15 @@ export function TestBuilder({
                 <span>
                   <span className="block text-sm font-medium text-foreground">{option.title}</span>
                   <span className="mt-1 block text-sm text-muted-foreground">{option.detail}</span>
+                  <span className="mt-1.5 block text-sm font-medium text-muted-foreground">
+                    {option.clock}
+                  </span>
                 </span>
               </label>
             );
           })}
         </div>
       </fieldset>
-
-      <div>
-        <h3 className="text-sm font-semibold text-foreground">Time limit</h3>
-        <p className="mt-1 text-sm text-muted-foreground">
-          {minutes === null
-            ? "No clock — take as long as you like."
-            : `The test hands itself in after ${minutes} ${minutes === 1 ? "minute" : "minutes"}, wherever you have got to.`}
-        </p>
-
-        <div className="mt-3 flex flex-wrap items-center gap-2">
-          <button
-            type="button"
-            onClick={() => setMinutes(null)}
-            aria-pressed={minutes === null}
-            className={`rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
-              minutes === null
-                ? "bg-brand text-white"
-                : "border border-border bg-surface text-foreground hover:border-brand hover:text-brand"
-            }`}
-          >
-            No limit
-          </button>
-
-          {TIME_LIMITS.map((limit) => (
-            <button
-              key={limit}
-              type="button"
-              onClick={() => setMinutes(limit)}
-              className={`rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
-                minutes === limit
-                  ? "bg-brand text-white"
-                  : "border border-border bg-surface text-foreground hover:border-brand hover:text-brand"
-              }`}
-            >
-              {limit} min
-            </button>
-          ))}
-
-          {/* Scales with the test they have actually built, rather than making
-              them work out what 22 questions is worth. */}
-          {size > 0 ? (
-            <button
-              type="button"
-              onClick={() => setMinutes(suggestedMinutes(size))}
-              className={`rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
-                minutes === suggestedMinutes(size)
-                  ? "bg-brand text-white"
-                  : "border border-border bg-surface text-foreground hover:border-brand hover:text-brand"
-              }`}
-            >
-              Exam pace · {suggestedMinutes(size)} min
-            </button>
-          ) : null}
-        </div>
-      </div>
 
       {size > 0 ? (
         <Link

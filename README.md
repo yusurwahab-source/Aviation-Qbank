@@ -18,9 +18,11 @@ rewriting the application.
   its explanation appear straight away — that question is then settled, so
   your score still means something. *Exam*: nothing is shown until the end,
   and you can change your mind on the way through, closer to the real thing
-- **A clock, if you want one.** Set a time limit — or take the suggested exam
-  pace for the number of questions you picked — and the test hands itself in
-  when time runs out. Reloading the page does not give you more time
+- **A clock, in the exam.** An exam gives you one minute a question — twenty
+  questions, twenty minutes — and hands itself in when the time runs out.
+  There is nothing to set: the length of the test is the length of the clock.
+  Study has no limit at all, just a counter showing how long you have taken.
+  Reloading the page does not give you more time, or reset the counter
 - **A map of the test.** Tap the answered count to see every question at once,
   jump straight to any of them, or go to the next one you skipped. In study
   mode it shows which you got right; in an exam it only shows what you have

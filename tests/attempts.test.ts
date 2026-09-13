@@ -479,8 +479,13 @@ describeWithDb("recordTestResult", () => {
       expect(later.status === "recorded" && later.timeLimitSeconds).toBe(600);
     });
 
-    it("leaves an untimed test with no clock at all", async () => {
+    it("still stamps a start on an untimed test, but no limit", async () => {
+      // Study mode has no deadline, yet the screen shows how long the
+      // student has been at it — and that has to survive a refresh rather
+      // than restart at zero. So every session records when it began; only
+      // the limit is optional, and only exam mode has one.
       const clientTestId = randomUUID();
+      const before = new Date();
       await saveAnswer({
         userId,
         clientTestId,
@@ -495,8 +500,36 @@ describeWithDb("recordTestResult", () => {
       });
 
       const [session] = await sessionsFor(clientTestId);
-      expect(session.startedAt).toBeNull();
+      expect(session.startedAt).not.toBeNull();
+      expect(session.startedAt!.getTime()).toBeGreaterThanOrEqual(before.getTime() - 1000);
       expect(session.timeLimitSeconds).toBeNull();
+    });
+
+    it("does not move an untimed test's start either", async () => {
+      // The same fixed-instant property the countdown relies on, for the
+      // count-up: a second answer must not restart the stopwatch.
+      const clientTestId = randomUUID();
+      const base = {
+        userId,
+        clientTestId,
+        aircraftCode: "DA40",
+        questionIds: questions.map((q) => q.id),
+        questionCount: questions.length,
+        topic: "Electrical",
+        selectedOptionId: "a",
+        isCorrect: true,
+        timeLimitSeconds: null,
+      };
+
+      await saveAnswer({ ...base, questionId: "DA40-ELEC-9001" });
+      const [before] = await sessionsFor(clientTestId);
+
+      await new Promise((resolve) => setTimeout(resolve, 30));
+      await saveAnswer({ ...base, questionId: "DA40-ELEC-9002" });
+
+      const [after] = await sessionsFor(clientTestId);
+      expect(after.startedAt?.getTime()).toBe(before.startedAt?.getTime());
+      expect(after.timeLimitSeconds).toBeNull();
     });
 
     it("hands the clock back to a resume", async () => {

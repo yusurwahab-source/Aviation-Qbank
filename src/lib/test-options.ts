@@ -57,54 +57,29 @@ export const ALL_QUESTIONS = "all" as const;
 export type TestLength = number | typeof ALL_QUESTIONS;
 
 /**
- * A test can be given a clock. `null` means untimed, which is the default —
- * most practice is better without one, and a timer nobody asked for is just
- * pressure.
+ * Exam mode is timed; study mode is not. This is not an option the student
+ * sets — it is what the two modes *are*. An exam you can take all afternoon
+ * over is not an exam, and a clock counting down while someone is reading an
+ * explanation is pressure with nothing to gain from it.
  *
- * Kept in minutes at the edges because that is how a student thinks about it,
- * and in seconds everywhere inside, because that is what arithmetic on a
- * deadline wants.
+ * One minute a question, so the limit follows the test the student built
+ * rather than a number chosen in a dialog. Twenty questions is twenty
+ * minutes; sixty is an hour. Nothing to work out and nothing to get wrong.
  */
-export type TimeLimit = number | null;
-
-/** One-tap limits, in minutes, beside the free number box. */
-export const TIME_LIMITS = [10, 20, 30, 60] as const;
+export const EXAM_SECONDS_PER_QUESTION = 60;
 
 /**
- * Long enough that nobody reaches it by choosing, short enough to bound what
- * a hostile URL can ask the clock to hold. A day is well past any sitting.
- */
-const MAX_TIME_LIMIT_MINUTES = 24 * 60;
-
-/**
- * What a test of this many questions is worth, in minutes.
+ * The clock a test of this shape gets, in seconds — `null` for no clock.
  *
- * Ninety seconds a question is the rough shape of a written type-rating
- * paper, and it means the suggestion tracks the test the student just built
- * rather than being a number picked out of the air. Rounded up to the minute,
- * and never zero.
+ * Derived, never parsed: there is no `?minutes=` any more, so there is no
+ * untrusted input here to bound. The question count is already bounded by
+ * how many questions exist.
  */
-export function suggestedMinutes(questionCount: number): number {
-  return Math.max(1, Math.ceil((questionCount * 90) / 60));
-}
-
-/**
- * Turns an untrusted `?minutes=` value into a time limit, in seconds.
- *
- * Missing or unreadable means untimed — the same fallback the rest of this
- * file uses, and the one that never takes something away from the student.
- */
-export function parseTimeLimit(raw: string | string[] | undefined): TimeLimit {
-  const value = Array.isArray(raw) ? raw[0] : raw;
-  if (!value) return null;
-
-  const trimmed = value.trim();
-  if (!/^\d+$/.test(trimmed)) return null;
-
-  const minutes = Number.parseInt(trimmed, 10);
-  if (minutes < 1) return null;
-
-  return Math.min(minutes, MAX_TIME_LIMIT_MINUTES) * 60;
+export function timeLimitFor(mode: TestMode, questionCount: number): number | null {
+  if (mode !== "exam") return null;
+  // A zero-question test never reaches the runner, but a zero-second clock
+  // would expire the instant it was drawn, so never return one.
+  return Math.max(1, questionCount) * EXAM_SECONDS_PER_QUESTION;
 }
 
 /** Longest topic the database column can hold; anything longer cannot match. */
@@ -183,8 +158,25 @@ export function secondsLeft(deadline: Date, now: Date = new Date()): number {
   return Math.max(0, Math.ceil((deadline.getTime() - now.getTime()) / 1000));
 }
 
-/** `m:ss`, or `h:mm:ss` once there is an hour to show. */
-export function formatRemaining(totalSeconds: number): string {
+/**
+ * Seconds since a start, never negative.
+ *
+ * The study-mode counterpart to `secondsLeft`: study mode has no deadline to
+ * count down to, so it counts up from when the test began. Same reason for
+ * deriving it from a fixed instant rather than incrementing a number — a
+ * backgrounded tab misses ticks, and the next one still shows the truth.
+ */
+export function secondsSince(startedAt: Date, now: Date = new Date()): number {
+  return Math.max(0, Math.floor((now.getTime() - startedAt.getTime()) / 1000));
+}
+
+/**
+ * `m:ss`, or `h:mm:ss` once there is an hour to show.
+ *
+ * Used both ways round — exam counts down, study counts up — so it is named
+ * for what it renders rather than for which direction it happens to serve.
+ */
+export function formatClock(totalSeconds: number): string {
   const seconds = Math.max(0, Math.floor(totalSeconds));
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
@@ -206,8 +198,6 @@ export function buildTestHref(
     length?: TestLength;
     retryOnly?: boolean;
     mode?: TestMode;
-    /** Minutes on the clock. Omitted or null means untimed. */
-    minutes?: number | null;
   } = {},
 ): string {
   const params = new URLSearchParams();
@@ -220,9 +210,6 @@ export function buildTestHref(
   if (options.mode !== undefined && options.mode !== DEFAULT_TEST_MODE) {
     params.set("mode", options.mode);
   }
-  // Same reasoning as the mode: untimed is the default, so it says nothing.
-  if (options.minutes) params.set("minutes", String(options.minutes));
-
   const query = params.toString();
   return `/aircraft/${aircraftCode}/test${query ? `?${query}` : ""}`;
 }

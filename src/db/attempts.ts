@@ -71,7 +71,10 @@ export async function saveAnswer(input: {
         questionIds: input.questionIds,
         // The clock starts here, on the server, and is never moved again —
         // which is what stops a refresh from handing out a fresh countdown.
-        startedAt: input.timeLimitSeconds === null ? null : sql`now()`,
+        // Stamped for every test, timed or not: study mode has no deadline
+        // but still shows how long the student has been at it, and that too
+        // has to survive a refresh rather than restart at zero.
+        startedAt: sql`now()`,
         timeLimitSeconds: input.timeLimitSeconds,
         // Explicit: this session is still being taken.
         completedAt: null,
