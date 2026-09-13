@@ -20,6 +20,7 @@ export default async function LogInPage() {
       submitLabel="Log in"
       pendingLabel="Logging in…"
       passwordAutoComplete="current-password"
+      passwordAside={{ label: "Forgotten?", href: "/forgot-password" }}
       footer={{ text: "No account yet?", linkLabel: "Create one", href: "/signup" }}
     />
   );

@@ -27,9 +27,13 @@ const MINUTE = 60 * 1000;
 /**
  * Two rules, applied together.
  *
- * Neither ever locks an account permanently. That matters concretely here:
- * there is no password reset yet, so a permanent lock would be unrecoverable
- * without deleting the user's row by hand. Both rules expire on their own.
+ * Neither ever locks an account permanently. Both rules expire on their own.
+ *
+ * That mattered absolutely before password reset existed: a permanent lock
+ * was unrecoverable without deleting the user's row by hand. There is now a
+ * second way out — a completed reset clears the address's failures — but the
+ * rule stays, because a lock that could only be lifted through an inbox
+ * would strand anyone whose mail is not working.
  */
 export const RATE_LIMIT_RULES = {
   /**
@@ -44,6 +48,28 @@ export const RATE_LIMIT_RULES = {
    * someone guessing one account's password will.
    */
   perEmail: { maxFailures: 5, windowMs: 15 * MINUTE } satisfies RateLimitRule,
+
+  /**
+   * Password reset requests, per address asked for.
+   *
+   * A different thing being counted: not failures, but *requests*, because a
+   * reset request has no failure to count — every one that names a real
+   * account sends an email. What this limits is therefore mail, not guessing.
+   * Without it, anybody could point the form at someone else's address and
+   * have this site post them a hundred messages.
+   *
+   * Three an hour is generous for the real case (the first did not arrive;
+   * try again) and useless as a way to flood an inbox.
+   */
+  resetPerEmail: { maxFailures: 3, windowMs: 60 * MINUTE } satisfies RateLimitRule,
+
+  /**
+   * Reset requests per source address. Stops one machine walking a list of
+   * addresses to see which ones this site will send mail to — the same
+   * enumeration the identical wording exists to prevent, approached from the
+   * side of volume rather than of timing.
+   */
+  resetPerIp: { maxFailures: 15, windowMs: 60 * MINUTE } satisfies RateLimitRule,
 } as const;
 
 /**

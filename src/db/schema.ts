@@ -142,9 +142,43 @@ export const sessions = pgTable(
   ],
 );
 
+/**
+ * One-time links for setting a forgotten password.
+ *
+ * Shaped exactly like `sessions`, and for exactly the same reason: `id` is the
+ * SHA-256 of the token in the emailed link, never the token itself. Someone
+ * who reads this table learns that a reset was requested and nothing more —
+ * they cannot construct the link.
+ *
+ * `usedAt` is what makes a link one-time. It is set rather than the row
+ * deleted, so a second click on the same link can be told apart from a link
+ * that never existed, and answered accurately.
+ */
+export const passwordResetTokens = pgTable(
+  "password_reset_tokens",
+  {
+    id: varchar("id", { length: 64 }).primaryKey(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    /** Null while the link is still good. Set the moment it is spent. */
+    usedAt: timestamp("used_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    // Retiring a user's outstanding links when a new one is issued, and
+    // cleaning up on delete.
+    index("password_reset_tokens_user_id_idx").on(table.userId),
+    // Sweeping rows that have aged out.
+    index("password_reset_tokens_expires_at_idx").on(table.expiresAt),
+  ],
+);
+
 export type UserRow = typeof users.$inferSelect;
 export type UserInsert = typeof users.$inferInsert;
 export type SessionRow = typeof sessions.$inferSelect;
+export type PasswordResetTokenRow = typeof passwordResetTokens.$inferSelect;
 
 /**
  * One practice test, finished or still in progress.
