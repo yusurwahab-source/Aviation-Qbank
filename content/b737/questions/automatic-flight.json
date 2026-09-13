@@ -1,0 +1,1760 @@
+[
+  {
+    "id": "B737-AFS-0001",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What are the main components of the autopilot flight director system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Two flight control computers and the mode control panel"
+      },
+      {
+        "id": "b",
+        "text": "A single flight control computer and the FMC"
+      },
+      {
+        "id": "c",
+        "text": "The mode control panel and the autothrottle computer"
+      },
+      {
+        "id": "d",
+        "text": "The FMC and the two air data computers"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Two computers give the redundancy needed for a dual channel approach, and the mode control panel is the crew interface to both.",
+    "difficulty": 1,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0002",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "How many autopilot channels may be engaged during normal cruise flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "One"
+      },
+      {
+        "id": "b",
+        "text": "Two, but only above 20000 ft"
+      },
+      {
+        "id": "c",
+        "text": "Either one or two at the crew discretion"
+      },
+      {
+        "id": "d",
+        "text": "Two"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Single channel operation is the norm. The second channel is reserved for the approach, where its redundancy is actually needed.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0003",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "Under what condition can both autopilot channels be engaged?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Whenever both flight directors are switched on"
+      },
+      {
+        "id": "b",
+        "text": "During an ILS approach with APP mode selected"
+      },
+      {
+        "id": "c",
+        "text": "Whenever the flaps are extended"
+      },
+      {
+        "id": "d",
+        "text": "During any instrument approach"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Dual channel operation exists to provide redundancy during an automatic approach and landing, so it is tied to APP mode.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0004",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "How is the second autopilot channel engaged for an approach?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By selecting both flight director switches to ON"
+      },
+      {
+        "id": "b",
+        "text": "By moving the disengage bar to the second detent"
+      },
+      {
+        "id": "c",
+        "text": "By pressing the second CMD switch after APP mode is selected"
+      },
+      {
+        "id": "d",
+        "text": "Automatically at 1500 ft radio altitude"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The crew action is deliberate, so a dual channel approach can never be entered by accident during normal manoeuvring.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0005",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What is the essential difference between CMD and CWS?",
+    "options": [
+      {
+        "id": "a",
+        "text": "CMD is used in flight and CWS only on the ground"
+      },
+      {
+        "id": "b",
+        "text": "CMD follows the selected modes while CWS responds to pilot control forces"
+      },
+      {
+        "id": "c",
+        "text": "CMD controls pitch only while CWS controls roll only"
+      },
+      {
+        "id": "d",
+        "text": "CMD uses computer A while CWS uses computer B"
+      }
+    ],
+    "correct": "b",
+    "explanation": "In CWS the pilot is still manoeuvring the airplane, but through the autopilot servos rather than directly.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0006",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What does the autopilot do in CWS when the pilot releases the control force?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It reverts to the previously selected CMD mode"
+      },
+      {
+        "id": "b",
+        "text": "It holds the attitude existing at the moment of release"
+      },
+      {
+        "id": "c",
+        "text": "It returns the airplane to wings level"
+      },
+      {
+        "id": "d",
+        "text": "It disengages automatically"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Holding the resulting attitude is what makes CWS a manoeuvring mode rather than a navigation mode.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0007",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "With CWS engaged in roll and the localizer armed, what happens as the airplane approaches the beam?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The system captures the localizer and transitions to CMD"
+      },
+      {
+        "id": "b",
+        "text": "The autopilot disengages and the flight director takes over"
+      },
+      {
+        "id": "c",
+        "text": "The localizer arming is cancelled"
+      },
+      {
+        "id": "d",
+        "text": "Nothing, capture requires CMD to be engaged"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The capture logic remains active in this case, which is why an armed localizer can take control even with CWS selected in roll.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0008",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What is the minimum altitude for engaging the autopilot after takeoff?",
+    "options": [
+      {
+        "id": "a",
+        "text": "1000 ft AGL"
+      },
+      {
+        "id": "b",
+        "text": "400 ft AGL"
+      },
+      {
+        "id": "c",
+        "text": "1500 ft AGL"
+      },
+      {
+        "id": "d",
+        "text": "200 ft AGL"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The limit gives the crew time to establish the airplane manually before handing over. Verify the exact figure against your operator FCOM.",
+    "difficulty": 2,
+    "tags": [
+      "verify-fcom"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0009",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "By which two means can the autopilot be disengaged?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The go around switch or the stabiliser trim switches"
+      },
+      {
+        "id": "b",
+        "text": "The control wheel disengage switch or the mode control panel disengage bar"
+      },
+      {
+        "id": "c",
+        "text": "The control wheel disengage switch or the autothrottle disengage switch"
+      },
+      {
+        "id": "d",
+        "text": "The disengage bar or the flight director switches"
+      }
+    ],
+    "correct": "b",
+    "explanation": "One method is on the yoke within immediate reach, and the other is on the panel, so disengagement never depends on a single switch.",
+    "difficulty": 1,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0010",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "How does the autopilot disengage warning present itself?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A master caution light on the forward panel"
+      },
+      {
+        "id": "b",
+        "text": "A steady amber light only"
+      },
+      {
+        "id": "c",
+        "text": "A flashing red light and an aural warning"
+      },
+      {
+        "id": "d",
+        "text": "A single chime with no light"
+      }
+    ],
+    "correct": "c",
+    "explanation": "An unannounced disengagement is dangerous, so the warning is attention getting and has to be positively cancelled.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0011",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "Which of the following is a roll mode?",
+    "options": [
+      {
+        "id": "a",
+        "text": "LVL CHG"
+      },
+      {
+        "id": "b",
+        "text": "HDG SEL"
+      },
+      {
+        "id": "c",
+        "text": "V/S"
+      },
+      {
+        "id": "d",
+        "text": "ALT HOLD"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Roll modes command the airplane about the longitudinal axis, while the others are pitch modes controlling the vertical path.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0012",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What is the range of the bank angle limit selector?",
+    "options": [
+      {
+        "id": "a",
+        "text": "10 to 25 degrees"
+      },
+      {
+        "id": "b",
+        "text": "15 to 35 degrees"
+      },
+      {
+        "id": "c",
+        "text": "5 to 25 degrees"
+      },
+      {
+        "id": "d",
+        "text": "10 to 30 degrees"
+      }
+    ],
+    "correct": "d",
+    "explanation": "A reduced limit gives a gentler turn at high altitude or for passenger comfort, at the cost of a larger turn radius.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0013",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "Which mode is affected by the bank angle limit selector?",
+    "options": [
+      {
+        "id": "a",
+        "text": "VOR/LOC after capture"
+      },
+      {
+        "id": "b",
+        "text": "LNAV"
+      },
+      {
+        "id": "c",
+        "text": "HDG SEL"
+      },
+      {
+        "id": "d",
+        "text": "All roll modes equally"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The route based mode uses its own bank scheduling to fly the coded path, so a manual limit would prevent it tracking accurately.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0014",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "In LVL CHG, what controls the airspeed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The bank angle limit selector"
+      },
+      {
+        "id": "b",
+        "text": "Thrust, while pitch holds the vertical speed"
+      },
+      {
+        "id": "c",
+        "text": "The FMC vertical path"
+      },
+      {
+        "id": "d",
+        "text": "Pitch, while thrust is set to the climb limit or idle"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Fixing the thrust and using pitch for speed is what makes the mode deliver the best available rate for the conditions.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0015",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "In V/S mode, what controls the airspeed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The selected vertical speed"
+      },
+      {
+        "id": "b",
+        "text": "The FMC speed schedule"
+      },
+      {
+        "id": "c",
+        "text": "Pitch attitude"
+      },
+      {
+        "id": "d",
+        "text": "The autothrottle"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Pitch is committed to the vertical speed, so speed becomes the autothrottle task.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0016",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What is the principal hazard of using V/S at high altitude?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The selected rate may be unachievable and the speed will decay"
+      },
+      {
+        "id": "b",
+        "text": "The autopilot will revert to CWS in pitch"
+      },
+      {
+        "id": "c",
+        "text": "The autothrottle disconnects above the optimum altitude"
+      },
+      {
+        "id": "d",
+        "text": "The bank angle limit is automatically reduced"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The mode will hold the vertical speed at the expense of airspeed, so an over ambitious selection near the performance ceiling leads to a low speed situation.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0017",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What does ALT HOLD do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Levels the airplane and then reverts to V/S"
+      },
+      {
+        "id": "b",
+        "text": "Climbs to the altitude selected on the mode control panel"
+      },
+      {
+        "id": "c",
+        "text": "Holds the altitude selected in the FMC"
+      },
+      {
+        "id": "d",
+        "text": "Holds the altitude at which the mode engaged"
+      }
+    ],
+    "correct": "d",
+    "explanation": "It captures the current altitude, which is not necessarily the one selected on the panel.",
+    "difficulty": 1,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0018",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "How is the altitude acquire mode selected?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By pressing the altitude intervention switch"
+      },
+      {
+        "id": "b",
+        "text": "By setting the vertical speed to zero"
+      },
+      {
+        "id": "c",
+        "text": "By pressing the ALT HOLD switch twice"
+      },
+      {
+        "id": "d",
+        "text": "It cannot be selected, it engages automatically approaching the selected altitude"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The transition from a climb or descent into level flight is automatic so that the level off is always flown to the same schedule.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0019",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What is the effect of changing the mode control panel altitude during altitude capture?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The autopilot disengages"
+      },
+      {
+        "id": "b",
+        "text": "The capture may be interrupted and a new pitch mode must be selected"
+      },
+      {
+        "id": "c",
+        "text": "The airplane immediately levels at the original altitude"
+      },
+      {
+        "id": "d",
+        "text": "Nothing until altitude hold has engaged"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Changing the target during the capture removes the reference the mode was working towards, which is why the selection is made before the capture begins.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0020",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "In VNAV, what does the FMC control?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Thrust only, with pitch flown manually"
+      },
+      {
+        "id": "b",
+        "text": "Roll and pitch, with thrust controlled manually"
+      },
+      {
+        "id": "c",
+        "text": "Both pitch and thrust to fly the vertical profile"
+      },
+      {
+        "id": "d",
+        "text": "Pitch only, with thrust controlled from the mode control panel"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Handing both axes of energy management to the FMC is what allows the coded profile and speed schedule to be flown accurately.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0021",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What happens to the mode control panel speed window in VNAV?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It reverts to Mach indication only"
+      },
+      {
+        "id": "b",
+        "text": "It displays the current airspeed"
+      },
+      {
+        "id": "c",
+        "text": "It displays the FMC target speed"
+      },
+      {
+        "id": "d",
+        "text": "It blanks, because the FMC is controlling the speed"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The blank window is the crew cue that the speed target is now in the FMC and not on the panel.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0022",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What does LNAV control?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Pitch, to follow the FMC vertical path"
+      },
+      {
+        "id": "b",
+        "text": "Thrust, to follow the FMC speed schedule"
+      },
+      {
+        "id": "c",
+        "text": "Both roll and pitch"
+      },
+      {
+        "id": "d",
+        "text": "Roll, to follow the FMC route"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The lateral and vertical FMC functions are separate modes, so one can be used without the other.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0023",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "If LNAV is armed before takeoff, at what point does it engage?",
+    "options": [
+      {
+        "id": "a",
+        "text": "At 1000 ft AGL"
+      },
+      {
+        "id": "b",
+        "text": "At 50 ft AGL"
+      },
+      {
+        "id": "c",
+        "text": "At acceleration altitude"
+      },
+      {
+        "id": "d",
+        "text": "At 400 ft AGL"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Engagement is delayed until the airplane is safely airborne. Verify the exact height against your operator FCOM.",
+    "difficulty": 3,
+    "tags": [
+      "verify-fcom"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0024",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What prevents LNAV from engaging in flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Having the flight directors switched off"
+      },
+      {
+        "id": "b",
+        "text": "A bank angle limit selection below 20 degrees"
+      },
+      {
+        "id": "c",
+        "text": "Being too far from the active leg of the route"
+      },
+      {
+        "id": "d",
+        "text": "Having the autothrottle disengaged"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Engaging from a large displacement would command an aggressive intercept, so the logic requires the airplane to be reasonably close to the path.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0025",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What does the flight director command initially when the takeoff mode is selected on the ground?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The pitch limit for the current flap setting"
+      },
+      {
+        "id": "b",
+        "text": "A fixed pitch attitude"
+      },
+      {
+        "id": "c",
+        "text": "Wings level with zero pitch"
+      },
+      {
+        "id": "d",
+        "text": "The pitch required for V2 immediately"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A fixed initial attitude gives a repeatable rotation target before there is enough speed information to command a speed.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0026",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "After liftoff, to what does the takeoff flight director pitch command change?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A speed based command referenced to V2"
+      },
+      {
+        "id": "b",
+        "text": "A fixed 20 degree attitude"
+      },
+      {
+        "id": "c",
+        "text": "The FMC vertical path"
+      },
+      {
+        "id": "d",
+        "text": "The vertical speed existing at liftoff"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Once airborne the priority becomes achieving and holding the climb speed, including after an engine failure.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0027",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What is the effect of the first push of a go around switch in flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Go around mode engages with reduced go around thrust"
+      },
+      {
+        "id": "b",
+        "text": "The autopilot disengages"
+      },
+      {
+        "id": "c",
+        "text": "The flaps retract to the go around setting"
+      },
+      {
+        "id": "d",
+        "text": "Full go around thrust is applied immediately"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Reduced thrust is normally sufficient and gives a more controllable pitch change, with full thrust available on demand.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0028",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What is achieved by a second push of the go around switch?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The flight directors are removed from view"
+      },
+      {
+        "id": "b",
+        "text": "Full go around thrust is commanded"
+      },
+      {
+        "id": "c",
+        "text": "The autothrottle disengages"
+      },
+      {
+        "id": "d",
+        "text": "The mode reverts to approach"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The two stage logic lets the crew ask for maximum performance when the reduced setting is not enough, such as with an engine failure or windshear.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0029",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "Which of the following is an autothrottle mode?",
+    "options": [
+      {
+        "id": "a",
+        "text": "LVL CHG"
+      },
+      {
+        "id": "b",
+        "text": "THR HLD"
+      },
+      {
+        "id": "c",
+        "text": "ALT ACQ"
+      },
+      {
+        "id": "d",
+        "text": "VOR/LOC"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The autothrottle modes describe what the thrust levers are doing, separately from the pitch and roll modes of the autopilot.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0030",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "At what speed during the takeoff roll does the autothrottle annunciate THR HLD?",
+    "options": [
+      {
+        "id": "a",
+        "text": "60 kt"
+      },
+      {
+        "id": "b",
+        "text": "100 kt"
+      },
+      {
+        "id": "c",
+        "text": "84 kt"
+      },
+      {
+        "id": "d",
+        "text": "V1"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The transition happens once the takeoff thrust is established and the roll is committed. Verify the figure against your operator FCOM.",
+    "difficulty": 3,
+    "tags": [
+      "verify-fcom"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0031",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "At what height does the THR HLD annunciation change to ARM?",
+    "options": [
+      {
+        "id": "a",
+        "text": "400 ft radio altitude"
+      },
+      {
+        "id": "b",
+        "text": "Acceleration altitude"
+      },
+      {
+        "id": "c",
+        "text": "1000 ft radio altitude"
+      },
+      {
+        "id": "d",
+        "text": "200 ft radio altitude"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The change coincides with the height at which the autopilot may be engaged and the climb is established. Verify against your operator FCOM.",
+    "difficulty": 3,
+    "tags": [
+      "verify-fcom"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0032",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What is the purpose of the THR HLD mode?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It limits thrust to the reduced takeoff setting"
+      },
+      {
+        "id": "b",
+        "text": "It holds the thrust levers immovable until 400 ft"
+      },
+      {
+        "id": "c",
+        "text": "It prevents the autothrottle from changing thrust during the takeoff and initial climb"
+      },
+      {
+        "id": "d",
+        "text": "It maintains thrust after an engine failure"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The thrust setting is left alone at the most critical moment, while the crew retains the ability to move the levers manually.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0033",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "Where are the autothrottle disengage switches located?",
+    "options": [
+      {
+        "id": "a",
+        "text": "On the mode control panel only"
+      },
+      {
+        "id": "b",
+        "text": "On the centre pedestal beside the flap lever"
+      },
+      {
+        "id": "c",
+        "text": "On the thrust levers"
+      },
+      {
+        "id": "d",
+        "text": "On the control wheels"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Placing them on the levers means the hand already on the thrust is the hand that disconnects it.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0034",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "How is an autothrottle disengagement annunciated?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By a flashing red light"
+      },
+      {
+        "id": "b",
+        "text": "By the master caution only"
+      },
+      {
+        "id": "c",
+        "text": "By an aural warning only"
+      },
+      {
+        "id": "d",
+        "text": "By a flashing amber light"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The amber level reflects that losing the autothrottle is less immediately critical than losing the autopilot, but still requires attention.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0035",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "Which autothrottle mode reduces thrust during the landing flare?",
+    "options": [
+      {
+        "id": "a",
+        "text": "THR HLD"
+      },
+      {
+        "id": "b",
+        "text": "ARM"
+      },
+      {
+        "id": "c",
+        "text": "N1"
+      },
+      {
+        "id": "d",
+        "text": "RETARD"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Bringing the levers to idle at the right moment is part of the automatic landing sequence and is annunciated so the crew can monitor it.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0036",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "In N1 mode, what determines the thrust setting?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The engine EGT limit"
+      },
+      {
+        "id": "b",
+        "text": "The position of the mode control panel speed window"
+      },
+      {
+        "id": "c",
+        "text": "The N1 limit calculated by the FMC"
+      },
+      {
+        "id": "d",
+        "text": "The thrust lever angle selected by the crew"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The FMC computes the limit for the phase and conditions, and the autothrottle simply drives the levers to achieve it.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0037",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What is the difference between MCP SPD and FMC SPD?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The speed target comes from the mode control panel in one and from the FMC in the other"
+      },
+      {
+        "id": "b",
+        "text": "One controls indicated airspeed and the other controls Mach"
+      },
+      {
+        "id": "c",
+        "text": "One is available with the autopilot engaged and the other is not"
+      },
+      {
+        "id": "d",
+        "text": "One is used in the climb and the other in the descent"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Knowing which source owns the target tells the crew where to make a speed change.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0038",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "With the autopilot in ALT HOLD and the autothrottle engaged, what does the autothrottle control?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Airspeed"
+      },
+      {
+        "id": "b",
+        "text": "Vertical speed"
+      },
+      {
+        "id": "c",
+        "text": "The N1 limit only"
+      },
+      {
+        "id": "d",
+        "text": "Nothing, it reverts to ARM"
+      }
+    ],
+    "correct": "a",
+    "explanation": "With pitch committed to holding the altitude, thrust is the only remaining means of controlling speed.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0039",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What does selecting APP mode arm?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The glideslope only"
+      },
+      {
+        "id": "b",
+        "text": "The localizer, glideslope and rollout simultaneously"
+      },
+      {
+        "id": "c",
+        "text": "The localizer only"
+      },
+      {
+        "id": "d",
+        "text": "Both the localizer and the glideslope"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Arming both allows the normal capture sequence to run without further crew action.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0040",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "In which order are the ILS beams normally captured?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Localizer first, then glideslope"
+      },
+      {
+        "id": "b",
+        "text": "Both simultaneously at the final approach fix"
+      },
+      {
+        "id": "c",
+        "text": "Either order depending on the intercept"
+      },
+      {
+        "id": "d",
+        "text": "Glideslope first, then localizer"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Capturing the lateral path first ensures the airplane is aligned with the runway before it commits to the vertical path.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0041",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "Why should APP mode not be selected until the approach is established or cleared?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Because it disengages the autothrottle"
+      },
+      {
+        "id": "b",
+        "text": "Because it blanks the speed window"
+      },
+      {
+        "id": "c",
+        "text": "Because it prevents the flaps from extending"
+      },
+      {
+        "id": "d",
+        "text": "Because the system may capture a false or spurious beam"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Arming early exposes the system to side lobes and to a signal that is not yet stable, which can produce an unwanted capture.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0042",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "During a dual channel approach, below what radio altitude does the flare mode arm?",
+    "options": [
+      {
+        "id": "a",
+        "text": "800 ft"
+      },
+      {
+        "id": "b",
+        "text": "1000 ft"
+      },
+      {
+        "id": "c",
+        "text": "500 ft"
+      },
+      {
+        "id": "d",
+        "text": "1500 ft"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Arming well before it is needed allows the system to be monitored during the final stages. Verify the figure against your operator FCOM.",
+    "difficulty": 3,
+    "tags": [
+      "verify-fcom"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0043",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "At approximately what radio altitude does the flare mode engage?",
+    "options": [
+      {
+        "id": "a",
+        "text": "150 ft"
+      },
+      {
+        "id": "b",
+        "text": "100 ft"
+      },
+      {
+        "id": "c",
+        "text": "50 ft"
+      },
+      {
+        "id": "d",
+        "text": "20 ft"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The flare is initiated close to the runway so the round out and touchdown are consistent. Verify against your operator FCOM.",
+    "difficulty": 3,
+    "tags": [
+      "verify-fcom"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0044",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What does the rollout mode do after touchdown?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It deploys the speedbrakes and reversers"
+      },
+      {
+        "id": "b",
+        "text": "It applies the autobrakes to the selected setting"
+      },
+      {
+        "id": "c",
+        "text": "It uses rudder and nose wheel steering to track the localizer"
+      },
+      {
+        "id": "d",
+        "text": "It holds the nose wheel off the runway"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Directional guidance after touchdown is the part of a low visibility landing that the crew cannot fly visually.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0045",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What must the crew do with the autopilot after an automatic landing?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Disengage it manually"
+      },
+      {
+        "id": "b",
+        "text": "Select CWS before leaving the runway"
+      },
+      {
+        "id": "c",
+        "text": "Nothing, it disengages at touchdown"
+      },
+      {
+        "id": "d",
+        "text": "Nothing, it disengages at taxi speed"
+      }
+    ],
+    "correct": "a",
+    "explanation": "It remains engaged through the rollout, so a positive crew action is required before manual steering is taken up.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0046",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What does a fail passive automatic landing system mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A failure is annunciated but the landing must be continued"
+      },
+      {
+        "id": "b",
+        "text": "The system reverts to a single channel and completes the landing"
+      },
+      {
+        "id": "c",
+        "text": "A failure results in disengagement without a significant out of trim condition"
+      },
+      {
+        "id": "d",
+        "text": "The system continues the landing after any single failure"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Fail passive protects the airplane from a large upset on disconnect, but it does not guarantee the landing can be completed automatically.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0047",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "Below approximately 800 ft radio altitude in a dual channel approach, what is the effect of control column force?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It reverts the autothrottle to ARM"
+      },
+      {
+        "id": "b",
+        "text": "It does not cause a reversion to CWS"
+      },
+      {
+        "id": "c",
+        "text": "It disengages both channels immediately"
+      },
+      {
+        "id": "d",
+        "text": "It causes a reversion to CWS in pitch"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The reversion is inhibited so that an inadvertent nudge on the column cannot degrade the approach at its most critical stage.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0048",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "How is the stabiliser trimmed with the autopilot engaged?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is locked out until the autopilot is disengaged"
+      },
+      {
+        "id": "b",
+        "text": "Automatically by the autopilot"
+      },
+      {
+        "id": "c",
+        "text": "Manually by the crew using the trim switches"
+      },
+      {
+        "id": "d",
+        "text": "By the speed trim system only"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Automatic trimming keeps the airplane close to trim, which is what limits the out of trim condition at disengagement.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0049",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "How many course selectors are provided on the mode control panel?",
+    "options": [
+      {
+        "id": "a",
+        "text": "One shared by both pilots"
+      },
+      {
+        "id": "b",
+        "text": "Three, including a standby selector"
+      },
+      {
+        "id": "c",
+        "text": "Two, one for each navigation receiver in use"
+      },
+      {
+        "id": "d",
+        "text": "Two, one for each pilot"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Independent selectors allow each pilot to display a different course and support independent cross checking of the approach.",
+    "difficulty": 1,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0050",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What happens to the flight director command bars when the autopilot is engaged in CMD with the flight directors off?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The autopilot continues to fly the selected modes normally"
+      },
+      {
+        "id": "b",
+        "text": "The autopilot reverts to CWS"
+      },
+      {
+        "id": "c",
+        "text": "The autopilot disengages"
+      },
+      {
+        "id": "d",
+        "text": "The modes revert to basic pitch and roll hold"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The flight director is a display of the same computed commands, so switching it off changes what the pilot sees rather than what the autopilot does.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0051",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What is the effect of a single flight control computer failure?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The remaining channel can still be engaged, but a dual channel approach is not available"
+      },
+      {
+        "id": "b",
+        "text": "Both autopilot channels are lost"
+      },
+      {
+        "id": "c",
+        "text": "The autothrottle is also lost"
+      },
+      {
+        "id": "d",
+        "text": "Only CWS remains available"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The redundancy is real for normal operation, and what is lost is the capability that depends on having both computers.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0052",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What is the consequence of losing both flight control computers?",
+    "options": [
+      {
+        "id": "a",
+        "text": "CWS remains available on both channels"
+      },
+      {
+        "id": "b",
+        "text": "The FMC takes over autopilot functions"
+      },
+      {
+        "id": "c",
+        "text": "The airplane must be flown manually"
+      },
+      {
+        "id": "d",
+        "text": "The autothrottle continues to control both pitch and thrust"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Every autopilot mode, including CWS, is computed in those units, so their loss is a total loss of autoflight.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0053",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "In a VNAV climb, what happens if the mode control panel altitude is not raised?",
+    "options": [
+      {
+        "id": "a",
+        "text": "VNAV continues the climb to the FMC cruise altitude"
+      },
+      {
+        "id": "b",
+        "text": "The autopilot disengages at the selected altitude"
+      },
+      {
+        "id": "c",
+        "text": "VNAV reverts to LVL CHG"
+      },
+      {
+        "id": "d",
+        "text": "The airplane levels off at the selected altitude"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The panel altitude is always the hard limit, which is what makes it the primary protection against an altitude bust.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0054",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "Which mode allows the autopilot to capture and track a VOR radial?",
+    "options": [
+      {
+        "id": "a",
+        "text": "APP"
+      },
+      {
+        "id": "b",
+        "text": "HDG SEL"
+      },
+      {
+        "id": "c",
+        "text": "VOR/LOC"
+      },
+      {
+        "id": "d",
+        "text": "LNAV"
+      }
+    ],
+    "correct": "c",
+    "explanation": "It is a raw data mode using the navigation receiver directly, independent of the FMC route.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0055",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What is required before the glideslope can be captured?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The flaps must be in the landing configuration"
+      },
+      {
+        "id": "b",
+        "text": "The second autopilot channel must be engaged"
+      },
+      {
+        "id": "c",
+        "text": "The autothrottle must be in SPEED mode"
+      },
+      {
+        "id": "d",
+        "text": "The localizer must be captured"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The sequence prevents the airplane from descending on the vertical path while still displaced laterally from the runway.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0056",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What does the autothrottle do in a LVL CHG descent?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It maintains the climb N1 limit"
+      },
+      {
+        "id": "b",
+        "text": "It retards the thrust to idle"
+      },
+      {
+        "id": "c",
+        "text": "It holds the speed with thrust"
+      },
+      {
+        "id": "d",
+        "text": "It disengages automatically"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Idle thrust with pitch controlling speed is what produces the descent, mirroring the logic used in the climb.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0057",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "Why is the autothrottle normally left engaged after an engine failure in the 737?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Because it continues to manage thrust on the operating engine while the crew handles the failure"
+      },
+      {
+        "id": "b",
+        "text": "Because it prevents the autopilot from disengaging"
+      },
+      {
+        "id": "c",
+        "text": "Because it re-lights the failed engine automatically"
+      },
+      {
+        "id": "d",
+        "text": "Because it automatically compensates for the asymmetric thrust"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The autothrottle reduces workload on the remaining engine, but it does nothing about asymmetry, which remains a rudder task for the crew.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0058",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What does the mode annunciation on the primary flight display show?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The active and armed autopilot, flight director and autothrottle modes"
+      },
+      {
+        "id": "b",
+        "text": "The autopilot channel currently engaged"
+      },
+      {
+        "id": "c",
+        "text": "The FMC route legs in sequence"
+      },
+      {
+        "id": "d",
+        "text": "Only the modes selected on the mode control panel"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The annunciation is the record of what the automation is actually doing, which is why mode awareness is checked against it rather than against the selections made.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0059",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "What does an armed mode annunciation indicate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The mode has failed and is unavailable"
+      },
+      {
+        "id": "b",
+        "text": "The mode will engage automatically when its capture conditions are met"
+      },
+      {
+        "id": "c",
+        "text": "The mode is selected but inhibited by the flight director"
+      },
+      {
+        "id": "d",
+        "text": "The mode is currently controlling the airplane"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Distinguishing armed from active is what prevents the classic error of believing the airplane is already following a path it has not yet captured.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-AFS-0060",
+    "aircraft": "B737",
+    "topic": "Automatic Flight",
+    "question": "Why is monitoring the autothrottle mode as important as monitoring the pitch mode?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Because the pitch mode cannot be annunciated without it"
+      },
+      {
+        "id": "b",
+        "text": "Because the autothrottle can override the pitch mode"
+      },
+      {
+        "id": "c",
+        "text": "Because the pitch mode determines which of the two is controlling speed"
+      },
+      {
+        "id": "d",
+        "text": "Because the autothrottle sets the bank angle limit"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Speed is controlled either by pitch or by thrust depending on the pitch mode, so the pair has to be read together to know where the speed protection lies.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  }
+]
