@@ -19,6 +19,7 @@ content/
     questions/
       airplane-general.json  <- one file per FCOM chapter
       air-systems.json
+      anti-ice-and-rain.json
 ```
 
 Adding a second aircraft is a content job only. Nothing in the application code
@@ -105,8 +106,9 @@ chapter is a new file and never a change to an existing one:
 |---|---|---|
 | `airplane-general.json` | Airplane General | 52 |
 | `air-systems.json` | Air Systems | 67 |
+| `anti-ice-and-rain.json` | Anti-Ice and Rain | 40 |
 
-All published.
+159 questions, all published.
 
 ### What changed on the way in from the source file
 
@@ -121,8 +123,8 @@ be carried across as they are, and both are handled the same way every time:
   sections so far: every marked question, and no unmarked one, is a figure
   that varies by operator or configuration and says so in its explanation
   ("Verify against your operator FCOM"). So it survives as a tag,
-  **`verify-fcom`** — queryable, rather than buried in prose. 13 questions
-  carry it: 7 in Airplane General, 6 in Air Systems.
+  **`verify-fcom`** — queryable, rather than buried in prose. 16 questions
+  carry it: 7 in Airplane General, 6 in Air Systems, 3 in Anti-Ice and Rain.
 
 The source files also name the aircraft `B738`; that is rewritten to the bank's
 code on the way in.
@@ -135,19 +137,22 @@ deliberate decision — see below.
 
 ### The correct answer is spread evenly across A-D
 
-Both source files lean hard on one letter: Airplane General answered `B` in 32
-of 52 and `D` in none, Air Systems answered `A` in 36 of 67 and `D` in none. A
-student who noticed could score well above their real knowledge without knowing
-the aircraft. So the options are redistributed as each section comes in:
+Every source file so far leans hard on one letter, and **not one of them has
+ever answered `D`**. A student who noticed could score well above their real
+knowledge without knowing the aircraft. So the options are redistributed as
+each section comes in:
 
 | Section | As authored | As published |
 |---|---|---|
 | Airplane General | A 14 · B 32 · C 6 · D 0 | A 13 · B 13 · C 13 · D 13 |
 | Air Systems | A 36 · B 30 · C 1 · D 0 | A 17 · B 17 · C 17 · D 16 |
-| **Whole bank** | **A 50 · B 62 · C 7 · D 0** | **A 30 · B 30 · C 30 · D 29** |
+| Anti-Ice and Rain | A 28 · B 10 · C 2 · D 0 | A 10 · B 10 · C 10 · D 10 |
+| **Whole bank** | **A 78 · B 72 · C 9 · D 0** | **A 40 · B 40 · C 40 · D 39** |
 
-119 does not divide by four, so one letter carries one fewer. That is the
-closest an even spread gets.
+**The arithmetic is over the whole bank, not one file.** A section is balanced
+against what the other sections already hold, so the total stays level as the
+bank grows — which is what matters, since a test can draw from any combination
+of sections. 159 does not divide by four, so one letter carries one fewer.
 
 Only the *order* of the options changes. Every question keeps the same four
 option texts and the same correct answer — the sentence that was right in the
@@ -159,7 +164,7 @@ is asserted field by field against the source CSV, not assumed.
 scrambling them would make them harder to read for nothing: ascending
 magnitudes (counts, durations, altitudes, pressures, rates, dimensions), the
 No. 1 / No. 2 / No. 3 window numbering in `GEN-0016`, and the compressor-stage
-progression in `AIR-0002`. Sixteen questions in total. The even split is
+progression in `AIR-0002`. Eighteen questions in total. The even split is
 reached around them.
 
 One consequence in Airplane General is worth recording so it is not mistaken
@@ -171,8 +176,7 @@ random()` — the order questions sit in a file is never the order a student
 meets them in. Air Systems has no run of three at all.
 
 **Keep this property when adding a section.** An even spread is only worth
-having if the next chapter does not undo it, and the arithmetic is over the
-whole bank, not one file.
+having if the next chapter does not undo it.
 
 The questions have no `reference` yet. Adding the FCOM chapter and page to each
 would make them markedly more useful, and none was invented during conversion.
