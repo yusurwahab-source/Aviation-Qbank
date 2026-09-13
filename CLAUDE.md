@@ -10,11 +10,12 @@ aircraft type ratings. All user-facing content is in English.
 
 **Current state: Phase 4 is complete, and Phase 5 is under way.** A user can
 choose an aircraft, build a test from any combination of sections and any
-number of questions, and answer them one at a time — each answer marked
-straight away, with the correct option and the explanation — then see a result
-screen. Accounts exist, and a signed-in user's answers are recorded as each one
-is given, which means an abandoned test still counts and a mid-test refresh
-resumes rather than restarts. `/progress` reads that history back: overall
+number of questions, sit it either way — study, where each answer is marked
+straight away with the correct option and the explanation, or exam, where
+nothing is shown until the end — and then see a result screen. Accounts exist,
+and a signed-in user's answers are recorded as each one is given, which means
+an abandoned test still counts and a mid-test refresh resumes rather than
+restarts. `/progress` reads that history back: overall
 score, performance by topic, progress over time, and the questions worth
 retrying.
 
@@ -125,8 +126,8 @@ Two small deviations, both to remove a dependency rather than add one:
 
 **The answer key is never in the page, and never arrives before it is
 earned.** This is the rule the whole test flow is built around, and it is
-worth stating precisely, because the app now shows a student the right answer
-the moment they answer each question.
+worth stating precisely, because in study mode the app shows a student the
+right answer the moment they answer each question.
 
 What has not changed: the page itself carries no answers. `pickTestQuestions`
 and `getTestQuestionsByIds` — the two queries that put questions on screen —
@@ -151,7 +152,28 @@ Two things follow, and both are tested in a browser:
    questions: the score stayed 1/22.
 2. **A resumed test comes back revealed, not reset.** Its already-answered
    questions get their keys sent with the page, because those were revealed
-   once already and paid for; the questions still to come do not.
+   once already and paid for; the questions still to come do not. In exam mode
+   nothing has been revealed, so nothing is sent — verified by resuming an
+   exam-mode test and checking the page for a key.
+
+**A test is sat one of two ways, and the choice is a setting, not a
+guard.** Study marks each question as it is answered and settles it; exam
+holds everything to Finish and lets answers change on the way through. The
+default is study — someone who has not chosen is practising, and practice is
+better with the explanation in front of them.
+
+`parseTestMode` reads it from `?mode=`, `answerQuestion` returns a verdict
+only in study mode, and the runner locks only when it has one. Be honest
+about what that does and does not achieve: a determined person could ask the
+server for study-mode feedback during an exam-mode test. It would cost them
+nothing they could not get by starting a study-mode test instead, and it is
+their own practice they would be spoiling — so exam mode is written, and
+commented, as a setting rather than an enforcement. If it ever needs to be
+more than that (an instructor setting a real test, say), the mode has to move
+onto the `test_sessions` row and be read from there rather than from the URL.
+
+Either way the answer is still recorded as it is given, so the resume and
+abandoned-test behaviour above is the same in both modes.
 
 **Grading is a pure function.** `src/lib/grading.ts` takes questions and answers
 and returns a result — no database, no React. It is unit tested, and Phase 3
@@ -391,17 +413,22 @@ tests/                        Vitest unit tests
    save as they are given, so a refresh resumes the same test and an abandoned
    one still counts; and immediate feedback — the correct answer and the
    explanation appear under each question as soon as it is answered, and that
-   question then settles. Still to do: filter by difficulty, timed mode, and a
-   way to jump between questions mid-test (Previous/Next already works one at a
-   time; a full overview does not yet).
+   question then settles — with an exam mode beside it that holds everything to
+   the end. Still to do: filter by difficulty, timed mode, and a way to jump
+   between questions mid-test (Previous/Next already works one at a time; a
+   full overview does not yet).
 
 Do not start a phase until the previous one works.
 
 ## Not in scope yet
 
-Payments, subscriptions, an admin panel, images in questions, mobile apps, exam
-simulation modes. The data model must not make these harder later, but none of
-them get built now.
+Payments, subscriptions, an admin panel, images in questions, mobile apps. The
+data model must not make these harder later, but none of them get built now.
+
+(Exam simulation was on this list until the owner asked for it. What exists is
+the honest half: a mode that withholds the answers until the end. A graded,
+invigilated, time-limited exam is still not built, and would need the mode on
+the session row rather than in the URL — see the conventions above.)
 
 Questions are authored as repository files. If questions ever need to be written
 from inside the website, an admin panel gets added then — the `status`,

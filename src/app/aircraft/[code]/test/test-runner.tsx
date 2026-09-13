@@ -6,25 +6,29 @@ import { useCallback, useMemo, useState, useTransition } from "react";
 
 import { Badge, Card, DifficultyBadge } from "@/components/ui";
 import type { TestQuestion } from "@/db/queries";
+import { DEFAULT_TEST_MODE, type TestMode } from "@/lib/test-options";
 
 import { answerQuestion, submitTest, type AnswerVerdict, type SubmitTestOutput } from "./actions";
 import { ResultScreen } from "./result-screen";
 
 /**
  * Runs one practice test: one question on screen at a time, then a result
- * screen.
+ * screen. It sits either of two ways.
  *
- * Answering a question sends it to the server, which grades that one question
- * and sends back the correct option and the explanation — shown immediately,
- * under the question. The page never carries the answer key itself; it
- * arrives a question at a time, in reply to being answered.
- *
- * Once revealed, a question is settled: its options stop responding. Letting
- * a student switch to the answer they have just been shown would make every
+ * **Study** — answering sends the question to the server, which grades that
+ * one question and sends back the correct option and the explanation, shown
+ * immediately underneath. The page never carries the answer key itself; it
+ * arrives a question at a time, in reply to being answered. A revealed
+ * question is then settled: its options stop responding, because letting a
+ * student switch to the answer they have just been shown would make every
  * score, topic breakdown and retry list meaningless.
  *
- * For a signed-in student the answer is also recorded as it is given, which is
- * what survives a refresh or an abandoned test.
+ * **Exam** — nothing comes back but the acknowledgement, and nothing settles.
+ * Answers can be changed right up to Finish, which is where the whole test is
+ * marked at once. This is the mode that resembles sitting the real thing.
+ *
+ * Either way, for a signed-in student the answer is recorded as it is given,
+ * which is what survives a refresh or an abandoned test.
  */
 export function TestRunner({
   aircraftCode,
@@ -46,6 +50,11 @@ export function TestRunner({
    * so its answer has already been revealed once and comes back revealed.
    */
   initialVerdicts = {},
+  /**
+   * Study marks each question as it is answered; exam holds it all back to
+   * the end. See `parseTestMode` — it is a setting, not an enforcement.
+   */
+  mode = DEFAULT_TEST_MODE,
 }: {
   aircraftCode: string;
   aircraftName: string;
@@ -55,6 +64,7 @@ export function TestRunner({
   clientTestId: string;
   initialAnswers?: Record<string, string>;
   initialVerdicts?: Record<string, AnswerVerdict>;
+  mode?: TestMode;
 }) {
   const router = useRouter();
   const [index, setIndex] = useState(() => {
@@ -100,20 +110,25 @@ export function TestRunner({
   );
 
   /**
-   * Answers the question on screen, and asks the server how it went.
+   * Answers the question on screen, and sends it to the server.
    *
-   * Unlike the earlier fire-and-forget save, this call is awaited: its reply
-   * is what the student is shown. Until it lands the question stays open, so
-   * a dropped call leaves them able to answer again rather than stuck looking
-   * at a question that will not respond.
+   * In study mode the reply is what the student is shown, so the call is
+   * awaited before anything is revealed; until it lands the question stays
+   * open, so a dropped call leaves them able to answer again rather than
+   * stuck looking at a question that will not respond.
+   *
+   * In exam mode there is nothing to wait for on screen — the answer is
+   * recorded, and the student moves on exactly as they would have before any
+   * of this existed, free to come back and change their mind.
    */
   const select = useCallback(
     (questionId: string, optionId: string) => {
-      // Already answered and revealed — the choice is made and stands.
+      // Study mode only: once revealed, the choice is made and stands. In exam
+      // mode nothing has been revealed, so changing an answer is fair game.
       if (verdicts[questionId]) return;
 
       setAnswers((previous) => ({ ...previous, [questionId]: optionId }));
-      setPending(questionId);
+      if (mode === "study") setPending(questionId);
 
       void answerQuestion({
         aircraftCode,
@@ -121,13 +136,16 @@ export function TestRunner({
         questionIds: questions.map((q) => q.id),
         questionId,
         selectedOptionId: optionId,
+        mode,
       })
         .then((result) => {
-          if (result.status === "answered") {
-            setVerdicts((previous) => ({ ...previous, [questionId]: result.verdict }));
+          // `verdict` is null in exam mode — nothing to reveal, and nothing
+          // to settle. "invalid" or "failed" leave the question open too;
+          // Finish still grades it from the answer key either way.
+          if (result.status === "answered" && result.verdict) {
+            const verdict = result.verdict;
+            setVerdicts((previous) => ({ ...previous, [questionId]: verdict }));
           }
-          // "invalid" or "failed": no verdict to show, so the question simply
-          // stays open. Finish still grades it from the answer key either way.
         })
         .catch(() => {
           // Offline, most likely. Same handling: leave the question open.
@@ -136,7 +154,7 @@ export function TestRunner({
           setPending((current) => (current === questionId ? null : current));
         });
     },
-    [aircraftCode, clientTestId, questions, verdicts],
+    [aircraftCode, clientTestId, mode, questions, verdicts],
   );
 
   const finish = useCallback(() => {
@@ -208,6 +226,11 @@ export function TestRunner({
         <div className="flex items-baseline justify-between gap-3">
           <p className="text-xs font-semibold uppercase tracking-wider text-brand">
             {aircraftCode} · {scope}
+            {/* Worth saying plainly: it changes whether an answer can still be
+                changed, which a student needs to know before they answer. */}
+            {mode === "exam" ? (
+              <span className="text-muted-foreground"> · Exam</span>
+            ) : null}
           </p>
           <p className="text-sm text-muted-foreground">
             Question {index + 1} of {questions.length}

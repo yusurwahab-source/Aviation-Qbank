@@ -3,8 +3,10 @@ import { describe, expect, it } from "vitest";
 import {
   ALL_QUESTIONS,
   DEFAULT_TEST_LENGTH,
+  DEFAULT_TEST_MODE,
   buildTestHref,
   parseTestLength,
+  parseTestMode,
   parseTopics,
   resolveTestSize,
 } from "@/lib/test-options";
@@ -114,5 +116,53 @@ describe("buildTestHref", () => {
     const query = new URLSearchParams(href.split("?")[1]);
     expect(parseTopics(query.getAll("topic"))).toEqual(["O'Brien & Sons"]);
     expect(parseTestLength(query.get("questions") ?? undefined)).toBe(ALL_QUESTIONS);
+  });
+});
+
+describe("parseTestMode", () => {
+  it("takes either mode by name", () => {
+    expect(parseTestMode("study")).toBe("study");
+    expect(parseTestMode("exam")).toBe("exam");
+  });
+
+  it("is forgiving about case and spacing", () => {
+    expect(parseTestMode(" EXAM ")).toBe("exam");
+    expect(parseTestMode("Study")).toBe("study");
+  });
+
+  it("falls back to study for anything missing or unreadable", () => {
+    // Study is the safe default: someone who has not chosen is practising,
+    // and practice is better with the explanation in front of them.
+    for (const value of [undefined, "", "   ", "practice", "hard", "1"]) {
+      expect(parseTestMode(value)).toBe(DEFAULT_TEST_MODE);
+      expect(parseTestMode(value)).toBe("study");
+    }
+  });
+
+  it("takes the first value when the parameter is repeated", () => {
+    expect(parseTestMode(["exam", "study"])).toBe("exam");
+  });
+});
+
+describe("buildTestHref with a mode", () => {
+  it("names exam mode in the URL", () => {
+    expect(buildTestHref("DA40", { length: 10, mode: "exam" })).toBe(
+      "/aircraft/DA40/test?questions=10&mode=exam",
+    );
+  });
+
+  it("leaves the default out, so an ordinary link stays short", () => {
+    expect(buildTestHref("DA40", { length: 10, mode: "study" })).toBe(
+      "/aircraft/DA40/test?questions=10",
+    );
+    expect(buildTestHref("DA40", { length: 10 })).toBe("/aircraft/DA40/test?questions=10");
+  });
+
+  it("round-trips through the parser", () => {
+    for (const mode of ["study", "exam"] as const) {
+      const href = buildTestHref("DA40", { topics: ["Fuel System"], mode });
+      const query = new URLSearchParams(href.split("?")[1] ?? "");
+      expect(parseTestMode(query.get("mode") ?? undefined)).toBe(mode);
+    }
   });
 });
