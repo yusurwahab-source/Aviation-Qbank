@@ -1,6 +1,6 @@
 import "server-only";
 
-import { and, asc, count, desc, eq, max, sql } from "drizzle-orm";
+import { and, asc, count, desc, eq, isNotNull, max, sql } from "drizzle-orm";
 
 import { getDb } from "@/db";
 import { aircraft, attempts, questions, testSessions } from "@/db/schema";
@@ -15,6 +15,16 @@ import { percentage } from "@/lib/grading";
  *
  * `aircraftCode` is optional throughout — omitted gives the overall view,
  * supplied scopes the same report to one type, as the brief requires.
+ *
+ * A test session now exists from the first question answered, not only once
+ * it is finished — see the note on `attempts` in the schema. That split
+ * matters here: queries that read straight from `attempts` (the summary's
+ * answered/correct counts, topic performance, the retry list) count a
+ * question the moment it is answered, abandoned test included, because that
+ * answer really happened and is worth showing. Queries that read
+ * `testSessions` — "tests taken", "progress over time" — only ever count a
+ * *finished* one: an in-progress session has no score to plot and is not yet
+ * a "test taken", so both filter on `completedAt is not null`.
  */
 
 function scope(userId: string, aircraftCode?: string) {
@@ -53,9 +63,11 @@ export async function getSummary(
     .select({ testsTaken: count() })
     .from(testSessions)
     .where(
-      aircraftCode
-        ? and(eq(testSessions.userId, userId), eq(testSessions.aircraftCode, aircraftCode))
-        : eq(testSessions.userId, userId),
+      and(
+        eq(testSessions.userId, userId),
+        isNotNull(testSessions.completedAt),
+        aircraftCode ? eq(testSessions.aircraftCode, aircraftCode) : undefined,
+      ),
     );
 
   const answered = Number(totals?.answered ?? 0);
@@ -141,9 +153,11 @@ export async function getProgressOverTime(
     .from(testSessions)
     .innerJoin(attempts, eq(attempts.testSessionId, testSessions.id))
     .where(
-      aircraftCode
-        ? and(eq(testSessions.userId, userId), eq(testSessions.aircraftCode, aircraftCode))
-        : eq(testSessions.userId, userId),
+      and(
+        eq(testSessions.userId, userId),
+        isNotNull(testSessions.completedAt),
+        aircraftCode ? eq(testSessions.aircraftCode, aircraftCode) : undefined,
+      ),
     )
     .groupBy(testSessions.id)
     .orderBy(asc(testSessions.completedAt))
@@ -155,7 +169,8 @@ export async function getProgressOverTime(
     return {
       testSessionId: row.testSessionId,
       aircraftCode: row.aircraftCode,
-      completedAt: new Date(row.completedAt),
+      // Never null: the `isNotNull` filter above guarantees it.
+      completedAt: new Date(row.completedAt as Date),
       answered,
       correct,
       percentage: percentage(correct, answered),

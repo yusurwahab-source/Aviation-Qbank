@@ -31,6 +31,9 @@ describeWithDb("recordTestResult", () => {
   let db: ReturnType<typeof drizzle>;
   let userId: string;
   let recordTestResult: typeof import("@/db/attempts").recordTestResult;
+  let saveAnswer: typeof import("@/db/attempts").saveAnswer;
+  let findSession: typeof import("@/db/attempts").findSession;
+  let getSessionAnswers: typeof import("@/db/attempts").getSessionAnswers;
 
   const question = (id: string, topic: string, correct: string): GradableQuestion => ({
     id,
@@ -58,7 +61,9 @@ describeWithDb("recordTestResult", () => {
     db = drizzle(pool);
 
     // The module under test builds its own pool from DATABASE_URL.
-    ({ recordTestResult } = await import("@/db/attempts"));
+    ({ recordTestResult, saveAnswer, findSession, getSessionAnswers } = await import(
+      "@/db/attempts"
+    ));
 
     const [row] = await db
       .insert(users)
@@ -216,5 +221,335 @@ describeWithDb("recordTestResult", () => {
     expect(rows[0].questionId).toBe("DA40-GONE-9999");
     // The topic snapshot is what keeps the report readable after a deletion.
     expect(rows[0].topic).toBe("Removed Topic");
+  });
+
+  describe("saveAnswer", () => {
+    const answer = (over: Partial<Parameters<typeof saveAnswer>[0]> = {}) => ({
+      userId,
+      clientTestId: randomUUID(),
+      aircraftCode: "DA40",
+      questionIds: ["DA40-ELEC-9001", "DA40-ELEC-9002", "DA40-FUEL-9001"],
+      questionCount: 3,
+      questionId: "DA40-ELEC-9001",
+      topic: "Electrical",
+      selectedOptionId: "a",
+      isCorrect: true,
+      ...over,
+    });
+
+    it("creates the session on the first answer, still in progress", async () => {
+      const clientTestId = randomUUID();
+      const outcome = await saveAnswer(answer({ clientTestId }));
+      expect(outcome.status).toBe("recorded");
+
+      const [session] = await sessionsFor(clientTestId);
+      expect(session.completedAt).toBeNull();
+      expect(session.aircraftCode).toBe("DA40");
+      expect(session.questionIds).toEqual([
+        "DA40-ELEC-9001",
+        "DA40-ELEC-9002",
+        "DA40-FUEL-9001",
+      ]);
+      expect(await attemptsFor(session.id)).toHaveLength(1);
+    });
+
+    it("replaces the same question's row rather than adding a second one", async () => {
+      const clientTestId = randomUUID();
+      await saveAnswer(answer({ clientTestId, questionId: "DA40-ELEC-9001", selectedOptionId: "a", isCorrect: true }));
+      await saveAnswer(answer({ clientTestId, questionId: "DA40-ELEC-9001", selectedOptionId: "b", isCorrect: false }));
+
+      const [session] = await sessionsFor(clientTestId);
+      const rows = await attemptsFor(session.id);
+
+      expect(rows).toHaveLength(1);
+      expect(rows[0].selectedOptionId).toBe("b");
+      expect(rows[0].isCorrect).toBe(false);
+    });
+
+    it("adds a separate row for a different question in the same test", async () => {
+      const clientTestId = randomUUID();
+      await saveAnswer(answer({ clientTestId, questionId: "DA40-ELEC-9001" }));
+      await saveAnswer(answer({ clientTestId, questionId: "DA40-ELEC-9002", selectedOptionId: "b", isCorrect: true }));
+
+      const [session] = await sessionsFor(clientTestId);
+      const rows = await attemptsFor(session.id);
+      expect(rows.map((r) => r.questionId)).toEqual(["DA40-ELEC-9001", "DA40-ELEC-9002"]);
+    });
+
+    it("survives changing an answer several times racing itself", async () => {
+      const clientTestId = randomUUID();
+      const outcomes = await Promise.allSettled(
+        ["a", "b", "a", "b"].map((selectedOptionId) =>
+          saveAnswer(answer({ clientTestId, questionId: "DA40-ELEC-9001", selectedOptionId })),
+        ),
+      );
+
+      expect(outcomes.some((o) => o.status === "fulfilled")).toBe(true);
+
+      const [session] = await sessionsFor(clientTestId);
+      // Whichever call won the race, there is still exactly one row.
+      expect(await attemptsFor(session.id)).toHaveLength(1);
+    });
+
+    it("refuses to write once the test is finished", async () => {
+      const clientTestId = randomUUID();
+      await saveAnswer(answer({ clientTestId, questionId: "DA40-ELEC-9001", selectedOptionId: "a" }));
+
+      const result = gradeTest("DA40", questions, [
+        { questionId: "DA40-ELEC-9001", selectedOptionId: "a" },
+        { questionId: "DA40-ELEC-9002", selectedOptionId: "b" },
+        { questionId: "DA40-FUEL-9001", selectedOptionId: "a" },
+      ]);
+      await recordTestResult(userId, clientTestId, result);
+
+      // A stray call from a stale tab, after another tab already finished it.
+      const outcome = await saveAnswer(
+        answer({ clientTestId, questionId: "DA40-ELEC-9001", selectedOptionId: "b" }),
+      );
+      expect(outcome.status).toBe("closed");
+
+      const [session] = await sessionsFor(clientTestId);
+      const [row] = (await attemptsFor(session.id)).filter((r) => r.questionId === "DA40-ELEC-9001");
+      // The finished answer stands; the stray write never landed.
+      expect(row.selectedOptionId).toBe("a");
+    });
+
+    it("refuses to write under an id that belongs to a different aircraft", async () => {
+      const clientTestId = randomUUID();
+      await saveAnswer(answer({ clientTestId, aircraftCode: "DA40" }));
+
+      const outcome = await saveAnswer(answer({ clientTestId, aircraftCode: "A320" }));
+      expect(outcome.status).toBe("wrong-aircraft");
+
+      const [session] = await sessionsFor(clientTestId);
+      expect(session.aircraftCode).toBe("DA40");
+    });
+  });
+
+  describe("recordTestResult after saveAnswer has already written some rows", () => {
+    it("marks the session complete and fills in the question left unanswered", async () => {
+      const clientTestId = randomUUID();
+      await saveAnswer({
+        userId,
+        clientTestId,
+        aircraftCode: "DA40",
+        questionIds: questions.map((q) => q.id),
+        questionCount: questions.length,
+        questionId: "DA40-ELEC-9001",
+        topic: "Electrical",
+        selectedOptionId: "a",
+        isCorrect: true,
+      });
+
+      const result = gradeTest("DA40", questions, [
+        { questionId: "DA40-ELEC-9001", selectedOptionId: "a" },
+        { questionId: "DA40-ELEC-9002", selectedOptionId: null },
+        { questionId: "DA40-FUEL-9001", selectedOptionId: "a" },
+      ]);
+      const outcome = await recordTestResult(userId, clientTestId, result);
+      expect(outcome.status).toBe("recorded");
+
+      const [session] = await sessionsFor(clientTestId);
+      expect(session.completedAt).toBeInstanceOf(Date);
+
+      const rows = await attemptsFor(outcome.testSessionId);
+      expect(rows).toHaveLength(3);
+      expect(rows.map((r) => [r.questionId, r.selectedOptionId])).toEqual([
+        ["DA40-ELEC-9001", "a"],
+        ["DA40-ELEC-9002", null],
+        ["DA40-FUEL-9001", "a"],
+      ]);
+    });
+
+    it("keeps a row's answeredAt when Finish repeats the same answer", async () => {
+      const clientTestId = randomUUID();
+      await saveAnswer({
+        userId,
+        clientTestId,
+        aircraftCode: "DA40",
+        questionIds: [questions[0].id],
+        questionCount: 1,
+        questionId: "DA40-ELEC-9001",
+        topic: "Electrical",
+        selectedOptionId: "a",
+        isCorrect: true,
+      });
+      const [beforeSession] = await sessionsFor(clientTestId);
+      const [before] = await attemptsFor(beforeSession.id);
+
+      // A small gap, so a wrongly-bumped timestamp would be measurably later.
+      await new Promise((resolve) => setTimeout(resolve, 20));
+
+      const result = gradeTest("DA40", [questions[0]], [
+        { questionId: "DA40-ELEC-9001", selectedOptionId: "a" },
+      ]);
+      await recordTestResult(userId, clientTestId, result);
+
+      const [after] = await attemptsFor(beforeSession.id);
+      expect(after.answeredAt.getTime()).toBe(before.answeredAt.getTime());
+    });
+
+    it("moves a row's answeredAt when Finish's answer differs from the last saved one", async () => {
+      const clientTestId = randomUUID();
+      await saveAnswer({
+        userId,
+        clientTestId,
+        aircraftCode: "DA40",
+        questionIds: [questions[0].id],
+        questionCount: 1,
+        questionId: "DA40-ELEC-9001",
+        topic: "Electrical",
+        selectedOptionId: "a",
+        isCorrect: true,
+      });
+      const [beforeSession] = await sessionsFor(clientTestId);
+      const [before] = await attemptsFor(beforeSession.id);
+
+      await new Promise((resolve) => setTimeout(resolve, 20));
+
+      // The student went back and changed their mind after the last save.
+      const result = gradeTest("DA40", [questions[0]], [
+        { questionId: "DA40-ELEC-9001", selectedOptionId: "b" },
+      ]);
+      await recordTestResult(userId, clientTestId, result);
+
+      const [after] = await attemptsFor(beforeSession.id);
+      expect(after.selectedOptionId).toBe("b");
+      expect(after.answeredAt.getTime()).toBeGreaterThan(before.answeredAt.getTime());
+    });
+  });
+
+  describe("findSession", () => {
+    it("reports 'none' for an id nothing has used", async () => {
+      const lookup = await findSession(userId, "DA40", randomUUID());
+      expect(lookup.kind).toBe("none");
+    });
+
+    it("reports 'resumable' for a test still in progress on this aircraft", async () => {
+      const clientTestId = randomUUID();
+      await saveAnswer({
+        userId,
+        clientTestId,
+        aircraftCode: "DA40",
+        questionIds: ["DA40-ELEC-9001", "DA40-ELEC-9002"],
+        questionCount: 2,
+        questionId: "DA40-ELEC-9001",
+        topic: "Electrical",
+        selectedOptionId: "a",
+        isCorrect: true,
+      });
+
+      const lookup = await findSession(userId, "DA40", clientTestId);
+      expect(lookup).toMatchObject({
+        kind: "resumable",
+        questionIds: ["DA40-ELEC-9001", "DA40-ELEC-9002"],
+      });
+    });
+
+    it("reports 'taken' for a finished test rather than resuming it", async () => {
+      const clientTestId = randomUUID();
+      const result = gradeTest("DA40", [questions[0]], [
+        { questionId: "DA40-ELEC-9001", selectedOptionId: "a" },
+      ]);
+      await recordTestResult(userId, clientTestId, result);
+
+      const lookup = await findSession(userId, "DA40", clientTestId);
+      expect(lookup.kind).toBe("taken");
+    });
+
+    it("reports 'taken' for an id already used by a different aircraft", async () => {
+      const clientTestId = randomUUID();
+      await saveAnswer({
+        userId,
+        clientTestId,
+        aircraftCode: "DA40",
+        questionIds: ["DA40-ELEC-9001"],
+        questionCount: 1,
+        questionId: "DA40-ELEC-9001",
+        topic: "Electrical",
+        selectedOptionId: "a",
+        isCorrect: true,
+      });
+
+      const lookup = await findSession(userId, "A320", clientTestId);
+      expect(lookup.kind).toBe("taken");
+    });
+
+    it("never resumes another user's session", async () => {
+      const [other] = await db
+        .insert(users)
+        .values({ email: `attempts-other-${randomUUID()}@example.invalid`, passwordHash: "x" })
+        .returning({ id: users.id });
+
+      const clientTestId = randomUUID();
+      await saveAnswer({
+        userId,
+        clientTestId,
+        aircraftCode: "DA40",
+        questionIds: ["DA40-ELEC-9001"],
+        questionCount: 1,
+        questionId: "DA40-ELEC-9001",
+        topic: "Electrical",
+        selectedOptionId: "a",
+        isCorrect: true,
+      });
+
+      const lookup = await findSession(other.id, "DA40", clientTestId);
+      expect(lookup.kind).toBe("none");
+
+      await db.delete(users).where(eq(users.id, other.id));
+    });
+  });
+
+  describe("getSessionAnswers", () => {
+    it("returns exactly what has been saved for that session, and no other", async () => {
+      const clientTestId = randomUUID();
+      await saveAnswer({
+        userId,
+        clientTestId,
+        aircraftCode: "DA40",
+        questionIds: ["DA40-ELEC-9001", "DA40-ELEC-9002"],
+        questionCount: 2,
+        questionId: "DA40-ELEC-9001",
+        topic: "Electrical",
+        selectedOptionId: "a",
+        isCorrect: true,
+      });
+      await saveAnswer({
+        userId,
+        clientTestId,
+        aircraftCode: "DA40",
+        questionIds: ["DA40-ELEC-9001", "DA40-ELEC-9002"],
+        questionCount: 2,
+        questionId: "DA40-ELEC-9002",
+        topic: "Electrical",
+        selectedOptionId: "b",
+        isCorrect: false,
+      });
+
+      const [session] = await sessionsFor(clientTestId);
+      const answers = await getSessionAnswers(session.id);
+
+      expect(answers).toEqual({ "DA40-ELEC-9001": "a", "DA40-ELEC-9002": "b" });
+
+      // A second, unrelated session must not leak into this one's answers.
+      const otherClientTestId = randomUUID();
+      await saveAnswer({
+        userId,
+        clientTestId: otherClientTestId,
+        aircraftCode: "DA40",
+        questionIds: ["DA40-FUEL-9001"],
+        questionCount: 1,
+        questionId: "DA40-FUEL-9001",
+        topic: "Fuel",
+        selectedOptionId: "a",
+        isCorrect: true,
+      });
+
+      expect(await getSessionAnswers(session.id)).toEqual({
+        "DA40-ELEC-9001": "a",
+        "DA40-ELEC-9002": "b",
+      });
+    });
   });
 });

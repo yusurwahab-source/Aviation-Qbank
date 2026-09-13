@@ -7,36 +7,56 @@ import { useCallback, useMemo, useState, useTransition } from "react";
 import { Badge, Card, DifficultyBadge } from "@/components/ui";
 import type { TestQuestion } from "@/db/queries";
 
-import { submitTest, type SubmitTestOutput } from "./actions";
+import { saveAnswer, submitTest, type SubmitTestOutput } from "./actions";
 import { ResultScreen } from "./result-screen";
 
 /**
  * Runs one practice test: one question on screen at a time, then a result
- * screen. Answers live in component state while the test is in progress and
- * are only sent to the server when the user finishes.
+ * screen. Answers live in component state while the test is in progress.
+ *
+ * A signed-in user's answers are also saved to the server as each one is
+ * given, not only at Finish — see `saveAnswer` in `actions.ts`. That call is
+ * fire-and-forget: a dropped one costs nothing, because Finish re-sends every
+ * answer and that write is authoritative. The point of saving early is what
+ * survives a refresh or an abandoned test, not what Finish depends on.
  */
 export function TestRunner({
   aircraftCode,
   aircraftName,
   questions,
   topics = [],
+  /**
+   * Identifies this attempt at the test. Comes from `?t=` in the URL now,
+   * rather than being minted inside the browser — that is what makes the
+   * test resumable across a refresh, since the same id names the same
+   * session on the server. A fresh test, and a restarted one, get a new id
+   * from a server redirect, not from anything this component does.
+   */
+  clientTestId,
+  /** Answers already recorded for this session — set only when resuming. */
+  initialAnswers = {},
+  /** Whether there is anyone to save answers for. */
+  canRecord,
 }: {
   aircraftCode: string;
   aircraftName: string;
   questions: TestQuestion[];
   /** The sections the student chose. Empty means the whole bank. */
   topics?: string[];
+  clientTestId: string;
+  initialAnswers?: Record<string, string>;
+  canRecord: boolean;
 }) {
   const router = useRouter();
-  const [index, setIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [index, setIndex] = useState(() => {
+    if (Object.keys(initialAnswers).length === 0) return 0;
+    const firstUnanswered = questions.findIndex((q) => !(q.id in initialAnswers));
+    // Everything was already answered — land on the last question, one click
+    // from Finish, rather than back at the start of a test already done.
+    return firstUnanswered === -1 ? questions.length - 1 : firstUnanswered;
+  });
+  const [answers, setAnswers] = useState<Record<string, string>>(initialAnswers);
   const [result, setResult] = useState<SubmitTestOutput | null>(null);
-  /**
-   * Identifies this attempt at the test, so that a double-click or a retried
-   * request records it once rather than twice. Generated when the test starts
-   * and reset by `restart`.
-   */
-  const [clientTestId, setClientTestId] = useState(() => crypto.randomUUID());
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, startSubmitting] = useTransition();
   const [isRestarting, startRestarting] = useTransition();
@@ -64,8 +84,24 @@ export function TestRunner({
   const select = useCallback(
     (questionId: string, optionId: string) => {
       setAnswers((previous) => ({ ...previous, [questionId]: optionId }));
+
+      if (canRecord) {
+        // Fire-and-forget: `saveAnswer` never throws (it catches internally
+        // and returns a status), so this only guards against the call itself
+        // failing to reach the server at all — offline, for instance.
+        saveAnswer({
+          aircraftCode,
+          clientTestId,
+          questionIds: questions.map((q) => q.id),
+          questionId,
+          selectedOptionId: optionId,
+        }).catch(() => {
+          // Nothing to show for this — Finish re-sends every answer and is
+          // the write that actually has to succeed.
+        });
+      }
     },
-    [],
+    [aircraftCode, canRecord, clientTestId, questions],
   );
 
   const finish = useCallback(() => {
@@ -93,16 +129,16 @@ export function TestRunner({
    *
    * A link back to this same URL would not do it: the browser is already here,
    * so nothing would re-render and the user would stare at their old result.
-   * `router.refresh()` re-runs the server component, which draws a new random
-   * set of questions, and the local state is cleared to match.
+   * `router.refresh()` re-runs the server component on the same URL — this
+   * test's id is now finished, so the server redirects to the same page with
+   * a freshly minted one, which draws a new random set of questions. The
+   * local state is cleared to match.
    */
   const restart = useCallback(() => {
     setResult(null);
     setAnswers({});
     setIndex(0);
     setError(null);
-    // A new test is a new thing to record, so it needs its own key.
-    setClientTestId(crypto.randomUUID());
     window.scrollTo({ top: 0 });
     startRestarting(() => {
       router.refresh();

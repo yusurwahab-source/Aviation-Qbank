@@ -304,4 +304,112 @@ describeWithDb("progress reports", () => {
       expect(theirs.map((p) => p.code)).toEqual(["DA40"]);
     });
   });
+
+  describe("a test still in progress", () => {
+    /**
+     * `addTest` always completes its session, matching every fixed-history
+     * test above. These insert a session with `completedAt: null` directly,
+     * the same shape `saveAnswer` leaves behind for an abandoned test — one
+     * where the student answered some questions and never pressed Finish.
+     */
+    async function addInProgressTest(
+      forUser: string,
+      aircraftCode: string,
+      rows: { questionId: string; topic: string; isCorrect: boolean }[],
+    ) {
+      const [session] = await db
+        .insert(testSessions)
+        .values({
+          userId: forUser,
+          aircraftCode,
+          clientTestId: randomUUID(),
+          questionCount: rows.length,
+          questionIds: rows.map((r) => r.questionId),
+          completedAt: null,
+        })
+        .returning({ id: testSessions.id });
+
+      await db.insert(attempts).values(
+        rows.map((row) => ({
+          userId: forUser,
+          testSessionId: session.id,
+          questionId: row.questionId,
+          aircraftCode,
+          topic: row.topic,
+          selectedOptionId: row.isCorrect ? "a" : "b",
+          isCorrect: row.isCorrect,
+        })),
+      );
+
+      return session.id;
+    }
+
+    it("counts its answers towards the score and topic performance", async () => {
+      const [fresh] = await db
+        .insert(users)
+        .values({ email: `in-progress-${randomUUID()}@example.invalid`, passwordHash: "x" })
+        .returning({ id: users.id });
+
+      await addInProgressTest(fresh.id, "DA40", [
+        { questionId: "DA40-INPROG-0001", topic: "Electrical", isCorrect: true },
+        { questionId: "DA40-INPROG-0002", topic: "Electrical", isCorrect: false },
+      ]);
+
+      const summary = await reports.getSummary(fresh.id);
+      expect(summary.answered).toBe(2);
+      expect(summary.correct).toBe(1);
+
+      const topics = await reports.getTopicPerformance(fresh.id);
+      expect(topics).toEqual([{ topic: "Electrical", answered: 2, correct: 1, percentage: 50 }]);
+
+      await db.delete(users).where(eq(users.id, fresh.id));
+    });
+
+    it("does not count as a test taken, and does not appear in progress over time", async () => {
+      const [fresh] = await db
+        .insert(users)
+        .values({ email: `in-progress-${randomUUID()}@example.invalid`, passwordHash: "x" })
+        .returning({ id: users.id });
+
+      await addInProgressTest(fresh.id, "DA40", [
+        { questionId: "DA40-INPROG-0003", topic: "Electrical", isCorrect: true },
+      ]);
+
+      const summary = await reports.getSummary(fresh.id);
+      expect(summary.testsTaken).toBe(0);
+      // The answer is still real, so it is not simply invisible.
+      expect(summary.answered).toBe(1);
+
+      const scores = await reports.getProgressOverTime(fresh.id);
+      expect(scores).toEqual([]);
+
+      await db.delete(users).where(eq(users.id, fresh.id));
+    });
+
+    it("starts counting as a test taken the moment it is finished", async () => {
+      const [fresh] = await db
+        .insert(users)
+        .values({ email: `in-progress-${randomUUID()}@example.invalid`, passwordHash: "x" })
+        .returning({ id: users.id });
+
+      const sessionId = await addInProgressTest(fresh.id, "DA40", [
+        { questionId: "DA40-INPROG-0004", topic: "Electrical", isCorrect: true },
+      ]);
+
+      expect((await reports.getSummary(fresh.id)).testsTaken).toBe(0);
+
+      await db
+        .update(testSessions)
+        .set({ completedAt: new Date() })
+        .where(eq(testSessions.id, sessionId));
+
+      const summary = await reports.getSummary(fresh.id);
+      expect(summary.testsTaken).toBe(1);
+
+      const scores = await reports.getProgressOverTime(fresh.id);
+      expect(scores).toHaveLength(1);
+
+      await db.delete(users).where(eq(users.id, fresh.id));
+    });
+  });
 });

@@ -11,9 +11,10 @@ aircraft type ratings. All user-facing content is in English.
 **Current state: Phase 4 is complete, and Phase 5 is under way.** A user can
 choose an aircraft, build a test from any combination of sections and any number
 of questions, answer them one at a time, and see a result screen. Accounts exist,
-every answer a signed-in user submits is recorded, and `/progress` reads that
-history back: overall score, performance by topic, progress over time, and the
-questions worth retrying.
+and a signed-in user's answers are recorded as each one is given — which means
+an abandoned test still counts and a mid-test refresh resumes rather than
+restarts. `/progress` reads that history back: overall score, performance by
+topic, progress over time, and the questions worth retrying.
 
 ## The rule that shapes everything: many aircraft
 
@@ -154,6 +155,15 @@ Two properties follow, and both are tested:
    means every section. A student following a stale link gets questions, not an
    error.
 
+The same has to hold on the way back in: `submitTest` and `saveAnswer` accept
+up to `MAX_ANSWERS` (5000) questions, not the 50 the submission schema was
+still capped at when this was first built. That leftover cap was dormant only
+because no aircraft's bank had grown past 50 yet — it would have rejected the
+grading of any "all questions" test on a bank bigger than that, silently
+turning a correct test into a "could not be marked" error. `MAX_ANSWERS` bounds
+a hostile payload the same way `parseTopics` bounds section names; it is not a
+product limit.
+
 **The per-section counts are sent once and the arithmetic happens in the
 browser.** `listTopics` already returns a count per section, so the running total
 updates on every tick without a request. The server still counts for itself when
@@ -190,10 +200,9 @@ against `unmatchableHash()` so both cost the same time. Measured: 3.8% apart,
 well inside the noise. Anything that makes one path faster than the other
 reintroduces the leak.
 
-**The attempt log is append-only, and stands on its own.** `attempts` rows
-describe what happened at a moment in time and are never updated. `topic` and
-`aircraftCode` are stored on the row rather than read through a join, and there
-is deliberately **no foreign key to `questions`**.
+**Every answer is saved the moment it is given, not only at Finish.** `topic`
+and `aircraftCode` are stored on each `attempts` row rather than read through a
+join, and there is deliberately **no foreign key to `questions`**.
 
 The reason is concrete: `db:seed` deletes questions whose content files are
 gone. A foreign key would either erase a pilot's history (cascade) or fail the
@@ -203,17 +212,43 @@ question, re-seeding, and confirming the attempt row and the topic report
 survived intact. Reports join to `questions` only when they need current
 wording, and skip questions that no longer exist.
 
-**One test can never be recorded twice.** The browser generates a
-`clientTestId` when a test starts; a unique index on `(user_id, client_test_id)`
-turns a double-click or a retried request into a no-op. Every report is built on
-this data, so a duplicated test would quietly corrupt all of them. The session
-row and all its attempts are written in one transaction — a half-written test
-would be worse than none.
+A row is mutable, but only while its test session is in progress: going back
+and changing an answer before Finish upserts the same `(testSessionId,
+questionId)` row rather than adding a second one. Once the session's
+`completedAt` is set, the row is frozen — nothing writes to it again. That
+frozen state is what "append-only" now means: a *finished* test's history is
+never silently rewritten; an active one can change, and only because the
+student can too, by going back a question.
+
+**A test is named by `?t=` in its own URL, not by state hidden in the
+browser.** `test/page.tsx` redirects once to add a freshly minted id if the URL
+doesn't have one, and that id is what every answer is saved under
+(`saveAnswer` in `actions.ts`, fire-and-forget on every selection) and what
+Finish completes (`recordTestResult` in `db/attempts.ts`). Because the id lives
+in the URL, a mid-test refresh carries the same one — the test page looks it
+up (`findSession`), finds a session still in progress, and reloads the exact
+same questions by id instead of drawing a new random set, pre-filling whatever
+was already answered. Landing on it a second time after the test is
+*finished* does not resume it: reusing a spent id would collide with that
+session's row under the unique index below and silently swallow every new
+answer, so the page mints a new one and redirects again, exactly as if the
+test had never been visited before. This only applies to a signed-in student;
+signed out, there is nothing to save, so every visit is simply a fresh test.
+
+**One test can never be recorded twice.** A unique index on
+`(user_id, client_test_id)` turns a double-click on Finish, or a retried
+submission, into a no-op — the second call finds the session already
+completed and returns without writing again. The session row and every
+attempt for it are still made consistent in a single transaction each time
+something writes to them, so a half-written test can never exist, whether that
+write is one answer during the test or the full sweep at Finish.
 
 **A failed save is never dressed up as a success.** If recording fails, the user
 still sees their score, and the screen says plainly that it was not saved.
 Someone revising for a type rating will decide what to study from a history they
-believe is complete.
+believe is complete. A per-answer save failing mid-test is not shown at all —
+there is nothing actionable for the student to do about it, and Finish's own
+sweep re-sends every answer regardless of what did or didn't land earlier.
 
 **Log in is rate limited, and the check runs before the password is verified.**
 Verification costs half a second of CPU and 128 MB by design, so checking first
@@ -249,6 +284,16 @@ question you have since answered correctly is not worth drilling again, and a
 list that never shrinks is one nobody uses. It joins to `questions`, so anything
 deleted from content drops out of the list while still counting in the totals —
 verified by deleting a question and checking both halves of that behaviour.
+
+**An abandoned test still counts — for the answers it has, not as a test.**
+`getSummary`'s answered/correct counts, `getTopicPerformance` and the retry
+list all read straight from `attempts`, so a question answered in a test that
+was never finished shows up immediately, exactly as if it had been. `testsTaken`
+and `getProgressOverTime`, the two queries that read `testSessions` directly,
+filter on `completedAt is not null`: an in-progress session has no score to
+plot and is not yet a "test taken". The moment Finish sets `completedAt`, the
+same session starts counting there too — verified directly, including the
+transition from zero to one.
 
 **Charts are inline SVG, with no charting dependency.** One small line chart does
 not justify one, and this way the marks use the house palette directly. The
@@ -314,10 +359,13 @@ tests/                        Vitest unit tests
 4. **Phase 4 — reports. Done.** Overall score, performance by topic (the most
    important view), progress over time, retry incorrect questions. Scoped per
    aircraft (`/progress/[code]`) and overall (`/progress`).
-5. **Phase 5 — refinement.** The test builder is done: the student picks any
-   sections and any number of questions, reached from the aircraft page and from
-   each row of the progress report. Still to do: filter by difficulty, timed
-   mode, review mid-test.
+5. **Phase 5 — refinement.** Done so far: the test builder (any sections, any
+   number of questions), and per-answer recording — a signed-in student's
+   answers save as they are given, so a refresh resumes the same test and an
+   abandoned one still counts. Still to do: filter by difficulty, timed mode,
+   and a way to review or jump between answered/unanswered questions mid-test
+   (going back one at a time with Previous already works; a full overview does
+   not yet).
 
 Do not start a phase until the previous one works.
 
@@ -333,9 +381,11 @@ from inside the website, an admin panel gets added then — the `status`,
 
 ## Known gaps, honestly
 
-- **A mid-test page refresh restarts the test.** Answers live in browser memory
-  only. This is fine while nothing is saved; Phase 3 gives test sessions a
-  database row and fixes it properly.
+- **A mid-test page refresh restarts the test — for a signed-out visitor.**
+  Nothing is recorded for them, so there is nothing to resume from; a refresh
+  simply draws a fresh random set, same as visiting the test page for the
+  first time. A signed-in student does not have this problem any more — see
+  the note on `saveAnswer` and `?t=` in the conventions above.
 - **`order by random()`** picks test questions. Correct and fast for banks of
   this size; revisit if a bank ever reaches hundreds of thousands of questions.
 - **Only the `Fuel System` questions come from the owner's source.** The other
@@ -376,9 +426,6 @@ conventions above.)
   and the result screen says so. Requiring a login to practise would be a
   one-line guard in the test page if the owner ever wants it — but it trades
   away everyone who wants to try the site before committing.
-- **Attempts are written at the end of a test, not as each answer is given.**
-  So an abandoned test records nothing, and a mid-test refresh still loses the
-  answers. Recording per answer would fix both and is the natural Phase 5 change.
 - **Signing in does not return you where you were.** `/progress` sends a signed-out
   visitor to `/login`, which then lands them on the home page. A `?next=` parameter
   would fix it, and must only ever accept a relative path or it becomes an open

@@ -2,7 +2,7 @@
 
 import { z } from "zod";
 
-import { recordTestResult } from "@/db/attempts";
+import { recordTestResult, saveAnswer as saveAnswerRow } from "@/db/attempts";
 import { getAnswerKey } from "@/db/queries";
 import { getCurrentUser } from "@/lib/auth/session";
 import { gradeTest, type TestResult } from "@/lib/grading";
@@ -14,6 +14,14 @@ import { gradeTest, type TestResult } from "@/lib/grading";
  * correct answer or the explanation while a test is in progress, so the answers
  * cannot be read out of the page source.
  */
+
+/**
+ * There is deliberately no small ceiling here, to match the test builder: a
+ * student may ask for every published question. 5000 exists only to bound a
+ * hostile payload, the same way `parseTopics` bounds section names — it is
+ * far past any bank this project seeds in one deploy.
+ */
+const MAX_ANSWERS = 5000;
 
 const submissionSchema = z.object({
   aircraftCode: z.string().regex(/^[A-Z][A-Z0-9]{1,7}$/),
@@ -30,7 +38,7 @@ const submissionSchema = z.object({
       }),
     )
     .min(1)
-    .max(50),
+    .max(MAX_ANSWERS),
 });
 
 export type SubmitTestInput = z.infer<typeof submissionSchema>;
@@ -90,6 +98,75 @@ async function record(clientTestId: string, result: TestResult): Promise<SaveSta
     return outcome.status === "duplicate" ? "already-saved" : "saved";
   } catch (error) {
     console.error("Failed to record test result:", error);
+    return "failed";
+  }
+}
+
+const answerSchema = z.object({
+  aircraftCode: z.string().regex(/^[A-Z][A-Z0-9]{1,7}$/),
+  clientTestId: z.string().min(8).max(64),
+  /** The full, ordered question set. Only used the first time this test is saved. */
+  questionIds: z.array(z.string().max(40)).min(1).max(MAX_ANSWERS),
+  questionId: z.string().max(40),
+  selectedOptionId: z.string().max(4),
+});
+
+export type SaveAnswerInput = z.infer<typeof answerSchema>;
+
+/**
+ * How saving one answer went. The caller (the test runner) is not meant to
+ * show any of this to the student — Finish is the safety net that makes
+ * everything right in the end, so a dropped call here is not an error the
+ * student needs to see mid-test, only something to log.
+ */
+export type SaveAnswerStatus =
+  | "recorded"
+  | "signed-out"
+  /** The question does not resolve to a real, published question on this aircraft. */
+  | "invalid"
+  /** This test was already finished — a stray call from a stale tab. */
+  | "closed"
+  | "failed";
+
+/**
+ * Saves one answer as soon as it is given, rather than waiting for Finish.
+ *
+ * Called after every selection in a running test. Grading happens the same
+ * way it does at Finish — by re-reading the answer key from the database, not
+ * by trusting anything the client claims about correctness — so a single
+ * question is graded the instant it is answered, not just the whole test at
+ * the end.
+ */
+export async function saveAnswer(input: SaveAnswerInput): Promise<SaveAnswerStatus> {
+  try {
+    const { aircraftCode, clientTestId, questionIds, questionId, selectedOptionId } =
+      answerSchema.parse(input);
+
+    const user = await getCurrentUser();
+    if (!user) return "signed-out";
+
+    const [question] = await getAnswerKey(aircraftCode, [questionId]);
+    if (!question) return "invalid";
+
+    const outcome = await saveAnswerRow({
+      userId: user.id,
+      clientTestId,
+      aircraftCode,
+      questionIds,
+      questionCount: questionIds.length,
+      questionId,
+      topic: question.topic,
+      selectedOptionId,
+      isCorrect: selectedOptionId === question.correct,
+    });
+
+    if (outcome.status === "recorded") return "recorded";
+    if (outcome.status === "closed") return "closed";
+    // "wrong-aircraft": the clientTestId in the URL belongs to a different
+    // aircraft's session. Should not happen through normal navigation.
+    return "invalid";
+  } catch (error) {
+    console.error("Failed to save an answer:", error);
     return "failed";
   }
 }
