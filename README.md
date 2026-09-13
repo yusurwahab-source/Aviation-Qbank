@@ -17,7 +17,9 @@ rewriting the application.
 - A result screen: your score, a breakdown by topic with the weakest first, and
   every question reviewed with the correct answer and an explanation
 - Accounts: sign up, log in, log out
-- Every answer a signed-in user submits is recorded
+- Every answer a signed-in user gives is recorded as it's given, not only at
+  the end — an abandoned test still counts, and refreshing mid-test resumes it
+  rather than starting over
 - **Your progress**: overall score, performance by topic (weakest first), a chart
   of how each test went, and the questions you got wrong last time — with a
   button to retry only those. Available overall and per aircraft.
