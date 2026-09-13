@@ -507,6 +507,22 @@ markers with a 2px surface ring, ~10% area wash, hairline solid gridlines, only
 the endpoint labelled, and a table view as the accessible equal of the picture —
 are worth keeping if another chart is ever added.
 
+**A database ordering is never asserted against a JavaScript one.** Postgres
+sorts by the database's collation; `localeCompare` sorts by ICU's. They agree
+often enough to be mistaken for the same thing and then disagree on the first
+section name containing a space: under `en_US.utf8`, which is what CI's
+Postgres runs, a space is ignored at the first level, so `Airplane General`
+precedes `Air Systems` — while JavaScript puts `Air Systems` first. The
+`listTopics` test asserted a `order by topic` result against a
+`localeCompare`d expectation and passed for exactly as long as every section
+name was a single word.
+
+It now makes its two claims separately: the contents are compared with both
+sides sorted the same way in one language, and the ordering is compared
+against the database's own `order by`. Neither assertion depends on the two
+collations agreeing. Worth knowing that this cannot be caught on a machine
+whose only locales are `C` and `C.utf8` — under `C` the two orders coincide.
+
 **The integration tests run against a real Postgres with the content seeded.**
 Several of them — the reports, the retry list, the section queries — are about
 behaviour over real questions: which are published, which section they are in,

@@ -1,5 +1,5 @@
 import { drizzle } from "drizzle-orm/node-postgres";
-import { and, eq, sql } from "drizzle-orm";
+import { and, asc, eq, sql } from "drizzle-orm";
 import { Pool } from "pg";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 
@@ -205,10 +205,35 @@ describeWithDb("test question queries", () => {
   });
 
   describe("listTopics", () => {
+    /**
+     * These are two separate claims, and they are asserted separately on
+     * purpose. Sorting the expectation in JavaScript and comparing it to a
+     * Postgres `order by` conflates them, and the two disagree: Postgres sorts
+     * by the database's collation, in which `en_US.utf8` ignores a space at the
+     * first level, so "Airplane General" precedes "Air Systems" — while
+     * JavaScript's `localeCompare` puts "Air Systems" first. A bank whose
+     * section names contain no spaces never notices; this one does.
+     */
+    const byName = (a: { topic: string }, b: { topic: string }) =>
+      a.topic < b.topic ? -1 : a.topic > b.topic ? 1 : 0;
+
     it("reports each section with its published count", async () => {
       const topics = await queries.listTopics(code);
-      const expected = [...byTopic].sort((a, b) => a.topic.localeCompare(b.topic));
-      expect(topics).toEqual(expected);
+      // Contents only: both sides sorted the same way, in one language.
+      expect([...topics].sort(byName)).toEqual([...byTopic].sort(byName));
+    });
+
+    it("orders the sections the way the database does", async () => {
+      const db = drizzle(pool);
+      const rows = await db
+        .select({ topic: questions.topic })
+        .from(questions)
+        .where(and(eq(questions.aircraftCode, code), eq(questions.status, "published")))
+        .groupBy(questions.topic)
+        .orderBy(asc(questions.topic));
+
+      const topics = await queries.listTopics(code);
+      expect(topics.map((row) => row.topic)).toEqual(rows.map((row) => row.topic));
     });
   });
 });
