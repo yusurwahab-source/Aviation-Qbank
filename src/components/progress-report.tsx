@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { ProgressChart } from "@/components/progress-chart";
+import { ALL_QUESTIONS, buildTestHref } from "@/lib/test-options";
 import { Badge, Card, EmptyState, ScoreBar } from "@/components/ui";
 import type {
   PractisedAircraft,
@@ -101,7 +102,7 @@ export function ProgressReport({ data }: { data: ProgressReportData }) {
               {/* The point of showing a weak topic is being able to act on it. */}
               {aircraftCode ? (
                 <Link
-                  href={`/aircraft/${aircraftCode}/test?topic=${encodeURIComponent(topic.topic)}`}
+                  href={buildTestHref(aircraftCode, { topics: [topic.topic] })}
                   className="mt-3 inline-block text-sm font-medium text-brand hover:underline"
                 >
                   Practise {topic.topic} →
@@ -157,10 +158,12 @@ export function ProgressReport({ data }: { data: ProgressReportData }) {
           <h2 className="text-lg font-semibold text-foreground">Worth another look</h2>
           {aircraftCode && retry.length > 0 ? (
             <Link
-              href={`/aircraft/${aircraftCode}/test?from=incorrect`}
+              // Every outstanding question, not a fixed slice: the button says
+              // how many there are, so it has to deliver that many.
+              href={buildTestHref(aircraftCode, { retryOnly: true, length: ALL_QUESTIONS })}
               className="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-strong"
             >
-              Retry these {retry.length > 1 ? `${Math.min(retry.length, 20)} questions` : "questions"}
+              Retry these {retry.length > 1 ? `${retry.length} questions` : "questions"}
             </Link>
           ) : null}
         </div>
