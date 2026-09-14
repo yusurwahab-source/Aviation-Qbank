@@ -1,0 +1,1751 @@
+[
+  {
+    "id": "B737-ELE-0001",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What are the characteristics of the main AC electrical supply?",
+    "options": [
+      {
+        "id": "a",
+        "text": "115 volt, 60 Hz, single phase"
+      },
+      {
+        "id": "b",
+        "text": "28 volt, 400 Hz, single phase"
+      },
+      {
+        "id": "c",
+        "text": "200 volt, 60 Hz, three phase"
+      },
+      {
+        "id": "d",
+        "text": "115 volt, 400 Hz, three phase"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The high frequency allows lighter transformers and motors, which is why aircraft use 400 Hz rather than a commercial frequency.",
+    "difficulty": 1,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0002",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "How many engine driven generators are installed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "One, on the left engine only"
+      },
+      {
+        "id": "b",
+        "text": "Two, one on each engine"
+      },
+      {
+        "id": "c",
+        "text": "Three, including a standby generator"
+      },
+      {
+        "id": "d",
+        "text": "Four, two on each engine"
+      }
+    ],
+    "correct": "b",
+    "explanation": "One generator per engine, with the APU generator available as a third source, gives redundancy without added complexity.",
+    "difficulty": 1,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0003",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What is the purpose of the drive unit in an integrated drive generator?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It holds the generator at constant speed so the output frequency stays constant"
+      },
+      {
+        "id": "b",
+        "text": "It steps the generator output up to 115 volts"
+      },
+      {
+        "id": "c",
+        "text": "It disconnects the generator automatically at high engine speed"
+      },
+      {
+        "id": "d",
+        "text": "It converts the generator output from DC to AC"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Engine speed varies continuously in flight, so a mechanical drive is used to isolate the generator from those changes.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0004",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What is the approximate rating of each main generator?",
+    "options": [
+      {
+        "id": "a",
+        "text": "40 kVA"
+      },
+      {
+        "id": "b",
+        "text": "60 kVA"
+      },
+      {
+        "id": "c",
+        "text": "90 kVA"
+      },
+      {
+        "id": "d",
+        "text": "150 kVA"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The rating determines what can be carried on a single generator after a failure. Verify against your operator FCOM.",
+    "difficulty": 2,
+    "tags": [
+      "verify-fcom"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0005",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "Can two AC sources supply the same transfer bus at the same time?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes, but only on the ground"
+      },
+      {
+        "id": "b",
+        "text": "Yes, provided both are within frequency tolerance"
+      },
+      {
+        "id": "c",
+        "text": "No, the system is non parallel and only one source supplies a bus"
+      },
+      {
+        "id": "d",
+        "text": "Yes, whenever the bus transfer switch is in AUTO"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Without paralleling there is no need to synchronise sources, and a fault on one source cannot be fed by another.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0006",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What happens on a transfer bus when its own engine generator is brought on line?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It shares the load with the previous source"
+      },
+      {
+        "id": "b",
+        "text": "It is blocked until the previous source is switched off manually"
+      },
+      {
+        "id": "c",
+        "text": "It powers only the galley loads until selected"
+      },
+      {
+        "id": "d",
+        "text": "It takes over the bus and disconnects the previous source"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The engine generator has priority on its own side, so restoring it does not require the crew to remove the other source first.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0007",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "Which source has priority when both the APU generator and external power are available?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Neither, the crew must select one manually"
+      },
+      {
+        "id": "b",
+        "text": "The APU generator"
+      },
+      {
+        "id": "c",
+        "text": "Whichever was connected first"
+      },
+      {
+        "id": "d",
+        "text": "External power"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Selecting the APU generator automatically removes external power, which makes the transition to airplane power a single action.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0008",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "Where is the external power receptacle located?",
+    "options": [
+      {
+        "id": "a",
+        "text": "In the left wing root fairing"
+      },
+      {
+        "id": "b",
+        "text": "In the nose wheel well ceiling"
+      },
+      {
+        "id": "c",
+        "text": "In the aft fuselage near the APU"
+      },
+      {
+        "id": "d",
+        "text": "In the lower forward fuselage"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Placing it forward keeps the cable clear of the engines and the loading areas during turnaround.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0009",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What does an illuminated blue ground power available light indicate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "External power is connected and within acceptable limits"
+      },
+      {
+        "id": "b",
+        "text": "The ground service bus is energised"
+      },
+      {
+        "id": "c",
+        "text": "External power is supplying the transfer buses"
+      },
+      {
+        "id": "d",
+        "text": "External power is connected but out of tolerance"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The light confirms the quality of the supply, but the power is not on the airplane until it is selected.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0010",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What is the function of the bus tie breakers?",
+    "options": [
+      {
+        "id": "a",
+        "text": "They allow one source to supply both transfer buses"
+      },
+      {
+        "id": "b",
+        "text": "They protect the generator against overvoltage"
+      },
+      {
+        "id": "c",
+        "text": "They connect the transformer rectifier units to the AC buses"
+      },
+      {
+        "id": "d",
+        "text": "They isolate the battery from the DC buses"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The tie is what makes single source operation possible after the loss of a generator.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0011",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What is the effect of selecting the bus transfer switch to OFF?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Both transfer buses are de-energised"
+      },
+      {
+        "id": "b",
+        "text": "The standby system transfers to the battery"
+      },
+      {
+        "id": "c",
+        "text": "The APU generator is disconnected"
+      },
+      {
+        "id": "d",
+        "text": "Automatic bus tie operation is prevented, so a bus loss is not covered automatically"
+      }
+    ],
+    "correct": "d",
+    "explanation": "It is used to keep a faulty side isolated, at the price of losing the automatic transfer that would normally restore the bus.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0012",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What does a TRANSFER BUS OFF light indicate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "That transfer bus is not energised"
+      },
+      {
+        "id": "b",
+        "text": "The bus transfer switch is in the OFF position"
+      },
+      {
+        "id": "c",
+        "text": "The generator is running but not connected"
+      },
+      {
+        "id": "d",
+        "text": "The transformer rectifier on that side has failed"
+      }
+    ],
+    "correct": "a",
+    "explanation": "It reports the state of the bus itself, which is the information the crew needs before deciding which source to restore.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0013",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What does a GEN OFF BUS light indicate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The generator drive has been disconnected"
+      },
+      {
+        "id": "b",
+        "text": "The generator has failed completely"
+      },
+      {
+        "id": "c",
+        "text": "The generator is operating but is not supplying a bus"
+      },
+      {
+        "id": "d",
+        "text": "The generator is supplying only the galley loads"
+      }
+    ],
+    "correct": "c",
+    "explanation": "It distinguishes an available but unconnected source from a source that is genuinely lost.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0014",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What does a SOURCE OFF light indicate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The bus is not being supplied by its normal source"
+      },
+      {
+        "id": "b",
+        "text": "The generator control unit has failed"
+      },
+      {
+        "id": "c",
+        "text": "The battery is not charging"
+      },
+      {
+        "id": "d",
+        "text": "External power has been disconnected"
+      }
+    ],
+    "correct": "a",
+    "explanation": "It draws attention to a bus running on an alternative source, which matters because the load capacity may then be limited.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0015",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "Which loads are shed first when electrical capacity becomes limited?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The fuel boost pumps"
+      },
+      {
+        "id": "b",
+        "text": "The window heat"
+      },
+      {
+        "id": "c",
+        "text": "The galley loads"
+      },
+      {
+        "id": "d",
+        "text": "The flight instruments"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Galley equipment draws a large current and contributes nothing to safety, which makes it the natural first load to remove.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0016",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What typically causes automatic galley load shedding?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Selection of the bus transfer switch to OFF"
+      },
+      {
+        "id": "b",
+        "text": "Operation on a single generator or on a limited capacity source"
+      },
+      {
+        "id": "c",
+        "text": "Loss of one transformer rectifier unit"
+      },
+      {
+        "id": "d",
+        "text": "Engine anti-ice selection"
+      }
+    ],
+    "correct": "b",
+    "explanation": "With one source carrying the whole airplane the margin is reduced, so non essential load is removed automatically.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0017",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What is displayed by the AC meters on the electrical panel?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Transformer rectifier output only"
+      },
+      {
+        "id": "b",
+        "text": "Voltage, frequency and load for the selected source"
+      },
+      {
+        "id": "c",
+        "text": "Battery charge current only"
+      },
+      {
+        "id": "d",
+        "text": "The total DC load on the battery bus"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Selecting each source in turn is how the crew verifies that a generator is producing acceptable power before connecting it.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0018",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "Can the APU generator supply both transfer buses?",
+    "options": [
+      {
+        "id": "a",
+        "text": "No, it supplies transfer bus 2 only"
+      },
+      {
+        "id": "b",
+        "text": "Yes"
+      },
+      {
+        "id": "c",
+        "text": "Only when external power is also connected"
+      },
+      {
+        "id": "d",
+        "text": "No, it supplies transfer bus 1 only"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Full airplane coverage from the APU is what makes it usable as a complete substitute after a generator failure.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0019",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What limits the availability of APU electrical power in flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The position of the bus transfer switch"
+      },
+      {
+        "id": "b",
+        "text": "A maximum altitude for APU generator use"
+      },
+      {
+        "id": "c",
+        "text": "The cabin differential pressure"
+      },
+      {
+        "id": "d",
+        "text": "The number of engines operating"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Both the APU and its generator have altitude related limits. Verify the figures against your operator FCOM.",
+    "difficulty": 3,
+    "tags": [
+      "verify-fcom"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0020",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What causes the amber DRIVE light to illuminate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Low oil pressure or high oil temperature in the generator drive"
+      },
+      {
+        "id": "b",
+        "text": "Loss of generator output voltage"
+      },
+      {
+        "id": "c",
+        "text": "Disconnection of the generator from the bus"
+      },
+      {
+        "id": "d",
+        "text": "A frequency outside the acceptable range"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The light reports the mechanical health of the drive, which can fail even while the generator is still producing acceptable power.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0021",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What is the crew action for a drive unit with low oil pressure?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Transfer the bus to the APU and continue with the drive connected"
+      },
+      {
+        "id": "b",
+        "text": "Reduce the electrical load on that side"
+      },
+      {
+        "id": "c",
+        "text": "Reset the generator control breaker"
+      },
+      {
+        "id": "d",
+        "text": "Disconnect the drive"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Disconnecting protects the engine accessory gearbox from a seizure that would otherwise damage far more than the generator.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0022",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "Can a disconnected generator drive be reconnected in flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes, but only with the engine at idle"
+      },
+      {
+        "id": "b",
+        "text": "Yes, by cycling the generator switch"
+      },
+      {
+        "id": "c",
+        "text": "No, reconnection requires maintenance action on the ground"
+      },
+      {
+        "id": "d",
+        "text": "Yes, after the drive has cooled for ten minutes"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The decision to disconnect is effectively permanent for that flight, which is why it is taken deliberately and not as a trial.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0023",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "Why should the generator drive not be disconnected while the engine is not running?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The battery would be discharged by the disconnect solenoid"
+      },
+      {
+        "id": "b",
+        "text": "The oil in the drive would drain into the engine"
+      },
+      {
+        "id": "c",
+        "text": "The generator control unit would be damaged by the voltage transient"
+      },
+      {
+        "id": "d",
+        "text": "The disconnect mechanism requires rotation to operate correctly"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Attempting it at rest risks leaving the mechanism in a condition that requires more extensive maintenance to restore.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0024",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What is the immediate consequence of disconnecting a generator drive in flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "That generator is unavailable for the remainder of the flight"
+      },
+      {
+        "id": "b",
+        "text": "The engine must be shut down"
+      },
+      {
+        "id": "c",
+        "text": "The other generator is also load shed"
+      },
+      {
+        "id": "d",
+        "text": "The battery assumes the entire AC load"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Planning for the rest of the flight has to assume single generator operation, with the APU as the only remaining alternative.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0025",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "How is an integrated drive generator cooled?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By engine fan air"
+      },
+      {
+        "id": "b",
+        "text": "By ram air ducted from the nacelle inlet"
+      },
+      {
+        "id": "c",
+        "text": "By fuel passing through a heat exchanger"
+      },
+      {
+        "id": "d",
+        "text": "By its own oil system"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The same oil that lubricates the drive carries away the heat, which is why oil temperature is a direct indication of drive health.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0026",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What does the generator control unit protect against?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Overheating of the transfer bus wiring"
+      },
+      {
+        "id": "b",
+        "text": "Loss of oil pressure in the engine"
+      },
+      {
+        "id": "c",
+        "text": "Out of tolerance voltage and frequency conditions"
+      },
+      {
+        "id": "d",
+        "text": "Excessive engine vibration"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Connecting a source producing bad power would damage equipment across the airplane, so the unit prevents the connection.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0027",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "How many transformer rectifier units are installed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "One"
+      },
+      {
+        "id": "b",
+        "text": "Two"
+      },
+      {
+        "id": "c",
+        "text": "Three"
+      },
+      {
+        "id": "d",
+        "text": "Four"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Three units allow each DC bus to have its own supply with one unit remaining as a backup for either side.",
+    "difficulty": 1,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0028",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What does a transformer rectifier unit do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It converts AC into DC"
+      },
+      {
+        "id": "b",
+        "text": "It changes the frequency of the AC supply"
+      },
+      {
+        "id": "c",
+        "text": "It converts DC into AC"
+      },
+      {
+        "id": "d",
+        "text": "It regulates the battery charging voltage"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Most of the airplane DC load is supplied by conversion rather than by the battery, which is reserved as a last resort.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0029",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What is the role of the third transformer rectifier unit?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It supplies the standby DC bus at all times"
+      },
+      {
+        "id": "b",
+        "text": "It supplies the battery bus only"
+      },
+      {
+        "id": "c",
+        "text": "It is used only during engine start"
+      },
+      {
+        "id": "d",
+        "text": "It can supply either DC bus if one of the other units fails"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Its flexibility is what allows a single unit failure to be covered without losing a DC bus.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0030",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What is the consequence of losing all AC generation for the DC system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The transformer rectifier units stop and DC comes from the battery"
+      },
+      {
+        "id": "b",
+        "text": "DC is unaffected because it is generated separately"
+      },
+      {
+        "id": "c",
+        "text": "Only the standby DC bus is lost"
+      },
+      {
+        "id": "d",
+        "text": "The battery charger maintains the DC buses indefinitely"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The DC system depends on AC being available, which is why a total generation failure quickly becomes a battery endurance problem.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0031",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What type of main battery is fitted?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A 48 volt nickel metal hydride battery"
+      },
+      {
+        "id": "b",
+        "text": "A 24 volt nickel cadmium battery"
+      },
+      {
+        "id": "c",
+        "text": "A 12 volt lead acid battery"
+      },
+      {
+        "id": "d",
+        "text": "A 28 volt lithium ion battery"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Nickel cadmium construction tolerates the high discharge rates of an engine or APU start and a wide temperature range.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0032",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What is special about the hot battery bus?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is supplied by the static inverter"
+      },
+      {
+        "id": "b",
+        "text": "It is powered only when the battery switch is ON"
+      },
+      {
+        "id": "c",
+        "text": "It is powered only on the ground"
+      },
+      {
+        "id": "d",
+        "text": "It is connected directly to the battery regardless of the battery switch position"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Certain functions, including fire protection items, must be available even with every switch off.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0033",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What determines whether the switched hot battery bus is powered?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The availability of external power"
+      },
+      {
+        "id": "b",
+        "text": "The position of the standby power switch"
+      },
+      {
+        "id": "c",
+        "text": "Whether an engine is running"
+      },
+      {
+        "id": "d",
+        "text": "The position of the battery switch"
+      }
+    ],
+    "correct": "d",
+    "explanation": "It carries loads that should be available whenever the airplane is being operated, but not while it is parked and shut down.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0034",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What is the function of the battery charger?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It isolates the battery when the airplane is parked"
+      },
+      {
+        "id": "b",
+        "text": "It converts battery DC into AC for the standby bus"
+      },
+      {
+        "id": "c",
+        "text": "It limits the current drawn during engine start"
+      },
+      {
+        "id": "d",
+        "text": "It maintains the battery in a charged state from the AC system"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Without it the battery would be progressively depleted by each start and by the standby loads.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0035",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What is the purpose of the static inverter?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It converts AC into DC for the battery bus"
+      },
+      {
+        "id": "b",
+        "text": "It converts battery DC into AC to supply the AC standby bus"
+      },
+      {
+        "id": "c",
+        "text": "It regulates the frequency of the generator output"
+      },
+      {
+        "id": "d",
+        "text": "It provides a starting current for the APU"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Some essential equipment is AC only, so a source of AC has to exist even when no generator is turning.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0036",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What are the positions of the standby power switch?",
+    "options": [
+      {
+        "id": "a",
+        "text": "AUTO, MAN and BAT"
+      },
+      {
+        "id": "b",
+        "text": "ON, OFF and TEST"
+      },
+      {
+        "id": "c",
+        "text": "NORM, ALTN and OFF"
+      },
+      {
+        "id": "d",
+        "text": "BAT, OFF and AUTO"
+      }
+    ],
+    "correct": "d",
+    "explanation": "AUTO is the normal selection, leaving the transfer to battery power to happen without crew action.",
+    "difficulty": 1,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0037",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "With the standby power switch in AUTO, what happens if normal power is lost?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The APU starts automatically"
+      },
+      {
+        "id": "b",
+        "text": "The standby buses transfer automatically to the battery and static inverter"
+      },
+      {
+        "id": "c",
+        "text": "The standby buses remain unpowered until BAT is selected"
+      },
+      {
+        "id": "d",
+        "text": "The standby buses are shed to preserve the battery"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The automatic transfer means the essential instruments and radio are not interrupted while the crew diagnoses the failure.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0038",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What does the STANDBY PWR OFF light indicate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The standby power switch is in AUTO"
+      },
+      {
+        "id": "b",
+        "text": "A standby bus is not powered"
+      },
+      {
+        "id": "c",
+        "text": "The battery is discharging"
+      },
+      {
+        "id": "d",
+        "text": "The static inverter is supplying the AC standby bus"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Losing the standby buses means losing the last protected layer, so it is annunciated separately from the main bus lights.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0039",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "Which of the following is typically supplied by the standby power system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Essential flight instruments and one communication radio"
+      },
+      {
+        "id": "b",
+        "text": "Both packs and the recirculation fans"
+      },
+      {
+        "id": "c",
+        "text": "The autopilot and the autothrottle"
+      },
+      {
+        "id": "d",
+        "text": "The galley outlets and the cabin lighting"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The selection is what a crew needs to fly, navigate and communicate, and nothing more.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0040",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "For approximately how long can the battery support the standby loads?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 5 minutes"
+      },
+      {
+        "id": "b",
+        "text": "About 30 to 60 minutes"
+      },
+      {
+        "id": "c",
+        "text": "About 3 hours"
+      },
+      {
+        "id": "d",
+        "text": "About 10 hours"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The endurance sets the time available to reach an airport after a total generation failure. Verify the figure against your operator FCOM.",
+    "difficulty": 3,
+    "tags": [
+      "verify-fcom"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0041",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "Why must the battery switch be ON before an engine start?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It energises the generator field"
+      },
+      {
+        "id": "b",
+        "text": "It powers the fuel boost pumps directly"
+      },
+      {
+        "id": "c",
+        "text": "It supplies the control and ignition circuits and protects the buses during the start"
+      },
+      {
+        "id": "d",
+        "text": "It provides the air pressure for the starter"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The start sequence depends on DC control power, and the battery also stabilises the system through the electrical transients.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0042",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "Why is the battery considered the final layer of the electrical system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Because it has the largest capacity of all the sources"
+      },
+      {
+        "id": "b",
+        "text": "Because it can be recharged in flight indefinitely"
+      },
+      {
+        "id": "c",
+        "text": "Because it supplies every bus on the airplane"
+      },
+      {
+        "id": "d",
+        "text": "Because it produces power without depending on any other system"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Every other source needs something else to be working, whereas the battery is self contained.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0043",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What is the purpose of the ground service switch?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It powers cabin lighting and service outlets from external power without energising the whole airplane"
+      },
+      {
+        "id": "b",
+        "text": "It isolates the galleys during refuelling"
+      },
+      {
+        "id": "c",
+        "text": "It transfers the standby buses to the battery"
+      },
+      {
+        "id": "d",
+        "text": "It connects external power to both transfer buses"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Cleaners and caterers can work with the airplane otherwise unpowered, which saves both APU running and wear.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0044",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "Where is the ground service switch normally located?",
+    "options": [
+      {
+        "id": "a",
+        "text": "At the forward attendant station"
+      },
+      {
+        "id": "b",
+        "text": "On the aft electronic panel"
+      },
+      {
+        "id": "c",
+        "text": "At the external power receptacle"
+      },
+      {
+        "id": "d",
+        "text": "On the overhead panel"
+      }
+    ],
+    "correct": "a",
+    "explanation": "It is placed where the cabin crew or ground staff can reach it without entering the flight deck.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0045",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What happens to the electrical system when the second engine generator is brought on line after start?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Both generators parallel and share the load equally"
+      },
+      {
+        "id": "b",
+        "text": "The bus tie breakers open and isolate both buses"
+      },
+      {
+        "id": "c",
+        "text": "It takes its own transfer bus and the APU is relieved of that side"
+      },
+      {
+        "id": "d",
+        "text": "The APU generator is tripped off immediately"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Each generator resuming its own side is what allows the APU to be shut down once both are on line.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0046",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What supplies the airplane electrically during an engine start when no generator is available?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The battery alone"
+      },
+      {
+        "id": "b",
+        "text": "The transformer rectifier units working in reverse"
+      },
+      {
+        "id": "c",
+        "text": "The static inverter"
+      },
+      {
+        "id": "d",
+        "text": "The APU generator or external power"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The start requires both electrical control power and a bleed source, which is why the APU normally provides both.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0047",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What is the effect of losing one engine generator in flight with the bus transfer switch in AUTO?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The remaining source supplies both transfer buses through the bus ties"
+      },
+      {
+        "id": "b",
+        "text": "The affected bus transfers to the battery"
+      },
+      {
+        "id": "c",
+        "text": "The standby power system takes over both buses"
+      },
+      {
+        "id": "d",
+        "text": "Both transfer buses are lost until the APU is started"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The automatic tie is what makes a single generator failure a largely transparent event for the crew.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0048",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "Which system depends on AC power to deliver fuel to the engines under normal conditions?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The fuel boost pumps"
+      },
+      {
+        "id": "b",
+        "text": "The fuel temperature indication"
+      },
+      {
+        "id": "c",
+        "text": "The fuel crossfeed valve"
+      },
+      {
+        "id": "d",
+        "text": "The engine driven fuel pumps"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The boost pumps are AC motors, which is why a total AC failure changes how the engines are fed.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0049",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "Which ice protection load is electrical rather than pneumatic?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Engine cowl anti-ice"
+      },
+      {
+        "id": "b",
+        "text": "Wing anti-ice"
+      },
+      {
+        "id": "c",
+        "text": "Window and probe heating"
+      },
+      {
+        "id": "d",
+        "text": "Both wing and cowl anti-ice"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Electrical heating is used where the area is small and the temperature must be closely controlled.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0050",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "Why does the loss of AC power affect the flight instruments differently from the loss of DC power?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Because the flight instruments are all DC powered"
+      },
+      {
+        "id": "b",
+        "text": "Because the flight instruments are all AC powered"
+      },
+      {
+        "id": "c",
+        "text": "Because the instruments transfer to the FMC supply"
+      },
+      {
+        "id": "d",
+        "text": "Because the standby system provides both AC and DC to the essential instruments through different paths"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Understanding which supply feeds which display is what allows the crew to predict what will remain after a given failure.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0051",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "Where are the main circuit breaker panels located?",
+    "options": [
+      {
+        "id": "a",
+        "text": "On the forward overhead panel"
+      },
+      {
+        "id": "b",
+        "text": "In the electronics bay only, accessible from outside"
+      },
+      {
+        "id": "c",
+        "text": "On the aft flight deck panels behind the pilot seats"
+      },
+      {
+        "id": "d",
+        "text": "On the centre pedestal"
+      }
+    ],
+    "correct": "c",
+    "explanation": "They are within reach in flight so that a tripped breaker can be identified, though resetting is restricted by procedure.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0052",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What is the general rule about resetting a tripped circuit breaker in flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Breakers are reset automatically by the system"
+      },
+      {
+        "id": "b",
+        "text": "It is not reset unless the associated system is essential and the reset is permitted by procedure"
+      },
+      {
+        "id": "c",
+        "text": "Breakers are reset only after landing"
+      },
+      {
+        "id": "d",
+        "text": "Any breaker may be reset once"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A breaker trips because something drew excessive current, and restoring power to a fault can turn an electrical problem into a fire.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0053",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "Why is a total loss of AC generation described as time limited?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Because the standby buses shed automatically after a fixed period"
+      },
+      {
+        "id": "b",
+        "text": "Because the transformer rectifier units overheat on battery power"
+      },
+      {
+        "id": "c",
+        "text": "Because the battery endurance determines how long the essential loads can be supplied"
+      },
+      {
+        "id": "d",
+        "text": "Because the static inverter has a limited operating time"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The failure converts into an endurance problem, so the first decision is where the airplane can land within the available time.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0054",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What is the normal position of the bus transfer switch?",
+    "options": [
+      {
+        "id": "a",
+        "text": "OFF, under a guard"
+      },
+      {
+        "id": "b",
+        "text": "AUTO, without a guard"
+      },
+      {
+        "id": "c",
+        "text": "AUTO, under a guard"
+      },
+      {
+        "id": "d",
+        "text": "OFF, without a guard"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The guard keeps the system in the configuration that provides automatic protection, and makes any change a deliberate act.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0055",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "Why are the flight deck electrical panel lights and indications checked before the first flight of the day?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To reset the battery charger cycle"
+      },
+      {
+        "id": "b",
+        "text": "To confirm that source availability and bus status can be correctly annunciated"
+      },
+      {
+        "id": "c",
+        "text": "To warm the generator control units before start"
+      },
+      {
+        "id": "d",
+        "text": "To discharge the static inverter"
+      }
+    ],
+    "correct": "b",
+    "explanation": "An annunciation that cannot illuminate is a failure the crew would never see, which is why the indications themselves are verified.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0056",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What is the relationship between the APU generator and the engine generators in flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The APU generator can supply only the standby buses in flight"
+      },
+      {
+        "id": "b",
+        "text": "The APU generator can be used only on the ground"
+      },
+      {
+        "id": "c",
+        "text": "The APU generator can replace either or both engine generators"
+      },
+      {
+        "id": "d",
+        "text": "The APU generator parallels with the engine generators to share the load"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Its ability to substitute completely is what makes it valuable after a generator failure at altitude.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0057",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What does the crew verify before disconnecting external power after an APU start?",
+    "options": [
+      {
+        "id": "a",
+        "text": "That the standby power switch is in BAT"
+      },
+      {
+        "id": "b",
+        "text": "That the APU generator is supplying the buses"
+      },
+      {
+        "id": "c",
+        "text": "That the battery switch is OFF"
+      },
+      {
+        "id": "d",
+        "text": "That the bus transfer switch is OFF"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Confirming the replacement source is carrying the airplane prevents an unnecessary interruption to the buses.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0058",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What happens to the DC buses when their normal supply is lost?",
+    "options": [
+      {
+        "id": "a",
+        "text": "They are shed until AC power is restored"
+      },
+      {
+        "id": "b",
+        "text": "They transfer to the static inverter"
+      },
+      {
+        "id": "c",
+        "text": "They are supplied from the remaining transformer rectifier unit or from the battery"
+      },
+      {
+        "id": "d",
+        "text": "They are supplied from the galley buses"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The layering of sources means a DC bus is lost only after several independent failures.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0059",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "Why is the electrical system designed so that no single failure removes all generation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Because several systems needed for continued safe flight have no non electrical alternative"
+      },
+      {
+        "id": "b",
+        "text": "Because paralleled generators cannot be isolated"
+      },
+      {
+        "id": "c",
+        "text": "Because the APU cannot be started above its altitude limit"
+      },
+      {
+        "id": "d",
+        "text": "Because the battery cannot be recharged in flight"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Instruments, displays, fuel delivery and much of the ice protection all depend on power, so generation redundancy is a flight safety requirement.",
+    "difficulty": 3,
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "B737-ELE-0060",
+    "aircraft": "B737",
+    "topic": "Electrical",
+    "question": "What does the current and potential selector on the electrical panel allow the crew to do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Reset a tripped generator control breaker"
+      },
+      {
+        "id": "b",
+        "text": "Display the output of each electrical source in turn"
+      },
+      {
+        "id": "c",
+        "text": "Transfer the standby buses between sources"
+      },
+      {
+        "id": "d",
+        "text": "Select which source supplies each bus"
+      }
+    ],
+    "correct": "b",
+    "explanation": "It is a monitoring control rather than a switching control, used to check a source before or after it is connected.",
+    "difficulty": 2,
+    "status": "published",
+    "version": 1
+  }
+]
