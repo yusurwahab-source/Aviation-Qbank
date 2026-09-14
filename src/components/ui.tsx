@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 
-import { DIFFICULTY_LABELS } from "@/content/schema";
 
 /** Small shared building blocks, kept in one file while the app is this small. */
 
@@ -55,11 +54,6 @@ export function Badge({
       {children}
     </span>
   );
-}
-
-export function DifficultyBadge({ difficulty }: { difficulty: number }) {
-  const label = DIFFICULTY_LABELS[difficulty as 1 | 2 | 3] ?? `Level ${difficulty}`;
-  return <Badge>{label}</Badge>;
 }
 
 /** A labelled horizontal bar. Used for per-topic scores. */

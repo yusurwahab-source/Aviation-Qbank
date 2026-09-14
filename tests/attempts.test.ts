@@ -44,7 +44,6 @@ describeWithDb("recordTestResult", () => {
       { id: "a", text: "Option a" },
       { id: "b", text: "Option b" },
     ],
-    difficulty: 1,
     correct,
     explanation: "Because.",
     reference: null,

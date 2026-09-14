@@ -21,7 +21,6 @@ export type TestQuestion = {
   subtopic: string | null;
   question: string;
   options: QuestionOption[];
-  difficulty: number;
 };
 
 /** The full question, used server-side for grading and for the review screen. */
@@ -150,7 +149,6 @@ export async function pickTestQuestions(
       subtopic: questions.subtopic,
       question: questions.question,
       options: questions.options,
-      difficulty: questions.difficulty,
     })
     .from(questions)
     .where(publishedIn(code, topics))
@@ -179,7 +177,6 @@ export async function getTestQuestionsByIds(
       subtopic: questions.subtopic,
       question: questions.question,
       options: questions.options,
-      difficulty: questions.difficulty,
     })
     .from(questions)
     .where(
@@ -215,7 +212,6 @@ export async function getAnswerKey(
       subtopic: questions.subtopic,
       question: questions.question,
       options: questions.options,
-      difficulty: questions.difficulty,
       correct: questions.correct,
       explanation: questions.explanation,
       reference: questions.reference,

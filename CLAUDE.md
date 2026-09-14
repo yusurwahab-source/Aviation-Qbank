@@ -87,7 +87,6 @@ it. Changes to the shape of a question go there first.
 | `correct` | yes | The `id` of the correct option. Must exist in `options`. |
 | `explanation` | yes | Why the answer is correct. Shown on the result screen. |
 | `reference` | no | Source, e.g. `Airplane Flight Manual, Section 7 - Fuel System`. |
-| `difficulty` | yes | `1` (easy), `2` (moderate) or `3` (hard). |
 | `media` | no | Image path. Reserved — not used yet, but valid to author. |
 | `tags` | no | Array of short strings. |
 | `status` | yes | `draft` or `published`. **Only `published` is ever shown to users.** |
@@ -596,9 +595,12 @@ tests/                        Vitest unit tests
    the end; a clock that belongs to the mode rather than to a setting — a
    minute a question in exam mode, a count-up note in study — held on the
    session row, so a reload cannot reset it and running out hands the test in;
-   and a question map for jumping between questions mid-test. Still to do: filter by difficulty —
-   the one item of the original Phase 5 list not built, and deliberately so,
-   the owner having set it aside.
+   and a question map for jumping between questions mid-test. The one
+   remaining item of the original Phase 5 list, filter by difficulty, is not
+   going to be built: the owner set it aside, then removed the feature
+   outright. `difficulty` is gone from the schema, the question files, the
+   database and the test screen — see the note in the conventions above.
+   Phase 5 is therefore complete as scoped.
 
 Do not start a phase until the previous one works.
 

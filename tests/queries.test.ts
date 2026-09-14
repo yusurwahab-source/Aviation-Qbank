@@ -144,7 +144,6 @@ describeWithDb("test question queries", () => {
         "subtopic",
         "question",
         "options",
-        "difficulty",
       ]);
     });
   });
@@ -166,7 +165,6 @@ describeWithDb("test question queries", () => {
         "subtopic",
         "question",
         "options",
-        "difficulty",
       ]);
     });
 

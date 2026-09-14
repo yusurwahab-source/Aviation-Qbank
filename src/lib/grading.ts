@@ -14,7 +14,6 @@ export type GradableQuestion = {
   subtopic: string | null;
   question: string;
   options: QuestionOption[];
-  difficulty: number;
   correct: string;
   explanation: string;
   reference: string | null;
