@@ -109,8 +109,9 @@ chapter is a new file and never a change to an existing one:
 | `air-systems.json` | Air Systems | 67 |
 | `anti-ice-and-rain.json` | Anti-Ice and Rain | 40 |
 | `automatic-flight.json` | Automatic Flight | 60 |
+| `communications.json` | Communications | 33 |
 
-219 questions, all published.
+252 questions, all published.
 
 ### What changed on the way in from the source file
 
@@ -121,13 +122,13 @@ be carried across as they are, and both are handled the same way every time:
   four. They are padded (`B737-GEN-0001`), which keeps the source ordering
   exactly and leaves room for a section to grow past 999.
 - **Some ids carry an `L` marker** (`B738-GEN-L005`). An id has no room for
-  it — the last segment must be digits. The marker means one thing in both
-  sections so far: every marked question, and no unmarked one, is a figure
+  it — the last segment must be digits. The marker means one thing in every
+  section so far: every marked question, and no unmarked one, is a figure
   that varies by operator or configuration and says so in its explanation
   ("Verify against your operator FCOM"). So it survives as a tag,
-  **`verify-fcom`** — queryable, rather than buried in prose. 22 questions
-  carry it: 7 in Airplane General, 6 in Air Systems, 3 in Anti-Ice and Rain
-  and 6 in Automatic Flight.
+  **`verify-fcom`** — queryable, rather than buried in prose. 24 questions
+  carry it: 7 in Airplane General, 6 in Air Systems, 3 in Anti-Ice and Rain,
+  6 in Automatic Flight and 2 in Communications.
 
 The source files also name the aircraft `B738`; that is rewritten to the bank's
 code on the way in.
@@ -151,17 +152,23 @@ each section comes in:
 | Air Systems | A 36 · B 30 · C 1 · D 0 | A 17 · B 17 · C 17 · D 16 |
 | Anti-Ice and Rain | A 28 · B 10 · C 2 · D 0 | A 10 · B 10 · C 10 · D 10 |
 | Automatic Flight | A 19 · B 9 · C 14 · D 18 | A 15 · B 15 · C 15 · D 15 |
-| **Whole bank** | **A 97 · B 81 · C 23 · D 18** | **A 55 · B 55 · C 55 · D 54** |
+| Communications | A 9 · B 5 · C 5 · D 14 | A 8 · B 8 · C 8 · D 9 |
+| **Whole bank** | **A 106 · B 86 · C 28 · D 32** | **A 63 · B 63 · C 63 · D 63** |
 
 **Automatic Flight arrived already spread**, using all four letters and
-scrambling its own numeric option sets — the first section to do so. It was
-still levelled, because the target is the bank's total rather than any one
-file's, but it needed far less moving than the three before it.
+scrambling its own numeric option sets — the first section to do so.
+Communications uses all four too, but leans the other way from the first
+three: `D` is its commonest answer, at 14 of 33. Both were still levelled,
+because the target is the bank's total rather than any one file's.
 
 **The arithmetic is over the whole bank, not one file.** A section is balanced
 against what the other sections already hold, so the total stays level as the
 bank grows — which is what matters, since a test can draw from any combination
-of sections. 159 does not divide by four, so one letter carries one fewer.
+of sections. This is why no section's own row is a clean quarter of itself:
+Air Systems is 17/17/17/16 and Communications 8/8/8/9 because that is what
+brings the *bank* level. 252 divides by four exactly, so every letter now
+carries 63; the section that takes the bank off a multiple of four is the one
+whose row looks lopsided.
 
 Only the *order* of the options changes. Every question keeps the same four
 option texts and the same correct answer — the sentence that was right in the
@@ -176,19 +183,31 @@ No. 1 / No. 2 / No. 3 window numbering in `GEN-0016`, and the compressor-stage
 progression in `AIR-0002`. Eighteen questions in total. The even split is
 reached around them.
 
-Automatic Flight's numeric options are ascending too, but they did not arrive
-that way. Its quantity questions — altitudes, speeds, the bank angle range, the
-count of course selectors — came **scrambled** in the source, unlike the earlier
+Automatic Flight's and Communications' numeric options are ascending too, but
+they did not arrive that way. Their quantity questions — altitudes, speeds, the
+bank angle range, the count of course selectors; and in Communications the
+counts of audio panels, VHF transceivers and keyed transmitters, and the
+recorder durations — came **scrambled** in the source, unlike the earlier
 sections. They were sorted ascending at the owner's request so the bank reads
 the same way throughout: `AFS-0008`, `0012`, `0023`, `0030`, `0031`, `0042`,
-`0043` and `0049`. An option naming no quantity goes last (`V1`,
-`Acceleration altitude`), and equal quantities keep their source order.
+`0043` and `0049`, and `COM-0001`, `0008`, `0025` and `0032`. An option naming
+no quantity goes last (`V1`, `Acceleration altitude`), and equal quantities keep
+their source order — which is what puts `COM-0032`'s two "Two" options in the
+order the source wrote them, between `One` and `All selected transmitters
+simultaneously`.
 
 This is the one place where a distractor's position was changed for a reason
 other than the answer spread, so it is the one place the "distractors keep their
 relative order" rule above does not hold. The correct answer is still the same
-sentence, and the section is still 15 of each letter — the eight were sorted
-first and the rest balanced around them.
+sentence, and each section still hits the count it was given — the sorted
+questions were placed first and the rest balanced around them.
+
+`COM-0029` is the near miss worth recording. Its options are `The HF radio`,
+`The passenger address system`, `VHF 1` and `VHF 2` — not points on a scale, so
+there is nothing to sort — but the numbered pair still has an order, and moving
+the answer (`VHF 1`) to `d` would have printed `VHF 2` above `VHF 1`. It was
+kept off `d` for that reason alone; it sits at `a`, and the sort rule does not
+otherwise apply to it.
 
 `GEN-0032` was deliberately left alone. Its options are *sets* of ELT
 frequencies ("121.5, 243.0 and 406 MHz" against "406 MHz only"), not points on a
