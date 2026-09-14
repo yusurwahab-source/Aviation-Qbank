@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useId, useMemo, useRef, useState, useTransition } from "react";
 
-import { Badge, Card, DifficultyBadge } from "@/components/ui";
+import { Badge, Card } from "@/components/ui";
 import type { TestQuestion } from "@/db/queries";
 import { unansweredCount } from "@/lib/question-status";
 import {
@@ -395,7 +395,6 @@ export function TestRunner({
         <div className="flex flex-wrap items-center gap-2">
           <Badge tone="brand">{current.topic}</Badge>
           {current.subtopic ? <Badge>{current.subtopic}</Badge> : null}
-          <DifficultyBadge difficulty={current.difficulty} />
         </div>
 
         <h1 className="mt-4 text-lg font-semibold leading-snug text-foreground sm:text-xl">

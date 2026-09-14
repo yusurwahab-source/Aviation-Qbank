@@ -14,7 +14,6 @@ function question(
     subtopic: null,
     question: `Question ${id}?`,
     options: optionIds.map((optionId) => ({ id: optionId, text: `Option ${optionId}` })),
-    difficulty: 1,
     correct,
     explanation: "Because.",
     reference: null,

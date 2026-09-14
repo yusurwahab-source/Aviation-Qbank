@@ -38,7 +38,6 @@ broken:
 - The aircraft code in the id and in the `aircraft` field match the folder.
 - A question has between 2 and 5 options, and each option id is unique.
 - `correct` names an option that actually exists.
-- `difficulty` is 1, 2 or 3.
 - No unexpected fields (a typo like `explaination` is an error, not a silent loss).
 
 ## Draft vs published
@@ -145,7 +144,7 @@ The source files also name the aircraft `B738`; that is rewritten to the bank's
 code on the way in.
 
 Nothing else was altered on the way in. Question text, option text, correct
-answers, difficulty and explanations are byte-for-byte what the source file
+answers and explanations are byte-for-byte what the source file
 held; this was checked field by field after conversion, not assumed. The one
 later change is the order options appear in within a question, which is its own
 deliberate decision — see below.
@@ -317,34 +316,15 @@ having if the next chapter does not undo it.
 The questions have no `reference` yet. Adding the FCOM chapter and page to each
 would make them markedly more useful, and none was invented during conversion.
 
-### The bank is getting harder, section by section
+### The source files carry a `difficulty` column. It is dropped on the way in.
 
-`difficulty` is carried across exactly as authored — it is a source field and
-nothing rewrites it — but it is worth recording what the sources have been
-doing with it, because nothing else in the repository shows this:
+Every section's CSV has a `difficulty` of 1, 2 or 3 per row, and none of it
+reaches the repository. The feature was removed at the owner's request — there
+is no `difficulty` field in the question schema, no column in the database and
+nothing on the test screen — so the column is read past like any other thing the
+schema does not model.
 
-| | Easy | Moderate | Hard |
-|---|---|---|---|
-| Airplane General | 9 | 31 | 12 |
-| Air Systems | 9 | 33 | 25 |
-| Anti-Ice and Rain | 4 | 20 | 16 |
-| Automatic Flight | 4 | 25 | 31 |
-| Communications | 2 | 20 | 11 |
-| Electrical | 4 | 30 | 26 |
-| Engines and APU | 3 | 36 | 35 |
-| Fire Protection | 1 | 22 | 25 |
-| Flight Controls | 3 | 27 | 38 |
-| Flight Instruments and Displays | **0** | 22 | 23 |
-| **Whole bank** | **39** | **266** | **242** |
-
-Easy questions have thinned out steadily — nine in each of the first two
-sections, none at all in the tenth — and the bank is now 7% easy against 44%
-moderate and 44% hard.
-
-This is not a conversion problem and nothing was changed to address it. It
-matters for one reason: **filter by difficulty** is the last unbuilt item on
-the Phase 5 list, and on this bank an "easy" filter would return 39 questions
-spread across ten sections, with a whole chapter contributing none. Anyone
-building that filter should know the distribution before designing around it,
-and anyone commissioning section eleven now knows which end of the range the
-bank is short of.
+This is worth stating because the schema is strict: a question file that still
+carries `difficulty` fails `validate:content` as an unknown field rather than
+being quietly accepted, which is asserted in `tests/content.test.ts`. When
+section eleven arrives, drop the column; do not carry it across.

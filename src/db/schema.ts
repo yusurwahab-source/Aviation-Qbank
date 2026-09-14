@@ -1,7 +1,6 @@
 import { sql } from "drizzle-orm";
 import {
   boolean,
-  check,
   index,
   integer,
   jsonb,
@@ -58,7 +57,6 @@ export const questions = pgTable(
     correct: varchar("correct", { length: 4 }).notNull(),
     explanation: text("explanation").notNull(),
     reference: text("reference"),
-    difficulty: smallint("difficulty").notNull(),
     /** Reserved for question images. Not used yet. */
     media: text("media"),
     tags: text("tags").array().notNull().default(sql`'{}'::text[]`),
@@ -76,13 +74,6 @@ export const questions = pgTable(
       table.status,
       table.topic,
     ),
-    // Difficulty filters (Phase 5).
-    index("questions_aircraft_status_difficulty_idx").on(
-      table.aircraftCode,
-      table.status,
-      table.difficulty,
-    ),
-    check("questions_difficulty_range", sql`${table.difficulty} between 1 and 3`),
   ],
 );
 

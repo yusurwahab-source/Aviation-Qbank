@@ -17,7 +17,6 @@ const validQuestion = {
   ],
   correct: "b",
   explanation: "It is a 28 volt system.",
-  difficulty: 1,
   status: "published",
   version: 1,
 };
@@ -57,9 +56,8 @@ describe("questionSchema", () => {
     );
   });
 
-  it("rejects a difficulty outside 1-3", () => {
-    expect(questionSchema.safeParse({ ...validQuestion, difficulty: 0 }).success).toBe(false);
-    expect(questionSchema.safeParse({ ...validQuestion, difficulty: 4 }).success).toBe(false);
+  it("rejects a leftover difficulty, so the removed field cannot creep back", () => {
+    expect(questionSchema.safeParse({ ...validQuestion, difficulty: 1 }).success).toBe(false);
   });
 
   it("rejects an unknown field, so a typo is never silently dropped", () => {

@@ -20,12 +20,6 @@ export const QUESTION_ID_RE = /^[A-Z][A-Z0-9]{1,7}-[A-Z0-9]{2,8}-\d{4}$/;
 /** Option ids are single letters or short codes, e.g. "a", "b", "c", "d". */
 export const OPTION_ID_RE = /^[a-z0-9]{1,4}$/;
 
-export const DIFFICULTY_LABELS = {
-  1: "Easy",
-  2: "Moderate",
-  3: "Hard",
-} as const;
-
 export const optionSchema = z.strictObject({
   id: z
     .string()
@@ -52,7 +46,6 @@ export const questionSchema = z
     correct: z.string().regex(OPTION_ID_RE),
     explanation: z.string().trim().min(1, "Every question needs an explanation"),
     reference: z.string().trim().min(1).max(200).optional(),
-    difficulty: z.int().min(1).max(3),
     /** Reserved for Phase 5+. Kept in the schema so content authored now stays valid. */
     media: z.string().trim().min(1).optional(),
     tags: z.array(z.string().trim().min(1).max(40)).max(20).optional(),
@@ -113,4 +106,3 @@ export const aircraftSchema = z.strictObject({
 export type QuestionOption = z.infer<typeof optionSchema>;
 export type Question = z.infer<typeof questionSchema>;
 export type AircraftManifest = z.infer<typeof aircraftSchema>;
-export type Difficulty = 1 | 2 | 3;
