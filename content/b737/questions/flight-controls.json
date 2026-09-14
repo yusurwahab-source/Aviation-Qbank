@@ -7,25 +7,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Hydraulically, by systems A and B"
-      },
-      {
-        "id": "b",
         "text": "Pneumatically, by bleed air actuators"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Electrically, by the transfer buses"
+      },
+      {
+        "id": "c",
+        "text": "Hydraulically, by systems A and B"
       },
       {
         "id": "d",
         "text": "Manually, through cables and control tabs"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Both hydraulic systems supply the primary controls, so the loss of one system does not reduce control authority.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0002",
@@ -39,21 +39,21 @@
       },
       {
         "id": "b",
-        "text": "They revert to manual control through control tabs"
+        "text": "They are driven electrically by backup actuators"
       },
       {
         "id": "c",
-        "text": "They are driven electrically by backup actuators"
+        "text": "They revert to manual control through control tabs"
       },
       {
         "id": "d",
         "text": "They become locked in their last position"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Manual reversion keeps the airplane controllable, although the forces required are considerably higher.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0003",
@@ -63,25 +63,25 @@
     "options": [
       {
         "id": "a",
-        "text": "An electric backup motor assists the cable input"
-      },
-      {
-        "id": "b",
-        "text": "The pilot moves the surface directly through the cable run"
-      },
-      {
-        "id": "c",
         "text": "The pilot moves a control tab, and the airflow over it moves the main surface"
       },
       {
+        "id": "b",
+        "text": "The pilot moves the surface directly through the cable run and the trim wheels"
+      },
+      {
+        "id": "c",
+        "text": "An electric backup motor assists the cable input to the control surface"
+      },
+      {
         "id": "d",
-        "text": "Spring cartridges hold the surface in the commanded position"
+        "text": "Spring cartridges hold the surface in the position the pilot has commanded"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Using the airflow to do the work is what makes it possible for a pilot to move a large surface without hydraulic assistance.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0004",
@@ -91,25 +91,25 @@
     "options": [
       {
         "id": "a",
-        "text": "By the standby hydraulic system"
+        "text": "By the alternate electric drive"
       },
       {
         "id": "b",
-        "text": "It is locked in the neutral position"
+        "text": "By the number 1 hydraulic pump"
       },
       {
         "id": "c",
-        "text": "It reverts to manual control through a tab"
+        "text": "By the manual reversion tab"
       },
       {
         "id": "d",
-        "text": "It is powered electrically"
+        "text": "By the standby hydraulic system"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The rudder is the one primary control with a third hydraulic source, because directional control cannot be obtained manually at speed.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0005",
@@ -119,25 +119,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The yaw damper"
+        "text": "The yaw damper system"
       },
       {
         "id": "b",
-        "text": "The elevator feel computer"
+        "text": "The standby rudder system"
       },
       {
         "id": "c",
-        "text": "The standby rudder system"
+        "text": "The elevator feel computer"
       },
       {
         "id": "d",
         "text": "The alternate flap drive"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Selecting standby rudder brings in the third source without waiting for an automatic transfer.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0006",
@@ -147,25 +147,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It is available only below 1000 ft"
-      },
-      {
-        "id": "b",
-        "text": "It must be selected manually on both flight control switches"
-      },
-      {
-        "id": "c",
         "text": "It operates automatically"
       },
       {
+        "id": "b",
+        "text": "It must be selected manually"
+      },
+      {
+        "id": "c",
+        "text": "It operates only on the ground"
+      },
+      {
         "id": "d",
-        "text": "It provides partial rudder authority only after the flaps are extended"
+        "text": "It gives no rudder authority"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Automatic operation means the rudder is never left without a source during the time it takes the crew to diagnose the failure.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0007",
@@ -175,25 +175,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Failure of the elevator feel computer"
+        "text": "Low hydraulic pressure to the flight controls on that system"
       },
       {
         "id": "b",
-        "text": "A low fluid quantity in the reservoir"
+        "text": "Low fluid quantity in that hydraulic system reservoir"
       },
       {
         "id": "c",
-        "text": "Loss of the yaw damper"
+        "text": "A failure of the elevator feel computer on that side"
       },
       {
         "id": "d",
-        "text": "Low hydraulic pressure to the flight controls on that system"
+        "text": "Loss of the yaw damper on that hydraulic system"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "It reports the pressure actually reaching the controls, which can be lost even when the system still shows quantity.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0008",
@@ -203,25 +203,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It transfers roll control to the autopilot servos"
-      },
-      {
-        "id": "b",
         "text": "It allows the control wheels to be separated if the aileron system jams"
       },
       {
+        "id": "b",
+        "text": "It transfers roll control to the autopilot roll servos automatically"
+      },
+      {
         "id": "c",
-        "text": "It connects the ailerons to the flight spoilers at low speed"
+        "text": "It connects the ailerons to the flight spoilers at low airspeed"
       },
       {
         "id": "d",
         "text": "It equalises the forces between the two control wheels in normal flight"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "With the system separated, one wheel continues to drive whatever remains free, so a jam does not remove all roll control.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0009",
@@ -231,25 +231,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Ailerons on one side and flight spoilers on the other"
+        "text": "Ailerons on the captain side and nothing on the other"
       },
       {
         "id": "b",
-        "text": "Ailerons only, on the captain side"
+        "text": "Flight spoilers on both wings but no aileron control"
       },
       {
         "id": "c",
-        "text": "Rudder input through the yaw damper"
+        "text": "Ailerons on one side and flight spoilers on the other"
       },
       {
         "id": "d",
-        "text": "Flight spoilers only"
+        "text": "Rudder input through the yaw damper on both sides"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "The two roll devices are driven from different wheels once separated, so the jam can only take one of them.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0010",
@@ -287,25 +287,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It coordinates the rudder with aileron inputs during turns"
+        "text": "It coordinates the rudder with aileron inputs during a turn"
       },
       {
         "id": "b",
-        "text": "It limits rudder deflection at high speed"
+        "text": "It limits rudder deflection progressively as airspeed increases"
       },
       {
         "id": "c",
-        "text": "It damps dutch roll oscillations by commanding small rudder movements"
+        "text": "It trims the rudder automatically for an asymmetric thrust condition"
       },
       {
         "id": "d",
-        "text": "It trims the rudder for asymmetric thrust"
+        "text": "It damps dutch roll oscillations by commanding small rudder movements"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "A swept wing airplane is prone to a lightly damped lateral oscillation, and the damper suppresses it continuously.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0012",
@@ -315,25 +315,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Only above the flap retraction speed"
+        "text": "No, the pedals do not move with yaw damper inputs"
       },
       {
         "id": "b",
-        "text": "Yes, the pedals move with every correction"
+        "text": "Yes, the pedals move with every correction made"
       },
       {
         "id": "c",
-        "text": "Only when the autopilot is engaged"
+        "text": "Only above the flap retraction manoeuvring speed"
       },
       {
         "id": "d",
-        "text": "No, the pedals do not move with yaw damper inputs"
+        "text": "Only while the autopilot is engaged in CMD"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Continuous pedal movement would be distracting and would mask the crew own inputs.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0013",
@@ -343,28 +343,28 @@
     "options": [
       {
         "id": "a",
-        "text": "To reduce hydraulic demand during the cruise"
+        "text": "To reduce the hydraulic demand during the cruise when both systems are heavily loaded"
       },
       {
         "id": "b",
-        "text": "To prevent the yaw damper from saturating"
+        "text": "To prevent the yaw damper from saturating when it makes continuous corrections"
       },
       {
         "id": "c",
-        "text": "To allow the standby system to be tested in flight"
+        "text": "To limit rudder authority where full deflection is not needed and could overstress the fin"
       },
       {
         "id": "d",
-        "text": "To limit rudder authority where full deflection is not needed and could overstress the fin"
+        "text": "To allow the standby rudder system to be tested in flight without a warning"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Full rudder authority is needed at low speed but becomes excessive at higher speeds. Verify the exact logic against your operator FCOM.",
     "tags": [
       "verify-fcom"
     ],
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0014",
@@ -382,7 +382,7 @@
       },
       {
         "id": "c",
-        "text": "By repositioning the elevator neutral point electrically"
+        "text": "By repositioning the elevator neutral point"
       },
       {
         "id": "d",
@@ -392,7 +392,7 @@
     "correct": "d",
     "explanation": "Moving the whole stabiliser gives a large trim range with very little drag penalty.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0015",
@@ -402,7 +402,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Manually only"
+        "text": "Electrically from the control wheel switches or manually with the trim wheels, but not by the autopilot"
       },
       {
         "id": "b",
@@ -410,17 +410,17 @@
       },
       {
         "id": "c",
-        "text": "Electrically only"
+        "text": "Electrically from the control wheel switches only, with the autopilot using the same path"
       },
       {
         "id": "d",
-        "text": "By the autopilot only, with manual reversion available on the ground"
+        "text": "By the autopilot or manually with the trim wheels, with manual reversion available on the ground"
       }
     ],
     "correct": "b",
     "explanation": "Three independent paths mean a trim failure in one does not leave the airplane out of trim.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0016",
@@ -434,11 +434,11 @@
       },
       {
         "id": "b",
-        "text": "The trim rate is reduced by half"
+        "text": "The electric trim rate is reduced by half"
       },
       {
         "id": "c",
-        "text": "The autopilot disengages"
+        "text": "The autopilot disengages immediately"
       },
       {
         "id": "d",
@@ -448,7 +448,7 @@
     "correct": "a",
     "explanation": "Column movement against a runaway is the instinctive reaction, so it is used to cut the electric trim automatically.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0017",
@@ -458,25 +458,25 @@
     "options": [
       {
         "id": "a",
-        "text": "They disconnect the manual trim wheels"
+        "text": "They disconnect the manual trim wheels from the jackscrew"
       },
       {
         "id": "b",
-        "text": "They isolate the elevator feel computer"
-      },
-      {
-        "id": "c",
         "text": "They remove electric power from the stabiliser trim"
       },
       {
+        "id": "c",
+        "text": "They isolate the elevator feel computer from its supply"
+      },
+      {
         "id": "d",
-        "text": "They lock the stabiliser in its current position mechanically"
+        "text": "They lock the stabiliser in its current position"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Cutting the power stops any uncommanded electric trim, leaving the manual wheels as the means of trimming.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0018",
@@ -486,25 +486,25 @@
     "options": [
       {
         "id": "a",
-        "text": "No trim capability at all"
+        "text": "Manual trim using the trim wheels"
       },
       {
         "id": "b",
-        "text": "Autopilot trim only"
+        "text": "No trim capability at all"
       },
       {
         "id": "c",
-        "text": "Manual trim using the trim wheels"
+        "text": "Autopilot trim through its servo"
       },
       {
         "id": "d",
         "text": "Electric trim at a reduced rate"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "The mechanical path is independent of the electrical system, which is why it survives the cutout.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0019",
@@ -514,25 +514,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Only by the position of the trim wheel handle"
-      },
-      {
-        "id": "b",
         "text": "In units on the trim indicator beside the trim wheels"
       },
       {
+        "id": "b",
+        "text": "Only by the position of the trim wheel handle itself"
+      },
+      {
         "id": "c",
-        "text": "As a percentage on the flight display"
+        "text": "As a percentage on the flight display beside the speed tape"
       },
       {
         "id": "d",
-        "text": "As an angle in degrees on the overhead panel"
+        "text": "As an angle in degrees on the overhead flight control panel"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "The indicator is beside the wheels so the setting and its movement are seen together.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0020",
@@ -542,25 +542,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Their rotation drives the autopilot pitch servo"
-      },
-      {
-        "id": "b",
         "text": "Their movement and sound provide a direct indication that trim is running"
       },
       {
+        "id": "b",
+        "text": "Their rotation drives the autopilot pitch servo through the cable run"
+      },
+      {
         "id": "c",
-        "text": "They show the position of the elevator feel computer"
+        "text": "They show the position of the elevator feel computer at all times"
       },
       {
         "id": "d",
         "text": "They indicate the hydraulic pressure available to the stabiliser"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "An uncommanded trim runaway is recognised first by the wheels turning when nobody has commanded it.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0021",
@@ -570,7 +570,7 @@
     "options": [
       {
         "id": "a",
-        "text": "It provides artificial feel to the rudder pedals"
+        "text": "It provides artificial feel to the rudder pedals according to the airspeed"
       },
       {
         "id": "b",
@@ -578,17 +578,17 @@
       },
       {
         "id": "c",
-        "text": "It limits elevator deflection at low speed"
+        "text": "It limits elevator deflection as the airspeed and the load increase"
       },
       {
         "id": "d",
-        "text": "It compensates for Mach tuck at high speed"
+        "text": "It compensates for the Mach tuck that develops at high cruise speed"
       }
     ],
     "correct": "b",
     "explanation": "Without artificial feel, a hydraulically powered control would give the pilot no sense of how much load is being applied.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0022",
@@ -598,25 +598,25 @@
     "options": [
       {
         "id": "a",
-        "text": "A failure of the stabiliser trim system"
+        "text": "A failure of the stabiliser trim system on one of the channels"
       },
       {
         "id": "b",
-        "text": "An asymmetry between the two elevators"
+        "text": "A difference between the pressures supplied to the elevator feel system"
       },
       {
         "id": "c",
-        "text": "A difference in pressure between hydraulic systems A and B"
+        "text": "An asymmetry between the deflections of the two elevator surfaces"
       },
       {
         "id": "d",
-        "text": "A difference between the pressures supplied to the elevator feel system"
+        "text": "A difference in pressure between hydraulic systems A and B"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "The system is duplicated, and a disagreement means one half may not be providing the correct feel.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0023",
@@ -626,25 +626,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It trims the rudder for asymmetric thrust at high speed"
+        "text": "It trims the rudder automatically for asymmetric thrust at high Mach number"
       },
       {
         "id": "b",
-        "text": "It limits the maximum Mach number that can be selected"
+        "text": "It limits the maximum Mach number that can be selected on the panel"
       },
       {
         "id": "c",
-        "text": "It adjusts the elevator feel forces at low speed"
+        "text": "It compensates for the nose down tendency that develops at high Mach number"
       },
       {
         "id": "d",
-        "text": "It compensates for the nose down tendency that develops at high Mach number"
+        "text": "It adjusts the elevator feel forces as the Mach number increases"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "The rearward movement of the centre of pressure at high Mach produces a pitch down that must be trimmed out automatically.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0024",
@@ -654,25 +654,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The stabiliser trim must be cut out"
+        "text": "The stabiliser trim must be cut out because the trim may run away"
       },
       {
         "id": "b",
-        "text": "A speed restriction may apply because the compensation is no longer available"
+        "text": "The autopilot must be disengaged because it cannot trim correctly"
       },
       {
         "id": "c",
-        "text": "The autopilot must be disengaged immediately"
+        "text": "A descent is required because the feel forces are no longer being corrected"
       },
       {
         "id": "d",
-        "text": "The airplane must descend below 10000 ft"
+        "text": "A speed restriction may apply because the compensation is no longer available"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Without the compensation the airplane is limited to speeds where the effect remains manageable.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0025",
@@ -682,25 +682,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It prevents the stabiliser from exceeding the takeoff trim range"
+        "text": "It prevents the stabiliser from exceeding the takeoff trim range at rotation"
       },
       {
         "id": "b",
-        "text": "It trims the airplane automatically during the approach"
+        "text": "It trims the airplane automatically during the approach and the flare"
       },
       {
         "id": "c",
-        "text": "It improves speed stability by trimming the stabiliser at low speed and high thrust"
+        "text": "It maintains the selected airspeed by adjusting the thrust at low speed"
       },
       {
         "id": "d",
-        "text": "It maintains the selected airspeed by adjusting the thrust"
+        "text": "It improves speed stability by trimming the stabiliser at low speed and high thrust"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "At light weight, aft centre of gravity and high thrust the airplane is less speed stable, and the system restores that stability.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0026",
@@ -710,25 +710,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Whenever the autopilot is engaged"
-      },
-      {
-        "id": "b",
-        "text": "Only above the flap retraction altitude"
-      },
-      {
-        "id": "c",
         "text": "With the autopilot not engaged, in the conditions for which it is designed"
       },
       {
+        "id": "b",
+        "text": "Whenever the autopilot is engaged, in the conditions for which it is designed"
+      },
+      {
+        "id": "c",
+        "text": "Only above the flap retraction altitude, with the autopilot engaged"
+      },
+      {
         "id": "d",
-        "text": "Only with the flaps fully retracted"
+        "text": "Only with the flaps fully retracted and the thrust levers at climb"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "It exists to help the pilot flying manually, so it is not needed when the autopilot is trimming the airplane.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0027",
@@ -746,17 +746,17 @@
       },
       {
         "id": "c",
-        "text": "They are unaffected by the control wheel"
+        "text": "They rise on the down going wing to assist roll control"
       },
       {
         "id": "d",
-        "text": "They rise on the down going wing to assist roll control"
+        "text": "They are unaffected by the control wheel"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Spoiler assistance increases roll rate, which matters most at low speed where aileron effectiveness is reduced.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0028",
@@ -770,21 +770,21 @@
       },
       {
         "id": "b",
-        "text": "The ground spoilers"
+        "text": "The outboard panels only"
       },
       {
         "id": "c",
-        "text": "All spoiler panels operate in flight and on the ground"
+        "text": "The inboard flight spoilers"
       },
       {
         "id": "d",
-        "text": "The inboard flight spoilers only"
+        "text": "The ground spoilers"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Their deflection is too large for flight use, and they exist to destroy lift and put weight on the wheels after touchdown.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0029",
@@ -794,28 +794,28 @@
     "options": [
       {
         "id": "a",
-        "text": "Whether blended winglets are fitted"
+        "text": "Whether the blended winglets are fitted"
       },
       {
         "id": "b",
-        "text": "The maximum certificated takeoff weight"
+        "text": "The build and configuration of that airplane"
       },
       {
         "id": "c",
-        "text": "The autobrake system installed"
+        "text": "The maximum certificated takeoff weight"
       },
       {
         "id": "d",
-        "text": "The build and configuration of that airplane"
+        "text": "The autobrake system that is installed"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Panel counts differ between variants and builds. Verify the arrangement on your fleet against your operator FCOM.",
     "tags": [
       "verify-fcom"
     ],
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0030",
@@ -825,25 +825,25 @@
     "options": [
       {
         "id": "a",
-        "text": "DOWN, HALF and FULL"
-      },
-      {
-        "id": "b",
-        "text": "OFF, FLIGHT and GROUND"
-      },
-      {
-        "id": "c",
         "text": "DOWN, ARMED, FLIGHT DETENT and UP"
       },
       {
+        "id": "b",
+        "text": "DOWN, HALF, FLIGHT DETENT and FULL"
+      },
+      {
+        "id": "c",
+        "text": "OFF, ARMED, FLIGHT and GROUND"
+      },
+      {
         "id": "d",
-        "text": "RETRACT, ARM and EXTEND"
+        "text": "RETRACT, ARMED, FLIGHT and EXTEND"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Each position corresponds to a different combination of flight and ground spoiler operation.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0031",
@@ -857,21 +857,21 @@
       },
       {
         "id": "b",
-        "text": "Automatic speedbrake deployment on landing"
-      },
-      {
-        "id": "c",
         "text": "Extension of the ground spoilers before touchdown"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Automatic retraction of the speedbrakes at a preset speed"
+      },
+      {
+        "id": "d",
+        "text": "Automatic speedbrake deployment on landing"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Automatic deployment at touchdown puts the spoilers up immediately, which is when they are most valuable for braking.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0032",
@@ -881,25 +881,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The autobrake system reaching its selected deceleration"
+        "text": "The autobrake system reaching the deceleration rate that was selected"
       },
       {
         "id": "b",
-        "text": "Nose wheel contact with the runway"
+        "text": "Wheel spin up or the main gear compressing, with the thrust levers at idle"
       },
       {
         "id": "c",
-        "text": "Selection of reverse thrust"
+        "text": "Nose wheel contact with the runway, with the thrust levers at idle"
       },
       {
         "id": "d",
-        "text": "Wheel spin up or the main gear compressing, with the thrust levers at idle"
+        "text": "Selection of reverse thrust with the main gear on the runway"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "The logic confirms the airplane is actually on the ground before deploying a device that destroys lift.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0033",
@@ -913,21 +913,21 @@
       },
       {
         "id": "b",
-        "text": "It holds the lever until wheel spin up occurs"
+        "text": "It holds the lever until wheel spin up occurs after touchdown"
       },
       {
         "id": "c",
-        "text": "It arms the ground spoilers for landing"
+        "text": "It arms the ground spoilers for deployment on the landing roll"
       },
       {
         "id": "d",
-        "text": "It selects the spoilers for roll assistance only"
+        "text": "It selects the spoiler panels for roll assistance only"
       }
     ],
     "correct": "a",
     "explanation": "A stop in the lever travel prevents the pilot from selecting a deflection that is only appropriate on the ground.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0034",
@@ -937,25 +937,25 @@
     "options": [
       {
         "id": "a",
-        "text": "A fault in the automatic speedbrake system"
+        "text": "An extension of the speedbrakes in flight"
       },
       {
         "id": "b",
-        "text": "That the speedbrakes are extended in flight"
+        "text": "A failure of the ground spoilers to retract"
       },
       {
         "id": "c",
-        "text": "That the ground spoilers have failed to retract"
+        "text": "A fault in the automatic speedbrake system"
       },
       {
         "id": "d",
-        "text": "That the lever is in the armed position"
+        "text": "A lever left in the armed position on the ground"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "It tells the crew that the automatic function cannot be relied on, so manual deployment must be planned.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0035",
@@ -965,25 +965,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Because the autobrake system inhibits them"
+        "text": "Because the autobrake system inhibits them until touchdown"
       },
       {
         "id": "b",
-        "text": "Because the lever cannot be moved beyond the flight detent on the ground"
+        "text": "Because their deflection would produce an unacceptable loss of lift"
       },
       {
         "id": "c",
-        "text": "Because they are powered only by the standby hydraulic system"
+        "text": "Because the lever cannot be moved beyond the flight detent"
       },
       {
         "id": "d",
-        "text": "Because their deflection would produce an unacceptable loss of lift"
+        "text": "Because they are powered only by the standby hydraulic system"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "The devices are designed to destroy lift completely, which is useful after touchdown and dangerous in the air.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0036",
@@ -993,25 +993,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The spoilers deploy only if the autobrakes are selected to maximum"
+        "text": "The spoilers deploy automatically to place weight on the wheels"
       },
       {
         "id": "b",
-        "text": "The spoilers remain stowed until reverse thrust is selected"
+        "text": "The spoilers deploy only if the autobrakes are selected to maximum"
       },
       {
         "id": "c",
-        "text": "The spoilers are inhibited below V1"
+        "text": "The spoilers remain stowed until reverse thrust has been selected"
       },
       {
         "id": "d",
-        "text": "The spoilers deploy automatically to place weight on the wheels"
+        "text": "The spoilers are inhibited until the nose wheel is on the runway"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Weight on the wheels is what makes the brakes effective, so the spoilers contribute directly to the stopping distance.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0037",
@@ -1025,21 +1025,21 @@
       },
       {
         "id": "b",
-        "text": "Both A and B simultaneously"
-      },
-      {
-        "id": "c",
         "text": "The standby system"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "System B"
+      },
+      {
+        "id": "d",
+        "text": "Both A and B together"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "A single system drives them, with an alternate electric drive available if that system is lost.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0038",
@@ -1049,25 +1049,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The standby system"
-      },
-      {
-        "id": "b",
         "text": "System B"
       },
       {
+        "id": "b",
+        "text": "Both A and B"
+      },
+      {
         "id": "c",
-        "text": "System A"
+        "text": "The alternate electric drive"
       },
       {
         "id": "d",
-        "text": "The alternate electric drive"
+        "text": "System A"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Splitting the leading and trailing edge drives between the two systems prevents a single failure from taking all the high lift devices.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0039",
@@ -1077,25 +1077,25 @@
     "options": [
       {
         "id": "a",
-        "text": "1, 2, 5, 10, 15, 25, 30 and 40"
+        "text": "1, 2, 5, 10, 20, 25, 30 and 40"
       },
       {
         "id": "b",
-        "text": "1, 5, 15, 25 and 40"
+        "text": "1, 2, 5, 10, 15, 25, 30 and 40"
       },
       {
         "id": "c",
-        "text": "1, 2, 5, 15, 30 and 40"
+        "text": "1, 2, 5, 10, 15, 20, 30 and 40"
       },
       {
         "id": "d",
-        "text": "5, 10, 20, 30 and 40"
+        "text": "1, 2, 5, 10, 15, 25, 35 and 40"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "The range covers everything from a small takeoff setting to a full landing setting for short runways.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0040",
@@ -1105,25 +1105,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The leading edge devices extend before any significant trailing edge movement"
+        "text": "The leading edge devices remain retracted until flap 5 has been selected"
       },
       {
         "id": "b",
-        "text": "The leading edge devices remain retracted until flap 5"
+        "text": "The leading edge devices extend before any significant trailing edge movement"
       },
       {
         "id": "c",
-        "text": "Only the trailing edge flaps extend"
+        "text": "Only the trailing edge flaps extend until flap 5 has been selected"
       },
       {
         "id": "d",
-        "text": "Both leading and trailing edge devices extend together"
+        "text": "Both leading and trailing edge devices extend together at the same rate"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Extending the leading edge first protects the wing at increasing angles of attack as the airplane slows.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0041",
@@ -1165,7 +1165,7 @@
       },
       {
         "id": "b",
-        "text": "The selected flap lever position"
+        "text": "The position selected on the flap lever and nothing more"
       },
       {
         "id": "c",
@@ -1179,7 +1179,7 @@
     "correct": "a",
     "explanation": "Individual indications are what allow an asymmetry or a failed panel to be identified rather than just suspected.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0043",
@@ -1189,25 +1189,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It retracts the flaps from the full landing setting if the placard speed is exceeded"
+        "text": "It reduces the flap extension rate whenever the placard speed is being approached"
       },
       {
         "id": "b",
-        "text": "It reduces the flap extension rate at high speed"
-      },
-      {
-        "id": "c",
         "text": "It limits the flap lever to an intermediate setting above a given weight"
       },
       {
+        "id": "c",
+        "text": "It retracts the flaps from the full landing setting if the placard speed is exceeded"
+      },
+      {
         "id": "d",
-        "text": "It prevents flap extension above the maximum altitude"
+        "text": "It prevents any flap extension above the maximum certificated altitude"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "The system protects the structure automatically and then restores the setting once the speed has been reduced.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0044",
@@ -1217,25 +1217,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The flap lever must be cycled to restore the setting"
+        "text": "The flaps re-extend to the selected position automatically"
       },
       {
         "id": "b",
-        "text": "The alternate flap system must be used to re-extend them"
+        "text": "The flap lever must be cycled to restore the setting"
       },
       {
         "id": "c",
-        "text": "The flaps re-extend to the selected position automatically"
+        "text": "The alternate flap system must be used to re-extend them"
       },
       {
         "id": "d",
         "text": "The flaps remain at the reduced setting until reselected"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "The automatic restoration means the crew retains the landing configuration they selected once the speed is back within limits.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0045",
@@ -1245,25 +1245,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Electrically, using the alternate flap system"
+        "text": "Hydraulically, using the standby system"
       },
       {
         "id": "b",
-        "text": "By the standby hydraulic system"
+        "text": "Electrically, using the alternate flap system"
       },
       {
         "id": "c",
-        "text": "They cannot be extended and a flapless landing is required"
+        "text": "Mechanically, by gravity with an unlocking handle"
       },
       {
         "id": "d",
-        "text": "By gravity with an unlocking handle"
+        "text": "Hydraulically, using the remaining main system"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "An electric drive is independent of the hydraulic failure that caused the problem.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0046",
@@ -1285,13 +1285,13 @@
       },
       {
         "id": "d",
-        "text": "By aerodynamic load once the trailing edge flaps extend"
+        "text": "By aerodynamic load on the wing"
       }
     ],
     "correct": "c",
     "explanation": "The standby system is the third hydraulic source, and it is used here as well as for the rudder.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0047",
@@ -1301,7 +1301,7 @@
     "options": [
       {
         "id": "a",
-        "text": "It extends the devices only to the intermediate position"
+        "text": "It extends the devices only to the intermediate position, not to full"
       },
       {
         "id": "b",
@@ -1309,17 +1309,17 @@
       },
       {
         "id": "c",
-        "text": "It cannot be reversed, so the devices cannot be retracted afterwards"
+        "text": "It is slower but otherwise identical to the normal operation"
       },
       {
         "id": "d",
-        "text": "It is slower but otherwise identical to normal operation"
+        "text": "It cannot be reversed, so the devices cannot be retracted afterwards"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Because a go around cannot be flown in a clean configuration afterwards, the decision to use it is made with the landing committed.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0048",
@@ -1329,25 +1329,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It drives the slats to the full extend position as the airplane approaches a stall"
+        "text": "It prevents the slats extending above the placard speed for the setting"
       },
       {
         "id": "b",
-        "text": "It prevents slat extension above the placard speed"
+        "text": "It retracts the slats automatically as the airspeed increases during the climb"
       },
       {
         "id": "c",
-        "text": "It retracts the slats automatically at high speed"
+        "text": "It extends the slats automatically whenever the flap lever is moved"
       },
       {
         "id": "d",
-        "text": "It extends the slats automatically when the flap lever is moved"
+        "text": "It drives the slats to the full extend position as the airplane approaches a stall"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Additional leading edge camber at high angle of attack improves the stall margin at the moment it is most needed.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0049",
@@ -1385,25 +1385,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Yes, it is armed automatically below 1000 ft"
+        "text": "No, stall protection is provided by warning and increased control forces"
       },
       {
         "id": "b",
-        "text": "Yes, it operates after the stick shaker"
+        "text": "Yes, it operates shortly after the stick shaker has started to run"
       },
       {
         "id": "c",
-        "text": "Yes, but only with the flaps retracted"
+        "text": "Yes, it is armed automatically when the flaps are extended"
       },
       {
         "id": "d",
-        "text": "No, stall protection is provided by warning and increased control forces"
+        "text": "Yes, but only with the flaps and the landing gear retracted"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Recovery depends on the pilot responding to the warning, which is why recognition and the correct technique are trained so heavily.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0051",
@@ -1413,11 +1413,11 @@
     "options": [
       {
         "id": "a",
-        "text": "It softens the feel forces during the flare"
+        "text": "It softens the column feel forces during the flare to assist with the touchdown"
       },
       {
         "id": "b",
-        "text": "It reduces column force during manual reversion"
+        "text": "It reduces the column force during manual reversion to assist the pilot"
       },
       {
         "id": "c",
@@ -1425,13 +1425,13 @@
       },
       {
         "id": "d",
-        "text": "It compensates for stabiliser position changes"
+        "text": "It compensates for stabiliser position changes as the trim is run"
       }
     ],
     "correct": "c",
     "explanation": "Making the airplane feel heavy as the stall is approached adds a second, physical layer to the stall warning.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0052",
@@ -1441,11 +1441,11 @@
     "options": [
       {
         "id": "a",
-        "text": "The rudder"
+        "text": "The ailerons"
       },
       {
         "id": "b",
-        "text": "The ailerons"
+        "text": "The rudder"
       },
       {
         "id": "c",
@@ -1456,10 +1456,10 @@
         "text": "The stabiliser"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "It is also the surface that handles the asymmetry after an engine failure, which is why it has three hydraulic sources.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0053",
@@ -1469,11 +1469,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Because manual reversion is not certified for the rudder"
+        "text": "Because manual reversion through a control tab is not certified for the rudder at any speed"
       },
       {
         "id": "b",
-        "text": "Because the yaw damper requires a dedicated supply"
+        "text": "Because the yaw damper requires a dedicated hydraulic supply of its own"
       },
       {
         "id": "c",
@@ -1481,13 +1481,13 @@
       },
       {
         "id": "d",
-        "text": "Because the rudder is the largest control surface"
+        "text": "Because the rudder is the largest of the primary control surfaces fitted"
       }
     ],
     "correct": "c",
     "explanation": "The consequence of losing rudder power in an asymmetric condition is far more immediate than losing power to the other surfaces.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0054",
@@ -1497,25 +1497,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Roll control is lost entirely"
+        "text": "Roll control is lost entirely and the spoilers must be used"
       },
       {
         "id": "b",
-        "text": "Pitch control is available only through the stabiliser"
+        "text": "Pitch control is available only through the stabiliser trim"
       },
       {
         "id": "c",
-        "text": "Control response is unchanged but trim is unavailable"
+        "text": "Control forces are considerably higher and response is slower"
       },
       {
         "id": "d",
-        "text": "Control forces are considerably higher and response is slower"
+        "text": "Control response is unchanged but the trim is unavailable"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Flying without hydraulic assistance is physically demanding, and the technique relies on trimming and on anticipating control inputs.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0055",
@@ -1525,25 +1525,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Manual reversion occurs immediately"
-      },
-      {
-        "id": "b",
         "text": "The controls remain fully powered by system B"
       },
       {
+        "id": "b",
+        "text": "Manual reversion occurs on the ailerons and the elevators"
+      },
+      {
         "id": "c",
-        "text": "The ailerons are lost and roll control depends on the spoilers"
+        "text": "The ailerons are lost and roll depends on the spoilers"
       },
       {
         "id": "d",
-        "text": "The rudder transfers to the standby system automatically"
+        "text": "The rudder transfers to the standby system"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "The dual supply to each primary surface is exactly what makes a single system loss manageable.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0056",
@@ -1553,25 +1553,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Because the yaw damper is lost with either system"
+        "text": "Because the yaw damper and the autopilot are lost with either of the hydraulic systems"
       },
       {
         "id": "b",
-        "text": "Because the primary controls revert to manual"
+        "text": "Because the primary flight controls revert to manual operation"
       },
       {
         "id": "c",
-        "text": "Because the high lift devices and some spoiler panels depend on the individual systems"
+        "text": "Because the stabiliser trim and the elevator feel become unavailable"
       },
       {
         "id": "d",
-        "text": "Because the stabiliser trim becomes unavailable"
+        "text": "Because the high lift devices and some spoiler panels depend on the individual systems"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "The primary surfaces are unaffected, but the configuration changing systems are split between A and B.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0057",
@@ -1581,25 +1581,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It shows the actual position of the trailing edge flaps"
-      },
-      {
-        "id": "b",
         "text": "It shows the difference between the left and right flaps"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "It shows the leading edge device positions"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "It shows the position selected on the flap lever only"
+      },
+      {
+        "id": "d",
+        "text": "It shows the actual position of the trailing edge flaps"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Confirming the surfaces have reached the selected position is what turns a selection into a verified configuration.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0058",
@@ -1609,7 +1609,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Loss of the stall warning system"
+        "text": "A loss of the stall warning system on the affected wing"
       },
       {
         "id": "b",
@@ -1617,17 +1617,17 @@
       },
       {
         "id": "c",
-        "text": "A rolling moment that may exceed the available roll control"
+        "text": "An immediate loss of pitch control in the flare"
       },
       {
         "id": "d",
-        "text": "An immediate loss of pitch control"
+        "text": "A rolling moment that may exceed the available roll control"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Lift differs between the wings, and if the asymmetry is large enough the ailerons and spoilers cannot balance it.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0059",
@@ -1637,15 +1637,15 @@
     "options": [
       {
         "id": "a",
-        "text": "By mechanically linking the left and right surfaces"
+        "text": "By mechanically linking the left and right surfaces through a common torque tube"
       },
       {
         "id": "b",
-        "text": "By limiting the rate of flap extension"
+        "text": "By limiting the rate at which the flaps and slats can extend"
       },
       {
         "id": "c",
-        "text": "By restricting flap selection to one detent at a time"
+        "text": "By restricting flap selection to one detent at a time in flight"
       },
       {
         "id": "d",
@@ -1655,7 +1655,7 @@
     "correct": "d",
     "explanation": "Stopping the drive at the first sign of a mismatch limits the asymmetry to a size the controls can handle.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0060",
@@ -1665,25 +1665,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It arms the speed trim system"
+        "text": "It confirms that the stabiliser is set within the range approved for the takeoff weight"
       },
       {
         "id": "b",
-        "text": "It limits the trim available after takeoff"
+        "text": "It ensures the stabiliser is set within the range appropriate for the loaded centre of gravity"
       },
       {
         "id": "c",
-        "text": "It sets the elevator feel forces for the takeoff"
+        "text": "It sets the elevator feel forces for the takeoff and for the initial climb out"
       },
       {
         "id": "d",
-        "text": "It ensures the stabiliser is set within the range appropriate for the loaded centre of gravity"
+        "text": "It limits the amount of stabiliser trim that remains available after the takeoff"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "A stabiliser set outside the range produces either an unmanageable rotation or an unexpected pitch up.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0061",
@@ -1693,25 +1693,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Because it checks the flap and stabiliser settings before takeoff"
+        "text": "Because it verifies that the yaw damper is engaged before takeoff"
       },
       {
         "id": "b",
-        "text": "Because it verifies the yaw damper is engaged"
+        "text": "Because it confirms that the speedbrake lever is armed for takeoff"
       },
       {
         "id": "c",
-        "text": "Because it confirms the speedbrake lever is armed"
+        "text": "Because it monitors the hydraulic pressure to the flight controls"
       },
       {
         "id": "d",
-        "text": "Because it monitors the hydraulic pressure to the controls"
+        "text": "Because it checks the flap and stabiliser settings before takeoff"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The warning exists because attempting a takeoff with the wrong configuration has repeatedly proved fatal.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0062",
@@ -1721,25 +1721,25 @@
     "options": [
       {
         "id": "a",
-        "text": "To allow the autobrake system to control them independently"
+        "text": "So that the autobrake system can control each of the panels independently"
       },
       {
         "id": "b",
-        "text": "So that a single hydraulic failure leaves some spoiler capability available"
+        "text": "So that the ground spoilers receive the higher pressure they need"
       },
       {
         "id": "c",
-        "text": "Because the ground spoilers require higher pressure"
+        "text": "So that a single hydraulic failure leaves some spoiler capability available"
       },
       {
         "id": "d",
-        "text": "To balance the hydraulic demand between the systems"
+        "text": "So that the hydraulic demand is balanced between the two systems"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Distributing the panels means a system failure degrades the spoiler function rather than removing it.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0063",
@@ -1749,25 +1749,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The airplane slows without any change in descent rate"
+        "text": "Drag is increased with no change in lift, so the speed reduces"
       },
       {
         "id": "b",
-        "text": "Lift is reduced and drag is increased, producing a higher rate of descent"
+        "text": "Lift is increased and drag is reduced, producing a lower rate of descent"
       },
       {
         "id": "c",
-        "text": "Drag is increased with no change in lift"
+        "text": "Lift is reduced and drag is increased, producing a higher rate of descent"
       },
       {
         "id": "d",
-        "text": "Lift is increased and the airplane pitches down"
+        "text": "Lift and drag are unchanged, and only the pitch attitude alters"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Because they spoil lift as well as adding drag, their use is limited in the approach configuration.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0064",
@@ -1777,25 +1777,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Because it disables the autopilot permanently"
+        "text": "Because it disables the autopilot and the speed trim permanently"
       },
       {
         "id": "b",
-        "text": "Because an unchecked runaway can produce forces the crew cannot overcome"
+        "text": "Because the electrical system will be damaged by the running motor"
       },
       {
         "id": "c",
-        "text": "Because the electrical system will be damaged"
+        "text": "Because an unchecked runaway can produce forces the crew cannot overcome"
       },
       {
         "id": "d",
-        "text": "Because it causes an immediate loss of hydraulic pressure"
+        "text": "Because it causes an immediate loss of hydraulic pressure to the controls"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "The stabiliser is powerful enough to exceed elevator authority, so the time available to react is short.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0065",
@@ -1805,25 +1805,25 @@
     "options": [
       {
         "id": "a",
-        "text": "A large out of trim stabiliser can overcome the available elevator authority"
+        "text": "The stabiliser affects only the trim forces and not the elevator authority"
       },
       {
         "id": "b",
-        "text": "The stabiliser only affects trim forces, not authority"
+        "text": "The elevator can always override the stabiliser at any trim setting"
       },
       {
         "id": "c",
-        "text": "The elevator can always override the stabiliser"
+        "text": "A large out of trim stabiliser can overcome the available elevator authority"
       },
       {
         "id": "d",
-        "text": "They are independent of each other"
+        "text": "The two surfaces are independent of each other in every flight condition"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "The stabiliser is the larger surface with the longer moment arm, which is why an out of trim condition must not be allowed to develop.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0066",
@@ -1833,25 +1833,25 @@
     "options": [
       {
         "id": "a",
-        "text": "To exercise the autopilot servos"
+        "text": "To exercise the autopilot servos through their full range of travel"
       },
       {
         "id": "b",
-        "text": "To confirm full and free movement of the controls in the correct sense"
+        "text": "To reset the flight control computers before the engines are started"
       },
       {
         "id": "c",
-        "text": "To reset the flight control computers"
+        "text": "To verify the output pressure of the hydraulic pumps on both systems"
       },
       {
         "id": "d",
-        "text": "To verify the hydraulic pump output pressure"
+        "text": "To confirm full and free movement of the controls in the correct sense"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "A restriction or a reversed connection can only be found by moving the controls and observing the result before flight.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FCT-0067",
@@ -1889,24 +1889,24 @@
     "options": [
       {
         "id": "a",
-        "text": "Because the extended surfaces and their mechanisms cannot withstand the loads at higher speeds"
+        "text": "Because the stall warning system is calibrated for specific airspeeds at each flap setting"
       },
       {
         "id": "b",
-        "text": "Because the stall warning system is calibrated for specific speeds"
+        "text": "Because the extended surfaces and their mechanisms cannot withstand the loads at higher speeds"
       },
       {
         "id": "c",
-        "text": "Because the autopilot cannot compensate for the trim change"
+        "text": "Because the autopilot cannot compensate for the trim change they produce"
       },
       {
         "id": "d",
-        "text": "Because the hydraulic drives cannot move them against the airflow"
+        "text": "Because the hydraulic drives cannot move them against the airflow at speed"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "The devices are large, lightly built structures optimised for low speed, and exceeding their limit speeds damages them.",
     "status": "published",
-    "version": 1
+    "version": 2
   }
 ]

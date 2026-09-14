@@ -7,25 +7,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Engine bleed air"
+        "text": "Electrical elements"
       },
       {
         "id": "b",
-        "text": "Electrical heating elements"
+        "text": "Hot engine oil"
       },
       {
         "id": "c",
-        "text": "Hot oil from the engine scavenge system"
+        "text": "Exhaust gas"
       },
       {
         "id": "d",
-        "text": "Exhaust gas recirculation"
+        "text": "Engine bleed air"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Both are thermal systems fed from the pneumatic ducts, which is why a bleed failure also costs the airframe its ice protection.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0002",
@@ -67,21 +67,21 @@
       },
       {
         "id": "b",
-        "text": "By a single switch for both engines"
+        "text": "By a single switch for both engines together"
       },
       {
         "id": "c",
-        "text": "Automatically whenever TAT falls below the icing value"
+        "text": "Automatically when TAT falls below the icing value"
       },
       {
         "id": "d",
-        "text": "By the wing anti-ice switch when the flaps are up"
+        "text": "By the wing anti-ice switch with the flaps up"
       }
     ],
     "correct": "a",
     "explanation": "Independent switches allow one engine to be protected if the other has a failed valve or a bleed problem.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0004",
@@ -91,15 +91,15 @@
     "options": [
       {
         "id": "a",
-        "text": "The valve is closed and the switch is OFF"
+        "text": "The valve is closed with the switch selected OFF"
       },
       {
         "id": "b",
-        "text": "The cowl has overheated"
+        "text": "The cowl anti-ice duct has overheated downstream of the valve"
       },
       {
         "id": "c",
-        "text": "The valve is open and operating normally"
+        "text": "The valve is open and operating normally in flight"
       },
       {
         "id": "d",
@@ -109,7 +109,7 @@
     "correct": "d",
     "explanation": "Bright means the system has not yet reached the commanded state, and the light dims once the valve confirms the selection.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0005",
@@ -119,25 +119,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The valve has failed closed"
+        "text": "The valve has failed in the closed position"
       },
       {
         "id": "b",
-        "text": "The switch has been left ON after landing"
+        "text": "An overheat in the cowl anti-ice duct"
       },
       {
         "id": "c",
-        "text": "Low bleed pressure at the valve"
+        "text": "The switch has been left ON after landing"
       },
       {
         "id": "d",
-        "text": "An overheat in the cowl anti-ice duct"
+        "text": "Low bleed air pressure at the valve"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Excessive temperature in the cowl can damage the inlet structure, so it is annunciated separately from valve position.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0006",
@@ -159,13 +159,13 @@
       },
       {
         "id": "d",
-        "text": "The engine reverts to approach idle only with flaps extended"
+        "text": "Idle reverts to approach idle"
       }
     ],
     "correct": "c",
     "explanation": "Idle is raised so the engine can still supply usable bleed pressure while producing minimum thrust.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0007",
@@ -179,7 +179,7 @@
       },
       {
         "id": "b",
-        "text": "It has no effect on performance"
+        "text": "It has no measurable effect on takeoff performance"
       },
       {
         "id": "c",
@@ -193,7 +193,7 @@
     "correct": "a",
     "explanation": "Air taken for ice protection is air not producing thrust, so the takeoff performance calculation has to account for it.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0008",
@@ -234,28 +234,28 @@
     "options": [
       {
         "id": "a",
-        "text": "Surface water, slush or snow on the ramp or runway"
+        "text": "A crosswind exceeding ten knots on the runway"
       },
       {
         "id": "b",
-        "text": "A crosswind exceeding ten knots"
+        "text": "The APU supplying both packs on the ground"
       },
       {
         "id": "c",
-        "text": "The APU supplying both packs"
+        "text": "Surface water, slush or snow on the ramp or runway"
       },
       {
         "id": "d",
-        "text": "A cabin altitude below field elevation"
+        "text": "A cabin altitude below the field elevation"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Standing water can be thrown into the inlet and freeze there even in clear air. Verify the exact wording against your operator FCOM.",
     "tags": [
       "verify-fcom"
     ],
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0010",
@@ -265,7 +265,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Because the system cannot be selected once ice has formed"
+        "text": "Because the system cannot be selected once ice has begun to form on the lip"
       },
       {
         "id": "b",
@@ -273,17 +273,17 @@
       },
       {
         "id": "c",
-        "text": "Because the valves are inhibited above idle thrust"
+        "text": "Because the bleed supply is insufficient to melt accumulated ice"
       },
       {
         "id": "d",
-        "text": "Because the bleed supply is insufficient to melt accumulated ice"
+        "text": "Because the valves are inhibited above idle thrust in the climb"
       }
     ],
     "correct": "b",
     "explanation": "The aim is to prevent an accretion forming at all, since a released sheet of ice entering the core is far worse than the drag of prevention.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0011",
@@ -293,25 +293,25 @@
     "options": [
       {
         "id": "a",
-        "text": "All leading edge devices including the Krueger flaps"
-      },
-      {
-        "id": "b",
         "text": "The three inboard leading edge slats on each wing"
       },
       {
+        "id": "b",
+        "text": "All leading edge devices including the Krueger flaps"
+      },
+      {
         "id": "c",
-        "text": "The complete wing leading edge"
+        "text": "The complete wing leading edge from root to tip"
       },
       {
         "id": "d",
-        "text": "The leading edge and the trailing edge flaps"
+        "text": "The leading edge slats and the trailing edge flaps"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Only the inboard slats are heated. The outboard devices are left unprotected because the inboard sections dominate the handling effects of ice.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0012",
@@ -321,25 +321,25 @@
     "options": [
       {
         "id": "a",
-        "text": "A dimly illuminated blue valve open light"
-      },
-      {
-        "id": "b",
         "text": "A bright blue valve open light"
       },
       {
+        "id": "b",
+        "text": "An amber valve position indication"
+      },
+      {
         "id": "c",
-        "text": "An amber valve light"
+        "text": "A dimly illuminated blue valve open light"
       },
       {
         "id": "d",
-        "text": "No light at all"
+        "text": "No light at all once the valve opens"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Dim confirms agreement between the switch and the valve, while bright is the transit or disagreement indication.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0013",
@@ -349,25 +349,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Nothing, the system continues to operate"
+        "text": "The valves close and the switch moves to OFF"
       },
       {
         "id": "b",
-        "text": "The valves open fully to the high flow position"
+        "text": "Nothing, the system continues to operate"
       },
       {
         "id": "c",
-        "text": "The valves close and the switch moves to OFF"
+        "text": "The valves open fully to the high flow position"
       },
       {
         "id": "d",
         "text": "The system transfers to automatic in flight control"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Ground operation is limited so that full bleed is available for takeoff, and the system is then reselected once airborne if required.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0014",
@@ -381,21 +381,21 @@
       },
       {
         "id": "b",
-        "text": "No, ground ice must be removed with de-icing fluid"
+        "text": "Yes, but only with both engines at high thrust"
       },
       {
         "id": "c",
-        "text": "Yes, but only with both engines at high thrust"
+        "text": "No, ground ice must be removed with de-icing fluid"
       },
       {
         "id": "d",
         "text": "Yes, provided the APU is supplying both ducts"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "The system has neither the heat nor the coverage to shed a ground accretion, and any melt water can refreeze further aft on unprotected surfaces.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0015",
@@ -405,7 +405,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Because the valves cannot open once ice has formed"
+        "text": "Because the valves cannot open once ice has formed across the slat and Krueger surfaces"
       },
       {
         "id": "b",
@@ -413,17 +413,17 @@
       },
       {
         "id": "c",
-        "text": "Because the bleed demand is lower when the wing is already cold"
+        "text": "Because the bleed air demand is far lower when the wing is already cold"
       },
       {
         "id": "d",
-        "text": "To prevent the wing body overheat detectors from tripping"
+        "text": "To prevent the wing body overheat detectors from tripping during the climb"
       }
     ],
     "correct": "b",
     "explanation": "Runback and shed ice from a late selection are the problems the anti-ice philosophy is designed to avoid.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0016",
@@ -445,13 +445,13 @@
       },
       {
         "id": "d",
-        "text": "An increase in cabin altitude"
+        "text": "An increase in cabin altitude in the cruise"
       }
     ],
     "correct": "c",
     "explanation": "The bleed taken from the engines has to be paid for in thrust and fuel, which is why its use is limited to when it is actually needed.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0017",
@@ -461,15 +461,15 @@
     "options": [
       {
         "id": "a",
-        "text": "It causes an immediate loss of cabin pressure"
+        "text": "It causes an immediate loss of cabin pressurisation"
       },
       {
         "id": "b",
-        "text": "It prevents the slats from extending"
+        "text": "It prevents the leading edge slats from extending"
       },
       {
         "id": "c",
-        "text": "It contaminates the fuel in the wing tanks"
+        "text": "It contaminates the fuel in the wing tanks below"
       },
       {
         "id": "d",
@@ -479,7 +479,7 @@
     "correct": "d",
     "explanation": "Hot bleed air escaping inside the leading edge is detected by the overheat sensing elements, and the response is to shut off the source.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0018",
@@ -489,7 +489,7 @@
     "options": [
       {
         "id": "a",
-        "text": "All flight deck windows"
+        "text": "All of the flight deck windows"
       },
       {
         "id": "b",
@@ -497,17 +497,17 @@
       },
       {
         "id": "c",
-        "text": "The No. 1 windows only"
+        "text": "The No. 1 forward windows only"
       },
       {
         "id": "d",
-        "text": "The No. 2 and No. 3 windows"
+        "text": "The No. 2 and No. 3 side windows only"
       }
     ],
     "correct": "b",
     "explanation": "Heat is applied where the crew needs a clear view, so the fixed aft window is left unheated.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0019",
@@ -517,25 +517,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It reduces the glare from direct sunlight"
-      },
-      {
-        "id": "b",
-        "text": "It maintains the electrical bonding of the airframe"
-      },
-      {
-        "id": "c",
         "text": "It improves the resistance of the windshield to bird strike"
       },
       {
+        "id": "b",
+        "text": "It reduces the glare from direct sunlight in the cruise"
+      },
+      {
+        "id": "c",
+        "text": "It maintains the electrical bonding of the airframe"
+      },
+      {
         "id": "d",
-        "text": "It allows the wipers to operate at higher speeds"
+        "text": "It allows the wipers to operate at higher airspeeds"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Warm laminate is more flexible and absorbs impact better, which is why the forward window heat is selected for takeoff and landing.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0020",
@@ -573,25 +573,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The window has reached its overheat limit"
+        "text": "Heat is being applied to that window"
       },
       {
         "id": "b",
-        "text": "The window heat controller has failed"
+        "text": "The window has reached its overheat limit"
       },
       {
         "id": "c",
-        "text": "The switch is in the test position"
+        "text": "The window heat controller has failed"
       },
       {
         "id": "d",
-        "text": "Heat is being applied to that window"
+        "text": "The switch is in the test position"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "The light cycles as the controller applies and removes power, so intermittent illumination is normal.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0022",
@@ -609,17 +609,17 @@
       },
       {
         "id": "c",
-        "text": "All window heat is lost"
+        "text": "All window heat is lost on that side of the flight deck"
       },
       {
         "id": "d",
-        "text": "The window is isolated from the electrical system permanently"
+        "text": "The window is isolated permanently until maintenance"
       }
     ],
     "correct": "a",
     "explanation": "Uncontrolled heating can delaminate the window or cause arcing, so the controller removes power as soon as the limit is sensed.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0023",
@@ -629,25 +629,25 @@
     "options": [
       {
         "id": "a",
-        "text": "From the total air temperature probe"
+        "text": "From temperature sensors in the window laminate"
       },
       {
         "id": "b",
-        "text": "From the cabin temperature controller"
+        "text": "From the total air temperature probe"
       },
       {
         "id": "c",
-        "text": "From ram air temperature at the pack inlet"
+        "text": "From the cabin temperature controller"
       },
       {
         "id": "d",
-        "text": "From temperature sensors in the window laminate"
+        "text": "From ram air temperature at the pack inlet"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Sensing the glass itself is what allows the temperature to be held within the narrow band the laminate can tolerate.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0024",
@@ -657,7 +657,7 @@
     "options": [
       {
         "id": "a",
-        "text": "The continuity of the wiper motors"
+        "text": "The continuity of the windshield wiper motors"
       },
       {
         "id": "b",
@@ -665,17 +665,17 @@
       },
       {
         "id": "c",
-        "text": "The window de-misting airflow"
+        "text": "The overheat sensing and the power circuits"
       },
       {
         "id": "d",
-        "text": "The overheat sensing and the power circuits"
+        "text": "The window de-misting airflow at the ducts"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Testing the protective circuit matters as much as testing the heater, because an undetected overheat is what damages the window.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0025",
@@ -685,25 +685,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The windshield and the side windows"
+        "text": "The windshield, the side windows and the windshield wiper motors"
       },
       {
         "id": "b",
-        "text": "The engine inlet cowl lips"
+        "text": "The engine inlet cowl lips, the fan blades, the spinner and the guide vanes"
       },
       {
         "id": "c",
-        "text": "The pitot and static sensing, the TAT probe and the angle of attack sensors"
+        "text": "The water and waste drain lines, the drain masts and the valves"
       },
       {
         "id": "d",
-        "text": "The water and waste drain lines only"
+        "text": "The pitot and static sensing, the TAT probe and the angle of attack sensors"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Every air data input depends on an unobstructed sensing port, so all of them are heated as a group.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0026",
@@ -713,25 +713,25 @@
     "options": [
       {
         "id": "a",
-        "text": "To reduce the electrical load during engine start"
-      },
-      {
-        "id": "b",
-        "text": "Because the probe is not exposed until the gear retracts"
-      },
-      {
-        "id": "c",
         "text": "To avoid an erroneously high temperature reading with no airflow over the probe"
       },
       {
+        "id": "b",
+        "text": "To reduce the electrical load during engine start and pushback"
+      },
+      {
+        "id": "c",
+        "text": "Because the probe is not exposed to the airflow until the landing gear retracts"
+      },
+      {
         "id": "d",
-        "text": "To prevent damage to the probe from ground handling"
+        "text": "To prevent damage to the probe from ground handling equipment"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Without airflow the probe would heat itself and report a false TAT, which would corrupt the thrust and icing calculations.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0027",
@@ -741,25 +741,25 @@
     "options": [
       {
         "id": "a",
-        "text": "That the heater for that probe is not operating"
-      },
-      {
-        "id": "b",
         "text": "That the probe has reached its operating temperature"
       },
       {
+        "id": "b",
+        "text": "That the probe heat switch has been selected ON"
+      },
+      {
         "id": "c",
-        "text": "That the probe heat switch is ON"
+        "text": "That icing conditions have been detected by the probe"
       },
       {
         "id": "d",
-        "text": "That icing conditions have been detected"
+        "text": "That the heater for that probe is not operating"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The lights are failure annunciations, so the absence of a light with the system selected on is the normal indication.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0028",
@@ -769,7 +769,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Loss of altitude indication only"
+        "text": "Loss of the altitude indication on that side"
       },
       {
         "id": "b",
@@ -777,7 +777,7 @@
       },
       {
         "id": "c",
-        "text": "An immediate autothrottle disconnect"
+        "text": "An immediate autothrottle and autopilot disconnect"
       },
       {
         "id": "d",
@@ -787,7 +787,7 @@
     "correct": "b",
     "explanation": "A blocked pitot corrupts the dynamic pressure sensing, which is the classic origin of an unreliable airspeed event.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0029",
@@ -797,7 +797,7 @@
     "options": [
       {
         "id": "a",
-        "text": "To warm the potable water for galley use"
+        "text": "To warm the potable water for galley and lavatory use"
       },
       {
         "id": "b",
@@ -815,7 +815,7 @@
     "correct": "b",
     "explanation": "A frozen mast blocks the drain and can allow an external ice accretion to build up on the fuselage.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0030",
@@ -833,17 +833,17 @@
       },
       {
         "id": "c",
-        "text": "PARK, INT, LOW and HIGH"
+        "text": "OFF, NORM and MAX"
       },
       {
         "id": "d",
-        "text": "OFF, NORM and MAX"
+        "text": "PARK, INT, LOW and HIGH"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Independent controls for each side allow the pilot flying to run a wiper without distracting the other pilot.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0031",
@@ -853,25 +853,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The motors will overheat within seconds"
+        "text": "They will scratch and damage the glass surface"
       },
       {
         "id": "b",
-        "text": "The blades will detach at low airspeed"
+        "text": "The motors will overheat within seconds"
       },
       {
         "id": "c",
-        "text": "The window heat will be inhibited"
+        "text": "The blades will detach at low airspeed"
       },
       {
         "id": "d",
-        "text": "They will scratch and damage the glass surface"
+        "text": "The window heat will be inhibited"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "A dry wipe drags grit across the outer ply, and the resulting scratches degrade visibility permanently.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0032",
@@ -881,11 +881,11 @@
     "options": [
       {
         "id": "a",
-        "text": "A maximum operating airspeed"
+        "text": "A minimum outside air temperature"
       },
       {
         "id": "b",
-        "text": "A minimum outside air temperature"
+        "text": "A maximum operating airspeed"
       },
       {
         "id": "c",
@@ -896,13 +896,13 @@
         "text": "A maximum flap setting"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Aerodynamic loads on the blade arm at high speed can damage the mechanism. Verify the limiting speed against your operator FCOM.",
     "tags": [
       "verify-fcom"
     ],
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0033",
@@ -912,25 +912,25 @@
     "options": [
       {
         "id": "a",
-        "text": "By a chemical rain repellent sprayed from a pressurised can"
+        "text": "By a sprayed chemical rain repellent"
       },
       {
         "id": "b",
-        "text": "By bleed air blown across the outer surface"
+        "text": "By bleed air across the outer surface"
       },
       {
         "id": "c",
-        "text": "By a hydrophobic surface coating"
+        "text": "By an electrostatic charge on the glass"
       },
       {
         "id": "d",
-        "text": "By an electrostatic charge applied to the glass"
+        "text": "By a hydrophobic surface coating"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "The coating causes water to bead and be carried away by the airflow, which is why a separate repellent system is not fitted.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0034",
@@ -944,21 +944,21 @@
       },
       {
         "id": "b",
-        "text": "Crew assessment of TAT and visible moisture"
+        "text": "An ice accretion warning from the air data computer"
       },
       {
         "id": "c",
-        "text": "An ice accretion warning from the air data computer"
+        "text": "Crew assessment of TAT and visible moisture"
       },
       {
         "id": "d",
         "text": "Illumination of the wing anti-ice valve lights"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "The standard airplane has no ice detection system, so the decision rests on the temperature and moisture criteria applied by the crew.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0035",
@@ -968,15 +968,15 @@
     "options": [
       {
         "id": "a",
-        "text": "Using the logo lights on the fin"
+        "text": "Using the logo lights on the vertical fin"
       },
       {
         "id": "b",
-        "text": "Using the landing lights only"
+        "text": "Using the landing lights in the wing root"
       },
       {
         "id": "c",
-        "text": "Using the taxi light reflection off the nacelle"
+        "text": "Using the taxi light reflection off the engine nacelle"
       },
       {
         "id": "d",
@@ -986,7 +986,7 @@
     "correct": "d",
     "explanation": "The wing lights are aimed at the leading edge precisely so that an accretion can be seen from the flight deck in darkness.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0036",
@@ -1024,25 +1024,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The remaining engine can supply protection through the isolation valve"
+        "text": "Both wing and cowl protection are lost completely for the rest of the flight"
       },
       {
         "id": "b",
-        "text": "Both wing and cowl protection are lost completely"
+        "text": "The remaining engine can supply protection through the isolation valve"
       },
       {
         "id": "c",
-        "text": "Only electrical protection remains available"
+        "text": "Only the electrical protection remains available to the crew"
       },
       {
         "id": "d",
-        "text": "Wing anti-ice reverts to automatic operation"
+        "text": "Wing anti-ice reverts to automatic operation in the cruise"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Joining the two duct sides allows the operating engine to feed both wings and both cowls, which is why the isolation valve logic matters in icing.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0038",
@@ -1052,25 +1052,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Because the valves cannot open below flying speed"
+        "text": "Because the valves cannot be opened below flying speed while the airplane is stationary"
       },
       {
         "id": "b",
-        "text": "Because it interferes with the flap position indication"
+        "text": "Because the leading edge structure can overheat without airflow to carry the heat away"
       },
       {
         "id": "c",
-        "text": "Because it drains the hydraulic reservoir pressurisation"
+        "text": "Because it interferes with the flap and slat position indication"
       },
       {
         "id": "d",
-        "text": "Because the leading edge structure can overheat without airflow to carry the heat away"
+        "text": "Because it drains the hydraulic reservoir pressurisation supply"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "In flight the airflow removes the heat continuously, and without it the duct and skin temperatures rise beyond what the structure tolerates.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0039",
@@ -1080,25 +1080,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It blocks the anti-ice ducts from the inside"
+        "text": "It blocks the anti-ice ducting from the inside of the slat structure"
       },
       {
         "id": "b",
-        "text": "It accumulates on unprotected surfaces where it cannot be removed"
-      },
-      {
-        "id": "c",
         "text": "It causes the slats to jam in the extended position"
       },
       {
+        "id": "c",
+        "text": "It short circuits the window heat controllers in flight"
+      },
+      {
         "id": "d",
-        "text": "It short circuits the window heat controllers"
+        "text": "It accumulates on unprotected surfaces where it cannot be removed"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Melt water refreezing aft of the heated area builds a ridge on a surface the system cannot reach, which is why partial and late protection is undesirable.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ICE-0040",
@@ -1108,24 +1108,24 @@
     "options": [
       {
         "id": "a",
-        "text": "Window heat"
-      },
-      {
-        "id": "b",
         "text": "Wing anti-ice"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Engine cowl anti-ice"
+      },
+      {
+        "id": "c",
+        "text": "Window heat"
       },
       {
         "id": "d",
         "text": "Both wing and cowl anti-ice"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Electrical heating suits the small, precisely controlled areas such as windows and probes, while bleed air suits large structural surfaces.",
     "status": "published",
-    "version": 1
+    "version": 2
   }
 ]

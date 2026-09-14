@@ -170,21 +170,21 @@ each section comes in:
 | Section | As authored | As published |
 |---|---|---|
 | Airplane General | A 14 · B 32 · C 6 · D 0 | A 13 · B 13 · C 13 · D 13 |
-| Air Systems | A 36 · B 30 · C 1 · D 0 | A 17 · B 17 · C 17 · D 16 |
+| Air Systems | A 36 · B 30 · C 1 · D 0 | A 17 · B 16 · C 17 · D 17 |
 | Anti-Ice and Rain | A 28 · B 10 · C 2 · D 0 | A 10 · B 10 · C 10 · D 10 |
 | Automatic Flight | A 19 · B 9 · C 14 · D 18 | A 15 · B 15 · C 15 · D 15 |
 | Communications | A 9 · B 5 · C 5 · D 14 | A 8 · B 8 · C 8 · D 9 |
 | Electrical | A 15 · B 15 · C 15 · D 15 | A 15 · B 15 · C 15 · D 15 |
-| Engines and APU | A 18 · B 18 · C 19 · D 19 | A 19 · B 19 · C 18 · D 18 |
+| Engines and APU | A 18 · B 18 · C 19 · D 19 | A 18 · B 18 · C 19 · D 19 |
 | Fire Protection | A 12 · B 12 · C 12 · D 12 | A 12 · B 12 · C 12 · D 12 |
 | Flight Controls | A 17 · B 17 · C 17 · D 17 | A 17 · B 17 · C 17 · D 17 |
-| Flight Instruments and Displays | A 11 · B 11 · C 11 · D 12 | A 11 · B 11 · C 12 · D 11 |
-| Flight Management and Navigation | A 14 · B 15 · C 14 · D 15 | A 15 · B 14 · C 14 · D 15 |
-| Fuel | A 13 · B 14 · C 15 · D 13 | A 13 · B 14 · C 14 · D 14 |
-| Hydraulics | A 11 · B 11 · C 11 · D 12 | A 12 · B 11 · C 11 · D 11 |
-| Landing Gear and Brakes | A 13 · B 14 · C 15 · D 13 | A 13 · B 14 · C 14 · D 14 |
-| Warning Systems | A 10 · B 10 · C 11 · D 11 | A 11 · B 11 · C 10 · D 10 |
-| **Whole bank** | **A 240 · B 223 · C 168 · D 171** | **A 201 · B 201 · C 200 · D 200** |
+| Flight Instruments and Displays | A 11 · B 11 · C 11 · D 12 | A 12 · B 11 · C 11 · D 11 |
+| Flight Management and Navigation | A 14 · B 15 · C 14 · D 15 | A 15 · B 15 · C 14 · D 14 |
+| Fuel | A 13 · B 14 · C 15 · D 13 | A 14 · B 14 · C 13 · D 14 |
+| Hydraulics | A 11 · B 11 · C 11 · D 12 | A 11 · B 11 · C 12 · D 11 |
+| Landing Gear and Brakes | A 13 · B 14 · C 15 · D 13 | A 14 · B 14 · C 14 · D 13 |
+| Warning Systems | A 10 · B 10 · C 11 · D 11 | A 10 · B 11 · C 11 · D 10 |
+| **Whole bank** | **A 240 · B 223 · C 168 · D 171** | **A 201 · B 200 · C 201 · D 200** |
 
 **Automatic Flight arrived already spread**, using all four letters and
 scrambling its own numeric option sets — the first section to do so.
@@ -249,18 +249,23 @@ brings the *bank* level. 802 does not divide by four, so two letters carry
 one more than the other two; the sections that take the bank off a multiple of
 four are the ones whose rows look lopsided.
 
-Only the *order* of the options changes. Every question keeps the same four
-option texts and the same correct answer — the sentence that was right in the
-source is still the one marked right, it has simply moved — and the distractors
-keep their relative order, so each question reads as its author wrote it. This
-is asserted field by field against the source CSV, not assumed.
+At conversion time only the *order* of the options changed. Every question kept
+the same four option texts and the same correct answer — the sentence that was
+right in the source was still the one marked right, it had simply moved — and
+the distractors kept their relative order, so each question read as its author
+wrote it. That was asserted field by field against the source CSV, not assumed.
+
+**The distractors have since been rewritten**, which is the one claim above that
+no longer holds. See *The distractors were tightened afterwards* below. The
+correct answers came through that pass untouched as well.
 
 **Questions whose options carry their own order are left alone**, because
 scrambling them would make them harder to read for nothing: ascending
 magnitudes (counts, durations, altitudes, pressures, rates, dimensions), the
 No. 1 / No. 2 / No. 3 window numbering in `GEN-0016`, and the compressor-stage
-progression in `AIR-0002`. Eighteen questions in total. The even split is
-reached around them.
+progression in `AIR-0002`. Eighteen questions when that was written; forty-two
+now, because the distractor pass gave several more of them a complete set of
+magnitudes. The even split is reached around them.
 
 From Automatic Flight onwards the numeric options are ascending too, but they
 did not arrive that way. Every section since has shipped its quantity questions
@@ -357,3 +362,83 @@ This is worth stating because the schema is strict: a question file that still
 carries `difficulty` fails `validate:content` as an unknown field rather than
 being quietly accepted, which is asserted in `tests/content.test.ts`. When
 section eleven arrives, drop the column; do not carry it across.
+### The distractors were tightened afterwards
+
+Once all fifteen sections were in, the bank was read through again for a
+different problem: **questions that could be answered without knowing the
+aircraft.** A wrong option that is obviously wrong, or that is visibly longer
+and more detailed than the other three, hands the answer to a student who has
+never seen a 737. 642 of the 802 questions had their three wrong options
+rewritten; the other 160 already held up.
+
+Only the wrong options moved. **Question text, explanation text and the wording
+of every correct answer are byte-for-byte what they were**, which is checked
+against a snapshot of all fifteen source files after every rebuild rather than
+being taken on trust. No question was reworded — not one — so the 5% allowance
+for turning a question into a NOT form went entirely unused.
+
+What a wrong option now has to be:
+
+- **True somewhere else on the aircraft.** A different control on the same
+  panel, the opposite hydraulic system, the other 737 variant. A student who
+  knows the type rules it out for this question; one who does not, cannot.
+- **A near miss**, changing a single element of the right answer rather than
+  saying something unrelated.
+- **Within a tight band when it is a number.** 2500/3000/3500/5000 asks a real
+  question; 1500/2000/3000/5000 answers itself.
+- **Indistinguishable by shape.** All four options are close in length and share
+  a grammatical form, and *the correct answer is never the longest or the most
+  detailed* — the single most reliable tell in a badly written bank. Because the
+  correct answer's wording was frozen, this was reached by lengthening the wrong
+  options up to meet it, never by trimming the right one.
+- **The only true option for the question as asked.** "All of the above" and
+  "None of the above" appear nowhere in the bank.
+
+### Figures, and which of them are actually sourced
+
+A distractor for a numeric question is only safe if the number it surrounds is
+right, so the figures were treated separately and conservatively. Acceptable
+sources were Boeing documentation, a type certificate data sheet, and regulator
+publications. Question banks, flashcard sites, forums and wikis were not used
+for anything, including corroboration.
+
+**Four figures are confirmed by two independent sources** and their option bands
+were tightened on that basis:
+
+| Question | Figure | Sources |
+|---|---|---|
+| `GEN-0030` | Emergency lighting, at least 10 minutes | 14 CFR 25.812(i); CS-25.812(i), CS-25 Amdt 28 |
+| `GEN-0036` | Protective breathing equipment, 15 minutes | 14 CFR 25.1439(b)(5) and 121.337(b)(7)(i); CS-25.1439(b)(5) |
+| `AIR-0058` | Cabin altitude warning at 10,000 ft | 14 CFR 25.841(b)(6); CS-25.841(b)(6) |
+| `GEN-0043` | Overall length 39.5 m (129 ft 6 in) | Boeing D6-58325-7 Rev C; EASA TCDS IM.A.120 Issue 29 |
+
+**Twenty-six questions turn on a figure that could not be corroborated twice.**
+Their options are exactly as the source file wrote them: no band was narrowed
+and no near-value alternative was invented around a number nobody had confirmed.
+They are the ones asking for the recirculation fan count, cabin differential and
+rate of climb, the icing TAT, the autopilot and autoland heights, THR HLD speed,
+the CVR duration, generator rating and battery endurance, the EGT time limit and
+the two N2 start percentages, loop and bottle counts, flap detents, the database
+cycle, boost pumps per tank, hydraulic pressure, and the seating capacity, span
+and tail height.
+
+Three deserve their own note, because the sources disagree with the bank rather
+than merely failing to confirm it:
+
+- **`GEN-0005`, 189 passengers.** The EASA TCDS gives 189 *"with JAA/737-700/SC/
+  D-14 applicable — or otherwise: 180"*, against the `(I, III, III, I)` exit
+  arrangement that is the -800's. So the figure is this variant's, but it is
+  conditional, and it rests on one source. Boeing's own 184 is a different
+  quantity — a typical all-economy layout, not the certificated exit limit.
+- **`GEN-0045`, tail height.** The bank says 12.5 m (41 ft 2 in); the TCDS says
+  12.57 m (41 ft 3 in).
+- **`COM-0025`, two hours of cockpit voice recording.** Two hours is the legacy
+  TSO-C123a figure. 14 CFR 121.359 now requires **25 hours** for a recorder
+  manufactured on or after 16 May 2025 — which is already one of the options.
+
+None of the three was altered. They need an owner's decision, not a quiet edit.
+
+The FAA's Dynamic Regulatory System refuses programmatic access, so **TCDS
+A16WE could not be read**. It is the natural second source for the span and the
+seating capacity and would settle the tail height; anyone with access should
+start there.

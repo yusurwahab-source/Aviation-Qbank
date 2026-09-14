@@ -35,11 +35,11 @@
     "options": [
       {
         "id": "a",
-        "text": "It selects the alternate audio path to VHF 1"
+        "text": "It selects which receiver is heard, the navigation aid or the marker beacon"
       },
       {
         "id": "b",
-        "text": "It selects between the flight interphone and the service interphone"
+        "text": "It selects which transmitter is keyed, the selected radio or the interphone"
       },
       {
         "id": "c",
@@ -47,13 +47,13 @@
       },
       {
         "id": "d",
-        "text": "It switches the audio between the headset and the flight deck speaker"
+        "text": "It selects which output is fed, the headset jack or the flight deck speaker"
       }
     ],
     "correct": "c",
     "explanation": "After donning the oxygen mask the crew must still be able to transmit, and the selector routes the microphone accordingly.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0003",
@@ -67,21 +67,21 @@
       },
       {
         "id": "b",
-        "text": "It transmits on VHF 1 regardless of the panel selection"
+        "text": "It transmits on VHF 1 regardless of the audio panel selection"
       },
       {
         "id": "c",
-        "text": "It keys the passenger address system"
+        "text": "It connects the flight deck stations on the flight interphone"
       },
       {
         "id": "d",
-        "text": "It connects the pilot to the cabin crew"
+        "text": "It broadcasts to the cabin on the passenger address system"
       }
     ],
     "correct": "a",
     "explanation": "The switch keys whichever transmitter the panel has selected, so mic selection is verified before transmitting.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0004",
@@ -91,7 +91,7 @@
     "options": [
       {
         "id": "a",
-        "text": "The SELCAL decoder"
+        "text": "The service interphone to the ground crew"
       },
       {
         "id": "b",
@@ -99,17 +99,17 @@
       },
       {
         "id": "c",
-        "text": "The passenger address system"
+        "text": "The passenger address system to the cabin"
       },
       {
         "id": "d",
-        "text": "The service interphone to the ground crew"
+        "text": "The selective calling decoder for company calls"
       }
     ],
     "correct": "b",
     "explanation": "It gives an intercom path between the flight deck stations without transmitting on any radio.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0005",
@@ -119,25 +119,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It routes all audio to the flight deck speaker"
-      },
-      {
-        "id": "b",
-        "text": "It transfers audio control to the other pilot panel"
-      },
-      {
-        "id": "c",
         "text": "It provides a direct audio path to VHF 1, bypassing the normal audio system"
       },
       {
+        "id": "b",
+        "text": "It routes all audio to the flight deck speaker instead of the headset jacks"
+      },
+      {
+        "id": "c",
+        "text": "It filters the navigation aid audio to leave only the station identifier"
+      },
+      {
         "id": "d",
-        "text": "It selects the standby frequency on the tuning panel"
+        "text": "It tunes the standby frequency directly without using the transfer switch"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "If the audio management system fails, the crew still has one usable radio through a hard wired path.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0006",
@@ -155,17 +155,17 @@
       },
       {
         "id": "c",
-        "text": "The squelch level on the selected radio"
+        "text": "Which part of a navigation aid audio signal is heard"
       },
       {
         "id": "d",
-        "text": "Which part of a navigation aid audio signal is heard"
+        "text": "The squelch level on the selected radio"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Selecting the ident portion lets the crew confirm the station identifier without the voice broadcast masking it.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0007",
@@ -175,25 +175,25 @@
     "options": [
       {
         "id": "a",
-        "text": "To confirm the correct station is tuned and is serviceable"
-      },
-      {
-        "id": "b",
         "text": "To confirm the navigation display range is appropriate"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "To check the audio control panel filters are working"
+      },
+      {
+        "id": "c",
+        "text": "To confirm the correct station is tuned and is serviceable"
       },
       {
         "id": "d",
         "text": "To verify the receiver volume is correctly set"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "A navaid can be tuned correctly yet be the wrong station or be transmitting while unserviceable, and the ident is the check for both.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0008",
@@ -259,25 +259,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Line of sight between the aircraft and the station"
+        "text": "The squelch setting on the receiver in use"
       },
       {
         "id": "b",
-        "text": "The squelch setting on the receiver"
+        "text": "The time of day and the ionospheric conditions"
       },
       {
         "id": "c",
-        "text": "The time of day and ionospheric conditions"
+        "text": "The power output of the transmitter alone"
       },
       {
         "id": "d",
-        "text": "The power output of the transmitter alone"
+        "text": "Line of sight between the aircraft and the station"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Because the propagation is essentially straight line, range increases with altitude and is very limited at low level.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0011",
@@ -287,25 +287,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It does not require a ground station"
+        "text": "It does not require a ground station at all"
       },
       {
         "id": "b",
-        "text": "It is immune to atmospheric interference"
-      },
-      {
-        "id": "c",
         "text": "Its sky wave propagation gives very long range"
       },
       {
+        "id": "c",
+        "text": "It is immune to atmospheric interference"
+      },
+      {
         "id": "d",
-        "text": "It provides a clearer signal than VHF at all ranges"
+        "text": "It provides a clearer signal than VHF at range"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Reflection from the ionosphere lets the signal travel far beyond line of sight, which is what makes it usable where no VHF coverage exists.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0012",
@@ -315,25 +315,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It automatically selects the best available frequency"
+        "text": "It automatically selects the best available frequency for the area in use"
       },
       {
         "id": "b",
-        "text": "It encrypts company communications"
+        "text": "It allows a ground station to alert the crew without continuous listening watch"
       },
       {
         "id": "c",
-        "text": "It records incoming transmissions for later replay"
+        "text": "It encrypts company communications on the datalink channel"
       },
       {
         "id": "d",
-        "text": "It allows a ground station to alert the crew without continuous listening watch"
+        "text": "It records incoming transmissions for later replay by the crew"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "A coded call addressed to that airframe relieves the crew of monitoring a noisy HF channel for hours at a time.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0013",
@@ -343,25 +343,25 @@
     "options": [
       {
         "id": "a",
-        "text": "By a voice announcement on the flight deck speaker"
-      },
-      {
-        "id": "b",
         "text": "By a chime and a light"
       },
       {
+        "id": "b",
+        "text": "By a voice on the speaker"
+      },
+      {
         "id": "c",
-        "text": "By a message on the navigation display only"
+        "text": "By a navigation display message"
       },
       {
         "id": "d",
         "text": "By a flashing master caution"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "The alert has to be noticeable without being alarming, since it indicates a routine call rather than a failure.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0014",
@@ -379,17 +379,17 @@
       },
       {
         "id": "c",
-        "text": "The flight crew stations to each other"
+        "text": "The flight deck to the passenger address system"
       },
       {
         "id": "d",
-        "text": "The flight deck to the passenger address system"
+        "text": "The flight crew stations to each other"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "It is the internal circuit for the flight deck occupants, kept separate from the systems used to reach the cabin and the ground.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0015",
@@ -399,25 +399,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The flight deck stations to each other only"
+        "text": "The flight deck stations to each other and to the cabin"
       },
       {
         "id": "b",
-        "text": "The cabin attendant stations to each other only"
+        "text": "The flight deck to ground crew and service stations around the airplane"
       },
       {
         "id": "c",
-        "text": "The passenger address amplifier to the cabin speakers"
+        "text": "The cabin attendant stations to each other and to the forward galley"
       },
       {
         "id": "d",
-        "text": "The flight deck to ground crew and service stations around the airplane"
+        "text": "The passenger address amplifier to the cabin loudspeakers"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Maintenance and ground handling need a voice path at the jacks located around the airframe, which is what this system provides.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0016",
@@ -427,11 +427,11 @@
     "options": [
       {
         "id": "a",
-        "text": "It powers the passenger address amplifier"
+        "text": "It connects the external service jacks to the system"
       },
       {
         "id": "b",
-        "text": "It connects the external service jacks to the system"
+        "text": "It powers the passenger address amplifier"
       },
       {
         "id": "c",
@@ -439,13 +439,13 @@
       },
       {
         "id": "d",
-        "text": "It silences the ground crew call horn"
+        "text": "It silences the ground crew call horn below"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "The jacks are normally isolated in flight so that an open circuit or a plugged in headset cannot interfere with crew communication.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0017",
@@ -459,21 +459,21 @@
       },
       {
         "id": "b",
-        "text": "In the nose wheel well"
-      },
-      {
-        "id": "c",
         "text": "At the refuelling panel"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "In the forward cargo compartment"
+      },
+      {
+        "id": "d",
+        "text": "In the nose wheel well"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "The wheel well is where the ground crew headset station is located, so the alert is placed where the engineer will hear it.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0018",
@@ -483,25 +483,25 @@
     "options": [
       {
         "id": "a",
-        "text": "By using the passenger address system"
+        "text": "By using the passenger address system to call the flight deck"
       },
       {
         "id": "b",
-        "text": "By switching the external power on and off"
+        "text": "By switching the external electrical power on and off repeatedly until it is noticed"
       },
       {
         "id": "c",
-        "text": "By operating a call switch that produces an aural and visual alert on the flight deck"
+        "text": "By keying the service interphone twice and waiting for a reply"
       },
       {
         "id": "d",
-        "text": "By keying the service interphone twice"
+        "text": "By operating a call switch that produces an aural and visual alert on the flight deck"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "A dedicated call function avoids relying on someone already wearing a headset on the flight deck.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0019",
@@ -511,25 +511,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The cabin lights flash briefly"
+        "text": "A chime sounds in the cabin and a light illuminates at the attendant station"
       },
       {
         "id": "b",
-        "text": "An announcement is broadcast over the passenger address system"
+        "text": "The cabin lights flash briefly at each attendant station"
       },
       {
         "id": "c",
-        "text": "The cabin interphone rings continuously until answered"
+        "text": "An announcement is broadcast over the passenger address system to the cabin"
       },
       {
         "id": "d",
-        "text": "A chime sounds in the cabin and a light illuminates at the attendant station"
+        "text": "The cabin interphone rings continuously until it is answered"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "The combination of sound and light means the call is noticed even by a crew member away from the station.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0020",
@@ -539,25 +539,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The flight deck"
-      },
-      {
-        "id": "b",
         "text": "Boarding music"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "The forward attendant station"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Prerecorded announcements"
+      },
+      {
+        "id": "d",
+        "text": "The flight deck"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "In an emergency the flight crew announcement must override everything else, which is why the priority is built into the system rather than agreed procedurally.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0021",
@@ -567,25 +567,25 @@
     "options": [
       {
         "id": "a",
-        "text": "By using the flight interphone with the speaker turned up"
+        "text": "By using the flight interphone with the flight deck speaker volume turned up fully"
       },
       {
         "id": "b",
-        "text": "By pressing the attendant call switch twice"
+        "text": "By pressing the attendant call switch twice and speaking into the mask"
       },
       {
         "id": "c",
-        "text": "By selecting PA on the audio control panel microphone selector and keying the microphone"
+        "text": "By selecting the service interphone and keying the boom microphone"
       },
       {
         "id": "d",
-        "text": "By selecting the service interphone and keying the microphone"
+        "text": "By selecting PA on the audio control panel microphone selector and keying the microphone"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "The address system is treated as another transmitter selection on the panel, which keeps the interface consistent with the radios.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0022",
@@ -595,25 +595,25 @@
     "options": [
       {
         "id": "a",
-        "text": "A prerecorded safety announcement"
+        "text": "Boarding music"
       },
       {
         "id": "b",
-        "text": "A flight deck announcement"
+        "text": "A prerecorded safety announcement"
       },
       {
         "id": "c",
-        "text": "A cabin crew announcement"
+        "text": "A flight deck announcement"
       },
       {
         "id": "d",
-        "text": "Boarding music"
+        "text": "A cabin crew announcement"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Entertainment audio is the first thing interrupted, since anything else being broadcast carries more useful information.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0023",
@@ -623,7 +623,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Radio transmissions only"
+        "text": "Radio transmissions from both the VHF and HF sets only"
       },
       {
         "id": "b",
@@ -631,17 +631,17 @@
       },
       {
         "id": "c",
-        "text": "The flight interphone and the passenger address only"
+        "text": "The flight interphone and the passenger address announcements only"
       },
       {
         "id": "d",
-        "text": "Only the captain station audio"
+        "text": "Only the captain station audio and the area microphone"
       }
     ],
     "correct": "b",
     "explanation": "Recording both the individual stations and the ambient sound gives investigators the conversation and the environment it took place in.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0024",
@@ -655,21 +655,21 @@
       },
       {
         "id": "b",
-        "text": "It feeds the passenger address system during an evacuation"
+        "text": "It captures ambient sounds such as warnings, switch movements and unheadsetted speech"
       },
       {
         "id": "c",
-        "text": "It monitors flight deck noise levels for maintenance purposes"
+        "text": "It feeds the passenger address system during an evacuation from the flight deck"
       },
       {
         "id": "d",
-        "text": "It captures ambient sounds such as warnings, switch movements and unheadsetted speech"
+        "text": "It monitors flight deck noise levels for maintenance purposes"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Much of what happens on a flight deck never passes through a headset, and the area microphone is what preserves it.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0025",
@@ -710,25 +710,25 @@
     "options": [
       {
         "id": "a",
-        "text": "On the ground with the parking brake set"
-      },
-      {
-        "id": "b",
         "text": "In flight with both autopilots engaged"
       },
       {
+        "id": "b",
+        "text": "At any time from the flight deck panel"
+      },
+      {
         "id": "c",
-        "text": "At any time from the flight deck"
+        "text": "Only by maintenance with the recorder removed"
       },
       {
         "id": "d",
-        "text": "Only by maintenance with the recorder removed"
+        "text": "On the ground with the parking brake set"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The interlock exists so that a recording cannot be erased in flight or immediately after an event while the airplane is still rolling.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0027",
@@ -742,21 +742,21 @@
       },
       {
         "id": "b",
-        "text": "To verify that the recorder is receiving audio during the test"
+        "text": "To provide an additional listening station for the observer"
       },
       {
         "id": "c",
-        "text": "To provide an additional listening station for the observer"
+        "text": "To verify that the recorder is receiving audio during the test"
       },
       {
         "id": "d",
         "text": "To allow the crew to replay the previous flight"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "The test confirms the unit is actually capturing audio rather than simply being powered.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0028",
@@ -766,25 +766,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Only in flight, starting at liftoff"
+        "text": "Automatically whenever electrical power is available under the normal operating conditions"
       },
       {
         "id": "b",
-        "text": "Only when the crew selects it before departure"
+        "text": "Only in flight, from liftoff until the airplane has landed and stopped"
       },
       {
         "id": "c",
-        "text": "Only when both engines are running"
+        "text": "Only when the crew selects it before departure and leaves it selected throughout the flight"
       },
       {
         "id": "d",
-        "text": "Automatically whenever electrical power is available under the normal operating conditions"
+        "text": "Only when both engines are running and the parking brake is released"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Automatic operation removes any dependence on the crew remembering to start it, including during ground events.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0029",
@@ -794,7 +794,7 @@
     "options": [
       {
         "id": "a",
-        "text": "VHF 1"
+        "text": "VHF 2"
       },
       {
         "id": "b",
@@ -802,20 +802,20 @@
       },
       {
         "id": "c",
-        "text": "The passenger address system"
+        "text": "VHF 1"
       },
       {
         "id": "d",
-        "text": "VHF 2"
+        "text": "The PA system"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Essential communication is preserved on a single radio fed from the battery powered bus. Verify the bus arrangement against your operator FCOM.",
     "tags": [
       "verify-fcom"
     ],
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0030",
@@ -825,11 +825,11 @@
     "options": [
       {
         "id": "a",
-        "text": "It is the international emergency frequency used for distress and urgency calls"
+        "text": "It is the frequency reserved for ground handling and company traffic calls"
       },
       {
         "id": "b",
-        "text": "It is the frequency reserved for ground handling"
+        "text": "It is the international emergency frequency used for distress and urgency calls"
       },
       {
         "id": "c",
@@ -837,13 +837,13 @@
       },
       {
         "id": "d",
-        "text": "It is the standard company frequency in Europe"
+        "text": "It is the standard company frequency used throughout Europe"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Maintaining a listening watch means a distress call or a relay request is heard even when the crew is working another frequency.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0031",
@@ -853,25 +853,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It replaces the need for a cockpit voice recorder"
+        "text": "It replaces the need for a cockpit voice recorder and for the flight data recorder"
       },
       {
         "id": "b",
-        "text": "Routine messages are exchanged without occupying a voice frequency or the crew attention"
+        "text": "It provides a longer range than HF in all propagation conditions"
       },
       {
         "id": "c",
-        "text": "It provides longer range than HF in all conditions"
+        "text": "It removes the need to monitor the international emergency frequency"
       },
       {
         "id": "d",
-        "text": "It removes the need to monitor the emergency frequency"
+        "text": "Routine messages are exchanged without occupying a voice frequency or the crew attention"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Written messages can be handled when workload permits and do not depend on a clear frequency at the moment they are sent.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0032",
@@ -885,21 +885,21 @@
       },
       {
         "id": "b",
-        "text": "Two, one radio and one interphone"
+        "text": "Two"
       },
       {
         "id": "c",
-        "text": "Two, if both are VHF"
+        "text": "Two VHF only"
       },
       {
         "id": "d",
-        "text": "All selected transmitters simultaneously"
+        "text": "All selected"
       }
     ],
     "correct": "a",
     "explanation": "A single microphone feeds a single selected transmitter, which is why an unintended selection means the message goes to the wrong agency.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-COM-0033",
@@ -909,7 +909,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Because the observer station has no headset jack otherwise"
+        "text": "Because the observer station has no headset or microphone jack fitted of its own"
       },
       {
         "id": "b",
@@ -917,16 +917,16 @@
       },
       {
         "id": "c",
-        "text": "To provide a backup if a pilot panel fails"
+        "text": "So that an additional occupant can monitor and transmit without using a pilot station"
       },
       {
         "id": "d",
-        "text": "So that an additional occupant can monitor and transmit without using a pilot station"
+        "text": "To provide a backup if one of the pilot panels fails in flight"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "A check pilot or inspector needs to hear the operation and speak when required, without disturbing either operating pilot.",
     "status": "published",
-    "version": 1
+    "version": 2
   }
 ]

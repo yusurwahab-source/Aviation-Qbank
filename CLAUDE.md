@@ -634,6 +634,14 @@ from inside the website, an admin panel gets added then — the `status`,
   the DA 40 D AFM. The `Powerplant` questions are drafted outright because they
   describe a piston engine on AVGAS, which contradicts the diesel variant. See
   `content/README.md`.
+- **Twenty-six B737 questions turn on a figure nobody has confirmed twice.** The
+  bank's wrong options were rewritten so a question cannot be answered by
+  elimination alone, and that pass deliberately left every uncorroborated number
+  and its option band exactly as authored rather than inventing plausible
+  neighbours around it. Three of them disagree with a published source outright
+  — the seating capacity, the tail height and the cockpit voice recorder
+  duration — and are waiting on an owner's decision, not a quiet edit. The list
+  and its sources are in `content/README.md`.
 - **An aircraft's display name can change; its code must not.** The code is the
   URL segment, the prefix of every question id, and the value stored on every
   past attempt. Renaming the DA40 to the DA 40 D TDI changed `name` and

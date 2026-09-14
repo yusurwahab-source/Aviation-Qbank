@@ -7,25 +7,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Two flight control computers and the mode control panel"
-      },
-      {
-        "id": "b",
         "text": "A single flight control computer and the FMC"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "The mode control panel and the autothrottle computer"
       },
       {
+        "id": "c",
+        "text": "The FMC and the two air data computers together"
+      },
+      {
         "id": "d",
-        "text": "The FMC and the two air data computers"
+        "text": "Two flight control computers and the mode control panel"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Two computers give the redundancy needed for a dual channel approach, and the mode control panel is the crew interface to both.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0002",
@@ -35,25 +35,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Two, but only above 20000 ft"
-      },
-      {
-        "id": "b",
-        "text": "Either one or two at the crew discretion"
-      },
-      {
-        "id": "c",
         "text": "Two"
       },
       {
-        "id": "d",
+        "id": "b",
+        "text": "Two above 20000 ft"
+      },
+      {
+        "id": "c",
         "text": "One"
+      },
+      {
+        "id": "d",
+        "text": "Either one or two"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Single channel operation is the norm. The second channel is reserved for the approach, where its redundancy is actually needed.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0003",
@@ -67,21 +67,21 @@
       },
       {
         "id": "b",
-        "text": "Whenever the flaps are extended"
+        "text": "Whenever the flaps are extended for landing"
       },
       {
         "id": "c",
-        "text": "During an ILS approach with APP mode selected"
+        "text": "During any instrument approach in IMC"
       },
       {
         "id": "d",
-        "text": "During any instrument approach"
+        "text": "During an ILS approach with APP mode selected"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Dual channel operation exists to provide redundancy during an automatic approach and landing, so it is tied to APP mode.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0004",
@@ -99,7 +99,7 @@
       },
       {
         "id": "c",
-        "text": "Automatically at 1500 ft radio altitude"
+        "text": "Automatically at 1500 ft on the radio altimeter in APP"
       },
       {
         "id": "d",
@@ -109,7 +109,7 @@
     "correct": "d",
     "explanation": "The crew action is deliberate, so a dual channel approach can never be entered by accident during normal manoeuvring.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0005",
@@ -119,25 +119,25 @@
     "options": [
       {
         "id": "a",
-        "text": "CMD is used in flight and CWS only on the ground"
+        "text": "CMD is used in flight while CWS is used only during the approach phase"
       },
       {
         "id": "b",
-        "text": "CMD controls pitch only while CWS controls roll only"
-      },
-      {
-        "id": "c",
         "text": "CMD follows the selected modes while CWS responds to pilot control forces"
       },
       {
+        "id": "c",
+        "text": "CMD controls the pitch only while CWS controls the roll"
+      },
+      {
         "id": "d",
-        "text": "CMD uses computer A while CWS uses computer B"
+        "text": "CMD uses flight control computer A while CWS uses computer B"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "In CWS the pilot is still manoeuvring the airplane, but through the autopilot servos rather than directly.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0006",
@@ -155,17 +155,17 @@
       },
       {
         "id": "c",
-        "text": "It returns the airplane to wings level"
+        "text": "It returns the airplane to a wings level attitude"
       },
       {
         "id": "d",
-        "text": "It disengages automatically"
+        "text": "It disengages automatically after a short delay"
       }
     ],
     "correct": "b",
     "explanation": "Holding the resulting attitude is what makes CWS a manoeuvring mode rather than a navigation mode.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0007",
@@ -175,25 +175,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The autopilot disengages and the flight director takes over"
+        "text": "The system captures the localizer and transitions to CMD"
       },
       {
         "id": "b",
-        "text": "The localizer arming is cancelled"
+        "text": "The autopilot disengages and the flight director takes over"
       },
       {
         "id": "c",
-        "text": "Nothing, capture requires CMD to be engaged"
+        "text": "The localizer arming is cancelled automatically"
       },
       {
         "id": "d",
-        "text": "The system captures the localizer and transitions to CMD"
+        "text": "Nothing, capture requires CMD to be engaged first"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "The capture logic remains active in this case, which is why an armed localizer can take control even with CWS selected in roll.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0008",
@@ -234,7 +234,7 @@
     "options": [
       {
         "id": "a",
-        "text": "The go around switch or the stabiliser trim switches"
+        "text": "The go around switches or the stabiliser trim switches"
       },
       {
         "id": "b",
@@ -242,17 +242,17 @@
       },
       {
         "id": "c",
-        "text": "The control wheel disengage switch or the mode control panel disengage bar"
+        "text": "The disengage bar or the flight director master switches"
       },
       {
         "id": "d",
-        "text": "The disengage bar or the flight director switches"
+        "text": "The control wheel disengage switch or the mode control panel disengage bar"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "One method is on the yoke within immediate reach, and the other is on the panel, so disengagement never depends on a single switch.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0010",
@@ -262,25 +262,25 @@
     "options": [
       {
         "id": "a",
-        "text": "A flashing red light and an aural warning"
-      },
-      {
-        "id": "b",
         "text": "A master caution light on the forward panel"
       },
       {
+        "id": "b",
+        "text": "A flashing red light and an aural warning"
+      },
+      {
         "id": "c",
-        "text": "A steady amber light only"
+        "text": "A steady amber caution light with no aural"
       },
       {
         "id": "d",
-        "text": "A single chime with no light"
+        "text": "A single chime with no light at all"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "An unannounced disengagement is dangerous, so the warning is attention getting and has to be positively cancelled.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0011",
@@ -294,21 +294,21 @@
       },
       {
         "id": "b",
-        "text": "V/S"
+        "text": "HDG SEL"
       },
       {
         "id": "c",
-        "text": "HDG SEL"
+        "text": "V/S"
       },
       {
         "id": "d",
         "text": "ALT HOLD"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Roll modes command the airplane about the longitudinal axis, while the others are pitch modes controlling the vertical path.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0012",
@@ -322,21 +322,21 @@
       },
       {
         "id": "b",
-        "text": "10 to 25 degrees"
+        "text": "10 to 30 degrees"
       },
       {
         "id": "c",
-        "text": "10 to 30 degrees"
+        "text": "10 to 25 degrees"
       },
       {
         "id": "d",
         "text": "15 to 35 degrees"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "A reduced limit gives a gentler turn at high altitude or for passenger comfort, at the cost of a larger turn radius.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0013",
@@ -346,25 +346,25 @@
     "options": [
       {
         "id": "a",
-        "text": "HDG SEL"
-      },
-      {
-        "id": "b",
         "text": "VOR/LOC after capture"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "LNAV"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "All roll modes equally"
+      },
+      {
+        "id": "d",
+        "text": "HDG SEL"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The route based mode uses its own bank scheduling to fly the coded path, so a manual limit would prevent it tracking accurately.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0014",
@@ -374,15 +374,15 @@
     "options": [
       {
         "id": "a",
-        "text": "The bank angle limit selector"
+        "text": "The bank angle limit selector position"
       },
       {
         "id": "b",
-        "text": "Thrust, while pitch holds the vertical speed"
+        "text": "Thrust, while pitch holds the selected vertical speed"
       },
       {
         "id": "c",
-        "text": "The FMC vertical path"
+        "text": "The FMC vertical path and speed schedule"
       },
       {
         "id": "d",
@@ -392,7 +392,7 @@
     "correct": "d",
     "explanation": "Fixing the thrust and using pitch for speed is what makes the mode deliver the best available rate for the conditions.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0015",
@@ -402,11 +402,11 @@
     "options": [
       {
         "id": "a",
-        "text": "The selected vertical speed"
+        "text": "The autothrottle"
       },
       {
         "id": "b",
-        "text": "The autothrottle"
+        "text": "The selected vertical speed"
       },
       {
         "id": "c",
@@ -417,10 +417,10 @@
         "text": "Pitch attitude"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Pitch is committed to the vertical speed, so speed becomes the autothrottle task.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0016",
@@ -434,7 +434,7 @@
       },
       {
         "id": "b",
-        "text": "The autopilot will revert to CWS in pitch"
+        "text": "The autopilot will revert to CWS in pitch automatically"
       },
       {
         "id": "c",
@@ -442,13 +442,13 @@
       },
       {
         "id": "d",
-        "text": "The bank angle limit is automatically reduced"
+        "text": "The bank angle limit is automatically reduced to ten degrees"
       }
     ],
     "correct": "a",
     "explanation": "The mode will hold the vertical speed at the expense of airspeed, so an over ambitious selection near the performance ceiling leads to a low speed situation.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0017",
@@ -466,17 +466,17 @@
       },
       {
         "id": "c",
-        "text": "Holds the altitude selected in the FMC"
+        "text": "Holds the altitude at which the mode engaged"
       },
       {
         "id": "d",
-        "text": "Holds the altitude at which the mode engaged"
+        "text": "Holds the altitude selected in the FMC route"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "It captures the current altitude, which is not necessarily the one selected on the panel.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0018",
@@ -486,25 +486,25 @@
     "options": [
       {
         "id": "a",
-        "text": "By pressing the altitude intervention switch"
+        "text": "By pressing the altitude intervention switch on the mode control panel twice"
       },
       {
         "id": "b",
-        "text": "By setting the vertical speed to zero"
-      },
-      {
-        "id": "c",
         "text": "It cannot be selected, it engages automatically approaching the selected altitude"
       },
       {
+        "id": "c",
+        "text": "By setting the selected vertical speed to zero in the window"
+      },
+      {
         "id": "d",
-        "text": "By pressing the ALT HOLD switch twice"
+        "text": "By pressing the ALT HOLD switch twice in quick succession on the panel"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "The transition from a climb or descent into level flight is automatic so that the level off is always flown to the same schedule.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0019",
@@ -514,11 +514,11 @@
     "options": [
       {
         "id": "a",
-        "text": "The capture may be interrupted and a new pitch mode must be selected"
+        "text": "The autopilot disengages and reverts to control wheel steering"
       },
       {
         "id": "b",
-        "text": "The autopilot disengages"
+        "text": "The capture may be interrupted and a new pitch mode must be selected"
       },
       {
         "id": "c",
@@ -526,13 +526,13 @@
       },
       {
         "id": "d",
-        "text": "Nothing until altitude hold has engaged"
+        "text": "Nothing happens until altitude hold has already engaged"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Changing the target during the capture removes the reference the mode was working towards, which is why the selection is made before the capture begins.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0020",
@@ -542,7 +542,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Thrust only, with pitch flown manually"
+        "text": "Thrust only, with pitch flown manually by the crew"
       },
       {
         "id": "b",
@@ -554,13 +554,13 @@
       },
       {
         "id": "d",
-        "text": "Pitch only, with thrust controlled from the mode control panel"
+        "text": "Pitch only, with thrust set from the mode control panel"
       }
     ],
     "correct": "c",
     "explanation": "Handing both axes of energy management to the FMC is what allows the coded profile and speed schedule to be flown accurately.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0021",
@@ -570,25 +570,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It reverts to Mach indication only"
-      },
-      {
-        "id": "b",
-        "text": "It displays the current airspeed"
-      },
-      {
-        "id": "c",
         "text": "It blanks, because the FMC is controlling the speed"
       },
       {
+        "id": "b",
+        "text": "It reverts to Mach indication only above the transition"
+      },
+      {
+        "id": "c",
+        "text": "It displays the current airspeed continuously"
+      },
+      {
         "id": "d",
-        "text": "It displays the FMC target speed"
+        "text": "It displays the FMC target speed for the phase"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "The blank window is the crew cue that the speed target is now in the FMC and not on the panel.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0022",
@@ -598,11 +598,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Pitch, to follow the FMC vertical path"
+        "text": "Roll, to follow the FMC route"
       },
       {
         "id": "b",
-        "text": "Roll, to follow the FMC route"
+        "text": "Pitch, to follow the FMC vertical path"
       },
       {
         "id": "c",
@@ -610,13 +610,13 @@
       },
       {
         "id": "d",
-        "text": "Both roll and pitch"
+        "text": "Both roll and pitch simultaneously"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "The lateral and vertical FMC functions are separate modes, so one can be used without the other.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0023",
@@ -626,28 +626,28 @@
     "options": [
       {
         "id": "a",
-        "text": "At 50 ft AGL"
-      },
-      {
-        "id": "b",
         "text": "At 400 ft AGL"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "At 1000 ft AGL"
+      },
+      {
+        "id": "c",
+        "text": "At 50 ft AGL"
       },
       {
         "id": "d",
         "text": "At acceleration altitude"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Engagement is delayed until the airplane is safely airborne. Verify the exact height against your operator FCOM.",
     "tags": [
       "verify-fcom"
     ],
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0024",
@@ -685,25 +685,25 @@
     "options": [
       {
         "id": "a",
-        "text": "A fixed pitch attitude"
+        "text": "The pitch limit for the flap setting"
       },
       {
         "id": "b",
-        "text": "The pitch limit for the current flap setting"
-      },
-      {
-        "id": "c",
         "text": "Wings level with zero pitch"
       },
       {
+        "id": "c",
+        "text": "A fixed pitch attitude"
+      },
+      {
         "id": "d",
-        "text": "The pitch required for V2 immediately"
+        "text": "The pitch required for V2"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "A fixed initial attitude gives a repeatable rotation target before there is enough speed information to command a speed.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0026",
@@ -713,25 +713,25 @@
     "options": [
       {
         "id": "a",
-        "text": "A fixed 20 degree attitude"
+        "text": "A speed based command referenced to V2"
       },
       {
         "id": "b",
-        "text": "The FMC vertical path"
+        "text": "A fixed 20 degree pitch attitude"
       },
       {
         "id": "c",
-        "text": "A speed based command referenced to V2"
+        "text": "The FMC computed vertical path"
       },
       {
         "id": "d",
         "text": "The vertical speed existing at liftoff"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Once airborne the priority becomes achieving and holding the climb speed, including after an engine failure.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0027",
@@ -741,11 +741,11 @@
     "options": [
       {
         "id": "a",
-        "text": "The autopilot disengages"
+        "text": "Go around mode engages with reduced go around thrust"
       },
       {
         "id": "b",
-        "text": "Go around mode engages with reduced go around thrust"
+        "text": "The autopilot disengages immediately in pitch"
       },
       {
         "id": "c",
@@ -753,13 +753,13 @@
       },
       {
         "id": "d",
-        "text": "Full go around thrust is applied immediately"
+        "text": "Full go around thrust is applied to both engines"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Reduced thrust is normally sufficient and gives a more controllable pitch change, with full thrust available on demand.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0028",
@@ -773,11 +773,11 @@
       },
       {
         "id": "b",
-        "text": "The autothrottle disengages"
+        "text": "The autothrottle disengages automatically"
       },
       {
         "id": "c",
-        "text": "The mode reverts to approach"
+        "text": "The mode reverts to the approach mode"
       },
       {
         "id": "d",
@@ -787,7 +787,7 @@
     "correct": "d",
     "explanation": "The two stage logic lets the crew ask for maximum performance when the reduced setting is not enough, such as with an engine failure or windshear.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0029",
@@ -797,25 +797,25 @@
     "options": [
       {
         "id": "a",
-        "text": "THR HLD"
-      },
-      {
-        "id": "b",
         "text": "LVL CHG"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "ALT ACQ"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "VOR/LOC"
+      },
+      {
+        "id": "d",
+        "text": "THR HLD"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The autothrottle modes describe what the thrust levers are doing, separately from the pitch and roll modes of the autopilot.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0030",
@@ -887,25 +887,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It limits thrust to the reduced takeoff setting"
+        "text": "It prevents the autothrottle from changing thrust during the takeoff and initial climb"
       },
       {
         "id": "b",
-        "text": "It holds the thrust levers immovable until 400 ft"
+        "text": "It limits thrust to the reduced takeoff setting selected by the crew on the panel"
       },
       {
         "id": "c",
-        "text": "It maintains thrust after an engine failure"
+        "text": "It holds the thrust levers immovable until 400 ft radio altitude"
       },
       {
         "id": "d",
-        "text": "It prevents the autothrottle from changing thrust during the takeoff and initial climb"
+        "text": "It maintains thrust after an engine failure during the takeoff roll"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "The thrust setting is left alone at the most critical moment, while the crew retains the ability to move the levers manually.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0033",
@@ -915,25 +915,25 @@
     "options": [
       {
         "id": "a",
-        "text": "On the thrust levers"
+        "text": "On the mode control panel"
       },
       {
         "id": "b",
-        "text": "On the mode control panel only"
+        "text": "On the centre pedestal"
       },
       {
         "id": "c",
-        "text": "On the centre pedestal beside the flap lever"
+        "text": "On the thrust levers"
       },
       {
         "id": "d",
         "text": "On the control wheels"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Placing them on the levers means the hand already on the thrust is the hand that disconnects it.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0034",
@@ -943,25 +943,25 @@
     "options": [
       {
         "id": "a",
-        "text": "By a flashing amber light"
-      },
-      {
-        "id": "b",
         "text": "By a flashing red light"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "By the master caution only"
+      },
+      {
+        "id": "c",
+        "text": "By a flashing amber light"
       },
       {
         "id": "d",
         "text": "By an aural warning only"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "The amber level reflects that losing the autothrottle is less immediately critical than losing the autopilot, but still requires attention.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0035",
@@ -975,21 +975,21 @@
       },
       {
         "id": "b",
-        "text": "RETARD"
-      },
-      {
-        "id": "c",
         "text": "ARM"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "N1"
+      },
+      {
+        "id": "d",
+        "text": "RETARD"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Bringing the levers to idle at the right moment is part of the automatic landing sequence and is annunciated so the crew can monitor it.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0036",
@@ -999,25 +999,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The N1 limit calculated by the FMC"
+        "text": "The engine EGT limit for the phase"
       },
       {
         "id": "b",
-        "text": "The engine EGT limit"
+        "text": "The N1 limit calculated by the FMC"
       },
       {
         "id": "c",
-        "text": "The position of the mode control panel speed window"
+        "text": "The mode control panel speed window"
       },
       {
         "id": "d",
-        "text": "The thrust lever angle selected by the crew"
+        "text": "The thrust lever angle set by the crew"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "The FMC computes the limit for the phase and conditions, and the autothrottle simply drives the levers to achieve it.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0037",
@@ -1031,21 +1031,21 @@
       },
       {
         "id": "b",
-        "text": "One controls indicated airspeed and the other controls Mach"
+        "text": "One controls indicated airspeed while the other controls Mach number"
       },
       {
         "id": "c",
-        "text": "One is available with the autopilot engaged and the other is not"
+        "text": "One is available only with the autopilot engaged and the other only when it is not"
       },
       {
         "id": "d",
-        "text": "One is used in the climb and the other in the descent"
+        "text": "One is used during the climb phase and the other during the descent"
       }
     ],
     "correct": "a",
     "explanation": "Knowing which source owns the target tells the crew where to make a speed change.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0038",
@@ -1059,7 +1059,7 @@
       },
       {
         "id": "b",
-        "text": "The N1 limit only"
+        "text": "The N1 limit"
       },
       {
         "id": "c",
@@ -1067,13 +1067,13 @@
       },
       {
         "id": "d",
-        "text": "Nothing, it reverts to ARM"
+        "text": "Nothing at all"
       }
     ],
     "correct": "c",
     "explanation": "With pitch committed to holding the altitude, thrust is the only remaining means of controlling speed.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0039",
@@ -1083,25 +1083,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The glideslope only"
+        "text": "The glideslope receiver only"
       },
       {
         "id": "b",
-        "text": "The localizer, glideslope and rollout simultaneously"
+        "text": "The localizer, glideslope and rollout"
       },
       {
         "id": "c",
-        "text": "The localizer only"
+        "text": "Both the localizer and the glideslope"
       },
       {
         "id": "d",
-        "text": "Both the localizer and the glideslope"
+        "text": "The localizer receiver only"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Arming both allows the normal capture sequence to run without further crew action.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0040",
@@ -1111,25 +1111,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Localizer first, then glideslope"
+        "text": "Both simultaneously at the approach fix"
       },
       {
         "id": "b",
-        "text": "Both simultaneously at the final approach fix"
-      },
-      {
-        "id": "c",
         "text": "Either order depending on the intercept"
       },
       {
+        "id": "c",
+        "text": "Localizer first, then glideslope"
+      },
+      {
         "id": "d",
-        "text": "Glideslope first, then localizer"
+        "text": "Glideslope first, then the localizer"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Capturing the lateral path first ensures the airplane is aligned with the runway before it commits to the vertical path.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0041",
@@ -1139,25 +1139,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Because it disengages the autothrottle"
-      },
-      {
-        "id": "b",
         "text": "Because the system may capture a false or spurious beam"
       },
       {
+        "id": "b",
+        "text": "Because it disengages the autothrottle at capture"
+      },
+      {
         "id": "c",
-        "text": "Because it blanks the speed window"
+        "text": "Because it blanks the speed window prematurely"
       },
       {
         "id": "d",
-        "text": "Because it prevents the flaps from extending"
+        "text": "Because it prevents the flaps from extending fully"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Arming early exposes the system to side lobes and to a signal that is not yet stable, which can produce an unwanted capture.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0042",
@@ -1229,7 +1229,7 @@
     "options": [
       {
         "id": "a",
-        "text": "It deploys the speedbrakes and reversers"
+        "text": "It deploys the speedbrakes and commands the thrust reversers"
       },
       {
         "id": "b",
@@ -1237,17 +1237,17 @@
       },
       {
         "id": "c",
-        "text": "It holds the nose wheel off the runway"
+        "text": "It uses rudder and nose wheel steering to track the localizer"
       },
       {
         "id": "d",
-        "text": "It uses rudder and nose wheel steering to track the localizer"
+        "text": "It holds the nose wheel off the runway during rollout"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Directional guidance after touchdown is the part of a low visibility landing that the crew cannot fly visually.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0045",
@@ -1257,25 +1257,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Select CWS before leaving the runway"
+        "text": "Select CWS on the runway"
       },
       {
         "id": "b",
-        "text": "Nothing, it disengages at touchdown"
+        "text": "Nothing, it drops out at touchdown"
       },
       {
         "id": "c",
-        "text": "Disengage it manually"
+        "text": "Nothing, it drops out at taxi speed"
       },
       {
         "id": "d",
-        "text": "Nothing, it disengages at taxi speed"
+        "text": "Disengage it manually"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "It remains engaged through the rollout, so a positive crew action is required before manual steering is taken up.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0046",
@@ -1285,7 +1285,7 @@
     "options": [
       {
         "id": "a",
-        "text": "A failure is annunciated but the landing must be continued"
+        "text": "A failure is annunciated but the landing must still be continued to touchdown"
       },
       {
         "id": "b",
@@ -1293,17 +1293,17 @@
       },
       {
         "id": "c",
-        "text": "A failure results in disengagement without a significant out of trim condition"
+        "text": "The system continues the landing after any single failure occurs"
       },
       {
         "id": "d",
-        "text": "The system continues the landing after any single failure"
+        "text": "A failure results in disengagement without a significant out of trim condition"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Fail passive protects the airplane from a large upset on disconnect, but it does not guarantee the landing can be completed automatically.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0047",
@@ -1341,7 +1341,7 @@
     "options": [
       {
         "id": "a",
-        "text": "It is locked out until the autopilot is disengaged"
+        "text": "It is locked out with the autopilot on"
       },
       {
         "id": "b",
@@ -1349,7 +1349,7 @@
       },
       {
         "id": "c",
-        "text": "Manually by the crew using the trim switches"
+        "text": "Manually by the crew on the switches"
       },
       {
         "id": "d",
@@ -1359,7 +1359,7 @@
     "correct": "b",
     "explanation": "Automatic trimming keeps the airplane close to trim, which is what limits the out of trim condition at disengagement.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0049",
@@ -1373,21 +1373,21 @@
       },
       {
         "id": "b",
-        "text": "Two, one for each navigation receiver in use"
-      },
-      {
-        "id": "c",
         "text": "Two, one for each pilot"
       },
       {
+        "id": "c",
+        "text": "Two, one for each receiver"
+      },
+      {
         "id": "d",
-        "text": "Three, including a standby selector"
+        "text": "Three, including a standby"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Independent selectors allow each pilot to display a different course and support independent cross checking of the approach.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0050",
@@ -1397,25 +1397,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The autopilot reverts to CWS"
+        "text": "The autopilot continues to fly the selected modes normally"
       },
       {
         "id": "b",
-        "text": "The autopilot disengages"
+        "text": "The autopilot reverts to CWS in both pitch and roll axes"
       },
       {
         "id": "c",
-        "text": "The autopilot continues to fly the selected modes normally"
+        "text": "The autopilot disengages after a short delay"
       },
       {
         "id": "d",
         "text": "The modes revert to basic pitch and roll hold"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "The flight director is a display of the same computed commands, so switching it off changes what the pilot sees rather than what the autopilot does.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0051",
@@ -1425,25 +1425,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Both autopilot channels are lost"
-      },
-      {
-        "id": "b",
         "text": "The remaining channel can still be engaged, but a dual channel approach is not available"
       },
       {
+        "id": "b",
+        "text": "Both autopilot channels are lost for the remainder of the flight, leaving manual flight"
+      },
+      {
         "id": "c",
-        "text": "The autothrottle is also lost"
+        "text": "The autothrottle is lost as well as the affected autopilot channel"
       },
       {
         "id": "d",
-        "text": "Only CWS remains available"
+        "text": "Only control wheel steering remains available to the flight crew in pitch"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "The redundancy is real for normal operation, and what is lost is the capability that depends on having both computers.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0052",
@@ -1453,25 +1453,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The airplane must be flown manually"
-      },
-      {
-        "id": "b",
         "text": "CWS remains available on both channels"
       },
       {
+        "id": "b",
+        "text": "The FMC takes over the autopilot functions"
+      },
+      {
         "id": "c",
-        "text": "The FMC takes over autopilot functions"
+        "text": "The airplane must be flown manually"
       },
       {
         "id": "d",
-        "text": "The autothrottle continues to control both pitch and thrust"
+        "text": "The autothrottle continues to control pitch"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Every autopilot mode, including CWS, is computed in those units, so their loss is a total loss of autoflight.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0053",
@@ -1481,25 +1481,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The airplane levels off at the selected altitude"
-      },
-      {
-        "id": "b",
         "text": "VNAV continues the climb to the FMC cruise altitude"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "The autopilot disengages at the selected altitude"
       },
       {
+        "id": "c",
+        "text": "The airplane levels off at the selected altitude"
+      },
+      {
         "id": "d",
-        "text": "VNAV reverts to LVL CHG"
+        "text": "VNAV reverts to LVL CHG at the altitude"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "The panel altitude is always the hard limit, which is what makes it the primary protection against an altitude bust.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0054",
@@ -1537,25 +1537,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The flaps must be in the landing configuration"
+        "text": "The localizer must be captured"
       },
       {
         "id": "b",
-        "text": "The second autopilot channel must be engaged"
+        "text": "The flaps must be at the landing setting"
       },
       {
         "id": "c",
-        "text": "The autothrottle must be in SPEED mode"
+        "text": "The second channel must be engaged"
       },
       {
         "id": "d",
-        "text": "The localizer must be captured"
+        "text": "The autothrottle must be in SPEED mode"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "The sequence prevents the airplane from descending on the vertical path while still displaced laterally from the runway.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0056",
@@ -1569,21 +1569,21 @@
       },
       {
         "id": "b",
-        "text": "It retards the thrust to idle"
+        "text": "It holds the speed with thrust"
       },
       {
         "id": "c",
-        "text": "It holds the speed with thrust"
+        "text": "It retards the thrust to idle"
       },
       {
         "id": "d",
         "text": "It disengages automatically"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Idle thrust with pitch controlling speed is what produces the descent, mirroring the logic used in the climb.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0057",
@@ -1593,25 +1593,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Because it prevents the autopilot from disengaging"
+        "text": "Because it automatically compensates for the asymmetric thrust and the yawing moment produced"
       },
       {
         "id": "b",
-        "text": "Because it re-lights the failed engine automatically"
+        "text": "Because it continues to manage thrust on the operating engine while the crew handles the failure"
       },
       {
         "id": "c",
-        "text": "Because it automatically compensates for the asymmetric thrust"
+        "text": "Because it re-lights the failed engine automatically once conditions allow"
       },
       {
         "id": "d",
-        "text": "Because it continues to manage thrust on the operating engine while the crew handles the failure"
+        "text": "Because it prevents the autopilot from disengaging during the engine failure drill"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "The autothrottle reduces workload on the remaining engine, but it does nothing about asymmetry, which remains a rudder task for the crew.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0058",
@@ -1621,25 +1621,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The autopilot channel currently engaged"
-      },
-      {
-        "id": "b",
         "text": "The active and armed autopilot, flight director and autothrottle modes"
       },
       {
+        "id": "b",
+        "text": "The autopilot channel that is currently engaged in command"
+      },
+      {
         "id": "c",
-        "text": "The FMC route legs in sequence"
+        "text": "The FMC route legs in the sequence they will be flown"
       },
       {
         "id": "d",
-        "text": "Only the modes selected on the mode control panel"
+        "text": "Only the modes selected on the mode control panel by the flight crew"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "The annunciation is the record of what the automation is actually doing, which is why mode awareness is checked against it rather than against the selections made.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0059",
@@ -1649,11 +1649,11 @@
     "options": [
       {
         "id": "a",
-        "text": "The mode has failed and is unavailable"
+        "text": "The mode will engage automatically when its capture conditions are met"
       },
       {
         "id": "b",
-        "text": "The mode will engage automatically when its capture conditions are met"
+        "text": "The mode has failed and is no longer available to the flight crew"
       },
       {
         "id": "c",
@@ -1661,13 +1661,13 @@
       },
       {
         "id": "d",
-        "text": "The mode is currently controlling the airplane"
+        "text": "The mode is currently controlling the airplane in that axis"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Distinguishing armed from active is what prevents the classic error of believing the airplane is already following a path it has not yet captured.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AFS-0060",
@@ -1677,15 +1677,15 @@
     "options": [
       {
         "id": "a",
-        "text": "Because the pitch mode cannot be annunciated without it"
+        "text": "Because the pitch mode cannot be annunciated without it being set"
       },
       {
         "id": "b",
-        "text": "Because the autothrottle can override the pitch mode"
+        "text": "Because the autothrottle can override the pitch mode at any time"
       },
       {
         "id": "c",
-        "text": "Because the autothrottle sets the bank angle limit"
+        "text": "Because the autothrottle sets the bank angle limit in the turn"
       },
       {
         "id": "d",
@@ -1695,6 +1695,6 @@
     "correct": "d",
     "explanation": "Speed is controlled either by pitch or by thrust depending on the pitch mode, so the pair has to be read together to know where the speed protection lies.",
     "status": "published",
-    "version": 1
+    "version": 2
   }
 ]

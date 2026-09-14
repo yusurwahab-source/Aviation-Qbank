@@ -10,11 +10,13 @@ import { TestProgress } from '@/components/test-progress';
  */
 export function TestPage() {
   // حالة الأسئلة - يمكن استبدالها بالبيانات الفعلية من الـ API
+  // تبدأ كلها بلا إجابة، وهي حالة الاختبار الحقيقية عند فتحه. البيانات
+  // العشوائية هنا كانت تُنتج رسماً مختلفاً على الخادم وعلى المتصفّح.
   const [questions, setQuestions] = useState<QuestionStatus[]>(
     Array.from({ length: 10 }, (_, i) => ({
       number: i + 1,
-      answered: Math.random() > 0.6,
-      correct: Math.random() > 0.5,
+      answered: false,
+      correct: false,
       current: i === 0,
     }))
   );
