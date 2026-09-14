@@ -113,8 +113,10 @@ chapter is a new file and never a change to an existing one:
 | `electrical.json` | Electrical | 60 |
 | `engines-and-apu.json` | Engines and APU | 74 |
 | `fire-protection.json` | Fire Protection | 48 |
+| `flight-controls.json` | Flight Controls | 68 |
+| `flight-instruments-and-displays.json` | Flight Instruments and Displays | 45 |
 
-434 questions, all published.
+547 questions, all published.
 
 ### What changed on the way in from the source file
 
@@ -129,14 +131,15 @@ be carried across as they are, and both are handled the same way every time:
   section so far: every marked question, and no unmarked one, is a figure
   that varies by operator or configuration and says so in its explanation
   ("Verify against your operator FCOM"). So it survives as a tag,
-  **`verify-fcom`** — queryable, rather than buried in prose. 38 questions
+  **`verify-fcom`** — queryable, rather than buried in prose. 42 questions
   carry it: 7 in Airplane General, 6 in Air Systems, 3 in Anti-Ice and Rain,
   6 in Automatic Flight, 2 in Communications, 3 in Electrical, 9 in Engines
-  and APU and 2 in Fire Protection.
+  and APU, 2 in Fire Protection, 2 in Flight Controls and 2 in Flight
+  Instruments and Displays.
 
   The equivalence is checked on the way in rather than assumed: conversion
   fails if the set of marked ids and the set of explanations containing
-  "Verify" ever stop being the same set. Eight sections in, they never have.
+  "Verify" ever stop being the same set. Ten sections in, they never have.
 
 The source files also name the aircraft `B738`; that is rewritten to the bank's
 code on the way in.
@@ -164,7 +167,9 @@ each section comes in:
 | Electrical | A 15 · B 15 · C 15 · D 15 | A 15 · B 15 · C 15 · D 15 |
 | Engines and APU | A 18 · B 18 · C 19 · D 19 | A 19 · B 19 · C 18 · D 18 |
 | Fire Protection | A 12 · B 12 · C 12 · D 12 | A 12 · B 12 · C 12 · D 12 |
-| **Whole bank** | **A 151 · B 131 · C 74 · D 78** | **A 109 · B 109 · C 108 · D 108** |
+| Flight Controls | A 17 · B 17 · C 17 · D 17 | A 17 · B 17 · C 17 · D 17 |
+| Flight Instruments and Displays | A 11 · B 11 · C 11 · D 12 | A 11 · B 11 · C 12 · D 11 |
+| **Whole bank** | **A 179 · B 159 · C 102 · D 107** | **A 137 · B 137 · C 137 · D 136** |
 
 **Automatic Flight arrived already spread**, using all four letters and
 scrambling its own numeric option sets — the first section to do so.
@@ -192,6 +197,14 @@ is only enough movement to put it back:
 | Electrical | 4 | 2 | 54 of 60 |
 | Engines and APU | 4 | 3 | 67 of 74 |
 | Fire Protection | 4 | 3 | 41 of 48 |
+| Flight Controls | 0 | 0 | **68 of 68** |
+| Flight Instruments and Displays | 0 | 1 | 44 of 45 |
+
+**Flight Controls is the end point of that trend: it passed through
+completely untouched.** It arrived at 17 of each letter against a target of 17
+of each, and it contains no quantity question for a sort to disturb, so not one
+of its 68 questions has its options in a different order from the source. The
+conversion moved its ids and its aircraft code and changed nothing else.
 
 That is the rule working as intended rather than an exception to it: the
 redistribution exists to remove a guessable bias, so where there is no bias it
@@ -212,10 +225,10 @@ against what the other sections already hold, so the total stays level as the
 bank grows — which is what matters, since a test can draw from any combination
 of sections. This is why no section's own row is a clean quarter of itself:
 Air Systems is 17/17/17/16 and Communications 8/8/8/9 because that is what
-brings the *bank* level. 434 does not divide by four, so two letters carry one
-more than the other two; the section that takes the bank off a multiple of
-four is the one whose row looks lopsided — currently Engines and APU, at
-19/19/18/18.
+brings the *bank* level. 547 does not divide by four, so three letters carry
+one more than the fourth; the sections that take the bank off a multiple of
+four are the ones whose rows look lopsided — currently Engines and APU at
+19/19/18/18 and Flight Instruments and Displays at 11/11/12/11.
 
 Only the *order* of the options changes. Every question keeps the same four
 option texts and the same correct answer — the sentence that was right in the
@@ -242,6 +255,8 @@ owner's request so the bank reads the same way throughout:
 | Electrical | `ELE-0002`, `0004`, `0027`, `0040` | Generators, transformer rectifiers, kVA rating, battery endurance |
 | Engines and APU | `ENG-0010`, `0020`, `0023`, `0024` | The takeoff EGT time limit, igniters, two N2 percentages |
 | Fire Protection | `FIR-0002`, `0013`, `0021`, `0022` | Detection loops and extinguisher bottles |
+| Flight Controls | *none* | The section asks no quantity question |
+| Flight Instruments and Displays | *none* | The section asks no quantity question |
 
 Three conventions hold throughout. An option naming no quantity goes last
 (`V1`, `Acceleration altitude`). Equal quantities keep their source order —
@@ -258,7 +273,7 @@ meaningful, so the options are left exactly as authored:
 
 | Left alone | Why |
 |---|---|
-| `GEN-0032` | *Sets* of ELT frequencies ("121.5, 243.0 and 406 MHz" against "406 MHz only") |
+| `GEN-0032`, `FCT-0039` | *Sets* of values — ELT frequencies ("121.5, 243.0 and 406 MHz"), flap positions ("1, 2, 5, 10, 15, 25, 30 and 40") |
 | `ELE-0001` | Volts *and* Hz *and* phase together — three axes, not one |
 | `ELE-0031` | A voltage *and* a battery chemistry; the chemistry is the answer |
 | `ENG-0001` | Spool count *and* flow type *and* bypass ratio at once |
@@ -266,13 +281,16 @@ meaningful, so the options are left exactly as authored:
 | `ENG-0009` | Named EGT limits (start, takeoff, continuous) |
 | `ENG-0053` | Lists of parameters to monitor |
 | `ELE-0018` | The answer is `Yes`; there is no quantity to sort |
-| `ENG-0031`, `ENG-0063`, `FIR-0012`, `FIR-0046` | Only *one* option carries a figure; the set is causes, limits or conclusions |
+| `ENG-0031`, `ENG-0063`, `FIR-0012`, `FIR-0046`, `FCT-0006`, `FCT-0024`, `FCT-0036`, `FCT-0040`, `FCT-0050`, `FID-0006`, `FID-0014` | Only *one* option carries a figure; the set is causes, limits, conclusions or an order of events |
 
-That last row is the commonest case and the easiest to get wrong. A lone
-"`A maximum of two attempts per flight`" or "`Automatically five seconds after
-the switch is pulled`" sits among options that name no quantity at all, so
-there is no scale for it to be a point on — sorting would just promote the one
-option that happens to contain a digit.
+That last row is by far the commonest case and the easiest to get wrong — it is
+now eleven questions, more than every other row combined. A lone "`A maximum of
+two attempts per flight`", "`Automatically five seconds after the switch is
+pulled`" or "`It is available only below 1000 ft`" sits among options that name
+no quantity at all, so there is no scale for it to be a point on — sorting would
+just promote the one option that happens to contain a digit. `FID-0006` is the
+variant worth naming separately: `V1, VR and V2` look like figures but are
+*names* of speeds, with no magnitudes to put in order.
 
 This is the same judgement `GEN-0032` got, and it is the reason the rule is
 stated as "the question asks for a quantity" rather than "the options contain
@@ -298,3 +316,35 @@ having if the next chapter does not undo it.
 
 The questions have no `reference` yet. Adding the FCOM chapter and page to each
 would make them markedly more useful, and none was invented during conversion.
+
+### The bank is getting harder, section by section
+
+`difficulty` is carried across exactly as authored — it is a source field and
+nothing rewrites it — but it is worth recording what the sources have been
+doing with it, because nothing else in the repository shows this:
+
+| | Easy | Moderate | Hard |
+|---|---|---|---|
+| Airplane General | 9 | 31 | 12 |
+| Air Systems | 9 | 33 | 25 |
+| Anti-Ice and Rain | 4 | 20 | 16 |
+| Automatic Flight | 4 | 25 | 31 |
+| Communications | 2 | 20 | 11 |
+| Electrical | 4 | 30 | 26 |
+| Engines and APU | 3 | 36 | 35 |
+| Fire Protection | 1 | 22 | 25 |
+| Flight Controls | 3 | 27 | 38 |
+| Flight Instruments and Displays | **0** | 22 | 23 |
+| **Whole bank** | **39** | **266** | **242** |
+
+Easy questions have thinned out steadily — nine in each of the first two
+sections, none at all in the tenth — and the bank is now 7% easy against 44%
+moderate and 44% hard.
+
+This is not a conversion problem and nothing was changed to address it. It
+matters for one reason: **filter by difficulty** is the last unbuilt item on
+the Phase 5 list, and on this bank an "easy" filter would return 39 questions
+spread across ten sections, with a whole chapter contributing none. Anyone
+building that filter should know the distribution before designing around it,
+and anyone commissioning section eleven now knows which end of the range the
+bank is short of.
