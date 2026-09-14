@@ -11,21 +11,21 @@
       },
       {
         "id": "b",
-        "text": "28 volt, 400 Hz, single phase"
+        "text": "115 volt, 400 Hz, three phase"
       },
       {
         "id": "c",
-        "text": "200 volt, 60 Hz, three phase"
+        "text": "28 volt, 400 Hz, single phase"
       },
       {
         "id": "d",
-        "text": "115 volt, 400 Hz, three phase"
+        "text": "200 volt, 60 Hz, three phase"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "The high frequency allows lighter transformers and motors, which is why aircraft use 400 Hz rather than a commercial frequency.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0002",
@@ -43,7 +43,7 @@
       },
       {
         "id": "c",
-        "text": "Three, including a standby generator"
+        "text": "Three, including a standby unit"
       },
       {
         "id": "d",
@@ -53,7 +53,7 @@
     "correct": "b",
     "explanation": "One generator per engine, with the APU generator available as a third source, gives redundancy without added complexity.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0003",
@@ -63,25 +63,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It holds the generator at constant speed so the output frequency stays constant"
+        "text": "It steps the generator output up to 115 volts for the buses"
       },
       {
         "id": "b",
-        "text": "It steps the generator output up to 115 volts"
+        "text": "It disconnects the generator automatically at high engine speed in flight"
       },
       {
         "id": "c",
-        "text": "It disconnects the generator automatically at high engine speed"
+        "text": "It converts the generator output from direct to alternating current"
       },
       {
         "id": "d",
-        "text": "It converts the generator output from DC to AC"
+        "text": "It holds the generator at constant speed so the output frequency stays constant"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Engine speed varies continuously in flight, so a mechanical drive is used to isolate the generator from those changes.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0004",
@@ -122,25 +122,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Yes, but only on the ground"
-      },
-      {
-        "id": "b",
-        "text": "Yes, provided both are within frequency tolerance"
-      },
-      {
-        "id": "c",
         "text": "No, the system is non parallel and only one source supplies a bus"
       },
       {
+        "id": "b",
+        "text": "Yes, but only while the airplane is on the ground"
+      },
+      {
+        "id": "c",
+        "text": "Yes, provided both sources are within the frequency tolerance"
+      },
+      {
         "id": "d",
-        "text": "Yes, whenever the bus transfer switch is in AUTO"
+        "text": "Yes, whenever the bus transfer switch is selected to AUTO"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Without paralleling there is no need to synchronise sources, and a fault on one source cannot be fed by another.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0006",
@@ -150,25 +150,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It shares the load with the previous source"
+        "text": "It takes over the bus and disconnects the previous source"
       },
       {
         "id": "b",
-        "text": "It is blocked until the previous source is switched off manually"
+        "text": "It shares the load equally with the previous source"
       },
       {
         "id": "c",
-        "text": "It powers only the galley loads until selected"
+        "text": "It is blocked until the previous source is switched off"
       },
       {
         "id": "d",
-        "text": "It takes over the bus and disconnects the previous source"
+        "text": "It powers only the galley loads until it is selected"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "The engine generator has priority on its own side, so restoring it does not require the crew to remove the other source first.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0007",
@@ -178,25 +178,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Neither, the crew must select one manually"
+        "text": "External power"
       },
       {
         "id": "b",
-        "text": "The APU generator"
-      },
-      {
-        "id": "c",
         "text": "Whichever was connected first"
       },
       {
+        "id": "c",
+        "text": "Neither, the crew selects"
+      },
+      {
         "id": "d",
-        "text": "External power"
+        "text": "The APU generator"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Selecting the APU generator automatically removes external power, which makes the transition to airplane power a single action.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0008",
@@ -210,21 +210,21 @@
       },
       {
         "id": "b",
-        "text": "In the nose wheel well ceiling"
+        "text": "In the lower forward fuselage"
       },
       {
         "id": "c",
-        "text": "In the aft fuselage near the APU"
+        "text": "In the nose wheel well ceiling"
       },
       {
         "id": "d",
-        "text": "In the lower forward fuselage"
+        "text": "In the aft fuselage near the APU"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Placing it forward keeps the cable clear of the engines and the loading areas during turnaround.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0009",
@@ -234,11 +234,11 @@
     "options": [
       {
         "id": "a",
-        "text": "External power is connected and within acceptable limits"
+        "text": "The ground service bus is energised from the receptacle"
       },
       {
         "id": "b",
-        "text": "The ground service bus is energised"
+        "text": "External power is connected and within acceptable limits"
       },
       {
         "id": "c",
@@ -249,10 +249,10 @@
         "text": "External power is connected but out of tolerance"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "The light confirms the quality of the supply, but the power is not on the airplane until it is selected.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0010",
@@ -270,17 +270,17 @@
       },
       {
         "id": "c",
-        "text": "They connect the transformer rectifier units to the AC buses"
+        "text": "They connect the transformer rectifiers to the AC buses"
       },
       {
         "id": "d",
-        "text": "They isolate the battery from the DC buses"
+        "text": "They isolate the battery from the DC bus system"
       }
     ],
     "correct": "a",
     "explanation": "The tie is what makes single source operation possible after the loss of a generator.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0011",
@@ -290,15 +290,15 @@
     "options": [
       {
         "id": "a",
-        "text": "Both transfer buses are de-energised"
+        "text": "The APU generator is disconnected from both of the transfer buses"
       },
       {
         "id": "b",
-        "text": "The standby system transfers to the battery"
+        "text": "The standby electrical system transfers to the battery and the static inverter"
       },
       {
         "id": "c",
-        "text": "The APU generator is disconnected"
+        "text": "Both transfer buses are de-energised and both packs are lost"
       },
       {
         "id": "d",
@@ -308,7 +308,7 @@
     "correct": "d",
     "explanation": "It is used to keep a faulty side isolated, at the price of losing the automatic transfer that would normally restore the bus.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0012",
@@ -318,25 +318,25 @@
     "options": [
       {
         "id": "a",
-        "text": "That transfer bus is not energised"
+        "text": "The bus transfer switch is selected OFF"
       },
       {
         "id": "b",
-        "text": "The bus transfer switch is in the OFF position"
-      },
-      {
-        "id": "c",
         "text": "The generator is running but not connected"
       },
       {
+        "id": "c",
+        "text": "The transformer rectifier on that side failed"
+      },
+      {
         "id": "d",
-        "text": "The transformer rectifier on that side has failed"
+        "text": "That transfer bus is not energised"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "It reports the state of the bus itself, which is the information the crew needs before deciding which source to restore.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0013",
@@ -350,21 +350,21 @@
       },
       {
         "id": "b",
-        "text": "The generator has failed completely"
+        "text": "The generator is operating but is not supplying a bus"
       },
       {
         "id": "c",
-        "text": "The generator is operating but is not supplying a bus"
+        "text": "The generator has failed completely in flight"
       },
       {
         "id": "d",
         "text": "The generator is supplying only the galley loads"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "It distinguishes an available but unconnected source from a source that is genuinely lost.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0014",
@@ -378,11 +378,11 @@
       },
       {
         "id": "b",
-        "text": "The generator control unit has failed"
+        "text": "The generator control unit has failed on that side"
       },
       {
         "id": "c",
-        "text": "The battery is not charging"
+        "text": "The battery is not charging from the TR"
       },
       {
         "id": "d",
@@ -392,7 +392,7 @@
     "correct": "a",
     "explanation": "It draws attention to a bus running on an alternative source, which matters because the load capacity may then be limited.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0015",
@@ -430,25 +430,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Selection of the bus transfer switch to OFF"
-      },
-      {
-        "id": "b",
         "text": "Operation on a single generator or on a limited capacity source"
       },
       {
+        "id": "b",
+        "text": "Selection of the bus transfer switch to the OFF position in flight"
+      },
+      {
         "id": "c",
-        "text": "Loss of one transformer rectifier unit"
+        "text": "Loss of one of the transformer rectifier units on that side"
       },
       {
         "id": "d",
-        "text": "Engine anti-ice selection"
+        "text": "Selection of engine anti-ice on both the engines"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "With one source carrying the whole airplane the margin is reduced, so non essential load is removed automatically.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0017",
@@ -458,25 +458,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Transformer rectifier output only"
+        "text": "Transformer rectifier unit output only"
       },
       {
         "id": "b",
-        "text": "Voltage, frequency and load for the selected source"
+        "text": "Battery charge and discharge current only"
       },
       {
         "id": "c",
-        "text": "Battery charge current only"
+        "text": "Voltage, frequency and load for the selected source"
       },
       {
         "id": "d",
-        "text": "The total DC load on the battery bus"
+        "text": "The total DC load carried on the battery bus"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Selecting each source in turn is how the crew verifies that a generator is producing acceptable power before connecting it.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0018",
@@ -486,25 +486,25 @@
     "options": [
       {
         "id": "a",
-        "text": "No, it supplies transfer bus 2 only"
+        "text": "No, bus 2 only"
       },
       {
         "id": "b",
-        "text": "Yes"
+        "text": "No, bus 1 only"
       },
       {
         "id": "c",
-        "text": "Only when external power is also connected"
+        "text": "Only on the ground"
       },
       {
         "id": "d",
-        "text": "No, it supplies transfer bus 1 only"
+        "text": "Yes"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Full airplane coverage from the APU is what makes it usable as a complete substitute after a generator failure.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0019",
@@ -518,24 +518,24 @@
       },
       {
         "id": "b",
-        "text": "A maximum altitude for APU generator use"
-      },
-      {
-        "id": "c",
         "text": "The cabin differential pressure"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "The number of engines operating"
+      },
+      {
+        "id": "d",
+        "text": "A maximum altitude for APU generator use"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Both the APU and its generator have altitude related limits. Verify the figures against your operator FCOM.",
     "tags": [
       "verify-fcom"
     ],
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0020",
@@ -549,21 +549,21 @@
       },
       {
         "id": "b",
-        "text": "Loss of generator output voltage"
+        "text": "Loss of the generator output voltage on that side"
       },
       {
         "id": "c",
-        "text": "Disconnection of the generator from the bus"
+        "text": "Disconnection of the generator from the transfer bus in flight"
       },
       {
         "id": "d",
-        "text": "A frequency outside the acceptable range"
+        "text": "A generator frequency outside the acceptable range"
       }
     ],
     "correct": "a",
     "explanation": "The light reports the mechanical health of the drive, which can fail even while the generator is still producing acceptable power.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0021",
@@ -573,25 +573,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Transfer the bus to the APU and continue with the drive connected"
+        "text": "Disconnect the drive"
       },
       {
         "id": "b",
-        "text": "Reduce the electrical load on that side"
+        "text": "Transfer the bus to the APU"
       },
       {
         "id": "c",
-        "text": "Reset the generator control breaker"
+        "text": "Reduce the load on that side"
       },
       {
         "id": "d",
-        "text": "Disconnect the drive"
+        "text": "Reset the generator breaker"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Disconnecting protects the engine accessory gearbox from a seizure that would otherwise damage far more than the generator.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0022",
@@ -601,25 +601,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Yes, but only with the engine at idle"
-      },
-      {
-        "id": "b",
-        "text": "Yes, by cycling the generator switch"
-      },
-      {
-        "id": "c",
         "text": "No, reconnection requires maintenance action on the ground"
       },
       {
+        "id": "b",
+        "text": "Yes, but only with the engine at idle thrust"
+      },
+      {
+        "id": "c",
+        "text": "Yes, by cycling the generator control switch"
+      },
+      {
         "id": "d",
-        "text": "Yes, after the drive has cooled for ten minutes"
+        "text": "Yes, after the drive has cooled down for ten minutes"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "The decision to disconnect is effectively permanent for that flight, which is why it is taken deliberately and not as a trial.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0023",
@@ -633,21 +633,21 @@
       },
       {
         "id": "b",
-        "text": "The oil in the drive would drain into the engine"
+        "text": "The oil in the drive would drain back into the engine"
       },
       {
         "id": "c",
-        "text": "The generator control unit would be damaged by the voltage transient"
+        "text": "The disconnect mechanism requires rotation to operate correctly"
       },
       {
         "id": "d",
-        "text": "The disconnect mechanism requires rotation to operate correctly"
+        "text": "The generator control unit would be damaged by the transient"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Attempting it at rest risks leaving the mechanism in a condition that requires more extensive maintenance to restore.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0024",
@@ -657,25 +657,25 @@
     "options": [
       {
         "id": "a",
-        "text": "That generator is unavailable for the remainder of the flight"
+        "text": "The engine must be shut down and secured immediately after"
       },
       {
         "id": "b",
-        "text": "The engine must be shut down"
+        "text": "The other generator is also load shed automatically"
       },
       {
         "id": "c",
-        "text": "The other generator is also load shed"
+        "text": "The battery assumes the entire AC electrical load"
       },
       {
         "id": "d",
-        "text": "The battery assumes the entire AC load"
+        "text": "That generator is unavailable for the remainder of the flight"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Planning for the rest of the flight has to assume single generator operation, with the APU as the only remaining alternative.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0025",
@@ -685,25 +685,25 @@
     "options": [
       {
         "id": "a",
-        "text": "By engine fan air"
+        "text": "By its own oil system"
       },
       {
         "id": "b",
-        "text": "By ram air ducted from the nacelle inlet"
+        "text": "By engine fan air"
       },
       {
         "id": "c",
-        "text": "By fuel passing through a heat exchanger"
+        "text": "By ram air from the inlet"
       },
       {
         "id": "d",
-        "text": "By its own oil system"
+        "text": "By fuel in a heat exchanger"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "The same oil that lubricates the drive carries away the heat, which is why oil temperature is a direct indication of drive health.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0026",
@@ -713,25 +713,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Overheating of the transfer bus wiring"
+        "text": "Overheating of the transfer bus wiring in flight"
       },
       {
         "id": "b",
-        "text": "Loss of oil pressure in the engine"
+        "text": "Loss of oil pressure in the engine drive"
       },
       {
         "id": "c",
-        "text": "Out of tolerance voltage and frequency conditions"
+        "text": "Excessive engine vibration in the cruise"
       },
       {
         "id": "d",
-        "text": "Excessive engine vibration"
+        "text": "Out of tolerance voltage and frequency conditions"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Connecting a source producing bad power would damage equipment across the airplane, so the unit prevents the connection.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0027",
@@ -769,25 +769,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It converts AC into DC"
-      },
-      {
-        "id": "b",
         "text": "It changes the frequency of the AC supply"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "It converts DC into AC"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "It regulates the battery charging voltage"
+      },
+      {
+        "id": "d",
+        "text": "It converts AC into DC"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Most of the airplane DC load is supplied by conversion rather than by the battery, which is reserved as a last resort.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0029",
@@ -797,25 +797,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It supplies the standby DC bus at all times"
+        "text": "It supplies the standby DC bus at all times in flight"
       },
       {
         "id": "b",
-        "text": "It supplies the battery bus only"
+        "text": "It supplies the battery bus only while in flight"
       },
       {
         "id": "c",
-        "text": "It is used only during engine start"
+        "text": "It can supply either DC bus if one of the other units fails"
       },
       {
         "id": "d",
-        "text": "It can supply either DC bus if one of the other units fails"
+        "text": "It is used only during the engine start sequence"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Its flexibility is what allows a single unit failure to be covered without losing a DC bus.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0030",
@@ -825,25 +825,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The transformer rectifier units stop and DC comes from the battery"
+        "text": "DC is unaffected because it is generated entirely separately"
       },
       {
         "id": "b",
-        "text": "DC is unaffected because it is generated separately"
+        "text": "Only the standby DC bus is lost to the battery supply"
       },
       {
         "id": "c",
-        "text": "Only the standby DC bus is lost"
+        "text": "The battery charger maintains the DC buses indefinitely"
       },
       {
         "id": "d",
-        "text": "The battery charger maintains the DC buses indefinitely"
+        "text": "The transformer rectifier units stop and DC comes from the battery"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The DC system depends on AC being available, which is why a total generation failure quickly becomes a battery endurance problem.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0031",
@@ -853,25 +853,25 @@
     "options": [
       {
         "id": "a",
-        "text": "A 48 volt nickel metal hydride battery"
-      },
-      {
-        "id": "b",
         "text": "A 24 volt nickel cadmium battery"
       },
       {
+        "id": "b",
+        "text": "A 48 volt nickel metal hydride battery"
+      },
+      {
         "id": "c",
-        "text": "A 12 volt lead acid battery"
+        "text": "A 12 volt sealed lead acid battery"
       },
       {
         "id": "d",
         "text": "A 28 volt lithium ion battery"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Nickel cadmium construction tolerates the high discharge rates of an engine or APU start and a wide temperature range.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0032",
@@ -881,25 +881,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It is supplied by the static inverter"
+        "text": "It is supplied by the static inverter whenever it is running"
       },
       {
         "id": "b",
-        "text": "It is powered only when the battery switch is ON"
+        "text": "It is connected directly to the battery regardless of the battery switch position"
       },
       {
         "id": "c",
-        "text": "It is powered only on the ground"
+        "text": "It is powered only when the battery switch has been selected ON by the crew"
       },
       {
         "id": "d",
-        "text": "It is connected directly to the battery regardless of the battery switch position"
+        "text": "It is powered only while the airplane is parked on the ground"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Certain functions, including fire protection items, must be available even with every switch off.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0033",
@@ -909,25 +909,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The availability of external power"
+        "text": "The position of the battery switch"
       },
       {
         "id": "b",
-        "text": "The position of the standby power switch"
+        "text": "The availability of external power"
       },
       {
         "id": "c",
-        "text": "Whether an engine is running"
+        "text": "The position of the standby power switch"
       },
       {
         "id": "d",
-        "text": "The position of the battery switch"
+        "text": "Whether an engine is running at the time"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "It carries loads that should be available whenever the airplane is being operated, but not while it is parked and shut down.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0034",
@@ -937,25 +937,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It isolates the battery when the airplane is parked"
+        "text": "It isolates the battery when the airplane is parked overnight"
       },
       {
         "id": "b",
-        "text": "It converts battery DC into AC for the standby bus"
+        "text": "It maintains the battery in a charged state from the AC system"
       },
       {
         "id": "c",
-        "text": "It limits the current drawn during engine start"
+        "text": "It converts battery DC into AC for the standby bus"
       },
       {
         "id": "d",
-        "text": "It maintains the battery in a charged state from the AC system"
+        "text": "It limits the current drawn during engine start"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Without it the battery would be progressively depleted by each start and by the standby loads.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0035",
@@ -965,25 +965,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It converts AC into DC for the battery bus"
+        "text": "It converts AC into DC for the battery bus supply"
       },
       {
         "id": "b",
-        "text": "It converts battery DC into AC to supply the AC standby bus"
+        "text": "It regulates the frequency of the generator output in flight"
       },
       {
         "id": "c",
-        "text": "It regulates the frequency of the generator output"
+        "text": "It converts battery DC into AC to supply the AC standby bus"
       },
       {
         "id": "d",
-        "text": "It provides a starting current for the APU"
+        "text": "It provides the starting current for the APU start"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Some essential equipment is AC only, so a source of AC has to exist even when no generator is turning.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0036",
@@ -993,25 +993,25 @@
     "options": [
       {
         "id": "a",
-        "text": "AUTO, MAN and BAT"
+        "text": "BAT, OFF and AUTO"
       },
       {
         "id": "b",
-        "text": "ON, OFF and TEST"
+        "text": "AUTO, MAN and BAT"
       },
       {
         "id": "c",
-        "text": "NORM, ALTN and OFF"
+        "text": "ON, OFF and TEST"
       },
       {
         "id": "d",
-        "text": "BAT, OFF and AUTO"
+        "text": "NORM, ALTN and OFF"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "AUTO is the normal selection, leaving the transfer to battery power to happen without crew action.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0037",
@@ -1021,7 +1021,7 @@
     "options": [
       {
         "id": "a",
-        "text": "The APU starts automatically"
+        "text": "The APU starts automatically and restores the transfer buses"
       },
       {
         "id": "b",
@@ -1029,17 +1029,17 @@
       },
       {
         "id": "c",
-        "text": "The standby buses remain unpowered until BAT is selected"
+        "text": "The standby buses remain unpowered until BAT is selected by the flight crew"
       },
       {
         "id": "d",
-        "text": "The standby buses are shed to preserve the battery"
+        "text": "The standby buses are shed to preserve the battery charge"
       }
     ],
     "correct": "b",
     "explanation": "The automatic transfer means the essential instruments and radio are not interrupted while the crew diagnoses the failure.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0038",
@@ -1057,17 +1057,17 @@
       },
       {
         "id": "c",
-        "text": "The battery is discharging"
+        "text": "The battery is discharging in flight"
       },
       {
         "id": "d",
-        "text": "The static inverter is supplying the AC standby bus"
+        "text": "The static inverter is on the bus"
       }
     ],
     "correct": "b",
     "explanation": "Losing the standby buses means losing the last protected layer, so it is annunciated separately from the main bus lights.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0039",
@@ -1077,25 +1077,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Essential flight instruments and one communication radio"
+        "text": "Both air conditioning packs and the recirculation fans"
       },
       {
         "id": "b",
-        "text": "Both packs and the recirculation fans"
+        "text": "The autopilot and the autothrottle system"
       },
       {
         "id": "c",
-        "text": "The autopilot and the autothrottle"
+        "text": "The galley outlets and the cabin lighting"
       },
       {
         "id": "d",
-        "text": "The galley outlets and the cabin lighting"
+        "text": "Essential flight instruments and one communication radio"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The selection is what a crew needs to fly, navigate and communicate, and nothing more.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0040",
@@ -1136,25 +1136,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It energises the generator field"
+        "text": "It energises the generator field before the start sequence begins on that engine"
       },
       {
         "id": "b",
-        "text": "It powers the fuel boost pumps directly"
-      },
-      {
-        "id": "c",
         "text": "It supplies the control and ignition circuits and protects the buses during the start"
       },
       {
+        "id": "c",
+        "text": "It powers the fuel boost pumps directly throughout the engine start"
+      },
+      {
         "id": "d",
-        "text": "It provides the air pressure for the starter"
+        "text": "It provides the air pressure needed for the pneumatic starter valve"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "The start sequence depends on DC control power, and the battery also stabilises the system through the electrical transients.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0042",
@@ -1164,25 +1164,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Because it has the largest capacity of all the sources"
+        "text": "Because it has the largest capacity of all the sources on board"
       },
       {
         "id": "b",
-        "text": "Because it can be recharged in flight indefinitely"
+        "text": "Because it produces power without depending on any other system"
       },
       {
         "id": "c",
-        "text": "Because it supplies every bus on the airplane"
+        "text": "Because it can be recharged in flight indefinitely"
       },
       {
         "id": "d",
-        "text": "Because it produces power without depending on any other system"
+        "text": "Because it supplies every bus on the airplane"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Every other source needs something else to be working, whereas the battery is self contained.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0043",
@@ -1192,25 +1192,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It powers cabin lighting and service outlets from external power without energising the whole airplane"
+        "text": "It isolates the galleys during refuelling and ground servicing operations"
       },
       {
         "id": "b",
-        "text": "It isolates the galleys during refuelling"
+        "text": "It powers cabin lighting and service outlets from external power without energising the whole airplane"
       },
       {
         "id": "c",
-        "text": "It transfers the standby buses to the battery"
+        "text": "It transfers the standby buses to the battery without using the main battery switch on the panel"
       },
       {
         "id": "d",
-        "text": "It connects external power to both transfer buses"
+        "text": "It connects external power to both transfer buses without the APU running"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Cleaners and caterers can work with the airplane otherwise unpowered, which saves both APU running and wear.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0044",
@@ -1220,25 +1220,25 @@
     "options": [
       {
         "id": "a",
-        "text": "At the forward attendant station"
+        "text": "On the aft electronics panel"
       },
       {
         "id": "b",
-        "text": "On the aft electronic panel"
-      },
-      {
-        "id": "c",
         "text": "At the external power receptacle"
       },
       {
+        "id": "c",
+        "text": "On the forward overhead panel"
+      },
+      {
         "id": "d",
-        "text": "On the overhead panel"
+        "text": "At the forward attendant station"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "It is placed where the cabin crew or ground staff can reach it without entering the flight deck.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0045",
@@ -1248,25 +1248,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Both generators parallel and share the load equally"
+        "text": "Both generators parallel and share the electrical load equally"
       },
       {
         "id": "b",
-        "text": "The bus tie breakers open and isolate both buses"
-      },
-      {
-        "id": "c",
         "text": "It takes its own transfer bus and the APU is relieved of that side"
       },
       {
+        "id": "c",
+        "text": "The bus tie breakers open and isolate both transfer buses"
+      },
+      {
         "id": "d",
-        "text": "The APU generator is tripped off immediately"
+        "text": "The APU generator is tripped off the bus immediately"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Each generator resuming its own side is what allows the APU to be shut down once both are on line.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0046",
@@ -1276,25 +1276,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The battery alone"
+        "text": "The APU generator or external power"
       },
       {
         "id": "b",
-        "text": "The transformer rectifier units working in reverse"
+        "text": "The battery alone through the inverter"
       },
       {
         "id": "c",
-        "text": "The static inverter"
+        "text": "The transformer rectifiers in reverse"
       },
       {
         "id": "d",
-        "text": "The APU generator or external power"
+        "text": "The static inverter on its own"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "The start requires both electrical control power and a bleed source, which is why the APU normally provides both.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0047",
@@ -1304,25 +1304,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The remaining source supplies both transfer buses through the bus ties"
+        "text": "The affected bus transfers to the battery and inverter"
       },
       {
         "id": "b",
-        "text": "The affected bus transfers to the battery"
+        "text": "The standby power system takes over both transfer buses"
       },
       {
         "id": "c",
-        "text": "The standby power system takes over both buses"
+        "text": "Both transfer buses are lost until the APU is started and on line"
       },
       {
         "id": "d",
-        "text": "Both transfer buses are lost until the APU is started"
+        "text": "The remaining source supplies both transfer buses through the bus ties"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The automatic tie is what makes a single generator failure a largely transparent event for the crew.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0048",
@@ -1332,25 +1332,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The fuel boost pumps"
-      },
-      {
-        "id": "b",
         "text": "The fuel temperature indication"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "The fuel crossfeed valve"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "The engine driven fuel pumps"
+      },
+      {
+        "id": "d",
+        "text": "The fuel boost pumps"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The boost pumps are AC motors, which is why a total AC failure changes how the engines are fed.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0049",
@@ -1368,17 +1368,17 @@
       },
       {
         "id": "c",
-        "text": "Window and probe heating"
+        "text": "Both wing and cowl anti-ice"
       },
       {
         "id": "d",
-        "text": "Both wing and cowl anti-ice"
+        "text": "Window and probe heating"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Electrical heating is used where the area is small and the temperature must be closely controlled.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0050",
@@ -1388,25 +1388,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Because the flight instruments are all DC powered"
+        "text": "Because the flight instruments are all DC powered from the battery bus alone"
       },
       {
         "id": "b",
-        "text": "Because the flight instruments are all AC powered"
+        "text": "Because the flight instruments are all AC powered from the transfer buses through two separate paths"
       },
       {
         "id": "c",
-        "text": "Because the instruments transfer to the FMC supply"
+        "text": "Because the standby system provides both AC and DC to the essential instruments through different paths"
       },
       {
         "id": "d",
-        "text": "Because the standby system provides both AC and DC to the essential instruments through different paths"
+        "text": "Because the instruments transfer to the FMC supply whenever AC power is lost"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Understanding which supply feeds which display is what allows the crew to predict what will remain after a given failure.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0051",
@@ -1416,25 +1416,25 @@
     "options": [
       {
         "id": "a",
-        "text": "On the forward overhead panel"
-      },
-      {
-        "id": "b",
-        "text": "In the electronics bay only, accessible from outside"
-      },
-      {
-        "id": "c",
         "text": "On the aft flight deck panels behind the pilot seats"
       },
       {
+        "id": "b",
+        "text": "On the forward overhead panel above the pilots"
+      },
+      {
+        "id": "c",
+        "text": "In the electronics bay only, accessible from outside"
+      },
+      {
         "id": "d",
-        "text": "On the centre pedestal"
+        "text": "On the centre pedestal behind the thrust levers"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "They are within reach in flight so that a tripped breaker can be identified, though resetting is restricted by procedure.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0052",
@@ -1444,25 +1444,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Breakers are reset automatically by the system"
+        "text": "Breakers are reset automatically by the system after a short cooling delay has been observed"
       },
       {
         "id": "b",
-        "text": "It is not reset unless the associated system is essential and the reset is permitted by procedure"
+        "text": "Breakers are reset only after landing and only by the maintenance staff"
       },
       {
         "id": "c",
-        "text": "Breakers are reset only after landing"
+        "text": "It is not reset unless the associated system is essential and the reset is permitted by procedure"
       },
       {
         "id": "d",
-        "text": "Any breaker may be reset once"
+        "text": "Any breaker may be reset once provided that the flight crew is monitoring it"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "A breaker trips because something drew excessive current, and restoring power to a fault can turn an electrical problem into a fire.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0053",
@@ -1472,7 +1472,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Because the standby buses shed automatically after a fixed period"
+        "text": "Because the standby buses are shed automatically after a fixed period has elapsed"
       },
       {
         "id": "b",
@@ -1484,13 +1484,13 @@
       },
       {
         "id": "d",
-        "text": "Because the static inverter has a limited operating time"
+        "text": "Because the static inverter has a limited continuous operating time"
       }
     ],
     "correct": "c",
     "explanation": "The failure converts into an endurance problem, so the first decision is where the airplane can land within the available time.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0054",
@@ -1528,25 +1528,25 @@
     "options": [
       {
         "id": "a",
-        "text": "To reset the battery charger cycle"
+        "text": "To reset the battery charger cycle before the first departure"
       },
       {
         "id": "b",
-        "text": "To confirm that source availability and bus status can be correctly annunciated"
+        "text": "To warm the generator control units before the first engine start of the day"
       },
       {
         "id": "c",
-        "text": "To warm the generator control units before start"
+        "text": "To confirm that source availability and bus status can be correctly annunciated"
       },
       {
         "id": "d",
-        "text": "To discharge the static inverter"
+        "text": "To discharge the static inverter before applying external power"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "An annunciation that cannot illuminate is a failure the crew would never see, which is why the indications themselves are verified.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0056",
@@ -1560,7 +1560,7 @@
       },
       {
         "id": "b",
-        "text": "The APU generator can be used only on the ground"
+        "text": "The APU generator can be used only while on the ground"
       },
       {
         "id": "c",
@@ -1568,13 +1568,13 @@
       },
       {
         "id": "d",
-        "text": "The APU generator parallels with the engine generators to share the load"
+        "text": "The APU generator parallels with the engine generators to share load"
       }
     ],
     "correct": "c",
     "explanation": "Its ability to substitute completely is what makes it valuable after a generator failure at altitude.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0057",
@@ -1584,25 +1584,25 @@
     "options": [
       {
         "id": "a",
-        "text": "That the standby power switch is in BAT"
-      },
-      {
-        "id": "b",
         "text": "That the APU generator is supplying the buses"
       },
       {
+        "id": "b",
+        "text": "That the standby power switch is in BAT"
+      },
+      {
         "id": "c",
-        "text": "That the battery switch is OFF"
+        "text": "That the battery switch has been set OFF"
       },
       {
         "id": "d",
-        "text": "That the bus transfer switch is OFF"
+        "text": "That the bus transfer switch is set to OFF"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Confirming the replacement source is carrying the airplane prevents an unnecessary interruption to the buses.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0058",
@@ -1612,11 +1612,11 @@
     "options": [
       {
         "id": "a",
-        "text": "They are shed until AC power is restored"
+        "text": "They are shed until AC power has been restored to both of the transfer buses again"
       },
       {
         "id": "b",
-        "text": "They transfer to the static inverter"
+        "text": "They transfer to the static inverter on the AC standby bus supply"
       },
       {
         "id": "c",
@@ -1624,13 +1624,13 @@
       },
       {
         "id": "d",
-        "text": "They are supplied from the galley buses"
+        "text": "They are supplied from the galley buses until AC power returns"
       }
     ],
     "correct": "c",
     "explanation": "The layering of sources means a DC bus is lost only after several independent failures.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0059",
@@ -1640,25 +1640,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Because several systems needed for continued safe flight have no non electrical alternative"
+        "text": "Because paralleled generators cannot be isolated from one another"
       },
       {
         "id": "b",
-        "text": "Because paralleled generators cannot be isolated"
+        "text": "Because the APU cannot be started above its published altitude limit during the cruise"
       },
       {
         "id": "c",
-        "text": "Because the APU cannot be started above its altitude limit"
+        "text": "Because several systems needed for continued safe flight have no non electrical alternative"
       },
       {
         "id": "d",
-        "text": "Because the battery cannot be recharged in flight"
+        "text": "Because the battery cannot be recharged at all while it is in flight"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Instruments, displays, fuel delivery and much of the ice protection all depend on power, so generation redundancy is a flight safety requirement.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-ELE-0060",
@@ -1680,12 +1680,12 @@
       },
       {
         "id": "d",
-        "text": "Select which source supplies each bus"
+        "text": "Select which source supplies each transfer bus"
       }
     ],
     "correct": "b",
     "explanation": "It is a monitoring control rather than a switching control, used to check a source before or after it is connected.",
     "status": "published",
-    "version": 1
+    "version": 2
   }
 ]

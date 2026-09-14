@@ -7,25 +7,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Individual spot detectors at each fire zone"
+        "text": "Smoke detectors sampling the nacelle ventilation air"
       },
       {
         "id": "b",
-        "text": "Smoke detectors sampling the nacelle air"
-      },
-      {
-        "id": "c",
         "text": "Continuous loop detectors responding to temperature"
       },
       {
+        "id": "c",
+        "text": "Individual spot detectors at each nacelle fire zone"
+      },
+      {
         "id": "d",
-        "text": "Optical flame detectors"
+        "text": "Continuous loop detectors responding to gas pressure"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "A continuous element covers the whole length of the zone, so a fire is detected wherever along the nacelle it starts.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0002",
@@ -63,25 +63,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Both loops must detect the condition"
+        "text": "Either loop alone must detect the condition"
       },
       {
         "id": "b",
-        "text": "One loop and confirmation from the engine control unit"
+        "text": "Both loops and a confirmed overheat indication"
       },
       {
         "id": "c",
-        "text": "Either loop alone is sufficient"
+        "text": "Both loops must detect the condition"
       },
       {
         "id": "d",
-        "text": "Both loops plus a temperature rise in the pylon"
+        "text": "One loop with the other selected inoperative"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Requiring agreement is what eliminates nuisance warnings from a single damaged element.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0004",
@@ -95,21 +95,21 @@
       },
       {
         "id": "b",
-        "text": "The warning is downgraded to an overheat indication"
+        "text": "The warning is downgraded to an overheat caution until maintenance"
       },
       {
         "id": "c",
-        "text": "Fire detection for that engine is lost entirely"
+        "text": "Fire detection for that engine is lost until the loop is replaced"
       },
       {
         "id": "d",
-        "text": "Both loops are disabled until maintenance action"
+        "text": "Both loops are inhibited and a system fault light illuminates"
       }
     ],
     "correct": "a",
     "explanation": "Losing redundancy must not mean losing protection, so the surviving loop continues to give a warning on its own.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0005",
@@ -119,25 +119,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It allows a single loop to be selected when the other is unserviceable"
+        "text": "It transfers fire detection from the engine loops to the APU loop"
       },
       {
         "id": "b",
-        "text": "It transfers detection between the engine and the APU"
+        "text": "It selects which of the two extinguisher bottles will discharge"
       },
       {
         "id": "c",
-        "text": "It selects which extinguisher bottle will discharge"
+        "text": "It selects between the overheat and the fire sensing thresholds"
       },
       {
         "id": "d",
-        "text": "It selects between overheat and fire sensing"
+        "text": "It allows a single loop to be selected when the other is unserviceable"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Isolating a faulty loop manually restores clean detection instead of leaving the crew with a spurious indication.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0006",
@@ -147,25 +147,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Smoke in the nacelle"
+        "text": "An overheat condition at a lower temperature"
       },
       {
         "id": "b",
-        "text": "Fuel vapour concentration"
+        "text": "Smoke drawn from the nacelle ventilation air"
       },
       {
         "id": "c",
-        "text": "Loss of nacelle ventilation"
+        "text": "A loss of nacelle ventilation airflow"
       },
       {
         "id": "d",
-        "text": "An overheat condition at a lower temperature"
+        "text": "A duct leak along the bleed air ducting"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "The same element reports two levels, which lets a developing problem be annunciated before it becomes a fire.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0007",
@@ -175,11 +175,11 @@
     "options": [
       {
         "id": "a",
-        "text": "By an amber light and the master caution"
+        "text": "By a red light without any aural alert"
       },
       {
         "id": "b",
-        "text": "By a red light without any aural alert"
+        "text": "By an amber light and the master caution"
       },
       {
         "id": "c",
@@ -187,13 +187,13 @@
       },
       {
         "id": "d",
-        "text": "By an aural warning only"
+        "text": "By a single chime and the master caution"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "The caution level reflects a condition that requires investigation rather than immediate shutdown.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0008",
@@ -203,25 +203,25 @@
     "options": [
       {
         "id": "a",
-        "text": "By a single chime and a red light"
+        "text": "By a single chime, the master caution and a red light in the fire switch"
       },
       {
         "id": "b",
-        "text": "By an amber light in the fire switch only"
-      },
-      {
-        "id": "c",
         "text": "By a bell, the master fire warning lights and a red light in the fire switch"
       },
       {
+        "id": "c",
+        "text": "By an amber light in the fire switch and the master caution lights"
+      },
+      {
         "id": "d",
-        "text": "By the master caution and an amber light"
+        "text": "By a bell, the master caution lights and an amber light on the panel"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "The warning is deliberately multi sensory because it demands immediate action from whichever pilot notices it first.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0009",
@@ -231,25 +231,25 @@
     "options": [
       {
         "id": "a",
-        "text": "On the overhead fire protection panel only"
+        "text": "On the overhead fire protection panel, one per engine"
       },
       {
         "id": "b",
-        "text": "On the glareshield, one in front of each pilot"
+        "text": "On the centre pedestal beside the engine start levers"
       },
       {
         "id": "c",
-        "text": "On the centre pedestal"
+        "text": "On the glareshield, one in front of each pilot"
       },
       {
         "id": "d",
-        "text": "On the forward instrument panel below the displays"
+        "text": "On the forward panel below the engine displays"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Placing them in the forward field of view means the warning is seen even by a pilot looking outside.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0010",
@@ -259,25 +259,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It resets the detection loops"
+        "text": "It resets the detection loops and clears the warning"
       },
       {
         "id": "b",
-        "text": "It silences the bell while the visual warnings remain"
+        "text": "It disarms the extinguisher squibs until the switch is pulled"
       },
       {
         "id": "c",
-        "text": "It disarms the extinguisher squibs"
+        "text": "It cancels both the bell and the master fire warning lights"
       },
       {
         "id": "d",
-        "text": "It cancels both the bell and the warning lights"
+        "text": "It silences the bell while the visual warnings remain"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Silencing the aural warning allows the crew to communicate, and the lights keep the condition in view until it is resolved.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0011",
@@ -319,21 +319,21 @@
       },
       {
         "id": "b",
-        "text": "By rotating the fire switch to the left or the right"
-      },
-      {
-        "id": "c",
         "text": "By pressing a discharge button on the overhead panel"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Automatically five seconds after the switch is pulled"
+      },
+      {
+        "id": "d",
+        "text": "By rotating the fire switch to the left or the right"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "The direction of rotation selects which of the two bottles is used, which is how a second shot is delivered.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0013",
@@ -343,25 +343,25 @@
     "options": [
       {
         "id": "a",
-        "text": "One shared bottle for both engines"
+        "text": "One, shared between both of the engines"
       },
       {
         "id": "b",
-        "text": "One per engine, dedicated to that engine"
+        "text": "Two, and either can be discharged into either engine"
       },
       {
         "id": "c",
-        "text": "Two per engine, dedicated to that engine"
+        "text": "Two, each one dedicated to a single engine"
       },
       {
         "id": "d",
-        "text": "Two, and either can be discharged into either engine"
+        "text": "Four, with two dedicated to each of the engines"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Sharing the bottles means both can be used on the same engine if the first discharge does not extinguish the fire.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0014",
@@ -371,25 +371,25 @@
     "options": [
       {
         "id": "a",
-        "text": "To allow both engines to be protected simultaneously"
+        "text": "To allow both engines to be protected at the same time"
       },
       {
         "id": "b",
-        "text": "To provide agent for the APU compartment"
+        "text": "To provide a reserve of agent for the APU compartment"
       },
       {
         "id": "c",
-        "text": "To give a second discharge if the fire warning persists after the first"
+        "text": "To maintain a metered flow after the initial knockdown discharge"
       },
       {
         "id": "d",
-        "text": "To maintain a metered flow after the initial discharge"
+        "text": "To give a second discharge if the fire warning persists after the first"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "The first shot may not reach or extinguish the source, and the procedure allows for a second attempt after a waiting period.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0015",
@@ -399,25 +399,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The bottle pressure is above the normal range"
+        "text": "That bottle has been discharged and is empty"
       },
       {
         "id": "b",
-        "text": "A leak has been detected in the discharge line"
+        "text": "The bottle pressure is above the normal range"
       },
       {
         "id": "c",
-        "text": "That bottle has been discharged and is empty"
+        "text": "A leak has been detected in the discharge line"
       },
       {
         "id": "d",
         "text": "That bottle is armed and ready to fire"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "It confirms that the agent actually left the bottle, which is different from confirming the fire is out.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0016",
@@ -455,25 +455,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Carbon dioxide"
+        "text": "Halon"
       },
       {
         "id": "b",
-        "text": "Dry chemical powder"
+        "text": "Carbon dioxide"
       },
       {
         "id": "c",
-        "text": "Water and foam"
+        "text": "Dry powder"
       },
       {
         "id": "d",
-        "text": "Halon"
+        "text": "Water"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "It suppresses fire effectively in enclosed spaces without damaging the equipment it is discharged onto.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0018",
@@ -483,25 +483,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It displaces all the oxygen from the compartment"
+        "text": "It interrupts the chemical reaction of combustion"
       },
       {
         "id": "b",
-        "text": "It forms a physical barrier over the burning surface"
+        "text": "It displaces all the oxygen from the compartment"
       },
       {
         "id": "c",
-        "text": "It cools the fire below its ignition temperature"
+        "text": "It forms a physical barrier over the burning surface"
       },
       {
         "id": "d",
-        "text": "It interrupts the chemical reaction of combustion"
+        "text": "It cools the fire below its ignition temperature"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Because it works chemically rather than by cooling or smothering, a relatively small quantity is effective.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0019",
@@ -511,25 +511,25 @@
     "options": [
       {
         "id": "a",
-        "text": "That the detection and warning circuits produce the correct indications"
+        "text": "That the squib circuits will fire both of the engine bottles"
       },
       {
         "id": "b",
-        "text": "That the squib circuits will fire the bottles"
+        "text": "That the extinguisher bottles are pressurised to the correct value"
       },
       {
         "id": "c",
-        "text": "That the extinguisher bottles are correctly pressurised"
+        "text": "That the detection loops are correctly routed along the nacelle"
       },
       {
         "id": "d",
-        "text": "That the detection loops are correctly routed in the nacelle"
+        "text": "That the detection and warning circuits produce the correct indications"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The test exercises the path from the detector to the annunciation, which is the part the crew depends on in flight.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0020",
@@ -539,25 +539,25 @@
     "options": [
       {
         "id": "a",
-        "text": "An empty extinguisher bottle"
+        "text": "An extinguisher bottle that has lost its pressure"
       },
       {
         "id": "b",
-        "text": "A failure of the fire warning bell"
+        "text": "A failed detection loop or a break in the system"
       },
       {
         "id": "c",
-        "text": "An overheat condition in progress"
+        "text": "A failure of the fire warning bell or its cutout"
       },
       {
         "id": "d",
-        "text": "A failed detection loop or a break in the system"
+        "text": "An overheat condition developing in the nacelle"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "A loop that has failed silently would otherwise leave the crew believing they have dual loop protection when they do not.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0021",
@@ -567,25 +567,25 @@
     "options": [
       {
         "id": "a",
-        "text": "None, the APU uses smoke detection"
-      },
-      {
-        "id": "b",
         "text": "One"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Two"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Three"
+      },
+      {
+        "id": "d",
+        "text": "Four"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "A single loop is accepted because the compartment is small and the APU shuts itself down when a fire is detected on the ground.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0022",
@@ -595,25 +595,25 @@
     "options": [
       {
         "id": "a",
-        "text": "None, the engine bottles are shared with the APU"
-      },
-      {
-        "id": "b",
         "text": "One"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Two"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Three"
+      },
+      {
+        "id": "d",
+        "text": "Four"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "A single bottle is sufficient for a compartment of that size with no continuing fuel flow after shutdown.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0023",
@@ -623,25 +623,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The crew must both shut down the APU and discharge the bottle"
+        "text": "The crew must both shut the APU down and discharge the bottle manually"
       },
       {
         "id": "b",
-        "text": "The APU shuts down but the bottle must be discharged manually"
-      },
-      {
-        "id": "c",
         "text": "The APU shuts down automatically and the bottle discharges automatically"
       },
       {
+        "id": "c",
+        "text": "The APU shuts down but the bottle must be discharged by the crew"
+      },
+      {
         "id": "d",
-        "text": "The APU continues to run until the fire switch is pulled"
+        "text": "The APU continues to run until the APU fire switch is pulled out"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "On the ground the APU may be running unattended, so the system is designed to protect the airplane without anyone in the flight deck.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0024",
@@ -651,25 +651,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The fire warning is inhibited above the APU bleed altitude limit"
+        "text": "The crew must shut the APU down and discharge the bottle manually"
       },
       {
         "id": "b",
-        "text": "The APU shuts down but no extinguishing is available"
+        "text": "The fire warning is inhibited above the APU bleed altitude limit"
       },
       {
         "id": "c",
-        "text": "The response is identical to the ground case"
+        "text": "The APU shuts down but no extinguishing agent is available"
       },
       {
         "id": "d",
-        "text": "The crew must shut the APU down and discharge the bottle manually"
+        "text": "The response is identical to the one on the ground"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "In flight the crew may still need what the APU is supplying, so the decision is left to them rather than being automatic.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0025",
@@ -679,25 +679,25 @@
     "options": [
       {
         "id": "a",
-        "text": "By a horn in the nose wheel well"
-      },
-      {
-        "id": "b",
         "text": "By the exterior logo lights flashing"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "By the cabin evacuation alarm"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "By the passenger address system"
+      },
+      {
+        "id": "d",
+        "text": "By a horn in the nose wheel well"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The alert has to reach people working outside the airplane, who cannot see the flight deck indications.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0026",
@@ -707,25 +707,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It controls the external power connection"
+        "text": "It allows external power to be connected and the ground service bus to be selected"
       },
       {
         "id": "b",
-        "text": "It provides a test facility for the engine fire loops"
+        "text": "It provides a test facility for the engine and APU fire detection loops"
       },
       {
         "id": "c",
-        "text": "It allows the APU to be shut down and a fire to be indicated from outside the airplane"
+        "text": "It allows the APU to be started and run without power on the flight deck"
       },
       {
         "id": "d",
-        "text": "It allows the APU to be started without flight deck power"
+        "text": "It allows the APU to be shut down and a fire to be indicated from outside the airplane"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Ground personnel who detect a problem must be able to stop the APU without going to the flight deck.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0027",
@@ -739,7 +739,7 @@
       },
       {
         "id": "b",
-        "text": "Neither detection nor extinguishing"
+        "text": "Neither detection nor a fixed extinguishing system"
       },
       {
         "id": "c",
@@ -747,13 +747,13 @@
       },
       {
         "id": "d",
-        "text": "Both detection and extinguishing"
+        "text": "Both detection and a fixed extinguishing system"
       }
     ],
     "correct": "c",
     "explanation": "Detection tells the crew there is a problem, and the response uses the airflow rather than an agent.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0028",
@@ -763,25 +763,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Depressurise the cabin to starve the fire of oxygen"
+        "text": "Extend the landing gear to expose the wheel well to the airflow"
       },
       {
         "id": "b",
-        "text": "Reduce speed to below the gear extension limit and continue"
+        "text": "Depressurise the cabin to starve the fire of oxygen"
       },
       {
         "id": "c",
-        "text": "Discharge an engine bottle into the wheel well"
+        "text": "Reduce speed to below the gear extension limit and continue"
       },
       {
         "id": "d",
-        "text": "Extend the landing gear to expose the wheel well to the airflow"
+        "text": "Discharge an engine bottle into the wheel well"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "The airstream is the only extinguishing medium available there, and exposing the fire to it is the effective action.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0029",
@@ -791,7 +791,7 @@
     "options": [
       {
         "id": "a",
-        "text": "The agent would damage the landing gear components"
+        "text": "The agent would damage the landing gear and brake components"
       },
       {
         "id": "b",
@@ -799,17 +799,17 @@
       },
       {
         "id": "c",
-        "text": "The airflow through the bay would disperse the agent before it could act"
+        "text": "The wheel well is classified as a ventilated rather than a fire zone"
       },
       {
         "id": "d",
-        "text": "The wheel well is not classified as a fire zone"
+        "text": "The airflow through the bay would disperse the agent before it could act"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "An agent needs a reasonably sealed volume to build and hold a concentration, which the wheel well cannot provide.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0030",
@@ -819,11 +819,11 @@
     "options": [
       {
         "id": "a",
-        "text": "By continuous loop temperature detectors"
+        "text": "By continuous loop detectors"
       },
       {
         "id": "b",
-        "text": "By pressure sensors detecting compartment expansion"
+        "text": "By optical flame sensors"
       },
       {
         "id": "c",
@@ -831,13 +831,13 @@
       },
       {
         "id": "d",
-        "text": "By optical flame sensors"
+        "text": "By compartment pressure sensors"
       }
     ],
     "correct": "c",
     "explanation": "A cargo fire usually smoulders for a long time before producing heat, so smoke is what appears first.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0031",
@@ -847,25 +847,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Smoke detectors do not require electrical power"
+        "text": "Smoke detectors respond without needing any electrical power"
       },
       {
         "id": "b",
-        "text": "Smoke detectors are less prone to false alarms"
+        "text": "Smoke detectors are far less prone to false alarms than heat detectors"
       },
       {
         "id": "c",
-        "text": "Smouldering material produces smoke long before it produces significant heat"
+        "text": "Heat detectors cannot function in an unpressurised compartment"
       },
       {
         "id": "d",
-        "text": "Heat detectors cannot function in an unpressurised compartment"
+        "text": "Smouldering material produces smoke long before it produces significant heat"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "The aim is to detect the fire while it is still small enough for the agent to control.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0032",
@@ -875,25 +875,25 @@
     "options": [
       {
         "id": "a",
-        "text": "An initial knockdown discharge followed by a metered flow"
+        "text": "A repeated pulsed discharge at fixed timed intervals"
       },
       {
         "id": "b",
-        "text": "A repeated pulsed discharge at fixed intervals"
+        "text": "A single large discharge with no further flow"
       },
       {
         "id": "c",
-        "text": "A single large discharge only"
+        "text": "An initial knockdown discharge followed by a metered flow"
       },
       {
         "id": "d",
         "text": "A continuous unregulated flow until the bottles are empty"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "The first discharge suppresses the fire and the metered flow holds the concentration while the airplane diverts.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0033",
@@ -903,25 +903,25 @@
     "options": [
       {
         "id": "a",
-        "text": "To cool the compartment structure gradually"
+        "text": "To cool the compartment structure gradually after the discharge"
       },
       {
         "id": "b",
-        "text": "To avoid overpressurising the cargo compartment"
+        "text": "To maintain the agent concentration for the remainder of the flight"
       },
       {
         "id": "c",
-        "text": "To allow the smoke detectors to clear and reset"
+        "text": "To avoid overpressurising the cargo compartment after discharge"
       },
       {
         "id": "d",
-        "text": "To maintain the agent concentration for the remainder of the flight"
+        "text": "To allow the smoke detectors to clear and reset themselves"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "A fire that is suppressed but not extinguished will reignite once the concentration falls, so it must be held until landing.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0034",
@@ -931,25 +931,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It is increased to clear the smoke"
+        "text": "It is increased"
       },
       {
         "id": "b",
-        "text": "It is shut off"
+        "text": "It is reversed overboard"
       },
       {
         "id": "c",
-        "text": "It is reversed to vent overboard"
+        "text": "It is shut off"
       },
       {
         "id": "d",
-        "text": "It is unchanged, since the compartment is not ventilated"
+        "text": "It is unchanged"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Ventilation would both dilute the agent and supply the fire with oxygen, so the compartment is sealed as far as possible.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0035",
@@ -959,28 +959,28 @@
     "options": [
       {
         "id": "a",
-        "text": "Because the bottles must be replaced before the next landing"
+        "text": "Because the bottles must be replaced before the next departure"
       },
       {
         "id": "b",
-        "text": "Because the smoke detectors are disabled after discharge"
+        "text": "Because the agent will maintain suppression only for a limited period"
       },
       {
         "id": "c",
-        "text": "Because the compartment cannot be pressurised after discharge"
+        "text": "Because the smoke detectors are disabled once the agent is discharged"
       },
       {
         "id": "d",
-        "text": "Because the agent will maintain suppression only for a limited period"
+        "text": "Because the compartment cannot be pressurised after the discharge"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "The suppression time sets the maximum distance to a suitable airport. Verify the capability of your fleet against your operator FCOM.",
     "tags": [
       "verify-fcom"
     ],
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0036",
@@ -990,28 +990,28 @@
     "options": [
       {
         "id": "a",
-        "text": "The maximum certificated passenger capacity"
+        "text": "The maximum certificated passenger capacity of that airplane"
       },
       {
         "id": "b",
-        "text": "Whether the airplane is approved for extended operations"
+        "text": "Whether the airplane is approved for extended range operations"
       },
       {
         "id": "c",
-        "text": "The number of engine extinguisher bottles installed"
+        "text": "The compartment classification and the configuration of that airplane"
       },
       {
         "id": "d",
-        "text": "The compartment classification and the configuration of that airplane"
+        "text": "The number of engine extinguisher bottles that are installed"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Cargo compartment protection varies between builds and operators. Verify the configuration of your fleet against your operator FCOM.",
     "tags": [
       "verify-fcom"
     ],
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0037",
@@ -1049,25 +1049,25 @@
     "options": [
       {
         "id": "a",
-        "text": "By a smoke detector in each lavatory"
+        "text": "By a continuous loop in the waste compartment"
       },
       {
         "id": "b",
-        "text": "By a continuous loop around the waste compartment"
+        "text": "By a smoke detector in each lavatory"
       },
       {
         "id": "c",
-        "text": "By the cabin crew only, with no automatic detection"
+        "text": "By a heat detector in the ceiling panel"
       },
       {
         "id": "d",
-        "text": "By a heat detector in the ceiling panel"
+        "text": "By the cabin crew, with no automatic detection"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Lavatories are unsupervised and are a recognised fire risk, so each one is monitored independently.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0039",
@@ -1077,25 +1077,25 @@
     "options": [
       {
         "id": "a",
-        "text": "In the lavatory itself and at the attendant stations"
+        "text": "At the forward attendant station and nowhere else"
       },
       {
         "id": "b",
-        "text": "At the forward attendant station only"
+        "text": "In the lavatory itself and at the attendant stations"
       },
       {
         "id": "c",
-        "text": "On the passenger address system"
+        "text": "On the passenger address system and in the cabin"
       },
       {
         "id": "d",
         "text": "On the flight deck fire protection panel only"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "The alert must reach both the occupant and the crew who will have to respond.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0040",
@@ -1105,25 +1105,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It is not protected, the bin is emptied before each flight"
+        "text": "It is not protected, the bin is emptied before every flight"
       },
       {
         "id": "b",
-        "text": "By an extinguisher that discharges automatically at a set temperature"
+        "text": "By a manually operated bottle mounted inside the bin"
       },
       {
         "id": "c",
-        "text": "By a manually operated bottle inside the bin"
+        "text": "By an extinguisher that discharges automatically at a set temperature"
       },
       {
         "id": "d",
-        "text": "By a smoke detector that alerts the cabin crew to discharge a portable extinguisher"
+        "text": "By a smoke detector that alerts the crew to use a portable extinguisher"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "A waste bin fire can start unobserved, so the protection cannot depend on anyone being present to act.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0041",
@@ -1133,25 +1133,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Because a fire there can develop unnoticed behind a closed door"
+        "text": "Because the cabin crew may not enter an occupied lavatory"
       },
       {
         "id": "b",
-        "text": "Because the cabin crew are not permitted to enter an occupied lavatory"
+        "text": "Because the smoke detector cannot sense a fire inside the bin"
       },
       {
         "id": "c",
-        "text": "Because the smoke detector cannot sense a bin fire"
+        "text": "Because a portable extinguisher would damage the bin liner"
       },
       {
         "id": "d",
-        "text": "Because a portable extinguisher would damage the bin"
+        "text": "Because a fire there can develop unnoticed behind a closed door"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The automatic discharge closes the gap between the fire starting and anyone discovering it.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0042",
@@ -1165,21 +1165,21 @@
       },
       {
         "id": "b",
-        "text": "An overheat requires the bottle to be discharged but not the engine shut down"
+        "text": "An overheat requires the agent to be discharged while a fire requires only the affected bleed to be isolated"
       },
       {
         "id": "c",
-        "text": "There is no difference, both are handled by the same procedure"
+        "text": "A fire requires investigation while an overheat requires the engine to be shut down and secured"
       },
       {
         "id": "d",
-        "text": "A fire requires only that the affected bleed be isolated"
+        "text": "Both are handled the same way, and only the time available to the crew is different"
       }
     ],
     "correct": "a",
     "explanation": "The two indications describe different stages, and treating an overheat as a fire would shut down a serviceable engine unnecessarily.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0043",
@@ -1193,21 +1193,21 @@
       },
       {
         "id": "b",
-        "text": "Because an evacuation may be required and ground assistance is available"
-      },
-      {
-        "id": "c",
         "text": "Because the fire switch is locked until the airplane is airborne"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Because the extinguisher bottles cannot be discharged on the ground"
+      },
+      {
+        "id": "d",
+        "text": "Because an evacuation may be required and ground assistance is available"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "On the ground the passengers can be removed from the airplane, which changes the priorities of the response entirely.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0044",
@@ -1217,25 +1217,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Because the detection loops require AC power"
-      },
-      {
-        "id": "b",
         "text": "So that a failure of the engine displays does not remove the fire warning"
       },
       {
+        "id": "b",
+        "text": "Because the detection loops require AC power from a separate bus"
+      },
+      {
         "id": "c",
-        "text": "So that the warning can be inhibited during takeoff"
+        "text": "So that the warning can be inhibited during the takeoff roll"
       },
       {
         "id": "d",
-        "text": "So that the fire warning can be tested in flight"
+        "text": "So that the fire warning can be tested while the engines are running"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "A warning that depends on another system inherits that system failures, which is unacceptable for a fire indication.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0045",
@@ -1245,25 +1245,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The detection loop selector moves to NORMAL"
-      },
-      {
-        "id": "b",
         "text": "The fire warning ceases"
       },
       {
+        "id": "b",
+        "text": "The overheat light illuminates"
+      },
+      {
         "id": "c",
-        "text": "The engine overheat light illuminates"
+        "text": "The bottle discharge light goes out"
       },
       {
         "id": "d",
-        "text": "The bottle discharge light extinguishes"
+        "text": "The loop selector returns to NORMAL"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "The warning is driven by the detectors, so its removal is the evidence that the condition no longer exists.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0046",
@@ -1273,25 +1273,25 @@
     "options": [
       {
         "id": "a",
-        "text": "That a third bottle can be selected from the APU system"
+        "text": "That the APU extinguisher bottle can be selected and discharged into that engine"
       },
       {
         "id": "b",
-        "text": "That the warning will clear once the engine has cooled"
+        "text": "That the warning will clear by itself once the engine has cooled down"
       },
       {
         "id": "c",
-        "text": "That the detection loop has failed and the warning can be disregarded"
+        "text": "That the fire is not contained and the airplane must be landed as soon as possible"
       },
       {
         "id": "d",
-        "text": "That the fire is not contained and the airplane must be landed as soon as possible"
+        "text": "That the detection loop has failed and the warning can now be disregarded"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "With no agent remaining, time on the airframe is the only remaining variable the crew can influence.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0047",
@@ -1301,11 +1301,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Because the loops need to be cooled by the bleed ducts"
+        "text": "Because the loops must be cooled by the surrounding airflow"
       },
       {
         "id": "b",
-        "text": "Because the sensing element requires a minimum installed length to function"
+        "text": "Because the sensing element needs a minimum installed length"
       },
       {
         "id": "c",
@@ -1313,13 +1313,13 @@
       },
       {
         "id": "d",
-        "text": "To allow the loops to sense both engine and pylon fires with one element"
+        "text": "Because one element must sense both engine and pylon fires"
       }
     ],
     "correct": "c",
     "explanation": "Point detectors would leave gaps, and a fire starting in a gap would not be detected until it had spread.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FIR-0048",
@@ -1329,24 +1329,24 @@
     "options": [
       {
         "id": "a",
-        "text": "To confirm that detection, warning and fault monitoring all function correctly"
+        "text": "To verify that the cargo compartment ventilation valves close correctly"
       },
       {
         "id": "b",
-        "text": "To verify the cargo compartment ventilation valves"
+        "text": "To confirm that the extinguisher bottles are pressurised correctly"
       },
       {
         "id": "c",
-        "text": "To pressurise the extinguisher bottles"
+        "text": "To confirm that detection, warning and fault monitoring all function correctly"
       },
       {
         "id": "d",
-        "text": "To reset the detection loops after the previous flight"
+        "text": "To reset the detection loops and the fault monitoring after the last flight"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "A fire system spends its entire life dormant, so the only assurance it works is a deliberate test.",
     "status": "published",
-    "version": 1
+    "version": 2
   }
 ]

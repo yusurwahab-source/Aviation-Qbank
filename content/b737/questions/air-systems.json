@@ -7,11 +7,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Engines, APU and ground pneumatic source"
+        "text": "Engines, APU and ram air inlets"
       },
       {
         "id": "b",
-        "text": "Engines, APU and ram air"
+        "text": "Engines, APU and ground pneumatic source"
       },
       {
         "id": "c",
@@ -22,10 +22,10 @@
         "text": "APU, ram air and the ground cart"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "The engines are the normal source in flight, the APU is the normal source on the ground, and a ground cart can substitute when the APU is unserviceable.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0002",
@@ -35,11 +35,11 @@
     "options": [
       {
         "id": "a",
-        "text": "The 2nd and 5th stages"
+        "text": "The 5th and 9th stages"
       },
       {
         "id": "b",
-        "text": "The 5th and 9th stages"
+        "text": "The 2nd and 5th stages"
       },
       {
         "id": "c",
@@ -50,10 +50,10 @@
         "text": "The fan and the 5th stage"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Two ports are needed because a single port cannot deliver usable pressure across the whole range of thrust settings and altitudes.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0003",
@@ -67,21 +67,21 @@
       },
       {
         "id": "b",
-        "text": "Whenever the engine is running"
+        "text": "Whenever the engine is running above idle thrust"
       },
       {
         "id": "c",
-        "text": "Only during engine start"
+        "text": "Only during engine start and the pushback phase"
       },
       {
         "id": "d",
-        "text": "Whenever the pack switch is in HIGH"
+        "text": "Whenever the pack switch is selected to HIGH flow"
       }
     ],
     "correct": "a",
     "explanation": "Low thrust settings and high altitude reduce 5th stage pressure, so the 9th stage is brought in to keep the duct supplied.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0004",
@@ -91,25 +91,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It delivers cleaner air"
-      },
-      {
-        "id": "b",
         "text": "Extracting air from a later stage costs more engine performance and fuel"
       },
       {
+        "id": "b",
+        "text": "It delivers cleaner air and reduces the risk of duct contamination"
+      },
+      {
         "id": "c",
-        "text": "It produces less noise in the cabin"
+        "text": "It produces noticeably less noise in the cabin at cruise"
       },
       {
         "id": "d",
-        "text": "It is the only stage available above the tropopause"
+        "text": "It is the only stage available above the tropopause in the cruise"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Air taken later in the compressor has already had more work done on it, so bleeding it is a larger penalty on thrust and fuel burn.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0005",
@@ -123,21 +123,21 @@
       },
       {
         "id": "b",
-        "text": "It raises bleed pressure before the packs"
+        "text": "It cools the bleed air using engine fan air"
       },
       {
         "id": "c",
-        "text": "It cools the bleed air using engine fan air"
+        "text": "It raises bleed pressure before the packs"
       },
       {
         "id": "d",
         "text": "It filters contaminants out of the bleed air"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Bleed air leaves the compressor far too hot for the ducts and the packs, so fan air is used as the cooling medium.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0006",
@@ -147,25 +147,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The quantity of fan air passed through the pre-cooler"
+        "text": "The pack flow rate selected on the pack switch"
       },
       {
         "id": "b",
-        "text": "The pack flow rate"
+        "text": "The position of the ram air inlet doors"
       },
       {
         "id": "c",
-        "text": "The position of the ram air doors"
+        "text": "The quantity of fan air passed through the pre-cooler"
       },
       {
         "id": "d",
-        "text": "The bleed air pressure delivered to the duct"
+        "text": "The bleed air pressure delivered to the pneumatic duct"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "By modulating the cooling airflow it holds the bleed air temperature downstream of the pre-cooler at the scheduled value.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0007",
@@ -175,25 +175,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The pack on that side shuts down immediately"
-      },
-      {
-        "id": "b",
-        "text": "The isolation valve closes"
-      },
-      {
-        "id": "c",
         "text": "The engine bleed air valve closes"
       },
       {
+        "id": "b",
+        "text": "The pack on that side shuts down immediately"
+      },
+      {
+        "id": "c",
+        "text": "The isolation valve closes automatically"
+      },
+      {
         "id": "d",
-        "text": "The high stage valve opens"
+        "text": "The high stage valve opens to compensate"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Closing the valve isolates that engine from the duct. The pack can still be supplied from the other side if the isolation valve is open.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0008",
@@ -203,25 +203,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Bleed air overpressure or overtemperature"
-      },
-      {
-        "id": "b",
         "text": "Failure of the pack cooling fan"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "A leak in the wing leading edge"
+      },
+      {
+        "id": "c",
+        "text": "Bleed air overpressure or overtemperature"
       },
       {
         "id": "d",
         "text": "Loss of the ram air door position signal"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "The bleed valve closes automatically to protect the ducts and downstream equipment from damage.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0009",
@@ -231,25 +231,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It resets the cabin pressure controller"
+        "text": "It resets the cabin pressure controller to auto"
       },
       {
         "id": "b",
-        "text": "It reopens a tripped valve once the cause has cleared"
+        "text": "It restores the recirculation fans to normal"
       },
       {
         "id": "c",
-        "text": "It restores the recirculation fans"
+        "text": "It cancels the cabin altitude warning horn"
       },
       {
         "id": "d",
-        "text": "It cancels the cabin altitude warning horn"
+        "text": "It reopens a tripped valve once the cause has cleared"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "The reset only works after the overheat or overpressure condition has gone, so it cannot be used to force a faulty system back on line.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0010",
@@ -259,25 +259,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Both packs are operating in high flow"
+        "text": "Both packs are operating in high flow together"
       },
       {
         "id": "b",
-        "text": "APU bleed and engine bleed are supplying the same duct"
+        "text": "Both engine bleed valves have tripped off"
       },
       {
         "id": "c",
-        "text": "Both engine bleeds have tripped off"
+        "text": "APU bleed and engine bleed are supplying the same duct"
       },
       {
         "id": "d",
-        "text": "The isolation valve has failed closed"
+        "text": "The isolation valve has failed in the closed position"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Engine bleed pressure can drive air back towards the APU, so the configuration is corrected to avoid damaging the APU.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0011",
@@ -295,17 +295,17 @@
       },
       {
         "id": "c",
-        "text": "CLOSE, AUTO and OPEN"
+        "text": "NORM, ALTN and OFF"
       },
       {
         "id": "d",
-        "text": "NORM, ALTN and OFF"
+        "text": "CLOSE, AUTO and OPEN"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "AUTO is the normal selection, leaving the system to connect or separate the two duct sides as the configuration requires.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0012",
@@ -315,7 +315,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Whenever the APU is running"
+        "text": "Only when both engine bleed switches are selected off"
       },
       {
         "id": "b",
@@ -323,11 +323,11 @@
       },
       {
         "id": "c",
-        "text": "Only when both engine bleeds are off"
+        "text": "Whenever the APU is running and supplying the duct"
       },
       {
         "id": "d",
-        "text": "Whenever the flaps are extended"
+        "text": "Whenever the flaps are extended for landing"
       }
     ],
     "correct": "b",
@@ -336,7 +336,7 @@
       "verify-fcom"
     ],
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0013",
@@ -346,25 +346,25 @@
     "options": [
       {
         "id": "a",
-        "text": "A pack outlet overheat"
+        "text": "A bleed air leak in the duct area of the wing or body"
       },
       {
         "id": "b",
-        "text": "An engine anti-ice valve failure"
+        "text": "A pack outlet overheat downstream of the valve"
       },
       {
         "id": "c",
-        "text": "Overheating of the equipment cooling exhaust"
+        "text": "An engine anti-ice valve failed in the open position"
       },
       {
         "id": "d",
-        "text": "A bleed air leak in the duct area of the wing or body"
+        "text": "Overheating of the equipment cooling exhaust duct"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Hot escaping air is detected by sensing elements running alongside the ducts, which is how a leak is found before it damages structure.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0014",
@@ -374,25 +374,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Increase pack flow to cool the duct"
-      },
-      {
-        "id": "b",
-        "text": "Open the isolation valve to share the flow"
-      },
-      {
-        "id": "c",
         "text": "Isolate the affected bleed source"
       },
       {
+        "id": "b",
+        "text": "Increase pack flow to cool the duct"
+      },
+      {
+        "id": "c",
+        "text": "Open the isolation valve to share the flow"
+      },
+      {
         "id": "d",
-        "text": "Select both packs to HIGH"
+        "text": "Select both packs to HIGH flow"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Shutting off the source removes the hot air feeding the leak. Sharing the flow would spread the problem rather than contain it.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0015",
@@ -402,25 +402,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Cabin differential pressure"
+        "text": "Cabin differential pressure in the climb"
       },
       {
         "id": "b",
-        "text": "Pack discharge pressure"
+        "text": "Left and right pneumatic duct pressure"
       },
       {
         "id": "c",
-        "text": "Ram air pressure at the inlet"
+        "text": "Pack discharge pressure at the outlet"
       },
       {
         "id": "d",
-        "text": "Left and right pneumatic duct pressure"
+        "text": "Ram air pressure at the inlet duct"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "The dual indication lets the crew see each side separately and judge whether a source or a valve has failed.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0016",
@@ -430,11 +430,11 @@
     "options": [
       {
         "id": "a",
-        "text": "The fuel tanks"
+        "text": "The fuel tank vent system"
       },
       {
         "id": "b",
-        "text": "The oxygen cylinders"
+        "text": "The crew oxygen cylinders"
       },
       {
         "id": "c",
@@ -448,7 +448,7 @@
     "correct": "d",
     "explanation": "Positive pressure on the reservoirs keeps fluid supplied to the pump inlets, especially at altitude.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0017",
@@ -458,11 +458,11 @@
     "options": [
       {
         "id": "a",
-        "text": "The potable water tank pressurisation"
+        "text": "The landing gear extension system"
       },
       {
         "id": "b",
-        "text": "The landing gear extension system"
+        "text": "The potable water tank pressurisation"
       },
       {
         "id": "c",
@@ -473,10 +473,10 @@
         "text": "The passenger oxygen generators"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Pressurising the tank forces water to the galleys and lavatories without a separate pump.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0018",
@@ -514,25 +514,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Windshield heat"
+        "text": "Windshield and window heat"
       },
       {
         "id": "b",
-        "text": "Pitot probe heat"
+        "text": "Pitot and static probe heat"
       },
       {
         "id": "c",
-        "text": "Total air temperature probe heat"
+        "text": "Thermal wing and engine anti-ice"
       },
       {
         "id": "d",
-        "text": "Thermal wing and engine anti-ice"
+        "text": "Total air temperature probe heat"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Wing and cowl anti-ice are thermal systems fed from the ducts, whereas probe and window heating are electrical.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0020",
@@ -542,25 +542,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The right duct"
-      },
-      {
-        "id": "b",
         "text": "The left duct"
       },
       {
+        "id": "b",
+        "text": "The right duct"
+      },
+      {
         "id": "c",
-        "text": "Directly to both packs, bypassing the ducts"
+        "text": "Both ducts equally"
       },
       {
         "id": "d",
-        "text": "To the mix manifold"
+        "text": "The mix manifold"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Air reaches the right side only through the isolation valve, which is why that valve matters during APU operation.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0021",
@@ -598,15 +598,15 @@
     "options": [
       {
         "id": "a",
-        "text": "The number of engines running"
+        "text": "The number of engines running at the time"
       },
       {
         "id": "b",
-        "text": "The position of the flaps"
+        "text": "The position of the trailing edge flaps"
       },
       {
         "id": "c",
-        "text": "The cabin differential pressure"
+        "text": "The cabin differential pressure in the climb"
       },
       {
         "id": "d",
@@ -619,7 +619,7 @@
       "verify-fcom"
     ],
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0023",
@@ -629,15 +629,15 @@
     "options": [
       {
         "id": "a",
-        "text": "Charging the hydraulic accumulators"
+        "text": "Charging the hydraulic accumulators and pressurising the reservoirs"
       },
       {
         "id": "b",
-        "text": "Pressurising the cabin on the ground"
+        "text": "Pressurising the cabin on the ground during turnaround"
       },
       {
         "id": "c",
-        "text": "Supplying the equipment cooling fans"
+        "text": "Supplying the equipment cooling fans in hot conditions"
       },
       {
         "id": "d",
@@ -647,7 +647,7 @@
     "correct": "d",
     "explanation": "It substitutes for the APU as a source of duct pressure, which is why dispatch with an inoperative APU depends on its availability.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0024",
@@ -657,25 +657,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Only the flight deck remains air conditioned"
-      },
-      {
-        "id": "b",
         "text": "There is no pack output and therefore no pressurisation"
       },
       {
+        "id": "b",
+        "text": "Only the flight deck remains air conditioned"
+      },
+      {
         "id": "c",
-        "text": "The packs run on ram air alone"
+        "text": "The packs run on ram air alone in the cruise"
       },
       {
         "id": "d",
         "text": "The cabin pressurises from the recirculation fans"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Conditioned air comes only from the packs, which are supplied by bleed air, so the loss of bleed is also the loss of pressurisation.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0025",
@@ -721,17 +721,17 @@
       },
       {
         "id": "c",
-        "text": "OFF, AUTO and HIGH"
+        "text": "AUTO, MAN and OFF"
       },
       {
         "id": "d",
-        "text": "AUTO, MAN and OFF"
+        "text": "OFF, AUTO and HIGH"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "AUTO lets the system schedule the flow, while HIGH is a manual selection for extra cooling or heating capacity.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0027",
@@ -741,25 +741,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Selection of engine anti-ice"
+        "text": "The other pack not operating"
       },
       {
         "id": "b",
-        "text": "Cabin altitude above 8000 ft"
+        "text": "Selection of engine anti-ice"
       },
       {
         "id": "c",
-        "text": "The other pack not operating"
+        "text": "Cabin altitude above 8000 ft"
       },
       {
         "id": "d",
         "text": "Extension of the landing gear"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "A single pack must move more air to condition the whole cabin, so the system compensates automatically for the loss of the other one.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0028",
@@ -769,25 +769,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The pack has tripped off because of an overheat"
+        "text": "The pack is operating continuously in high flow"
       },
       {
         "id": "b",
-        "text": "The pack is operating in high flow"
+        "text": "The pack has tripped off because of an overheat"
       },
       {
         "id": "c",
-        "text": "The pack switch is in AUTO"
+        "text": "Ram air is being used to cool the pack"
       },
       {
         "id": "d",
-        "text": "Ram air is being used to cool the pack"
+        "text": "The pack switch has been left in AUTO"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "The pack shuts itself down to prevent damage, and can be reset with the trip reset switch once it has cooled.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0029",
@@ -801,21 +801,21 @@
       },
       {
         "id": "b",
-        "text": "A vapour cycle refrigeration compressor"
+        "text": "A vapour cycle refrigeration compressor and condenser"
       },
       {
         "id": "c",
-        "text": "A centrifugal water separator"
+        "text": "A centrifugal water separator and condenser"
       },
       {
         "id": "d",
-        "text": "A rotary bleed multiplier"
+        "text": "A rotary bleed air pressure multiplier"
       }
     ],
     "correct": "a",
     "explanation": "Air is compressed, cooled, then expanded through the turbine, and the work extracted in the turbine is what produces the temperature drop.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0030",
@@ -825,25 +825,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Fuel from the wing tanks"
+        "text": "Fan air"
       },
       {
         "id": "b",
-        "text": "Ram air"
+        "text": "Fuel"
       },
       {
         "id": "c",
-        "text": "Recirculated cabin air"
+        "text": "Ram air"
       },
       {
         "id": "d",
-        "text": "Fan air from the engine"
+        "text": "Cabin air"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Outside air passing through the ram air circuit carries away the heat of compression before the air is expanded.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0031",
@@ -853,25 +853,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The recirculation fans are reversed"
+        "text": "No cooling is available until the airplane starts moving forward"
       },
       {
         "id": "b",
-        "text": "The air cycle machine fan draws air through the ram air circuit"
+        "text": "The recirculation fans are reversed to draw air in"
       },
       {
         "id": "c",
-        "text": "The equipment cooling exhaust fan is used"
+        "text": "The air cycle machine fan draws air through the ram air circuit"
       },
       {
         "id": "d",
-        "text": "No cooling is available until the airplane is moving"
+        "text": "The equipment cooling exhaust fan is used instead"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "With no forward speed there is no ram effect, so the fan provides the airflow the heat exchangers need.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0032",
@@ -881,25 +881,25 @@
     "options": [
       {
         "id": "a",
-        "text": "A failure of the ram air door actuator"
+        "text": "A failure of the ram air door actuator to drive the door closed in flight"
       },
       {
         "id": "b",
-        "text": "Ram air is being used instead of pack air"
+        "text": "Ram air is being used instead of pack output to cool the cabin"
       },
       {
         "id": "c",
-        "text": "The ram air door is fully open, which is normal on the ground and at low speed"
+        "text": "The pack has reverted to manual temperature control by the crew"
       },
       {
         "id": "d",
-        "text": "The pack has reverted to manual control"
+        "text": "The ram air door is fully open, which is normal on the ground and at low speed"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "At low speed the door opens fully to get enough cooling airflow, so the light is a normal indication in that regime.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0033",
@@ -909,11 +909,11 @@
     "options": [
       {
         "id": "a",
-        "text": "To prevent fogging and the formation of ice in the system"
+        "text": "To reduce the load on the recirculation fans"
       },
       {
         "id": "b",
-        "text": "To reduce the load on the recirculation fans"
+        "text": "To prevent fogging and the formation of ice in the system"
       },
       {
         "id": "c",
@@ -924,10 +924,10 @@
         "text": "To protect the trim air valves from corrosion"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Cooling the air condenses the water it carries, and that water would otherwise freeze in the cold sections and blow into the cabin as fog.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0034",
@@ -937,7 +937,7 @@
     "options": [
       {
         "id": "a",
-        "text": "It combines left and right bleed air before the packs"
+        "text": "It combines left and right bleed air ahead of both packs"
       },
       {
         "id": "b",
@@ -945,7 +945,7 @@
       },
       {
         "id": "c",
-        "text": "It mixes trim air with cabin exhaust air"
+        "text": "It mixes trim air with cabin exhaust air before it is discharged"
       },
       {
         "id": "d",
@@ -955,7 +955,7 @@
     "correct": "d",
     "explanation": "Mixing allows a comfortable cabin flow to be maintained while taking less air from the engines.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0035",
@@ -996,7 +996,7 @@
     "options": [
       {
         "id": "a",
-        "text": "It improves cabin humidity control"
+        "text": "It improves cabin humidity and reduces dryness"
       },
       {
         "id": "b",
@@ -1004,17 +1004,17 @@
       },
       {
         "id": "c",
-        "text": "It reduces the bleed air demand and therefore fuel burn"
+        "text": "It allows the packs to be operated at higher temperatures"
       },
       {
         "id": "d",
-        "text": "It allows the packs to be operated at higher temperatures"
+        "text": "It reduces the bleed air demand and therefore fuel burn"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Every kilogram of air not taken from the engines is thrust and fuel retained, which is why recirculation is used whenever it is available.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0037",
@@ -1028,21 +1028,21 @@
       },
       {
         "id": "b",
-        "text": "It is passed through the pack turbine"
+        "text": "It passes through filters"
       },
       {
         "id": "c",
-        "text": "It is dried in the water separator"
+        "text": "It is passed through the pack turbine"
       },
       {
         "id": "d",
-        "text": "It passes through filters"
+        "text": "It is dried in the water separator"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Filtration removes particles and contaminants, which is what makes reusing cabin air acceptable.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0038",
@@ -1052,25 +1052,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Cold pack air is bypassed around the mix manifold"
+        "text": "Cold pack air is bypassed around the mix manifold into the cabin"
       },
       {
         "id": "b",
-        "text": "Ram air is admitted directly into the cabin"
+        "text": "Hot bleed air is added downstream of the packs to warm an individual zone"
       },
       {
         "id": "c",
-        "text": "Recirculated air is diverted to the flight deck"
+        "text": "Ram air is admitted directly into the cabin through the zone valve"
       },
       {
         "id": "d",
-        "text": "Hot bleed air is added downstream of the packs to warm an individual zone"
+        "text": "Recirculated air is diverted to the flight deck zone only"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "The packs supply air at the temperature required by the coldest zone, and each warmer zone is then trimmed up individually.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0039",
@@ -1084,21 +1084,21 @@
       },
       {
         "id": "b",
-        "text": "That the zone has reached the selected temperature"
+        "text": "That the zone has reached the selected temperature setting"
       },
       {
         "id": "c",
-        "text": "A duct overheat in that zone, with the trim air valve closing"
+        "text": "Failure of a recirculation fan serving that zone"
       },
       {
         "id": "d",
-        "text": "Failure of a recirculation fan"
+        "text": "A duct overheat in that zone, with the trim air valve closing"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Closing the trim air valve removes the source of the hot air, which protects the duct and the cabin.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0040",
@@ -1108,25 +1108,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It has its own independently selected zone"
+        "text": "It shares the setting used for the forward cabin"
       },
       {
         "id": "b",
-        "text": "It shares the cabin setting"
+        "text": "It has its own independently selected zone"
       },
       {
         "id": "c",
-        "text": "It is fixed by the pack controller"
+        "text": "It is fixed by the pack temperature controller"
       },
       {
         "id": "d",
         "text": "It follows the forward cabin zone automatically"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "The flight deck has a very different heat load from avionics, sunlight and a small occupied volume, so it needs separate control.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0041",
@@ -1136,25 +1136,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The left pack"
-      },
-      {
-        "id": "b",
         "text": "The right pack"
       },
       {
+        "id": "b",
+        "text": "The left pack"
+      },
+      {
         "id": "c",
-        "text": "Whichever pack is in high flow"
+        "text": "Both packs equally"
       },
       {
         "id": "d",
-        "text": "Both packs equally at all times"
+        "text": "Whichever is in high flow"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Knowing the normal distribution matters when a pack fails or when smoke in the flight deck has to be traced to a source.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0042",
@@ -1172,17 +1172,17 @@
       },
       {
         "id": "c",
-        "text": "From the trim air manifold"
+        "text": "From the recirculation system"
       },
       {
         "id": "d",
-        "text": "From the recirculation system"
+        "text": "From the trim air manifold"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "They provide local airflow rather than conditioned pack air, which is why the air from them is close to cabin temperature.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0043",
@@ -1192,25 +1192,25 @@
     "options": [
       {
         "id": "a",
-        "text": "By supply and exhaust fans drawing air across the equipment"
+        "text": "By a dedicated vapour cycle refrigeration unit"
       },
       {
         "id": "b",
-        "text": "By a dedicated vapour cycle unit"
+        "text": "By pack air ducted directly to each individual equipment rack"
       },
       {
         "id": "c",
-        "text": "By pack air ducted directly to each rack"
+        "text": "By supply and exhaust fans drawing air across the equipment"
       },
       {
         "id": "d",
-        "text": "By ram air only"
+        "text": "By ram air alone through a dedicated cooling inlet"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Continuous forced airflow is required because the avionics generate heat whenever they are powered.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0044",
@@ -1220,25 +1220,25 @@
     "options": [
       {
         "id": "a",
-        "text": "LOW and HIGH"
+        "text": "NORMAL and ALTERNATE"
       },
       {
         "id": "b",
-        "text": "AUTO and MANUAL"
+        "text": "LOW and HIGH"
       },
       {
         "id": "c",
-        "text": "ON and STANDBY"
+        "text": "AUTO and MANUAL"
       },
       {
         "id": "d",
-        "text": "NORMAL and ALTERNATE"
+        "text": "ON and STANDBY"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "A second fan is available on each of the supply and exhaust sides, so a single fan failure does not stop the cooling.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0045",
@@ -1248,25 +1248,25 @@
     "options": [
       {
         "id": "a",
-        "text": "That the fan switch is in ALTERNATE"
+        "text": "That the fan switch has been left in ALTERNATE"
       },
       {
         "id": "b",
-        "text": "That the equipment cooling exhaust is too cold"
+        "text": "That the equipment cooling exhaust air is too cold"
       },
       {
         "id": "c",
-        "text": "That the smoke detector has been tested"
+        "text": "That there is insufficient airflow from the selected fan"
       },
       {
         "id": "d",
-        "text": "That there is insufficient airflow from the selected fan"
+        "text": "That the smoke detector in the exhaust has been tested"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Loss of airflow is sensed directly, and the response is to select the alternate fan and confirm the flow is restored.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0046",
@@ -1276,25 +1276,25 @@
     "options": [
       {
         "id": "a",
-        "text": "To protect the pack heat exchangers from soot"
-      },
-      {
-        "id": "b",
-        "text": "To detect a bleed air leak in the equipment bay"
-      },
-      {
-        "id": "c",
         "text": "Because smoke there is an early indication of an electrical or avionics fire"
       },
       {
+        "id": "b",
+        "text": "To protect the pack heat exchangers from soot contamination"
+      },
+      {
+        "id": "c",
+        "text": "To detect a bleed air leak in the equipment bay beneath the flight deck"
+      },
+      {
         "id": "d",
-        "text": "To confirm the filters need replacement"
+        "text": "To confirm when the equipment cooling filters need replacement"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "All the cooling air passes through the exhaust path, so it is the single place where an avionics fire shows itself first.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0047",
@@ -1304,25 +1304,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The cabin is cooled by ram air until landing"
-      },
-      {
-        "id": "b",
-        "text": "The recirculation fans maintain cabin pressure"
-      },
-      {
-        "id": "c",
         "text": "A descent is required because pressurisation is lost"
       },
       {
+        "id": "b",
+        "text": "The cabin is cooled by ram air alone until landing"
+      },
+      {
+        "id": "c",
+        "text": "The recirculation fans maintain cabin pressure alone"
+      },
+      {
         "id": "d",
-        "text": "The APU automatically restores pressurisation above its bleed limit"
+        "text": "The APU restores pressurisation above its bleed limit"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Without pack output the cabin altitude climbs towards the airplane altitude, so the only remedy is to descend.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0048",
@@ -1360,25 +1360,25 @@
     "options": [
       {
         "id": "a",
-        "text": "In the lower aft fuselage"
-      },
-      {
-        "id": "b",
         "text": "In the wing root fairing"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Behind the forward cargo compartment"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "In the tail cone below the APU"
+      },
+      {
+        "id": "d",
+        "text": "In the lower aft fuselage"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Positioning it aft and low uses the natural front to back airflow through the cabin and keeps the discharge clear of the structure.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0050",
@@ -1388,25 +1388,25 @@
     "options": [
       {
         "id": "a",
-        "text": "By the same AC motor used in the automatic modes"
+        "text": "By the same AC motor as in auto"
       },
       {
         "id": "b",
-        "text": "By cabin differential pressure alone"
+        "text": "By differential pressure alone"
       },
       {
         "id": "c",
-        "text": "By a separate DC motor"
+        "text": "By a pneumatic actuator"
       },
       {
         "id": "d",
-        "text": "By a pneumatic actuator supplied from the left duct"
+        "text": "By a separate DC motor"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "An independent motor on a different power source is what allows manual control to survive the failures that disable the automatic modes.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0051",
@@ -1416,11 +1416,11 @@
     "options": [
       {
         "id": "a",
-        "text": "AUTO, NORM and STBY"
+        "text": "AUTO, ALTN and MAN"
       },
       {
         "id": "b",
-        "text": "AUTO, ALTN and MAN"
+        "text": "AUTO, NORM and STBY"
       },
       {
         "id": "c",
@@ -1431,10 +1431,10 @@
         "text": "AUTO, SEMI and MAN"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "AUTO is normal, ALTN uses the second controller, and MAN gives the crew direct control of valve position.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0052",
@@ -1444,25 +1444,25 @@
     "options": [
       {
         "id": "a",
-        "text": "To control the forward and aft zones separately"
+        "text": "To control the forward and aft cabin zones separately"
       },
       {
         "id": "b",
-        "text": "So that a failure of one can be covered by selecting the other"
-      },
-      {
-        "id": "c",
         "text": "To allow simultaneous control of both outflow valves"
       },
       {
+        "id": "c",
+        "text": "So that a failure of one can be covered by selecting the other"
+      },
+      {
         "id": "d",
-        "text": "To provide separate control for climb and descent"
+        "text": "To provide separate control for the climb and the descent"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Redundancy in the controller keeps automatic operation available after a single failure, without going to manual control.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0053",
@@ -1500,25 +1500,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Select the alternate mode"
-      },
-      {
-        "id": "b",
         "text": "Select the manual mode immediately"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Switch both packs to HIGH"
+      },
+      {
+        "id": "c",
+        "text": "Select the alternate mode"
       },
       {
         "id": "d",
         "text": "Close the outflow valve manually"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "The alternate controller is the next level of automation and is tried before accepting the workload of manual control.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0055",
@@ -1532,7 +1532,7 @@
       },
       {
         "id": "b",
-        "text": "To set the maximum cabin altitude allowed"
+        "text": "To set the maximum cabin altitude allowed in the cruise"
       },
       {
         "id": "c",
@@ -1540,13 +1540,13 @@
       },
       {
         "id": "d",
-        "text": "To set the altitude for automatic APU shutdown"
+        "text": "To set the altitude for automatic APU shutdown in flight"
       }
     ],
     "correct": "a",
     "explanation": "The controller needs to know the cruise level to plan a smooth cabin climb rather than reacting to the airplane altitude alone.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0056",
@@ -1564,17 +1564,17 @@
       },
       {
         "id": "c",
-        "text": "The elevation of the destination airport"
+        "text": "The minimum cabin altitude in the cruise"
       },
       {
         "id": "d",
-        "text": "The minimum cabin altitude in the cruise"
+        "text": "The elevation of the destination airport"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Scheduling the cabin towards field elevation means the cabin and the airplane arrive at the same pressure together.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0057",
@@ -1584,7 +1584,7 @@
     "options": [
       {
         "id": "a",
-        "text": "The cabin is descending faster than the selected rate"
+        "text": "The cabin is descending faster than the rate the controller selected"
       },
       {
         "id": "b",
@@ -1602,7 +1602,7 @@
     "correct": "d",
     "explanation": "The controller has to abandon its planned schedule and recalculate, and the light tells the crew why the cabin behaviour has changed.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0058",
@@ -1674,11 +1674,11 @@
     "options": [
       {
         "id": "a",
-        "text": "To vent the cabin during an emergency descent"
+        "text": "To vent the cabin during an emergency descent to sea level"
       },
       {
         "id": "b",
-        "text": "To equalise pressure across the flight deck door"
+        "text": "To equalise pressure across the flight deck door in a decompression"
       },
       {
         "id": "c",
@@ -1686,13 +1686,13 @@
       },
       {
         "id": "d",
-        "text": "To relieve duct pressure after a bleed trip"
+        "text": "To relieve duct pressure after a bleed air valve trips off"
       }
     ],
     "correct": "c",
     "explanation": "They act mechanically and independently of the controllers, so an outflow valve stuck closed cannot overpressurise the fuselage.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0061",
@@ -1710,17 +1710,17 @@
       },
       {
         "id": "c",
-        "text": "Excessive cabin rate of climb"
+        "text": "Outside pressure becoming higher than cabin pressure"
       },
       {
         "id": "d",
-        "text": "Outside pressure becoming higher than cabin pressure"
+        "text": "An excessive cabin rate of climb in the climb"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "The structure is designed to be pushed outward, not inward, and a rapid descent with the cabin sealed could otherwise reverse the load.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0062",
@@ -1730,25 +1730,25 @@
     "options": [
       {
         "id": "a",
-        "text": "By varying the pack flow into the cabin"
-      },
-      {
-        "id": "b",
         "text": "By varying the amount of air leaving through the outflow valve"
       },
       {
+        "id": "b",
+        "text": "By varying the pack flow delivered into the cabin"
+      },
+      {
         "id": "c",
-        "text": "By modulating the recirculation fans"
+        "text": "By modulating the speed of both recirculation fans together"
       },
       {
         "id": "d",
-        "text": "By varying the bleed pressure at the ducts"
+        "text": "By varying the bleed air pressure at the ducts"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Inflow from the packs is essentially constant, so it is the outflow that sets the cabin pressure at any moment.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0063",
@@ -1758,25 +1758,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Fully open"
-      },
-      {
-        "id": "b",
         "text": "Fully closed"
       },
       {
+        "id": "b",
+        "text": "Partly modulating"
+      },
+      {
         "id": "c",
-        "text": "Modulating to hold field elevation"
+        "text": "As left at touchdown"
       },
       {
         "id": "d",
-        "text": "In the position it held at touchdown"
+        "text": "Fully open"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "An open valve guarantees there is no residual differential, which is what allows the doors to be opened safely.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0064",
@@ -1817,25 +1817,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The cabin may still be pressurised at touchdown"
-      },
-      {
-        "id": "b",
         "text": "The cabin will climb too rapidly in the descent"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "The outflow valve will close at top of descent"
+      },
+      {
+        "id": "c",
+        "text": "The cabin may still be pressurised at touchdown"
       },
       {
         "id": "d",
         "text": "The AUTO FAIL light will illuminate in the cruise"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "A residual differential at the gate makes the doors dangerous to open, which is why the landing altitude setting is verified during the approach preparation.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0066",
@@ -1853,17 +1853,17 @@
       },
       {
         "id": "c",
-        "text": "Ram door position and pack flow"
+        "text": "Ram air door position and pack flow rate"
       },
       {
         "id": "d",
-        "text": "Zone temperatures and trim air position"
+        "text": "Zone temperatures and trim air valve position"
       }
     ],
     "correct": "b",
     "explanation": "In manual mode nothing schedules the cabin for the crew, so the three indications are the only feedback on what the valve movement is achieving.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-AIR-0067",
@@ -1877,7 +1877,7 @@
       },
       {
         "id": "b",
-        "text": "The recirculation fans vent the cabin"
+        "text": "The recirculation fans vent the cabin overboard"
       },
       {
         "id": "c",
@@ -1885,12 +1885,12 @@
       },
       {
         "id": "d",
-        "text": "The positive relief valves are held open by the ground sensing system"
+        "text": "The relief valves are held open by ground sensing"
       }
     ],
     "correct": "c",
     "explanation": "Holding the valve open lets all the pack air pass straight out, so the cabin stays at field pressure while still being ventilated.",
     "status": "published",
-    "version": 1
+    "version": 2
   }
 ]

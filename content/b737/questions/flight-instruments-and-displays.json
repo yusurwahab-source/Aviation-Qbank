@@ -7,25 +7,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The flight control computers"
+        "text": "The flight control computers, working through the autopilot channels"
       },
       {
         "id": "b",
-        "text": "The air data computers directly"
-      },
-      {
-        "id": "c",
         "text": "Display electronic units that process data from the airplane systems"
       },
       {
+        "id": "c",
+        "text": "The air data inertial reference units, feeding the displays directly"
+      },
+      {
         "id": "d",
-        "text": "The flight management computer"
+        "text": "The flight management computer, using the navigation database"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "The units gather, validate and format the data, which is why a display failure and a data failure are different problems.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0002",
@@ -35,25 +35,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The remaining unit can drive all the displays"
+        "text": "The displays continue but without the engine indications"
       },
       {
         "id": "b",
-        "text": "The displays continue but without engine indications"
+        "text": "The remaining unit can drive all the displays"
       },
       {
         "id": "c",
-        "text": "The displays revert to the standby instruments"
+        "text": "The displays revert to the standby instruments only"
       },
       {
         "id": "d",
-        "text": "Half the displays are lost"
+        "text": "Half of the displays are lost on each side"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Either unit is capable of supporting the whole flight deck, so a single failure does not remove any display.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0003",
@@ -63,11 +63,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Navigation aid bearings and distances only"
+        "text": "Attitude, airspeed, altitude, engine parameters and the system status"
       },
       {
         "id": "b",
-        "text": "Engine parameters and system status"
+        "text": "Route, navigation aid bearings, distances, weather and terrain returns"
       },
       {
         "id": "c",
@@ -75,13 +75,13 @@
       },
       {
         "id": "d",
-        "text": "Route information and weather radar"
+        "text": "Airspeed, altitude, vertical speed, heading and the engine indications"
       }
     ],
     "correct": "c",
     "explanation": "Everything needed to control the flight path is gathered into one display so the scan stays in one place.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0004",
@@ -91,25 +91,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Attitude and airspeed as a backup to the primary display"
+        "text": "The vertical situation, including the computed descent profile and constraints"
       },
       {
         "id": "b",
-        "text": "The lateral situation, including route, navigation aids and weather"
+        "text": "Attitude and airspeed, as a backup to the primary flight display"
       },
       {
         "id": "c",
-        "text": "Engine secondary indications"
+        "text": "The lateral situation, including route, navigation aids and weather"
       },
       {
         "id": "d",
-        "text": "Hydraulic and electrical system status"
+        "text": "Engine secondary indications and the hydraulic system status"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "It answers where the airplane is and what is around it, while the primary display answers what it is doing.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0005",
@@ -119,11 +119,11 @@
     "options": [
       {
         "id": "a",
-        "text": "It switches the displays between day and night brightness"
+        "text": "It allows a failed display or source to be replaced by the remaining one"
       },
       {
         "id": "b",
-        "text": "It allows a failed display or source to be replaced by the remaining one"
+        "text": "It switches the displays between the day and the night brightness levels"
       },
       {
         "id": "c",
@@ -131,13 +131,13 @@
       },
       {
         "id": "d",
-        "text": "It selects between metric and imperial units"
+        "text": "It selects between the metric and the imperial units of measurement"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Reconfiguration is what preserves the information when a display unit or a data source is lost.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0006",
@@ -147,25 +147,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The flap placard speeds only"
-      },
-      {
-        "id": "b",
-        "text": "The minimum and maximum manoeuvre speeds only"
-      },
-      {
-        "id": "c",
         "text": "The takeoff reference speeds such as V1, VR and V2"
       },
       {
+        "id": "b",
+        "text": "The flap placard speeds for each of the selectable settings"
+      },
+      {
+        "id": "c",
+        "text": "The minimum and the maximum manoeuvre speeds only"
+      },
+      {
         "id": "d",
-        "text": "The selected mode control panel speed only"
+        "text": "The speed selected on the mode control panel only"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Placing the decision speeds on the tape removes the need to read them from a card during the acceleration.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0007",
@@ -175,25 +175,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The flap placard speed"
+        "text": "The flap placard speed for the current flap setting"
       },
       {
         "id": "b",
-        "text": "The minimum speed for autopilot engagement"
+        "text": "The minimum speed at which the autopilot may be engaged"
       },
       {
         "id": "c",
-        "text": "The minimum manoeuvre speed for the current configuration"
+        "text": "The speed at which the stick shaker would operate"
       },
       {
         "id": "d",
-        "text": "The stick shaker activation speed"
+        "text": "The minimum manoeuvre speed for the current configuration"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "It marks where manoeuvre margin begins to disappear, which is well above the speed where the stall warning operates.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0008",
@@ -203,25 +203,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The reference landing speed"
-      },
-      {
-        "id": "b",
         "text": "The speed at which the stick shaker operates"
       },
       {
+        "id": "b",
+        "text": "The reference landing speed for the selected flap"
+      },
+      {
         "id": "c",
-        "text": "The minimum speed for flap extension"
+        "text": "The minimum speed for the next flap extension"
       },
       {
         "id": "d",
-        "text": "The minimum manoeuvre speed"
+        "text": "The minimum manoeuvre speed in the current configuration"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "It is the last speed reference before the stall warning activates, and the space above it is the margin remaining.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0009",
@@ -235,7 +235,7 @@
       },
       {
         "id": "b",
-        "text": "The turbulence penetration speed"
+        "text": "The turbulence penetration speed and Mach number"
       },
       {
         "id": "c",
@@ -249,7 +249,7 @@
     "correct": "c",
     "explanation": "The pole moves with altitude because the limit changes from an airspeed limit to a Mach limit as the airplane climbs.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0010",
@@ -259,25 +259,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The speed the airplane will reach if the current rate of change continues"
+        "text": "The difference between the indicated and the true airspeed at that altitude"
       },
       {
         "id": "b",
-        "text": "The difference between indicated and true airspeed"
+        "text": "The speed the airplane will reach if the current rate of change continues"
       },
       {
         "id": "c",
-        "text": "The speed required for the next flap setting"
+        "text": "The speed required for the next flap setting in the sequence"
       },
       {
         "id": "d",
-        "text": "The speed selected on the mode control panel"
+        "text": "The speed selected on the mode control panel by the pilot flying"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "It turns a rate of change into a predicted value, which is what makes an early correction possible.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0011",
@@ -287,25 +287,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It shows the pitch commanded by the flight director"
+        "text": "It shows the pitch attitude at which the stall warning would occur"
       },
       {
         "id": "b",
-        "text": "It shows the maximum pitch for passenger comfort"
+        "text": "It shows the pitch attitude commanded by the flight director bars"
       },
       {
         "id": "c",
-        "text": "It shows the pitch limit for tail clearance on rotation"
+        "text": "It shows the maximum pitch attitude for passenger comfort in the climb"
       },
       {
         "id": "d",
-        "text": "It shows the pitch attitude at which the stall warning would occur"
+        "text": "It shows the pitch limit for tail clearance during the rotation"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "During a manoeuvre near the limit it is more useful to see the margin in attitude than to interpret the speed tape alone.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0012",
@@ -315,7 +315,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Only when the landing gear is extended"
+        "text": "Only when the landing gear has been extended"
       },
       {
         "id": "b",
@@ -323,11 +323,11 @@
       },
       {
         "id": "c",
-        "text": "Whenever the flaps are extended"
+        "text": "Whenever the trailing edge flaps are extended"
       },
       {
         "id": "d",
-        "text": "Only during an ILS approach"
+        "text": "Only during an ILS approach with the autopilot in"
       }
     ],
     "correct": "b",
@@ -336,7 +336,7 @@
       "verify-fcom"
     ],
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0013",
@@ -346,25 +346,25 @@
     "options": [
       {
         "id": "a",
-        "text": "A barometric altitude only"
+        "text": "A barometric altitude only, never a radio height"
       },
       {
         "id": "b",
-        "text": "Either a barometric altitude or a radio height"
+        "text": "A radio height only, never a barometric altitude"
       },
       {
         "id": "c",
-        "text": "A flight level only"
+        "text": "A flight level only, taken from the standard datum"
       },
       {
         "id": "d",
-        "text": "A radio height only"
+        "text": "Either a barometric altitude or a radio height"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "The choice reflects the type of approach, since a precision approach with a radio reference is a different case from a barometric minimum.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0014",
@@ -378,21 +378,21 @@
       },
       {
         "id": "b",
-        "text": "Because the radio altimeter is inaccurate above 500 ft"
+        "text": "Because the radio altimeter becomes inaccurate above the height for which it is calibrated"
       },
       {
         "id": "c",
-        "text": "Because the radio altimeter cannot be displayed with a barometric altitude"
+        "text": "Because the radio altimeter cannot be displayed alongside a barometric altitude"
       },
       {
         "id": "d",
-        "text": "Because the radio altimeter is only powered with the gear down"
+        "text": "Because the radio altimeter is powered only when the landing gear is down"
       }
     ],
     "correct": "a",
     "explanation": "The radio altimeter measures height above whatever is below, which may bear no relation to the height above the runway.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0015",
@@ -410,17 +410,17 @@
       },
       {
         "id": "c",
-        "text": "MAP"
+        "text": "VOR"
       },
       {
         "id": "d",
-        "text": "VOR"
+        "text": "MAP"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "It shows the airplane in relation to its planned track, which is how the lateral situation is normally monitored.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0016",
@@ -486,25 +486,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Additional engine parameters"
+        "text": "Additional engine parameters such as vibration, oil pressure and oil quantity"
       },
       {
         "id": "b",
-        "text": "Optional overlays such as airports, waypoints, navigation aids and weather"
+        "text": "The standby instrument indications of attitude, airspeed and altitude"
       },
       {
         "id": "c",
-        "text": "The standby instrument indications"
+        "text": "Optional overlays such as airports, waypoints, navigation aids and weather"
       },
       {
         "id": "d",
-        "text": "The autopilot mode annunciations"
+        "text": "The autopilot and autothrottle mode annunciations from the flight mode panel"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Each overlay is selected only when it is needed, since displaying everything at once makes the picture unreadable.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0019",
@@ -514,25 +514,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Because the radar cannot transmit beyond the selected range"
+        "text": "Because the radar cannot transmit beyond the range that has been selected on the panel"
       },
       {
         "id": "b",
-        "text": "Because the radar tilt is linked to the range selection"
+        "text": "Because the radar tilt angle is linked to the range that is selected"
       },
       {
         "id": "c",
-        "text": "Because the range selection changes the radar frequency"
+        "text": "Because the radar picture is drawn to the selected range and detail changes with it"
       },
       {
         "id": "d",
-        "text": "Because the radar picture is drawn to the selected range and detail changes with it"
+        "text": "Because the range selection changes the frequency the radar transmits on"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Assessing weather requires looking at more than one range, since a short range picture can hide what lies beyond it.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0020",
@@ -546,21 +546,21 @@
       },
       {
         "id": "b",
-        "text": "They provide a backup for the flight management computer"
+        "text": "They provide a backup for the flight management computer and the navigation database"
       },
       {
         "id": "c",
-        "text": "They provide a second navigation display for the observer"
+        "text": "They provide a second navigation display for the observer position"
       },
       {
         "id": "d",
-        "text": "They provide engine indications after a display failure"
+        "text": "They provide the engine indications after a display electronic unit fails"
       }
     ],
     "correct": "a",
     "explanation": "An independent path to the basic flying information is what allows flight to continue after a display system failure.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0021",
@@ -570,25 +570,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The main AC transfer buses"
+        "text": "The main AC transfer buses, which are fed by the generators"
       },
       {
         "id": "b",
-        "text": "The galley bus"
+        "text": "The galley bus, which is shed when the load increases"
       },
       {
         "id": "c",
-        "text": "The standby electrical system, which is backed by the battery"
+        "text": "The ground service bus, which is available without the engines"
       },
       {
         "id": "d",
-        "text": "They require no electrical power at all"
+        "text": "The standby electrical system, which is backed by the battery"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "They must survive the same failures that remove the main displays, which is why they are on the protected supply.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0022",
@@ -598,25 +598,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Attitude, airspeed, altitude and approach guidance in one instrument"
+        "text": "Attitude, airspeed and altitude, but no approach guidance"
       },
       {
         "id": "b",
-        "text": "Navigation and engine data"
+        "text": "Attitude, airspeed, altitude and approach guidance in one instrument"
       },
       {
         "id": "c",
-        "text": "Attitude only"
+        "text": "Attitude, heading, navigation and engine data in one instrument"
       },
       {
         "id": "d",
-        "text": "Airspeed and altitude only"
+        "text": "Airspeed, altitude and vertical speed, but no attitude"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Combining the functions reduces the panel space required while keeping the information independent of the main system.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0023",
@@ -626,25 +626,25 @@
     "options": [
       {
         "id": "a",
-        "text": "It is used only during ground compass swinging"
+        "text": "It is used only during the ground compass swinging procedure"
       },
       {
         "id": "b",
-        "text": "It provides the primary heading source for the displays"
+        "text": "It provides the primary heading source for the flight displays"
       },
       {
         "id": "c",
-        "text": "It provides a heading reference independent of electrical power"
+        "text": "It supplies heading data to the inertial reference system"
       },
       {
         "id": "d",
-        "text": "It supplies heading data to the inertial reference system"
+        "text": "It provides a heading reference independent of electrical power"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Its independence from every airplane system is exactly what makes it valuable after a total electrical failure.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0024",
@@ -658,21 +658,21 @@
       },
       {
         "id": "b",
-        "text": "Inertial position only"
+        "text": "Inertial position and attitude information, but no air data"
       },
       {
         "id": "c",
-        "text": "Air data only"
+        "text": "Air data information only, with no inertial contribution"
       },
       {
         "id": "d",
-        "text": "Navigation database information"
+        "text": "Navigation database information and the computed route"
       }
     ],
     "correct": "a",
     "explanation": "Combining the two functions in one unit gives a single validated source of both the air mass and the inertial picture.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0025",
@@ -682,25 +682,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The flight management computer database"
+        "text": "The flight management computer database and the computed position solution it holds"
       },
       {
         "id": "b",
-        "text": "Pitot probes, static ports, angle of attack vanes and the total air temperature probe"
+        "text": "The radio altimeter, the ILS receiver and the marker beacon receiver"
       },
       {
         "id": "c",
-        "text": "The radio altimeter and the ILS receiver"
+        "text": "The inertial platform alone, with no external air mass sensing at all"
       },
       {
         "id": "d",
-        "text": "The inertial platform alone"
+        "text": "Pitot probes, static ports, angle of attack vanes and the total air temperature probe"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Every air data output is derived from these physical inputs, which is why their heating and their condition matter so much.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0026",
@@ -710,25 +710,25 @@
     "options": [
       {
         "id": "a",
-        "text": "The airplane must be aligned with the runway heading"
+        "text": "The airplane must face the runway heading"
       },
       {
         "id": "b",
-        "text": "The airplane must remain stationary"
+        "text": "The engines must be running on both sides"
       },
       {
         "id": "c",
-        "text": "The engines must be running"
+        "text": "The airplane must remain stationary"
       },
       {
         "id": "d",
-        "text": "The flight management computer must contain an active route"
+        "text": "The flight management route must be entered"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "The system is measuring the rotation of the earth to find north, and any airplane movement corrupts that measurement.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0027",
@@ -738,11 +738,11 @@
     "options": [
       {
         "id": "a",
-        "text": "The number of units being aligned"
+        "text": "The number of units being aligned at the time"
       },
       {
         "id": "b",
-        "text": "The electrical source in use"
+        "text": "The electrical source that is in use"
       },
       {
         "id": "c",
@@ -750,7 +750,7 @@
       },
       {
         "id": "d",
-        "text": "The outside air temperature"
+        "text": "The outside air temperature at the gate"
       }
     ],
     "correct": "c",
@@ -759,7 +759,7 @@
       "verify-fcom"
     ],
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0028",
@@ -769,25 +769,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Providing attitude and heading after the navigation function has been lost"
+        "text": "Providing a backup air data source after the air data function fails"
       },
       {
         "id": "b",
-        "text": "Providing a backup air data source"
+        "text": "Transferring attitude information between the two reference units"
       },
       {
         "id": "c",
-        "text": "Transferring attitude information between the two units"
+        "text": "Providing attitude and heading after the navigation function has been lost"
       },
       {
         "id": "d",
-        "text": "Aligning the system in flight to restore full navigation"
+        "text": "Aligning the system in flight to restore the full navigation function"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "It recovers the most critical output, attitude, even though position and true heading cannot be recovered in flight.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0029",
@@ -805,17 +805,17 @@
       },
       {
         "id": "c",
-        "text": "An airspeed input from the standby instruments"
+        "text": "A magnetic variation entry"
       },
       {
         "id": "d",
-        "text": "A magnetic variation entry"
+        "text": "A manual airspeed input"
       }
     ],
     "correct": "a",
     "explanation": "Without a valid alignment the system has no heading reference of its own, so the crew supplies it from the standby compass.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0030",
@@ -825,25 +825,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Because the units cannot be cooled in flight"
+        "text": "Because the reference units cannot be cooled adequately while the airplane is in flight"
       },
       {
         "id": "b",
-        "text": "Because the alignment requires a position entry from the ground crew"
+        "text": "Because the alignment requires a position entry made by the ground crew"
       },
       {
         "id": "c",
-        "text": "Because the units are powered only on the ground"
+        "text": "Because the system cannot separate airplane motion from the earth rotation it is measuring"
       },
       {
         "id": "d",
-        "text": "Because the system cannot separate airplane motion from the earth rotation it is measuring"
+        "text": "Because the reference units are powered only while the airplane is on the ground"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "The alignment depends on the platform being still, which is a condition that cannot exist in flight.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0031",
@@ -853,25 +853,25 @@
     "options": [
       {
         "id": "a",
-        "text": "They select between the standby and main instruments"
+        "text": "They select between the standby instruments and the main displays"
       },
       {
         "id": "b",
-        "text": "They select the navigation source for the flight director"
+        "text": "They allow both flight displays to be fed from a single remaining source"
       },
       {
         "id": "c",
-        "text": "They transfer the displays between the two display electronic units"
+        "text": "They select the navigation source used by the flight director"
       },
       {
         "id": "d",
-        "text": "They allow both flight displays to be fed from a single remaining source"
+        "text": "They transfer the displays between the two display electronic units"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Feeding both sides from one source keeps both pilots displaying valid data after a single unit fails.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0032",
@@ -881,11 +881,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Because the selected source is degraded"
+        "text": "Because the selected source is degraded once it drives both sides"
       },
       {
         "id": "b",
-        "text": "Because the standby instruments become the primary reference"
+        "text": "Because the standby instruments become the primary reference then"
       },
       {
         "id": "c",
@@ -899,7 +899,7 @@
     "correct": "d",
     "explanation": "Two displays showing the same data can no longer cross check each other, and the crew must know that the agreement is meaningless.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0033",
@@ -909,25 +909,25 @@
     "options": [
       {
         "id": "a",
-        "text": "They compare the selected and actual autopilot modes"
-      },
-      {
-        "id": "b",
         "text": "They compare the two sides and flag a disagreement in airspeed, altitude, attitude or heading"
       },
       {
+        "id": "b",
+        "text": "They compare the modes selected on the mode control panel with the modes that are active"
+      },
+      {
         "id": "c",
-        "text": "They compare the displayed data with the standby instruments"
+        "text": "They compare the displayed data with the standby instrument indications"
       },
       {
         "id": "d",
-        "text": "They compare the flight director command with the actual flight path"
+        "text": "They compare the flight director command with the actual flight path flown"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "An erroneous source is dangerous precisely because it looks normal, and the comparison is what exposes it.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0034",
@@ -937,25 +937,25 @@
     "options": [
       {
         "id": "a",
-        "text": "At least one of the two sources is wrong and neither can be assumed correct"
+        "text": "The captain source is always the valid one and should be the reference"
       },
       {
         "id": "b",
-        "text": "The captain source is always the valid one"
+        "text": "The disagreement is normal in turbulence and may be ignored"
       },
       {
         "id": "c",
-        "text": "The disagreement is normal in turbulence and can be ignored"
+        "text": "The standby instrument has failed and should be disregarded"
       },
       {
         "id": "d",
-        "text": "The standby instrument has failed"
+        "text": "At least one of the two sources is wrong and neither can be assumed correct"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The flag says only that the two differ, so the resolution requires a third reference and a known pitch and thrust setting.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0035",
@@ -965,25 +965,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Because it is the only source approved for instrument flight"
+        "text": "Because two disagreeing sources cannot be resolved without it"
       },
       {
         "id": "b",
-        "text": "Because it is the source used by the autopilot"
+        "text": "Because it is the only source approved for instrument flight rules"
       },
       {
         "id": "c",
-        "text": "Because it is more accurate than the primary sources"
+        "text": "Because it is the source that the autopilot and autothrottle use"
       },
       {
         "id": "d",
-        "text": "Because two disagreeing sources cannot be resolved without it"
+        "text": "Because it is more accurate than either of the primary sources"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "With three references the odd one out can usually be identified, which is not possible with only two.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0036",
@@ -993,25 +993,25 @@
     "options": [
       {
         "id": "a",
-        "text": "By the indication freezing at its last value"
+        "text": "By the indication freezing at its last valid value"
       },
       {
         "id": "b",
-        "text": "By the indication flashing in green"
-      },
-      {
-        "id": "c",
         "text": "By a flag or by removal of the affected indication"
       },
       {
+        "id": "c",
+        "text": "By the indication flashing in green on the display"
+      },
+      {
         "id": "d",
-        "text": "By an amber outline around the whole display"
+        "text": "By an amber outline drawn around the whole display"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Removing data that cannot be trusted is safer than displaying a value the crew might act on.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0037",
@@ -1021,25 +1021,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Because it cannot be cleared by the crew"
+        "text": "Because it cannot be cleared by the crew from the flight deck"
       },
       {
         "id": "b",
-        "text": "Because it prevents the display from being transferred"
+        "text": "Because it prevents the display from being transferred to the other side"
       },
       {
         "id": "c",
-        "text": "Because it disables the comparison monitors"
+        "text": "Because it continues to look valid while no longer reflecting reality"
       },
       {
         "id": "d",
-        "text": "Because it continues to look valid while no longer reflecting reality"
+        "text": "Because it disables the comparison monitors on both of the displays"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "A flag prompts a response, whereas a plausible but static value invites the crew to keep trusting it.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0038",
@@ -1049,7 +1049,7 @@
     "options": [
       {
         "id": "a",
-        "text": "It selects between radio and barometric minimums"
+        "text": "It selects between the radio and the barometric minimums"
       },
       {
         "id": "b",
@@ -1057,17 +1057,17 @@
       },
       {
         "id": "c",
-        "text": "It sets the cabin altitude warning threshold"
+        "text": "It sets the cabin altitude warning threshold value"
       },
       {
         "id": "d",
-        "text": "It sets the minimum descent altitude"
+        "text": "It sets the minimum descent altitude for the approach"
       }
     ],
     "correct": "b",
     "explanation": "The altitude shown is only as correct as the datum entered, which is why the setting is cross checked between pilots.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0039",
@@ -1081,21 +1081,21 @@
       },
       {
         "id": "b",
-        "text": "Because the settings are linked and must be changed together"
+        "text": "Because the two settings are linked and must therefore always be changed together"
       },
       {
         "id": "c",
-        "text": "Because only one setting feeds the altitude alerting system"
+        "text": "Because only one of the settings feeds the altitude alerting system"
       },
       {
         "id": "d",
-        "text": "Because the standby altimeter uses the captain setting"
+        "text": "Because the standby altimeter takes its setting from the captain side"
       }
     ],
     "correct": "a",
     "explanation": "Independent settings provide the redundancy, and the cross check is what turns that redundancy into protection.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0040",
@@ -1105,7 +1105,7 @@
     "options": [
       {
         "id": "a",
-        "text": "The vertical path deviation from the computed profile"
+        "text": "The rate of change of altitude"
       },
       {
         "id": "b",
@@ -1113,17 +1113,17 @@
       },
       {
         "id": "c",
-        "text": "The vertical speed selected on the mode control panel"
+        "text": "The deviation from the computed profile"
       },
       {
         "id": "d",
-        "text": "The rate of change of altitude"
+        "text": "The vertical speed that has been selected"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "It is the derivative of the altitude indication, and it responds faster than the altitude tape to a change in the flight path.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0041",
@@ -1133,11 +1133,11 @@
     "options": [
       {
         "id": "a",
-        "text": "It shows whether the airplane is above or below the computed vertical profile"
+        "text": "It replaces the vertical speed indication whenever VNAV path is engaged"
       },
       {
         "id": "b",
-        "text": "It replaces the vertical speed indication in VNAV"
+        "text": "It shows whether the airplane is above or below the computed vertical profile"
       },
       {
         "id": "c",
@@ -1145,13 +1145,13 @@
       },
       {
         "id": "d",
-        "text": "It shows the glideslope deviation before capture"
+        "text": "It shows the glideslope deviation before the glideslope is captured"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Managing the descent is a matter of energy, and knowing the displacement from the profile is what allows an early correction.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0042",
@@ -1161,15 +1161,15 @@
     "options": [
       {
         "id": "a",
-        "text": "The autopilot commanded heading"
+        "text": "Heading commanded by the autopilot"
       },
       {
         "id": "b",
-        "text": "The great circle track to the destination"
+        "text": "Great circle track to the destination"
       },
       {
         "id": "c",
-        "text": "The wind direction and speed"
+        "text": "Wind direction and speed at the airplane"
       },
       {
         "id": "d",
@@ -1179,7 +1179,7 @@
     "correct": "d",
     "explanation": "Raw bearing information supports position awareness independently of the computed navigation solution.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0043",
@@ -1189,25 +1189,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Only the forecast wind from the flight plan"
+        "text": "Only the forecast wind taken from the flight plan"
       },
       {
         "id": "b",
-        "text": "Direction and speed relative to the airplane track"
+        "text": "Only the headwind or the tailwind component"
       },
       {
         "id": "c",
-        "text": "Only the headwind or tailwind component"
+        "text": "The forecast wind at the destination airport"
       },
       {
         "id": "d",
-        "text": "The wind at the destination airport"
+        "text": "Direction and speed relative to the airplane track"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "The wind is computed from the difference between the inertial and air data solutions, and it feeds both navigation and performance decisions.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0044",
@@ -1217,25 +1217,25 @@
     "options": [
       {
         "id": "a",
-        "text": "Because attitude is derived from the air data computers"
+        "text": "Because the attitude is derived from the air data computers rather than from these units"
       },
       {
         "id": "b",
-        "text": "Because the standby instrument feeds both primary displays"
+        "text": "Because each side is normally fed by its own unit, with switching available if one fails"
       },
       {
         "id": "c",
-        "text": "Because the flight control computers provide a backup attitude reference"
+        "text": "Because the standby instrument feeds both of the primary flight displays"
       },
       {
         "id": "d",
-        "text": "Because each side is normally fed by its own unit, with switching available if one fails"
+        "text": "Because the flight control computers provide a backup attitude reference"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "The independence of the two sources is what makes a single failure recoverable through switching.",
     "status": "published",
-    "version": 1
+    "version": 2
   },
   {
     "id": "B737-FID-0045",
@@ -1245,24 +1245,24 @@
     "options": [
       {
         "id": "a",
-        "text": "Because the standby instruments can replace any display"
+        "text": "Because the standby instruments can replace any one of the main displays"
       },
       {
         "id": "b",
-        "text": "Because the display electronic units switch automatically without crew action"
-      },
-      {
-        "id": "c",
         "text": "Because the crew can move the information to a working display when a unit fails"
       },
       {
+        "id": "c",
+        "text": "Because the display electronic units switch over without any action by the crew"
+      },
+      {
         "id": "d",
-        "text": "Because each display can show any format automatically"
+        "text": "Because each display is able to show any of the formats automatically"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Reconfiguration means the number of failures that leave the crew without essential information is very small.",
     "status": "published",
-    "version": 1
+    "version": 2
   }
 ]
