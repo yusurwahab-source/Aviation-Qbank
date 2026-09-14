@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useId, useMemo, useRef, useState, useTransition } from "react";
 
 import { Badge, Card } from "@/components/ui";
+import { QuestionNavigator, type QuestionStatus } from "@/components/question-navigator";
+import { TestProgress } from "@/components/test-progress";
 import type { TestQuestion } from "@/db/queries";
 import { unansweredCount } from "@/lib/question-status";
 import {
@@ -178,6 +180,28 @@ export function TestRunner({
     [index, questions.length],
   );
 
+  // إنشاء قائمة حالة الأسئلة للـ QuestionNavigator
+  const questionStatuses: QuestionStatus[] = useMemo(
+    () =>
+      questions.map((question) => ({
+        number: questions.indexOf(question) + 1,
+        answered: question.id in answers,
+        correct: question.id in verdicts ? verdicts[question.id].isCorrect : undefined,
+        current: question.id === current.id,
+      })),
+    [questions, answers, verdicts, current],
+  );
+
+  // حساب الإحصائيات للـ TestProgress
+  const stats = useMemo(
+    () => ({
+      correct: Object.keys(verdicts).filter((qId) => verdicts[qId].isCorrect).length,
+      incorrect: Object.keys(verdicts).filter((qId) => !verdicts[qId].isCorrect).length,
+      unanswered: questions.length - Object.keys(answers).length,
+    }),
+    [verdicts, answers, questions.length],
+  );
+
   /**
    * Answers the question on screen, and sends it to the server.
    *
@@ -336,237 +360,254 @@ export function TestRunner({
   }
 
   return (
-    <div>
-      <div className="mb-6">
-        <div className="flex items-baseline justify-between gap-3">
-          <p className="text-xs font-semibold uppercase tracking-wider text-brand">
-            {aircraftCode} · {scope}
-            {/* Worth saying plainly: it changes whether an answer can still be
-                changed, which a student needs to know before they answer. */}
-            {mode === "exam" ? (
-              <span className="text-muted-foreground"> · Exam</span>
-            ) : null}
-          </p>
-          <p className="flex items-baseline gap-3 text-sm text-muted-foreground">
-            {deadline !== null ? (
-              <span
-                // Announced politely rather than on every tick: a screen
-                // reader reading out each second would be unusable.
-                aria-live="off"
-                className={`font-mono font-semibold tabular-nums ${
-                  // The last minute is when it starts to matter.
-                  remaining <= 60 ? "text-incorrect" : "text-foreground"
-                }`}
-              >
-                <span className="sr-only">Time remaining: </span>
-                {formatClock(remaining)}
-              </span>
-            ) : (
-              // Study mode: how long this has taken so far, and nothing
-              // hangs on it. Deliberately quieter than the exam countdown —
-              // same typeface, muted rather than bold, and it never turns
-              // red, because there is nothing to warn about.
-              <span aria-live="off" className="font-mono tabular-nums">
-                <span className="sr-only">Time taken so far: </span>
-                {formatClock(elapsed)}
-              </span>
-            )}
-            <span>
-              Question {index + 1} of {questions.length}
-            </span>
-          </p>
-        </div>
-        <div
-          className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-surface-muted"
-          role="progressbar"
-          aria-valuenow={index + 1}
-          aria-valuemin={1}
-          aria-valuemax={questions.length}
-          aria-label="Test progress"
-        >
-          <div
-            className="h-full rounded-full bg-brand transition-all duration-300"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-      </div>
-
-      <Card>
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge tone="brand">{current.topic}</Badge>
-          {current.subtopic ? <Badge>{current.subtopic}</Badge> : null}
-        </div>
-
-        <h1 className="mt-4 text-lg font-semibold leading-snug text-foreground sm:text-xl">
-          {current.question}
-        </h1>
-
-        <fieldset className="mt-5" disabled={settled}>
-          <legend className="sr-only">Choose one answer</legend>
-          <div className="space-y-2.5">
-            {current.options.map((option) => {
-              const checked = answers[current.id] === option.id;
-              // Before the verdict lands, the chosen option is simply chosen.
-              // After it, the correct one is marked whether or not it was the
-              // one picked, and a wrong pick is marked as wrong.
-              const isAnswer = verdict ? option.id === verdict.correctOptionId : false;
-              const isWrongPick = verdict ? checked && !isAnswer : false;
-
-              const tone = isAnswer
-                ? "border-correct bg-correct-soft"
-                : isWrongPick
-                  ? "border-incorrect bg-incorrect-soft"
-                  : checked
-                    ? "border-brand bg-brand-soft"
-                    : settled
-                      ? "border-border bg-surface opacity-60"
-                      : "border-border bg-surface hover:border-brand";
-
-              return (
-                <label
-                  key={option.id}
-                  className={`flex items-start gap-3 rounded-lg border p-3.5 transition ${
-                    settled ? "cursor-default" : "cursor-pointer"
-                  } ${tone}`}
-                >
-                  <input
-                    type="radio"
-                    name={`question-${current.id}`}
-                    value={option.id}
-                    checked={checked}
-                    onChange={() => select(current.id, option.id)}
-                    className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--brand)]"
-                  />
-                  <span className="flex flex-1 gap-2 text-sm text-foreground">
-                    <span className="font-mono font-semibold uppercase text-muted-foreground">
-                      {option.id}
-                    </span>
-                    <span className="flex-1">{option.text}</span>
-                    {isAnswer ? (
-                      <span className="text-xs font-semibold text-correct">Correct answer</span>
-                    ) : null}
-                    {isWrongPick ? (
-                      <span className="text-xs font-semibold text-incorrect">Your answer</span>
-                    ) : null}
+    <div className="grid gap-6 lg:grid-cols-3">
+      {/* المحتوى الرئيسي */}
+      <div className="lg:col-span-2">
+        <div>
+          <div className="mb-6">
+            <div className="flex items-baseline justify-between gap-3">
+              <p className="text-xs font-semibold uppercase tracking-wider text-brand">
+                {aircraftCode} · {scope}
+                {/* Worth saying plainly: it changes whether an answer can still be
+                    changed, which a student needs to know before they answer. */}
+                {mode === "exam" ? (
+                  <span className="text-muted-foreground"> · Exam</span>
+                ) : null}
+              </p>
+              <p className="flex items-baseline gap-3 text-sm text-muted-foreground">
+                {deadline !== null ? (
+                  <span
+                    // Announced politely rather than on every tick: a screen
+                    // reader reading out each second would be unusable.
+                    aria-live="off"
+                    className={`font-mono font-semibold tabular-nums ${
+                      // The last minute is when it starts to matter.
+                      remaining <= 60 ? "text-incorrect" : "text-foreground"
+                    }`}
+                  >
+                    <span className="sr-only">Time remaining: </span>
+                    {formatClock(remaining)}
                   </span>
-                </label>
-              );
-            })}
-          </div>
-        </fieldset>
-
-        {isChecking ? (
-          <p className="mt-4 text-sm text-muted-foreground" role="status">
-            Checking your answer…
-          </p>
-        ) : null}
-
-        {verdict ? (
-          <div
-            className={`mt-4 rounded-lg border-l-4 p-4 ${
-              verdict.isCorrect
-                ? "border-l-correct bg-correct-soft"
-                : "border-l-incorrect bg-incorrect-soft"
-            }`}
-            role="status"
-          >
-            <p
-              className={`text-sm font-semibold ${
-                verdict.isCorrect ? "text-correct" : "text-incorrect"
-              }`}
+                ) : (
+                  // Study mode: how long this has taken so far, and nothing
+                  // hangs on it. Deliberately quieter than the exam countdown —
+                  // same typeface, muted rather than bold, and it never turns
+                  // red, because there is nothing to warn about.
+                  <span aria-live="off" className="font-mono tabular-nums">
+                    <span className="sr-only">Time taken so far: </span>
+                    {formatClock(elapsed)}
+                  </span>
+                )}
+                <span>
+                  Question {index + 1} of {questions.length}
+                </span>
+              </p>
+            </div>
+            <div
+              className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-surface-muted"
+              role="progressbar"
+              aria-valuenow={index + 1}
+              aria-valuemin={1}
+              aria-valuemax={questions.length}
+              aria-label="Test progress"
             >
-              {verdict.isCorrect ? "Correct" : "Not quite"}
-            </p>
-            <p className="mt-2 text-sm text-foreground">{verdict.explanation}</p>
-            {verdict.reference ? (
-              <p className="mt-2 text-xs text-muted-foreground">
-                Reference: {verdict.reference}
+              <div
+                className="h-full rounded-full bg-brand transition-all duration-300"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+          </div>
+
+          <Card>
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge tone="brand">{current.topic}</Badge>
+              {current.subtopic ? <Badge>{current.subtopic}</Badge> : null}
+            </div>
+
+            <h1 className="mt-4 text-lg font-semibold leading-snug text-foreground sm:text-xl">
+              {current.question}
+            </h1>
+
+            <fieldset className="mt-5" disabled={settled}>
+              <legend className="sr-only">Choose one answer</legend>
+              <div className="space-y-2.5">
+                {current.options.map((option) => {
+                  const checked = answers[current.id] === option.id;
+                  // Before the verdict lands, the chosen option is simply chosen.
+                  // After it, the correct one is marked whether or not it was the
+                  // one picked, and a wrong pick is marked as wrong.
+                  const isAnswer = verdict ? option.id === verdict.correctOptionId : false;
+                  const isWrongPick = verdict ? checked && !isAnswer : false;
+
+                  const tone = isAnswer
+                    ? "border-correct bg-correct-soft"
+                    : isWrongPick
+                      ? "border-incorrect bg-incorrect-soft"
+                      : checked
+                        ? "border-brand bg-brand-soft"
+                        : settled
+                          ? "border-border bg-surface opacity-60"
+                          : "border-border bg-surface hover:border-brand";
+
+                  return (
+                    <label
+                      key={option.id}
+                      className={`flex items-start gap-3 rounded-lg border p-3.5 transition ${
+                        settled ? "cursor-default" : "cursor-pointer"
+                      } ${tone}`}
+                    >
+                      <input
+                        type="radio"
+                        name={`question-${current.id}`}
+                        value={option.id}
+                        checked={checked}
+                        onChange={() => select(current.id, option.id)}
+                        className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--brand)]"
+                      />
+                      <span className="flex flex-1 gap-2 text-sm text-foreground">
+                        <span className="font-mono font-semibold uppercase text-muted-foreground">
+                          {option.id}
+                        </span>
+                        <span className="flex-1">{option.text}</span>
+                        {isAnswer ? (
+                          <span className="text-xs font-semibold text-correct">Correct answer</span>
+                        ) : null}
+                        {isWrongPick ? (
+                          <span className="text-xs font-semibold text-incorrect">Your answer</span>
+                        ) : null}
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
+            </fieldset>
+
+            {isChecking ? (
+              <p className="mt-4 text-sm text-muted-foreground" role="status">
+                Checking your answer…
               </p>
             ) : null}
+
+            {verdict ? (
+              <div
+                className={`mt-4 rounded-lg border-l-4 p-4 ${
+                  verdict.isCorrect
+                    ? "border-l-correct bg-correct-soft"
+                    : "border-l-incorrect bg-incorrect-soft"
+                }`}
+                role="status"
+              >
+                <p
+                  className={`text-sm font-semibold ${
+                    verdict.isCorrect ? "text-correct" : "text-incorrect"
+                  }`}
+                >
+                  {verdict.isCorrect ? "Correct" : "Not quite"}
+                </p>
+                <p className="mt-2 text-sm text-foreground">{verdict.explanation}</p>
+                {verdict.reference ? (
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    Reference: {verdict.reference}
+                  </p>
+                ) : null}
+              </div>
+            ) : null}
+          </Card>
+
+          {deadline !== null && remaining === 0 ? (
+            <p
+              className="mt-4 rounded-lg bg-incorrect-soft px-4 py-3 text-sm font-medium text-incorrect"
+              role="alert"
+            >
+              Time is up — handing in your test.
+            </p>
+          ) : null}
+
+          {error ? (
+            <p className="mt-4 rounded-lg bg-incorrect-soft px-4 py-3 text-sm text-incorrect" role="alert">
+              {error}
+            </p>
+          ) : null}
+
+          <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+            <button
+              type="button"
+              onClick={() => setIndex((value) => Math.max(0, value - 1))}
+              disabled={index === 0 || isSubmitting}
+              className="rounded-lg border border-border bg-surface px-4 py-2.5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              ← Previous
+            </button>
+
+            {isLast ? (
+              <button
+                type="button"
+                onClick={finish}
+                disabled={isSubmitting}
+                className="rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {isSubmitting ? "Marking…" : "Finish test"}
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setIndex((value) => Math.min(questions.length - 1, value + 1))}
+                disabled={isSubmitting}
+                className="rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                Next →
+              </button>
+            )}
           </div>
-        ) : null}
-      </Card>
 
-      {deadline !== null && remaining === 0 ? (
-        <p
-          className="mt-4 rounded-lg bg-incorrect-soft px-4 py-3 text-sm font-medium text-incorrect"
-          role="alert"
-        >
-          Time is up — handing in your test.
-        </p>
-      ) : null}
+          <div id={navId}>
+            {showNav ? (
+              <QuestionNav
+                questions={questions}
+                answers={answers}
+                verdicts={verdicts}
+                current={index}
+                onJump={(to) => {
+                  setIndex(to);
+                  window.scrollTo({ top: 0 });
+                }}
+              />
+            ) : null}
+          </div>
 
-      {error ? (
-        <p className="mt-4 rounded-lg bg-incorrect-soft px-4 py-3 text-sm text-incorrect" role="alert">
-          {error}
-        </p>
-      ) : null}
-
-      <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
-        <button
-          type="button"
-          onClick={() => setIndex((value) => Math.max(0, value - 1))}
-          disabled={index === 0 || isSubmitting}
-          className="rounded-lg border border-border bg-surface px-4 py-2.5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand disabled:cursor-not-allowed disabled:opacity-40"
-        >
-          Previous
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setShowNav((open) => !open)}
-          aria-expanded={showNav}
-          aria-controls={navId}
-          className="order-last w-full text-center text-xs text-muted-foreground underline-offset-4 transition hover:text-brand hover:underline sm:order-none sm:w-auto"
-        >
-          {answeredCount} of {questions.length} answered
-          {remainingUnanswered > 0 ? ` · ${remainingUnanswered} left` : ""}
-        </button>
-
-        {isLast ? (
-          <button
-            type="button"
-            onClick={finish}
-            disabled={isSubmitting}
-            className="rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            {isSubmitting ? "Marking…" : "Finish test"}
-          </button>
-        ) : (
-          <button
-            type="button"
-            onClick={() => setIndex((value) => Math.min(questions.length - 1, value + 1))}
-            disabled={isSubmitting}
-            className="rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            Next
-          </button>
-        )}
+          <p className="mt-6 text-center">
+            <Link
+              href={`/aircraft/${aircraftCode}`}
+              className="text-sm text-muted-foreground hover:text-brand hover:underline"
+            >
+              Abandon test
+            </Link>
+          </p>
+        </div>
       </div>
 
-      <div id={navId}>
-        {showNav ? (
-          <QuestionNav
-            questions={questions}
-            answers={answers}
-            verdicts={verdicts}
-            current={index}
-            onJump={(to) => {
-              setIndex(to);
+      {/* الشريط الجانبي - المكونات الجديدة */}
+      <div className="space-y-6">
+        {/* إحصائيات التقدم */}
+        <div className="rounded-lg bg-surface p-4">
+          <TestProgress
+            correct={stats.correct}
+            incorrect={stats.incorrect}
+            unanswered={stats.unanswered}
+          />
+        </div>
+
+        {/* مُنقّل الأسئلة */}
+        <div className="rounded-lg bg-surface p-4">
+          <QuestionNavigator
+            questions={questionStatuses}
+            onQuestionSelect={(number) => {
+              setIndex(number - 1);
               window.scrollTo({ top: 0 });
             }}
           />
-        ) : null}
+        </div>
       </div>
-
-      <p className="mt-6 text-center">
-        <Link
-          href={`/aircraft/${aircraftCode}`}
-          className="text-sm text-muted-foreground hover:text-brand hover:underline"
-        >
-          Abandon test
-        </Link>
-      </p>
     </div>
   );
 }
