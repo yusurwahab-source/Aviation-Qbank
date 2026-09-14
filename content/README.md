@@ -114,8 +114,13 @@ chapter is a new file and never a change to an existing one:
 | `fire-protection.json` | Fire Protection | 48 |
 | `flight-controls.json` | Flight Controls | 68 |
 | `flight-instruments-and-displays.json` | Flight Instruments and Displays | 45 |
+| `flight-management-and-navigation.json` | Flight Management and Navigation | 58 |
+| `fuel.json` | Fuel | 55 |
+| `hydraulics.json` | Hydraulics | 45 |
+| `landing-gear-and-brakes.json` | Landing Gear and Brakes | 55 |
+| `warning-systems.json` | Warning Systems | 42 |
 
-547 questions, all published.
+802 questions, all published.
 
 ### What changed on the way in from the source file
 
@@ -130,15 +135,21 @@ be carried across as they are, and both are handled the same way every time:
   section so far: every marked question, and no unmarked one, is a figure
   that varies by operator or configuration and says so in its explanation
   ("Verify against your operator FCOM"). So it survives as a tag,
-  **`verify-fcom`** — queryable, rather than buried in prose. 42 questions
+  **`verify-fcom`** — queryable, rather than buried in prose. 48 questions
   carry it: 7 in Airplane General, 6 in Air Systems, 3 in Anti-Ice and Rain,
   6 in Automatic Flight, 2 in Communications, 3 in Electrical, 9 in Engines
-  and APU, 2 in Fire Protection, 2 in Flight Controls and 2 in Flight
-  Instruments and Displays.
+  and APU, 2 in Fire Protection, 2 in Flight Controls, 2 in Flight Instruments
+  and Displays, 1 in Flight Management and Navigation, 3 in Fuel and 2 in
+  Landing Gear and Brakes.
+
+  Hydraulics and Warning Systems carry none at all — the first sections with
+  no operator-specific figure in them. The check below holds for those two the
+  same way it holds everywhere else, on two empty sets.
 
   The equivalence is checked on the way in rather than assumed: conversion
   fails if the set of marked ids and the set of explanations containing
-  "Verify" ever stop being the same set. Ten sections in, they never have.
+  "Verify" ever stop being the same set. Fifteen sections in, they never
+  have.
 
 The source files also name the aircraft `B738`; that is rewritten to the bank's
 code on the way in.
@@ -168,7 +179,12 @@ each section comes in:
 | Fire Protection | A 12 · B 12 · C 12 · D 12 | A 12 · B 12 · C 12 · D 12 |
 | Flight Controls | A 17 · B 17 · C 17 · D 17 | A 17 · B 17 · C 17 · D 17 |
 | Flight Instruments and Displays | A 11 · B 11 · C 11 · D 12 | A 11 · B 11 · C 12 · D 11 |
-| **Whole bank** | **A 179 · B 159 · C 102 · D 107** | **A 137 · B 137 · C 137 · D 136** |
+| Flight Management and Navigation | A 14 · B 15 · C 14 · D 15 | A 15 · B 14 · C 14 · D 15 |
+| Fuel | A 13 · B 14 · C 15 · D 13 | A 13 · B 14 · C 14 · D 14 |
+| Hydraulics | A 11 · B 11 · C 11 · D 12 | A 12 · B 11 · C 11 · D 11 |
+| Landing Gear and Brakes | A 13 · B 14 · C 15 · D 13 | A 13 · B 14 · C 14 · D 14 |
+| Warning Systems | A 10 · B 10 · C 11 · D 11 | A 11 · B 11 · C 10 · D 10 |
+| **Whole bank** | **A 240 · B 223 · C 168 · D 171** | **A 201 · B 201 · C 200 · D 200** |
 
 **Automatic Flight arrived already spread**, using all four letters and
 scrambling its own numeric option sets — the first section to do so.
@@ -198,6 +214,11 @@ is only enough movement to put it back:
 | Fire Protection | 4 | 3 | 41 of 48 |
 | Flight Controls | 0 | 0 | **68 of 68** |
 | Flight Instruments and Displays | 0 | 1 | 44 of 45 |
+| Flight Management and Navigation | 2 | 3 | 53 of 58 |
+| Fuel | 1 | 2 | 52 of 55 |
+| Hydraulics | 3 | 2 | 41 of 45 |
+| Landing Gear and Brakes | 0 | 1 | **54 of 55** |
+| Warning Systems | 0 | 2 | 40 of 42 |
 
 **Flight Controls is the end point of that trend: it passed through
 completely untouched.** It arrived at 17 of each letter against a target of 17
@@ -224,10 +245,9 @@ against what the other sections already hold, so the total stays level as the
 bank grows — which is what matters, since a test can draw from any combination
 of sections. This is why no section's own row is a clean quarter of itself:
 Air Systems is 17/17/17/16 and Communications 8/8/8/9 because that is what
-brings the *bank* level. 547 does not divide by four, so three letters carry
-one more than the fourth; the sections that take the bank off a multiple of
-four are the ones whose rows look lopsided — currently Engines and APU at
-19/19/18/18 and Flight Instruments and Displays at 11/11/12/11.
+brings the *bank* level. 802 does not divide by four, so two letters carry
+one more than the other two; the sections that take the bank off a multiple of
+four are the ones whose rows look lopsided.
 
 Only the *order* of the options changes. Every question keeps the same four
 option texts and the same correct answer — the sentence that was right in the
@@ -256,6 +276,11 @@ owner's request so the bank reads the same way throughout:
 | Fire Protection | `FIR-0002`, `0013`, `0021`, `0022` | Detection loops and extinguisher bottles |
 | Flight Controls | *none* | The section asks no quantity question |
 | Flight Instruments and Displays | *none* | The section asks no quantity question |
+| Flight Management and Navigation | `FMS-0004`, `0050` | Database cycle length, transponder count |
+| Fuel | `FUE-0002` | Boost pumps per tank |
+| Hydraulics | `HYD-0001`, `0002`, `0003` | Systems, operating pressure, pumps per system |
+| Landing Gear and Brakes | *none* | The section asks no quantity question |
+| Warning Systems | *none* | The section asks no quantity question |
 
 Three conventions hold throughout. An option naming no quantity goes last
 (`V1`, `Acceleration altitude`). Equal quantities keep their source order —
@@ -273,17 +298,21 @@ meaningful, so the options are left exactly as authored:
 | Left alone | Why |
 |---|---|
 | `GEN-0032`, `FCT-0039` | *Sets* of values — ELT frequencies ("121.5, 243.0 and 406 MHz"), flap positions ("1, 2, 5, 10, 15, 25, 30 and 40") |
+| `FUE-0001`, `GER-0001` | An *arrangement* — where the tanks are, tandem against tricycle — not a count on one axis |
+| `FUE-0048` | Fuel grade names (`Jet A-1`, `100LL`, `95 octane`), not magnitudes |
+| `HYD-0017` | `engine 1` is a numbered engine, not a quantity |
+| `FMS-0025`, `GER-0042` | "One … and the other …" — a pronoun, not a count |
 | `ELE-0001` | Volts *and* Hz *and* phase together — three axes, not one |
 | `ELE-0031` | A voltage *and* a battery chemistry; the chemistry is the answer |
 | `ENG-0001` | Spool count *and* flow type *and* bypass ratio at once |
-| `ELE-0036`, `ELE-0054`, `ENG-0021`, `ENG-0060` | Sets and combinations of switch positions, not magnitudes |
+| `ELE-0036`, `ELE-0054`, `ENG-0021`, `ENG-0060`, `GER-0006`, `GER-0022` | Sets and combinations of switch positions and selections, not magnitudes |
 | `ENG-0009` | Named EGT limits (start, takeoff, continuous) |
 | `ENG-0053` | Lists of parameters to monitor |
 | `ELE-0018` | The answer is `Yes`; there is no quantity to sort |
-| `ENG-0031`, `ENG-0063`, `FIR-0012`, `FIR-0046`, `FCT-0006`, `FCT-0024`, `FCT-0036`, `FCT-0040`, `FCT-0050`, `FID-0006`, `FID-0014` | Only *one* option carries a figure; the set is causes, limits, conclusions or an order of events |
+| `ENG-0031`, `ENG-0063`, `FIR-0012`, `FIR-0046`, `FCT-0006`, `FCT-0024`, `FCT-0036`, `FCT-0040`, `FCT-0050`, `FID-0006`, `FID-0014`, `FMS-0035`, `FUE-0055`, `GER-0014`, `GER-0021`, `GER-0025`, `WRN-0009`, `WRN-0021` | Only *one* option carries a figure; the set is causes, limits, conclusions or an order of events |
 
 That last row is by far the commonest case and the easiest to get wrong — it is
-now eleven questions, more than every other row combined. A lone "`A maximum of
+now eighteen questions, more than every other row combined. A lone "`A maximum of
 two attempts per flight`", "`Automatically five seconds after the switch is
 pulled`" or "`It is available only below 1000 ft`" sits among options that name
 no quantity at all, so there is no scale for it to be a point on — sorting would
