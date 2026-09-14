@@ -111,8 +111,10 @@ chapter is a new file and never a change to an existing one:
 | `automatic-flight.json` | Automatic Flight | 60 |
 | `communications.json` | Communications | 33 |
 | `electrical.json` | Electrical | 60 |
+| `engines-and-apu.json` | Engines and APU | 74 |
+| `fire-protection.json` | Fire Protection | 48 |
 
-312 questions, all published.
+434 questions, all published.
 
 ### What changed on the way in from the source file
 
@@ -127,9 +129,14 @@ be carried across as they are, and both are handled the same way every time:
   section so far: every marked question, and no unmarked one, is a figure
   that varies by operator or configuration and says so in its explanation
   ("Verify against your operator FCOM"). So it survives as a tag,
-  **`verify-fcom`** — queryable, rather than buried in prose. 27 questions
+  **`verify-fcom`** — queryable, rather than buried in prose. 38 questions
   carry it: 7 in Airplane General, 6 in Air Systems, 3 in Anti-Ice and Rain,
-  6 in Automatic Flight, 2 in Communications and 3 in Electrical.
+  6 in Automatic Flight, 2 in Communications, 3 in Electrical, 9 in Engines
+  and APU and 2 in Fire Protection.
+
+  The equivalence is checked on the way in rather than assumed: conversion
+  fails if the set of marked ids and the set of explanations containing
+  "Verify" ever stop being the same set. Eight sections in, they never have.
 
 The source files also name the aircraft `B738`; that is rewritten to the bank's
 code on the way in.
@@ -155,7 +162,9 @@ each section comes in:
 | Automatic Flight | A 19 · B 9 · C 14 · D 18 | A 15 · B 15 · C 15 · D 15 |
 | Communications | A 9 · B 5 · C 5 · D 14 | A 8 · B 8 · C 8 · D 9 |
 | Electrical | A 15 · B 15 · C 15 · D 15 | A 15 · B 15 · C 15 · D 15 |
-| **Whole bank** | **A 121 · B 101 · C 43 · D 47** | **A 78 · B 78 · C 78 · D 78** |
+| Engines and APU | A 18 · B 18 · C 19 · D 19 | A 19 · B 19 · C 18 · D 18 |
+| Fire Protection | A 12 · B 12 · C 12 · D 12 | A 12 · B 12 · C 12 · D 12 |
+| **Whole bank** | **A 151 · B 131 · C 74 · D 78** | **A 109 · B 109 · C 108 · D 108** |
 
 **Automatic Flight arrived already spread**, using all four letters and
 scrambling its own numeric option sets — the first section to do so.
@@ -163,31 +172,50 @@ Communications uses all four too, but leans the other way from the first
 three: `D` is its commonest answer, at 14 of 33. Both were still levelled,
 because the target is the bank's total rather than any one file's.
 
-**Electrical arrived exactly level** — 15 of each letter, the first section
-that needed no spreading at all. Its row is identical on both sides of the
-table, and that is not a coincidence worth glossing over: the bank stood at
-63 of each letter, so a 60-question section's share *was* 15 of each. The
-author had already done the work.
+**The later sections arrive level, and the redistribution has become almost a
+no-op.** Electrical was the first: 15 of each letter, needing no spreading at
+all. Fire Protection did the same, at 12 of each. Engines and APU came within
+one letter of it. Their rows are identical, or nearly so, on both sides of the
+table.
 
-It still did not pass through untouched, because the four ascending sorts
-below move their own answers and knocked the section to 14/16/16/14. Exactly
-**two** questions were then moved to put it back — `ELE-0028` from `b` to `a`
-and `ELE-0034` from `c` to `d`. So 54 of the 60 questions carry the option
-order their author wrote, against 4 sorted and 2 moved.
+That is not a coincidence worth glossing over. The bank was already level, so
+a section's fair share *is* an even quarter of itself, and the author had
+already done the work.
+
+None of them passed through untouched, because the ascending sorts below move
+their own answers and knock the section off level — Electrical to 14/16/16/14,
+Fire Protection to 10/15/11/12, Engines and APU to 17/21/19/17. What follows
+is only enough movement to put it back:
+
+| Section | Sorted | Moved for the spread | Exactly as authored |
+|---|---|---|---|
+| Electrical | 4 | 2 | 54 of 60 |
+| Engines and APU | 4 | 3 | 67 of 74 |
+| Fire Protection | 4 | 3 | 41 of 48 |
 
 That is the rule working as intended rather than an exception to it: the
 redistribution exists to remove a guessable bias, so where there is no bias it
 should do almost nothing. A section that arrives level should leave level, and
 the diff should show it.
 
+**How the minimum is found**, since "move as few as possible" is not by itself
+an instruction: every question starts on the letter its author gave it, the
+sorted questions take whatever letter the sort hands them, and then questions
+are moved one at a time from a letter that is over its target to one that is
+under — choosing, each time, the candidate furthest from anything already
+moved, so the changes are spread through the file instead of clustering at one
+end. Questions in the two tables below are never chosen, because their order is
+already decided on other grounds.
+
 **The arithmetic is over the whole bank, not one file.** A section is balanced
 against what the other sections already hold, so the total stays level as the
 bank grows — which is what matters, since a test can draw from any combination
 of sections. This is why no section's own row is a clean quarter of itself:
 Air Systems is 17/17/17/16 and Communications 8/8/8/9 because that is what
-brings the *bank* level. 312 divides by four exactly, so every letter now
-carries 78; the section that takes the bank off a multiple of four is the one
-whose row looks lopsided.
+brings the *bank* level. 434 does not divide by four, so two letters carry one
+more than the other two; the section that takes the bank off a multiple of
+four is the one whose row looks lopsided — currently Engines and APU, at
+19/19/18/18.
 
 Only the *order* of the options changes. Every question keeps the same four
 option texts and the same correct answer — the sentence that was right in the
@@ -202,34 +230,49 @@ No. 1 / No. 2 / No. 3 window numbering in `GEN-0016`, and the compressor-stage
 progression in `AIR-0002`. Eighteen questions in total. The even split is
 reached around them.
 
-The numeric options of Automatic Flight, Communications and Electrical are
-ascending too, but they did not arrive that way. Their quantity questions —
-altitudes, speeds, the bank angle range, the count of course selectors; in
-Communications the counts of audio panels, VHF transceivers and keyed
-transmitters, and the recorder durations; in Electrical the counts of
-generators and transformer rectifiers, the generator rating in kVA and the
-battery endurance — came **scrambled** in the source, unlike the earlier
-sections. They were sorted ascending at the owner's request so the bank reads
-the same way throughout: `AFS-0008`, `0012`, `0023`, `0030`, `0031`, `0042`,
-`0043` and `0049`; `COM-0001`, `0008`, `0025` and `0032`; and `ELE-0002`,
-`0004`, `0027` and `0040`. An option naming no quantity goes last (`V1`,
-`Acceleration altitude`), and equal quantities keep their source order — which
-is what puts `COM-0032`'s two "Two" options in the order the source wrote them,
-between `One` and `All selected transmitters simultaneously`.
+From Automatic Flight onwards the numeric options are ascending too, but they
+did not arrive that way. Every section since has shipped its quantity questions
+**scrambled**, unlike the three before it, and they are sorted ascending at the
+owner's request so the bank reads the same way throughout:
+
+| Section | Sorted | What they count |
+|---|---|---|
+| Automatic Flight | `AFS-0008`, `0012`, `0023`, `0030`, `0031`, `0042`, `0043`, `0049` | Altitudes, speeds, the bank angle range, the course selectors |
+| Communications | `COM-0001`, `0008`, `0025`, `0032` | Audio panels, VHF transceivers, keyed transmitters, recorder durations |
+| Electrical | `ELE-0002`, `0004`, `0027`, `0040` | Generators, transformer rectifiers, kVA rating, battery endurance |
+| Engines and APU | `ENG-0010`, `0020`, `0023`, `0024` | The takeoff EGT time limit, igniters, two N2 percentages |
+| Fire Protection | `FIR-0002`, `0013`, `0021`, `0022` | Detection loops and extinguisher bottles |
+
+Three conventions hold throughout. An option naming no quantity goes last
+(`V1`, `Acceleration altitude`). Equal quantities keep their source order —
+which is what puts `COM-0032`'s two "Two" options, and `FIR-0013`'s two "One"
+and two "Two" options, in the order the source wrote them. And **`None` is a
+quantity, so it sorts first, not last**: `FIR-0021` and `FIR-0022` both open
+with a `None …` option ahead of `One`, because zero is where that option
+belongs on the scale rather than an absence of one.
 
 **A number in an option does not by itself make a scale.** The test is whether
-the question asks for a quantity and the options are points on one axis. Where
-an option is a *specification* varying in several dimensions at once, sorting
-by its leading figure would order nothing meaningful, so it is left as
-authored. Electrical is where this comes up most:
+the question asks for a quantity *and* the options are points on one axis.
+Where neither holds, sorting by a leading figure would order nothing
+meaningful, so the options are left exactly as authored:
 
 | Left alone | Why |
 |---|---|
+| `GEN-0032` | *Sets* of ELT frequencies ("121.5, 243.0 and 406 MHz" against "406 MHz only") |
 | `ELE-0001` | Volts *and* Hz *and* phase together — three axes, not one |
 | `ELE-0031` | A voltage *and* a battery chemistry; the chemistry is the answer |
-| `ELE-0036` | Sets of switch positions (`AUTO, MAN and BAT`) |
-| `ELE-0054` | Combinations of position and guard, not magnitudes |
+| `ENG-0001` | Spool count *and* flow type *and* bypass ratio at once |
+| `ELE-0036`, `ELE-0054`, `ENG-0021`, `ENG-0060` | Sets and combinations of switch positions, not magnitudes |
+| `ENG-0009` | Named EGT limits (start, takeoff, continuous) |
+| `ENG-0053` | Lists of parameters to monitor |
 | `ELE-0018` | The answer is `Yes`; there is no quantity to sort |
+| `ENG-0031`, `ENG-0063`, `FIR-0012`, `FIR-0046` | Only *one* option carries a figure; the set is causes, limits or conclusions |
+
+That last row is the commonest case and the easiest to get wrong. A lone
+"`A maximum of two attempts per flight`" or "`Automatically five seconds after
+the switch is pulled`" sits among options that name no quantity at all, so
+there is no scale for it to be a point on — sorting would just promote the one
+option that happens to contain a digit.
 
 This is the same judgement `GEN-0032` got, and it is the reason the rule is
 stated as "the question asks for a quantity" rather than "the options contain
@@ -249,10 +292,6 @@ there is nothing to sort — but the numbered pair still has an order, and movin
 the answer (`VHF 1`) to `d` would have printed `VHF 2` above `VHF 1`. It was
 kept off `d` for that reason alone; it sits at `a`, and the sort rule does not
 otherwise apply to it.
-
-`GEN-0032` was deliberately left alone. Its options are *sets* of ELT
-frequencies ("121.5, 243.0 and 406 MHz" against "406 MHz only"), not points on a
-scale, so ordering them by a leading number would sort nothing meaningful.
 
 **Keep this property when adding a section.** An even spread is only worth
 having if the next chapter does not undo it.
