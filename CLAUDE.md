@@ -8,12 +8,12 @@ description of how the project is built, not a historical record.
 A web application where student pilots practise multiple-choice questions for
 aircraft type ratings. All user-facing content is in English.
 
-**Current state: Phase 4 is complete, and Phase 5 is under way.** A user can
-choose an aircraft, build a test from any combination of sections and any
-number of questions, sit it either way — study, where each answer is marked
-straight away with the correct option and the explanation and there is no
-time limit, or exam, where nothing is shown until the end and the clock gives
-one minute a question — and then see a result screen. Accounts exist,
+**Current state: Phase 5 is complete, and Phase 6 (payments) is under way.**
+A user can choose an aircraft, build a test from any combination of sections
+and any number of questions, sit it either way — study, where each answer is
+marked straight away with the correct option and the explanation and there is
+no time limit, or exam, where nothing is shown until the end and the clock
+gives one minute a question — and then see a result screen. Accounts exist,
 and a signed-in user's answers are recorded as each one is given, which means
 an abandoned test still counts and a mid-test refresh resumes rather than
 restarts. Forgetting a password is recoverable: a one-time emailed link sets
@@ -21,6 +21,13 @@ a new one and signs every other device out. `/progress` reads that history
 back: overall
 score, performance by topic, progress over time, and the questions worth
 retrying.
+
+A signed-in student may answer up to a fixed number of questions free on
+each aircraft; going further needs a subscription, bought at `/upgrade`
+through 2Checkout and confirmed by its webhook. See the note on payments in
+the conventions below and in "Not in scope yet" — the code is written and
+unit tested, but has not yet been exercised against a real 2Checkout
+account.
 
 ## The rule that shapes everything: many aircraft
 
@@ -530,6 +537,66 @@ is unset, so CI sets one and runs `db:migrate` *and* `db:seed` before `npm run
 test`. Migrating without seeding leaves the tables empty, which does not make
 those tests pass — it makes them fail, because an empty bank is not a bank.
 
+**A subscription is one row, kept current, not a ledger of payments.**
+`subscriptions` has a unique index on `userId`: a renewal, a plan change and
+a cancellation all update the same row rather than appending one, because
+every query that matters — "does this user have access right now" — only
+ever needs the latest state. A history of past payments is 2Checkout's job,
+not this database's, the same reasoning `sessions` uses for "one row per
+active session" rather than one per login.
+
+**The free tier is counted from `attempts`, the same table every report
+already reads — there is no separate usage counter.** A question counts
+once it has ever been answered, on any aircraft-scoped test, finished or
+not; answering it again later is free, which is what makes retrying a
+question already seen cost nothing further. This is per aircraft, not a
+total across the whole bank, so trying a second type does not spend the
+allowance meant for the first. `FREE_QUESTIONS_PER_AIRCRAFT` and the rule
+itself live in `src/lib/billing/access-policy.ts`, pure and unit tested like
+`grading.ts` — `answerQuestion` is the only caller, and it is the only place
+a new question can be blocked: a subscriber, and anyone re-answering a
+question already counted, always gets through.
+
+A signed-out student is not metered at all — there is nowhere to count
+against, the same gap that already means a signed-out refresh restarts a
+test rather than resuming it. See "Known gaps" below.
+
+**A blocked question is never itself graded or shown.** `answerQuestion`
+returns a `"paywall"` status instead of a verdict when the free allowance
+is spent and there is no active subscription; nothing is written to
+`attempts` and the correct answer is not revealed. The runner reverts the
+optimistic pick it had already shown and points at `/upgrade` instead — the
+same principle as "the answer key never arrives before it's earned",
+applied to the question a free account runs out on.
+
+**Checkout is a link, not a form this app renders.** `/upgrade` builds a
+ConvertPlus URL (`buildCheckoutUrl` in `src/lib/billing/2checkout.ts`) that
+sends the student to a page 2Checkout hosts and is responsible for PCI
+compliance on — no card details ever reach this server. The two plans are
+catalog products created once in the 2Checkout control panel, each already
+priced; a price change is an edit there, never a deploy here. `order-ext-ref`
+carries the signed-in user's id and the chosen plan through to every IPN for
+that order, including renewals sent long after the checkout page is closed —
+see `buildOrderExtRef` / `parseOrderExtRef`.
+
+**A subscription is only ever turned on by a signature, never by a claim.**
+`/api/webhooks/2checkout` verifies every IPN's `HASH` field
+(`verifyIpnSignature` in `src/lib/billing/2checkout-ipn.ts`) against an HMAC
+computed from the account's own secret key before acting on anything in it —
+a payload that does not reproduce it is answered and dropped, not processed
+"just in case". This is the one path that can grant access, so it is held to
+the same standard as password verification and session tokens elsewhere in
+this file: nothing here is trusted on its own say-so.
+
+**A paid period's end is computed, never trusted from the webhook.**
+`periodEndFor(plan, now)` in `access-policy.ts` adds the plan's length — 30
+days, 365 days — to the moment a payment is confirmed, the same reasoning as
+`deadlineFrom` for the exam clock: a value this app derives from a fact it
+already knows cannot drift from that fact, where a value read from an
+uncertain field name could. This is also why the exact IPN field names for a
+provider-side expiration date were never worth chasing down — see "Known
+gaps".
+
 **One feature per session, one pull request per feature. `main` always works.**
 
 ## Layout
@@ -548,6 +615,8 @@ src/
     aircraft/[code]/test/     Test runner, grading action, result screen
     (auth)/                   Sign up, log in, log out
     progress/                 Reports, overall and per aircraft
+    upgrade/                  Checkout links for the two plans
+    api/webhooks/2checkout/   The 2Checkout IPN endpoint
   components/                 Shared UI
   content/
     schema.ts                 THE question schema
@@ -557,11 +626,16 @@ src/
     queries.ts                Every read the app performs
     users.ts                  Account reads and writes
     password-reset.ts         Issuing and spending reset links
+    subscriptions.ts          Subscription row and the free-tier count
     index.ts                  Connection pool
   lib/
     email/
       send.ts                 sendEmail: Resend, or the server log
       reset-email.ts          The reset message (pure, tested)
+    billing/
+      access-policy.ts        Free-tier and subscription rules (pure, tested)
+      2checkout.ts             Checkout link and order-ext-ref (pure, tested)
+      2checkout-ipn.ts          Webhook signature verification (pure, tested)
     grading.ts                Scoring (pure, tested)
     question-status.ts        What the question map may say (pure, tested)
     password.ts               scrypt hashing (pure, tested)
@@ -601,13 +675,36 @@ tests/                        Vitest unit tests
    outright. `difficulty` is gone from the schema, the question files, the
    database and the test screen — see the note in the conventions above.
    Phase 5 is therefore complete as scoped.
+6. **Phase 6 — payments. Under way.** A signed-in student may answer a fixed
+   number of questions free on each aircraft (`FREE_QUESTIONS_PER_AIRCRAFT`);
+   going past it needs a subscription. `/upgrade` links to a 2Checkout
+   ConvertPlus checkout page for a monthly or a yearly plan; 2Checkout's IPN
+   webhook (`/api/webhooks/2checkout`) confirms the payment and updates the
+   `subscriptions` table, one row per user, kept current rather than
+   appended to. Written and unit tested — the checkout link, the IPN
+   signature check, and the free-tier arithmetic all have tests that need no
+   database — but **not yet exercised against a real 2Checkout account**, so
+   the exact field names the webhook reads (`ORDERSTATUS`, `MESSAGE_TYPE`,
+   `REFNOEXT`) are the ones its classic IPN system documents, not ones
+   confirmed from a live payload. Setting the account up for real is also the
+   point to confirm them — see the conventions below and `.env.example`.
 
 Do not start a phase until the previous one works.
 
 ## Not in scope yet
 
-Payments, subscriptions, an admin panel, images in questions, mobile apps. The
-data model must not make these harder later, but none of them get built now.
+An admin panel, images in questions, mobile apps. The data model must not
+make these harder later, but none of them get built now.
+
+(Payments and subscriptions were on this list until the owner asked for
+them. What exists now is Phase 6 above: a free allowance per aircraft, a
+2Checkout checkout link, and a webhook that turns a subscription on or off.
+What is still not built: an account page for managing or cancelling a
+subscription from inside this app — 2Checkout's own confirmation email is
+the only way to do that today — and email verification, so nothing stops
+someone subscribing under an email address they do not control. Neither
+makes payments not work; both are worth adding before this earns real
+revenue.)
 
 (Exam simulation was on this list until the owner asked for it. What exists
 now is a mode that withholds the answers until the end, and a clock that is
@@ -622,6 +719,19 @@ from inside the website, an admin panel gets added then — the `status`,
 
 ## Known gaps, honestly
 
+- **A signed-out visitor's practice is never metered.** The free-question
+  count is read from `attempts`, which only exists for a signed-in user —
+  the same reason a signed-out refresh restarts the test rather than
+  resuming it. Someone could stay signed out indefinitely to avoid ever
+  hitting the limit. Accepted for the same reason "Practice does not require
+  an account" is accepted below: requiring an account to meter usage would
+  also block anyone trying the site before committing to one.
+- **The 2Checkout webhook's field names are not yet confirmed against a real
+  account.** `ORDERSTATUS`, `MESSAGE_TYPE` and `REFNOEXT` are what 2Checkout's
+  documentation names; nothing has sent this deployment a live IPN yet. The
+  webhook logs the full payload whenever a field it expects is missing, so a
+  mismatch will show up in the log rather than silently doing nothing —
+  check that log the first time a real payment is tested.
 - **A mid-test page refresh restarts the test — for a signed-out visitor.**
   Nothing is recorded for them, so there is nothing to resume from; a refresh
   simply draws a fresh random set, same as visiting the test page for the

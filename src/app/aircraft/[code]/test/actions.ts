@@ -4,7 +4,13 @@ import { z } from "zod";
 
 import { recordTestResult, saveAnswer as saveAnswerRow } from "@/db/attempts";
 import { getAnswerKey } from "@/db/queries";
+import {
+  countQuestionsAnswered,
+  getSubscription,
+  hasAnsweredQuestionBefore,
+} from "@/db/subscriptions";
 import { getCurrentUser } from "@/lib/auth/session";
+import { canAnswerQuestion, hasActiveSubscription } from "@/lib/billing/access-policy";
 import { gradeTest, type TestResult } from "@/lib/grading";
 import { TEST_MODES, deadlineFrom, timeLimitFor } from "@/lib/test-options";
 
@@ -156,6 +162,12 @@ export type AnswerQuestionResult =
     }
   /** The question is not a real, published question on this aircraft. */
   | { status: "invalid" }
+  /**
+   * A new question on this aircraft, and the signed-in student has used up
+   * the free allowance without an active subscription. Nothing is graded or
+   * recorded — the question the free tier ends on is not itself given away.
+   */
+  | { status: "paywall" }
   /** Nothing could be graded — the caller should leave the question open. */
   | { status: "failed" };
 
@@ -225,9 +237,29 @@ export async function answerQuestion(
 
     const user = await getCurrentUser();
     // Signed out there is no session, so no server-held clock. The browser's
-    // own countdown is all there is — see the note in CLAUDE.md.
+    // own countdown is all there is — see the note in CLAUDE.md. There is
+    // also nowhere to count a free allowance against, so a signed-out
+    // student's practice is unmetered — a known trade-off, not an oversight;
+    // see CLAUDE.md.
     if (!user) {
       return { status: "answered", verdict, saved: "signed-out", startedAt: null, expiresAt: null };
+    }
+
+    // The free tier ends per aircraft, not per test — a subscriber skips
+    // this entirely, and a non-subscriber may always revisit a question
+    // already counted before, which is what makes retrying free.
+    const subscription = await getSubscription(user.id);
+    if (!hasActiveSubscription(subscription)) {
+      const [alreadyAnswered, distinctAnswered] = await Promise.all([
+        hasAnsweredQuestionBefore(user.id, questionId),
+        countQuestionsAnswered(user.id, aircraftCode),
+      ]);
+      const allowed = canAnswerQuestion({
+        hasSubscription: false,
+        alreadyAnsweredThisQuestion: alreadyAnswered,
+        distinctAnsweredSoFar: distinctAnswered,
+      });
+      if (!allowed) return { status: "paywall" };
     }
 
     // Recorded before the answer is returned, so the attempt is on file

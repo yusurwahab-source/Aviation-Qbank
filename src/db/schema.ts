@@ -346,3 +346,66 @@ export const loginAttempts = pgTable(
 );
 
 export type LoginAttemptRow = typeof loginAttempts.$inferSelect;
+
+/**
+ * Paid access. Recurring subscription, not a one-off purchase — `status` and
+ * `currentPeriodEnd` are what a webhook from the payment provider keeps
+ * current, not what a purchase event sets once and forgets.
+ *
+ * One row per user, upserted in place on every provider webhook, rather than
+ * one row per payment: a report on "is this user paying right now" only ever
+ * needs the latest state, and a history of past payments is the provider's
+ * job, not this database's.
+ *
+ * Not a foreign key to anything content-shaped, and there is nothing here
+ * that content deletion could ever invalidate — unlike `attempts`, this table
+ * has no reason to survive independently of the user it belongs to, so it
+ * cascades on account deletion like `sessions` does.
+ */
+export const subscriptionPlan = pgEnum("subscription_plan", ["monthly", "yearly"]);
+export const subscriptionStatus = pgEnum("subscription_status", [
+  "active",
+  "canceled",
+  "expired",
+]);
+
+export const subscriptions = pgTable(
+  "subscriptions",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    plan: subscriptionPlan("plan").notNull(),
+    status: subscriptionStatus("status").notNull(),
+    /** Always "2checkout" today. Kept as a column, not assumed, in case a
+     * second provider is ever added — the same reasoning as `sendEmail`
+     * having one interface behind it. */
+    provider: varchar("provider", { length: 32 }).notNull().default("2checkout"),
+    /**
+     * 2Checkout's own reference for the recurring order — what a renewal or
+     * cancellation notification not carrying our `order-ext-ref` would need
+     * to be looked up by. See the note on IPN field names in CLAUDE.md.
+     */
+    providerSubscriptionRef: varchar("provider_subscription_ref", { length: 64 }),
+    /**
+     * When the current paid period ends. `null` briefly between checkout and
+     * the first IPN confirming it — never treated as "unlimited", only as
+     * "not confirmed yet"; see `hasActiveSubscription`.
+     */
+    currentPeriodEnd: timestamp("current_period_end", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    // One row per user — a webhook updates it in place rather than adding a
+    // second row for a renewal or a plan change.
+    uniqueIndex("subscriptions_user_id_unique").on(table.userId),
+    // Renewal and cancellation IPNs arrive keyed by the provider's own
+    // reference, not by our user id.
+    index("subscriptions_provider_ref_idx").on(table.providerSubscriptionRef),
+  ],
+);
+
+export type SubscriptionRow = typeof subscriptions.$inferSelect;
+export type SubscriptionInsert = typeof subscriptions.$inferInsert;

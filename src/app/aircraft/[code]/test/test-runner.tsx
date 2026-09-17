@@ -109,6 +109,13 @@ export function TestRunner({
   const [pending, setPending] = useState<string | null>(null);
   const [result, setResult] = useState<SubmitTestOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
+  /**
+   * Set when a signed-in student without a subscription reaches the free
+   * allowance on this aircraft. The question they were on is left unanswered
+   * — see `answerQuestion`'s "paywall" status — so `select` below reverts the
+   * optimistic answer it had already recorded locally.
+   */
+  const [paywall, setPaywall] = useState(false);
   const [isSubmitting, startSubmitting] = useTransition();
   const [isRestarting, startRestarting] = useTransition();
   /**
@@ -220,6 +227,7 @@ export function TestRunner({
       // mode nothing has been revealed, so changing an answer is fair game.
       if (verdicts[questionId]) return;
 
+      setPaywall(false);
       setAnswers((previous) => ({ ...previous, [questionId]: optionId }));
       if (mode === "study") setPending(questionId);
 
@@ -232,6 +240,17 @@ export function TestRunner({
         mode,
       })
         .then((result) => {
+          if (result.status === "paywall") {
+            // Nothing was graded or recorded — undo the optimistic pick so
+            // the question shows as unanswered again, the way it really is.
+            setAnswers((previous) => {
+              const next = { ...previous };
+              delete next[questionId];
+              return next;
+            });
+            setPaywall(true);
+            return;
+          }
           // The server's clock replaces the browser's guess the moment there
           // is one: the session now exists, and its startedAt is the truth.
           if (result.status === "answered" && result.startedAt) {
@@ -333,6 +352,7 @@ export function TestRunner({
     setShowNav(false);
     setIndex(0);
     setError(null);
+    setPaywall(false);
     window.scrollTo({ top: 0 });
     startRestarting(() => {
       router.refresh();
@@ -527,6 +547,26 @@ export function TestRunner({
             <p className="mt-4 rounded-lg bg-incorrect-soft px-4 py-3 text-sm text-incorrect" role="alert">
               {error}
             </p>
+          ) : null}
+
+          {paywall ? (
+            <div
+              className="mt-4 rounded-lg border-l-4 border-l-brand bg-brand-soft p-4"
+              role="alert"
+            >
+              <p className="text-sm font-semibold text-foreground">
+                You&apos;ve used your free questions on {aircraftCode}.
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Subscribe for unlimited questions on every aircraft.
+              </p>
+              <Link
+                href="/upgrade"
+                className="mt-3 inline-block rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-strong"
+              >
+                Upgrade
+              </Link>
+            </div>
           ) : null}
 
           <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
