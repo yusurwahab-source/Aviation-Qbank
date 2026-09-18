@@ -2,10 +2,30 @@ import Link from "next/link";
 
 import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { Badge, Card, EmptyState, PageHeading } from "@/components/ui";
+import { getSubscription } from "@/db/subscriptions";
 import { listAircraft, type AircraftSummary } from "@/db/queries";
+import { FREE_QUESTIONS_PER_AIRCRAFT, hasActiveSubscription } from "@/lib/billing/access-policy";
+import { getCurrentUser } from "@/lib/auth/session";
 
 // The aircraft list comes from the database, so this page is rendered per request.
 export const dynamic = "force-dynamic";
+
+/**
+ * Whether to show the upgrade banner: only a signed-in student without an
+ * active subscription already has a reason to see it. Failure here is never
+ * fatal to the page — same reasoning as `AccountMenu` catching its own
+ * lookup — it just means the banner is skipped for this render.
+ */
+async function shouldOfferUpgrade(): Promise<boolean> {
+  try {
+    const user = await getCurrentUser();
+    if (!user) return false;
+    const subscription = await getSubscription(user.id);
+    return !(subscription !== null && hasActiveSubscription(subscription));
+  } catch {
+    return false;
+  }
+}
 
 export default async function HomePage() {
   let fleet: AircraftSummary[];
@@ -21,12 +41,29 @@ export default async function HomePage() {
     );
   }
 
+  const offerUpgrade = await shouldOfferUpgrade();
+
   return (
     <>
       <PageHeading
         title="Choose an aircraft"
         subtitle="Pick a type to start a practice test. Each aircraft has its own question bank."
       />
+
+      {offerUpgrade ? (
+        <Card className="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <p className="text-sm text-muted-foreground">
+            Practising is free up to {FREE_QUESTIONS_PER_AIRCRAFT} questions on each aircraft.
+            Subscribe for unlimited questions on every type.
+          </p>
+          <Link
+            href="/upgrade"
+            className="shrink-0 rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-strong"
+          >
+            Upgrade
+          </Link>
+        </Card>
+      ) : null}
 
       {fleet.length === 0 ? (
         <EmptyState title="No aircraft loaded yet">
