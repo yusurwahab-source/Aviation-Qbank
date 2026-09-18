@@ -1,7 +1,7 @@
 import "server-only";
 
 import { findSubscriptionByProviderRef, upsertSubscription } from "@/db/subscriptions";
-import { parseCheckoutPlan } from "@/lib/billing/stripe";
+import { extractCurrentPeriodEnd, parseCheckoutPlan } from "@/lib/billing/stripe";
 import { verifyStripeSignature } from "@/lib/billing/stripe-webhook";
 import { mapStripeSubscriptionStatus } from "@/lib/billing/access-policy";
 import { envValue } from "@/lib/env";
@@ -17,9 +17,10 @@ import { envValue } from "@/lib/env";
  *
  * Only the subscription's own events are handled — `checkout.session.completed`
  * is deliberately not one of them, because the subscription events carry
- * everything needed (`status`, `current_period_end`, and the `userId`/`plan`
- * metadata set at checkout) and keep carrying it on every later renewal or
- * cancellation, long after the checkout session itself is gone.
+ * everything needed (`status`, a period end — see `extractCurrentPeriodEnd`
+ * for where that actually lives — and the `userId`/`plan` metadata set at
+ * checkout) and keep carrying it on every later renewal or cancellation, long
+ * after the checkout session itself is gone.
  */
 export async function POST(request: Request): Promise<Response> {
   const secret = envValue("STRIPE_WEBHOOK_SECRET");
@@ -92,10 +93,10 @@ export async function POST(request: Request): Promise<Response> {
           typeof subscription.status === "string" ? subscription.status : "",
         );
 
-  const currentPeriodEnd =
-    typeof subscription.current_period_end === "number"
-      ? new Date(subscription.current_period_end * 1000)
-      : null;
+  const periodEndSeconds = extractCurrentPeriodEnd(
+    subscription as { current_period_end?: unknown; items?: { data?: Array<{ current_period_end?: unknown }> } },
+  );
+  const currentPeriodEnd = periodEndSeconds !== null ? new Date(periodEndSeconds * 1000) : null;
 
   await upsertSubscription({
     userId,

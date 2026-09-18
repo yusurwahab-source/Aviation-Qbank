@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   buildCheckoutSessionBody,
+  extractCurrentPeriodEnd,
   looksLikePriceId,
   looksLikeSecretKey,
   parseCheckoutPlan,
@@ -51,6 +52,37 @@ describe("looksLikePriceId", () => {
     expect(looksLikePriceId("")).toBe(false);
     expect(looksLikePriceId("prod_1UH8wbE9")).toBe(false);
     expect(looksLikePriceId("STRIPE_MONTHLY_PRICE_ID=price_1UH8wbE9")).toBe(false);
+  });
+});
+
+describe("extractCurrentPeriodEnd", () => {
+  it("reads the top-level field when it is present (older API shape)", () => {
+    expect(extractCurrentPeriodEnd({ current_period_end: 1789775625 })).toBe(1789775625);
+  });
+
+  it("falls back to the first item's field when the top-level one is absent", () => {
+    // The shape this project's own Stripe account actually sends: no
+    // top-level current_period_end, only one under items.data[0].
+    expect(
+      extractCurrentPeriodEnd({
+        items: { data: [{ current_period_end: 1792367625 }] },
+      }),
+    ).toBe(1792367625);
+  });
+
+  it("prefers the top-level field over the item's when both are present", () => {
+    expect(
+      extractCurrentPeriodEnd({
+        current_period_end: 1789775625,
+        items: { data: [{ current_period_end: 999 }] },
+      }),
+    ).toBe(1789775625);
+  });
+
+  it("is null when neither shape has a usable value", () => {
+    expect(extractCurrentPeriodEnd({})).toBeNull();
+    expect(extractCurrentPeriodEnd({ items: { data: [] } })).toBeNull();
+    expect(extractCurrentPeriodEnd({ items: { data: [{}] } })).toBeNull();
   });
 });
 
