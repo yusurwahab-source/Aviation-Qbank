@@ -4,9 +4,8 @@ import {
   FREE_QUESTIONS_PER_AIRCRAFT,
   canAnswerQuestion,
   hasActiveSubscription,
-  periodEndFor,
+  mapStripeSubscriptionStatus,
   remainingFreeQuestions,
-  subscriptionStatusForOrderStatus,
 } from "@/lib/billing/access-policy";
 
 describe("hasActiveSubscription", () => {
@@ -88,33 +87,22 @@ describe("canAnswerQuestion", () => {
   });
 });
 
-describe("periodEndFor", () => {
-  it("gives a monthly plan 30 days", () => {
-    const from = new Date("2026-01-01T00:00:00Z");
-    expect(periodEndFor("monthly", from)).toEqual(new Date("2026-01-31T00:00:00Z"));
+describe("mapStripeSubscriptionStatus", () => {
+  it("reads active and trialing as active", () => {
+    expect(mapStripeSubscriptionStatus("active")).toBe("active");
+    expect(mapStripeSubscriptionStatus("trialing")).toBe("active");
   });
 
-  it("gives a yearly plan 365 days", () => {
-    const from = new Date("2026-01-01T00:00:00Z");
-    expect(periodEndFor("yearly", from)).toEqual(new Date("2027-01-01T00:00:00Z"));
-  });
-});
-
-describe("subscriptionStatusForOrderStatus", () => {
-  it("reads a successful payment as active", () => {
-    expect(subscriptionStatusForOrderStatus("COMPLETE")).toBe("active");
-    expect(subscriptionStatusForOrderStatus("payment_received")).toBe("active");
-  });
-
-  it("reads a cancellation, refund or chargeback as canceled", () => {
-    for (const status of ["CANCELED", "REFUND", "REVERSED", "CHARGEBACK_OPEN", "CHARGEBACK_CLOSED"]) {
-      expect(subscriptionStatusForOrderStatus(status)).toBe("canceled");
-    }
-  });
-
-  it("does not guess at an in-between status", () => {
-    for (const status of ["PENDING", "PROCESSING", "SOMETHING_UNKNOWN"]) {
-      expect(subscriptionStatusForOrderStatus(status)).toBeNull();
+  it("reads every other Stripe status as canceled, not a guess in between", () => {
+    for (const status of [
+      "canceled",
+      "past_due",
+      "unpaid",
+      "incomplete",
+      "incomplete_expired",
+      "paused",
+    ]) {
+      expect(mapStripeSubscriptionStatus(status)).toBe("canceled");
     }
   });
 });

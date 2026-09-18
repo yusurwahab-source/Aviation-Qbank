@@ -24,10 +24,16 @@ retrying.
 
 A signed-in student may answer up to a fixed number of questions free on
 each aircraft; going further needs a subscription, bought at `/upgrade`
-through 2Checkout and confirmed by its webhook. See the note on payments in
-the conventions below and in "Not in scope yet" — the code is written and
-unit tested, but has not yet been exercised against a real 2Checkout
-account.
+through Stripe Checkout and confirmed by its webhook. See the note on
+payments in the conventions below and in "Not in scope yet" — the code is
+written and unit tested, but has not yet been exercised against a real
+Stripe account with real Prices configured.
+
+(This was first built against 2Checkout. That merchant application was
+declined before a single test payment could be attempted, so the
+integration was rebuilt against Stripe instead — the free-tier rule, the
+database and the gating in `answerQuestion` did not need to change, only
+the checkout link and the webhook.)
 
 ## The rule that shapes everything: many aircraft
 
@@ -541,7 +547,7 @@ those tests pass — it makes them fail, because an empty bank is not a bank.
 `subscriptions` has a unique index on `userId`: a renewal, a plan change and
 a cancellation all update the same row rather than appending one, because
 every query that matters — "does this user have access right now" — only
-ever needs the latest state. A history of past payments is 2Checkout's job,
+ever needs the latest state. A history of past payments is Stripe's job,
 not this database's, the same reasoning `sessions` uses for "one row per
 active session" rather than one per login.
 
@@ -569,33 +575,46 @@ optimistic pick it had already shown and points at `/upgrade` instead — the
 same principle as "the answer key never arrives before it's earned",
 applied to the question a free account runs out on.
 
-**Checkout is a link, not a form this app renders.** `/upgrade` builds a
-ConvertPlus URL (`buildCheckoutUrl` in `src/lib/billing/2checkout.ts`) that
-sends the student to a page 2Checkout hosts and is responsible for PCI
-compliance on — no card details ever reach this server. The two plans are
-catalog products created once in the 2Checkout control panel, each already
-priced; a price change is an edit there, never a deploy here. `order-ext-ref`
-carries the signed-in user's id and the chosen plan through to every IPN for
-that order, including renewals sent long after the checkout page is closed —
-see `buildOrderExtRef` / `parseOrderExtRef`.
+**Checkout is a page Stripe hosts, started by a form action, not a static
+link.** `/upgrade`'s "Subscribe" button posts to `startCheckout` in
+`src/app/upgrade/actions.ts`, which calls `createCheckoutSession` in
+`src/lib/billing/stripe.ts` — one `fetch` to Stripe's API, no `stripe`
+package installed, the same reasoning as `sendEmail`'s Resend call. The
+result is a redirect to a page Stripe hosts and is responsible for PCI
+compliance on; no card details ever reach this server. The two plans are
+recurring Prices created once in the Stripe dashboard, each already priced;
+a price change is an edit there, never a deploy here. Both the signed-in
+user's id and the chosen plan are set as `subscription_data[metadata]` at
+checkout, so every later event for that subscription — a renewal, a
+cancellation, years after the checkout page is closed — still carries them,
+which is what the webhook reads.
 
 **A subscription is only ever turned on by a signature, never by a claim.**
-`/api/webhooks/2checkout` verifies every IPN's `HASH` field
-(`verifyIpnSignature` in `src/lib/billing/2checkout-ipn.ts`) against an HMAC
-computed from the account's own secret key before acting on anything in it —
-a payload that does not reproduce it is answered and dropped, not processed
-"just in case". This is the one path that can grant access, so it is held to
-the same standard as password verification and session tokens elsewhere in
-this file: nothing here is trusted on its own say-so.
+`/api/webhooks/stripe` verifies every event's `Stripe-Signature` header
+(`verifyStripeSignature` in `src/lib/billing/stripe-webhook.ts`) against an
+HMAC-SHA256 computed from the raw request body and the endpoint's own
+signing secret before acting on anything in it — a payload that does not
+reproduce it is answered and dropped, not processed "just in case". This is
+the one path that can grant access, so it is held to the same standard as
+password verification and session tokens elsewhere in this file: nothing
+here is trusted on its own say-so. The check also rejects a genuinely
+signed request replayed long after the fact, the same concern rate limiting
+and reset tokens elsewhere in this file exist for.
 
-**A paid period's end is computed, never trusted from the webhook.**
-`periodEndFor(plan, now)` in `access-policy.ts` adds the plan's length — 30
-days, 365 days — to the moment a payment is confirmed, the same reasoning as
-`deadlineFrom` for the exam clock: a value this app derives from a fact it
-already knows cannot drift from that fact, where a value read from an
-uncertain field name could. This is also why the exact IPN field names for a
-provider-side expiration date were never worth chasing down — see "Known
-gaps".
+**The webhook only ever handles the subscription's own events**
+(`customer.subscription.created` / `.updated` / `.deleted`), never
+`checkout.session.completed`. A `Subscription` object carries its `status`
+and `current_period_end` directly — read and stored as-is, not derived —
+so there was no need to repeat the "compute it, don't trust the webhook"
+trick the earlier 2Checkout attempt needed for a figure Stripe already
+states plainly. `mapStripeSubscriptionStatus` in `access-policy.ts` narrows
+Stripe's several statuses down to the two this app stores: only `active`
+and `trialing` count as active, and everything else — `past_due`,
+`unpaid`, `incomplete`, a plain `canceled` — is treated as not, since
+nothing here offers a trial or a grace period. A cancellation raised from
+Stripe's own customer portal, which may arrive without the metadata set at
+checkout, falls back to looking the row up by the subscription's own id
+(`findSubscriptionByProviderRef`).
 
 **One feature per session, one pull request per feature. `main` always works.**
 
@@ -615,8 +634,8 @@ src/
     aircraft/[code]/test/     Test runner, grading action, result screen
     (auth)/                   Sign up, log in, log out
     progress/                 Reports, overall and per aircraft
-    upgrade/                  Checkout links for the two plans
-    api/webhooks/2checkout/   The 2Checkout IPN endpoint
+    upgrade/                  Checkout for the two plans, and the Stripe redirect action
+    api/webhooks/stripe/      The Stripe webhook endpoint
   components/                 Shared UI
   content/
     schema.ts                 THE question schema
@@ -634,8 +653,8 @@ src/
       reset-email.ts          The reset message (pure, tested)
     billing/
       access-policy.ts        Free-tier and subscription rules (pure, tested)
-      2checkout.ts             Checkout link and order-ext-ref (pure, tested)
-      2checkout-ipn.ts          Webhook signature verification (pure, tested)
+      stripe.ts                Checkout session request + Stripe API call (pure builder, tested)
+      stripe-webhook.ts        Webhook signature verification (pure, tested)
     grading.ts                Scoring (pure, tested)
     question-status.ts        What the question map may say (pure, tested)
     password.ts               scrypt hashing (pure, tested)
@@ -677,17 +696,16 @@ tests/                        Vitest unit tests
    Phase 5 is therefore complete as scoped.
 6. **Phase 6 — payments. Under way.** A signed-in student may answer a fixed
    number of questions free on each aircraft (`FREE_QUESTIONS_PER_AIRCRAFT`);
-   going past it needs a subscription. `/upgrade` links to a 2Checkout
-   ConvertPlus checkout page for a monthly or a yearly plan; 2Checkout's IPN
-   webhook (`/api/webhooks/2checkout`) confirms the payment and updates the
-   `subscriptions` table, one row per user, kept current rather than
-   appended to. Written and unit tested — the checkout link, the IPN
-   signature check, and the free-tier arithmetic all have tests that need no
-   database — but **not yet exercised against a real 2Checkout account**, so
-   the exact field names the webhook reads (`ORDERSTATUS`, `MESSAGE_TYPE`,
-   `REFNOEXT`) are the ones its classic IPN system documents, not ones
-   confirmed from a live payload. Setting the account up for real is also the
-   point to confirm them — see the conventions below and `.env.example`.
+   going past it needs a subscription. `/upgrade`'s "Subscribe" button starts
+   a Stripe Checkout session for a monthly or a quarterly (every three
+   months) Price; Stripe's own
+   webhook (`/api/webhooks/stripe`) confirms it and keeps the `subscriptions`
+   table current, one row per user rather than appended to. Written and unit
+   tested — the checkout session request, the webhook signature check, and
+   the free-tier arithmetic all have tests that need no database — but
+   **not yet exercised against a real Stripe account with real Prices
+   configured**. See the conventions below and `.env.example` for what that
+   setup involves.
 
 Do not start a phase until the previous one works.
 
@@ -698,13 +716,13 @@ make these harder later, but none of them get built now.
 
 (Payments and subscriptions were on this list until the owner asked for
 them. What exists now is Phase 6 above: a free allowance per aircraft, a
-2Checkout checkout link, and a webhook that turns a subscription on or off.
+Stripe Checkout session, and a webhook that turns a subscription on or off.
 What is still not built: an account page for managing or cancelling a
-subscription from inside this app — 2Checkout's own confirmation email is
-the only way to do that today — and email verification, so nothing stops
-someone subscribing under an email address they do not control. Neither
-makes payments not work; both are worth adding before this earns real
-revenue.)
+subscription from inside this app — Stripe's own customer portal, or the
+receipt email it sends, is the only way to do that today — and email
+verification, so nothing stops someone subscribing under an email address
+they do not control. Neither makes payments not work; both are worth adding
+before this earns real revenue.)
 
 (Exam simulation was on this list until the owner asked for it. What exists
 now is a mode that withholds the answers until the end, and a clock that is
@@ -726,12 +744,18 @@ from inside the website, an admin panel gets added then — the `status`,
   hitting the limit. Accepted for the same reason "Practice does not require
   an account" is accepted below: requiring an account to meter usage would
   also block anyone trying the site before committing to one.
-- **The 2Checkout webhook's field names are not yet confirmed against a real
-  account.** `ORDERSTATUS`, `MESSAGE_TYPE` and `REFNOEXT` are what 2Checkout's
-  documentation names; nothing has sent this deployment a live IPN yet. The
-  webhook logs the full payload whenever a field it expects is missing, so a
-  mismatch will show up in the log rather than silently doing nothing —
-  check that log the first time a real payment is tested.
+- **The Stripe integration has not been exercised against a real account.**
+  The checkout session request and the webhook signature check are unit
+  tested against known values, but nothing has yet sent this deployment a
+  live Stripe event. The webhook logs a warning whenever a subscription
+  event arrives without the metadata it expects, so a real mismatch will
+  show up in the log rather than silently doing nothing — check that log
+  the first time a real payment is tested, alongside Stripe's own dashboard
+  view of recent webhook deliveries.
+- **2Checkout was tried first and declined the merchant application before
+  any code could be tested against it.** Nothing about that attempt is left
+  in the code; it is mentioned here only so the choice of Stripe is not
+  mistaken for the original plan.
 - **A mid-test page refresh restarts the test — for a signed-out visitor.**
   Nothing is recorded for them, so there is nothing to resume from; a refresh
   simply draws a fresh random set, same as visiting the test page for the

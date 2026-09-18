@@ -49,48 +49,19 @@ export function remainingFreeQuestions(distinctAnsweredSoFar: number): number {
   return Math.max(0, FREE_QUESTIONS_PER_AIRCRAFT - distinctAnsweredSoFar);
 }
 
-/** How long a paid period lasts, in days, once a payment is confirmed. */
-const PLAN_DURATION_DAYS: Record<"monthly" | "yearly", number> = {
-  monthly: 30,
-  yearly: 365,
-};
-
 /**
- * When a period started now ends, for the plan just paid for.
+ * What one of Stripe's subscription statuses means for the row stored here.
  *
- * Derived from the plan itself rather than read from anything the payment
- * provider's webhook claims — the same reasoning as `deadlineFrom` in
- * `test-options.ts`: a value this app computes from a fact it already knows
- * cannot drift from that fact, where a value trusted from elsewhere could.
+ * Stripe has more states than this app tracks (`trialing`, `past_due`,
+ * `unpaid`, `incomplete`, `incomplete_expired`, …) — there is no trial or
+ * grace period offered here, so anything other than an outright `active` or
+ * `trialing` subscription is treated as not granting access. This errs
+ * toward cutting access off too early over too late, the same reasoning as
+ * treating a `null` `currentPeriodEnd` as not-yet-active rather than
+ * unlimited.
  */
-export function periodEndFor(plan: "monthly" | "yearly", from: Date = new Date()): Date {
-  return new Date(from.getTime() + PLAN_DURATION_DAYS[plan] * 24 * 60 * 60 * 1000);
-}
-
-/**
- * What a 2Checkout order status means for the subscription it belongs to.
- *
- * `null` covers every in-between status (`PENDING`, `PROCESSING`, and
- * anything not listed here) — deliberately a no-op rather than a guess,
- * because a webhook the caller cannot yet interpret must leave the existing
- * row alone rather than downgrade it on a status that says nothing final.
- */
-const ORDER_STATUS_MEANS_ACTIVE = new Set(["COMPLETE", "PAYMENT_RECEIVED"]);
-const ORDER_STATUS_MEANS_CANCELED = new Set([
-  "CANCELED",
-  "REFUND",
-  "REVERSED",
-  "CHARGEBACK_OPEN",
-  "CHARGEBACK_CLOSED",
-]);
-
-export function subscriptionStatusForOrderStatus(
-  orderStatus: string,
-): "active" | "canceled" | null {
-  const normalised = orderStatus.trim().toUpperCase();
-  if (ORDER_STATUS_MEANS_ACTIVE.has(normalised)) return "active";
-  if (ORDER_STATUS_MEANS_CANCELED.has(normalised)) return "canceled";
-  return null;
+export function mapStripeSubscriptionStatus(stripeStatus: string): "active" | "canceled" {
+  return stripeStatus === "active" || stripeStatus === "trialing" ? "active" : "canceled";
 }
 
 /**
