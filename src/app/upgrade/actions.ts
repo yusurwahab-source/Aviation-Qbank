@@ -11,7 +11,7 @@ export type CheckoutState = { error?: string };
 /** Which env var names a plan's Stripe Price, keyed the same way as the plan itself. */
 const PRICE_ID_ENV_VAR = {
   monthly: "STRIPE_MONTHLY_PRICE_ID",
-  yearly: "STRIPE_YEARLY_PRICE_ID",
+  quarterly: "STRIPE_QUARTERLY_PRICE_ID",
 } as const;
 
 /**

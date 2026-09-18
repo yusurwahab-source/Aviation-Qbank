@@ -5,7 +5,7 @@ import { buildCheckoutSessionBody, parseCheckoutPlan } from "@/lib/billing/strip
 describe("parseCheckoutPlan", () => {
   it("accepts the two known plans", () => {
     expect(parseCheckoutPlan("monthly")).toBe("monthly");
-    expect(parseCheckoutPlan("yearly")).toBe("yearly");
+    expect(parseCheckoutPlan("quarterly")).toBe("quarterly");
   });
 
   it("rejects anything else", () => {
@@ -37,7 +37,7 @@ describe("buildCheckoutSessionBody", () => {
   it("carries the user id and plan as subscription metadata, not only as client_reference_id", () => {
     const body = buildCheckoutSessionBody({
       priceId: "price_123",
-      plan: "yearly",
+      plan: "quarterly",
       userId: "user-42",
       successUrl: "https://example.com/upgrade",
       cancelUrl: "https://example.com/upgrade",
@@ -48,7 +48,7 @@ describe("buildCheckoutSessionBody", () => {
     // event years later still carries.
     expect(body.get("client_reference_id")).toBe("user-42");
     expect(body.get("subscription_data[metadata][userId]")).toBe("user-42");
-    expect(body.get("subscription_data[metadata][plan]")).toBe("yearly");
+    expect(body.get("subscription_data[metadata][plan]")).toBe("quarterly");
   });
 
   it("includes the email only when given", () => {

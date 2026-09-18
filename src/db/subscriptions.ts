@@ -73,7 +73,7 @@ export async function hasAnsweredQuestionBefore(
  */
 export async function upsertSubscription(input: {
   userId: string;
-  plan: "monthly" | "yearly";
+  plan: "monthly" | "quarterly";
   status: "active" | "canceled" | "expired";
   /** Which payment provider this row now reflects — passed explicitly
    * rather than left to the column's default, so a webhook can never

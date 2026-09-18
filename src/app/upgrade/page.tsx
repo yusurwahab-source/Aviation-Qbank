@@ -14,12 +14,12 @@ export const dynamic = "force-dynamic";
 
 const PLAN_LABELS: Record<CheckoutPlan, { name: string; blurb: string }> = {
   monthly: { name: "Monthly", blurb: "Billed every month." },
-  yearly: { name: "Yearly", blurb: "Billed once a year." },
+  quarterly: { name: "Every 3 months", blurb: "Billed once every three months." },
 };
 
 const PRICE_ID_ENV_VAR: Record<CheckoutPlan, string> = {
   monthly: "STRIPE_MONTHLY_PRICE_ID",
-  yearly: "STRIPE_YEARLY_PRICE_ID",
+  quarterly: "STRIPE_QUARTERLY_PRICE_ID",
 };
 
 /**

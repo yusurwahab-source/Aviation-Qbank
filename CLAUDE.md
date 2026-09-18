@@ -697,7 +697,8 @@ tests/                        Vitest unit tests
 6. **Phase 6 — payments. Under way.** A signed-in student may answer a fixed
    number of questions free on each aircraft (`FREE_QUESTIONS_PER_AIRCRAFT`);
    going past it needs a subscription. `/upgrade`'s "Subscribe" button starts
-   a Stripe Checkout session for a monthly or a yearly Price; Stripe's own
+   a Stripe Checkout session for a monthly or a quarterly (every three
+   months) Price; Stripe's own
    webhook (`/api/webhooks/stripe`) confirms it and keeps the `subscriptions`
    table current, one row per user rather than appended to. Written and unit
    tested — the checkout session request, the webhook signature check, and

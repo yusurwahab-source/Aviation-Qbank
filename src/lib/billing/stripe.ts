@@ -10,7 +10,7 @@
 
 const STRIPE_API_BASE = "https://api.stripe.com/v1";
 
-export const CHECKOUT_PLANS = ["monthly", "yearly"] as const;
+export const CHECKOUT_PLANS = ["monthly", "quarterly"] as const;
 export type CheckoutPlan = (typeof CHECKOUT_PLANS)[number];
 
 /** Narrows an unknown value to a `CheckoutPlan`, or null if it isn't one. */

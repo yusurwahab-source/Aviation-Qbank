@@ -362,7 +362,7 @@ export type LoginAttemptRow = typeof loginAttempts.$inferSelect;
  * has no reason to survive independently of the user it belongs to, so it
  * cascades on account deletion like `sessions` does.
  */
-export const subscriptionPlan = pgEnum("subscription_plan", ["monthly", "yearly"]);
+export const subscriptionPlan = pgEnum("subscription_plan", ["monthly", "quarterly"]);
 export const subscriptionStatus = pgEnum("subscription_status", [
   "active",
   "canceled",
