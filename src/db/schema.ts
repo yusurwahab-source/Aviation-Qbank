@@ -378,20 +378,21 @@ export const subscriptions = pgTable(
       .references(() => users.id, { onDelete: "cascade" }),
     plan: subscriptionPlan("plan").notNull(),
     status: subscriptionStatus("status").notNull(),
-    /** Always "2checkout" today. Kept as a column, not assumed, in case a
+    /** Always "stripe" today. Kept as a column, not assumed, in case a
      * second provider is ever added — the same reasoning as `sendEmail`
-     * having one interface behind it. */
-    provider: varchar("provider", { length: 32 }).notNull().default("2checkout"),
+     * having one interface behind it. Application code always sets this
+     * explicitly (see `upsertSubscription`); the default here is only ever
+     * a fallback, never relied upon. */
+    provider: varchar("provider", { length: 32 }).notNull().default("stripe"),
     /**
-     * 2Checkout's own reference for the recurring order — what a renewal or
-     * cancellation notification not carrying our `order-ext-ref` would need
-     * to be looked up by. See the note on IPN field names in CLAUDE.md.
+     * Stripe's own id for the subscription object — what a renewal or
+     * cancellation event is looked up by if its metadata is ever missing.
      */
     providerSubscriptionRef: varchar("provider_subscription_ref", { length: 64 }),
     /**
      * When the current paid period ends. `null` briefly between checkout and
-     * the first IPN confirming it — never treated as "unlimited", only as
-     * "not confirmed yet"; see `hasActiveSubscription`.
+     * the first webhook event confirming it — never treated as "unlimited",
+     * only as "not confirmed yet"; see `hasActiveSubscription`.
      */
     currentPeriodEnd: timestamp("current_period_end", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
@@ -401,8 +402,8 @@ export const subscriptions = pgTable(
     // One row per user — a webhook updates it in place rather than adding a
     // second row for a renewal or a plan change.
     uniqueIndex("subscriptions_user_id_unique").on(table.userId),
-    // Renewal and cancellation IPNs arrive keyed by the provider's own
-    // reference, not by our user id.
+    // Renewal and cancellation webhook events arrive keyed by the
+    // provider's own reference, not by our user id.
     index("subscriptions_provider_ref_idx").on(table.providerSubscriptionRef),
   ],
 );

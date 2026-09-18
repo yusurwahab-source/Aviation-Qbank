@@ -9,7 +9,7 @@ import type { SubscriptionRow } from "@/db/schema";
 /**
  * Paid access.
  *
- * `subscriptions` holds one row per user, kept current by the 2Checkout
+ * `subscriptions` holds one row per user, kept current by the Stripe
  * webhook rather than read from anywhere content-shaped — see the note on the
  * table in `schema.ts`. The free tier needs no table of its own: how many
  * questions a user has used is counted straight from `attempts`, the same
@@ -63,11 +63,11 @@ export async function hasAnsweredQuestionBefore(
 }
 
 /**
- * Applies one 2Checkout IPN to this user's subscription row.
+ * Applies one Stripe webhook event to this user's subscription row.
  *
  * An upsert, not an insert: a renewal, a plan change and a cancellation are
  * all the same user's row moving to a new state, never a second row. The
- * caller has already verified the IPN's signature — this function trusts
+ * caller has already verified the event's signature — this function trusts
  * its input the way `saveAnswer` trusts a caller that has already checked
  * the answer key.
  */
@@ -75,6 +75,10 @@ export async function upsertSubscription(input: {
   userId: string;
   plan: "monthly" | "yearly";
   status: "active" | "canceled" | "expired";
+  /** Which payment provider this row now reflects — passed explicitly
+   * rather than left to the column's default, so a webhook can never
+   * silently write the wrong provider's name. */
+  provider: string;
   providerSubscriptionRef: string | null;
   currentPeriodEnd: Date | null;
 }): Promise<void> {
@@ -84,6 +88,7 @@ export async function upsertSubscription(input: {
       userId: input.userId,
       plan: input.plan,
       status: input.status,
+      provider: input.provider,
       providerSubscriptionRef: input.providerSubscriptionRef,
       currentPeriodEnd: input.currentPeriodEnd,
     })
@@ -92,6 +97,7 @@ export async function upsertSubscription(input: {
       set: {
         plan: input.plan,
         status: input.status,
+        provider: input.provider,
         providerSubscriptionRef: input.providerSubscriptionRef,
         currentPeriodEnd: input.currentPeriodEnd,
         updatedAt: sql`now()`,
@@ -100,12 +106,12 @@ export async function upsertSubscription(input: {
 }
 
 /**
- * Looks a subscription up by 2Checkout's own reference rather than by user.
+ * Looks a subscription up by Stripe's own subscription id rather than by user.
  *
- * A cancellation raised from the customer's 2Checkout account page, rather
- * than through our own checkout link, carries `SUBSCRIPTION_REF_NO` but not
- * the `order-ext-ref` we set at checkout — this is how that IPN still finds
- * the right row.
+ * A cancellation raised from Stripe's customer portal, rather than through
+ * our own checkout, still carries the subscription's id but may not carry
+ * the `userId`/`plan` metadata set at checkout — this is how that event
+ * still finds the right row.
  */
 export async function findSubscriptionByProviderRef(
   providerSubscriptionRef: string,
