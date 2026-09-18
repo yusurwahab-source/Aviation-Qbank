@@ -41,6 +41,9 @@ export async function AccountMenu() {
       <Link href="/progress" className="font-medium text-foreground hover:text-brand">
         Progress
       </Link>
+      <Link href="/upgrade" className="font-medium text-foreground hover:text-brand">
+        Upgrade
+      </Link>
       <span
         className="hidden max-w-[12rem] truncate text-muted-foreground sm:inline"
         title={user.email}
