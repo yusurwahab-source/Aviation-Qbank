@@ -3,9 +3,15 @@ import { redirect } from "next/navigation";
 
 import { Card, PageHeading } from "@/components/ui";
 import { getSubscription } from "@/db/subscriptions";
-import { CHECKOUT_PLANS, type CheckoutPlan } from "@/lib/billing/stripe";
+import {
+  CHECKOUT_PLANS,
+  looksLikePriceId,
+  looksLikeSecretKey,
+  type CheckoutPlan,
+} from "@/lib/billing/stripe";
 import { FREE_QUESTIONS_PER_AIRCRAFT, hasActiveSubscription } from "@/lib/billing/access-policy";
 import { getCurrentUser } from "@/lib/auth/session";
+import { envValue } from "@/lib/env";
 
 import { CheckoutForm } from "./checkout-form";
 
@@ -42,7 +48,10 @@ export default async function UpgradePage({
   const active = subscription !== null && hasActiveSubscription(subscription);
   const justSubscribed = (Array.isArray(query.success) ? query.success[0] : query.success) === "1";
 
-  const configured = Boolean(process.env.STRIPE_SECRET_KEY);
+  // Shaped like a key, not merely present: a variable holding something that
+  // could never work should read as "not configured", not as a button that
+  // fails the moment it is pressed.
+  const configured = looksLikeSecretKey(envValue("STRIPE_SECRET_KEY"));
 
   return (
     <>
@@ -83,7 +92,7 @@ export default async function UpgradePage({
         <ul className="grid gap-4 sm:grid-cols-2">
           {CHECKOUT_PLANS.map((plan) => {
             const label = PLAN_LABELS[plan];
-            const priceConfigured = Boolean(process.env[PRICE_ID_ENV_VAR[plan]]);
+            const priceConfigured = looksLikePriceId(envValue(PRICE_ID_ENV_VAR[plan]));
 
             return (
               <li key={plan}>

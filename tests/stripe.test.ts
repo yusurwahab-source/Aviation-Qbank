@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest";
 
-import { buildCheckoutSessionBody, parseCheckoutPlan } from "@/lib/billing/stripe";
+import {
+  buildCheckoutSessionBody,
+  looksLikePriceId,
+  looksLikeSecretKey,
+  parseCheckoutPlan,
+} from "@/lib/billing/stripe";
 
 describe("parseCheckoutPlan", () => {
   it("accepts the two known plans", () => {
@@ -14,6 +19,38 @@ describe("parseCheckoutPlan", () => {
     expect(parseCheckoutPlan(undefined)).toBeNull();
     expect(parseCheckoutPlan(null)).toBeNull();
     expect(parseCheckoutPlan(42)).toBeNull();
+  });
+});
+
+describe("looksLikeSecretKey", () => {
+  it("accepts a test or live secret key", () => {
+    expect(looksLikeSecretKey("sk_test_abc123")).toBe(true);
+    expect(looksLikeSecretKey("sk_live_abc123")).toBe(true);
+  });
+
+  it("rejects the variable name pasted in place of the key", () => {
+    // The exact misconfiguration this guard exists for.
+    expect(looksLikeSecretKey("STRIPE_SECRET_KEY=sk_test_abc123")).toBe(false);
+  });
+
+  it("rejects anything else", () => {
+    expect(looksLikeSecretKey(null)).toBe(false);
+    expect(looksLikeSecretKey("")).toBe(false);
+    expect(looksLikeSecretKey("pk_test_abc123")).toBe(false);
+    expect(looksLikeSecretKey("whsec_abc123")).toBe(false);
+  });
+});
+
+describe("looksLikePriceId", () => {
+  it("accepts a price id", () => {
+    expect(looksLikePriceId("price_1UH8wbE9")).toBe(true);
+  });
+
+  it("rejects anything else", () => {
+    expect(looksLikePriceId(null)).toBe(false);
+    expect(looksLikePriceId("")).toBe(false);
+    expect(looksLikePriceId("prod_1UH8wbE9")).toBe(false);
+    expect(looksLikePriceId("STRIPE_MONTHLY_PRICE_ID=price_1UH8wbE9")).toBe(false);
   });
 });
 

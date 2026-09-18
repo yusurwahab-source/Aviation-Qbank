@@ -4,6 +4,7 @@ import { findSubscriptionByProviderRef, upsertSubscription } from "@/db/subscrip
 import { parseCheckoutPlan } from "@/lib/billing/stripe";
 import { verifyStripeSignature } from "@/lib/billing/stripe-webhook";
 import { mapStripeSubscriptionStatus } from "@/lib/billing/access-policy";
+import { envValue } from "@/lib/env";
 
 /**
  * Where Stripe tells this app that a subscription changed.
@@ -21,7 +22,7 @@ import { mapStripeSubscriptionStatus } from "@/lib/billing/access-policy";
  * cancellation, long after the checkout session itself is gone.
  */
 export async function POST(request: Request): Promise<Response> {
-  const secret = process.env.STRIPE_WEBHOOK_SECRET;
+  const secret = envValue("STRIPE_WEBHOOK_SECRET");
   if (!secret) {
     console.error("Received a Stripe webhook but STRIPE_WEBHOOK_SECRET is not set.");
     return new Response("Not configured", { status: 500 });
