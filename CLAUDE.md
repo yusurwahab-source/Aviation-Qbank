@@ -616,6 +616,34 @@ Stripe's own customer portal, which may arrive without the metadata set at
 checkout, falls back to looking the row up by the subscription's own id
 (`findSubscriptionByProviderRef`).
 
+**Configuration is read through `readEnv`, never straight off
+`process.env`.** `src/lib/env.ts` trims whitespace, strips surrounding
+quotes, and strips a leading `NAME=` — the three ways a *correct* value
+arrives wrong when it is pasted into a hosting dashboard instead of written
+into a file. The middle one is not hypothetical: the first live checkout on
+this project failed with "Invalid API Key provided: STRIPE_S…", because the
+whole line `STRIPE_SECRET_KEY=sk_test_…` had gone into Vercel's value box
+and Stripe was being handed the variable's name along with its key.
+
+This does not make a wrong value right — a key for the wrong account, or a
+truncated one, still fails at the provider, and should. It only stops a
+right value from failing over how it was carried.
+
+Beside it, `looksLikeSecretKey` and `looksLikePriceId` check that a
+configured value is *shaped* like the thing it claims to be before anything
+is sent. A value that could never work now reads as "payments are not
+configured" on `/upgrade`, rather than rendering a Subscribe button whose
+only outcome is the provider's error.
+
+**A provider's error message is for the log, not for the student.** Stripe's
+"Invalid API Key provided: …" describes this deployment's configuration:
+useful to whoever owns it, useless to somebody who only wants to subscribe,
+and not theirs to read. `startCheckout` logs the detail and puts a sentence
+the student can act on ("Checkout could not be started. Please try again in
+a moment.") on the screen. That is the same split the rest of this file
+makes everywhere else — say plainly that something failed, without handing
+over the internals.
+
 **One feature per session, one pull request per feature. `main` always works.**
 
 ## Layout
@@ -655,6 +683,7 @@ src/
       access-policy.ts        Free-tier and subscription rules (pure, tested)
       stripe.ts                Checkout session request + Stripe API call (pure builder, tested)
       stripe-webhook.ts        Webhook signature verification (pure, tested)
+    env.ts                    Reading configuration, tolerantly (pure, tested)
     grading.ts                Scoring (pure, tested)
     question-status.ts        What the question map may say (pure, tested)
     password.ts               scrypt hashing (pure, tested)

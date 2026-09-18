@@ -21,6 +21,22 @@ export function parseCheckoutPlan(value: unknown): CheckoutPlan | null {
 }
 
 /**
+ * Whether a configured value is even shaped like the thing it claims to be.
+ *
+ * This is a *misconfiguration* check, not a security one — only Stripe can
+ * say whether a key is real. It exists so a value that could never work is
+ * caught before it is sent, and the screen says "not configured" rather than
+ * rendering a button whose only outcome is the provider's own error.
+ */
+export function looksLikeSecretKey(value: string | null): value is string {
+  return value !== null && /^sk_(test|live)_/.test(value);
+}
+
+export function looksLikePriceId(value: string | null): value is string {
+  return value !== null && value.startsWith("price_");
+}
+
+/**
  * The form-encoded body Stripe's Checkout Sessions API expects. Pure and
  * exported on its own so the shape of the request can be asserted without a
  * network call.
