@@ -2,14 +2,25 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { DatabaseUnavailable } from "@/components/database-unavailable";
+import { ResumeTestBanner } from "@/components/resume-test-banner";
 import { Card, EmptyState, PageHeading } from "@/components/ui";
-import { getAircraft, listTopics, type AircraftSummary, type TopicSummary } from "@/db/queries";
+import { findIncompleteSession, type IncompleteSession } from "@/db/attempts";
+import { getFlaggedQuestionIds } from "@/db/flags";
+import {
+  countUnseenTestQuestions,
+  getAircraft,
+  listTopics,
+  type AircraftSummary,
+  type TopicSummary,
+} from "@/db/queries";
+import { getQuestionIdsToRetry, getTopicPerformance } from "@/db/reports";
 import { countQuestionsAnswered, getSubscription } from "@/db/subscriptions";
 import { hasActiveSubscription, remainingFreeQuestions } from "@/lib/billing/access-policy";
 import { getSiteSettings } from "@/db/settings";
 import { getCurrentUser } from "@/lib/auth/session";
+import { PRESET_COUNT_CEILING } from "@/lib/test-options";
 
-import { TestBuilder } from "./test-builder";
+import { TestBuilder, type BuilderPresets } from "./test-builder";
 
 export const dynamic = "force-dynamic";
 
@@ -26,6 +37,7 @@ export default async function AircraftPage({ params }: PageProps) {
 
   let plane: AircraftSummary | null;
   let topics: TopicSummary[];
+  let incompleteSession: IncompleteSession | null = null;
   /**
    * How many free questions a signed-in, unsubscribed student has left on
    * this aircraft — null means unlimited (subscribed, or signed out, which
@@ -35,13 +47,29 @@ export default async function AircraftPage({ params }: PageProps) {
    * rule the section counts already follow.
    */
   let remainingFree: number | null = null;
+  /**
+   * The builder's quick presets, or null signed out — there is no history
+   * to build "my weak systems" or "questions I got wrong" from, the same
+   * gap that already means a signed-out visitor sees no flags or notes.
+   */
+  let presets: BuilderPresets | null = null;
 
   try {
     [plane, topics] = await Promise.all([getAircraft(aircraftCode), listTopics(aircraftCode)]);
 
     const user = await getCurrentUser();
     if (user) {
-      const subscription = await getSubscription(user.id);
+      const [subscription, performance, flaggedIds, wrongIds, unseenCount, resumable] =
+        await Promise.all([
+          getSubscription(user.id),
+          getTopicPerformance(user.id, aircraftCode),
+          getFlaggedQuestionIds(user.id, aircraftCode),
+          getQuestionIdsToRetry(user.id, aircraftCode, PRESET_COUNT_CEILING),
+          countUnseenTestQuestions(aircraftCode, user.id),
+          findIncompleteSession(user.id, aircraftCode),
+        ]);
+      incompleteSession = resumable;
+
       if (!hasActiveSubscription(subscription)) {
         const [distinctAnswered, settings] = await Promise.all([
           countQuestionsAnswered(user.id, aircraftCode),
@@ -49,6 +77,19 @@ export default async function AircraftPage({ params }: PageProps) {
         ]);
         remainingFree = remainingFreeQuestions(distinctAnswered, settings.freeQuestionsPerAircraft);
       }
+
+      presets = {
+        // A topic with nothing answered yet is not "weak" — it is untried —
+        // so only ones with an actual score are candidates, weakest first
+        // exactly as `getTopicPerformance` already sorts them.
+        weakTopics: performance
+          .filter((topic) => topic.answered > 0)
+          .slice(0, 2)
+          .map((topic) => topic.topic),
+        flaggedCount: flaggedIds.length,
+        wrongCount: wrongIds.length,
+        unseenCount: Math.min(unseenCount, PRESET_COUNT_CEILING),
+      };
     }
   } catch (error) {
     return (
@@ -73,6 +114,12 @@ export default async function AircraftPage({ params }: PageProps) {
         <p className="text-sm text-muted-foreground">{plane.description}</p>
       </Card>
 
+      {incompleteSession ? (
+        <div className="mt-6">
+          <ResumeTestBanner session={incompleteSession} aircraftName={plane.name} />
+        </div>
+      ) : null}
+
       <section className="mt-6">
         <h2 className="text-lg font-semibold text-foreground">Build a practice test</h2>
         <p className="mb-4 mt-1 text-sm text-muted-foreground">
@@ -87,7 +134,12 @@ export default async function AircraftPage({ params }: PageProps) {
           </EmptyState>
         ) : (
           <Card>
-            <TestBuilder aircraftCode={plane.code} topics={topics} remainingFree={remainingFree} />
+            <TestBuilder
+              aircraftCode={plane.code}
+              topics={topics}
+              remainingFree={remainingFree}
+              presets={presets}
+            />
           </Card>
         )}
       </section>

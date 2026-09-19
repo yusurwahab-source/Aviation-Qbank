@@ -2,13 +2,23 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useId, useMemo, useRef, useState, useTransition } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+  useTransition,
+} from "react";
 
+import { FlagButton } from "@/components/flag-button";
+import { QuestionNote } from "@/components/question-note";
 import { Badge, Card } from "@/components/ui";
-import { QuestionNavigator, type QuestionStatus } from "@/components/question-navigator";
-import { TestProgress } from "@/components/test-progress";
 import type { TestQuestion } from "@/db/queries";
+import { optionIndexForKey, shouldHandleShortcut } from "@/lib/keyboard-shortcuts";
 import { unansweredCount } from "@/lib/question-status";
+import { DEFAULT_PASS_MARK_PERCENT } from "@/lib/settings";
 import {
   DEFAULT_TEST_MODE,
   formatClock,
@@ -17,9 +27,18 @@ import {
   type TestMode,
 } from "@/lib/test-options";
 
-import { answerQuestion, submitTest, type AnswerVerdict, type SubmitTestOutput } from "./actions";
+import {
+  answerQuestion,
+  loadNote,
+  saveNote,
+  submitTest,
+  toggleFlag,
+  type AnswerVerdict,
+  type SubmitTestOutput,
+} from "./actions";
 import { QuestionNav } from "./question-nav";
 import { ResultScreen } from "./result-screen";
+import { ShortcutsOverlay } from "./shortcuts-overlay";
 
 /**
  * Runs one practice test: one question on screen at a time, then a result
@@ -80,6 +99,15 @@ export function TestRunner({
   initialStartedAt = null,
   /** The deadline as the server holds it, on a resumed exam. */
   initialExpiresAt = null,
+  /** Flags and notes are a signed-in student's own study aids; a signed-out
+   * visitor practises exactly as before, with neither control shown. */
+  isSignedIn = false,
+  /** Which of these questions are already flagged, for the map and the
+   * button's starting state on resume. */
+  initialFlaggedIds = [],
+  /** The results screen's pass/fail line. A label on the score, set by the
+   * owner in Settings — nothing about grading depends on it. */
+  passMarkPercent = DEFAULT_PASS_MARK_PERCENT,
 }: {
   aircraftCode: string;
   aircraftName: string;
@@ -93,6 +121,9 @@ export function TestRunner({
   timeLimitSeconds?: number | null;
   initialStartedAt?: string | null;
   initialExpiresAt?: string | null;
+  isSignedIn?: boolean;
+  initialFlaggedIds?: string[];
+  passMarkPercent?: number;
 }) {
   const router = useRouter();
   const [index, setIndex] = useState(() => {
@@ -108,6 +139,11 @@ export function TestRunner({
   /** The question waiting on the server, so its options can show as busy. */
   const [pending, setPending] = useState<string | null>(null);
   const [result, setResult] = useState<SubmitTestOutput | null>(null);
+  /** Captured once, at Finish — see the note beside `finish` below. */
+  const [finishTiming, setFinishTiming] = useState<{
+    takenSeconds: number;
+    limitSeconds: number | null;
+  } | null>(null);
   const [error, setError] = useState<string | null>(null);
   /**
    * Set when a signed-in student without a subscription reaches the free
@@ -156,6 +192,16 @@ export function TestRunner({
    * point of this screen; the map is for going back to the ones you skipped.
    */
   const [showNav, setShowNav] = useState(false);
+  const [showShortcuts, setShowShortcuts] = useState(false);
+  /** Set once Finish is pressed with questions still unanswered, so the
+   * warning shows once rather than blocking every click on an empty test. */
+  const [confirmFinish, setConfirmFinish] = useState(false);
+  const [flaggedIds, setFlaggedIds] = useState<ReadonlySet<string>>(
+    () => new Set(initialFlaggedIds),
+  );
+  /** Bumped to force a question's note editor open from the `N` shortcut —
+   * see the note beside `QuestionNote`'s own `forceOpenToken` prop. */
+  const [noteOpenToken, setNoteOpenToken] = useState(0);
   const navId = useId();
 
   /**
@@ -172,7 +218,7 @@ export function TestRunner({
 
   const current = questions[index];
   const isLast = index === questions.length - 1;
-  const answeredCount = Object.keys(answers).length;
+  const isFirst = index === 0;
   const remainingUnanswered = unansweredCount(
     questions.map((question) => question.id),
     answers,
@@ -187,27 +233,18 @@ export function TestRunner({
     [index, questions.length],
   );
 
-  // إنشاء قائمة حالة الأسئلة للـ QuestionNavigator
-  const questionStatuses: QuestionStatus[] = useMemo(
-    () =>
-      questions.map((question) => ({
-        number: questions.indexOf(question) + 1,
-        answered: question.id in answers,
-        correct: question.id in verdicts ? verdicts[question.id].isCorrect : undefined,
-        current: question.id === current.id,
-      })),
-    [questions, answers, verdicts, current],
-  );
-
-  // حساب الإحصائيات للـ TestProgress
-  const stats = useMemo(
-    () => ({
-      correct: Object.keys(verdicts).filter((qId) => verdicts[qId].isCorrect).length,
-      incorrect: Object.keys(verdicts).filter((qId) => !verdicts[qId].isCorrect).length,
-      unanswered: questions.length - Object.keys(answers).length,
-    }),
-    [verdicts, answers, questions.length],
-  );
+  /**
+   * How much of the clock is left, as a fraction of the whole — what the
+   * colour below reacts to. Derived from `deadline` and `startedAt` rather
+   * than from the `timeLimitSeconds` prop, which is only ever the *first*
+   * render's figure: after the session exists, both of those state values
+   * are the server's own, so this stays correct across a resume too.
+   */
+  const remainingFraction = useMemo(() => {
+    if (deadline === null) return null;
+    const total = (deadline.getTime() - startedAt.getTime()) / 1000;
+    return total > 0 ? remaining / total : 0;
+  }, [deadline, startedAt, remaining]);
 
   /**
    * Answers the question on screen, and sends it to the server.
@@ -238,6 +275,7 @@ export function TestRunner({
         questionId,
         selectedOptionId: optionId,
         mode,
+        topics,
       })
         .then((result) => {
           if (result.status === "paywall") {
@@ -274,11 +312,23 @@ export function TestRunner({
           setPending((current) => (current === questionId ? null : current));
         });
     },
-    [aircraftCode, clientTestId, mode, questions, verdicts],
+    [aircraftCode, clientTestId, mode, questions, topics, verdicts],
   );
 
   const finish = useCallback(() => {
     setError(null);
+    setConfirmFinish(false);
+    // Captured here, once, rather than read again on the results screen:
+    // `startedAt` and `deadline` are still ticking state that a re-render
+    // after this moment must not be allowed to move. Time taken is always
+    // measured against `startedAt` regardless of mode; the limit is only
+    // ever present in exam mode, derived from the same two values the
+    // countdown itself uses.
+    setFinishTiming({
+      takenSeconds: secondsSince(startedAt),
+      limitSeconds:
+        deadline === null ? null : Math.round((deadline.getTime() - startedAt.getTime()) / 1000),
+    });
     startSubmitting(async () => {
       try {
         const graded = await submitTest({
@@ -295,7 +345,67 @@ export function TestRunner({
         setError("Your test could not be marked. Check your connection and try again.");
       }
     });
-  }, [aircraftCode, answers, clientTestId, questions]);
+  }, [aircraftCode, answers, clientTestId, deadline, questions, startedAt]);
+
+  /** What the Finish button actually does: ask first if anything was left
+   * unanswered, since an unanswered question counts as wrong and that is
+   * easy to do by accident on the last question of a long test. */
+  const requestFinish = useCallback(() => {
+    if (remainingUnanswered > 0) {
+      setConfirmFinish(true);
+      return;
+    }
+    finish();
+  }, [remainingUnanswered, finish]);
+
+  const goPrevious = useCallback(() => {
+    setIndex((value) => Math.max(0, value - 1));
+    window.scrollTo({ top: 0 });
+  }, []);
+
+  const goNext = useCallback(() => {
+    setIndex((value) => Math.min(questions.length - 1, value + 1));
+    window.scrollTo({ top: 0 });
+  }, [questions.length]);
+
+  /**
+   * Toggles a flag on any question in this test, not only the one on
+   * screen — the results review lets a student flag any of them, after the
+   * fact, from the same `flaggedIds` this runner has been tracking all
+   * along, so there is no separate fetch for the review screen to do.
+   */
+  const toggleFlagFor = useCallback(
+    (questionId: string) => {
+      if (!isSignedIn) return;
+      const nextFlagged = !flaggedIds.has(questionId);
+
+      setFlaggedIds((previous) => {
+        const next = new Set(previous);
+        if (nextFlagged) next.add(questionId);
+        else next.delete(questionId);
+        return next;
+      });
+
+      void toggleFlag({ questionId, aircraftCode }).then((result) => {
+        // Reconcile only on a genuine disagreement with the server — the
+        // common case must not cause a visible flicker back.
+        if ("flagged" in result && result.flagged !== nextFlagged) {
+          setFlaggedIds((previous) => {
+            const next = new Set(previous);
+            if (result.flagged) next.add(questionId);
+            else next.delete(questionId);
+            return next;
+          });
+        }
+      });
+    },
+    [aircraftCode, flaggedIds, isSignedIn],
+  );
+
+  const toggleCurrentFlag = useCallback(
+    () => toggleFlagFor(current.id),
+    [current, toggleFlagFor],
+  );
 
   /**
    * Runs the clock, and — in exam mode — hands the test in when it reaches
@@ -335,6 +445,99 @@ export function TestRunner({
   }, [deadline, finish, result, startedAt]);
 
   /**
+   * Keyboard shortcuts — desktop's whole reason for the discreet hint below
+   * the action row. `shouldHandleShortcut` is what keeps a letter typed into
+   * the note editor from also flagging the question it belongs to.
+   */
+  useEffect(() => {
+    if (result !== null) return;
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (!shouldHandleShortcut({ ...event, target: event.target as HTMLElement | null })) return;
+
+      if (showShortcuts) {
+        if (event.key === "Escape" || event.key === "?") setShowShortcuts(false);
+        return;
+      }
+      if (confirmFinish) return; // the dialog's own buttons own the keyboard here.
+
+      if (event.key === "?") {
+        setShowShortcuts(true);
+        return;
+      }
+      if (event.key === "Enter") {
+        event.preventDefault();
+        if (isLast) requestFinish();
+        else goNext();
+        return;
+      }
+      if (event.key === "ArrowLeft") {
+        goPrevious();
+        return;
+      }
+      if (event.key === "ArrowRight") {
+        goNext();
+        return;
+      }
+      if (event.key.toLowerCase() === "f") {
+        toggleCurrentFlag();
+        return;
+      }
+      if (event.key.toLowerCase() === "n") {
+        if (isSignedIn) setNoteOpenToken((value) => value + 1);
+        return;
+      }
+
+      if (settled) return;
+      const optionIndex = optionIndexForKey(event.key);
+      const option = optionIndex === null ? undefined : current.options[optionIndex];
+      if (option) select(current.id, option.id);
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [
+    confirmFinish,
+    current,
+    goNext,
+    goPrevious,
+    isLast,
+    isSignedIn,
+    requestFinish,
+    result,
+    select,
+    settled,
+    showShortcuts,
+    toggleCurrentFlag,
+  ]);
+
+  /**
+   * Swiping between questions on a touch screen. A horizontal gesture only —
+   * `dx` has to clear both an absolute floor and the vertical movement by a
+   * margin, or a scroll and a swipe would fight over the same touch.
+   */
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+
+  function onTouchStart(event: React.TouchEvent) {
+    const touch = event.touches[0];
+    touchStart.current = { x: touch.clientX, y: touch.clientY };
+  }
+
+  function onTouchEnd(event: React.TouchEvent) {
+    const start = touchStart.current;
+    touchStart.current = null;
+    if (!start) return;
+
+    const touch = event.changedTouches[0];
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    if (Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+
+    if (dx < 0 && !isLast) goNext();
+    else if (dx > 0 && !isFirst) goPrevious();
+  }
+
+  /**
    * Starts a fresh test without leaving the page.
    *
    * A link back to this same URL would not do it: the browser is already here,
@@ -346,6 +549,7 @@ export function TestRunner({
    */
   const restart = useCallback(() => {
     setResult(null);
+    setFinishTiming(null);
     setAnswers({});
     setVerdicts({});
     setPending(null);
@@ -359,7 +563,7 @@ export function TestRunner({
     });
   }, [router]);
 
-  if (result) {
+  if (result && finishTiming) {
     return (
       <ResultScreen
         aircraftCode={aircraftCode}
@@ -367,6 +571,12 @@ export function TestRunner({
         result={result}
         saveStatus={result.saveStatus}
         onRestart={restart}
+        isSignedIn={isSignedIn}
+        passMarkPercent={passMarkPercent}
+        timeTakenSeconds={finishTiming.takenSeconds}
+        timeLimitSeconds={finishTiming.limitSeconds}
+        flaggedIds={flaggedIds}
+        onToggleFlag={toggleFlagFor}
       />
     );
   }
@@ -380,280 +590,452 @@ export function TestRunner({
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-3">
-      {/* المحتوى الرئيسي */}
-      <div className="lg:col-span-2">
-        <div>
-          <div className="mb-6">
-            <div className="flex items-baseline justify-between gap-3">
-              <p className="text-xs font-semibold uppercase tracking-wider text-brand">
-                {aircraftCode} · {scope}
-                {/* Worth saying plainly: it changes whether an answer can still be
-                    changed, which a student needs to know before they answer. */}
-                {mode === "exam" ? (
-                  <span className="text-muted-foreground"> · Exam</span>
-                ) : null}
-              </p>
-              <p className="flex items-baseline gap-3 text-sm text-muted-foreground">
-                {deadline !== null ? (
-                  <span
-                    // Announced politely rather than on every tick: a screen
-                    // reader reading out each second would be unusable.
-                    aria-live="off"
-                    className={`font-mono font-semibold tabular-nums ${
-                      // The last minute is when it starts to matter.
-                      remaining <= 60 ? "text-incorrect" : "text-foreground"
-                    }`}
-                  >
-                    <span className="sr-only">Time remaining: </span>
-                    {formatClock(remaining)}
+    <div className="pb-24 lg:pb-0">
+      <div className="mb-6">
+        <div className="flex items-baseline justify-between gap-3">
+          <p className="text-xs font-semibold uppercase tracking-wider text-brand">
+            {aircraftCode} · {scope}
+            {/* Worth saying plainly: it changes whether an answer can still be
+                changed, which a student needs to know before they answer. */}
+            {mode === "exam" ? <span className="text-muted-foreground"> · Exam</span> : null}
+          </p>
+          <p className="flex items-baseline gap-3 text-sm text-muted-foreground">
+            {deadline !== null ? (
+              <span
+                // Announced politely rather than on every tick: a screen
+                // reader reading out each second would be unusable.
+                aria-live="off"
+                className={`font-mono font-semibold tabular-nums ${
+                  // Amber with a fifth of the clock left, red with a
+                  // twentieth — prominent, not alarming: colour only, no
+                  // motion, and nothing changes about what the numbers say.
+                  remainingFraction !== null && remainingFraction <= 0.05
+                    ? "text-incorrect"
+                    : remainingFraction !== null && remainingFraction <= 0.2
+                      ? "text-warning"
+                      : "text-foreground"
+                }`}
+              >
+                <span className="sr-only">Time remaining: </span>
+                {formatClock(remaining)}
+              </span>
+            ) : (
+              // Study mode: how long this has taken so far, and nothing
+              // hangs on it. Deliberately quieter than the exam countdown —
+              // same typeface, muted rather than bold, and it never turns
+              // red, because there is nothing to warn about.
+              <span aria-live="off" className="font-mono tabular-nums">
+                <span className="sr-only">Time taken so far: </span>
+                {formatClock(elapsed)}
+              </span>
+            )}
+            <span>
+              Question {index + 1} of {questions.length}
+            </span>
+          </p>
+        </div>
+        <div
+          className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-surface-muted"
+          role="progressbar"
+          aria-valuenow={index + 1}
+          aria-valuemin={1}
+          aria-valuemax={questions.length}
+          aria-label="Test progress"
+        >
+          <div
+            className="h-full rounded-full bg-brand transition-all duration-300"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+      </div>
+
+      <div onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+      <Card>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <Badge tone="brand">{current.topic}</Badge>
+            {current.subtopic ? <Badge>{current.subtopic}</Badge> : null}
+          </div>
+          {isSignedIn ? (
+            <FlagButton flagged={flaggedIds.has(current.id)} onToggle={toggleCurrentFlag} />
+          ) : null}
+        </div>
+
+        <h1 className="question-text mt-4 font-semibold text-foreground">{current.question}</h1>
+
+        {current.media ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={current.media}
+            alt="Diagram for this question"
+            className="mt-4 max-h-72 w-full rounded-lg border border-border object-contain"
+          />
+        ) : null}
+
+        <fieldset className="mt-5" disabled={settled}>
+          <legend className="sr-only">Choose one answer</legend>
+          <div className="space-y-2.5">
+            {current.options.map((option) => {
+              const checked = answers[current.id] === option.id;
+              // Before the verdict lands, the chosen option is simply chosen.
+              // After it, the correct one is marked whether or not it was the
+              // one picked, and a wrong pick is marked as wrong.
+              const isAnswer = verdict ? option.id === verdict.correctOptionId : false;
+              const isWrongPick = verdict ? checked && !isAnswer : false;
+
+              const tone = isAnswer
+                ? "border-correct bg-correct-soft"
+                : isWrongPick
+                  ? "border-incorrect bg-incorrect-soft"
+                  : checked
+                    ? "border-brand bg-brand-soft"
+                    : settled
+                      ? "border-border bg-surface opacity-60"
+                      : "border-border bg-surface hover:border-brand";
+
+              return (
+                <label
+                  key={option.id}
+                  className={`flex items-start gap-3 rounded-lg border p-3.5 transition ${
+                    settled ? "cursor-default" : "cursor-pointer"
+                  } ${tone}`}
+                >
+                  <input
+                    type="radio"
+                    name={`question-${current.id}`}
+                    value={option.id}
+                    checked={checked}
+                    onChange={() => select(current.id, option.id)}
+                    className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--brand)]"
+                  />
+                  <span className="flex flex-1 flex-wrap gap-x-2 gap-y-1 font-reading text-base text-foreground">
+                    <span className="font-mono font-semibold uppercase text-muted-foreground">
+                      {option.id}
+                    </span>
+                    <span className="min-w-0 flex-1 basis-0">{option.text}</span>
+                    {/* Never colour alone: each verdict carries its own icon,
+                        so the state reads the same to someone who cannot
+                        tell red from green as it does to everyone else. */}
+                    {isAnswer ? (
+                      <span className="basis-full text-xs font-semibold text-correct sm:basis-auto">
+                        <CorrectIcon /> Correct answer
+                      </span>
+                    ) : null}
+                    {isWrongPick ? (
+                      <span className="basis-full text-xs font-semibold text-incorrect sm:basis-auto">
+                        <IncorrectIcon /> Your answer
+                      </span>
+                    ) : null}
                   </span>
-                ) : (
-                  // Study mode: how long this has taken so far, and nothing
-                  // hangs on it. Deliberately quieter than the exam countdown —
-                  // same typeface, muted rather than bold, and it never turns
-                  // red, because there is nothing to warn about.
-                  <span aria-live="off" className="font-mono tabular-nums">
-                    <span className="sr-only">Time taken so far: </span>
-                    {formatClock(elapsed)}
-                  </span>
-                )}
-                <span>
-                  Question {index + 1} of {questions.length}
+                </label>
+              );
+            })}
+          </div>
+        </fieldset>
+
+        {isChecking ? (
+          <p className="mt-4 text-sm text-muted-foreground" role="status">
+            Checking your answer…
+          </p>
+        ) : null}
+
+        {verdict ? (
+          <div
+            className={`mt-4 rounded-lg border-l-4 p-4 ${
+              verdict.isCorrect ? "border-l-correct bg-correct-soft" : "border-l-incorrect bg-incorrect-soft"
+            }`}
+            role="status"
+          >
+            <p
+              className={`flex items-center gap-1.5 text-sm font-semibold ${
+                verdict.isCorrect ? "text-correct" : "text-incorrect"
+              }`}
+            >
+              {verdict.isCorrect ? <CorrectIcon /> : <IncorrectIcon />}
+              {verdict.isCorrect ? "Correct" : "Not quite"}
+            </p>
+            <p className="mt-2 font-reading text-base text-foreground">{verdict.explanation}</p>
+            {verdict.reference ? (
+              <p className="mt-3 flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-3.5 w-3.5 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v16H6.5A2.5 2.5 0 0 0 4 21.5z" />
+                  <path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H19" />
+                </svg>
+                Reference
+                <span className="rounded border border-border bg-surface-muted px-2 py-0.5 font-mono text-foreground">
+                  {verdict.reference}
                 </span>
               </p>
-            </div>
-            <div
-              className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-surface-muted"
-              role="progressbar"
-              aria-valuenow={index + 1}
-              aria-valuemin={1}
-              aria-valuemax={questions.length}
-              aria-label="Test progress"
-            >
-              <div
-                className="h-full rounded-full bg-brand transition-all duration-300"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
+            ) : null}
           </div>
+        ) : null}
 
-          <Card>
-            <div className="flex flex-wrap items-center gap-2">
-              <Badge tone="brand">{current.topic}</Badge>
-              {current.subtopic ? <Badge>{current.subtopic}</Badge> : null}
-            </div>
+        {isSignedIn ? (
+          <QuestionNote
+            key={current.id}
+            hasNote={false}
+            onLoad={() => loadNote(current.id)}
+            onSave={(body) => saveNote({ questionId: current.id, aircraftCode, body })}
+            forceOpenToken={noteOpenToken}
+            textareaId={`note-${current.id}`}
+            className="mt-4"
+          />
+        ) : null}
+      </Card>
+      </div>
 
-            <h1 className="question-text mt-4 font-semibold text-foreground">
-              {current.question}
-            </h1>
+      {deadline !== null && remaining === 0 ? (
+        <p
+          className="mt-4 rounded-lg bg-incorrect-soft px-4 py-3 text-sm font-medium text-incorrect"
+          role="alert"
+        >
+          Time is up — handing in your test.
+        </p>
+      ) : null}
 
-            <fieldset className="mt-5" disabled={settled}>
-              <legend className="sr-only">Choose one answer</legend>
-              <div className="space-y-2.5">
-                {current.options.map((option) => {
-                  const checked = answers[current.id] === option.id;
-                  // Before the verdict lands, the chosen option is simply chosen.
-                  // After it, the correct one is marked whether or not it was the
-                  // one picked, and a wrong pick is marked as wrong.
-                  const isAnswer = verdict ? option.id === verdict.correctOptionId : false;
-                  const isWrongPick = verdict ? checked && !isAnswer : false;
+      {error ? (
+        <p className="mt-4 rounded-lg bg-incorrect-soft px-4 py-3 text-sm text-incorrect" role="alert">
+          {error}
+        </p>
+      ) : null}
 
-                  const tone = isAnswer
-                    ? "border-correct bg-correct-soft"
-                    : isWrongPick
-                      ? "border-incorrect bg-incorrect-soft"
-                      : checked
-                        ? "border-brand bg-brand-soft"
-                        : settled
-                          ? "border-border bg-surface opacity-60"
-                          : "border-border bg-surface hover:border-brand";
+      {paywall ? (
+        <div className="mt-4 rounded-lg border-l-4 border-l-brand bg-brand-soft p-4" role="alert">
+          <p className="text-sm font-semibold text-foreground">
+            You&apos;ve used your free questions on {aircraftCode}.
+          </p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Subscribe for unlimited questions on every aircraft.
+          </p>
+          <Link
+            href="/upgrade"
+            className="mt-3 inline-flex min-h-11 items-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
+          >
+            Upgrade
+          </Link>
+        </div>
+      ) : null}
 
-                  return (
-                    <label
-                      key={option.id}
-                      className={`flex items-start gap-3 rounded-lg border p-3.5 transition ${
-                        settled ? "cursor-default" : "cursor-pointer"
-                      } ${tone}`}
-                    >
-                      <input
-                        type="radio"
-                        name={`question-${current.id}`}
-                        value={option.id}
-                        checked={checked}
-                        onChange={() => select(current.id, option.id)}
-                        className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--brand)]"
-                      />
-                      <span className="flex flex-1 flex-wrap gap-x-2 gap-y-1 font-reading text-base text-foreground">
-                        <span className="font-mono font-semibold uppercase text-muted-foreground">
-                          {option.id}
-                        </span>
-                        <span className="min-w-0 flex-1 basis-0">{option.text}</span>
-                        {isAnswer ? (
-                          <span className="basis-full text-xs font-semibold text-correct sm:basis-auto">
-                            Correct answer
-                          </span>
-                        ) : null}
-                        {isWrongPick ? (
-                          <span className="basis-full text-xs font-semibold text-incorrect sm:basis-auto">
-                            Your answer
-                          </span>
-                        ) : null}
-                      </span>
-                    </label>
-                  );
-                })}
-              </div>
-            </fieldset>
+      {/* Desktop navigation — the sticky bar below covers the same ground on
+          a phone, where these buttons would sit under a thumb reaching all
+          the way up the screen. */}
+      <div className="mt-5 hidden flex-wrap items-center justify-between gap-3 lg:flex">
+        <button
+          type="button"
+          onClick={goPrevious}
+          disabled={isFirst || isSubmitting}
+          className="min-h-11 rounded-lg border border-border bg-surface px-4 py-2.5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          ← Previous
+        </button>
 
-            {isChecking ? (
-              <p className="mt-4 text-sm text-muted-foreground" role="status">
-                Checking your answer…
-              </p>
-            ) : null}
+        {isLast ? (
+          <button
+            type="button"
+            onClick={requestFinish}
+            disabled={isSubmitting}
+            className="min-h-11 rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {isSubmitting ? "Marking…" : "Finish test"}
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={goNext}
+            disabled={isSubmitting}
+            className="min-h-11 rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            Next →
+          </button>
+        )}
+      </div>
 
-            {verdict ? (
-              <div
-                className={`mt-4 rounded-lg border-l-4 p-4 ${
-                  verdict.isCorrect
-                    ? "border-l-correct bg-correct-soft"
-                    : "border-l-incorrect bg-incorrect-soft"
-                }`}
-                role="status"
-              >
-                <p
-                  className={`text-sm font-semibold ${
-                    verdict.isCorrect ? "text-correct" : "text-incorrect"
-                  }`}
-                >
-                  {verdict.isCorrect ? "Correct" : "Not quite"}
-                </p>
-                <p className="mt-2 font-reading text-base text-foreground">
-                  {verdict.explanation}
-                </p>
-                {verdict.reference ? (
-                  <p className="mt-2 text-xs text-muted-foreground">
-                    Reference: {verdict.reference}
-                  </p>
-                ) : null}
-              </div>
-            ) : null}
-          </Card>
+      <p className="mt-3 hidden text-center text-xs text-subtle-foreground lg:block">
+        <button
+          type="button"
+          onClick={() => setShowShortcuts(true)}
+          className="link-standalone underline decoration-dotted underline-offset-2 hover:text-brand"
+        >
+          Press <kbd className="font-mono">?</kbd> for keyboard shortcuts
+        </button>
+      </p>
 
-          {deadline !== null && remaining === 0 ? (
-            <p
-              className="mt-4 rounded-lg bg-incorrect-soft px-4 py-3 text-sm font-medium text-incorrect"
-              role="alert"
-            >
-              Time is up — handing in your test.
-            </p>
-          ) : null}
+      <div id={navId}>
+        {showNav ? (
+          <QuestionNav
+            questions={questions}
+            answers={answers}
+            verdicts={verdicts}
+            flagged={flaggedIds}
+            current={index}
+            onJump={(to) => {
+              setIndex(to);
+              window.scrollTo({ top: 0 });
+            }}
+            onClose={() => setShowNav(false)}
+          />
+        ) : null}
+      </div>
 
-          {error ? (
-            <p className="mt-4 rounded-lg bg-incorrect-soft px-4 py-3 text-sm text-incorrect" role="alert">
-              {error}
-            </p>
-          ) : null}
+      <div className="mt-4 hidden text-center lg:block">
+        <button
+          type="button"
+          onClick={() => setShowNav((value) => !value)}
+          aria-expanded={showNav}
+          aria-controls={navId}
+          className="link-standalone text-sm font-medium text-brand hover:underline"
+        >
+          {showNav ? "Hide" : "Show"} all questions
+        </button>
+      </div>
 
-          {paywall ? (
-            <div
-              className="mt-4 rounded-lg border-l-4 border-l-brand bg-brand-soft p-4"
-              role="alert"
-            >
-              <p className="text-sm font-semibold text-foreground">
-                You&apos;ve used your free questions on {aircraftCode}.
-              </p>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Subscribe for unlimited questions on every aircraft.
-              </p>
-              <Link
-                href="/upgrade"
-                className="mt-3 inline-flex min-h-11 items-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
-              >
-                Upgrade
-              </Link>
-            </div>
-          ) : null}
+      <p className="mt-6 text-center">
+        <Link
+          href={`/aircraft/${aircraftCode}`}
+          className="link-standalone text-sm text-muted-foreground hover:text-brand hover:underline"
+        >
+          Abandon test
+        </Link>
+      </p>
 
-          <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+      {/* Mobile: a sticky bar a thumb can always reach, and the question map
+          opens as a sheet from `QuestionNav` itself rather than a separate
+          toggle here. */}
+      <div className="safe-bottom fixed inset-x-0 bottom-0 z-30 border-t border-border bg-surface-elevated px-4 pt-3 lg:hidden">
+        <div className="flex items-center justify-between gap-2 pb-3">
+          <button
+            type="button"
+            onClick={goPrevious}
+            disabled={isFirst || isSubmitting}
+            aria-label="Previous question"
+            className="tap-target inline-flex items-center justify-center rounded-lg border border-border bg-surface px-4 text-sm font-semibold text-foreground disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            ←
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setShowNav(true)}
+            aria-expanded={showNav}
+            aria-controls={navId}
+            className="tap-target flex-1 rounded-lg border border-border bg-surface px-3 text-sm font-medium text-muted-foreground"
+          >
+            {index + 1} / {questions.length}
+            {remainingUnanswered > 0 ? ` · ${remainingUnanswered} left` : ""}
+          </button>
+
+          {isLast ? (
             <button
               type="button"
-              onClick={() => setIndex((value) => Math.max(0, value - 1))}
-              disabled={index === 0 || isSubmitting}
-              className="min-h-11 rounded-lg border border-border bg-surface px-4 py-2.5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand disabled:cursor-not-allowed disabled:opacity-60"
+              onClick={requestFinish}
+              disabled={isSubmitting}
+              className="tap-target inline-flex items-center justify-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid disabled:cursor-not-allowed disabled:opacity-60"
             >
-              ← Previous
+              {isSubmitting ? "…" : "Finish"}
             </button>
+          ) : (
+            <button
+              type="button"
+              onClick={goNext}
+              disabled={isSubmitting}
+              aria-label="Next question"
+              className="tap-target inline-flex items-center justify-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              →
+            </button>
+          )}
+        </div>
+      </div>
 
-            {isLast ? (
+      {confirmFinish ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <button
+            type="button"
+            tabIndex={-1}
+            aria-label="Cancel"
+            onClick={() => setConfirmFinish(false)}
+            className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+          />
+          <div
+            role="alertdialog"
+            aria-modal="true"
+            aria-label="Finish test"
+            className="relative w-full max-w-sm rounded-xl border border-border bg-surface-elevated p-5 shadow-md"
+          >
+            <p className="text-sm font-semibold text-foreground">
+              {remainingUnanswered} {remainingUnanswered === 1 ? "question is" : "questions are"}{" "}
+              still unanswered.
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              An unanswered question counts as wrong. Finish anyway, or go back and answer the
+              rest?
+            </p>
+            <div className="mt-4 flex gap-2">
+              <button
+                type="button"
+                onClick={() => setConfirmFinish(false)}
+                className="min-h-11 flex-1 rounded-lg border border-border bg-surface px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+              >
+                Keep going
+              </button>
               <button
                 type="button"
                 onClick={finish}
-                disabled={isSubmitting}
-                className="min-h-11 rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
+                className="min-h-11 flex-1 rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
               >
-                {isSubmitting ? "Marking…" : "Finish test"}
+                Finish anyway
               </button>
-            ) : (
-              <button
-                type="button"
-                onClick={() => setIndex((value) => Math.min(questions.length - 1, value + 1))}
-                disabled={isSubmitting}
-                className="min-h-11 rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                Next →
-              </button>
-            )}
+            </div>
           </div>
-
-          <div id={navId}>
-            {showNav ? (
-              <QuestionNav
-                questions={questions}
-                answers={answers}
-                verdicts={verdicts}
-                current={index}
-                onJump={(to) => {
-                  setIndex(to);
-                  window.scrollTo({ top: 0 });
-                }}
-              />
-            ) : null}
-          </div>
-
-          <p className="mt-6 text-center">
-            <Link
-              href={`/aircraft/${aircraftCode}`}
-              className="link-standalone text-sm text-muted-foreground hover:text-brand hover:underline"
-            >
-              Abandon test
-            </Link>
-          </p>
         </div>
-      </div>
+      ) : null}
 
-      {/* الشريط الجانبي - المكونات الجديدة */}
-      <div className="space-y-6">
-        {/* إحصائيات التقدم */}
-        <div className="rounded-lg bg-surface p-4">
-          <TestProgress
-            correct={stats.correct}
-            incorrect={stats.incorrect}
-            unanswered={stats.unanswered}
-          />
-        </div>
-
-        {/* مُنقّل الأسئلة */}
-        <div className="rounded-lg bg-surface p-4">
-          <QuestionNavigator
-            questions={questionStatuses}
-            onQuestionSelect={(number) => {
-              setIndex(number - 1);
-              window.scrollTo({ top: 0 });
-            }}
-          />
-        </div>
-      </div>
+      {showShortcuts ? <ShortcutsOverlay onClose={() => setShowShortcuts(false)} /> : null}
     </div>
+  );
+}
+
+function CorrectIcon() {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      className="inline h-3.5 w-3.5 shrink-0 align-[-2px]"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="10" cy="10" r="8" />
+      <path d="m6.5 10 2.5 2.5 4.5-5" />
+    </svg>
+  );
+}
+
+function IncorrectIcon() {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      className="inline h-3.5 w-3.5 shrink-0 align-[-2px]"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="10" cy="10" r="8" />
+      <path d="M7.5 7.5 12.5 12.5M12.5 7.5 7.5 12.5" />
+    </svg>
   );
 }

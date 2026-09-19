@@ -6,12 +6,14 @@ import { notFound, redirect } from "next/navigation";
 import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { EmptyState, PageHeading } from "@/components/ui";
 import { findSession, getSessionAnswers } from "@/db/attempts";
+import { getFlaggedQuestionIdSet, getFlaggedQuestionIds } from "@/db/flags";
 import {
   countTestQuestions,
   getAircraft,
   getAnswerKey,
   getTestQuestionsByIds,
   pickTestQuestions,
+  pickUnseenTestQuestions,
   type TestQuestion,
 } from "@/db/queries";
 import { getQuestionIdsToRetry } from "@/db/reports";
@@ -21,6 +23,7 @@ import { getSiteSettings } from "@/db/settings";
 import { getCurrentUser } from "@/lib/auth/session";
 import {
   buildTestHref,
+  DEFAULT_TEST_MODE,
   parseTestLength,
   deadlineFrom,
   parseTestMode,
@@ -85,16 +88,27 @@ export default async function TestPage({ params, searchParams }: PageProps) {
   const clientTestId = rawId;
 
   const length = parseTestLength(query.questions);
-  const mode = parseTestMode(query.mode);
-  const retryOnly = (Array.isArray(query.from) ? query.from[0] : query.from) === "incorrect";
-  // Retry mode already narrows the set, so sections on top of it would be two
-  // filters fighting; the retry list wins.
-  const topics = retryOnly ? [] : parseTopics(query.topic);
+  // `let`, not `const`: a resumed test overrides both from the stored
+  // session rather than trusting the URL — see the note where that happens,
+  // below. Until then these are simply what a fresh test reads from `?mode=`
+  // and `?topic=`, same as always.
+  let mode = parseTestMode(query.mode);
+  const fromPreset = Array.isArray(query.from) ? query.from[0] : query.from;
+  const retryOnly = fromPreset === "incorrect";
+  const flaggedOnly = fromPreset === "flagged";
+  const unseenOnly = fromPreset === "unseen";
+  // Any preset already narrows the set on its own, so sections on top of one
+  // would be two filters fighting — the preset wins, same reasoning retry
+  // mode already followed on its own.
+  let topics = retryOnly || flaggedOnly ? [] : parseTopics(query.topic);
 
   let plane;
   let questions: TestQuestion[];
   let initialAnswers: Record<string, string> = {};
   let initialVerdicts: Record<string, AnswerVerdict> = {};
+  // Declared outside the try block: needed afterwards both for the flagged
+  // set below and for whether the runner shows flag/note controls at all.
+  let user: Awaited<ReturnType<typeof getCurrentUser>> = null;
   /**
    * The clock as the server holds it, for a resumed test. This is the whole
    * point of storing `startedAt`: a reload re-reads the original clock
@@ -115,7 +129,7 @@ export default async function TestPage({ params, searchParams }: PageProps) {
     plane = await getAircraft(aircraftCode);
     if (!plane) notFound();
 
-    const user = await getCurrentUser();
+    user = await getCurrentUser();
 
     // A signed-in student resumes an in-progress test under this id rather
     // than drawing a new random set — that is what a mid-test refresh does
@@ -128,6 +142,15 @@ export default async function TestPage({ params, searchParams }: PageProps) {
     if (lookup.kind === "taken") redirectWithFreshId(code, query);
 
     if (lookup.kind === "resumable") {
+      // The stored session wins over the URL from here on. This is not
+      // cosmetic: `mode` below decides whether already-answered questions'
+      // keys get sent back a few lines down, and a resume link that lost its
+      // `mode=exam` would otherwise be read as study and hand back an exam
+      // session's answers as if nothing had ever been withheld. See the note
+      // on `SessionLookup.mode` in `db/attempts.ts`.
+      mode = lookup.mode ?? DEFAULT_TEST_MODE;
+      topics = lookup.topics;
+
       questions = await getTestQuestionsByIds(aircraftCode, lookup.questionIds);
       const saved = await getSessionAnswers(lookup.id);
       // A row here is only ever written by an actual selection — an
@@ -188,6 +211,13 @@ export default async function TestPage({ params, searchParams }: PageProps) {
         // back to a normal random test rather than showing an error.
         const ids = user ? await getQuestionIdsToRetry(user.id, aircraftCode, size) : [];
         questions = ids.length > 0 ? await getTestQuestionsByIds(aircraftCode, ids) : [];
+      } else if (flaggedOnly) {
+        // Same free-tier exemption as retry, and for the same reason: a
+        // question can only be flagged after it was already shown once, so
+        // revisiting it costs nothing further — see the note on
+        // `FREE_QUESTIONS_PER_AIRCRAFT` in `access-policy.ts`.
+        const ids = user ? (await getFlaggedQuestionIds(user.id, aircraftCode)).slice(0, size) : [];
+        questions = ids.length > 0 ? await getTestQuestionsByIds(aircraftCode, ids) : [];
       } else {
         // A fresh pick is where a free account could otherwise be handed
         // every question in the bank at once and simply never answer any of
@@ -196,7 +226,10 @@ export default async function TestPage({ params, searchParams }: PageProps) {
         // capped here, before a single question is fetched: a signed-in
         // student without an active subscription can never have more than
         // the aircraft's free allowance *delivered* to the browser, not just
-        // "more than the allowance gradeable".
+        // "more than the allowance gradeable". This applies to "unseen" too
+        // — unlike retry and flagged, it draws questions the student has
+        // never spent any allowance on, so it is exactly the case the free
+        // tier exists to meter.
         if (user) {
           const subscription = await getSubscription(user.id);
           if (!hasActiveSubscription(subscription)) {
@@ -208,7 +241,15 @@ export default async function TestPage({ params, searchParams }: PageProps) {
           }
         }
         freeLimitReached = size === 0 && available > 0;
-        questions = size > 0 ? await pickTestQuestions(aircraftCode, size, topics) : [];
+        if (size === 0) {
+          questions = [];
+        } else if (unseenOnly && user) {
+          questions = await pickUnseenTestQuestions(aircraftCode, user.id, size, topics);
+        } else {
+          // Signed out, "unseen" has nothing to exclude against — a normal
+          // random pick is the same graceful fallback retry and flagged use.
+          questions = await pickTestQuestions(aircraftCode, size, topics);
+        }
       }
     }
   } catch (error) {
@@ -232,9 +273,13 @@ export default async function TestPage({ params, searchParams }: PageProps) {
               ? `You've used your free questions on ${plane.code}.`
               : retryOnly
                 ? "Nothing to retry right now."
-                : sections
-                  ? `There are no published questions in ${sections} yet.`
-                  : "There are no published questions for this aircraft yet."
+                : flaggedOnly
+                  ? "You haven't flagged any questions yet."
+                  : unseenOnly
+                    ? `You've seen every published question on ${plane.code}.`
+                    : sections
+                      ? `There are no published questions in ${sections} yet.`
+                      : "There are no published questions for this aircraft yet."
           }
         >
           {freeLimitReached ? (
@@ -254,6 +299,28 @@ export default async function TestPage({ params, searchParams }: PageProps) {
                 Take a normal test
               </Link>{" "}
               instead.
+            </>
+          ) : flaggedOnly ? (
+            <>
+              Flag a question mid-test to come back to it later.{" "}
+              <Link
+                href={buildTestHref(plane.code)}
+                className="font-medium text-brand hover:underline"
+              >
+                Take a normal test
+              </Link>{" "}
+              instead.
+            </>
+          ) : unseenOnly ? (
+            <>
+              That is every question on this type, at least once.{" "}
+              <Link
+                href={buildTestHref(plane.code)}
+                className="font-medium text-brand hover:underline"
+              >
+                Take a normal test
+              </Link>{" "}
+              to go over them again.
             </>
           ) : sections ? (
             <>
@@ -276,6 +343,28 @@ export default async function TestPage({ params, searchParams }: PageProps) {
     );
   }
 
+  // Flags are a convenience layered on top of sitting the test, not part of
+  // it, so a failure here must not be the reason a student cannot start —
+  // the runner simply shows every question as unflagged, exactly as it
+  // would for a signed-out visitor.
+  let initialFlaggedIds: string[] = [];
+  if (user) {
+    try {
+      initialFlaggedIds = [
+        ...(await getFlaggedQuestionIdSet(
+          user.id,
+          questions.map((question) => question.id),
+        )),
+      ];
+    } catch {
+      // Left empty — see the note above.
+    }
+  }
+
+  // Never throws — see the note on `getSiteSettings` in `db/settings.ts` —
+  // so it is safe to read this late, after everything that can fail.
+  const settings = await getSiteSettings();
+
   return (
     <TestRunner
       aircraftCode={plane.code}
@@ -293,6 +382,9 @@ export default async function TestPage({ params, searchParams }: PageProps) {
       timeLimitSeconds={timeLimitFor(mode, questions.length)}
       initialStartedAt={initialStartedAt}
       initialExpiresAt={initialExpiresAt}
+      isSignedIn={user !== null}
+      initialFlaggedIds={initialFlaggedIds}
+      passMarkPercent={settings.passMarkPercent}
     />
   );
 }

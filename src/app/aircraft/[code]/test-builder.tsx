@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useMemo, useState } from "react";
+import { useId, useMemo, useState, type ReactNode } from "react";
 
 import { Badge } from "@/components/ui";
 import type { TopicSummary } from "@/db/queries";
@@ -9,6 +9,7 @@ import {
   ALL_QUESTIONS,
   DEFAULT_TEST_LENGTH,
   DEFAULT_TEST_MODE,
+  PRESET_COUNT_CEILING,
   TEST_LENGTHS,
   buildTestHref,
   resolveTestSize,
@@ -16,6 +17,25 @@ import {
   type TestLength,
   type TestMode,
 } from "@/lib/test-options";
+
+/**
+ * The quick presets, computed server-side from the student's own history —
+ * see `aircraft/[code]/page.tsx`. Null signed out: none of these mean
+ * anything without a history to build them from, the same gap that already
+ * means a signed-out visitor sees no flags or notes.
+ */
+export type BuilderPresets = {
+  /** The one or two topics this student is weakest in, weakest first — empty
+   * until they have actually answered something. */
+  weakTopics: string[];
+  flaggedCount: number;
+  wrongCount: number;
+  unseenCount: number;
+};
+
+/** The three presets that replace section selection with a fixed list,
+ * rather than pre-filling it — see the note on `activePreset` below. */
+type ListPreset = "flagged" | "wrong" | "unseen";
 
 /**
  * Builds a test: which sections to draw from, how many questions, and whether
@@ -39,10 +59,12 @@ export function TestBuilder({
    * about it rather than advertising a size it will not actually deliver.
    */
   remainingFree = null,
+  presets = null,
 }: {
   aircraftCode: string;
   topics: TopicSummary[];
   remainingFree?: number | null;
+  presets?: BuilderPresets | null;
 }) {
   const fieldId = useId();
 
@@ -60,8 +82,18 @@ export function TestBuilder({
    */
   const [typed, setTyped] = useState(String(DEFAULT_TEST_LENGTH));
   const [mode, setMode] = useState<TestMode>(DEFAULT_TEST_MODE);
+  /**
+   * "Questions I got wrong", "My flagged questions" and "Unseen questions"
+   * each replace the Sections fieldset with a fixed list the server already
+   * knows how to build — there is no combination of checkboxes that means
+   * the same thing, so picking one of these *disables* section selection
+   * rather than pre-filling it. "All systems" and "My weak systems" are the
+   * opposite: both are just a particular set of ticked boxes, so they set
+   * `selected` directly and never touch this.
+   */
+  const [activePreset, setActivePreset] = useState<ListPreset | null>(null);
 
-  const available = useMemo(
+  const sectionsAvailable = useMemo(
     () =>
       topics.reduce(
         (total, topic) => (selected.has(topic.topic) ? total + topic.questionCount : total),
@@ -69,6 +101,13 @@ export function TestBuilder({
       ),
     [topics, selected],
   );
+
+  const presetCount: Record<ListPreset, number> = {
+    flagged: presets?.flaggedCount ?? 0,
+    wrong: presets?.wrongCount ?? 0,
+    unseen: presets?.unseenCount ?? 0,
+  };
+  const available = activePreset ? presetCount[activePreset] : sectionsAvailable;
 
   const allSelected = selected.size === topics.length;
   const requested: TestLength | null = wantsAll
@@ -78,7 +117,15 @@ export function TestBuilder({
       : null;
 
   const requestedSize = requested === null ? 0 : resolveTestSize(requested, available);
-  const size = remainingFree === null ? requestedSize : Math.min(requestedSize, remainingFree);
+  // "Wrong" and "flagged" both draw only from questions already answered
+  // once, which the free tier has never charged for — the same reasoning
+  // that exempts a retry test in `test/page.tsx`. "Unseen" is the opposite
+  // case by definition, so it is metered exactly like a normal fresh pick.
+  const freeTierApplies = activePreset !== "wrong" && activePreset !== "flagged";
+  const size =
+    remainingFree === null || !freeTierApplies
+      ? requestedSize
+      : Math.min(requestedSize, remainingFree);
   /**
    * What an exam of this size is worth, in minutes. Shown on the Exam card so
    * the student sees the clock they are choosing before they choose it —
@@ -90,9 +137,11 @@ export function TestBuilder({
     requested !== null && requested !== ALL_QUESTIONS && requested > available;
   // Whichever cut it down further is the one worth explaining — no point
   // naming the section limit when the free allowance is the tighter one.
-  const shortenedByFreeLimit = remainingFree !== null && requestedSize > remainingFree;
+  const shortenedByFreeLimit =
+    freeTierApplies && remainingFree !== null && requestedSize > remainingFree;
 
   function toggle(topic: string) {
+    setActivePreset(null);
     setSelected((previous) => {
       const next = new Set(previous);
       if (next.has(topic)) next.delete(topic);
@@ -101,27 +150,90 @@ export function TestBuilder({
     });
   }
 
-  const href = buildTestHref(aircraftCode, {
-    // Every section selected is the same test as no filter at all, and the
-    // shorter URL is the one worth sharing.
-    topics: allSelected ? [] : [...selected],
-    // The resolved size, not the raw request: the button says how many
-    // questions the test will have, so the link it opens must deliver that
-    // many. "All" stays "all" — its whole point is to follow the bank as it
-    // grows, which a frozen number would not.
-    length: wantsAll ? ALL_QUESTIONS : size || DEFAULT_TEST_LENGTH,
-    mode,
-  });
+  const href = activePreset
+    ? buildTestHref(aircraftCode, {
+        retryOnly: activePreset === "wrong",
+        from: activePreset === "flagged" || activePreset === "unseen" ? activePreset : undefined,
+        length: wantsAll ? ALL_QUESTIONS : size || DEFAULT_TEST_LENGTH,
+        mode,
+      })
+    : buildTestHref(aircraftCode, {
+        // Every section selected is the same test as no filter at all, and the
+        // shorter URL is the one worth sharing.
+        topics: allSelected ? [] : [...selected],
+        // The resolved size, not the raw request: the button says how many
+        // questions the test will have, so the link it opens must deliver that
+        // many. "All" stays "all" — its whole point is to follow the bank as it
+        // grows, which a frozen number would not.
+        length: wantsAll ? ALL_QUESTIONS : size || DEFAULT_TEST_LENGTH,
+        mode,
+      });
 
   return (
     <div className="space-y-6">
-      <fieldset>
+      {presets ? (
+        <div>
+          <h3 className="text-sm font-semibold text-foreground">Quick start</h3>
+          <div className="mt-2 flex flex-wrap gap-2">
+            <PresetChip
+              active={activePreset === null && allSelected}
+              onClick={() => {
+                setActivePreset(null);
+                setSelected(new Set(topics.map((topic) => topic.topic)));
+              }}
+            >
+              All systems
+            </PresetChip>
+            {presets.weakTopics.length > 0 ? (
+              <PresetChip
+                active={
+                  activePreset === null &&
+                  selected.size === presets.weakTopics.length &&
+                  presets.weakTopics.every((topic) => selected.has(topic))
+                }
+                onClick={() => {
+                  setActivePreset(null);
+                  setSelected(new Set(presets.weakTopics));
+                }}
+              >
+                My weak {presets.weakTopics.length === 1 ? "system" : "systems"}
+              </PresetChip>
+            ) : null}
+            {presets.wrongCount > 0 ? (
+              <PresetChip active={activePreset === "wrong"} onClick={() => setActivePreset("wrong")}>
+                Questions I got wrong ({formatPresetCount(presets.wrongCount)})
+              </PresetChip>
+            ) : null}
+            {presets.flaggedCount > 0 ? (
+              <PresetChip
+                active={activePreset === "flagged"}
+                onClick={() => setActivePreset("flagged")}
+              >
+                My flagged questions ({formatPresetCount(presets.flaggedCount)})
+              </PresetChip>
+            ) : null}
+            {presets.unseenCount > 0 ? (
+              <PresetChip
+                active={activePreset === "unseen"}
+                onClick={() => setActivePreset("unseen")}
+              >
+                Unseen questions ({formatPresetCount(presets.unseenCount)})
+              </PresetChip>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
+
+      <fieldset disabled={activePreset !== null} className={activePreset ? "opacity-50" : ""}>
         <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
           <legend className="text-sm font-semibold text-foreground">Sections</legend>
           <div className="flex gap-3 text-sm">
             <button
               type="button"
-              onClick={() => setSelected(new Set(topics.map((topic) => topic.topic)))}
+              onClick={() => {
+                setActivePreset(null);
+                setSelected(new Set(topics.map((topic) => topic.topic)));
+              }}
               disabled={allSelected}
               className="link-standalone min-w-11 justify-center font-medium text-brand hover:underline disabled:cursor-not-allowed disabled:text-muted-foreground disabled:no-underline"
             >
@@ -129,7 +241,10 @@ export function TestBuilder({
             </button>
             <button
               type="button"
-              onClick={() => setSelected(new Set())}
+              onClick={() => {
+                setActivePreset(null);
+                setSelected(new Set());
+              }}
               disabled={selected.size === 0}
               className="link-standalone min-w-11 justify-center font-medium text-brand hover:underline disabled:cursor-not-allowed disabled:text-muted-foreground disabled:no-underline"
             >
@@ -173,9 +288,11 @@ export function TestBuilder({
       <div>
         <h3 className="text-sm font-semibold text-foreground">How many questions?</h3>
         <p className="mt-1 text-sm text-muted-foreground" aria-live="polite">
-          {available === 0
+          {activePreset === null && available === 0
             ? "Choose at least one section to see how many questions are available."
-            : `${available} ${available === 1 ? "question is" : "questions are"} available in your selection.`}
+            : `${available} ${available === 1 ? "question is" : "questions are"} available${
+                activePreset ? "" : " in your selection"
+              }.`}
         </p>
 
         {remainingFree !== null ? (
@@ -350,5 +467,36 @@ export function TestBuilder({
         </button>
       )}
     </div>
+  );
+}
+
+/** "500+" once a preset list is long enough that the exact count stops
+ * being useful — see `PRESET_COUNT_CEILING`. */
+function formatPresetCount(count: number): string {
+  return count >= PRESET_COUNT_CEILING ? `${PRESET_COUNT_CEILING}+` : String(count);
+}
+
+function PresetChip({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      aria-pressed={active}
+      onClick={onClick}
+      className={`tap-target inline-flex items-center rounded-full border px-4 text-sm font-medium transition ${
+        active
+          ? "border-brand bg-brand-soft text-brand"
+          : "border-border bg-surface text-foreground hover:border-brand hover:text-brand"
+      }`}
+    >
+      {children}
+    </button>
   );
 }
