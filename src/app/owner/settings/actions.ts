@@ -27,6 +27,7 @@ export async function updateSettings(
   const validated = validateSettings({
     freeQuestionsPerAircraft: formData.get("freeQuestionsPerAircraft"),
     announcement: formData.get("announcement"),
+    passMarkPercent: formData.get("passMarkPercent"),
   });
 
   if (!validated.ok) return { error: validated.error };
