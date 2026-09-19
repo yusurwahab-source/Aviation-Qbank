@@ -4,6 +4,9 @@ import { notFound } from "next/navigation";
 import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { Card, EmptyState, PageHeading } from "@/components/ui";
 import { getAircraft, listTopics, type AircraftSummary, type TopicSummary } from "@/db/queries";
+import { countQuestionsAnswered, getSubscription } from "@/db/subscriptions";
+import { hasActiveSubscription, remainingFreeQuestions } from "@/lib/billing/access-policy";
+import { getCurrentUser } from "@/lib/auth/session";
 
 import { TestBuilder } from "./test-builder";
 
@@ -22,9 +25,27 @@ export default async function AircraftPage({ params }: PageProps) {
 
   let plane: AircraftSummary | null;
   let topics: TopicSummary[];
+  /**
+   * How many free questions a signed-in, unsubscribed student has left on
+   * this aircraft — null means unlimited (subscribed, or signed out, which
+   * is never metered; see the note in CLAUDE.md). Passed down so the
+   * builder can never advertise more questions than `/test` will actually
+   * deliver — the same "the button never promises more than it delivers"
+   * rule the section counts already follow.
+   */
+  let remainingFree: number | null = null;
 
   try {
     [plane, topics] = await Promise.all([getAircraft(aircraftCode), listTopics(aircraftCode)]);
+
+    const user = await getCurrentUser();
+    if (user) {
+      const subscription = await getSubscription(user.id);
+      if (!hasActiveSubscription(subscription)) {
+        const distinctAnswered = await countQuestionsAnswered(user.id, aircraftCode);
+        remainingFree = remainingFreeQuestions(distinctAnswered);
+      }
+    }
   } catch (error) {
     return (
       <>
@@ -62,7 +83,7 @@ export default async function AircraftPage({ params }: PageProps) {
           </EmptyState>
         ) : (
           <Card>
-            <TestBuilder aircraftCode={plane.code} topics={topics} />
+            <TestBuilder aircraftCode={plane.code} topics={topics} remainingFree={remainingFree} />
           </Card>
         )}
       </section>
