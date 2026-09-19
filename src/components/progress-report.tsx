@@ -37,7 +37,7 @@ export function ProgressReport({ data }: { data: ProgressReportData }) {
       <EmptyState title="No practice recorded yet">
         Take a test while signed in and it will appear here — your score, how each topic
         went, and the questions worth another look.{" "}
-        <Link href="/" className="font-medium text-brand hover:underline">
+        <Link href="/aircraft" className="font-medium text-brand hover:underline">
           Choose an aircraft
         </Link>
       </EmptyState>

@@ -42,7 +42,12 @@
   /* ── Text ───────────────────────────────────────────────────────────── */
   --foreground: #e8eef7;
   --muted-foreground: #96a5bc;
-  --subtle-foreground: #64748b;
+  /* #64748b measured 3.48:1 against --surface-elevated, short of WCAG AA's
+   * 4.5:1 for normal-size text — caught by a Lighthouse accessibility audit
+   * of the footer, which uses this token at 12px. Lightened just enough to
+   * clear 4.5:1 against every surface it actually sits on, still dimmer
+   * than --muted-foreground so the two-tier hierarchy holds. */
+  --subtle-foreground: #7f8ea6;
 
   /* ── Accent: the instrument cyan ───────────────────────────────────────
    * One accent, desaturated well short of neon — the cyan of a PFD speed
@@ -89,7 +94,8 @@
 
     --foreground: #0d1725;
     --muted-foreground: #4a5a70;
-    --subtle-foreground: #6b7b91;
+    /* See the note beside :root's --subtle-foreground — same WCAG AA fix. */
+    --subtle-foreground: #56667c;
 
     --accent: #0e7490;
     --accent-hover: #0b5f77;
@@ -125,7 +131,8 @@
 
   --foreground: #0d1725;
   --muted-foreground: #4a5a70;
-  --subtle-foreground: #6b7b91;
+  /* See the note beside :root's --subtle-foreground — same WCAG AA fix. */
+  --subtle-foreground: #56667c;
 
   --accent: #0e7490;
   --accent-hover: #0b5f77;

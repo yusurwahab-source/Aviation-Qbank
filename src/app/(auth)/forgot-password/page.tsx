@@ -13,7 +13,7 @@ export default async function ForgotPasswordPage() {
   // Already signed in, so there is nothing to recover. Sending them home
   // rather than showing the form avoids the odd case of someone resetting a
   // password they are currently using and logging themselves out.
-  if (await getCurrentUser()) redirect("/");
+  if (await getCurrentUser()) redirect("/aircraft");
 
   return <ForgotForm emailConfigured={emailIsConfigured()} />;
 }

@@ -10,7 +10,7 @@ export const metadata: Metadata = { title: "Log in" };
 export const dynamic = "force-dynamic";
 
 export default async function LogInPage() {
-  if (await getCurrentUser()) redirect("/");
+  if (await getCurrentUser()) redirect("/aircraft");
 
   return (
     <AuthForm
