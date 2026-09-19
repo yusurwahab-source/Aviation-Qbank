@@ -659,6 +659,24 @@ subscription this app creates ever has. Worth remembering if Stripe moves
 another field the same way: a webhook payload matching yesterday's
 documentation is not evidence it matches today's account.
 
+**And live mode had its own version of that lesson: every Price's Product
+needs a `tax_code`.** This account has Stripe's Managed Payments enabled by
+default, which refuses to create a Checkout Session for a product that has
+none — so the *first* live subscription attempt would have failed with
+"the product tax code is missing", and the student would have seen
+`startCheckout`'s generic "Checkout could not be started". Test mode never
+asked for it, so nothing in the test-mode verification could have caught
+this; it was found by asking Stripe for a live Checkout Session directly,
+before any student could. Both live Products carry
+`txcd_20060058` — *Training Services, Self-study Web-based*, which is what
+this app is: web-delivered, self-directed, not instructor-led, nothing
+downloadable. It is set on the **Product** in the dashboard, not in this
+repository, so it is not a deploy — but it is load-bearing, and a new plan
+added later needs it too or that plan alone will fail to check out.
+
+The general rule both findings point at: **the live account is a different
+system from the test account, and only a live request proves a live path.**
+
 **Configuration is read through `readEnv`, never straight off
 `process.env`.** `src/lib/env.ts` trims whitespace, strips surrounding
 quotes, and strips a leading `NAME=` — the three ways a *correct* value
@@ -787,8 +805,11 @@ tests/                        Vitest unit tests
    correctly-signed webhook accepted, and — after `extractCurrentPeriodEnd`
    fixed a field that had moved under this account's billing API behaviour,
    see the conventions above — the subscription actually recognised as
-   active. Still test mode only; going live needs the account activated and
-   the same setup repeated with live keys, per `.env.example`.
+   active. Now also **live**: the account is activated, live Prices and a
+   live webhook endpoint exist, and the deployment carries live keys — see
+   the `tax_code` note in the conventions above for what live mode asked
+   for that test mode never did, and "Known gaps" for exactly how far the
+   live path has been proven.
 
 Do not start a phase until the previous one works.
 
@@ -837,13 +858,16 @@ from inside the website, an admin panel gets added then — the `status`,
   visits, each individually within the cap. Closing this needs tracking
   exposure on its own, which is deliberately not built — see the note on
   `attempts` being the only usage counter, above.
-- **The Stripe integration is verified in test mode only.** A checkout, a
-  webhook delivery and the subscription being recognised as active have all
-  been confirmed against this account's test mode — see the note on
-  `extractCurrentPeriodEnd` in the conventions above for the one thing that
-  did not work on the first attempt. None of it has run in live mode, which
-  needs the account activated and the same Products, Prices and webhook
-  endpoint set up again with live keys.
+- **Live mode is configured and probed, but no real customer has paid yet.**
+  The account is activated (`charges_enabled`, `payouts_enabled`), the two
+  live Prices and the live webhook endpoint exist, and the deployment reads
+  live keys. What has been proven directly against the live account: both
+  Prices produce a real Checkout Session, and the deployed webhook accepts a
+  correctly-signed request while rejecting an unsigned one — so the signing
+  secret in the deployment is the endpoint's own. What has *not* happened is
+  an actual card being charged, a real `customer.subscription.created`
+  arriving, and a row being written. The first genuine subscription is still
+  the first genuine test; watch it rather than assume it.
 - **2Checkout was tried first and declined the merchant application before
   any code could be tested against it.** Nothing about that attempt is left
   in the code; it is mentioned here only so the choice of Stripe is not
