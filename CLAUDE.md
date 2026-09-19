@@ -843,15 +843,28 @@ calls nothing.
 
 **Free access does not have to come from Stripe — `provider` on
 `subscriptions` exists for exactly this.** A gift code is the second thing
-that can turn a subscription on, alongside Stripe's webhook. Minting one is
-a script, not a page: `npm run gift:generate -- --count 5 --days 30 --plan
-monthly --note "…"` inserts rows via `createGiftCodes` and prints the codes
-in their display form (`7K4M-QX2P-9RTN-5VWZ`) — the same reasoning as
-`db:seed`, run by hand, no admin panel needed to justify existing.
-Redeeming is the one path a student drives themselves, at `/redeem`:
-`redeemGiftCode` in `db/gift-codes.ts` claims the code and writes the
-`subscriptions` row in one transaction, with `provider: "gift"` and no
-`providerSubscriptionRef`.
+that can turn a subscription on, alongside Stripe's webhook. Minting one has
+two doors, both calling the same `createGiftCodes`: `npm run gift:generate
+-- --count 5 --days 30 --plan monthly --note "…"` for bulk or scripted use,
+and `/owner/gift-codes` on the live site for "I need one code, right now" —
+built after the script turned out to be the wrong shape for an owner who
+does not run a terminal or hold `DATABASE_URL`. Redeeming is the one path a
+student drives themselves, at `/redeem`: `redeemGiftCode` in
+`db/gift-codes.ts` claims the code and writes the `subscriptions` row in one
+transaction, with `provider: "gift"` and no `providerSubscriptionRef`.
+
+**`/owner/gift-codes` is not an admin panel — it is one page, gated by one
+email.** `isOwner` compares the signed-in account's email against
+`OWNER_EMAIL`, read the same tolerant way every other configuration value
+is. Anyone else visiting the path — signed out, or signed in as anyone
+else — gets a plain `notFound()`, not a redirect to `/login`: a redirect
+would confirm the path exists for someone it does not; a 404 says nothing.
+The server action re-checks ownership itself rather than trusting that the
+page already did, because an action is its own reachable entry point, not
+only something reached through the form that happens to render it. There is
+still no role column and no second owner — the day this needs more than one
+person, that is the real feature to build, not a second email in an env
+var.
 
 The claim is atomic the same way `consumeResetToken` is: the update's own
 `where redeemed_by_user_id is null` is what stops two redemption attempts on
@@ -916,6 +929,7 @@ src/
     progress/                 Reports, overall and per aircraft
     upgrade/                  Checkout for the two plans, and the Stripe redirect action
     redeem/                   Where a gift code becomes an active subscription
+    owner/gift-codes/         Where the owner mints gift codes, from the website
     api/webhooks/stripe/      The Stripe webhook endpoint
     about|pricing|faq|terms|privacy|contact/   Short pages the footer links to
     manifest.ts               Web app manifest
@@ -956,6 +970,7 @@ src/
       reset-policy.ts         Reset link lifetime and state (pure, tested)
       client-ip.ts            The caller's address, behind Vercel's proxy
       session.ts              Cookie and session table handling
+      owner.ts                Whether the signed-in account is the site owner (pure, tested)
 tests/                        Vitest unit tests
 ```
 
