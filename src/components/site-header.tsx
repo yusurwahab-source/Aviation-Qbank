@@ -5,6 +5,8 @@ import { MobileNav } from "@/components/mobile-nav";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { UserMenu } from "@/components/user-menu";
 import { getCurrentUser } from "@/lib/auth/session";
+import { isOwner } from "@/lib/auth/owner";
+import { envValue } from "@/lib/env";
 
 /**
  * The application shell's header.
@@ -41,7 +43,14 @@ export async function SiteHeader() {
     email = null;
   }
 
-  const links = email ? SIGNED_IN_LINKS : SIGNED_OUT_LINKS;
+  // The owner gets one extra link. Everyone else never learns the area
+  // exists — the pages themselves 404 for them regardless, so this is
+  // about not advertising a door rather than about locking it.
+  const links = email
+    ? isOwner(email, envValue("OWNER_EMAIL"))
+      ? [...SIGNED_IN_LINKS, { href: "/owner", label: "Owner" }]
+      : SIGNED_IN_LINKS
+    : SIGNED_OUT_LINKS;
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-surface-elevated/90 backdrop-blur">

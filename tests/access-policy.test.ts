@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   FREE_QUESTIONS_PER_AIRCRAFT,
   canAnswerQuestion,
+  daysRemaining,
   hasActiveSubscription,
   mapStripeSubscriptionStatus,
   remainingFreeQuestions,
@@ -104,5 +105,27 @@ describe("mapStripeSubscriptionStatus", () => {
     ]) {
       expect(mapStripeSubscriptionStatus(status)).toBe("canceled");
     }
+  });
+});
+
+describe("daysRemaining", () => {
+  const now = new Date("2026-01-01T12:00:00Z");
+
+  it("is null when no period has been confirmed", () => {
+    expect(daysRemaining(null, now)).toBeNull();
+  });
+
+  it("counts whole days ahead", () => {
+    expect(daysRemaining(new Date("2026-01-31T12:00:00Z"), now)).toBe(30);
+  });
+
+  it("rounds a part day up, so the last hours are not reported as none", () => {
+    // Eleven hours left is still a day of studying, not zero.
+    expect(daysRemaining(new Date("2026-01-01T23:00:00Z"), now)).toBe(1);
+  });
+
+  it("is zero once the period has ended", () => {
+    expect(daysRemaining(new Date("2025-12-31T12:00:00Z"), now)).toBe(0);
+    expect(daysRemaining(now, now)).toBe(0);
   });
 });

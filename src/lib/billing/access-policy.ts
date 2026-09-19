@@ -50,6 +50,29 @@ export function remainingFreeQuestions(distinctAnsweredSoFar: number): number {
 }
 
 /**
+ * Whole days of access left, or null when there is no confirmed period to
+ * count against.
+ *
+ * Rounded **up**, deliberately: somebody with eleven hours left has a day of
+ * studying ahead of them, and telling them "0 days" while the app still lets
+ * them practise would be both wrong and alarming. Zero is therefore reserved
+ * for access that has actually ended.
+ *
+ * Someone who paid, and more so someone spending a gift, should be able to
+ * see what they have without opening a receipt — this is the number that
+ * answers it.
+ */
+export function daysRemaining(
+  currentPeriodEnd: Date | null,
+  now: Date = new Date(),
+): number | null {
+  if (currentPeriodEnd === null) return null;
+  const remaining = currentPeriodEnd.getTime() - now.getTime();
+  if (remaining <= 0) return 0;
+  return Math.ceil(remaining / (24 * 60 * 60 * 1000));
+}
+
+/**
  * What one of Stripe's subscription statuses means for the row stored here.
  *
  * Stripe has more states than this app tracks (`trialing`, `past_due`,
