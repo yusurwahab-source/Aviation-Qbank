@@ -14,6 +14,7 @@ import {
 
 import { FlagButton } from "@/components/flag-button";
 import { QuestionNote } from "@/components/question-note";
+import { ReportQuestionButton } from "@/components/report-question-button";
 import { Badge, Card } from "@/components/ui";
 import type { TestQuestion } from "@/db/queries";
 import { optionIndexForKey, shouldHandleShortcut } from "@/lib/keyboard-shortcuts";
@@ -30,6 +31,7 @@ import {
 import {
   answerQuestion,
   loadNote,
+  reportQuestion,
   saveNote,
   submitTest,
   toggleFlag,
@@ -245,6 +247,31 @@ export function TestRunner({
     const total = (deadline.getTime() - startedAt.getTime()) / 1000;
     return total > 0 ? remaining / total : 0;
   }, [deadline, startedAt, remaining]);
+
+  /**
+   * What the polite live region beside the exam clock actually says.
+   * Rounded to the minute — and, inside the last minute, to 15 seconds —
+   * so its *text* only changes a handful of times over a whole test rather
+   * than on every second `remaining` itself ticks down; a live region only
+   * announces when its content changes, so the rounding is what throttles
+   * this without any timer of its own.
+   */
+  const remainingAnnouncement = useMemo(() => {
+    if (remaining <= 0) return "Time is up.";
+    if (remaining <= 60) {
+      const rounded = Math.ceil(remaining / 15) * 15;
+      return `${rounded} seconds remaining.`;
+    }
+    const minutes = Math.ceil(remaining / 60);
+    return `${minutes} ${minutes === 1 ? "minute" : "minutes"} remaining.`;
+  }, [remaining]);
+
+  /** Same throttling, for study mode's count-up clock. */
+  const elapsedAnnouncement = useMemo(() => {
+    const minutes = Math.floor(elapsed / 60);
+    if (minutes === 0) return "Just started.";
+    return `${minutes} ${minutes === 1 ? "minute" : "minutes"} elapsed.`;
+  }, [elapsed]);
 
   /**
    * Answers the question on screen, and sends it to the server.
@@ -601,33 +628,47 @@ export function TestRunner({
           </p>
           <p className="flex items-baseline gap-3 text-sm text-muted-foreground">
             {deadline !== null ? (
-              <span
-                // Announced politely rather than on every tick: a screen
-                // reader reading out each second would be unusable.
-                aria-live="off"
-                className={`font-mono font-semibold tabular-nums ${
-                  // Amber with a fifth of the clock left, red with a
-                  // twentieth — prominent, not alarming: colour only, no
-                  // motion, and nothing changes about what the numbers say.
-                  remainingFraction !== null && remainingFraction <= 0.05
-                    ? "text-incorrect"
-                    : remainingFraction !== null && remainingFraction <= 0.2
-                      ? "text-warning"
-                      : "text-foreground"
-                }`}
-              >
-                <span className="sr-only">Time remaining: </span>
-                {formatClock(remaining)}
-              </span>
+              <>
+                <span
+                  // The visible digits change every second; a live region
+                  // bound directly to them would read out each tick, which
+                  // is unusable. `aria-hidden` here because the sibling
+                  // below is what actually announces the clock.
+                  aria-hidden="true"
+                  className={`font-mono font-semibold tabular-nums ${
+                    // Amber with a fifth of the clock left, red with a
+                    // twentieth — prominent, not alarming: colour only, no
+                    // motion, and nothing changes about what the numbers say.
+                    remainingFraction !== null && remainingFraction <= 0.05
+                      ? "text-incorrect"
+                      : remainingFraction !== null && remainingFraction <= 0.2
+                        ? "text-warning"
+                        : "text-foreground"
+                  }`}
+                >
+                  {formatClock(remaining)}
+                </span>
+                {/* `aria-live="polite"` only announces when its *text*
+                    actually changes — rounding to the minute is what keeps
+                    that to once a minute (once every 15s inside the last
+                    minute) rather than every tick of `remaining` above. */}
+                <span className="sr-only" aria-live="polite" aria-atomic="true">
+                  {remainingAnnouncement}
+                </span>
+              </>
             ) : (
               // Study mode: how long this has taken so far, and nothing
               // hangs on it. Deliberately quieter than the exam countdown —
               // same typeface, muted rather than bold, and it never turns
               // red, because there is nothing to warn about.
-              <span aria-live="off" className="font-mono tabular-nums">
-                <span className="sr-only">Time taken so far: </span>
-                {formatClock(elapsed)}
-              </span>
+              <>
+                <span aria-hidden="true" className="font-mono tabular-nums">
+                  {formatClock(elapsed)}
+                </span>
+                <span className="sr-only" aria-live="polite" aria-atomic="true">
+                  {elapsedAnnouncement}
+                </span>
+              </>
             )}
             <span>
               Question {index + 1} of {questions.length}
@@ -662,6 +703,15 @@ export function TestRunner({
         </div>
 
         <h1 className="question-text mt-4 font-semibold text-foreground">{current.question}</h1>
+
+        <div className="mt-2">
+          <ReportQuestionButton
+            key={current.id}
+            onReport={(message) =>
+              reportQuestion({ questionId: current.id, aircraftCode, message })
+            }
+          />
+        </div>
 
         {current.media ? (
           // eslint-disable-next-line @next/next/no-img-element

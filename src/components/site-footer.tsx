@@ -16,6 +16,7 @@ const LINKS = [
   { href: "/faq", label: "FAQ" },
   { href: "/terms", label: "Terms" },
   { href: "/privacy", label: "Privacy" },
+  { href: "/disclaimer", label: "Disclaimer" },
   { href: "/contact", label: "Contact" },
 ];
 

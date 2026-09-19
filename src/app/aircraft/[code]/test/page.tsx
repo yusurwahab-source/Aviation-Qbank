@@ -12,13 +12,22 @@ import {
   getAircraft,
   getAnswerKey,
   getTestQuestionsByIds,
+  listTopics,
   pickTestQuestions,
   pickUnseenTestQuestions,
   type TestQuestion,
 } from "@/db/queries";
 import { getQuestionIdsToRetry } from "@/db/reports";
 import { countQuestionsAnswered, getSubscription } from "@/db/subscriptions";
+import { getUserPlanState } from "@/db/users";
 import { hasActiveSubscription, remainingFreeQuestions } from "@/lib/billing/access-policy";
+import {
+  capQuestionCount,
+  examModeAllowed,
+  isPremiumUser,
+  resolveAllowedTopics,
+  smartTestAllowed,
+} from "@/lib/billing/plan-access";
 import { getSiteSettings } from "@/db/settings";
 import { getCurrentUser } from "@/lib/auth/session";
 import {
@@ -124,12 +133,33 @@ export default async function TestPage({ params, searchParams }: PageProps) {
    * student who has simply used theirs up.
    */
   let freeLimitReached = false;
+  /**
+   * Whether this visitor's *fresh* test may draw from every section, run
+   * unlimited length, and use exam mode / the smart-test presets — the
+   * free/premium tier from `src/config/plans.ts`. Signed out counts as
+   * free: gating by section and by feature is not the same thing as the
+   * free-question *allowance*, which only ever applied to a signed-in
+   * account — see `remainingFree` above and the note on `FREE_SYSTEMS` in
+   * `config/plans.ts`. Deliberately not applied to a *resumed* session,
+   * for the same reason the free-question-allowance cap already exempts
+   * one: those questions were already sent, and there is nothing left to
+   * protect by re-checking a decision already made.
+   */
+  let isPremium = false;
 
   try {
     plane = await getAircraft(aircraftCode);
     if (!plane) notFound();
 
     user = await getCurrentUser();
+    if (user) {
+      const [subscription, planState] = await Promise.all([
+        getSubscription(user.id),
+        getUserPlanState(user.id),
+      ]);
+      isPremium = isPremiumUser({ plan: planState, subscription });
+    }
+    if (mode === "exam" && !examModeAllowed(isPremium)) mode = "study";
 
     // A signed-in student resumes an in-progress test under this id rather
     // than drawing a new random set — that is what a mid-test refresh does
@@ -197,21 +227,34 @@ export default async function TestPage({ params, searchParams }: PageProps) {
     // have since been unpublished out from under it — fall back to a fresh
     // pick exactly as before. This cannot loop: a fresh pick never resumes.
     if (questions.length === 0) {
+      // "Questions I got wrong" and "My flagged questions" are both
+      // smart-test presets — built from the student's own history rather
+      // than a section pick — so a free account never reaches either
+      // branch below; it falls through to a normal random pick over its
+      // accessible sections instead, the same graceful degradation a
+      // signed-out visitor already gets from both (neither has anything to
+      // build the preset from either).
+      const retryAllowed = retryOnly && smartTestAllowed(isPremium);
+      const flaggedAllowed = flaggedOnly && smartTestAllowed(isPremium);
+
       // How many questions the chosen sections actually hold. This is what
       // turns "all questions" into a number, and what stops a request for
-      // 500 from meaning anything more than the bank.
+      // 500 from meaning anything more than the bank. Used as-is for the
+      // two history-built presets above, which draw by id and never filter
+      // by topic in the first place — the plan's section gating has
+      // nothing to narrow there.
       const available = await countTestQuestions(aircraftCode, topics);
-      let size = resolveTestSize(length, available);
+      const size = resolveTestSize(length, available);
 
       // Only the question and its options cross to the browser. The correct
       // answer and the explanation stay on the server until the test is graded.
-      if (retryOnly) {
+      if (retryAllowed) {
         // Retry mode needs an account, because it is built from that
         // account's history. Signed out there is nothing to retry, so fall
         // back to a normal random test rather than showing an error.
         const ids = user ? await getQuestionIdsToRetry(user.id, aircraftCode, size) : [];
         questions = ids.length > 0 ? await getTestQuestionsByIds(aircraftCode, ids) : [];
-      } else if (flaggedOnly) {
+      } else if (flaggedAllowed) {
         // Same free-tier exemption as retry, and for the same reason: a
         // question can only be flagged after it was already shown once, so
         // revisiting it costs nothing further — see the note on
@@ -219,6 +262,17 @@ export default async function TestPage({ params, searchParams }: PageProps) {
         const ids = user ? (await getFlaggedQuestionIds(user.id, aircraftCode)).slice(0, size) : [];
         questions = ids.length > 0 ? await getTestQuestionsByIds(aircraftCode, ids) : [];
       } else {
+        // A normal pick (including a smart-test preset a free account is
+        // not allowed to use) is narrowed to the sections the plan actually
+        // grants — see `resolveAllowedTopics` — before anything is counted
+        // or fetched. `topics` itself is left alone: it is what a "Change
+        // sections" link on this same test would rebuild the URL from, and
+        // it still means what `parseTopics` always said it means.
+        const allTopicNames = isPremium ? [] : (await listTopics(aircraftCode)).map((t) => t.topic);
+        const allowedTopics = resolveAllowedTopics(topics, allTopicNames, aircraftCode, isPremium);
+        const allowedAvailable =
+          allowedTopics === topics ? available : await countTestQuestions(aircraftCode, allowedTopics);
+
         // A fresh pick is where a free account could otherwise be handed
         // every question in the bank at once and simply never answer any of
         // them — `answerQuestion`'s own paywall only stops grading, not the
@@ -229,7 +283,10 @@ export default async function TestPage({ params, searchParams }: PageProps) {
         // "more than the allowance gradeable". This applies to "unseen" too
         // — unlike retry and flagged, it draws questions the student has
         // never spent any allowance on, so it is exactly the case the free
-        // tier exists to meter.
+        // tier exists to meter. `capQuestionCount` is the newer, coarser
+        // plan cap from `config/plans.ts` (20 questions on the free plan,
+        // whatever the aircraft); the two are independent and both apply.
+        let allowedSize = capQuestionCount(resolveTestSize(length, allowedAvailable), isPremium);
         if (user) {
           const subscription = await getSubscription(user.id);
           if (!hasActiveSubscription(subscription)) {
@@ -237,18 +294,21 @@ export default async function TestPage({ params, searchParams }: PageProps) {
               countQuestionsAnswered(user.id, aircraftCode),
               getSiteSettings(),
             ]);
-            size = Math.min(size, remainingFreeQuestions(distinctAnswered, settings.freeQuestionsPerAircraft));
+            allowedSize = Math.min(
+              allowedSize,
+              remainingFreeQuestions(distinctAnswered, settings.freeQuestionsPerAircraft),
+            );
           }
         }
-        freeLimitReached = size === 0 && available > 0;
-        if (size === 0) {
+        freeLimitReached = allowedSize === 0 && allowedAvailable > 0;
+        if (allowedSize === 0) {
           questions = [];
-        } else if (unseenOnly && user) {
-          questions = await pickUnseenTestQuestions(aircraftCode, user.id, size, topics);
+        } else if (unseenOnly && smartTestAllowed(isPremium) && user) {
+          questions = await pickUnseenTestQuestions(aircraftCode, user.id, allowedSize, allowedTopics);
         } else {
           // Signed out, "unseen" has nothing to exclude against — a normal
           // random pick is the same graceful fallback retry and flagged use.
-          questions = await pickTestQuestions(aircraftCode, size, topics);
+          questions = await pickTestQuestions(aircraftCode, allowedSize, allowedTopics);
         }
       }
     }

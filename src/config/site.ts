@@ -24,4 +24,8 @@ export const siteConfig = {
    * this is only the static fact of where the product lives.
    */
   url: "https://aviation-qbank.vercel.app",
+  /** Where /contact, /terms, /privacy and /disclaimer point a visitor who
+   * needs a human — a question about billing, a wrong question, a data
+   * request. Placeholder until a real mailbox is set up at this domain. */
+  supportEmail: "support@holdshort.app",
 } as const;

@@ -28,6 +28,13 @@ export const aircraftStatus = pgEnum("aircraft_status", ["active", "coming_soon"
 export const questionStatus = pgEnum("question_status", ["draft", "published"]);
 /** Mirrors `TEST_MODES` in `src/lib/test-options.ts` — the one other place this shape exists. */
 export const testMode = pgEnum("test_mode", ["study", "exam"]);
+/** Mirrors the two tiers in `src/config/plans.ts` — the one other place this shape exists. */
+export const userPlan = pgEnum("user_plan", ["free", "premium"]);
+/** One role beyond the ordinary student today. Mirrors `isOwner`'s reasoning
+ * in spirit — there is no per-permission table, just a name on the account —
+ * but exists as a real column because `/admin` needed a check that does not
+ * depend on a single email address in an environment variable. */
+export const userRole = pgEnum("user_role", ["student", "admin"]);
 
 export const aircraft = pgTable("aircraft", {
   /** Short type code, e.g. DA40. Also the URL segment: /aircraft/DA40. */
@@ -97,6 +104,26 @@ export const users = pgTable(
     /** Always stored trimmed and lowercased; see `normaliseEmail`. */
     email: varchar("email", { length: 254 }).notNull(),
     passwordHash: text("password_hash").notNull(),
+    /**
+     * The coarse, config-driven access tier from `src/config/plans.ts` —
+     * which systems, how long a test may be, exam mode, the smart-test
+     * presets. Separate from `subscriptions.status`: that table is Stripe's
+     * own recurring-billing state, kept current by its webhook, and it
+     * still governs the free-question-per-aircraft allowance from Phase 6
+     * unchanged. `isPremiumUser` in `lib/billing/plan-access.ts` treats
+     * either an active Stripe subscription or `plan: "premium"` here as
+     * premium, so a Phase 6 subscriber is never worse off under this newer,
+     * simpler tier. Nothing in this task wires a payment up to set this
+     * column to `"premium"` automatically — see the README section this
+     * task adds for exactly what is and is not connected yet.
+     */
+    plan: userPlan("plan").notNull().default("free"),
+    /** Null means no expiry recorded — either still on the free plan, or a
+     * premium grant meant to last indefinitely (e.g. the lifetime tier). */
+    planExpiresAt: timestamp("plan_expires_at", { withTimezone: true }),
+    /** `"admin"` unlocks `/admin`, alongside the owner email check that
+     * already gates `/owner` — see `requireAdmin`. */
+    role: userRole("role").notNull().default("student"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
@@ -596,3 +623,71 @@ export const siteSettings = pgTable("site_settings", {
 });
 
 export type SiteSettingRow = typeof siteSettings.$inferSelect;
+
+/**
+ * The /pricing "Join the early access list" capture.
+ *
+ * Checkout is not live yet — see the note in `src/config/plans.ts` — so a
+ * buy button on that page opens this form instead: an email, which aircraft
+ * the visitor needs it for, and which tier they were looking at. Shaped
+ * exactly like `aircraftInterest` above and for the same reasons: no
+ * foreign key, no deduplication (the same person asking twice, perhaps for
+ * two aircraft, is two rows worth keeping), read only by `/admin`.
+ */
+export const earlyAccessSignups = pgTable(
+  "early_access_signups",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    email: varchar("email", { length: 254 }).notNull(),
+    /** Free text, same reasoning as `aircraftInterest.aircraft` — there is
+     * no fixed list to choose from, and what people actually type is itself
+     * useful signal. */
+    aircraft: varchar("aircraft", { length: 120 }).notNull(),
+    /** Which pricing card they clicked — an id from `PRICING_TIERS`, not
+     * validated against it here so a config change never makes an old row
+     * unreadable. */
+    tier: varchar("tier", { length: 40 }).notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [index("early_access_signups_created_at_idx").on(table.createdAt)],
+);
+
+export type EarlyAccessSignupRow = typeof earlyAccessSignups.$inferSelect;
+export type EarlyAccessSignupInsert = typeof earlyAccessSignups.$inferInsert;
+
+/**
+ * "Report a problem with this question" — the link every question carries.
+ *
+ * `questionId` is plain text, not a foreign key, for the same reason as
+ * `attempts.questionId`: `db:seed` deletes questions whose content files
+ * are gone, and a foreign key would either erase a report silently
+ * (cascade) or block a legitimate content edit (restrict). A report on a
+ * since-deleted question simply stops resolving to a question `/admin` can
+ * show, and stays exactly as informative as a report ever is once the
+ * thing it was about has already been fixed.
+ *
+ * `userId` is nullable: a signed-out visitor can report a bad question too
+ * — practising does not require an account, and a wrong answer key is
+ * exactly as wrong whoever notices it.
+ */
+export const questionReportStatus = pgEnum("question_report_status", ["open", "resolved"]);
+
+export const questionReports = pgTable(
+  "question_reports",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    questionId: varchar("question_id", { length: 40 }).notNull(),
+    aircraftCode: varchar("aircraft_code", { length: 8 }).notNull(),
+    userId: uuid("user_id").references(() => users.id, { onDelete: "set null" }),
+    message: text("message").notNull(),
+    status: questionReportStatus("status").notNull().default("open"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("question_reports_status_created_idx").on(table.status, table.createdAt),
+    index("question_reports_question_idx").on(table.questionId),
+  ],
+);
+
+export type QuestionReportRow = typeof questionReports.$inferSelect;
+export type QuestionReportInsert = typeof questionReports.$inferInsert;

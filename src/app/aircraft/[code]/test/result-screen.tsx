@@ -4,11 +4,12 @@ import Link from "next/link";
 
 import { FlagButton } from "@/components/flag-button";
 import { QuestionNote } from "@/components/question-note";
+import { ReportQuestionButton } from "@/components/report-question-button";
 import { Badge, Card, ScoreBar } from "@/components/ui";
 import type { GradedQuestion, TestResult } from "@/lib/grading";
 import { buildTestHref, formatClock } from "@/lib/test-options";
 
-import { loadNote, saveNote, type SaveStatus } from "./actions";
+import { loadNote, reportQuestion, saveNote, type SaveStatus } from "./actions";
 
 /**
  * The end-of-test screen: the score against a pass mark, how long it took,
@@ -376,16 +377,23 @@ function ReviewCard({
         ) : null}
       </div>
 
-      {isSignedIn ? (
-        <div className="mt-3 flex flex-wrap items-start gap-2">
-          <FlagButton flagged={flagged} onToggle={onToggleFlag} />
-          <QuestionNote
-            hasNote={false}
-            onLoad={() => loadNote(question.id)}
-            onSave={(body) => saveNote({ questionId: question.id, aircraftCode, body })}
-          />
-        </div>
-      ) : null}
+      <div className="mt-3 flex flex-wrap items-start gap-2">
+        {isSignedIn ? (
+          <>
+            <FlagButton flagged={flagged} onToggle={onToggleFlag} />
+            <QuestionNote
+              hasNote={false}
+              onLoad={() => loadNote(question.id)}
+              onSave={(body) => saveNote({ questionId: question.id, aircraftCode, body })}
+            />
+          </>
+        ) : null}
+        <ReportQuestionButton
+          onReport={(message) =>
+            reportQuestion({ questionId: question.id, aircraftCode, message })
+          }
+        />
+      </div>
     </Card>
   );
 }

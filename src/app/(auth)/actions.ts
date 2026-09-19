@@ -19,6 +19,7 @@ import { withMinimumDuration } from "@/lib/auth/reset-policy";
 import { createSession, destroyAllSessions, destroySession } from "@/lib/auth/session";
 import { resetEmail } from "@/lib/email/reset-email";
 import { appUrl, sendEmail } from "@/lib/email/send";
+import { welcomeEmail } from "@/lib/email/welcome-email";
 import { hashPassword, needsRehash, unmatchableHash, verifyPassword } from "@/lib/password";
 
 /**
@@ -65,6 +66,12 @@ export async function signUp(
       email,
     };
   }
+
+  // Awaited, not fire-and-forget: a serverless function can be torn down
+  // the moment `redirect` below hands control back, and an unawaited call
+  // would race that. Safe to await unconditionally — `sendEmail` never
+  // throws, so a delivery failure here can never fail sign-up itself.
+  await sendEmail(welcomeEmail(user.email, appUrl()));
 
   await createSession(user.id);
   redirect("/aircraft");
