@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
 import { ServiceWorker } from "@/components/service-worker";
+import { SiteAnnouncement } from "@/components/site-announcement";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeScript } from "@/components/theme-toggle";
@@ -89,6 +90,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </a>
 
         <SiteHeader />
+        <SiteAnnouncement />
 
         <main id="main" className="mx-auto w-full max-w-5xl flex-1 px-4 py-8 sm:px-5">
           {children}

@@ -17,6 +17,7 @@ export const OWNER_LINKS = [
   { href: "/owner/subscribers", label: "Subscribers" },
   { href: "/owner/gift-codes", label: "Gift codes" },
   { href: "/owner/interest", label: "Aircraft requests" },
+  { href: "/owner/settings", label: "Settings" },
 ] as const;
 
 export function OwnerNav({ current }: { current: string }) {

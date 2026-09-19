@@ -9,6 +9,7 @@ import {
   getSubscription,
   hasAnsweredQuestionBefore,
 } from "@/db/subscriptions";
+import { getSiteSettings } from "@/db/settings";
 import { getCurrentUser } from "@/lib/auth/session";
 import { canAnswerQuestion, hasActiveSubscription } from "@/lib/billing/access-policy";
 import { gradeTest, type TestResult } from "@/lib/grading";
@@ -250,14 +251,16 @@ export async function answerQuestion(
     // already counted before, which is what makes retrying free.
     const subscription = await getSubscription(user.id);
     if (!hasActiveSubscription(subscription)) {
-      const [alreadyAnswered, distinctAnswered] = await Promise.all([
+      const [alreadyAnswered, distinctAnswered, settings] = await Promise.all([
         hasAnsweredQuestionBefore(user.id, questionId),
         countQuestionsAnswered(user.id, aircraftCode),
+        getSiteSettings(),
       ]);
       const allowed = canAnswerQuestion({
         hasSubscription: false,
         alreadyAnsweredThisQuestion: alreadyAnswered,
         distinctAnsweredSoFar: distinctAnswered,
+        limit: settings.freeQuestionsPerAircraft,
       });
       if (!allowed) return { status: "paywall" };
     }
