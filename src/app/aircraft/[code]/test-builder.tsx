@@ -4,7 +4,9 @@ import Link from "next/link";
 import { useId, useMemo, useState, type ReactNode } from "react";
 
 import { Badge } from "@/components/ui";
+import { LockIcon, PremiumGate } from "@/components/premium-gate";
 import type { TopicSummary } from "@/db/queries";
+import { canAccessSystem, capQuestionCount, examModeAllowed, smartTestAllowed } from "@/lib/billing/plan-access";
 import {
   ALL_QUESTIONS,
   DEFAULT_TEST_LENGTH,
@@ -60,19 +62,32 @@ export function TestBuilder({
    */
   remainingFree = null,
   presets = null,
+  /** The free/premium tier — see `src/config/plans.ts`. Governs which
+   * sections are selectable, the largest test size, exam mode, and the
+   * smart-test presets. `test/page.tsx` enforces every one of these
+   * server-side regardless of what this component renders; this is only
+   * what keeps the button honest about what a click will actually deliver. */
+  isPremium = false,
 }: {
   aircraftCode: string;
   topics: TopicSummary[];
   remainingFree?: number | null;
   presets?: BuilderPresets | null;
+  isPremium?: boolean;
 }) {
   const fieldId = useId();
 
-  // Everything is selected to start with: the common case is a test over the
-  // whole aircraft, and unticking is easier than hunting for the section you
-  // wanted among a list of empty boxes.
+  const accessibleTopics = useMemo(
+    () => topics.filter((topic) => canAccessSystem(topic.topic, aircraftCode, isPremium)),
+    [topics, aircraftCode, isPremium],
+  );
+
+  // Everything accessible is selected to start with: the common case is a
+  // test over the whole aircraft (or, on the free plan, everything the free
+  // plan actually covers), and unticking is easier than hunting for the
+  // section you wanted among a list of empty boxes.
   const [selected, setSelected] = useState<ReadonlySet<string>>(
-    () => new Set(topics.map((topic) => topic.topic)),
+    () => new Set(accessibleTopics.map((topic) => topic.topic)),
   );
   const [wantsAll, setWantsAll] = useState(false);
   /**
@@ -109,7 +124,7 @@ export function TestBuilder({
   };
   const available = activePreset ? presetCount[activePreset] : sectionsAvailable;
 
-  const allSelected = selected.size === topics.length;
+  const allSelected = selected.size === accessibleTopics.length;
   const requested: TestLength | null = wantsAll
     ? ALL_QUESTIONS
     : /^\d+$/.test(typed.trim()) && Number.parseInt(typed, 10) >= 1
@@ -126,13 +141,20 @@ export function TestBuilder({
     remainingFree === null || !freeTierApplies
       ? requestedSize
       : Math.min(requestedSize, remainingFree);
+  // The plan's own cap (`capQuestionCount`, 20 on the free plan) — separate
+  // from, and applied on top of, the free-question-per-aircraft allowance
+  // above. `test/page.tsx` enforces this regardless of what renders here;
+  // this is only what keeps the button from promising a size the free plan
+  // will not actually deliver.
+  const finalSize = capQuestionCount(size, isPremium);
+  const shortenedByPlanCap = finalSize < size;
   /**
    * What an exam of this size is worth, in minutes. Shown on the Exam card so
    * the student sees the clock they are choosing before they choose it —
    * there is nothing to set, only something to know.
    */
-  const examSeconds = timeLimitFor("exam", size);
-  const examMinutes = size > 0 && examSeconds !== null ? examSeconds / 60 : 0;
+  const examSeconds = timeLimitFor("exam", finalSize);
+  const examMinutes = finalSize > 0 && examSeconds !== null ? examSeconds / 60 : 0;
   const shortenedBySection =
     requested !== null && requested !== ALL_QUESTIONS && requested > available;
   // Whichever cut it down further is the one worth explaining — no point
@@ -141,6 +163,10 @@ export function TestBuilder({
     freeTierApplies && remainingFree !== null && requestedSize > remainingFree;
 
   function toggle(topic: string) {
+    // Defensive — the checkbox for a locked topic is not rendered at all —
+    // but never trust a client event handler over the config it was built
+    // from, and this costs nothing to check.
+    if (!canAccessSystem(topic, aircraftCode, isPremium)) return;
     setActivePreset(null);
     setSelected((previous) => {
       const next = new Set(previous);
@@ -154,7 +180,7 @@ export function TestBuilder({
     ? buildTestHref(aircraftCode, {
         retryOnly: activePreset === "wrong",
         from: activePreset === "flagged" || activePreset === "unseen" ? activePreset : undefined,
-        length: wantsAll ? ALL_QUESTIONS : size || DEFAULT_TEST_LENGTH,
+        length: wantsAll ? ALL_QUESTIONS : finalSize || DEFAULT_TEST_LENGTH,
         mode,
       })
     : buildTestHref(aircraftCode, {
@@ -165,7 +191,7 @@ export function TestBuilder({
         // questions the test will have, so the link it opens must deliver that
         // many. "All" stays "all" — its whole point is to follow the bank as it
         // grows, which a frozen number would not.
-        length: wantsAll ? ALL_QUESTIONS : size || DEFAULT_TEST_LENGTH,
+        length: wantsAll ? ALL_QUESTIONS : finalSize || DEFAULT_TEST_LENGTH,
         mode,
       });
 
@@ -179,47 +205,69 @@ export function TestBuilder({
               active={activePreset === null && allSelected}
               onClick={() => {
                 setActivePreset(null);
-                setSelected(new Set(topics.map((topic) => topic.topic)));
+                setSelected(new Set(accessibleTopics.map((topic) => topic.topic)));
               }}
             >
               All systems
             </PresetChip>
-            {presets.weakTopics.length > 0 ? (
-              <PresetChip
-                active={
-                  activePreset === null &&
-                  selected.size === presets.weakTopics.length &&
-                  presets.weakTopics.every((topic) => selected.has(topic))
-                }
-                onClick={() => {
-                  setActivePreset(null);
-                  setSelected(new Set(presets.weakTopics));
-                }}
+            {/* "My weak systems", "Questions I got wrong", "My flagged
+                questions" and "Unseen questions" are the smart-test presets
+                — built from this student's own history rather than a
+                section pick. `test/page.tsx` refuses to build a test from
+                any of them for a free account regardless of this UI, so a
+                free account sees why they are missing rather than a
+                shorter, unexplained chip row. */}
+            {smartTestAllowed(isPremium) ? (
+              <>
+                {presets.weakTopics.length > 0 ? (
+                  <PresetChip
+                    active={
+                      activePreset === null &&
+                      selected.size === presets.weakTopics.length &&
+                      presets.weakTopics.every((topic) => selected.has(topic))
+                    }
+                    onClick={() => {
+                      setActivePreset(null);
+                      setSelected(new Set(presets.weakTopics));
+                    }}
+                  >
+                    My weak {presets.weakTopics.length === 1 ? "system" : "systems"}
+                  </PresetChip>
+                ) : null}
+                {presets.wrongCount > 0 ? (
+                  <PresetChip
+                    active={activePreset === "wrong"}
+                    onClick={() => setActivePreset("wrong")}
+                  >
+                    Questions I got wrong ({formatPresetCount(presets.wrongCount)})
+                  </PresetChip>
+                ) : null}
+                {presets.flaggedCount > 0 ? (
+                  <PresetChip
+                    active={activePreset === "flagged"}
+                    onClick={() => setActivePreset("flagged")}
+                  >
+                    My flagged questions ({formatPresetCount(presets.flaggedCount)})
+                  </PresetChip>
+                ) : null}
+                {presets.unseenCount > 0 ? (
+                  <PresetChip
+                    active={activePreset === "unseen"}
+                    onClick={() => setActivePreset("unseen")}
+                  >
+                    Unseen questions ({formatPresetCount(presets.unseenCount)})
+                  </PresetChip>
+                ) : null}
+              </>
+            ) : (
+              <PremiumGate
+                isPremium={false}
+                compact
+                description="Smart presets — weak systems, flagged, wrong and unseen questions — need Premium."
               >
-                My weak {presets.weakTopics.length === 1 ? "system" : "systems"}
-              </PresetChip>
-            ) : null}
-            {presets.wrongCount > 0 ? (
-              <PresetChip active={activePreset === "wrong"} onClick={() => setActivePreset("wrong")}>
-                Questions I got wrong ({formatPresetCount(presets.wrongCount)})
-              </PresetChip>
-            ) : null}
-            {presets.flaggedCount > 0 ? (
-              <PresetChip
-                active={activePreset === "flagged"}
-                onClick={() => setActivePreset("flagged")}
-              >
-                My flagged questions ({formatPresetCount(presets.flaggedCount)})
-              </PresetChip>
-            ) : null}
-            {presets.unseenCount > 0 ? (
-              <PresetChip
-                active={activePreset === "unseen"}
-                onClick={() => setActivePreset("unseen")}
-              >
-                Unseen questions ({formatPresetCount(presets.unseenCount)})
-              </PresetChip>
-            ) : null}
+                {null}
+              </PremiumGate>
+            )}
           </div>
         </div>
       ) : null}
@@ -232,7 +280,7 @@ export function TestBuilder({
               type="button"
               onClick={() => {
                 setActivePreset(null);
-                setSelected(new Set(topics.map((topic) => topic.topic)));
+                setSelected(new Set(accessibleTopics.map((topic) => topic.topic)));
               }}
               disabled={allSelected}
               className="link-standalone min-w-11 justify-center font-medium text-brand hover:underline disabled:cursor-not-allowed disabled:text-muted-foreground disabled:no-underline"
@@ -259,6 +307,30 @@ export function TestBuilder({
         <ul className="mt-3 grid gap-2 sm:grid-cols-2">
           {topics.map((topic) => {
             const checked = selected.has(topic.topic);
+            const locked = !canAccessSystem(topic.topic, aircraftCode, isPremium);
+
+            // Shown, not hidden: a free account sees exactly what a
+            // subscription adds, with the question count right there,
+            // rather than a shorter-looking aircraft with no explanation.
+            if (locked) {
+              return (
+                <li key={topic.topic}>
+                  <div className="flex items-center gap-3 rounded-lg border border-dashed border-border bg-surface-muted px-4 py-3 text-muted-foreground">
+                    <LockIcon className="h-4 w-4 shrink-0" />
+                    <span className="text-sm font-medium">{topic.topic}</span>
+                    <span className="ml-auto flex items-center gap-2">
+                      <Badge>
+                        {topic.questionCount} {topic.questionCount === 1 ? "question" : "questions"}
+                      </Badge>
+                      <Link href="/pricing" className="text-xs font-semibold text-brand hover:underline">
+                        Premium
+                      </Link>
+                    </span>
+                  </div>
+                </li>
+              );
+            }
+
             return (
               <li key={topic.topic}>
                 <label
@@ -377,7 +449,15 @@ export function TestBuilder({
         ) : shortenedByFreeLimit ? (
           <p className="mt-2 text-sm text-muted-foreground">
             Your free plan allows {remainingFree} more on {aircraftCode}, so the test will have{" "}
-            {size}.
+            {finalSize}.
+          </p>
+        ) : shortenedByPlanCap ? (
+          <p className="mt-2 text-sm text-muted-foreground">
+            The free plan caps a test at {finalSize} questions.{" "}
+            <Link href="/pricing" className="font-medium text-brand hover:underline">
+              Upgrade for longer tests
+            </Link>
+            .
           </p>
         ) : shortenedBySection ? (
           <p className="mt-2 text-sm text-muted-foreground">
@@ -397,6 +477,7 @@ export function TestBuilder({
                 detail:
                   "The answer and the explanation appear as soon as you answer each question. That question is then settled.",
                 clock: "No time limit. The clock on screen just counts how long you have taken.",
+                locked: false,
               },
               {
                 value: "exam" as const,
@@ -407,10 +488,11 @@ export function TestBuilder({
                 // rather than being a separate thing to choose. Shown here
                 // because it is part of what picking Exam means.
                 clock: examMinutes
-                  ? `${examMinutes} ${examMinutes === 1 ? "minute" : "minutes"} for ${size} ${
-                      size === 1 ? "question" : "questions"
+                  ? `${examMinutes} ${examMinutes === 1 ? "minute" : "minutes"} for ${finalSize} ${
+                      finalSize === 1 ? "question" : "questions"
                     } — one minute each. It hands itself in when the time is up.`
                   : "One minute a question. It hands itself in when the time is up.",
+                locked: !examModeAllowed(isPremium),
               },
             ]
           ).map((option) => {
@@ -418,8 +500,10 @@ export function TestBuilder({
             return (
               <label
                 key={option.value}
-                className={`flex cursor-pointer gap-3 rounded-lg border p-4 transition ${
-                  active ? "border-brand bg-brand-soft" : "border-border bg-surface hover:border-brand"
+                className={`flex gap-3 rounded-lg border p-4 transition ${
+                  option.locked
+                    ? "cursor-not-allowed border-border bg-surface-muted opacity-70"
+                    : `cursor-pointer ${active ? "border-brand bg-brand-soft" : "border-border bg-surface hover:border-brand"}`
                 }`}
               >
                 <input
@@ -427,15 +511,32 @@ export function TestBuilder({
                   name="test-mode"
                   value={option.value}
                   checked={active}
+                  disabled={option.locked}
                   onChange={() => setMode(option.value)}
                   className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--brand)]"
                 />
                 <span>
-                  <span className="block text-sm font-medium text-foreground">{option.title}</span>
-                  <span className="mt-1 block text-sm text-muted-foreground">{option.detail}</span>
-                  <span className="mt-1.5 block text-sm font-medium text-muted-foreground">
-                    {option.clock}
+                  <span className="flex items-center gap-1.5 text-sm font-medium text-foreground">
+                    {option.title}
+                    {option.locked ? (
+                      <span className="inline-flex items-center gap-1 text-xs font-semibold text-muted-foreground">
+                        <LockIcon className="h-3 w-3" /> Premium
+                      </span>
+                    ) : null}
                   </span>
+                  <span className="mt-1 block text-sm text-muted-foreground">{option.detail}</span>
+                  {option.locked ? (
+                    <Link
+                      href="/pricing"
+                      className="mt-1.5 inline-block text-sm font-medium text-brand hover:underline"
+                    >
+                      Upgrade to unlock exam mode
+                    </Link>
+                  ) : (
+                    <span className="mt-1.5 block text-sm font-medium text-muted-foreground">
+                      {option.clock}
+                    </span>
+                  )}
                 </span>
               </label>
             );
@@ -443,12 +544,12 @@ export function TestBuilder({
         </div>
       </fieldset>
 
-      {size > 0 ? (
+      {finalSize > 0 ? (
         <Link
           href={href}
           className="inline-block rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
         >
-          Start test · {size} {size === 1 ? "question" : "questions"}
+          Start test · {finalSize} {finalSize === 1 ? "question" : "questions"}
         </Link>
       ) : remainingFree === 0 ? (
         <Link

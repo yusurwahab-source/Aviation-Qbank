@@ -15,7 +15,9 @@ import {
 } from "@/db/queries";
 import { getQuestionIdsToRetry, getTopicPerformance } from "@/db/reports";
 import { countQuestionsAnswered, getSubscription } from "@/db/subscriptions";
+import { getUserPlanState } from "@/db/users";
 import { hasActiveSubscription, remainingFreeQuestions } from "@/lib/billing/access-policy";
+import { isPremiumUser } from "@/lib/billing/plan-access";
 import { getSiteSettings } from "@/db/settings";
 import { getCurrentUser } from "@/lib/auth/session";
 import { PRESET_COUNT_CEILING } from "@/lib/test-options";
@@ -53,15 +55,20 @@ export default async function AircraftPage({ params }: PageProps) {
    * gap that already means a signed-out visitor sees no flags or notes.
    */
   let presets: BuilderPresets | null = null;
+  /** The free/premium tier from `src/config/plans.ts` — see the note on
+   * `remainingFree` above for how this differs from the Phase 6 allowance.
+   * Signed out counts as free, the same as everywhere else this is read. */
+  let isPremium = false;
 
   try {
     [plane, topics] = await Promise.all([getAircraft(aircraftCode), listTopics(aircraftCode)]);
 
     const user = await getCurrentUser();
     if (user) {
-      const [subscription, performance, flaggedIds, wrongIds, unseenCount, resumable] =
+      const [subscription, planState, performance, flaggedIds, wrongIds, unseenCount, resumable] =
         await Promise.all([
           getSubscription(user.id),
+          getUserPlanState(user.id),
           getTopicPerformance(user.id, aircraftCode),
           getFlaggedQuestionIds(user.id, aircraftCode),
           getQuestionIdsToRetry(user.id, aircraftCode, PRESET_COUNT_CEILING),
@@ -69,6 +76,7 @@ export default async function AircraftPage({ params }: PageProps) {
           findIncompleteSession(user.id, aircraftCode),
         ]);
       incompleteSession = resumable;
+      isPremium = isPremiumUser({ plan: planState, subscription });
 
       if (!hasActiveSubscription(subscription)) {
         const [distinctAnswered, settings] = await Promise.all([
@@ -139,6 +147,7 @@ export default async function AircraftPage({ params }: PageProps) {
               topics={topics}
               remainingFree={remainingFree}
               presets={presets}
+              isPremium={isPremium}
             />
           </Card>
         )}
