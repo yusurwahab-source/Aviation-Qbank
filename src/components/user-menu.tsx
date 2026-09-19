@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 import { logOut } from "@/app/(auth)/actions";
@@ -77,6 +78,14 @@ export function UserMenu({ email }: { email: string }) {
             <br />
             <span className="text-sm font-medium text-foreground">{email}</span>
           </p>
+          <Link
+            href="/account"
+            role="menuitem"
+            onClick={() => setOpen(false)}
+            className="tap-target flex w-full items-center px-4 text-left text-sm font-medium text-foreground transition hover:bg-surface-muted hover:text-brand"
+          >
+            Account
+          </Link>
           <form action={logOut}>
             <button
               type="submit"

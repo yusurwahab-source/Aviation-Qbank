@@ -13,6 +13,17 @@ export type UserWithPassword = {
   passwordHash: string;
 };
 
+/** The stored hash for one account by id — what account deletion re-checks
+ * the typed password against before doing anything irreversible. */
+export async function getPasswordHash(userId: string): Promise<string | null> {
+  const [row] = await getDb()
+    .select({ passwordHash: users.passwordHash })
+    .from(users)
+    .where(eq(users.id, userId))
+    .limit(1);
+  return row?.passwordHash ?? null;
+}
+
 export async function findUserByEmail(email: string): Promise<UserWithPassword | null> {
   const [row] = await getDb()
     .select({ id: users.id, email: users.email, passwordHash: users.passwordHash })
