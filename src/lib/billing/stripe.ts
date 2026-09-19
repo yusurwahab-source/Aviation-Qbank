@@ -37,6 +37,29 @@ export function looksLikePriceId(value: string | null): value is string {
 }
 
 /**
+ * Stripe's `current_period_end` used to live on the Subscription object
+ * itself. Under the account's "flexible billing" API behaviour it lives on
+ * each line item instead (`subscription.items.data[0].current_period_end`),
+ * one per item, because a subscription can now hold several independently
+ * billed items — the top-level field is simply absent. This reads whichever
+ * is present, preferring the top-level one so an older API version keeps
+ * working unchanged, and falling back to the first item's for the shape this
+ * account actually sends. There is only ever one item on any subscription
+ * this app creates, so "the first item's period" and "the subscription's
+ * period" are the same fact.
+ */
+export function extractCurrentPeriodEnd(subscription: {
+  current_period_end?: unknown;
+  items?: { data?: Array<{ current_period_end?: unknown }> };
+}): number | null {
+  if (typeof subscription.current_period_end === "number") {
+    return subscription.current_period_end;
+  }
+  const fromFirstItem = subscription.items?.data?.[0]?.current_period_end;
+  return typeof fromFirstItem === "number" ? fromFirstItem : null;
+}
+
+/**
  * The form-encoded body Stripe's Checkout Sessions API expects. Pure and
  * exported on its own so the shape of the request can be asserted without a
  * network call.

@@ -8,7 +8,7 @@ description of how the project is built, not a historical record.
 A web application where student pilots practise multiple-choice questions for
 aircraft type ratings. All user-facing content is in English.
 
-**Current state: Phase 5 is complete, and Phase 6 (payments) is under way.**
+**Current state: Phase 6 (payments) is complete.**
 A user can choose an aircraft, build a test from any combination of sections
 and any number of questions, sit it either way — study, where each answer is
 marked straight away with the correct option and the explanation and there is
@@ -24,10 +24,9 @@ retrying.
 
 A signed-in student may answer up to a fixed number of questions free on
 each aircraft; going further needs a subscription, bought at `/upgrade`
-through Stripe Checkout and confirmed by its webhook. See the note on
-payments in the conventions below and in "Not in scope yet" — the code is
-written and unit tested, but has not yet been exercised against a real
-Stripe account with real Prices configured.
+through Stripe Checkout and confirmed by its webhook. Verified end to end
+against a real Stripe account in test mode. See the note on payments in the
+conventions below and in "Not in scope yet".
 
 (This was first built against 2Checkout. That merchant application was
 declined before a single test payment could be attempted, so the
@@ -604,10 +603,10 @@ and reset tokens elsewhere in this file exist for.
 **The webhook only ever handles the subscription's own events**
 (`customer.subscription.created` / `.updated` / `.deleted`), never
 `checkout.session.completed`. A `Subscription` object carries its `status`
-and `current_period_end` directly — read and stored as-is, not derived —
-so there was no need to repeat the "compute it, don't trust the webhook"
-trick the earlier 2Checkout attempt needed for a figure Stripe already
-states plainly. `mapStripeSubscriptionStatus` in `access-policy.ts` narrows
+and a period end directly — read and stored as-is, not derived — so there
+was no need to repeat the "compute it, don't trust the webhook" trick the
+earlier 2Checkout attempt needed for a figure Stripe already states
+plainly. `mapStripeSubscriptionStatus` in `access-policy.ts` narrows
 Stripe's several statuses down to the two this app stores: only `active`
 and `trialing` count as active, and everything else — `past_due`,
 `unpaid`, `incomplete`, a plain `canceled` — is treated as not, since
@@ -615,6 +614,21 @@ nothing here offers a trial or a grace period. A cancellation raised from
 Stripe's own customer portal, which may arrive without the metadata set at
 checkout, falls back to looking the row up by the subscription's own id
 (`findSubscriptionByProviderRef`).
+
+**"Directly" turned out to need a second look.** `current_period_end` moved
+off the `Subscription` object under this account's billing API behaviour —
+it lives on each line item instead
+(`items.data[0].current_period_end`), because a subscription can now hold
+several independently billed items. The first real checkout on this
+project silently failed to unlock anything because of exactly this: the
+webhook read a field that no longer existed, stored `null`, and
+`hasActiveSubscription` — correctly, given `null` — treated the row as not
+yet confirmed, on a subscription Stripe itself already showed as `active`.
+`extractCurrentPeriodEnd` in `stripe.ts` now reads the top-level field when
+present and falls back to the first item's, which is the only item any
+subscription this app creates ever has. Worth remembering if Stripe moves
+another field the same way: a webhook payload matching yesterday's
+documentation is not evidence it matches today's account.
 
 **Configuration is read through `readEnv`, never straight off
 `process.env`.** `src/lib/env.ts` trims whitespace, strips surrounding
@@ -723,18 +737,19 @@ tests/                        Vitest unit tests
    outright. `difficulty` is gone from the schema, the question files, the
    database and the test screen — see the note in the conventions above.
    Phase 5 is therefore complete as scoped.
-6. **Phase 6 — payments. Under way.** A signed-in student may answer a fixed
+6. **Phase 6 — payments. Done.** A signed-in student may answer a fixed
    number of questions free on each aircraft (`FREE_QUESTIONS_PER_AIRCRAFT`);
    going past it needs a subscription. `/upgrade`'s "Subscribe" button starts
    a Stripe Checkout session for a monthly or a quarterly (every three
-   months) Price; Stripe's own
-   webhook (`/api/webhooks/stripe`) confirms it and keeps the `subscriptions`
-   table current, one row per user rather than appended to. Written and unit
-   tested — the checkout session request, the webhook signature check, and
-   the free-tier arithmetic all have tests that need no database — but
-   **not yet exercised against a real Stripe account with real Prices
-   configured**. See the conventions below and `.env.example` for what that
-   setup involves.
+   months) Price; Stripe's own webhook (`/api/webhooks/stripe`) confirms it
+   and keeps the `subscriptions` table current, one row per user rather than
+   appended to. Verified end to end against a real Stripe test-mode account:
+   a checkout with Stripe's `4242 4242 4242 4242` test card, a
+   correctly-signed webhook accepted, and — after `extractCurrentPeriodEnd`
+   fixed a field that had moved under this account's billing API behaviour,
+   see the conventions above — the subscription actually recognised as
+   active. Still test mode only; going live needs the account activated and
+   the same setup repeated with live keys, per `.env.example`.
 
 Do not start a phase until the previous one works.
 
@@ -773,14 +788,13 @@ from inside the website, an admin panel gets added then — the `status`,
   hitting the limit. Accepted for the same reason "Practice does not require
   an account" is accepted below: requiring an account to meter usage would
   also block anyone trying the site before committing to one.
-- **The Stripe integration has not been exercised against a real account.**
-  The checkout session request and the webhook signature check are unit
-  tested against known values, but nothing has yet sent this deployment a
-  live Stripe event. The webhook logs a warning whenever a subscription
-  event arrives without the metadata it expects, so a real mismatch will
-  show up in the log rather than silently doing nothing — check that log
-  the first time a real payment is tested, alongside Stripe's own dashboard
-  view of recent webhook deliveries.
+- **The Stripe integration is verified in test mode only.** A checkout, a
+  webhook delivery and the subscription being recognised as active have all
+  been confirmed against this account's test mode — see the note on
+  `extractCurrentPeriodEnd` in the conventions above for the one thing that
+  did not work on the first attempt. None of it has run in live mode, which
+  needs the account activated and the same Products, Prices and webhook
+  endpoint set up again with live keys.
 - **2Checkout was tried first and declined the merchant application before
   any code could be tested against it.** Nothing about that attempt is left
   in the code; it is mentioned here only so the choice of Stripe is not
