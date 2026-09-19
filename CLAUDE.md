@@ -853,8 +853,8 @@ student drives themselves, at `/redeem`: `redeemGiftCode` in
 `db/gift-codes.ts` claims the code and writes the `subscriptions` row in one
 transaction, with `provider: "gift"` and no `providerSubscriptionRef`.
 
-**`/owner` is not an admin panel — it is four read-only pages and one form,
-gated by one email.** `isOwner` compares the signed-in account's email
+**`/owner` is not an admin panel — it is five pages gated by one email,
+four of which only read.** `isOwner` compares the signed-in account's email
 against `OWNER_EMAIL`, read the same tolerant way every other configuration
 value is. Anyone else visiting any path under `/owner` — signed out, or
 signed in as anyone else — gets a plain `notFound()`, not a redirect to
@@ -871,11 +871,14 @@ times, because the copy that gets forgotten is the one that leaks the
 site.
 
 **`src/db/owner.ts` is the only module in the codebase whose queries take
-no `userId`.** Every read in `reports.ts` filters on one, precisely so a
+no `userId`, and the only one that writes to a row without one.** Every read in `reports.ts` filters on one, precisely so a
 student can never see another's history; this file inverts that on purpose
 and is the more dangerous for it. The whole guard is that every caller sits
 under `/owner` behind `requireOwner()`, which is why the inversion is
-stated at the top of the file itself — nothing else may import it.
+stated at the top of the file itself — nothing else may import it. The two
+writes there raise the stakes rather than change the rule: an unscoped read
+shows one person data that is not theirs, while an unscoped write hands
+them somebody else's subscription.
 
 What the area shows, and why each earns its place: **Overview** (six
 counts), **Subscribers** (who has access, from Stripe or a gift, and when
@@ -884,11 +887,39 @@ uses, never by reading `status` alone, since a row can say `active` and
 still be over), **Gift codes** (every code minted and what became of it —
 an unredeemed code handed out is the common case worth chasing, and before
 this the only record was whatever the owner did with the printed output),
-and **Aircraft requests**. That last one closed a real hole: the
+**Aircraft requests**, and **Accounts**. Aircraft requests closed a real
+hole: the
 `aircraft_interest` table had been collecting addresses since the landing
 page shipped with **no way to read it from anywhere but `db:studio`**. It
 is tallied by aircraft as well as listed, because the decision it exists to
 inform — which bank to write next — is a question about counts.
+
+**Accounts is the one page that writes, and both of its buttons are honest
+about what they cannot do.** It lists everyone who has signed up — not only
+the people who pay, which is what Subscribers already answers — with what
+each has actually done, and searches by email through a plain GET form so a
+result can be linked to. `grantAccess` gives an account days of full access
+with no Stripe and no code, writing `provider: "manual"` rather than
+`"gift"`: both are free access, but only one of them traces back to a row
+in `gift_codes`, and "I typed this in" should be distinguishable from
+"somebody redeemed a code I minted" a year later. It reuses
+`computeGiftPeriodEnd` rather than reimplementing it, so a manual grant
+extends and never replaces — thirty days handed to somebody who already has
+ninety leaves ninety.
+
+`revokeAccess` sets `status: "canceled"` and deliberately leaves
+`currentPeriodEnd` where it was: `hasActiveSubscription` already refuses
+anything not `active`, and keeping the date means the row still records what
+the account had. What revoking does **not** do is cancel anything at Stripe —
+the subscription keeps billing and its next renewal writes the row back to
+`active`, which is the webhook doing its job. That is the same lesson the
+refund note above records, so the screen says it in place rather than
+letting the owner infer that money has stopped moving.
+
+The search escapes `%` and `_` before it reaches `ilike`. An owner typing an
+address into a box is not writing a pattern, and silently treating it as one
+would return the wrong account — which, on a page whose buttons change
+somebody's access, is the kind of wrong worth a line of code.
 
 The claim is atomic the same way `consumeResetToken` is: the update's own
 `where redeemed_by_user_id is null` is what stops two redemption attempts on
@@ -962,7 +993,7 @@ src/
     progress/                 Reports, overall and per aircraft
     upgrade/                  Checkout for the two plans, and the Stripe redirect action
     redeem/                   Where a gift code becomes an active subscription
-    owner/                    Owner-only: overview, subscribers, gift codes, aircraft requests
+    owner/                    Owner-only: overview, accounts, subscribers, gift codes, aircraft requests
     api/webhooks/stripe/      The Stripe webhook endpoint
     about|pricing|faq|terms|privacy|contact/   Short pages the footer links to
     manifest.ts               Web app manifest
@@ -982,7 +1013,7 @@ src/
     password-reset.ts         Issuing and spending reset links
     subscriptions.ts          Subscription row and the free-tier count
     gift-codes.ts             Minting and redeeming free-access codes
-    owner.ts                  THE unscoped reads. /owner only; see the convention above.
+    owner.ts                  THE unscoped reads, and grant/revoke. /owner only; see the convention above.
     index.ts                  Connection pool
   lib/
     email/
