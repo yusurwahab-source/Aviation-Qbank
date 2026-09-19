@@ -14,6 +14,7 @@ import {
 
 import { FlagButton } from "@/components/flag-button";
 import { QuestionNote } from "@/components/question-note";
+import { ReportQuestionButton } from "@/components/report-question-button";
 import { Badge, Card } from "@/components/ui";
 import type { TestQuestion } from "@/db/queries";
 import { optionIndexForKey, shouldHandleShortcut } from "@/lib/keyboard-shortcuts";
@@ -30,6 +31,7 @@ import {
 import {
   answerQuestion,
   loadNote,
+  reportQuestion,
   saveNote,
   submitTest,
   toggleFlag,
@@ -662,6 +664,15 @@ export function TestRunner({
         </div>
 
         <h1 className="question-text mt-4 font-semibold text-foreground">{current.question}</h1>
+
+        <div className="mt-2">
+          <ReportQuestionButton
+            key={current.id}
+            onReport={(message) =>
+              reportQuestion({ questionId: current.id, aircraftCode, message })
+            }
+          />
+        </div>
 
         {current.media ? (
           // eslint-disable-next-line @next/next/no-img-element

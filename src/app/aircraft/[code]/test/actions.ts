@@ -6,6 +6,7 @@ import { recordTestResult, saveAnswer as saveAnswerRow } from "@/db/attempts";
 import { toggleQuestionFlag } from "@/db/flags";
 import { getQuestionNote, saveQuestionNote } from "@/db/notes";
 import { getAnswerKey } from "@/db/queries";
+import { recordQuestionReport } from "@/db/question-reports";
 import {
   countQuestionsAnswered,
   getSubscription,
@@ -15,6 +16,7 @@ import { getSiteSettings } from "@/db/settings";
 import { getCurrentUser } from "@/lib/auth/session";
 import { canAnswerQuestion, hasActiveSubscription } from "@/lib/billing/access-policy";
 import { gradeTest, type TestResult } from "@/lib/grading";
+import { questionReportSchema } from "@/lib/question-report";
 import { TEST_MODES, deadlineFrom, timeLimitFor } from "@/lib/test-options";
 
 /**
@@ -387,5 +389,32 @@ export async function loadNote(questionId: string): Promise<string> {
   } catch (error) {
     console.error("Failed to load a note:", error);
     return "";
+  }
+}
+
+/**
+ * "Report a problem with this question" — every question carries the link,
+ * signed in or not. Unlike a flag or a note, this is not the student's own
+ * study aid: it is a message to `/admin`, so — unlike `toggleFlag` and
+ * `saveNote` above — a signed-out visitor may use it too, with `userId` left
+ * null (see the note on `question_reports.userId` in `schema.ts`).
+ */
+export async function reportQuestion(
+  input: z.infer<typeof questionReportSchema>,
+): Promise<{ status: "sent" | "failed" }> {
+  try {
+    const { questionId, aircraftCode, message } = questionReportSchema.parse(input);
+    const user = await getCurrentUser();
+
+    await recordQuestionReport({
+      questionId,
+      aircraftCode,
+      userId: user?.id ?? null,
+      message,
+    });
+    return { status: "sent" };
+  } catch (error) {
+    console.error("Failed to record a question report:", error);
+    return { status: "failed" };
   }
 }
