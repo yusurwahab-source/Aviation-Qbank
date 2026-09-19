@@ -4,6 +4,7 @@ import {
   ALL_QUESTIONS,
   DEFAULT_TEST_LENGTH,
   DEFAULT_TEST_MODE,
+  buildResumeHref,
   buildTestHref,
   EXAM_SECONDS_PER_QUESTION,
   deadlineFrom,
@@ -122,6 +123,59 @@ describe("buildTestHref", () => {
     const query = new URLSearchParams(href.split("?")[1]);
     expect(parseTopics(query.getAll("topic"))).toEqual(["O'Brien & Sons"]);
     expect(parseTestLength(query.get("questions") ?? undefined)).toBe(ALL_QUESTIONS);
+  });
+
+  it("sets from=incorrect for a retry link", () => {
+    expect(buildTestHref("DA40", { retryOnly: true })).toBe("/aircraft/DA40/test?from=incorrect");
+  });
+
+  it("sets from=flagged or from=unseen for the other two presets", () => {
+    expect(buildTestHref("DA40", { from: "flagged" })).toBe("/aircraft/DA40/test?from=flagged");
+    expect(buildTestHref("DA40", { from: "unseen" })).toBe("/aircraft/DA40/test?from=unseen");
+  });
+
+  it("prefers retryOnly if both are somehow set", () => {
+    expect(buildTestHref("DA40", { retryOnly: true, from: "flagged" })).toBe(
+      "/aircraft/DA40/test?from=incorrect",
+    );
+  });
+});
+
+describe("buildResumeHref", () => {
+  it("carries the session's own id as ?t=", () => {
+    expect(
+      buildResumeHref({ clientTestId: "abc123", aircraftCode: "DA40", mode: "study", topics: [] }),
+    ).toBe("/aircraft/DA40/test?t=abc123");
+  });
+
+  it("includes mode only when it is not the default", () => {
+    expect(
+      buildResumeHref({ clientTestId: "abc123", aircraftCode: "DA40", mode: "exam", topics: [] }),
+    ).toBe("/aircraft/DA40/test?t=abc123&mode=exam");
+  });
+
+  it("repeats topic, one per section", () => {
+    expect(
+      buildResumeHref({
+        clientTestId: "abc123",
+        aircraftCode: "DA40",
+        mode: "study",
+        topics: ["Fuel System", "Electrical"],
+      }),
+    ).toBe("/aircraft/DA40/test?t=abc123&topic=Fuel+System&topic=Electrical");
+  });
+
+  it("round-trips through parseTestMode and parseTopics", () => {
+    const href = buildResumeHref({
+      clientTestId: "abc123",
+      aircraftCode: "DA40",
+      mode: "exam",
+      topics: ["Fuel System"],
+    });
+    const query = new URLSearchParams(href.split("?")[1]);
+    expect(query.get("t")).toBe("abc123");
+    expect(parseTestMode(query.get("mode") ?? undefined)).toBe("exam");
+    expect(parseTopics(query.getAll("topic"))).toEqual(["Fuel System"]);
   });
 });
 
