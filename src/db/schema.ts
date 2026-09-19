@@ -476,3 +476,28 @@ export const aircraftInterest = pgTable(
 
 export type AircraftInterestRow = typeof aircraftInterest.$inferSelect;
 export type AircraftInterestInsert = typeof aircraftInterest.$inferInsert;
+
+/**
+ * Settings the owner can change from the website, without a deploy.
+ *
+ * A key/value table rather than one row with a column per setting: adding a
+ * setting is then an insert rather than a migration, and a setting that was
+ * removed leaves a row nobody reads rather than a column nobody drops.
+ *
+ * Deliberately **not** where content lives. `db:seed` rewrites `aircraft`
+ * and `questions` from `/content` on every deploy, so anything stored here
+ * that content also owns would be two sources of truth with the files
+ * winning silently. What belongs here is what no file describes: the size
+ * of the free allowance, and a line of text to show everyone.
+ *
+ * Every value is text. The shape each key is supposed to have is enforced
+ * in `src/lib/settings.ts`, where it can be unit tested without a database,
+ * the same split as `schema.ts` and `src/content/schema.ts`.
+ */
+export const siteSettings = pgTable("site_settings", {
+  key: varchar("key", { length: 64 }).primaryKey(),
+  value: text("value").notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+export type SiteSettingRow = typeof siteSettings.$inferSelect;

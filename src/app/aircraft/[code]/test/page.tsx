@@ -17,6 +17,7 @@ import {
 import { getQuestionIdsToRetry } from "@/db/reports";
 import { countQuestionsAnswered, getSubscription } from "@/db/subscriptions";
 import { hasActiveSubscription, remainingFreeQuestions } from "@/lib/billing/access-policy";
+import { getSiteSettings } from "@/db/settings";
 import { getCurrentUser } from "@/lib/auth/session";
 import {
   buildTestHref,
@@ -199,8 +200,11 @@ export default async function TestPage({ params, searchParams }: PageProps) {
         if (user) {
           const subscription = await getSubscription(user.id);
           if (!hasActiveSubscription(subscription)) {
-            const distinctAnswered = await countQuestionsAnswered(user.id, aircraftCode);
-            size = Math.min(size, remainingFreeQuestions(distinctAnswered));
+            const [distinctAnswered, settings] = await Promise.all([
+              countQuestionsAnswered(user.id, aircraftCode),
+              getSiteSettings(),
+            ]);
+            size = Math.min(size, remainingFreeQuestions(distinctAnswered, settings.freeQuestionsPerAircraft));
           }
         }
         freeLimitReached = size === 0 && available > 0;

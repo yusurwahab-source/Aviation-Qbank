@@ -853,7 +853,7 @@ student drives themselves, at `/redeem`: `redeemGiftCode` in
 `db/gift-codes.ts` claims the code and writes the `subscriptions` row in one
 transaction, with `provider: "gift"` and no `providerSubscriptionRef`.
 
-**`/owner` is not an admin panel — it is five pages gated by one email,
+**`/owner` is not an admin panel — it is six pages gated by one email,
 four of which only read.** `isOwner` compares the signed-in account's email
 against `OWNER_EMAIL`, read the same tolerant way every other configuration
 value is. Anyone else visiting any path under `/owner` — signed out, or
@@ -887,7 +887,7 @@ uses, never by reading `status` alone, since a row can say `active` and
 still be over), **Gift codes** (every code minted and what became of it —
 an unredeemed code handed out is the common case worth chasing, and before
 this the only record was whatever the owner did with the printed output),
-**Aircraft requests**, and **Accounts**. Aircraft requests closed a real
+**Aircraft requests**, **Accounts**, and **Settings**. Aircraft requests closed a real
 hole: the
 `aircraft_interest` table had been collecting addresses since the landing
 page shipped with **no way to read it from anywhere but `db:studio`**. It
@@ -920,6 +920,35 @@ The search escapes `%` and `_` before it reaches `ilike`. An owner typing an
 address into a box is not writing a pattern, and silently treating it as one
 would return the wrong account — which, on a page whose buttons change
 somebody's access, is the kind of wrong worth a line of code.
+
+**Settings is the second page that writes, and it is deliberately small.**
+`site_settings` is a key/value table — adding a setting is an insert, not a
+migration — holding exactly two things: the free-question allowance
+(`FREE_QUESTIONS_PER_AIRCRAFT`'s default, now an override the owner can
+change without a deploy) and a one-line announcement banner shown above
+every page. Nothing else lives here on purpose. Content is `/content`'s job
+and `db:seed` rewrites `aircraft` and `questions` from those files on every
+deploy, so a setting that duplicated what a file already owns would be a
+second source of truth the files silently overrule; prices are Stripe's,
+changed there, never here; the product's name and branding stay in
+`src/config/site.ts`. What belongs in `site_settings` is only what no file
+describes.
+
+`src/lib/settings.ts` is pure, like `access-policy.ts` and `grading.ts`:
+`validateSettings` is the only way a value is written, and refuses loudly —
+the one person who can fix a bad value is the one who just typed it.
+`parseSettings`, reading the stored rows back, is the opposite temperament,
+and deliberately so: every setting has a default in code, a missing or
+corrupt row falls back to it rather than erroring, and that is what makes
+an empty table on a fresh clone behave exactly like this application did
+before settings existed. `getSiteSettings` in `db/settings.ts` wraps the
+read in the same `catch` — a settings lookup is never what the page it runs
+inside is *for*, least of all `answerQuestion`, which now reads it to learn
+today's allowance before deciding whether a question may be graded.
+`remainingFreeQuestions` and `canAnswerQuestion` both take the limit as an
+argument rather than reading the constant directly, for exactly that
+reason: they still have to stay pure, and a pure function cannot go and
+look a setting up for itself.
 
 The claim is atomic the same way `consumeResetToken` is: the update's own
 `where redeemed_by_user_id is null` is what stops two redemption attempts on
@@ -993,7 +1022,7 @@ src/
     progress/                 Reports, overall and per aircraft
     upgrade/                  Checkout for the two plans, and the Stripe redirect action
     redeem/                   Where a gift code becomes an active subscription
-    owner/                    Owner-only: overview, accounts, subscribers, gift codes, aircraft requests
+    owner/                    Owner-only: overview, accounts, subscribers, gift codes, aircraft requests, settings
     api/webhooks/stripe/      The Stripe webhook endpoint
     about|pricing|faq|terms|privacy|contact/   Short pages the footer links to
     manifest.ts               Web app manifest
@@ -1002,7 +1031,7 @@ src/
   components/                 Shared UI, including the shell (site-header,
                               site-footer, mobile-nav, user-menu, theme-toggle, logo)
   config/
-    site.ts                   THE product name, tagline, description and URL
+    site.ts                   THE product name, tagline, description and URL — not site_settings, see the convention above
   content/
     schema.ts                 THE question schema
     load.ts                   Reads and validates /content
@@ -1013,6 +1042,7 @@ src/
     password-reset.ts         Issuing and spending reset links
     subscriptions.ts          Subscription row and the free-tier count
     gift-codes.ts             Minting and redeeming free-access codes
+    settings.ts               Reading and writing site_settings; owner-only write, publicly read
     owner.ts                  THE unscoped reads, and grant/revoke. /owner only; see the convention above.
     index.ts                  Connection pool
   lib/
@@ -1024,6 +1054,7 @@ src/
       stripe.ts                Checkout session request + Stripe API call (pure builder, tested)
       stripe-webhook.ts        Webhook signature verification (pure, tested)
       gift-codes.ts            Code shape, normalisation, extend-only arithmetic (pure, tested)
+    settings.ts              What the owner may change from the website (pure, tested)
     env.ts                    Reading configuration, tolerantly (pure, tested)
     grading.ts                Scoring (pure, tested)
     question-status.ts        What the question map may say (pure, tested)

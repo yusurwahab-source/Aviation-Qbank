@@ -4,14 +4,15 @@ import type { Metadata } from "next";
 import { ComingSoon } from "@/components/coming-soon";
 import { PageHeading } from "@/components/ui";
 import { siteConfig } from "@/config/site";
-import { FREE_QUESTIONS_PER_AIRCRAFT } from "@/lib/billing/access-policy";
+import { getSiteSettings } from "@/db/settings";
 
 export const metadata: Metadata = {
   title: "Pricing",
   description: `What is free on ${siteConfig.name}, and what a subscription adds.`,
 };
 
-export default function PricingPage() {
+export default async function PricingPage() {
+  const settings = await getSiteSettings();
   return (
     <>
       <PageHeading
@@ -23,7 +24,7 @@ export default function PricingPage() {
       <ComingSoon note="The plan prices themselves are shown at checkout rather than here — they are set in Stripe, so this page cannot state them without going out of date.">
         <p>
           <strong className="text-foreground">Free.</strong> Every signed-in student may answer{" "}
-          {FREE_QUESTIONS_PER_AIRCRAFT} questions on <em>each</em> aircraft at no cost. The
+          {settings.freeQuestionsPerAircraft} questions on <em>each</em> aircraft at no cost. The
           allowance is per type, so trying a second aircraft does not spend the one you have
           left on the first, and answering a question you have already seen never costs
           anything further.

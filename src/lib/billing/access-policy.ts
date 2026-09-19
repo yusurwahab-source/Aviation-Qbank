@@ -16,6 +16,13 @@
  * A question already answered before never counts twice — see
  * `hasAnsweredQuestionBefore` — so this is a one-time allowance per aircraft,
  * not a quota that renews.
+ *
+ * This is the **default**, not the only possible value: the owner can change
+ * the allowance from `/owner/settings` without a deploy, and every function
+ * below takes the figure as an argument so that this module stays pure and
+ * the stored value has exactly one meaning. Callers that have not read the
+ * settings fall back to this number, which is what the application shipped
+ * with — see `src/lib/settings.ts`.
  */
 export const FREE_QUESTIONS_PER_AIRCRAFT = 20;
 
@@ -45,8 +52,11 @@ export function hasActiveSubscription(
 }
 
 /** How many free questions are left on this aircraft, never negative. */
-export function remainingFreeQuestions(distinctAnsweredSoFar: number): number {
-  return Math.max(0, FREE_QUESTIONS_PER_AIRCRAFT - distinctAnsweredSoFar);
+export function remainingFreeQuestions(
+  distinctAnsweredSoFar: number,
+  limit: number = FREE_QUESTIONS_PER_AIRCRAFT,
+): number {
+  return Math.max(0, limit - distinctAnsweredSoFar);
 }
 
 /**
@@ -94,13 +104,18 @@ export function mapStripeSubscriptionStatus(stripeStatus: string): "active" | "c
  * have already answered before — that never cost anything the first time
  * either, in the sense that it does not consume a *second* slot — or a new
  * one, provided the aircraft's free allowance is not already used up.
+ *
+ * The allowance is passed in rather than read from the constant, because the
+ * owner can change it: this function has to be able to say what the answer
+ * is for *today's* limit, and a pure function cannot go and look it up.
  */
 export function canAnswerQuestion(input: {
   hasSubscription: boolean;
   alreadyAnsweredThisQuestion: boolean;
   distinctAnsweredSoFar: number;
+  limit?: number;
 }): boolean {
   if (input.hasSubscription) return true;
   if (input.alreadyAnsweredThisQuestion) return true;
-  return input.distinctAnsweredSoFar < FREE_QUESTIONS_PER_AIRCRAFT;
+  return input.distinctAnsweredSoFar < (input.limit ?? FREE_QUESTIONS_PER_AIRCRAFT);
 }

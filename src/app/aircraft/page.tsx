@@ -7,7 +7,8 @@ import { AIRCRAFT_IN_DEVELOPMENT } from "@/config/aircraft-marketing";
 import { siteConfig } from "@/config/site";
 import { getSubscription } from "@/db/subscriptions";
 import { listAircraft, type AircraftSummary } from "@/db/queries";
-import { FREE_QUESTIONS_PER_AIRCRAFT, hasActiveSubscription } from "@/lib/billing/access-policy";
+import { hasActiveSubscription } from "@/lib/billing/access-policy";
+import { getSiteSettings } from "@/db/settings";
 import { getCurrentUser } from "@/lib/auth/session";
 
 export const metadata: Metadata = {
@@ -49,7 +50,7 @@ export default async function AircraftPickerPage() {
     );
   }
 
-  const offerUpgrade = await shouldOfferUpgrade();
+  const [offerUpgrade, settings] = await Promise.all([shouldOfferUpgrade(), getSiteSettings()]);
 
   return (
     <>
@@ -61,7 +62,7 @@ export default async function AircraftPickerPage() {
       {offerUpgrade ? (
         <Card className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <p className="text-sm text-muted-foreground">
-            Practising is free up to {FREE_QUESTIONS_PER_AIRCRAFT} questions on each aircraft.
+            Practising is free up to {settings.freeQuestionsPerAircraft} questions on each aircraft.
             Subscribe for unlimited questions on every type.
           </p>
           <Link

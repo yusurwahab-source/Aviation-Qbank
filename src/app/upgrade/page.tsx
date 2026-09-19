@@ -10,11 +10,8 @@ import {
   looksLikeSecretKey,
   type CheckoutPlan,
 } from "@/lib/billing/stripe";
-import {
-  FREE_QUESTIONS_PER_AIRCRAFT,
-  daysRemaining,
-  hasActiveSubscription,
-} from "@/lib/billing/access-policy";
+import { daysRemaining, hasActiveSubscription } from "@/lib/billing/access-policy";
+import { getSiteSettings } from "@/db/settings";
 import { getCurrentUser } from "@/lib/auth/session";
 import { envValue } from "@/lib/env";
 
@@ -49,7 +46,11 @@ export default async function UpgradePage({
   const user = await getCurrentUser();
   if (!user) redirect("/login");
 
-  const [subscription, query] = await Promise.all([getSubscription(user.id), searchParams]);
+  const [subscription, query, settings] = await Promise.all([
+    getSubscription(user.id),
+    searchParams,
+    getSiteSettings(),
+  ]);
   const active = subscription !== null && hasActiveSubscription(subscription);
   const justSubscribed = (Array.isArray(query.success) ? query.success[0] : query.success) === "1";
   const justRedeemed = (Array.isArray(query.redeemed) ? query.redeemed[0] : query.redeemed) === "1";
@@ -79,7 +80,7 @@ export default async function UpgradePage({
         subtitle={
           active && subscription
             ? (accessSummary ?? `You're on the ${subscription.plan} plan. Full access to every aircraft.`)
-            : `Practising is free up to ${FREE_QUESTIONS_PER_AIRCRAFT} questions on each aircraft. Subscribe for unlimited questions on every type.`
+            : `Practising is free up to ${settings.freeQuestionsPerAircraft} questions on each aircraft. Subscribe for unlimited questions on every type.`
         }
       />
 

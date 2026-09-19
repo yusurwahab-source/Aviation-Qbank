@@ -6,6 +6,7 @@ import { Card, EmptyState, PageHeading } from "@/components/ui";
 import { getAircraft, listTopics, type AircraftSummary, type TopicSummary } from "@/db/queries";
 import { countQuestionsAnswered, getSubscription } from "@/db/subscriptions";
 import { hasActiveSubscription, remainingFreeQuestions } from "@/lib/billing/access-policy";
+import { getSiteSettings } from "@/db/settings";
 import { getCurrentUser } from "@/lib/auth/session";
 
 import { TestBuilder } from "./test-builder";
@@ -42,8 +43,11 @@ export default async function AircraftPage({ params }: PageProps) {
     if (user) {
       const subscription = await getSubscription(user.id);
       if (!hasActiveSubscription(subscription)) {
-        const distinctAnswered = await countQuestionsAnswered(user.id, aircraftCode);
-        remainingFree = remainingFreeQuestions(distinctAnswered);
+        const [distinctAnswered, settings] = await Promise.all([
+          countQuestionsAnswered(user.id, aircraftCode),
+          getSiteSettings(),
+        ]);
+        remainingFree = remainingFreeQuestions(distinctAnswered, settings.freeQuestionsPerAircraft);
       }
     }
   } catch (error) {
