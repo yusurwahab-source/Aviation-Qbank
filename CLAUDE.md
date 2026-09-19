@@ -13,10 +13,19 @@ A user can choose an aircraft, build a test from any combination of sections
 and any number of questions, sit it either way — study, where each answer is
 marked straight away with the correct option and the explanation and there is
 no time limit, or exam, where nothing is shown until the end and the clock
-gives one minute a question — and then see a result screen. Accounts exist,
+gives one minute a question — and then see a result screen naming a
+pass/fail verdict, the time taken, a per-system breakdown and the two
+weakest systems, with exactly three ways onward: retake what was got wrong,
+a new test on the weakest systems, or back to the dashboard. A signed-in
+student can flag any question and keep a private note on it, both
+autosaving with no explicit save step; a test builder preset turns either
+into an instant test, alongside "my weakest systems" and "questions I have
+never seen". Accounts exist,
 and a signed-in user's answers are recorded as each one is given, which means
-an abandoned test still counts and a mid-test refresh resumes rather than
-restarts. Forgetting a password is recoverable: a one-time emailed link sets
+an abandoned test still counts and a mid-test refresh — or a return visit
+days later, surfaced by a "Resume your test" banner on the aircraft page
+and the dashboard — resumes rather than restarts. Forgetting a password is
+recoverable: a one-time emailed link sets
 a new one and signs every other device out. `/progress` reads that history
 back: overall
 score, performance by topic, progress over time, and the questions worth
@@ -374,6 +383,141 @@ answer, so between opening it and answering, the clock is the browser's own;
 the first answer replaces it with the server's. And a signed-out student has
 no session at all, so their clock is browser-only for the whole test — the
 same trade as everything else they do signed out, and for the same reason.
+
+**A flag and a note are the student's own, not part of the question.**
+`question_flags` (one row per `(userId, questionId)`, toggled) and
+`question_notes` (one row per `(userId, questionId)`, upserted) sit beside
+`attempts` rather than inside it — a flag or a note can exist on a question
+never answered, and answering again must not disturb either. Both are
+scoped to `aircraftCode` the same way every other per-student table is, and
+both are signed-in-only: `FlagButton` and `QuestionNote` are simply not
+rendered to a signed-out visitor, the same degradation the rest of this
+file already applies to history and reports.
+
+`FlagButton` takes no state of its own — `flagged` and `onToggle` come from
+the runner and the result screen alike, so the same `Set` of flagged ids
+backs both without two components drifting out of sync. The toggle is
+optimistic: the runner flips its local `Set` before `toggleFlag` returns
+and reverts only if the server call fails, so flagging never waits on the
+network — the one thing the task that added it insisted on.
+
+`QuestionNote` autosaves, debounced 800ms after the last keystroke, and
+there is nothing to submit: closing the editor cannot lose a change, because
+the debounce fires well before a student would think to close it, and a
+pending save survives the student moving to the next question because its
+timer is not torn down with the component that started it. The body is not
+fetched until the editor is actually opened (`onLoad`), because preloading a
+note for every question in a test that might be the whole bank does not
+scale — only the fact that a note *exists* (`hasNote`, for the button's own
+marker) is known up front.
+
+**The `N` shortcut has to force the note open even when it is already
+open.** A `forceOpenToken`, bumped once per press, is what `QuestionNote`
+watches rather than a plain "open" boolean — a boolean set to `true` a
+second time is not a new value, so nothing downstream re-fires from it, and
+a student who has since clicked elsewhere and lost focus would find `N`
+doing nothing. Comparing the incoming token against a mirrored
+`openedForToken` state **during render** — not inside a `useEffect` — is
+what a fresh instance needs too: this component remounts per question (it
+is keyed by question id), and an effect-based check would still paint the
+previous question's open panel for one frame before correcting itself.
+
+A second thing follows from the same fix, and cost a round of its own to
+find: the textarea is `disabled` while its body is still loading
+(`onLoad` has not resolved yet), and focusing a disabled element is a
+silent no-op in every browser — `document.activeElement` simply stays
+wherever it was. The effect that focuses the textarea on open therefore has
+to re-run once loading finishes, not only when `open` itself changes, and —
+for the same reason as the token above — again on every `openedForToken`
+change even when `open` was already `true`. Verified in a browser: the
+keyboard shortcut alone, with nothing else scripted, lands real keystrokes
+in the note rather than on the page underneath it.
+
+**Typing into an open note must never fire a shortcut.** `shouldHandleShortcut`
+in `src/lib/keyboard-shortcuts.ts` is the one place that decides this, kept
+pure and unit tested rather than written inline in the key handler: it
+refuses any event whose target is an `input`, `textarea` or
+`contenteditable` element. `optionIndexForKey` is the other half of the same
+file — `1`–`4` or `a`–`d` map to an option index, and nothing else does,
+so a stray keystroke can never select an option that is not on screen.
+
+**The question map only ever shows a flag on a question the student has
+actually flagged.** `QuestionNav` takes the same `flaggedIds` set the
+runner and the result screen use, so a tile's flag marker and the Flag
+button's own filled state can never disagree — there is one source of
+truth for "is this flagged", read in three places, not three trackers that
+could drift. On a phone it opens as a bottom sheet rather than an inline
+panel; unlike the header's mobile menu earlier in this file, it needs no
+portal, because it renders as a sibling of `<main>` rather than a
+descendant of the header's own `backdrop-filter`, so `inset-0` resolves
+against the viewport correctly without one.
+
+**A test is swiped on a phone, and clicked everywhere else.** The question
+card carries its own `onTouchStart`/`onTouchEnd` pair rather than a
+gesture library: a horizontal drag past 60px, more horizontal than
+vertical, calls the same `goNext`/`goPrevious` the arrow keys and the
+sticky bar's own buttons call. A vertical scroll is not a swipe, which is
+exactly why both the distance floor and the horizontal-over-vertical check
+exist — the page still has to scroll normally. Below `lg`, the desktop
+Previous/Next row and the "Show all questions" link are replaced entirely
+by one `fixed` bar (`safe-bottom`) a thumb can always reach: Previous,
+a centre button showing "current / total" that opens the question map, and
+Next or Finish. The two navigations are not the same markup shown twice —
+they are `hidden lg:flex` and `lg:hidden` respectively, so exactly one of
+them is ever in the accessibility tree at a time.
+
+**Resuming a test reads its mode from the session row, not from `?mode=`.**
+This is a real gap the resume feature would otherwise have reopened, not a
+hypothetical one: a resumed test's URL can easily have lost or never
+carried `mode=exam` — the resume link only needs `?t=` — and reading mode
+from the URL on a resumed test would then treat an exam attempt as study
+and hand back verdicts, references and explanations for questions an exam
+had deliberately withheld. `lookup.mode` (from `findSession` in
+`db/attempts.ts`) overrides the URL's own the moment a session is found
+resumable, before anything decides whether to call `getAnswerKey`. Fresh
+tests are unaffected — there is no stored mode yet, so `?mode=` still
+governs exactly as the rest of this file already describes.
+
+**"Resume your test" reads one query, not a guess.** `findIncompleteSession`
+(`db/attempts.ts`) looks up the most recent `test_sessions` row with
+`completed_at is null` for a user — scoped to one aircraft on the aircraft
+page, unscoped on `/progress` so whichever test is mid-way through, on any
+type, surfaces on the dashboard — and left-joins `attempts` for an
+answered count the banner can show without a second query. `buildResumeHref`
+in `test-options.ts` is the only thing that turns that row into a link: it
+is nothing more than `?t=` plus the mode the session already has, because
+the test page itself, per the note above, reads everything else — topics,
+question ids, the clock — from the row once it gets there.
+
+**The test builder's quick presets are two different shapes wearing one
+row of chips.** "All systems" and "My weak systems" only ever pre-select
+section checkboxes — the same test-building path every manual selection
+already takes. "My flagged questions", "Questions I got wrong" and "Unseen
+questions" replace section selection outright with a fixed list the server
+already knows (`getFlaggedQuestionIds`, `getQuestionIdsToRetry`,
+`pickUnseenTestQuestions`), because none of those is "a topic", and a
+student choosing one is not narrowing by section, they are asking for an
+exact set. The first two of that second group are exempt from the
+free-tier cap for the same reason retry mode already was — every question
+in them was necessarily seen already — while "Unseen" is fully subject to
+it, being exactly the thing the free tier meters. `PRESET_COUNT_CEILING`
+(500) bounds how many ids a preset ever counts or fetches, the same
+"protect the machine, not the product" reasoning `MAX_ANSWERS` already
+gives above.
+
+**The results screen has exactly three actions, not a menu of them.**
+Retake the questions answered wrongly, start a new test on the two weakest
+systems (the same `getTopicPerformance` ranking the aircraft page reads for
+the "My weak systems" preset, so the two never disagree about which systems
+those are), or go back to the dashboard. The pass mark it grades against is
+`settings.passMarkPercent` — one more row in the existing `site_settings`
+key/value store rather than a bespoke config path, changeable by the owner
+at `/owner/settings` with no deploy, the same reasoning `freeQuestionsPerAircraft`
+already established there. A signed-out visitor sees the same score and the
+same review list — grading needs no account — but the three actions and
+the flag/note controls under each reviewed question are replaced by a
+prompt to sign up, since none of the three means anything without history
+to build from.
 
 **Grading is a pure function.** `src/lib/grading.ts` takes questions and answers
 and returns a result — no database, no React. It is unit tested, and Phase 3
@@ -1017,7 +1161,7 @@ src/
     layout.tsx                The shell: header, footer, metadata, viewport
     page.tsx                  Aircraft picker
     aircraft/[code]/          Aircraft overview
-    aircraft/[code]/test/     Test runner, grading action, result screen
+    aircraft/[code]/test/     Test runner, grading action, result screen, shortcuts-overlay
     (auth)/                   Sign up, log in, log out
     progress/                 Reports, overall and per aircraft
     upgrade/                  Checkout for the two plans, and the Stripe redirect action
@@ -1029,7 +1173,8 @@ src/
     opengraph-image.tsx       The 1200x630 social card
     icon.svg, favicon.ico, apple-icon.png      Generated; see scripts above
   components/                 Shared UI, including the shell (site-header,
-                              site-footer, mobile-nav, user-menu, theme-toggle, logo)
+                              site-footer, mobile-nav, user-menu, theme-toggle, logo),
+                              flag-button, question-note, resume-test-banner
   config/
     site.ts                   THE product name, tagline, description and URL — not site_settings, see the convention above
   content/
@@ -1041,6 +1186,8 @@ src/
     users.ts                  Account reads and writes
     password-reset.ts         Issuing and spending reset links
     subscriptions.ts          Subscription row and the free-tier count
+    flags.ts                  Toggling and reading a student's flagged questions
+    notes.ts                  Reading and upserting a student's own note on a question
     gift-codes.ts             Minting and redeeming free-access codes
     settings.ts               Reading and writing site_settings; owner-only write, publicly read
     owner.ts                  THE unscoped reads, and grant/revoke. /owner only; see the convention above.
@@ -1060,6 +1207,7 @@ src/
     question-status.ts        What the question map may say (pure, tested)
     password.ts               scrypt hashing (pure, tested)
     test-options.ts           Test length, sections, mode, the clock, and test URLs
+    keyboard-shortcuts.ts     Which key does what, and when a shortcut must stand down for a text field (pure, tested)
     auth/
       credentials.ts          Email and password rules (pure, tested)
       rate-limit-policy.ts    When to refuse a log in or a reset (pure, tested)
