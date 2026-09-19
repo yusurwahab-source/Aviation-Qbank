@@ -28,6 +28,7 @@ export function ResultScreen({
   timeLimitSeconds,
   flaggedIds,
   onToggleFlag,
+  communityPercentCorrect,
 }: {
   aircraftCode: string;
   aircraftName: string;
@@ -46,6 +47,10 @@ export function ResultScreen({
    * tracking, carried through rather than re-fetched. */
   flaggedIds: ReadonlySet<string>;
   onToggleFlag: (questionId: string) => void;
+  /** "N% of pilots get this right", keyed by question id — see
+   * `SubmitTestOutput.communityPercentCorrect`. A question with no entry
+   * has no cached stat to show. */
+  communityPercentCorrect: Record<string, number>;
 }) {
   const passed = result.percentage >= passMarkPercent;
   // Weakest first is already how `byTopic` is sorted — the callout just
@@ -164,6 +169,7 @@ export function ResultScreen({
                 isSignedIn={isSignedIn}
                 flagged={flaggedIds.has(entry.question.id)}
                 onToggleFlag={() => onToggleFlag(entry.question.id)}
+                communityPercentCorrect={communityPercentCorrect[entry.question.id] ?? null}
               />
             </li>
           ))}
@@ -186,7 +192,11 @@ export function ResultScreen({
           </Link>
         ) : null}
         <Link
-          href={`/aircraft/${aircraftCode}`}
+          // A signed-in student's dashboard is the real /dashboard now; a
+          // signed-out visitor has no account for one to belong to, so this
+          // stays the public aircraft page rather than bouncing them to a
+          // login wall they were never asked to go through.
+          href={isSignedIn ? "/dashboard" : `/aircraft/${aircraftCode}`}
           className="inline-flex min-h-11 items-center rounded-lg border border-border bg-surface px-5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
         >
           Back to dashboard
@@ -299,6 +309,7 @@ function ReviewCard({
   isSignedIn,
   flagged,
   onToggleFlag,
+  communityPercentCorrect,
 }: {
   entry: GradedQuestion;
   position: number;
@@ -306,6 +317,7 @@ function ReviewCard({
   isSignedIn: boolean;
   flagged: boolean;
   onToggleFlag: () => void;
+  communityPercentCorrect: number | null;
 }) {
   const { question, isCorrect, wasAnswered, selectedOptionId } = entry;
 
@@ -366,6 +378,11 @@ function ReviewCard({
 
       <div className="mt-3 rounded-lg bg-surface-muted p-3">
         <p className="font-reading text-sm text-foreground">{question.explanation}</p>
+        {communityPercentCorrect !== null ? (
+          <p className="mt-2 text-xs font-medium text-muted-foreground">
+            {communityPercentCorrect}% of pilots get this right
+          </p>
+        ) : null}
         {question.reference ? (
           <p className="mt-2 flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
             Reference

@@ -8,7 +8,7 @@ description of how the project is built, not a historical record.
 A web application where student pilots practise multiple-choice questions for
 aircraft type ratings. All user-facing content is in English.
 
-**Current state: Phase 6 (payments) is complete.**
+**Current state: Phase 7 (retention and smart practice) is complete.**
 A user can choose an aircraft, build a test from any combination of sections
 and any number of questions, sit it either way — study, where each answer is
 marked straight away with the correct option and the explanation and there is
@@ -36,6 +36,16 @@ each aircraft; going further needs a subscription, bought at `/upgrade`
 through Stripe Checkout and confirmed by its webhook. Verified end to end
 against a real Stripe account in test mode. See the note on payments in the
 conventions below and in "Not in scope yet".
+
+`/dashboard` is the signed-in home: a day streak, totals, "continue where
+you left off", mastery per aircraft and per system, exam history with a
+score-trend chart, and quick access to flagged, wrong and unseen questions.
+Alongside it, a **smart test** preset builds an adaptively weighted set of
+questions instead of a plain random pick; a **community stat** shows what
+percentage of everyone else got a question right the first time, once
+enough people have answered it to mean something; and signed-in **search**
+finds a question by keyword and opens it as a single-question study view.
+See the four conventions on these below for exactly how each works.
 
 The product is called **Holdshort**, and it has an identity to match: a
 dark flight-deck palette with a light theme beside it, two typefaces, a
@@ -85,6 +95,7 @@ suite passed against a database holding both banks.
 | `npm run validate:content` | Checks every question file against the schema |
 | `npm run icons:generate` | Redraws the favicon, the app icons and the manifest icons from the logo mark. Outputs are committed; run it only when the mark or the brand colours change. |
 | `npm run gift:generate -- --count <n> --days <n> --plan <monthly\|quarterly> [--note "..."]` | Mints free-access gift codes and prints them. |
+| `npm run stats:compute` | Recomputes the cached "N% of pilots get this right" figure for every question, from scratch, from `attempts`. Not on a schedule yet — see "Known gaps". |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | TypeScript, no emit |
 | `npm run test` | Unit tests (Vitest) |
@@ -1141,6 +1152,81 @@ a moment.") on the screen. That is the same split the rest of this file
 makes everywhere else — say plainly that something failed, without handing
 over the internals.
 
+**Mastery means "your most recent attempt got it right", not "you have ever
+got it right".** The dashboard's overall mastery ring and its per-system
+list both divide the same thing: how many published questions this
+student's *latest* attempt answered correctly, out of every published
+question that exists — not out of how many they have tried. A question
+never opened counts in the denominator and not the numerator, which is
+what makes 100% actually mean "every question in the bank", not "every
+question I have looked at". `getSystemMastery` and `getAircraftMastery`
+in `db/dashboard.ts` compute this with the same row-numbered-by-recency
+window technique `getQuestionsToRetry` already uses for "most recent
+answer" — one query per figure, never one per question. A system or an
+aircraft the student has never opened is left out of the dashboard
+entirely (`attempted === 0`) rather than shown mastered at 0%, which is
+the same "empty states matter" reasoning that gives a brand-new account a
+short, encouraging `/dashboard` instead of every section on it reading
+zero.
+
+**The smart test is a weighting rule plus a spacing rule plus weighted
+sampling, and all three are pure functions.** `src/lib/smart-test.ts`
+documents the algorithm in full at the top of the file; the five numbers
+it reads — the weight for never-seen, wrong-last-time, right-once,
+right-twice-or-more, and the flagged bonus — live in
+`src/lib/smart-test-config.ts` alone, so tuning them is a one-file edit
+with no logic to re-read. The only database query the feature needs,
+`getSmartTestSignals` in `db/smart-test.ts`, gathers every published
+question's last outcome and trailing correct streak for this student in
+one query, scoped to one aircraft — the same window-function technique as
+mastery, above — and hands plain data to the pure selector. Weighted
+sampling is the Efraimidis–Spirakis method (`u ** (1/weight)`, highest
+keys win): one pass, no loaded-then-shuffled array, and a heavy question
+is *more likely* to be drawn, never guaranteed, so it does not lock in
+place across every smart test until it is finally answered right. Subject
+to the same free-tier cap as a fresh pick — see the note on
+`FREE_QUESTIONS_PER_AIRCRAFT` above — because it can draw never-seen
+questions just as a plain random test can; "questions I got wrong" and "my
+flagged questions" stay exempt for the reason already given there, and
+smart test is not that: it mixes seen and unseen freely.
+
+**The community stat is cached, not queried.** "N% of pilots get this
+right" is answered from `question_stats`, one row per question holding how
+many students' *first* attempt at it (not every attempt — a question one
+determined student has drilled ten times must not outweigh nine others who
+each saw it once) was correct, out of how many first attempts exist at
+all. Nothing computes this aggregate on a page request; `npm run
+stats:compute` (`scripts/compute-question-stats.ts`) rebuilds the whole
+table from `attempts` in one transaction, on demand, the same "not
+scheduled yet" honesty as the sweep functions in "Known gaps" below.
+`communityPercentCorrect` in `lib/community-stats.ts` is the one place
+that decides whether to show a figure at all — below
+`MIN_FIRST_ATTEMPTS_TO_SHOW` (20) it returns `null` and the line is left
+out entirely, never shown with a caveat, because a percentage from three
+answers is noise dressed as a fact. Read in two places — the verdict panel
+mid-test (study mode only, since that is the only place a verdict exists
+to attach it to) and the review card after Finish (both modes) — each a
+single batched lookup by question id, never one query per question.
+
+**Search reads a generated column, not the three it is built from.**
+`questions.search_vector` is Postgres's own `tsvector`, `GENERATED ALWAYS
+AS ... STORED` from the question, the explanation and every option's text
+(see the note on it in `schema.ts` for why `options`, a jsonb array, needs
+`jsonb_path_query_array` rather than a plain concatenation) — computed and
+kept current by the database itself, so there is no code path that could
+update the question and forget the index behind it. `questions_search_vector_idx`
+is a GIN index on that column, which is what keeps `searchQuestions` in
+`db/search.ts` a single index scan regardless of bank size, ranked by
+`ts_rank` rather than returned in an arbitrary order. Search itself, and
+the single-question study view its results link to
+(`/aircraft/[code]/question/[id]`), are both signed-in only. That page is
+deliberately not the test flow: it shows the correct answer immediately
+rather than after it is "earned" by answering, which is fine precisely
+*because* it is reached only by a signed-in student choosing a specific
+question to look up, never by a randomly drawn test question — the "answer
+key never arrives before it's earned" rule above is about keeping a
+*graded attempt* honest, and a reference lookup is a different action.
+
 **One feature per session, one pull request per feature. `main` always works.**
 
 ## Layout
@@ -1154,16 +1240,21 @@ scripts/
   migrate.ts                  Applies migrations.
   seed.ts                     Syncs content into the database.
   generate-icons.tsx          Rasterises the logo mark. Run by hand, outputs committed.
+  compute-question-stats.ts  Recomputes the cached community stat. Run by hand or on a schedule.
 src/
   app/
     globals.css               THE design tokens. Colour, type, spacing, radius, shadow.
     fonts.ts                  The two faces, via next/font
     layout.tsx                The shell: header, footer, metadata, viewport
     page.tsx                  Aircraft picker
+    dashboard/                THE signed-in home: streak, mastery, exam history, quick access
+    search/                   Full text search across every question, signed-in only
     aircraft/[code]/          Aircraft overview
     aircraft/[code]/test/     Test runner, grading action, result screen, shortcuts-overlay
+    aircraft/[code]/question/[id]/  Single-question study view, what a search result links to
     (auth)/                   Sign up, log in, log out
     progress/                 Reports, overall and per aircraft
+    progress/tests/[id]/      Full review of one finished test
     upgrade/                  Checkout for the two plans, and the Stripe redirect action
     redeem/                   Where a gift code becomes an active subscription
     owner/                    Owner-only: overview, accounts, subscribers, gift codes, aircraft requests, settings
@@ -1174,7 +1265,7 @@ src/
     icon.svg, favicon.ico, apple-icon.png      Generated; see scripts above
   components/                 Shared UI, including the shell (site-header,
                               site-footer, mobile-nav, user-menu, theme-toggle, logo),
-                              flag-button, question-note, resume-test-banner
+                              flag-button, question-note, resume-test-banner, mastery-ring
   config/
     site.ts                   THE product name, tagline, description and URL — not site_settings, see the convention above
   content/
@@ -1191,6 +1282,10 @@ src/
     gift-codes.ts             Minting and redeeming free-access codes
     settings.ts               Reading and writing site_settings; owner-only write, publicly read
     owner.ts                  THE unscoped reads, and grant/revoke. /owner only; see the convention above.
+    dashboard.ts              Mastery, streak dates, study time, most-recently-practised aircraft
+    smart-test.ts             THE one query behind the smart test: per-question signals for one aircraft
+    question-stats.ts         Reading the cached community stat (question_stats)
+    search.ts                 Full text search over questions.search_vector
     index.ts                  Connection pool
   lib/
     email/
@@ -1208,6 +1303,11 @@ src/
     password.ts               scrypt hashing (pure, tested)
     test-options.ts           Test length, sections, mode, the clock, and test URLs
     keyboard-shortcuts.ts     Which key does what, and when a shortcut must stand down for a text field (pure, tested)
+    smart-test.ts             THE adaptive selection algorithm — weighting, spacing, weighted sampling (pure, tested)
+    smart-test-config.ts      THE five tunable weights the algorithm above reads
+    community-stats.ts        Whether and what community-stat percentage to show (pure, tested)
+    streak.ts                 The dashboard's day-streak count from a list of practice dates (pure, tested)
+    format-duration.ts        "2h 15m" — the dashboard's total-study-time figure (pure, tested)
     auth/
       credentials.ts          Email and password rules (pure, tested)
       rate-limit-policy.ts    When to refuse a log in or a reset (pure, tested)
@@ -1264,6 +1364,19 @@ tests/                        Vitest unit tests
    too: `/redeem` spends a free-access gift code, minted by
    `npm run gift:generate` — see the note on `provider` in the conventions
    above.
+7. **Phase 7 — retention and smart practice. Done.** `/dashboard` is now the
+   signed-in home (sign up, log in and password reset all land there): a
+   streak, totals, "continue where you left off", mastery per aircraft and
+   per system, exam history with a score-trend chart, and quick access to
+   flagged/wrong/unseen questions on whichever aircraft was last practised.
+   A brand-new account sees a short, encouraging page instead — see the note
+   on empty states below. Beside it: a **smart test** preset that draws a
+   weighted, adaptive set of questions instead of a plain random pick; a
+   **community stat** ("N% of pilots get this right") cached per question
+   and shown once enough people have answered it; and **search**, full text
+   across every published question, options and explanation, linking into a
+   single-question study view. See the four conventions below for how each
+   works and why.
 
 Do not start a phase until the previous one works.
 
@@ -1390,6 +1503,12 @@ second. Both are now done — see the conventions above.)
   correct, but nothing calls them.
   Expired rows are ignored when reading, so this is tidiness rather than
   correctness. A scheduled job can call them later.
+- **Nothing recomputes the community stat on a schedule either.** `npm run
+  stats:compute` is correct and cheap enough to run by hand, but until it is
+  wired to a cron job (a Vercel Cron hitting a route that calls it, most
+  simply) a newly-answered question's figure only updates the next time
+  somebody remembers to run it. The dashboard and the explanation card read
+  whatever the last run left, never live.
 - **No "your password was changed" email.** A reset tells the account's owner
   nothing after the fact, so somebody who took over an inbox leaves no trace
   in the other one. Worth adding now that there is a sender to add it with.

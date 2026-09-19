@@ -1,6 +1,7 @@
 import { sql } from "drizzle-orm";
 import {
   boolean,
+  customType,
   index,
   integer,
   jsonb,
@@ -15,6 +16,17 @@ import {
 } from "drizzle-orm/pg-core";
 
 import type { QuestionOption } from "@/content/schema";
+
+/**
+ * Postgres's own full-text search type. Drizzle has no built-in column for
+ * it, so this is the one place that names it — everything else just treats
+ * `questions.searchVector` as an opaque column to filter and index on.
+ */
+const tsvector = customType<{ data: string }>({
+  dataType() {
+    return "tsvector";
+  },
+});
 
 /**
  * Database schema.
@@ -66,6 +78,25 @@ export const questions = pgTable(
     version: integer("version").notNull().default(1),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+    /**
+     * The question stem, the explanation and every option's text, tokenised
+     * for full-text search. Generated and stored by Postgres itself rather
+     * than written by the application, so it can never drift from the
+     * columns it is built from — there is no code path that updates one and
+     * forgets the other.
+     *
+     * `jsonb_path_query_array(options, '$[*].text')` pulls just the option
+     * text out of the `options` jsonb array without a subquery, which a
+     * generated column expression cannot contain. The result still carries
+     * its jsonb brackets and quoting once cast to text, which adds a little
+     * punctuation noise to the tokens but loses no real word — an accepted
+     * trade for not needing a second, denormalised text column to keep in
+     * sync. Both `to_tsvector` arguments are literal, which is what makes
+     * the expression immutable and therefore legal in a generated column.
+     */
+    searchVector: tsvector("search_vector").generatedAlwaysAs(
+      sql`to_tsvector('english', coalesce(question, '') || ' ' || coalesce(explanation, '') || ' ' || coalesce(jsonb_path_query_array(options, '$[*].text')::text, ''))`,
+    ),
   },
   (table) => [
     // Every user-facing query starts "published questions for this aircraft".
@@ -76,6 +107,8 @@ export const questions = pgTable(
       table.status,
       table.topic,
     ),
+    // Keyword search across the question, its options and its explanation.
+    index("questions_search_vector_idx").using("gin", table.searchVector),
   ],
 );
 
@@ -596,3 +629,33 @@ export const siteSettings = pgTable("site_settings", {
 });
 
 export type SiteSettingRow = typeof siteSettings.$inferSelect;
+
+/**
+ * "What fraction of pilots get this right the first time they see it" — one
+ * row per question, recomputed wholesale from `attempts` by
+ * `scripts/compute-question-stats.ts` rather than read live: the brief asks
+ * for this cached, not queried per request, so a page that shows it never
+ * runs the aggregate itself.
+ *
+ * No foreign key to `questions`, for the same reason `attempts.questionId`
+ * has none: `db:seed` deletes questions whose content files are gone, and a
+ * stat surviving one extra recompute cycle after that is harmless — the
+ * read side already only shows a stat for a question it is otherwise
+ * displaying, so an orphaned row here simply goes unread until the next
+ * recompute drops it.
+ *
+ * "First attempt" means the earliest `attempts` row for that
+ * `(userId, questionId)` pair, not every attempt — a question drilled ten
+ * times by one determined student must not outweigh the nine other students
+ * who each saw it once, which counting every attempt would do.
+ */
+export const questionStats = pgTable("question_stats", {
+  questionId: varchar("question_id", { length: 40 }).primaryKey(),
+  /** Distinct users whose first attempt at this question is on record. */
+  firstAttempts: integer("first_attempts").notNull().default(0),
+  /** Of those, how many got it right first time. */
+  firstAttemptsCorrect: integer("first_attempts_correct").notNull().default(0),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+export type QuestionStatRow = typeof questionStats.$inferSelect;

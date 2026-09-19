@@ -33,9 +33,9 @@ export type BuilderPresets = {
   unseenCount: number;
 };
 
-/** The three presets that replace section selection with a fixed list,
- * rather than pre-filling it — see the note on `activePreset` below. */
-type ListPreset = "flagged" | "wrong" | "unseen";
+/** The presets that replace section selection with a fixed list, rather
+ * than pre-filling it — see the note on `activePreset` below. */
+type ListPreset = "flagged" | "wrong" | "unseen" | "smart";
 
 /**
  * Builds a test: which sections to draw from, how many questions, and whether
@@ -101,11 +101,18 @@ export function TestBuilder({
       ),
     [topics, selected],
   );
+  // The smart test draws from the whole bank, weighted — its own count is
+  // never narrowed by the (disabled, while it is active) section checkboxes.
+  const totalQuestions = useMemo(
+    () => topics.reduce((total, topic) => total + topic.questionCount, 0),
+    [topics],
+  );
 
   const presetCount: Record<ListPreset, number> = {
     flagged: presets?.flaggedCount ?? 0,
     wrong: presets?.wrongCount ?? 0,
     unseen: presets?.unseenCount ?? 0,
+    smart: totalQuestions,
   };
   const available = activePreset ? presetCount[activePreset] : sectionsAvailable;
 
@@ -153,7 +160,10 @@ export function TestBuilder({
   const href = activePreset
     ? buildTestHref(aircraftCode, {
         retryOnly: activePreset === "wrong",
-        from: activePreset === "flagged" || activePreset === "unseen" ? activePreset : undefined,
+        from:
+          activePreset === "flagged" || activePreset === "unseen" || activePreset === "smart"
+            ? activePreset
+            : undefined,
         length: wantsAll ? ALL_QUESTIONS : size || DEFAULT_TEST_LENGTH,
         mode,
       })
@@ -220,7 +230,18 @@ export function TestBuilder({
                 Unseen questions ({formatPresetCount(presets.unseenCount)})
               </PresetChip>
             ) : null}
+            {totalQuestions > 0 ? (
+              <PresetChip active={activePreset === "smart"} onClick={() => setActivePreset("smart")}>
+                Smart test
+              </PresetChip>
+            ) : null}
           </div>
+          {activePreset === "smart" ? (
+            <p className="mt-2 text-sm text-muted-foreground">
+              Weighted towards questions you have never seen or got wrong last time, and lighter
+              on ones you already have down cold.
+            </p>
+          ) : null}
         </div>
       ) : null}
 

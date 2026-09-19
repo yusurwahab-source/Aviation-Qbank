@@ -4,7 +4,9 @@ import { and, asc, count, desc, eq, isNotNull, max, sql } from "drizzle-orm";
 
 import { getDb } from "@/db";
 import { aircraft, attempts, questions, testSessions } from "@/db/schema";
-import { percentage } from "@/lib/grading";
+import { getAnswerKey, type AnswerKeyQuestion } from "@/db/queries";
+import { gradeTest, percentage, type TestResult } from "@/lib/grading";
+import type { TestMode } from "@/lib/test-options";
 
 /**
  * Reading the attempt log.
@@ -307,4 +309,150 @@ export async function getPractisedAircraft(userId: string): Promise<PractisedAir
       percentage: percentage(correct, answered),
     };
   });
+}
+
+export type TestHistoryEntry = {
+  testSessionId: string;
+  aircraftCode: string;
+  /** Falls back to the code when the aircraft's own row is gone. */
+  aircraftName: string;
+  /** Null only pre-migration; read as `study`, same as everywhere else. */
+  mode: TestMode;
+  completedAt: Date;
+  /** Null only pre-migration, when the clock was not yet tracked. */
+  timeTakenSeconds: number | null;
+  answered: number;
+  correct: number;
+  percentage: number;
+};
+
+/**
+ * Every finished test, most recent first — the dashboard's exam history
+ * table, and (its first `n` entries, reversed) the score-trend chart beside
+ * it. One query: `attempts` is aggregated per session in the same query
+ * that reads the session's own columns, rather than a session query
+ * followed by one attempt query per row.
+ */
+export async function getTestHistory(userId: string, limit = 20): Promise<TestHistoryEntry[]> {
+  const rows = await getDb()
+    .select({
+      testSessionId: testSessions.id,
+      aircraftCode: testSessions.aircraftCode,
+      aircraftName: aircraft.name,
+      mode: testSessions.mode,
+      completedAt: testSessions.completedAt,
+      startedAt: testSessions.startedAt,
+      answered: count(attempts.id),
+      correct: sql<number>`count(*) filter (where ${attempts.isCorrect})::int`,
+    })
+    .from(testSessions)
+    .innerJoin(attempts, eq(attempts.testSessionId, testSessions.id))
+    .leftJoin(aircraft, eq(aircraft.code, testSessions.aircraftCode))
+    .where(and(eq(testSessions.userId, userId), isNotNull(testSessions.completedAt)))
+    .groupBy(testSessions.id, aircraft.name)
+    .orderBy(desc(testSessions.completedAt))
+    .limit(limit);
+
+  return rows.map((row) => {
+    const answered = Number(row.answered);
+    const correct = Number(row.correct);
+    return {
+      testSessionId: row.testSessionId,
+      aircraftCode: row.aircraftCode,
+      aircraftName: row.aircraftName ?? row.aircraftCode,
+      mode: row.mode ?? "study",
+      // Never null: the `isNotNull` filter above guarantees it.
+      completedAt: new Date(row.completedAt as Date),
+      timeTakenSeconds:
+        row.startedAt && row.completedAt
+          ? Math.round((row.completedAt.getTime() - row.startedAt.getTime()) / 1000)
+          : null,
+      answered,
+      correct,
+      percentage: percentage(correct, answered),
+    };
+  });
+}
+
+export type TestSessionReview = {
+  testSessionId: string;
+  aircraftCode: string;
+  mode: TestMode;
+  completedAt: Date;
+  timeTakenSeconds: number | null;
+  result: TestResult;
+};
+
+/**
+ * The full, question-by-question record of one finished test — what an
+ * exam history row links to.
+ *
+ * Scoped to `userId` in the lookup itself, so a session id that belongs to
+ * someone else, or one still in progress, is indistinguishable from one
+ * that does not exist. Reuses `gradeTest` — the same pure function that
+ * graded this test the moment it was submitted — over the answer key
+ * re-read fresh from `questions` and the answers actually recorded, rather
+ * than storing a second, denormalised copy of the result anywhere.
+ *
+ * A question deleted from content since this test was taken simply drops
+ * out of the review, the same "skip what no longer exists" rule every other
+ * report in this file follows.
+ */
+export async function getTestSessionReview(
+  userId: string,
+  testSessionId: string,
+): Promise<TestSessionReview | null> {
+  const [session] = await getDb()
+    .select({
+      id: testSessions.id,
+      aircraftCode: testSessions.aircraftCode,
+      mode: testSessions.mode,
+      startedAt: testSessions.startedAt,
+      completedAt: testSessions.completedAt,
+      questionIds: testSessions.questionIds,
+    })
+    .from(testSessions)
+    .where(
+      and(
+        eq(testSessions.id, testSessionId),
+        eq(testSessions.userId, userId),
+        isNotNull(testSessions.completedAt),
+      ),
+    )
+    .limit(1);
+
+  if (!session) return null;
+
+  const [key, answerRows] = await Promise.all([
+    getAnswerKey(session.aircraftCode, session.questionIds),
+    getDb()
+      .select({ questionId: attempts.questionId, selectedOptionId: attempts.selectedOptionId })
+      .from(attempts)
+      .where(eq(attempts.testSessionId, session.id)),
+  ]);
+
+  const keyById = new Map(key.map((question) => [question.id, question]));
+  // The order the student actually saw them in, minus anything since deleted.
+  const orderedQuestions = session.questionIds
+    .map((id) => keyById.get(id))
+    .filter((question): question is AnswerKeyQuestion => question !== undefined);
+
+  const answers = answerRows.map((row) => ({
+    questionId: row.questionId,
+    selectedOptionId: row.selectedOptionId,
+  }));
+
+  const result = gradeTest(session.aircraftCode, orderedQuestions, answers);
+
+  return {
+    testSessionId: session.id,
+    aircraftCode: session.aircraftCode,
+    mode: session.mode ?? "study",
+    completedAt: session.completedAt as Date,
+    timeTakenSeconds:
+      session.startedAt && session.completedAt
+        ? Math.round((session.completedAt.getTime() - session.startedAt.getTime()) / 1000)
+        : null,
+    result,
+  };
 }

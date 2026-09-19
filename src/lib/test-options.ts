@@ -208,13 +208,14 @@ export function buildTestHref(
     length?: TestLength;
     retryOnly?: boolean;
     /**
-     * The other two pre-built lists a test can draw from instead of
-     * `topics` — the student's own flags, or every question they have never
-     * answered. `retryOnly` stays its own option rather than folding into
-     * this one: it predates it, and renaming a boolean every call site
-     * already uses is a bigger diff than the two options coexisting.
+     * The other pre-built lists a test can draw from instead of `topics` —
+     * the student's own flags, every question they have never answered, or
+     * the smart test's weighted pick across everything they have seen and
+     * not. `retryOnly` stays its own option rather than folding into this
+     * one: it predates it, and renaming a boolean every call site already
+     * uses is a bigger diff than the two options coexisting.
      */
-    from?: "flagged" | "unseen";
+    from?: "flagged" | "unseen" | "smart";
     mode?: TestMode;
   } = {},
 ): string {
