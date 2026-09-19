@@ -38,13 +38,15 @@ export function Badge({
   tone = "neutral",
 }: {
   children: ReactNode;
-  tone?: "neutral" | "brand" | "correct" | "incorrect";
+  tone?: "neutral" | "brand" | "correct" | "incorrect" | "warning" | "flag";
 }) {
   const tones = {
     neutral: "bg-surface-muted text-muted-foreground",
     brand: "bg-brand-soft text-brand",
     correct: "bg-correct-soft text-correct",
     incorrect: "bg-incorrect-soft text-incorrect",
+    warning: "bg-warning-soft text-warning",
+    flag: "bg-flag-soft text-flag",
   } as const;
 
   return (

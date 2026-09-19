@@ -58,7 +58,7 @@ export default async function HomePage() {
           </p>
           <Link
             href="/upgrade"
-            className="shrink-0 rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-strong"
+            className="shrink-0 rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
           >
             Upgrade
           </Link>

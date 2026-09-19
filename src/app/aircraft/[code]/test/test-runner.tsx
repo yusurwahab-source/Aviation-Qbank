@@ -444,7 +444,7 @@ export function TestRunner({
               {current.subtopic ? <Badge>{current.subtopic}</Badge> : null}
             </div>
 
-            <h1 className="mt-4 text-lg font-semibold leading-snug text-foreground sm:text-xl">
+            <h1 className="question-text mt-4 font-semibold text-foreground">
               {current.question}
             </h1>
 
@@ -484,7 +484,7 @@ export function TestRunner({
                         onChange={() => select(current.id, option.id)}
                         className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--brand)]"
                       />
-                      <span className="flex flex-1 gap-2 text-sm text-foreground">
+                      <span className="flex flex-1 gap-2 font-reading text-base text-foreground">
                         <span className="font-mono font-semibold uppercase text-muted-foreground">
                           {option.id}
                         </span>
@@ -524,7 +524,9 @@ export function TestRunner({
                 >
                   {verdict.isCorrect ? "Correct" : "Not quite"}
                 </p>
-                <p className="mt-2 text-sm text-foreground">{verdict.explanation}</p>
+                <p className="mt-2 font-reading text-base text-foreground">
+                  {verdict.explanation}
+                </p>
                 {verdict.reference ? (
                   <p className="mt-2 text-xs text-muted-foreground">
                     Reference: {verdict.reference}
@@ -562,7 +564,7 @@ export function TestRunner({
               </p>
               <Link
                 href="/upgrade"
-                className="mt-3 inline-block rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-strong"
+                className="mt-3 inline-block rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
               >
                 Upgrade
               </Link>
@@ -584,7 +586,7 @@ export function TestRunner({
                 type="button"
                 onClick={finish}
                 disabled={isSubmitting}
-                className="rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
+                className="rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {isSubmitting ? "Marking…" : "Finish test"}
               </button>
@@ -593,7 +595,7 @@ export function TestRunner({
                 type="button"
                 onClick={() => setIndex((value) => Math.min(questions.length - 1, value + 1))}
                 disabled={isSubmitting}
-                className="rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
+                className="rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
               >
                 Next →
               </button>

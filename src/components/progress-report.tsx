@@ -161,7 +161,7 @@ export function ProgressReport({ data }: { data: ProgressReportData }) {
               // Every outstanding question, not a fixed slice: the button says
               // how many there are, so it has to deliver that many.
               href={buildTestHref(aircraftCode, { retryOnly: true, length: ALL_QUESTIONS })}
-              className="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-strong"
+              className="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
             >
               Retry these {retry.length > 1 ? `${retry.length} questions` : "questions"}
             </Link>

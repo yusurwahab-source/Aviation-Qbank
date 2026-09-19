@@ -208,7 +208,7 @@ export function TestBuilder({
                 }}
                 className={`rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
                   active
-                    ? "bg-brand text-white"
+                    ? "bg-brand text-on-solid"
                     : "border border-border bg-surface text-foreground hover:border-brand hover:text-brand"
                 }`}
               >
@@ -223,7 +223,7 @@ export function TestBuilder({
             aria-pressed={wantsAll}
             className={`rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
               wantsAll
-                ? "bg-brand text-white"
+                ? "bg-brand text-on-solid"
                 : "border border-border bg-surface text-foreground hover:border-brand hover:text-brand"
             }`}
           >
@@ -329,14 +329,14 @@ export function TestBuilder({
       {size > 0 ? (
         <Link
           href={href}
-          className="inline-block rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-strong"
+          className="inline-block rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
         >
           Start test · {size} {size === 1 ? "question" : "questions"}
         </Link>
       ) : remainingFree === 0 ? (
         <Link
           href="/upgrade"
-          className="inline-block rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-strong"
+          className="inline-block rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
         >
           Upgrade to keep going
         </Link>

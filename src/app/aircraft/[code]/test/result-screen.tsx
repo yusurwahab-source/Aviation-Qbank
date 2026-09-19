@@ -95,7 +95,7 @@ export function ResultScreen({
         <button
           type="button"
           onClick={onRestart}
-          className="rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-strong"
+          className="rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
         >
           Take another test
         </button>
@@ -179,7 +179,7 @@ function ReviewCard({ entry, position }: { entry: GradedQuestion; position: numb
         <span className="ml-auto font-mono text-xs text-muted-foreground">{question.id}</span>
       </div>
 
-      <p className="mt-3 font-medium text-foreground">{question.question}</p>
+      <p className="question-text mt-3 font-medium text-foreground">{question.question}</p>
 
       <ul className="mt-3 space-y-1.5">
         {question.options.map((option) => {
@@ -209,7 +209,7 @@ function ReviewCard({ entry, position }: { entry: GradedQuestion; position: numb
       </ul>
 
       <div className="mt-3 rounded-lg bg-surface-muted p-3">
-        <p className="text-sm text-foreground">{question.explanation}</p>
+        <p className="font-reading text-sm text-foreground">{question.explanation}</p>
         {question.reference ? (
           <p className="mt-2 text-xs text-muted-foreground">Reference: {question.reference}</p>
         ) : null}

@@ -161,7 +161,7 @@ export function TestPage() {
                   }
                 }}
                 disabled={currentQuestion === questions.length - 1}
-                className="flex-1 rounded-lg bg-brand px-4 py-3 font-semibold text-white transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex-1 rounded-lg bg-brand px-4 py-3 font-semibold text-on-solid transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-50"
               >
                 التالي →
               </button>
@@ -191,7 +191,7 @@ export function TestPage() {
 
         {/* زر إنهاء الاختبار */}
         <button
-          className="w-full rounded-lg bg-brand px-4 py-3 font-semibold text-white transition hover:bg-brand-strong"
+          className="w-full rounded-lg bg-brand px-4 py-3 font-semibold text-on-solid transition hover:bg-brand-strong"
         >
           إنهاء الاختبار
         </button>

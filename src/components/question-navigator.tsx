@@ -35,11 +35,11 @@ export function QuestionNavigator({ questions, onQuestionSelect }: QuestionNavig
               flex h-10 w-10 items-center justify-center rounded font-medium text-sm transition-colors
               ${
                 question.current
-                  ? 'bg-brand text-white ring-2 ring-brand ring-offset-2'
+                  ? 'bg-brand text-on-solid ring-2 ring-brand ring-offset-2'
                   : question.answered
                     ? question.correct
-                      ? 'bg-correct text-white hover:opacity-90'
-                      : 'bg-incorrect text-white hover:opacity-90'
+                      ? 'bg-correct text-on-solid hover:opacity-90'
+                      : 'bg-incorrect text-on-solid hover:opacity-90'
                     : 'bg-surface-muted text-foreground hover:bg-border'
               }
             `}
