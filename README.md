@@ -145,6 +145,116 @@ npm run build              # production build (validates content first)
 npm run vercel-build       # what the deploy runs: migrate, seed, then build
 ```
 
+## Commercialisation status
+
+Plain-English summary of the "get ready to charge for this" work, for
+whoever is deciding what ships and what to price — the technical version of
+all of this is in [`CLAUDE.md`](CLAUDE.md).
+
+### What is live right now
+
+- **A free/premium split**, config-driven, enforced on the server (not just
+  hidden in the interface — a determined visitor editing the page's URL by
+  hand still cannot get more than the free plan allows).
+- **`/pricing`** — three plans to choose from (3 months, 12 months, or
+  lifetime, all one-time payments, no auto-renewal), a table comparing free
+  against premium, a 30-day money-back guarantee line, and an FAQ. Since
+  there is nowhere yet to actually pay, every "buy" button opens a short
+  form instead ("join the early access list") that records an email and
+  which aircraft the visitor needs, and confirms it was received.
+- **`/admin`** — a second staff area (the existing `/owner` area is
+  untouched) listing everyone who joined that early access list, and every
+  "report a problem with this question" a student has sent in, with a way
+  to mark a report resolved.
+- **A "Report a problem with this question" link on every question**, in a
+  test and on the results review, for signed-in and signed-out visitors
+  alike.
+- **Real `/terms`, `/privacy`, `/disclaimer` and `/contact` pages.** The
+  disclaimer says plainly that this is an independent study aid, not
+  affiliated with, authorised by or endorsed by Boeing or Diamond Aircraft,
+  that the aircraft names are used only to say which type a question bank
+  covers, and that nothing here replaces the FCOM, the AFM, or approved
+  training.
+- **Account self-service** — from a new "Account" page (in the account
+  menu), a signed-in student can download everything stored about them as a
+  file, or permanently delete their account.
+- **A welcome email**, sent on sign-up, and the password reset email, both
+  now styled to look like the product rather than a bare paragraph of text.
+- A visual polish pass: loading skeletons instead of blank pages or bare
+  spinners, a branded "something went wrong" page, and a fix to a
+  screen-reader bug in the exam/study clock that had been silently
+  announcing nothing at all.
+
+There is **no cookie banner**, on purpose: the site sets no analytics or
+advertising cookies (only the session cookie and a saved theme preference),
+so there is nothing to ask consent for. Adding real analytics later would
+need a banner added alongside it.
+
+**Not done, on purpose:** "Sign in with Google". The application's log-in
+system is hand-written (no third-party auth library), so there is nothing
+already in place for it to plug into — adding it would mean building real
+Google OAuth support from nothing, which is its own piece of work.
+
+### What is gated behind Premium
+
+On the **B737** specifically: 3 systems (Airplane General, Electrical, Fuel)
+are free with full access; every other system is visible — shown as a
+locked card with a lock icon and its question count, never hidden — but
+needs Premium to actually use. The **DA40**, and every future aircraft
+added the same way, stays fully free unless someone deliberately adds it to
+the locked list.
+
+Regardless of aircraft, a free account cannot:
+- sit a test longer than 20 questions,
+- use exam mode (timed, answers withheld until the end), or
+- use the "smart test" shortcuts (weakest systems, questions answered
+  wrong, flagged questions, unseen questions) — manually ticking sections
+  still works.
+
+This is a separate, simpler system from the free-question-per-aircraft
+allowance already in the app before this work (still there, still working,
+still what `/upgrade`'s existing monthly/every-3-months subscription
+unlocks). The two are independent for now — see "what remains" below.
+
+### Exactly what remains to actually accept payment
+
+The three plans on `/pricing` are **not connected to a real payment
+provider yet.** To turn them on:
+
+1. **Pick a payment integration for one-time purchases.** The existing
+   Stripe integration under `/upgrade` only knows how to sell a *recurring*
+   subscription (monthly or every 3 months) — it cannot sell a fixed-length,
+   one-time plan without changes. Either extend that integration (Stripe
+   Checkout supports one-time prices too) or add a second one.
+2. **Replace the "join early access" form** on `/pricing` with a real
+   checkout button once that exists — same shape as the "Subscribe" button
+   already working on `/upgrade`.
+3. **Decide how a purchase turns a plan on.** This work added `plan` and
+   `planExpiresAt` columns to the accounts table specifically so a one-time
+   purchase can set them directly (no recurring subscription row needed) —
+   but nothing wires a successful payment up to actually do that yet. That
+   is a small, well-scoped piece of work once a provider is chosen: verify
+   the payment (the same "never trust a webhook without checking its
+   signature" rule the existing Stripe webhook already follows), then set
+   those two columns.
+4. **Decide what happens to the existing monthly/every-3-months plan.**
+   Keep both side by side, retire the old one in favour of the new one-time
+   plans, or fold them together — this is a product decision, not a
+   technical blocker either way.
+5. **Set real prices.** The numbers on `/pricing` today are placeholders —
+   see below for where to change them.
+
+### Config files to edit
+
+| To change | Edit | Notes |
+|---|---|---|
+| **Prices on /pricing** | `src/config/plans.ts` — `PRICING_TIERS` | Each tier's `priceCents` (e.g. `2900` = $29.00) and `currency`. Nothing else on the page needs to change. |
+| **Which systems are free** | `src/config/plans.ts` — `FREE_SYSTEMS` | One entry per aircraft code (e.g. `B737: [...]`); an aircraft with no entry stays fully free. Names must match the `topic` field in that aircraft's question files exactly. |
+| **Free plan's other limits** (test length, exam mode, smart-test presets) | `src/config/plans.ts` — `PLAN_LIMITS` | `maxQuestionsPerTest: null` removes the cap; the two booleans turn exam mode and the smart-test presets on or off for the free plan. |
+| **The pass mark** | `/owner/settings` on the live site — no file edit or deploy needed | Falls back to `DEFAULT_PASS_MARK_PERCENT` in `src/lib/settings.ts` (currently 75) if it has never been set. |
+| **The existing free-question-per-aircraft allowance** | `/owner/settings`, same as the pass mark | Falls back to `FREE_QUESTIONS_PER_AIRCRAFT` in `src/lib/billing/access-policy.ts` (currently 20) — this is the older, separate allowance system; see "What is gated" above. |
+| **Support/contact email shown on /contact, /terms, /privacy** | `src/config/site.ts` — `supportEmail` | Currently a placeholder address. |
+
 ## Built with
 
 Next.js 16 (App Router) · TypeScript · Postgres · Drizzle ORM · Tailwind CSS v4 ·
