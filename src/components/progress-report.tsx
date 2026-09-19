@@ -103,7 +103,7 @@ export function ProgressReport({ data }: { data: ProgressReportData }) {
               {aircraftCode ? (
                 <Link
                   href={buildTestHref(aircraftCode, { topics: [topic.topic] })}
-                  className="mt-3 inline-block text-sm font-medium text-brand hover:underline"
+                  className="link-standalone mt-3 text-sm font-medium text-brand hover:underline"
                 >
                   Practise {topic.topic} →
                 </Link>
@@ -161,7 +161,7 @@ export function ProgressReport({ data }: { data: ProgressReportData }) {
               // Every outstanding question, not a fixed slice: the button says
               // how many there are, so it has to deliver that many.
               href={buildTestHref(aircraftCode, { retryOnly: true, length: ALL_QUESTIONS })}
-              className="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
+              className="inline-flex min-h-11 items-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
             >
               Retry these {retry.length > 1 ? `${retry.length} questions` : "questions"}
             </Link>

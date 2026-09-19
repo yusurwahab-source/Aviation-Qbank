@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 import { logOut } from "@/app/(auth)/actions";
 
@@ -76,90 +77,106 @@ export function MobileNav({ email, links }: { email: string | null; links: NavLi
         </svg>
       </button>
 
-      {open ? (
-        <div className="fixed inset-0 z-50 md:hidden">
-          <button
-            type="button"
-            tabIndex={-1}
-            aria-label="Close menu"
-            onClick={() => setOpen(false)}
-            className="absolute inset-0 bg-background/80 backdrop-blur-sm"
-          />
+      {/*
+        Rendered into <body> rather than in place. The header it sits in is
+        `backdrop-blur`, and a `backdrop-filter` makes an element the
+        containing block for every fixed-position descendant — so `inset-0`
+        here resolved against the 64px header instead of the viewport, and
+        the sheet was clipped to the height of its own title bar. A portal
+        is also simply where a modal layer belongs: it cannot be trapped by
+        a parent's stacking context or overflow.
 
-          <div className="safe-bottom absolute inset-x-0 top-0 max-h-full overflow-y-auto border-b border-border bg-surface-elevated px-5 pt-4 shadow-md">
-            <div className="flex items-center justify-between">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                Menu
-              </p>
+        `document.body` is safe to name here because this branch is only
+        ever reached after a click in the browser; it is never evaluated
+        while rendering on the server.
+      */}
+      {open
+        ? createPortal(
+            <div className="fixed inset-0 z-50 md:hidden">
               <button
                 type="button"
-                onClick={() => setOpen(false)}
+                tabIndex={-1}
                 aria-label="Close menu"
-                className="tap-target -mr-2 inline-flex items-center justify-center rounded-lg text-muted-foreground transition hover:text-brand"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  className="h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.9"
-                  strokeLinecap="round"
-                  aria-hidden="true"
-                >
-                  <path d="m6 6 12 12M18 6 6 18" />
-                </svg>
-              </button>
-            </div>
+                onClick={() => setOpen(false)}
+                className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+              />
 
-            <nav className="mt-3 flex flex-col">
-              {links.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`tap-target flex items-center border-b border-border text-base font-medium transition hover:text-brand ${
-                    pathname === link.href ? "text-brand" : "text-foreground"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-
-            <div className="mt-4 pb-4">
-              {email ? (
-                <>
-                  <p className="truncate text-xs text-muted-foreground">
-                    Signed in as <span className="text-foreground">{email}</span>
+              <div className="safe-bottom absolute inset-x-0 top-0 max-h-full overflow-y-auto border-b border-border bg-surface-elevated px-5 pt-4 shadow-md">
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    Menu
                   </p>
-                  <form action={logOut} className="mt-2">
-                    <button
-                      type="submit"
-                      className="tap-target w-full rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+                  <button
+                    type="button"
+                    onClick={() => setOpen(false)}
+                    aria-label="Close menu"
+                    className="tap-target -mr-2 inline-flex items-center justify-center rounded-lg text-muted-foreground transition hover:text-brand"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="h-5 w-5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.9"
+                      strokeLinecap="round"
+                      aria-hidden="true"
                     >
-                      Sign out
-                    </button>
-                  </form>
-                </>
-              ) : (
-                <div className="flex flex-col gap-2">
-                  <Link
-                    href="/login"
-                    className="tap-target flex items-center justify-center rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
-                  >
-                    Log in
-                  </Link>
-                  <Link
-                    href="/signup"
-                    className="tap-target flex items-center justify-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
-                  >
-                    Sign up
-                  </Link>
+                      <path d="m6 6 12 12M18 6 6 18" />
+                    </svg>
+                  </button>
                 </div>
-              )}
-            </div>
-          </div>
-        </div>
-      ) : null}
+
+                <nav className="mt-3 flex flex-col">
+                  {links.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={`tap-target flex items-center border-b border-border text-base font-medium transition hover:text-brand ${
+                        pathname === link.href ? "text-brand" : "text-foreground"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </nav>
+
+                <div className="mt-4 pb-4">
+                  {email ? (
+                    <>
+                      <p className="truncate text-xs text-muted-foreground">
+                        Signed in as <span className="text-foreground">{email}</span>
+                      </p>
+                      <form action={logOut} className="mt-2">
+                        <button
+                          type="submit"
+                          className="tap-target w-full rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+                        >
+                          Sign out
+                        </button>
+                      </form>
+                    </>
+                  ) : (
+                    <div className="flex flex-col gap-2">
+                      <Link
+                        href="/login"
+                        className="tap-target flex items-center justify-center rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+                      >
+                        Log in
+                      </Link>
+                      <Link
+                        href="/signup"
+                        className="tap-target flex items-center justify-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
+                      >
+                        Sign up
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>,
+            document.body,
+          )
+        : null}
     </>
   );
 }

@@ -79,7 +79,7 @@ export function QuestionNav({
                 onClick={() => onJump(index)}
                 aria-current={isCurrent ? "true" : undefined}
                 aria-label={`Question ${index + 1}, ${TILE_LABELS[status]}`}
-                className={`h-9 w-9 rounded-md border text-sm font-semibold tabular-nums transition ${
+                className={`h-11 w-11 rounded-md border text-sm font-semibold tabular-nums transition ${
                   TILE_TONES[status]
                 } ${isCurrent ? "ring-2 ring-brand ring-offset-1 ring-offset-surface" : ""}`}
               >
@@ -94,7 +94,7 @@ export function QuestionNav({
         <button
           type="button"
           onClick={() => onJump(nextGap)}
-          className="mt-3 text-sm font-medium text-brand hover:underline"
+          className="link-standalone mt-3 text-sm font-medium text-brand hover:underline"
         >
           Go to the next unanswered question →
         </button>

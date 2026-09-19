@@ -14,11 +14,22 @@ import "./globals.css";
 /**
  * `appUrl()` already knows how to find this deployment's own address — an
  * explicit `APP_URL`, then Vercel's production domain, then localhost. It is
- * reused here rather than duplicated so a preview deployment's metadata
- * points at the preview, and `siteConfig.url` remains the plain statement of
- * where the product lives.
+ * reused here rather than duplicated so that a preview deployment's metadata
+ * describes the preview, and so the canonical URL and the links in emails can
+ * never disagree about where this site is.
+ *
+ * Its last resort is localhost, which is right in development and wrong in a
+ * canonical tag: a production deployment that somehow cannot name itself
+ * would otherwise publish `http://localhost:3000` to every crawler that
+ * asked. There, the product's own address is the better answer.
  */
-const baseUrl = appUrl() || siteConfig.url;
+function metadataUrl(): string {
+  const resolved = appUrl();
+  const isLocal = resolved.startsWith("http://localhost");
+  return process.env.NODE_ENV === "production" && isLocal ? siteConfig.url : resolved;
+}
+
+const baseUrl = metadataUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -72,7 +83,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         <a
           href="#main"
-          className="sr-only rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-on-solid focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50"
+          className="sr-only rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:inline-flex focus:min-h-11 focus:items-center"
         >
           Skip to content
         </a>

@@ -27,7 +27,7 @@ export function SiteFooter() {
           <div className="max-w-sm">
             <Link
               href="/"
-              className="inline-flex rounded-lg text-foreground transition hover:text-brand"
+              className="tap-target inline-flex items-center rounded-lg text-foreground transition hover:text-brand"
             >
               <Logo markClassName="h-6 w-6 text-brand" />
             </Link>

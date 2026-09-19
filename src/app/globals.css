@@ -319,6 +319,16 @@ body {
   min-width: var(--tap-target);
 }
 
+/* A link or button that stands on its own — a "← All aircraft", a "Show the
+ * numbers" — is a control, and gets a control's tap target. A link inside a
+ * sentence deliberately does not: WCAG exempts inline links for the good
+ * reason that stretching one would break the line of text it sits in. */
+.link-standalone {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-target);
+}
+
 /* Bottom-anchored chrome has to clear the home indicator on a phone. */
 .safe-bottom {
   padding-bottom: max(var(--space-4), env(safe-area-inset-bottom));

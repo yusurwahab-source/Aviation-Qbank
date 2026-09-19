@@ -484,16 +484,20 @@ export function TestRunner({
                         onChange={() => select(current.id, option.id)}
                         className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--brand)]"
                       />
-                      <span className="flex flex-1 gap-2 font-reading text-base text-foreground">
+                      <span className="flex flex-1 flex-wrap gap-x-2 gap-y-1 font-reading text-base text-foreground">
                         <span className="font-mono font-semibold uppercase text-muted-foreground">
                           {option.id}
                         </span>
-                        <span className="flex-1">{option.text}</span>
+                        <span className="min-w-0 flex-1 basis-0">{option.text}</span>
                         {isAnswer ? (
-                          <span className="text-xs font-semibold text-correct">Correct answer</span>
+                          <span className="basis-full text-xs font-semibold text-correct sm:basis-auto">
+                            Correct answer
+                          </span>
                         ) : null}
                         {isWrongPick ? (
-                          <span className="text-xs font-semibold text-incorrect">Your answer</span>
+                          <span className="basis-full text-xs font-semibold text-incorrect sm:basis-auto">
+                            Your answer
+                          </span>
                         ) : null}
                       </span>
                     </label>
@@ -564,7 +568,7 @@ export function TestRunner({
               </p>
               <Link
                 href="/upgrade"
-                className="mt-3 inline-block rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
+                className="mt-3 inline-flex min-h-11 items-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
               >
                 Upgrade
               </Link>
@@ -576,7 +580,7 @@ export function TestRunner({
               type="button"
               onClick={() => setIndex((value) => Math.max(0, value - 1))}
               disabled={index === 0 || isSubmitting}
-              className="rounded-lg border border-border bg-surface px-4 py-2.5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand disabled:cursor-not-allowed disabled:opacity-60"
+              className="min-h-11 rounded-lg border border-border bg-surface px-4 py-2.5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand disabled:cursor-not-allowed disabled:opacity-60"
             >
               ← Previous
             </button>
@@ -586,7 +590,7 @@ export function TestRunner({
                 type="button"
                 onClick={finish}
                 disabled={isSubmitting}
-                className="rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
+                className="min-h-11 rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {isSubmitting ? "Marking…" : "Finish test"}
               </button>
@@ -595,7 +599,7 @@ export function TestRunner({
                 type="button"
                 onClick={() => setIndex((value) => Math.min(questions.length - 1, value + 1))}
                 disabled={isSubmitting}
-                className="rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
+                className="min-h-11 rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
               >
                 Next →
               </button>
@@ -620,7 +624,7 @@ export function TestRunner({
           <p className="mt-6 text-center">
             <Link
               href={`/aircraft/${aircraftCode}`}
-              className="text-sm text-muted-foreground hover:text-brand hover:underline"
+              className="link-standalone text-sm text-muted-foreground hover:text-brand hover:underline"
             >
               Abandon test
             </Link>

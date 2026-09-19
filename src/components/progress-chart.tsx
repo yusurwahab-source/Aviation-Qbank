@@ -206,7 +206,7 @@ export function ProgressChart({ scores }: { scores: TestScore[] }) {
       <button
         type="button"
         onClick={() => setShowTable((v) => !v)}
-        className="mt-1 text-sm font-medium text-brand hover:underline"
+        className="link-standalone mt-1 text-sm font-medium text-brand hover:underline"
         aria-expanded={showTable}
       >
         {showTable ? "Hide the numbers" : "Show the numbers"}

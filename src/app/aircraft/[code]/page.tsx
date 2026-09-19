@@ -89,12 +89,12 @@ export default async function AircraftPage({ params }: PageProps) {
       </section>
 
       <p className="mt-6 flex flex-wrap gap-4">
-        <Link href="/" className="text-sm font-medium text-brand hover:underline">
+        <Link href="/" className="link-standalone text-sm font-medium text-brand hover:underline">
           ← All aircraft
         </Link>
         <Link
           href={`/progress/${plane.code}`}
-          className="text-sm font-medium text-brand hover:underline"
+          className="link-standalone text-sm font-medium text-brand hover:underline"
         >
           Your {plane.code} progress →
         </Link>

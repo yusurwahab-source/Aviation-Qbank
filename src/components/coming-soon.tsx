@@ -33,7 +33,7 @@ export function ComingSoon({
       ) : null}
 
       <p className="mt-6">
-        <Link href="/" className="text-sm font-medium text-brand hover:underline">
+        <Link href="/" className="link-standalone text-sm font-medium text-brand hover:underline">
           ← Back to the aircraft
         </Link>
       </p>
