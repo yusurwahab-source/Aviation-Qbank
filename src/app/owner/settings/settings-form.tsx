@@ -3,7 +3,13 @@
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
-import { MAX_ANNOUNCEMENT_LENGTH, MAX_FREE_QUESTIONS, type SiteSettings } from "@/lib/settings";
+import {
+  MAX_ANNOUNCEMENT_LENGTH,
+  MAX_FREE_QUESTIONS,
+  MAX_PASS_MARK_PERCENT,
+  MIN_PASS_MARK_PERCENT,
+  type SiteSettings,
+} from "@/lib/settings";
 
 import { updateSettings, type SettingsState } from "./actions";
 
@@ -68,6 +74,29 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
           placeholder="e.g. Scheduled maintenance tonight, 22:00–23:00 UTC"
           className={inputClass}
         />
+      </div>
+
+      <div>
+        <label htmlFor="passMarkPercent" className="block text-sm font-medium text-foreground">
+          Pass mark
+        </label>
+        <p className="mt-1 text-xs text-muted-foreground">
+          The percentage a result screen needs to reach to show as a pass. A label on the score
+          only — it changes nothing about grading or access.
+        </p>
+        <div className="mt-1.5 flex max-w-40 items-center gap-2">
+          <input
+            id="passMarkPercent"
+            name="passMarkPercent"
+            type="number"
+            min={MIN_PASS_MARK_PERCENT}
+            max={MAX_PASS_MARK_PERCENT}
+            defaultValue={settings.passMarkPercent}
+            required
+            className={inputClass}
+          />
+          <span className="text-sm text-muted-foreground">%</span>
+        </div>
       </div>
 
       <div>

@@ -43,6 +43,16 @@ export function parseTestMode(raw: string | string[] | undefined): TestMode {
 /** One-tap lengths offered beside the free number box. */
 export const TEST_LENGTHS = [5, 10, 20] as const;
 
+/**
+ * The builder's quick presets ("Questions I got wrong", "My flagged
+ * questions", "Unseen questions") stop counting past this and show it as
+ * "500+" — the exact number stops being useful to a student once a list is
+ * already this long, and it bounds the query the same way `MAX_ANSWERS`
+ * bounds a submission: a fact about what is worth counting, not a product
+ * limit on how many questions any of these presets can actually return.
+ */
+export const PRESET_COUNT_CEILING = 500;
+
 export const DEFAULT_TEST_LENGTH = 10;
 
 /**
@@ -197,12 +207,21 @@ export function buildTestHref(
     topics?: string[];
     length?: TestLength;
     retryOnly?: boolean;
+    /**
+     * The other two pre-built lists a test can draw from instead of
+     * `topics` — the student's own flags, or every question they have never
+     * answered. `retryOnly` stays its own option rather than folding into
+     * this one: it predates it, and renaming a boolean every call site
+     * already uses is a bigger diff than the two options coexisting.
+     */
+    from?: "flagged" | "unseen";
     mode?: TestMode;
   } = {},
 ): string {
   const params = new URLSearchParams();
 
   if (options.retryOnly) params.set("from", "incorrect");
+  else if (options.from) params.set("from", options.from);
   for (const topic of options.topics ?? []) params.append("topic", topic);
   if (options.length !== undefined) params.set("questions", String(options.length));
   // The default is left out: a plain URL means study, which keeps the common
@@ -212,4 +231,25 @@ export function buildTestHref(
   }
   const query = params.toString();
   return `/aircraft/${aircraftCode}/test${query ? `?${query}` : ""}`;
+}
+
+/**
+ * The link a "Resume your test" banner uses — the one case that needs `?t=`
+ * in the URL, which `buildTestHref` deliberately never sets: every other
+ * caller wants a *fresh* test, and a fresh test's id is only ever minted by
+ * the server's own redirect. This is the exception, because resuming is the
+ * entire point — reusing the id already on the incomplete session is what
+ * `findSession` on the test page recognises as "pick this back up" rather
+ * than "start over".
+ */
+export function buildResumeHref(session: {
+  clientTestId: string;
+  aircraftCode: string;
+  mode: TestMode;
+  topics: string[];
+}): string {
+  const params = new URLSearchParams({ t: session.clientTestId });
+  if (session.mode !== DEFAULT_TEST_MODE) params.set("mode", session.mode);
+  for (const topic of session.topics) params.append("topic", topic);
+  return `/aircraft/${session.aircraftCode}/test?${params.toString()}`;
 }

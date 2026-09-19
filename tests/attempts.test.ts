@@ -47,6 +47,7 @@ describeWithDb("recordTestResult", () => {
     correct,
     explanation: "Because.",
     reference: null,
+    media: null,
   });
 
   const questions = [

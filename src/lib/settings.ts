@@ -28,17 +28,26 @@ export type SiteSettings = {
   freeQuestionsPerAircraft: number;
   /** One line shown to everyone, above the page. Empty means no banner. */
   announcement: string;
+  /** Whole-number percentage a test result needs to reach to show as a pass
+   * on the results screen. Purely a label on the score — it changes nothing
+   * about grading, access, or what is recorded. */
+  passMarkPercent: number;
 };
 
 export const SETTING_KEYS = {
   freeQuestionsPerAircraft: "free_questions_per_aircraft",
   announcement: "announcement",
+  passMarkPercent: "pass_mark_percent",
 } as const;
+
+/** The default a checkride-style pass mark is usually quoted at. */
+export const DEFAULT_PASS_MARK_PERCENT = 75;
 
 /** The behaviour of this app with an empty `site_settings` table. */
 export const DEFAULT_SETTINGS: SiteSettings = {
   freeQuestionsPerAircraft: FREE_QUESTIONS_PER_AIRCRAFT,
   announcement: "",
+  passMarkPercent: DEFAULT_PASS_MARK_PERCENT,
 };
 
 /**
@@ -51,6 +60,11 @@ export const MAX_FREE_QUESTIONS = 10_000;
 
 /** Long enough for a sentence, short enough to stay one line on a phone. */
 export const MAX_ANNOUNCEMENT_LENGTH = 160;
+
+/** A pass mark is a percentage, so 1 to 100 is the whole of what it can mean;
+ * 0 would fail nobody and neither is a pass mark worth having. */
+export const MIN_PASS_MARK_PERCENT = 1;
+export const MAX_PASS_MARK_PERCENT = 100;
 
 export type SettingsValidation =
   | { ok: true; settings: SiteSettings }
@@ -66,6 +80,7 @@ export type SettingsValidation =
 export function validateSettings(input: {
   freeQuestionsPerAircraft: unknown;
   announcement: unknown;
+  passMarkPercent: unknown;
 }): SettingsValidation {
   const free = Number(input.freeQuestionsPerAircraft);
 
@@ -91,7 +106,25 @@ export function validateSettings(input: {
     };
   }
 
-  return { ok: true, settings: { freeQuestionsPerAircraft: free, announcement } };
+  const passMark = Number(input.passMarkPercent);
+
+  if (
+    typeof input.passMarkPercent !== "string" ||
+    input.passMarkPercent.trim() === "" ||
+    !Number.isInteger(passMark) ||
+    passMark < MIN_PASS_MARK_PERCENT ||
+    passMark > MAX_PASS_MARK_PERCENT
+  ) {
+    return {
+      ok: false,
+      error: `Pass mark must be a whole number from ${MIN_PASS_MARK_PERCENT} to ${MAX_PASS_MARK_PERCENT}.`,
+    };
+  }
+
+  return {
+    ok: true,
+    settings: { freeQuestionsPerAircraft: free, announcement, passMarkPercent: passMark },
+  };
 }
 
 /**
@@ -114,12 +147,21 @@ export function parseSettings(rows: { key: string; value: string }[]): SiteSetti
 
   const rawAnnouncement = stored.get(SETTING_KEYS.announcement) ?? "";
 
+  const rawPassMark = stored.get(SETTING_KEYS.passMarkPercent);
+  const passMark = rawPassMark === undefined ? Number.NaN : Number(rawPassMark);
+
   return {
     freeQuestionsPerAircraft:
       Number.isInteger(free) && free >= 0 && free <= MAX_FREE_QUESTIONS
         ? free
         : DEFAULT_SETTINGS.freeQuestionsPerAircraft,
     announcement: rawAnnouncement.trim().slice(0, MAX_ANNOUNCEMENT_LENGTH),
+    passMarkPercent:
+      Number.isInteger(passMark) &&
+      passMark >= MIN_PASS_MARK_PERCENT &&
+      passMark <= MAX_PASS_MARK_PERCENT
+        ? passMark
+        : DEFAULT_SETTINGS.passMarkPercent,
   };
 }
 
@@ -131,5 +173,6 @@ export function settingsToRows(settings: SiteSettings): { key: string; value: st
       value: String(settings.freeQuestionsPerAircraft),
     },
     { key: SETTING_KEYS.announcement, value: settings.announcement },
+    { key: SETTING_KEYS.passMarkPercent, value: String(settings.passMarkPercent) },
   ];
 }

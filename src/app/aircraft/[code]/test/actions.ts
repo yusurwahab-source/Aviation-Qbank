@@ -3,6 +3,8 @@
 import { z } from "zod";
 
 import { recordTestResult, saveAnswer as saveAnswerRow } from "@/db/attempts";
+import { toggleQuestionFlag } from "@/db/flags";
+import { getQuestionNote, saveQuestionNote } from "@/db/notes";
 import { getAnswerKey } from "@/db/queries";
 import {
   countQuestionsAnswered,
@@ -120,6 +122,10 @@ const answerSchema = z.object({
   selectedOptionId: z.string().max(4),
   /** Study marks as you go; exam holds everything back until Finish. */
   mode: z.enum(TEST_MODES),
+  /** The sections this test was built from. Only used the first time this
+   * test is saved, same as `questionIds` — bounded the same way
+   * `parseTopics` bounds them, since this is the same untrusted shape. */
+  topics: z.array(z.string().max(60)).max(50).default([]),
 });
 
 export type AnswerQuestionInput = z.infer<typeof answerSchema>;
@@ -212,6 +218,7 @@ export async function answerQuestion(
       questionId,
       selectedOptionId,
       mode,
+      topics,
     } = answerSchema.parse(input);
 
     // The clock is a consequence of the mode, not something the caller gets
@@ -283,6 +290,8 @@ export async function answerQuestion(
         selectedOptionId,
         isCorrect,
         timeLimitSeconds,
+        mode,
+        topics,
       });
 
       if (outcome.status === "recorded") {
@@ -312,5 +321,71 @@ export async function answerQuestion(
   } catch (error) {
     console.error("Failed to answer a question:", error);
     return { status: "failed" };
+  }
+}
+
+/* ────────────────────────── Flags and notes ───────────────────────────
+ *
+ * Both are signed-in only, and both fail quietly: a flag or a note is the
+ * student's own study aid, not part of grading or history, so there is
+ * nothing here worth interrupting a test over. The button that calls
+ * `toggleFlag` has already updated itself optimistically before this
+ * resolves; a failure here just means the next page load will not agree
+ * with it, not that the test breaks.
+ */
+
+const flagSchema = z.object({
+  questionId: z.string().max(40),
+  aircraftCode: z.string().regex(/^[A-Z][A-Z0-9]{1,7}$/),
+});
+
+export async function toggleFlag(
+  input: z.infer<typeof flagSchema>,
+): Promise<{ flagged: boolean } | { status: "signed-out" | "failed" }> {
+  try {
+    const { questionId, aircraftCode } = flagSchema.parse(input);
+    const user = await getCurrentUser();
+    if (!user) return { status: "signed-out" };
+
+    return await toggleQuestionFlag(user.id, questionId, aircraftCode);
+  } catch (error) {
+    console.error("Failed to toggle a flag:", error);
+    return { status: "failed" };
+  }
+}
+
+const noteSchema = z.object({
+  questionId: z.string().max(40),
+  aircraftCode: z.string().regex(/^[A-Z][A-Z0-9]{1,7}$/),
+  body: z.string().max(4000),
+});
+
+export async function saveNote(
+  input: z.infer<typeof noteSchema>,
+): Promise<{ status: "saved" | "signed-out" | "failed" }> {
+  try {
+    const { questionId, aircraftCode, body } = noteSchema.parse(input);
+    const user = await getCurrentUser();
+    if (!user) return { status: "signed-out" };
+
+    await saveQuestionNote(user.id, questionId, aircraftCode, body);
+    return { status: "saved" };
+  } catch (error) {
+    console.error("Failed to save a note:", error);
+    return { status: "failed" };
+  }
+}
+
+/** Fetched lazily, the first time a question's note editor is opened —
+ * loading every note for a whole test upfront does not scale to an
+ * "all questions" test on a bank this size. */
+export async function loadNote(questionId: string): Promise<string> {
+  try {
+    const user = await getCurrentUser();
+    if (!user) return "";
+    return (await getQuestionNote(user.id, questionId.slice(0, 40))) ?? "";
+  } catch (error) {
+    console.error("Failed to load a note:", error);
+    return "";
   }
 }

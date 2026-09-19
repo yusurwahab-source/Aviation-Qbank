@@ -4,31 +4,42 @@ import {
   DEFAULT_SETTINGS,
   MAX_ANNOUNCEMENT_LENGTH,
   MAX_FREE_QUESTIONS,
+  MAX_PASS_MARK_PERCENT,
+  MIN_PASS_MARK_PERCENT,
   parseSettings,
   settingsToRows,
   validateSettings,
 } from "@/lib/settings";
 
+const valid = { freeQuestionsPerAircraft: "10", announcement: "", passMarkPercent: "75" };
+
 describe("validateSettings", () => {
   it("accepts a well-formed submission", () => {
-    const result = validateSettings({ freeQuestionsPerAircraft: "25", announcement: "Hello" });
-    expect(result).toEqual({ ok: true, settings: { freeQuestionsPerAircraft: 25, announcement: "Hello" } });
+    const result = validateSettings({
+      freeQuestionsPerAircraft: "25",
+      announcement: "Hello",
+      passMarkPercent: "80",
+    });
+    expect(result).toEqual({
+      ok: true,
+      settings: { freeQuestionsPerAircraft: 25, announcement: "Hello", passMarkPercent: 80 },
+    });
   });
 
   it("trims the announcement", () => {
-    const result = validateSettings({ freeQuestionsPerAircraft: "10", announcement: "  Hi  " });
+    const result = validateSettings({ ...valid, announcement: "  Hi  " });
     expect(result.ok).toBe(true);
     if (result.ok) expect(result.settings.announcement).toBe("Hi");
   });
 
   it("treats a missing announcement as empty, not an error", () => {
-    const result = validateSettings({ freeQuestionsPerAircraft: "10", announcement: undefined });
+    const result = validateSettings({ ...valid, announcement: undefined });
     expect(result.ok).toBe(true);
     if (result.ok) expect(result.settings.announcement).toBe("");
   });
 
   it("allows zero free questions — meaningful, not a mistake", () => {
-    const result = validateSettings({ freeQuestionsPerAircraft: "0", announcement: "" });
+    const result = validateSettings({ ...valid, freeQuestionsPerAircraft: "0" });
     expect(result.ok).toBe(true);
     if (result.ok) expect(result.settings.freeQuestionsPerAircraft).toBe(0);
   });
@@ -39,19 +50,19 @@ describe("validateSettings", () => {
     ["1.5", "non-integer"],
     ["abc", "not a number"],
     [String(MAX_FREE_QUESTIONS + 1), "over the ceiling"],
-  ])("rejects %s (%s)", (value) => {
-    const result = validateSettings({ freeQuestionsPerAircraft: value, announcement: "" });
+  ])("rejects %s free questions (%s)", (value) => {
+    const result = validateSettings({ ...valid, freeQuestionsPerAircraft: value });
     expect(result.ok).toBe(false);
   });
 
   it("rejects a missing free-questions field rather than defaulting it", () => {
-    const result = validateSettings({ freeQuestionsPerAircraft: undefined, announcement: "" });
+    const result = validateSettings({ ...valid, freeQuestionsPerAircraft: undefined });
     expect(result.ok).toBe(false);
   });
 
   it("rejects an announcement past the length limit", () => {
     const result = validateSettings({
-      freeQuestionsPerAircraft: "10",
+      ...valid,
       announcement: "x".repeat(MAX_ANNOUNCEMENT_LENGTH + 1),
     });
     expect(result.ok).toBe(false);
@@ -59,10 +70,36 @@ describe("validateSettings", () => {
 
   it("accepts an announcement at exactly the length limit", () => {
     const result = validateSettings({
-      freeQuestionsPerAircraft: "10",
+      ...valid,
       announcement: "x".repeat(MAX_ANNOUNCEMENT_LENGTH),
     });
     expect(result.ok).toBe(true);
+  });
+
+  it.each([
+    ["", "empty string"],
+    ["0", "below the floor — a pass mark of 0 fails nobody"],
+    ["-1", "negative"],
+    ["1.5", "non-integer"],
+    [String(MAX_PASS_MARK_PERCENT + 1), "over the ceiling"],
+    ["abc", "not a number"],
+  ])("rejects pass mark %s (%s)", (value) => {
+    const result = validateSettings({ ...valid, passMarkPercent: value });
+    expect(result.ok).toBe(false);
+  });
+
+  it("accepts a pass mark at each bound", () => {
+    expect(
+      validateSettings({ ...valid, passMarkPercent: String(MIN_PASS_MARK_PERCENT) }).ok,
+    ).toBe(true);
+    expect(
+      validateSettings({ ...valid, passMarkPercent: String(MAX_PASS_MARK_PERCENT) }).ok,
+    ).toBe(true);
+  });
+
+  it("rejects a missing pass-mark field rather than defaulting it", () => {
+    const result = validateSettings({ ...valid, passMarkPercent: undefined });
+    expect(result.ok).toBe(false);
   });
 });
 
@@ -75,8 +112,13 @@ describe("parseSettings", () => {
     const rows = [
       { key: "free_questions_per_aircraft", value: "50" },
       { key: "announcement", value: "Back soon" },
+      { key: "pass_mark_percent", value: "70" },
     ];
-    expect(parseSettings(rows)).toEqual({ freeQuestionsPerAircraft: 50, announcement: "Back soon" });
+    expect(parseSettings(rows)).toEqual({
+      freeQuestionsPerAircraft: 50,
+      announcement: "Back soon",
+      passMarkPercent: 70,
+    });
   });
 
   it("falls back on a corrupt number rather than throwing", () => {
@@ -96,6 +138,19 @@ describe("parseSettings", () => {
     ).toBe(DEFAULT_SETTINGS.freeQuestionsPerAircraft);
   });
 
+  it("falls back on a corrupt or out-of-range stored pass mark", () => {
+    expect(parseSettings([{ key: "pass_mark_percent", value: "not-a-number" }]).passMarkPercent).toBe(
+      DEFAULT_SETTINGS.passMarkPercent,
+    );
+    expect(parseSettings([{ key: "pass_mark_percent", value: "0" }]).passMarkPercent).toBe(
+      DEFAULT_SETTINGS.passMarkPercent,
+    );
+    expect(
+      parseSettings([{ key: "pass_mark_percent", value: String(MAX_PASS_MARK_PERCENT + 1) }])
+        .passMarkPercent,
+    ).toBe(DEFAULT_SETTINGS.passMarkPercent);
+  });
+
   it("ignores an unknown key rather than erroring", () => {
     expect(parseSettings([{ key: "something_else", value: "1" }])).toEqual(DEFAULT_SETTINGS);
   });
@@ -103,7 +158,7 @@ describe("parseSettings", () => {
 
 describe("settingsToRows", () => {
   it("round-trips through parseSettings", () => {
-    const settings = { freeQuestionsPerAircraft: 42, announcement: "Round trip" };
+    const settings = { freeQuestionsPerAircraft: 42, announcement: "Round trip", passMarkPercent: 65 };
     expect(parseSettings(settingsToRows(settings))).toEqual(settings);
   });
 });

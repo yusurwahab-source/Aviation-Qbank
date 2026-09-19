@@ -26,6 +26,8 @@ import type { QuestionOption } from "@/content/schema";
 
 export const aircraftStatus = pgEnum("aircraft_status", ["active", "coming_soon"]);
 export const questionStatus = pgEnum("question_status", ["draft", "published"]);
+/** Mirrors `TEST_MODES` in `src/lib/test-options.ts` — the one other place this shape exists. */
+export const testMode = pgEnum("test_mode", ["study", "exam"]);
 
 export const aircraft = pgTable("aircraft", {
   /** Short type code, e.g. DA40. Also the URL segment: /aircraft/DA40. */
@@ -222,6 +224,30 @@ export const testSessions = pgTable(
      * always agree about which test they describe.
      */
     timeLimitSeconds: integer("time_limit_seconds"),
+    /**
+     * Study or exam, captured once when the session is first written and
+     * never moved. `parseTestMode` still reads `?mode=` for a *fresh* test —
+     * before the first answer there is no row for this to live on — but a
+     * *resumed* test reads it from here, not the URL. That is not cosmetic:
+     * `?mode=study` on a resumed test's URL used to decide whether
+     * already-answered questions had their key re-sent, so a resume link
+     * that dropped `mode=exam` would have handed back an exam's answers as
+     * if it had been study mode all along. See the note on `findSession`.
+     *
+     * Nullable because every row written before this column existed has
+     * nothing to put here truthfully; the migration backfills what it can
+     * infer (a stored time limit could only ever mean exam) and leaves the
+     * rest null, read as `study` — the default a null `mode` always meant.
+     */
+    mode: testMode("mode"),
+    /**
+     * The sections the student chose, snapshotted the same way `questionIds`
+     * is. Empty means "the whole aircraft", matching `parseTopics` — this
+     * exists only to describe a resumable session on the aircraft page and
+     * the dashboard ("DA40 · Fuel System") without re-deriving it from the
+     * questions themselves.
+     */
+    topics: text("topics").array().notNull().default(sql`'{}'::text[]`),
     /** Null means still in progress. Set once, at Finish, and never cleared. */
     completedAt: timestamp("completed_at", { withTimezone: true }),
   },
@@ -311,6 +337,75 @@ export type TestSessionRow = typeof testSessions.$inferSelect;
 export type TestSessionInsert = typeof testSessions.$inferInsert;
 export type AttemptRow = typeof attempts.$inferSelect;
 export type AttemptInsert = typeof attempts.$inferInsert;
+
+/**
+ * A question a student has marked to come back to.
+ *
+ * `questionId` is plain text, not a foreign key — the same reasoning as
+ * `attempts.questionId`: `db:seed` deletes questions whose content files are
+ * gone, and a foreign key would either erase a flag silently (cascade) or
+ * block a legitimate content edit (restrict). A flag on a since-deleted
+ * question simply never renders again, because nothing fetches it.
+ *
+ * `aircraftCode` is a snapshot for the same reason it is one on `attempts`:
+ * "flagged questions on this aircraft" needs to be answerable with no join
+ * back to `questions`, which is exactly the query the test builder's "My
+ * flagged questions" preset runs.
+ *
+ * One row per `(userId, questionId)` — the unique index is what makes
+ * toggling a flag an insert-or-delete rather than something that could ever
+ * double up.
+ */
+export const questionFlags = pgTable(
+  "question_flags",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    questionId: varchar("question_id", { length: 40 }).notNull(),
+    aircraftCode: varchar("aircraft_code", { length: 8 }).notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("question_flags_user_question_unique").on(table.userId, table.questionId),
+    // "My flagged questions" on this aircraft, for the test builder preset.
+    index("question_flags_user_aircraft_idx").on(table.userId, table.aircraftCode),
+  ],
+);
+
+export type QuestionFlagRow = typeof questionFlags.$inferSelect;
+export type QuestionFlagInsert = typeof questionFlags.$inferInsert;
+
+/**
+ * A student's own note on one question, shown alongside it and on the
+ * results review. Exactly one per `(userId, questionId)` — writing a second
+ * note for the same question replaces the first, which is what "autosaves"
+ * means here: there is nothing to version, only a body to keep current.
+ *
+ * Same no-foreign-key, snapshotted-`aircraftCode` reasoning as
+ * `questionFlags` above, for the same reason.
+ */
+export const questionNotes = pgTable(
+  "question_notes",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    questionId: varchar("question_id", { length: 40 }).notNull(),
+    aircraftCode: varchar("aircraft_code", { length: 8 }).notNull(),
+    body: text("body").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("question_notes_user_question_unique").on(table.userId, table.questionId),
+  ],
+);
+
+export type QuestionNoteRow = typeof questionNotes.$inferSelect;
+export type QuestionNoteInsert = typeof questionNotes.$inferInsert;
 
 /**
  * Failed log in attempts, for rate limiting.

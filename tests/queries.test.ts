@@ -144,6 +144,7 @@ describeWithDb("test question queries", () => {
         "subtopic",
         "question",
         "options",
+        "media",
       ]);
     });
   });
@@ -165,6 +166,7 @@ describeWithDb("test question queries", () => {
         "subtopic",
         "question",
         "options",
+        "media",
       ]);
     });
 

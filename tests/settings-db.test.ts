@@ -31,23 +31,31 @@ describeDb("site settings", () => {
   });
 
   it("saves and reads back a change", async () => {
-    await saveSiteSettings({ freeQuestionsPerAircraft: 5, announcement: "Testing" });
-    expect(await getSiteSettings()).toEqual({ freeQuestionsPerAircraft: 5, announcement: "Testing" });
+    await saveSiteSettings({ freeQuestionsPerAircraft: 5, announcement: "Testing", passMarkPercent: 80 });
+    expect(await getSiteSettings()).toEqual({
+      freeQuestionsPerAircraft: 5,
+      announcement: "Testing",
+      passMarkPercent: 80,
+    });
   });
 
   it("overwrites rather than duplicating on a second save", async () => {
-    await saveSiteSettings({ freeQuestionsPerAircraft: 5, announcement: "First" });
-    await saveSiteSettings({ freeQuestionsPerAircraft: 15, announcement: "Second" });
+    await saveSiteSettings({ freeQuestionsPerAircraft: 5, announcement: "First", passMarkPercent: 70 });
+    await saveSiteSettings({ freeQuestionsPerAircraft: 15, announcement: "Second", passMarkPercent: 90 });
 
     const rows = await getDb().select().from(siteSettings);
-    // Two keys, not four — the second save updated the existing rows.
-    expect(rows).toHaveLength(2);
-    expect(await getSiteSettings()).toEqual({ freeQuestionsPerAircraft: 15, announcement: "Second" });
+    // Three keys, not six — the second save updated the existing rows.
+    expect(rows).toHaveLength(3);
+    expect(await getSiteSettings()).toEqual({
+      freeQuestionsPerAircraft: 15,
+      announcement: "Second",
+      passMarkPercent: 90,
+    });
   });
 
   it("clears the announcement back to empty", async () => {
-    await saveSiteSettings({ freeQuestionsPerAircraft: 10, announcement: "Visible" });
-    await saveSiteSettings({ freeQuestionsPerAircraft: 10, announcement: "" });
+    await saveSiteSettings({ freeQuestionsPerAircraft: 10, announcement: "Visible", passMarkPercent: 75 });
+    await saveSiteSettings({ freeQuestionsPerAircraft: 10, announcement: "", passMarkPercent: 75 });
 
     const [row] = await getDb()
       .select()

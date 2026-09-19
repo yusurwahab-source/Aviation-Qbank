@@ -17,6 +17,7 @@ export type GradableQuestion = {
   correct: string;
   explanation: string;
   reference: string | null;
+  media: string | null;
 };
 
 /** What the user chose. `null` means the question was left unanswered. */
