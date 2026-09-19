@@ -28,6 +28,12 @@ through Stripe Checkout and confirmed by its webhook. Verified end to end
 against a real Stripe account in test mode. See the note on payments in the
 conventions below and in "Not in scope yet".
 
+The product is called **Holdshort**, and it has an identity to match: a
+dark flight-deck palette with a light theme beside it, two typefaces, a
+logo mark, and an application shell — header, navigation, theme toggle,
+account menu, footer — that works down to 375px. Everything visual is
+driven by tokens in one file; see the conventions below.
+
 (This was first built against 2Checkout. That merchant application was
 declined before a single test payment could be attempted, so the
 integration was rebuilt against Stripe instead — the free-tier rule, the
@@ -68,6 +74,7 @@ suite passed against a database holding both banks.
 | `npm run db:generate` | Writes a new migration after changing `src/db/schema.ts` |
 | `npm run db:studio` | Opens Drizzle Studio to browse the database |
 | `npm run validate:content` | Checks every question file against the schema |
+| `npm run icons:generate` | Redraws the favicon, the app icons and the manifest icons from the logo mark. Outputs are committed; run it only when the mark or the brand colours change. |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | TypeScript, no emit |
 | `npm run test` | Unit tests (Vitest) |
@@ -127,19 +134,115 @@ The brief's suggested stack, adopted as-is:
   can stay on the server; one framework for pages and API.
 - **Postgres + Drizzle ORM** — SQL that is visible and reviewable, migrations as
   files in the repo. Works with Neon or Supabase without changes.
-- **Tailwind CSS v4** — styling in the markup, one small token palette in
+- **Tailwind CSS v4** — styling in the markup, every token in
   `src/app/globals.css`.
 - **Vercel** for deployment.
 
-Two small deviations, both to remove a dependency rather than add one:
+One deviation, to remove a dependency rather than add one:
 
-- **No web font.** The app uses the system font stack. `next/font/google`
-  fetches fonts at build time, which makes the build depend on the network for
-  no user-visible benefit at this stage.
 - **Zod for content validation.** Needed anyway to make the build fail loudly on
   bad question files, so it is also used to validate the server action input.
 
+**Two web fonts, self-hosted by `next/font`** (`src/app/fonts.ts`). This
+reverses an earlier decision to use the system stack: that was the right
+trade while the application had no visual identity to carry, and the wrong
+one once it did. The build now depends on Google Fonts at build time, which
+is the cost.
+
+Space Grotesk is the interface. Inter is what question text is set in, and
+that is the decision that actually matters here — a student reads far more
+question text than interface, for hours at a time, so the reading face was
+chosen for letterforms that stay distinct from one another when tired, not
+for how it looks in a heading.
+
 ## Conventions
+
+**Every colour, size, radius and shadow is a token in
+`src/app/globals.css`, and nothing in `src/` names one directly.**
+Components use Tailwind utilities — `bg-surface`, `text-brand`,
+`rounded-lg` — which resolve through the `@theme inline` block to the
+custom properties defined at the top of that file. Changing how the whole
+application looks is an edit to one file. There is not a single hardcoded
+palette colour anywhere in `src/`, and adding one would be the wrong
+change.
+
+The palette is a dark flight deck: near-black navy behind, panels lifted
+out of it in steps rather than by shadow, and one restrained instrument
+cyan as the only accent. Semantic colour is kept pure and separate from
+that accent — success, danger, warning and flag each mean exactly one
+thing — so "this is important" and "this is correct" can never be
+confused with each other.
+
+The scales are deliberately short: seven type sizes (12/14/16/18/24/32/40),
+four radii, two shadow levels. Spacing rides on Tailwind's own 4px step
+rather than a second scale to keep in sync with the first.
+
+`--brand`, `--correct` and `--incorrect` survive as aliases of `--accent`,
+`--success` and `--danger`. A hundred class names in `src/` still use the
+older spelling; one vocabulary with two spellings is a smaller problem
+than a rename touching every component, and that rename can happen on its
+own when it is worth the diff.
+
+**Dark is the default; light is a real second theme, and the student's
+choice always beats the operating system's.** Light is applied by
+`prefers-color-scheme` only on a root with no `data-theme` attribute, so
+the toggle's explicit value can never be overridden — the two selectors
+cannot match the same element, which is a stronger guarantee than
+specificity. The toggle writes to `localStorage` inside `try`/`catch`,
+because that API throws outright in a locked-down browser and somebody who
+cannot save a preference must still be able to use the button.
+
+A blocking inline script in `ThemeScript` applies the stored choice before
+the first paint. It has to be blocking and it has to be inline: anything
+waiting for React runs after the browser has already painted the wrong
+theme.
+
+**Every fill flips brightness with the theme, which is what `--on-solid`
+is for.** Dark uses bright accents with dark text on them; light uses deep
+accents with white text. One token, one class name, legible in both — and
+the reason no component says `text-white` any more.
+
+**The product is named once, in `src/config/site.ts`.** Name, tagline,
+description and URL. No component, page title or email hardcodes it. That
+file is deliberately static data with no environment reads and no
+`server-only` import, so both server and client components can use it;
+anything needing the deployment's actual address calls `appUrl()`, which
+already knows how to find it.
+
+**Question text is set in a different face from the interface, and that is
+the point.** `.question-text` — the reading face at 17px rising to 18px,
+leaded at 1.6 — is applied to the question stem, the options and the
+explanation. Everything else is the display face. A student reads far more
+question text than interface, for hours, so this is the one typographic
+decision in the product that is worth arguing about.
+
+**Interactive targets are at least 44px, except where the exception is the
+right answer.** `.tap-target` and `.link-standalone` carry that for
+controls and for links that stand on their own line. A link inside a
+sentence keeps the text's own height — WCAG's own exception, and
+stretching one would break the line it sits in. A 16px radio inside a 52px
+label is fine too: the label is the target.
+
+Every route has been opened at 375px in Chromium and measured, for
+horizontal overflow and for target sizes. `overflow-x: clip` on `html` is
+a safety net, not the fix — overflows get solved where they happen.
+
+**A fixed-position layer goes in a portal, not in place.** The mobile
+sheet sits inside a `backdrop-blur` header, and a `backdrop-filter` makes
+an element the containing block for every fixed descendant — so `inset-0`
+resolved against the header, not the viewport, and the sheet was clipped
+to its own title bar. It renders into `document.body` now. Anything else
+fixed and full-screen should do the same.
+
+**The service worker caches the app shell and static assets, and must
+never cache a document.** Every page here is rendered per request and most
+differ by who is signed in; a cached document would show one student's
+header and allowance to the next person to open the app on that device.
+`/api`, non-GET requests and question data are all excluded by design —
+the answer key travels one question at a time in reply to an answer, and a
+cache is exactly the wrong place for it. Anything the worker does not
+match falls through to the network untouched, so the application is fully
+functional with no worker at all.
 
 **The answer key is never in the page, and never arrives before it is
 earned.** This is the rule the whole test flow is built around, and it is
@@ -740,12 +843,17 @@ over the internals.
 ```
 content/                      Question files. The source of truth.
 drizzle/                      Generated SQL migrations. Committed.
+public/                       Manifest icons, and the service worker.
 scripts/
   validate-content.ts         Schema check. Runs before build and seed.
   migrate.ts                  Applies migrations.
   seed.ts                     Syncs content into the database.
+  generate-icons.tsx          Rasterises the logo mark. Run by hand, outputs committed.
 src/
   app/
+    globals.css               THE design tokens. Colour, type, spacing, radius, shadow.
+    fonts.ts                  The two faces, via next/font
+    layout.tsx                The shell: header, footer, metadata, viewport
     page.tsx                  Aircraft picker
     aircraft/[code]/          Aircraft overview
     aircraft/[code]/test/     Test runner, grading action, result screen
@@ -753,7 +861,14 @@ src/
     progress/                 Reports, overall and per aircraft
     upgrade/                  Checkout for the two plans, and the Stripe redirect action
     api/webhooks/stripe/      The Stripe webhook endpoint
-  components/                 Shared UI
+    about|pricing|faq|terms|privacy|contact/   Short pages the footer links to
+    manifest.ts               Web app manifest
+    opengraph-image.tsx       The 1200x630 social card
+    icon.svg, favicon.ico, apple-icon.png      Generated; see scripts above
+  components/                 Shared UI, including the shell (site-header,
+                              site-footer, mobile-nav, user-menu, theme-toggle, logo)
+  config/
+    site.ts                   THE product name, tagline, description and URL
   content/
     schema.ts                 THE question schema
     load.ts                   Reads and validates /content

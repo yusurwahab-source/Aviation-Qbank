@@ -60,7 +60,7 @@ export default async function AircraftProgressPage({ params }: PageProps) {
       <PageHeading eyebrow={aircraftCode} title={`${name} progress`} />
       <ProgressReport data={data} />
       <p className="mt-8">
-        <Link href="/progress" className="text-sm font-medium text-brand hover:underline">
+        <Link href="/progress" className="link-standalone text-sm font-medium text-brand hover:underline">
           ← All aircraft
         </Link>
       </p>

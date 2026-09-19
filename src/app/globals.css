@@ -1,51 +1,234 @@
 @import "tailwindcss";
 
-/*
- * A small, deliberate palette: white backgrounds with slate for surfaces, 
- * a deep instrument blue for actions, green and amber for right and wrong. 
- * Everything is defined as a token here so the whole app changes from one place.
- */
+/* ============================================================================
+ * DESIGN TOKENS — the single source of truth for the whole product.
+ *
+ * Nothing in `src/` names a colour, a font, a radius or a shadow directly.
+ * Components use Tailwind utilities (`bg-surface`, `text-brand`, `rounded-lg`)
+ * which resolve, through the `@theme inline` block at the bottom, to the
+ * custom properties defined here. Changing the look of the application is an
+ * edit to this file and nothing else.
+ *
+ * THEMES
+ * Dark is the default and lives on `:root`. Light is applied two ways:
+ *   1. `@media (prefers-color-scheme: light)` — but only on a root that has
+ *      no `data-theme` attribute, so the operating system decides only when
+ *      the student has not.
+ *   2. `:root[data-theme="light"]` — the explicit choice made by the header's
+ *      theme toggle, which always wins because the media query above excludes
+ *      any root carrying the attribute.
+ *
+ * SOLID FILLS
+ * `--on-solid` is the text colour that sits on top of any solid brand or
+ * semantic fill. It flips with the theme because the fills do: dark theme
+ * uses bright accents (dark text on top), light theme uses deep ones (white
+ * text on top). That is what keeps a primary button legible in both themes
+ * from one class name.
+ * ========================================================================= */
+
 :root {
-  --background: #ffffff;
-  --surface: #f8fafc;
-  --surface-muted: #f1f5f9;
-  --border: #e2e8f0;
-  --foreground: #0f172a;
-  --muted-foreground: #475569;
-  --brand: #1e40af;
-  --brand-strong: #1e3a8a;
-  --brand-soft: #dbeafe;
-  --correct: #059669;
-  --correct-soft: #ecfdf5;
-  --incorrect: #dc2626;
-  --incorrect-soft: #fef2f2;
+  color-scheme: dark;
+
+  /* ── Surfaces ─────────────────────────────────────────────────────────
+   * A flight deck at night: near-black navy behind, panels lifted out of it
+   * in steps rather than by shadow, which is what reads as instrumentation
+   * rather than as paper. */
+  --background: #080c14;
+  --surface: #0f1622;
+  --surface-elevated: #161f2e;
+  --surface-muted: #1a2433;
+  --border: #243044;
+
+  /* ── Text ───────────────────────────────────────────────────────────── */
+  --foreground: #e8eef7;
+  --muted-foreground: #96a5bc;
+  --subtle-foreground: #64748b;
+
+  /* ── Accent: the instrument cyan ───────────────────────────────────────
+   * One accent, desaturated well short of neon — the cyan of a PFD speed
+   * tape, not of a highlighter. Deliberately nothing near a stock
+   * framework blue. */
+  --accent: #3ab7cc;
+  --accent-hover: #5cc9db;
+  --accent-soft: color-mix(in oklab, var(--accent) 16%, var(--surface));
+
+  /* ── Semantic state ───────────────────────────────────────────────────
+   * Pure: green means right, red means wrong, amber is a caution, violet is
+   * a marker the student set themselves. None of them is ever the accent,
+   * so "this is important" and "this is correct" can never be confused. */
+  --success: #22c55e;
+  --success-soft: color-mix(in oklab, var(--success) 15%, var(--surface));
+  --danger: #f2555a;
+  --danger-soft: color-mix(in oklab, var(--danger) 15%, var(--surface));
+  --warning: #f5a524;
+  --warning-soft: color-mix(in oklab, var(--warning) 15%, var(--surface));
+  --flag: #a78bfa;
+  --flag-soft: color-mix(in oklab, var(--flag) 15%, var(--surface));
+
+  /* Text on a solid accent or semantic fill. See the note above. */
+  --on-solid: #05121a;
+
+  /* ── Shadows ───────────────────────────────────────────────────────────
+   * Two levels, and no more. On a dark theme a shadow is mostly a darker
+   * edge rather than a soft grey, so these lean on opacity, not blur. */
+  --shadow-1: 0 1px 2px 0 rgb(0 0 0 / 0.45);
+  --shadow-2: 0 8px 24px -6px rgb(0 0 0 / 0.55), 0 2px 6px -2px rgb(0 0 0 / 0.4);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #ffffff;
-    --surface: #f8fafc;
-    --surface-muted: #f1f5f9;
-    --border: #e2e8f0;
-    --foreground: #0f172a;
-    --muted-foreground: #475569;
-    --brand: #1e40af;
-    --brand-strong: #1e3a8a;
-    --brand-soft: #dbeafe;
-    --correct: #059669;
-    --correct-soft: #ecfdf5;
-    --incorrect: #dc2626;
-    --incorrect-soft: #fef2f2;
+/* The OS decides only when the student has not: a root carrying an explicit
+ * `data-theme` is excluded here, so the toggle always wins. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    color-scheme: light;
+
+    --background: #f6f8fb;
+    --surface: #ffffff;
+    --surface-elevated: #ffffff;
+    --surface-muted: #eef2f7;
+    --border: #dde4ed;
+
+    --foreground: #0d1725;
+    --muted-foreground: #4a5a70;
+    --subtle-foreground: #6b7b91;
+
+    --accent: #0e7490;
+    --accent-hover: #0b5f77;
+    --accent-soft: color-mix(in oklab, var(--accent) 10%, var(--surface));
+
+    --success: #15803d;
+    --success-soft: color-mix(in oklab, var(--success) 10%, var(--surface));
+    --danger: #be123c;
+    --danger-soft: color-mix(in oklab, var(--danger) 10%, var(--surface));
+    --warning: #b45309;
+    --warning-soft: color-mix(in oklab, var(--warning) 10%, var(--surface));
+    --flag: #7c3aed;
+    --flag-soft: color-mix(in oklab, var(--flag) 10%, var(--surface));
+
+    --on-solid: #ffffff;
+
+    --shadow-1: 0 1px 2px 0 rgb(13 23 37 / 0.06);
+    --shadow-2: 0 10px 28px -8px rgb(13 23 37 / 0.14), 0 2px 6px -2px rgb(13 23 37 / 0.08);
   }
 }
 
+/* The explicit choice. Identical to the media query above, and it wins over
+ * it by construction rather than by specificity: the two selectors can never
+ * match the same element. */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --background: #f6f8fb;
+  --surface: #ffffff;
+  --surface-elevated: #ffffff;
+  --surface-muted: #eef2f7;
+  --border: #dde4ed;
+
+  --foreground: #0d1725;
+  --muted-foreground: #4a5a70;
+  --subtle-foreground: #6b7b91;
+
+  --accent: #0e7490;
+  --accent-hover: #0b5f77;
+  --accent-soft: color-mix(in oklab, var(--accent) 10%, var(--surface));
+
+  --success: #15803d;
+  --success-soft: color-mix(in oklab, var(--success) 10%, var(--surface));
+  --danger: #be123c;
+  --danger-soft: color-mix(in oklab, var(--danger) 10%, var(--surface));
+  --warning: #b45309;
+  --warning-soft: color-mix(in oklab, var(--warning) 10%, var(--surface));
+  --flag: #7c3aed;
+  --flag-soft: color-mix(in oklab, var(--flag) 10%, var(--surface));
+
+  --on-solid: #ffffff;
+
+  --shadow-1: 0 1px 2px 0 rgb(13 23 37 / 0.06);
+  --shadow-2: 0 10px 28px -8px rgb(13 23 37 / 0.14), 0 2px 6px -2px rgb(13 23 37 / 0.08);
+}
+
+/* Explicit dark. Redundant with `:root` by value — stated anyway so that
+ * "the attribute decides" is true for both settings and not only for one. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* ── Compatibility aliases ────────────────────────────────────────────────
+ * The application was built against `--brand` / `--correct` / `--incorrect`,
+ * and a hundred class names in `src/` still say `bg-brand` and `text-correct`.
+ * Those names are kept pointing at the canonical tokens above rather than
+ * rewritten across every component: one vocabulary, two spellings, and the
+ * rename can happen on its own when it is worth the diff. */
+:root,
+:root[data-theme="light"],
+:root[data-theme="dark"] {
+  --brand: var(--accent);
+  --brand-strong: var(--accent-hover);
+  --brand-soft: var(--accent-soft);
+  --correct: var(--success);
+  --correct-soft: var(--success-soft);
+  --incorrect: var(--danger);
+  --incorrect-soft: var(--danger-soft);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --brand: var(--accent);
+    --brand-strong: var(--accent-hover);
+    --brand-soft: var(--accent-soft);
+    --correct: var(--success);
+    --correct-soft: var(--success-soft);
+    --incorrect: var(--danger);
+    --incorrect-soft: var(--danger-soft);
+  }
+}
+
+/* ── Scales ───────────────────────────────────────────────────────────────
+ * Spacing is a 4px base. Tailwind's own spacing utilities are already built
+ * on that same 4px step, so these names exist for the handful of places that
+ * need the value in CSS (safe-area maths, the app shell) rather than as a
+ * second scale to keep in sync with the first. */
+:root {
+  --space-1: 0.25rem; /*  4px */
+  --space-2: 0.5rem; /*  8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
+
+  /* The smallest thing a finger may be asked to hit. */
+  --tap-target: 2.75rem; /* 44px */
+}
+
 @theme inline {
+  /* ── Colour ─────────────────────────────────────────────────────────── */
   --color-background: var(--background);
   --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
   --color-surface-muted: var(--surface-muted);
   --color-border: var(--border);
+
   --color-foreground: var(--foreground);
   --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-flag: var(--flag);
+  --color-flag-soft: var(--flag-soft);
+
+  --color-on-solid: var(--on-solid);
+
+  /* The older spellings, still used throughout `src/`. */
   --color-brand: var(--brand);
   --color-brand-strong: var(--brand-strong);
   --color-brand-soft: var(--brand-soft);
@@ -53,10 +236,54 @@
   --color-correct-soft: var(--correct-soft);
   --color-incorrect: var(--incorrect);
   --color-incorrect-soft: var(--incorrect-soft);
+
+  /* ── Type scale: 12 / 14 / 16 / 18 / 24 / 32 / 40 ─────────────────────
+   * Seven steps and no more, so a heading can only ever be one of a few
+   * sizes. `--font-display` is set on <html> by next/font in the root
+   * layout; `--font-reading` is what question text is set in. */
+  --text-xs: 0.75rem; /* 12 */
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.875rem; /* 14 */
+  --text-sm--line-height: 1.55;
+  --text-base: 1rem; /* 16 */
+  --text-base--line-height: 1.6;
+  --text-lg: 1.125rem; /* 18 */
+  --text-lg--line-height: 1.55;
+  --text-xl: 1.5rem; /* 24 */
+  --text-xl--line-height: 1.3;
+  --text-2xl: 2rem; /* 32 */
+  --text-2xl--line-height: 1.2;
+  --text-3xl: 2.5rem; /* 40 */
+  --text-3xl--line-height: 1.12;
+
+  /* ── Radius ───────────────────────────────────────────────────────────── */
+  --radius-sm: 0.375rem; /*  6px */
+  --radius-md: 0.5rem; /*  8px */
+  --radius-lg: 0.75rem; /* 12px */
+  --radius-xl: 1rem; /* 16px */
+
+  /* ── Shadow: two levels ───────────────────────────────────────────────── */
+  --shadow-sm: var(--shadow-1);
+  --shadow-md: var(--shadow-2);
+  --shadow-lg: var(--shadow-2);
+
+  /* ── Type families ────────────────────────────────────────────────────── */
   --font-sans:
-    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-    sans-serif;
+    var(--font-display), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-reading:
+    var(--font-read), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────── */
+
+html {
+  /* A safety net, not the fix: individual overflows are still solved where
+   * they happen. `clip` rather than `hidden` because `hidden` on the root
+   * would silently break `position: sticky` further down the page. */
+  overflow-x: clip;
 }
 
 body {
@@ -64,10 +291,96 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Question text: the one piece of typography in this product that is read
+ * for hours at a time. Set in the reading face rather than the display one,
+ * a full step larger than the interface around it, and leaded at 1.6 — the
+ * point is a line a tired student can come back to without losing their
+ * place. */
+.question-text {
+  font-family: var(--font-reading);
+  font-size: 1.0625rem; /* 17px */
+  line-height: 1.6;
+  letter-spacing: -0.003em;
+}
+
+@media (min-width: 640px) {
+  .question-text {
+    font-size: 1.125rem; /* 18px */
+  }
+}
+
+/* Anything a finger has to find. Applied to the shell's own controls; the
+ * question map is the deliberate exception, where density is the feature. */
+.tap-target {
+  min-height: var(--tap-target);
+  min-width: var(--tap-target);
+}
+
+/* A link or button that stands on its own — a "← All aircraft", a "Show the
+ * numbers" — is a control, and gets a control's tap target. A link inside a
+ * sentence deliberately does not: WCAG exempts inline links for the good
+ * reason that stretching one would break the line of text it sits in. */
+.link-standalone {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-target);
+}
+
+/* Bottom-anchored chrome has to clear the home indicator on a phone. */
+.safe-bottom {
+  padding-bottom: max(var(--space-4), env(safe-area-inset-bottom));
 }
 
 /* Keyboard users must always be able to see where they are. */
 :focus-visible {
-  outline: 2px solid var(--brand);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+/* The theme toggle's two icons. Decided here rather than in React state: the
+ * server cannot know the theme, so a state-driven icon would flash or
+ * mismatch on hydration. These rules key off the same attribute and the same
+ * media query as the palette above, so the icon and the theme can never
+ * disagree. */
+.icon-when-light {
+  display: none;
+}
+
+:root[data-theme="light"] .icon-when-dark {
+  display: none;
+}
+
+:root[data-theme="light"] .icon-when-light {
+  display: block;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .icon-when-dark {
+    display: none;
+  }
+
+  :root:not([data-theme]) .icon-when-light {
+    display: block;
+  }
+}
+
+/* Long content — a reference table, a wide code sample — scrolls inside its
+ * own box rather than pushing the page sideways. */
+.scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

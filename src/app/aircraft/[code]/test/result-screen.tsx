@@ -95,20 +95,20 @@ export function ResultScreen({
         <button
           type="button"
           onClick={onRestart}
-          className="rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-strong"
+          className="inline-flex min-h-11 items-center rounded-lg bg-brand px-5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
         >
           Take another test
         </button>
         <Link
           href={`/aircraft/${aircraftCode}`}
-          className="rounded-lg border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+          className="inline-flex min-h-11 items-center rounded-lg border border-border bg-surface px-5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
         >
           Back to {aircraftCode}
         </Link>
         {saveStatus === "saved" || saveStatus === "already-saved" ? (
           <Link
             href={`/progress/${aircraftCode}`}
-            className="rounded-lg border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+            className="inline-flex min-h-11 items-center rounded-lg border border-border bg-surface px-5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
           >
             See your progress
           </Link>
@@ -179,7 +179,7 @@ function ReviewCard({ entry, position }: { entry: GradedQuestion; position: numb
         <span className="ml-auto font-mono text-xs text-muted-foreground">{question.id}</span>
       </div>
 
-      <p className="mt-3 font-medium text-foreground">{question.question}</p>
+      <p className="question-text mt-3 font-medium text-foreground">{question.question}</p>
 
       <ul className="mt-3 space-y-1.5">
         {question.options.map((option) => {
@@ -195,13 +195,17 @@ function ReviewCard({ entry, position }: { entry: GradedQuestion; position: numb
           return (
             <li
               key={option.id}
-              className={`flex items-start gap-2 rounded-md border px-3 py-2 text-sm ${tone}`}
+              className={`flex flex-wrap items-start gap-x-2 gap-y-1 rounded-md border px-3 py-2 text-sm ${tone}`}
             >
               <span className="font-mono font-semibold uppercase">{option.id}</span>
-              <span className="flex-1">{option.text}</span>
-              {isAnswer ? <span className="text-xs font-semibold">Correct answer</span> : null}
+              <span className="min-w-0 flex-1 basis-0">{option.text}</span>
+              {isAnswer ? (
+                <span className="basis-full text-xs font-semibold sm:basis-auto">
+                  Correct answer
+                </span>
+              ) : null}
               {isChosen && !isAnswer ? (
-                <span className="text-xs font-semibold">Your answer</span>
+                <span className="basis-full text-xs font-semibold sm:basis-auto">Your answer</span>
               ) : null}
             </li>
           );
@@ -209,7 +213,7 @@ function ReviewCard({ entry, position }: { entry: GradedQuestion; position: numb
       </ul>
 
       <div className="mt-3 rounded-lg bg-surface-muted p-3">
-        <p className="text-sm text-foreground">{question.explanation}</p>
+        <p className="font-reading text-sm text-foreground">{question.explanation}</p>
         {question.reference ? (
           <p className="mt-2 text-xs text-muted-foreground">Reference: {question.reference}</p>
         ) : null}

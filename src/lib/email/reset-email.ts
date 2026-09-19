@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import { RESET_TOKEN_LIFETIME_MS } from "@/lib/auth/reset-policy";
 
 import type { EmailMessage } from "./send";
@@ -21,7 +22,7 @@ export function resetEmail(to: string, link: string): EmailMessage {
     LIFETIME_MINUTES === 60 ? "one hour" : `${LIFETIME_MINUTES} minutes`;
 
   const text = [
-    "Somebody asked to reset the password for your Aviation Question Bank account.",
+    `Somebody asked to reset the password for your ${siteConfig.name} account.`,
     "",
     "If it was you, open this link to choose a new one:",
     "",
@@ -34,7 +35,7 @@ export function resetEmail(to: string, link: string): EmailMessage {
   ].join("\n");
 
   const html = [
-    "<p>Somebody asked to reset the password for your Aviation Question Bank account.</p>",
+    `<p>Somebody asked to reset the password for your ${siteConfig.name} account.</p>`,
     "<p>If it was you, choose a new one here:</p>",
     `<p><a href="${escapeHtml(link)}">Set a new password</a></p>`,
     `<p>The link works once, and stops working after ${expiry}.</p>`,
@@ -44,7 +45,7 @@ export function resetEmail(to: string, link: string): EmailMessage {
 
   return {
     to,
-    subject: "Reset your Aviation Question Bank password",
+    subject: `Reset your ${siteConfig.name} password`,
     text,
     html,
   };

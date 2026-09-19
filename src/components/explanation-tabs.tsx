@@ -25,7 +25,7 @@ export function ExplanationTabs({
           onClick={() => setShowQuestion(true)}
           className={`flex-1 rounded-lg px-4 py-3 text-sm font-semibold transition ${
             showQuestion
-              ? 'bg-brand text-white'
+              ? 'bg-brand text-on-solid'
               : 'border border-border bg-surface text-foreground hover:border-brand hover:text-brand'
           }`}
         >
@@ -36,7 +36,7 @@ export function ExplanationTabs({
           onClick={() => setShowQuestion(false)}
           className={`flex-1 rounded-lg px-4 py-3 text-sm font-semibold transition ${
             !showQuestion
-              ? 'bg-brand text-white'
+              ? 'bg-brand text-on-solid'
               : 'border border-border bg-surface text-foreground hover:border-brand hover:text-brand'
           }`}
         >

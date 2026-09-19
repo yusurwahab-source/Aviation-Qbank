@@ -123,7 +123,7 @@ export function TestBuilder({
               type="button"
               onClick={() => setSelected(new Set(topics.map((topic) => topic.topic)))}
               disabled={allSelected}
-              className="font-medium text-brand hover:underline disabled:cursor-not-allowed disabled:text-muted-foreground disabled:no-underline"
+              className="link-standalone min-w-11 justify-center font-medium text-brand hover:underline disabled:cursor-not-allowed disabled:text-muted-foreground disabled:no-underline"
             >
               Select all
             </button>
@@ -131,7 +131,7 @@ export function TestBuilder({
               type="button"
               onClick={() => setSelected(new Set())}
               disabled={selected.size === 0}
-              className="font-medium text-brand hover:underline disabled:cursor-not-allowed disabled:text-muted-foreground disabled:no-underline"
+              className="link-standalone min-w-11 justify-center font-medium text-brand hover:underline disabled:cursor-not-allowed disabled:text-muted-foreground disabled:no-underline"
             >
               Clear
             </button>
@@ -206,9 +206,9 @@ export function TestBuilder({
                   setWantsAll(false);
                   setTyped(String(length));
                 }}
-                className={`rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
+                className={`min-h-11 min-w-11 rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
                   active
-                    ? "bg-brand text-white"
+                    ? "bg-brand text-on-solid"
                     : "border border-border bg-surface text-foreground hover:border-brand hover:text-brand"
                 }`}
               >
@@ -221,9 +221,9 @@ export function TestBuilder({
             type="button"
             onClick={() => setWantsAll(true)}
             aria-pressed={wantsAll}
-            className={`rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
+            className={`min-h-11 min-w-11 rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
               wantsAll
-                ? "bg-brand text-white"
+                ? "bg-brand text-on-solid"
                 : "border border-border bg-surface text-foreground hover:border-brand hover:text-brand"
             }`}
           >
@@ -329,14 +329,14 @@ export function TestBuilder({
       {size > 0 ? (
         <Link
           href={href}
-          className="inline-block rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-strong"
+          className="inline-block rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
         >
           Start test · {size} {size === 1 ? "question" : "questions"}
         </Link>
       ) : remainingFree === 0 ? (
         <Link
           href="/upgrade"
-          className="inline-block rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-strong"
+          className="inline-block rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
         >
           Upgrade to keep going
         </Link>
