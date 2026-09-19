@@ -16,7 +16,10 @@ import {
   pickUnseenTestQuestions,
   type TestQuestion,
 } from "@/db/queries";
+import { getCommunityPercentCorrect } from "@/db/question-stats";
 import { getQuestionIdsToRetry } from "@/db/reports";
+import { getSmartTestSignals } from "@/db/smart-test";
+import { selectSmartTestQuestions } from "@/lib/smart-test";
 import { countQuestionsAnswered, getSubscription } from "@/db/subscriptions";
 import { hasActiveSubscription, remainingFreeQuestions } from "@/lib/billing/access-policy";
 import { getSiteSettings } from "@/db/settings";
@@ -97,6 +100,7 @@ export default async function TestPage({ params, searchParams }: PageProps) {
   const retryOnly = fromPreset === "incorrect";
   const flaggedOnly = fromPreset === "flagged";
   const unseenOnly = fromPreset === "unseen";
+  const smartOnly = fromPreset === "smart";
   // Any preset already narrows the set on its own, so sections on top of one
   // would be two filters fighting — the preset wins, same reasoning retry
   // mode already followed on its own.
@@ -176,7 +180,10 @@ export default async function TestPage({ params, searchParams }: PageProps) {
 
       const answeredIds = mode === "study" ? Object.keys(initialAnswers) : [];
       if (answeredIds.length > 0) {
-        const key = await getAnswerKey(aircraftCode, answeredIds);
+        const [key, communityPercentCorrect] = await Promise.all([
+          getAnswerKey(aircraftCode, answeredIds),
+          getCommunityPercentCorrect(answeredIds),
+        ]);
         initialVerdicts = Object.fromEntries(
           key.map((question) => [
             question.id,
@@ -185,6 +192,7 @@ export default async function TestPage({ params, searchParams }: PageProps) {
               correctOptionId: question.correct,
               explanation: question.explanation,
               reference: question.reference,
+              communityPercentCorrect: communityPercentCorrect[question.id] ?? null,
             },
           ]),
         );
@@ -245,9 +253,18 @@ export default async function TestPage({ params, searchParams }: PageProps) {
           questions = [];
         } else if (unseenOnly && user) {
           questions = await pickUnseenTestQuestions(aircraftCode, user.id, size, topics);
+        } else if (smartOnly && user) {
+          // One query for the whole aircraft's worth of signals, then a pure,
+          // in-memory weighted draw — see `getSmartTestSignals` and
+          // `selectSmartTestQuestions` for the algorithm and why it is split
+          // this way between the two.
+          const signals = await getSmartTestSignals(user.id, aircraftCode, topics);
+          const ids = selectSmartTestQuestions(signals, size);
+          questions = ids.length > 0 ? await getTestQuestionsByIds(aircraftCode, ids) : [];
         } else {
-          // Signed out, "unseen" has nothing to exclude against — a normal
-          // random pick is the same graceful fallback retry and flagged use.
+          // Signed out, "unseen" and "smart" have nothing to weight or
+          // exclude against — a normal random pick is the same graceful
+          // fallback retry and flagged mode already take.
           questions = await pickTestQuestions(aircraftCode, size, topics);
         }
       }

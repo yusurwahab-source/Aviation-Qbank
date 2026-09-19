@@ -18,6 +18,7 @@
     "db:seed": "npm run validate:content && tsx scripts/seed.ts",
     "db:studio": "drizzle-kit studio",
     "gift:generate": "tsx scripts/generate-gift-codes.ts",
+    "stats:compute": "tsx scripts/compute-question-stats.ts",
     "setup": "npm run db:migrate && npm run db:seed",
     "check": "npm run validate:content && npm run lint && npm run typecheck && npm run test"
   },

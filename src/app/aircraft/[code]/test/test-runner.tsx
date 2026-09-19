@@ -577,6 +577,7 @@ export function TestRunner({
         timeLimitSeconds={finishTiming.limitSeconds}
         flaggedIds={flaggedIds}
         onToggleFlag={toggleFlagFor}
+        communityPercentCorrect={result.communityPercentCorrect}
       />
     );
   }
@@ -755,6 +756,11 @@ export function TestRunner({
               {verdict.isCorrect ? "Correct" : "Not quite"}
             </p>
             <p className="mt-2 font-reading text-base text-foreground">{verdict.explanation}</p>
+            {verdict.communityPercentCorrect !== null ? (
+              <p className="mt-2 text-xs font-medium text-muted-foreground">
+                {verdict.communityPercentCorrect}% of pilots get this right
+              </p>
+            ) : null}
             {verdict.reference ? (
               <p className="mt-3 flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
                 <svg

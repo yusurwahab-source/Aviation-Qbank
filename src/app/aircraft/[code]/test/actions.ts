@@ -6,6 +6,7 @@ import { recordTestResult, saveAnswer as saveAnswerRow } from "@/db/attempts";
 import { toggleQuestionFlag } from "@/db/flags";
 import { getQuestionNote, saveQuestionNote } from "@/db/notes";
 import { getAnswerKey } from "@/db/queries";
+import { getCommunityPercentCorrect } from "@/db/question-stats";
 import {
   countQuestionsAnswered,
   getSubscription,
@@ -65,7 +66,18 @@ export type SaveStatus =
   /** Someone is signed in but the write failed. */
   | "failed";
 
-export type SubmitTestOutput = TestResult & { saveStatus: SaveStatus };
+export type SubmitTestOutput = TestResult & {
+  saveStatus: SaveStatus;
+  /**
+   * "N% of pilots get this right", keyed by question id, for the review
+   * screen's explanation cards — see `communityPercentCorrect` in
+   * `lib/community-stats.ts`. A question missing from this map has no
+   * cached stat yet, or fewer than the threshold's worth of first
+   * attempts, and the review screen shows nothing for it rather than a
+   * zero or a guess.
+   */
+  communityPercentCorrect: Record<string, number>;
+};
 
 export async function submitTest(input: SubmitTestInput): Promise<SubmitTestOutput> {
   const { aircraftCode, clientTestId, answers } = submissionSchema.parse(input);
@@ -89,7 +101,23 @@ export async function submitTest(input: SubmitTestInput): Promise<SubmitTestOutp
 
   const result = gradeTest(aircraftCode, ordered, answers);
 
-  return { ...result, saveStatus: await record(clientTestId, result) };
+  // One batched read for the whole test, not one per question — see the
+  // note on `getCommunityPercentCorrect` in `db/question-stats.ts`. A
+  // failure here must not cost the student their result, so it is caught
+  // the same way a failed save is: the score still comes back, just
+  // without this one extra line under each question.
+  let communityPercentCorrect: Record<string, number> = {};
+  try {
+    communityPercentCorrect = await getCommunityPercentCorrect(ordered.map((q) => q.id));
+  } catch (error) {
+    console.error("Failed to load community stats:", error);
+  }
+
+  return {
+    ...result,
+    saveStatus: await record(clientTestId, result),
+    communityPercentCorrect,
+  };
 }
 
 /**
@@ -146,6 +174,9 @@ export type AnswerVerdict = {
   correctOptionId: string;
   explanation: string;
   reference: string | null;
+  /** Null below the threshold, or with no cached stat yet — see
+   * `communityPercentCorrect` in `lib/community-stats.ts`. */
+  communityPercentCorrect: number | null;
 };
 
 export type AnswerQuestionResult =
@@ -232,16 +263,27 @@ export async function answerQuestion(
 
     const isCorrect = selectedOptionId === question.correct;
     // Built either way, because the recording needs `isCorrect` regardless —
-    // but only handed back in study mode.
-    const verdict: AnswerVerdict | null =
-      mode === "study"
-        ? {
-            isCorrect,
-            correctOptionId: question.correct,
-            explanation: question.explanation,
-            reference: question.reference,
-          }
-        : null;
+    // but only handed back in study mode, which is also the only case
+    // worth spending the community-stat lookup on.
+    let verdict: AnswerVerdict | null = null;
+    if (mode === "study") {
+      // A failure here must not stop the question being marked — the
+      // student still gets their verdict, just without this one extra line.
+      let communityPercentCorrect: number | null = null;
+      try {
+        const stats = await getCommunityPercentCorrect([questionId]);
+        communityPercentCorrect = stats[questionId] ?? null;
+      } catch (error) {
+        console.error("Failed to load a community stat:", error);
+      }
+      verdict = {
+        isCorrect,
+        correctOptionId: question.correct,
+        explanation: question.explanation,
+        reference: question.reference,
+        communityPercentCorrect,
+      };
+    }
 
     const user = await getCurrentUser();
     // Signed out there is no session, so no server-held clock. The browser's

@@ -29,8 +29,10 @@ const SIGNED_OUT_LINKS = [
 ];
 
 const SIGNED_IN_LINKS = [
+  { href: "/dashboard", label: "Dashboard" },
   { href: "/aircraft", label: "Aircraft" },
   { href: "/progress", label: "Progress" },
+  { href: "/search", label: "Search" },
   { href: "/upgrade", label: "Upgrade" },
 ];
 
