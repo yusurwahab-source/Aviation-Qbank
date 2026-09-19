@@ -1,38 +1,73 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 
-import { Card, PageHeading } from "@/components/ui";
-import { getCurrentUser } from "@/lib/auth/session";
-import { isOwner } from "@/lib/auth/owner";
-import { envValue } from "@/lib/env";
+import { Badge, Card, PageHeading } from "@/components/ui";
+import { listGiftCodes } from "@/db/owner";
+import { requireOwner } from "@/lib/auth/require-owner";
 
+import { DataTable, OwnerNav, formatDay } from "../owner-ui";
 import { GenerateForm } from "./generate-form";
 
-export const metadata: Metadata = { title: "Generate gift codes" };
+export const metadata: Metadata = { title: "Gift codes" };
 export const dynamic = "force-dynamic";
 
 /**
- * Where the owner mints gift codes, without a terminal or a database
- * connection — `npm run gift:generate` still exists for bulk or scripted
- * use, but this is the page for "I need one code, right now."
+ * Minting codes, and seeing what became of the ones already minted.
  *
- * `notFound()` rather than a redirect for anyone else: a 404 says nothing
- * about whether this path exists for someone who isn't the owner, where a
- * redirect to /login would confirm it does.
+ * The list matters as much as the form: a code handed out and never
+ * redeemed is the common case worth chasing, and without this the only
+ * record of it was whatever the owner did with the printed output.
  */
 export default async function OwnerGiftCodesPage() {
-  const user = await getCurrentUser();
-  if (!user || !isOwner(user.email, envValue("OWNER_EMAIL"))) notFound();
+  await requireOwner();
+  const codes = await listGiftCodes();
+
+  const redeemed = codes.filter((code) => code.redeemedAt !== null).length;
 
   return (
     <>
       <PageHeading
-        title="Generate gift codes"
+        title="Gift codes"
         subtitle="Each code grants full access once redeemed, for as many days as you choose."
       />
-      <Card>
+      <OwnerNav current="/owner/gift-codes" />
+
+      <Card className="mb-6">
         <GenerateForm />
       </Card>
+
+      <h2 className="mb-3 text-lg font-semibold text-foreground">
+        All codes{" "}
+        <span className="text-sm font-normal text-muted-foreground">
+          ({redeemed} of {codes.length} redeemed)
+        </span>
+      </h2>
+
+      <DataTable
+        headers={["Code", "Worth", "Status", "Note", "Minted"]}
+        empty="No codes minted yet. Generate one above."
+        rows={codes.map((code) => [
+          <span key="code" className="font-mono text-xs">
+            {code.code}
+          </span>,
+          `${code.durationDays} days`,
+          code.redeemedAt ? (
+            <span key="status">
+              <Badge tone="correct">Redeemed</Badge>
+              <span className="mt-1 block text-xs text-muted-foreground">
+                {code.redeemedByEmail ?? "account deleted"} · {formatDay(code.redeemedAt)}
+              </span>
+            </span>
+          ) : (
+            <Badge key="status">Unused</Badge>
+          ),
+          <span key="note" className="text-xs text-muted-foreground">
+            {code.note ?? "—"}
+          </span>,
+          <span key="minted" className="whitespace-nowrap text-xs text-muted-foreground">
+            {formatDay(code.createdAt)}
+          </span>,
+        ])}
+      />
     </>
   );
 }

@@ -1,11 +1,9 @@
 "use server";
 
-import { notFound } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 import { createGiftCodes } from "@/db/gift-codes";
-import { getCurrentUser } from "@/lib/auth/session";
-import { isOwner } from "@/lib/auth/owner";
-import { envValue } from "@/lib/env";
+import { requireOwner } from "@/lib/auth/require-owner";
 
 export type GenerateState = {
   error?: string;
@@ -24,8 +22,7 @@ export async function generate(
   _previous: GenerateState,
   formData: FormData,
 ): Promise<GenerateState> {
-  const user = await getCurrentUser();
-  if (!user || !isOwner(user.email, envValue("OWNER_EMAIL"))) notFound();
+  await requireOwner();
 
   const count = Number(formData.get("count"));
   const days = Number(formData.get("days"));
@@ -48,6 +45,11 @@ export async function generate(
     plan,
     note: typeof note === "string" && note.trim() !== "" ? note.trim() : null,
   });
+
+  // The list below the form is part of this page's answer, so it has to
+  // show the codes that were just minted rather than the set it rendered
+  // with.
+  revalidatePath("/owner/gift-codes");
 
   return { codes };
 }

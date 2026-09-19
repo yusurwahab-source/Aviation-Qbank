@@ -853,18 +853,42 @@ student drives themselves, at `/redeem`: `redeemGiftCode` in
 `db/gift-codes.ts` claims the code and writes the `subscriptions` row in one
 transaction, with `provider: "gift"` and no `providerSubscriptionRef`.
 
-**`/owner/gift-codes` is not an admin panel — it is one page, gated by one
-email.** `isOwner` compares the signed-in account's email against
-`OWNER_EMAIL`, read the same tolerant way every other configuration value
-is. Anyone else visiting the path — signed out, or signed in as anyone
-else — gets a plain `notFound()`, not a redirect to `/login`: a redirect
-would confirm the path exists for someone it does not; a 404 says nothing.
-The server action re-checks ownership itself rather than trusting that the
-page already did, because an action is its own reachable entry point, not
-only something reached through the form that happens to render it. There is
-still no role column and no second owner — the day this needs more than one
-person, that is the real feature to build, not a second email in an env
-var.
+**`/owner` is not an admin panel — it is four read-only pages and one form,
+gated by one email.** `isOwner` compares the signed-in account's email
+against `OWNER_EMAIL`, read the same tolerant way every other configuration
+value is. Anyone else visiting any path under `/owner` — signed out, or
+signed in as anyone else — gets a plain `notFound()`, not a redirect to
+`/login`: a redirect would confirm the path exists for someone it does not;
+a 404 says nothing. There is still no role column and no second owner — the
+day this needs more than one person, that is the real feature to build, not
+a second email in an env var.
+
+The gate is `requireOwner()` and every page and action in the area calls it
+first, including the one the page itself renders: **a server action is its
+own reachable entry point**, so a page having checked does not cover the
+action beside it. One function rather than the check written out five
+times, because the copy that gets forgotten is the one that leaks the
+site.
+
+**`src/db/owner.ts` is the only module in the codebase whose queries take
+no `userId`.** Every read in `reports.ts` filters on one, precisely so a
+student can never see another's history; this file inverts that on purpose
+and is the more dangerous for it. The whole guard is that every caller sits
+under `/owner` behind `requireOwner()`, which is why the inversion is
+stated at the top of the file itself — nothing else may import it.
+
+What the area shows, and why each earns its place: **Overview** (six
+counts), **Subscribers** (who has access, from Stripe or a gift, and when
+it ends — decided by `hasActiveSubscription`, the same function the paywall
+uses, never by reading `status` alone, since a row can say `active` and
+still be over), **Gift codes** (every code minted and what became of it —
+an unredeemed code handed out is the common case worth chasing, and before
+this the only record was whatever the owner did with the printed output),
+and **Aircraft requests**. That last one closed a real hole: the
+`aircraft_interest` table had been collecting addresses since the landing
+page shipped with **no way to read it from anywhere but `db:studio`**. It
+is tallied by aircraft as well as listed, because the decision it exists to
+inform — which bank to write next — is a question about counts.
 
 The claim is atomic the same way `consumeResetToken` is: the update's own
 `where redeemed_by_user_id is null` is what stops two redemption attempts on
@@ -885,6 +909,15 @@ between the redemption and that next renewal, and nothing user-facing reads
 `provider` directly (`hasActiveSubscription` only ever looks at `status` and
 `currentPeriodEnd`). Worth revisiting only if a second surface ever depends
 on `provider` for a decision, which nothing does today.
+
+**Anyone with access can see how long it lasts.** `daysRemaining` is the
+one number a student actually wants once they have paid or redeemed, and
+`/upgrade` leads with it. It rounds **up**, deliberately: eleven hours left
+is a day of studying ahead, and reading "0 days" on a screen that still
+lets you practise would be both wrong and alarming — zero is reserved for
+access that has genuinely ended. A gift-funded account is told plainly
+where its access came from and that another code would *add* to it rather
+than replace it, which is what `computeGiftPeriodEnd` already guarantees.
 
 Codes are 16 characters from a 32-symbol alphabet that excludes `0`, `1`,
 `I`, `L`, `O` — the letters and digits people most often transcribe wrong —
@@ -929,7 +962,7 @@ src/
     progress/                 Reports, overall and per aircraft
     upgrade/                  Checkout for the two plans, and the Stripe redirect action
     redeem/                   Where a gift code becomes an active subscription
-    owner/gift-codes/         Where the owner mints gift codes, from the website
+    owner/                    Owner-only: overview, subscribers, gift codes, aircraft requests
     api/webhooks/stripe/      The Stripe webhook endpoint
     about|pricing|faq|terms|privacy|contact/   Short pages the footer links to
     manifest.ts               Web app manifest
@@ -949,6 +982,7 @@ src/
     password-reset.ts         Issuing and spending reset links
     subscriptions.ts          Subscription row and the free-tier count
     gift-codes.ts             Minting and redeeming free-access codes
+    owner.ts                  THE unscoped reads. /owner only; see the convention above.
     index.ts                  Connection pool
   lib/
     email/
@@ -971,6 +1005,7 @@ src/
       client-ip.ts            The caller's address, behind Vercel's proxy
       session.ts              Cookie and session table handling
       owner.ts                Whether the signed-in account is the site owner (pure, tested)
+      require-owner.ts        THE gate in front of every /owner page and action
 tests/                        Vitest unit tests
 ```
 

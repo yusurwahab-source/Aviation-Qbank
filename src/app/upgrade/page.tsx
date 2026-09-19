@@ -10,7 +10,11 @@ import {
   looksLikeSecretKey,
   type CheckoutPlan,
 } from "@/lib/billing/stripe";
-import { FREE_QUESTIONS_PER_AIRCRAFT, hasActiveSubscription } from "@/lib/billing/access-policy";
+import {
+  FREE_QUESTIONS_PER_AIRCRAFT,
+  daysRemaining,
+  hasActiveSubscription,
+} from "@/lib/billing/access-policy";
 import { getCurrentUser } from "@/lib/auth/session";
 import { envValue } from "@/lib/env";
 
@@ -50,6 +54,19 @@ export default async function UpgradePage({
   const justSubscribed = (Array.isArray(query.success) ? query.success[0] : query.success) === "1";
   const justRedeemed = (Array.isArray(query.redeemed) ? query.redeemed[0] : query.redeemed) === "1";
 
+  // What the student actually wants to know once they have access: how long
+  // it lasts. Null unless there is a confirmed period to count.
+  const endsOn = active ? (subscription?.currentPeriodEnd ?? null) : null;
+  const daysLeft = daysRemaining(endsOn);
+  const accessSummary =
+    endsOn && daysLeft !== null
+      ? `Full access until ${endsOn.toLocaleDateString(undefined, {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })} — ${daysLeft} ${daysLeft === 1 ? "day" : "days"} left.`
+      : null;
+
   // Shaped like a key, not merely present: a variable holding something that
   // could never work should read as "not configured", not as a button that
   // fails the moment it is pressed.
@@ -61,7 +78,7 @@ export default async function UpgradePage({
         title="Upgrade"
         subtitle={
           active && subscription
-            ? `You're on the ${subscription.plan} plan. Full access to every aircraft.`
+            ? (accessSummary ?? `You're on the ${subscription.plan} plan. Full access to every aircraft.`)
             : `Practising is free up to ${FREE_QUESTIONS_PER_AIRCRAFT} questions on each aircraft. Subscribe for unlimited questions on every type.`
         }
       />
@@ -79,6 +96,7 @@ export default async function UpgradePage({
         <Card className="mb-4">
           <p className="text-sm text-muted-foreground">
             Gift code redeemed — full access unlocked.
+            {daysLeft !== null ? ` You have ${daysLeft} ${daysLeft === 1 ? "day" : "days"}.` : ""}
           </p>
         </Card>
       ) : null}
@@ -93,10 +111,25 @@ export default async function UpgradePage({
         </Card>
       ) : active ? (
         <Card>
-          <p className="text-sm text-muted-foreground">
-            Nothing to do here — you already have full access. Manage or cancel your
-            subscription from the receipt email Stripe sent when you subscribed.
+          {daysLeft !== null ? (
+            <p className="text-2xl font-semibold text-foreground">
+              {daysLeft} {daysLeft === 1 ? "day" : "days"} left
+            </p>
+          ) : null}
+          <p className="mt-2 text-sm text-muted-foreground">
+            {subscription?.provider === "gift"
+              ? "Your access came from a gift code. When it runs out, subscribe here to keep going."
+              : "Nothing to do here — you already have full access. Manage or cancel your subscription from the receipt email Stripe sent when you subscribed."}
           </p>
+          {subscription?.provider === "gift" ? (
+            <p className="mt-2 text-sm text-muted-foreground">
+              Have another code?{" "}
+              <Link href="/redeem" className="font-medium text-brand hover:underline">
+                Redeem it
+              </Link>{" "}
+              — a new code adds to what you have rather than replacing it.
+            </p>
+          ) : null}
         </Card>
       ) : (
         <ul className="grid gap-4 sm:grid-cols-2">
