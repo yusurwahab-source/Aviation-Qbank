@@ -558,13 +558,40 @@ question already seen cost nothing further. This is per aircraft, not a
 total across the whole bank, so trying a second type does not spend the
 allowance meant for the first. `FREE_QUESTIONS_PER_AIRCRAFT` and the rule
 itself live in `src/lib/billing/access-policy.ts`, pure and unit tested like
-`grading.ts` — `answerQuestion` is the only caller, and it is the only place
-a new question can be blocked: a subscriber, and anyone re-answering a
-question already counted, always gets through.
+`grading.ts`.
 
 A signed-out student is not metered at all — there is nowhere to count
 against, the same gap that already means a signed-out refresh restarts a
 test rather than resuming it. See "Known gaps" below.
+
+**The cap holds at two points, not one: what a free account may *see*, and
+what it may *answer*.** Early on this only gated `answerQuestion` — a
+subscriber, and anyone re-answering a question already counted, always got
+through, and everyone else was blocked from grading past the allowance. That
+stopped a free account from banking correct answers past its limit, but not
+from *reading* past it: nothing stopped a test built for "all questions" or
+"500" from being handed the whole bank to page through, unanswered, since
+grading was the only checkpoint. `test/page.tsx` now caps the size of a
+*freshly built* test the same way, before a single question is fetched: a
+signed-in student without an active subscription can never have more than
+the aircraft's remaining allowance delivered to the browser in one test, not
+just gradeable in one. A *resumed* test is exempt — those questions were
+already sent, and there is nothing left to protect by re-checking a
+decision already made — and so is a retry test, since it only ever draws
+questions the student has already seen. The test builder (`test-builder.tsx`)
+is told the same remaining figure so its own "Start test · N questions"
+button never promises more than `/test` will actually deliver, the same
+"the button never promises more than it delivers" rule the section counts
+already followed — and shows an "Upgrade to keep going" link in place of the
+button once the allowance reaches zero. This still leaves a narrower gap
+than either checkpoint closes on its own: nothing here distinguishes a
+question merely *shown* from one *answered*, so a student who starts and
+abandons several tests without answering could, in principle, see more than
+`FREE_QUESTIONS_PER_AIRCRAFT` distinct questions over many separate visits,
+each individually under the cap. Closing that fully would need tracking
+exposure separately from `attempts`, which is deliberately not built —
+see "The free tier is counted from `attempts`... there is no separate usage
+counter" above.
 
 **A blocked question is never itself graded or shown.** `answerQuestion`
 returns a `"paywall"` status instead of a verdict when the free allowance
@@ -572,7 +599,9 @@ is spent and there is no active subscription; nothing is written to
 `attempts` and the correct answer is not revealed. The runner reverts the
 optimistic pick it had already shown and points at `/upgrade` instead — the
 same principle as "the answer key never arrives before it's earned",
-applied to the question a free account runs out on.
+applied to the rare case the size cap above does not already prevent: a
+test built while a question or two of allowance remained, then answered
+down to zero partway through it.
 
 **Checkout is a page Stripe hosts, started by a form action, not a static
 link.** `/upgrade`'s "Subscribe" button posts to `startCheckout` in
@@ -788,6 +817,16 @@ from inside the website, an admin panel gets added then — the `status`,
   hitting the limit. Accepted for the same reason "Practice does not require
   an account" is accepted below: requiring an account to meter usage would
   also block anyone trying the site before committing to one.
+- **A question merely shown is not distinguished from one answered.** The
+  size cap on a freshly built test (see the conventions above) stops a
+  single test from handing a free account more than its remaining allowance,
+  but nothing records that a question was *displayed* short of being
+  answered — only `attempts` does that. A student who starts and abandons
+  several tests without answering could see more than
+  `FREE_QUESTIONS_PER_AIRCRAFT` distinct questions across those separate
+  visits, each individually within the cap. Closing this needs tracking
+  exposure on its own, which is deliberately not built — see the note on
+  `attempts` being the only usage counter, above.
 - **The Stripe integration is verified in test mode only.** A checkout, a
   webhook delivery and the subscription being recognised as active have all
   been confirmed against this account's test mode — see the note on

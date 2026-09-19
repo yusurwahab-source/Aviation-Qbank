@@ -15,6 +15,8 @@ import {
   type TestQuestion,
 } from "@/db/queries";
 import { getQuestionIdsToRetry } from "@/db/reports";
+import { countQuestionsAnswered, getSubscription } from "@/db/subscriptions";
+import { hasActiveSubscription, remainingFreeQuestions } from "@/lib/billing/access-policy";
 import { getCurrentUser } from "@/lib/auth/session";
 import {
   buildTestHref,
@@ -100,6 +102,13 @@ export default async function TestPage({ params, searchParams }: PageProps) {
    */
   let initialStartedAt: string | null = null;
   let initialExpiresAt: string | null = null;
+  /**
+   * Set when a fresh pick was cut down to zero specifically by the free-tier
+   * allowance, not because the bank itself is empty — the empty state below
+   * needs to tell those two apart rather than saying "no questions" to a
+   * student who has simply used theirs up.
+   */
+  let freeLimitReached = false;
 
   try {
     plane = await getAircraft(aircraftCode);
@@ -168,7 +177,7 @@ export default async function TestPage({ params, searchParams }: PageProps) {
       // turns "all questions" into a number, and what stops a request for
       // 500 from meaning anything more than the bank.
       const available = await countTestQuestions(aircraftCode, topics);
-      const size = resolveTestSize(length, available);
+      let size = resolveTestSize(length, available);
 
       // Only the question and its options cross to the browser. The correct
       // answer and the explanation stay on the server until the test is graded.
@@ -179,7 +188,23 @@ export default async function TestPage({ params, searchParams }: PageProps) {
         const ids = user ? await getQuestionIdsToRetry(user.id, aircraftCode, size) : [];
         questions = ids.length > 0 ? await getTestQuestionsByIds(aircraftCode, ids) : [];
       } else {
-        questions = await pickTestQuestions(aircraftCode, size, topics);
+        // A fresh pick is where a free account could otherwise be handed
+        // every question in the bank at once and simply never answer any of
+        // them — `answerQuestion`'s own paywall only stops grading, not the
+        // page from being built in the first place. So the size itself is
+        // capped here, before a single question is fetched: a signed-in
+        // student without an active subscription can never have more than
+        // the aircraft's free allowance *delivered* to the browser, not just
+        // "more than the allowance gradeable".
+        if (user) {
+          const subscription = await getSubscription(user.id);
+          if (!hasActiveSubscription(subscription)) {
+            const distinctAnswered = await countQuestionsAnswered(user.id, aircraftCode);
+            size = Math.min(size, remainingFreeQuestions(distinctAnswered));
+          }
+        }
+        freeLimitReached = size === 0 && available > 0;
+        questions = size > 0 ? await pickTestQuestions(aircraftCode, size, topics) : [];
       }
     }
   } catch (error) {
@@ -199,14 +224,23 @@ export default async function TestPage({ params, searchParams }: PageProps) {
         <PageHeading title={`${plane.name} practice test`} />
         <EmptyState
           title={
-            retryOnly
-              ? "Nothing to retry right now."
-              : sections
-                ? `There are no published questions in ${sections} yet.`
-                : "There are no published questions for this aircraft yet."
+            freeLimitReached
+              ? `You've used your free questions on ${plane.code}.`
+              : retryOnly
+                ? "Nothing to retry right now."
+                : sections
+                  ? `There are no published questions in ${sections} yet.`
+                  : "There are no published questions for this aircraft yet."
           }
         >
-          {retryOnly ? (
+          {freeLimitReached ? (
+            <>
+              Subscribe for unlimited questions on every aircraft.{" "}
+              <Link href="/upgrade" className="font-medium text-brand hover:underline">
+                Upgrade
+              </Link>
+            </>
+          ) : retryOnly ? (
             <>
               The last time you saw each question, you got it right.{" "}
               <Link

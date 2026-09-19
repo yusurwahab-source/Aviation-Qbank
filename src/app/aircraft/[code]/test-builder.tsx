@@ -32,9 +32,17 @@ import {
 export function TestBuilder({
   aircraftCode,
   topics,
+  /**
+   * How many free questions are left on this aircraft, or null for no cap
+   * (subscribed, or signed out — signed-out practice is never metered).
+   * `/test` enforces this regardless; this is what keeps the button honest
+   * about it rather than advertising a size it will not actually deliver.
+   */
+  remainingFree = null,
 }: {
   aircraftCode: string;
   topics: TopicSummary[];
+  remainingFree?: number | null;
 }) {
   const fieldId = useId();
 
@@ -69,7 +77,8 @@ export function TestBuilder({
       ? Number.parseInt(typed, 10)
       : null;
 
-  const size = requested === null ? 0 : resolveTestSize(requested, available);
+  const requestedSize = requested === null ? 0 : resolveTestSize(requested, available);
+  const size = remainingFree === null ? requestedSize : Math.min(requestedSize, remainingFree);
   /**
    * What an exam of this size is worth, in minutes. Shown on the Exam card so
    * the student sees the clock they are choosing before they choose it —
@@ -77,7 +86,11 @@ export function TestBuilder({
    */
   const examSeconds = timeLimitFor("exam", size);
   const examMinutes = size > 0 && examSeconds !== null ? examSeconds / 60 : 0;
-  const shortened = requested !== null && requested !== ALL_QUESTIONS && requested > available;
+  const shortenedBySection =
+    requested !== null && requested !== ALL_QUESTIONS && requested > available;
+  // Whichever cut it down further is the one worth explaining — no point
+  // naming the section limit when the free allowance is the tighter one.
+  const shortenedByFreeLimit = remainingFree !== null && requestedSize > remainingFree;
 
   function toggle(topic: string) {
     setSelected((previous) => {
@@ -165,6 +178,23 @@ export function TestBuilder({
             : `${available} ${available === 1 ? "question is" : "questions are"} available in your selection.`}
         </p>
 
+        {remainingFree !== null ? (
+          <p className="mt-1 text-sm text-muted-foreground" aria-live="polite">
+            {remainingFree > 0 ? (
+              <>
+                Free plan: {remainingFree} {remainingFree === 1 ? "question" : "questions"} left on{" "}
+                {aircraftCode}.{" "}
+              </>
+            ) : (
+              <>You&apos;ve used your free questions on {aircraftCode}. </>
+            )}
+            <Link href="/upgrade" className="font-medium text-brand hover:underline">
+              Subscribe for unlimited
+            </Link>
+            .
+          </p>
+        ) : null}
+
         <div className="mt-3 flex flex-wrap items-center gap-2">
           {TEST_LENGTHS.map((length) => {
             const active = !wantsAll && requested === length;
@@ -227,7 +257,12 @@ export function TestBuilder({
 
         {requested === null && !wantsAll ? (
           <p className="mt-2 text-sm text-incorrect">Enter a whole number of questions, or choose All questions.</p>
-        ) : shortened ? (
+        ) : shortenedByFreeLimit ? (
+          <p className="mt-2 text-sm text-muted-foreground">
+            Your free plan allows {remainingFree} more on {aircraftCode}, so the test will have{" "}
+            {size}.
+          </p>
+        ) : shortenedBySection ? (
           <p className="mt-2 text-sm text-muted-foreground">
             Only {available} available in your selection, so the test will have {available}.
           </p>
@@ -297,6 +332,13 @@ export function TestBuilder({
           className="inline-block rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-strong"
         >
           Start test · {size} {size === 1 ? "question" : "questions"}
+        </Link>
+      ) : remainingFree === 0 ? (
+        <Link
+          href="/upgrade"
+          className="inline-block rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-strong"
+        >
+          Upgrade to keep going
         </Link>
       ) : (
         <button
