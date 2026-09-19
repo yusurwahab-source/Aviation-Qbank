@@ -17,6 +17,7 @@
     "db:migrate": "tsx scripts/migrate.ts",
     "db:seed": "npm run validate:content && tsx scripts/seed.ts",
     "db:studio": "drizzle-kit studio",
+    "gift:generate": "tsx scripts/generate-gift-codes.ts",
     "setup": "npm run db:migrate && npm run db:seed",
     "check": "npm run validate:content && npm run lint && npm run typecheck && npm run test"
   },
