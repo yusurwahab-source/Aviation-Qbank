@@ -798,6 +798,19 @@ The general rule all three findings point at: **the live account is a
 different system from the test account, and only a live request proves a
 live path** — a real card most of all.
 
+**A refund does not cancel a subscription — they are two separate Stripe
+operations, and the app only reacts to the second one.** Refunding the
+first live charge from the dashboard gave the money back but left the
+subscription `active`, because `/api/webhooks/stripe` only turns access off
+on `customer.subscription.deleted` (or `.updated` carrying a non-active
+`status`), and a refund raises neither — it is an event on the *charge*,
+which this app never subscribes to. The account kept full access until the
+subscription was cancelled as its own, separate action (`DELETE
+/v1/subscriptions/:id` from the dashboard or the API), which is what
+actually raised the `.deleted` event and cleared the row. Worth remembering
+whenever a live refund is issued: it is not the undo button for access, and
+the subscription needs cancelling too if the point is to take access back.
+
 **Configuration is read through `readEnv`, never straight off
 `process.env`.** `src/lib/env.ts` trims whitespace, strips surrounding
 quotes, and strips a leading `NAME=` — the three ways a *correct* value
