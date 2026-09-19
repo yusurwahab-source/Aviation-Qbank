@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { Card, PageHeading } from "@/components/ui";
@@ -39,7 +40,7 @@ const PRICE_ID_ENV_VAR: Record<CheckoutPlan, string> = {
 export default async function UpgradePage({
   searchParams,
 }: {
-  searchParams: Promise<{ success?: string | string[] }>;
+  searchParams: Promise<{ success?: string | string[]; redeemed?: string | string[] }>;
 }) {
   const user = await getCurrentUser();
   if (!user) redirect("/login");
@@ -47,6 +48,7 @@ export default async function UpgradePage({
   const [subscription, query] = await Promise.all([getSubscription(user.id), searchParams]);
   const active = subscription !== null && hasActiveSubscription(subscription);
   const justSubscribed = (Array.isArray(query.success) ? query.success[0] : query.success) === "1";
+  const justRedeemed = (Array.isArray(query.redeemed) ? query.redeemed[0] : query.redeemed) === "1";
 
   // Shaped like a key, not merely present: a variable holding something that
   // could never work should read as "not configured", not as a button that
@@ -69,6 +71,14 @@ export default async function UpgradePage({
           <p className="text-sm text-muted-foreground">
             Payment received — your subscription usually activates within a few seconds.
             Refresh this page shortly if it still shows as free.
+          </p>
+        </Card>
+      ) : null}
+
+      {justRedeemed ? (
+        <Card className="mb-4">
+          <p className="text-sm text-muted-foreground">
+            Gift code redeemed — full access unlocked.
           </p>
         </Card>
       ) : null}
@@ -112,6 +122,16 @@ export default async function UpgradePage({
           })}
         </ul>
       )}
+
+      {!active ? (
+        <p className="mt-6 text-sm text-muted-foreground">
+          Have a gift code?{" "}
+          <Link href="/redeem" className="font-medium text-brand hover:underline">
+            Redeem it here
+          </Link>
+          .
+        </p>
+      ) : null}
     </>
   );
 }

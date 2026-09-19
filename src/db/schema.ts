@@ -412,6 +412,47 @@ export type SubscriptionRow = typeof subscriptions.$inferSelect;
 export type SubscriptionInsert = typeof subscriptions.$inferInsert;
 
 /**
+ * A free, single-use code that grants full access without touching Stripe —
+ * `upsertSubscription`'s `provider` column exists precisely so a second
+ * source of access could be added without changing that function, and this
+ * is that second source.
+ *
+ * `code` is stored normalised (uppercase, no separators) so a lookup never
+ * depends on how the redeemer typed the dashes back in — `normalizeGiftCode`
+ * in `gift-codes.ts` is the one place both sides agree on that shape.
+ * `redeemedByUserId`/`redeemedAt` are null until spent, the same
+ * unredeemed-until-claimed shape as `passwordResetTokens.usedAt`: a code is
+ * claimed by an update whose own `where` requires `redeemed_by_user_id is
+ * null`, so two redemption attempts racing on the same code cannot both win.
+ *
+ * `plan` and `durationDays` describe what the code is worth, not what it
+ * bills — there is no charge here, so nothing about a code ever expires on
+ * its own the way a Stripe subscription's period does; it simply waits until
+ * someone redeems it.
+ */
+export const giftCodes = pgTable(
+  "gift_codes",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    code: varchar("code", { length: 24 }).notNull(),
+    plan: subscriptionPlan("plan").notNull(),
+    /** Days of full access this code grants once redeemed. */
+    durationDays: integer("duration_days").notNull(),
+    /** For the owner's own records — e.g. "beta testers, Sept 2026" — never
+     * shown to the redeemer. */
+    note: varchar("note", { length: 200 }),
+    redeemedByUserId: uuid("redeemed_by_user_id").references(() => users.id, {
+      onDelete: "cascade",
+    }),
+    redeemedAt: timestamp("redeemed_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [uniqueIndex("gift_codes_code_unique").on(table.code)],
+);
+
+export type GiftCodeRow = typeof giftCodes.$inferSelect;
+
+/**
  * "Which aircraft next?" — the landing page's email capture for anyone whose
  * type is not in the bank yet.
  *

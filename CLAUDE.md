@@ -75,6 +75,7 @@ suite passed against a database holding both banks.
 | `npm run db:studio` | Opens Drizzle Studio to browse the database |
 | `npm run validate:content` | Checks every question file against the schema |
 | `npm run icons:generate` | Redraws the favicon, the app icons and the manifest icons from the logo mark. Outputs are committed; run it only when the mark or the brand colours change. |
+| `npm run gift:generate -- --count <n> --days <n> --plan <monthly\|quarterly> [--note "..."]` | Mints free-access gift codes and prints them. |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | TypeScript, no emit |
 | `npm run test` | Unit tests (Vitest) |
@@ -840,6 +841,47 @@ into a hosting dashboard in order to do one thing. The webhook route needs
 no key at all: it verifies a signature against `STRIPE_WEBHOOK_SECRET` and
 calls nothing.
 
+**Free access does not have to come from Stripe — `provider` on
+`subscriptions` exists for exactly this.** A gift code is the second thing
+that can turn a subscription on, alongside Stripe's webhook. Minting one is
+a script, not a page: `npm run gift:generate -- --count 5 --days 30 --plan
+monthly --note "…"` inserts rows via `createGiftCodes` and prints the codes
+in their display form (`7K4M-QX2P-9RTN-5VWZ`) — the same reasoning as
+`db:seed`, run by hand, no admin panel needed to justify existing.
+Redeeming is the one path a student drives themselves, at `/redeem`:
+`redeemGiftCode` in `db/gift-codes.ts` claims the code and writes the
+`subscriptions` row in one transaction, with `provider: "gift"` and no
+`providerSubscriptionRef`.
+
+The claim is atomic the same way `consumeResetToken` is: the update's own
+`where redeemed_by_user_id is null` is what stops two redemption attempts on
+the same code from both winning, not a check-then-write that a race could
+slip between.
+
+**A gift code only ever extends access, never shortens it.**
+`computeGiftPeriodEnd` takes the later of "now plus the code's duration" and
+whatever `currentPeriodEnd` the account already has, so a student already
+paying through Stripe who redeems a code (a friend's gift, a promotion)
+cannot come out with an earlier expiry than they had. The one loose end this
+leaves: redeeming while a real Stripe subscription is active overwrites that
+row's `provider` to `"gift"` and clears `providerSubscriptionRef`, even
+though the date itself is protected. This heals itself at the Stripe
+subscription's own next `.updated` event — a renewal sets `provider` back
+to `"stripe"` unconditionally — so the only window where it reads wrong is
+between the redemption and that next renewal, and nothing user-facing reads
+`provider` directly (`hasActiveSubscription` only ever looks at `status` and
+`currentPeriodEnd`). Worth revisiting only if a second surface ever depends
+on `provider` for a decision, which nothing does today.
+
+Codes are 16 characters from a 32-symbol alphabet that excludes `0`, `1`,
+`I`, `L`, `O` — the letters and digits people most often transcribe wrong —
+formatted in groups of four for readability, and looked up after
+`normalizeGiftCode` strips whatever separators or casing the redeemer typed.
+80 bits of that alphabet is far more than the table's own uniqueness needs;
+it is sized against guessing, the same reasoning as a password reset token,
+just a smaller number because what a wrong guess would buy here is a free
+subscription, not an account.
+
 **A provider's error message is for the log, not for the student.** Stripe's
 "Invalid API Key provided: …" describes this deployment's configuration:
 useful to whoever owns it, useless to somebody who only wants to subscribe,
@@ -873,6 +915,7 @@ src/
     (auth)/                   Sign up, log in, log out
     progress/                 Reports, overall and per aircraft
     upgrade/                  Checkout for the two plans, and the Stripe redirect action
+    redeem/                   Where a gift code becomes an active subscription
     api/webhooks/stripe/      The Stripe webhook endpoint
     about|pricing|faq|terms|privacy|contact/   Short pages the footer links to
     manifest.ts               Web app manifest
@@ -891,6 +934,7 @@ src/
     users.ts                  Account reads and writes
     password-reset.ts         Issuing and spending reset links
     subscriptions.ts          Subscription row and the free-tier count
+    gift-codes.ts             Minting and redeeming free-access codes
     index.ts                  Connection pool
   lib/
     email/
@@ -900,6 +944,7 @@ src/
       access-policy.ts        Free-tier and subscription rules (pure, tested)
       stripe.ts                Checkout session request + Stripe API call (pure builder, tested)
       stripe-webhook.ts        Webhook signature verification (pure, tested)
+      gift-codes.ts            Code shape, normalisation, extend-only arithmetic (pure, tested)
     env.ts                    Reading configuration, tolerantly (pure, tested)
     grading.ts                Scoring (pure, tested)
     question-status.ts        What the question map may say (pure, tested)
@@ -955,7 +1000,10 @@ tests/                        Vitest unit tests
    live webhook endpoint exist, and the deployment carries live keys — see
    the `tax_code` note in the conventions above for what live mode asked
    for that test mode never did, and "Known gaps" for exactly how far the
-   live path has been proven.
+   live path has been proven. A second way in besides Stripe now exists
+   too: `/redeem` spends a free-access gift code, minted by
+   `npm run gift:generate` — see the note on `provider` in the conventions
+   above.
 
 Do not start a phase until the previous one works.
 
