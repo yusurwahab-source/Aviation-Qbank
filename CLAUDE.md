@@ -674,8 +674,26 @@ downloadable. It is set on the **Product** in the dashboard, not in this
 repository, so it is not a deploy — but it is load-bearing, and a new plan
 added later needs it too or that plan alone will fail to check out.
 
-The general rule both findings point at: **the live account is a different
-system from the test account, and only a live request proves a live path.**
+**A Price also has to say whether its number includes the tax.** The first
+real payment charged **€12.09** for the plan the page calls €9.99: Managed
+Payments read `tax_behavior: unspecified` as "this figure is before tax"
+and added 21% Belgian VAT on top. Nothing was broken — the charge, the
+webhook and the subscription were all correct — the *price* simply was not
+what the screen said, and only a real card could show that, because a
+Checkout Session quotes no tax until there is a customer to place. Both
+live Prices are now `tax_behavior: inclusive`, so €9.99 is what the student
+pays and the VAT is taken out of it; the old ones are archived.
+
+This is a rule about the product, not a detail of the integration: the
+prices here are shown to individual students, and a consumer price in the
+EU is quoted including VAT. Any Price added later has to be `inclusive`
+too — `tax_behavior` cannot be changed after a Price is created, so getting
+it wrong means making a new Price and re-pointing the environment variable,
+which is exactly what this cost.
+
+The general rule all three findings point at: **the live account is a
+different system from the test account, and only a live request proves a
+live path** — a real card most of all.
 
 **Configuration is read through `readEnv`, never straight off
 `process.env`.** `src/lib/env.ts` trims whitespace, strips surrounding
@@ -858,16 +876,19 @@ from inside the website, an admin panel gets added then — the `status`,
   visits, each individually within the cap. Closing this needs tracking
   exposure on its own, which is deliberately not built — see the note on
   `attempts` being the only usage counter, above.
-- **Live mode is configured and probed, but no real customer has paid yet.**
-  The account is activated (`charges_enabled`, `payouts_enabled`), the two
-  live Prices and the live webhook endpoint exist, and the deployment reads
-  live keys. What has been proven directly against the live account: both
-  Prices produce a real Checkout Session, and the deployed webhook accepts a
-  correctly-signed request while rejecting an unsigned one — so the signing
-  secret in the deployment is the endpoint's own. What has *not* happened is
-  an actual card being charged, a real `customer.subscription.created`
-  arriving, and a row being written. The first genuine subscription is still
-  the first genuine test; watch it rather than assume it.
+- **Live mode has taken a real payment, end to end.** A real card was
+  charged (`succeeded`, `livemode: true`), the subscription came back
+  `active` carrying the `userId` and `plan` metadata and a period end a
+  month out, and Stripe reported `pending_webhooks: 0` — every endpoint,
+  this app's included, took the `customer.subscription.created` event. The
+  same run also exercised the unhappy path by accident and passed it: an
+  earlier attempt on a card with no funds produced a **failed** charge and
+  granted nothing, which is `mapStripeSubscriptionStatus` behaving exactly
+  as documented, confirmed against real money rather than a fixture.
+
+  The one thing that first payment got wrong was the *price* — see the
+  `tax_behavior` note in the conventions above. Fixed, but the fix is why
+  live mode is worth watching rather than assuming.
 - **2Checkout was tried first and declined the merchant application before
   any code could be tested against it.** Nothing about that attempt is left
   in the code; it is mentioned here only so the choice of Stripe is not
