@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 
 export default async function SignUpPage() {
   // Someone already signed in has no use for this page.
-  if (await getCurrentUser()) redirect("/");
+  if (await getCurrentUser()) redirect("/aircraft");
 
   return (
     <AuthForm

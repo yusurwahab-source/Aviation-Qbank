@@ -45,6 +45,23 @@ export type TopicSummary = {
   questionCount: number;
 };
 
+/**
+ * How many aircraft the bank holds, whatever their status — a true
+ * platform-wide fact, independent of which ones any given page chooses to
+ * feature. Deliberately not scoped to one aircraft code, unlike every other
+ * query here: "how many types do you cover" is a fact about the platform,
+ * not about one type's test.
+ *
+ * The landing page's other two headline numbers — questions and systems —
+ * are deliberately *not* read here. Both come from `listTopics` for
+ * whichever aircraft is being featured, so the hero's count can never drift
+ * from the sum shown in the grid immediately below it.
+ */
+export async function countAircraft(): Promise<number> {
+  const [row] = await getDb().select({ total: count() }).from(aircraft);
+  return Number(row?.total ?? 0);
+}
+
 const aircraftSummaryColumns = {
   code: aircraft.code,
   name: aircraft.name,

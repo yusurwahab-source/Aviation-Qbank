@@ -1,124 +1,143 @@
-import Link from "next/link";
-
 import { DatabaseUnavailable } from "@/components/database-unavailable";
-import { Badge, Card, EmptyState, PageHeading } from "@/components/ui";
-import { getSubscription } from "@/db/subscriptions";
-import { listAircraft, type AircraftSummary } from "@/db/queries";
-import { FREE_QUESTIONS_PER_AIRCRAFT, hasActiveSubscription } from "@/lib/billing/access-policy";
-import { getCurrentUser } from "@/lib/auth/session";
+import { FEATURED_AIRCRAFT_CODE } from "@/config/aircraft-marketing";
+import { siteConfig } from "@/config/site";
+import {
+  countAircraft,
+  getAircraft,
+  listTopics,
+  type AircraftSummary,
+  type TopicSummary,
+} from "@/db/queries";
+import { appUrl } from "@/lib/email/send";
 
-// The aircraft list comes from the database, so this page is rendered per request.
-export const dynamic = "force-dynamic";
+import { AircraftSection } from "./_landing/aircraft-section";
+import { Faq } from "./_landing/faq";
+import { Features } from "./_landing/features";
+import { FinalCta } from "./_landing/final-cta";
+import type { HeroStats } from "./_landing/hero";
+import { Hero } from "./_landing/hero";
+import { HowItWorks } from "./_landing/how-it-works";
+import { SystemsGrid } from "./_landing/systems-grid";
+import { Trust } from "./_landing/trust";
 
 /**
- * Whether to show the upgrade banner: only a signed-in student without an
- * active subscription already has a reason to see it. Failure here is never
- * fatal to the page — same reasoning as `AccountMenu` catching its own
- * lookup — it just means the banner is skipped for this render.
+ * The marketing landing page.
+ *
+ * Everything that does not depend on the database — the hero copy, the
+ * trust block, how it works, features, the FAQ, the final CTA — renders
+ * unconditionally, so a database hiccup narrows the page rather than taking
+ * it down. Only the two sections that show real numbers (the systems grid
+ * and the aircraft card) fall back to an honest notice instead of a made-up
+ * count.
+ *
+ * Statically rendered with an hourly revalidation, matching the brief: the
+ * numbers on this page are real but do not need to be to-the-second.
  */
-async function shouldOfferUpgrade(): Promise<boolean> {
-  try {
-    const user = await getCurrentUser();
-    if (!user) return false;
-    const subscription = await getSubscription(user.id);
-    return !(subscription !== null && hasActiveSubscription(subscription));
-  } catch {
-    return false;
-  }
+export const revalidate = 3600;
+
+type LandingData = {
+  /** Null on failure — a live platform fact with no honest zero to fall back to. */
+  totalAircraft: number | null;
+  topics: TopicSummary[];
+  topicsOk: boolean;
+  plane: AircraftSummary | null;
+};
+
+async function loadLandingData(): Promise<LandingData> {
+  const [aircraftResult, topicsResult, planeResult] = await Promise.allSettled([
+    countAircraft(),
+    listTopics(FEATURED_AIRCRAFT_CODE),
+    getAircraft(FEATURED_AIRCRAFT_CODE),
+  ]);
+
+  return {
+    totalAircraft: aircraftResult.status === "fulfilled" ? aircraftResult.value : null,
+    topics: topicsResult.status === "fulfilled" ? topicsResult.value : [],
+    topicsOk: topicsResult.status === "fulfilled",
+    plane: planeResult.status === "fulfilled" ? planeResult.value : null,
+  };
 }
 
-export default async function HomePage() {
-  let fleet: AircraftSummary[];
+/**
+ * Organization + Course JSON-LD, built from the same facts as the rest of
+ * the page — no rating, review count or enrolment figure appears anywhere
+ * here, because none exists to report honestly.
+ */
+function jsonLd(): { "@type": string; [key: string]: unknown }[] {
+  const base = appUrl();
 
-  try {
-    fleet = await listAircraft();
-  } catch (error) {
-    return (
-      <>
-        <PageHeading title="Choose an aircraft" />
-        <DatabaseUnavailable detail={(error as Error).message} />
-      </>
-    );
-  }
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: base,
+      logo: `${base}/icon-512.png`,
+      description: siteConfig.description,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      name: `${siteConfig.name} — Boeing 737-800 type rating practice questions`,
+      description:
+        "Multiple-choice practice questions for the Boeing 737-800 type rating, written from FCOM and FCTM source material, with study and timed exam modes.",
+      url: `${base}/aircraft/${FEATURED_AIRCRAFT_CODE}`,
+      inLanguage: "en",
+      provider: { "@type": "Organization", name: siteConfig.name, url: base },
+      hasCourseInstance: { "@type": "CourseInstance", courseMode: "online", courseWorkload: "Self-paced" },
+    },
+  ];
+}
 
-  const offerUpgrade = await shouldOfferUpgrade();
+export default async function LandingPage() {
+  const { totalAircraft, topics, topicsOk, plane } = await loadLandingData();
+
+  // The hero's question and system counts are the same sum the grid below
+  // shows, computed once here — never a separate query that could drift
+  // from it.
+  const heroStats: HeroStats | null =
+    topicsOk && totalAircraft !== null
+      ? {
+          totalQuestions: topics.reduce((sum, topic) => sum + topic.questionCount, 0),
+          totalSystems: topics.length,
+          totalAircraft,
+        }
+      : null;
+
+  const bankAvailable = topicsOk && plane !== null && topics.length > 0;
 
   return (
-    <>
-      <PageHeading
-        title="Choose an aircraft"
-        subtitle="Pick a type to start a practice test. Each aircraft has its own question bank."
-      />
+    <div className="flex flex-col gap-16 sm:gap-24">
+      <Hero stats={heroStats} />
+      <Trust />
 
-      {offerUpgrade ? (
-        <Card className="mb-6 flex flex-wrap items-center justify-between gap-3">
-          <p className="text-sm text-muted-foreground">
-            Practising is free up to {FREE_QUESTIONS_PER_AIRCRAFT} questions on each aircraft.
-            Subscribe for unlimited questions on every type.
-          </p>
-          <Link
-            href="/upgrade"
-            className="inline-flex min-h-11 shrink-0 items-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
-          >
-            Upgrade
-          </Link>
-        </Card>
-      ) : null}
-
-      {fleet.length === 0 ? (
-        <EmptyState title="No aircraft loaded yet">
-          Add a folder under <code className="font-mono">/content</code> and run{" "}
-          <code className="font-mono">npm run db:seed</code>.
-        </EmptyState>
+      {bankAvailable ? (
+        <SystemsGrid aircraftCode={FEATURED_AIRCRAFT_CODE} topics={topics} />
       ) : (
-        <ul className="grid gap-4 sm:grid-cols-2">
-          {fleet.map((plane) => (
-            <li key={plane.code}>
-              <AircraftCard plane={plane} />
-            </li>
-          ))}
-        </ul>
+        <section id="whats-inside" className="scroll-mt-20">
+          <DatabaseUnavailable />
+        </section>
       )}
-    </>
-  );
-}
 
-function AircraftCard({ plane }: { plane: AircraftSummary }) {
-  const ready = plane.status === "active" && plane.publishedQuestions > 0;
+      <HowItWorks />
+      <Features />
 
-  const body = (
-    <Card
-      className={`h-full transition ${
-        ready ? "hover:border-brand hover:shadow-sm" : "opacity-70"
-      }`}
-    >
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <p className="font-mono text-xs font-semibold uppercase tracking-wider text-brand">
-            {plane.code}
-          </p>
-          <h2 className="mt-1 text-lg font-semibold text-foreground">{plane.name}</h2>
-          <p className="text-sm text-muted-foreground">
-            {plane.manufacturer}
-            {plane.variant ? ` · ${plane.variant}` : ""}
-          </p>
-        </div>
-        {ready ? (
-          <Badge tone="brand">{plane.publishedQuestions} questions</Badge>
-        ) : (
-          <Badge>Coming soon</Badge>
-        )}
-      </div>
+      {bankAvailable && plane ? (
+        <AircraftSection plane={plane} systemCount={topics.length} />
+      ) : (
+        <DatabaseUnavailable />
+      )}
 
-      <p className="mt-3 text-sm text-muted-foreground">{plane.description}</p>
-    </Card>
-  );
+      <Faq />
+      <FinalCta />
 
-  if (!ready) return body;
-
-  return (
-    <Link href={`/aircraft/${plane.code}`} className="block h-full">
-      {body}
-    </Link>
+      {jsonLd().map((entry) => (
+        <script
+          key={entry["@type"]}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(entry).replace(/</g, "\\u003c") }}
+        />
+      ))}
+    </div>
   );
 }

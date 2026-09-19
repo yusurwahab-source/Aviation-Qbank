@@ -21,13 +21,13 @@ import { getCurrentUser } from "@/lib/auth/session";
  */
 
 const SIGNED_OUT_LINKS = [
-  { href: "/", label: "Aircraft" },
+  { href: "/aircraft", label: "Aircraft" },
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
 ];
 
 const SIGNED_IN_LINKS = [
-  { href: "/", label: "Aircraft" },
+  { href: "/aircraft", label: "Aircraft" },
   { href: "/progress", label: "Progress" },
   { href: "/upgrade", label: "Upgrade" },
 ];

@@ -11,7 +11,10 @@ export default function NotFound() {
           That aircraft or page does not exist in the question bank.
         </p>
         <p className="mt-4">
-          <Link href="/" className="link-standalone text-sm font-medium text-brand hover:underline">
+          <Link
+            href="/aircraft"
+            className="link-standalone text-sm font-medium text-brand hover:underline"
+          >
             ← Choose an aircraft
           </Link>
         </p>

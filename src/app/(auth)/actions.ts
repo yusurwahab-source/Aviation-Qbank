@@ -67,7 +67,7 @@ export async function signUp(
   }
 
   await createSession(user.id);
-  redirect("/");
+  redirect("/aircraft");
 }
 
 export async function logIn(
@@ -125,12 +125,12 @@ export async function logIn(
   }
 
   await createSession(user.id);
-  redirect("/");
+  redirect("/aircraft");
 }
 
 export async function logOut(): Promise<void> {
   await destroySession();
-  redirect("/");
+  redirect("/aircraft");
 }
 
 /* ─────────────────────────── Password reset ─────────────────────────── */
@@ -259,7 +259,7 @@ export async function resetPassword(
   // Signed straight in. They have just proved control of the inbox and set a
   // password; making them type it again immediately would be ceremony.
   await createSession(outcome.userId);
-  redirect("/");
+  redirect("/aircraft");
 }
 
 /**

@@ -410,3 +410,28 @@ export const subscriptions = pgTable(
 
 export type SubscriptionRow = typeof subscriptions.$inferSelect;
 export type SubscriptionInsert = typeof subscriptions.$inferInsert;
+
+/**
+ * "Which aircraft next?" — the landing page's email capture for anyone whose
+ * type is not in the bank yet.
+ *
+ * Not a foreign key to anything, and not deduplicated: unlike `users.email`,
+ * two submissions from the same address (perhaps naming two different
+ * aircraft) are both worth keeping, and this table has no login or lookup of
+ * its own to protect — it is read by the owner, not by the application.
+ */
+export const aircraftInterest = pgTable(
+  "aircraft_interest",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    email: varchar("email", { length: 254 }).notNull(),
+    /** Free text as submitted, e.g. "A320" or "Cessna 172" — there is no
+     * fixed list of aircraft to choose from. */
+    aircraft: varchar("aircraft", { length: 120 }).notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [index("aircraft_interest_created_at_idx").on(table.createdAt)],
+);
+
+export type AircraftInterestRow = typeof aircraftInterest.$inferSelect;
+export type AircraftInterestInsert = typeof aircraftInterest.$inferInsert;
