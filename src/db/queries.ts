@@ -1,9 +1,9 @@
 import "server-only";
 
-import { and, asc, count, eq, inArray, sql } from "drizzle-orm";
+import { and, asc, count, eq, inArray, notInArray, sql } from "drizzle-orm";
 
 import { getDb } from "@/db";
-import { aircraft, questions } from "@/db/schema";
+import { aircraft, attempts, questions } from "@/db/schema";
 import type { QuestionOption } from "@/content/schema";
 
 /**
@@ -21,6 +21,9 @@ export type TestQuestion = {
   subtopic: string | null;
   question: string;
   options: QuestionOption[];
+  /** An illustration's path, if the question was authored with one. Never an
+   * answer, so it crosses to the browser with everything else here. */
+  media: string | null;
 };
 
 /** The full question, used server-side for grading and for the review screen. */
@@ -166,11 +169,74 @@ export async function pickTestQuestions(
       subtopic: questions.subtopic,
       question: questions.question,
       options: questions.options,
+      media: questions.media,
     })
     .from(questions)
     .where(publishedIn(code, topics))
     .orderBy(sql`random()`)
     .limit(limit);
+}
+
+/**
+ * Picks a random set of published questions the user has never answered —
+ * the test builder's "Unseen questions" preset.
+ *
+ * "Never answered" rather than "not in the retry list": a question left
+ * unanswered in an abandoned test still has an `attempts` row (see the note
+ * on `attempts` in the schema — a row exists the moment a question is
+ * *shown and skipped*, not only when it is picked), so it already counts as
+ * seen here even though it was never actually graded. That is the right
+ * call for what "unseen" is supposed to mean to a student browsing a bank
+ * this large: a question they have already sat in front of once.
+ */
+export async function pickUnseenTestQuestions(
+  code: string,
+  userId: string,
+  limit: number,
+  topics: string[] = [],
+): Promise<TestQuestion[]> {
+  if (limit <= 0) return [];
+
+  const seen = getDb()
+    .select({ questionId: attempts.questionId })
+    .from(attempts)
+    .where(and(eq(attempts.userId, userId), eq(attempts.aircraftCode, code.toUpperCase())));
+
+  return getDb()
+    .select({
+      id: questions.id,
+      topic: questions.topic,
+      subtopic: questions.subtopic,
+      question: questions.question,
+      options: questions.options,
+      media: questions.media,
+    })
+    .from(questions)
+    .where(and(publishedIn(code, topics), notInArray(questions.id, seen)))
+    .orderBy(sql`random()`)
+    .limit(limit);
+}
+
+/**
+ * How many unseen questions a selection holds — the builder's own "N
+ * available" line, the same job `countTestQuestions` does for a plain test.
+ */
+export async function countUnseenTestQuestions(
+  code: string,
+  userId: string,
+  topics: string[] = [],
+): Promise<number> {
+  const seen = getDb()
+    .select({ questionId: attempts.questionId })
+    .from(attempts)
+    .where(and(eq(attempts.userId, userId), eq(attempts.aircraftCode, code.toUpperCase())));
+
+  const [row] = await getDb()
+    .select({ total: count() })
+    .from(questions)
+    .where(and(publishedIn(code, topics), notInArray(questions.id, seen)));
+
+  return Number(row?.total ?? 0);
 }
 
 /**
@@ -194,6 +260,7 @@ export async function getTestQuestionsByIds(
       subtopic: questions.subtopic,
       question: questions.question,
       options: questions.options,
+      media: questions.media,
     })
     .from(questions)
     .where(
@@ -229,6 +296,7 @@ export async function getAnswerKey(
       subtopic: questions.subtopic,
       question: questions.question,
       options: questions.options,
+      media: questions.media,
       correct: questions.correct,
       explanation: questions.explanation,
       reference: questions.reference,

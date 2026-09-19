@@ -1,11 +1,12 @@
 import "server-only";
 
-import { and, eq, sql } from "drizzle-orm";
+import { and, count, desc, eq, isNull, sql } from "drizzle-orm";
 
 import { getDb } from "@/db";
 import { attempts, testSessions } from "@/db/schema";
 import type { AttemptInsert } from "@/db/schema";
 import type { TestResult } from "@/lib/grading";
+import type { TestMode } from "@/lib/test-options";
 
 /**
  * Writing the attempt log.
@@ -56,9 +57,19 @@ export async function saveAnswer(input: {
   isCorrect: boolean;
   /** Seconds on the clock, or null for an untimed test. */
   timeLimitSeconds: number | null;
+  /** Written once, on the first answer, the same as everything else the
+   * session is created with — a later call cannot change a test's mode any
+   * more than it can move its clock. Optional and defaulted to `study`
+   * rather than required, so every caller that predates mode tracking
+   * (tests included) keeps meaning what it always meant. */
+  mode?: TestMode;
+  /** The sections this test was built from; empty means the whole aircraft. */
+  topics?: string[];
 }): Promise<SaveAnswerOutcome> {
   const db = getDb();
   const aircraftCode = input.aircraftCode.toUpperCase();
+  const mode = input.mode ?? "study";
+  const topics = input.topics ?? [];
 
   return db.transaction(async (tx) => {
     const [inserted] = await tx
@@ -76,6 +87,8 @@ export async function saveAnswer(input: {
         // has to survive a refresh rather than restart at zero.
         startedAt: sql`now()`,
         timeLimitSeconds: input.timeLimitSeconds,
+        mode,
+        topics,
         // Explicit: this session is still being taken.
         completedAt: null,
       })
@@ -179,6 +192,10 @@ export async function recordTestResult(
         clientTestId,
         questionCount: result.total,
         questionIds,
+        // `mode`/`topics` are left at their column defaults here — this
+        // branch only runs for a test finished without a single answer ever
+        // passing through `saveAnswer`, which is also the one case where
+        // there is nothing to resume and so nothing for either to describe.
         completedAt: sql`now()`,
       })
       // The unique index on (user_id, client_test_id) turns a repeated
@@ -255,6 +272,19 @@ export type SessionLookup =
       /** Null on an untimed test; together these give the deadline. */
       startedAt: Date | null;
       timeLimitSeconds: number | null;
+      /**
+       * The mode this session was actually started in. `null` only for a row
+       * written before this column existed — read as `study`, which is what
+       * a null `mode` always meant before it was tracked at all.
+       *
+       * The test page prefers this over `?mode=` on a resumed test, and must
+       * keep doing so: a resume link that lost its `mode=exam` would
+       * otherwise be read as study and hand back an exam's already-answered
+       * questions' keys, which is exactly the leak `getAnswerKey` is gated on
+       * mode to prevent.
+       */
+      mode: TestMode | null;
+      topics: string[];
     }
   /**
    * This id already names a session, but not one this page can use: it is
@@ -289,6 +319,8 @@ export async function findSession(
       completedAt: testSessions.completedAt,
       startedAt: testSessions.startedAt,
       timeLimitSeconds: testSessions.timeLimitSeconds,
+      mode: testSessions.mode,
+      topics: testSessions.topics,
     })
     .from(testSessions)
     .where(and(eq(testSessions.userId, userId), eq(testSessions.clientTestId, clientTestId)))
@@ -302,9 +334,75 @@ export async function findSession(
       questionIds: row.questionIds,
       startedAt: row.startedAt,
       timeLimitSeconds: row.timeLimitSeconds,
+      mode: row.mode,
+      topics: row.topics,
     };
   }
   return { kind: "taken" };
+}
+
+export type IncompleteSession = {
+  /** What `?t=` names — the resume link is built from this, not from `id`. */
+  clientTestId: string;
+  aircraftCode: string;
+  /** Null only pre-migration; read as `study`, same as everywhere else. */
+  mode: TestMode;
+  topics: string[];
+  questionCount: number;
+  answeredCount: number;
+  startedAt: Date | null;
+  timeLimitSeconds: number | null;
+};
+
+/**
+ * The most recent test still in progress, for the "Resume your test" banner
+ * on the aircraft page (scoped) and the dashboard (not).
+ *
+ * There can be more than one incomplete session at once — a student who
+ * starts a test, abandons it, and starts another on the same aircraft has
+ * two — so this is deliberately "the most recently started", not "the
+ * oldest": that is the one they are actually mid-way through right now.
+ */
+export async function findIncompleteSession(
+  userId: string,
+  aircraftCode?: string,
+): Promise<IncompleteSession | null> {
+  const [row] = await getDb()
+    .select({
+      clientTestId: testSessions.clientTestId,
+      aircraftCode: testSessions.aircraftCode,
+      mode: testSessions.mode,
+      topics: testSessions.topics,
+      questionCount: testSessions.questionCount,
+      startedAt: testSessions.startedAt,
+      timeLimitSeconds: testSessions.timeLimitSeconds,
+      answeredCount: count(attempts.id),
+    })
+    .from(testSessions)
+    .leftJoin(attempts, eq(attempts.testSessionId, testSessions.id))
+    .where(
+      and(
+        eq(testSessions.userId, userId),
+        isNull(testSessions.completedAt),
+        aircraftCode ? eq(testSessions.aircraftCode, aircraftCode.toUpperCase()) : undefined,
+      ),
+    )
+    .groupBy(testSessions.id)
+    .orderBy(desc(testSessions.startedAt))
+    .limit(1);
+
+  if (!row) return null;
+
+  return {
+    clientTestId: row.clientTestId,
+    aircraftCode: row.aircraftCode,
+    mode: row.mode ?? "study",
+    topics: row.topics,
+    questionCount: row.questionCount,
+    answeredCount: Number(row.answeredCount),
+    startedAt: row.startedAt,
+    timeLimitSeconds: row.timeLimitSeconds,
+  };
 }
 
 /** The answers already recorded for a session, for pre-filling a resumed test. */

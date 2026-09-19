@@ -17,6 +17,7 @@ function question(
     correct,
     explanation: "Because.",
     reference: null,
+    media: null,
   };
 }
 
