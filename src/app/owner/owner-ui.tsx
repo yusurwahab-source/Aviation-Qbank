@@ -13,6 +13,7 @@ import { Card } from "@/components/ui";
 
 export const OWNER_LINKS = [
   { href: "/owner", label: "Overview" },
+  { href: "/owner/accounts", label: "Accounts" },
   { href: "/owner/subscribers", label: "Subscribers" },
   { href: "/owner/gift-codes", label: "Gift codes" },
   { href: "/owner/interest", label: "Aircraft requests" },
