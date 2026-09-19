@@ -46,9 +46,14 @@ export async function SiteHeader() {
   // The owner gets one extra link. Everyone else never learns the area
   // exists — the pages themselves 404 for them regardless, so this is
   // about not advertising a door rather than about locking it.
+  // The owner is always an admin too — see the note on `requireAdmin` — so
+  // one check covers both extra links without a second database round trip
+  // on every page. An account promoted to `role: "admin"` without being the
+  // owner reaches `/admin` directly; there is no nav link for that case yet,
+  // the same gap the README section on this task names.
   const links = email
     ? isOwner(email, envValue("OWNER_EMAIL"))
-      ? [...SIGNED_IN_LINKS, { href: "/owner", label: "Owner" }]
+      ? [...SIGNED_IN_LINKS, { href: "/admin", label: "Admin" }, { href: "/owner", label: "Owner" }]
       : SIGNED_IN_LINKS
     : SIGNED_OUT_LINKS;
 
