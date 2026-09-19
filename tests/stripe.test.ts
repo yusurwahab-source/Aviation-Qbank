@@ -29,6 +29,11 @@ describe("looksLikeSecretKey", () => {
     expect(looksLikeSecretKey("sk_live_abc123")).toBe(true);
   });
 
+  it("accepts a restricted key, which is what production should run on", () => {
+    expect(looksLikeSecretKey("rk_test_abc123")).toBe(true);
+    expect(looksLikeSecretKey("rk_live_abc123")).toBe(true);
+  });
+
   it("rejects the variable name pasted in place of the key", () => {
     // The exact misconfiguration this guard exists for.
     expect(looksLikeSecretKey("STRIPE_SECRET_KEY=sk_test_abc123")).toBe(false);

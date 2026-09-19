@@ -678,6 +678,16 @@ is sent. A value that could never work now reads as "payments are not
 configured" on `/upgrade`, rather than rendering a Subscribe button whose
 only outcome is the provider's error.
 
+`looksLikeSecretKey` accepts `rk_` as well as `sk_`, and that is the shape a
+deployment should actually carry. This app asks Stripe for exactly one thing
+— a Checkout Session — so the key it runs on needs no permission to read a
+customer, refund a charge or create a price, and a *restricted* key granting
+only "Checkout Sessions: write" is therefore the whole of what production
+needs. Accepting only `sk_` would have forced a key that can do everything
+into a hosting dashboard in order to do one thing. The webhook route needs
+no key at all: it verifies a signature against `STRIPE_WEBHOOK_SECRET` and
+calls nothing.
+
 **A provider's error message is for the log, not for the student.** Stripe's
 "Invalid API Key provided: …" describes this deployment's configuration:
 useful to whoever owns it, useless to somebody who only wants to subscribe,

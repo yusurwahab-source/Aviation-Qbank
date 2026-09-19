@@ -28,8 +28,15 @@ export function parseCheckoutPlan(value: unknown): CheckoutPlan | null {
  * caught before it is sent, and the screen says "not configured" rather than
  * rendering a button whose only outcome is the provider's own error.
  */
+/**
+ * `rk_` is accepted alongside `sk_` deliberately. A restricted key is the
+ * better thing to deploy: this app only ever asks Stripe for one thing — a
+ * Checkout Session — so the key it runs on needs no permission to read a
+ * customer, refund a charge or create a price. Rejecting `rk_` would have
+ * forced a full-access key into a hosting dashboard to buy nothing.
+ */
 export function looksLikeSecretKey(value: string | null): value is string {
-  return value !== null && /^sk_(test|live)_/.test(value);
+  return value !== null && /^(sk|rk)_(test|live)_/.test(value);
 }
 
 export function looksLikePriceId(value: string | null): value is string {
