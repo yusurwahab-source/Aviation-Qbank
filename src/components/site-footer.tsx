@@ -39,7 +39,9 @@ export function SiteFooter() {
           </div>
 
           <nav aria-label="Footer">
-            <ul className="grid grid-cols-2 gap-x-8 sm:grid-cols-1 sm:gap-x-0">
+            {/* Two columns at every width. Six links stacked into one made a
+                desktop footer taller than the page it sat under. */}
+            <ul className="grid grid-cols-2 gap-x-8">
               {LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
