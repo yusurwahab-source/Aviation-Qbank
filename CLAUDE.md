@@ -237,6 +237,53 @@ Every route has been opened at 375px in Chromium and measured, for
 horizontal overflow and for target sizes. `overflow-x: clip` on `html` is
 a safety net, not the fix — overflows get solved where they happen.
 
+**The landing page's job is to start a test, so the systems strip sits
+directly under the hero and carries both modes.** It used to be a grid
+further down the page, each card linking to `/test` with the mode left to
+default — so a student who wanted an exam landed on the test builder and
+had to find the setting. Study and Exam are the only two things anyone
+comes here to do, and neither is worth a second screen: both are on every
+card now, and `buildTestHref` puts the mode in the link rather than the
+card knowing anything about how a test is built.
+
+It is a strip rather than a grid because fifteen systems is a list to
+browse, not a wall to read — on a phone it is a thumb-flick along one row
+with the next card always half in view, which is the only affordance it
+needs. Three things make that work and are easy to undo by accident, all
+measured in a browser rather than reasoned about:
+
+- `.scroll-x` and `.scroll-strip` (`globals.css`) carry `contain: paint`.
+  `overflow-x: auto` on its own gives the box a scrollbar and *still* lets
+  its overflow count toward the document's scrollable width: fifteen cards
+  made a 375px page report 3836px wide, and the page scrolled sideways.
+  `html { overflow-x: clip }` would have hidden that; the rule above is
+  that overflows get solved where they happen, and this is where it
+  happens.
+- `scroll-pl-*` has to match the strip's `px-*`. A snap target aligns to
+  the snapport, which is the padding box, so without it the browser scrolls
+  the strip by exactly its own padding on load and the first card sits
+  flush against the edge of the screen with no gutter.
+- `w-max` on the list inside. As a block-level flex child it is otherwise
+  the content box's width with its items spilling out, and a scroll
+  container does not honour its end padding against spilled content — so
+  the last card ended flush right.
+
+**The hero's artwork is a 737 planform, drawn, and placed by CSS rather
+than cropped by a viewBox.** Still no photography, for the reason
+`hero-background.tsx` has always given: there is none to license honestly
+here, and a stock airliner would say nothing true about this product. It is
+a planform because that is the shape a type is actually identified by — the
+wing sweep, the engine position, the tailplane.
+
+The placement is the part worth keeping. One `preserveAspectRatio="slice"`
+viewBox was the obvious way and it fails on a phone: an 800×600 box sliced
+into a 375×1200 hero scales to the height and shows the middle fifth of the
+width, so both the aeroplane and the compass bezel fell outside the crop
+entirely and most visitors saw an empty panel. Each layer now carries a
+viewBox that just fits its own drawing and is positioned and sized by
+Tailwind at each breakpoint, so the composition is *designed* at 375px
+rather than merely surviving there.
+
 **A fixed-position layer goes in a portal, not in place.** The mobile
 sheet sits inside a `backdrop-blur` header, and a `backdrop-filter` makes
 an element the containing block for every fixed descendant — so `inset-0`
@@ -1366,7 +1413,10 @@ src/
     globals.css               THE design tokens. Colour, type, spacing, radius, shadow.
     fonts.ts                  The two faces, via next/font
     layout.tsx                The shell: header, footer, metadata, viewport
-    page.tsx                  Aircraft picker
+    page.tsx                  The marketing landing page
+    _landing/                 Its sections: hero (+ the drawn 737 backdrop),
+                              the systems strip with Study/Exam per system,
+                              trust, how it works, features, FAQ, CTA
     aircraft/[code]/          Aircraft overview
     aircraft/[code]/test/     Test runner, grading action, result screen, shortcuts-overlay
     (auth)/                   Sign up, log in, log out
