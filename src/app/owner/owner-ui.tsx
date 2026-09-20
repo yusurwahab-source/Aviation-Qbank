@@ -172,6 +172,31 @@ export function OwnerPageError({ detail }: { detail: string }) {
   );
 }
 
+/**
+ * Whether `error` is one of Next's own internal control-flow signals —
+ * `notFound()`, `redirect()`, `forbidden()`, `unauthorized()` — thrown as a
+ * real `Error` with a `digest` Next's router recognises and handles itself.
+ *
+ * Every owner page calls `requireOwner()` before it does anything else, and
+ * `requireOwner()` itself calls `notFound()` for a signed-in-as-someone-else
+ * visitor — a real, working 404, not a failure. Once `requireOwner()` is
+ * wrapped in the same try/catch as the page's own data fetch (so that a
+ * `getCurrentUser()` database failure gets the same diagnostic
+ * `OwnerPageError` instead of crashing before the try block even starts),
+ * that catch would otherwise also swallow the legitimate `notFound()` and
+ * render it as a generic query failure. This is the check every such catch
+ * block runs first, to let Next's own signal continue on its way untouched.
+ */
+export function isNextControlFlowError(error: unknown): boolean {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "digest" in error &&
+    typeof (error as { digest: unknown }).digest === "string" &&
+    (error as { digest: string }).digest.startsWith("NEXT_")
+  );
+}
+
 /** One date, formatted the same way everywhere in this area. */
 export function formatDay(date: Date): string {
   return date.toLocaleDateString(undefined, {

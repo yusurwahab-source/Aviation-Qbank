@@ -5,7 +5,7 @@ import { Badge, Card, EmptyState, PageHeading } from "@/components/ui";
 import { listQuestionReports, type ReportStatus } from "@/db/question-reports";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { OwnerNav, OwnerPageError, formatDay } from "../owner-ui";
+import { OwnerNav, OwnerPageError, formatDay, isNextControlFlowError } from "../owner-ui";
 import { ReportActions } from "./report-actions";
 
 export const metadata: Metadata = { title: "Reports" };
@@ -42,8 +42,6 @@ export default async function OwnerReportsPage({
 }: {
   searchParams: Promise<{ status?: string | string[] }>;
 }) {
-  await requireOwner();
-
   const query = await searchParams;
   const rawStatus = firstOf(query.status);
   const statusFilter: ReportStatus | "all" = STATUS_FILTERS.some((f) => f.value === rawStatus)
@@ -52,10 +50,12 @@ export default async function OwnerReportsPage({
 
   let reports: Awaited<ReturnType<typeof listQuestionReports>>;
   try {
+    await requireOwner();
     reports = await listQuestionReports({
       status: statusFilter === "all" ? null : statusFilter,
     });
   } catch (error) {
+    if (isNextControlFlowError(error)) throw error;
     console.error("Failed to list question reports:", error);
     return (
       <>

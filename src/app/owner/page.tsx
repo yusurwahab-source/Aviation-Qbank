@@ -6,7 +6,7 @@ import { getSiteOverview } from "@/db/owner";
 import { countOpenQuestionReports } from "@/db/question-reports";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { OwnerNav, OwnerPageError, StatTile } from "./owner-ui";
+import { OwnerNav, OwnerPageError, StatTile, isNextControlFlowError } from "./owner-ui";
 
 export const metadata: Metadata = { title: "Owner" };
 export const dynamic = "force-dynamic";
@@ -20,13 +20,18 @@ export const dynamic = "force-dynamic";
  * the one plot this application has earned.
  */
 export default async function OwnerPage() {
-  await requireOwner();
-
   let overview: Awaited<ReturnType<typeof getSiteOverview>>;
   let openReports: number;
   try {
+    await requireOwner();
     [overview, openReports] = await Promise.all([getSiteOverview(), countOpenQuestionReports()]);
   } catch (error) {
+    // `requireOwner()` throws Next's own notFound() signal for a legitimate
+    // "you are not the owner" — that must reach the router untouched, never
+    // be shown as a page failure. Only a genuine error (e.g. getCurrentUser
+    // itself failing to reach the database) falls through to the message
+    // below.
+    if (isNextControlFlowError(error)) throw error;
     console.error("Failed to load the owner overview:", error);
     return (
       <>

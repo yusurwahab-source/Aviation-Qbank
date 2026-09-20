@@ -7,7 +7,7 @@ import { listGiftCodeRedemptions, listGiftCodesWithCounts } from "@/db/gift-code
 import { isGiftCodeExpired } from "@/lib/billing/gift-codes";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, OwnerPageError, formatDay } from "../../owner-ui";
+import { DataTable, OwnerNav, OwnerPageError, formatDay, isNextControlFlowError } from "../../owner-ui";
 import { DisableButton } from "../disable-button";
 
 export const metadata: Metadata = { title: "Gift code" };
@@ -27,16 +27,17 @@ export default async function OwnerGiftCodeDetailPage({
 }: {
   params: Promise<{ giftCodeId: string }>;
 }) {
-  await requireOwner();
   const { giftCodeId } = await params;
 
   let code: Awaited<ReturnType<typeof listGiftCodesWithCounts>>[number] | undefined;
   let redemptions: Awaited<ReturnType<typeof listGiftCodeRedemptions>> = [];
   try {
+    await requireOwner();
     const codes = await listGiftCodesWithCounts();
     code = codes.find((row) => row.id === giftCodeId);
     if (code) redemptions = await listGiftCodeRedemptions(code.id);
   } catch (error) {
+    if (isNextControlFlowError(error)) throw error;
     console.error("Failed to load a gift code's detail:", error);
     return (
       <>
