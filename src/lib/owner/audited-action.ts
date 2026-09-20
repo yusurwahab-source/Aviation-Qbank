@@ -58,8 +58,12 @@ export type OwnerActionSpec<State, Input> = {
   /** Performs the mutation and says what happened. */
   run: (input: Input, owner: { id: string; email: string }) => Promise<OwnerActionOutcome<State>>;
   /** Paths to revalidate after a successful mutation, in the same shape
-   * `revalidatePath` itself takes. */
-  revalidate?: Array<{ path: string; type?: "layout" | "page" }>;
+   * `revalidatePath` itself takes. May depend on the parsed input, for an
+   * action whose target (and so whose detail page) is only known once the
+   * form is parsed. */
+  revalidate?:
+    | Array<{ path: string; type?: "layout" | "page" }>
+    | ((input: Input) => Array<{ path: string; type?: "layout" | "page" }>);
 };
 
 /**
@@ -88,7 +92,9 @@ export function ownerAction<State, Input>(
       metadata: outcome.metadata ?? null,
     });
 
-    for (const target of spec.revalidate ?? []) revalidatePath(target.path, target.type);
+    const targets =
+      typeof spec.revalidate === "function" ? spec.revalidate(parsed.input) : (spec.revalidate ?? []);
+    for (const target of targets) revalidatePath(target.path, target.type);
 
     return outcome.state;
   };

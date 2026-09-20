@@ -1,11 +1,13 @@
 import "server-only";
 
-import { and, desc, eq, gt, isNotNull, sql } from "drizzle-orm";
+import { and, desc, eq, gt, isNotNull, isNull, sql } from "drizzle-orm";
 
 import { getDb } from "@/db";
 import {
+  accountNotes,
   aircraftInterest,
   attempts,
+  giftCodeRedemptions,
   giftCodes,
   subscriptions,
   testSessions,
@@ -224,8 +226,47 @@ function escapeLikePattern(value: string): string {
   return value.replace(/[\\%_]/g, (character) => `\\${character}`);
 }
 
+/** The five ways the accounts list can be narrowed by access — "all" applies
+ * no filter beyond the search term. */
+export type AccountStatusFilter = "all" | "active" | "expiring_soon" | "lapsed" | "free_tier";
+
+/** How many rows one page of the accounts list shows. */
+export const ACCOUNTS_PAGE_SIZE = 25;
+
+/** How soon counts as "expiring soon" on the accounts filter — the same
+ * horizon the insights dashboard uses for its own expiring-subscriptions
+ * count, so the two never disagree about what "soon" means. */
+export const EXPIRING_SOON_DAYS = 14;
+
 /**
- * Every account, with what it has done and what access it has.
+ * The SQL condition for one status filter, matched against
+ * `hasActiveSubscription`'s own two-column check (`status = 'active' and
+ * current_period_end > now()`) rather than `status` alone — the same reason
+ * the accounts and subscribers pages already render access that way. Kept
+ * as SQL rather than filtering in JavaScript after the fact because a page
+ * of *filtered* rows has to be a `limit`/`offset` the database applies, not
+ * something sliced out of a page of unfiltered ones.
+ */
+function accountStatusCondition(filter: AccountStatusFilter) {
+  switch (filter) {
+    case "active":
+      return sql`${subscriptions.status} = 'active' and ${subscriptions.currentPeriodEnd} > now()`;
+    case "expiring_soon":
+      return sql`${subscriptions.status} = 'active'
+        and ${subscriptions.currentPeriodEnd} > now()
+        and ${subscriptions.currentPeriodEnd} <= now() + interval '${sql.raw(String(EXPIRING_SOON_DAYS))} days'`;
+    case "lapsed":
+      return sql`${subscriptions.userId} is not null
+        and not (${subscriptions.status} = 'active' and ${subscriptions.currentPeriodEnd} > now())`;
+    case "free_tier":
+      return isNull(subscriptions.userId);
+    case "all":
+      return undefined;
+  }
+}
+
+/**
+ * One page of accounts, with what each has done and what access it has.
  *
  * Left-joined to `subscriptions` so an account that never subscribed still
  * appears — most of them never will, and they are exactly the ones an owner
@@ -234,12 +275,26 @@ function escapeLikePattern(value: string): string {
  * `attempts` here would multiply the subscription row by every answer, and
  * counting distinct afterwards to undo that is slower and easier to get
  * wrong than asking the question directly.
+ *
+ * `total` comes from `count(*) over()` in the same query rather than a
+ * second round trip — the filtered count and the page of rows can never
+ * disagree about which filter they answered, because they are the same
+ * query.
  */
-export async function listAccounts(
-  search: string | null,
-  limit = 100,
-): Promise<AccountListing[]> {
-  const term = search?.trim() ?? "";
+export async function listAccounts(input: {
+  search: string | null;
+  statusFilter?: AccountStatusFilter;
+  limit?: number;
+  offset?: number;
+}): Promise<{ rows: AccountListing[]; total: number }> {
+  const term = input.search?.trim() ?? "";
+  const limit = input.limit ?? ACCOUNTS_PAGE_SIZE;
+  const offset = input.offset ?? 0;
+
+  const conditions = [
+    term === "" ? undefined : sql`${users.email} ilike ${`%${escapeLikePattern(term)}%`} escape '\\'`,
+    accountStatusCondition(input.statusFilter ?? "all"),
+  ].filter((condition) => condition !== undefined);
 
   const rows = await getDb()
     .select({
@@ -260,18 +315,150 @@ export async function listAccounts(
       status: subscriptions.status,
       provider: subscriptions.provider,
       currentPeriodEnd: subscriptions.currentPeriodEnd,
+      total: sql<number>`count(*) over()::int`,
     })
     .from(users)
     .leftJoin(subscriptions, eq(subscriptions.userId, users.id))
-    .where(
-      term === ""
-        ? undefined
-        : sql`${users.email} ilike ${`%${escapeLikePattern(term)}%`} escape '\\'`,
-    )
+    .where(conditions.length > 0 ? and(...conditions) : undefined)
     .orderBy(desc(users.createdAt))
-    .limit(limit);
+    .limit(limit)
+    .offset(offset);
 
-  return rows;
+  return {
+    rows: rows.map((row) => ({
+      id: row.id,
+      email: row.email,
+      createdAt: row.createdAt,
+      answersRecorded: row.answersRecorded,
+      testsCompleted: row.testsCompleted,
+      lastAnsweredAt: row.lastAnsweredAt,
+      plan: row.plan,
+      status: row.status,
+      provider: row.provider,
+      currentPeriodEnd: row.currentPeriodEnd,
+    })),
+    total: rows[0]?.total ?? 0,
+  };
+}
+
+export type AccountRedemption = {
+  code: string;
+  plan: "monthly" | "quarterly";
+  durationDays: number;
+  redeemedAt: Date;
+};
+
+export type AccountDetail = {
+  id: string;
+  email: string;
+  createdAt: Date;
+  plan: "monthly" | "quarterly" | null;
+  status: "active" | "canceled" | "expired" | null;
+  provider: string | null;
+  currentPeriodEnd: Date | null;
+  answersRecorded: number;
+  testsCompleted: number;
+  /** Every test session ever started, finished or not — broader than
+   * `testsCompleted`, which only counts ones that reached Finish. */
+  sessionsStarted: number;
+  lastAnsweredAt: Date | null;
+  note: string;
+  redemptions: AccountRedemption[];
+};
+
+/**
+ * Everything the accounts detail screen shows about one account, or null if
+ * the id does not exist — the same "stale id in a form" guard `grantAccess`
+ * and `revokeAccess` already give.
+ */
+export async function getAccountDetail(userId: string): Promise<AccountDetail | null> {
+  const db = getDb();
+
+  const [[user], [subscription], [activity], note, redemptions] = await Promise.all([
+    db
+      .select({ id: users.id, email: users.email, createdAt: users.createdAt })
+      .from(users)
+      .where(eq(users.id, userId))
+      .limit(1),
+    db
+      .select({
+        plan: subscriptions.plan,
+        status: subscriptions.status,
+        provider: subscriptions.provider,
+        currentPeriodEnd: subscriptions.currentPeriodEnd,
+      })
+      .from(subscriptions)
+      .where(eq(subscriptions.userId, userId))
+      .limit(1),
+    db
+      .select({
+        answersRecorded: sql<number>`count(distinct ${attempts.id})::int`,
+        testsCompleted: sql<number>`count(distinct ${testSessions.id}) filter (
+          where ${testSessions.completedAt} is not null
+        )::int`,
+        sessionsStarted: sql<number>`count(distinct ${testSessions.id})::int`,
+        lastAnsweredAt: sql<Date | null>`max(${attempts.answeredAt})`,
+      })
+      .from(testSessions)
+      .leftJoin(attempts, eq(attempts.testSessionId, testSessions.id))
+      .where(eq(testSessions.userId, userId)),
+    getAccountNote(userId),
+    db
+      .select({
+        code: giftCodes.code,
+        plan: giftCodes.plan,
+        durationDays: giftCodes.durationDays,
+        redeemedAt: giftCodeRedemptions.redeemedAt,
+      })
+      .from(giftCodeRedemptions)
+      .innerJoin(giftCodes, eq(giftCodes.id, giftCodeRedemptions.giftCodeId))
+      .where(eq(giftCodeRedemptions.userId, userId))
+      .orderBy(desc(giftCodeRedemptions.redeemedAt)),
+  ]);
+
+  if (!user) return null;
+
+  return {
+    id: user.id,
+    email: user.email,
+    createdAt: user.createdAt,
+    plan: subscription?.plan ?? null,
+    status: subscription?.status ?? null,
+    provider: subscription?.provider ?? null,
+    currentPeriodEnd: subscription?.currentPeriodEnd ?? null,
+    answersRecorded: activity?.answersRecorded ?? 0,
+    testsCompleted: activity?.testsCompleted ?? 0,
+    sessionsStarted: activity?.sessionsStarted ?? 0,
+    lastAnsweredAt: activity?.lastAnsweredAt ?? null,
+    note,
+    redemptions,
+  };
+}
+
+/** The owner's private note on one account. Empty string when none exists —
+ * there is nothing to distinguish "no note" from "an empty note". */
+export async function getAccountNote(userId: string): Promise<string> {
+  const [row] = await getDb()
+    .select({ body: accountNotes.body })
+    .from(accountNotes)
+    .where(eq(accountNotes.userId, userId))
+    .limit(1);
+  return row?.body ?? "";
+}
+
+/**
+ * Replaces the owner's note on one account. One row per user, upserted in
+ * place — a note has no history, only a current body, the same shape as
+ * `question_notes`.
+ */
+export async function upsertAccountNote(userId: string, body: string): Promise<void> {
+  await getDb()
+    .insert(accountNotes)
+    .values({ userId, body })
+    .onConflictDoUpdate({
+      target: accountNotes.userId,
+      set: { body, updatedAt: sql`now()` },
+    });
 }
 
 /**
