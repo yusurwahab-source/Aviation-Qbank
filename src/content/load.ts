@@ -93,13 +93,7 @@ export function loadContent(contentDir: string = CONTENT_DIR): ContentLoadResult
 
   let folders: string[];
   try {
-    // `classes/` is not an aircraft folder — it is the separate content tree
-    // `load-classes.ts` reads on its own. Excluded by name rather than by
-    // some other marker because that is the one thing distinguishing it: an
-    // aircraft folder is validated by finding no `aircraft.json` inside it,
-    // which would otherwise report a confusing error against a folder that
-    // was never meant to be one.
-    folders = listDirs(contentDir).filter((folder) => folder !== "classes");
+    folders = listDirs(contentDir);
   } catch (error) {
     return {
       aircraft,
@@ -123,7 +117,21 @@ export function loadContent(contentDir: string = CONTENT_DIR): ContentLoadResult
 
   for (const folder of folders) {
     const dir = path.join(contentDir, folder);
-    const manifestFile = path.join(dir, "aircraft.json");
+    const aircraftManifestFile = path.join(dir, "aircraft.json");
+    const knowledgeManifestFile = path.join(dir, "knowledge.json");
+    const hasAircraftManifest = statSync(aircraftManifestFile, { throwIfNoEntry: false })?.isFile();
+    const hasKnowledgeManifest = statSync(knowledgeManifestFile, { throwIfNoEntry: false })?.isFile();
+
+    if (!hasAircraftManifest && !hasKnowledgeManifest) {
+      issues.push({
+        file: relative(dir),
+        path: "(file)",
+        message: 'Missing manifest. Expected "aircraft.json" or "knowledge.json".',
+      });
+      continue;
+    }
+
+    const manifestFile = hasAircraftManifest ? aircraftManifestFile : knowledgeManifestFile;
 
     const manifestJson = readJson(manifestFile);
     if ("error" in manifestJson) {
@@ -138,7 +146,12 @@ export function loadContent(contentDir: string = CONTENT_DIR): ContentLoadResult
     }
     const manifest = manifestResult.data;
 
-    if (folder !== manifest.code.toLowerCase()) {
+    const folderMatchesCode = folder === manifest.code.toLowerCase();
+    const folderMatchesKnowledge =
+      manifest.category === "flying-knowledge" &&
+      manifest.code === "FLYKNOW" &&
+      folder === "flying-knowledge";
+    if (!folderMatchesCode && !folderMatchesKnowledge) {
       issues.push({
         file: relative(manifestFile),
         path: "code",

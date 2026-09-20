@@ -212,10 +212,9 @@ export type TestHrefOptions = {
 };
 
 /**
- * Builds the URL for a test under a given base path. Both `buildTestHref`
- * (aircraft) and `buildClassTestHref` (class ratings) are this with their
- * own base — the parameter shape is decided once, here, rather than spelled
- * out at each call site.
+ * Builds the URL for a test under a given base path. `buildTestHref` is this
+ * with its own base — the parameter shape is decided once, here, rather
+ * than spelled out at each call site.
  *
  * Exported, not just used internally, because the shared practice-test UI
  * (`components/practice-test/`) is a client component and a *function* like
@@ -247,11 +246,6 @@ export function buildTestHref(aircraftCode: string, options: TestHrefOptions = {
   return buildTestHrefFor("/aircraft", aircraftCode, options);
 }
 
-/** The same, for a class rating's test — `/class/CODE/test?...`. */
-export function buildClassTestHref(classCode: string, options: TestHrefOptions = {}): string {
-  return buildTestHrefFor("/class", classCode, options);
-}
-
 /**
  * The link a "Resume your test" banner uses — the one case that needs `?t=`
  * in the URL, which `buildTestHref` deliberately never sets: every other
@@ -268,16 +262,6 @@ export function buildResumeHref(session: {
   topics: string[];
 }): string {
   return buildResumeHrefFor("/aircraft", session);
-}
-
-/** The same, for a class rating's own overview page — `/class/CODE/test`. */
-export function buildClassResumeHref(session: {
-  clientTestId: string;
-  aircraftCode: string;
-  mode: TestMode;
-  topics: string[];
-}): string {
-  return buildResumeHrefFor("/class", session);
 }
 
 function buildResumeHrefFor(

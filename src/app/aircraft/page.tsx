@@ -5,18 +5,52 @@ import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { Badge, Card, EmptyState, PageHeading } from "@/components/ui";
 import { siteConfig } from "@/config/site";
 import { getSubscription } from "@/db/subscriptions";
-import { listAircraft, type AircraftSummary } from "@/db/queries";
+import {
+  listAircraftByCategory,
+  type AircraftSummary,
+} from "@/db/queries";
 import { hasActiveSubscription } from "@/lib/billing/access-policy";
+import {
+  categoryQueryValue,
+  resolveContentCategory,
+  type ContentCategory,
+} from "@/lib/content-categories";
 import { getSiteSettings } from "@/db/settings";
 import { getCurrentUser } from "@/lib/auth/session";
 
 export const metadata: Metadata = {
-  title: "Choose an aircraft",
-  description: `Pick a type and start a practice test. ${siteConfig.name} keeps a separate question bank per aircraft.`,
+  title: "Choose a question bank",
+  description: `Pick a category and start a practice test. ${siteConfig.name} organizes question banks by training category.`,
 };
 
 // The aircraft list comes from the database, so this page is rendered per request.
 export const dynamic = "force-dynamic";
+
+const CATEGORY_OPTIONS: {
+  value: ContentCategory;
+  queryValue: string;
+  label: string;
+  subtitle: string;
+}[] = [
+  {
+    value: "type-rating",
+    queryValue: categoryQueryValue("type-rating"),
+    label: "Type Rating",
+    subtitle: "B737, A320, and other aircraft types",
+  },
+  {
+    value: "light-aircraft",
+    queryValue: categoryQueryValue("light-aircraft"),
+    label: "Class Rating",
+    subtitle: "DA40, C152, and other class-rated aircraft",
+  },
+  {
+    value: "flying-knowledge",
+    queryValue: categoryQueryValue("flying-knowledge"),
+    label: "Flying Knowledge",
+    subtitle: "IFR Rules, VFR Rules, Navigation, Weather",
+  },
+];
 
 /**
  * Whether to show the upgrade banner: only a signed-in student without an
@@ -35,15 +69,23 @@ async function shouldOfferUpgrade(): Promise<boolean> {
   }
 }
 
-export default async function AircraftPickerPage() {
+type PageProps = {
+  searchParams: Promise<{ category?: string | string[] }>;
+};
+
+export default async function AircraftPickerPage({ searchParams }: PageProps) {
+  const query = await searchParams;
+  const selectedCategory = resolveContentCategory(query.category);
+  const selectedOption = CATEGORY_OPTIONS.find((option) => option.value === selectedCategory)!;
+
   let fleet: AircraftSummary[];
 
   try {
-    fleet = await listAircraft();
+    fleet = await listAircraftByCategory(selectedCategory);
   } catch (error) {
     return (
       <>
-        <PageHeading title="Choose an aircraft" />
+        <PageHeading title="Choose a question bank" />
         <DatabaseUnavailable detail={(error as Error).message} />
       </>
     );
@@ -54,9 +96,32 @@ export default async function AircraftPickerPage() {
   return (
     <>
       <PageHeading
-        title="Choose an aircraft"
-        subtitle="Pick a type to start a practice test. Each aircraft has its own question bank."
+        title={selectedOption.label}
+        subtitle={`${selectedOption.subtitle}. Pick one to start a practice test.`}
       />
+
+      <nav
+        aria-label="Question bank categories"
+        className="mb-6 grid gap-2 rounded-xl border border-border bg-surface-muted p-2 sm:grid-cols-3"
+      >
+        {CATEGORY_OPTIONS.map((option) => {
+          const active = option.value === selectedCategory;
+          return (
+            <Link
+              key={option.value}
+              href={`/aircraft?category=${option.queryValue}`}
+              className={`tap-target rounded-lg border px-3 py-2 text-left transition ${
+                active
+                  ? "border-brand bg-brand-soft text-foreground"
+                  : "border-transparent bg-surface text-muted-foreground hover:border-brand hover:text-foreground"
+              }`}
+            >
+              <span className="block text-sm font-semibold">{option.label}</span>
+              <span className="mt-0.5 block text-xs text-subtle-foreground">{option.subtitle}</span>
+            </Link>
+          );
+        })}
+      </nav>
 
       {offerUpgrade ? (
         <Card className="mb-6 flex flex-wrap items-center justify-between gap-3">
@@ -75,8 +140,8 @@ export default async function AircraftPickerPage() {
 
       {fleet.length === 0 ? (
         <EmptyState title="No aircraft loaded yet">
-          Add a folder under <code className="font-mono">/content</code> and run{" "}
-          <code className="font-mono">npm run db:seed</code>.
+          No items found in this category yet. Add content under{" "}
+          <code className="font-mono">/content</code> and run <code className="font-mono">npm run db:seed</code>.
         </EmptyState>
       ) : (
         <ul className="grid gap-4 sm:grid-cols-2">
@@ -90,15 +155,6 @@ export default async function AircraftPickerPage() {
           ))}
         </ul>
       )}
-
-      <p className="mt-6">
-        <Link
-          href="/class"
-          className="link-standalone text-sm font-medium text-brand hover:underline"
-        >
-          Practising for a class rating instead? →
-        </Link>
-      </p>
     </>
   );
 }

@@ -5,6 +5,7 @@ import { and, asc, count, eq, inArray, notInArray, sql } from "drizzle-orm";
 import { getDb } from "@/db";
 import { aircraft, attempts, questions } from "@/db/schema";
 import type { QuestionOption } from "@/content/schema";
+import type { ContentCategory } from "@/lib/content-categories";
 
 /**
  * Every read the application performs.
@@ -35,6 +36,7 @@ export type AnswerKeyQuestion = TestQuestion & {
 
 export type AircraftSummary = {
   code: string;
+  category: "type-rating" | "light-aircraft" | "flying-knowledge";
   name: string;
   manufacturer: string;
   variant: string | null;
@@ -67,6 +69,7 @@ export async function countAircraft(): Promise<number> {
 
 const aircraftSummaryColumns = {
   code: aircraft.code,
+  category: aircraft.category,
   name: aircraft.name,
   manufacturer: aircraft.manufacturer,
   variant: aircraft.variant,
@@ -76,15 +79,20 @@ const aircraftSummaryColumns = {
 };
 
 /** Aircraft for the picker, with how many questions each one actually has. */
-export async function listAircraft(): Promise<AircraftSummary[]> {
+export async function listAircraft(category?: ContentCategory): Promise<AircraftSummary[]> {
   const db = getDb();
 
   return db
     .select(aircraftSummaryColumns)
     .from(aircraft)
     .leftJoin(questions, eq(questions.aircraftCode, aircraft.code))
+    .where(category ? eq(aircraft.category, category) : undefined)
     .groupBy(aircraft.code)
     .orderBy(asc(aircraft.sortOrder), asc(aircraft.code));
+}
+
+export async function listAircraftByCategory(category: ContentCategory): Promise<AircraftSummary[]> {
+  return listAircraft(category);
 }
 
 export async function getAircraft(code: string): Promise<AircraftSummary | null> {

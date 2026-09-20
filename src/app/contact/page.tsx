@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description: `How to reach ${siteConfig.name} about a question, a bug, or an aircraft you want added.`,
 };
 
+export const dynamic = "force-dynamic";
+
 export default function ContactPage() {
   return (
     <>

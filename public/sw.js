@@ -22,7 +22,7 @@
  * were installed at all.
  */
 
-const VERSION = "v1";
+const VERSION = "v2";
 const STATIC_CACHE = `qbank-static-${VERSION}`;
 
 /** Files worth having before the first offline load. Never a page. */

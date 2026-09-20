@@ -3,7 +3,8 @@ import { and, asc, eq, sql } from "drizzle-orm";
 import { Pool } from "pg";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 
-import { questions } from "@/db/schema";
+import { aircraft, questions } from "@/db/schema";
+import { parseContentCategory } from "@/lib/content-categories";
 
 /**
  * Integration tests for the question queries.
@@ -234,6 +235,27 @@ describeWithDb("test question queries", () => {
 
       const topics = await queries.listTopics(code);
       expect(topics.map((row) => row.topic)).toEqual(rows.map((row) => row.topic));
+    });
+  });
+
+  describe("category filters", () => {
+    it("parses known categories and rejects unknown ones", () => {
+      expect(parseContentCategory("type-rating")).toBe("type-rating");
+      expect(parseContentCategory("light-aircraft")).toBe("light-aircraft");
+      expect(parseContentCategory("flying-knowledge")).toBe("flying-knowledge");
+      expect(parseContentCategory("unknown")).toBeNull();
+    });
+
+    it("lists only aircraft in the requested category", async () => {
+      const db = drizzle(pool);
+      const expected = await db
+        .select({ code: aircraft.code })
+        .from(aircraft)
+        .where(eq(aircraft.category, "type-rating"));
+
+      const listed = await queries.listAircraftByCategory("type-rating");
+      expect(listed.map((row) => row.code).sort()).toEqual(expected.map((row) => row.code).sort());
+      expect(listed.every((row) => row.category === "type-rating")).toBe(true);
     });
   });
 });

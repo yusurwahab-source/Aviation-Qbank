@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { siteConfig } from "@/config/site";
 import {
@@ -19,6 +21,12 @@ import { Hero } from "./_landing/hero";
 import { HowItWorks } from "./_landing/how-it-works";
 import { SystemsStrip } from "./_landing/systems-strip";
 import { Trust } from "./_landing/trust";
+
+const LANDING_CATEGORIES = [
+  { slug: "type-ratings", label: "Type Rating" },
+  { slug: "class-ratings", label: "Class Rating" },
+  { slug: "general-subjects", label: "Flying Knowledge" },
+] as const;
 
 /**
  * The marketing landing page.
@@ -113,6 +121,25 @@ export default async function LandingPage() {
   return (
     <div className="flex flex-col gap-16 sm:gap-24">
       <Hero stats={heroStats} featuredAircraftCode={featuredAircraftCode} />
+
+      <section aria-label="Question categories" className="-mt-10 sm:-mt-16">
+        <div className="rounded-xl border border-border bg-surface-elevated p-3 sm:p-4">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            Study categories
+          </p>
+          <div className="mt-3 grid gap-2 sm:grid-cols-3">
+            {LANDING_CATEGORIES.map((category) => (
+              <Link
+                key={category.slug}
+                href={`/aircraft?category=${category.slug}`}
+                className="tap-target rounded-lg border border-border bg-surface px-3 py-2 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+              >
+                {category.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Directly under the hero, because it is the only section on this
           page a student can actually start from: every other one explains

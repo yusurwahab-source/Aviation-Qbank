@@ -10,6 +10,8 @@ import { z } from "zod";
 
 /** Aircraft type codes are short, uppercase and URL-safe, e.g. DA40, A320, B737. */
 export const AIRCRAFT_CODE_RE = /^[A-Z][A-Z0-9]{1,7}$/;
+export const CONTENT_CATEGORIES = ["type-rating", "light-aircraft", "flying-knowledge"] as const;
+export const contentCategorySchema = z.enum(CONTENT_CATEGORIES);
 
 /**
  * Question ids are human-readable and carry their aircraft:
@@ -36,6 +38,7 @@ export const questionSchema = z
         "Question id must look like DA40-ELEC-0042 (aircraft code, topic code, 4 digits)",
       ),
     aircraft: z.string().regex(AIRCRAFT_CODE_RE, "Aircraft code must be uppercase, e.g. DA40"),
+    category: contentCategorySchema.optional(),
     topic: z.string().trim().min(1).max(60),
     subtopic: z.string().trim().min(1).max(60).optional(),
     question: z.string().trim().min(1, "Question text cannot be empty"),
@@ -94,6 +97,7 @@ export const questionFileSchema = z
 
 export const aircraftSchema = z.strictObject({
   code: z.string().regex(AIRCRAFT_CODE_RE, "Aircraft code must be uppercase, e.g. DA40"),
+  category: contentCategorySchema,
   name: z.string().trim().min(1).max(120),
   manufacturer: z.string().trim().min(1).max(120),
   variant: z.string().trim().min(1).max(60).optional(),

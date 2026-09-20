@@ -3,24 +3,21 @@ import type { TestResult } from "@/lib/grading";
 import type { TestMode } from "@/lib/test-options";
 
 /**
- * Shapes shared between every content kind's test-taking server actions
- * (currently `/aircraft/[code]/test/actions.ts` and
- * `/class/[code]/test/actions.ts`) and the practice-test UI in
- * `src/components/practice-test/`, which is written once and reused by both.
+ * Shapes shared between an aircraft's test-taking server actions
+ * (`/aircraft/[code]/test/actions.ts`) and the practice-test UI in
+ * `src/components/practice-test/`.
  *
- * The UI never imports a content kind's own actions module directly — it
- * takes six functions as props, typed against these shapes — so it has no
- * idea whether it is running a test for an aircraft or a class rating.
- * Both `actions.ts` files are checked against these types structurally: get
- * one wrong and the page that wires it up fails to typecheck.
+ * The UI never imports the actions module directly — it takes six
+ * functions as props, typed against these shapes. `actions.ts` is checked
+ * against these types structurally: get one wrong and the page that wires
+ * it up fails to typecheck.
  */
 
 /** A question as the browser is allowed to see it: no answer, no explanation.
- * Structurally identical to `TestQuestion` in `db/queries.ts` and its class
- * equivalent in `db/class-queries.ts` — kept as its own type here so the UI
- * depends on neither. */
+ * Structurally identical to `TestQuestion` in `db/queries.ts` — kept as its
+ * own type here so the UI depends on neither. */
 /** Published question counts per topic — structurally identical to
- * `TopicSummary` in `db/queries.ts` and its class equivalent. */
+ * `TopicSummary` in `db/queries.ts`. */
 export type PracticeTopicSummary = {
   topic: string;
   questionCount: number;
@@ -45,9 +42,6 @@ export type AnswerVerdict = {
 export type AnswerSaveStatus = "recorded" | "signed-out" | "closed" | "failed";
 
 export type AnswerQuestionInput = {
-  /** The content code this test belongs to — an aircraft code or a class
-   * rating code. Named after its original, aircraft-only use; nothing here
-   * assumes it is one or the other. */
   aircraftCode: string;
   clientTestId: string;
   questionIds: string[];

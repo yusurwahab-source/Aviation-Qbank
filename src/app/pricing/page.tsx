@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   description: `What is free on ${siteConfig.name}, and what a subscription adds.`,
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function PricingPage() {
   const settings = await getSiteSettings();
   return (

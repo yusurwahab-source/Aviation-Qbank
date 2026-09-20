@@ -98,6 +98,7 @@ describe("loadContent", () => {
 
   const manifest = {
     code: "DA40",
+    category: "light-aircraft",
     name: "Diamond DA40",
     manufacturer: "Diamond Aircraft",
     description: "Four-seat single.",
@@ -191,6 +192,7 @@ describe("loadContent", () => {
       "da40/questions/electrical.json": [validQuestion],
       "a320/aircraft.json": {
         code: "A320",
+        category: "type-rating",
         name: "Airbus A320",
         manufacturer: "Airbus",
         description: "Narrow-body twin.",
@@ -202,6 +204,49 @@ describe("loadContent", () => {
     const { aircraft, issues } = loadContent(root);
     expect(issues).toEqual([]);
     expect(aircraft.map((entry) => entry.manifest.code)).toEqual(["A320", "DA40"]);
+  });
+
+  it("loads flying-knowledge content from knowledge.json", () => {
+    const root = makeContentDir({
+      "flying-knowledge/knowledge.json": {
+        code: "FLYKNOW",
+        category: "flying-knowledge",
+        name: "Flying Knowledge",
+        manufacturer: "General Aviation",
+        description: "Theory topics",
+        status: "active",
+        sortOrder: 1,
+      },
+      "flying-knowledge/questions/ifr.json": [
+        { ...validQuestion, id: "FLYKNOW-IFR-0001", aircraft: "FLYKNOW", topic: "IFR Quiz" },
+      ],
+    });
+
+    const { aircraft, issues } = loadContent(root);
+    expect(issues).toEqual([]);
+    expect(aircraft).toHaveLength(1);
+    expect(aircraft[0].manifest.category).toBe("flying-knowledge");
+    expect(aircraft[0].manifest.code).toBe("FLYKNOW");
+  });
+
+  it("keeps the folder-name exception scoped to flying-knowledge only", () => {
+    const root = makeContentDir({
+      "flying-knowledge/knowledge.json": {
+        code: "THEORY",
+        category: "flying-knowledge",
+        name: "Misfiled Bank",
+        manufacturer: "General Aviation",
+        description: "Wrong category for this folder",
+        status: "active",
+        sortOrder: 1,
+      },
+      "flying-knowledge/questions/ifr.json": [
+        { ...validQuestion, id: "THEORY-IFR-0001", aircraft: "THEORY", topic: "IFR Quiz" },
+      ],
+    });
+
+    const { issues } = loadContent(root);
+    expect(issues.some((issue) => issue.message.includes('Expected folder "theory"'))).toBe(true);
   });
 });
 
