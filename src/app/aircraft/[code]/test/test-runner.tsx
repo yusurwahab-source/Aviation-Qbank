@@ -148,12 +148,17 @@ export function TestRunner({
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
   /**
-   * Set when a signed-in student without a subscription reaches the free
-   * allowance on this aircraft. The question they were on is left unanswered
-   * — see `answerQuestion`'s "paywall" status — so `select` below reverts the
-   * optimistic answer it had already recorded locally.
+   * Set when the server refuses to mark a question: a signed-in student has
+   * reached the free allowance, a signed-out visitor has spent their
+   * preview, or too many signed-out answers have come from one address too
+   * quickly. All three leave the question unanswered — nothing was graded or
+   * recorded — so `select` below reverts the optimistic answer it had
+   * already shown, and all three want to say something different about what
+   * to do next, which is why this is which-one rather than a boolean.
    */
-  const [paywall, setPaywall] = useState(false);
+  const [gate, setGate] = useState<
+    null | { kind: "paywall" } | { kind: "preview" } | { kind: "rate-limited"; retryAfter: string }
+  >(null);
   const [isSubmitting, startSubmitting] = useTransition();
   const [isRestarting, startRestarting] = useTransition();
   /**
@@ -266,7 +271,7 @@ export function TestRunner({
       // mode nothing has been revealed, so changing an answer is fair game.
       if (verdicts[questionId]) return;
 
-      setPaywall(false);
+      setGate(null);
       setAnswers((previous) => ({ ...previous, [questionId]: optionId }));
       if (mode === "study") setPending(questionId);
 
@@ -280,7 +285,11 @@ export function TestRunner({
         topics,
       })
         .then((result) => {
-          if (result.status === "paywall") {
+          if (
+            result.status === "paywall" ||
+            result.status === "preview-exhausted" ||
+            result.status === "rate-limited"
+          ) {
             // Nothing was graded or recorded — undo the optimistic pick so
             // the question shows as unanswered again, the way it really is.
             setAnswers((previous) => {
@@ -288,7 +297,13 @@ export function TestRunner({
               delete next[questionId];
               return next;
             });
-            setPaywall(true);
+            setGate(
+              result.status === "paywall"
+                ? { kind: "paywall" }
+                : result.status === "preview-exhausted"
+                  ? { kind: "preview" }
+                  : { kind: "rate-limited", retryAfter: result.retryAfter },
+            );
             return;
           }
           // The server's clock replaces the browser's guess the moment there
@@ -558,7 +573,7 @@ export function TestRunner({
     setShowNav(false);
     setIndex(0);
     setError(null);
-    setPaywall(false);
+    setGate(null);
     window.scrollTo({ top: 0 });
     startRestarting(() => {
       router.refresh();
@@ -579,6 +594,7 @@ export function TestRunner({
         timeLimitSeconds={finishTiming.limitSeconds}
         flaggedIds={flaggedIds}
         onToggleFlag={toggleFlagFor}
+        withheld={result.withheld}
       />
     );
   }
@@ -822,20 +838,56 @@ export function TestRunner({
         </p>
       ) : null}
 
-      {paywall ? (
+      {gate ? (
         <div className="mt-4 rounded-lg border-l-4 border-l-brand bg-brand-soft p-4" role="alert">
-          <p className="text-sm font-semibold text-foreground">
-            You&apos;ve used your free questions on {aircraftCode}.
-          </p>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Subscribe for unlimited questions on every aircraft.
-          </p>
-          <Link
-            href="/upgrade"
-            className="mt-3 inline-flex min-h-11 items-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
-          >
-            Upgrade
-          </Link>
+          {gate.kind === "paywall" ? (
+            <>
+              <p className="text-sm font-semibold text-foreground">
+                You&apos;ve used your free questions on {aircraftCode}.
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Subscribe for unlimited questions on every aircraft.
+              </p>
+              <Link
+                href="/upgrade"
+                className="mt-3 inline-flex min-h-11 items-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
+              >
+                Upgrade
+              </Link>
+            </>
+          ) : gate.kind === "preview" ? (
+            <>
+              <p className="text-sm font-semibold text-foreground">
+                That&apos;s the {aircraftCode} preview.
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Create a free account to keep going — you&apos;ll get more questions on every
+                aircraft, and your results, flags and notes are kept as you go.
+              </p>
+              <Link
+                href="/signup"
+                className="mt-3 inline-flex min-h-11 items-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
+              >
+                Create a free account
+              </Link>
+            </>
+          ) : (
+            <>
+              <p className="text-sm font-semibold text-foreground">
+                Too many answers from this connection.
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Try again {gate.retryAfter}, or sign in — this limit only applies to practice
+                without an account.
+              </p>
+              <Link
+                href="/login"
+                className="mt-3 inline-flex min-h-11 items-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
+              >
+                Log in
+              </Link>
+            </>
+          )}
         </div>
       ) : null}
 

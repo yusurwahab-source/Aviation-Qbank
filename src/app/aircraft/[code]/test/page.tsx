@@ -17,9 +17,11 @@ import {
   type TestQuestion,
 } from "@/db/queries";
 import { getQuestionIdsToRetry } from "@/db/reports";
+import { countPreviewQuestionsAnswered } from "@/db/preview";
 import { countQuestionsAnswered, getSubscription } from "@/db/subscriptions";
 import { hasActiveSubscription, remainingFreeQuestions } from "@/lib/billing/access-policy";
 import { getSiteSettings } from "@/db/settings";
+import { getPreviewVisitorId } from "@/lib/auth/preview-visitor";
 import { getCurrentUser } from "@/lib/auth/session";
 import {
   buildTestHref,
@@ -124,6 +126,12 @@ export default async function TestPage({ params, searchParams }: PageProps) {
    * student who has simply used theirs up.
    */
   let freeLimitReached = false;
+  /**
+   * The same thing for a signed-out visitor, kept apart from the one above
+   * because what the empty state has to say is different: one of them needs
+   * to subscribe and the other needs an account first.
+   */
+  let previewLimitReached = false;
 
   try {
     plane = await getAircraft(aircraftCode);
@@ -238,9 +246,34 @@ export default async function TestPage({ params, searchParams }: PageProps) {
               getSiteSettings(),
             ]);
             size = Math.min(size, remainingFreeQuestions(distinctAnswered, settings.freeQuestionsPerAircraft));
+            freeLimitReached = size === 0 && available > 0;
           }
+        } else {
+          // Signed out, and this is the cap that was missing entirely: the
+          // branch above only ever ran for a signed-in student, so
+          // `?questions=all` handed a visitor with no account every
+          // published question in the bank in one response. A visitor is
+          // now sized to their preview allowance exactly as a free account
+          // is sized to theirs.
+          //
+          // `getPreviewVisitorId` only reads the cookie — a server
+          // component cannot set one — so a visitor who has never answered
+          // anything simply has no id yet, and their whole preview is
+          // still ahead of them. The id is minted by `answerQuestion` when
+          // they spend the first question of it.
+          const [visitorId, settings] = await Promise.all([
+            getPreviewVisitorId(),
+            getSiteSettings(),
+          ]);
+          const previewed = visitorId
+            ? await countPreviewQuestionsAnswered(visitorId, aircraftCode)
+            : 0;
+          size = Math.min(
+            size,
+            remainingFreeQuestions(previewed, settings.previewQuestionsSignedOut),
+          );
+          previewLimitReached = size === 0 && available > 0;
         }
-        freeLimitReached = size === 0 && available > 0;
         if (size === 0) {
           questions = [];
         } else if (unseenOnly && user) {
@@ -271,7 +304,9 @@ export default async function TestPage({ params, searchParams }: PageProps) {
           title={
             freeLimitReached
               ? `You've used your free questions on ${plane.code}.`
-              : retryOnly
+              : previewLimitReached
+                ? `That's the ${plane.code} preview. Create a free account to keep going.`
+                : retryOnly
                 ? "Nothing to retry right now."
                 : flaggedOnly
                   ? "You haven't flagged any questions yet."
@@ -287,6 +322,14 @@ export default async function TestPage({ params, searchParams }: PageProps) {
               Subscribe for unlimited questions on every aircraft.{" "}
               <Link href="/upgrade" className="font-medium text-brand hover:underline">
                 Upgrade
+              </Link>
+            </>
+          ) : previewLimitReached ? (
+            <>
+              Signing up is free and gives you more questions on every aircraft, plus your
+              results, your flags and your notes.{" "}
+              <Link href="/signup" className="font-medium text-brand hover:underline">
+                Create an account
               </Link>
             </>
           ) : retryOnly ? (

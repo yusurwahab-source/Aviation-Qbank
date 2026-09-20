@@ -53,17 +53,29 @@ export function TestBuilder({
   aircraftCode,
   topics,
   /**
-   * How many free questions are left on this aircraft, or null for no cap
-   * (subscribed, or signed out — signed-out practice is never metered).
-   * `/test` enforces this regardless; this is what keeps the button honest
-   * about it rather than advertising a size it will not actually deliver.
+   * How many questions of the caller's allowance are left on this aircraft,
+   * or null for no cap (an active subscription). `/test` enforces this
+   * regardless; this is what keeps the button honest about it rather than
+   * advertising a size it will not actually deliver.
+   *
+   * Signed out this is the *preview* allowance rather than the free tier —
+   * see `allowanceKind` below. It used to be null there, which is exactly
+   * what let the button offer a visitor every question in the bank.
    */
   remainingFree = null,
+  /**
+   * Which allowance `remainingFree` is counting, and so what to say when it
+   * runs out: a signed-in student needs to subscribe, a signed-out visitor
+   * needs an account first. The number is the same shape either way, which
+   * is why one prop carries both.
+   */
+  allowanceKind = "free-tier",
   presets = null,
 }: {
   aircraftCode: string;
   topics: TopicSummary[];
   remainingFree?: number | null;
+  allowanceKind?: "free-tier" | "preview";
   presets?: BuilderPresets | null;
 }) {
   const fieldId = useId();
@@ -299,15 +311,23 @@ export function TestBuilder({
           <p className="mt-1 text-sm text-muted-foreground" aria-live="polite">
             {remainingFree > 0 ? (
               <>
-                Free plan: {remainingFree} {remainingFree === 1 ? "question" : "questions"} left on{" "}
-                {aircraftCode}.{" "}
+                {allowanceKind === "preview" ? "Preview" : "Free plan"}: {remainingFree}{" "}
+                {remainingFree === 1 ? "question" : "questions"} left on {aircraftCode}.{" "}
               </>
+            ) : allowanceKind === "preview" ? (
+              <>You&apos;ve used the {aircraftCode} preview. </>
             ) : (
               <>You&apos;ve used your free questions on {aircraftCode}. </>
             )}
-            <Link href="/upgrade" className="font-medium text-brand hover:underline">
-              Subscribe for unlimited
-            </Link>
+            {allowanceKind === "preview" ? (
+              <Link href="/signup" className="font-medium text-brand hover:underline">
+                Create a free account for more
+              </Link>
+            ) : (
+              <Link href="/upgrade" className="font-medium text-brand hover:underline">
+                Subscribe for unlimited
+              </Link>
+            )}
             .
           </p>
         ) : null}
@@ -376,8 +396,10 @@ export function TestBuilder({
           <p className="mt-2 text-sm text-incorrect">Enter a whole number of questions, or choose All questions.</p>
         ) : shortenedByFreeLimit ? (
           <p className="mt-2 text-sm text-muted-foreground">
-            Your free plan allows {remainingFree} more on {aircraftCode}, so the test will have{" "}
-            {size}.
+            {allowanceKind === "preview"
+              ? `The ${aircraftCode} preview covers ${remainingFree} more`
+              : `Your free plan allows ${remainingFree} more on ${aircraftCode}`}
+            , so the test will have {size}.
           </p>
         ) : shortenedBySection ? (
           <p className="mt-2 text-sm text-muted-foreground">
@@ -452,10 +474,10 @@ export function TestBuilder({
         </Link>
       ) : remainingFree === 0 ? (
         <Link
-          href="/upgrade"
+          href={allowanceKind === "preview" ? "/signup" : "/upgrade"}
           className="inline-block rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
         >
-          Upgrade to keep going
+          {allowanceKind === "preview" ? "Sign up to keep going" : "Upgrade to keep going"}
         </Link>
       ) : (
         <button

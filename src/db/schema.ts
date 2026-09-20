@@ -844,3 +844,60 @@ export const auditLog = pgTable(
 );
 
 export type AuditLogRow = typeof auditLog.$inferSelect;
+
+/**
+ * What a signed-out visitor has already been shown the answer to.
+ *
+ * This table exists because the free allowance above cannot: it is counted
+ * from `attempts`, and `attempts` needs a `userId`. Before it, a signed-out
+ * visitor was metered by nothing at all — the test page would build a test
+ * of any size for them, and `answerQuestion` would hand back the correct
+ * option and the explanation for any published question, indefinitely. The
+ * whole bank, answers included, was therefore reachable by a script with no
+ * account. This is what closes that.
+ *
+ * `visitorId` is the SHA-256 of a random token held in an HTTP-only cookie,
+ * never the token itself — the same design as `sessions`, and for the same
+ * reason: reading this table tells you that somebody previewed some
+ * questions and gives you nothing you could use.
+ *
+ * One row per `(visitorId, questionId)`, so answering the same question
+ * twice costs nothing further — exactly the rule `hasAnsweredQuestionBefore`
+ * already applies to a signed-in student's allowance.
+ *
+ * No foreign key to `questions`, for the same reason `attempts` has none:
+ * `db:seed` deletes questions whose content files are gone, and that must
+ * neither erase this nor fail the deploy.
+ *
+ * Be honest about what this does and does not do. A cookie can be cleared,
+ * and a client that never sends one back is a new visitor on every request.
+ * The metering is therefore a product rule, and the thing that actually
+ * bounds a scripted scrape is the per-address rate limit beside it
+ * (`RATE_LIMIT_RULES.previewPerIp`). Both are needed: the limit alone would
+ * let one patient visitor read everything, and this alone would stop nobody
+ * willing to drop a cookie.
+ */
+export const previewAttempts = pgTable(
+  "preview_attempts",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    /** SHA-256 hex of the visitor cookie's token. Never the token. */
+    visitorId: varchar("visitor_id", { length: 64 }).notNull(),
+    questionId: varchar("question_id", { length: 40 }).notNull(),
+    aircraftCode: varchar("aircraft_code", { length: 8 }).notNull(),
+    answeredAt: timestamp("answered_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    // "Has this visitor already been shown this one?" — and what makes a
+    // repeat answer free rather than a second row.
+    uniqueIndex("preview_attempts_visitor_question_unique").on(table.visitorId, table.questionId),
+    // "How many has this visitor spent on this aircraft?", the count the
+    // preview allowance is decided against. Per aircraft, like the free
+    // tier, so trying a second type does not spend the first one's preview.
+    index("preview_attempts_visitor_aircraft_idx").on(table.visitorId, table.aircraftCode),
+    // For the housekeeping sweep; nothing reads by date otherwise.
+    index("preview_attempts_answered_at_idx").on(table.answeredAt),
+  ],
+);
+
+export type PreviewAttemptRow = typeof previewAttempts.$inferSelect;

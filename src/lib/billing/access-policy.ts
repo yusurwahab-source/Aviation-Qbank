@@ -26,6 +26,28 @@
  */
 export const FREE_QUESTIONS_PER_AIRCRAFT = 20;
 
+/**
+ * How many questions a **signed-out** visitor may be shown the answer to,
+ * per aircraft, before they have to make an account.
+ *
+ * This is a different allowance from the one above, and deliberately a much
+ * smaller one. `FREE_QUESTIONS_PER_AIRCRAFT` is what a student gets for
+ * signing up; this is what the site gives away to somebody who has not, so
+ * that trying it before committing to an account still works — the trade
+ * `CLAUDE.md` has always made for signed-out practice, now with a number on
+ * it instead of "unlimited".
+ *
+ * It is counted the same way and decided by the same function
+ * (`canAnswerQuestion`, with this as the limit); only the identity it is
+ * counted against differs — a cookie-borne visitor id rather than a user id.
+ * See `previewAttempts` in `db/schema.ts` for what that identity is worth,
+ * stated honestly.
+ *
+ * This is the **default**: the owner can change it at `/owner/settings`
+ * without a deploy, exactly like the free allowance.
+ */
+export const PREVIEW_QUESTIONS_SIGNED_OUT = 5;
+
 export type SubscriptionState = {
   status: "active" | "canceled" | "expired";
   /** Null briefly between checkout and the first confirming webhook. */

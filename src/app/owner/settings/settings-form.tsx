@@ -59,6 +59,31 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
       </div>
 
       <div>
+        <label
+          htmlFor="previewQuestionsSignedOut"
+          className="block text-sm font-medium text-foreground"
+        >
+          Preview questions when signed out
+        </label>
+        <p className="mt-1 text-xs text-muted-foreground">
+          How many questions a visitor with no account may be shown the answer to, on each
+          aircraft, before they have to sign up. Keep it small: this is the taste of the bank
+          given away to anyone at all, not the free allowance a signed-in student gets. Zero
+          means a visitor may read questions but is never shown an answer.
+        </p>
+        <input
+          id="previewQuestionsSignedOut"
+          name="previewQuestionsSignedOut"
+          type="number"
+          min={0}
+          max={MAX_FREE_QUESTIONS}
+          defaultValue={settings.previewQuestionsSignedOut}
+          required
+          className={`${inputClass} max-w-40`}
+        />
+      </div>
+
+      <div>
         <label htmlFor="announcement" className="block text-sm font-medium text-foreground">
           Announcement banner
         </label>

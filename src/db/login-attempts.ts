@@ -55,6 +55,16 @@ export function redeemIpKey(ip: string): string {
   return `redeem-ip:${ip}`;
 }
 
+/**
+ * Signed-out answers get their own key prefix, for the same reason reset
+ * requests and redemptions do: what is counted here is a *request*, not a
+ * failure, and sharing a bucket with log-in failures would let one kind of
+ * activity spend another's allowance.
+ */
+export function previewIpKey(ip: string): string {
+  return `preview-ip:${ip}`;
+}
+
 type KeyWindow = { key: string; since: Date };
 
 /**
@@ -212,6 +222,34 @@ export async function recordResetRequest(ip: string, email: string): Promise<voi
  */
 export async function clearFailedLoginsAfterReset(email: string): Promise<void> {
   await getDb().delete(loginAttempts).where(eq(loginAttempts.key, emailKey(email)));
+}
+
+/**
+ * Whether a signed-out caller from this address may be given another
+ * answer.
+ *
+ * Checked *before* the answer key is read and before anything is written,
+ * the same ordering log in uses for password verification: the point is to
+ * refuse early, not to do the work and then decline to show it.
+ *
+ * Unlike the account rules, nothing clears this on success — every
+ * signed-out answer counts, because every signed-out answer is the thing
+ * being limited.
+ */
+export async function checkPreviewAllowed(ip: string): Promise<RateLimitDecision> {
+  const now = new Date();
+  const key = previewIpKey(ip);
+  const since = new Date(now.getTime() - RATE_LIMIT_RULES.previewPerIp.windowMs);
+
+  const counts = await countRecentFailures([{ key, since }]);
+  const forIp = counts.get(key) ?? { failures: 0, oldest: null };
+
+  return decide(RATE_LIMIT_RULES.previewPerIp, forIp.failures, forIp.oldest, now);
+}
+
+/** Records one signed-out answer against the address that asked for it. */
+export async function recordPreviewRequest(ip: string): Promise<void> {
+  await getDb().insert(loginAttempts).values({ key: previewIpKey(ip) });
 }
 
 /** Records one failed attempt against both keys. */

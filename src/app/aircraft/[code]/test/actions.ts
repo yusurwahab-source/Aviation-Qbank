@@ -8,14 +8,30 @@ import { getQuestionNote, saveQuestionNote } from "@/db/notes";
 import { getAnswerKey } from "@/db/queries";
 import { createQuestionReport } from "@/db/question-reports";
 import {
+  answeredQuestionIdsAmong,
   countQuestionsAnswered,
   getSubscription,
   hasAnsweredQuestionBefore,
 } from "@/db/subscriptions";
+import { checkPreviewAllowed, recordPreviewRequest } from "@/db/login-attempts";
+import {
+  countPreviewQuestionsAnswered,
+  hasPreviewedQuestion,
+  previewedQuestionIdsAmong,
+  recordPreviewAnswer,
+  recordPreviewAnswers,
+} from "@/db/preview";
 import { getSiteSettings } from "@/db/settings";
+import { getClientIp } from "@/lib/auth/client-ip";
+import { ensurePreviewVisitorId } from "@/lib/auth/preview-visitor";
 import { getCurrentUser } from "@/lib/auth/session";
-import { canAnswerQuestion, hasActiveSubscription } from "@/lib/billing/access-policy";
-import { gradeTest, type TestResult } from "@/lib/grading";
+import { describeWait } from "@/lib/auth/rate-limit-policy";
+import {
+  canAnswerQuestion,
+  hasActiveSubscription,
+  remainingFreeQuestions,
+} from "@/lib/billing/access-policy";
+import { gradeTest, withholdAnswerKey, type TestResult } from "@/lib/grading";
 import { TEST_MODES, deadlineFrom, timeLimitFor } from "@/lib/test-options";
 
 /**
@@ -66,7 +82,15 @@ export type SaveStatus =
   /** Someone is signed in but the write failed. */
   | "failed";
 
-export type SubmitTestOutput = TestResult & { saveStatus: SaveStatus };
+export type SubmitTestOutput = TestResult & {
+  saveStatus: SaveStatus;
+  /**
+   * How many of the reviewed questions had their answer withheld, and why.
+   * Zero for a subscriber and for any student inside their allowance, which
+   * is every ordinary test — see `entitledAnswerKeyIds` below.
+   */
+  withheld: { count: number; reason: "preview" | "free-tier" } | null;
+};
 
 export async function submitTest(input: SubmitTestInput): Promise<SubmitTestOutput> {
   const { aircraftCode, clientTestId, answers } = submissionSchema.parse(input);
@@ -90,7 +114,140 @@ export async function submitTest(input: SubmitTestInput): Promise<SubmitTestOutp
 
   const result = gradeTest(aircraftCode, ordered, answers);
 
-  return { ...result, saveStatus: await record(clientTestId, result) };
+  // Grading is over the whole test — the score, the topic breakdown and the
+  // counts are the student's own results — but the key only goes back for
+  // the questions they are entitled to. Without this, one submission naming
+  // every published question returned every answer and every explanation,
+  // to anybody, with no account.
+  const entitlement = await entitledAnswerKeyIds(
+    aircraftCode,
+    result.graded.map((entry) => entry.question.id),
+  );
+  const withheldResult = withholdAnswerKey(result, entitlement.ids);
+  const withheldCount = withheldResult.graded.filter((entry) => entry.withheld).length;
+
+  return {
+    ...withheldResult,
+    saveStatus: await record(clientTestId, result),
+    withheld:
+      withheldCount > 0 && entitlement.reason !== null
+        ? { count: withheldCount, reason: entitlement.reason }
+        : null,
+  };
+}
+
+/**
+ * Which of a finished test's questions this caller may be shown the answer
+ * to — and, if some are withheld, what to tell them about it.
+ *
+ * Three cases, each the same rule the rest of the app already applies, only
+ * asked about a whole test at once instead of one question at a time:
+ *
+ *  - **Active subscription**: everything. Nothing is withheld, ever.
+ *  - **Signed in, no subscription**: every question they have already
+ *    answered — those spent a slot when they were answered and are paid for
+ *    — plus as many of the rest as the free allowance still covers. A test
+ *    is already capped to that allowance when it is built, so an ordinary
+ *    student never reaches the edge of this; a submission naming more
+ *    questions than the allowance does, and stops there.
+ *  - **Signed out**: exactly the same shape against the preview allowance,
+ *    and the extra questions it covers are *spent* here, because seeing an
+ *    answer is what the preview is counted in. A visitor who left two of
+ *    five blank still gets their full review; one who submits the bank gets
+ *    what is left of five.
+ *
+ * The extras are taken in submission order, which is the order the student
+ * saw them in — so a partial review reads top-down rather than in scattered
+ * pieces.
+ */
+async function entitledAnswerKeyIds(
+  aircraftCode: string,
+  questionIds: string[],
+): Promise<{ ids: Set<string>; reason: "preview" | "free-tier" | null }> {
+  const all = (): { ids: Set<string>; reason: null } => ({
+    ids: new Set(questionIds),
+    reason: null,
+  });
+
+  try {
+    const user = await getCurrentUser();
+
+    if (user) {
+      const subscription = await getSubscription(user.id);
+      if (hasActiveSubscription(subscription)) return all();
+
+      const [alreadyAnswered, distinctAnswered, settings] = await Promise.all([
+        answeredQuestionIdsAmong(user.id, questionIds),
+        countQuestionsAnswered(user.id, aircraftCode),
+        getSiteSettings(),
+      ]);
+
+      const ids = extendWithinAllowance(
+        questionIds,
+        alreadyAnswered,
+        remainingFreeQuestions(distinctAnswered, settings.freeQuestionsPerAircraft),
+      );
+      return { ids, reason: "free-tier" };
+    }
+
+    // Signed out. The address limit applies here exactly as it does to a
+    // single answer, and for the same reason: the cookie below bounds an
+    // honest visitor, and this bounds one who simply never sends it back.
+    // Blocked means nothing is revealed — the score still stands.
+    const ip = await getClientIp();
+    const allowed = await checkPreviewAllowed(ip);
+    if (!allowed.allowed) return { ids: new Set(), reason: "preview" };
+    await recordPreviewRequest(ip);
+
+    // No cookie yet means nothing has been previewed, which is the honest
+    // starting point rather than a reason to refuse: they may still spend
+    // the preview on this test's answers.
+    const visitorId = await ensurePreviewVisitorId();
+    const settings = await getSiteSettings();
+    const [alreadyPreviewed, previewed] = await Promise.all([
+      previewedQuestionIdsAmong(visitorId, questionIds),
+      countPreviewQuestionsAnswered(visitorId, aircraftCode),
+    ]);
+
+    const ids = extendWithinAllowance(
+      questionIds,
+      alreadyPreviewed,
+      remainingFreeQuestions(previewed, settings.previewQuestionsSignedOut),
+    );
+
+    // Spend what this review is about to reveal. Written before the result
+    // goes back, the same ordering `answerQuestion` uses.
+    const newlySpent = [...ids].filter((id) => !alreadyPreviewed.has(id));
+    await recordPreviewAnswers(visitorId, aircraftCode, newlySpent);
+
+    return { ids, reason: "preview" };
+  } catch (error) {
+    // Fail closed. A student who cannot be identified cannot be entitled,
+    // and a database hiccup must never be the thing that hands out the key
+    // — they still get their score, which needs no lookup at all.
+    console.error("Failed to decide answer-key entitlement:", error);
+    return { ids: new Set(), reason: null };
+  }
+}
+
+/** The already-entitled ids, plus as many of the rest, in order, as the
+ * remaining allowance covers. */
+function extendWithinAllowance(
+  questionIds: string[],
+  alreadyEntitled: Set<string>,
+  remaining: number,
+): Set<string> {
+  const ids = new Set(alreadyEntitled);
+  let budget = Math.max(0, remaining);
+
+  for (const questionId of questionIds) {
+    if (budget === 0) break;
+    if (ids.has(questionId)) continue;
+    ids.add(questionId);
+    budget -= 1;
+  }
+
+  return ids;
 }
 
 /**
@@ -176,6 +333,23 @@ export type AnswerQuestionResult =
    * recorded — the question the free tier ends on is not itself given away.
    */
   | { status: "paywall" }
+  /**
+   * The signed-out equivalent: the visitor has spent their preview on this
+   * aircraft and the answer is not theirs to see without an account. Same
+   * shape as `paywall` and for the same reason — nothing is graded, nothing
+   * is recorded, and the question they stopped on is not given away — but a
+   * different destination, since what this asks for is a sign-up, not a
+   * subscription.
+   */
+  | { status: "preview-exhausted" }
+  /**
+   * Too many signed-out answers from this address, too fast. Deliberately
+   * distinguishable from the two above: those are a person reaching the end
+   * of an allowance, this is a machine being told to slow down, and telling
+   * a real visitor behind a shared address to "sign up" when the truth is
+   * "wait a few minutes" would send them to the wrong place.
+   */
+  | { status: "rate-limited"; retryAfter: string }
   /** Nothing could be graded — the caller should leave the question open. */
   | { status: "failed" };
 
@@ -246,11 +420,51 @@ export async function answerQuestion(
 
     const user = await getCurrentUser();
     // Signed out there is no session, so no server-held clock. The browser's
-    // own countdown is all there is — see the note in CLAUDE.md. There is
-    // also nowhere to count a free allowance against, so a signed-out
-    // student's practice is unmetered — a known trade-off, not an oversight;
-    // see CLAUDE.md.
+    // own countdown is all there is — see the note in CLAUDE.md.
+    //
+    // What there *is* now is a limit. This branch used to return the verdict
+    // to anybody at all, unmetered and unlimited, which made the whole
+    // answer key readable by a script with no account: one request per
+    // question, no cookie needed, nothing counting. A signed-out visitor now
+    // gets a preview of the aircraft and no more, and the address they call
+    // from is rate limited regardless of what cookie they present. Both
+    // checks run *before* the verdict goes anywhere.
     if (!user) {
+      const ip = await getClientIp();
+
+      // The address limit first, and before any write: it is the one that
+      // holds when the cookie below does not, and a caller being refused
+      // should cost as little as possible — the same ordering log in uses
+      // for the password check.
+      const allowed = await checkPreviewAllowed(ip);
+      if (!allowed.allowed) {
+        return { status: "rate-limited", retryAfter: describeWait(allowed.retryAfterMs) };
+      }
+      await recordPreviewRequest(ip);
+
+      const visitorId = await ensurePreviewVisitorId();
+      const settings = await getSiteSettings();
+      const [alreadyPreviewed, previewed] = await Promise.all([
+        hasPreviewedQuestion(visitorId, questionId),
+        countPreviewQuestionsAnswered(visitorId, aircraftCode),
+      ]);
+
+      // The same rule the free tier uses, with the preview's own limit: a
+      // question already shown costs nothing to see again, and a new one
+      // spends a slot.
+      const mayPreview = canAnswerQuestion({
+        hasSubscription: false,
+        alreadyAnsweredThisQuestion: alreadyPreviewed,
+        distinctAnsweredSoFar: previewed,
+        limit: settings.previewQuestionsSignedOut,
+      });
+      if (!mayPreview) return { status: "preview-exhausted" };
+
+      // Recorded before the verdict is returned, exactly as a signed-in
+      // attempt is: asking to see an answer costs you the slot whether or
+      // not you like what comes back.
+      await recordPreviewAnswer(visitorId, questionId, aircraftCode);
+
       return { status: "answered", verdict, saved: "signed-out", startedAt: null, expiresAt: null };
     }
 

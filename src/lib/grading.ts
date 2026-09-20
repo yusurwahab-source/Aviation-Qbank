@@ -33,6 +33,13 @@ export type GradedQuestion = {
   correctOptionText: string;
   isCorrect: boolean;
   wasAnswered: boolean;
+  /**
+   * True when the caller is not entitled to this question's answer, so the
+   * key has been stripped out of this entry before it left the server. See
+   * `withholdAnswerKey` below. Absent means "not withheld", which is what
+   * every entry `gradeTest` itself produces is.
+   */
+  withheld?: boolean;
 };
 
 export type TopicScore = {
@@ -125,4 +132,62 @@ export function gradeTest(
     byTopic,
     graded,
   };
+}
+
+
+/**
+ * Strips the answer key out of the questions the caller has not earned.
+ *
+ * The result screen exists to show a student what they got wrong and why,
+ * which means `gradeTest` returns the correct option and the explanation for
+ * every question it grades. That is right for the student who sat the test
+ * and wrong for anyone who merely *submitted* a list of question ids — and
+ * for a while it was the larger of two ways to read this bank without an
+ * account: one request naming every published question came back with every
+ * answer and every explanation in it.
+ *
+ * So the grading stays exactly as it was — the totals, the per-topic
+ * breakdown and the score are computed over the whole test, because those
+ * are the student's own results and no part of them is a secret — and this
+ * runs afterwards to blank the key on anything outside `entitledIds`.
+ * Scoring over the full set and redacting after is deliberate: a student who
+ * left two questions blank still sees "18 of 20", not "18 of 18".
+ *
+ * `isCorrect` and `wasAnswered` survive on purpose. A withheld entry is
+ * always one the caller never answered — anything they answered was paid for
+ * at the time — so both are already false, and nothing about the answer can
+ * be inferred from them.
+ *
+ * Pure, and separate from `gradeTest`, so "what may this caller see" can be
+ * asserted directly rather than inferred from a database test.
+ */
+export function withholdAnswerKey(result: TestResult, entitledIds: Set<string>): TestResult {
+  let withheldCount = 0;
+
+  const graded = result.graded.map((entry) => {
+    if (entitledIds.has(entry.question.id)) return entry;
+    withheldCount += 1;
+
+    return {
+      ...entry,
+      question: {
+        ...entry.question,
+        // The three fields that are the key. `correct` names the right
+        // option, so an empty string here matches no option at all rather
+        // than pointing at one.
+        correct: "",
+        explanation: "",
+        reference: null,
+      },
+      correctOptionText: "",
+      withheld: true,
+    };
+  });
+
+  // Nothing was withheld: hand back the original object rather than a copy,
+  // so the common case — a subscriber, or any student inside their
+  // allowance — costs nothing at all.
+  if (withheldCount === 0) return result;
+
+  return { ...result, graded };
 }

@@ -13,6 +13,7 @@ import {
 
 const valid = {
   freeQuestionsPerAircraft: "10",
+  previewQuestionsSignedOut: "5",
   announcement: "",
   passMarkPercent: "75",
   featuredAircraftCode: "B737",
@@ -23,6 +24,7 @@ describe("validateSettings", () => {
   it("accepts a well-formed submission", () => {
     const result = validateSettings({
       freeQuestionsPerAircraft: "25",
+      previewQuestionsSignedOut: "3",
       announcement: "Hello",
       passMarkPercent: "80",
       featuredAircraftCode: "B737",
@@ -32,12 +34,38 @@ describe("validateSettings", () => {
       ok: true,
       settings: {
         freeQuestionsPerAircraft: 25,
+        previewQuestionsSignedOut: 3,
         announcement: "Hello",
         passMarkPercent: 80,
         featuredAircraftCode: "B737",
         aircraftInDevelopment: ["DA40"],
       },
     });
+  });
+
+  it("accepts a preview allowance of zero — no answers given away at all", () => {
+    const result = validateSettings({ ...valid, previewQuestionsSignedOut: "0" });
+    expect(result.ok).toBe(true);
+    if (result.ok) expect(result.settings.previewQuestionsSignedOut).toBe(0);
+  });
+
+  it("refuses a negative preview allowance", () => {
+    const result = validateSettings({ ...valid, previewQuestionsSignedOut: "-1" });
+    expect(result.ok).toBe(false);
+  });
+
+  it("refuses a preview allowance past the ceiling", () => {
+    const result = validateSettings({
+      ...valid,
+      previewQuestionsSignedOut: String(MAX_FREE_QUESTIONS + 1),
+    });
+    expect(result.ok).toBe(false);
+  });
+
+  it("refuses a non-numeric preview allowance", () => {
+    expect(validateSettings({ ...valid, previewQuestionsSignedOut: "five" }).ok).toBe(false);
+    expect(validateSettings({ ...valid, previewQuestionsSignedOut: "" }).ok).toBe(false);
+    expect(validateSettings({ ...valid, previewQuestionsSignedOut: undefined }).ok).toBe(false);
   });
 
   it("trims the announcement", () => {
@@ -172,6 +200,7 @@ describe("parseSettings", () => {
   it("reads back stored values", () => {
     const rows = [
       { key: "free_questions_per_aircraft", value: "50" },
+      { key: "preview_questions_signed_out", value: "2" },
       { key: "announcement", value: "Back soon" },
       { key: "pass_mark_percent", value: "70" },
       { key: "featured_aircraft_code", value: "DA40" },
@@ -179,11 +208,28 @@ describe("parseSettings", () => {
     ];
     expect(parseSettings(rows)).toEqual({
       freeQuestionsPerAircraft: 50,
+      previewQuestionsSignedOut: 2,
       announcement: "Back soon",
       passMarkPercent: 70,
       featuredAircraftCode: "DA40",
       aircraftInDevelopment: ["B737"],
     });
+  });
+
+  it("falls back to the default preview allowance on a corrupt row", () => {
+    const rows = [{ key: "preview_questions_signed_out", value: "lots" }];
+    expect(parseSettings(rows).previewQuestionsSignedOut).toBe(
+      DEFAULT_SETTINGS.previewQuestionsSignedOut,
+    );
+  });
+
+  it("keeps the preview allowance well below the free one by default", () => {
+    // Not arithmetic for its own sake: the preview is what is given away to
+    // anybody at all, and the free tier is what signing up is worth. If the
+    // two ever met, signing up would buy nothing.
+    expect(DEFAULT_SETTINGS.previewQuestionsSignedOut).toBeLessThan(
+      DEFAULT_SETTINGS.freeQuestionsPerAircraft,
+    );
   });
 
   it("falls back on a corrupt number rather than throwing", () => {
@@ -238,6 +284,7 @@ describe("settingsToRows", () => {
   it("round-trips through parseSettings", () => {
     const settings = {
       freeQuestionsPerAircraft: 42,
+      previewQuestionsSignedOut: 7,
       announcement: "Round trip",
       passMarkPercent: 65,
       featuredAircraftCode: "B737",
@@ -249,6 +296,7 @@ describe("settingsToRows", () => {
   it("round-trips an empty aircraft-in-development list", () => {
     const settings = {
       freeQuestionsPerAircraft: 42,
+      previewQuestionsSignedOut: 0,
       announcement: "",
       passMarkPercent: 65,
       featuredAircraftCode: "B737",

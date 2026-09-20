@@ -286,6 +286,59 @@ Two things follow, and both are tested in a browser:
    nothing has been revealed, so nothing is sent — verified by resuming an
    exam-mode test and checking the page for a key.
 
+**A signed-out visitor gets a preview, and it is counted on the server.**
+This is the correction of a real hole, not a new feature, and it is worth
+writing down plainly because the rule above — "the answer key is never in
+the page, and never arrives before it is earned" — was true of the *page*
+and false of everything else. Signed out, nothing was earned and nothing was
+counted:
+
+- `test/page.tsx` capped a freshly built test to the free allowance only
+  inside `if (user)`, so `?questions=all` handed a visitor with no account
+  every published question in the bank — 802 stems and options on the B737
+  — in one response.
+- `answerQuestion` returned the correct option and the explanation to a
+  signed-out caller unconditionally, with no allowance to spend and no rate
+  limit, one question per call.
+- `submitTest` was worse, and was the one that mattered: it graded whatever
+  question ids it was handed, up to `MAX_ANSWERS`, and returned the full key
+  for all of them. **One anonymous POST naming every published question came
+  back with every answer and every explanation.** No cookie, no account, no
+  limit.
+
+All three are closed the same way, by the allowance the rest of this file
+already describes, counted against the only identity a signed-out visitor
+has. `PREVIEW_QUESTIONS_SIGNED_OUT` (5, and an owner setting like the free
+tier) is the limit; `preview_attempts` is the count, keyed by the SHA-256 of
+a random token in an HTTP-only cookie — the same shape as `sessions`, so
+reading the table gives nothing usable; `canAnswerQuestion` is the decision,
+unchanged, called with a different limit. The test page sizes a signed-out
+test to what is left of it, `answerQuestion` spends one slot per new
+question, and `submitTest` grades the whole test — the score is the
+student's own — but strips the key off anything outside the allowance
+(`withholdAnswerKey`, pure and tested) rather than shortening the test.
+
+Two things that fall out of this and should not be reversed casually. A
+question already previewed is free to see again, which is what makes going
+back through a preview test cost nothing. And the review still says "18 of
+20" when two answers are withheld, because grading runs over the whole test
+and the redaction happens afterwards — a student who left questions blank
+must not be told they sat a shorter test than they did.
+
+**And be honest about what the cookie is worth: nothing, against a script.**
+It is the visitor's to delete, and a caller that never sends one back is a
+new visitor on every request. So the cookie meters honest use, and
+`RATE_LIMIT_RULES.previewPerIp` — forty signed-out answers per address per
+fifteen minutes, counted per *request* like reset requests rather than per
+failure — is the limit that actually holds. Both are needed: the rate limit
+alone would let one patient visitor read everything, and the cookie alone
+would stop nobody. Neither turns this into a wall; see "Known gaps".
+
+The whole of this applies to signed-out callers and to signed-in ones past
+their free allowance alike — `entitledAnswerKeyIds` in `actions.ts` asks the
+same question of both, because "grade anything, return everything" was
+`submitTest`'s behaviour for a free account too.
+
 **A test is sat one of two ways, and the choice is a setting, not a
 guard.** Study marks each question as it is answered and settles it; exam
 holds everything to Finish and lets answers change on the way through. The
@@ -1210,8 +1263,10 @@ as `schema.ts` describes.
 `site_settings` is a key/value table — adding a setting is an insert, not a
 migration — holding the free-question allowance
 (`FREE_QUESTIONS_PER_AIRCRAFT`'s default, now an override the owner can
-change without a deploy), a one-line announcement banner shown above every
-page, the pass mark shown on a result screen, and — moved here from a
+change without a deploy), the signed-out preview allowance beside it
+(`PREVIEW_QUESTIONS_SIGNED_OUT`, a separate and much smaller number — see
+the convention on the preview above), a one-line announcement banner shown
+above every page, the pass mark shown on a result screen, and — moved here from a
 hardcoded `src/config/aircraft-marketing.ts`, now deleted — the featured
 aircraft code and the set of aircraft marked "in development". Both of
 those last two only decide what the landing page and `/aircraft` say about
@@ -1371,6 +1426,7 @@ src/
       rate-limit-policy.ts    When to refuse a log in or a reset (pure, tested)
       reset-policy.ts         Reset link lifetime and state (pure, tested)
       client-ip.ts            The caller's address, behind Vercel's proxy
+      preview-visitor.ts      The signed-out visitor cookie — mint, read, hash
       session.ts              Cookie and session table handling
       owner.ts                Whether the signed-in account is the site owner (pure, tested)
       require-owner.ts        THE gate in front of every /owner page and action
@@ -1475,13 +1531,15 @@ from inside the website, an admin panel gets added then — the `status`,
 
 ## Known gaps, honestly
 
-- **A signed-out visitor's practice is never metered.** The free-question
-  count is read from `attempts`, which only exists for a signed-in user —
-  the same reason a signed-out refresh restarts the test rather than
-  resuming it. Someone could stay signed out indefinitely to avoid ever
-  hitting the limit. Accepted for the same reason "Practice does not require
-  an account" is accepted below: requiring an account to meter usage would
-  also block anyone trying the site before committing to one.
+- **A signed-out visitor's preview is metered by a cookie, which they can
+  throw away.** It used to be metered by nothing at all — see "A signed-out
+  visitor gets a preview" in the conventions above for what that cost. What
+  bounds a caller who drops the cookie is `RATE_LIMIT_RULES.previewPerIp`,
+  and that is a limit on rate, not on total: forty signed-out answers per
+  address per fifteen minutes still adds up to the whole bank given a day
+  and a patient script. Closing that completely means requiring an account
+  to practise at all, which is the trade "Practice does not require an
+  account" below still declines to make.
 - **A question merely shown is not distinguished from one answered.** The
   size cap on a freshly built test (see the conventions above) stops a
   single test from handing a free account more than its remaining allowance,
@@ -1587,11 +1645,15 @@ second. Both are now done — see the conventions above.)
   both thresholds. Defending that needs rejecting known-breached passwords or a
   second factor — neither is needed at this size, but neither comes free with
   what is built here.
-- **Practice does not require an account.** Deliberate: signing out must not
-  take the question bank away. Signed-out tests are graded but recorded nowhere,
-  and the result screen says so. Requiring a login to practise would be a
-  one-line guard in the test page if the owner ever wants it — but it trades
-  away everyone who wants to try the site before committing.
+- **Practice does not require an account — but it is now a preview, not the
+  whole bank.** Deliberate, and narrowed: signing out must not take the
+  question bank away entirely, so a visitor may sit a short test and be
+  shown its answers. Signed-out tests are still graded and recorded nowhere,
+  and the result screen still says so. What changed is the size: see "A
+  signed-out visitor gets a preview" in the conventions above. Requiring a
+  login to practise at all would still be a one-line guard in the test page
+  if the owner ever wants it — but it trades away everyone who wants to try
+  the site before committing.
 - **Signing in does not return you where you were.** `/progress` sends a signed-out
   visitor to `/login`, which then lands them on the home page. A `?next=` parameter
   would fix it, and must only ever accept a relative path or it becomes an open
