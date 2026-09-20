@@ -7,7 +7,14 @@ import { getAccountDetail } from "@/db/owner";
 import { daysRemaining, hasActiveSubscription } from "@/lib/billing/access-policy";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, OwnerPageError, formatDay, isNextControlFlowError } from "../../owner-ui";
+import {
+  DataTable,
+  OwnerNav,
+  OwnerPageError,
+  describeError,
+  formatDay,
+  isNextControlFlowError,
+} from "../../owner-ui";
 import { AccessForm } from "../access-form";
 import { NoteForm } from "../note-form";
 
@@ -42,7 +49,7 @@ export default async function OwnerAccountDetailPage({
       <>
         <PageHeading eyebrow="Account" title="This account" />
         <OwnerNav current="/owner/accounts" />
-        <OwnerPageError detail={(error as Error).message} />
+        <OwnerPageError detail={describeError(error)} />
       </>
     );
   }

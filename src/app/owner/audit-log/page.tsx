@@ -4,7 +4,7 @@ import { Badge, Card, PageHeading } from "@/components/ui";
 import { listAuditLog, listAuditLogActions } from "@/db/audit-log";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, OwnerPageError, formatDay, isNextControlFlowError } from "../owner-ui";
+import { DataTable, OwnerNav, OwnerPageError, describeError, formatDay, isNextControlFlowError } from "../owner-ui";
 
 export const metadata: Metadata = { title: "Audit log" };
 export const dynamic = "force-dynamic";
@@ -68,7 +68,7 @@ export default async function OwnerAuditLogPage({
       <>
         <PageHeading title="Audit log" />
         <OwnerNav current="/owner/audit-log" />
-        <OwnerPageError detail={(error as Error).message} />
+        <OwnerPageError detail={describeError(error)} />
       </>
     );
   }

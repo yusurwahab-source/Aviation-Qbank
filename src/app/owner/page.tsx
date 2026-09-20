@@ -6,7 +6,7 @@ import { getSiteOverview } from "@/db/owner";
 import { countOpenQuestionReports } from "@/db/question-reports";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { OwnerNav, OwnerPageError, StatTile, isNextControlFlowError } from "./owner-ui";
+import { OwnerNav, OwnerPageError, describeError, StatTile, isNextControlFlowError } from "./owner-ui";
 
 export const metadata: Metadata = { title: "Owner" };
 export const dynamic = "force-dynamic";
@@ -37,7 +37,7 @@ export default async function OwnerPage() {
       <>
         <PageHeading title="Owner" subtitle="Your site, in numbers." />
         <OwnerNav current="/owner" />
-        <OwnerPageError detail={(error as Error).message} />
+        <OwnerPageError detail={describeError(error)} />
       </>
     );
   }

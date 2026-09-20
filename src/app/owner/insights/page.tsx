@@ -17,6 +17,7 @@ import {
   DataTable,
   OwnerNav,
   OwnerPageError,
+  describeError,
   StatTile,
   formatDay,
   isNextControlFlowError,
@@ -92,7 +93,7 @@ export default async function OwnerInsightsPage() {
       <>
         <PageHeading title="Insights" />
         <OwnerNav current="/owner/insights" />
-        <OwnerPageError detail={(error as Error).message} />
+        <OwnerPageError detail={describeError(error)} />
       </>
     );
   }

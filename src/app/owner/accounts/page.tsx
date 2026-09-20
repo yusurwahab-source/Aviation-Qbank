@@ -6,7 +6,7 @@ import { ACCOUNTS_PAGE_SIZE, listAccounts, type AccountStatusFilter } from "@/db
 import { daysRemaining, hasActiveSubscription } from "@/lib/billing/access-policy";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, OwnerPageError, formatDay, isNextControlFlowError } from "../owner-ui";
+import { DataTable, OwnerNav, OwnerPageError, formatDay, renderOwnerPage } from "../owner-ui";
 import { AccessForm } from "./access-form";
 
 export const metadata: Metadata = { title: "Accounts" };
@@ -41,6 +41,26 @@ export default async function OwnerAccountsPage({
   searchParams: Promise<{ q?: string | string[]; status?: string | string[]; page?: string | string[] }>;
 }) {
   const query = await searchParams;
+  return renderOwnerPage(
+    () => renderAccounts(query),
+    (detail: string) => (
+      <>
+        <PageHeading
+          title="Accounts"
+          subtitle="Everyone who has signed up, what they have done, and what access they have."
+        />
+        <OwnerNav current="/owner/accounts" />
+        <OwnerPageError detail={detail} />
+      </>
+    ),
+  );
+}
+
+async function renderAccounts(query: {
+  q?: string | string[];
+  status?: string | string[];
+  page?: string | string[];
+}) {
   const search = firstOf(query.q);
   const rawStatus = firstOf(query.status);
   const statusFilter: AccountStatusFilter = STATUS_FILTERS.some((f) => f.value === rawStatus)
@@ -49,30 +69,13 @@ export default async function OwnerAccountsPage({
   const page = Math.max(1, Number.parseInt(firstOf(query.page), 10) || 1);
   const offset = (page - 1) * ACCOUNTS_PAGE_SIZE;
 
-  let accounts: Awaited<ReturnType<typeof listAccounts>>["rows"];
-  let total: number;
-  try {
-    await requireOwner();
-    ({ rows: accounts, total } = await listAccounts({
-      search: search || null,
-      statusFilter,
-      limit: ACCOUNTS_PAGE_SIZE,
-      offset,
-    }));
-  } catch (error) {
-    if (isNextControlFlowError(error)) throw error;
-    console.error("Failed to list accounts:", error);
-    return (
-      <>
-        <PageHeading
-          title="Accounts"
-          subtitle="Everyone who has signed up, what they have done, and what access they have."
-        />
-        <OwnerNav current="/owner/accounts" />
-        <OwnerPageError detail={(error as Error).message} />
-      </>
-    );
-  }
+  await requireOwner();
+  const { rows: accounts, total } = await listAccounts({
+    search: search || null,
+    statusFilter,
+    limit: ACCOUNTS_PAGE_SIZE,
+    offset,
+  });
 
   const totalPages = Math.max(1, Math.ceil(total / ACCOUNTS_PAGE_SIZE));
 

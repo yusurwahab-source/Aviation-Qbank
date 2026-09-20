@@ -7,7 +7,14 @@ import { listGiftCodeRedemptions, listGiftCodesWithCounts } from "@/db/gift-code
 import { isGiftCodeExpired } from "@/lib/billing/gift-codes";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, OwnerPageError, formatDay, isNextControlFlowError } from "../../owner-ui";
+import {
+  DataTable,
+  OwnerNav,
+  OwnerPageError,
+  describeError,
+  formatDay,
+  isNextControlFlowError,
+} from "../../owner-ui";
 import { DisableButton } from "../disable-button";
 
 export const metadata: Metadata = { title: "Gift code" };
@@ -43,7 +50,7 @@ export default async function OwnerGiftCodeDetailPage({
       <>
         <PageHeading eyebrow="Gift code" title="This code" />
         <OwnerNav current="/owner/gift-codes" />
-        <OwnerPageError detail={(error as Error).message} />
+        <OwnerPageError detail={describeError(error)} />
       </>
     );
   }
