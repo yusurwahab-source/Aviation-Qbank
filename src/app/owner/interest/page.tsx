@@ -4,7 +4,7 @@ import { Card, PageHeading } from "@/components/ui";
 import { listAircraftInterest, tallyAircraftInterest } from "@/db/owner";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, formatDay } from "../owner-ui";
+import { DataTable, OwnerNav, OwnerPageError, formatDay } from "../owner-ui";
 
 export const metadata: Metadata = { title: "Aircraft requests" };
 export const dynamic = "force-dynamic";
@@ -19,7 +19,21 @@ export const dynamic = "force-dynamic";
  */
 export default async function OwnerInterestPage() {
   await requireOwner();
-  const [tally, rows] = await Promise.all([tallyAircraftInterest(), listAircraftInterest()]);
+
+  let tally: Awaited<ReturnType<typeof tallyAircraftInterest>>;
+  let rows: Awaited<ReturnType<typeof listAircraftInterest>>;
+  try {
+    [tally, rows] = await Promise.all([tallyAircraftInterest(), listAircraftInterest()]);
+  } catch (error) {
+    console.error("Failed to load aircraft interest:", error);
+    return (
+      <>
+        <PageHeading title="Aircraft requests" />
+        <OwnerNav current="/owner/interest" />
+        <OwnerPageError detail={(error as Error).message} />
+      </>
+    );
+  }
 
   return (
     <>

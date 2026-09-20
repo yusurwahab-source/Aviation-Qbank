@@ -7,7 +7,7 @@ import { listGiftCodeRedemptions, listGiftCodesWithCounts } from "@/db/gift-code
 import { isGiftCodeExpired } from "@/lib/billing/gift-codes";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, formatDay } from "../../owner-ui";
+import { DataTable, OwnerNav, OwnerPageError, formatDay } from "../../owner-ui";
 import { DisableButton } from "../disable-button";
 
 export const metadata: Metadata = { title: "Gift code" };
@@ -30,11 +30,25 @@ export default async function OwnerGiftCodeDetailPage({
   await requireOwner();
   const { giftCodeId } = await params;
 
-  const codes = await listGiftCodesWithCounts();
-  const code = codes.find((row) => row.id === giftCodeId);
+  let code: Awaited<ReturnType<typeof listGiftCodesWithCounts>>[number] | undefined;
+  let redemptions: Awaited<ReturnType<typeof listGiftCodeRedemptions>> = [];
+  try {
+    const codes = await listGiftCodesWithCounts();
+    code = codes.find((row) => row.id === giftCodeId);
+    if (code) redemptions = await listGiftCodeRedemptions(code.id);
+  } catch (error) {
+    console.error("Failed to load a gift code's detail:", error);
+    return (
+      <>
+        <PageHeading eyebrow="Gift code" title="This code" />
+        <OwnerNav current="/owner/gift-codes" />
+        <OwnerPageError detail={(error as Error).message} />
+      </>
+    );
+  }
+  // Outside the try/catch: `notFound()` throws its own sentinel error, which
+  // must reach Next's router unhandled, not be swallowed as a query failure.
   if (!code) notFound();
-
-  const redemptions = await listGiftCodeRedemptions(code.id);
 
   const expired = isGiftCodeExpired(code.expiresAt);
   const exhausted = code.redemptionCount >= code.maxRedemptions;

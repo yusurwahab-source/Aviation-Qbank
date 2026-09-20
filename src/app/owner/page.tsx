@@ -6,7 +6,7 @@ import { getSiteOverview } from "@/db/owner";
 import { countOpenQuestionReports } from "@/db/question-reports";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { OwnerNav, StatTile } from "./owner-ui";
+import { OwnerNav, OwnerPageError, StatTile } from "./owner-ui";
 
 export const metadata: Metadata = { title: "Owner" };
 export const dynamic = "force-dynamic";
@@ -21,10 +21,21 @@ export const dynamic = "force-dynamic";
  */
 export default async function OwnerPage() {
   await requireOwner();
-  const [overview, openReports] = await Promise.all([
-    getSiteOverview(),
-    countOpenQuestionReports(),
-  ]);
+
+  let overview: Awaited<ReturnType<typeof getSiteOverview>>;
+  let openReports: number;
+  try {
+    [overview, openReports] = await Promise.all([getSiteOverview(), countOpenQuestionReports()]);
+  } catch (error) {
+    console.error("Failed to load the owner overview:", error);
+    return (
+      <>
+        <PageHeading title="Owner" subtitle="Your site, in numbers." />
+        <OwnerNav current="/owner" />
+        <OwnerPageError detail={(error as Error).message} />
+      </>
+    );
+  }
 
   return (
     <>

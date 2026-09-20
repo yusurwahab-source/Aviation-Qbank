@@ -7,7 +7,7 @@ import { listAircraft } from "@/db/queries";
 import { isGiftCodeExpired } from "@/lib/billing/gift-codes";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, formatDay } from "../owner-ui";
+import { DataTable, OwnerNav, OwnerPageError, formatDay } from "../owner-ui";
 import { DisableButton } from "./disable-button";
 import { GenerateForm } from "./generate-form";
 
@@ -24,7 +24,20 @@ export const dynamic = "force-dynamic";
 export default async function OwnerGiftCodesPage() {
   await requireOwner();
 
-  const [codes, fleet] = await Promise.all([listGiftCodesWithCounts(), listAircraft()]);
+  let codes: Awaited<ReturnType<typeof listGiftCodesWithCounts>>;
+  let fleet: Awaited<ReturnType<typeof listAircraft>>;
+  try {
+    [codes, fleet] = await Promise.all([listGiftCodesWithCounts(), listAircraft()]);
+  } catch (error) {
+    console.error("Failed to load gift codes:", error);
+    return (
+      <>
+        <PageHeading title="Gift codes" />
+        <OwnerNav current="/owner/gift-codes" />
+        <OwnerPageError detail={(error as Error).message} />
+      </>
+    );
+  }
 
   const fullyRedeemed = codes.filter((code) => code.redemptionCount >= code.maxRedemptions).length;
 

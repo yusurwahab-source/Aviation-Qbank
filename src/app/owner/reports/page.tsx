@@ -5,7 +5,7 @@ import { Badge, Card, EmptyState, PageHeading } from "@/components/ui";
 import { listQuestionReports, type ReportStatus } from "@/db/question-reports";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { OwnerNav, formatDay } from "../owner-ui";
+import { OwnerNav, OwnerPageError, formatDay } from "../owner-ui";
 import { ReportActions } from "./report-actions";
 
 export const metadata: Metadata = { title: "Reports" };
@@ -50,9 +50,21 @@ export default async function OwnerReportsPage({
     ? (rawStatus as ReportStatus | "all")
     : "open";
 
-  const reports = await listQuestionReports({
-    status: statusFilter === "all" ? null : statusFilter,
-  });
+  let reports: Awaited<ReturnType<typeof listQuestionReports>>;
+  try {
+    reports = await listQuestionReports({
+      status: statusFilter === "all" ? null : statusFilter,
+    });
+  } catch (error) {
+    console.error("Failed to list question reports:", error);
+    return (
+      <>
+        <PageHeading title="Reports" />
+        <OwnerNav current="/owner/reports" />
+        <OwnerPageError detail={(error as Error).message} />
+      </>
+    );
+  }
 
   return (
     <>

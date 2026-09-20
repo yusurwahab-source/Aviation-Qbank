@@ -144,6 +144,34 @@ export function DataTable({
   );
 }
 
+/**
+ * Shown in place of a page's own content when reading the database for it
+ * failed. Every `/owner` page reads at least one table with no try/catch of
+ * its own, so an unhandled query error used to reach the browser as a bare
+ * platform error page — this is instead a plain, in-app message that names
+ * what failed and keeps the owner's own navigation on screen, so a failure
+ * on one page (say, Accounts) does not strand them there.
+ *
+ * The technical detail is shown outright, unlike `DatabaseUnavailable`'s
+ * generic "check your DATABASE_URL" copy aimed at a fresh clone: this area
+ * has exactly one reader, who is trying to operate the live site, and the
+ * actual error text is the fastest way from "this is broken" to a fix.
+ */
+export function OwnerPageError({ detail }: { detail: string }) {
+  return (
+    <Card>
+      <h2 className="text-lg font-semibold text-foreground">This page could not load</h2>
+      <p className="mt-2 text-sm text-muted-foreground">
+        Reading the database for this page failed. Reloading sometimes clears a transient error;
+        if it keeps happening, this detail is what to share:
+      </p>
+      <pre className="mt-3 overflow-x-auto rounded-lg bg-surface-muted p-3 font-mono text-xs text-foreground">
+        {detail}
+      </pre>
+    </Card>
+  );
+}
+
 /** One date, formatted the same way everywhere in this area. */
 export function formatDay(date: Date): string {
   return date.toLocaleDateString(undefined, {
