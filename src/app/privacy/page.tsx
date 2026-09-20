@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description: `What ${siteConfig.name} stores, and why.`,
 };
 
+export const dynamic = "force-dynamic";
+
 export default function PrivacyPage() {
   return (
     <>

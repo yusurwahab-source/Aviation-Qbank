@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description: `What ${siteConfig.name} is, who it is for, and where the questions come from.`,
 };
 
+export const dynamic = "force-dynamic";
+
 export default function AboutPage() {
   return (
     <>

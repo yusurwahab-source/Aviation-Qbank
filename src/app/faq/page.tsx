@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description: `Common questions about how ${siteConfig.name} works.`,
 };
 
+export const dynamic = "force-dynamic";
+
 const ANSWERS = [
   {
     question: "Do I need an account to practise?",
