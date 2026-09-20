@@ -35,19 +35,19 @@ const CATEGORY_OPTIONS: {
   {
     value: "type-rating",
     queryValue: categoryQueryValue("type-rating"),
-    label: "Type Ratings",
+    label: "Type Rating",
     subtitle: "B737, A320, and other aircraft types",
   },
   {
     value: "light-aircraft",
     queryValue: categoryQueryValue("light-aircraft"),
-    label: "Class Ratings",
+    label: "Class Rating",
     subtitle: "DA40, C152, and other class-rated aircraft",
   },
   {
     value: "flying-knowledge",
     queryValue: categoryQueryValue("flying-knowledge"),
-    label: "General Subjects",
+    label: "Flying Knowledge",
     subtitle: "IFR Rules, VFR Rules, Navigation, Weather",
   },
 ];
