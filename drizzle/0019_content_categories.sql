@@ -10,13 +10,6 @@ ADD COLUMN "category" "content_category" DEFAULT 'type-rating' NOT NULL;
 ALTER TABLE "questions"
 ADD COLUMN "category" "content_category" DEFAULT 'type-rating' NOT NULL;
 --> statement-breakpoint
-UPDATE "aircraft"
-SET "category" = CASE
-  WHEN "code" = 'DA40' THEN 'light-aircraft'::"content_category"
-  WHEN "code" = 'B737' THEN 'type-rating'::"content_category"
-  ELSE 'type-rating'::"content_category"
-END;
---> statement-breakpoint
 UPDATE "questions" AS "q"
 SET "category" = "a"."category"
 FROM "aircraft" AS "a"

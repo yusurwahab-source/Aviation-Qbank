@@ -2,10 +2,10 @@ import "server-only";
 
 import { and, asc, count, eq, inArray, notInArray, sql } from "drizzle-orm";
 
-import { contentCategorySchema } from "@/content/schema";
 import { getDb } from "@/db";
 import { aircraft, attempts, questions } from "@/db/schema";
 import type { QuestionOption } from "@/content/schema";
+import type { ContentCategory } from "@/lib/content-categories";
 
 /**
  * Every read the application performs.
@@ -49,13 +49,6 @@ export type TopicSummary = {
   topic: string;
   questionCount: number;
 };
-
-export type ContentCategory = AircraftSummary["category"];
-
-export function parseContentCategory(value: string | null | undefined): ContentCategory | null {
-  const parsed = contentCategorySchema.safeParse(value);
-  return parsed.success ? parsed.data : null;
-}
 
 /**
  * How many aircraft the bank holds, whatever their status — a true

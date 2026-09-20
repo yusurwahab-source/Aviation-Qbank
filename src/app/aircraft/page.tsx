@@ -7,11 +7,10 @@ import { siteConfig } from "@/config/site";
 import { getSubscription } from "@/db/subscriptions";
 import {
   listAircraftByCategory,
-  parseContentCategory,
   type AircraftSummary,
-  type ContentCategory,
 } from "@/db/queries";
 import { hasActiveSubscription } from "@/lib/billing/access-policy";
+import { resolveContentCategory, type ContentCategory } from "@/lib/content-categories";
 import { getSiteSettings } from "@/db/settings";
 import { getCurrentUser } from "@/lib/auth/session";
 
@@ -64,8 +63,7 @@ type PageProps = {
 
 export default async function AircraftPickerPage({ searchParams }: PageProps) {
   const query = await searchParams;
-  const rawCategory = Array.isArray(query.category) ? query.category[0] : query.category;
-  const selectedCategory = parseContentCategory(rawCategory) ?? "type-rating";
+  const selectedCategory = resolveContentCategory(query.category);
   const selectedOption = CATEGORY_OPTIONS.find((option) => option.value === selectedCategory)!;
 
   let fleet: AircraftSummary[];

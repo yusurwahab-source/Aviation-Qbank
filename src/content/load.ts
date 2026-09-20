@@ -125,9 +125,19 @@ export function loadContent(contentDir: string = CONTENT_DIR): ContentLoadResult
     const dir = path.join(contentDir, folder);
     const aircraftManifestFile = path.join(dir, "aircraft.json");
     const knowledgeManifestFile = path.join(dir, "knowledge.json");
-    const manifestFile = statSync(aircraftManifestFile, { throwIfNoEntry: false })?.isFile()
-      ? aircraftManifestFile
-      : knowledgeManifestFile;
+    const hasAircraftManifest = statSync(aircraftManifestFile, { throwIfNoEntry: false })?.isFile();
+    const hasKnowledgeManifest = statSync(knowledgeManifestFile, { throwIfNoEntry: false })?.isFile();
+
+    if (!hasAircraftManifest && !hasKnowledgeManifest) {
+      issues.push({
+        file: relative(dir),
+        path: "(file)",
+        message: 'Missing manifest. Expected "aircraft.json" or "knowledge.json".',
+      });
+      continue;
+    }
+
+    const manifestFile = hasAircraftManifest ? aircraftManifestFile : knowledgeManifestFile;
 
     const manifestJson = readJson(manifestFile);
     if ("error" in manifestJson) {
@@ -144,7 +154,9 @@ export function loadContent(contentDir: string = CONTENT_DIR): ContentLoadResult
 
     const folderMatchesCode = folder === manifest.code.toLowerCase();
     const folderMatchesKnowledge =
-      manifest.category === "flying-knowledge" && folder === "flying-knowledge";
+      manifest.category === "flying-knowledge" &&
+      manifest.code === "FLYKNOW" &&
+      folder === "flying-knowledge";
     if (!folderMatchesCode && !folderMatchesKnowledge) {
       issues.push({
         file: relative(manifestFile),

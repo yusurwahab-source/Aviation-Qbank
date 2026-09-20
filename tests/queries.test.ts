@@ -4,6 +4,7 @@ import { Pool } from "pg";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 
 import { aircraft, questions } from "@/db/schema";
+import { parseContentCategory } from "@/lib/content-categories";
 
 /**
  * Integration tests for the question queries.
@@ -239,10 +240,10 @@ describeWithDb("test question queries", () => {
 
   describe("category filters", () => {
     it("parses known categories and rejects unknown ones", () => {
-      expect(queries.parseContentCategory("type-rating")).toBe("type-rating");
-      expect(queries.parseContentCategory("light-aircraft")).toBe("light-aircraft");
-      expect(queries.parseContentCategory("flying-knowledge")).toBe("flying-knowledge");
-      expect(queries.parseContentCategory("unknown")).toBeNull();
+      expect(parseContentCategory("type-rating")).toBe("type-rating");
+      expect(parseContentCategory("light-aircraft")).toBe("light-aircraft");
+      expect(parseContentCategory("flying-knowledge")).toBe("flying-knowledge");
+      expect(parseContentCategory("unknown")).toBeNull();
     });
 
     it("lists only aircraft in the requested category", async () => {

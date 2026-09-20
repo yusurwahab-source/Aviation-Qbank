@@ -228,6 +228,26 @@ describe("loadContent", () => {
     expect(aircraft[0].manifest.category).toBe("flying-knowledge");
     expect(aircraft[0].manifest.code).toBe("FLYKNOW");
   });
+
+  it("keeps the folder-name exception scoped to flying-knowledge only", () => {
+    const root = makeContentDir({
+      "flying-knowledge/knowledge.json": {
+        code: "THEORY",
+        category: "flying-knowledge",
+        name: "Misfiled Bank",
+        manufacturer: "General Aviation",
+        description: "Wrong category for this folder",
+        status: "active",
+        sortOrder: 1,
+      },
+      "flying-knowledge/questions/ifr.json": [
+        { ...validQuestion, id: "THEORY-IFR-0001", aircraft: "THEORY", topic: "IFR Quiz" },
+      ],
+    });
+
+    const { issues } = loadContent(root);
+    expect(issues.some((issue) => issue.message.includes('Expected folder "theory"'))).toBe(true);
+  });
 });
 
 describe("the DA40 content in this repository", () => {
