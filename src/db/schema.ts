@@ -514,6 +514,10 @@ export const subscriptions = pgTable(
     // Renewal and cancellation webhook events arrive keyed by the
     // provider's own reference, not by our user id.
     index("subscriptions_provider_ref_idx").on(table.providerSubscriptionRef),
+    // The owner insights dashboard's "active" and "expiring soon" counts
+    // filter on both columns together with no user in the predicate, which
+    // the unique index above (leading on userId) cannot serve.
+    index("subscriptions_status_period_end_idx").on(table.status, table.currentPeriodEnd),
   ],
 );
 
@@ -633,6 +637,12 @@ export const giftCodeRedemptions = pgTable(
     // "Every redemption of this code, newest first" — the per-code list the
     // owner screen shows.
     index("gift_code_redemptions_code_idx").on(table.giftCodeId, table.redeemedAt),
+    // The signup funnel's "did this user redeem a code" check — the unique
+    // index above leads with giftCodeId, the wrong side for "by user".
+    index("gift_code_redemptions_user_idx").on(table.userId),
+    // The insights dashboard's "codes redeemed this month" count, filtered
+    // on the date alone with no code or user in the predicate.
+    index("gift_code_redemptions_redeemed_at_idx").on(table.redeemedAt),
   ],
 );
 

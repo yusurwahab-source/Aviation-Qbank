@@ -3,7 +3,8 @@
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
-import { MAX_GENERATE_COUNT, generate, type GenerateState } from "./actions";
+import { generate, type GenerateState } from "./actions";
+import { MAX_GENERATE_COUNT } from "./constants";
 
 function SubmitButton() {
   const { pending } = useFormStatus();

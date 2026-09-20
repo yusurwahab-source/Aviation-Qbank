@@ -6,14 +6,12 @@ import { createGiftCodes, disableGiftCode } from "@/db/gift-codes";
 import { listAircraft } from "@/db/queries";
 import { ownerAction } from "@/lib/owner/audited-action";
 
+import { MAX_GENERATE_COUNT } from "./constants";
+
 export type GenerateState = {
   error?: string;
   codes?: string[];
 };
-
-/** However many codes one generation may mint at once — the brief's own
- * bulk-generation ceiling. */
-export const MAX_GENERATE_COUNT = 200;
 
 const AIRCRAFT_CODE_PATTERN = /^[A-Z][A-Z0-9]{1,7}$/;
 
