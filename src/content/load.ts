@@ -123,7 +123,11 @@ export function loadContent(contentDir: string = CONTENT_DIR): ContentLoadResult
 
   for (const folder of folders) {
     const dir = path.join(contentDir, folder);
-    const manifestFile = path.join(dir, "aircraft.json");
+    const aircraftManifestFile = path.join(dir, "aircraft.json");
+    const knowledgeManifestFile = path.join(dir, "knowledge.json");
+    const manifestFile = statSync(aircraftManifestFile, { throwIfNoEntry: false })?.isFile()
+      ? aircraftManifestFile
+      : knowledgeManifestFile;
 
     const manifestJson = readJson(manifestFile);
     if ("error" in manifestJson) {
@@ -138,7 +142,10 @@ export function loadContent(contentDir: string = CONTENT_DIR): ContentLoadResult
     }
     const manifest = manifestResult.data;
 
-    if (folder !== manifest.code.toLowerCase()) {
+    const folderMatchesCode = folder === manifest.code.toLowerCase();
+    const folderMatchesKnowledge =
+      manifest.category === "flying-knowledge" && folder === "flying-knowledge";
+    if (!folderMatchesCode && !folderMatchesKnowledge) {
       issues.push({
         file: relative(manifestFile),
         path: "code",

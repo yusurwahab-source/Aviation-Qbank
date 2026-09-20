@@ -26,12 +26,18 @@ import type { QuestionOption } from "@/content/schema";
 
 export const aircraftStatus = pgEnum("aircraft_status", ["active", "coming_soon"]);
 export const questionStatus = pgEnum("question_status", ["draft", "published"]);
+export const contentCategory = pgEnum("content_category", [
+  "type-rating",
+  "light-aircraft",
+  "flying-knowledge",
+]);
 /** Mirrors `TEST_MODES` in `src/lib/test-options.ts` — the one other place this shape exists. */
 export const testMode = pgEnum("test_mode", ["study", "exam"]);
 
 export const aircraft = pgTable("aircraft", {
   /** Short type code, e.g. DA40. Also the URL segment: /aircraft/DA40. */
   code: varchar("code", { length: 8 }).primaryKey(),
+  category: contentCategory("category").notNull().default("type-rating"),
   name: varchar("name", { length: 120 }).notNull(),
   manufacturer: varchar("manufacturer", { length: 120 }).notNull(),
   variant: varchar("variant", { length: 60 }),
@@ -51,6 +57,7 @@ export const questions = pgTable(
     aircraftCode: varchar("aircraft_code", { length: 8 })
       .notNull()
       .references(() => aircraft.code, { onDelete: "cascade" }),
+    category: contentCategory("category").notNull().default("type-rating"),
     topic: varchar("topic", { length: 60 }).notNull(),
     subtopic: varchar("subtopic", { length: 60 }),
     question: text("question").notNull(),

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -25,6 +25,7 @@ type NavLink = { href: string; label: string };
 export function MobileNav({ email, links }: { email: string | null; links: NavLink[] }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [shownFor, setShownFor] = useState(pathname);
 
   // Following a link inside the sheet has to close it: the route changes
@@ -128,15 +129,13 @@ export function MobileNav({ email, links }: { email: string | null; links: NavLi
 
                 <nav className="mt-3 flex flex-col">
                   {links.map((link) => (
-                    <Link
+                    <LinkItem
                       key={link.href}
                       href={link.href}
-                      className={`tap-target flex items-center border-b border-border text-base font-medium transition hover:text-brand ${
-                        pathname === link.href ? "text-brand" : "text-foreground"
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
+                      label={link.label}
+                      pathname={pathname}
+                      activeCategory={searchParams.get("category")}
+                    />
                   ))}
                 </nav>
 
@@ -178,5 +177,35 @@ export function MobileNav({ email, links }: { email: string | null; links: NavLi
           )
         : null}
     </>
+  );
+}
+
+function LinkItem({
+  href,
+  label,
+  pathname,
+  activeCategory,
+}: {
+  href: string;
+  label: string;
+  pathname: string;
+  activeCategory: string | null;
+}) {
+  const target = new URL(href, "https://holdshort.local");
+  const active =
+    pathname === target.pathname &&
+    (target.searchParams.has("category")
+      ? activeCategory === target.searchParams.get("category")
+      : true);
+
+  return (
+    <Link
+      href={href}
+      className={`tap-target flex items-center border-b border-border text-base font-medium transition hover:text-brand ${
+        active ? "text-brand" : "text-foreground"
+      }`}
+    >
+      {label}
+    </Link>
   );
 }
