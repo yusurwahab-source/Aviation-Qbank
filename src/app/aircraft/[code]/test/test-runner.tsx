@@ -14,6 +14,7 @@ import {
 
 import { FlagButton } from "@/components/flag-button";
 import { QuestionNote } from "@/components/question-note";
+import { ReportQuestionButton } from "@/components/report-question-button";
 import { Badge, Card } from "@/components/ui";
 import type { TestQuestion } from "@/db/queries";
 import { optionIndexForKey, shouldHandleShortcut } from "@/lib/keyboard-shortcuts";
@@ -30,6 +31,7 @@ import {
 import {
   answerQuestion,
   loadNote,
+  reportQuestion,
   saveNote,
   submitTest,
   toggleFlag,
@@ -656,9 +658,21 @@ export function TestRunner({
             <Badge tone="brand">{current.topic}</Badge>
             {current.subtopic ? <Badge>{current.subtopic}</Badge> : null}
           </div>
-          {isSignedIn ? (
-            <FlagButton flagged={flaggedIds.has(current.id)} onToggle={toggleCurrentFlag} />
-          ) : null}
+          <div className="flex flex-wrap items-center gap-2">
+            {isSignedIn ? (
+              <FlagButton flagged={flaggedIds.has(current.id)} onToggle={toggleCurrentFlag} />
+            ) : null}
+            <ReportQuestionButton
+              key={current.id}
+              onSubmit={({ reason, comment }) =>
+                reportQuestion({
+                  questionId: current.id,
+                  reason: reason as Parameters<typeof reportQuestion>[0]["reason"],
+                  comment,
+                })
+              }
+            />
+          </div>
         </div>
 
         <h1 className="question-text mt-4 font-semibold text-foreground">{current.question}</h1>

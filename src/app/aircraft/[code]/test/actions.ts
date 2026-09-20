@@ -6,6 +6,7 @@ import { recordTestResult, saveAnswer as saveAnswerRow } from "@/db/attempts";
 import { toggleQuestionFlag } from "@/db/flags";
 import { getQuestionNote, saveQuestionNote } from "@/db/notes";
 import { getAnswerKey } from "@/db/queries";
+import { createQuestionReport } from "@/db/question-reports";
 import {
   countQuestionsAnswered,
   getSubscription,
@@ -387,5 +388,43 @@ export async function loadNote(questionId: string): Promise<string> {
   } catch (error) {
     console.error("Failed to load a note:", error);
     return "";
+  }
+}
+
+const REPORT_REASONS = ["wrong_answer", "unclear", "typo", "outdated", "other"] as const;
+
+const reportSchema = z.object({
+  questionId: z.string().max(40),
+  reason: z.enum(REPORT_REASONS),
+  comment: z.string().max(1000),
+});
+
+/**
+ * "Report a problem" on the question currently on screen. Writes to
+ * `question_reports` only — nothing here touches `questions` itself; fixing
+ * a reported question is still the content-file-and-deploy workflow.
+ *
+ * Runs for a signed-out student too, the same as grading: practising
+ * without an account still means reading a question that might be wrong,
+ * and `userId` is nullable on this table for exactly that reason.
+ */
+export async function reportQuestion(
+  input: z.infer<typeof reportSchema>,
+): Promise<{ status: "reported" | "failed" }> {
+  try {
+    const { questionId, reason, comment } = reportSchema.parse(input);
+    const user = await getCurrentUser();
+
+    await createQuestionReport({
+      questionId,
+      userId: user?.id ?? null,
+      reason,
+      comment: comment.trim() === "" ? null : comment.trim(),
+    });
+
+    return { status: "reported" };
+  } catch (error) {
+    console.error("Failed to record a question report:", error);
+    return { status: "failed" };
   }
 }
