@@ -4,7 +4,7 @@ import { Card, PageHeading } from "@/components/ui";
 import { listAircraftInterest, tallyAircraftInterest } from "@/db/owner";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, OwnerPageError, formatDay, isNextControlFlowError } from "../owner-ui";
+import { DataTable, OwnerNav, OwnerPageError, describeError, formatDay, isNextControlFlowError } from "../owner-ui";
 
 export const metadata: Metadata = { title: "Aircraft requests" };
 export const dynamic = "force-dynamic";
@@ -30,7 +30,7 @@ export default async function OwnerInterestPage() {
       <>
         <PageHeading title="Aircraft requests" />
         <OwnerNav current="/owner/interest" />
-        <OwnerPageError detail={(error as Error).message} />
+        <OwnerPageError detail={describeError(error)} />
       </>
     );
   }

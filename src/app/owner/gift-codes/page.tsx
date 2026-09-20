@@ -7,7 +7,7 @@ import { listAircraft } from "@/db/queries";
 import { isGiftCodeExpired } from "@/lib/billing/gift-codes";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, OwnerPageError, formatDay, isNextControlFlowError } from "../owner-ui";
+import { DataTable, OwnerNav, OwnerPageError, describeError, formatDay, isNextControlFlowError } from "../owner-ui";
 import { DisableButton } from "./disable-button";
 import { GenerateForm } from "./generate-form";
 
@@ -34,7 +34,7 @@ export default async function OwnerGiftCodesPage() {
       <>
         <PageHeading title="Gift codes" />
         <OwnerNav current="/owner/gift-codes" />
-        <OwnerPageError detail={(error as Error).message} />
+        <OwnerPageError detail={describeError(error)} />
       </>
     );
   }

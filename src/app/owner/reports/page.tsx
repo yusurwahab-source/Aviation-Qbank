@@ -5,7 +5,7 @@ import { Badge, Card, EmptyState, PageHeading } from "@/components/ui";
 import { listQuestionReports, type ReportStatus } from "@/db/question-reports";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { OwnerNav, OwnerPageError, formatDay, isNextControlFlowError } from "../owner-ui";
+import { OwnerNav, OwnerPageError, describeError, formatDay, isNextControlFlowError } from "../owner-ui";
 import { ReportActions } from "./report-actions";
 
 export const metadata: Metadata = { title: "Reports" };
@@ -61,7 +61,7 @@ export default async function OwnerReportsPage({
       <>
         <PageHeading title="Reports" />
         <OwnerNav current="/owner/reports" />
-        <OwnerPageError detail={(error as Error).message} />
+        <OwnerPageError detail={describeError(error)} />
       </>
     );
   }

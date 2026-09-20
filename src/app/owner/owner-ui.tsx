@@ -197,9 +197,80 @@ export function isNextControlFlowError(error: unknown): boolean {
   );
 }
 
-/** One date, formatted the same way everywhere in this area. */
-export function formatDay(date: Date): string {
-  return date.toLocaleDateString(undefined, {
+/**
+ * Runs one owner page and, if anything it does throws, renders `fallback`
+ * instead — with the failure described, and with a 200 rather than a 500.
+ *
+ * The status code is the whole point, and it is why `error.tsx` beside this
+ * file is not enough on its own. A throw that reaches Next is answered with
+ * a 500 whose body is an empty `__next_error__` shell that only becomes the
+ * error boundary once the browser has run the page's JavaScript. Safari
+ * showing an installed web app never gets that far: it replaces a 5xx with
+ * its own "a server error occurred" screen and the digest number, which
+ * names nothing and offers no way back. Catching here means the response is
+ * an ordinary page, so there is nothing for the browser to override.
+ *
+ * `render` is a function rather than JSX so that everything a page does on
+ * the way to its markup — the `.map` over its rows, a date formatted, a
+ * total divided — happens inside the `try`. A page's own `try` around its
+ * `await`s ends before its `return`, which leaves exactly the step where it
+ * first meets real data outside any handler it can write.
+ *
+ * Next's own control-flow signals pass straight through: `requireOwner()`
+ * raises `notFound()` for anyone who is not the owner, and that is a working
+ * 404, not a failure to report.
+ */
+export async function renderOwnerPage(
+  render: () => Promise<ReactNode>,
+  fallback: (detail: string) => ReactNode,
+): Promise<ReactNode> {
+  try {
+    return await render();
+  } catch (error) {
+    if (isNextControlFlowError(error)) throw error;
+    console.error("An owner page failed:", error);
+    return fallback(describeError(error));
+  }
+}
+
+/**
+ * As much of what went wrong as can be put on a screen.
+ *
+ * `(error as Error).message` alone is not enough here: a Postgres driver
+ * error carries the part that actually identifies the fault — the SQLSTATE
+ * `code`, and the `detail`/`column`/`table` naming what the database
+ * objected to — on its own fields, and a value thrown that is not an `Error`
+ * at all has no `message` to read, which used to render an empty box. This
+ * area has one reader, trying to operate the live site with no access to a
+ * server log, so it gets the whole thing.
+ */
+export function describeError(error: unknown): string {
+  if (!(error instanceof Error)) return `Non-error thrown: ${String(error)}`;
+
+  const extras = (["code", "detail", "table", "column", "constraint"] as const)
+    .map((key) => {
+      const value = (error as unknown as Record<string, unknown>)[key];
+      return typeof value === "string" && value !== "" ? `${key}: ${value}` : null;
+    })
+    .filter((line) => line !== null);
+
+  return [`${error.name}: ${error.message}`, ...extras].join("\n");
+}
+
+/**
+ * One date, formatted the same way everywhere in this area.
+ *
+ * Tolerates a missing or unparseable value rather than throwing on it. The
+ * type says `Date`, but these rows come from the database, and a column that
+ * is null in practice — or a driver handing back a string where a `Date` was
+ * expected — would otherwise throw *while the page's JSX is being built*,
+ * which is past the point any of this area's own error handling can reach.
+ */
+export function formatDay(date: Date | string | null | undefined): string {
+  if (date === null || date === undefined) return "—";
+  const value = date instanceof Date ? date : new Date(date);
+  if (Number.isNaN(value.getTime())) return "—";
+  return value.toLocaleDateString(undefined, {
     day: "numeric",
     month: "short",
     year: "numeric",

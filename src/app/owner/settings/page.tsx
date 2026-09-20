@@ -4,7 +4,7 @@ import { Card, PageHeading } from "@/components/ui";
 import { getSiteSettings } from "@/db/settings";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { OwnerNav, OwnerPageError, isNextControlFlowError } from "../owner-ui";
+import { OwnerNav, OwnerPageError, describeError, isNextControlFlowError } from "../owner-ui";
 import { SettingsForm } from "./settings-form";
 
 export const metadata: Metadata = { title: "Settings" };
@@ -30,7 +30,7 @@ export default async function OwnerSettingsPage() {
       <>
         <PageHeading title="Settings" />
         <OwnerNav current="/owner/settings" />
-        <OwnerPageError detail={(error as Error).message} />
+        <OwnerPageError detail={describeError(error)} />
       </>
     );
   }

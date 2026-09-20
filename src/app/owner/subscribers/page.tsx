@@ -5,7 +5,7 @@ import { listSubscribers } from "@/db/owner";
 import { daysRemaining, hasActiveSubscription } from "@/lib/billing/access-policy";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, OwnerPageError, formatDay, isNextControlFlowError } from "../owner-ui";
+import { DataTable, OwnerNav, OwnerPageError, describeError, formatDay, isNextControlFlowError } from "../owner-ui";
 
 export const metadata: Metadata = { title: "Subscribers" };
 export const dynamic = "force-dynamic";
@@ -30,7 +30,7 @@ export default async function OwnerSubscribersPage() {
       <>
         <PageHeading title="Subscribers" />
         <OwnerNav current="/owner/subscribers" />
-        <OwnerPageError detail={(error as Error).message} />
+        <OwnerPageError detail={describeError(error)} />
       </>
     );
   }
