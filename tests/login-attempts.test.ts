@@ -36,7 +36,13 @@ describeWithDb("login attempt counting", () => {
   afterEach(async () => {
     await db
       .delete(loginAttempts)
-      .where(inArray(loginAttempts.key, [limiter.ipKey(ip), limiter.emailKey(email)]));
+      .where(
+        inArray(loginAttempts.key, [
+          limiter.ipKey(ip),
+          limiter.emailKey(email),
+          limiter.previewIpKey(ip),
+        ]),
+      );
   });
 
   afterAll(async () => {
@@ -184,6 +190,38 @@ describeWithDb("login attempt counting", () => {
     await db
       .delete(loginAttempts)
       .where(inArray(loginAttempts.key, [limiter.resetIpKey(ip), limiter.resetEmailKey(email)]));
+  });
+
+  /**
+   * The signed-out answer limit. Unlike every other rule here it counts
+   * successes, not failures, because a signed-out answer succeeding is
+   * exactly the thing being metered — it is what stopped the whole bank
+   * being readable by a script that simply never kept a cookie.
+   */
+  it("allows signed-out answers up to the limit, then refuses", async () => {
+    for (let i = 0; i < RATE_LIMIT_RULES.previewPerIp.maxFailures; i += 1) {
+      expect((await limiter.checkPreviewAllowed(ip)).allowed).toBe(true);
+      await limiter.recordPreviewRequest(ip);
+    }
+
+    const blocked = await limiter.checkPreviewAllowed(ip);
+    expect(blocked.allowed).toBe(false);
+    if (!blocked.allowed) {
+      // Never a permanent lock: the wait is inside the rule's own window.
+      expect(blocked.retryAfterMs).toBeGreaterThan(0);
+      expect(blocked.retryAfterMs).toBeLessThanOrEqual(RATE_LIMIT_RULES.previewPerIp.windowMs);
+    }
+  });
+
+  it("counts signed-out answers in their own bucket, not against log in", async () => {
+    for (let i = 0; i < RATE_LIMIT_RULES.previewPerIp.maxFailures; i += 1) {
+      await limiter.recordPreviewRequest(ip);
+    }
+
+    // Spending the whole preview allowance must not cost this address its
+    // ability to log in — the same separation reset requests already keep.
+    expect((await limiter.checkLoginAllowed(ip, email)).allowed).toBe(true);
+    expect((await limiter.checkPreviewAllowed(ip)).allowed).toBe(false);
   });
 });
 

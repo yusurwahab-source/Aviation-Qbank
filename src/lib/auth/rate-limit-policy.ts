@@ -84,6 +84,27 @@ export const RATE_LIMIT_RULES = {
    * is signed in as.
    */
   redeemPerIp: { maxFailures: 30, windowMs: 15 * MINUTE } satisfies RateLimitRule,
+
+  /**
+   * Answers handed to a **signed-out** caller, per source address.
+   *
+   * The only rule here that is not about guessing a secret. What it bounds
+   * is a scripted scrape of the question bank: `answerQuestion` returns the
+   * correct option and the explanation for one question, and signed out
+   * there is no account to count that against — only a cookie the caller is
+   * free to drop. So this is the limit that actually holds, and the preview
+   * allowance beside it is the product rule it backs up.
+   *
+   * Counted per *request*, not per failure, the same as reset requests: a
+   * signed-out answer that succeeds is exactly the thing being metered.
+   *
+   * Forty in fifteen minutes is far more than the preview allowance itself
+   * (five questions on one aircraft), so several genuine visitors behind one
+   * office or airline NAT are unaffected, while reading an 800-question bank
+   * this way would take a scraper the better part of a day rather than a
+   * couple of minutes.
+   */
+  previewPerIp: { maxFailures: 40, windowMs: 15 * MINUTE } satisfies RateLimitRule,
 } as const;
 
 /**

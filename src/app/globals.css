@@ -375,10 +375,33 @@ body {
 }
 
 /* Long content — a reference table, a wide code sample — scrolls inside its
- * own box rather than pushing the page sideways. */
+ * own box rather than pushing the page sideways.
+ *
+ * `contain: paint` is what actually makes that true, and it is not belt and
+ * braces. `overflow-x: auto` alone gives the box its own scrollbar but still
+ * lets the overflow count toward the *document's* scrollable width, so the
+ * page itself grows sideways to fit content that is already scrolling
+ * somewhere else — measured on the landing page's systems strip, where
+ * fifteen cards made a 375px page report 3836px wide. Containment stops the
+ * overflow at this box, which is the whole point of the class.
+ *
+ * `html { overflow-x: clip }` would have hidden the symptom. It is a safety
+ * net, and the rule in CLAUDE.md is that overflows get solved where they
+ * happen — this is where this one happens. */
 .scroll-x {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  contain: paint;
+}
+
+/* A row of cards flicked through with a thumb: the same containment as
+ * `.scroll-x`, plus snapping, so a card always comes to rest at the gutter
+ * rather than half off the screen. */
+.scroll-strip {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  contain: paint;
+  scroll-snap-type: x mandatory;
 }
 
 @media (prefers-reduced-motion: reduce) {

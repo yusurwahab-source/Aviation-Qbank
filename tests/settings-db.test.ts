@@ -19,6 +19,7 @@ const describeDb = process.env.DATABASE_URL ? describe : describe.skip;
 
 const base = {
   freeQuestionsPerAircraft: 5,
+  previewQuestionsSignedOut: 3,
   announcement: "Testing",
   passMarkPercent: 80,
   featuredAircraftCode: "B737",
@@ -55,9 +56,10 @@ describeDb("site settings", () => {
     });
 
     const rows = await getDb().select().from(siteSettings);
-    // Five keys, not ten — the second save updated the existing rows.
-    expect(rows).toHaveLength(5);
+    // Six keys, not twelve — the second save updated the existing rows.
+    expect(rows).toHaveLength(6);
     expect(await getSiteSettings()).toEqual({
+      ...base,
       freeQuestionsPerAircraft: 15,
       announcement: "Second",
       passMarkPercent: 90,

@@ -32,6 +32,7 @@ export const updateSettings = ownerAction<SettingsState, SiteSettings>({
   parse(formData) {
     const validated = validateSettings({
       freeQuestionsPerAircraft: formData.get("freeQuestionsPerAircraft"),
+      previewQuestionsSignedOut: formData.get("previewQuestionsSignedOut"),
       announcement: formData.get("announcement"),
       passMarkPercent: formData.get("passMarkPercent"),
       featuredAircraftCode: formData.get("featuredAircraftCode"),

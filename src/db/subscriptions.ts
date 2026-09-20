@@ -1,6 +1,6 @@
 import "server-only";
 
-import { and, eq, sql } from "drizzle-orm";
+import { and, eq, inArray, sql } from "drizzle-orm";
 
 import { getDb } from "@/db";
 import { attempts, subscriptions } from "@/db/schema";
@@ -60,6 +60,29 @@ export async function hasAnsweredQuestionBefore(
     .where(and(eq(attempts.userId, userId), eq(attempts.questionId, questionId)))
     .limit(1);
   return row !== undefined;
+}
+
+/**
+ * Which of these questions this user has already answered at some point.
+ *
+ * The set form of `hasAnsweredQuestionBefore`, for the one caller that needs
+ * to ask about a whole test at once rather than one question at a time:
+ * `submitTest` deciding which answers it may hand back. One query for the
+ * lot, because a test may be the whole bank and a query per question would
+ * not survive that.
+ */
+export async function answeredQuestionIdsAmong(
+  userId: string,
+  questionIds: string[],
+): Promise<Set<string>> {
+  if (questionIds.length === 0) return new Set();
+
+  const rows = await getDb()
+    .selectDistinct({ questionId: attempts.questionId })
+    .from(attempts)
+    .where(and(eq(attempts.userId, userId), inArray(attempts.questionId, questionIds)));
+
+  return new Set(rows.map((row) => row.questionId));
 }
 
 /**

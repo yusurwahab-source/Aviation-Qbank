@@ -13,10 +13,12 @@ import {
   type AircraftSummary,
   type TopicSummary,
 } from "@/db/queries";
+import { countPreviewQuestionsAnswered } from "@/db/preview";
 import { getQuestionIdsToRetry, getTopicPerformance } from "@/db/reports";
 import { countQuestionsAnswered, getSubscription } from "@/db/subscriptions";
 import { hasActiveSubscription, remainingFreeQuestions } from "@/lib/billing/access-policy";
 import { getSiteSettings } from "@/db/settings";
+import { getPreviewVisitorId } from "@/lib/auth/preview-visitor";
 import { getCurrentUser } from "@/lib/auth/session";
 import { PRESET_COUNT_CEILING } from "@/lib/test-options";
 
@@ -39,14 +41,20 @@ export default async function AircraftPage({ params }: PageProps) {
   let topics: TopicSummary[];
   let incompleteSession: IncompleteSession | null = null;
   /**
-   * How many free questions a signed-in, unsubscribed student has left on
-   * this aircraft — null means unlimited (subscribed, or signed out, which
-   * is never metered; see the note in CLAUDE.md). Passed down so the
-   * builder can never advertise more questions than `/test` will actually
-   * deliver — the same "the button never promises more than it delivers"
-   * rule the section counts already follow.
+   * How many questions of the caller's allowance are left on this aircraft
+   * — null means unlimited, which now only means an active subscription.
+   * Passed down so the builder can never advertise more questions than
+   * `/test` will actually deliver — the same "the button never promises
+   * more than it delivers" rule the section counts already follow.
+   *
+   * Signed out this is the preview allowance, and it used to be null: the
+   * builder offered a visitor with no account the whole bank, and `/test`
+   * duly handed it over. Both ends are metered now.
    */
   let remainingFree: number | null = null;
+  /** Which allowance the number above is, so the builder knows whether the
+   * way past it is a subscription or an account. */
+  let allowanceKind: "free-tier" | "preview" = "free-tier";
   /**
    * The builder's quick presets, or null signed out — there is no history
    * to build "my weak systems" or "questions I got wrong" from, the same
@@ -90,6 +98,17 @@ export default async function AircraftPage({ params }: PageProps) {
         wrongCount: wrongIds.length,
         unseenCount: Math.min(unseenCount, PRESET_COUNT_CEILING),
       };
+    } else {
+      // Signed out: the same figure against the preview allowance. Reading
+      // the cookie is all a server component may do — no id yet simply
+      // means nothing has been previewed, which is the honest starting
+      // point. `answerQuestion` mints one when the first question is spent.
+      allowanceKind = "preview";
+      const [visitorId, settings] = await Promise.all([getPreviewVisitorId(), getSiteSettings()]);
+      const previewed = visitorId
+        ? await countPreviewQuestionsAnswered(visitorId, aircraftCode)
+        : 0;
+      remainingFree = remainingFreeQuestions(previewed, settings.previewQuestionsSignedOut);
     }
   } catch (error) {
     return (
@@ -138,6 +157,7 @@ export default async function AircraftPage({ params }: PageProps) {
               aircraftCode={plane.code}
               topics={topics}
               remainingFree={remainingFree}
+              allowanceKind={allowanceKind}
               presets={presets}
             />
           </Card>

@@ -17,7 +17,7 @@ import { FinalCta } from "./_landing/final-cta";
 import type { HeroStats } from "./_landing/hero";
 import { Hero } from "./_landing/hero";
 import { HowItWorks } from "./_landing/how-it-works";
-import { SystemsGrid } from "./_landing/systems-grid";
+import { SystemsStrip } from "./_landing/systems-strip";
 import { Trust } from "./_landing/trust";
 
 /**
@@ -113,16 +113,19 @@ export default async function LandingPage() {
   return (
     <div className="flex flex-col gap-16 sm:gap-24">
       <Hero stats={heroStats} featuredAircraftCode={featuredAircraftCode} />
-      <Trust />
 
+      {/* Directly under the hero, because it is the only section on this
+          page a student can actually start from: every other one explains
+          the product, and this one hands them a test. */}
       {bankAvailable ? (
-        <SystemsGrid aircraftCode={featuredAircraftCode} topics={topics} />
+        <SystemsStrip aircraftCode={featuredAircraftCode} topics={topics} />
       ) : (
         <section id="whats-inside" className="scroll-mt-20">
           <DatabaseUnavailable />
         </section>
       )}
 
+      <Trust />
       <HowItWorks />
       <Features />
 

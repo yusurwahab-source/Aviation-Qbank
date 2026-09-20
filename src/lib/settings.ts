@@ -1,4 +1,7 @@
-import { FREE_QUESTIONS_PER_AIRCRAFT } from "@/lib/billing/access-policy";
+import {
+  FREE_QUESTIONS_PER_AIRCRAFT,
+  PREVIEW_QUESTIONS_SIGNED_OUT,
+} from "@/lib/billing/access-policy";
 
 /**
  * What the owner may change from the website, and what each value is allowed
@@ -26,6 +29,11 @@ import { FREE_QUESTIONS_PER_AIRCRAFT } from "@/lib/billing/access-policy";
 export type SiteSettings = {
   /** How many questions a signed-in student may answer free, per aircraft. */
   freeQuestionsPerAircraft: number;
+  /** How many questions a *signed-out* visitor may be shown the answer to,
+   * per aircraft, before they have to make an account. A separate and much
+   * smaller allowance than the one above — see `PREVIEW_QUESTIONS_SIGNED_OUT`
+   * in `access-policy.ts` for why the two are not the same number. */
+  previewQuestionsSignedOut: number;
   /** One line shown to everyone, above the page. Empty means no banner. */
   announcement: string;
   /** Whole-number percentage a test result needs to reach to show as a pass
@@ -48,6 +56,7 @@ export type SiteSettings = {
 
 export const SETTING_KEYS = {
   freeQuestionsPerAircraft: "free_questions_per_aircraft",
+  previewQuestionsSignedOut: "preview_questions_signed_out",
   announcement: "announcement",
   passMarkPercent: "pass_mark_percent",
   featuredAircraftCode: "featured_aircraft_code",
@@ -68,6 +77,7 @@ const DEFAULT_AIRCRAFT_IN_DEVELOPMENT: readonly string[] = ["DA40"];
 /** The behaviour of this app with an empty `site_settings` table. */
 export const DEFAULT_SETTINGS: SiteSettings = {
   freeQuestionsPerAircraft: FREE_QUESTIONS_PER_AIRCRAFT,
+  previewQuestionsSignedOut: PREVIEW_QUESTIONS_SIGNED_OUT,
   announcement: "",
   passMarkPercent: DEFAULT_PASS_MARK_PERCENT,
   featuredAircraftCode: DEFAULT_FEATURED_AIRCRAFT_CODE,
@@ -112,6 +122,7 @@ export type SettingsValidation =
  */
 export function validateSettings(input: {
   freeQuestionsPerAircraft: unknown;
+  previewQuestionsSignedOut: unknown;
   announcement: unknown;
   passMarkPercent: unknown;
   featuredAircraftCode: unknown;
@@ -132,6 +143,21 @@ export function validateSettings(input: {
     return {
       ok: false,
       error: `Free questions must be a whole number from 0 to ${MAX_FREE_QUESTIONS}.`,
+    };
+  }
+
+  const preview = Number(input.previewQuestionsSignedOut);
+
+  if (
+    typeof input.previewQuestionsSignedOut !== "string" ||
+    input.previewQuestionsSignedOut.trim() === "" ||
+    !Number.isInteger(preview) ||
+    preview < 0 ||
+    preview > MAX_FREE_QUESTIONS
+  ) {
+    return {
+      ok: false,
+      error: `Signed-out preview questions must be a whole number from 0 to ${MAX_FREE_QUESTIONS}.`,
     };
   }
 
@@ -199,6 +225,7 @@ export function validateSettings(input: {
     ok: true,
     settings: {
       freeQuestionsPerAircraft: free,
+      previewQuestionsSignedOut: preview,
       announcement,
       passMarkPercent: passMark,
       featuredAircraftCode,
@@ -225,6 +252,9 @@ export function parseSettings(rows: { key: string; value: string }[]): SiteSetti
   const rawFree = stored.get(SETTING_KEYS.freeQuestionsPerAircraft);
   const free = rawFree === undefined ? Number.NaN : Number(rawFree);
 
+  const rawPreview = stored.get(SETTING_KEYS.previewQuestionsSignedOut);
+  const preview = rawPreview === undefined ? Number.NaN : Number(rawPreview);
+
   const rawAnnouncement = stored.get(SETTING_KEYS.announcement) ?? "";
 
   const rawPassMark = stored.get(SETTING_KEYS.passMarkPercent);
@@ -250,6 +280,10 @@ export function parseSettings(rows: { key: string; value: string }[]): SiteSetti
       Number.isInteger(free) && free >= 0 && free <= MAX_FREE_QUESTIONS
         ? free
         : DEFAULT_SETTINGS.freeQuestionsPerAircraft,
+    previewQuestionsSignedOut:
+      Number.isInteger(preview) && preview >= 0 && preview <= MAX_FREE_QUESTIONS
+        ? preview
+        : DEFAULT_SETTINGS.previewQuestionsSignedOut,
     announcement: rawAnnouncement.trim().slice(0, MAX_ANNOUNCEMENT_LENGTH),
     passMarkPercent:
       Number.isInteger(passMark) &&
@@ -268,6 +302,10 @@ export function settingsToRows(settings: SiteSettings): { key: string; value: st
     {
       key: SETTING_KEYS.freeQuestionsPerAircraft,
       value: String(settings.freeQuestionsPerAircraft),
+    },
+    {
+      key: SETTING_KEYS.previewQuestionsSignedOut,
+      value: String(settings.previewQuestionsSignedOut),
     },
     { key: SETTING_KEYS.announcement, value: settings.announcement },
     { key: SETTING_KEYS.passMarkPercent, value: String(settings.passMarkPercent) },

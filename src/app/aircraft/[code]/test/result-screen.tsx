@@ -28,6 +28,7 @@ export function ResultScreen({
   timeLimitSeconds,
   flaggedIds,
   onToggleFlag,
+  withheld,
 }: {
   aircraftCode: string;
   aircraftName: string;
@@ -46,6 +47,11 @@ export function ResultScreen({
    * tracking, carried through rather than re-fetched. */
   flaggedIds: ReadonlySet<string>;
   onToggleFlag: (questionId: string) => void;
+  /** How many of the reviewed questions had their answer held back, and
+   * why — null for a subscriber and for any test inside an allowance,
+   * which is every ordinary one. See `entitledAnswerKeyIds` in
+   * `actions.ts`. */
+  withheld: { count: number; reason: "preview" | "free-tier" } | null;
 }) {
   const passed = result.percentage >= passMarkPercent;
   // Weakest first is already how `byTopic` is sorted — the callout just
@@ -154,6 +160,14 @@ export function ResultScreen({
 
       <section className="mt-8">
         <h2 className="text-sm font-semibold text-foreground">Review every question</h2>
+        {withheld ? (
+          <p className="mt-1 text-sm text-muted-foreground">
+            {withheld.count} {withheld.count === 1 ? "answer is" : "answers are"} held back:
+            this test was longer than your{" "}
+            {withheld.reason === "preview" ? "preview" : "free allowance"} on {aircraftCode}.
+            Everything else below is complete.
+          </p>
+        ) : null}
         <ul className="mt-3 space-y-4">
           {result.graded.map((entry, position) => (
             <li key={entry.question.id}>
@@ -162,6 +176,7 @@ export function ResultScreen({
                 position={position + 1}
                 aircraftCode={aircraftCode}
                 isSignedIn={isSignedIn}
+                withheldReason={withheld?.reason ?? null}
                 flagged={flaggedIds.has(entry.question.id)}
                 onToggleFlag={() => onToggleFlag(entry.question.id)}
               />
@@ -297,6 +312,7 @@ function ReviewCard({
   position,
   aircraftCode,
   isSignedIn,
+  withheldReason,
   flagged,
   onToggleFlag,
 }: {
@@ -304,6 +320,9 @@ function ReviewCard({
   position: number;
   aircraftCode: string;
   isSignedIn: boolean;
+  /** Why this card might have no answer on it. Only read when the entry
+   * itself is marked withheld. */
+  withheldReason: "preview" | "free-tier" | null;
   flagged: boolean;
   onToggleFlag: () => void;
 }) {
@@ -364,17 +383,47 @@ function ReviewCard({
         })}
       </ul>
 
-      <div className="mt-3 rounded-lg bg-surface-muted p-3">
-        <p className="font-reading text-sm text-foreground">{question.explanation}</p>
-        {question.reference ? (
-          <p className="mt-2 flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
-            Reference
-            <span className="rounded border border-border bg-surface px-2 py-0.5 font-mono text-foreground">
-              {question.reference}
-            </span>
+      {entry.withheld ? (
+        // The key was stripped before this ever reached the browser — see
+        // `withholdAnswerKey`. Nothing here infers it; the card simply says
+        // so, and points at the one thing that changes it.
+        <div className="mt-3 rounded-lg border border-dashed border-border bg-surface-muted p-3">
+          <p className="text-sm font-medium text-foreground">
+            The answer to this one needs an account.
           </p>
-        ) : null}
-      </div>
+          <p className="mt-1 text-sm text-muted-foreground">
+            {withheldReason === "free-tier" ? (
+              <>
+                You&apos;ve used your free questions on {aircraftCode}.{" "}
+                <Link href="/upgrade" className="font-medium text-brand hover:underline">
+                  Subscribe
+                </Link>{" "}
+                to see every answer and explanation.
+              </>
+            ) : (
+              <>
+                This was past the {aircraftCode} preview.{" "}
+                <Link href="/signup" className="font-medium text-brand hover:underline">
+                  Create a free account
+                </Link>{" "}
+                to keep going.
+              </>
+            )}
+          </p>
+        </div>
+      ) : (
+        <div className="mt-3 rounded-lg bg-surface-muted p-3">
+          <p className="font-reading text-sm text-foreground">{question.explanation}</p>
+          {question.reference ? (
+            <p className="mt-2 flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
+              Reference
+              <span className="rounded border border-border bg-surface px-2 py-0.5 font-mono text-foreground">
+                {question.reference}
+              </span>
+            </p>
+          ) : null}
+        </div>
+      )}
 
       {isSignedIn ? (
         <div className="mt-3 flex flex-wrap items-start gap-2">
