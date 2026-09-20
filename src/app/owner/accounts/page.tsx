@@ -6,7 +6,7 @@ import { ACCOUNTS_PAGE_SIZE, listAccounts, type AccountStatusFilter } from "@/db
 import { daysRemaining, hasActiveSubscription } from "@/lib/billing/access-policy";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, OwnerPageError, formatDay } from "../owner-ui";
+import { DataTable, OwnerNav, OwnerPageError, formatDay, isNextControlFlowError } from "../owner-ui";
 import { AccessForm } from "./access-form";
 
 export const metadata: Metadata = { title: "Accounts" };
@@ -40,8 +40,6 @@ export default async function OwnerAccountsPage({
 }: {
   searchParams: Promise<{ q?: string | string[]; status?: string | string[]; page?: string | string[] }>;
 }) {
-  await requireOwner();
-
   const query = await searchParams;
   const search = firstOf(query.q);
   const rawStatus = firstOf(query.status);
@@ -54,6 +52,7 @@ export default async function OwnerAccountsPage({
   let accounts: Awaited<ReturnType<typeof listAccounts>>["rows"];
   let total: number;
   try {
+    await requireOwner();
     ({ rows: accounts, total } = await listAccounts({
       search: search || null,
       statusFilter,
@@ -61,6 +60,7 @@ export default async function OwnerAccountsPage({
       offset,
     }));
   } catch (error) {
+    if (isNextControlFlowError(error)) throw error;
     console.error("Failed to list accounts:", error);
     return (
       <>

@@ -4,7 +4,7 @@ import { Card, PageHeading } from "@/components/ui";
 import { listAircraftInterest, tallyAircraftInterest } from "@/db/owner";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, OwnerPageError, formatDay } from "../owner-ui";
+import { DataTable, OwnerNav, OwnerPageError, formatDay, isNextControlFlowError } from "../owner-ui";
 
 export const metadata: Metadata = { title: "Aircraft requests" };
 export const dynamic = "force-dynamic";
@@ -18,13 +18,13 @@ export const dynamic = "force-dynamic";
  * for telling those people when their type ships.
  */
 export default async function OwnerInterestPage() {
-  await requireOwner();
-
   let tally: Awaited<ReturnType<typeof tallyAircraftInterest>>;
   let rows: Awaited<ReturnType<typeof listAircraftInterest>>;
   try {
+    await requireOwner();
     [tally, rows] = await Promise.all([tallyAircraftInterest(), listAircraftInterest()]);
   } catch (error) {
+    if (isNextControlFlowError(error)) throw error;
     console.error("Failed to load aircraft interest:", error);
     return (
       <>

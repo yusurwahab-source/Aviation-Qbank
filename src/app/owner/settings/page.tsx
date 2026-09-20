@@ -4,7 +4,7 @@ import { Card, PageHeading } from "@/components/ui";
 import { getSiteSettings } from "@/db/settings";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { OwnerNav } from "../owner-ui";
+import { OwnerNav, OwnerPageError, isNextControlFlowError } from "../owner-ui";
 import { SettingsForm } from "./settings-form";
 
 export const metadata: Metadata = { title: "Settings" };
@@ -18,7 +18,22 @@ export const dynamic = "force-dynamic";
  * file describes — the free allowance, and a line of text for everyone.
  */
 export default async function OwnerSettingsPage() {
-  await requireOwner();
+  // getSiteSettings() already falls back to defaults on its own failure —
+  // the one thing left exposed here is requireOwner() itself, if
+  // getCurrentUser() cannot reach the database.
+  try {
+    await requireOwner();
+  } catch (error) {
+    if (isNextControlFlowError(error)) throw error;
+    console.error("Failed to verify the owner for /owner/settings:", error);
+    return (
+      <>
+        <PageHeading title="Settings" />
+        <OwnerNav current="/owner/settings" />
+        <OwnerPageError detail={(error as Error).message} />
+      </>
+    );
+  }
   const settings = await getSiteSettings();
 
   return (

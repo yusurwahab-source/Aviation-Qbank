@@ -7,7 +7,7 @@ import { listAircraft } from "@/db/queries";
 import { isGiftCodeExpired } from "@/lib/billing/gift-codes";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, OwnerPageError, formatDay } from "../owner-ui";
+import { DataTable, OwnerNav, OwnerPageError, formatDay, isNextControlFlowError } from "../owner-ui";
 import { DisableButton } from "./disable-button";
 import { GenerateForm } from "./generate-form";
 
@@ -22,13 +22,13 @@ export const dynamic = "force-dynamic";
  * record of it was whatever the owner did with the printed output.
  */
 export default async function OwnerGiftCodesPage() {
-  await requireOwner();
-
   let codes: Awaited<ReturnType<typeof listGiftCodesWithCounts>>;
   let fleet: Awaited<ReturnType<typeof listAircraft>>;
   try {
+    await requireOwner();
     [codes, fleet] = await Promise.all([listGiftCodesWithCounts(), listAircraft()]);
   } catch (error) {
+    if (isNextControlFlowError(error)) throw error;
     console.error("Failed to load gift codes:", error);
     return (
       <>

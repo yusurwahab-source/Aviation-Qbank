@@ -5,7 +5,7 @@ import { listSubscribers } from "@/db/owner";
 import { daysRemaining, hasActiveSubscription } from "@/lib/billing/access-policy";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, OwnerPageError, formatDay } from "../owner-ui";
+import { DataTable, OwnerNav, OwnerPageError, formatDay, isNextControlFlowError } from "../owner-ui";
 
 export const metadata: Metadata = { title: "Subscribers" };
 export const dynamic = "force-dynamic";
@@ -19,12 +19,12 @@ export const dynamic = "force-dynamic";
  * sees, not what the column says.
  */
 export default async function OwnerSubscribersPage() {
-  await requireOwner();
-
   let rows: Awaited<ReturnType<typeof listSubscribers>>;
   try {
+    await requireOwner();
     rows = await listSubscribers();
   } catch (error) {
+    if (isNextControlFlowError(error)) throw error;
     console.error("Failed to list subscribers:", error);
     return (
       <>

@@ -7,7 +7,7 @@ import { getAccountDetail } from "@/db/owner";
 import { daysRemaining, hasActiveSubscription } from "@/lib/billing/access-policy";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, OwnerPageError, formatDay } from "../../owner-ui";
+import { DataTable, OwnerNav, OwnerPageError, formatDay, isNextControlFlowError } from "../../owner-ui";
 import { AccessForm } from "../access-form";
 import { NoteForm } from "../note-form";
 
@@ -29,13 +29,14 @@ export default async function OwnerAccountDetailPage({
 }: {
   params: Promise<{ userId: string }>;
 }) {
-  await requireOwner();
   const { userId } = await params;
 
   let account: Awaited<ReturnType<typeof getAccountDetail>>;
   try {
+    await requireOwner();
     account = await getAccountDetail(userId);
   } catch (error) {
+    if (isNextControlFlowError(error)) throw error;
     console.error("Failed to load an account's detail:", error);
     return (
       <>

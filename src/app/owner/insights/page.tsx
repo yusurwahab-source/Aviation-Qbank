@@ -13,7 +13,14 @@ import {
 import { EXPIRING_SOON_DAYS, listAircraftInterest, tallyAircraftInterest } from "@/db/owner";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, OwnerPageError, StatTile, formatDay } from "../owner-ui";
+import {
+  DataTable,
+  OwnerNav,
+  OwnerPageError,
+  StatTile,
+  formatDay,
+  isNextControlFlowError,
+} from "../owner-ui";
 
 export const metadata: Metadata = { title: "Insights" };
 export const dynamic = "force-dynamic";
@@ -59,8 +66,6 @@ function FunnelCard({ title, funnel }: { title: string; funnel: SignupFunnel }) 
  * content workflow, not a queue with buttons.
  */
 export default async function OwnerInsightsPage() {
-  await requireOwner();
-
   let funnel7: Awaited<ReturnType<typeof getSignupFunnel>>;
   let funnel30: Awaited<ReturnType<typeof getSignupFunnel>>;
   let access: Awaited<ReturnType<typeof getAccessSummary>>;
@@ -69,6 +74,7 @@ export default async function OwnerInsightsPage() {
   let interestTally: Awaited<ReturnType<typeof tallyAircraftInterest>>;
   let interestRows: Awaited<ReturnType<typeof listAircraftInterest>>;
   try {
+    await requireOwner();
     [funnel7, funnel30, access, quality, flagged, interestTally, interestRows] =
       await Promise.all([
         getSignupFunnel(7),
@@ -80,6 +86,7 @@ export default async function OwnerInsightsPage() {
         listAircraftInterest(20),
       ]);
   } catch (error) {
+    if (isNextControlFlowError(error)) throw error;
     console.error("Failed to load insights:", error);
     return (
       <>
