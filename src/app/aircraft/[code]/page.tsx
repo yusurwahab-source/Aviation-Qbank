@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { DatabaseUnavailable } from "@/components/database-unavailable";
+import { TestBuilder, type BuilderPresets } from "@/components/practice-test/test-builder";
 import { ResumeTestBanner } from "@/components/resume-test-banner";
 import { Card, EmptyState, PageHeading } from "@/components/ui";
 import { findIncompleteSession, type IncompleteSession } from "@/db/attempts";
@@ -21,8 +22,6 @@ import { getSiteSettings } from "@/db/settings";
 import { getPreviewVisitorId } from "@/lib/auth/preview-visitor";
 import { getCurrentUser } from "@/lib/auth/session";
 import { PRESET_COUNT_CEILING } from "@/lib/test-options";
-
-import { TestBuilder, type BuilderPresets } from "./test-builder";
 
 export const dynamic = "force-dynamic";
 
@@ -159,6 +158,7 @@ export default async function AircraftPage({ params }: PageProps) {
               remainingFree={remainingFree}
               allowanceKind={allowanceKind}
               presets={presets}
+              basePath="/aircraft"
             />
           </Card>
         )}

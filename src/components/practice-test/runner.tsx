@@ -17,11 +17,18 @@ import { QuestionIdTag } from "@/components/question-id-tag";
 import { QuestionNote } from "@/components/question-note";
 import { ReportQuestionButton } from "@/components/report-question-button";
 import { Badge, Card } from "@/components/ui";
-import type { TestQuestion } from "@/db/queries";
 import { optionIndexForKey, shouldHandleShortcut } from "@/lib/keyboard-shortcuts";
+import type {
+  AnswerVerdict,
+  PracticeQuestion,
+  PracticeTestActions,
+  PracticeTestResult,
+  ReportReason,
+} from "@/lib/practice-test-types";
 import { unansweredCount } from "@/lib/question-status";
 import { DEFAULT_PASS_MARK_PERCENT } from "@/lib/settings";
 import {
+  buildTestHrefFor,
   DEFAULT_TEST_MODE,
   formatClock,
   secondsLeft,
@@ -29,16 +36,6 @@ import {
   type TestMode,
 } from "@/lib/test-options";
 
-import {
-  answerQuestion,
-  loadNote,
-  reportQuestion,
-  saveNote,
-  submitTest,
-  toggleFlag,
-  type AnswerVerdict,
-  type SubmitTestOutput,
-} from "./actions";
 import { QuestionNav } from "./question-nav";
 import { ResultScreen } from "./result-screen";
 import { ShortcutsOverlay } from "./shortcuts-overlay";
@@ -67,6 +64,20 @@ export function TestRunner({
   aircraftName,
   questions,
   topics = [],
+  /** The six server actions this test runs against, supplied by the route
+   * hosting this runner — an aircraft's or a class rating's own
+   * `actions.ts`. The runner has no idea which. */
+  actions,
+  /** Where "Abandon test" and "Back to dashboard" go back to. */
+  backHref,
+  /**
+   * `/aircraft` or `/class` — builds the "retake wrong questions" / "new
+   * test on weakest system" links on the result screen. A plain string, not
+   * a `buildRetakeHref` function prop: see the note on `basePath` in
+   * `TestBuilder` for why a server page may not hand this component a pure
+   * function.
+   */
+  basePath,
   /**
    * Identifies this attempt at the test. Comes from `?t=` in the URL now,
    * rather than being minted inside the browser — that is what makes the
@@ -114,9 +125,12 @@ export function TestRunner({
 }: {
   aircraftCode: string;
   aircraftName: string;
-  questions: TestQuestion[];
+  questions: PracticeQuestion[];
   /** The sections the student chose. Empty means the whole bank. */
   topics?: string[];
+  actions: PracticeTestActions;
+  backHref: string;
+  basePath: string;
   clientTestId: string;
   initialAnswers?: Record<string, string>;
   initialVerdicts?: Record<string, AnswerVerdict>;
@@ -141,7 +155,7 @@ export function TestRunner({
   const [verdicts, setVerdicts] = useState<Record<string, AnswerVerdict>>(initialVerdicts);
   /** The question waiting on the server, so its options can show as busy. */
   const [pending, setPending] = useState<string | null>(null);
-  const [result, setResult] = useState<SubmitTestOutput | null>(null);
+  const [result, setResult] = useState<PracticeTestResult | null>(null);
   /** Captured once, at Finish — see the note beside `finish` below. */
   const [finishTiming, setFinishTiming] = useState<{
     takenSeconds: number;
@@ -276,7 +290,7 @@ export function TestRunner({
       setAnswers((previous) => ({ ...previous, [questionId]: optionId }));
       if (mode === "study") setPending(questionId);
 
-      void answerQuestion({
+      void actions.answerQuestion({
         aircraftCode,
         clientTestId,
         questionIds: questions.map((q) => q.id),
@@ -330,7 +344,7 @@ export function TestRunner({
           setPending((current) => (current === questionId ? null : current));
         });
     },
-    [aircraftCode, clientTestId, mode, questions, topics, verdicts],
+    [actions, aircraftCode, clientTestId, mode, questions, topics, verdicts],
   );
 
   const finish = useCallback(() => {
@@ -349,7 +363,7 @@ export function TestRunner({
     });
     startSubmitting(async () => {
       try {
-        const graded = await submitTest({
+        const graded = await actions.submitTest({
           aircraftCode,
           clientTestId,
           answers: questions.map((question) => ({
@@ -363,7 +377,7 @@ export function TestRunner({
         setError("Your test could not be marked. Check your connection and try again.");
       }
     });
-  }, [aircraftCode, answers, clientTestId, deadline, questions, startedAt]);
+  }, [actions, aircraftCode, answers, clientTestId, deadline, questions, startedAt]);
 
   /** What the Finish button actually does: ask first if anything was left
    * unanswered, since an unanswered question counts as wrong and that is
@@ -404,7 +418,7 @@ export function TestRunner({
         return next;
       });
 
-      void toggleFlag({ questionId, aircraftCode }).then((result) => {
+      void actions.toggleFlag({ questionId, aircraftCode }).then((result) => {
         // Reconcile only on a genuine disagreement with the server — the
         // common case must not cause a visible flicker back.
         if ("flagged" in result && result.flagged !== nextFlagged) {
@@ -417,7 +431,7 @@ export function TestRunner({
         }
       });
     },
-    [aircraftCode, flaggedIds, isSignedIn],
+    [actions, aircraftCode, flaggedIds, isSignedIn],
   );
 
   const toggleCurrentFlag = useCallback(
@@ -596,6 +610,9 @@ export function TestRunner({
         flaggedIds={flaggedIds}
         onToggleFlag={toggleFlagFor}
         withheld={result.withheld}
+        actions={actions}
+        backHref={backHref}
+        buildRetakeHref={(options) => buildTestHrefFor(basePath, aircraftCode, options)}
       />
     );
   }
@@ -682,9 +699,9 @@ export function TestRunner({
             <ReportQuestionButton
               key={current.id}
               onSubmit={({ reason, comment }) =>
-                reportQuestion({
+                actions.reportQuestion({
                   questionId: current.id,
-                  reason: reason as Parameters<typeof reportQuestion>[0]["reason"],
+                  reason: reason as ReportReason,
                   comment,
                 })
               }
@@ -814,8 +831,8 @@ export function TestRunner({
           <QuestionNote
             key={current.id}
             hasNote={false}
-            onLoad={() => loadNote(current.id)}
-            onSave={(body) => saveNote({ questionId: current.id, aircraftCode, body })}
+            onLoad={() => actions.loadNote(current.id)}
+            onSave={(body) => actions.saveNote({ questionId: current.id, aircraftCode, body })}
             forceOpenToken={noteOpenToken}
             textareaId={`note-${current.id}`}
             className="mt-4"
@@ -971,7 +988,7 @@ export function TestRunner({
 
       <p className="mt-6 text-center">
         <Link
-          href={`/aircraft/${aircraftCode}`}
+          href={backHref}
           className="link-standalone text-sm text-muted-foreground hover:text-brand hover:underline"
         >
           Abandon test

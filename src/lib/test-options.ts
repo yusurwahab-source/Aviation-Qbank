@@ -196,28 +196,35 @@ export function formatClock(totalSeconds: number): string {
   return hours > 0 ? `${hours}:${pad(minutes)}:${pad(rest)}` : `${minutes}:${pad(rest)}`;
 }
 
+export type TestHrefOptions = {
+  topics?: string[];
+  length?: TestLength;
+  retryOnly?: boolean;
+  /**
+   * The other two pre-built lists a test can draw from instead of
+   * `topics` — the student's own flags, or every question they have never
+   * answered. `retryOnly` stays its own option rather than folding into
+   * this one: it predates it, and renaming a boolean every call site
+   * already uses is a bigger diff than the two options coexisting.
+   */
+  from?: "flagged" | "unseen";
+  mode?: TestMode;
+};
+
 /**
- * Builds the URL for a test. Every link to a test goes through here, so the
- * shape of these parameters is decided in one place rather than spelled out at
- * each call site.
+ * Builds the URL for a test under a given base path. Both `buildTestHref`
+ * (aircraft) and `buildClassTestHref` (class ratings) are this with their
+ * own base — the parameter shape is decided once, here, rather than spelled
+ * out at each call site.
+ *
+ * Exported, not just used internally, because the shared practice-test UI
+ * (`components/practice-test/`) is a client component and a *function* like
+ * `buildTestHref` cannot cross the server → client boundary as a prop —
+ * only a Server Action can. The UI is instead given the base path as a
+ * plain string and calls this directly, which a client component may
+ * always import.
  */
-export function buildTestHref(
-  aircraftCode: string,
-  options: {
-    topics?: string[];
-    length?: TestLength;
-    retryOnly?: boolean;
-    /**
-     * The other two pre-built lists a test can draw from instead of
-     * `topics` — the student's own flags, or every question they have never
-     * answered. `retryOnly` stays its own option rather than folding into
-     * this one: it predates it, and renaming a boolean every call site
-     * already uses is a bigger diff than the two options coexisting.
-     */
-    from?: "flagged" | "unseen";
-    mode?: TestMode;
-  } = {},
-): string {
+export function buildTestHrefFor(basePath: string, code: string, options: TestHrefOptions = {}): string {
   const params = new URLSearchParams();
 
   if (options.retryOnly) params.set("from", "incorrect");
@@ -230,7 +237,19 @@ export function buildTestHref(
     params.set("mode", options.mode);
   }
   const query = params.toString();
-  return `/aircraft/${aircraftCode}/test${query ? `?${query}` : ""}`;
+  return `${basePath}/${code}/test${query ? `?${query}` : ""}`;
+}
+
+/**
+ * Builds the URL for an aircraft test. Every link to one goes through here.
+ */
+export function buildTestHref(aircraftCode: string, options: TestHrefOptions = {}): string {
+  return buildTestHrefFor("/aircraft", aircraftCode, options);
+}
+
+/** The same, for a class rating's test — `/class/CODE/test?...`. */
+export function buildClassTestHref(classCode: string, options: TestHrefOptions = {}): string {
+  return buildTestHrefFor("/class", classCode, options);
 }
 
 /**
@@ -248,8 +267,25 @@ export function buildResumeHref(session: {
   mode: TestMode;
   topics: string[];
 }): string {
+  return buildResumeHrefFor("/aircraft", session);
+}
+
+/** The same, for a class rating's own overview page — `/class/CODE/test`. */
+export function buildClassResumeHref(session: {
+  clientTestId: string;
+  aircraftCode: string;
+  mode: TestMode;
+  topics: string[];
+}): string {
+  return buildResumeHrefFor("/class", session);
+}
+
+function buildResumeHrefFor(
+  basePath: string,
+  session: { clientTestId: string; aircraftCode: string; mode: TestMode; topics: string[] },
+): string {
   const params = new URLSearchParams({ t: session.clientTestId });
   if (session.mode !== DEFAULT_TEST_MODE) params.set("mode", session.mode);
   for (const topic of session.topics) params.append("topic", topic);
-  return `/aircraft/${session.aircraftCode}/test?${params.toString()}`;
+  return `${basePath}/${session.aircraftCode}/test?${params.toString()}`;
 }

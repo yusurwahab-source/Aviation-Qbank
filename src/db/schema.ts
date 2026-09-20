@@ -85,6 +85,72 @@ export type QuestionRow = typeof questions.$inferSelect;
 export type QuestionInsert = typeof questions.$inferInsert;
 
 /**
+ * Class ratings — Single-Engine Piston, Multi-Engine Piston, and so on —
+ * sitting beside `aircraft` as a genuinely separate table pair rather than a
+ * "kind" column grafted onto it. Deliberately: `aircraft`/`questions` stay
+ * exactly the single-type-rating model this file has always described, and a
+ * class rating's own bank (`classQuestions`) never joins to `aircraft` or
+ * `questions`.
+ *
+ * They share everything downstream of content, though. `attempts`,
+ * `test_sessions`, `question_flags`, `question_notes` and the free-tier count
+ * in `attempts` are keyed by a plain `varchar` code with no foreign key (see
+ * the note on `attempts` below) precisely so nothing there cares which table
+ * a code came from — a class rating's code is written into those same
+ * columns, and every report, resume, flag, note and free-tier check that
+ * already reads them keeps working unchanged.
+ */
+export const classRatings = pgTable("class_ratings", {
+  /** Short code, e.g. SEP. Also the URL segment: /class/SEP. */
+  code: varchar("code", { length: 8 }).primaryKey(),
+  /** e.g. "Single-Engine Piston". */
+  name: varchar("name", { length: 120 }).notNull(),
+  description: text("description").notNull(),
+  status: aircraftStatus("status").notNull().default("active"),
+  /** Controls the order of the class picker; ties break alphabetically. */
+  sortOrder: integer("sort_order").notNull().default(0),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+export const classQuestions = pgTable(
+  "class_questions",
+  {
+    /** Human-readable id straight from the content file, e.g. SEP-SYSTEMS-0001. */
+    id: varchar("id", { length: 40 }).primaryKey(),
+    classCode: varchar("class_code", { length: 8 })
+      .notNull()
+      .references(() => classRatings.code, { onDelete: "cascade" }),
+    topic: varchar("topic", { length: 60 }).notNull(),
+    subtopic: varchar("subtopic", { length: 60 }),
+    question: text("question").notNull(),
+    options: jsonb("options").$type<QuestionOption[]>().notNull(),
+    correct: varchar("correct", { length: 4 }).notNull(),
+    explanation: text("explanation").notNull(),
+    reference: text("reference"),
+    media: text("media"),
+    tags: text("tags").array().notNull().default(sql`'{}'::text[]`),
+    status: questionStatus("status").notNull().default("draft"),
+    version: integer("version").notNull().default(1),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("class_questions_class_status_idx").on(table.classCode, table.status),
+    index("class_questions_class_status_topic_idx").on(
+      table.classCode,
+      table.status,
+      table.topic,
+    ),
+  ],
+);
+
+export type ClassRatingRow = typeof classRatings.$inferSelect;
+export type ClassRatingInsert = typeof classRatings.$inferInsert;
+export type ClassQuestionRow = typeof classQuestions.$inferSelect;
+export type ClassQuestionInsert = typeof classQuestions.$inferInsert;
+
+/**
  * Accounts.
  *
  * Email and password only, as agreed for Phase 2. `passwordHash` holds the
@@ -312,6 +378,10 @@ export const attempts = pgTable(
       .references(() => testSessions.id, { onDelete: "cascade" }),
     /** Plain text by design, not a foreign key. See the note above. */
     questionId: varchar("question_id", { length: 40 }).notNull(),
+    /** Not a foreign key to `aircraft.code` either — a class rating's code
+     * lives here just as well, which is what lets its test flow reuse this
+     * whole table, and everything read from it, unchanged. See the note on
+     * `classRatings` above. */
     aircraftCode: varchar("aircraft_code", { length: 8 }).notNull(),
     /** Snapshot of the topic as it was when the question was answered. */
     topic: varchar("topic", { length: 60 }).notNull(),

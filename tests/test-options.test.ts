@@ -4,6 +4,8 @@ import {
   ALL_QUESTIONS,
   DEFAULT_TEST_LENGTH,
   DEFAULT_TEST_MODE,
+  buildClassResumeHref,
+  buildClassTestHref,
   buildResumeHref,
   buildTestHref,
   EXAM_SECONDS_PER_QUESTION,
@@ -176,6 +178,30 @@ describe("buildResumeHref", () => {
     expect(query.get("t")).toBe("abc123");
     expect(parseTestMode(query.get("mode") ?? undefined)).toBe("exam");
     expect(parseTopics(query.getAll("topic"))).toEqual(["Fuel System"]);
+  });
+});
+
+describe("buildClassTestHref and buildClassResumeHref", () => {
+  it("build the same shape of link under /class instead of /aircraft", () => {
+    expect(buildClassTestHref("SEP")).toBe("/class/SEP/test");
+    expect(buildClassTestHref("SEP", { topics: ["Systems"], length: 10 })).toBe(
+      "/class/SEP/test?topic=Systems&questions=10",
+    );
+    expect(buildClassTestHref("SEP", { retryOnly: true })).toBe("/class/SEP/test?from=incorrect");
+  });
+
+  it("never produces an /aircraft/ link", () => {
+    expect(buildClassTestHref("SEP", { length: ALL_QUESTIONS })).not.toContain("/aircraft/");
+    expect(
+      buildClassResumeHref({ clientTestId: "abc123", aircraftCode: "SEP", mode: "exam", topics: [] }),
+    ).toBe("/class/SEP/test?t=abc123&mode=exam");
+  });
+
+  it("stays independent of the aircraft builders — same code, different base", () => {
+    // The two must never collide: an aircraft code that happened to match a
+    // class code still gets two different links.
+    expect(buildTestHref("SEP")).toBe("/aircraft/SEP/test");
+    expect(buildClassTestHref("SEP")).toBe("/class/SEP/test");
   });
 });
 

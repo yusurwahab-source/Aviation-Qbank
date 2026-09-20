@@ -4,14 +4,14 @@ import Link from "next/link";
 import { useId, useMemo, useState, type ReactNode } from "react";
 
 import { Badge } from "@/components/ui";
-import type { TopicSummary } from "@/db/queries";
+import type { PracticeTopicSummary } from "@/lib/practice-test-types";
 import {
   ALL_QUESTIONS,
+  buildTestHrefFor,
   DEFAULT_TEST_LENGTH,
   DEFAULT_TEST_MODE,
   PRESET_COUNT_CEILING,
   TEST_LENGTHS,
-  buildTestHref,
   resolveTestSize,
   timeLimitFor,
   type TestLength,
@@ -71,12 +71,21 @@ export function TestBuilder({
    */
   allowanceKind = "free-tier",
   presets = null,
+  basePath,
 }: {
   aircraftCode: string;
-  topics: TopicSummary[];
+  topics: PracticeTopicSummary[];
   remainingFree?: number | null;
   allowanceKind?: "free-tier" | "preview";
   presets?: BuilderPresets | null;
+  /**
+   * `/aircraft` or `/class` — which route's test page the "Start test" link
+   * points at. A plain string rather than a `buildHref` function prop: this
+   * is a client component, and only a Server Action may cross the server →
+   * client boundary as a function — see `buildTestHrefFor` in
+   * `lib/test-options.ts`.
+   */
+  basePath: string;
 }) {
   const fieldId = useId();
 
@@ -167,13 +176,13 @@ export function TestBuilder({
   }
 
   const href = activePreset
-    ? buildTestHref(aircraftCode, {
+    ? buildTestHrefFor(basePath, aircraftCode, {
         retryOnly: activePreset === "wrong",
         from: activePreset === "flagged" || activePreset === "unseen" ? activePreset : undefined,
         length: wantsAll ? ALL_QUESTIONS : size || DEFAULT_TEST_LENGTH,
         mode,
       })
-    : buildTestHref(aircraftCode, {
+    : buildTestHrefFor(basePath, aircraftCode, {
         // Every section selected is the same test as no filter at all, and the
         // shorter URL is the one worth sharing.
         topics: allSelected ? [] : [...selected],

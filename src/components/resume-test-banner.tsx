@@ -13,11 +13,15 @@ import { buildResumeHref } from "@/lib/test-options";
 export function ResumeTestBanner({
   session,
   aircraftName,
+  hrefBuilder = buildResumeHref,
 }: {
   session: IncompleteSession;
   /** Falls back to the code when the caller has not already looked the
    * aircraft up for something else — not worth a query of its own here. */
   aircraftName?: string;
+  /** `buildResumeHref` by default (`/aircraft/CODE/test`) — a class
+   * rating's overview page passes `buildClassResumeHref` instead. */
+  hrefBuilder?: typeof buildResumeHref;
 }) {
   const scope =
     session.topics.length === 0
@@ -39,7 +43,7 @@ export function ResumeTestBanner({
         </p>
       </div>
       <Link
-        href={buildResumeHref(session)}
+        href={hrefBuilder(session)}
         className="inline-flex min-h-11 items-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
       >
         Resume
