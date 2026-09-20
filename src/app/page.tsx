@@ -23,9 +23,9 @@ import { SystemsStrip } from "./_landing/systems-strip";
 import { Trust } from "./_landing/trust";
 
 const LANDING_CATEGORIES = [
-  { slug: "type-rating", label: "Aircraft Type Rating" },
-  { slug: "light-aircraft", label: "Light Aircraft Class Rating" },
-  { slug: "flying-knowledge", label: "Flying Knowledge" },
+  { slug: "type-ratings", label: "Type Ratings" },
+  { slug: "class-ratings", label: "Class Ratings" },
+  { slug: "general-subjects", label: "General Subjects" },
 ] as const;
 
 /**

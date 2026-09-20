@@ -10,7 +10,11 @@ import {
   type AircraftSummary,
 } from "@/db/queries";
 import { hasActiveSubscription } from "@/lib/billing/access-policy";
-import { resolveContentCategory, type ContentCategory } from "@/lib/content-categories";
+import {
+  categoryQueryValue,
+  resolveContentCategory,
+  type ContentCategory,
+} from "@/lib/content-categories";
 import { getSiteSettings } from "@/db/settings";
 import { getCurrentUser } from "@/lib/auth/session";
 
@@ -22,21 +26,29 @@ export const metadata: Metadata = {
 // The aircraft list comes from the database, so this page is rendered per request.
 export const dynamic = "force-dynamic";
 
-const CATEGORY_OPTIONS: { value: ContentCategory; label: string; subtitle: string }[] = [
+const CATEGORY_OPTIONS: {
+  value: ContentCategory;
+  queryValue: string;
+  label: string;
+  subtitle: string;
+}[] = [
   {
     value: "type-rating",
-    label: "Aircraft Type Rating",
-    subtitle: "Large transport aircraft (e.g. B737)",
+    queryValue: categoryQueryValue("type-rating"),
+    label: "Type Ratings",
+    subtitle: "B737, A320, and other aircraft types",
   },
   {
     value: "light-aircraft",
-    label: "Light Aircraft Class Rating",
-    subtitle: "Light aircraft (e.g. DA40)",
+    queryValue: categoryQueryValue("light-aircraft"),
+    label: "Class Ratings",
+    subtitle: "DA40, C152, and other class-rated aircraft",
   },
   {
     value: "flying-knowledge",
-    label: "Flying Knowledge",
-    subtitle: "IFR, VFR and theory quizzes",
+    queryValue: categoryQueryValue("flying-knowledge"),
+    label: "General Subjects",
+    subtitle: "IFR Rules, VFR Rules, Navigation, Weather",
   },
 ];
 
@@ -97,7 +109,7 @@ export default async function AircraftPickerPage({ searchParams }: PageProps) {
           return (
             <Link
               key={option.value}
-              href={`/aircraft?category=${option.value}`}
+              href={`/aircraft?category=${option.queryValue}`}
               className={`tap-target rounded-lg border px-3 py-2 text-left transition ${
                 active
                   ? "border-brand bg-brand-soft text-foreground"
@@ -143,15 +155,6 @@ export default async function AircraftPickerPage({ searchParams }: PageProps) {
           ))}
         </ul>
       )}
-
-      <p className="mt-6">
-        <Link
-          href="/class"
-          className="link-standalone text-sm font-medium text-brand hover:underline"
-        >
-          Practising for a class rating instead? →
-        </Link>
-      </p>
     </>
   );
 }
