@@ -1,17 +1,21 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 
 import { Badge, Card, PageHeading } from "@/components/ui";
-import { listGiftCodes } from "@/db/owner";
+import { listGiftCodesWithCounts } from "@/db/gift-codes";
+import { listAircraft } from "@/db/queries";
+import { isGiftCodeExpired } from "@/lib/billing/gift-codes";
 import { requireOwner } from "@/lib/auth/require-owner";
 
 import { DataTable, OwnerNav, formatDay } from "../owner-ui";
+import { DisableButton } from "./disable-button";
 import { GenerateForm } from "./generate-form";
 
 export const metadata: Metadata = { title: "Gift codes" };
 export const dynamic = "force-dynamic";
 
 /**
- * Minting codes, and seeing what became of the ones already minted.
+ * Minting license keys, and seeing what became of the ones already minted.
  *
  * The list matters as much as the form: a code handed out and never
  * redeemed is the common case worth chasing, and without this the only
@@ -19,9 +23,10 @@ export const dynamic = "force-dynamic";
  */
 export default async function OwnerGiftCodesPage() {
   await requireOwner();
-  const codes = await listGiftCodes();
 
-  const redeemed = codes.filter((code) => code.redeemedAt !== null).length;
+  const [codes, fleet] = await Promise.all([listGiftCodesWithCounts(), listAircraft()]);
+
+  const fullyRedeemed = codes.filter((code) => code.redemptionCount >= code.maxRedemptions).length;
 
   return (
     <>
@@ -32,41 +37,77 @@ export default async function OwnerGiftCodesPage() {
       <OwnerNav current="/owner/gift-codes" />
 
       <Card className="mb-6">
-        <GenerateForm />
+        <GenerateForm aircraftCodes={fleet.map((plane) => plane.code)} />
       </Card>
 
-      <h2 className="mb-3 text-lg font-semibold text-foreground">
-        All codes{" "}
-        <span className="text-sm font-normal text-muted-foreground">
-          ({redeemed} of {codes.length} redeemed)
-        </span>
-      </h2>
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+        <h2 className="text-lg font-semibold text-foreground">
+          All codes{" "}
+          <span className="text-sm font-normal text-muted-foreground">
+            ({fullyRedeemed} of {codes.length} fully redeemed)
+          </span>
+        </h2>
+        <Link
+          href="/owner/gift-codes/export"
+          className="min-h-9 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-foreground transition hover:border-brand hover:text-brand"
+        >
+          Download all as CSV
+        </Link>
+      </div>
 
       <DataTable
-        headers={["Code", "Worth", "Status", "Note", "Minted"]}
+        headers={["Code", "Worth", "Redemptions", "Status", "Note", "Minted"]}
         empty="No codes minted yet. Generate one above."
-        rows={codes.map((code) => [
-          <span key="code" className="font-mono text-xs">
-            {code.code}
-          </span>,
-          `${code.durationDays} days`,
-          code.redeemedAt ? (
+        rowKey={(_row, index) => codes[index]?.id ?? index}
+        rows={codes.map((code) => {
+          const expired = isGiftCodeExpired(code.expiresAt);
+          const exhausted = code.redemptionCount >= code.maxRedemptions;
+          const live = !code.disabledAt && !expired && !exhausted;
+
+          return [
+            <span key="code">
+              <Link href={`/owner/gift-codes/${code.id}`} className="font-mono text-xs text-brand hover:underline">
+                {code.code}
+              </Link>
+              {code.unlocksAircraftCode ? (
+                <span className="mt-1 block text-xs text-muted-foreground">
+                  {code.unlocksAircraftCode} only
+                </span>
+              ) : null}
+            </span>,
+            `${code.durationDays} days`,
+            <span key="redemptions" className="tabular-nums">
+              {code.redemptionCount} / {code.maxRedemptions}
+            </span>,
             <span key="status">
-              <Badge tone="correct">Redeemed</Badge>
-              <span className="mt-1 block text-xs text-muted-foreground">
-                {code.redeemedByEmail ?? "account deleted"} · {formatDay(code.redeemedAt)}
-              </span>
-            </span>
-          ) : (
-            <Badge key="status">Unused</Badge>
-          ),
-          <span key="note" className="text-xs text-muted-foreground">
-            {code.note ?? "—"}
-          </span>,
-          <span key="minted" className="whitespace-nowrap text-xs text-muted-foreground">
-            {formatDay(code.createdAt)}
-          </span>,
-        ])}
+              {code.disabledAt ? (
+                <Badge tone="incorrect">Disabled</Badge>
+              ) : expired ? (
+                <Badge tone="incorrect">Expired</Badge>
+              ) : exhausted ? (
+                <Badge tone="correct">Fully redeemed</Badge>
+              ) : (
+                <Badge>Live</Badge>
+              )}
+              {code.expiresAt ? (
+                <span className="mt-1 block text-xs text-muted-foreground">
+                  {expired ? "expired" : "expires"} {formatDay(code.expiresAt)}
+                </span>
+              ) : null}
+              {live ? (
+                <div className="mt-1.5">
+                  <DisableButton giftCodeId={code.id} code={code.code} />
+                </div>
+              ) : null}
+            </span>,
+            <span key="note" className="text-xs text-muted-foreground">
+              {code.note ?? "—"}
+            </span>,
+            <span key="minted" className="whitespace-nowrap text-xs text-muted-foreground">
+              {formatDay(code.createdAt)}
+            </span>,
+          ];
+        })}
       />
     </>
   );

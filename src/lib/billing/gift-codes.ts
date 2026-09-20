@@ -64,6 +64,16 @@ export function normalizeGiftCode(input: string): string {
  * a subscribed student redeem a gift code (from a friend, a promotion) with
  * no way to end up worse off than before.
  */
+/**
+ * Whether a code has gone stale on its own, distinct from being disabled or
+ * fully redeemed. `now` defaults to the real clock but takes one explicitly
+ * so this stays callable from a server component's render body without
+ * calling `Date.now()`/`new Date()` there directly.
+ */
+export function isGiftCodeExpired(expiresAt: Date | null, now: Date = new Date()): boolean {
+  return expiresAt !== null && expiresAt.getTime() <= now.getTime();
+}
+
 export function computeGiftPeriodEnd(
   now: Date,
   durationDays: number,

@@ -70,10 +70,20 @@ export async function getSiteOverview(): Promise<SiteOverview> {
       .where(isNotNull(testSessions.completedAt)),
     db.select({ n: sql<number>`count(*)::int` }).from(attempts),
     db.select({ n: sql<number>`count(*)::int` }).from(aircraftInterest),
+    // "Unredeemed" now means "still has a slot free" rather than "nobody
+    // has ever redeemed it" — a code minted with `maxRedemptions` > 1 keeps
+    // counting here until every slot is spent, not just its first.
     db
       .select({ n: sql<number>`count(*)::int` })
       .from(giftCodes)
-      .where(sql`${giftCodes.redeemedByUserId} is null`),
+      .where(sql`
+        ${giftCodes.disabledAt} is null
+        and (${giftCodes.expiresAt} is null or ${giftCodes.expiresAt} > now())
+        and (
+          select count(*) from ${giftCodeRedemptions}
+          where ${giftCodeRedemptions.giftCodeId} = ${giftCodes.id}
+        ) < ${giftCodes.maxRedemptions}
+      `),
   ]);
 
   return {
@@ -86,40 +96,9 @@ export async function getSiteOverview(): Promise<SiteOverview> {
   };
 }
 
-export type GiftCodeListing = {
-  code: string;
-  plan: "monthly" | "quarterly";
-  durationDays: number;
-  note: string | null;
-  createdAt: Date;
-  redeemedAt: Date | null;
-  redeemedByEmail: string | null;
-};
-
-/**
- * Every code ever minted, newest first.
- *
- * Left-joined to `users` so an unredeemed code still appears — the list is
- * as much about what has *not* been used as what has.
- */
-export async function listGiftCodes(limit = 200): Promise<GiftCodeListing[]> {
-  const rows = await getDb()
-    .select({
-      code: giftCodes.code,
-      plan: giftCodes.plan,
-      durationDays: giftCodes.durationDays,
-      note: giftCodes.note,
-      createdAt: giftCodes.createdAt,
-      redeemedAt: giftCodes.redeemedAt,
-      redeemedByEmail: users.email,
-    })
-    .from(giftCodes)
-    .leftJoin(users, eq(users.id, giftCodes.redeemedByUserId))
-    .orderBy(desc(giftCodes.createdAt))
-    .limit(limit);
-
-  return rows;
-}
+// Gift code listing (with redemption counts) now lives in `db/gift-codes.ts`
+// beside `createGiftCodes` and `redeemGiftCode` — `listGiftCodesWithCounts`
+// and `listGiftCodeRedemptions`.
 
 export type SubscriberListing = {
   email: string;
