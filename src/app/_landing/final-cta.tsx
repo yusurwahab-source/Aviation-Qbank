@@ -1,8 +1,7 @@
 import Link from "next/link";
 
-import { FEATURED_AIRCRAFT_CODE } from "@/config/aircraft-marketing";
-
-export function FinalCta() {
+/** `featuredAircraftCode` comes from `site_settings` — see `lib/settings.ts`. */
+export function FinalCta({ featuredAircraftCode }: { featuredAircraftCode: string }) {
   return (
     <section className="rounded-2xl border border-border bg-surface-elevated px-5 py-12 text-center sm:px-10">
       <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
@@ -13,7 +12,7 @@ export function FinalCta() {
       </p>
 
       <Link
-        href={`/aircraft/${FEATURED_AIRCRAFT_CODE}`}
+        href={`/aircraft/${featuredAircraftCode}`}
         className="tap-target mt-6 inline-flex items-center justify-center rounded-lg bg-brand px-6 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
       >
         Start practising free

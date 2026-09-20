@@ -91,13 +91,37 @@ describeDb("owner account access", () => {
   it("finds an account by part of its email, and treats the search as text", async () => {
     const user = await makeUser();
 
-    const found = await listAccounts(user.email.slice(0, 20));
-    expect(found.some((account) => account.id === user.id)).toBe(true);
+    const found = await listAccounts({ search: user.email.slice(0, 20) });
+    expect(found.rows.some((account) => account.id === user.id)).toBe(true);
+    expect(found.total).toBeGreaterThanOrEqual(1);
 
     // `_` is a single-character wildcard to `ilike`. Searching for it
     // literally must not match every address that merely has a character in
     // that position.
-    const wildcard = await listAccounts("owner_acct-");
-    expect(wildcard.some((account) => account.id === user.id)).toBe(false);
+    const wildcard = await listAccounts({ search: "owner_acct-" });
+    expect(wildcard.rows.some((account) => account.id === user.id)).toBe(false);
+  });
+
+  it("filters by status", async () => {
+    const user = await makeUser();
+    await grantAccess({ userId: user.id, plan: "monthly", days: 30 });
+
+    const active = await listAccounts({ search: user.email, statusFilter: "active" });
+    expect(active.rows.some((account) => account.id === user.id)).toBe(true);
+
+    const freeTier = await listAccounts({ search: user.email, statusFilter: "free_tier" });
+    expect(freeTier.rows.some((account) => account.id === user.id)).toBe(false);
+  });
+
+  it("paginates with a stable total across pages", async () => {
+    await makeUser();
+    await makeUser();
+
+    const page1 = await listAccounts({ search: null, limit: 1, offset: 0 });
+    const page2 = await listAccounts({ search: null, limit: 1, offset: 1 });
+
+    expect(page1.rows).toHaveLength(1);
+    expect(page1.total).toBe(page2.total);
+    expect(page1.rows[0]?.id).not.toBe(page2.rows[0]?.id);
   });
 });

@@ -17,6 +17,14 @@ import { DEFAULT_SETTINGS } from "@/lib/settings";
 
 const describeDb = process.env.DATABASE_URL ? describe : describe.skip;
 
+const base = {
+  freeQuestionsPerAircraft: 5,
+  announcement: "Testing",
+  passMarkPercent: 80,
+  featuredAircraftCode: "B737",
+  aircraftInDevelopment: ["DA40"],
+};
+
 describeDb("site settings", () => {
   afterAll(async () => {
     // Leave the table as this suite found it, not as any one test left it —
@@ -31,36 +39,48 @@ describeDb("site settings", () => {
   });
 
   it("saves and reads back a change", async () => {
-    await saveSiteSettings({ freeQuestionsPerAircraft: 5, announcement: "Testing", passMarkPercent: 80 });
-    expect(await getSiteSettings()).toEqual({
-      freeQuestionsPerAircraft: 5,
-      announcement: "Testing",
-      passMarkPercent: 80,
-    });
+    await saveSiteSettings(base);
+    expect(await getSiteSettings()).toEqual(base);
   });
 
   it("overwrites rather than duplicating on a second save", async () => {
-    await saveSiteSettings({ freeQuestionsPerAircraft: 5, announcement: "First", passMarkPercent: 70 });
-    await saveSiteSettings({ freeQuestionsPerAircraft: 15, announcement: "Second", passMarkPercent: 90 });
+    await saveSiteSettings({ ...base, freeQuestionsPerAircraft: 5, announcement: "First", passMarkPercent: 70 });
+    await saveSiteSettings({
+      ...base,
+      freeQuestionsPerAircraft: 15,
+      announcement: "Second",
+      passMarkPercent: 90,
+      featuredAircraftCode: "DA40",
+      aircraftInDevelopment: [],
+    });
 
     const rows = await getDb().select().from(siteSettings);
-    // Three keys, not six — the second save updated the existing rows.
-    expect(rows).toHaveLength(3);
+    // Five keys, not ten — the second save updated the existing rows.
+    expect(rows).toHaveLength(5);
     expect(await getSiteSettings()).toEqual({
       freeQuestionsPerAircraft: 15,
       announcement: "Second",
       passMarkPercent: 90,
+      featuredAircraftCode: "DA40",
+      aircraftInDevelopment: [],
     });
   });
 
   it("clears the announcement back to empty", async () => {
-    await saveSiteSettings({ freeQuestionsPerAircraft: 10, announcement: "Visible", passMarkPercent: 75 });
-    await saveSiteSettings({ freeQuestionsPerAircraft: 10, announcement: "", passMarkPercent: 75 });
+    await saveSiteSettings({ ...base, announcement: "Visible" });
+    await saveSiteSettings({ ...base, announcement: "" });
 
     const [row] = await getDb()
       .select()
       .from(siteSettings)
       .where(eq(siteSettings.key, "announcement"));
     expect(row?.value).toBe("");
+  });
+
+  it("saves and reads back the marketing curation fields", async () => {
+    await saveSiteSettings({ ...base, featuredAircraftCode: "DA40", aircraftInDevelopment: ["B737"] });
+    const settings = await getSiteSettings();
+    expect(settings.featuredAircraftCode).toBe("DA40");
+    expect(settings.aircraftInDevelopment).toEqual(["B737"]);
   });
 });

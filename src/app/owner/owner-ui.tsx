@@ -13,11 +13,14 @@ import { Card } from "@/components/ui";
 
 export const OWNER_LINKS = [
   { href: "/owner", label: "Overview" },
+  { href: "/owner/insights", label: "Insights" },
   { href: "/owner/accounts", label: "Accounts" },
   { href: "/owner/subscribers", label: "Subscribers" },
   { href: "/owner/gift-codes", label: "Gift codes" },
+  { href: "/owner/reports", label: "Reports" },
   { href: "/owner/interest", label: "Aircraft requests" },
   { href: "/owner/settings", label: "Settings" },
+  { href: "/owner/audit-log", label: "Audit log" },
 ] as const;
 
 export function OwnerNav({ current }: { current: string }) {
@@ -54,18 +57,30 @@ export function StatTile({ label, value }: { label: string; value: number | stri
 }
 
 /**
- * A table that turns into stacked rows on a phone rather than scrolling
+ * A table that turns into stacked cards on a phone rather than scrolling
  * sideways — the owner checks these on the same 375px screen everything
  * else in this app was measured at.
+ *
+ * Two markups of the same data, not one styled two ways: the `<table>` is
+ * `hidden sm:block` and the card list is `sm:hidden`, so exactly one of
+ * them is ever in the accessibility tree — the same split `test-runner.tsx`
+ * uses between its desktop row and its mobile sticky bar.
+ *
+ * `rowKey`, if given, is used for the stacked card's own `key` and heading
+ * (its first column otherwise) — most callers pass a React key already
+ * embedded in each cell, which does not help a card that needs one row-level
+ * key of its own.
  */
 export function DataTable({
   headers,
   rows,
   empty,
+  rowKey,
 }: {
   headers: string[];
   rows: ReactNode[][];
   empty: string;
+  rowKey?: (row: ReactNode[], index: number) => string | number;
 }) {
   if (rows.length === 0) {
     return (
@@ -76,34 +91,56 @@ export function DataTable({
   }
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-border">
-      <table className="w-full min-w-[34rem] border-collapse text-sm">
-        <thead>
-          <tr className="bg-surface-muted text-left">
-            {headers.map((header) => (
-              <th
-                key={header}
-                scope="col"
-                className="whitespace-nowrap px-4 py-3 font-medium text-muted-foreground"
-              >
-                {header}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, rowIndex) => (
-            <tr key={rowIndex} className="border-t border-border bg-surface">
-              {row.map((cell, cellIndex) => (
-                <td key={cellIndex} className="px-4 py-3 align-top text-foreground">
-                  {cell}
-                </td>
+    <>
+      <div className="hidden overflow-x-auto rounded-xl border border-border sm:block">
+        <table className="w-full min-w-[34rem] border-collapse text-sm">
+          <thead>
+            <tr className="bg-surface-muted text-left">
+              {headers.map((header) => (
+                <th
+                  key={header}
+                  scope="col"
+                  className="whitespace-nowrap px-4 py-3 font-medium text-muted-foreground"
+                >
+                  {header}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {rows.map((row, rowIndex) => (
+              <tr key={rowIndex} className="border-t border-border bg-surface">
+                {row.map((cell, cellIndex) => (
+                  <td key={cellIndex} className="px-4 py-3 align-top text-foreground">
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <ul className="space-y-3 sm:hidden">
+        {rows.map((row, rowIndex) => (
+          <li
+            key={rowKey ? rowKey(row, rowIndex) : rowIndex}
+            className="rounded-xl border border-border bg-surface p-4"
+          >
+            <dl className="space-y-2.5">
+              {row.map((cell, cellIndex) => (
+                <div key={cellIndex}>
+                  <dt className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                    {headers[cellIndex]}
+                  </dt>
+                  <dd className="mt-0.5 text-sm text-foreground">{cell}</dd>
+                </div>
+              ))}
+            </dl>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
 

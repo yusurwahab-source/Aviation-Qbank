@@ -79,7 +79,7 @@ describeDb("gift codes", () => {
     expect(result).toEqual({ ok: false, reason: "not_found" });
   });
 
-  it("refuses the same code a second time", async () => {
+  it("refuses a second, different person once a single-use code is spent", async () => {
     const firstUser = await makeUser();
     const secondUser = await makeUser();
     const [code] = await createGiftCodes({ count: 1, plan: "monthly", durationDays: 30 });
@@ -88,7 +88,7 @@ describeDb("gift codes", () => {
     expect(first.ok).toBe(true);
 
     const second = await redeemGiftCode({ code, userId: secondUser });
-    expect(second).toEqual({ ok: false, reason: "already_redeemed" });
+    expect(second).toEqual({ ok: false, reason: "exhausted" });
 
     // The second attempt granted nothing — the second user's row still
     // reads as never having had a subscription.
@@ -97,6 +97,74 @@ describeDb("gift codes", () => {
       .from(subscriptions)
       .where(eq(subscriptions.userId, secondUser));
     expect(rows).toHaveLength(0);
+  });
+
+  it("refuses the same person redeeming the same code twice", async () => {
+    const userId = await makeUser();
+    const [code] = await createGiftCodes({ count: 1, plan: "monthly", durationDays: 30, maxRedemptions: 5 });
+
+    const first = await redeemGiftCode({ code, userId });
+    expect(first.ok).toBe(true);
+
+    const second = await redeemGiftCode({ code, userId });
+    expect(second).toEqual({ ok: false, reason: "already_redeemed" });
+  });
+
+  it("lets multiple different people redeem a code with maxRedemptions > 1", async () => {
+    const [code] = await createGiftCodes({
+      count: 1,
+      plan: "monthly",
+      durationDays: 30,
+      maxRedemptions: 3,
+    });
+
+    const results = await Promise.all([
+      redeemGiftCode({ code, userId: await makeUser() }),
+      redeemGiftCode({ code, userId: await makeUser() }),
+      redeemGiftCode({ code, userId: await makeUser() }),
+    ]);
+    expect(results.every((result) => result.ok)).toBe(true);
+
+    const fourth = await redeemGiftCode({ code, userId: await makeUser() });
+    expect(fourth).toEqual({ ok: false, reason: "exhausted" });
+  });
+
+  it("refuses a disabled code", async () => {
+    const userId = await makeUser();
+    const [code] = await createGiftCodes({ count: 1, plan: "monthly", durationDays: 30 });
+    await getDb()
+      .update(giftCodes)
+      .set({ disabledAt: new Date() })
+      .where(eq(giftCodes.code, normalizeGiftCode(code)));
+
+    const result = await redeemGiftCode({ code, userId });
+    expect(result).toEqual({ ok: false, reason: "disabled" });
+  });
+
+  it("refuses an expired code", async () => {
+    const userId = await makeUser();
+    const [code] = await createGiftCodes({
+      count: 1,
+      plan: "monthly",
+      durationDays: 30,
+      expiresAt: new Date(Date.now() - 1000),
+    });
+
+    const result = await redeemGiftCode({ code, userId });
+    expect(result).toEqual({ ok: false, reason: "expired" });
+  });
+
+  it("accepts a code that expires in the future", async () => {
+    const userId = await makeUser();
+    const [code] = await createGiftCodes({
+      count: 1,
+      plan: "monthly",
+      durationDays: 30,
+      expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000),
+    });
+
+    const result = await redeemGiftCode({ code, userId });
+    expect(result.ok).toBe(true);
   });
 
   it("lets only one of two simultaneous redemptions through", async () => {

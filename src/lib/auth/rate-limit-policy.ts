@@ -70,6 +70,20 @@ export const RATE_LIMIT_RULES = {
    * side of volume rather than of timing.
    */
   resetPerIp: { maxFailures: 15, windowMs: 60 * MINUTE } satisfies RateLimitRule,
+
+  /**
+   * Gift code redemption attempts, per signed-in account. A code is 80 bits
+   * of randomness — nobody legitimate fails more than a handful of times in
+   * a row — so this is tight, the same reasoning as `perEmail` for log in.
+   */
+  redeemPerUser: { maxFailures: 10, windowMs: 15 * MINUTE } satisfies RateLimitRule,
+
+  /**
+   * Redemption attempts per source address — the broad brake against one
+   * machine grinding through the code space regardless of which account it
+   * is signed in as.
+   */
+  redeemPerIp: { maxFailures: 30, windowMs: 15 * MINUTE } satisfies RateLimitRule,
 } as const;
 
 /**

@@ -32,23 +32,56 @@ export type SiteSettings = {
    * on the results screen. Purely a label on the score — it changes nothing
    * about grading, access, or what is recorded. */
   passMarkPercent: number;
+  /** The aircraft code the landing page is built around — curation, not
+   * content: every aircraft in `/content` is real and playable, this only
+   * decides which one marketing leads with. Previously the hardcoded
+   * `FEATURED_AIRCRAFT_CODE` in `src/config/aircraft-marketing.ts`. */
+  featuredAircraftCode: string;
+  /** Aircraft that are real and answerable today but not substantial enough
+   * to lead with — hidden from the landing page, shown on `/aircraft` with
+   * an "In development" badge instead of a question count. Previously the
+   * hardcoded `AIRCRAFT_IN_DEVELOPMENT` set in the same file. Neither this
+   * nor `featuredAircraftCode` ever writes to the `aircraft` table — both
+   * only decide what marketing surfaces say about rows that already exist. */
+  aircraftInDevelopment: string[];
 };
 
 export const SETTING_KEYS = {
   freeQuestionsPerAircraft: "free_questions_per_aircraft",
   announcement: "announcement",
   passMarkPercent: "pass_mark_percent",
+  featuredAircraftCode: "featured_aircraft_code",
+  aircraftInDevelopment: "aircraft_in_development",
 } as const;
 
 /** The default a checkride-style pass mark is usually quoted at. */
 export const DEFAULT_PASS_MARK_PERCENT = 75;
+
+/**
+ * The two marketing defaults, carried over unchanged from the file this
+ * replaces: the B737 bank is the one ready to lead with, and the DA40's 22
+ * questions are too few to open with.
+ */
+const DEFAULT_FEATURED_AIRCRAFT_CODE = "B737";
+const DEFAULT_AIRCRAFT_IN_DEVELOPMENT: readonly string[] = ["DA40"];
 
 /** The behaviour of this app with an empty `site_settings` table. */
 export const DEFAULT_SETTINGS: SiteSettings = {
   freeQuestionsPerAircraft: FREE_QUESTIONS_PER_AIRCRAFT,
   announcement: "",
   passMarkPercent: DEFAULT_PASS_MARK_PERCENT,
+  featuredAircraftCode: DEFAULT_FEATURED_AIRCRAFT_CODE,
+  aircraftInDevelopment: [...DEFAULT_AIRCRAFT_IN_DEVELOPMENT],
 };
+
+/** The same shape every other aircraft code in this app is validated
+ * against — see `submissionSchema` in the test actions. */
+const AIRCRAFT_CODE_PATTERN = /^[A-Z][A-Z0-9]{1,7}$/;
+
+/** However many aircraft this bank could plausibly grow to before a bound
+ * this generous would need revisiting — the same "protect the machine"
+ * reasoning as `PRESET_COUNT_CEILING`. */
+const MAX_AIRCRAFT_IN_DEVELOPMENT = 50;
 
 /**
  * An allowance of zero is meaningful — it means "no free questions at all" —
@@ -81,6 +114,11 @@ export function validateSettings(input: {
   freeQuestionsPerAircraft: unknown;
   announcement: unknown;
   passMarkPercent: unknown;
+  featuredAircraftCode: unknown;
+  /** Newline- or comma-separated, exactly as a textarea hands it over —
+   * parsing the raw field shape is this function's job, the same as every
+   * other field here. */
+  aircraftInDevelopment: unknown;
 }): SettingsValidation {
   const free = Number(input.freeQuestionsPerAircraft);
 
@@ -121,9 +159,51 @@ export function validateSettings(input: {
     };
   }
 
+  const featuredAircraftCode =
+    typeof input.featuredAircraftCode === "string" ? input.featuredAircraftCode.trim().toUpperCase() : "";
+
+  if (!AIRCRAFT_CODE_PATTERN.test(featuredAircraftCode)) {
+    return {
+      ok: false,
+      error: "The featured aircraft must be a valid aircraft code, e.g. B737.",
+    };
+  }
+
+  const rawInDevelopment =
+    typeof input.aircraftInDevelopment === "string" ? input.aircraftInDevelopment : "";
+  const inDevelopmentCodes = Array.from(
+    new Set(
+      rawInDevelopment
+        .split(/[,\n]/)
+        .map((code) => code.trim().toUpperCase())
+        .filter((code) => code !== ""),
+    ),
+  );
+
+  if (inDevelopmentCodes.length > MAX_AIRCRAFT_IN_DEVELOPMENT) {
+    return {
+      ok: false,
+      error: `List at most ${MAX_AIRCRAFT_IN_DEVELOPMENT} aircraft as in development.`,
+    };
+  }
+
+  const invalidCode = inDevelopmentCodes.find((code) => !AIRCRAFT_CODE_PATTERN.test(code));
+  if (invalidCode) {
+    return {
+      ok: false,
+      error: `"${invalidCode}" is not a valid aircraft code.`,
+    };
+  }
+
   return {
     ok: true,
-    settings: { freeQuestionsPerAircraft: free, announcement, passMarkPercent: passMark },
+    settings: {
+      freeQuestionsPerAircraft: free,
+      announcement,
+      passMarkPercent: passMark,
+      featuredAircraftCode,
+      aircraftInDevelopment: inDevelopmentCodes,
+    },
   };
 }
 
@@ -150,6 +230,21 @@ export function parseSettings(rows: { key: string; value: string }[]): SiteSetti
   const rawPassMark = stored.get(SETTING_KEYS.passMarkPercent);
   const passMark = rawPassMark === undefined ? Number.NaN : Number(rawPassMark);
 
+  const rawFeatured = stored.get(SETTING_KEYS.featuredAircraftCode)?.trim().toUpperCase() ?? "";
+  const featuredAircraftCode = AIRCRAFT_CODE_PATTERN.test(rawFeatured)
+    ? rawFeatured
+    : DEFAULT_SETTINGS.featuredAircraftCode;
+
+  const rawInDevelopment = stored.get(SETTING_KEYS.aircraftInDevelopment);
+  const aircraftInDevelopment =
+    rawInDevelopment === undefined
+      ? DEFAULT_SETTINGS.aircraftInDevelopment
+      : rawInDevelopment
+          .split(",")
+          .map((code) => code.trim().toUpperCase())
+          .filter((code) => AIRCRAFT_CODE_PATTERN.test(code))
+          .slice(0, MAX_AIRCRAFT_IN_DEVELOPMENT);
+
   return {
     freeQuestionsPerAircraft:
       Number.isInteger(free) && free >= 0 && free <= MAX_FREE_QUESTIONS
@@ -162,6 +257,8 @@ export function parseSettings(rows: { key: string; value: string }[]): SiteSetti
       passMark <= MAX_PASS_MARK_PERCENT
         ? passMark
         : DEFAULT_SETTINGS.passMarkPercent,
+    featuredAircraftCode,
+    aircraftInDevelopment,
   };
 }
 
@@ -174,5 +271,10 @@ export function settingsToRows(settings: SiteSettings): { key: string; value: st
     },
     { key: SETTING_KEYS.announcement, value: settings.announcement },
     { key: SETTING_KEYS.passMarkPercent, value: String(settings.passMarkPercent) },
+    { key: SETTING_KEYS.featuredAircraftCode, value: settings.featuredAircraftCode },
+    {
+      key: SETTING_KEYS.aircraftInDevelopment,
+      value: settings.aircraftInDevelopment.join(","),
+    },
   ];
 }

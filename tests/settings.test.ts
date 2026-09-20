@@ -11,7 +11,13 @@ import {
   validateSettings,
 } from "@/lib/settings";
 
-const valid = { freeQuestionsPerAircraft: "10", announcement: "", passMarkPercent: "75" };
+const valid = {
+  freeQuestionsPerAircraft: "10",
+  announcement: "",
+  passMarkPercent: "75",
+  featuredAircraftCode: "B737",
+  aircraftInDevelopment: "DA40",
+};
 
 describe("validateSettings", () => {
   it("accepts a well-formed submission", () => {
@@ -19,10 +25,18 @@ describe("validateSettings", () => {
       freeQuestionsPerAircraft: "25",
       announcement: "Hello",
       passMarkPercent: "80",
+      featuredAircraftCode: "B737",
+      aircraftInDevelopment: "DA40",
     });
     expect(result).toEqual({
       ok: true,
-      settings: { freeQuestionsPerAircraft: 25, announcement: "Hello", passMarkPercent: 80 },
+      settings: {
+        freeQuestionsPerAircraft: 25,
+        announcement: "Hello",
+        passMarkPercent: 80,
+        featuredAircraftCode: "B737",
+        aircraftInDevelopment: ["DA40"],
+      },
     });
   });
 
@@ -101,6 +115,53 @@ describe("validateSettings", () => {
     const result = validateSettings({ ...valid, passMarkPercent: undefined });
     expect(result.ok).toBe(false);
   });
+
+  it("uppercases and trims the featured aircraft code", () => {
+    const result = validateSettings({ ...valid, featuredAircraftCode: " b737 " });
+    expect(result.ok).toBe(true);
+    if (result.ok) expect(result.settings.featuredAircraftCode).toBe("B737");
+  });
+
+  it.each([
+    ["", "empty"],
+    ["1", "starts with a digit"],
+    ["toolongcode", "too long"],
+    ["B-37", "has a separator"],
+  ])("rejects a featured aircraft code that is %s (%s)", (value) => {
+    const result = validateSettings({ ...valid, featuredAircraftCode: value });
+    expect(result.ok).toBe(false);
+  });
+
+  it("parses aircraft-in-development as a comma- or newline-separated list", () => {
+    const commaResult = validateSettings({ ...valid, aircraftInDevelopment: "DA40, B737" });
+    expect(commaResult.ok).toBe(true);
+    if (commaResult.ok) {
+      expect(commaResult.settings.aircraftInDevelopment).toEqual(["DA40", "B737"]);
+    }
+
+    const newlineResult = validateSettings({ ...valid, aircraftInDevelopment: "DA40\nB737" });
+    expect(newlineResult.ok).toBe(true);
+    if (newlineResult.ok) {
+      expect(newlineResult.settings.aircraftInDevelopment).toEqual(["DA40", "B737"]);
+    }
+  });
+
+  it("deduplicates and uppercases aircraft-in-development codes", () => {
+    const result = validateSettings({ ...valid, aircraftInDevelopment: "da40, DA40, Da40" });
+    expect(result.ok).toBe(true);
+    if (result.ok) expect(result.settings.aircraftInDevelopment).toEqual(["DA40"]);
+  });
+
+  it("treats a missing aircraft-in-development field as an empty list", () => {
+    const result = validateSettings({ ...valid, aircraftInDevelopment: undefined });
+    expect(result.ok).toBe(true);
+    if (result.ok) expect(result.settings.aircraftInDevelopment).toEqual([]);
+  });
+
+  it("rejects an invalid code inside the aircraft-in-development list", () => {
+    const result = validateSettings({ ...valid, aircraftInDevelopment: "DA40, not-a-code" });
+    expect(result.ok).toBe(false);
+  });
 });
 
 describe("parseSettings", () => {
@@ -113,11 +174,15 @@ describe("parseSettings", () => {
       { key: "free_questions_per_aircraft", value: "50" },
       { key: "announcement", value: "Back soon" },
       { key: "pass_mark_percent", value: "70" },
+      { key: "featured_aircraft_code", value: "DA40" },
+      { key: "aircraft_in_development", value: "B737" },
     ];
     expect(parseSettings(rows)).toEqual({
       freeQuestionsPerAircraft: 50,
       announcement: "Back soon",
       passMarkPercent: 70,
+      featuredAircraftCode: "DA40",
+      aircraftInDevelopment: ["B737"],
     });
   });
 
@@ -151,6 +216,19 @@ describe("parseSettings", () => {
     ).toBe(DEFAULT_SETTINGS.passMarkPercent);
   });
 
+  it("falls back on a corrupt stored featured aircraft code", () => {
+    expect(
+      parseSettings([{ key: "featured_aircraft_code", value: "not valid!" }]).featuredAircraftCode,
+    ).toBe(DEFAULT_SETTINGS.featuredAircraftCode);
+  });
+
+  it("drops an invalid code from a stored aircraft-in-development list rather than failing whole", () => {
+    expect(
+      parseSettings([{ key: "aircraft_in_development", value: "DA40,not valid!" }])
+        .aircraftInDevelopment,
+    ).toEqual(["DA40"]);
+  });
+
   it("ignores an unknown key rather than erroring", () => {
     expect(parseSettings([{ key: "something_else", value: "1" }])).toEqual(DEFAULT_SETTINGS);
   });
@@ -158,7 +236,24 @@ describe("parseSettings", () => {
 
 describe("settingsToRows", () => {
   it("round-trips through parseSettings", () => {
-    const settings = { freeQuestionsPerAircraft: 42, announcement: "Round trip", passMarkPercent: 65 };
+    const settings = {
+      freeQuestionsPerAircraft: 42,
+      announcement: "Round trip",
+      passMarkPercent: 65,
+      featuredAircraftCode: "B737",
+      aircraftInDevelopment: ["DA40"],
+    };
+    expect(parseSettings(settingsToRows(settings))).toEqual(settings);
+  });
+
+  it("round-trips an empty aircraft-in-development list", () => {
+    const settings = {
+      freeQuestionsPerAircraft: 42,
+      announcement: "",
+      passMarkPercent: 65,
+      featuredAircraftCode: "B737",
+      aircraftInDevelopment: [] as string[],
+    };
     expect(parseSettings(settingsToRows(settings))).toEqual(settings);
   });
 });

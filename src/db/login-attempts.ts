@@ -42,6 +42,19 @@ export function resetEmailKey(email: string): string {
   return `reset-email:${email}`;
 }
 
+/**
+ * Gift code redemption attempts get their own key prefixes too, for the same
+ * reason reset requests do: sharing a bucket with log-in failures would let
+ * one kind of activity use up another's allowance.
+ */
+export function redeemUserKey(userId: string): string {
+  return `redeem-user:${userId}`;
+}
+
+export function redeemIpKey(ip: string): string {
+  return `redeem-ip:${ip}`;
+}
+
 type KeyWindow = { key: string; since: Date };
 
 /**
@@ -131,6 +144,49 @@ export async function checkResetAllowed(ip: string, email: string): Promise<Rate
     decide(RATE_LIMIT_RULES.resetPerIp, forIp.failures, forIp.oldest, now),
     decide(RATE_LIMIT_RULES.resetPerEmail, forEmail.failures, forEmail.oldest, now),
   ]);
+}
+
+/**
+ * Whether a gift code may be redeemed by this user from this address right
+ * now. Checked before touching the code at all — a code claim does real
+ * work inside a transaction with a row lock, so refusing early here is what
+ * stops a flood of guesses reaching that far.
+ */
+export async function checkRedeemAllowed(ip: string, userId: string): Promise<RateLimitDecision> {
+  const now = new Date();
+  const windows: KeyWindow[] = [
+    { key: redeemIpKey(ip), since: new Date(now.getTime() - RATE_LIMIT_RULES.redeemPerIp.windowMs) },
+    {
+      key: redeemUserKey(userId),
+      since: new Date(now.getTime() - RATE_LIMIT_RULES.redeemPerUser.windowMs),
+    },
+  ];
+
+  const counts = await countRecentFailures(windows);
+  const forIp = counts.get(windows[0].key) ?? { failures: 0, oldest: null };
+  const forUser = counts.get(windows[1].key) ?? { failures: 0, oldest: null };
+
+  return combine([
+    decide(RATE_LIMIT_RULES.redeemPerIp, forIp.failures, forIp.oldest, now),
+    decide(RATE_LIMIT_RULES.redeemPerUser, forUser.failures, forUser.oldest, now),
+  ]);
+}
+
+/** Records one failed redemption attempt against both keys. */
+export async function recordFailedRedeem(ip: string, userId: string): Promise<void> {
+  await getDb()
+    .insert(loginAttempts)
+    .values([{ key: redeemIpKey(ip) }, { key: redeemUserKey(userId) }]);
+}
+
+/**
+ * Clears this user's redemption failures after a successful one. The IP key
+ * is left alone, the same reasoning `clearFailedLogins` gives for its own
+ * address key: one success should not reset the broader brake for whoever
+ * else is behind the same address.
+ */
+export async function clearFailedRedeems(userId: string): Promise<void> {
+  await getDb().delete(loginAttempts).where(eq(loginAttempts.key, redeemUserKey(userId)));
 }
 
 /**

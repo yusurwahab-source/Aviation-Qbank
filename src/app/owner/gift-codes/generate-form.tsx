@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
 import { generate, type GenerateState } from "./actions";
+import { MAX_GENERATE_COUNT } from "./constants";
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -22,7 +23,20 @@ function SubmitButton() {
 const inputClass =
   "mt-1.5 w-full rounded-lg border border-border bg-surface px-3 py-2.5 text-sm text-foreground focus:border-brand focus:outline-none";
 
-export function GenerateForm() {
+/** A CSV of exactly the codes just minted, built and downloaded entirely in
+ * the browser — no round trip needed for a list this page already has. */
+function downloadCodesAsCsv(codes: string[]): void {
+  const csv = ["code", ...codes].join("\r\n") + "\r\n";
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `gift-codes-${new Date().toISOString().slice(0, 10)}.csv`;
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
+export function GenerateForm({ aircraftCodes }: { aircraftCodes: string[] }) {
   const [state, formAction] = useActionState<GenerateState, FormData>(generate, {});
 
   return (
@@ -37,7 +51,7 @@ export function GenerateForm() {
             name="count"
             type="number"
             min={1}
-            max={100}
+            max={MAX_GENERATE_COUNT}
             defaultValue={1}
             required
             className={inputClass}
@@ -48,15 +62,7 @@ export function GenerateForm() {
           <label htmlFor="days" className="block text-sm font-medium text-foreground">
             Days of access each
           </label>
-          <input
-            id="days"
-            name="days"
-            type="number"
-            min={1}
-            defaultValue={30}
-            required
-            className={inputClass}
-          />
+          <input id="days" name="days" type="number" min={1} defaultValue={30} required className={inputClass} />
         </div>
 
         <div>
@@ -70,6 +76,52 @@ export function GenerateForm() {
         </div>
 
         <div>
+          <label htmlFor="maxRedemptions" className="block text-sm font-medium text-foreground">
+            Max redemptions per code
+          </label>
+          <input
+            id="maxRedemptions"
+            name="maxRedemptions"
+            type="number"
+            min={1}
+            defaultValue={1}
+            required
+            className={inputClass}
+          />
+          <p className="mt-1 text-xs text-muted-foreground">
+            1 means single-use, as before. Higher lets several people share one code.
+          </p>
+        </div>
+
+        <div>
+          <label htmlFor="expiresAt" className="block text-sm font-medium text-foreground">
+            Expires (optional)
+          </label>
+          <input id="expiresAt" name="expiresAt" type="date" className={inputClass} />
+          <p className="mt-1 text-xs text-muted-foreground">
+            Leave blank for a code that never goes stale on its own.
+          </p>
+        </div>
+
+        <div>
+          <label htmlFor="unlocksAircraftCode" className="block text-sm font-medium text-foreground">
+            Aircraft (optional)
+          </label>
+          <select id="unlocksAircraftCode" name="unlocksAircraftCode" defaultValue="" className={inputClass}>
+            <option value="">All aircraft</option>
+            {aircraftCodes.map((code) => (
+              <option key={code} value={code}>
+                {code}
+              </option>
+            ))}
+          </select>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Recorded for your own reference only — redeeming this code still grants full access to
+            every aircraft, the same as one with no aircraft set.
+          </p>
+        </div>
+
+        <div className="sm:col-span-2">
           <label htmlFor="note" className="block text-sm font-medium text-foreground">
             Note (for you only, optional)
           </label>
@@ -96,7 +148,7 @@ export function GenerateForm() {
         <div className="mt-6 rounded-lg border border-border bg-surface-muted p-4">
           <p className="mb-2 text-sm font-medium text-foreground">
             {state.codes.length === 1 ? "Your code" : `Your ${state.codes.length} codes`} — each
-            works once:
+            works once per person, up to the max redemptions set:
           </p>
           <textarea
             readOnly
@@ -106,9 +158,16 @@ export function GenerateForm() {
             className="w-full rounded-lg border border-border bg-surface px-3 py-2 font-mono text-sm text-foreground"
           />
           <p className="mt-2 text-xs text-muted-foreground">
-            Click the box to select all, then copy. Send one code to each person — they redeem it
-            at <span className="font-mono">/redeem</span>.
+            Click the box to select all, then copy. Send one code per person — they redeem it at{" "}
+            <span className="font-mono">/redeem</span>.
           </p>
+          <button
+            type="button"
+            onClick={() => downloadCodesAsCsv(state.codes ?? [])}
+            className="mt-3 min-h-9 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-foreground transition hover:border-brand hover:text-brand"
+          >
+            Download these as CSV
+          </button>
         </div>
       ) : null}
     </div>

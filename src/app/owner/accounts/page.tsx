@@ -1,7 +1,8 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 
 import { Badge, Card, PageHeading } from "@/components/ui";
-import { listAccounts } from "@/db/owner";
+import { ACCOUNTS_PAGE_SIZE, listAccounts, type AccountStatusFilter } from "@/db/owner";
 import { daysRemaining, hasActiveSubscription } from "@/lib/billing/access-policy";
 import { requireOwner } from "@/lib/auth/require-owner";
 
@@ -11,28 +12,62 @@ import { AccessForm } from "./access-form";
 export const metadata: Metadata = { title: "Accounts" };
 export const dynamic = "force-dynamic";
 
+const STATUS_FILTERS: { value: AccountStatusFilter; label: string }[] = [
+  { value: "all", label: "All" },
+  { value: "active", label: "Active" },
+  { value: "expiring_soon", label: "Expiring soon" },
+  { value: "lapsed", label: "Lapsed" },
+  { value: "free_tier", label: "Free tier" },
+];
+
+function firstOf(value: string | string[] | undefined): string {
+  return Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
+}
+
 /**
- * Every account, and the one lever the owner has over each of them.
+ * Every account, paginated and filterable, with what it has done and what
+ * access it has.
  *
- * `/owner/subscribers` answers "who is paying"; this answers "who is here",
+ * "/owner/subscribers" answers "who is paying"; this answers "who is here",
  * which is a different and usually longer list — most accounts never
  * subscribe, and those are exactly the ones somebody asks about when they
- * want a free month.
- *
- * The search is a plain GET form: the query lives in the URL, so a result
- * can be linked to and a refresh does not lose it. Nothing here is a client
- * component except the per-row controls, which have to be.
+ * want a free month. Search and the status filter are both plain GET
+ * fields: the query lives in the URL, so a result — or a page of one — can
+ * be linked to and a refresh does not lose it.
  */
 export default async function OwnerAccountsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string | string[] }>;
+  searchParams: Promise<{ q?: string | string[]; status?: string | string[]; page?: string | string[] }>;
 }) {
   await requireOwner();
 
   const query = await searchParams;
-  const search = Array.isArray(query.q) ? (query.q[0] ?? "") : (query.q ?? "");
-  const accounts = await listAccounts(search);
+  const search = firstOf(query.q);
+  const rawStatus = firstOf(query.status);
+  const statusFilter: AccountStatusFilter = STATUS_FILTERS.some((f) => f.value === rawStatus)
+    ? (rawStatus as AccountStatusFilter)
+    : "all";
+  const page = Math.max(1, Number.parseInt(firstOf(query.page), 10) || 1);
+  const offset = (page - 1) * ACCOUNTS_PAGE_SIZE;
+
+  const { rows: accounts, total } = await listAccounts({
+    search: search || null,
+    statusFilter,
+    limit: ACCOUNTS_PAGE_SIZE,
+    offset,
+  });
+
+  const totalPages = Math.max(1, Math.ceil(total / ACCOUNTS_PAGE_SIZE));
+
+  function pageHref(targetPage: number): string {
+    const params = new URLSearchParams();
+    if (search) params.set("q", search);
+    if (statusFilter !== "all") params.set("status", statusFilter);
+    if (targetPage > 1) params.set("page", String(targetPage));
+    const qs = params.toString();
+    return qs ? `/owner/accounts?${qs}` : "/owner/accounts";
+  }
 
   return (
     <>
@@ -62,21 +97,50 @@ export default async function OwnerAccountsPage({
             Search
           </button>
         </form>
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          {STATUS_FILTERS.map((filter) => {
+            const active = filter.value === statusFilter;
+            const params = new URLSearchParams();
+            if (search) params.set("q", search);
+            if (filter.value !== "all") params.set("status", filter.value);
+            const href = params.toString() ? `/owner/accounts?${params}` : "/owner/accounts";
+
+            return (
+              <Link
+                key={filter.value}
+                href={href}
+                aria-current={active ? "page" : undefined}
+                className={`min-h-9 rounded-lg px-3 py-1.5 text-xs font-medium transition ${
+                  active
+                    ? "bg-brand text-on-solid"
+                    : "border border-border text-muted-foreground hover:border-brand hover:text-brand"
+                }`}
+              >
+                {filter.label}
+              </Link>
+            );
+          })}
+        </div>
       </Card>
 
       <p className="mb-3 text-sm text-muted-foreground">
-        {search
-          ? `${accounts.length} ${accounts.length === 1 ? "account" : "accounts"} matching “${search}”.`
-          : `Showing the ${accounts.length} newest ${accounts.length === 1 ? "account" : "accounts"}. Search to find an older one.`}
+        {total} {total === 1 ? "account" : "accounts"}
+        {search ? ` matching “${search}”` : ""}
+        {statusFilter !== "all"
+          ? ` · ${STATUS_FILTERS.find((f) => f.value === statusFilter)?.label.toLowerCase()}`
+          : ""}
+        {totalPages > 1 ? ` · page ${page} of ${totalPages}` : ""}
       </p>
 
       <DataTable
         headers={["Account", "Activity", "Access", "Grant or revoke"]}
         empty={
-          search
-            ? "No account matches that search."
+          search || statusFilter !== "all"
+            ? "No account matches that search and filter."
             : "Nobody has signed up yet."
         }
+        rowKey={(_row, index) => accounts[index]?.id ?? index}
         rows={accounts.map((account) => {
           const live = hasActiveSubscription({
             status: account.status ?? "canceled",
@@ -86,7 +150,9 @@ export default async function OwnerAccountsPage({
 
           return [
             <span key="account">
-              <span className="block break-all">{account.email}</span>
+              <Link href={`/owner/accounts/${account.id}`} className="font-medium text-brand hover:underline">
+                <span className="block break-all">{account.email}</span>
+              </Link>
               <span className="mt-1 block text-xs text-muted-foreground">
                 joined {formatDay(account.createdAt)}
               </span>
@@ -136,6 +202,31 @@ export default async function OwnerAccountsPage({
           ];
         })}
       />
+
+      {totalPages > 1 ? (
+        <nav className="mt-4 flex items-center justify-between gap-3" aria-label="Pagination">
+          {page > 1 ? (
+            <Link
+              href={pageHref(page - 1)}
+              className="min-h-11 rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-foreground transition hover:border-brand hover:text-brand"
+            >
+              ← Previous
+            </Link>
+          ) : (
+            <span />
+          )}
+          {page < totalPages ? (
+            <Link
+              href={pageHref(page + 1)}
+              className="min-h-11 rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-foreground transition hover:border-brand hover:text-brand"
+            >
+              Next →
+            </Link>
+          ) : (
+            <span />
+          )}
+        </nav>
+      ) : null}
 
       <Card className="mt-6">
         <h2 className="mb-2 text-sm font-semibold text-foreground">What these buttons do</h2>
