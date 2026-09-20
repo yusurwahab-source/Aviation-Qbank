@@ -2,6 +2,9 @@
 
 import { useEffect } from "react";
 
+const SW_VERSION = "v2";
+const SW_URL = `/sw.js?v=${SW_VERSION}`;
+
 /**
  * Registers the service worker in `public/sw.js`.
  *
@@ -20,10 +23,35 @@ export function ServiceWorker() {
     if (process.env.NODE_ENV !== "production") return;
     if (!("serviceWorker" in navigator)) return;
 
-    const register = () => {
-      navigator.serviceWorker.register("/sw.js").catch(() => {
+    const register = async () => {
+      try {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        const staleRegistrations = registrations.filter((registration) => {
+          const scriptUrl =
+            registration.active?.scriptURL ??
+            registration.waiting?.scriptURL ??
+            registration.installing?.scriptURL ??
+            "";
+          return !scriptUrl.includes(`v=${SW_VERSION}`);
+        });
+
+        if (staleRegistrations.length > 0) {
+          await Promise.all(staleRegistrations.map((registration) => registration.unregister()));
+
+          // Old workers may have left static caches behind. Removing only our
+          // own cache namespace avoids touching unrelated browser data.
+          if ("caches" in window) {
+            const keys = await caches.keys();
+            await Promise.all(
+              keys.filter((key) => key.startsWith("qbank-static-")).map((key) => caches.delete(key)),
+            );
+          }
+        }
+
+        await navigator.serviceWorker.register(SW_URL);
+      } catch {
         // Nothing to tell the student: the site is fully functional without it.
-      });
+      }
     };
 
     // After load, so registering never competes with the first paint.

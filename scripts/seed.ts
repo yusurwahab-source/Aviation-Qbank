@@ -57,6 +57,7 @@ async function main(): Promise<void> {
       for (const { manifest, questions } of content) {
         const aircraftRow: AircraftInsert = {
           code: manifest.code,
+          category: manifest.category,
           name: manifest.name,
           manufacturer: manifest.manufacturer,
           variant: manifest.variant ?? null,
@@ -73,6 +74,7 @@ async function main(): Promise<void> {
             target: aircraftTable.code,
             set: {
               name: aircraftRow.name,
+              category: aircraftRow.category,
               manufacturer: aircraftRow.manufacturer,
               variant: aircraftRow.variant,
               description: aircraftRow.description,
@@ -85,6 +87,7 @@ async function main(): Promise<void> {
         const rows: QuestionInsert[] = questions.map((question) => ({
           id: question.id,
           aircraftCode: question.aircraft,
+          category: question.category ?? manifest.category,
           topic: question.topic,
           subtopic: question.subtopic ?? null,
           question: question.question,
@@ -107,6 +110,7 @@ async function main(): Promise<void> {
               target: questionsTable.id,
               set: {
                 aircraftCode: sql`excluded.aircraft_code`,
+                category: sql`excluded.category`,
                 topic: sql`excluded.topic`,
                 subtopic: sql`excluded.subtopic`,
                 question: sql`excluded.question`,

@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description: `The terms covering use of ${siteConfig.name}.`,
 };
 
+export const dynamic = "force-dynamic";
+
 export default function TermsPage() {
   return (
     <>
