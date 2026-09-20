@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Card } from "@/components/ui";
 import type { AircraftSummary } from "@/db/queries";
 
-import { AircraftInterestForm } from "./interest-form";
 import { SectionHeading } from "./section-heading";
 
 /**
@@ -53,17 +52,6 @@ export function AircraftSection({ plane, systemCount }: { plane: AircraftSummary
             <dd className="mt-0.5 text-lg font-semibold text-foreground">{systemCount}</dd>
           </div>
         </dl>
-      </Card>
-
-      <Card className="mt-4">
-        <h3 className="text-sm font-semibold text-foreground">Which aircraft next?</h3>
-        <p className="mt-1 text-sm text-muted-foreground">
-          The 737-800 is the deep bank today. Tell us which type to build next and we&rsquo;ll let
-          you know if we do.
-        </p>
-        <div className="mt-4">
-          <AircraftInterestForm />
-        </div>
       </Card>
     </section>
   );

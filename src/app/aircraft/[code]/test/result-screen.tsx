@@ -3,6 +3,7 @@
 import Link from "next/link";
 
 import { FlagButton } from "@/components/flag-button";
+import { QuestionIdTag } from "@/components/question-id-tag";
 import { QuestionNote } from "@/components/question-note";
 import { Badge, Card, ScoreBar } from "@/components/ui";
 import type { GradedQuestion, TestResult } from "@/lib/grading";
@@ -338,7 +339,7 @@ function ReviewCard({
         ) : (
           <Badge tone="incorrect">{wasAnswered ? "Incorrect" : "Not answered"}</Badge>
         )}
-        <span className="ml-auto font-mono text-xs text-muted-foreground">{question.id}</span>
+        <QuestionIdTag id={question.id} className="ml-auto" />
       </div>
 
       <p className="question-text mt-3 font-medium text-foreground">{question.question}</p>

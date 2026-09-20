@@ -13,6 +13,7 @@ import {
 } from "react";
 
 import { FlagButton } from "@/components/flag-button";
+import { QuestionIdTag } from "@/components/question-id-tag";
 import { QuestionNote } from "@/components/question-note";
 import { ReportQuestionButton } from "@/components/report-question-button";
 import { Badge, Card } from "@/components/ui";
@@ -820,6 +821,10 @@ export function TestRunner({
             className="mt-4"
           />
         ) : null}
+
+        <div className="mt-4 border-t border-border pt-3 text-right">
+          <QuestionIdTag id={current.id} />
+        </div>
       </Card>
       </div>
 

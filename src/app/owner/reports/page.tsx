@@ -75,25 +75,34 @@ export default async function OwnerReportsPage({
       <OwnerNav current="/owner/reports" />
 
       <Card className="mb-6">
-        <div className="flex flex-wrap gap-2">
-          {STATUS_FILTERS.map((filter) => {
-            const active = filter.value === statusFilter;
-            const href = filter.value === "open" ? "/owner/reports" : `/owner/reports?status=${filter.value}`;
-            return (
-              <Link
-                key={filter.value}
-                href={href}
-                aria-current={active ? "page" : undefined}
-                className={`min-h-9 rounded-lg px-3 py-1.5 text-xs font-medium transition ${
-                  active
-                    ? "bg-brand text-on-solid"
-                    : "border border-border text-muted-foreground hover:border-brand hover:text-brand"
-                }`}
-              >
-                {filter.label}
-              </Link>
-            );
-          })}
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex flex-wrap gap-2">
+            {STATUS_FILTERS.map((filter) => {
+              const active = filter.value === statusFilter;
+              const href =
+                filter.value === "open" ? "/owner/reports" : `/owner/reports?status=${filter.value}`;
+              return (
+                <Link
+                  key={filter.value}
+                  href={href}
+                  aria-current={active ? "page" : undefined}
+                  className={`min-h-9 rounded-lg px-3 py-1.5 text-xs font-medium transition ${
+                    active
+                      ? "bg-brand text-on-solid"
+                      : "border border-border text-muted-foreground hover:border-brand hover:text-brand"
+                  }`}
+                >
+                  {filter.label}
+                </Link>
+              );
+            })}
+          </div>
+          <Link
+            href="/owner/reports/export"
+            className="min-h-9 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-foreground transition hover:border-brand hover:text-brand"
+          >
+            Export CSV
+          </Link>
         </div>
       </Card>
 
