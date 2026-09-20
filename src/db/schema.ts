@@ -104,6 +104,9 @@ export const users = pgTable(
     // One account per address. The database enforces this, not just the form:
     // two simultaneous sign-ups for the same email must not both succeed.
     uniqueIndex("users_email_unique").on(table.email),
+    // The signup half of the owner insights funnel: "signups in the last N
+    // days" is a range scan on this column alone.
+    index("users_created_at_idx").on(table.createdAt),
   ],
 );
 
@@ -264,6 +267,10 @@ export const testSessions = pgTable(
       table.aircraftCode,
       table.completedAt,
     ),
+    // The owner funnel's "users who finished a test in the last N days" —
+    // scoped by date alone, with no user in the predicate, so the two
+    // indexes above (both leading on userId) cannot serve it.
+    index("test_sessions_completed_at_idx").on(table.completedAt),
   ],
 );
 
@@ -330,6 +337,10 @@ export const attempts = pgTable(
     index("attempts_user_question_idx").on(table.userId, table.questionId),
     // All the answers in one test.
     index("attempts_session_idx").on(table.testSessionId),
+    // The owner insights "question quality" signal groups by question across
+    // every user — the indexes above all lead on userId, which is the wrong
+    // side of that query.
+    index("attempts_question_id_idx").on(table.questionId),
   ],
 );
 
@@ -371,6 +382,9 @@ export const questionFlags = pgTable(
     uniqueIndex("question_flags_user_question_unique").on(table.userId, table.questionId),
     // "My flagged questions" on this aircraft, for the test builder preset.
     index("question_flags_user_aircraft_idx").on(table.userId, table.aircraftCode),
+    // The owner insights "most-flagged questions" list groups by question
+    // across every user.
+    index("question_flags_question_id_idx").on(table.questionId),
   ],
 );
 
@@ -507,7 +521,7 @@ export type SubscriptionRow = typeof subscriptions.$inferSelect;
 export type SubscriptionInsert = typeof subscriptions.$inferInsert;
 
 /**
- * A free, single-use code that grants full access without touching Stripe —
+ * A code that grants full access without touching Stripe —
  * `upsertSubscription`'s `provider` column exists precisely so a second
  * source of access could be added without changing that function, and this
  * is that second source.
@@ -515,10 +529,39 @@ export type SubscriptionInsert = typeof subscriptions.$inferInsert;
  * `code` is stored normalised (uppercase, no separators) so a lookup never
  * depends on how the redeemer typed the dashes back in — `normalizeGiftCode`
  * in `gift-codes.ts` is the one place both sides agree on that shape.
- * `redeemedByUserId`/`redeemedAt` are null until spent, the same
- * unredeemed-until-claimed shape as `passwordResetTokens.usedAt`: a code is
- * claimed by an update whose own `where` requires `redeemed_by_user_id is
- * null`, so two redemption attempts racing on the same code cannot both win.
+ *
+ * Originally single-use, gated by `redeemedByUserId is null`. It is now a
+ * general-purpose license key that may be redeemed by more than one person
+ * (`maxRedemptions`), so the count of who has redeemed it lives in the child
+ * table below rather than as a single nullable pair of columns — the same
+ * reason `subscriptions` is one row per user rather than one per payment,
+ * just inverted: here it is one code with many redeemers, not one user with
+ * many payments.
+ *
+ * `redeemedByUserId`/`redeemedAt` stay, but now mean only "who redeemed this
+ * *first*" — kept for the existing single-use display path and as a cheap
+ * "has this code ever been used" flag. They are no longer what gates a
+ * redemption; `gift_code_redemptions` is, via a count against
+ * `maxRedemptions`. A code with `maxRedemptions` of 1 behaves exactly as
+ * before.
+ *
+ * `disabledAt` lets an owner stop a code being redeemed further without
+ * deleting it — deleting would erase `gift_code_redemptions`' own history
+ * through the cascade, and "what did this code do before it was disabled"
+ * is exactly the question disabling it is usually asked to answer.
+ *
+ * `expiresAt` is optional and, unlike a Stripe subscription's period, is
+ * about the *code* going stale before anyone uses it — nothing about a
+ * redemption already made is affected by it.
+ *
+ * `unlocksAircraftCode` is stored and shown but **not enforced by
+ * redemption today** — `subscriptions` is one global row per user with no
+ * aircraft scoping, and making a code aircraft-specific would mean changing
+ * the access model everywhere it is checked (`answerQuestion`, the test
+ * size cap, `/upgrade`, every owner access screen). Redeeming a code with
+ * this set still grants full access, the same as one without it; the field
+ * exists so the owner can record and communicate intent for a future
+ * aircraft-scoped access model without that model existing yet.
  *
  * `plan` and `durationDays` describe what the code is worth, not what it
  * bills — there is no charge here, so nothing about a code ever expires on
@@ -536,16 +579,64 @@ export const giftCodes = pgTable(
     /** For the owner's own records — e.g. "beta testers, Sept 2026" — never
      * shown to the redeemer. */
     note: varchar("note", { length: 200 }),
+    /** Who redeemed this code first, and when. See the note above: no longer
+     * what gates a redemption once `maxRedemptions` exceeds 1. */
     redeemedByUserId: uuid("redeemed_by_user_id").references(() => users.id, {
       onDelete: "cascade",
     }),
     redeemedAt: timestamp("redeemed_at", { withTimezone: true }),
+    /** How many people may redeem this code in total. 1 is the original,
+     * single-use behaviour. */
+    maxRedemptions: integer("max_redemptions").notNull().default(1),
+    /** Null means the code never goes stale on its own. */
+    expiresAt: timestamp("expires_at", { withTimezone: true }),
+    /** Set to stop further redemptions without deleting the code or its
+     * redemption history. Null means the code is live. */
+    disabledAt: timestamp("disabled_at", { withTimezone: true }),
+    /** Which aircraft this code is meant for, or null for "all aircraft".
+     * Recorded, not enforced — see the note above. */
+    unlocksAircraftCode: varchar("unlocks_aircraft_code", { length: 8 }),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
   (table) => [uniqueIndex("gift_codes_code_unique").on(table.code)],
 );
 
 export type GiftCodeRow = typeof giftCodes.$inferSelect;
+export type GiftCodeInsert = typeof giftCodes.$inferInsert;
+
+/**
+ * One redemption of a gift code. What actually gates a code against its
+ * `maxRedemptions` — a `count(*)` here compared to that column, inside the
+ * same transaction that inserts the next row, the same "read inside the
+ * transaction that writes" shape `redeemGiftCode` already used when the
+ * gate was `redeemed_by_user_id is null` on the parent row.
+ *
+ * `unique(codeId, userId)` stops the same person redeeming the same code
+ * twice — a second submission of the same code by the same account is a
+ * double-click or a resubmitted form, not a second, distinct redemption,
+ * and must not count twice against `maxRedemptions`.
+ */
+export const giftCodeRedemptions = pgTable(
+  "gift_code_redemptions",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    giftCodeId: uuid("gift_code_id")
+      .notNull()
+      .references(() => giftCodes.id, { onDelete: "cascade" }),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    redeemedAt: timestamp("redeemed_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("gift_code_redemptions_code_user_unique").on(table.giftCodeId, table.userId),
+    // "Every redemption of this code, newest first" — the per-code list the
+    // owner screen shows.
+    index("gift_code_redemptions_code_idx").on(table.giftCodeId, table.redeemedAt),
+  ],
+);
+
+export type GiftCodeRedemptionRow = typeof giftCodeRedemptions.$inferSelect;
 
 /**
  * "Which aircraft next?" — the landing page's email capture for anyone whose
@@ -596,3 +687,150 @@ export const siteSettings = pgTable("site_settings", {
 });
 
 export type SiteSettingRow = typeof siteSettings.$inferSelect;
+
+/**
+ * A signed-in student's answer was refused because the free allowance for
+ * that aircraft was spent and there is no active subscription —
+ * `answerQuestion`'s `"paywall"` status, the one branch that previously
+ * wrote nothing at all.
+ *
+ * Exists purely to make "users who hit a paywall gate" answerable for the
+ * owner insights funnel; nothing reads it to decide whether to grade or
+ * record anything, and nothing about the paywall's own behaviour changes.
+ * Not scoped further than aircraft and user — this is a funnel signal, not
+ * a per-question record, so there is deliberately no `questionId`.
+ */
+export const paywallHits = pgTable(
+  "paywall_hits",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    aircraftCode: varchar("aircraft_code", { length: 8 }).notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    // "Distinct users who hit the paywall in the last N days" for the funnel.
+    index("paywall_hits_created_at_idx").on(table.createdAt),
+    index("paywall_hits_user_idx").on(table.userId),
+  ],
+);
+
+export type PaywallHitRow = typeof paywallHits.$inferSelect;
+
+/**
+ * The owner's private note on one account — "asked for a refund, gave them
+ * a month", that kind of thing. Never shown to the account it is about.
+ *
+ * Its own table rather than a column on `users`, for the same reason
+ * `db/owner.ts` is its own module: `users` is the auth system's table, read
+ * and written from ordinary sign-in and sign-up paths that have no business
+ * knowing an owner's notes exist. One row per user, upserted in place —
+ * there is one note per account, not a history of notes, the same shape as
+ * `question_notes`.
+ */
+export const accountNotes = pgTable("account_notes", {
+  userId: uuid("user_id")
+    .primaryKey()
+    .references(() => users.id, { onDelete: "cascade" }),
+  body: text("body").notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+export type AccountNoteRow = typeof accountNotes.$inferSelect;
+
+/**
+ * "Report a problem" on a question, from the test-taking UI.
+ *
+ * Deliberately outside `questions` and carrying no foreign key to it, for
+ * the same reason `attempts.questionId` does not: `db:seed` deletes
+ * questions whose content files are gone, and a foreign key would either
+ * silently erase a report (cascade) or block a legitimate content edit
+ * (restrict). A report on a since-deleted or since-corrected question
+ * simply stops resolving to a question the inbox can show inline — it is
+ * not deleted, so it still counts in whatever history the owner keeps.
+ *
+ * `userId` is nullable because a signed-out visitor can report a problem
+ * too — practising without an account still means reading a question that
+ * might be wrong, and there is nothing about grading here to gate on being
+ * signed in the way flags and notes are.
+ *
+ * This table is written to and read from; it is never itself the answer key
+ * or a place fixes happen. Fixing a question is still the content-file
+ * workflow this phase does not touch — the inbox at `/owner/reports` is
+ * read-only against `questions` and writes only `status` here.
+ */
+export const reportReason = pgEnum("report_reason", [
+  "wrong_answer",
+  "unclear",
+  "typo",
+  "outdated",
+  "other",
+]);
+export const reportStatus = pgEnum("report_status", ["open", "resolved", "dismissed"]);
+
+export const questionReports = pgTable(
+  "question_reports",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    /** Plain text, not a foreign key. See the note above. */
+    questionId: varchar("question_id", { length: 40 }).notNull(),
+    /** Null for a signed-out reporter. */
+    userId: uuid("user_id").references(() => users.id, { onDelete: "set null" }),
+    reason: reportReason("reason").notNull(),
+    comment: varchar("comment", { length: 1000 }),
+    status: reportStatus("status").notNull().default("open"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    // The inbox's default view: open reports, newest first.
+    index("question_reports_status_created_idx").on(table.status, table.createdAt),
+    // Every report on one question, for showing them grouped.
+    index("question_reports_question_id_idx").on(table.questionId),
+  ],
+);
+
+export type QuestionReportRow = typeof questionReports.$inferSelect;
+export type QuestionReportInsert = typeof questionReports.$inferInsert;
+
+/**
+ * Every mutating action taken under `/owner`, written automatically by the
+ * one wrapper (`ownerAction` in `src/lib/owner/audited-action.ts`) every such
+ * action is built from — not something each handler remembers to call for
+ * itself, which is the version of this that silently goes missing on the
+ * next action added.
+ *
+ * `actorEmail` rather than a foreign key to `users`: the owner is identified
+ * by email throughout this codebase (`isOwner`, `OWNER_EMAIL`), there is no
+ * role table to join to, and a log entry should still name who did
+ * something even if that account were ever deleted.
+ *
+ * `targetId` is a free-form string (a user id, a gift code, a report id) and
+ * nullable for an action with no single target (e.g. a settings change).
+ * `metadata` carries whatever the action itself thinks is worth keeping —
+ * the days granted, the plan chosen, the setting's old and new value — kept
+ * as `jsonb` rather than a fixed set of columns because every action shapes
+ * this differently and a log is exactly the kind of table where "what does
+ * this row mean" should not require a migration to extend.
+ */
+export const auditLog = pgTable(
+  "audit_log",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    actorEmail: varchar("actor_email", { length: 254 }).notNull(),
+    action: varchar("action", { length: 64 }).notNull(),
+    targetType: varchar("target_type", { length: 32 }).notNull(),
+    targetId: varchar("target_id", { length: 64 }),
+    metadata: jsonb("metadata").$type<Record<string, unknown>>(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    // The log view's default order.
+    index("audit_log_created_at_idx").on(table.createdAt),
+    // Filtering by action type, newest first.
+    index("audit_log_action_created_idx").on(table.action, table.createdAt),
+  ],
+);
+
+export type AuditLogRow = typeof auditLog.$inferSelect;

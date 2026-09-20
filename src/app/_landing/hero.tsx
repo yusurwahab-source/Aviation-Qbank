@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-import { FEATURED_AIRCRAFT_CODE } from "@/config/aircraft-marketing";
-
 import { HeroBackground } from "./hero-background";
 
 export type HeroStats = {
@@ -18,8 +16,17 @@ const NUMBER_FORMAT = new Intl.NumberFormat("en-GB");
  * with it — `stats` is null in that case, and the strip is simply skipped
  * rather than showing a made-up number or an error banner on the page meant
  * to make a first impression.
+ *
+ * `featuredAircraftCode` comes from `site_settings` (`/owner/settings`), not
+ * a hardcoded constant — see `lib/settings.ts`.
  */
-export function Hero({ stats }: { stats: HeroStats | null }) {
+export function Hero({
+  stats,
+  featuredAircraftCode,
+}: {
+  stats: HeroStats | null;
+  featuredAircraftCode: string;
+}) {
   return (
     <section className="relative isolate overflow-hidden rounded-2xl border border-border bg-surface px-5 py-14 sm:px-10 sm:py-20">
       <HeroBackground />
@@ -35,7 +42,7 @@ export function Hero({ stats }: { stats: HeroStats | null }) {
 
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link
-            href={`/aircraft/${FEATURED_AIRCRAFT_CODE}`}
+            href={`/aircraft/${featuredAircraftCode}`}
             className="tap-target inline-flex w-full items-center justify-center rounded-lg bg-brand px-6 text-sm font-semibold text-on-solid transition hover:bg-brand-strong sm:w-auto"
           >
             Start practising free

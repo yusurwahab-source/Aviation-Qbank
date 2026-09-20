@@ -100,6 +100,50 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
       </div>
 
       <div>
+        <label
+          htmlFor="featuredAircraftCode"
+          className="block text-sm font-medium text-foreground"
+        >
+          Featured aircraft
+        </label>
+        <p className="mt-1 text-xs text-muted-foreground">
+          The aircraft the landing page is built around. Must be a code already in the bank —
+          this never adds or changes an aircraft, only which one marketing leads with.
+        </p>
+        <input
+          id="featuredAircraftCode"
+          name="featuredAircraftCode"
+          type="text"
+          defaultValue={settings.featuredAircraftCode}
+          placeholder="e.g. B737"
+          required
+          className={`${inputClass} max-w-40 font-mono uppercase`}
+        />
+      </div>
+
+      <div>
+        <label
+          htmlFor="aircraftInDevelopment"
+          className="block text-sm font-medium text-foreground"
+        >
+          Aircraft marked &ldquo;in development&rdquo;
+        </label>
+        <p className="mt-1 text-xs text-muted-foreground">
+          Hidden from the landing page and shown on the aircraft picker with an &ldquo;In
+          development&rdquo; badge instead of a question count. One code per line or
+          comma-separated. Leave blank for none.
+        </p>
+        <textarea
+          id="aircraftInDevelopment"
+          name="aircraftInDevelopment"
+          rows={2}
+          defaultValue={settings.aircraftInDevelopment.join(", ")}
+          placeholder="e.g. DA40"
+          className={`${inputClass} max-w-sm font-mono uppercase`}
+        />
+      </div>
+
+      <div>
         <SubmitButton />
         {state.error ? (
           <p role="alert" className="mt-2 text-xs text-incorrect">

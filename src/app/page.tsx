@@ -1,5 +1,4 @@
 import { DatabaseUnavailable } from "@/components/database-unavailable";
-import { FEATURED_AIRCRAFT_CODE } from "@/config/aircraft-marketing";
 import { siteConfig } from "@/config/site";
 import {
   countAircraft,
@@ -8,6 +7,7 @@ import {
   type AircraftSummary,
   type TopicSummary,
 } from "@/db/queries";
+import { getSiteSettings } from "@/db/settings";
 import { appUrl } from "@/lib/email/send";
 
 import { AircraftSection } from "./_landing/aircraft-section";
@@ -43,11 +43,11 @@ type LandingData = {
   plane: AircraftSummary | null;
 };
 
-async function loadLandingData(): Promise<LandingData> {
+async function loadLandingData(featuredAircraftCode: string): Promise<LandingData> {
   const [aircraftResult, topicsResult, planeResult] = await Promise.allSettled([
     countAircraft(),
-    listTopics(FEATURED_AIRCRAFT_CODE),
-    getAircraft(FEATURED_AIRCRAFT_CODE),
+    listTopics(featuredAircraftCode),
+    getAircraft(featuredAircraftCode),
   ]);
 
   return {
@@ -63,7 +63,7 @@ async function loadLandingData(): Promise<LandingData> {
  * the page — no rating, review count or enrolment figure appears anywhere
  * here, because none exists to report honestly.
  */
-function jsonLd(): { "@type": string; [key: string]: unknown }[] {
+function jsonLd(featuredAircraftCode: string): { "@type": string; [key: string]: unknown }[] {
   const base = appUrl();
 
   return [
@@ -81,7 +81,7 @@ function jsonLd(): { "@type": string; [key: string]: unknown }[] {
       name: `${siteConfig.name} — Boeing 737-800 type rating practice questions`,
       description:
         "Multiple-choice practice questions for the Boeing 737-800 type rating, written from FCOM and FCTM source material, with study and timed exam modes.",
-      url: `${base}/aircraft/${FEATURED_AIRCRAFT_CODE}`,
+      url: `${base}/aircraft/${featuredAircraftCode}`,
       inLanguage: "en",
       provider: { "@type": "Organization", name: siteConfig.name, url: base },
       hasCourseInstance: { "@type": "CourseInstance", courseMode: "online", courseWorkload: "Self-paced" },
@@ -90,7 +90,11 @@ function jsonLd(): { "@type": string; [key: string]: unknown }[] {
 }
 
 export default async function LandingPage() {
-  const { totalAircraft, topics, topicsOk, plane } = await loadLandingData();
+  // Read before anything else the page fetches — a settings failure falls
+  // back to `DEFAULT_SETTINGS.featuredAircraftCode`, so the landing page
+  // never has "no featured aircraft" as a state to render.
+  const { featuredAircraftCode } = await getSiteSettings();
+  const { totalAircraft, topics, topicsOk, plane } = await loadLandingData(featuredAircraftCode);
 
   // The hero's question and system counts are the same sum the grid below
   // shows, computed once here — never a separate query that could drift
@@ -108,11 +112,11 @@ export default async function LandingPage() {
 
   return (
     <div className="flex flex-col gap-16 sm:gap-24">
-      <Hero stats={heroStats} />
+      <Hero stats={heroStats} featuredAircraftCode={featuredAircraftCode} />
       <Trust />
 
       {bankAvailable ? (
-        <SystemsGrid aircraftCode={FEATURED_AIRCRAFT_CODE} topics={topics} />
+        <SystemsGrid aircraftCode={featuredAircraftCode} topics={topics} />
       ) : (
         <section id="whats-inside" className="scroll-mt-20">
           <DatabaseUnavailable />
@@ -129,9 +133,9 @@ export default async function LandingPage() {
       )}
 
       <Faq />
-      <FinalCta />
+      <FinalCta featuredAircraftCode={featuredAircraftCode} />
 
-      {jsonLd().map((entry) => (
+      {jsonLd(featuredAircraftCode).map((entry) => (
         <script
           key={entry["@type"]}
           type="application/ld+json"

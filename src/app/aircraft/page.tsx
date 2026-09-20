@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 
 import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { Badge, Card, EmptyState, PageHeading } from "@/components/ui";
-import { AIRCRAFT_IN_DEVELOPMENT } from "@/config/aircraft-marketing";
 import { siteConfig } from "@/config/site";
 import { getSubscription } from "@/db/subscriptions";
 import { listAircraft, type AircraftSummary } from "@/db/queries";
@@ -83,7 +82,10 @@ export default async function AircraftPickerPage() {
         <ul className="grid gap-4 sm:grid-cols-2">
           {fleet.map((plane) => (
             <li key={plane.code}>
-              <AircraftCard plane={plane} />
+              <AircraftCard
+                plane={plane}
+                inDevelopment={settings.aircraftInDevelopment.includes(plane.code)}
+              />
             </li>
           ))}
         </ul>
@@ -92,8 +94,13 @@ export default async function AircraftPickerPage() {
   );
 }
 
-function AircraftCard({ plane }: { plane: AircraftSummary }) {
-  const inDevelopment = AIRCRAFT_IN_DEVELOPMENT.has(plane.code);
+function AircraftCard({
+  plane,
+  inDevelopment,
+}: {
+  plane: AircraftSummary;
+  inDevelopment: boolean;
+}) {
   const ready = plane.status === "active" && plane.publishedQuestions > 0;
 
   const body = (
