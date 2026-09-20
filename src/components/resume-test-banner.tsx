@@ -19,8 +19,7 @@ export function ResumeTestBanner({
   /** Falls back to the code when the caller has not already looked the
    * aircraft up for something else — not worth a query of its own here. */
   aircraftName?: string;
-  /** `buildResumeHref` by default (`/aircraft/CODE/test`) — a class
-   * rating's overview page passes `buildClassResumeHref` instead. */
+  /** Falls back to `buildResumeHref` (`/aircraft/CODE/test`). */
   hrefBuilder?: typeof buildResumeHref;
 }) {
   const scope =

@@ -9,11 +9,14 @@ truth**. Edit a file, re-run the seed, and the website updates.
 ```
 content/
   da40/                     <- one folder per aircraft, lowercase code
-    aircraft.json           <- the aircraft's details
+    aircraft.json           <- the aircraft's details, including its category
     questions/
       airframe.json         <- one file per topic, each holding a JSON array
       electrical.json
       ...
+  c152/                     <- another light aircraft (category: light-aircraft)
+    aircraft.json
+    questions/
   b737/                     <- adding an aircraft means adding a folder
     aircraft.json
     questions/
@@ -21,28 +24,38 @@ content/
       air-systems.json
       anti-ice-and-rain.json
       automatic-flight.json
-  classes/                  <- class ratings, a separate content tree
-    sep/                    <- one folder per class, lowercase code
-      class.json            <- the class's details
-      questions/
-        systems.json
-        ...
-    mep/
-      class.json
-      questions/
+  a320/                     <- another type rating (category: type-rating)
+    aircraft.json
+    questions/
+  flying-knowledge/         <- theory subjects (category: flying-knowledge)
+    knowledge.json           <- its manifest, in place of aircraft.json
+    questions/
+      fundamentals.json
+      ...
 ```
 
-Adding a second aircraft, or a second class rating, is a content job only.
-Nothing in the application code needs to change.
+Adding a second aircraft is a content job only. Nothing in the application
+code needs to change.
 
-A class rating (`content/classes/<code>/class.json` + `questions/`) is a
-genuinely separate bank from an aircraft's, validated by its own schema in
-`src/content/class-schema.ts` and seeded into its own tables
-(`class_ratings`, `class_questions`) — see the note on `classRatings` in
-`src/db/schema.ts`. Question ids there look like `SEP-SYSTEMS-0001` (class
-code, topic code, four digits) rather than `DA40-ELEC-0042`, and the
-`classCode` field takes the place of `aircraft`, but every other rule below
-holds identically.
+Every manifest declares a `category`, one of `type-rating`, `light-aircraft`
+or `flying-knowledge` — see `CONTENT_CATEGORIES` in `src/content/schema.ts`.
+This is what groups aircraft into the site's three sections, shown to
+students as **Type Rating** (large aircraft such as the B737 and the A320),
+**Class Rating** (light aircraft such as the DA40 and the C152) and **Flying
+Knowledge** (theory subjects such as IFR/VFR that are not tied to a single
+airframe). A `flying-knowledge` folder's manifest is named `knowledge.json`
+rather than `aircraft.json` — the loader accepts either — but every other
+rule below holds identically; its question ids still look like
+`FLYKNOW-IFR-0001` (code, topic code, four digits).
+
+There used to be a second, genuinely separate content tree here —
+`content/classes/<code>/class.json` for "class ratings" such as SEP and
+MEP, seeded into their own `class_ratings`/`class_questions` tables and
+served at `/class/[code]`. That tree, its schema, its database tables and
+its routes have all been removed: what "class rating" now means is the
+`light-aircraft` category above, grouping real aircraft (DA40, C152)
+rather than a separate single/multi-engine piston rating with no aircraft
+of its own.
 
 ## Rules that are checked automatically
 

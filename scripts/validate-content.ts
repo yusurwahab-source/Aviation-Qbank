@@ -7,7 +7,6 @@
  *   npm run validate:content
  */
 import { loadContent, type ContentIssue } from "../src/content/load";
-import { loadClassContent } from "../src/content/load-classes";
 
 const ESC = String.fromCharCode(27);
 const RED = `${ESC}[31m`;
@@ -18,8 +17,7 @@ const RESET = `${ESC}[0m`;
 
 function main(): void {
   const { aircraft, issues } = loadContent();
-  const { classes, issues: classIssues } = loadClassContent();
-  const allIssues = [...issues, ...classIssues];
+  const allIssues = [...issues];
 
   if (allIssues.length > 0) {
     const plural = allIssues.length === 1 ? "" : "s";
@@ -64,20 +62,6 @@ function main(): void {
     );
   }
 
-  if (classes.length > 0) {
-    const classQuestionCount = classes.reduce((sum, c) => sum + c.questions.length, 0);
-    console.log(
-      `\n${GREEN}${BOLD}Class ratings${RESET} - ${classes.length} class, ${classQuestionCount} question${classQuestionCount === 1 ? "" : "s"}\n`,
-    );
-    for (const entry of classes) {
-      const published = entry.questions.filter((q) => q.status === "published").length;
-      const draft = entry.questions.length - published;
-      const topics = new Set(entry.questions.map((q) => q.topic));
-      console.log(
-        `  ${BOLD}${entry.manifest.code}${RESET} ${entry.manifest.name} ${DIM}- ${published} published, ${draft} draft, ${topics.size} topic${topics.size === 1 ? "" : "s"}${RESET}`,
-      );
-    }
-  }
   console.log("");
 }
 
