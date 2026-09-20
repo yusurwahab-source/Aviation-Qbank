@@ -7,6 +7,7 @@ import { cache } from "react";
 
 import { getDb } from "@/db";
 import { sessions, users } from "@/db/schema";
+import { SESSION_COOKIE } from "@/lib/auth/cookie-names";
 
 /**
  * Logged-in sessions.
@@ -16,7 +17,10 @@ import { sessions, users } from "@/db/schema";
  * deletes the row, which revokes the session everywhere at once.
  */
 
-export const SESSION_COOKIE = "qbank_session";
+/** Re-exported so the many callers that import it from here keep working;
+ * the name itself lives in `cookie-names.ts`, which `middleware.ts` can
+ * also import. */
+export { SESSION_COOKIE };
 
 /** How long a session lasts without being used. */
 const SESSION_DURATION_MS = 30 * 24 * 60 * 60 * 1000; // 30 days

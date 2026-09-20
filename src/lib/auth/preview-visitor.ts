@@ -4,6 +4,8 @@ import { createHash, randomBytes } from "node:crypto";
 import { cookies } from "next/headers";
 import { cache } from "react";
 
+import { PREVIEW_COOKIE, PREVIEW_COOKIE_MAX_AGE_SECONDS } from "@/lib/auth/cookie-names";
+
 /**
  * Who a signed-out visitor is, for the length of their preview.
  *
@@ -26,15 +28,6 @@ import { cache } from "react";
  * breath. Saying otherwise would be the kind of comfortable claim this
  * codebase avoids elsewhere.
  */
-
-export const PREVIEW_COOKIE = "qbank_preview";
-
-/**
- * Long enough that a visitor coming back next week still has the preview
- * they already spent, short enough to expire on its own. The row it points
- * at outlives it harmlessly — see `sweepPreviewAttempts`.
- */
-const PREVIEW_COOKIE_MAX_AGE_SECONDS = 180 * 24 * 60 * 60; // 180 days
 
 /** SHA-256 over 256 bits of randomness: nothing to brute force, so no slow
  * hash — the identical reasoning `session.ts` gives for its own tokens. */

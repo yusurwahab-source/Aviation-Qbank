@@ -149,8 +149,12 @@ export function TestBuilder({
     requested !== null && requested !== ALL_QUESTIONS && requested > available;
   // Whichever cut it down further is the one worth explaining — no point
   // naming the section limit when the free allowance is the tighter one.
+  // Note the `> 0`: at zero there is nothing to shorten *to*, the allowance
+  // line above already says the allowance is spent, and the button below has
+  // become "Sign up"/"Upgrade". "…so the test will have 0" would be a third
+  // way of saying it, and the least useful of the three.
   const shortenedByFreeLimit =
-    freeTierApplies && remainingFree !== null && requestedSize > remainingFree;
+    freeTierApplies && remainingFree !== null && remainingFree > 0 && requestedSize > remainingFree;
 
   function toggle(topic: string) {
     setActivePreset(null);

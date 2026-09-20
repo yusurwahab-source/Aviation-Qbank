@@ -372,6 +372,26 @@ back through a preview test cost nothing. And the review still says "18 of
 and the redaction happens afterwards — a student who left questions blank
 must not be told they sat a shorter test than they did.
 
+**The visitor cookie is minted by `src/proxy.ts`, not by the action, and
+that is not tidiness.** `ensurePreviewVisitorId` can set it — it is a
+server action, so it is allowed to — but **a server action that writes a
+cookie makes Next re-render the page it was called from**, and a
+signed-out test page has no session to resume, so re-rendering it draws a
+fresh random set of questions. The effect was that the very first answer
+of a visitor's very first test silently restarted that test and threw away
+the answer they had just given. Found in a browser, not reasoned about.
+Minting on the way *in* means the action never writes a cookie and nothing
+re-renders. The action keeps its own minting as a fallback, so the proxy is
+not load-bearing for the limit — delete it and the preview is still
+enforced; the first test of a visit would just restart once.
+
+It is `proxy.ts` because Next 16 deprecated the `middleware` file
+convention and renamed it; the build says so if it is ever renamed back.
+The matcher is `/aircraft/:path*` alone, so nobody reading the marketing
+pages is given a cookie, and a request already carrying a session cookie
+is skipped entirely — a signed-in student is metered against their
+account.
+
 **And be honest about what the cookie is worth: nothing, against a script.**
 It is the visitor's to delete, and a caller that never sends one back is a
 new visitor on every request. So the cookie meters honest use, and
@@ -1455,6 +1475,7 @@ src/
     settings.ts               Reading and writing site_settings; owner-only write, publicly read
     owner.ts                  THE unscoped reads, and grant/revoke/notes. /owner only; see the convention above.
     index.ts                  Connection pool
+  proxy.ts                    Mints the signed-out visitor cookie on /aircraft/*
   lib/
     email/
       send.ts                 sendEmail: Resend, or the server log
@@ -1477,6 +1498,7 @@ src/
       reset-policy.ts         Reset link lifetime and state (pure, tested)
       client-ip.ts            The caller's address, behind Vercel's proxy
       preview-visitor.ts      The signed-out visitor cookie — mint, read, hash
+      cookie-names.ts         The two cookie names, importable from proxy.ts
       session.ts              Cookie and session table handling
       owner.ts                Whether the signed-in account is the site owner (pure, tested)
       require-owner.ts        THE gate in front of every /owner page and action
