@@ -13,7 +13,7 @@ import {
 import { EXPIRING_SOON_DAYS, listAircraftInterest, tallyAircraftInterest } from "@/db/owner";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, StatTile, formatDay } from "../owner-ui";
+import { DataTable, OwnerNav, OwnerPageError, StatTile, formatDay } from "../owner-ui";
 
 export const metadata: Metadata = { title: "Insights" };
 export const dynamic = "force-dynamic";
@@ -61,16 +61,34 @@ function FunnelCard({ title, funnel }: { title: string; funnel: SignupFunnel }) 
 export default async function OwnerInsightsPage() {
   await requireOwner();
 
-  const [funnel7, funnel30, access, quality, flagged, interestTally, interestRows] =
-    await Promise.all([
-      getSignupFunnel(7),
-      getSignupFunnel(30),
-      getAccessSummary(),
-      getQuestionQualitySignal(),
-      getMostFlaggedQuestions(),
-      tallyAircraftInterest(5),
-      listAircraftInterest(20),
-    ]);
+  let funnel7: Awaited<ReturnType<typeof getSignupFunnel>>;
+  let funnel30: Awaited<ReturnType<typeof getSignupFunnel>>;
+  let access: Awaited<ReturnType<typeof getAccessSummary>>;
+  let quality: Awaited<ReturnType<typeof getQuestionQualitySignal>>;
+  let flagged: Awaited<ReturnType<typeof getMostFlaggedQuestions>>;
+  let interestTally: Awaited<ReturnType<typeof tallyAircraftInterest>>;
+  let interestRows: Awaited<ReturnType<typeof listAircraftInterest>>;
+  try {
+    [funnel7, funnel30, access, quality, flagged, interestTally, interestRows] =
+      await Promise.all([
+        getSignupFunnel(7),
+        getSignupFunnel(30),
+        getAccessSummary(),
+        getQuestionQualitySignal(),
+        getMostFlaggedQuestions(),
+        tallyAircraftInterest(5),
+        listAircraftInterest(20),
+      ]);
+  } catch (error) {
+    console.error("Failed to load insights:", error);
+    return (
+      <>
+        <PageHeading title="Insights" />
+        <OwnerNav current="/owner/insights" />
+        <OwnerPageError detail={(error as Error).message} />
+      </>
+    );
+  }
 
   return (
     <>

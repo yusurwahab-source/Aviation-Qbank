@@ -7,7 +7,7 @@ import { getAccountDetail } from "@/db/owner";
 import { daysRemaining, hasActiveSubscription } from "@/lib/billing/access-policy";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, formatDay } from "../../owner-ui";
+import { DataTable, OwnerNav, OwnerPageError, formatDay } from "../../owner-ui";
 import { AccessForm } from "../access-form";
 import { NoteForm } from "../note-form";
 
@@ -32,7 +32,19 @@ export default async function OwnerAccountDetailPage({
   await requireOwner();
   const { userId } = await params;
 
-  const account = await getAccountDetail(userId);
+  let account: Awaited<ReturnType<typeof getAccountDetail>>;
+  try {
+    account = await getAccountDetail(userId);
+  } catch (error) {
+    console.error("Failed to load an account's detail:", error);
+    return (
+      <>
+        <PageHeading eyebrow="Account" title="This account" />
+        <OwnerNav current="/owner/accounts" />
+        <OwnerPageError detail={(error as Error).message} />
+      </>
+    );
+  }
   if (!account) notFound();
 
   const live = hasActiveSubscription({

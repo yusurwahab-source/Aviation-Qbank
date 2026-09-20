@@ -5,7 +5,7 @@ import { listSubscribers } from "@/db/owner";
 import { daysRemaining, hasActiveSubscription } from "@/lib/billing/access-policy";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, formatDay } from "../owner-ui";
+import { DataTable, OwnerNav, OwnerPageError, formatDay } from "../owner-ui";
 
 export const metadata: Metadata = { title: "Subscribers" };
 export const dynamic = "force-dynamic";
@@ -20,7 +20,20 @@ export const dynamic = "force-dynamic";
  */
 export default async function OwnerSubscribersPage() {
   await requireOwner();
-  const rows = await listSubscribers();
+
+  let rows: Awaited<ReturnType<typeof listSubscribers>>;
+  try {
+    rows = await listSubscribers();
+  } catch (error) {
+    console.error("Failed to list subscribers:", error);
+    return (
+      <>
+        <PageHeading title="Subscribers" />
+        <OwnerNav current="/owner/subscribers" />
+        <OwnerPageError detail={(error as Error).message} />
+      </>
+    );
+  }
 
   const active = rows.filter((row) =>
     hasActiveSubscription({ status: row.status, currentPeriodEnd: row.currentPeriodEnd }),

@@ -4,7 +4,7 @@ import { Badge, Card, PageHeading } from "@/components/ui";
 import { listAuditLog, listAuditLogActions } from "@/db/audit-log";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { DataTable, OwnerNav, formatDay } from "../owner-ui";
+import { DataTable, OwnerNav, OwnerPageError, formatDay } from "../owner-ui";
 
 export const metadata: Metadata = { title: "Audit log" };
 export const dynamic = "force-dynamic";
@@ -55,10 +55,23 @@ export default async function OwnerAuditLogPage({
   const rawAction = Array.isArray(query.action) ? (query.action[0] ?? "") : (query.action ?? "");
   const actionFilter = rawAction.trim() === "" ? null : rawAction.trim();
 
-  const [entries, actions] = await Promise.all([
-    listAuditLog({ action: actionFilter }),
-    listAuditLogActions(),
-  ]);
+  let entries: Awaited<ReturnType<typeof listAuditLog>>;
+  let actions: Awaited<ReturnType<typeof listAuditLogActions>>;
+  try {
+    [entries, actions] = await Promise.all([
+      listAuditLog({ action: actionFilter }),
+      listAuditLogActions(),
+    ]);
+  } catch (error) {
+    console.error("Failed to load the audit log:", error);
+    return (
+      <>
+        <PageHeading title="Audit log" />
+        <OwnerNav current="/owner/audit-log" />
+        <OwnerPageError detail={(error as Error).message} />
+      </>
+    );
+  }
 
   return (
     <>
