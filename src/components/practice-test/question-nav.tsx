@@ -1,13 +1,11 @@
 "use client";
 
-import type { TestQuestion } from "@/db/queries";
+import type { AnswerVerdict, PracticeQuestion } from "@/lib/practice-test-types";
 import {
   nextUnansweredIndex,
   questionStatus,
   type QuestionStatus,
 } from "@/lib/question-status";
-
-import type { AnswerVerdict } from "./actions";
 
 /**
  * A map of the test: every question, what state it is in, and a way to jump
@@ -57,7 +55,7 @@ export function QuestionNav({
   onJump,
   onClose,
 }: {
-  questions: TestQuestion[];
+  questions: PracticeQuestion[];
   answers: Record<string, string>;
   verdicts: Record<string, AnswerVerdict>;
   flagged: ReadonlySet<string>;

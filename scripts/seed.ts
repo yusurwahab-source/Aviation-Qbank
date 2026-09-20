@@ -14,8 +14,19 @@ import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 
 import { loadContent } from "../src/content/load";
-import { aircraft as aircraftTable, questions as questionsTable } from "../src/db/schema";
-import type { AircraftInsert, QuestionInsert } from "../src/db/schema";
+import { loadClassContent } from "../src/content/load-classes";
+import {
+  aircraft as aircraftTable,
+  classQuestions as classQuestionsTable,
+  classRatings as classRatingsTable,
+  questions as questionsTable,
+} from "../src/db/schema";
+import type {
+  AircraftInsert,
+  ClassQuestionInsert,
+  ClassRatingInsert,
+  QuestionInsert,
+} from "../src/db/schema";
 
 config({ path: ".env.local", quiet: true });
 config({ path: ".env", quiet: true });
@@ -31,7 +42,8 @@ async function main(): Promise<void> {
 
   // The seed never guesses. If content is broken, stop before touching the database.
   const { aircraft: content, issues } = loadContent();
-  if (issues.length > 0) {
+  const { classes: classContent, issues: classIssues } = loadClassContent();
+  if (issues.length > 0 || classIssues.length > 0) {
     console.error("Content is invalid, nothing was written. Run `npm run validate:content`.");
     process.exit(1);
   }
@@ -143,6 +155,106 @@ async function main(): Promise<void> {
           console.log(`${code}  removed (no content folder)`);
         }
       }
+
+      // Class ratings: the same sync, against the separate class tables —
+      // see the note on `classRatings` in `db/schema.ts` for why this is a
+      // second pair of tables rather than a "kind" column on the ones above.
+      for (const { manifest, questions } of classContent) {
+        const classRow: ClassRatingInsert = {
+          code: manifest.code,
+          name: manifest.name,
+          description: manifest.description,
+          status: manifest.status,
+          sortOrder: manifest.sortOrder,
+          updatedAt: now,
+        };
+
+        await tx
+          .insert(classRatingsTable)
+          .values(classRow)
+          .onConflictDoUpdate({
+            target: classRatingsTable.code,
+            set: {
+              name: classRow.name,
+              description: classRow.description,
+              status: classRow.status,
+              sortOrder: classRow.sortOrder,
+              updatedAt: now,
+            },
+          });
+
+        const classRows: ClassQuestionInsert[] = questions.map((question) => ({
+          id: question.id,
+          classCode: question.classCode,
+          topic: question.topic,
+          subtopic: question.subtopic ?? null,
+          question: question.question,
+          options: question.options,
+          correct: question.correct,
+          explanation: question.explanation,
+          reference: question.reference ?? null,
+          media: question.media ?? null,
+          tags: question.tags ?? [],
+          status: question.status,
+          version: question.version,
+          updatedAt: now,
+        }));
+
+        if (classRows.length > 0) {
+          await tx
+            .insert(classQuestionsTable)
+            .values(classRows)
+            .onConflictDoUpdate({
+              target: classQuestionsTable.id,
+              set: {
+                classCode: sql`excluded.class_code`,
+                topic: sql`excluded.topic`,
+                subtopic: sql`excluded.subtopic`,
+                question: sql`excluded.question`,
+                options: sql`excluded.options`,
+                correct: sql`excluded.correct`,
+                explanation: sql`excluded.explanation`,
+                reference: sql`excluded.reference`,
+                media: sql`excluded.media`,
+                tags: sql`excluded.tags`,
+                status: sql`excluded.status`,
+                version: sql`excluded.version`,
+                updatedAt: now,
+              },
+            });
+        }
+
+        const classKeepIds = classRows.map((row) => row.id);
+        const removedClassQuestions = await tx
+          .delete(classQuestionsTable)
+          .where(
+            classKeepIds.length > 0
+              ? and(
+                  eq(classQuestionsTable.classCode, manifest.code),
+                  notInArray(classQuestionsTable.id, classKeepIds),
+                )
+              : eq(classQuestionsTable.classCode, manifest.code),
+          )
+          .returning({ id: classQuestionsTable.id });
+
+        const classPublished = questions.filter((q) => q.status === "published").length;
+        const removedClassNote =
+          removedClassQuestions.length > 0 ? `, ${removedClassQuestions.length} removed` : "";
+        console.log(
+          `${manifest.code}  ${classPublished} published, ${questions.length - classPublished} draft${removedClassNote}`,
+        );
+      }
+
+      const keepClassCodes = classContent.map((entry) => entry.manifest.code);
+      if (keepClassCodes.length > 0) {
+        const removedClasses = await tx
+          .delete(classRatingsTable)
+          .where(notInArray(classRatingsTable.code, keepClassCodes))
+          .returning({ code: classRatingsTable.code });
+        for (const { code } of removedClasses) {
+          console.log(`${code}  removed (no content folder)`);
+        }
+      }
     });
 
     const [{ count }] = await db
@@ -150,7 +262,14 @@ async function main(): Promise<void> {
       .from(questionsTable)
       .where(inArray(questionsTable.status, ["published"]));
 
-    console.log(`\nSeed complete. ${count} published question(s) available to users.`);
+    const [{ count: classCount }] = await db
+      .select({ count: sql<number>`count(*)::int` })
+      .from(classQuestionsTable)
+      .where(inArray(classQuestionsTable.status, ["published"]));
+
+    console.log(
+      `\nSeed complete. ${count} published question(s) available to users, ${classCount} in class ratings.`,
+    );
   } finally {
     await pool.end();
   }

@@ -90,6 +90,15 @@ export default async function AircraftPickerPage() {
           ))}
         </ul>
       )}
+
+      <p className="mt-6">
+        <Link
+          href="/class"
+          className="link-standalone text-sm font-medium text-brand hover:underline"
+        >
+          Practising for a class rating instead? →
+        </Link>
+      </p>
     </>
   );
 }

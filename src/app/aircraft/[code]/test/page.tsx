@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 
 import { DatabaseUnavailable } from "@/components/database-unavailable";
+import { TestRunner } from "@/components/practice-test/runner";
 import { EmptyState, PageHeading } from "@/components/ui";
 import { findSession, getSessionAnswers } from "@/db/attempts";
 import { getFlaggedQuestionIdSet, getFlaggedQuestionIds } from "@/db/flags";
@@ -23,6 +24,7 @@ import { hasActiveSubscription, remainingFreeQuestions } from "@/lib/billing/acc
 import { getSiteSettings } from "@/db/settings";
 import { getPreviewVisitorId } from "@/lib/auth/preview-visitor";
 import { getCurrentUser } from "@/lib/auth/session";
+import type { AnswerVerdict } from "@/lib/practice-test-types";
 import {
   buildTestHref,
   DEFAULT_TEST_MODE,
@@ -34,8 +36,14 @@ import {
   timeLimitFor,
 } from "@/lib/test-options";
 
-import type { AnswerVerdict } from "./actions";
-import { TestRunner } from "./test-runner";
+import {
+  answerQuestion,
+  loadNote,
+  reportQuestion,
+  saveNote,
+  submitTest,
+  toggleFlag,
+} from "./actions";
 
 export const dynamic = "force-dynamic";
 
@@ -414,6 +422,9 @@ export default async function TestPage({ params, searchParams }: PageProps) {
       aircraftName={plane.name}
       questions={questions}
       topics={topics}
+      actions={{ answerQuestion, submitTest, toggleFlag, saveNote, loadNote, reportQuestion }}
+      backHref={`/aircraft/${plane.code}`}
+      basePath="/aircraft"
       clientTestId={clientTestId}
       initialAnswers={initialAnswers}
       initialVerdicts={initialVerdicts}

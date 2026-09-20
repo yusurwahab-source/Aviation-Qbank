@@ -32,7 +32,7 @@ import {
  * Nothing is minted for a request that already carries a session cookie: a
  * signed-in student is metered against their account, and a visitor who
  * does not practise never gets a cookie at all, because the matcher below
- * is only the aircraft routes.
+ * is only the aircraft and class-rating routes.
  */
 export function proxy(request: NextRequest) {
   if (request.cookies.has(PREVIEW_COOKIE)) return NextResponse.next();
@@ -78,5 +78,5 @@ export const config = {
   // Only where a test can actually be started or answered. Every other
   // route — the landing page, the owner console, the API — is untouched,
   // so nobody gets a cookie for reading the marketing copy.
-  matcher: ["/aircraft/:path*"],
+  matcher: ["/aircraft/:path*", "/class/:path*"],
 };

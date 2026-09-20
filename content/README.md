@@ -21,10 +21,28 @@ content/
       air-systems.json
       anti-ice-and-rain.json
       automatic-flight.json
+  classes/                  <- class ratings, a separate content tree
+    sep/                    <- one folder per class, lowercase code
+      class.json            <- the class's details
+      questions/
+        systems.json
+        ...
+    mep/
+      class.json
+      questions/
 ```
 
-Adding a second aircraft is a content job only. Nothing in the application code
-needs to change.
+Adding a second aircraft, or a second class rating, is a content job only.
+Nothing in the application code needs to change.
+
+A class rating (`content/classes/<code>/class.json` + `questions/`) is a
+genuinely separate bank from an aircraft's, validated by its own schema in
+`src/content/class-schema.ts` and seeded into its own tables
+(`class_ratings`, `class_questions`) — see the note on `classRatings` in
+`src/db/schema.ts`. Question ids there look like `SEP-SYSTEMS-0001` (class
+code, topic code, four digits) rather than `DA40-ELEC-0042`, and the
+`classCode` field takes the place of `aircraft`, but every other rule below
+holds identically.
 
 ## Rules that are checked automatically
 

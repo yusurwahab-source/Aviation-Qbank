@@ -93,7 +93,13 @@ export function loadContent(contentDir: string = CONTENT_DIR): ContentLoadResult
 
   let folders: string[];
   try {
-    folders = listDirs(contentDir);
+    // `classes/` is not an aircraft folder — it is the separate content tree
+    // `load-classes.ts` reads on its own. Excluded by name rather than by
+    // some other marker because that is the one thing distinguishing it: an
+    // aircraft folder is validated by finding no `aircraft.json` inside it,
+    // which would otherwise report a confusing error against a folder that
+    // was never meant to be one.
+    folders = listDirs(contentDir).filter((folder) => folder !== "classes");
   } catch (error) {
     return {
       aircraft,

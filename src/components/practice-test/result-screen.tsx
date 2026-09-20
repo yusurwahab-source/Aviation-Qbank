@@ -3,12 +3,12 @@
 import Link from "next/link";
 
 import { FlagButton } from "@/components/flag-button";
+import { QuestionIdTag } from "@/components/question-id-tag";
 import { QuestionNote } from "@/components/question-note";
 import { Badge, Card, ScoreBar } from "@/components/ui";
 import type { GradedQuestion, TestResult } from "@/lib/grading";
-import { buildTestHref, formatClock } from "@/lib/test-options";
-
-import { loadNote, saveNote, type SaveStatus } from "./actions";
+import type { PracticeTestActions, SaveStatus } from "@/lib/practice-test-types";
+import { formatClock } from "@/lib/test-options";
 
 /**
  * The end-of-test screen: the score against a pass mark, how long it took,
@@ -29,6 +29,9 @@ export function ResultScreen({
   flaggedIds,
   onToggleFlag,
   withheld,
+  actions,
+  backHref,
+  buildRetakeHref,
 }: {
   aircraftCode: string;
   aircraftName: string;
@@ -52,6 +55,13 @@ export function ResultScreen({
    * which is every ordinary one. See `entitledAnswerKeyIds` in
    * `actions.ts`. */
   withheld: { count: number; reason: "preview" | "free-tier" } | null;
+  /** `loadNote`/`saveNote` for the review's per-question notes — the same
+   * six actions the runner was given. */
+  actions: Pick<PracticeTestActions, "loadNote" | "saveNote">;
+  /** Where "Back to dashboard" goes. */
+  backHref: string;
+  /** Builds the "retake wrong" / "new test on weakest system" links. */
+  buildRetakeHref: (options: { retryOnly?: boolean; topics?: string[] }) => string;
 }) {
   const passed = result.percentage >= passMarkPercent;
   // Weakest first is already how `byTopic` is sorted — the callout just
@@ -179,6 +189,7 @@ export function ResultScreen({
                 withheldReason={withheld?.reason ?? null}
                 flagged={flaggedIds.has(entry.question.id)}
                 onToggleFlag={() => onToggleFlag(entry.question.id)}
+                actions={actions}
               />
             </li>
           ))}
@@ -187,21 +198,21 @@ export function ResultScreen({
 
       <div className="mt-8 flex flex-wrap gap-3">
         <Link
-          href={buildTestHref(aircraftCode, { retryOnly: true })}
+          href={buildRetakeHref({ retryOnly: true })}
           className="inline-flex min-h-11 items-center rounded-lg bg-brand px-5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
         >
           Retake the questions I got wrong
         </Link>
         {weakestTopics.length > 0 ? (
           <Link
-            href={buildTestHref(aircraftCode, { topics: [weakestTopics[0].topic] })}
+            href={buildRetakeHref({ topics: [weakestTopics[0].topic] })}
             className="inline-flex min-h-11 items-center rounded-lg border border-border bg-surface px-5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
           >
             New test on my weakest system
           </Link>
         ) : null}
         <Link
-          href={`/aircraft/${aircraftCode}`}
+          href={backHref}
           className="inline-flex min-h-11 items-center rounded-lg border border-border bg-surface px-5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
         >
           Back to dashboard
@@ -315,6 +326,7 @@ function ReviewCard({
   withheldReason,
   flagged,
   onToggleFlag,
+  actions,
 }: {
   entry: GradedQuestion;
   position: number;
@@ -325,6 +337,7 @@ function ReviewCard({
   withheldReason: "preview" | "free-tier" | null;
   flagged: boolean;
   onToggleFlag: () => void;
+  actions: Pick<PracticeTestActions, "loadNote" | "saveNote">;
 }) {
   const { question, isCorrect, wasAnswered, selectedOptionId } = entry;
 
@@ -338,7 +351,7 @@ function ReviewCard({
         ) : (
           <Badge tone="incorrect">{wasAnswered ? "Incorrect" : "Not answered"}</Badge>
         )}
-        <span className="ml-auto font-mono text-xs text-muted-foreground">{question.id}</span>
+        <QuestionIdTag id={question.id} className="ml-auto" />
       </div>
 
       <p className="question-text mt-3 font-medium text-foreground">{question.question}</p>
@@ -430,8 +443,8 @@ function ReviewCard({
           <FlagButton flagged={flagged} onToggle={onToggleFlag} />
           <QuestionNote
             hasNote={false}
-            onLoad={() => loadNote(question.id)}
-            onSave={(body) => saveNote({ questionId: question.id, aircraftCode, body })}
+            onLoad={() => actions.loadNote(question.id)}
+            onSave={(body) => actions.saveNote({ questionId: question.id, aircraftCode, body })}
           />
         </div>
       ) : null}
