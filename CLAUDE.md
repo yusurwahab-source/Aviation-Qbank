@@ -986,26 +986,27 @@ no key at all: it verifies a signature against `STRIPE_WEBHOOK_SECRET` and
 calls nothing.
 
 **Free access does not have to come from Stripe — `provider` on
-`subscriptions` exists for exactly this.** A gift code is the second thing
-that can turn a subscription on, alongside Stripe's webhook. Minting one has
-two doors, both calling the same `createGiftCodes`: `npm run gift:generate
--- --count 5 --days 30 --plan monthly --note "…"` for bulk or scripted use,
-and `/owner/gift-codes` on the live site for "I need one code, right now" —
-built after the script turned out to be the wrong shape for an owner who
-does not run a terminal or hold `DATABASE_URL`. Redeeming is the one path a
-student drives themselves, at `/redeem`: `redeemGiftCode` in
-`db/gift-codes.ts` claims the code and writes the `subscriptions` row in one
-transaction, with `provider: "gift"` and no `providerSubscriptionRef`.
+`subscriptions` exists for exactly this.** A gift code — now a
+general-purpose **license key**, see below — is the second thing that can
+turn a subscription on, alongside Stripe's webhook. Minting one has two
+doors, both calling the same `createGiftCodes`: `npm run gift:generate --
+--count 5 --days 30 --plan monthly --note "…"` for bulk or scripted use
+(unchanged, still single-use by default), and `/owner/gift-codes` on the
+live site, which now goes well past "I need one code, right now" — see
+below. Redeeming is the one path a student drives themselves, at
+`/redeem`: `redeemGiftCode` in `db/gift-codes.ts` claims the code and
+writes the `subscriptions` row in one transaction, with `provider: "gift"`
+and no `providerSubscriptionRef`.
 
-**`/owner` is not an admin panel — it is six pages gated by one email,
-four of which only read.** `isOwner` compares the signed-in account's email
-against `OWNER_EMAIL`, read the same tolerant way every other configuration
-value is. Anyone else visiting any path under `/owner` — signed out, or
-signed in as anyone else — gets a plain `notFound()`, not a redirect to
-`/login`: a redirect would confirm the path exists for someone it does not;
-a 404 says nothing. There is still no role column and no second owner — the
-day this needs more than one person, that is the real feature to build, not
-a second email in an env var.
+**`/owner` is not an admin panel — it is a gated area behind one email,
+most of it now writing, not just reading.** `isOwner` compares the
+signed-in account's email against `OWNER_EMAIL`, read the same tolerant way
+every other configuration value is. Anyone else visiting any path under
+`/owner` — signed out, or signed in as anyone else — gets a plain
+`notFound()`, not a redirect to `/login`: a redirect would confirm the path
+exists for someone it does not; a 404 says nothing. There is still no role
+column and no second owner — the day this needs more than one person, that
+is the real feature to build, not a second email in an env var.
 
 The gate is `requireOwner()` and every page and action in the area calls it
 first, including the one the page itself renders: **a server action is its
@@ -1013,6 +1014,22 @@ own reachable entry point**, so a page having checked does not cover the
 action beside it. One function rather than the check written out five
 times, because the copy that gets forgotten is the one that leaks the
 site.
+
+**Every mutating action in this area is wrapped in `ownerAction`
+(`src/lib/owner/audited-action.ts`), and that wrapper is what makes the
+audit log complete rather than "complete for whichever action remembered
+to log itself".** It calls `requireOwner()`, runs the action's own
+`parse`/`run`, and — only if `run` reports the mutation actually
+happened — writes one row to `audit_log` (`actorEmail`, `action`,
+`targetType`, `targetId`, a `jsonb` `metadata`) and revalidates whatever
+paths the action names, which may depend on the parsed input (a grant
+revalidates both the accounts list and that one account's own page). A
+`parse` failure (bad input) or a `run` that declines to act (a stale id, a
+business rule refusing the request) logs nothing, because nothing
+happened. `/owner/audit-log` reads it back: the last 200 entries, newest
+first, filterable by action. Nothing here needed a second role — the log
+records *who*, but "who" is still always the one `OWNER_EMAIL`; it exists
+for "what did I do and when", not for telling two owners apart.
 
 **`src/db/owner.ts` is the only module in the codebase whose queries take
 no `userId`, and the only one that writes to a row without one.** Every read in `reports.ts` filters on one, precisely so a
@@ -1025,31 +1042,48 @@ shows one person data that is not theirs, while an unscoped write hands
 them somebody else's subscription.
 
 What the area shows, and why each earns its place: **Overview** (six
-counts), **Subscribers** (who has access, from Stripe or a gift, and when
+counts plus open report count), **Insights** (read-only analytics — see
+below), **Subscribers** (who has access, from Stripe or a gift, and when
 it ends — decided by `hasActiveSubscription`, the same function the paywall
 uses, never by reading `status` alone, since a row can say `active` and
-still be over), **Gift codes** (every code minted and what became of it —
-an unredeemed code handed out is the common case worth chasing, and before
-this the only record was whatever the owner did with the printed output),
-**Aircraft requests**, **Accounts**, and **Settings**. Aircraft requests closed a real
-hole: the
-`aircraft_interest` table had been collecting addresses since the landing
-page shipped with **no way to read it from anywhere but `db:studio`**. It
-is tallied by aircraft as well as listed, because the decision it exists to
-inform — which bank to write next — is a question about counts.
+still be over), **Gift codes** (now general-purpose license keys — see
+below), **Reports** (a "report a problem" inbox — see below), **Aircraft
+requests**, **Accounts**, **Settings**, and **Audit log**. Aircraft requests
+closed a real hole: the `aircraft_interest` table had been collecting
+addresses since the landing page shipped with **no way to read it from
+anywhere but `db:studio`**. It is tallied by aircraft as well as listed,
+because the decision it exists to inform — which bank to write next — is a
+question about counts.
 
-**Accounts is the one page that writes, and both of its buttons are honest
-about what they cannot do.** It lists everyone who has signed up — not only
-the people who pay, which is what Subscribers already answers — with what
-each has actually done, and searches by email through a plain GET form so a
-result can be linked to. `grantAccess` gives an account days of full access
-with no Stripe and no code, writing `provider: "manual"` rather than
-`"gift"`: both are free access, but only one of them traces back to a row
-in `gift_codes`, and "I typed this in" should be distinguishable from
-"somebody redeemed a code I minted" a year later. It reuses
-`computeGiftPeriodEnd` rather than reimplementing it, so a manual grant
-extends and never replaces — thirty days handed to somebody who already has
-ninety leaves ninety.
+**Accounts is paginated and filterable, and pairs a list with a detail
+page.** `listAccounts` in `db/owner.ts` takes a search term, a status
+filter (`all` / `active` / `expiring_soon` / `lapsed` / `free_tier`, each a
+SQL condition matched against `hasActiveSubscription`'s own
+`status = 'active' and current_period_end > now()` check rather than
+`status` alone — the same reasoning the list's own access column already
+used), and a limit/offset — the total comes from `count(*) over()` in the
+*same* query rather than a second round trip, so the count and the page of
+rows can never disagree about which filter they answered. It searches by
+email through a plain GET form so a result, and a page of results, can
+both be linked to.
+
+Each row links to `/owner/accounts/[userId]`: the same grant/revoke
+controls, plus redemption history (every code this account has ever
+redeemed, from `gift_code_redemptions`), a test-session count next to
+tests *completed* (the gap between them is abandoned tests), last-active
+date, and an owner-only note (`account_notes` — one row per user, upserted,
+never shown to the account itself; its own table rather than a column on
+`users`, for the same reason `db/owner.ts` is its own module: `users` is
+auth's table, read by ordinary sign-in and sign-up paths that have no
+business knowing an owner's notes exist).
+
+`grantAccess` gives an account days of full access with no Stripe and no
+code, writing `provider: "manual"` rather than `"gift"`: both are free
+access, but only one of them traces back to a row in `gift_codes`, and "I
+typed this in" should be distinguishable from "somebody redeemed a code I
+minted" a year later. It reuses `computeGiftPeriodEnd` rather than
+reimplementing it, so a manual grant extends and never replaces — thirty
+days handed to somebody who already has ninety leaves ninety.
 
 `revokeAccess` sets `status: "canceled"` and deliberately leaves
 `currentPeriodEnd` where it was: `hasActiveSubscription` already refuses
@@ -1058,20 +1092,135 @@ the account had. What revoking does **not** do is cancel anything at Stripe —
 the subscription keeps billing and its next renewal writes the row back to
 `active`, which is the webhook doing its job. That is the same lesson the
 refund note above records, so the screen says it in place rather than
-letting the owner infer that money has stopped moving.
+letting the owner infer that money has stopped moving. Revoke is now a
+two-step confirm in the browser (click reveals "yes, revoke" / "cancel"
+rather than acting immediately) and the confirmation is checked again in
+the server action itself — a bare `confirmed` flag in the form, since a
+server action is its own reachable entry point and a confirm step only the
+client enforces is not a confirm step at all.
 
 The search escapes `%` and `_` before it reaches `ilike`. An owner typing an
 address into a box is not writing a pattern, and silently treating it as one
 would return the wrong account — which, on a page whose buttons change
 somebody's access, is the kind of wrong worth a line of code.
 
+**Gift codes are now general-purpose license keys, and the redemption gate
+moved off the code row and onto a count.** Originally single-use:
+`gift_codes.redeemed_by_user_id` was null until claimed, and claiming was
+one atomic `update ... where redeemed_by_user_id is null`. A code can now
+be redeemed by more than one person (`max_redemptions`), so "has this code
+been spent" is no longer a single column — it is `count(*) from
+gift_code_redemptions where gift_code_id = ?` compared to
+`max_redemptions`, and the child table is also the answer to "who redeemed
+this, and when" on the code's own detail page
+(`/owner/gift-codes/[giftCodeId]`). Making that count-based gate safe
+against two redemptions racing for the last remaining slot needs an
+explicit lock the single-column version got for free from its own
+`where`: `redeemGiftCode` opens with `select ... for update` on the code
+row before counting. `redeemed_by_user_id`/`redeemed_at` on the parent row
+still exist, but now mean only "who redeemed this *first*" — kept for
+backward-compatible display, never read to decide whether a redemption may
+proceed. A code can also carry an `expires_at` (goes stale on its own) and
+a `disabled_at` (the owner turned it off without deleting it or its
+redemption history — a two-step confirm, the same shape as Accounts'
+revoke). Generation is bulk, up to 200 at once, downloadable as CSV either
+for the batch just minted (built client-side from the list already on
+screen) or for every code ever minted
+(`/owner/gift-codes/export`, `requireOwner()`-gated like everything else
+here). `/redeem` is now rate limited per user and per IP
+(`RATE_LIMIT_RULES.redeemPerUser`/`redeemPerIp`, reusing `login_attempts`
+under `redeem-user:`/`redeem-ip:` key prefixes, checked *before* the code
+is even looked up — the claim is real transactional work a flood of
+guesses should never reach).
+
+A code can also record `unlocks_aircraft_code` — which aircraft it is
+"for" — **but this is not enforced.** `subscriptions` is one global row per
+user with no aircraft scoping, so redeeming a code with this set still
+grants full access to every aircraft, identical to a code with it unset.
+Wiring this up for real would mean an aircraft-scoped access model
+touching `answerQuestion`, the test-page size cap, `/upgrade`, and every
+owner access screen — a payments-architecture change wearing a gift-code
+hat, out of scope here and flagged rather than half-built. The field
+exists so the owner can record and communicate intent now, ahead of that
+model existing.
+
+**Reports is a "something's wrong with this question" inbox, and it never
+touches `questions`.** A "Report a problem" control sits next to the flag
+button in the test runner, rendered whether or not the student is signed
+in — a report is about the question, not a personal study aid, so it needs
+no account the way a flag does. It writes one row to `question_reports`
+(`questionId` with **no foreign key**, the same reasoning `attempts` and
+`question_flags` already give: `db:seed` deletes questions whose content
+files are gone, and a report must survive a content edit exactly as an
+attempt does; `userId` nullable for a signed-out reporter; a reason enum;
+an optional comment; a status). `/owner/reports` lists them, filterable by
+status, each shown beside the question's *current* text, options (the
+correct one marked) and explanation, read left-joined from `questions` so
+a report on a since-edited or since-removed question still appears with
+its report intact, just without current wording to show. The only action
+is marking a report resolved or dismissed — there is deliberately no edit
+button here; fixing a question is still the content-file-and-deploy
+workflow this phase does not touch.
+
+**Insights is read-only, and none of its numbers double as a queue.**
+Every query in `db/insights.ts` is a count or a bounded aggregate, and
+none of it writes to `questions` or `aircraft`, or links anywhere
+actionable — it exists for the owner to act on manually through the tools
+above and the content workflow, not to grow a second admin surface. The
+signup funnel (last 7 and last 30 days) is a genuine funnel, not four
+independent counts: signups, and how many of *that same cohort* went on to
+complete a test, hit the paywall (see `paywall_hits` below), and redeem a
+code or subscribe, each stage a subset of the last. It is one query —
+`count(*) filter (where exists (...))` per stage against `users` bounded
+by `users_created_at_idx` — rather than four round trips or a join that
+would multiply a user row by every session or answer, the same
+join-avoidance reasoning `listAccounts` already uses for its own activity
+counts. `paywall_hits` is new for exactly this: `answerQuestion`'s
+`"paywall"` branch used to write nothing at all, so "users who hit the
+paywall" had no data behind it; it is scoped to `userId` and
+`aircraftCode` only, a funnel signal, not a per-question record.
+
+The rest of the page is simpler counts: active subscriptions and those
+expiring within `EXPIRING_SOON_DAYS` (the same figure the Accounts status
+filter uses, so the two screens never disagree about what "soon" means),
+codes redeemed this month, the most-flagged questions
+(`question_flags`, count-desc), and aircraft-interest signups (reusing the
+existing `/owner/interest` queries). The one query worth knowing the cost
+of is the question-quality signal: first-attempt correct rate per
+question, split into a below-25% list (likely broken) and an above-95%
+list (likely trivial), each requiring at least
+`MIN_ATTEMPTS_FOR_QUALITY_SIGNAL` (20) first attempts to appear at all.
+"First attempt" is each `(question_id, user_id)` pair's earliest row by
+`answered_at` — a student who got a question wrong once and right on a
+retry must not inflate the rate as if it were two independent tries at the
+same difficulty — computed with a `distinct on (question_id, user_id)`
+CTE over the whole of `attempts`. `attempts_question_id_idx` lets Postgres
+avoid a full table scan per question; a composite index covering
+`(question_id, user_id, answered_at)` would serve the `distinct on`'s own
+ordering directly and is the first thing to add if this page gets slow on
+a bank with a lot of history, deferred because it would only ever serve
+this one owner-only page at the cost of extra width on a table every
+answer already writes to. Verified against a real, locally seeded
+Postgres with synthetic data (not just reasoned about): the funnel, the
+access counts, and both quality-signal lists all produced the expected
+numbers, and every new index in this phase exists in the database exactly
+as `schema.ts` describes.
+
 **Settings is the second page that writes, and it is deliberately small.**
 `site_settings` is a key/value table — adding a setting is an insert, not a
-migration — holding exactly two things: the free-question allowance
+migration — holding the free-question allowance
 (`FREE_QUESTIONS_PER_AIRCRAFT`'s default, now an override the owner can
-change without a deploy) and a one-line announcement banner shown above
-every page. Nothing else lives here on purpose. Content is `/content`'s job
-and `db:seed` rewrites `aircraft` and `questions` from those files on every
+change without a deploy), a one-line announcement banner shown above every
+page, the pass mark shown on a result screen, and — moved here from a
+hardcoded `src/config/aircraft-marketing.ts`, now deleted — the featured
+aircraft code and the set of aircraft marked "in development". Both of
+those last two only decide what the landing page and `/aircraft` say about
+aircraft rows that already exist; **neither ever writes to the `aircraft`
+table**, and `updateSettings` checks the chosen codes against the real
+aircraft that exist (a database read, so it happens in the action, not in
+`validateSettings`, which stays pure and DB-free) before saving either one.
+Nothing else lives here on purpose. Content is `/content`'s job and
+`db:seed` rewrites `aircraft` and `questions` from those files on every
 deploy, so a setting that duplicated what a file already owns would be a
 second source of truth the files silently overrule; prices are Stripe's,
 changed there, never here; the product's name and branding stay in
@@ -1094,10 +1243,13 @@ argument rather than reading the constant directly, for exactly that
 reason: they still have to stay pure, and a pure function cannot go and
 look a setting up for itself.
 
-The claim is atomic the same way `consumeResetToken` is: the update's own
-`where redeemed_by_user_id is null` is what stops two redemption attempts on
-the same code from both winning, not a check-then-write that a race could
-slip between.
+The claim is atomic the same way `consumeResetToken` is, though the
+mechanism has since changed — see "Gift codes are now general-purpose
+license keys" above for what replaced the original `where
+redeemed_by_user_id is null` once a code could be redeemed more than
+once. Either way, the point is the same: a race between two redemption
+attempts is resolved by the database, never by a check-then-write in
+application code that a race could slip between.
 
 **A gift code only ever extends access, never shortens it.**
 `computeGiftPeriodEnd` takes the later of "now plus the code's duration" and
@@ -1166,7 +1318,9 @@ src/
     progress/                 Reports, overall and per aircraft
     upgrade/                  Checkout for the two plans, and the Stripe redirect action
     redeem/                   Where a gift code becomes an active subscription
-    owner/                    Owner-only: overview, accounts, subscribers, gift codes, aircraft requests, settings
+    owner/                    Owner-only: overview, insights, accounts (+ per-account detail),
+                              subscribers, gift codes (+ per-code detail, CSV export),
+                              reports, aircraft requests, settings, audit log
     api/webhooks/stripe/      The Stripe webhook endpoint
     about|pricing|faq|terms|privacy|contact/   Short pages the footer links to
     manifest.ts               Web app manifest
@@ -1174,7 +1328,8 @@ src/
     icon.svg, favicon.ico, apple-icon.png      Generated; see scripts above
   components/                 Shared UI, including the shell (site-header,
                               site-footer, mobile-nav, user-menu, theme-toggle, logo),
-                              flag-button, question-note, resume-test-banner
+                              flag-button, question-note, resume-test-banner,
+                              report-question-button
   config/
     site.ts                   THE product name, tagline, description and URL — not site_settings, see the convention above
   content/
@@ -1188,9 +1343,12 @@ src/
     subscriptions.ts          Subscription row and the free-tier count
     flags.ts                  Toggling and reading a student's flagged questions
     notes.ts                  Reading and upserting a student's own note on a question
-    gift-codes.ts             Minting and redeeming free-access codes
+    gift-codes.ts             Minting and redeeming license keys; listing, per-code redemption history
+    question-reports.ts       Creating and listing "report a problem" rows; joins questions read-only
+    audit-log.ts              Writing (from ownerAction only) and reading the owner action log
+    insights.ts               Read-only analytics queries for /owner/insights
     settings.ts               Reading and writing site_settings; owner-only write, publicly read
-    owner.ts                  THE unscoped reads, and grant/revoke. /owner only; see the convention above.
+    owner.ts                  THE unscoped reads, and grant/revoke/notes. /owner only; see the convention above.
     index.ts                  Connection pool
   lib/
     email/
@@ -1216,6 +1374,8 @@ src/
       session.ts              Cookie and session table handling
       owner.ts                Whether the signed-in account is the site owner (pure, tested)
       require-owner.ts        THE gate in front of every /owner page and action
+    owner/
+      audited-action.ts      ownerAction() — requireOwner + parse/run + automatic audit log write
 tests/                        Vitest unit tests
 ```
 
@@ -1264,6 +1424,26 @@ tests/                        Vitest unit tests
    too: `/redeem` spends a free-access gift code, minted by
    `npm run gift:generate` — see the note on `provider` in the conventions
    above.
+7. **Phase 7 — owner console. Done.** Everything under `/owner` grew well
+   past the four read-mostly pages Phase 6 shipped: accounts gained
+   pagination, status filters and a per-account detail page (redemption
+   history, activity, an owner-only note); gift codes became
+   general-purpose license keys (bulk generation to 200, CSV export, max
+   redemptions, expiry, disabling); a "report a problem" inbox
+   (`question_reports`) reads student-flagged problems alongside the
+   question's current text without ever writing to it; a read-only
+   insights dashboard (`/owner/insights`) surfaces a signup funnel, access
+   counts, a question-quality signal from `attempts`, and the most-flagged
+   questions; and every mutating action across all of it is wrapped in
+   `ownerAction`, which writes an entry to a new `audit_log` automatically
+   — see the conventions above for all of this in detail. Explicitly out
+   of scope, by design: editing a question's or an aircraft's own content
+   from the website — every write in this phase lands in a table content
+   does not own, and the content-file-and-deploy workflow is untouched.
+   Impersonation ("view as user") was scoped out too: it would touch the
+   session chokepoint every other feature depends on, for a nice-to-have
+   the account detail page's own activity and redemption history already
+   cover most of the need for.
 
 Do not start a phase until the previous one works.
 
@@ -1312,6 +1492,15 @@ from inside the website, an admin panel gets added then — the `status`,
   visits, each individually within the cap. Closing this needs tracking
   exposure on its own, which is deliberately not built — see the note on
   `attempts` being the only usage counter, above.
+- **A gift code's `unlocks_aircraft_code` is recorded, not enforced.**
+  Redeeming a code with an aircraft set still grants full access to every
+  aircraft — see "Gift codes are now general-purpose license keys" above
+  for why, and what wiring it up for real would touch.
+- **The signup funnel's paywall stage only counts hits since `paywall_hits`
+  was added.** `answerQuestion`'s `"paywall"` branch previously wrote
+  nothing at all; the insights dashboard's "hit the paywall" figure is
+  therefore accurate from this phase onward but has no history to draw on
+  for accounts that hit the limit before it existed.
 - **Live mode has taken a real payment, end to end.** A real card was
   charged (`succeeded`, `livemode: true`), the subscription came back
   `active` carrying the `userId` and `plan` metadata and a period end a
