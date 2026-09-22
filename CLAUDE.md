@@ -772,6 +772,36 @@ matching the files in the repository. A separate seed step someone has to
 remember would be the worse trade — a site that builds green with an empty
 question bank.
 
+**`scripts/migrate.ts` does not call `drizzle-orm`'s own `migrate()`, because
+that function can silently skip a real migration.** Found live: the Flying
+Knowledge migration (`0019_rapid_eternals`, adding
+`flying_knowledge_subjects`/`flying_knowledge_questions`) was generated well
+before it reached `main`, and by the time its deploy ran, `drizzle`'s
+tracking table already held a *later* timestamp from a different migration
+generated afterwards but merged first. `drizzle-orm`'s built-in migrator
+(`pg-core/dialect.js`) does not check each migration by identity against
+every row it has recorded — it reads only the single most recent row and
+applies any local migration file whose own timestamp is greater than that
+one number. `db:migrate` reported "Migrations are up to date" and exited 0;
+`db:seed` then failed with `relation "flying_knowledge_subjects" does not
+exist`, on a build Vercel had no way to know was wrong until the very next
+line. A generation timestamp was never a promise about deploy order, and
+nothing here should have depended on it being one.
+
+`scripts/migrate.ts` now reads migrations the same way
+(`readMigrationFiles`, `drizzle-orm/migrator`'s own export — identical
+on-disk parsing) but decides what is pending by comparing each migration's
+sha256 hash against *every* hash already in
+`drizzle.__drizzle_migrations` — the same table, same columns, so a
+database migrated by the old code reads as fully up to date and nothing
+needs re-running. Reproduced and verified directly, not just reasoned
+about: dropping the two Flying Knowledge tables and writing a row with a
+timestamp ahead of every real migration into the tracking table makes the
+old `migrate()` claim "up to date" while the tables stay missing; running
+the fixed script against that same state correctly detects the one missing
+hash and applies exactly it, is a no-op on a second run, and works
+identically against a database that has never been migrated at all.
+
 **Passwords are hashed with scrypt from Node's own crypto, at OWASP's stated
 minimum cost (N=2^17, r=8, p=1 — about 128 MB and half a second per hash). No
 password library is installed: `src/lib/password.ts` is a pure, unit-tested
