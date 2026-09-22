@@ -32,6 +32,10 @@ describeWithDb("progress reports", () => {
    * Two ids looked up from the seeded content rather than hard-coded.
    * The retry list joins to `questions`, so those tests need questions that are
    * really published — and which ones those are changes as content is edited.
+   * Read from B737 rather than DA40: DA40 moved to the class rating content
+   * tree (`content/classes/da40/`) and no longer has rows in `questions` at
+   * all, only in `classQuestions` — see the note on the three sections in
+   * `CLAUDE.md`.
    */
   let publishedIds: string[] = [];
 
@@ -121,7 +125,7 @@ describeWithDb("progress reports", () => {
         .select({ id: questions.id })
         .from(questions)
         .where(
-          and(eq(questions.aircraftCode, "DA40"), eq(questions.status, "published")),
+          and(eq(questions.aircraftCode, "B737"), eq(questions.status, "published")),
         )
         .orderBy(questions.id)
         .limit(2)
@@ -217,32 +221,32 @@ describeWithDb("progress reports", () => {
     it("drops a question once it is answered correctly again", async () => {
       // A really published question, so the join to `questions` succeeds.
       const realId = publishedIds[0];
-      expect(realId, "no published DA40 questions to test against").toBeDefined();
+      expect(realId, "no published B737 questions to test against").toBeDefined();
 
-      await addTest(userId, "DA40", day(4), [
+      await addTest(userId, "B737", day(4), [
         { questionId: realId, topic: "Electrical", isCorrect: false },
       ]);
-      let retry = await reports.getQuestionsToRetry(userId, "DA40");
+      let retry = await reports.getQuestionsToRetry(userId, "B737");
       expect(retry.map((r) => r.questionId)).toContain(realId);
 
-      await addTest(userId, "DA40", day(5), [
+      await addTest(userId, "B737", day(5), [
         { questionId: realId, topic: "Electrical", isCorrect: true },
       ]);
-      retry = await reports.getQuestionsToRetry(userId, "DA40");
+      retry = await reports.getQuestionsToRetry(userId, "B737");
       expect(retry.map((r) => r.questionId)).not.toContain(realId);
     });
 
     it("counts how many times a question has been wrong", async () => {
       const realId = publishedIds[1];
-      expect(realId, "need a second published DA40 question").toBeDefined();
-      await addTest(userId, "DA40", day(6), [
+      expect(realId, "need a second published B737 question").toBeDefined();
+      await addTest(userId, "B737", day(6), [
         { questionId: realId, topic: "Fuel System", isCorrect: false },
       ]);
-      await addTest(userId, "DA40", day(7), [
+      await addTest(userId, "B737", day(7), [
         { questionId: realId, topic: "Fuel System", isCorrect: false },
       ]);
 
-      const retry = await reports.getQuestionsToRetry(userId, "DA40");
+      const retry = await reports.getQuestionsToRetry(userId, "B737");
       const entry = retry.find((r) => r.questionId === realId);
       expect(entry?.timesWrong).toBe(2);
       // The current wording comes from the questions table, not the attempt.
@@ -266,7 +270,11 @@ describeWithDb("progress reports", () => {
   describe("getPractisedAircraft", () => {
     it("lists each aircraft the user has practised, with its score", async () => {
       const planes = await reports.getPractisedAircraft(userId);
-      expect(planes.map((p) => p.code).sort()).toEqual(["A320", "DA40"]);
+      // B737 joins the list here too: the earlier `getQuestionsToRetry`
+      // tests exercise the retry list's join to `questions`, which needs a
+      // real published question — B737, not DA40, now that DA40 has moved
+      // to the class rating content tree and left `questions` altogether.
+      expect(planes.map((p) => p.code).sort()).toEqual(["A320", "B737", "DA40"]);
 
       const a320 = planes.find((p) => p.code === "A320");
       expect(a320).toMatchObject({ answered: 1, correct: 0, percentage: 0 });

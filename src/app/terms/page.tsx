@@ -21,10 +21,10 @@ export default function TermsPage() {
       <ComingSoon note="These are notes, not terms. Nothing on this page has been through a lawyer, and it does not form an agreement.">
         <p>
           <strong className="text-foreground">This is practice material, not an authority.</strong>{" "}
-          Questions are written to help you prepare for a type rating examination. They are
-          not the aircraft&rsquo;s approved manuals and must never be used in place of them.
-          For anything you intend to act on in an aircraft, the AFM, FCOM and your operator&rsquo;s
-          own documentation are the source — not this site.
+          Questions are written to help you prepare for a type rating or class rating
+          examination. They are not the aircraft&rsquo;s approved manuals and must never be used
+          in place of them. For anything you intend to act on in an aircraft, the AFM, FCOM and
+          your operator&rsquo;s own documentation are the source — not this site.
         </p>
         <p>
           <strong className="text-foreground">No guarantee of accuracy.</strong> Every question

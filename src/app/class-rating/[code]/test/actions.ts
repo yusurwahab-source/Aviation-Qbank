@@ -45,13 +45,13 @@ import { TEST_MODES, deadlineFrom, timeLimitFor } from "@/lib/test-options";
 
 /**
  * Grading for a class rating's test — the class-content mirror of
- * `aircraft/[code]/test/actions.ts`. The field named `aircraftCode`
+ * `type-rating/[code]/test/actions.ts`. The field named `aircraftCode`
  * throughout this file (and in the shared UI it serves) holds a class
  * rating's code here, not an aircraft's; see the note on `classRatings` in
  * `db/schema.ts` for why that reuse is intentional rather than a leak. Every
  * rule below — the answer key never arriving before it is earned, the free
  * tier, the preview allowance, resuming, the paywall — is the identical rule
- * `aircraft/[code]/test/actions.ts` enforces, because it is built on exactly
+ * `type-rating/[code]/test/actions.ts` enforces, because it is built on exactly
  * the same tables (`attempts`, `subscriptions`, `preview_attempts`, …),
  * which know nothing about which content table a code came from.
  */

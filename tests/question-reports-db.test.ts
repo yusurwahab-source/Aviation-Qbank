@@ -15,16 +15,18 @@ import { hashPassword } from "@/lib/password";
 /**
  * Question reports against a real database.
  *
- * A real, seeded question id (`DA40-FUEL-0101`) is used for the join test —
+ * A real, seeded question id (`B737-AFS-0001`) is used for the join test —
  * everything else uses a made-up id to check the "question no longer
  * exists" path, the same reasoning `reports.test.ts` gives for fabricating
  * ids against `attempts`: there is deliberately no foreign key to
  * `questions`, and a report must survive a content edit exactly as an
- * attempt does.
+ * attempt does. B737 rather than DA40: DA40 moved to the class rating
+ * content tree and no longer has any row in `questions` at all — see the
+ * note on the three sections in `CLAUDE.md`.
  */
 
 const describeDb = process.env.DATABASE_URL ? describe : describe.skip;
-const REAL_QUESTION_ID = "DA40-FUEL-0101";
+const REAL_QUESTION_ID = "B737-AFS-0001";
 
 describeDb("question reports", () => {
   const createdUsers: string[] = [];

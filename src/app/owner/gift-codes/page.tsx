@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import { Badge, Card, PageHeading } from "@/components/ui";
+import { listClassRatings } from "@/db/class-queries";
 import { listGiftCodesWithCounts } from "@/db/gift-codes";
 import { listAircraft } from "@/db/queries";
 import { isGiftCodeExpired } from "@/lib/billing/gift-codes";
@@ -24,9 +25,14 @@ export const dynamic = "force-dynamic";
 export default async function OwnerGiftCodesPage() {
   let codes: Awaited<ReturnType<typeof listGiftCodesWithCounts>>;
   let fleet: Awaited<ReturnType<typeof listAircraft>>;
+  let classes: Awaited<ReturnType<typeof listClassRatings>>;
   try {
     await requireOwner();
-    [codes, fleet] = await Promise.all([listGiftCodesWithCounts(), listAircraft()]);
+    [codes, fleet, classes] = await Promise.all([
+      listGiftCodesWithCounts(),
+      listAircraft(),
+      listClassRatings(),
+    ]);
   } catch (error) {
     if (isNextControlFlowError(error)) throw error;
     console.error("Failed to load gift codes:", error);
@@ -50,7 +56,9 @@ export default async function OwnerGiftCodesPage() {
       <OwnerNav current="/owner/gift-codes" />
 
       <Card className="mb-6">
-        <GenerateForm aircraftCodes={fleet.map((plane) => plane.code)} />
+        <GenerateForm
+          aircraftCodes={[...fleet.map((plane) => plane.code), ...classes.map((c) => c.code)]}
+        />
       </Card>
 
       <div className="mb-3 flex flex-wrap items-center justify-between gap-3">

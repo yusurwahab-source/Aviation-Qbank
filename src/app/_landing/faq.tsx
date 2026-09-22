@@ -8,11 +8,12 @@ const ENTRIES: { question: string; answer: ReactNode }[] = [
     question: "Is this based on real exam questions?",
     answer: (
       <>
-        No — and it shouldn&rsquo;t be. Every question is written from Boeing&rsquo;s FCOM and
-        FCTM, not copied from leaked exam papers or the question banks that circulate between
-        students. Wrong answers are close calls rather than obviously silly ones, and the correct
-        answer is spread evenly across every option, so you can&rsquo;t learn the pattern instead
-        of the aircraft.
+        No — and it shouldn&rsquo;t be. Every question is written from each aircraft&rsquo;s own
+        official manuals — the FCOM and FCTM for a type rating, the AFM for a class rating — not
+        copied from leaked exam papers or the question banks that circulate between students.
+        Wrong answers are close calls rather than obviously silly ones, and the correct answer is
+        spread evenly across every option, so you can&rsquo;t learn the pattern instead of the
+        aircraft.
       </>
     ),
   },
@@ -20,10 +21,10 @@ const ENTRIES: { question: string; answer: ReactNode }[] = [
     question: "Does it work for my airline?",
     answer: (
       <>
-        It covers 737-800 systems knowledge that holds across operators. A small number of
-        questions turn on a figure that varies by operator or configuration — those say so
-        directly in the explanation, so you always know when a number is worth checking against
-        your own FCOM.
+        For a type rating, yes — it covers systems knowledge that holds across operators. A small
+        number of questions turn on a figure that varies by operator or configuration — those say
+        so directly in the explanation, so you always know when a number is worth checking
+        against your own FCOM.
       </>
     ),
   },

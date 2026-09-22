@@ -46,6 +46,15 @@ export type ClassTopicSummary = {
   questionCount: number;
 };
 
+/** How many class ratings the bank holds, whatever their status — the class
+ * rating equivalent of `countAircraft` in `db/queries.ts`, read by the
+ * landing page alongside it to sum a platform-wide fact across both content
+ * trees. */
+export async function countClassRatings(): Promise<number> {
+  const [row] = await getDb().select({ total: count() }).from(classRatings);
+  return Number(row?.total ?? 0);
+}
+
 const classSummaryColumns = {
   code: classRatings.code,
   name: classRatings.name,

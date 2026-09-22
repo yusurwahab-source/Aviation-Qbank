@@ -132,8 +132,9 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
           Featured aircraft
         </label>
         <p className="mt-1 text-xs text-muted-foreground">
-          The aircraft the landing page is built around. Must be a code already in the bank —
-          this never adds or changes an aircraft, only which one marketing leads with.
+          The type rating aircraft named in the landing page&rsquo;s structured data, for search
+          engines. Must be a code already in the type rating bank — this never adds or changes
+          an aircraft, only which one is named by example.
         </p>
         <input
           id="featuredAircraftCode"
@@ -154,16 +155,15 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
           Aircraft marked &ldquo;in development&rdquo;
         </label>
         <p className="mt-1 text-xs text-muted-foreground">
-          Hidden from the landing page and shown on the aircraft picker with an &ldquo;In
-          development&rdquo; badge instead of a question count. One code per line or
-          comma-separated. Leave blank for none.
+          Shown on the type rating picker with an &ldquo;In development&rdquo; badge instead of
+          a question count. One code per line or comma-separated. Leave blank for none.
         </p>
         <textarea
           id="aircraftInDevelopment"
           name="aircraftInDevelopment"
           rows={2}
           defaultValue={settings.aircraftInDevelopment.join(", ")}
-          placeholder="e.g. DA40"
+          placeholder="e.g. A320"
           className={`${inputClass} max-w-sm font-mono uppercase`}
         />
       </div>

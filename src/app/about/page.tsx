@@ -20,9 +20,10 @@ export default function AboutPage() {
 
       <ComingSoon note="A fuller about page — who is behind this, and how question banks are reviewed — is still to be written.">
         <p>
-          {siteConfig.name} is a practice question bank for aircraft type ratings. You choose a
-          type, build a test from any combination of sections and any number of questions, and
-          sit it one of two ways.
+          {siteConfig.name} is a practice question bank built around three sections: type
+          ratings for large aircraft, class ratings for light aircraft, and general aviation
+          knowledge that isn&rsquo;t tied to any one aircraft. You choose a section, build a test
+          from any combination of topics and any number of questions, and sit it one of two ways.
         </p>
         <p>
           <strong className="text-foreground">Study</strong> marks each answer as you give it

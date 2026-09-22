@@ -4,11 +4,11 @@ import type { IncompleteSession } from "@/db/attempts";
 import { buildResumeHref } from "@/lib/test-options";
 
 /**
- * "Resume your test" — shown on the aircraft page (scoped to that type) and
- * on the dashboard (whichever aircraft the student was last mid-way
- * through). The link always carries the session's own `?t=`, which is what
- * the test page reads to resume this exact attempt rather than draw a new
- * random set — see `buildResumeHref`.
+ * "Resume your test" — shown on the type rating or class rating overview
+ * page (scoped to that one) and on the dashboard (whichever aircraft the
+ * student was last mid-way through). The link always carries the session's
+ * own `?t=`, which is what the test page reads to resume this exact attempt
+ * rather than draw a new random set — see `buildResumeHref`.
  */
 export function ResumeTestBanner({
   session,
@@ -19,7 +19,7 @@ export function ResumeTestBanner({
   /** Falls back to the code when the caller has not already looked the
    * aircraft up for something else — not worth a query of its own here. */
   aircraftName?: string;
-  /** `buildResumeHref` by default (`/aircraft/CODE/test`) — a class
+  /** `buildResumeHref` by default (`/type-rating/CODE/test`) — a class
    * rating's overview page passes `buildClassResumeHref` instead. */
   hrefBuilder?: typeof buildResumeHref;
 }) {

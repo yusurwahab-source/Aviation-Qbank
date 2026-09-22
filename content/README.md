@@ -8,41 +8,44 @@ truth**. Edit a file, re-run the seed, and the website updates.
 
 ```
 content/
-  da40/                     <- one folder per aircraft, lowercase code
+  b737/                     <- type ratings: one folder per aircraft, lowercase code
     aircraft.json           <- the aircraft's details
-    questions/
-      airframe.json         <- one file per topic, each holding a JSON array
-      electrical.json
-      ...
-  b737/                     <- adding an aircraft means adding a folder
-    aircraft.json
     questions/
       airplane-general.json  <- one file per FCOM chapter
       air-systems.json
       anti-ice-and-rain.json
       automatic-flight.json
   classes/                  <- class ratings, a separate content tree
-    sep/                    <- one folder per class, lowercase code
+    da40/                   <- one folder per class, lowercase code
       class.json            <- the class's details
       questions/
-        systems.json
+        airframe.json       <- one file per topic, each holding a JSON array
+        electrical.json
         ...
-    mep/
-      class.json
-      questions/
 ```
 
-Adding a second aircraft, or a second class rating, is a content job only.
-Nothing in the application code needs to change.
+`content/` holds **type ratings** — large aircraft, each its own folder
+directly under `content/`. `content/classes/` holds **class ratings** —
+light aircraft, each its own folder one level down. A light aircraft sits
+directly here with no sub-category between it and the section: there is no
+"single engine" or "multi engine" split, only the aircraft. These are the
+first two of the three sections the website is built around — the third,
+Aviation Knowledge, is general theory not tied to any aircraft and has no
+content tree here yet. See the note on the three sections in `CLAUDE.md`.
+
+Adding a second type rating, or a second class rating, is a content job
+only. Nothing in the application code needs to change — dropping a new
+folder under `content/` or `content/classes/` and running `npm run db:seed`
+is the whole job.
 
 A class rating (`content/classes/<code>/class.json` + `questions/`) is a
-genuinely separate bank from an aircraft's, validated by its own schema in
+genuinely separate bank from a type rating's, validated by its own schema in
 `src/content/class-schema.ts` and seeded into its own tables
 (`class_ratings`, `class_questions`) — see the note on `classRatings` in
-`src/db/schema.ts`. Question ids there look like `SEP-SYSTEMS-0001` (class
-code, topic code, four digits) rather than `DA40-ELEC-0042`, and the
-`classCode` field takes the place of `aircraft`, but every other rule below
-holds identically.
+`src/db/schema.ts`. Question ids there look like `DA40-AIRF-0001` (class
+code, topic code, four digits) — the same shape a type rating's question id
+takes — and the `classCode` field takes the place of `aircraft`, but every
+other rule below holds identically.
 
 ## Rules that are checked automatically
 
@@ -73,10 +76,15 @@ only ever draw on the 10 published ones.
 The aircraft is the **Diamond DA 40 D TDI** — the diesel variant with the
 TAE 125 engine, running on Jet A-1.
 
-The folder and the code stay `da40` / `DA40`. Only the display name changed. The
-code is the URL segment, the prefix of every question id, and the value stored on
-every past attempt, so changing it would break links and orphan history for no
-gain.
+The code stays `DA40`, unchanged since the aircraft's own display name was
+last changed. The code is the URL segment, the prefix of every question id,
+and the value stored on every past attempt, so changing it would break links
+and orphan history for no gain — the reasoning that held when this bank
+still lived directly under `content/da40/` holds just as well now that it
+lives under `content/classes/da40/`: the move to the class rating tree
+(`CLAUDE.md`, "many aircraft" → "three sections") changed where the folder
+sits and how the questions declare their parent (`classCode` in place of
+`aircraft`), but never the code, and never a question id.
 
 ### Drafted content, and why
 
