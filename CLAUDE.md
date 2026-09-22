@@ -8,15 +8,28 @@ description of how the project is built, not a historical record.
 A web application where student pilots practise multiple-choice questions.
 All user-facing content is in English.
 
-**The product is three sections, not one bank.** `/type-rating` is large
+**The product is three sections, not one bank, and the goal is understanding
+the aircraft, not memorising questions.** Every wrong option has to be ruled
+out by knowing the system, not recognised by its shape — a question that can
+only be got right by having seen that exact question before is a bug, not
+content. `/type-rating` is **Type Rating Systems Knowledge** — large
 aircraft, sat the way a type rating is — the B737 today. `/class-rating` is
-light aircraft, the same way — the DA40 today, with no "single engine" or
-"multi engine" split between it and the section; a light aircraft sits
-directly under Class Rating. `/aviation-knowledge` is general theory that
-is not tied to any aircraft — air law, meteorology, navigation — and has no
-question bank yet (see "Not in scope yet"). The landing page's hero asks
-which of the three a visitor is here for rather than leading with one
+**Class Rating Systems Knowledge** — light aircraft, the same way — the DA40
+today, with no "single engine" or "multi engine" split between it and the
+section; a light aircraft sits directly under Class Rating. `/flying-knowledge`
+is **Flying Knowledge** — general theory that is not tied to any aircraft —
+air law, meteorology, navigation, the material a pilot keeps reviewing
+rather than sits once — and has no question bank yet (see "Not in scope
+yet"); it is also, by decision ahead of that content existing, free in full,
+never behind the free-tier cap or a subscription. The landing page's hero
+asks which of the three a visitor is here for rather than leading with one
 aircraft; see the note on the three sections in the conventions below.
+
+Both picker pages — `/type-rating` and `/class-rating` — title themselves
+**"Choose an aircraft,"** not "Choose a type rating" or "Choose a class
+rating": the section name already says which kind of rating this is (it is
+the page's `eyebrow`), and what the page actually asks the student to do is
+pick an aircraft.
 
 **Current state: Phase 6 (payments) is complete.**
 A user can choose an aircraft, build a test from any combination of sections
@@ -105,15 +118,16 @@ test suite passed against a database holding both banks.
 **Old links still work.** `/aircraft` and `/aircraft/[code]` (and its
 `/test` page) were the type rating routes before this split existed;
 `/class` and `/class/[code]` were an earlier name for the class rating
-ones. All four now live under `src/app/aircraft/` and `src/app/class/` as
-pure redirects — `/aircraft/[code]` looks the code up in both trees (a
-type rating aircraft can move to the class rating tree, as the DA40 did,
-so the code alone no longer says which one a stale link meant) and
-forwards to whichever one has it, carrying every query parameter across.
-`proxy.ts`'s matcher only covers the new `/type-rating/:path*` and
-`/class-rating/:path*` prefixes — the legacy routes mint nothing
-themselves, so the *second* request a redirect causes is the one that
-needs the preview cookie.
+ones; `/aviation-knowledge` was Flying Knowledge's own name for one
+deploy. All five now live under `src/app/aircraft/`, `src/app/class/` and
+`src/app/aviation-knowledge/` as pure redirects — `/aircraft/[code]` looks
+the code up in both trees (a type rating aircraft can move to the class
+rating tree, as the DA40 did, so the code alone no longer says which one a
+stale link meant) and forwards to whichever one has it, carrying every
+query parameter across. `proxy.ts`'s matcher only covers the new
+`/type-rating/:path*` and `/class-rating/:path*` prefixes — the legacy
+routes mint nothing themselves, so the *second* request a redirect causes
+is the one that needs the preview cookie.
 
 ## Commands
 
@@ -287,8 +301,9 @@ a safety net, not the fix — overflows get solved where they happen.
 section rather than assuming.** `Hero` used to lead with one featured
 aircraft (`featuredAircraftCode`) and a single "Start practising free"
 button; now it has no featured aircraft at all, and `SectionLinks`
-(`_landing/section-links.tsx`) — three equal-weight buttons, Type Rating,
-Class Rating, Aviation Knowledge — is the whole of its call to action,
+(`_landing/section-links.tsx`) — three equal-weight buttons, Type Rating
+Systems Knowledge, Class Rating Systems Knowledge, Flying Knowledge — is
+the whole of its call to action,
 reused unchanged in `FinalCta` at the bottom of the page so the two never
 describe the three sections differently. Neither ranks one section above
 the others: the product is three sections, not one section with two
@@ -302,7 +317,7 @@ aircraft, which is exactly what the three-section split removed. It is
 three cards now, one per section, each with a real count
 (`SectionCounts`, summed in `page.tsx`'s `loadLandingData` from both
 content trees, never read for one featured aircraft alone) or — for
-Aviation Knowledge, which has no bank yet — a plain "Coming soon" badge
+Flying Knowledge, which has no bank yet — a plain "Coming soon" badge
 rather than a made-up number. Every aircraft and every class rating joins
 one of these three cards; there is no separate "aircraft" section on this
 page any more, and there is no "single engine" / "multi engine" split
@@ -1499,17 +1514,19 @@ src/
                               SectionLinks, sections-overview (the three section
                               cards), trust, how it works, features, FAQ, final CTA
                               (reuses SectionLinks)
-    type-rating/               Type rating picker
+    type-rating/               Type Rating Systems Knowledge picker ("Choose an aircraft")
     type-rating/[code]/        One aircraft's overview
     type-rating/[code]/test/   Test runner, grading action, result screen, shortcuts-overlay
-    class-rating/               Class rating picker — the same shape as type-rating/,
-                                reading the parallel content tree (see the note on
-                                "many aircraft, in two trees" above)
+    class-rating/               Class Rating Systems Knowledge picker — the same shape as
+                                type-rating/, reading the parallel content tree (see the
+                                note on "many aircraft, in two trees" above)
     class-rating/[code]/
     class-rating/[code]/test/
-    aviation-knowledge/        The third section. No question bank yet — a real
-                              "coming soon" page, not a stub
-    aircraft/, class/          Legacy redirects only — see "Old links still work" above
+    flying-knowledge/          The third section. No question bank yet — a real
+                              "coming soon" page, not a stub — and free in full by
+                              decision, ahead of that content existing
+    aircraft/, class/,
+    aviation-knowledge/         Legacy redirects only — see "Old links still work" above
     (auth)/                   Sign up, log in, log out
     progress/                 Reports, overall and per aircraft
     upgrade/                  Checkout for the two plans, and the Stripe redirect action
@@ -1676,17 +1693,31 @@ Questions are authored as repository files. If questions ever need to be written
 from inside the website, an admin panel gets added then — the `status`,
 `version` and `media` fields exist so that path stays open.
 
-**Aviation Knowledge has a route and a place in the navigation, and no content
-tree or question bank behind it.** `/aviation-knowledge` is a real, honest
+**Flying Knowledge has a route and a place in the navigation, and no content
+tree or question bank behind it.** `/flying-knowledge` is a real, honest
 "coming soon" page — the same convention an individual aircraft's
 `status: "coming_soon"` already uses, applied to a whole section instead of
 one row in a picker — rather than a stub that pretends to be finished.
+(It was briefly named `/aviation-knowledge`; that path now redirects.)
 Building it out for real is a content-and-schema job when it happens, not
 an application-code one: a third pair of tables and a third content tree,
 the same shape `class_ratings`/`class_questions` already are beside
 `aircraft`/`questions`, since nothing here is tied to an aircraft code at
 all. Do not start that until an owner has actual content for it — see
 "Do not start a phase until the previous one works" above.
+
+**Decided ahead of that content: Flying Knowledge will be free in full, not
+metered by the free-tier cap or gated by a subscription.** Every other
+section's free allowance exists because the bank behind it is something a
+student sits through once toward one exam, and the cap is what pays for
+building more of it. Flying Knowledge is the opposite kind of content — air
+law, meteorology, navigation, the material a pilot keeps reviewing rather
+than passes once and leaves behind — and metering material like that would
+work against the reason it exists. When this section gets a real question
+bank, `FREE_QUESTIONS_PER_AIRCRAFT` and `canAnswerQuestion` must not apply
+to its codes; whatever access check gets built for it should default to
+open rather than reusing the type rating/class rating gate and carving out
+an exception.
 
 ## Known gaps, honestly
 

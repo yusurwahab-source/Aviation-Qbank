@@ -8,7 +8,7 @@ import { siteConfig } from "@/config/site";
  *
  * `start_url` is `/`, not one of the three section pickers: there is no
  * longer a single "the aircraft picker" to land on — a home screen icon has
- * to choose one of `/type-rating`, `/class-rating` or `/aviation-knowledge`
+ * to choose one of `/type-rating`, `/class-rating` or `/flying-knowledge`
  * for someone who has not said which they want today, and the hero on `/`
  * already puts all three one tap away. A test in progress is resumed from
  * its own URL regardless of where the icon lands.

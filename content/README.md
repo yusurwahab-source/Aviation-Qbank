@@ -24,14 +24,15 @@ content/
         ...
 ```
 
-`content/` holds **type ratings** — large aircraft, each its own folder
-directly under `content/`. `content/classes/` holds **class ratings** —
-light aircraft, each its own folder one level down. A light aircraft sits
-directly here with no sub-category between it and the section: there is no
-"single engine" or "multi engine" split, only the aircraft. These are the
-first two of the three sections the website is built around — the third,
-Aviation Knowledge, is general theory not tied to any aircraft and has no
-content tree here yet. See the note on the three sections in `CLAUDE.md`.
+`content/` holds **Type Rating Systems Knowledge** — large aircraft, each
+its own folder directly under `content/`. `content/classes/` holds **Class
+Rating Systems Knowledge** — light aircraft, each its own folder one level
+down. A light aircraft sits directly here with no sub-category between it
+and the section: there is no "single engine" or "multi engine" split, only
+the aircraft. These are the first two of the three sections the website is
+built around — the third, **Flying Knowledge**, is general theory not tied
+to any aircraft and has no content tree here yet, and is free in full by
+decision once it does. See the note on the three sections in `CLAUDE.md`.
 
 Adding a second type rating, or a second class rating, is a content job
 only. Nothing in the application code needs to change — dropping a new

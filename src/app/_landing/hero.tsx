@@ -19,9 +19,10 @@ const NUMBER_FORMAT = new Intl.NumberFormat("en-GB");
  * to make a first impression.
  *
  * There is no featured aircraft here any more, and no single "start
- * practising" button pointed at one. The product is three sections — type
- * rating, class rating, aviation knowledge — and the hero asks which one a
- * visitor is here for, through `SectionLinks`, rather than assuming.
+ * practising" button pointed at one. The product is three sections — Type
+ * Rating Systems Knowledge, Class Rating Systems Knowledge, Flying
+ * Knowledge — and the hero asks which one a visitor is here for, through
+ * `SectionLinks`, rather than assuming.
  */
 export function Hero({ stats }: { stats: HeroStats | null }) {
   return (

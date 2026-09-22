@@ -12,9 +12,9 @@
  */
 export const siteConfig = {
   name: "Holdshort",
-  tagline: "Type rating, class rating, and aviation knowledge — exam-ready.",
+  tagline: "Understand the aircraft, not just the answers.",
   description:
-    "Multiple-choice practice questions across three sections: type ratings for large aircraft, class ratings for light aircraft, and general aviation knowledge. Study with immediate feedback or simulate the real exam, track your progress by topic, and walk into your checkride ready.",
+    "Multiple-choice practice questions across three sections — Type Rating Systems Knowledge for large aircraft, Class Rating Systems Knowledge for light aircraft, and Flying Knowledge, free in full, for the ground-school material every pilot keeps reviewing. Built to teach the aircraft through every question, not to be memorised without understanding it. Study with immediate feedback or simulate the real exam, and track your progress by topic.",
   /**
    * The deployment's canonical origin, no trailing slash. Used as a fallback
    * for metadata (`metadataBase`, absolute Open Graph URLs) when no
