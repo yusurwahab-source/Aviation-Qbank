@@ -40,17 +40,21 @@ export type SiteSettings = {
    * on the results screen. Purely a label on the score — it changes nothing
    * about grading, access, or what is recorded. */
   passMarkPercent: number;
-  /** The aircraft code the landing page is built around — curation, not
-   * content: every aircraft in `/content` is real and playable, this only
-   * decides which one marketing leads with. Previously the hardcoded
-   * `FEATURED_AIRCRAFT_CODE` in `src/config/aircraft-marketing.ts`. */
+  /** The type rating aircraft the landing page's structured data (the
+   * Course entry in `jsonLd`) names as an example — curation, not content:
+   * every aircraft in `/content` is real and playable, this only decides
+   * which one search engines are told about by name. The landing page's own
+   * hero no longer features one aircraft over another (see the note on the
+   * three sections in `CLAUDE.md`), so this is a narrower role than it once
+   * had. Previously the hardcoded `FEATURED_AIRCRAFT_CODE` in
+   * `src/config/aircraft-marketing.ts`. */
   featuredAircraftCode: string;
   /** Aircraft that are real and answerable today but not substantial enough
-   * to lead with — hidden from the landing page, shown on `/aircraft` with
-   * an "In development" badge instead of a question count. Previously the
-   * hardcoded `AIRCRAFT_IN_DEVELOPMENT` set in the same file. Neither this
-   * nor `featuredAircraftCode` ever writes to the `aircraft` table — both
-   * only decide what marketing surfaces say about rows that already exist. */
+   * to lead with — shown on `/type-rating` with an "In development" badge
+   * instead of a question count. Previously the hardcoded
+   * `AIRCRAFT_IN_DEVELOPMENT` set in the same file. Neither this nor
+   * `featuredAircraftCode` ever writes to the `aircraft` table — both only
+   * decide what marketing surfaces say about rows that already exist. */
   aircraftInDevelopment: string[];
 };
 

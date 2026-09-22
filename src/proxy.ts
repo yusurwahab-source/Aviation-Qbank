@@ -32,7 +32,7 @@ import {
  * Nothing is minted for a request that already carries a session cookie: a
  * signed-in student is metered against their account, and a visitor who
  * does not practise never gets a cookie at all, because the matcher below
- * is only the aircraft and class-rating routes.
+ * is only the type rating and class rating routes.
  */
 export function proxy(request: NextRequest) {
   if (request.cookies.has(PREVIEW_COOKIE)) return NextResponse.next();
@@ -77,6 +77,11 @@ function randomToken(): string {
 export const config = {
   // Only where a test can actually be started or answered. Every other
   // route — the landing page, the owner console, the API — is untouched,
-  // so nobody gets a cookie for reading the marketing copy.
-  matcher: ["/aircraft/:path*", "/class/:path*"],
+  // so nobody gets a cookie for reading the marketing copy. The legacy
+  // `/aircraft/:path*` and `/class/:path*` prefixes are excluded on purpose:
+  // both are now pure redirects (see `src/app/aircraft/` and
+  // `src/app/class/`) that mint nothing themselves, and the *second*
+  // request they issue — to `/type-rating/:path*` or `/class-rating/:path*`
+  // — is what this matcher actually needs to catch.
+  matcher: ["/type-rating/:path*", "/class-rating/:path*"],
 };

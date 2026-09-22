@@ -205,15 +205,15 @@ describe("loadContent", () => {
   });
 });
 
-describe("the DA40 content in this repository", () => {
+describe("the B737 content in this repository", () => {
   it("is valid and has questions ready for users", () => {
     const { aircraft, issues } = loadContent();
     expect(issues).toEqual([]);
 
-    const da40 = aircraft.find((entry) => entry.manifest.code === "DA40");
-    expect(da40).toBeDefined();
-    expect(da40!.questions.filter((q) => q.status === "published").length).toBeGreaterThanOrEqual(
-      10,
-    );
+    const b737 = aircraft.find((entry) => entry.manifest.code === "B737");
+    expect(b737).toBeDefined();
+    expect(
+      b737!.questions.filter((q) => q.status === "published").length,
+    ).toBeGreaterThanOrEqual(10);
   });
 });

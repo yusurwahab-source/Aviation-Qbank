@@ -5,8 +5,18 @@ description of how the project is built, not a historical record.
 
 ## What this is
 
-A web application where student pilots practise multiple-choice questions for
-aircraft type ratings. All user-facing content is in English.
+A web application where student pilots practise multiple-choice questions.
+All user-facing content is in English.
+
+**The product is three sections, not one bank.** `/type-rating` is large
+aircraft, sat the way a type rating is — the B737 today. `/class-rating` is
+light aircraft, the same way — the DA40 today, with no "single engine" or
+"multi engine" split between it and the section; a light aircraft sits
+directly under Class Rating. `/aviation-knowledge` is general theory that
+is not tied to any aircraft — air law, meteorology, navigation — and has no
+question bank yet (see "Not in scope yet"). The landing page's hero asks
+which of the three a visitor is here for rather than leading with one
+aircraft; see the note on the three sections in the conventions below.
 
 **Current state: Phase 6 (payments) is complete.**
 A user can choose an aircraft, build a test from any combination of sections
@@ -23,8 +33,9 @@ into an instant test, alongside "my weakest systems" and "questions I have
 never seen". Accounts exist,
 and a signed-in user's answers are recorded as each one is given, which means
 an abandoned test still counts and a mid-test refresh — or a return visit
-days later, surfaced by a "Resume your test" banner on the aircraft page
-and the dashboard — resumes rather than restarts. Forgetting a password is
+days later, surfaced by a "Resume your test" banner on the type rating or
+class rating overview page and the dashboard — resumes rather than
+restarts. Forgetting a password is
 recoverable: a one-time emailed link sets
 a new one and signs every other device out. `/progress` reads that history
 back: overall
@@ -49,25 +60,60 @@ integration was rebuilt against Stripe instead — the free-tier rule, the
 database and the gating in `answerQuestion` did not need to change, only
 the checkout link and the webhook.)
 
-## The rule that shapes everything: many aircraft
+## The rule that shapes everything: many aircraft, in two trees
 
-The platform supports several aircraft types, each with its own question bank.
-Two exist today — the DA40 and the B737 — and nothing in the code knows about
-either.
+The platform supports several aircraft, each with its own question bank, and
+each sits in one of two genuinely separate content trees — type rating or
+class rating — rather than one table with a "kind" column. Two aircraft
+exist today: the B737, a type rating, and the DA40, a class rating. Nothing
+in the code knows about either aircraft specifically, and nothing outside
+`db:seed`'s own sync knows that a table pair is "for" one tree rather than
+the other — see the note on `classRatings` in `db/schema.ts` for why the
+split runs all the way down rather than being folded into one.
 
-Every table, route, query and report is keyed by aircraft code:
+Every table, route, query and report in each tree is keyed by that tree's
+own aircraft code:
 
-- `content/<code>/` — one folder per aircraft
-- `aircraft` and `questions` tables — `questions.aircraft_code` on every row
-- `/aircraft/[code]` and `/aircraft/[code]/test` — aircraft is part of the URL
-- every query in `src/db/queries.ts` takes an aircraft code
+- `content/<code>/` — one folder per **type rating** aircraft; `content/classes/<code>/`
+  — one folder per **class rating** aircraft
+- `aircraft` and `questions` tables (type rating) — `questions.aircraft_code` on
+  every row; `class_ratings` and `class_questions` tables (class rating) —
+  `class_questions.class_code` on every row
+- `/type-rating/[code]` and `/type-rating/[code]/test` — a type rating aircraft
+  is part of the URL; `/class-rating/[code]` and `/class-rating/[code]/test` the
+  same for a class rating one
+- every query in `src/db/queries.ts` takes a type rating aircraft code; every
+  query in `src/db/class-queries.ts` takes a class rating one
 
-**Adding an aircraft must stay a content-only job.** If a change would require
-editing application code to add a second or third type, it is the wrong change.
-This was first checked with a throwaway A320 folder; it is now settled by the
-B737-800, which was added as `content/b737/` alone — a manifest and its question
-files, one per FCOM chapter. No application code was touched, and the full test
-suite passed against a database holding both banks.
+Everything downstream of a question id — `attempts`, `question_flags`,
+`question_notes`, `subscriptions` (the free tier), `preview_attempts` and
+`lib/grading.ts` — is shared unchanged between the two trees, because none
+of it joins to `questions` or `aircraft`; see the note on `attempts` in the
+conventions below for why that join was never there to begin with. This is
+what let the DA40 move from the type rating tree to the class rating tree
+in a single content-and-tests change with no schema migration: the tables
+it needed already existed, sized for exactly this.
+
+**Adding an aircraft, to either tree, must stay a content-only job.** If a
+change would require editing application code to add a second or third type
+rating, or a second class rating, it is the wrong change. This was first
+checked with a throwaway A320 folder; it is now settled by the B737-800,
+which was added as `content/b737/` alone — a manifest and its question
+files, one per FCOM chapter. No application code was touched, and the full
+test suite passed against a database holding both banks.
+
+**Old links still work.** `/aircraft` and `/aircraft/[code]` (and its
+`/test` page) were the type rating routes before this split existed;
+`/class` and `/class/[code]` were an earlier name for the class rating
+ones. All four now live under `src/app/aircraft/` and `src/app/class/` as
+pure redirects — `/aircraft/[code]` looks the code up in both trees (a
+type rating aircraft can move to the class rating tree, as the DA40 did,
+so the code alone no longer says which one a stale link meant) and
+forwards to whichever one has it, carrying every query parameter across.
+`proxy.ts`'s matcher only covers the new `/type-rating/:path*` and
+`/class-rating/:path*` prefixes — the legacy routes mint nothing
+themselves, so the *second* request a redirect causes is the one that
+needs the preview cookie.
 
 ## Commands
 
@@ -237,36 +283,42 @@ Every route has been opened at 375px in Chromium and measured, for
 horizontal overflow and for target sizes. `overflow-x: clip` on `html` is
 a safety net, not the fix — overflows get solved where they happen.
 
-**The landing page's job is to start a test, so the systems strip sits
-directly under the hero and carries both modes.** It used to be a grid
-further down the page, each card linking to `/test` with the mode left to
-default — so a student who wanted an exam landed on the test builder and
-had to find the setting. Study and Exam are the only two things anyone
-comes here to do, and neither is worth a second screen: both are on every
-card now, and `buildTestHref` puts the mode in the link rather than the
-card knowing anything about how a test is built.
+**The landing page's job is to start a test, and the hero asks which
+section rather than assuming.** `Hero` used to lead with one featured
+aircraft (`featuredAircraftCode`) and a single "Start practising free"
+button; now it has no featured aircraft at all, and `SectionLinks`
+(`_landing/section-links.tsx`) — three equal-weight buttons, Type Rating,
+Class Rating, Aviation Knowledge — is the whole of its call to action,
+reused unchanged in `FinalCta` at the bottom of the page so the two never
+describe the three sections differently. Neither ranks one section above
+the others: the product is three sections, not one section with two
+afterthoughts.
 
-It is a strip rather than a grid because fifteen systems is a list to
-browse, not a wall to read — on a phone it is a thumb-flick along one row
-with the next card always half in view, which is the only affordance it
-needs. Three things make that work and are easy to undo by accident, all
-measured in a browser rather than reasoned about:
+Directly under the hero, `SectionsOverview` (`_landing/sections-overview.tsx`)
+replaces what used to be two separate things — a systems strip scrolling
+through one featured aircraft's sections, and a card further down headed
+"Built around the 737-800". Both were built around leading with a single
+aircraft, which is exactly what the three-section split removed. It is
+three cards now, one per section, each with a real count
+(`SectionCounts`, summed in `page.tsx`'s `loadLandingData` from both
+content trees, never read for one featured aircraft alone) or — for
+Aviation Knowledge, which has no bank yet — a plain "Coming soon" badge
+rather than a made-up number. Every aircraft and every class rating joins
+one of these three cards; there is no separate "aircraft" section on this
+page any more, and there is no "single engine" / "multi engine" split
+inside the class rating card either, the same rule the route structure
+carries: a light aircraft sits directly under Class Rating.
 
-- `.scroll-x` and `.scroll-strip` (`globals.css`) carry `contain: paint`.
-  `overflow-x: auto` on its own gives the box a scrollbar and *still* lets
-  its overflow count toward the document's scrollable width: fifteen cards
-  made a 375px page report 3836px wide, and the page scrolled sideways.
-  `html { overflow-x: clip }` would have hidden that; the rule above is
-  that overflows get solved where they happen, and this is where it
-  happens.
-- `scroll-pl-*` has to match the strip's `px-*`. A snap target aligns to
-  the snapport, which is the padding box, so without it the browser scrolls
-  the strip by exactly its own padding on load and the first card sits
-  flush against the edge of the screen with no gutter.
-- `w-max` on the list inside. As a block-level flex child it is otherwise
-  the content box's width with its items spilling out, and a scroll
-  container does not honour its end padding against spilled content — so
-  the last card ended flush right.
+The old systems strip is survived by one thing worth keeping if a
+horizontally-scrolling row of cards is ever built again: `.scroll-x`
+(`globals.css`) still carries `contain: paint`, because `overflow-x: auto`
+on its own gives a box a scrollbar and *still* lets its overflow count
+toward the document's scrollable width — measured directly, on that strip,
+where fifteen cards made a 375px page report 3836px wide and the page
+scrolled sideways. `html { overflow-x: clip }` would have hidden that; the
+rule is that overflows get solved where they happen, and that is where it
+happened. `.scroll-strip`, the snapping variant built on top of it, was
+deleted along with the strip itself once nothing used it any more.
 
 **The hero's artwork is a 737 planform, drawn, and placed by CSS rather
 than cropped by a viewBox.** Still no photography, for the reason
@@ -387,10 +439,15 @@ enforced; the first test of a visit would just restart once.
 
 It is `proxy.ts` because Next 16 deprecated the `middleware` file
 convention and renamed it; the build says so if it is ever renamed back.
-The matcher is `/aircraft/:path*` alone, so nobody reading the marketing
-pages is given a cookie, and a request already carrying a session cookie
-is skipped entirely — a signed-in student is metered against their
-account.
+The matcher is `/type-rating/:path*` and `/class-rating/:path*` — the two
+routes a test can actually be started or answered on — so nobody reading
+the marketing pages is given a cookie, and a request already carrying a
+session cookie is skipped entirely — a signed-in student is metered
+against their account. The legacy `/aircraft/:path*` and `/class/:path*`
+prefixes are deliberately excluded: both are pure redirects now (see the
+note on old links in "The rule that shapes everything" above) that mint
+nothing themselves, so the request that needs the cookie is the second
+one, to the path it redirects to.
 
 **And be honest about what the cookie is worth: nothing, against a script.**
 It is the visitor's to delete, and a caller that never sends one back is a
@@ -1335,8 +1392,10 @@ change without a deploy), the signed-out preview allowance beside it
 the convention on the preview above), a one-line announcement banner shown
 above every page, the pass mark shown on a result screen, and — moved here from a
 hardcoded `src/config/aircraft-marketing.ts`, now deleted — the featured
-aircraft code and the set of aircraft marked "in development". Both of
-those last two only decide what the landing page and `/aircraft` say about
+type rating aircraft code (named in the landing page's structured data, not
+its hero — see the note on the three sections above) and the set of type
+rating aircraft marked "in development". Both of
+those last two only decide what search engines and `/type-rating` say about
 aircraft rows that already exist; **neither ever writes to the `aircraft`
 table**, and `updateSettings` checks the chosen codes against the real
 aircraft that exist (a database read, so it happens in the action, not in
@@ -1421,6 +1480,8 @@ over the internals.
 
 ```
 content/                      Question files. The source of truth.
+  <code>/                     One folder per type rating aircraft (b737/ today)
+  classes/<code>/             One folder per class rating aircraft (da40/ today)
 drizzle/                      Generated SQL migrations. Committed.
 public/                       Manifest icons, and the service worker.
 scripts/
@@ -1434,11 +1495,21 @@ src/
     fonts.ts                  The two faces, via next/font
     layout.tsx                The shell: header, footer, metadata, viewport
     page.tsx                  The marketing landing page
-    _landing/                 Its sections: hero (+ the drawn 737 backdrop),
-                              the systems strip with Study/Exam per system,
-                              trust, how it works, features, FAQ, CTA
-    aircraft/[code]/          Aircraft overview
-    aircraft/[code]/test/     Test runner, grading action, result screen, shortcuts-overlay
+    _landing/                 Its sections: hero (+ the drawn 737 backdrop) with
+                              SectionLinks, sections-overview (the three section
+                              cards), trust, how it works, features, FAQ, final CTA
+                              (reuses SectionLinks)
+    type-rating/               Type rating picker
+    type-rating/[code]/        One aircraft's overview
+    type-rating/[code]/test/   Test runner, grading action, result screen, shortcuts-overlay
+    class-rating/               Class rating picker — the same shape as type-rating/,
+                                reading the parallel content tree (see the note on
+                                "many aircraft, in two trees" above)
+    class-rating/[code]/
+    class-rating/[code]/test/
+    aviation-knowledge/        The third section. No question bank yet — a real
+                              "coming soon" page, not a stub
+    aircraft/, class/          Legacy redirects only — see "Old links still work" above
     (auth)/                   Sign up, log in, log out
     progress/                 Reports, overall and per aircraft
     upgrade/                  Checkout for the two plans, and the Stripe redirect action
@@ -1458,11 +1529,15 @@ src/
   config/
     site.ts                   THE product name, tagline, description and URL — not site_settings, see the convention above
   content/
-    schema.ts                 THE question schema
-    load.ts                   Reads and validates /content
+    schema.ts                 THE question schema — type rating aircraft
+    class-schema.ts           THE question schema — class rating aircraft, a
+                              deliberate near-mirror of schema.ts
+    load.ts                   Reads and validates /content (type rating)
+    load-classes.ts           Reads and validates content/classes/ (class rating)
   db/
     schema.ts                 Drizzle tables
-    queries.ts                Every read the app performs
+    queries.ts                Every read the app performs — type rating
+    class-queries.ts          The same, for class ratings — a near-mirror of queries.ts
     users.ts                  Account reads and writes
     password-reset.ts         Issuing and spending reset links
     subscriptions.ts          Subscription row and the free-tier count
@@ -1475,7 +1550,7 @@ src/
     settings.ts               Reading and writing site_settings; owner-only write, publicly read
     owner.ts                  THE unscoped reads, and grant/revoke/notes. /owner only; see the convention above.
     index.ts                  Connection pool
-  proxy.ts                    Mints the signed-out visitor cookie on /aircraft/*
+  proxy.ts                    Mints the signed-out visitor cookie on /type-rating/* and /class-rating/*
   lib/
     email/
       send.ts                 sendEmail: Resend, or the server log
@@ -1601,6 +1676,18 @@ Questions are authored as repository files. If questions ever need to be written
 from inside the website, an admin panel gets added then — the `status`,
 `version` and `media` fields exist so that path stays open.
 
+**Aviation Knowledge has a route and a place in the navigation, and no content
+tree or question bank behind it.** `/aviation-knowledge` is a real, honest
+"coming soon" page — the same convention an individual aircraft's
+`status: "coming_soon"` already uses, applied to a whole section instead of
+one row in a picker — rather than a stub that pretends to be finished.
+Building it out for real is a content-and-schema job when it happens, not
+an application-code one: a third pair of tables and a third content tree,
+the same shape `class_ratings`/`class_questions` already are beside
+`aircraft`/`questions`, since nothing here is tied to an aircraft code at
+all. Do not start that until an owner has actual content for it — see
+"Do not start a phase until the previous one works" above.
+
 ## Known gaps, honestly
 
 - **A signed-out visitor's preview is metered by a cookie, which they can
@@ -1686,6 +1773,18 @@ from inside the website, an admin panel gets added then — the `status`,
   covers. The code here names the *type rating*, which is the 737 family, so
   `B737` is right for what the app is for — but the obvious code for a -700
   bank is taken, and it would need a different one.
+- **An aircraft's code can move between the type rating and class rating
+  trees without becoming a new aircraft.** The DA40 did exactly this —
+  `content/da40/` (an `aircraft.json`, rows in `aircraft`/`questions`) became
+  `content/classes/da40/` (a `class.json`, rows in
+  `class_ratings`/`class_questions`) — and `DA40` never changed, because
+  nothing downstream of a question id cares which tree owns the code: not
+  `attempts.aircraft_code`, not a question's own id prefix, not a flag or a
+  note. This is a smaller move than the display-name-only rule above
+  suggests it might be, and it is safe for exactly the reason "many
+  aircraft, in two trees" gives — the two content trees are a split in
+  where an aircraft is authored and served from, not a split in what an
+  aircraft *is* to the rest of the schema.
 - **`npm audit` reports a moderate advisory** in `esbuild`, reached through
   `drizzle-kit`. It affects a development server only, never the deployed app.
   The fix is a breaking downgrade of `drizzle-kit`, so it is being left until

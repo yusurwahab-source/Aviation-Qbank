@@ -215,4 +215,15 @@ describe("the class ratings content in this repository", () => {
     const { issues } = loadClassContent();
     expect(issues).toEqual([]);
   });
+
+  it("has a DA40 bank with questions ready for users", () => {
+    const { classes, issues } = loadClassContent();
+    expect(issues).toEqual([]);
+
+    const da40 = classes.find((entry) => entry.manifest.code === "DA40");
+    expect(da40).toBeDefined();
+    expect(
+      da40!.questions.filter((q) => q.status === "published").length,
+    ).toBeGreaterThanOrEqual(10);
+  });
 });

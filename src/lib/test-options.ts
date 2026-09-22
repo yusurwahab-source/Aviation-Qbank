@@ -241,15 +241,16 @@ export function buildTestHrefFor(basePath: string, code: string, options: TestHr
 }
 
 /**
- * Builds the URL for an aircraft test. Every link to one goes through here.
+ * Builds the URL for a type rating's test. Every link to one goes through
+ * here.
  */
 export function buildTestHref(aircraftCode: string, options: TestHrefOptions = {}): string {
-  return buildTestHrefFor("/aircraft", aircraftCode, options);
+  return buildTestHrefFor("/type-rating", aircraftCode, options);
 }
 
-/** The same, for a class rating's test — `/class/CODE/test?...`. */
+/** The same, for a class rating's test — `/class-rating/CODE/test?...`. */
 export function buildClassTestHref(classCode: string, options: TestHrefOptions = {}): string {
-  return buildTestHrefFor("/class", classCode, options);
+  return buildTestHrefFor("/class-rating", classCode, options);
 }
 
 /**
@@ -267,17 +268,18 @@ export function buildResumeHref(session: {
   mode: TestMode;
   topics: string[];
 }): string {
-  return buildResumeHrefFor("/aircraft", session);
+  return buildResumeHrefFor("/type-rating", session);
 }
 
-/** The same, for a class rating's own overview page — `/class/CODE/test`. */
+/** The same, for a class rating's own overview page —
+ * `/class-rating/CODE/test`. */
 export function buildClassResumeHref(session: {
   clientTestId: string;
   aircraftCode: string;
   mode: TestMode;
   topics: string[];
 }): string {
-  return buildResumeHrefFor("/class", session);
+  return buildResumeHrefFor("/class-rating", session);
 }
 
 function buildResumeHrefFor(

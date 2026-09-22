@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 
 import { loadContentOrThrow } from "@/content/load";
+import { loadClassContentOrThrow } from "@/content/load-classes";
 import { siteConfig } from "@/config/site";
 
 export const alt = `${siteConfig.name} — ${siteConfig.tagline}`;
@@ -20,7 +21,9 @@ const MUTED = "#96a5bc";
  * Read from the content files rather than written down here, so the number
  * on a shared link is the number a student will actually find. Only
  * published questions count — the same rule the application itself applies
- * everywhere else.
+ * everywhere else. Both content trees are read and summed — type ratings
+ * and class ratings alike — so the card reports the whole bank rather than
+ * one section of it; see the note on the three sections in `CLAUDE.md`.
  *
  * A failure is swallowed on purpose. This is a picture; a malformed
  * question file should fail `validate:content` and stop the build there,
@@ -30,14 +33,16 @@ const MUTED = "#96a5bc";
 function bank(): { questions: number; types: string[] } {
   try {
     const aircraft = loadContentOrThrow();
+    const classes = loadClassContentOrThrow();
+    const entries = [...aircraft, ...classes];
 
     return {
-      questions: aircraft.reduce(
+      questions: entries.reduce(
         (total, entry) =>
           total + entry.questions.filter((question) => question.status === "published").length,
         0,
       ),
-      types: aircraft
+      types: entries
         .filter((entry) => entry.manifest.status === "active")
         .map((entry) => entry.manifest.code),
     };

@@ -105,18 +105,18 @@ describe("resolveTestSize", () => {
 
 describe("buildTestHref", () => {
   it("builds a plain test link", () => {
-    expect(buildTestHref("DA40")).toBe("/aircraft/DA40/test");
+    expect(buildTestHref("DA40")).toBe("/type-rating/DA40/test");
   });
 
   it("repeats the topic parameter, one per section", () => {
     expect(buildTestHref("DA40", { topics: ["Fuel System", "Electrical"], length: 10 })).toBe(
-      "/aircraft/DA40/test?topic=Fuel+System&topic=Electrical&questions=10",
+      "/type-rating/DA40/test?topic=Fuel+System&topic=Electrical&questions=10",
     );
   });
 
   it("carries 'all' through", () => {
     expect(buildTestHref("DA40", { length: ALL_QUESTIONS })).toBe(
-      "/aircraft/DA40/test?questions=all",
+      "/type-rating/DA40/test?questions=all",
     );
   });
 
@@ -128,17 +128,17 @@ describe("buildTestHref", () => {
   });
 
   it("sets from=incorrect for a retry link", () => {
-    expect(buildTestHref("DA40", { retryOnly: true })).toBe("/aircraft/DA40/test?from=incorrect");
+    expect(buildTestHref("DA40", { retryOnly: true })).toBe("/type-rating/DA40/test?from=incorrect");
   });
 
   it("sets from=flagged or from=unseen for the other two presets", () => {
-    expect(buildTestHref("DA40", { from: "flagged" })).toBe("/aircraft/DA40/test?from=flagged");
-    expect(buildTestHref("DA40", { from: "unseen" })).toBe("/aircraft/DA40/test?from=unseen");
+    expect(buildTestHref("DA40", { from: "flagged" })).toBe("/type-rating/DA40/test?from=flagged");
+    expect(buildTestHref("DA40", { from: "unseen" })).toBe("/type-rating/DA40/test?from=unseen");
   });
 
   it("prefers retryOnly if both are somehow set", () => {
     expect(buildTestHref("DA40", { retryOnly: true, from: "flagged" })).toBe(
-      "/aircraft/DA40/test?from=incorrect",
+      "/type-rating/DA40/test?from=incorrect",
     );
   });
 });
@@ -147,13 +147,13 @@ describe("buildResumeHref", () => {
   it("carries the session's own id as ?t=", () => {
     expect(
       buildResumeHref({ clientTestId: "abc123", aircraftCode: "DA40", mode: "study", topics: [] }),
-    ).toBe("/aircraft/DA40/test?t=abc123");
+    ).toBe("/type-rating/DA40/test?t=abc123");
   });
 
   it("includes mode only when it is not the default", () => {
     expect(
       buildResumeHref({ clientTestId: "abc123", aircraftCode: "DA40", mode: "exam", topics: [] }),
-    ).toBe("/aircraft/DA40/test?t=abc123&mode=exam");
+    ).toBe("/type-rating/DA40/test?t=abc123&mode=exam");
   });
 
   it("repeats topic, one per section", () => {
@@ -164,7 +164,7 @@ describe("buildResumeHref", () => {
         mode: "study",
         topics: ["Fuel System", "Electrical"],
       }),
-    ).toBe("/aircraft/DA40/test?t=abc123&topic=Fuel+System&topic=Electrical");
+    ).toBe("/type-rating/DA40/test?t=abc123&topic=Fuel+System&topic=Electrical");
   });
 
   it("round-trips through parseTestMode and parseTopics", () => {
@@ -182,26 +182,26 @@ describe("buildResumeHref", () => {
 });
 
 describe("buildClassTestHref and buildClassResumeHref", () => {
-  it("build the same shape of link under /class instead of /aircraft", () => {
-    expect(buildClassTestHref("SEP")).toBe("/class/SEP/test");
+  it("build the same shape of link under /class-rating instead of /type-rating", () => {
+    expect(buildClassTestHref("SEP")).toBe("/class-rating/SEP/test");
     expect(buildClassTestHref("SEP", { topics: ["Systems"], length: 10 })).toBe(
-      "/class/SEP/test?topic=Systems&questions=10",
+      "/class-rating/SEP/test?topic=Systems&questions=10",
     );
-    expect(buildClassTestHref("SEP", { retryOnly: true })).toBe("/class/SEP/test?from=incorrect");
+    expect(buildClassTestHref("SEP", { retryOnly: true })).toBe("/class-rating/SEP/test?from=incorrect");
   });
 
-  it("never produces an /aircraft/ link", () => {
-    expect(buildClassTestHref("SEP", { length: ALL_QUESTIONS })).not.toContain("/aircraft/");
+  it("never produces a /type-rating/ link", () => {
+    expect(buildClassTestHref("SEP", { length: ALL_QUESTIONS })).not.toContain("/type-rating/");
     expect(
       buildClassResumeHref({ clientTestId: "abc123", aircraftCode: "SEP", mode: "exam", topics: [] }),
-    ).toBe("/class/SEP/test?t=abc123&mode=exam");
+    ).toBe("/class-rating/SEP/test?t=abc123&mode=exam");
   });
 
   it("stays independent of the aircraft builders — same code, different base", () => {
     // The two must never collide: an aircraft code that happened to match a
     // class code still gets two different links.
-    expect(buildTestHref("SEP")).toBe("/aircraft/SEP/test");
-    expect(buildClassTestHref("SEP")).toBe("/class/SEP/test");
+    expect(buildTestHref("SEP")).toBe("/type-rating/SEP/test");
+    expect(buildClassTestHref("SEP")).toBe("/class-rating/SEP/test");
   });
 });
 
@@ -233,15 +233,15 @@ describe("parseTestMode", () => {
 describe("buildTestHref with a mode", () => {
   it("names exam mode in the URL", () => {
     expect(buildTestHref("DA40", { length: 10, mode: "exam" })).toBe(
-      "/aircraft/DA40/test?questions=10&mode=exam",
+      "/type-rating/DA40/test?questions=10&mode=exam",
     );
   });
 
   it("leaves the default out, so an ordinary link stays short", () => {
     expect(buildTestHref("DA40", { length: 10, mode: "study" })).toBe(
-      "/aircraft/DA40/test?questions=10",
+      "/type-rating/DA40/test?questions=10",
     );
-    expect(buildTestHref("DA40", { length: 10 })).toBe("/aircraft/DA40/test?questions=10");
+    expect(buildTestHref("DA40", { length: 10 })).toBe("/type-rating/DA40/test?questions=10");
   });
 
   it("round-trips through the parser", () => {
@@ -366,7 +366,7 @@ describe("buildTestHref no longer carries a clock", () => {
       expect(href).not.toContain("minutes");
     }
     expect(buildTestHref("DA40", { length: 10, mode: "exam" })).toBe(
-      "/aircraft/DA40/test?questions=10&mode=exam",
+      "/type-rating/DA40/test?questions=10&mode=exam",
     );
   });
 

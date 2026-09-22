@@ -1,23 +1,17 @@
 import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { siteConfig } from "@/config/site";
-import {
-  countAircraft,
-  getAircraft,
-  listTopics,
-  type AircraftSummary,
-  type TopicSummary,
-} from "@/db/queries";
+import { listClassRatings, listClassTopics } from "@/db/class-queries";
+import { listAircraft, listTopics } from "@/db/queries";
 import { getSiteSettings } from "@/db/settings";
 import { appUrl } from "@/lib/email/send";
 
-import { AircraftSection } from "./_landing/aircraft-section";
 import { Faq } from "./_landing/faq";
 import { Features } from "./_landing/features";
 import { FinalCta } from "./_landing/final-cta";
 import type { HeroStats } from "./_landing/hero";
 import { Hero } from "./_landing/hero";
 import { HowItWorks } from "./_landing/how-it-works";
-import { SystemsStrip } from "./_landing/systems-strip";
+import { SectionsOverview, type SectionCounts } from "./_landing/sections-overview";
 import { Trust } from "./_landing/trust";
 
 /**
@@ -26,9 +20,8 @@ import { Trust } from "./_landing/trust";
  * Everything that does not depend on the database — the hero copy, the
  * trust block, how it works, features, the FAQ, the final CTA — renders
  * unconditionally, so a database hiccup narrows the page rather than taking
- * it down. Only the two sections that show real numbers (the systems grid
- * and the aircraft card) fall back to an honest notice instead of a made-up
- * count.
+ * it down. Only the section that shows real numbers (`SectionsOverview`)
+ * falls back to an honest notice instead of a made-up count.
  *
  * Statically rendered with an hourly revalidation, matching the brief: the
  * numbers on this page are real but do not need to be to-the-second.
@@ -36,25 +29,53 @@ import { Trust } from "./_landing/trust";
 export const revalidate = 3600;
 
 type LandingData = {
-  /** Null on failure — a live platform fact with no honest zero to fall back to. */
-  totalAircraft: number | null;
-  topics: TopicSummary[];
-  topicsOk: boolean;
-  plane: AircraftSummary | null;
+  /** False on failure — a live platform fact with no honest zero to fall
+   * back to, the same reasoning `totalAircraft` used before the three
+   * sections existed. */
+  sectionsOk: boolean;
+  typeRating: SectionCounts;
+  classRating: SectionCounts;
+  /** Distinct-topic count summed across every aircraft and class rating —
+   * each one's own systems, not deduplicated against another's, because a
+   * "Fuel System" quiz on one aircraft is a different surface from another
+   * aircraft's. */
+  totalSystems: number;
 };
 
-async function loadLandingData(featuredAircraftCode: string): Promise<LandingData> {
-  const [aircraftResult, topicsResult, planeResult] = await Promise.allSettled([
-    countAircraft(),
-    listTopics(featuredAircraftCode),
-    getAircraft(featuredAircraftCode),
-  ]);
+/**
+ * Sums real counts across both content trees — aircraft (type ratings) and
+ * class ratings — rather than reading one featured aircraft's own numbers,
+ * which is what this page did before it was three sections instead of one.
+ * The fleet is small enough that a query per aircraft for its topic count
+ * is fine at this size, the same trade `insights.ts` already makes for its
+ * own per-owner-page queries.
+ */
+async function loadLandingData(): Promise<LandingData> {
+  try {
+    const [fleet, classes] = await Promise.all([listAircraft(), listClassRatings()]);
 
+    const [fleetTopics, classTopics] = await Promise.all([
+      Promise.all(fleet.map((plane) => listTopics(plane.code))),
+      Promise.all(classes.map((ratingClass) => listClassTopics(ratingClass.code))),
+    ]);
+
+    const typeRating = summarise(fleet);
+    const classRating = summarise(classes);
+    const totalSystems =
+      fleetTopics.reduce((sum, topics) => sum + topics.length, 0) +
+      classTopics.reduce((sum, topics) => sum + topics.length, 0);
+
+    return { sectionsOk: true, typeRating, classRating, totalSystems };
+  } catch {
+    const empty: SectionCounts = { aircraftCount: 0, questionCount: 0 };
+    return { sectionsOk: false, typeRating: empty, classRating: empty, totalSystems: 0 };
+  }
+}
+
+function summarise(rows: { publishedQuestions: number }[]): SectionCounts {
   return {
-    totalAircraft: aircraftResult.status === "fulfilled" ? aircraftResult.value : null,
-    topics: topicsResult.status === "fulfilled" ? topicsResult.value : [],
-    topicsOk: topicsResult.status === "fulfilled",
-    plane: planeResult.status === "fulfilled" ? planeResult.value : null,
+    aircraftCount: rows.length,
+    questionCount: rows.reduce((sum, row) => sum + row.publishedQuestions, 0),
   };
 }
 
@@ -62,6 +83,11 @@ async function loadLandingData(featuredAircraftCode: string): Promise<LandingDat
  * Organization + Course JSON-LD, built from the same facts as the rest of
  * the page — no rating, review count or enrolment figure appears anywhere
  * here, because none exists to report honestly.
+ *
+ * The Course entry names one aircraft by example (`featuredAircraftCode`,
+ * an owner setting) because structured data needs a concrete `url`, not
+ * because the product leads with it — see the note on `featuredAircraftCode`
+ * in `lib/settings.ts`.
  */
 function jsonLd(featuredAircraftCode: string): { "@type": string; [key: string]: unknown }[] {
   const base = appUrl();
@@ -78,10 +104,10 @@ function jsonLd(featuredAircraftCode: string): { "@type": string; [key: string]:
     {
       "@context": "https://schema.org",
       "@type": "Course",
-      name: `${siteConfig.name} — Boeing 737-800 type rating practice questions`,
+      name: `${siteConfig.name} — type rating and class rating practice questions`,
       description:
-        "Multiple-choice practice questions for the Boeing 737-800 type rating, written from FCOM and FCTM source material, with study and timed exam modes.",
-      url: `${base}/aircraft/${featuredAircraftCode}`,
+        "Multiple-choice practice questions for aircraft type ratings and class ratings, with study and timed exam modes.",
+      url: `${base}/type-rating/${featuredAircraftCode}`,
       inLanguage: "en",
       provider: { "@type": "Organization", name: siteConfig.name, url: base },
       hasCourseInstance: { "@type": "CourseInstance", courseMode: "online", courseWorkload: "Self-paced" },
@@ -90,35 +116,26 @@ function jsonLd(featuredAircraftCode: string): { "@type": string; [key: string]:
 }
 
 export default async function LandingPage() {
-  // Read before anything else the page fetches — a settings failure falls
-  // back to `DEFAULT_SETTINGS.featuredAircraftCode`, so the landing page
-  // never has "no featured aircraft" as a state to render.
-  const { featuredAircraftCode } = await getSiteSettings();
-  const { totalAircraft, topics, topicsOk, plane } = await loadLandingData(featuredAircraftCode);
+  const [{ sectionsOk, typeRating, classRating, totalSystems }, { featuredAircraftCode }] =
+    await Promise.all([loadLandingData(), getSiteSettings()]);
 
-  // The hero's question and system counts are the same sum the grid below
-  // shows, computed once here — never a separate query that could drift
-  // from it.
-  const heroStats: HeroStats | null =
-    topicsOk && totalAircraft !== null
-      ? {
-          totalQuestions: topics.reduce((sum, topic) => sum + topic.questionCount, 0),
-          totalSystems: topics.length,
-          totalAircraft,
-        }
-      : null;
-
-  const bankAvailable = topicsOk && plane !== null && topics.length > 0;
+  const heroStats: HeroStats | null = sectionsOk
+    ? {
+        totalQuestions: typeRating.questionCount + classRating.questionCount,
+        totalSystems,
+        totalTypes: typeRating.aircraftCount + classRating.aircraftCount,
+      }
+    : null;
 
   return (
     <div className="flex flex-col gap-16 sm:gap-24">
-      <Hero stats={heroStats} featuredAircraftCode={featuredAircraftCode} />
+      <Hero stats={heroStats} />
 
       {/* Directly under the hero, because it is the only section on this
           page a student can actually start from: every other one explains
-          the product, and this one hands them a test. */}
-      {bankAvailable ? (
-        <SystemsStrip aircraftCode={featuredAircraftCode} topics={topics} />
+          the product, and this one hands them a section to pick. */}
+      {sectionsOk ? (
+        <SectionsOverview typeRating={typeRating} classRating={classRating} />
       ) : (
         <section id="whats-inside" className="scroll-mt-20">
           <DatabaseUnavailable />
@@ -128,15 +145,8 @@ export default async function LandingPage() {
       <Trust />
       <HowItWorks />
       <Features />
-
-      {bankAvailable && plane ? (
-        <AircraftSection plane={plane} systemCount={topics.length} />
-      ) : (
-        <DatabaseUnavailable />
-      )}
-
       <Faq />
-      <FinalCta featuredAircraftCode={featuredAircraftCode} />
+      <FinalCta />
 
       {jsonLd(featuredAircraftCode).map((entry) => (
         <script

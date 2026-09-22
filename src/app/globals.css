@@ -394,16 +394,6 @@ body {
   contain: paint;
 }
 
-/* A row of cards flicked through with a thumb: the same containment as
- * `.scroll-x`, plus snapping, so a card always comes to rest at the gutter
- * rather than half off the screen. */
-.scroll-strip {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  contain: paint;
-  scroll-snap-type: x mandatory;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -33,7 +33,7 @@ export function SiteFooter() {
             </Link>
             <p className="mt-2 text-sm text-muted-foreground">{siteConfig.tagline}</p>
             <p className="mt-1 text-xs text-subtle-foreground">
-              Type-rating question banks for student pilots. Practice material only — never a
+              Practice question banks for student pilots. Practice material only — never a
               substitute for the aircraft&rsquo;s approved manuals.
             </p>
           </div>
