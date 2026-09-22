@@ -15,9 +15,13 @@ export type SectionCounts = { aircraftCount: number; questionCount: number };
  * split inside class rating either — see the note on the three sections in
  * `CLAUDE.md`.
  *
- * Aviation knowledge has no bank yet, so its card carries no count and its
+ * Flying Knowledge has no bank yet, so its card carries no count and its
  * button leads to a page that says so plainly rather than promising a test
- * this section cannot yet deliver.
+ * this section cannot yet deliver. It is the one section already decided to
+ * be free in full once it exists — see the note on Flying Knowledge in
+ * `CLAUDE.md` — because it is the material every pilot keeps reviewing
+ * rather than a one-off exam to pass, and metering it would work against
+ * the reason it exists.
  */
 export function SectionsOverview({
   typeRating,
@@ -38,26 +42,26 @@ export function SectionsOverview({
         <li className="h-full">
           <SectionCard
             href="/type-rating"
-            title="Type rating"
+            title="Type Rating Systems Knowledge"
             description="Large aircraft, system by system. Study with explanations in front of you, or sit a timed mock exam."
             stat={`${typeRating.questionCount} questions across ${typeRating.aircraftCount} aircraft`}
-            cta="Practise a type rating"
+            cta="Choose an aircraft"
           />
         </li>
         <li className="h-full">
           <SectionCard
             href="/class-rating"
-            title="Class rating"
+            title="Class Rating Systems Knowledge"
             description="Light aircraft, practised the same way — no single-engine or multi-engine split, just the aircraft itself."
             stat={`${classRating.questionCount} questions across ${classRating.aircraftCount} aircraft`}
-            cta="Practise a class rating"
+            cta="Choose an aircraft"
           />
         </li>
         <li className="h-full">
           <SectionCard
-            href="/aviation-knowledge"
-            title="Aviation knowledge"
-            description="General theory that isn't tied to one aircraft — air law, meteorology, navigation and the rest of ground school."
+            href="/flying-knowledge"
+            title="Flying Knowledge"
+            description="The material every pilot keeps reviewing — air law, meteorology, navigation and the rest of ground school. Free in full."
             stat={null}
             cta="See what's planned"
           />

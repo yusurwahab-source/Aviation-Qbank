@@ -23,17 +23,17 @@ import { envValue } from "@/lib/env";
  */
 
 const SIGNED_OUT_LINKS = [
-  { href: "/type-rating", label: "Type rating" },
-  { href: "/class-rating", label: "Class rating" },
-  { href: "/aviation-knowledge", label: "Aviation knowledge" },
+  { href: "/type-rating", label: "Type Rating Systems Knowledge" },
+  { href: "/class-rating", label: "Class Rating Systems Knowledge" },
+  { href: "/flying-knowledge", label: "Flying Knowledge" },
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
 ];
 
 const SIGNED_IN_LINKS = [
-  { href: "/type-rating", label: "Type rating" },
-  { href: "/class-rating", label: "Class rating" },
-  { href: "/aviation-knowledge", label: "Aviation knowledge" },
+  { href: "/type-rating", label: "Type Rating Systems Knowledge" },
+  { href: "/class-rating", label: "Class Rating Systems Knowledge" },
+  { href: "/flying-knowledge", label: "Flying Knowledge" },
   { href: "/progress", label: "Progress" },
   { href: "/upgrade", label: "Upgrade" },
 ];

@@ -11,8 +11,8 @@ import { getSiteSettings } from "@/db/settings";
 import { getCurrentUser } from "@/lib/auth/session";
 
 export const metadata: Metadata = {
-  title: "Choose a class rating",
-  description: `Pick a class and start a practice test. ${siteConfig.name} keeps a separate question bank per class.`,
+  title: "Choose an aircraft — Class Rating Systems Knowledge",
+  description: `Pick an aircraft and start a practice test. ${siteConfig.name} keeps a separate question bank per class.`,
 };
 
 export const dynamic = "force-dynamic";
@@ -43,7 +43,7 @@ export default async function ClassRatingPickerPage() {
   } catch (error) {
     return (
       <>
-        <PageHeading title="Choose a class rating" />
+        <PageHeading eyebrow="Class Rating Systems Knowledge" title="Choose an aircraft" />
         <DatabaseUnavailable detail={(error as Error).message} />
       </>
     );
@@ -54,8 +54,9 @@ export default async function ClassRatingPickerPage() {
   return (
     <>
       <PageHeading
-        title="Choose a class rating"
-        subtitle="Pick a class to start a practice test. Each class has its own question bank."
+        eyebrow="Class Rating Systems Knowledge"
+        title="Choose an aircraft"
+        subtitle="Pick an aircraft to start a practice test. Each class has its own question bank."
       />
 
       {offerUpgrade ? (
@@ -96,10 +97,10 @@ export default async function ClassRatingPickerPage() {
           ← Type ratings
         </Link>
         <Link
-          href="/aviation-knowledge"
+          href="/flying-knowledge"
           className="link-standalone text-sm font-medium text-brand hover:underline"
         >
-          Or general aviation knowledge →
+          Or Flying Knowledge →
         </Link>
       </p>
     </>

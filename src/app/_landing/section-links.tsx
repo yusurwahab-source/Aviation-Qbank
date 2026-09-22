@@ -14,21 +14,21 @@ export function SectionLinks({ className = "" }: { className?: string }) {
     <div className={`flex flex-col items-center justify-center gap-3 sm:flex-row ${className}`}>
       <Link
         href="/type-rating"
-        className="tap-target inline-flex w-full items-center justify-center rounded-lg bg-brand px-6 text-sm font-semibold text-on-solid transition hover:bg-brand-strong sm:w-auto"
+        className="tap-target inline-flex w-full items-center justify-center rounded-lg bg-brand px-6 text-center text-sm font-semibold text-on-solid transition hover:bg-brand-strong sm:w-auto"
       >
-        Type rating
+        Type Rating Systems Knowledge
       </Link>
       <Link
         href="/class-rating"
-        className="tap-target inline-flex w-full items-center justify-center rounded-lg border border-border px-6 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand sm:w-auto"
+        className="tap-target inline-flex w-full items-center justify-center rounded-lg border border-border px-6 text-center text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand sm:w-auto"
       >
-        Class rating
+        Class Rating Systems Knowledge
       </Link>
       <Link
-        href="/aviation-knowledge"
-        className="tap-target inline-flex w-full items-center justify-center rounded-lg border border-border px-6 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand sm:w-auto"
+        href="/flying-knowledge"
+        className="tap-target inline-flex w-full items-center justify-center rounded-lg border border-border px-6 text-center text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand sm:w-auto"
       >
-        Aviation knowledge
+        Flying Knowledge
       </Link>
     </div>
   );
