@@ -1,6 +1,7 @@
 import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { siteConfig } from "@/config/site";
 import { listClassRatings, listClassTopics } from "@/db/class-queries";
+import { listFlyingKnowledgeSubjects, listFlyingKnowledgeTopics } from "@/db/flying-knowledge-queries";
 import { listAircraft, listTopics } from "@/db/queries";
 import { getSiteSettings } from "@/db/settings";
 import { appUrl } from "@/lib/email/send";
@@ -35,10 +36,11 @@ type LandingData = {
   sectionsOk: boolean;
   typeRating: SectionCounts;
   classRating: SectionCounts;
-  /** Distinct-topic count summed across every aircraft and class rating —
-   * each one's own systems, not deduplicated against another's, because a
-   * "Fuel System" quiz on one aircraft is a different surface from another
-   * aircraft's. */
+  flyingKnowledge: SectionCounts;
+  /** Distinct-topic count summed across every aircraft, class rating and
+   * Flying Knowledge subject — each one's own systems, not deduplicated
+   * against another's, because a "Fuel System" quiz on one aircraft is a
+   * different surface from another aircraft's. */
   totalSystems: number;
 };
 
@@ -52,23 +54,36 @@ type LandingData = {
  */
 async function loadLandingData(): Promise<LandingData> {
   try {
-    const [fleet, classes] = await Promise.all([listAircraft(), listClassRatings()]);
+    const [fleet, classes, subjects] = await Promise.all([
+      listAircraft(),
+      listClassRatings(),
+      listFlyingKnowledgeSubjects(),
+    ]);
 
-    const [fleetTopics, classTopics] = await Promise.all([
+    const [fleetTopics, classTopics, flyingTopics] = await Promise.all([
       Promise.all(fleet.map((plane) => listTopics(plane.code))),
       Promise.all(classes.map((ratingClass) => listClassTopics(ratingClass.code))),
+      Promise.all(subjects.map((subject) => listFlyingKnowledgeTopics(subject.code))),
     ]);
 
     const typeRating = summarise(fleet);
     const classRating = summarise(classes);
+    const flyingKnowledge = summarise(subjects);
     const totalSystems =
       fleetTopics.reduce((sum, topics) => sum + topics.length, 0) +
-      classTopics.reduce((sum, topics) => sum + topics.length, 0);
+      classTopics.reduce((sum, topics) => sum + topics.length, 0) +
+      flyingTopics.reduce((sum, topics) => sum + topics.length, 0);
 
-    return { sectionsOk: true, typeRating, classRating, totalSystems };
+    return { sectionsOk: true, typeRating, classRating, flyingKnowledge, totalSystems };
   } catch {
     const empty: SectionCounts = { aircraftCount: 0, questionCount: 0 };
-    return { sectionsOk: false, typeRating: empty, classRating: empty, totalSystems: 0 };
+    return {
+      sectionsOk: false,
+      typeRating: empty,
+      classRating: empty,
+      flyingKnowledge: empty,
+      totalSystems: 0,
+    };
   }
 }
 
@@ -116,12 +131,15 @@ function jsonLd(featuredAircraftCode: string): { "@type": string; [key: string]:
 }
 
 export default async function LandingPage() {
-  const [{ sectionsOk, typeRating, classRating, totalSystems }, { featuredAircraftCode }] =
-    await Promise.all([loadLandingData(), getSiteSettings()]);
+  const [
+    { sectionsOk, typeRating, classRating, flyingKnowledge, totalSystems },
+    { featuredAircraftCode },
+  ] = await Promise.all([loadLandingData(), getSiteSettings()]);
 
   const heroStats: HeroStats | null = sectionsOk
     ? {
-        totalQuestions: typeRating.questionCount + classRating.questionCount,
+        totalQuestions:
+          typeRating.questionCount + classRating.questionCount + flyingKnowledge.questionCount,
         totalSystems,
         totalTypes: typeRating.aircraftCount + classRating.aircraftCount,
       }
@@ -135,7 +153,11 @@ export default async function LandingPage() {
           page a student can actually start from: every other one explains
           the product, and this one hands them a section to pick. */}
       {sectionsOk ? (
-        <SectionsOverview typeRating={typeRating} classRating={classRating} />
+        <SectionsOverview
+          typeRating={typeRating}
+          classRating={classRating}
+          flyingKnowledge={flyingKnowledge}
+        />
       ) : (
         <section id="whats-inside" className="scroll-mt-20">
           <DatabaseUnavailable />

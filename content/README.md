@@ -22,6 +22,13 @@ content/
         airframe.json       <- one file per topic, each holding a JSON array
         electrical.json
         ...
+  flying-knowledge/         <- Flying Knowledge, a third content tree
+    ifr/                    <- one folder per subject, lowercase code
+      subject.json          <- the subject's details
+      questions/
+        ifr-fundamentals.json  <- one file per topic, each holding a JSON array
+        holding-procedures.json
+        ...
 ```
 
 `content/` holds **Type Rating Systems Knowledge** — large aircraft, each
@@ -29,15 +36,16 @@ its own folder directly under `content/`. `content/classes/` holds **Class
 Rating Systems Knowledge** — light aircraft, each its own folder one level
 down. A light aircraft sits directly here with no sub-category between it
 and the section: there is no "single engine" or "multi engine" split, only
-the aircraft. These are the first two of the three sections the website is
-built around — the third, **Flying Knowledge**, is general theory not tied
-to any aircraft and has no content tree here yet, and is free in full by
-decision once it does. See the note on the three sections in `CLAUDE.md`.
+the aircraft. `content/flying-knowledge/` holds **Flying Knowledge** —
+general theory not tied to any aircraft, each subject (IFR, and whatever
+follows it) its own folder one level down, free in full by decision — see
+the note on the three sections in `CLAUDE.md`.
 
-Adding a second type rating, or a second class rating, is a content job
-only. Nothing in the application code needs to change — dropping a new
-folder under `content/` or `content/classes/` and running `npm run db:seed`
-is the whole job.
+Adding a second type rating, a second class rating, or a second Flying
+Knowledge subject is a content job only. Nothing in the application code
+needs to change — dropping a new folder under `content/`, `content/classes/`
+or `content/flying-knowledge/` and running `npm run db:seed` is the whole
+job.
 
 A class rating (`content/classes/<code>/class.json` + `questions/`) is a
 genuinely separate bank from a type rating's, validated by its own schema in
@@ -47,6 +55,16 @@ genuinely separate bank from a type rating's, validated by its own schema in
 code, topic code, four digits) — the same shape a type rating's question id
 takes — and the `classCode` field takes the place of `aircraft`, but every
 other rule below holds identically.
+
+A Flying Knowledge subject (`content/flying-knowledge/<code>/subject.json` +
+`questions/`) is a third, equally separate bank, validated by
+`src/content/flying-knowledge-schema.ts` and seeded into
+`flying_knowledge_subjects`/`flying_knowledge_questions` — see the note on
+`flyingKnowledgeSubjects` in `src/db/schema.ts`. Question ids there look
+like `IFR-FUND-0001`, and `subjectCode` takes the place of `aircraft`/
+`classCode`. One rule does not carry over: this section is free in full, so
+none of its questions are ever counted against `FREE_QUESTIONS_PER_AIRCRAFT`
+or gated by a subscription.
 
 ## Rules that are checked automatically
 
@@ -111,6 +129,31 @@ The remaining `Airframe`, `Electrical` and `Flight Controls` questions were
 written to exercise the system and cover facts that are stable across DA40
 variants. They have not been checked against the DA 40 D AFM specifically, and
 should be before anyone studies from them.
+
+## The IFR bank (Flying Knowledge)
+
+The subject is **Instrument Flight Rules (IFR)**, the first subject in the
+Flying Knowledge section. 34 questions across four topics — IFR
+Fundamentals, Holding Procedures, Instrument Approaches, and Clearances and
+Charts — all published.
+
+**Every question here was authored by the assistant, at the owner's explicit
+request, as general ICAO-style IFR ground-school theory — not transcribed
+from any single national AIP, syllabus or question bank, and not checked
+against one.** The same honesty this file already applies to the DA40's
+unsourced topics applies here: the questions describe concepts and
+procedures taught broadly the same way across IFR training worldwide
+(holding pattern shape and timing, DA/DH vs MDA/MDH, the purpose of a SID,
+STAR, FAF and missed approach, RVSM, RNAV, approach categories), and avoid
+stating a number that varies meaningfully between regulators. Where a figure
+is given (a 3°/second standard rate turn, 1/1.5-minute holding legs, the
+1.3 Vso basis for approach category), it is one that is consistent across
+ICAO-based training rather than a country-specific regulatory threshold.
+
+This should be reviewed by a qualified instructor before a student relies on
+it for a real IFR rating or exam — exactly the caution already given to the
+DA40's `Airframe`, `Electrical` and `Flight Controls` questions above. None
+of it has been checked against a specific state's AIP or training syllabus.
 
 ## The B737 bank
 

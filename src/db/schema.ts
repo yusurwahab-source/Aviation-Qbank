@@ -151,6 +151,74 @@ export type ClassQuestionRow = typeof classQuestions.$inferSelect;
 export type ClassQuestionInsert = typeof classQuestions.$inferInsert;
 
 /**
+ * Flying Knowledge subjects — IFR, Air Law, Meteorology, Navigation, and so
+ * on — the third content tree, beside `aircraft` and `classRatings`. Nothing
+ * here is tied to an aircraft, so a subject is the top-level entity the way
+ * an aircraft or a class rating is: `flyingKnowledgeSubjects` sits beside
+ * `flyingKnowledgeQuestions` in exactly the shape `classRatings` sits beside
+ * `classQuestions`, and for the same reason — see the note there.
+ *
+ * Everything downstream of a question id is shared unchanged, the same as
+ * for the other two trees: `attempts`, `test_sessions`, `question_flags` and
+ * `question_notes` are written with a subject's code in their plain
+ * `aircraftCode` column, with no foreign key and no idea which tree it came
+ * from.
+ *
+ * One thing does not carry over: Flying Knowledge is free in full, by
+ * product decision (see `CLAUDE.md`) — nothing here is ever checked against
+ * `FREE_QUESTIONS_PER_AIRCRAFT` or a subscription, so `subscriptions` and
+ * `preview_attempts` are never consulted for a Flying Knowledge code.
+ */
+export const flyingKnowledgeSubjects = pgTable("flying_knowledge_subjects", {
+  /** Short code, e.g. IFR. Also the URL segment: /flying-knowledge/IFR. */
+  code: varchar("code", { length: 8 }).primaryKey(),
+  name: varchar("name", { length: 120 }).notNull(),
+  description: text("description").notNull(),
+  status: aircraftStatus("status").notNull().default("active"),
+  /** Controls the order of the subject picker; ties break alphabetically. */
+  sortOrder: integer("sort_order").notNull().default(0),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+export const flyingKnowledgeQuestions = pgTable(
+  "flying_knowledge_questions",
+  {
+    /** Human-readable id straight from the content file, e.g. IFR-APPR-0001. */
+    id: varchar("id", { length: 40 }).primaryKey(),
+    subjectCode: varchar("subject_code", { length: 8 })
+      .notNull()
+      .references(() => flyingKnowledgeSubjects.code, { onDelete: "cascade" }),
+    topic: varchar("topic", { length: 60 }).notNull(),
+    subtopic: varchar("subtopic", { length: 60 }),
+    question: text("question").notNull(),
+    options: jsonb("options").$type<QuestionOption[]>().notNull(),
+    correct: varchar("correct", { length: 4 }).notNull(),
+    explanation: text("explanation").notNull(),
+    reference: text("reference"),
+    media: text("media"),
+    tags: text("tags").array().notNull().default(sql`'{}'::text[]`),
+    status: questionStatus("status").notNull().default("draft"),
+    version: integer("version").notNull().default(1),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("flying_knowledge_questions_subject_status_idx").on(table.subjectCode, table.status),
+    index("flying_knowledge_questions_subject_status_topic_idx").on(
+      table.subjectCode,
+      table.status,
+      table.topic,
+    ),
+  ],
+);
+
+export type FlyingKnowledgeSubjectRow = typeof flyingKnowledgeSubjects.$inferSelect;
+export type FlyingKnowledgeSubjectInsert = typeof flyingKnowledgeSubjects.$inferInsert;
+export type FlyingKnowledgeQuestionRow = typeof flyingKnowledgeQuestions.$inferSelect;
+export type FlyingKnowledgeQuestionInsert = typeof flyingKnowledgeQuestions.$inferInsert;
+
+/**
  * Accounts.
  *
  * Email and password only, as agreed for Phase 2. `passwordHash` holds the

@@ -8,6 +8,7 @@
  */
 import { loadContent, type ContentIssue } from "../src/content/load";
 import { loadClassContent } from "../src/content/load-classes";
+import { loadFlyingKnowledgeContent } from "../src/content/load-flying-knowledge";
 
 const ESC = String.fromCharCode(27);
 const RED = `${ESC}[31m`;
@@ -19,7 +20,8 @@ const RESET = `${ESC}[0m`;
 function main(): void {
   const { aircraft, issues } = loadContent();
   const { classes, issues: classIssues } = loadClassContent();
-  const allIssues = [...issues, ...classIssues];
+  const { subjects, issues: flyingKnowledgeIssues } = loadFlyingKnowledgeContent();
+  const allIssues = [...issues, ...classIssues, ...flyingKnowledgeIssues];
 
   if (allIssues.length > 0) {
     const plural = allIssues.length === 1 ? "" : "s";
@@ -70,6 +72,21 @@ function main(): void {
       `\n${GREEN}${BOLD}Class ratings${RESET} - ${classes.length} class, ${classQuestionCount} question${classQuestionCount === 1 ? "" : "s"}\n`,
     );
     for (const entry of classes) {
+      const published = entry.questions.filter((q) => q.status === "published").length;
+      const draft = entry.questions.length - published;
+      const topics = new Set(entry.questions.map((q) => q.topic));
+      console.log(
+        `  ${BOLD}${entry.manifest.code}${RESET} ${entry.manifest.name} ${DIM}- ${published} published, ${draft} draft, ${topics.size} topic${topics.size === 1 ? "" : "s"}${RESET}`,
+      );
+    }
+  }
+
+  if (subjects.length > 0) {
+    const flyingQuestionCount = subjects.reduce((sum, s) => sum + s.questions.length, 0);
+    console.log(
+      `\n${GREEN}${BOLD}Flying Knowledge${RESET} - ${subjects.length} subject, ${flyingQuestionCount} question${flyingQuestionCount === 1 ? "" : "s"}\n`,
+    );
+    for (const entry of subjects) {
       const published = entry.questions.filter((q) => q.status === "published").length;
       const draft = entry.questions.length - published;
       const topics = new Set(entry.questions.map((q) => q.topic));
