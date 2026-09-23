@@ -514,5 +514,275 @@
     ],
     "status": "draft",
     "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0117",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "subtopic": "Approved fuel",
+    "question": "What is the approved fuel and what emergency restriction applies to Avgas (100LL) in the DA 40 D TDI?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Jet A-1 is approved; Avgas 100LL can be used continuously with no restriction"
+      },
+      {
+        "id": "b",
+        "text": "Automotive gasoline (Mogas) is approved; Jet A-1 is prohibited"
+      },
+      {
+        "id": "c",
+        "text": "Jet A-1, Jet A and diesel (DIN EN 590) are approved; Avgas 100LL is strictly an emergency fuel limited to very short durations"
+      },
+      {
+        "id": "d",
+        "text": "Only racing diesel can be used; all turbine fuels are prohibited"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The compression-ignition engine is designed for heavy fuels such as Jet A-1 or standard automotive diesel. Avgas 100LL contains tetraethyl lead, which leaves deposits on valves and injectors, so its use is limited in time and volume per the AFM.",
+    "tags": ["fuel-type", "avgas"],
+    "status": "draft",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0118",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "subtopic": "Tank architecture",
+    "question": "How does the engine draw fuel from the two wing tanks?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The engine draws fuel equally from both tanks simultaneously via a dual-feed system"
+      },
+      {
+        "id": "b",
+        "text": "The engine draws fuel directly from the Left (Main) tank only; Right (Auxiliary) tank fuel must be transferred into the Left tank"
+      },
+      {
+        "id": "c",
+        "text": "Fuel is drawn exclusively from a central fuselage collector tank filled by gravity"
+      },
+      {
+        "id": "d",
+        "text": "The Left tank supplies the injectors while the Right tank supplies the turbocharger cooling loop"
+      }
+    ],
+    "correct": "b",
+    "explanation": "On this description, the engine feed and return lines connect solely to the Left (Main) tank, and the Right (Auxiliary) tank is a storage reservoir whose fuel must be transferred in.",
+    "tags": ["fuel-tanks"],
+    "status": "draft",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0119",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "subtopic": "Fuel transfer",
+    "question": "How is fuel transferred from the Auxiliary (Right) tank to the Main (Left) tank in flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Automatically by gravity once the Main tank drops below half capacity"
+      },
+      {
+        "id": "b",
+        "text": "Via a mechanical, engine-driven transfer pump that runs continuously"
+      },
+      {
+        "id": "c",
+        "text": "Manually, by the pilot switching on the electric fuel transfer pump"
+      },
+      {
+        "id": "d",
+        "text": "By pneumatic pressure bled from the turbocharger compressor"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The pilot actively monitors fuel balance and switches the electric transfer pump on to move fuel from the right tank to the left, then switches it off once the transfer is complete.",
+    "tags": ["fuel-transfer"],
+    "status": "draft",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0120",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "subtopic": "Common rail injection",
+    "question": "What is the purpose of the high-pressure fuel rail (common-rail system) in the Centurion engine?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To maintain a constantly high fuel pressure shared across all electronic injectors, allowing precise and atomised metering"
+      },
+      {
+        "id": "b",
+        "text": "To separate water and sediment from the fuel before it enters the engine block"
+      },
+      {
+        "id": "c",
+        "text": "To act as a secondary accumulator tank if the main fuel lines break"
+      },
+      {
+        "id": "d",
+        "text": "To channel hot exhaust air into the fuel line to prevent high-altitude icing"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The common-rail system stores fuel at very high pressure, so the FADEC can achieve near-instantaneous, well-atomised injection just by pulsing the electronic injectors.",
+    "tags": ["common-rail", "injection"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0121",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "subtopic": "Fuel cooler",
+    "question": "Why does the fuel system include a dedicated fuel cooler in the return line?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To cool the engine compartment air using cold fuel"
+      },
+      {
+        "id": "b",
+        "text": "To freeze out water contaminants before they block the fuel filter"
+      },
+      {
+        "id": "c",
+        "text": "To lower the temperature of the hot unburned fuel returning from the common rail before it re-enters the composite wing tanks"
+      },
+      {
+        "id": "d",
+        "text": "To condense fuel vapour back into liquid within the auxiliary lines"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The high-pressure pump generates heat in the fuel it compresses. Since the wing tanks are composite structures that can be affected by heat, the returning fuel is cooled before it goes back into the tank.",
+    "tags": ["fuel-cooler"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0122",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "subtopic": "Emergency fuel shutoff",
+    "question": "What does the guarded Emergency Fuel Valve in the cockpit do, and what is it used for?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It switches the feed from the Main tank to the Auxiliary tank"
+      },
+      {
+        "id": "b",
+        "text": "It completely isolates the fuel tanks from the engine compartment, for example during an engine fire"
+      },
+      {
+        "id": "c",
+        "text": "It vents excess fuel pressure into the air"
+      },
+      {
+        "id": "d",
+        "text": "It engages a mechanical backup fuel pump"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Pulling or rotating the guarded Emergency Fuel Valve physically shuts the valve at the tank outlet, stopping pressurised fuel from reaching the engine compartment - the key action for an engine fire or forced landing.",
+    "tags": ["emergency", "fuel-shutoff"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0123",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "subtopic": "Transfer pump failure",
+    "question": "What indicates a failed electric fuel transfer pump while attempting to transfer fuel from the Auxiliary tank?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The engine instantly loses power and sputters"
+      },
+      {
+        "id": "b",
+        "text": "The Auxiliary tank quantity stays unchanged while the Main tank quantity keeps dropping"
+      },
+      {
+        "id": "c",
+        "text": "A red 'AUX FUEL LOW' warning flashes on the primary flight display"
+      },
+      {
+        "id": "d",
+        "text": "The FADEC backup battery circuit breaker pops"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Because the transfer pump is independent of the engine feed, its failure does not starve the engine immediately - the pilot instead notices the tank quantities failing to balance despite the switch being on.",
+    "tags": ["fuel-transfer", "failure"],
+    "status": "draft",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0124",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "subtopic": "Fuel return",
+    "question": "What happens to fuel that is pumped to the engine but not injected into the cylinders?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is vented overboard through a drain tube under the fuselage"
+      },
+      {
+        "id": "b",
+        "text": "It is routed into the oil sump to dilute the engine oil"
+      },
+      {
+        "id": "c",
+        "text": "It passes through the fuel cooler and flows back into the Left (Main) tank"
+      },
+      {
+        "id": "d",
+        "text": "It accumulates in the intercooler until the next high-power setting"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Common-rail diesel systems circulate far more fuel than is burned, to hold rail pressure. The surplus is cooled and returned to the tank feeding the engine.",
+    "tags": ["fuel-return"],
+    "status": "draft",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0125",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "subtopic": "Fuel imbalance limit",
+    "question": "What is the maximum acceptable fuel imbalance between the Left (Main) and Right (Auxiliary) tanks in flight, in this description?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Up to 15 US gallons difference"
+      },
+      {
+        "id": "b",
+        "text": "There is no structural flight limitation, because the engine only draws from the Left tank, though a large difference affects lateral trim"
+      },
+      {
+        "id": "c",
+        "text": "Exactly 5 US gallons maximum difference at all times"
+      },
+      {
+        "id": "d",
+        "text": "The tanks must remain equal to the last liter or the FADEC shuts down automatically"
+      }
+    ],
+    "correct": "b",
+    "explanation": "On this description, since fuel only ever transfers from the Auxiliary tank into the Main tank rather than the engine cross-feeding between them, there is no strict structural imbalance limit, only a lateral-trim consideration. This directly contradicts DA40-FUEL-0104, which gives a hard 9 US gal imbalance limit under the owner-sourced, symmetric two-tank description - see content/README.md.",
+    "tags": ["fuel-tanks", "imbalance"],
+    "status": "draft",
+    "version": 1
   }
 ]

@@ -107,28 +107,136 @@ sits and how the questions declare their parent (`classCode` in place of
 
 ### Drafted content, and why
 
-Two sets of questions are `draft`, so they are kept but never shown:
+Several sets of questions are `draft`, so they are kept but never shown:
 
-- **All three `Powerplant` questions.** They describe a Lycoming IO-360 piston
-  engine running on AVGAS. The fuel questions describe a diesel that must never
-  see AVGAS. Both cannot be true of one aircraft, and showing a pilot both would
-  be worse than showing neither. They need rewriting for the TAE 125 before they
-  go back.
+- **All three original `Powerplant` questions (`DA40-PWRP-0001`-`0003`).** They
+  describe a Lycoming IO-360 piston engine running on AVGAS. The fuel questions
+  describe a diesel that must never see AVGAS. Both cannot be true of one
+  aircraft, and showing a pilot both would be worse than showing neither. They
+  need rewriting for the TAE 125 before they go back. (The batch added below,
+  `DA40-PWRP-0004` onward, already describes the TAE 125/diesel engine and is
+  published.)
 - **`DA40-FUEL-0001` and `DA40-FUEL-0002`.** Superseded by the fuller set:
   0001 duplicates 0102 and 0103, 0002 duplicates 0106.
+- **A second wave of questions added later** (`DA40-FUEL-0117`-`0119`,
+  `0123`-`0125`, all seven of `DA40-ELEC-0003`-`0009`, `DA40-ELEC-0010`,
+  `DA40-AIRF-0003`, and `DA40-AVIO-0004`) — see "A second, unverified batch"
+  and "A third wave" below for why.
 
 Nothing was deleted. Flip `status` back to `published` to restore any of them.
 
 ### About the question set
 
-The 16 `Fuel System` questions came from the owner's own source file. They have
-no `reference` yet — adding the AFM section and page to each would make them
-markedly more useful to a student.
+The 16 `Fuel System` questions numbered `0101`-`0116` came from the owner's own
+source file. They have no `reference` yet — adding the AFM section and page to
+each would make them markedly more useful to a student.
 
-The remaining `Airframe`, `Electrical` and `Flight Controls` questions were
-written to exercise the system and cover facts that are stable across DA40
-variants. They have not been checked against the DA 40 D AFM specifically, and
-should be before anyone studies from them.
+The original `Airframe`, `Electrical` and `Flight Controls` questions (one or
+two per topic, before the batch below) were written to exercise the system and
+cover facts that are stable across DA40 variants. They have not been checked
+against the DA 40 D AFM specifically, and should be before anyone studies from
+them.
+
+### A second, unverified batch (Powerplant, Fuel, Electrical, Flight Controls,
+### Airframe, Limitations, Emergency Procedures)
+
+A larger batch was added later, transcribed from a question set the owner
+supplied rather than authored fresh for this repository. It added the rest of
+`Powerplant` (`0004`-`0015`), eight more `Fuel System` questions (`0117`-`0124`),
+seven `Electrical` questions (`0003`-`0009`), three more `Flight Controls`
+questions (`0003`-`0005`), three more `Airframe` questions (`0003`-`0005`), and
+two brand new topics, `Limitations` (four questions) and `Emergency Procedures`
+(three questions). Like the IFR bank and the original `Airframe`/`Electrical`/
+`Flight Controls` questions above, **none of it has been checked against the
+DA 40 D AFM**, and it should be before a student relies on it.
+
+The source material also duplicated its own Electrical section verbatim (the
+same seven questions pasted twice); the duplicate was dropped rather than
+loaded twice.
+
+**Some of it directly contradicts facts already published elsewhere in this
+same bank**, so those specific questions were loaded as `draft` rather than
+published alongside a contradiction, the same call already made for the
+original Powerplant/Lycoming questions above:
+
+- **Fuel tank architecture.** The owner-sourced `0101`-`0116` describe two
+  symmetric wing tanks on a selector with `LEFT`, `RIGHT` and `OFF` (no
+  `BOTH`), either of which can feed the engine directly, and the pilot
+  chooses the fuller one for takeoff and landing. The new batch describes an
+  asymmetric "Main (Left)" / "Auxiliary (Right)" arrangement where the engine
+  can only ever draw from the Left tank and the Right tank's fuel must be
+  moved across by an electric transfer pump. Both cannot be true of the same
+  fuel system, and the owner-sourced set was treated as authoritative since
+  it is the one with a named source. Drafted: `DA40-FUEL-0117` (the Avgas
+  restriction also reads differently from `0101`'s "must never be used"),
+  `0118`, `0119`, `0123` and `0124`. Published without conflict: `0120`
+  (common-rail injection), `0121` (fuel cooler) and `0122` (emergency fuel
+  shutoff valve).
+- **Electrical system architecture.** The two original Electrical questions
+  describe a 28V DC system with a 24V standby battery, and an engine that
+  keeps running on magneto ignition independent of the aircraft's electrical
+  system. The new batch describes a 14V DC system with a Main battery plus a
+  dedicated FADEC/ECU backup battery pack, in which losing all electrical
+  power would eventually stop the engine — consistent with the diesel FADEC
+  engine now established elsewhere in this bank (a compression-ignition
+  engine has no magnetos to fall back on), but numerically incompatible with
+  the existing 28V/24V figures, which are themselves unsourced. Neither side
+  is verified, so nothing existing was changed; all seven of the new
+  questions (`DA40-ELEC-0003`-`0009`) were loaded as `draft` rather than
+  picking a winner.
+- **Landing gear leg material.** `DA40-AIRF-0002` (existing, published)
+  describes composite spring legs; the new `DA40-AIRF-0003` describes spring
+  steel. `0003` was loaded as `draft` for this one detail — the rest of its
+  question (fixed tricycle gear, castering nose gear, rubber-cushioned) does
+  not conflict with anything published. `DA40-AIRF-0004` and `0005` (ground
+  steering by differential braking, and the wheel brakes themselves) have no
+  such conflict and are published.
+
+None of this is a claim that either side is factually right about the real
+aircraft — both the existing content and the new batch are unsourced, per the
+notes above. It only means the two cannot be published together without
+telling two different pilots two different things about the same system, and
+that resolving it needs someone checking against the DA 40 D AFM directly,
+not a guess made while loading a spreadsheet.
+
+### A third wave (Weight and Balance, more Limitations, Avionics, and more
+### of the existing topics)
+
+A further 20 questions arrived from the same owner-supplied source as the
+second wave, again unverified against the DA 40 D AFM. They added two brand
+new topics — `Weight and Balance` (three questions: MTOM, baggage limits,
+seat weight limits) and `Avionics` (five questions on the Garmin G1000: PFD/MFD
+reversionary mode, the GEA engine-data interface, the alternate static
+source, autopilot disconnect logic, and pitot heat monitoring) — plus five
+more `Limitations` questions (oil pressure, gearbox oil temperature, starter
+cranking time, maximum demonstrated crosswind, and the cold-soak start
+limitation), two more `Powerplant` questions (cabin heating, the pre-glow
+system), three more `Airframe` questions (tire pressures, canopy position for
+taxi, lightning protection), and one more `Electrical` question (verifying
+the FADEC has no latched fault before takeoff).
+
+The source material once again duplicated one of its own sections verbatim
+(the "Ground Operations, Pre-Glow Logic" section was pasted twice); as
+before, the duplicate was dropped rather than loaded twice.
+
+Two of these depend on the same unverified premises already flagged above and
+were loaded as `draft` for the same reason, rather than picking a side:
+
+- **`DA40-FUEL-0125`** (no structural fuel-imbalance limit, because the engine
+  only ever draws from the Left tank) **directly contradicts**
+  `DA40-FUEL-0104` (published, owner-sourced), which gives a hard 9 US gal
+  imbalance limit. It is also part of the same disputed Main/Auxiliary tank
+  architecture as the second wave's fuel questions above.
+- **`DA40-ELEC-0010`** (confirming the FADEC has no latched fault via an
+  "ECU A/B" annunciator check) and **`DA40-AVIO-0004`** (autopilot
+  auto-disconnect on a FADEC/alternator failure) both assume the same
+  14V/dual-ECU-backup-battery electrical model as the drafted
+  `DA40-ELEC-0003`-`0009`, rather than the existing published 28V/magneto
+  description. Loaded as `draft` for consistency with that cluster, not
+  because either specific claim is independently contradicted.
+
+Everything else in this third wave is published: none of it overlaps with an
+existing fact in this bank.
 
 ## The IFR bank (Flying Knowledge)
 
