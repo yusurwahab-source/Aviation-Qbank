@@ -1,0 +1,152 @@
+[
+  {
+    "id": "DA40-AVIO-0001",
+    "classCode": "DA40",
+    "topic": "Avionics",
+    "subtopic": "Reversionary mode",
+    "question": "In a Garmin G1000-equipped aircraft, what happens if the Primary Flight Display (PFD) fails or goes black?",
+    "options": [
+      {
+        "id": "a",
+        "text": "All flight data is permanently lost and the pilot must fly by outside reference alone"
+      },
+      {
+        "id": "b",
+        "text": "Pressing the red Display Backup (Reversionary Mode) button transfers the critical flight instruments onto the surviving Multi-Function Display (MFD)"
+      },
+      {
+        "id": "c",
+        "text": "The MFD shuts itself down to protect the aircraft's processing unit"
+      },
+      {
+        "id": "d",
+        "text": "The FADEC shuts the engine down as a precaution"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The G1000's redundancy lets the pilot force the surviving screen into Reversionary Mode, combining engine indications and primary flight instruments (attitude, altitude, airspeed) onto that one display.",
+    "tags": ["g1000", "reversionary-mode"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-AVIO-0002",
+    "classCode": "DA40",
+    "topic": "Avionics",
+    "subtopic": "Engine data interface",
+    "question": "How does the G1000 system receive engine parameters such as fuel flow, RPM and coolant temperature?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sensors send raw analog signals directly into the back of the PFD over thick cables"
+      },
+      {
+        "id": "b",
+        "text": "Sensors feed a dedicated engine/airframe interface unit (GEA 71), which digitises the data and sends it to the displays"
+      },
+      {
+        "id": "c",
+        "text": "The data is estimated mathematically from the position of the power lever"
+      },
+      {
+        "id": "d",
+        "text": "Signals are relayed through the transponder antenna beneath the fuselage"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The GEA unit collects analog readings from temperature probes, pressure transducers and fuel sensors, converts them to digital data, and passes that to the G1000 display system.",
+    "tags": ["g1000", "gea"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-AVIO-0003",
+    "classCode": "DA40",
+    "topic": "Avionics",
+    "subtopic": "Alternate static source",
+    "question": "How is static pressure supplied to the backup altimeter and airspeed indicator if the primary static port is blocked?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The system automatically switches to a GPS-derived altitude"
+      },
+      {
+        "id": "b",
+        "text": "The pilot pulls a circuit breaker to vent the static lines into the tail section"
+      },
+      {
+        "id": "c",
+        "text": "The pilot manually opens the alternate static source valve, drawing static pressure from inside the cabin"
+      },
+      {
+        "id": "d",
+        "text": "The system relies on the fuel tank vents for static reference"
+      }
+    ],
+    "correct": "c",
+    "explanation": "With the external static port blocked, opening the alternate static source valve feeds the backup instruments from cabin air instead, restoring usable (though not perfectly accurate) readings.",
+    "tags": ["pitot-static", "backup-instruments"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-AVIO-0004",
+    "classCode": "DA40",
+    "topic": "Avionics",
+    "subtopic": "Autopilot disconnect logic",
+    "question": "In this description, what disengages the autopilot if the engine reaches a critical state?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The autopilot stays engaged until the aircraft physically stalls"
+      },
+      {
+        "id": "b",
+        "text": "The FADEC communicates with the avionics bus, and a critical engine failure or total alternator loss triggers an alert and disconnects the autopilot"
+      },
+      {
+        "id": "c",
+        "text": "The pilot must break a guarded switch on the centre console to cut power to the servos"
+      },
+      {
+        "id": "d",
+        "text": "The autopilot never disconnects automatically and overrides pilot input during an engine fire"
+      }
+    ],
+    "correct": "b",
+    "explanation": "On this description the integrated avionics prioritise manual pilot control during a critical emergency: a severe voltage drop from an alternator failure, or an unrecoverable engine emergency, triggers an automatic autopilot disconnect. This assumes the same FADEC/alternator-dependent engine model as the drafted Electrical batch - see content/README.md.",
+    "tags": ["autopilot", "fadec"],
+    "status": "draft",
+    "version": 1
+  },
+  {
+    "id": "DA40-AVIO-0005",
+    "classCode": "DA40",
+    "topic": "Avionics",
+    "subtopic": "Pitot heat monitoring",
+    "question": "How does the system report a pitot heat failure to the pilot?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A loud mechanical siren sounds in the headset"
+      },
+      {
+        "id": "b",
+        "text": "A steady amber 'PITOT FAIL' or 'PITOT HT OFF' caution message appears on the PFD annunciator"
+      },
+      {
+        "id": "c",
+        "text": "The airspeed indicator needle turns red and drops to zero"
+      },
+      {
+        "id": "d",
+        "text": "The electric master switch pops out automatically"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The system monitors current draw to the pitot heating element. If the switch is on but no current is flowing - a burned-out element - it raises an amber caution on the PFD before the pilot enters conditions where it would matter.",
+    "tags": ["pitot-heat", "annunciation"],
+    "status": "published",
+    "version": 1
+  }
+]

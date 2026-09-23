@@ -100,5 +100,425 @@
     ],
     "status": "draft",
     "version": 1
+  },
+  {
+    "id": "DA40-PWRP-0004",
+    "classCode": "DA40",
+    "topic": "Powerplant",
+    "subtopic": "Engine type",
+    "question": "What is the exact technical classification of the engine installed in the DA 40 D TDI?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Naturally aspirated, direct-drive, 4-cylinder gasoline engine"
+      },
+      {
+        "id": "b",
+        "text": "Turbocharged, FADEC-controlled rotary combustion engine running on Avgas"
+      },
+      {
+        "id": "c",
+        "text": "4-cylinder, 4-stroke, liquid-cooled, turbocharged diesel engine with common-rail direct injection"
+      },
+      {
+        "id": "d",
+        "text": "Twin-spool turboprop engine utilising an axial compressor stage"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The TAE 125 (Thielert/Centurion) engine operates on the compression-ignition (diesel) cycle, using high-pressure common-rail fuel injection and a turbocharger to maximise efficiency and power.",
+    "tags": ["engine", "diesel", "fadec"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-PWRP-0005",
+    "classCode": "DA40",
+    "topic": "Powerplant",
+    "subtopic": "Reduction gearbox",
+    "question": "What is the purpose of the reduction gearbox (propeller gearbox) in the DA 40 D TDI?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To increase the propeller rotation speed so it spins faster than the engine crankshaft"
+      },
+      {
+        "id": "b",
+        "text": "To step down the high RPM of the engine crankshaft to a lower, structurally safe and aerodynamically efficient propeller RPM"
+      },
+      {
+        "id": "c",
+        "text": "To allow the pilot to manually shift gear ratios during climb and cruise"
+      },
+      {
+        "id": "d",
+        "text": "To isolate fuel injection timing from the mechanical rotation of the pistons"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The diesel engine develops its power at high operating RPM. To prevent the propeller blade tips from approaching the speed of sound, the reduction gearbox brings propeller speed down to a much lower, efficient value than the engine crankshaft speed.",
+    "tags": ["gearbox", "propeller"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-PWRP-0006",
+    "classCode": "DA40",
+    "topic": "Powerplant",
+    "subtopic": "Gearbox lubrication",
+    "question": "Which lubrication system serves the DA 40 D TDI propeller gearbox?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It shares the same oil supply and oil tank as the engine block"
+      },
+      {
+        "id": "b",
+        "text": "It is completely dry and relies exclusively on sealed ceramic roller bearings"
+      },
+      {
+        "id": "c",
+        "text": "It has an independent, dedicated gearbox oil system, separate from the engine oil"
+      },
+      {
+        "id": "d",
+        "text": "It is cooled and lubricated by the liquid engine coolant loop"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The gearbox needs high-viscosity gear oil to handle the mechanical load between the gears. It has its own casing, sump, oil lines and inspection sight glass, entirely separate from the engine's own oil system.",
+    "tags": ["gearbox", "lubrication"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-PWRP-0007",
+    "classCode": "DA40",
+    "topic": "Powerplant",
+    "subtopic": "Turbocharger control",
+    "question": "How is manifold (boost) pressure regulated in the turbocharger system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The pilot uses a separate mechanical lever to open or close the intake cowl"
+      },
+      {
+        "id": "b",
+        "text": "A purely mechanical ambient pressure relief valve vents pressure above 5000 ft"
+      },
+      {
+        "id": "c",
+        "text": "Digitally, by the FADEC, which modulates an electronic actuator to open or close the wastegate valve"
+      },
+      {
+        "id": "d",
+        "text": "The turbocharger spin speed is fixed and cannot be adjusted in flight"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The FADEC continuously monitors manifold pressure and adjusts the wastegate valve actuator, controlling how much exhaust gas bypasses or drives the turbine, keeping intake pressure at the value appropriate for the selected power setting.",
+    "tags": ["turbocharger", "fadec", "wastegate"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-PWRP-0008",
+    "classCode": "DA40",
+    "topic": "Powerplant",
+    "subtopic": "Propeller fail-safe",
+    "question": "What happens to propeller pitch if the engine completely loses oil pressure?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The blades instantly flatten into full fine pitch"
+      },
+      {
+        "id": "b",
+        "text": "Counterweights and internal hub springs drive the blades toward full coarse/feathered pitch"
+      },
+      {
+        "id": "c",
+        "text": "The blades lock mechanically into their current position via a secondary hydraulic lock"
+      },
+      {
+        "id": "d",
+        "text": "The FADEC backup battery commands an electric motor to rotate the blades forward"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The propeller is fail-safe by design. If oil pressure is lost, the hydraulic force holding the blades in fine pitch disappears, and mechanical counterweights and springs coarsen or feather the propeller to minimise drag after an engine failure.",
+    "tags": ["propeller", "fail-safe"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-PWRP-0009",
+    "classCode": "DA40",
+    "topic": "Powerplant",
+    "subtopic": "Engine coolant",
+    "question": "What are the primary constituents and ratio of the engine liquid coolant mixture?",
+    "options": [
+      {
+        "id": "a",
+        "text": "100% pure demineralised water"
+      },
+      {
+        "id": "b",
+        "text": "90% isopropyl alcohol mixed with 10% mineral oil"
+      },
+      {
+        "id": "c",
+        "text": "A 50/50 mixture of distilled water and ethylene glycol"
+      },
+      {
+        "id": "d",
+        "text": "A synthetic turbine oil that does not boil below 300 degrees C"
+      }
+    ],
+    "correct": "c",
+    "explanation": "A 50/50 mix of distilled water and ethylene glycol gives good thermal conductivity, protects against internal corrosion, lowers the freezing point and raises the boiling point to prevent vapour lock.",
+    "tags": ["coolant"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-PWRP-0010",
+    "classCode": "DA40",
+    "topic": "Powerplant",
+    "subtopic": "Cooling system",
+    "question": "How is thermal cooling distributed across the Centurion engine block?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The entire engine, including pistons, is cooled purely by ambient ram airflow"
+      },
+      {
+        "id": "b",
+        "text": "The cylinder heads are liquid-cooled, while the cylinder liners and crankshaft bearings are cooled by engine oil"
+      },
+      {
+        "id": "c",
+        "text": "The turbocharger is liquid-cooled, while the combustion block is entirely oil-cooled"
+      },
+      {
+        "id": "d",
+        "text": "Fuel is passed through jackets around the cylinders as the primary cooling medium"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The engine uses a hybrid cooling layout: the high-temperature cylinder heads need a dedicated liquid-coolant circuit, while lower engine-block components rely on circulating oil and an oil cooler.",
+    "tags": ["cooling"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-PWRP-0011",
+    "classCode": "DA40",
+    "topic": "Powerplant",
+    "subtopic": "Intercooler",
+    "question": "What is the primary function of the intercooler (charge air cooler)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To cool the exhaust gases before they exit into the free-stream airflow"
+      },
+      {
+        "id": "b",
+        "text": "To cool the compressed intake air from the turbocharger, increasing its density and oxygen content"
+      },
+      {
+        "id": "c",
+        "text": "To regulate the temperature of the avionics bay"
+      },
+      {
+        "id": "d",
+        "text": "To heat incoming fuel before it reaches the common-rail high-pressure pump"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Compressing air through the turbocharger raises its temperature and lowers its density. The intercooler cools that air, increasing its density and maximising volumetric efficiency.",
+    "tags": ["intercooler", "turbocharger"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-PWRP-0012",
+    "classCode": "DA40",
+    "topic": "Powerplant",
+    "subtopic": "RPM limits",
+    "question": "What are the approximate maximum continuous engine RPM and the corresponding propeller RPM at 100% power?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Engine 2300 RPM, propeller 2300 RPM"
+      },
+      {
+        "id": "b",
+        "text": "Engine 2700 RPM, propeller 1800 RPM"
+      },
+      {
+        "id": "c",
+        "text": "Engine approximately 3890 RPM, propeller 2300 RPM"
+      },
+      {
+        "id": "d",
+        "text": "Engine 1500 RPM, propeller 2700 RPM"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Because of the reduction gearbox ratio, the engine can turn at roughly 3890 RPM at maximum power while the governor holds the propeller at its efficient peak of 2300 RPM.",
+    "tags": ["rpm", "limits"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-PWRP-0013",
+    "classCode": "DA40",
+    "topic": "Powerplant",
+    "subtopic": "Constant-speed governing",
+    "question": "How does the constant-speed propeller system maintain the selected RPM as airspeed or attitude changes?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The pilot continuously trims a mechanical lever to re-align the governor"
+      },
+      {
+        "id": "b",
+        "text": "The FADEC adjusts an electro-hydraulic proportional valve, varying oil pressure in the propeller hub to change blade pitch"
+      },
+      {
+        "id": "c",
+        "text": "Air pressure against the blades twists them naturally without any oil involvement"
+      },
+      {
+        "id": "d",
+        "text": "An electric servo motor in the spinner bulkhead rotates the blades step by step"
+      }
+    ],
+    "correct": "b",
+    "explanation": "With the DA 40 D TDI's single-lever power control, the FADEC monitors engine and airspeed parameters and hydraulically adjusts blade pitch using regulated engine oil pressure to hold the target scheduling RPM.",
+    "tags": ["propeller", "fadec", "governor"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-PWRP-0014",
+    "classCode": "DA40",
+    "topic": "Powerplant",
+    "subtopic": "Propeller lock pins",
+    "question": "What is the function of the centrifugal anti-feathering lock pins in the propeller hub assembly?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To prevent the propeller from spinning when parked in strong winds"
+      },
+      {
+        "id": "b",
+        "text": "To lock the propeller into full feather immediately during an in-flight engine fire"
+      },
+      {
+        "id": "c",
+        "text": "To prevent the blades from moving into coarse/feather pitch during normal engine shutdown on the ground at low RPM"
+      },
+      {
+        "id": "d",
+        "text": "To lock the blades in a high-pitch configuration during high-speed cruise"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Below roughly 950 RPM during ground shutdown, spring-loaded pins drop into place and hold the blades at a flat angle, so the starter does not face extreme aerodynamic resistance on the next start.",
+    "tags": ["propeller", "ground-shutdown"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-PWRP-0015",
+    "classCode": "DA40",
+    "topic": "Powerplant",
+    "subtopic": "Torsional vibration damper",
+    "question": "How can a pilot detect a slipping or failing torsional vibration damper (clutch) during ground checks?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By an amber ALTR FAIL warning light illuminating"
+      },
+      {
+        "id": "b",
+        "text": "By noticing excessive vibration or RPM fluctuations when moving the power lever through the low idle range"
+      },
+      {
+        "id": "c",
+        "text": "By a sharp increase in fuel flow shown on the primary flight display"
+      },
+      {
+        "id": "d",
+        "text": "By the aircraft struggling to taxi straight without left rudder"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The clutch absorbs the diesel engine's peak combustion pulses. If it wears or slips, unfiltered torsional vibration reaches the propeller directly, showing up as airframe shaking and unstable RPM at low power.",
+    "tags": ["clutch", "vibration"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-PWRP-0016",
+    "classCode": "DA40",
+    "topic": "Powerplant",
+    "subtopic": "Cabin heating",
+    "question": "What is the primary source of heating for the passenger cabin?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A high-draw electric ceramic heater powered by the essential bus"
+      },
+      {
+        "id": "b",
+        "text": "Combustion of raw Jet A-1 fuel in a localised furnace in the tail cone"
+      },
+      {
+        "id": "c",
+        "text": "Ambient air heated by passing through a heat exchanger around the engine exhaust pipe"
+      },
+      {
+        "id": "d",
+        "text": "Direct friction heat from the spinning reduction gearbox"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Outside ram air is ducted over a shroud (heat exchanger) around the hot exhaust pipe, and the heated air is fed into the cabin through a control valve. A carbon monoxide detector is checked regularly to guard against exhaust gas leaking into that airstream.",
+    "tags": ["cabin-heat", "exhaust"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-PWRP-0017",
+    "classCode": "DA40",
+    "topic": "Powerplant",
+    "subtopic": "Pre-glow system",
+    "question": "What is the purpose of the Pre-Glow system, and how does the pilot know it is active?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It heats the fuel cooler before start, shown by a blue panel light"
+      },
+      {
+        "id": "b",
+        "text": "It heats the engine oil with electrical elements, shown by a flashing MFD advisory"
+      },
+      {
+        "id": "c",
+        "text": "It heats the combustion chambers via glow plugs to assist cold-starting the diesel engine, shown by a 'GLOW' annunciation"
+      },
+      {
+        "id": "d",
+        "text": "It warms the display screens in freezing conditions and has no cockpit indication"
+      }
+    ],
+    "correct": "c",
+    "explanation": "A diesel engine relies on the heat of compression to ignite fuel, so a cold start needs help from glow plugs. The pilot waits for the 'GLOW' indication to clear before selecting START, confirming the cylinders are hot enough for combustion.",
+    "tags": ["pre-glow", "cold-start"],
+    "status": "published",
+    "version": 1
   }
 ]

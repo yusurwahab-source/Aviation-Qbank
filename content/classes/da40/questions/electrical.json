@@ -67,5 +67,245 @@
     ],
     "status": "published",
     "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0003",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "subtopic": "System voltage",
+    "question": "What is the main system voltage and primary electrical power source described for the DA 40 D TDI?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A 28V DC system powered by a permanent-magnet magneto generator"
+      },
+      {
+        "id": "b",
+        "text": "A 14V DC system powered by a 60 or 70 amp alternator"
+      },
+      {
+        "id": "c",
+        "text": "A 12V AC system powered by a belt-driven dynamo"
+      },
+      {
+        "id": "d",
+        "text": "A 24V DC dual-alternator layout with split-phase charging"
+      }
+    ],
+    "correct": "b",
+    "explanation": "On this description the aircraft runs a 14V DC network, normally supplied by a single 60 or 70 amp engine-driven alternator that also recharges the batteries.",
+    "tags": ["voltage", "alternator"],
+    "status": "draft",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0004",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "subtopic": "Batteries",
+    "question": "What distinct batteries does this description give the DA 40 D TDI, and what does each do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "One large lead-acid battery that powers everything"
+      },
+      {
+        "id": "b",
+        "text": "A Main Battery for starting and systems, an ECU backup battery pack for the FADEC, and a separate Emergency Battery for backup avionics"
+      },
+      {
+        "id": "c",
+        "text": "A lithium-ion propulsion battery and a Ni-Cad avionics backup block"
+      },
+      {
+        "id": "d",
+        "text": "Two identical batteries that cycle automatically every 15 minutes"
+      }
+    ],
+    "correct": "b",
+    "explanation": "On this description, the Main Battery feeds the starter and general buses, a dedicated ECU backup battery pack is reserved for the engine computers, and a separate Emergency Battery powers the backup attitude instrument.",
+    "tags": ["battery"],
+    "status": "draft",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0005",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "subtopic": "Alternator failure",
+    "question": "In this description, what keeps the engine running if the alternator fails completely in flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The engine switches to a mechanical carburettor and magneto ignition"
+      },
+      {
+        "id": "b",
+        "text": "The FADEC shuts down two cylinders automatically to conserve electricity"
+      },
+      {
+        "id": "c",
+        "text": "The FADEC keeps drawing power from the Main Battery, then from its own dedicated ECU backup batteries if that depletes"
+      },
+      {
+        "id": "d",
+        "text": "A small wind turbine deploys from the wing to charge the system"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Because this FADEC-controlled engine needs electrical power for its injectors and computer, a total alternator failure forces the system onto the Main Battery, with the ECU backup batteries stepping in if that battery is exhausted.",
+    "tags": ["fadec", "alternator-failure"],
+    "status": "draft",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0006",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "subtopic": "ECU backup battery duration",
+    "question": "For how long are the ECU backup batteries described as able to power the FADEC after a total Main Battery/alternator failure?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Exactly 5 minutes"
+      },
+      {
+        "id": "b",
+        "text": "15 minutes, provided the radio is off"
+      },
+      {
+        "id": "c",
+        "text": "At least 30 minutes"
+      },
+      {
+        "id": "d",
+        "text": "2 hours in cold weather"
+      }
+    ],
+    "correct": "c",
+    "explanation": "On this description, the ECU backup batteries are sized to power both engine computer channels for at least 30 minutes, enough for an emergency descent and landing at a nearby field.",
+    "tags": ["fadec", "battery"],
+    "status": "draft",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0007",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "subtopic": "Essential bus",
+    "question": "What is the purpose of an Essential Bus switch, and when would a pilot use it in this description?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It turns on cabin and strobe lighting for night operations"
+      },
+      {
+        "id": "b",
+        "text": "It manually sheds non-essential electrical loads to conserve the Main Battery during an alternator failure"
+      },
+      {
+        "id": "c",
+        "text": "It overrides the FADEC and forces the propeller governor to maximum RPM"
+      },
+      {
+        "id": "d",
+        "text": "It connects the fuel transfer pump directly to the starter motor"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Selecting the Essential Bus during an alternator failure sheds heavy, non-critical loads so the remaining battery power is concentrated on the critical flight instruments and primary systems.",
+    "tags": ["essential-bus", "emergency"],
+    "status": "draft",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0008",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "subtopic": "Master switches",
+    "question": "Why does this description give the DA 40 D TDI two separate master switches, Electric Master and Engine Master?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Electric Master is for the left wing and Engine Master for the right wing"
+      },
+      {
+        "id": "b",
+        "text": "Electric Master activates the main aircraft electrical system, while Engine Master enables the FADEC and fuel systems needed to run the engine"
+      },
+      {
+        "id": "c",
+        "text": "Engine Master is a purely mechanical backup for the fuel control valve"
+      },
+      {
+        "id": "d",
+        "text": "They are fully redundant; either one activates the whole aircraft"
+      }
+    ],
+    "correct": "b",
+    "explanation": "On this description, Electric Master connects the battery to the main buses, while Engine Master separately boots the FADEC computers, initialises the glow plugs for a cold start, and activates the electronic fuel systems.",
+    "tags": ["master-switch"],
+    "status": "draft",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0009",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "subtopic": "ECU fault annunciation",
+    "question": "What does it mean if both the FADEC 'ECU A' and 'ECU B' warning lights illuminate together in flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The landing gear failed to lock up"
+      },
+      {
+        "id": "b",
+        "text": "A severe, critical fault has occurred in the engine control system, or a total loss of primary electrical power is imminent"
+      },
+      {
+        "id": "c",
+        "text": "The fuel transfer pump has finished emptying the auxiliary tank"
+      },
+      {
+        "id": "d",
+        "text": "The aircraft has entered a thermal updraft"
+      }
+    ],
+    "correct": "b",
+    "explanation": "One ECU light alone means a minor fault switched control to the backup channel. Both lights together mean serious errors, or a critical power-supply failure, affect both channels at once, and engine failure may be imminent.",
+    "tags": ["fadec", "warnings"],
+    "status": "draft",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0010",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "subtopic": "FADEC diagnostic self-test",
+    "question": "How does a pilot verify that the FADEC has no outstanding fault before takeoff, in this description?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By holding the FADEC test button for more than 30 seconds until the engine shuts off"
+      },
+      {
+        "id": "b",
+        "text": "By confirming no steady or flashing 'ECU A/B' caution flags remain after the pre-flight ECU run-up test"
+      },
+      {
+        "id": "c",
+        "text": "By formatting the SD card slot on the primary display"
+      },
+      {
+        "id": "d",
+        "text": "The FADEC's memory clears itself automatically whenever the fuel transfer pump cycles"
+      }
+    ],
+    "correct": "b",
+    "explanation": "On this description, a fault the FADEC detects is stored as a code with a caution light; the pre-flight ECU test exercises both computer channels, and a light that stays on or flashes afterward means a fault is latched and needs maintenance before flight.",
+    "tags": ["fadec", "pre-flight-check"],
+    "status": "draft",
+    "version": 1
   }
 ]
