@@ -15,20 +15,23 @@ export type SectionCounts = { aircraftCount: number; questionCount: number };
  * split inside class rating either — see the note on the three sections in
  * `CLAUDE.md`.
  *
- * Flying Knowledge has no bank yet, so its card carries no count and its
- * button leads to a page that says so plainly rather than promising a test
- * this section cannot yet deliver. It is the one section already decided to
- * be free in full once it exists — see the note on Flying Knowledge in
- * `CLAUDE.md` — because it is the material every pilot keeps reviewing
- * rather than a one-off exam to pass, and metering it would work against
- * the reason it exists.
+ * Flying Knowledge's card carries a real count once its bank has published
+ * questions (`SectionCounts`, summed the same way as the other two trees in
+ * `loadLandingData`) and falls back to "Coming soon" only for a subject-less
+ * or all-draft bank — never a made-up number. It is the one section decided
+ * to be free in full — see the note on Flying Knowledge in `CLAUDE.md` —
+ * because it is the material every pilot keeps reviewing rather than a
+ * one-off exam to pass, and metering it would work against the reason it
+ * exists.
  */
 export function SectionsOverview({
   typeRating,
   classRating,
+  flyingKnowledge,
 }: {
   typeRating: SectionCounts;
   classRating: SectionCounts;
+  flyingKnowledge: SectionCounts;
 }) {
   return (
     <section id="whats-inside" className="scroll-mt-20">
@@ -62,8 +65,12 @@ export function SectionsOverview({
             href="/flying-knowledge"
             title="Flying Knowledge"
             description="The material every pilot keeps reviewing — air law, meteorology, navigation and the rest of ground school. Free in full."
-            stat={null}
-            cta="See what's planned"
+            stat={
+              flyingKnowledge.questionCount > 0
+                ? `${flyingKnowledge.questionCount} questions across ${flyingKnowledge.aircraftCount} subject${flyingKnowledge.aircraftCount === 1 ? "" : "s"}`
+                : null
+            }
+            cta={flyingKnowledge.questionCount > 0 ? "Choose a subject" : "See what's planned"}
           />
         </li>
       </ul>

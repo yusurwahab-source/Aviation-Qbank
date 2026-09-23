@@ -1,61 +1,119 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-import { ComingSoon } from "@/components/coming-soon";
-import { PageHeading } from "@/components/ui";
+import { DatabaseUnavailable } from "@/components/database-unavailable";
+import { Badge, Card, EmptyState, PageHeading } from "@/components/ui";
 import { siteConfig } from "@/config/site";
+import {
+  listFlyingKnowledgeSubjects,
+  type FlyingKnowledgeSubjectSummary,
+} from "@/db/flying-knowledge-queries";
 
 export const metadata: Metadata = {
-  title: "Flying Knowledge",
-  description: `Air law, meteorology, navigation and the rest of what a pilot keeps reviewing — the third section of ${siteConfig.name}, alongside type rating and class rating systems knowledge. Free in full.`,
+  title: "Choose a subject — Flying Knowledge",
+  description: `Pick a subject and start a practice quiz. ${siteConfig.name} keeps a separate question bank per subject — free in full, for everyone.`,
 };
 
+export const dynamic = "force-dynamic";
+
 /**
- * The third of the three sections the product is built around, alongside
- * `/type-rating` and `/class-rating` — see the note on the three sections
- * in `CLAUDE.md`. Unlike those two, nothing here is scoped to an aircraft's
- * type code, so there is no per-topic content tree or question bank behind
- * it yet: this is a real, honest "coming soon", the same convention an
- * aircraft or a class rating uses for a bank that is not ready
- * (`status: "coming_soon"`), applied to a whole section rather than one row
- * in a picker.
+ * Flying Knowledge's own picker, alongside `type-rating/page.tsx` and
+ * `class-rating/page.tsx` — the third of the three sections, reading the
+ * third content tree described in the note on `flyingKnowledgeSubjects` in
+ * `db/schema.ts`. Every subject (IFR today) sits directly here, the same
+ * flat shape a class rating uses: no sub-category between it and the
+ * section.
  *
- * Decided, ahead of any content existing: this section will be free in
- * full, never behind the free-tier cap or a subscription. It is material a
- * pilot reviews continuously rather than a bank sat once for one exam, and
- * metering it the way a type rating or class rating bank is metered would
- * work against the reason it exists.
+ * Unlike the other two pickers, there is no "Upgrade" banner here — Flying
+ * Knowledge is free in full, by product decision, so nothing on this page
+ * ever mentions a free-tier allowance or a subscription. See the note on
+ * the three sections in `CLAUDE.md`.
  */
-export default function FlyingKnowledgePage() {
+export default async function FlyingKnowledgePickerPage() {
+  let subjects: FlyingKnowledgeSubjectSummary[];
+
+  try {
+    subjects = await listFlyingKnowledgeSubjects();
+  } catch (error) {
+    return (
+      <>
+        <PageHeading eyebrow="Flying Knowledge" title="Choose a subject" />
+        <DatabaseUnavailable detail={(error as Error).message} />
+      </>
+    );
+  }
+
   return (
     <>
       <PageHeading
         eyebrow="Flying Knowledge"
-        title="What every pilot keeps reviewing"
-        subtitle="Air law, meteorology, navigation and the rest of the ground-school syllabus — practised on its own, separate from any type or class rating, and free in full."
+        title="Choose a subject"
+        subtitle="Air law, meteorology, navigation and the rest of ground school — practised on its own, separate from any type or class rating, and free in full for everyone."
       />
 
-      <ComingSoon note="No question bank exists for this section yet. Once one does, it will be added as a content-only job, exactly like a new type rating or class rating aircraft — and it will stay free in full, with no free-tier cap and no subscription gate.">
-        <p>
-          {siteConfig.name} is built around three sections:{" "}
-          <Link href="/type-rating" className="font-medium text-brand hover:underline">
-            Type Rating Systems Knowledge
-          </Link>{" "}
-          for large aircraft,{" "}
-          <Link href="/class-rating" className="font-medium text-brand hover:underline">
-            Class Rating Systems Knowledge
-          </Link>{" "}
-          for light aircraft, and Flying Knowledge for everything that is not
-          aircraft-specific — the material every pilot needs to keep close and keep
-          reviewing, not a bank sat once and moved past.
-        </p>
-        <p>
-          When this section has a question bank, it will work the same way the other two do
-          for study and exam mode, immediate feedback, a timed mock, and progress tracked by
-          topic. What will not carry over is the free-tier cap: this section stays free in
-          full, for everyone, signed in or not.
-        </p>
-      </ComingSoon>
+      {subjects.length === 0 ? (
+        <EmptyState title="No subjects loaded yet">
+          Add a folder under <code className="font-mono">content/flying-knowledge/</code> and run{" "}
+          <code className="font-mono">npm run db:seed</code>.
+        </EmptyState>
+      ) : (
+        <ul className="grid gap-4 sm:grid-cols-2">
+          {subjects.map((subject) => (
+            <li key={subject.code}>
+              <SubjectCard subject={subject} />
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <p className="mt-6 flex flex-wrap gap-4">
+        <Link
+          href="/class-rating"
+          className="link-standalone text-sm font-medium text-brand hover:underline"
+        >
+          ← Class ratings
+        </Link>
+        <Link
+          href="/type-rating"
+          className="link-standalone text-sm font-medium text-brand hover:underline"
+        >
+          Or type ratings →
+        </Link>
+      </p>
     </>
+  );
+}
+
+function SubjectCard({ subject }: { subject: FlyingKnowledgeSubjectSummary }) {
+  const ready = subject.status === "active" && subject.publishedQuestions > 0;
+
+  const body = (
+    <Card
+      className={`h-full transition ${ready ? "hover:border-brand hover:shadow-sm" : "opacity-70"}`}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="font-mono text-xs font-semibold uppercase tracking-wider text-brand">
+            {subject.code}
+          </p>
+          <h2 className="mt-1 text-lg font-semibold text-foreground">{subject.name}</h2>
+        </div>
+        {!ready ? (
+          <Badge>Coming soon</Badge>
+        ) : (
+          <Badge tone="brand">{subject.publishedQuestions} questions</Badge>
+        )}
+      </div>
+
+      <p className="mt-3 text-sm text-muted-foreground">{subject.description}</p>
+    </Card>
+  );
+
+  if (!ready) return body;
+
+  return (
+    <Link href={`/flying-knowledge/${subject.code}`} className="block h-full">
+      {body}
+    </Link>
   );
 }

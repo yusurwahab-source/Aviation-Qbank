@@ -253,6 +253,15 @@ export function buildClassTestHref(classCode: string, options: TestHrefOptions =
   return buildTestHrefFor("/class-rating", classCode, options);
 }
 
+/** The same, for a Flying Knowledge subject's test —
+ * `/flying-knowledge/CODE/test?...`. */
+export function buildFlyingKnowledgeTestHref(
+  subjectCode: string,
+  options: TestHrefOptions = {},
+): string {
+  return buildTestHrefFor("/flying-knowledge", subjectCode, options);
+}
+
 /**
  * The link a "Resume your test" banner uses — the one case that needs `?t=`
  * in the URL, which `buildTestHref` deliberately never sets: every other
@@ -280,6 +289,17 @@ export function buildClassResumeHref(session: {
   topics: string[];
 }): string {
   return buildResumeHrefFor("/class-rating", session);
+}
+
+/** The same, for a Flying Knowledge subject's own overview page —
+ * `/flying-knowledge/CODE/test`. */
+export function buildFlyingKnowledgeResumeHref(session: {
+  clientTestId: string;
+  aircraftCode: string;
+  mode: TestMode;
+  topics: string[];
+}): string {
+  return buildResumeHrefFor("/flying-knowledge", session);
 }
 
 function buildResumeHrefFor(

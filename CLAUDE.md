@@ -19,9 +19,14 @@ today, with no "single engine" or "multi engine" split between it and the
 section; a light aircraft sits directly under Class Rating. `/flying-knowledge`
 is **Flying Knowledge** — general theory that is not tied to any aircraft —
 air law, meteorology, navigation, the material a pilot keeps reviewing
-rather than sits once — and has no question bank yet (see "Not in scope
-yet"); it is also, by decision ahead of that content existing, free in full,
-never behind the free-tier cap or a subscription. The landing page's hero
+rather than sits once. It has its first subject now, **IFR**, added the same
+content-only way a second aircraft is (see the note on Flying Knowledge's
+own content tree below); more subjects are still to come, and the page
+title stays "Choose a subject" rather than naming just the one. It is free
+in full, never behind the free-tier cap or a subscription — decided ahead
+of IFR's own content, and unchanged now that content exists: nothing in
+`flying-knowledge/[code]/test/actions.ts` ever calls `db/subscriptions.ts`
+or `db/preview.ts`. The landing page's hero
 asks which of the three a visitor is here for rather than leading with one
 aircraft; see the note on the three sections in the conventions below.
 
@@ -767,6 +772,36 @@ matching the files in the repository. A separate seed step someone has to
 remember would be the worse trade — a site that builds green with an empty
 question bank.
 
+**`scripts/migrate.ts` does not call `drizzle-orm`'s own `migrate()`, because
+that function can silently skip a real migration.** Found live: the Flying
+Knowledge migration (`0019_rapid_eternals`, adding
+`flying_knowledge_subjects`/`flying_knowledge_questions`) was generated well
+before it reached `main`, and by the time its deploy ran, `drizzle`'s
+tracking table already held a *later* timestamp from a different migration
+generated afterwards but merged first. `drizzle-orm`'s built-in migrator
+(`pg-core/dialect.js`) does not check each migration by identity against
+every row it has recorded — it reads only the single most recent row and
+applies any local migration file whose own timestamp is greater than that
+one number. `db:migrate` reported "Migrations are up to date" and exited 0;
+`db:seed` then failed with `relation "flying_knowledge_subjects" does not
+exist`, on a build Vercel had no way to know was wrong until the very next
+line. A generation timestamp was never a promise about deploy order, and
+nothing here should have depended on it being one.
+
+`scripts/migrate.ts` now reads migrations the same way
+(`readMigrationFiles`, `drizzle-orm/migrator`'s own export — identical
+on-disk parsing) but decides what is pending by comparing each migration's
+sha256 hash against *every* hash already in
+`drizzle.__drizzle_migrations` — the same table, same columns, so a
+database migrated by the old code reads as fully up to date and nothing
+needs re-running. Reproduced and verified directly, not just reasoned
+about: dropping the two Flying Knowledge tables and writing a row with a
+timestamp ahead of every real migration into the tracking table makes the
+old `migrate()` claim "up to date" while the tables stay missing; running
+the fixed script against that same state correctly detects the one missing
+hash and applies exactly it, is a no-op on a second run, and works
+identically against a database that has never been migrated at all.
+
 **Passwords are hashed with scrypt from Node's own crypto, at OWASP's stated
 minimum cost (N=2^17, r=8, p=1 — about 128 MB and half a second per hash). No
 password library is installed: `src/lib/password.ts` is a pure, unit-tested
@@ -1497,6 +1532,7 @@ over the internals.
 content/                      Question files. The source of truth.
   <code>/                     One folder per type rating aircraft (b737/ today)
   classes/<code>/             One folder per class rating aircraft (da40/ today)
+  flying-knowledge/<code>/    One folder per Flying Knowledge subject (ifr/ today)
 drizzle/                      Generated SQL migrations. Committed.
 public/                       Manifest icons, and the service worker.
 scripts/
@@ -1522,13 +1558,17 @@ src/
                                 note on "many aircraft, in two trees" above)
     class-rating/[code]/
     class-rating/[code]/test/
-    flying-knowledge/          The third section. No question bank yet — a real
-                              "coming soon" page, not a stub — and free in full by
-                              decision, ahead of that content existing
+    flying-knowledge/          The third section — the same picker/overview/test
+                              shape as type-rating/ and class-rating/, reading the
+                              third content tree (IFR today). Free in full: no
+                              free-tier cap, no subscription gate
+    flying-knowledge/[code]/
+    flying-knowledge/[code]/test/
     aircraft/, class/,
     aviation-knowledge/         Legacy redirects only — see "Old links still work" above
     (auth)/                   Sign up, log in, log out
-    progress/                 Reports, overall and per aircraft
+    progress/                 Reports, overall, per aircraft, per class rating and
+                              per Flying Knowledge subject
     upgrade/                  Checkout for the two plans, and the Stripe redirect action
     redeem/                   Where a gift code becomes an active subscription
     owner/                    Owner-only: overview, insights, accounts (+ per-account detail),
@@ -1549,12 +1589,17 @@ src/
     schema.ts                 THE question schema — type rating aircraft
     class-schema.ts           THE question schema — class rating aircraft, a
                               deliberate near-mirror of schema.ts
+    flying-knowledge-schema.ts THE question schema — Flying Knowledge subjects,
+                              a deliberate near-mirror of class-schema.ts
     load.ts                   Reads and validates /content (type rating)
     load-classes.ts           Reads and validates content/classes/ (class rating)
+    load-flying-knowledge.ts  Reads and validates content/flying-knowledge/ (Flying Knowledge)
   db/
     schema.ts                 Drizzle tables
     queries.ts                Every read the app performs — type rating
     class-queries.ts          The same, for class ratings — a near-mirror of queries.ts
+    flying-knowledge-queries.ts The same, for Flying Knowledge subjects — a near-mirror
+                              of class-queries.ts
     users.ts                  Account reads and writes
     password-reset.ts         Issuing and spending reset links
     subscriptions.ts          Subscription row and the free-tier count
@@ -1693,31 +1738,51 @@ Questions are authored as repository files. If questions ever need to be written
 from inside the website, an admin panel gets added then — the `status`,
 `version` and `media` fields exist so that path stays open.
 
-**Flying Knowledge has a route and a place in the navigation, and no content
-tree or question bank behind it.** `/flying-knowledge` is a real, honest
-"coming soon" page — the same convention an individual aircraft's
-`status: "coming_soon"` already uses, applied to a whole section instead of
-one row in a picker — rather than a stub that pretends to be finished.
-(It was briefly named `/aviation-knowledge`; that path now redirects.)
-Building it out for real is a content-and-schema job when it happens, not
-an application-code one: a third pair of tables and a third content tree,
-the same shape `class_ratings`/`class_questions` already are beside
-`aircraft`/`questions`, since nothing here is tied to an aircraft code at
-all. Do not start that until an owner has actual content for it — see
-"Do not start a phase until the previous one works" above.
+**Flying Knowledge now has its own content tree, a third one beside
+`aircraft`/`questions` and `classRatings`/`classQuestions`.**
+`flyingKnowledgeSubjects`/`flyingKnowledgeQuestions` (`src/db/schema.ts`) are
+the same shape `classRatings`/`classQuestions` already are, for the same
+reason: a subject (IFR, and whatever follows it) is a genuinely separate
+content type, so it gets its own pair of tables rather than a "kind" column
+grafted onto either of the others. `content/flying-knowledge/<code>/` holds
+one `subject.json` manifest plus a `questions/` folder, validated by
+`src/content/flying-knowledge-schema.ts` and loaded by
+`src/content/load-flying-knowledge.ts` — deliberate near-mirrors of the
+class rating equivalents, the same way those already mirror the aircraft
+ones. `db:seed` syncs this tree exactly as it syncs the other two: insert or
+update by id, delete what the files no longer hold. **Adding a second
+Flying Knowledge subject is a content-only job**, the same rule "many
+aircraft, in two trees" states for a second aircraft — see the note there.
 
-**Decided ahead of that content: Flying Knowledge will be free in full, not
-metered by the free-tier cap or gated by a subscription.** Every other
+The one thing that does not carry over from either of the other two trees:
+**Flying Knowledge is free in full, not metered by the free-tier cap or
+gated by a subscription**, decided ahead of any content existing and
+unchanged now that IFR is the first subject with content. Every other
 section's free allowance exists because the bank behind it is something a
 student sits through once toward one exam, and the cap is what pays for
 building more of it. Flying Knowledge is the opposite kind of content — air
 law, meteorology, navigation, the material a pilot keeps reviewing rather
 than passes once and leaves behind — and metering material like that would
-work against the reason it exists. When this section gets a real question
-bank, `FREE_QUESTIONS_PER_AIRCRAFT` and `canAnswerQuestion` must not apply
-to its codes; whatever access check gets built for it should default to
-open rather than reusing the type rating/class rating gate and carving out
-an exception.
+work against the reason it exists. `flying-knowledge/[code]/test/actions.ts`
+is where this is actually enforced by *absence*: unlike its type-rating and
+class-rating equivalents, it never imports `db/subscriptions.ts` or
+`db/preview.ts`, never computes a `remainingFree` or `allowanceKind`, and
+`submitTest` never withholds part of the answer key (`withheld` is always
+`null`). `flying-knowledge/[code]/page.tsx` always passes `TestBuilder` its
+own documented "no cap" case (`remainingFree={null}`) rather than a computed
+allowance. A signed-out caller is still rate limited via
+`RATE_LIMIT_RULES.previewPerIp` (reusing `checkPreviewAllowed`/
+`recordPreviewRequest` from the preview flow, with no `preview_attempts` row
+ever written) — that protects the server from a scripted flood, the same
+"protect the machine, not the product" reasoning `MAX_ANSWERS` already gives
+elsewhere, and is never used to cap how much of the bank a visitor may see.
+
+**The IFR bank is general ICAO-style ground-school content, authored by the
+assistant at the owner's request rather than sourced from one AIP or
+syllabus — the same honesty this file already gives the DA40's unsourced
+topics, not a claim that it has been checked against a specific state's
+regulations.** See the note on the IFR bank in `content/README.md` for what
+that does and does not mean, and "Known gaps, honestly" below.
 
 ## Known gaps, honestly
 
@@ -1777,6 +1842,15 @@ an exception.
   topics were written to exercise the system and have not been checked against
   the DA 40 D AFM. The `Powerplant` questions are drafted outright because they
   describe a piston engine on AVGAS, which contradicts the diesel variant. See
+  `content/README.md`.
+- **The entire IFR bank (Flying Knowledge's first subject) was authored by
+  the assistant, not transcribed from any national AIP, syllabus or question
+  bank, and not checked against one.** It sticks to general ICAO-style
+  concepts and figures that are consistent across IFR training worldwide
+  (holding pattern shape and timing, DA/DH vs MDA/MDH, approach categories,
+  RVSM, RNAV) rather than a country-specific regulatory threshold, and
+  should be reviewed by a qualified instructor before a student relies on it
+  for a real rating or exam. See the note on the IFR bank in
   `content/README.md`.
 - **Twenty-six B737 questions turn on a figure nobody has confirmed twice.** The
   bank's wrong options were rewritten so a question cannot be answered by
