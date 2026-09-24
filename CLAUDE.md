@@ -134,7 +134,46 @@ query parameter across. `proxy.ts`'s matcher only covers the new
 routes mint nothing themselves, so the *second* request a redirect causes
 is the one that needs the preview cookie.
 
-## Commands
+**`sitemap.xml` and `robots.txt` are generated, not written by hand, so
+they can never drift from what the database actually holds.**
+`src/app/sitemap.ts` lists the home page, the three section pickers, the
+short footer pages, and — from the same `listAircraft`, `listClassRatings`
+and `listFlyingKnowledgeSubjects` the landing page already reads — one URL
+per aircraft, class rating and Flying Knowledge subject whose `status` is
+`active`. A `coming_soon` row never gets a URL, the sitemap's own version
+of "only `published` questions are ever shown to a user": there is no test
+to sit and nothing but a placeholder behind it, so sending Google there
+would be indexing a dead end. The URL-building itself is pure and unit
+tested (`lib/seo/sitemap-entries.ts`), the same split every other decision
+in this file keeps between a pure rule and the database read that feeds
+it; the codes it uses are exactly what the database stores (`B737`,
+`DA40`), uppercase, because that is the same string every in-app link to
+that page already uses — a lowercased URL would still resolve, since the
+lookup is case-insensitive, but it would be a second, unlinked address for
+the same page, which is precisely the duplicate-URL confusion a sitemap
+exists to prevent.
+
+`src/app/robots.ts` points at it and disallows the handful of pages
+deliberately left off it: the legacy redirects from the note above
+(`/class$` and `/class/` rather than a bare `/class`, so the disallow
+does not also swallow `/class-rating`, which starts with the same four
+letters), `/owner` and `/api/`, and every page that either requires an
+account or exists only to send a signed-out visitor to one — sign-in,
+sign-up, `/upgrade`, `/redeem`, `/progress`. None of this is a security
+boundary; `/owner` was already unreachable to anyone but the owner before
+this file existed. It is only about crawl budget and not indexing a page
+with nothing on it for a stranger.
+
+Both share `lib/canonical-url.ts` — the same "explicit `APP_URL`, then
+Vercel's production domain, then localhost, but never localhost in
+production" resolution `layout.tsx`'s own canonical tag already used
+before this, now pulled out so the canonical tag, the sitemap and
+robots.txt can never name three different addresses for the same
+deployment. Neither route takes a `dynamic` export: both read the
+database, but a build already runs against the freshly seeded content
+(`vercel-build`, above), so generating them once at build time is the same
+trade every other page here makes, and it means a deploy — not a crawl —
+is what updates them.
 
 | Command | What it does |
 |---|---|
@@ -1577,6 +1616,10 @@ src/
     api/webhooks/stripe/      The Stripe webhook endpoint
     about|pricing|faq|terms|privacy|contact/   Short pages the footer links to
     manifest.ts               Web app manifest
+    sitemap.ts                sitemap.xml — every public page, generated from the
+                              same three content trees the landing page reads
+    robots.ts                 robots.txt — points at sitemap.ts; disallows the
+                              legacy redirects and every account-only page
     opengraph-image.tsx       The 1200x630 social card
     icon.svg, favicon.ico, apple-icon.png      Generated; see scripts above
   components/                 Shared UI, including the shell (site-header,
@@ -1624,6 +1667,11 @@ src/
       gift-codes.ts            Code shape, normalisation, extend-only arithmetic (pure, tested)
     settings.ts              What the owner may change from the website (pure, tested)
     env.ts                    Reading configuration, tolerantly (pure, tested)
+    canonical-url.ts          This deployment's own address, safe to publish — shared
+                              by layout.tsx's canonical tag, sitemap.ts and robots.ts
+    seo/
+      sitemap-entries.ts       Builds sitemap.xml's URL list from the three content
+                              trees (pure, tested)
     grading.ts                Scoring (pure, tested)
     question-status.ts        What the question map may say (pure, tested)
     password.ts               scrypt hashing (pure, tested)

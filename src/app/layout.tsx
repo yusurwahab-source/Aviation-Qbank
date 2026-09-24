@@ -7,30 +7,12 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeScript } from "@/components/theme-toggle";
 import { siteConfig } from "@/config/site";
-import { appUrl } from "@/lib/email/send";
+import { canonicalUrl } from "@/lib/canonical-url";
 
 import { fontDisplay, fontReading } from "./fonts";
 import "./globals.css";
 
-/**
- * `appUrl()` already knows how to find this deployment's own address — an
- * explicit `APP_URL`, then Vercel's production domain, then localhost. It is
- * reused here rather than duplicated so that a preview deployment's metadata
- * describes the preview, and so the canonical URL and the links in emails can
- * never disagree about where this site is.
- *
- * Its last resort is localhost, which is right in development and wrong in a
- * canonical tag: a production deployment that somehow cannot name itself
- * would otherwise publish `http://localhost:3000` to every crawler that
- * asked. There, the product's own address is the better answer.
- */
-function metadataUrl(): string {
-  const resolved = appUrl();
-  const isLocal = resolved.startsWith("http://localhost");
-  return process.env.NODE_ENV === "production" && isLocal ? siteConfig.url : resolved;
-}
-
-const baseUrl = metadataUrl();
+const baseUrl = canonicalUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
