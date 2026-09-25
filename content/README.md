@@ -105,30 +105,67 @@ lives under `content/classes/da40/`: the move to the class rating tree
 sits and how the questions declare their parent (`classCode` in place of
 `aircraft`), but never the code, and never a question id.
 
-### Drafted content, and why
+### The whole bank is sourced from the DA 40 D AFM
 
-Two sets of questions are `draft`, so they are kept but never shown:
+Every question in every topic file below was written directly from the
+Diamond DA 40 D Airplane Flight Manual (Doc. # 6.01.05-E, Revision 6/7,
+31-Jul-2013 / 27-Sep-2013 — the TAE 125 diesel engine variant, not the
+Lycoming/AVGAS DA40 that the bank briefly, wrongly, described earlier). Every
+question carries a `reference` naming the AFM chapter and section it came
+from (`AFM 2.4`, `AFM 7.9.5`, and so on), and every option was checked
+against the manual's own wording rather than invented — including where the
+manual gives two different limits for the two engine designations it covers,
+TAE 125-01 and TAE 125-02-99 (MÄM 40-256 carried out), which several
+questions test directly (RPM limits, restart altitude, coolant type, fuel
+temperature limits, the RPM instrument marking that has no yellow caution
+arc on the -02-99 at all).
 
-- **All three `Powerplant` questions.** They describe a Lycoming IO-360 piston
-  engine running on AVGAS. The fuel questions describe a diesel that must never
-  see AVGAS. Both cannot be true of one aircraft, and showing a pilot both would
-  be worse than showing neither. They need rewriting for the TAE 125 before they
-  go back.
-- **`DA40-FUEL-0001` and `DA40-FUEL-0002`.** Superseded by the fuller set:
-  0001 duplicates 0102 and 0103, 0002 duplicates 0106.
+One figure was deliberately left alone rather than guessed: AFM 2.10's
+maneuvering load factor table prints its values without decimal points in
+the source PDF — and rendering the actual page as an image (not just the
+text extraction) confirms this is how the document itself is typeset, not
+an extraction artifact. Rather than assume where the decimal point belongs,
+no numeric question was built on that table; the approved-maneuvers bank
+angles (2.9, whole numbers, unambiguous) are used instead for that section.
 
-Nothing was deleted. Flip `status` back to `published` to restore any of them.
+| File | Topic | Questions |
+|---|---|---|
+| `limitations.json` | Limitations | 55 |
+| `emergency-procedures.json` | Emergency Procedures | 34 |
+| `normal-procedures.json` | Normal Procedures | 27 |
+| `abnormal-procedures.json` | Abnormal Procedures | 19 |
+| `powerplant.json` | Powerplant | 26 |
+| `fuel.json` | Fuel System | 25 |
+| `electrical.json` | Electrical | 26 |
+| `propeller.json` | Propeller | 7 |
+| `flight-controls.json` | Flight Controls | 18 |
+| `airframe.json` | Airframe | 23 |
 
-### About the question set
+260 questions, all published. `Limitations` draws on AFM Chapter 2,
+`Emergency Procedures` on Chapter 3, `Normal Procedures` and
+`Abnormal Procedures` on Chapters 4A and 4B, and the remaining six topics on
+Chapter 7 (Description of the Airplane and its Systems) — `Airframe` folding
+in the landing gear, instrument panel, canopy/cabin, pitot-static and stall
+warning sections (7.2, 7.4, 7.5, 7.6, 7.7, 7.8, 7.11, 7.12, 7.13) alongside
+the fuselage/wing/empennage material, since none of those has enough AFM
+content on its own to be a topic a report would usefully group by.
 
-The 16 `Fuel System` questions came from the owner's own source file. They have
-no `reference` yet — adding the AFM section and page to each would make them
-markedly more useful to a student.
+This replaced an earlier, much smaller (22-question) version of this bank in
+full: the old `Airframe`, `Electrical` and `Flight Controls` questions were
+written only to exercise the system and were never checked against the AFM;
+the old `Powerplant` questions described a Lycoming IO-360 piston engine on
+AVGAS — the wrong engine for this airframe entirely, and were kept as
+`draft` for that reason; and only 16 of the old `Fuel System` questions came
+from the owner's own source file, with no `reference` on any of them. None
+of that content survives — every file was replaced outright rather than
+merged with the new, sourced questions, so there is nothing left to flip
+back to `published`.
 
-The remaining `Airframe`, `Electrical` and `Flight Controls` questions were
-written to exercise the system and cover facts that are stable across DA40
-variants. They have not been checked against the DA 40 D AFM specifically, and
-should be before anyone studies from them.
+The correct answer is spread as evenly as each file's own count allows: each
+topic's questions were generated with the correct option cycling through
+A, B, C and D in turn (distractors keeping their relative order around it,
+the same technique the B737 bank's own conversion used — see below), so no
+file leans on one letter the way the earliest B737 sections once did.
 
 ## The IFR bank (Flying Knowledge)
 

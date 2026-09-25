@@ -1886,11 +1886,16 @@ that does and does not mean, and "Known gaps, honestly" below.
   the note on `answerQuestion` and `?t=` in the conventions above.
 - **`order by random()`** picks test questions. Correct and fast for banks of
   this size; revisit if a bank ever reaches hundreds of thousands of questions.
-- **Only the `Fuel System` questions come from the owner's source.** The other
-  topics were written to exercise the system and have not been checked against
-  the DA 40 D AFM. The `Powerplant` questions are drafted outright because they
-  describe a piston engine on AVGAS, which contradicts the diesel variant. See
-  `content/README.md`.
+- **The whole DA40 bank is now sourced from the DA 40 D AFM (TAE 125 engine,
+  Doc. # 6.01.05-E, Revision 6/7).** This replaces the earlier state, where
+  only `Fuel System` was owner-sourced and `Powerplant` described a piston
+  engine on AVGAS that contradicted the diesel variant. Every question now
+  carries a `reference` to the AFM chapter/section it was drawn from. One
+  table was deliberately left unused as a source of exact figures: the
+  maneuvering load factors in AFM 2.10 print without decimal points in the
+  source document itself (confirmed by rendering the actual page, not just
+  the text extraction), so no numeric MCQ was built on it rather than
+  guessing where the decimal belongs. See `content/README.md`.
 - **The entire IFR bank (Flying Knowledge's first subject) was authored by
   the assistant, not transcribed from any national AIP, syllabus or question
   bank, and not checked against one.** It sticks to general ICAO-style

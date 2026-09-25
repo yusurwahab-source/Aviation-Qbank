@@ -1,9 +1,560 @@
 [
   {
-    "id": "DA40-FUEL-0101",
+    "id": "DA40-FUEL-0001",
     "classCode": "DA40",
     "topic": "Fuel System",
-    "question": "Which fuel grade is approved for the DA 40 D with the TAE 125 engine?",
+    "question": "How is fuel injected into the TAE 125 engine's cylinders?",
+    "options": [
+      {
+        "id": "a",
+        "text": "At high pressure directly into the cylinders, one injection nozzle per cylinder supplied by a common rail"
+      },
+      {
+        "id": "b",
+        "text": "By a carburetor mixing fuel and air before the intake manifold"
+      },
+      {
+        "id": "c",
+        "text": "By port injection into the intake manifold, one injector per cylinder"
+      },
+      {
+        "id": "d",
+        "text": "By a single injector shared between all cylinders via a distributor"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Fuel is injected at high pressure directly into the cylinders. Each cylinder has its own injection nozzle, all supplied from the common rail.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0002",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "question": "How is pressure generated inside the common rail?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By gravity feed from the header tank above the rail"
+      },
+      {
+        "id": "b",
+        "text": "By a high pressure pump which receives fuel from a low pressure pump, both mechanically driven by the engine"
+      },
+      {
+        "id": "c",
+        "text": "By an electric high pressure pump powered from the main bus"
+      },
+      {
+        "id": "d",
+        "text": "By the turbocharger compressor pressurizing the fuel lines"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A mechanically engine-driven high pressure pump generates rail pressure, fed in turn by a low pressure pump - both mechanically powered by the engine itself.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0003",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "question": "During normal operation, from which tank is fuel taken to supply the engine?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Whichever tank the pilot selects with a fuel selector valve"
+      },
+      {
+        "id": "b",
+        "text": "Both tanks simultaneously, in equal proportion"
+      },
+      {
+        "id": "c",
+        "text": "The MAIN tank (left wing) only"
+      },
+      {
+        "id": "d",
+        "text": "The AUX tank (right wing) only"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Normally fuel is taken only from the MAIN tank in the left wing. There is no fuel selector valve to choose between tanks - the AUX tank instead feeds the MAIN tank via the transfer pump.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0004",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "question": "What happens to fuel that is delivered to the rail but not injected into the cylinders?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is burned off through a bleed injector"
+      },
+      {
+        "id": "b",
+        "text": "It is stored in a small accumulator until the next start"
+      },
+      {
+        "id": "c",
+        "text": "It is vented overboard through a dump valve"
+      },
+      {
+        "id": "d",
+        "text": "It is led back through the AUX tank into the MAIN tank, cooling the rail and warming both tanks"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Surplus fuel is routed back through the AUX tank to the MAIN tank. This return flow cools the hot fuel leaving the rail while warming the cooler fuel sitting in both tanks.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0005",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "question": "Under what two conditions does the electrical fuel transfer pump switch itself off automatically?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When the auxiliary tank is empty or the main tank is full"
+      },
+      {
+        "id": "b",
+        "text": "When the ECU is switched to ECU B, or after 30 minutes of continuous running"
+      },
+      {
+        "id": "c",
+        "text": "When the fuel temperature exceeds 75 degrees C, or the airplane exceeds 129 KIAS"
+      },
+      {
+        "id": "d",
+        "text": "When the emergency fuel valve is set to OFF, or the gearbox exceeds 120 degrees C"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The transfer pump is designed to stop automatically either when the AUX tank runs empty or when the MAIN tank becomes full, preventing overfilling.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0006",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "question": "If fuel transfer with the electric transfer pump becomes impossible, how can fuel still reach the engine from the AUX tank?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By selecting ECU B, which draws directly from the AUX tank"
+      },
+      {
+        "id": "b",
+        "text": "Fuel can be taken directly from the AUX tank, with the return line still transferring it toward the MAIN tank"
+      },
+      {
+        "id": "c",
+        "text": "It cannot - the AUX tank has no other connection to the engine"
+      },
+      {
+        "id": "d",
+        "text": "By opening the alternate air source, which cross-feeds the tanks"
+      }
+    ],
+    "correct": "b",
+    "explanation": "If the transfer pump path fails, fuel can still be taken directly from the AUX tank; because the return line always leads to the MAIN tank, fuel continues to move from right to left.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0007",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "question": "What is used to control rail pressure?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The power lever position directly, with no electronic control"
+      },
+      {
+        "id": "b",
+        "text": "The turbocharger waste gate valve"
+      },
+      {
+        "id": "c",
+        "text": "An electrical valve, using the return flow as its control parameter"
+      },
+      {
+        "id": "d",
+        "text": "A mechanical relief valve set to a fixed pressure"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Rail pressure is controlled by an electrical valve that uses the fuel return flow as its parameter.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0008",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "question": "What are the three positions of the emergency fuel valve?",
+    "options": [
+      {
+        "id": "a",
+        "text": "LEFT, RIGHT and OFF"
+      },
+      {
+        "id": "b",
+        "text": "NORMAL, CROSSFEED and OFF"
+      },
+      {
+        "id": "c",
+        "text": "ON, STANDBY and OFF"
+      },
+      {
+        "id": "d",
+        "text": "NORMAL, EMERG. TRANSFER and OFF"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The emergency fuel valve on the center console has three positions: NORMAL, EMERG. TRANSFER and OFF, reached by turning the handle while pulling up its safety catch.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0009",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "question": "At what pressure does the MAIN tank's relief pressure valve operate, venting fuel and air to the outside?",
+    "options": [
+      {
+        "id": "a",
+        "text": "150 mbar (2 psi)"
+      },
+      {
+        "id": "b",
+        "text": "300 mbar (4 psi)"
+      },
+      {
+        "id": "c",
+        "text": "75 mbar (1 psi)"
+      },
+      {
+        "id": "d",
+        "text": "500 mbar (7 psi)"
+      }
+    ],
+    "correct": "a",
+    "explanation": "One of the MAIN tank's two vents includes a relief pressure valve operating at 150 mbar (2 psi), protecting the tank against overpressure if a transfer failure overfills it.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0010",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "question": "What is the function of the check valve with capillary fitted to the fuel tank vents?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It measures the rate of fuel consumption"
+      },
+      {
+        "id": "b",
+        "text": "It allows air to enter the tank but prevents fuel from flowing to the outside"
+      },
+      {
+        "id": "c",
+        "text": "It allows fuel to flow out but prevents air from entering"
+      },
+      {
+        "id": "d",
+        "text": "It filters solid contaminants from vented air"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The check valve with capillary lets air into the tank as fuel is consumed, while preventing fuel from escaping outward; the capillary itself equalizes air pressure during climb.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0011",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "question": "Where is the gascolator located in the fuel system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Inside each wing tank, above the coarse filter"
+      },
+      {
+        "id": "b",
+        "text": "In the engine compartment, next to the high pressure pump"
+      },
+      {
+        "id": "c",
+        "text": "At the lowest point of the fuel system, centrally on the fuselage underside near the wing leading edge"
+      },
+      {
+        "id": "d",
+        "text": "At the highest point of the fuel system, near the fuel cooler"
+      }
+    ],
+    "correct": "c",
+    "explanation": "A gascolator sits at the lowest point of the fuel system, fitted centrally on the fuselage underside about 30 cm forward of the wing leading edge, with its own drain valve.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0012",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "question": "Why can't the fuel quantity remaining be calculated by simple proportion from the AED's fuel quantity counts?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The AED only updates its reading once every 10 minutes"
+      },
+      {
+        "id": "b",
+        "text": "The probe measures volume, not mass, and fuel density varies too much"
+      },
+      {
+        "id": "c",
+        "text": "The counts only reflect the transfer pump's runtime, not tank contents"
+      },
+      {
+        "id": "d",
+        "text": "The capacity probe's indication is non-linear"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The capacity probe's indication is non-linear, so neither proportional calculations of remaining fuel nor direct fuel-consumption calculations from the AED counts are possible.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0013",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "question": "With the Long Range Tank installed, what replaces the filler tube of the main and auxiliary tank?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Another tank chamber, of approximately 5 US gal (19 liters) capacity"
+      },
+      {
+        "id": "b",
+        "text": "A second gascolator with its own drain valve"
+      },
+      {
+        "id": "c",
+        "text": "A larger capillary vent system"
+      },
+      {
+        "id": "d",
+        "text": "A second capacity probe wired to the AED"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The Long Range Tank option adds another chamber of about 5 US gal (19 liters) in place of the standard filler tube, while the venting system remains unchanged.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0014",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "question": "What is the purpose of the fuel cooler, and where does it draw its cooling air from?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It cools the ECU electronics, drawing air from the cabin ventilation system"
+      },
+      {
+        "id": "b",
+        "text": "It reduces fuel temperature in the return line between the AUX and MAIN tanks, drawing air through a scoop on the lower stub wing surface"
+      },
+      {
+        "id": "c",
+        "text": "It cools the engine oil, drawing air from the intercooler duct"
+      },
+      {
+        "id": "d",
+        "text": "It reduces coolant temperature, drawing air from the propeller slipstream"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The fuel cooler, fitted between the main spars of the right stub wing, reduces the temperature of the fuel returning from the AUX to the MAIN tank, using cooling air from a lower-surface air scoop.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0015",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "question": "What operating principle does the alternate mean for fuel quantity indication (dipstick-style gauge) rely on?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ultrasonic measurement through the wing skin"
+      },
+      {
+        "id": "b",
+        "text": "A calibrated dipstick inserted through the filler neck"
+      },
+      {
+        "id": "c",
+        "text": "Communicating containers, read from a vertical ascending pipe against the tank drain"
+      },
+      {
+        "id": "d",
+        "text": "A float switch connected to an electrical gauge"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The device works on the principle of communicating containers: pressed against the tank drain and held against the stall strip at the wing leading edge, it shows fuel quantity on a vertical ascending pipe.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0016",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "question": "For an accurate reading, on what kind of surface must the airplane be standing when using the alternate mean for fuel quantity indication?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A slight nose-down slope"
+      },
+      {
+        "id": "b",
+        "text": "A slight nose-up slope"
+      },
+      {
+        "id": "c",
+        "text": "Any surface, since the device self-levels"
+      },
+      {
+        "id": "d",
+        "text": "Horizontal ground"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The airplane must stand on horizontal ground for the alternate fuel quantity device to give an exact indication.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0017",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "question": "Where is the fuel quantity measuring device (alternate mean of fuel indication) normally stowed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "In a bag on the rear side of the pilot seat"
+      },
+      {
+        "id": "b",
+        "text": "In the baggage compartment"
+      },
+      {
+        "id": "c",
+        "text": "Clipped inside the front canopy"
+      },
+      {
+        "id": "d",
+        "text": "In the glovebox behind the instrument panel"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Its designated storage place is a bag on the rear side of the pilot seat.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0018",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "question": "Between what temperatures does the lower yellow bar of the fuel temperature indication flash, marking the range in which the engine must not be started on Diesel Fuel or an uncertain blend?",
+    "options": [
+      {
+        "id": "a",
+        "text": "-30 degrees C to +4 degrees C"
+      },
+      {
+        "id": "b",
+        "text": "-30 degrees C to -6 degrees C"
+      },
+      {
+        "id": "c",
+        "text": "-5 degrees C to +4 degrees C"
+      },
+      {
+        "id": "d",
+        "text": "-20 degrees C to 0 degrees C"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The flashing lower yellow bar spans -30 degrees C to -6 degrees C, the no-start range on Diesel Fuel; between -5 degrees C and +4 degrees C the same bar is steady on instead, meaning take-off is not permitted.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0019",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "question": "If the airplane is operated with JET Fuel, is operation permitted while the fuel temperature indication is in the yellow range?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only during cruise, never during start or take-off"
+      },
+      {
+        "id": "b",
+        "text": "Only if the Long Range Tank is not installed"
+      },
+      {
+        "id": "c",
+        "text": "Yes, operation in the yellow temperature range is permissible with JET Fuel"
+      },
+      {
+        "id": "d",
+        "text": "No, the yellow range is prohibited on any fuel grade"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Unlike Diesel Fuel or an uncertain blend, JET Fuel operation is permitted in the yellow fuel temperature range.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-FUEL-0020",
+    "classCode": "DA40",
+    "topic": "Fuel System",
+    "question": "Which of the following is an approved fuel grade for the DA 40 D, listed alongside Jet A-1?",
     "options": [
       {
         "id": "a",
@@ -11,508 +562,166 @@
       },
       {
         "id": "b",
-        "text": "Jet A-1"
-      },
-      {
-        "id": "c",
         "text": "MOGAS 95"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "AVGAS 91/96UL"
+      },
+      {
+        "id": "d",
+        "text": "JP-8 (MIL-DTL-83133)"
       }
     ],
-    "correct": "b",
-    "explanation": "The TAE 125 is a diesel engine. It runs on kerosene grades such as Jet A-1, and AVGAS must never be used.",
+    "correct": "d",
+    "explanation": "Approved grades include JET A-1, JET A, JP-8, JET Fuel No. 3, TS-1 (with MÄM 40-256) and Diesel Fuel (EN590) - never an AVGAS or MOGAS grade, which would be wrong for a diesel-cycle engine.",
+    "reference": "AFM 2.14",
     "status": "published",
     "version": 1
   },
   {
-    "id": "DA40-FUEL-0102",
+    "id": "DA40-FUEL-0021",
     "classCode": "DA40",
     "topic": "Fuel System",
-    "question": "How are the fuel tanks arranged in the DA 40 D?",
+    "question": "In which two countries is the use of Diesel Fuel specifically not approved for this airplane?",
     "options": [
       {
         "id": "a",
-        "text": "A single fuselage tank behind the cabin"
+        "text": "Indonesia and Malaysia"
       },
       {
         "id": "b",
-        "text": "One integral tank in each wing"
+        "text": "Germany and Austria"
       },
       {
         "id": "c",
-        "text": "Two tanks in the left wing only"
+        "text": "The United States and Canada"
       },
       {
         "id": "d",
-        "text": "A single tank in the left wing with a header tank"
+        "text": "France and the United Kingdom"
       }
     ],
-    "correct": "b",
-    "explanation": "Fuel is carried in one tank in each wing, which is why lateral balance has to be managed by the pilot.",
+    "correct": "a",
+    "explanation": "A limitation specifically excludes Diesel Fuel use in Indonesia and Malaysia.",
+    "reference": "AFM 2.14",
     "status": "published",
     "version": 1
   },
   {
-    "id": "DA40-FUEL-0103",
+    "id": "DA40-FUEL-0022",
     "classCode": "DA40",
     "topic": "Fuel System",
-    "question": "What positions are available on the fuel selector valve?",
+    "question": "Why can solid particles forming in cold Diesel Fuel be a problem for this engine?",
     "options": [
       {
         "id": "a",
-        "text": "LEFT, RIGHT and BOTH"
+        "text": "They are filtered automatically by the intercooler"
       },
       {
         "id": "b",
-        "text": "LEFT, RIGHT and OFF"
+        "text": "They can block the gascolator filter, which is not heated"
       },
       {
         "id": "c",
-        "text": "BOTH and OFF only"
+        "text": "They dissolve the injector nozzle coating over time"
       },
       {
         "id": "d",
-        "text": "LEFT, RIGHT, BOTH and OFF"
+        "text": "They cause the fuel cooler baffle to jam shut"
       }
     ],
     "correct": "b",
-    "explanation": "There is no BOTH position, so the pilot must actively select a tank and manage the feed throughout the flight.",
+    "explanation": "Cold Diesel Fuel can form solid particles that block the gascolator filter; since that filter is not heated, this risk is specifically called out for cold-environment operation.",
+    "reference": "AFM 7.9.5",
     "status": "published",
     "version": 1
   },
   {
-    "id": "DA40-FUEL-0104",
+    "id": "DA40-FUEL-0023",
     "classCode": "DA40",
     "topic": "Fuel System",
-    "question": "What is the maximum permissible fuel quantity difference between the two tanks?",
+    "question": "Changing from Diesel Fuel operation to JET Fuel operation in a cold environment, how must each tank be refilled to ensure no diesel blend remains (Long Range Tank not installed)?",
     "options": [
       {
         "id": "a",
-        "text": "5 US gal"
+        "text": "Topped off once to full capacity with JET Fuel"
       },
       {
         "id": "b",
-        "text": "7 US gal"
+        "text": "Drained completely and refilled with exactly 14 US gal of JET Fuel"
       },
       {
         "id": "c",
-        "text": "9 US gal"
+        "text": "Refilled at least twice with more than 10.6 US gal (40 liters) of JET Fuel each time"
       },
       {
         "id": "d",
-        "text": "12 US gal"
+        "text": "Refilled once with any quantity of JET Fuel"
       }
     ],
     "correct": "c",
-    "explanation": "An imbalance greater than 9 US gal is outside limits because of the lateral out-of-balance moment it produces.",
+    "explanation": "Each tank must be refilled at least twice with more than 10.6 US gal (40 liters) of JET Fuel - or 17.2 US gal (65 liters) with the Long Range Tank - otherwise both tanks must be drained before refueling with JET Fuel.",
+    "reference": "AFM 7.9.5",
     "status": "published",
     "version": 1
   },
   {
-    "id": "DA40-FUEL-0105",
+    "id": "DA40-FUEL-0024",
     "classCode": "DA40",
     "topic": "Fuel System",
-    "question": "Which tank should be selected for take-off and landing?",
+    "question": "What is recommended to be recorded in the airplane log each time fuel is added?",
     "options": [
       {
         "id": "a",
-        "text": "The left tank in all cases"
+        "text": "The ambient temperature at refueling"
       },
       {
         "id": "b",
-        "text": "The right tank in all cases"
+        "text": "The exact tank quantities before and after refueling"
       },
       {
         "id": "c",
-        "text": "The fuller tank"
+        "text": "The fuel supplier's name"
       },
       {
         "id": "d",
-        "text": "Whichever tank was used last in the previous flight"
+        "text": "The fuel grade used"
       }
     ],
-    "correct": "c",
-    "explanation": "Selecting the fuller tank reduces the risk of fuel starvation during the phases of flight where an engine failure would be most critical.",
+    "correct": "d",
+    "explanation": "Because the fuel grade determines which temperature limitations apply, it is recommended to log the fuel grade at each refueling.",
+    "reference": "AFM 7.9.5",
     "status": "published",
     "version": 1
   },
   {
-    "id": "DA40-FUEL-0106",
+    "id": "DA40-FUEL-0025",
     "classCode": "DA40",
     "topic": "Fuel System",
-    "question": "When must the electric fuel pump be switched ON?",
+    "question": "What must be checked in each tank during the pre-flight walk-around by draining a sample?",
     "options": [
       {
         "id": "a",
-        "text": "Only during engine start"
+        "text": "Water and sediment"
       },
       {
         "id": "b",
-        "text": "During start, take-off, landing and when changing tanks"
+        "text": "Fuel temperature"
       },
       {
         "id": "c",
-        "text": "Only in the cruise above 5000 ft"
+        "text": "The transfer pump's operation"
       },
       {
         "id": "d",
-        "text": "Only when the engine-driven pump has failed"
+        "text": "The relief valve setting"
       }
     ],
-    "correct": "b",
-    "explanation": "The electric pump provides a backup supply during the critical phases and when the fuel supply path is interrupted by a tank change.",
+    "correct": "a",
+    "explanation": "Each wing tank drain is opened during the walk-around to check for water and sediment, drained until no water comes out.",
+    "reference": "AFM 4A.3.1",
     "status": "published",
-    "version": 1
-  },
-  {
-    "id": "DA40-FUEL-0107",
-    "classCode": "DA40",
-    "topic": "Fuel System",
-    "question": "What happens to the fuel delivered to the engine but not burned?",
-    "options": [
-      {
-        "id": "a",
-        "text": "It is vented overboard"
-      },
-      {
-        "id": "b",
-        "text": "It is returned to a fuel tank through a return line"
-      },
-      {
-        "id": "c",
-        "text": "It is stored in a collector tank until the next start"
-      },
-      {
-        "id": "d",
-        "text": "It is routed to the oil cooler as a coolant"
-      }
-    ],
-    "correct": "b",
-    "explanation": "A diesel engine circulates far more fuel than it burns. The surplus flows back to a tank, so tank contents can change in a way the pilot must anticipate.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "DA40-FUEL-0108",
-    "classCode": "DA40",
-    "topic": "Fuel System",
-    "question": "When diesel fuel is used, what is the minimum fuel temperature for engine start?",
-    "options": [
-      {
-        "id": "a",
-        "text": "-15 degrees C"
-      },
-      {
-        "id": "b",
-        "text": "-5 degrees C"
-      },
-      {
-        "id": "c",
-        "text": "0 degrees C"
-      },
-      {
-        "id": "d",
-        "text": "+5 degrees C"
-      }
-    ],
-    "correct": "b",
-    "explanation": "Below this temperature diesel begins to wax and can block the fuel filter, preventing a successful start.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "DA40-FUEL-0109",
-    "classCode": "DA40",
-    "topic": "Fuel System",
-    "question": "When diesel fuel is used, what is the minimum fuel temperature for take-off?",
-    "options": [
-      {
-        "id": "a",
-        "text": "-5 degrees C"
-      },
-      {
-        "id": "b",
-        "text": "0 degrees C"
-      },
-      {
-        "id": "c",
-        "text": "+5 degrees C"
-      },
-      {
-        "id": "d",
-        "text": "+10 degrees C"
-      }
-    ],
-    "correct": "c",
-    "explanation": "A higher margin is required for take-off than for starting, because a fuel system blockage after becoming airborne is far more serious.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "DA40-FUEL-0110",
-    "classCode": "DA40",
-    "topic": "Fuel System",
-    "question": "Is it permissible to mix Jet A-1 and diesel fuel in the same tank?",
-    "options": [
-      {
-        "id": "a",
-        "text": "No, the tanks must be drained first"
-      },
-      {
-        "id": "b",
-        "text": "Yes, mixing the approved fuel grades is permitted"
-      },
-      {
-        "id": "c",
-        "text": "Only if the mixture is below 25 percent diesel"
-      },
-      {
-        "id": "d",
-        "text": "Only on the ground with the engine shut down"
-      }
-    ],
-    "correct": "b",
-    "explanation": "Both grades are approved for this engine and may be mixed in any proportion, which is useful where one grade is unavailable.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "DA40-FUEL-0111",
-    "classCode": "DA40",
-    "topic": "Fuel System",
-    "question": "Why are the fuel drains sampled before the first flight of the day?",
-    "options": [
-      {
-        "id": "a",
-        "text": "To measure the fuel temperature"
-      },
-      {
-        "id": "b",
-        "text": "To check for water and sediment"
-      },
-      {
-        "id": "c",
-        "text": "To confirm the fuel quantity indication"
-      },
-      {
-        "id": "d",
-        "text": "To relieve pressure in the tanks"
-      }
-    ],
-    "correct": "b",
-    "explanation": "Water is denser than fuel and collects at the lowest point, so draining a sample is the only reliable way to detect it before flight.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "DA40-FUEL-0112",
-    "classCode": "DA40",
-    "topic": "Fuel System",
-    "question": "What is the function of the fuel tank vents?",
-    "options": [
-      {
-        "id": "a",
-        "text": "To drain condensation from the tanks"
-      },
-      {
-        "id": "b",
-        "text": "To equalise tank pressure with ambient pressure as fuel is consumed"
-      },
-      {
-        "id": "c",
-        "text": "To supply air to the fuel heater"
-      },
-      {
-        "id": "d",
-        "text": "To allow fuel transfer between tanks"
-      }
-    ],
-    "correct": "b",
-    "explanation": "Without venting, the falling fuel level would create a partial vacuum and eventually interrupt the fuel supply.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "DA40-FUEL-0113",
-    "classCode": "DA40",
-    "topic": "Fuel System",
-    "question": "Can the engine be supplied by gravity feed alone if both fuel pumps fail?",
-    "options": [
-      {
-        "id": "a",
-        "text": "Yes, in level flight"
-      },
-      {
-        "id": "b",
-        "text": "Yes, in a descent only"
-      },
-      {
-        "id": "c",
-        "text": "No, fuel delivery depends on the pumps"
-      },
-      {
-        "id": "d",
-        "text": "Yes, but only below 2000 ft"
-      }
-    ],
-    "correct": "c",
-    "explanation": "The high injection pressure of a diesel engine means fuel delivery cannot be sustained without pump pressure.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "DA40-FUEL-0114",
-    "classCode": "DA40",
-    "topic": "Fuel System",
-    "question": "What is the purpose of the optional long-range tanks?",
-    "options": [
-      {
-        "id": "a",
-        "text": "To reduce the empty mass of the aircraft"
-      },
-      {
-        "id": "b",
-        "text": "To increase the usable fuel quantity and therefore the range"
-      },
-      {
-        "id": "c",
-        "text": "To allow a higher maximum take-off mass"
-      },
-      {
-        "id": "d",
-        "text": "To permit aerobatic flight"
-      }
-    ],
-    "correct": "b",
-    "explanation": "They hold more usable fuel. Note that the payload available is reduced accordingly, since the maximum take-off mass does not change.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "DA40-FUEL-0115",
-    "classCode": "DA40",
-    "topic": "Fuel System",
-    "question": "What is the purpose of the emergency fuel transfer function?",
-    "options": [
-      {
-        "id": "a",
-        "text": "To dump fuel overboard in an emergency"
-      },
-      {
-        "id": "b",
-        "text": "To move fuel from one tank to the other in flight"
-      },
-      {
-        "id": "c",
-        "text": "To supply fuel directly to the cabin heater"
-      },
-      {
-        "id": "d",
-        "text": "To bypass a blocked fuel filter"
-      }
-    ],
-    "correct": "b",
-    "explanation": "It uses the engine return line to feed a chosen tank, allowing an imbalance or a blocked feed line to be managed in flight.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "DA40-FUEL-0116",
-    "classCode": "DA40",
-    "topic": "Fuel System",
-    "question": "What is the function of the fuel filter and water separator?",
-    "options": [
-      {
-        "id": "a",
-        "text": "To warm the fuel before injection"
-      },
-      {
-        "id": "b",
-        "text": "To remove contaminants and separate water before the fuel reaches the engine"
-      },
-      {
-        "id": "c",
-        "text": "To measure fuel flow for the engine instruments"
-      },
-      {
-        "id": "d",
-        "text": "To regulate the fuel pressure at the injectors"
-      }
-    ],
-    "correct": "b",
-    "explanation": "Diesel injection systems are built to very fine tolerances, so contamination or water reaching the injection pump can cause rapid damage.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "DA40-FUEL-0001",
-    "classCode": "DA40",
-    "topic": "Fuel System",
-    "subtopic": "Tanks and selector",
-    "question": "Where is usable fuel carried in the DA40, and how is it selected?",
-    "options": [
-      {
-        "id": "a",
-        "text": "One fuselage tank feeding directly to the engine, with no selector"
-      },
-      {
-        "id": "b",
-        "text": "Two integral wing tanks, with a selector for LEFT, RIGHT or OFF"
-      },
-      {
-        "id": "c",
-        "text": "Two wing tanks that always feed together, with a BOTH position only"
-      },
-      {
-        "id": "d",
-        "text": "Wing tanks plus a header tank that must be selected for take-off"
-      }
-    ],
-    "correct": "b",
-    "explanation": "Fuel is carried in an integral tank in each wing and the fuel selector chooses LEFT, RIGHT or OFF. There is no BOTH position, so the pilot is responsible for changing tanks at intervals to keep the aircraft laterally balanced and to avoid running a tank dry.",
-    "reference": "Airplane Flight Manual, Section 7 - Fuel System",
-    "tags": [
-      "fuel-system",
-      "selector"
-    ],
-    "status": "draft",
-    "version": 1
-  },
-  {
-    "id": "DA40-FUEL-0002",
-    "classCode": "DA40",
-    "topic": "Fuel System",
-    "subtopic": "Fuel pumps",
-    "question": "What is the purpose of the electric fuel pump in the DA40?",
-    "options": [
-      {
-        "id": "a",
-        "text": "It is the only fuel pump; the engine has no mechanical pump"
-      },
-      {
-        "id": "b",
-        "text": "It backs up the engine-driven pump and is used for starting and for critical phases of flight"
-      },
-      {
-        "id": "c",
-        "text": "It transfers fuel from the left tank to the right tank in the cruise"
-      },
-      {
-        "id": "d",
-        "text": "It pressurises the tanks to prevent fuel vaporisation at altitude"
-      }
-    ],
-    "correct": "b",
-    "explanation": "Fuel is normally supplied by the engine-driven pump. The electric pump is a backup used where an interruption would matter most - starting, take-off and landing - and for clearing vapour during a hot start. Follow the checklist for the exact selections rather than leaving it on continuously.",
-    "reference": "Airplane Flight Manual, Section 4 - Normal Procedures",
-    "tags": [
-      "fuel-pump",
-      "procedures"
-    ],
-    "status": "draft",
     "version": 1
   }
 ]
