@@ -3,33 +3,28 @@
     "id": "DA40-ELEC-0001",
     "classCode": "DA40",
     "topic": "Electrical",
-    "subtopic": "System architecture",
-    "question": "What is the nominal voltage of the DA40 electrical system?",
+    "question": "What is the nominal voltage of the DA 40 D's electrical system?",
     "options": [
       {
         "id": "a",
-        "text": "12 volt DC"
+        "text": "12 Volt DC"
       },
       {
         "id": "b",
-        "text": "28 volt DC"
+        "text": "14 Volt DC"
       },
       {
         "id": "c",
-        "text": "115 volt AC"
+        "text": "24 Volt DC"
       },
       {
         "id": "d",
-        "text": "270 volt DC"
+        "text": "28 Volt DC"
       }
     ],
-    "correct": "b",
-    "explanation": "The DA40 uses a 28 volt DC system fed by an engine-driven alternator, with a 24 volt battery as the standby source. Any replacement battery, ground power unit or portable equipment must match this 28 volt architecture - connecting a 12 volt ground power unit is not acceptable.",
-    "reference": "Airplane Flight Manual, Section 7 - Electrical System",
-    "tags": [
-      "electrical",
-      "voltage"
-    ],
+    "correct": "a",
+    "explanation": "The DA 40 D has a 12 Volt DC electrical system, sub-divided into power generation, storage, distribution and consumers.",
+    "reference": "AFM 7.10.1",
     "status": "published",
     "version": 1
   },
@@ -37,34 +32,724 @@
     "id": "DA40-ELEC-0002",
     "classCode": "DA40",
     "topic": "Electrical",
-    "subtopic": "Alternator failure",
-    "question": "In flight the ALTERNATOR warning illuminates and the ammeter shows a discharge. What is the immediate consequence for the pilot?",
+    "question": "What is the rated output of the alternator, and where is it mounted?",
     "options": [
       {
         "id": "a",
-        "text": "The engine will stop within a few minutes because ignition depends on the alternator"
+        "text": "120 ampere, on the bottom left side of the engine, driven by a flat-belt"
       },
       {
         "id": "b",
-        "text": "All electrical services are lost instantly"
+        "text": "90 ampere, on the bottom left side of the engine, driven by a flat-belt"
       },
       {
         "id": "c",
-        "text": "Electrical services now run from the battery only, for a limited time"
+        "text": "60 ampere, on the bottom right side of the engine, driven by a flat-belt"
       },
       {
         "id": "d",
-        "text": "Nothing changes, because the battery charges the system in flight"
+        "text": "90 ampere, on the top of the engine, gear-driven"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Power generation comes from a 90 ampere alternator mounted on the bottom left side of the engine and driven by a flat-belt.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0003",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "What protects the alternator's power output line where it connects to the battery bus?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A 30 A circuit breaker on the instrument panel"
+      },
+      {
+        "id": "b",
+        "text": "A 5 A fuse behind the instrument panel"
+      },
+      {
+        "id": "c",
+        "text": "A 100 A fuse in the relay junction box"
+      },
+      {
+        "id": "d",
+        "text": "A 50 A fuse in the relay junction box"
       }
     ],
     "correct": "c",
-    "explanation": "With the alternator offline the battery becomes the only source of electrical power, so endurance is limited and non-essential loads should be shed and a landing planned. The engine itself keeps running: ignition is provided by engine-driven magnetos, which are independent of the aircraft electrical system.",
-    "reference": "Airplane Flight Manual, Section 3 - Emergency Procedures",
-    "tags": [
-      "alternator",
-      "emergency",
-      "battery"
+    "explanation": "The alternator's output line connects to the battery bus through a 100 A fuse in the relay junction box on the firewall's left-hand side.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0004",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "In the event of a main battery failure, what energizes the alternator field to keep it producing power?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The ECU backup battery under the rear right seat"
+      },
+      {
+        "id": "b",
+        "text": "A capacitor bank in the relay junction box"
+      },
+      {
+        "id": "c",
+        "text": "The hot battery bus, via the accessory power socket"
+      },
+      {
+        "id": "d",
+        "text": "A 12 V, 1.3 Ah sealed-lead-acid 'excitation' battery behind the instrument panel"
+      }
     ],
+    "correct": "d",
+    "explanation": "A small 12 V, 1.3 Ah sealed-lead-acid 'excitation' battery behind the instrument panel energizes the alternator field if the main battery fails, connected via the ENGINE MASTER switch through a 5 A fuse.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0005",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "What voltage range does the alternator's voltage regulator hold the output voltage within?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Between 12 and 14 V"
+      },
+      {
+        "id": "b",
+        "text": "Between 11 and 13 V"
+      },
+      {
+        "id": "c",
+        "text": "Between 13 and 15 V"
+      },
+      {
+        "id": "d",
+        "text": "Between 12.6 and 15.5 V"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The alternator's voltage regulator (internal or external, depending on part number) regulates output voltage between 12 and 14 V.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0006",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "What is the capacity and chemistry of the 'main' battery that stores power for the DA 40 D?",
+    "options": [
+      {
+        "id": "a",
+        "text": "24 V, 23 Ah lead-acid, mounted on the left-hand side of the firewall"
+      },
+      {
+        "id": "b",
+        "text": "12 V, 23 Ah lead-acid, mounted on the right-hand side of the firewall"
+      },
+      {
+        "id": "c",
+        "text": "12 V, 12 Ah sealed-lead-acid, mounted under the rear right seat"
+      },
+      {
+        "id": "d",
+        "text": "12 V, 1.3 Ah sealed-lead-acid, mounted behind the instrument panel"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The 'main' battery is a 12 V, 23 Ah lead-acid battery on the firewall's right-hand side, distinct from the smaller excitation and ECU backup batteries.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0007",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "What is the purpose of the 12 V, 12 Ah sealed-lead-acid 'ECU backup' battery under the rear right seat?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It supplies the starter motor if the main battery is depleted"
+      },
+      {
+        "id": "b",
+        "text": "It powers the avionics bus if the alternator fails"
+      },
+      {
+        "id": "c",
+        "text": "It is a further power source for the Engine Control Unit, for ECU B only"
+      },
+      {
+        "id": "d",
+        "text": "It powers the flood light and attitude gyro for one hour in the IFR model"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The ECU backup battery exists purely as a further source of power for the ECU, and only for ECU B - it is automatically connected via a 30 A fuse if the alternator fails and the main battery is depleted.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0008",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "In the IFR model, when the EMERGENCY switch is set to ON, for how long does the non-rechargeable emergency battery supply the attitude gyro and flood light?",
+    "options": [
+      {
+        "id": "a",
+        "text": "30 minutes"
+      },
+      {
+        "id": "b",
+        "text": "2 hours"
+      },
+      {
+        "id": "c",
+        "text": "45 minutes"
+      },
+      {
+        "id": "d",
+        "text": "1 hour"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Setting the EMERGENCY switch to ON supplies the attitude gyro and flood light from the non-rechargeable dry battery for 1 hour, independent of all other consumers.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0009",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "How often must the IFR model's non-rechargeable emergency battery cells be replaced?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Every 2 years, or after use (broken seal on the switch)"
+      },
+      {
+        "id": "b",
+        "text": "Every year, regardless of use"
+      },
+      {
+        "id": "c",
+        "text": "Every 100 hours, regardless of use"
+      },
+      {
+        "id": "d",
+        "text": "Only when the ECU BACKUP UNSAFE light illuminates"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The emergency battery cells are replaced every 2 years or after use, indicated by a broken seal on the EMERGENCY switch; it is also checked at each 100 hour inspection.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0010",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "Which bus is directly connected to the main battery via a 50 A fuse and cannot be disconnected from it?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The ECU bus"
+      },
+      {
+        "id": "b",
+        "text": "The hot battery bus"
+      },
+      {
+        "id": "c",
+        "text": "The essential bus"
+      },
+      {
+        "id": "d",
+        "text": "The main bus"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The hot battery bus is permanently, directly connected to the main battery through a 50 A fuse and powers the map/reading light and accessory power plug.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0011",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "Which switch controls the 'battery' relay that connects the main battery to the battery bus?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The AVIONIC MASTER switch"
+      },
+      {
+        "id": "b",
+        "text": "The ESSENTIAL BUS switch"
+      },
+      {
+        "id": "c",
+        "text": "The ELECTRIC MASTER key switch"
+      },
+      {
+        "id": "d",
+        "text": "The ENGINE MASTER switch"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The 'battery' relay, which connects the main battery to the battery bus, is controlled by the ELECTRIC MASTER key switch.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0012",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "Which switch must be ON to connect the ECU A and ECU B to the ECU bus?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The ELECTRIC MASTER switch"
+      },
+      {
+        "id": "b",
+        "text": "The AVIONIC MASTER switch"
+      },
+      {
+        "id": "c",
+        "text": "The ESSENTIAL BUS switch"
+      },
+      {
+        "id": "d",
+        "text": "The ENGINE MASTER switch"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The ECU bus is directly connected to the battery bus and provides power to ECU A and ECU B only when the ENGINE MASTER switch is set to ON.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0013",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "In the event of an alternator failure, what does switching ON the ESSENTIAL BUS switch achieve?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It separates the main bus from the battery bus and essential bus, tying the essential bus to the hot battery bus instead"
+      },
+      {
+        "id": "b",
+        "text": "It disconnects the ECU bus entirely, stopping the engine"
+      },
+      {
+        "id": "c",
+        "text": "It shuts off all avionics immediately"
+      },
+      {
+        "id": "d",
+        "text": "It reconnects the alternator field automatically"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Switching the ESSENTIAL BUS switch ON separates the main bus, and ties the essential bus to the hot battery bus, providing limited-time battery power to the equipment essential for safe flight and landing.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0014",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "What voltage does the voltmeter actually display under normal operating conditions?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The hot battery bus voltage at all times"
+      },
+      {
+        "id": "b",
+        "text": "The alternator voltage, since it shows the ECU bus voltage"
+      },
+      {
+        "id": "c",
+        "text": "The excitation battery voltage only"
+      },
+      {
+        "id": "d",
+        "text": "The average of the main and ECU backup battery voltages"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The voltmeter shows the voltage of the ECU bus, which under normal conditions is the alternator voltage; if the alternator is offline, it shows whichever battery is then connected to the ECU bus.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0015",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "After how many minutes of engine operation should the voltmeter indication normally be in the green range?",
+    "options": [
+      {
+        "id": "a",
+        "text": "After 20 minutes"
+      },
+      {
+        "id": "b",
+        "text": "After 5 minutes"
+      },
+      {
+        "id": "c",
+        "text": "After 10 minutes"
+      },
+      {
+        "id": "d",
+        "text": "After 2 minutes"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Before the alternator reaches operating temperature the voltage indication may sit in the upper yellow range; after 10 minutes of engine operation it should be in the green range.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0016",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "On a conventional instrument panel, after how long in the yellow voltage range does the ENGINE caution light illuminate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Longer than 5 minutes"
+      },
+      {
+        "id": "b",
+        "text": "Longer than 30 seconds"
+      },
+      {
+        "id": "c",
+        "text": "Longer than 10 minutes"
+      },
+      {
+        "id": "d",
+        "text": "Longer than 1 minute"
+      }
+    ],
+    "correct": "d",
+    "explanation": "If the voltage indication stays in the yellow range for longer than 1 minute, the ENGINE caution light illuminates on a conventional instrument panel.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0017",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "What does the ammeter display?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The intensity of current supplied to the electrical system by the alternator"
+      },
+      {
+        "id": "b",
+        "text": "The current drawn by the starter motor only"
+      },
+      {
+        "id": "c",
+        "text": "The state of charge of the main battery as a percentage"
+      },
+      {
+        "id": "d",
+        "text": "The current flowing through the ECU backup battery only"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The ammeter shows the current the alternator is supplying to the electrical system, including the current used to charge the battery.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0018",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "What secondary protection, beyond the thermal switch, is built into the Pitot heating system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "An automatic switch to the alternate static source"
+      },
+      {
+        "id": "b",
+        "text": "A thermal fuse, which if activated stops the Pitot heat being switched on and requires servicing"
+      },
+      {
+        "id": "c",
+        "text": "A second, backup Pitot probe with independent heating"
+      },
+      {
+        "id": "d",
+        "text": "A manual circuit breaker only, with no thermal protection"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Beyond the thermal switch that keeps temperature constant, a thermal fuse provides additional protection; once it activates, Pitot heating cannot be switched on again and the system needs servicing.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0019",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "What happens automatically after the ELECTRIC MASTER is switched to ON, as part of the pre-flight check of the annunciator panel?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only the WARNING light flashes; caution and status lights remain off"
+      },
+      {
+        "id": "b",
+        "text": "The aural alert sounds continuously until the acknowledge button is pressed"
+      },
+      {
+        "id": "c",
+        "text": "A functional check starts automatically: all lights flash and the aural alert is muted"
+      },
+      {
+        "id": "d",
+        "text": "All lights immediately extinguish to show a clean test"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Switching ELECTRIC MASTER to ON automatically starts a functional check: all annunciator lights flash while the aural alert is muted, until the acknowledge button is pressed.",
+    "reference": "AFM 7.10.3",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0020",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "How does a pilot initiate the additional annunciator panel system test, beyond the automatic power-up check?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By pressing the ECU TEST button twice in quick succession"
+      },
+      {
+        "id": "b",
+        "text": "By cycling the ELECTRIC MASTER OFF then ON three times"
+      },
+      {
+        "id": "c",
+        "text": "By holding the acknowledge button for 5 seconds"
+      },
+      {
+        "id": "d",
+        "text": "By holding the acknowledge button for 2 seconds"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Holding the acknowledge button for 2 seconds starts an additional system test, in which all lights blink and the aural alert sounds continuously.",
+    "reference": "AFM 7.10.3",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0021",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "How is a Warning message on the annunciator panel indicated before the acknowledge button is pressed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A continuous aural alert, a blinking red WARNING light, and a blinking red light for the affected system"
+      },
+      {
+        "id": "b",
+        "text": "A momentary aural alert and a solid amber CAUTION light only"
+      },
+      {
+        "id": "c",
+        "text": "A blinking white status light with no aural alert"
+      },
+      {
+        "id": "d",
+        "text": "A single aural chime with no light indication"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A warning is indicated by a continuous aural alert plus the blinking red WARNING light and the affected system's own blinking red light, until acknowledged.",
+    "reference": "AFM 7.10.3",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0022",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "After the acknowledge button is pressed for an active warning, what happens to the affected system's red light?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It starts flashing faster"
+      },
+      {
+        "id": "b",
+        "text": "It changes from blinking to solid illumination"
+      },
+      {
+        "id": "c",
+        "text": "It extinguishes completely"
+      },
+      {
+        "id": "d",
+        "text": "It begins blinking amber instead of red"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Pressing acknowledge stops the aural alert and extinguishes the WARNING light, but the affected system's own warning light changes from blinking to a solid illumination rather than going out.",
+    "reference": "AFM 7.10.3",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0023",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "What specifically triggers the START warning light?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The starter has been operated for more than 10 seconds continuously"
+      },
+      {
+        "id": "b",
+        "text": "The ELECTRIC MASTER key is left in the START position for over 2 minutes"
+      },
+      {
+        "id": "c",
+        "text": "The starter motor's pinion has not disengaged from the engine after starting"
+      },
+      {
+        "id": "d",
+        "text": "The battery voltage drops below 11 V during cranking"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The START warning is displayed when the connection between the starter motor and the engine has not been broken - the starter pinion remaining engaged.",
+    "reference": "AFM 7.10.3",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0024",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "While the starter is actually being operated, does the START light illuminating also trigger the WARNING light and aural alert?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes - both are triggered every time the starter is used"
+      },
+      {
+        "id": "b",
+        "text": "Only the aural alert is triggered, not the WARNING light"
+      },
+      {
+        "id": "c",
+        "text": "Only the WARNING light is triggered, not the aural alert"
+      },
+      {
+        "id": "d",
+        "text": "No - the START light illuminates continuously during normal starter operation without the WARNING light or aural alert"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The START light is continuously illuminated for as long as the starter is being operated, which is normal - in that case the WARNING light and aural alert are not activated.",
+    "reference": "AFM 7.10.3",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0025",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "What terminates the low voltage caution message once it has been triggered below 12.6 volts?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The voltage exceeding 12.9 volts again"
+      },
+      {
+        "id": "b",
+        "text": "The voltage exceeding 12.6 volts again"
+      },
+      {
+        "id": "c",
+        "text": "Pressing the acknowledge button, regardless of voltage"
+      },
+      {
+        "id": "d",
+        "text": "Switching to ECU B"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The low voltage caution activates below 12.6 V and is only terminated once the voltage recovers above 12.9 V - not immediately at 12.6 V again.",
+    "reference": "AFM 7.10.3",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA40-ELEC-0026",
+    "classCode": "DA40",
+    "topic": "Electrical",
+    "question": "What do the two white status lights, FUEL TRANS and GLOW, indicate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "FUEL TRANS: a fuel leak has been detected; GLOW: the starter is engaged"
+      },
+      {
+        "id": "b",
+        "text": "FUEL TRANS: the transfer pump is active; GLOW: the glow plugs are active"
+      },
+      {
+        "id": "c",
+        "text": "FUEL TRANS: low fuel in the main tank; GLOW: the ECU is in test mode"
+      },
+      {
+        "id": "d",
+        "text": "FUEL TRANS: the emergency fuel valve is in EMERG. TRANSFER; GLOW: high oil temperature"
+      }
+    ],
+    "correct": "b",
+    "explanation": "FUEL TRANS is illuminated only while the electric transfer pump is actually running; GLOW is illuminated only while the glow plugs are active.",
+    "reference": "AFM 2.6, 7.10.3",
     "status": "published",
     "version": 1
   }
