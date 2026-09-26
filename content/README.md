@@ -150,6 +150,12 @@ warning sections (7.2, 7.4, 7.5, 7.6, 7.7, 7.8, 7.11, 7.12, 7.13) alongside
 the fuselage/wing/empennage material, since none of those has enough AFM
 content on its own to be a topic a report would usefully group by.
 
+A self-contained study guide covering the same ten topics, with the same
+AFM references, lives at `public/da40-study-guide.html` — not under
+`content/`, because nothing under `content/` is ever served to a browser;
+see the note on `lib/study-guide.ts` in `CLAUDE.md`. The DA40 overview page
+links to it automatically because the file exists at that path.
+
 This replaced an earlier, much smaller (22-question) version of this bank in
 full: the old `Airframe`, `Electrical` and `Flight Controls` questions were
 written only to exercise the system and were never checked against the AFM;

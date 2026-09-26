@@ -16,6 +16,7 @@ import {
 import { getFlaggedQuestionIds } from "@/db/flags";
 import { getQuestionIdsToRetry, getTopicPerformance } from "@/db/reports";
 import { getCurrentUser } from "@/lib/auth/session";
+import { studyGuideHref } from "@/lib/study-guide";
 import { buildFlyingKnowledgeResumeHref, PRESET_COUNT_CEILING } from "@/lib/test-options";
 
 export const dynamic = "force-dynamic";
@@ -84,12 +85,26 @@ export default async function FlyingKnowledgeSubjectPage({ params }: PageProps) 
 
   if (!subject) notFound();
 
+  const guideHref = studyGuideHref(subject.code);
+
   return (
     <>
       <PageHeading eyebrow={subject.code} title={subject.name} subtitle="Flying Knowledge" />
 
       <Card>
         <p className="text-sm text-muted-foreground">{subject.description}</p>
+        {guideHref ? (
+          <p className="mt-3 text-sm">
+            <Link
+              href={guideHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-standalone font-medium text-brand hover:underline"
+            >
+              Read the study guide before you start →
+            </Link>
+          </p>
+        ) : null}
       </Card>
 
       {incompleteSession ? (

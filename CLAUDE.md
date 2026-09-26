@@ -1573,7 +1573,9 @@ content/                      Question files. The source of truth.
   classes/<code>/             One folder per class rating aircraft (da40/ today)
   flying-knowledge/<code>/    One folder per Flying Knowledge subject (ifr/ today)
 drizzle/                      Generated SQL migrations. Committed.
-public/                       Manifest icons, and the service worker.
+public/                       Manifest icons, the service worker, and any
+                              <code>-study-guide.html study guides (see the
+                              note on `lib/study-guide.ts` below)
 scripts/
   validate-content.ts         Schema check. Runs before build and seed.
   migrate.ts                  Applies migrations.
@@ -1676,6 +1678,7 @@ src/
     question-status.ts        What the question map may say (pure, tested)
     password.ts               scrypt hashing (pure, tested)
     test-options.ts           Test length, sections, mode, the clock, and test URLs
+    study-guide.ts            studyGuideHref() — whether `public/<code>-study-guide.html` exists
     keyboard-shortcuts.ts     Which key does what, and when a shortcut must stand down for a text field (pure, tested)
     auth/
       credentials.ts          Email and password rules (pure, tested)
@@ -1896,6 +1899,17 @@ that does and does not mean, and "Known gaps, honestly" below.
   source document itself (confirmed by rendering the actual page, not just
   the text extraction), so no numeric MCQ was built on it rather than
   guessing where the decimal belongs. See `content/README.md`.
+- **A study guide is a static file, and has to live where the app actually
+  serves static files.** The DA40 study guide first shipped inside
+  `content/classes/da40/`, which is never read by anything but `db:seed` —
+  it validated, it committed, and it was completely invisible on the live
+  site, because nothing under `content/` is served to a browser. It now
+  lives at `public/da40-study-guide.html`, and `studyGuideHref()` in
+  `src/lib/study-guide.ts` checks for `public/<code>-study-guide.html` and
+  links to it from the aircraft/class-rating/Flying-Knowledge overview page
+  when found — content-only for the next one: drop the file, no code
+  changes. Caught by actually opening the deployed page rather than trusting
+  that a merged PR was a shipped feature.
 - **The entire IFR bank (Flying Knowledge's first subject) was authored by
   the assistant, not transcribed from any national AIP, syllabus or question
   bank, and not checked against one.** It sticks to general ICAO-style
