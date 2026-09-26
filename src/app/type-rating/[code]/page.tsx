@@ -21,6 +21,7 @@ import { hasActiveSubscription, remainingFreeQuestions } from "@/lib/billing/acc
 import { getSiteSettings } from "@/db/settings";
 import { getPreviewVisitorId } from "@/lib/auth/preview-visitor";
 import { getCurrentUser } from "@/lib/auth/session";
+import { studyGuideHref } from "@/lib/study-guide";
 import { PRESET_COUNT_CEILING } from "@/lib/test-options";
 
 export const dynamic = "force-dynamic";
@@ -120,6 +121,8 @@ export default async function AircraftPage({ params }: PageProps) {
 
   if (!plane) notFound();
 
+  const guideHref = studyGuideHref(plane.code);
+
   return (
     <>
       <PageHeading
@@ -130,6 +133,18 @@ export default async function AircraftPage({ params }: PageProps) {
 
       <Card>
         <p className="text-sm text-muted-foreground">{plane.description}</p>
+        {guideHref ? (
+          <p className="mt-3 text-sm">
+            <Link
+              href={guideHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-standalone font-medium text-brand hover:underline"
+            >
+              Read the study guide before you start →
+            </Link>
+          </p>
+        ) : null}
       </Card>
 
       {incompleteSession ? (

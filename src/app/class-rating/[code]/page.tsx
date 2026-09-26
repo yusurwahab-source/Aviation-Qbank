@@ -21,6 +21,7 @@ import { hasActiveSubscription, remainingFreeQuestions } from "@/lib/billing/acc
 import { getSiteSettings } from "@/db/settings";
 import { getPreviewVisitorId } from "@/lib/auth/preview-visitor";
 import { getCurrentUser } from "@/lib/auth/session";
+import { studyGuideHref } from "@/lib/study-guide";
 import { buildClassResumeHref, PRESET_COUNT_CEILING } from "@/lib/test-options";
 
 export const dynamic = "force-dynamic";
@@ -105,12 +106,26 @@ export default async function ClassRatingPage({ params }: PageProps) {
 
   if (!ratingClass) notFound();
 
+  const guideHref = studyGuideHref(ratingClass.code);
+
   return (
     <>
       <PageHeading eyebrow={ratingClass.code} title={ratingClass.name} subtitle="Class rating" />
 
       <Card>
         <p className="text-sm text-muted-foreground">{ratingClass.description}</p>
+        {guideHref ? (
+          <p className="mt-3 text-sm">
+            <Link
+              href={guideHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-standalone font-medium text-brand hover:underline"
+            >
+              Read the study guide before you start →
+            </Link>
+          </p>
+        ) : null}
       </Card>
 
       {incompleteSession ? (
