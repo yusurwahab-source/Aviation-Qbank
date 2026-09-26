@@ -1900,16 +1900,33 @@ that does and does not mean, and "Known gaps, honestly" below.
   the text extraction), so no numeric MCQ was built on it rather than
   guessing where the decimal belongs. See `content/README.md`.
 - **A study guide is a static file, and has to live where the app actually
-  serves static files.** The DA40 study guide first shipped inside
-  `content/classes/da40/`, which is never read by anything but `db:seed` —
-  it validated, it committed, and it was completely invisible on the live
-  site, because nothing under `content/` is served to a browser. It now
-  lives at `public/da40-study-guide.html`, and `studyGuideHref()` in
-  `src/lib/study-guide.ts` checks for `public/<code>-study-guide.html` and
-  links to it from the aircraft/class-rating/Flying-Knowledge overview page
-  when found — content-only for the next one: drop the file, no code
-  changes. Caught by actually opening the deployed page rather than trusting
-  that a merged PR was a shipped feature.
+  serves static files — and "checking whether one exists" cannot be an
+  `fs` call against that folder either, on Vercel.** Two rounds, both only
+  caught by opening the deployed page rather than trusting that a merged PR
+  was a shipped feature:
+
+  1. The DA40 study guide first shipped inside `content/classes/da40/`,
+     which is never read by anything but `db:seed` — it validated, it
+     committed, and it was completely invisible on the live site, because
+     nothing under `content/` is served to a browser. Moved to
+     `public/da40-study-guide.html`, where Next.js actually serves it.
+  2. `studyGuideHref()` in `src/lib/study-guide.ts` then checked for that
+     file with `existsSync(path.join(process.cwd(), "public", …))` — which
+     works in local dev and in a local `next build && next start`, and is
+     silently false in Vercel's actual deployment: the Node.js serverless
+     function that renders the overview page does not have `public/` on its
+     filesystem at all, because those files are served by Vercel's static
+     asset layer directly and are never bundled into the Lambda. The guide
+     loaded perfectly at its own URL while the link meant to point at it
+     never rendered, on the same deployment, at the same time — proof that
+     a file being served correctly says nothing about whether server-side
+     code in the same app can see it on disk.
+
+  `studyGuideHref()` now checks a small hand-kept `Set` of codes instead of
+  the filesystem. Adding a guide for the next aircraft is still "drop the
+  file in `public/`" — plus one line adding its code to that set, which is
+  what makes the app know the file is there rather than assuming it can ask
+  the filesystem at request time.
 - **The entire IFR bank (Flying Knowledge's first subject) was authored by
   the assistant, not transcribed from any national AIP, syllabus or question
   bank, and not checked against one.** It sticks to general ICAO-style

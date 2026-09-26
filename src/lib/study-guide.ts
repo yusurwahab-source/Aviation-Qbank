@@ -1,17 +1,23 @@
-import "server-only";
-
-import { existsSync } from "node:fs";
-import path from "node:path";
-
 /**
- * A study guide is one self-contained HTML file dropped in `public/`, named
- * `<code>-study-guide.html` — the same content-only convention a question
- * file already follows. Nothing requires one to exist for a given aircraft,
- * class rating or Flying Knowledge subject; an overview page just checks and
- * links to it when it does, so adding a guide for the next aircraft is
- * dropping the file in `public/` and nothing else.
+ * Which codes have a study guide at `public/<code>-study-guide.html`.
+ *
+ * This is a hand-kept list, not a filesystem check, and that is a deliberate
+ * correction: the first version of this function called `existsSync`
+ * against `public/` from here, which is correct in local dev and in a local
+ * `next build && next start`, but silently false on Vercel — the Node.js
+ * serverless function that renders this page does not have `public/` on
+ * its filesystem at all; those files are served by Vercel's static asset
+ * layer directly, never bundled into the Lambda. The guide loaded perfectly
+ * at its own URL while the link that was supposed to point at it never
+ * appeared, and only fetching the deployed page directly showed that,
+ * not reasoning about the code. Add a code here the same moment its guide
+ * file is added to `public/` — the file itself is still the only thing a
+ * new aircraft's guide needs, this line is what makes the app know it is
+ * there.
  */
+const STUDY_GUIDE_CODES = new Set(["DA40"]);
+
 export function studyGuideHref(code: string): string | null {
-  const file = `${code.toLowerCase()}-study-guide.html`;
-  return existsSync(path.join(process.cwd(), "public", file)) ? `/${file}` : null;
+  const upper = code.toUpperCase();
+  return STUDY_GUIDE_CODES.has(upper) ? `/${upper.toLowerCase()}-study-guide.html` : null;
 }

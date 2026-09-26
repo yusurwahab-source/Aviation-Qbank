@@ -153,8 +153,10 @@ content on its own to be a topic a report would usefully group by.
 A self-contained study guide covering the same ten topics, with the same
 AFM references, lives at `public/da40-study-guide.html` — not under
 `content/`, because nothing under `content/` is ever served to a browser;
-see the note on `lib/study-guide.ts` in `CLAUDE.md`. The DA40 overview page
-links to it automatically because the file exists at that path.
+see the note on `lib/study-guide.ts` in `CLAUDE.md`, including why "does
+the file exist" turned out to be the wrong question to ask at request time
+on Vercel. The DA40 overview page links to it because `DA40` is in that
+file's small hand-kept set of codes.
 
 This replaced an earlier, much smaller (22-question) version of this bank in
 full: the old `Airframe`, `Electrical` and `Flight Controls` questions were
