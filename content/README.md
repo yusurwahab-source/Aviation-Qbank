@@ -179,6 +179,68 @@ A, B, C and D in turn (distractors keeping their relative order around it,
 the same technique the B737 bank's own conversion used — see below), so no
 file leans on one letter the way the earliest B737 sections once did.
 
+## The C152 bank
+
+The aircraft is the **Cessna 152, 1978 Model** — a two-seat, high-wing,
+single-engine trainer with a carbureted Lycoming O-235-L2C, fixed tricycle
+gear and a fixed-pitch propeller. The second class rating, added the same
+content-only way the DA40 already proved: `content/classes/c152/` alone, no
+application code touched.
+
+Every question was written directly from the **1978 Pilot's Operating
+Handbook, Cessna Aircraft Company**, read section by section (General,
+Limitations, Emergency Procedures, Normal Procedures, Performance, Weight &
+Balance, and Airplane & Systems Descriptions). Every question carries a
+`reference` naming the POH section and page it came from (`POH 2-3`,
+`POH 7-17`, and so on, following this POH's own section-page numbering), and
+every number was checked against the manual's own text rather than invented —
+including the one deliberate omission: the Equipment List and the optional
+avionics supplements in Section 9 (old Nav/Com, ADF, transponder and marker
+beacon units no longer representative of how this aircraft is flown or
+taught) carry no questions, the same reasoning the DA40 bank already applies
+to a source table it chose not to build numeric questions on. The ELT
+supplement, still genuinely relevant safety equipment, is the one exception,
+folded into `emergency-procedures.json` under the "Emergency Procedures"
+topic rather than given a topic of its own for eight questions.
+
+| File | Topic | Questions |
+|---|---|---|
+| `limitations.json` | Limitations | 34 |
+| `emergency-procedures.json` | Emergency Procedures | 35 |
+| `normal-procedures.json` | Normal Procedures | 30 |
+| `performance.json` | Performance | 21 |
+| `weight-and-balance.json` | Weight & Balance | 12 |
+| `powerplant.json` | Powerplant | 25 |
+| `fuel.json` | Fuel System | 15 |
+| `electrical.json` | Electrical System | 16 |
+| `landing-gear-and-brakes.json` | Landing Gear & Brakes | 13 |
+| `flight-controls.json` | Flight Controls | 14 |
+| `flight-instruments.json` | Flight Instruments | 16 |
+| `airframe.json` | Airframe | 12 |
+| `propeller.json` | Propeller | 7 |
+
+250 questions, all published. `Limitations` draws on POH Section 2,
+`Emergency Procedures` on Section 3, `Normal Procedures` on Section 4,
+`Performance` on Section 5, `Weight & Balance` on Sections 1 and 6, and the
+remaining seven topics on Section 7 (Airplane & Systems Descriptions), split
+by system rather than folded into one large "Systems" topic the way a
+smaller bank might need to.
+
+The correct answer is spread as evenly as each file's own count allows, using
+the same cycling technique as the DA40 bank: correct options were generated
+in a natural first position, then mechanically rotated through A, B, C and D
+in order of appearance, keeping the distractors' relative order around
+whichever position the correct answer landed on. Across the whole 250-question
+bank this lands at roughly a quarter each, not exactly even but never leaning
+on one letter the way an unrotated bank would.
+
+A self-contained study guide covering the same thirteen topics, with the same
+POH references, lives at `public/c152-study-guide.html`, in English — not
+under `content/`, for the same "nothing under `content/` is ever served to a
+browser" reason the DA40 guide's own note gives. The C152 overview page links
+to it because `C152` is in `lib/study-guide.ts`'s small hand-kept set of
+codes, alongside `DA40`.
+
 ## The IFR bank (Flying Knowledge)
 
 The subject is **Instrument Flight Rules (IFR)**, the first subject in the
