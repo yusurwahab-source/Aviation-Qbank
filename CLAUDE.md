@@ -1927,6 +1927,14 @@ that does and does not mean, and "Known gaps, honestly" below.
   file in `public/`" — plus one line adding its code to that set, which is
   what makes the app know the file is there rather than assuming it can ask
   the filesystem at request time.
+
+  The DA40 guide itself was first drafted in Arabic before being translated
+  to English, matching the rule at the top of this file that all
+  user-facing content is English. `public/da40-study-guide-ar.html` keeps
+  that Arabic draft on disk rather than discarding it, for a possible
+  future translated edition of the product — it is reachable at its own
+  URL exactly like the English one, but `studyGuideHref()` never returns
+  it and nothing in the app links to it.
 - **The entire IFR bank (Flying Knowledge's first subject) was authored by
   the assistant, not transcribed from any national AIP, syllabus or question
   bank, and not checked against one.** It sticks to general ICAO-style
