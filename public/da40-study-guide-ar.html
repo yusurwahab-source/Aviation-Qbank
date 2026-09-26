@@ -1,0 +1,1628 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DA40 D (TDI) — دليلك قبل الاختبار</title>
+<meta name="description" content="دليل مرجعي شامل لطائرة Diamond DA 40 D TDI، مبني بالكامل على الـ AFM الرسمي، قبل خوض بنك أسئلة Holdshort." />
+<style>
+  :root{
+    --bg:#f6f8fb;
+    --surface:#ffffff;
+    --surface-2:#eef2f7;
+    --ink:#101826;
+    --ink-2:#3c4758;
+    --muted:#6b7686;
+    --line:#dfe6ef;
+    --brand:#0d6e7d;
+    --brand-ink:#ffffff;
+    --brand-light:#e3f4f6;
+    --warn-bg:#fdecec;
+    --warn-line:#e0413a;
+    --warn-ink:#7a1712;
+    --caution-bg:#fff6e0;
+    --caution-line:#c9821a;
+    --caution-ink:#6b4405;
+    --note-bg:#eaf1fb;
+    --note-line:#3f6fb0;
+    --note-ink:#1f3c63;
+    --white-arc:#e9edf3;
+    --green-arc:#1f9d55;
+    --yellow-arc:#e0b400;
+    --red-arc:#d9362a;
+    --radius:14px;
+    --radius-sm:8px;
+    --shadow:0 1px 2px rgba(16,24,38,.04), 0 6px 20px rgba(16,24,38,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0d1420;
+      --surface:#141d2c;
+      --surface-2:#1b263a;
+      --ink:#eef2f8;
+      --ink-2:#c3cddc;
+      --muted:#8b97ab;
+      --line:#26334a;
+      --brand:#37c3d6;
+      --brand-ink:#06232a;
+      --brand-light:#12323a;
+      --warn-bg:#3a1613;
+      --warn-line:#e4574d;
+      --warn-ink:#ffd6d1;
+      --caution-bg:#3a2c0d;
+      --caution-line:#e0a83a;
+      --caution-ink:#ffe6b0;
+      --note-bg:#122a44;
+      --note-line:#5b93d6;
+      --note-ink:#cfe2fb;
+      --white-arc:#324055;
+      --green-arc:#2bb56a;
+      --yellow-arc:#e0b400;
+      --red-arc:#e4574d;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1420; --surface:#141d2c; --surface-2:#1b263a; --ink:#eef2f8; --ink-2:#c3cddc;
+    --muted:#8b97ab; --line:#26334a; --brand:#37c3d6; --brand-ink:#06232a; --brand-light:#12323a;
+    --warn-bg:#3a1613; --warn-line:#e4574d; --warn-ink:#ffd6d1;
+    --caution-bg:#3a2c0d; --caution-line:#e0a83a; --caution-ink:#ffe6b0;
+    --note-bg:#122a44; --note-line:#5b93d6; --note-ink:#cfe2fb;
+    --white-arc:#324055; --green-arc:#2bb56a; --yellow-arc:#e0b400; --red-arc:#e4574d;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:clip}
+  body{
+    margin:0;
+    overflow-x:clip;
+    max-width:100vw;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Segoe UI","Tahoma","Geeza Pro","Noto Sans Arabic",system-ui,-apple-system,sans-serif;
+    line-height:1.75;
+    font-size:17px;
+  }
+  a{color:var(--brand)}
+  .ltr{direction:ltr;unicode-bidi:isolate;font-family:"Segoe UI",system-ui,-apple-system,monospace}
+  code, .kbd{
+    direction:ltr;unicode-bidi:isolate;display:inline-block;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:6px;
+    padding:0 .35em;font-size:.92em;color:var(--ink);
+  }
+  /* ---------- header ---------- */
+  header.top{
+    position:sticky;top:0;z-index:40;
+    background:linear-gradient(180deg, var(--surface) 85%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    max-width:1180px;margin:0 auto;padding:14px 16px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .brand-mark{display:flex;align-items:center;gap:10px;min-width:0}
+  .brand-mark .plane{
+    width:34px;height:34px;flex:0 0 auto;border-radius:9px;
+    background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+  }
+  .brand-mark .txt{min-width:0}
+  .brand-mark h1{font-size:15px;margin:0;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand-mark .sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .menu-btn{
+    display:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+    border-radius:10px;padding:9px 12px;font-size:14px;cursor:pointer;flex:0 0 auto;
+  }
+  /* ---------- layout: sidebar + content ---------- */
+  .shell{max-width:1180px;margin:0 auto;display:flex;align-items:flex-start;gap:28px;padding:20px 16px 80px}
+  nav.toc{
+    position:sticky;top:78px;flex:0 0 264px;
+    max-height:calc(100vh - 96px);overflow-y:auto;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;box-shadow:var(--shadow);
+  }
+  nav.toc h2{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:2px 8px 10px}
+  nav.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+  nav.toc li{counter-increment:toc}
+  nav.toc a{
+    display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--ink-2);
+    padding:8px 8px;border-radius:9px;font-size:14px;
+  }
+  nav.toc a .n{
+    flex:0 0 auto;color:var(--brand);font-weight:700;font-size:12px;min-width:18px;
+  }
+  nav.toc a:hover{background:var(--surface-2);color:var(--ink)}
+  nav.toc a.active{background:var(--brand-light);color:var(--ink);font-weight:600}
+  nav.toc .count{margin-inline-start:auto;font-size:11px;color:var(--muted)}
+  main{flex:1 1 auto;min-width:0}
+  /* ---------- hero ---------- */
+  .hero{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 22px;margin-bottom:22px;box-shadow:var(--shadow);
+  }
+  .hero h1{margin:0 0 8px;font-size:26px}
+  .hero p{margin:0;color:var(--ink-2);font-size:15.5px}
+  .hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hero .tag{
+    font-size:12.5px;background:var(--brand-light);color:var(--brand);
+    border-radius:999px;padding:5px 12px;font-weight:600;
+  }
+  /* ---------- sections ---------- */
+  section.sec{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px 26px;margin-bottom:22px;box-shadow:var(--shadow);scroll-margin-top:76px;
+  }
+  section.sec > h2{
+    display:flex;align-items:center;gap:12px;font-size:21px;margin:0 0 6px;
+    padding-bottom:14px;border-bottom:1px solid var(--line);
+  }
+  section.sec > h2 .num{
+    flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;
+  }
+  section.sec > h2 .en{margin-inline-start:auto;font-size:12px;color:var(--muted);font-weight:600;
+    direction:ltr;background:var(--surface-2);padding:4px 10px;border-radius:999px}
+  .lead{color:var(--ink-2);font-size:16px;margin-top:14px}
+  h3.sub{font-size:16.5px;margin:26px 0 8px;color:var(--ink);border-inline-start:4px solid var(--brand);padding-inline-start:10px}
+  h4.sub2{font-size:15px;margin:18px 0 6px;color:var(--ink-2)}
+  p{margin:10px 0}
+  ul, ol{margin:10px 0;padding-inline-start:22px}
+  li{margin:5px 0}
+  strong{color:var(--ink)}
+  /* ---------- tables ---------- */
+  .table-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm)}
+  table{border-collapse:collapse;width:100%;min-width:420px;font-size:14.5px}
+  table caption{text-align:start;font-size:12.5px;color:var(--muted);padding:8px 12px 0}
+  thead th{
+    background:var(--surface-2);color:var(--ink);text-align:start;
+    padding:9px 12px;font-weight:700;white-space:nowrap;font-size:13.5px;
+  }
+  tbody td{padding:8px 12px;border-top:1px solid var(--line);color:var(--ink-2)}
+  tbody tr:nth-child(even){background:color-mix(in srgb, var(--surface-2) 45%, transparent)}
+  td.num, th.num{direction:ltr;text-align:center;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+  /* ---------- callouts ---------- */
+  .callout{border-radius:var(--radius-sm);padding:12px 14px;margin:14px 0;border-inline-start:4px solid;font-size:14.5px}
+  .callout .label{display:block;font-weight:800;font-size:12px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:4px}
+  .callout.warning{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-ink)}
+  .callout.caution{background:var(--caution-bg);border-color:var(--caution-line);color:var(--caution-ink)}
+  .callout.note{background:var(--note-bg);border-color:var(--note-line);color:var(--note-ink)}
+  /* ---------- diagram card ---------- */
+  .diagram{
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;margin:18px 0;text-align:center;
+    max-width:100%;overflow-x:auto;box-sizing:border-box;
+  }
+  .diagram .cap{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .diagram svg{max-width:100%;height:auto;display:block;margin:0 auto}
+  /* ---------- reference chip ---------- */
+  .ref{
+    display:inline-block;direction:ltr;font-size:11.5px;color:var(--brand);
+    background:var(--brand-light);border-radius:6px;padding:1px 7px;margin-inline-start:4px;
+    font-weight:700;white-space:nowrap;
+  }
+  /* ---------- related-questions pill ---------- */
+  .related{
+    margin-top:22px;display:flex;align-items:center;gap:10px;
+    background:var(--brand-light);color:var(--brand);border-radius:999px;
+    padding:10px 16px;font-size:14px;font-weight:700;width:fit-content;
+  }
+  .related .dot{width:8px;height:8px;border-radius:50%;background:var(--brand)}
+  /* ---------- footer ---------- */
+  footer{max-width:1180px;margin:0 auto;padding:10px 16px 60px;color:var(--muted);font-size:13px;text-align:center}
+  /* ---------- back to top ---------- */
+  #top-btn{
+    position:fixed;inset-inline-end:18px;bottom:18px;z-index:50;
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+    background:var(--brand);color:var(--brand-ink);font-size:18px;cursor:pointer;
+    box-shadow:var(--shadow);display:none;align-items:center;justify-content:center;
+  }
+  #top-btn.show{display:flex}
+  /* ---------- mobile ---------- */
+  @media (max-width:880px){
+    .shell{flex-direction:column;padding:14px 12px 70px}
+    main{width:100%;min-width:0}
+    nav.toc{
+      position:fixed;inset:0 0 0 auto;top:0;width:82%;max-width:340px;height:100dvh;max-height:100dvh;
+      transform:translateX(100%);transition:transform .25s ease;border-radius:0;z-index:60;
+    }
+    nav.toc.open{transform:translateX(0)}
+    .toc-scrim{
+      position:fixed;inset:0;background:rgba(6,10,18,.5);z-index:55;display:none;
+    }
+    .toc-scrim.show{display:block}
+    .menu-btn{display:inline-flex;align-items:center;gap:6px}
+    section.sec > h2{font-size:18.5px}
+    .hero h1{font-size:22px}
+    body{font-size:16px}
+  }
+  .toc-close{display:none}
+  @media (max-width:880px){
+    .toc-close{
+      display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+      padding-bottom:10px;border-bottom:1px solid var(--line);
+    }
+    .toc-close button{border:none;background:var(--surface-2);border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer;color:var(--ink)}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand-mark">
+      <div class="plane">✈</div>
+      <div class="txt">
+        <h1>DA40 D (TDI) — دليلك قبل الاختبار</h1>
+        <div class="sub">مبني بالكامل على الـ AFM الرسمي · Doc. # 6.01.05-E</div>
+      </div>
+    </div>
+    <button class="menu-btn" id="menuBtn">☰ الفهرس</button>
+  </div>
+</header>
+
+<div class="toc-scrim" id="scrim"></div>
+
+<div class="shell">
+  <nav class="toc" id="toc">
+    <div class="toc-close"><span style="font-size:13px;color:var(--muted);font-weight:700">الفهرس</span><button id="closeToc">✕</button></div>
+    <h2>الأقسام</h2>
+    <ol>
+      <li><a href="#limitations"><span class="n">01</span> الحدود التشغيلية <span class="count">55</span></a></li>
+      <li><a href="#emergency"><span class="n">02</span> إجراءات الطوارئ <span class="count">34</span></a></li>
+      <li><a href="#normal"><span class="n">03</span> الإجراءات الاعتيادية <span class="count">27</span></a></li>
+      <li><a href="#abnormal"><span class="n">04</span> الإجراءات غير الاعتيادية <span class="count">19</span></a></li>
+      <li><a href="#powerplant"><span class="n">05</span> المحرك <span class="count">26</span></a></li>
+      <li><a href="#fuel"><span class="n">06</span> نظام الوقود <span class="count">25</span></a></li>
+      <li><a href="#electrical"><span class="n">07</span> النظام الكهربائي <span class="count">26</span></a></li>
+      <li><a href="#propeller"><span class="n">08</span> المروحة <span class="count">7</span></a></li>
+      <li><a href="#flightcontrols"><span class="n">09</span> أسطح التحكم <span class="count">18</span></a></li>
+      <li><a href="#airframe"><span class="n">10</span> هيكل الطائرة <span class="count">23</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <h1>قبل ما تبدأ الأسئلة… اقرأ هذا</h1>
+      <p>
+        هذا مو كتاب AFM مُعاد تنسيقه، وهذا مو ملخص سطحي كمان. الهدف إنك تفهم
+        الطائرة فعلاً — ليش الرقم هذا هو الرقم، وشو اللي يصير لو تجاوزته — قبل
+        ما تدخل تختبر نفسك بـ260 سؤال. كل رقم هنا منسوخ حرفياً من دليل الطيران
+        الرسمي لـ Diamond DA 40 D (محرك Thielert TAE 125 الديزل)، ومكتوب جنبه
+        من وين جاي بالضبط، تماماً متل الأسئلة.
+      </p>
+      <div class="tags">
+        <span class="tag">TAE 125-01 مقابل TAE 125-02-99</span>
+        <span class="tag">260 سؤال مرتبط</span>
+        <span class="tag">10 أنظمة</span>
+        <span class="tag">Doc. # 6.01.05-E · Rev 6/7</span>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 01 LIMITATIONS -->
+    <!-- ============================================================ -->
+    <section class="sec" id="limitations">
+      <h2><span class="num">01</span> الحدود التشغيلية <span class="en">Limitations</span></h2>
+      <p class="lead">
+        هذا القسم هو "القانون" — الأرقام اللي ما تفاوض عليها. كل شي هنا من
+        الفصل الثاني بالـ AFM، وهو فصل معتمد رسمياً (EASA approved)، يعني ما
+        فيه اجتهاد، بس تنفيذ.
+      </p>
+
+      <h3 class="sub">السرعات المهمة (V-Speeds) <span class="ref">AFM 2.2</span></h3>
+      <p>
+        أربع سرعات لازم تحفظها عن ظهر قلب. لاحظ إن <code class="ltr">vA</code>
+        (سرعة المناورة) مو رقم ثابت — تتغير حسب وزن الطائرة، لأنها أصلاً مبنية
+        على قد ايش الهيكل يتحمل حمل مناورة عند وزن معين.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>السرعة</th><th class="num">القيمة</th><th>الشرط</th></tr></thead>
+        <tbody>
+          <tr><td><span class="ltr">vA</span> — سرعة المناورة</td><td class="num">108 KIAS</td><td>فوق 980 كغم وحتى 1150 كغم</td></tr>
+          <tr><td><span class="ltr">vA</span> — سرعة المناورة</td><td class="num">94 KIAS</td><td>من 780 إلى 980 كغم</td></tr>
+          <tr><td><span class="ltr">vFE</span> — أقصى سرعة مع فلاب T/O</td><td class="num">108 KIAS</td><td>—</td></tr>
+          <tr><td><span class="ltr">vFE</span> — أقصى سرعة مع فلاب LDG</td><td class="num">91 KIAS</td><td>—</td></tr>
+          <tr><td><span class="ltr">vNO</span> — أقصى سرعة تشغيل هيكلي</td><td class="num">129 KIAS</td><td>فوقها بس بهواء هادئ وبحذر</td></tr>
+          <tr><td><span class="ltr">vNE</span> — السرعة الممنوع تجاوزها إطلاقاً</td><td class="num">178 KIAS</td><td>بكل الأحوال</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="diagram">
+        <svg viewBox="0 0 500 150" role="img" aria-label="مخطط سرعات مؤشر السرعة الملون">
+          <rect x="40" y="55" width="420" height="26" fill="var(--surface)" stroke="var(--line)"/>
+          <rect x="148.3" y="55" width="92.9" height="26" fill="var(--white-arc)"/>
+          <rect x="154.9" y="55" width="170.3" height="26" fill="var(--green-arc)"/>
+          <rect x="325.2" y="55" width="108.3" height="26" fill="var(--yellow-arc)"/>
+          <rect x="433.5" y="55" width="4" height="26" fill="var(--red-arc)"/>
+          <line x1="40" y1="55" x2="40" y2="90" stroke="var(--muted)" stroke-width="1"/>
+          <line x1="148.3" y1="45" x2="148.3" y2="90" stroke="var(--ink-2)" stroke-width="1"/>
+          <line x1="241.2" y1="45" x2="241.2" y2="90" stroke="var(--ink-2)" stroke-width="1"/>
+          <line x1="278.7" y1="45" x2="278.7" y2="90" stroke="var(--ink-2)" stroke-width="1"/>
+          <line x1="325.2" y1="45" x2="325.2" y2="90" stroke="var(--ink-2)" stroke-width="1"/>
+          <line x1="433.5" y1="35" x2="433.5" y2="90" stroke="var(--red-arc)" stroke-width="1.5"/>
+          <g font-size="12" fill="var(--ink-2)" text-anchor="middle" font-family="inherit">
+            <text x="40" y="105">0</text>
+            <text x="148.3" y="105">49</text>
+            <text x="241.2" y="105">91</text>
+            <text x="278.7" y="105">108</text>
+            <text x="325.2" y="105">129</text>
+            <text x="433.5" y="105" fill="var(--red-arc)" font-weight="700">178</text>
+          </g>
+          <g font-size="12.5" font-weight="700" text-anchor="middle" font-family="inherit">
+            <text x="194" y="42" fill="var(--ink)">أبيض</text>
+            <text x="240" y="130" fill="var(--green-arc)">أخضر (طيران طبيعي)</text>
+            <text x="379" y="42" fill="var(--caution-line)">أصفر (بحذر)</text>
+            <text x="433" y="130" fill="var(--red-arc)">vNE</text>
+          </g>
+        </svg>
+        <div class="cap">الأقواس الملونة على مؤشر السرعة — بالعقدة (KIAS)، الرقم 178 هو الخط الأحمر</div>
+      </div>
+
+      <h3 class="sub">حدود المحرك <span class="ref">AFM 2.4</span></h3>
+      <p>
+        هون لازم تنتبه كويس: الكتاب يغطي محركين مختلفين — <code class="ltr">TAE 125-01</code>
+        و<code class="ltr">TAE 125-02-99</code> (يركب إذا تم تنفيذ تعديل
+        <code class="ltr">MÄM 40-256</code>). بعض الأرقام تتغير بين الاثنين،
+        وهاي بالضبط النقطة اللي لازم تعرف طائرتك أنت فيها أي محرك.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <caption>مقارنة مباشرة بين المحركين — لاحظ الفرق بـ RPM والارتفاع</caption>
+        <thead><tr><th>البند</th><th class="num">TAE 125-01</th><th class="num">TAE 125-02-99</th></tr></thead>
+        <tbody>
+          <tr><td>أقصى RPM (مستمر)</td><td class="num">2500 RPM</td><td class="num">2300 RPM</td></tr>
+          <tr><td>أقصى Overspeed</td><td class="num">— (غير معرف)</td><td class="num">2500 RPM لمدة 20 ثانية كحد أقصى</td></tr>
+          <tr><td>أقصى ارتفاع لإعادة تشغيل المحرك</td><td class="num">6500 قدم (6000 قدم لنسخة R5)</td><td class="num">8000 قدم</td></tr>
+          <tr><td>نوع الكولانت</td><td class="num">DAI-G30-MIX</td><td class="num">DAI-G48-MIX</td></tr>
+          <tr><td>أقصى حرارة وقود (Jet Fuel)</td><td class="num">+65°C</td><td class="num">+75°C</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>الأرقام اللي ما تتغير بين المحركين — وهاي كمان مهمة تحفظها:</p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>البند</th><th class="num">القيمة</th></tr></thead>
+        <tbody>
+          <tr><td>أقصى قدرة إقلاع/مستمرة</td><td class="num">99 kW (135 DIN-hp) عند 2300 RPM</td></tr>
+          <tr><td>ضغط الزيت — أدنى / أقصى</td><td class="num">1.2 bar / 6.5 bar</td></tr>
+          <tr><td>كمية الزيت — أدنى / أقصى</td><td class="num">4.5 لتر / 6.0 لتر</td></tr>
+          <tr><td>أقصى استهلاك زيت</td><td class="num">0.1 لتر/ساعة</td></tr>
+          <tr><td>حرارة الزيت — أدنى / أقصى</td><td class="num">-32°C / +140°C</td></tr>
+          <tr><td>أقصى حرارة الجيربوكس</td><td class="num">120°C</td></tr>
+          <tr><td>أقصى حرارة الكولانت</td><td class="num">+105°C</td></tr>
+          <tr><td>قطر المروحة</td><td class="num">187 سم (6 قدم 2 إنش)</td></tr>
+          <tr><td>زاوية ريش المروحة (0.75R)</td><td class="num">12° إلى 28°</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="callout warning">
+        <span class="label">Warning</span>
+        تجاوز أي حد من هذول يعني إجهاد للمحرك أو للهيكل — مو "تحذير نظري"،
+        الكتاب واضح إنه مايصير.
+      </div>
+
+      <h3 class="sub">علامات أجهزة قياس المحرك <span class="ref">AFM 2.5</span></h3>
+      <p>
+        نقطة تستاهل وقفة: على محرك <code class="ltr">TAE 125-02-99</code> (مع
+        AED/CED الجديد)، مؤشر الـ RPM ما فيه منطقة صفراء أصلاً — يروح مباشرة
+        من أخضر (0 لـ2300 RPM) لأحمر فوق 2300. أما محرك
+        <code class="ltr">TAE 125-01</code> فعنده منطقة صفراء من 2400 لـ2500 RPM
+        قبل الأحمر. لو سألوك "وين المنطقة الصفراء بالـ -02-99؟" — الجواب:
+        ماكو.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>المؤشر</th><th>أصفر (تنبيه)</th><th class="num">أحمر (ممنوع)</th></tr></thead>
+        <tbody>
+          <tr><td>الأميتر (Ammeter)</td><td>85 – 90 A</td><td class="num">فوق 90 A</td></tr>
+          <tr><td>الفولتميتر (Voltmeter)</td><td>11.0–12.6 V و 15.0–15.5 V</td><td class="num">تحت 11 V أو فوق 15.5 V</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="callout note">
+        <span class="label">Note</span>
+        تفاصيل لوحة الإنذار الكاملة (WARNING/CAUTION/STATUS) موجودة بقسم
+        <a href="#electrical">النظام الكهربائي</a> — هون بس ملخص سريع: أضواء
+        حمراء = <code class="ltr">WARNING</code>/<code class="ltr">START</code>/<code class="ltr">TRIM FAIL</code>/<code class="ltr">ECU BACKUP UNSAFE</code>،
+        كهرمانية = <code class="ltr">CAUTION</code>/<code class="ltr">LOW VOLTS</code>/<code class="ltr">ALTERNATOR</code>/<code class="ltr">PITOT</code>/<code class="ltr">LOW FUEL</code>/<code class="ltr">ENGINE</code>/<code class="ltr">ECU A</code>/<code class="ltr">ECU B</code>،
+        بيضاء = <code class="ltr">FUEL TRANS</code>/<code class="ltr">GLOW</code>.
+      </div>
+
+      <h3 class="sub">الوزن ومركز الثقل <span class="ref">AFM 2.7, 2.8</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>البند</th><th class="num">القيمة</th></tr></thead>
+        <tbody>
+          <tr><td>أقصى وزن إقلاع — Normal Category</td><td class="num">1150 كغم (2535 رطل)</td></tr>
+          <tr><td>أقصى وزن إقلاع — Utility Category</td><td class="num">980 كغم (2161 رطل)</td></tr>
+          <tr><td>أقصى وزن هبوط (مع دعامات 18مم / MÄM 40-123)</td><td class="num">1150 كغم</td></tr>
+          <tr><td>أقصى وزن هبوط (بدونها)</td><td class="num">1092 كغم (2407 رطل)</td></tr>
+          <tr><td>أقصى حمولة صندوق الأمتعة</td><td class="num">30 كغم (66 رطل)</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>
+        مركز الثقل مو رقم واحد ثابت — هو "منطقة" مسموحة، تتحرك مع الوزن. جدول
+        بسيط أوضح من فقرة نص:
+      </p>
+      <div class="diagram">
+        <svg viewBox="0 0 500 300" role="img" aria-label="مخطط منطقة مركز الثقل المسموحة">
+          <g font-family="inherit">
+            <line x1="40" y1="40" x2="40" y2="260" stroke="var(--ink-2)" stroke-width="1.2"/>
+            <line x1="40" y1="260" x2="460" y2="260" stroke="var(--ink-2)" stroke-width="1.2"/>
+            <polygon points="124,244.7 124,142.3 208,55.3 390,55.3 390,244.7"
+                     fill="var(--green-arc)" fill-opacity="0.25" stroke="var(--green-arc)" stroke-width="2"/>
+            <line x1="334" y1="55.3" x2="334" y2="244.7" stroke="var(--brand)" stroke-width="2" stroke-dasharray="6 5"/>
+            <line x1="40" y1="55.3" x2="460" y2="55.3" stroke="var(--line)" stroke-dasharray="3 4"/>
+            <line x1="40" y1="142.3" x2="460" y2="142.3" stroke="var(--line)" stroke-dasharray="3 4"/>
+            <g font-size="11.5" fill="var(--ink-2)" text-anchor="end">
+              <text x="34" y="248">780</text>
+              <text x="34" y="146">980</text>
+              <text x="34" y="59">1150</text>
+            </g>
+            <g font-size="11.5" fill="var(--ink-2)" text-anchor="middle">
+              <text x="124" y="278">2.40</text>
+              <text x="208" y="278">2.46</text>
+              <text x="334" y="278">2.55</text>
+              <text x="390" y="278">2.59</text>
+            </g>
+            <text x="20" y="150" fill="var(--ink-2)" font-size="12" transform="rotate(-90 20 150)" text-anchor="middle">الوزن (كغم)</text>
+            <text x="250" y="296" fill="var(--ink-2)" font-size="12" text-anchor="middle">مركز الثقل — متر خلف الـ Datum Plane</text>
+            <text x="250" y="100" fill="var(--green-arc)" font-size="13" font-weight="700" text-anchor="middle">المنطقة المسموحة (خزان قياسي)</text>
+            <text x="334" y="70" fill="var(--brand)" font-size="11" text-anchor="middle">حد خلفي — Long Range Tank</text>
+          </g>
+        </svg>
+        <div class="cap">المنطقة الخضراء = مسموحة (خزان قياسي). الخط المتقطع = الحد الخلفي إذا ركّبت Long Range Tank (أضيق شوي)</div>
+      </div>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>الحالة</th><th class="num">القيمة</th></tr></thead>
+        <tbody>
+          <tr><td>أقصى حد أمامي — من 780 إلى 980 كغم</td><td class="num">2.40 م خلف DP</td></tr>
+          <tr><td>أقصى حد أمامي — عند 1150 كغم</td><td class="num">2.46 م خلف DP (تدرّج خطي بينهم)</td></tr>
+          <tr><td>أقصى حد خلفي — خزان قياسي</td><td class="num">2.59 م خلف DP</td></tr>
+          <tr><td>أقصى حد خلفي — Long Range Tank</td><td class="num">2.55 م خلف DP</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">المناورات المعتمدة وعوامل الحمل <span class="ref">AFM 2.9, 2.10</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>الفئة</th><th class="num">أقصى زاوية ميلان (Bank)</th></tr></thead>
+        <tbody>
+          <tr><td>Normal Category</td><td class="num">60°</td></tr>
+          <tr><td>Utility Category</td><td class="num">90°</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="callout caution">
+        <span class="label">Caution</span>
+        الأكروبات والدوامة (Spin) ممنوعة بكل الفئتين. وكمان: تجنّب الـ g السالب
+        لفترة طويلة — يسبب مشاكل بالتحكم بالمروحة وتردد بالمحرك (engine surging).
+      </div>
+      <div class="callout note">
+        <span class="label">صراحة</span>
+        جدول عوامل الحمل الرقمي بالـ AFM (البند 2.10) مطبوع بالكتاب الأصلي
+        بدون فاصلة عشرية واضحة — تأكدنا من هالشي بتصوير الصفحة نفسها مو بس
+        استخراج النص. عشان هيك ما بنينا أي سؤال أو رقم دقيق على هالجدول بالذات؛
+        اللي تحتاجه فعلياً هو تجنب الـ g السالب الممتد، وهذا مذكور صراحة.
+      </div>
+
+      <h3 class="sub">الارتفاع والطاقم <span class="ref">AFM 2.11, 2.12</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>البند</th><th class="num">القيمة</th></tr></thead>
+        <tbody>
+          <tr><td>أقصى ارتفاع تشغيل تم إثباته</td><td class="num">16400 قدم (5000 م)</td></tr>
+          <tr><td>أدنى طاقم</td><td class="num">شخص واحد</td></tr>
+          <tr><td>أقصى ركاب — Normal Category</td><td class="num">4 أشخاص</td></tr>
+          <tr><td>أقصى ركاب — Utility Category</td><td class="num">شخصان، لازم الاثنين بالمقاعد الأمامية</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">أنواع التشغيل والوقود <span class="ref">AFM 2.13, 2.14</span></h3>
+      <p>
+        معتمدة: <code class="ltr">VFR</code>، <code class="ltr">Night VFR</code>،
+        و<code class="ltr">IFR</code>. ممنوع تماماً: الطيران بظروف تجمد معروفة
+        أو متوقعة، والطيران بعواصف رعدية معروفة.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>الخزان</th><th class="num">الكمية الكلية</th><th class="num">القابل للاستخدام</th></tr></thead>
+        <tbody>
+          <tr><td>قياسي (لكل جهة)</td><td class="num">15.0 غالون أمريكي (56.8 لتر)</td><td class="num">14.0 غالون (53.0 لتر)</td></tr>
+          <tr><td>Long Range (لكل جهة)</td><td class="num">20.5 غالون (77.6 لتر)</td><td class="num">19.5 غالون (73.8 لتر)</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>
+        أقصى فرق كمية مسموح بين الخزانين (Long Range): <strong>9 غالون أمريكي</strong>
+        (~34 لتر). وانتبه: مؤشر الكمية "يتجمد" عند 15 غالون حتى لو فعلياً فيه
+        19.5 — لازم تستخدم أداة القياس البديلة أو تفترض 15 بس للتخطيط.
+      </p>
+
+      <h3 class="sub">حدود أخرى تستاهل الحفظ <span class="ref">AFM 2.16</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>البند</th><th class="num">القيمة</th></tr></thead>
+        <tbody>
+          <tr><td>مدى حرارة تشغيل الطائرة</td><td class="num">-20°C إلى +54°C (تحت -20°C لازم تسخين خارجي إجباري)</td></tr>
+          <tr><td>أدنى حرارة وقود لبدء التشغيل (ديزل/مزيج غير مؤكد)</td><td class="num">-5°C</td></tr>
+          <tr><td>أدنى حرارة وقود للإقلاع (ديزل/مزيج غير مؤكد)</td><td class="num">+5°C</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <ul>
+        <li>الكانوبي وباب الركاب ما يتقفلوا بالمفتاح أبداً أثناء التشغيل — لازم يضلوا قابلين للفتح من برّه بأي لحظة.</li>
+        <li>ممنوع التدخين بالطائرة نهائياً.</li>
+        <li>لو ختم مفتاح <code class="ltr">EMERGENCY</code> انكسر، أو ضوء <code class="ltr">ECU BACKUP UNSAFE</code> اشتغل — رحلات الـ IFR ممنوعة.</li>
+      </ul>
+      <p>
+        وإذا مركّب نظام الطيار الآلي <code class="ltr">KAP 140</code>: أقصى سرعة
+        تشغيل 165 KIAS، أدنى سرعة 70 KIAS، أدنى ارتفاع تشغيل 800 قدم AGL
+        (كروز/تسلق/هبوط/مناورة) أو 200 قدم AGL بالاقتراب النهائي فقط. ويُطفى
+        إجبارياً أثناء الإقلاع والهبوط.
+      </p>
+
+      <div class="related"><span class="dot"></span> الأسئلة المرتبطة: <strong>55</strong> سؤال في هذا الموضوع</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 02 EMERGENCY PROCEDURES -->
+    <!-- ============================================================ -->
+    <section class="sec" id="emergency">
+      <h2><span class="num">02</span> إجراءات الطوارئ <span class="en">Emergency Procedures</span></h2>
+      <p class="lead">
+        القاعدة الذهبية مكتوبة حرفياً بأول الفصل: <strong>"طيّر الطائرة أولاً"</strong>.
+        قبل ما تحاول تحل أي مشكلة، خذ السيطرة على وضعية الطيران وفكّر بمكان
+        هبوط طارئ. الكتاب يطلب منك كمان إنك تفكر مسبقاً — قبل الرحلة — وين
+        بتهبط لو صار أي شي بكل مرحلة من مراحل الطيران، عشان ما تنصدم وتضل
+        هادئ وقت الحاجة.
+      </p>
+
+      <h3 class="sub">سرعات الطوارئ الأساسية <span class="ref">AFM 3.1.2</span></h3>
+      <p>هاي الجدول اللي بيتكرر معك بكل سيناريو طوارئ تقريباً — احفظه بالوزن الأقصى وكفى (1150 كغم):</p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>الحدث</th><th class="num">850 كغم</th><th class="num">1000 كغم</th><th class="num">1150 كغم</th></tr></thead>
+        <tbody>
+          <tr><td>فشل محرك بعد الإقلاع (فلاب T/O)</td><td class="num">59</td><td class="num">66</td><td class="num">72</td></tr>
+          <tr><td>أفضل زاوية انزلاق (فلاب UP)</td><td class="num">60</td><td class="num">68</td><td class="num">73</td></tr>
+          <tr><td>هبوط طارئ — فلاب UP</td><td class="num">60</td><td class="num">68</td><td class="num">73</td></tr>
+          <tr><td>هبوط طارئ — فلاب T/O</td><td class="num">59</td><td class="num">66</td><td class="num">72</td></tr>
+          <tr><td>هبوط طارئ — فلاب LDG</td><td class="num">58</td><td class="num">63</td><td class="num">71</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">مشاكل المحرك <span class="ref">AFM 3.2</span></h3>
+      <p><strong>على الأرض:</strong> لو ضغط الزيت بالمنطقة الحمراء — أوقف المحرك فوراً، بدون نقاش.</p>
+      <p>
+        <strong>أثناء الإقلاع:</strong> لو المسافة كافية للتوقف — Power lever
+        على IDLE واهبط بالخط المستقيم. لو ما عاد فيك توقف ولسا ما وصلت
+        ارتفاع آمن —
+      </p>
+      <div class="callout warning">
+        <span class="label">Warning</span>
+        <strong>لا تحاول ترجع للمطار.</strong> اهبط بالخط المستقيم قدامك.
+        الرجوع للمطار ممكن يكون قاتل — هاي جملة الكتاب حرفياً، مو مبالغة مني.
+      </div>
+      <p>
+        <strong>بالجو (المحرك يشتغل بشكل غريب أو فقد قدرة):</strong> Power
+        lever MAX، شوف إذا فيه تجمد فافتح Alternate Air، تأكد من كمية
+        MAIN tank، شغّل مضخة النقل، تأكد إن صمام الطوارئ على NORMAL، وبدّل
+        لـ ECU B. إذا ما ضبط، رجّعه AUTOMATIC. ولو فقدان القدرة استمر —
+        دورة ريستارت للـ ECU عن طريق ENGINE MASTER: OFF ثم ON.
+      </p>
+
+      <h3 class="sub">إعادة تشغيل المحرك بالجو <span class="ref">AFM 3.2.4, 3.2.5</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>البند</th><th class="num">القيمة</th></tr></thead>
+        <tbody>
+          <tr><td>أقصى سرعة لتدوير المروحة بالهواء (windmilling)</td><td class="num">110 KIAS</td></tr>
+          <tr><td>مدى إعادة التشغيل بمروحة دائرة (windmilling)</td><td class="num">73 – 110 KIAS</td></tr>
+          <tr><td>سرعة بداية دوران المروحة تلقائياً — TAE 125-01</td><td class="num">~105 KIAS</td></tr>
+          <tr><td>سرعة بداية دوران المروحة تلقائياً — TAE 125-02-99 (بدون MÄM 40-701)</td><td class="num">~110 KIAS</td></tr>
+          <tr><td>فقدان ارتفاع متوقع أثناء محاولة إعادة التشغيل</td><td class="num">1000 قدم (300 م) على الأقل</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="callout caution">
+        <span class="label">Caution</span>
+        على محرك <code class="ltr">TAE 125-02-99</code> مع <code class="ltr">dual-mass flywheel</code>
+        (تعديل MÄM 40-701): إذا المحرك وقف والمروحة استمرت تدور — طبيعي.
+        لكن لو المروحة توقفت تماماً، هذا مؤشر عطل ميكانيكي كبير، ولا يُحاول
+        إعادة تشغيلها بمروحة واقفة إطلاقاً.
+      </div>
+
+      <h3 class="sub">نظام تنظيم الـ RPM المعطل <span class="ref">AFM 3.2.6</span></h3>
+      <ul>
+        <li><strong>فشل الـ Governor:</strong> اضبط الـ RPM يدوياً بالـ Power lever، وحاول ما تتجاوز 2500 RPM.</li>
+        <li><strong>Overspeed:</strong> خفف القدرة لعدم تجاوز 2300 RPM. لو احتجت تسلق أقوى، مسموح 2500 RPM لمدة 10 دقائق كحد أقصى بس.</li>
+        <li><strong>Underspeed:</strong> ممكن تنزل الـ RPM لـ1400 أو أقل — يعني بلا قدرة تسلق ولا go-around. اهبط أقرب وقت ممكن.</li>
+      </ul>
+
+      <h3 class="sub">فشل مضخة نقل الوقود <span class="ref">AFM 3.2.7</span></h3>
+      <p>
+        صمام الطوارئ بوضع <code class="ltr">EMERG. TRANSFER</code> ينقل الوقود
+        بمعدل تقريبي <strong>18 إلى 21 غالون/ساعة</strong> (70-80 لتر/ساعة) —
+        أبطأ بكثير من المضخة الكهربائية العادية.
+      </p>
+      <div class="callout warning">
+        <span class="label">Warning</span>
+        لازم ترجّع الصمام لـ NORMAL <strong>قبل</strong> ما مؤشر AUX يوصل صفر —
+        غير هيك، المحرك بيقف بالجو لما يفرغ AUX تماماً.
+      </div>
+
+      <h3 class="sub">الدخان والحريق <span class="ref">AFM 3.3</span></h3>
+      <p>
+        النمط العام بكل السيناريوهات (أرض / إقلاع / جو): صمام الطوارئ OFF،
+        مضخة النقل OFF، ENGINE MASTER OFF، ELECTRIC MASTER OFF، ثم افتح
+        الكانوبي وأخلِ الطائرة فور التوقف. لو حريق كهربائي بالجو تحديداً:
+        شغّل مفتاح EMERGENCY (إذا مركّب) قبل ما تطفي ELECTRIC MASTER —
+        هيك البطارية الاحتياطية تغذّي الـ attitude gyro وضوء الـ flood light.
+      </p>
+      <div class="callout caution">
+        <span class="label">Caution</span>
+        عند دخان كثيف، مسموح تفتح الكانوبي الأمامي جزئياً بالجو (يضل بوضعه
+        هذا لغاية الهبوط) لتحسين التهوية — الكتاب يقول الأداء ما يتأثر بشكل ملموس.
+      </div>
+
+      <h3 class="sub">الانزلاق (Gliding) <span class="ref">AFM 3.4</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>حالة المروحة</th><th class="num">نسبة الانزلاق</th><th class="num">المسافة الأفقية لكل 1000 قدم</th></tr></thead>
+        <tbody>
+          <tr><td>تدور بالهواء (windmilling)</td><td class="num">8.8</td><td class="num">1.45 ميل بحري (2.68 كم)</td></tr>
+          <tr><td>واقفة تماماً (stationary)</td><td class="num">10.3</td><td class="num">1.70 ميل بحري (3.14 كم)</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>الرقم الأفضل (10.3) نظري أكثر — قد ما يكون قابل للتحقيق فعلياً مع الحفاظ على سرعة آمنة.</p>
+
+      <h3 class="sub">الهبوط الاضطراري <span class="ref">AFM 3.5</span></h3>
+      <ul>
+        <li><strong>بدون محرك:</strong> المس الأرض بأقل سرعة ممكنة.</li>
+        <li><strong>إطار تالف:</strong> اهبط بطرف المدرج اللي بجهة الإطار السليم، واحمل هذا الجناح واطي — هيك أي انحراف متوقع أثناء التوقف يتصحح داخل المدرج.</li>
+        <li><strong>فرامل تالفة:</strong> الهبوط على العشب أفضل — مقاومة الدحرجة الأعلى تقصّر مسافة التوقف.</li>
+      </ul>
+
+      <h3 class="sub">الخروج من دوامة غير مقصودة (Spin) <span class="ref">AFM 3.6</span></h3>
+      <div class="callout warning">
+        <span class="label">Warning — أربع حركات بنفس اللحظة</span>
+        Power lever IDLE، دفة كاملة بعكس اتجاه الدوران، عصا التحكم للأمام
+        بالكامل، الجنيحات محايدة — الأربعة سوا وبآن واحد. بعدين لما يوقف
+        الدوران: دفة محايدة، اسحب العصا بهدوء، ولا تتجاوز vNE = 178 KIAS
+        وانت راجع لوضعية طيران طبيعية.
+      </div>
+
+      <h3 class="sub">طوارئ أخرى <span class="ref">AFM 3.7</span></h3>
+      <h4 class="sub2">التجمد (Icing)</h4>
+      <p>
+        Pitot heat ON، تدفئة الكابينة ON، ذراع توزيع الهواء على DEFROST، زد
+        القدرة (عشان تمنع تراكم الجليد على ريش المروحة)، وافتح Alternate Air.
+      </p>
+      <div class="callout caution"><span class="label">Caution</span>تراكم الجليد يرفع سرعة الـ Stall — انتبه.</div>
+      <p>لو فشل الـ Pitot heat: افتح الـ Alternate Static valve وسكّر النوافذ الطارئة.</p>
+
+      <h4 class="sub2">أعطال النظام الكهربائي</h4>
+      <ul>
+        <li><strong>فشل كامل:</strong> افحص الـ Circuit breakers، شغّل ESSENTIAL BUS. لو لسا ما فيه كهرباء، شغّل مفتاح EMERGENCY.</li>
+        <li><strong>عطل الستارتر (ما ينفصل):</strong> Power lever IDLE، ENGINE MASTER OFF، ELECTRIC MASTER OFF — وأوقف تحضيرات الرحلة نهائياً.</li>
+        <li><strong>فولتية بالمنطقة الحمراء (فوق 15.5V أو تحت 11V):</strong> ESSENTIAL BUS ON، واهبط بأقرب مطار مناسب.</li>
+        <li>عطل الألترنيتر يترك البطاريات كمصدر أخير — تكفي <strong>30 دقيقة على الأقل</strong>.</li>
+      </ul>
+
+      <h4 class="sub2">الشك بتسرب أول أكسيد الكربون</h4>
+      <p>
+        تدفئة الكابينة OFF، افتح التهوية والنوافذ الطارئة، قلّل السرعة لتحت
+        120 KIAS، وحرّر قفل الكانوبي الأمامي لوضع "Cooling Gap". (120 KIAS
+        هي أقصى سرعة مثبتة لفتح الكانوبي بالجو أصلاً — ما تتجاوزها.)
+      </p>
+
+      <h4 class="sub2">ضوء الباب (DOOR) مضاء</h4>
+      <p>
+        قلّل السرعة فوراً وتأكد بصرياً من الكانوبي والباب الخلفي. لو أحدهم
+        مو مقفول: خلّي السرعة تحت 140 KIAS واهبط بأقرب مطار مناسب.
+      </p>
+      <div class="callout warning">
+        <span class="label">Warning</span>
+        لا تحاول تقفل الباب الخلفي بالجو — قفل الأمان ممكن ينفك والباب ينفصل
+        عن الطائرة.
+      </div>
+
+      <div class="related"><span class="dot"></span> الأسئلة المرتبطة: <strong>34</strong> سؤال في هذا الموضوع</div>
+    </section>
+    <!-- ============================================================ -->
+    <!-- 03 NORMAL PROCEDURES -->
+    <!-- ============================================================ -->
+    <section class="sec" id="normal">
+      <h2><span class="num">03</span> الإجراءات الاعتيادية <span class="en">Normal Procedures</span></h2>
+      <p class="lead">
+        هذا القسم يمشي معك من الفحص قبل الطيران لحد إيقاف المحرك — يعني كل
+        رحلة عادية، خطوة خطوة. ركّز على الأرقام اللي بتتكرر معك بكل درس عملي.
+      </p>
+
+      <h3 class="sub">سرعات التشغيل الاعتيادي <span class="ref">AFM 4A.2</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>السرعة</th><th class="num">850 كغم</th><th class="num">1000 كغم</th><th class="num">1150 كغم</th></tr></thead>
+        <tbody>
+          <tr><td><span class="ltr">vR</span> (رفع العجلة الأمامية، فلاب T/O)</td><td class="num">49</td><td class="num">55</td><td class="num">59</td></tr>
+          <tr><td><span class="ltr">vY</span> (أفضل معدل تسلق، فلاب T/O)</td><td class="num">54</td><td class="num">60</td><td class="num">66</td></tr>
+          <tr><td>تسلق الكروز (فلاب UP)</td><td class="num">60</td><td class="num">68</td><td class="num">73</td></tr>
+          <tr><td>اقتراب هبوط عادي (فلاب LDG)</td><td class="num">58</td><td class="num">63</td><td class="num">71</td></tr>
+          <tr><td>أدنى سرعة أثناء Go-Around (فلاب T/O)</td><td class="num">54</td><td class="num">60</td><td class="num">66</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">الفحص قبل الطيران — نقاط لا تنساها <span class="ref">AFM 4A.3.1</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>البند</th><th class="num">القيمة</th></tr></thead>
+        <tbody>
+          <tr><td>ضغط إطارات العجلات الرئيسية</td><td class="num">2.5 bar (36 psi)</td></tr>
+          <tr><td>ضغط إطار العجلة الأمامية</td><td class="num">2.0 bar (29 psi)</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <ul>
+        <li><strong>حاجز مبرد الوقود (Fuel Cooler Baffle):</strong> شيله لو حرارة الأرض فوق 20°C، ركّبه لو تحت 20°C.</li>
+        <li>افحص مصارف الخزانين (drain) للتأكد ما فيه ماء أو رواسب — لغاية ما يطلع وقود نظيف.</li>
+      </ul>
+
+      <h3 class="sub">التشغيل والإحماء <span class="ref">AFM 4A.3.3</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>البند</th><th class="num">القيمة</th></tr></thead>
+        <tbody>
+          <tr><td>أقصى تشغيل متواصل للستارتر</td><td class="num">10 ثواني</td></tr>
+          <tr><td>فترة تبريد الستارتر بين المحاولات</td><td class="num">20 ثانية</td></tr>
+          <tr><td>بعد 6 محاولات فاشلة</td><td class="num">تبريد نصف ساعة كاملة</td></tr>
+          <tr><td>مهلة خروج ضغط الزيت من المنطقة الحمراء بعد التشغيل</td><td class="num">3 ثواني</td></tr>
+          <tr><td>ضغط زيت طبيعي بمحرك بارد (لغاية 20 ثانية)</td><td class="num">قد يوصل 6.5 bar</td></tr>
+          <tr><td>الإحماء — IDLE</td><td class="num">دقيقتين</td></tr>
+          <tr><td>الإحماء — بعدها لغاية حرارة خضراء</td><td class="num">1400 RPM</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">قبل الجريان وقبل الإقلاع <span class="ref">AFM 4A.3.4, 4A.3.6</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>البند</th><th class="num">القيمة</th></tr></thead>
+        <tbody>
+          <tr><td>RPM بوضع Idle</td><td class="num">890 ± 20 RPM</td></tr>
+          <tr><td>Power lever عند MAX (فحص قبل الإقلاع)</td><td class="num">10 ثواني</td></tr>
+          <tr><td>RPM المتوقع عند MAX</td><td class="num">2240 – 2300 RPM</td></tr>
+          <tr><td>LOAD المتوقع عند MAX</td><td class="num">90 – 100%</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>
+        اختبار <code class="ltr">ECU TEST</code> جزء إجباري من فحص ما قبل
+        الإقلاع — يبدّل تلقائياً بين ECU A وECU B وتشوف أضواء الـ Caution
+        توضي وتنطفي. أي خلل بالاختبار = وقف تحضيرات الرحلة، حتى لو المحرك
+        اشتغل عادي بعدها.
+      </p>
+
+      <h3 class="sub">التسلق <span class="ref">AFM 4A.3.8</span></h3>
+      <div class="callout caution">
+        <span class="label">Caution</span>
+        لو حرارة الزيت أو الكولانت وصلت المنطقة الصفراء أثناء التسلق: زد
+        السرعة 5 عقدة، وخفّف القدرة 10% — تسلق أبطأ بس تبريد أحسن.
+      </div>
+      <p>القدرة الموصى فيها للكروز من الشركة المصنعة: <strong>70%</strong>.</p>
+
+      <h3 class="sub">نقل الوقود والهبوط <span class="ref">AFM 4A.3.10 – 4A.3.13</span></h3>
+      <ul>
+        <li>مضخة النقل العادية (الكهربائية) تنقل بمعدل تقريبي <strong>60 غالون/ساعة</strong>، أسرع بكثير من صمام الطوارئ.</li>
+        <li>بالاقتراب: خفّف لـ108 KIAS قبل فلاب T/O، ولـ91 KIAS قبل فلاب LDG.</li>
+        <li>بالهبوط فوق الارتفاع الآمن أثناء Descent: تحت 5000 قدم القدرة كما تحتاج، فوق 5000 قدم لا تقل عن 30% — تجنّباً لتوقف احتراق غير محسوس بحرارة تحت -10°C.</li>
+      </ul>
+
+      <h3 class="sub">إيقاف المحرك <span class="ref">AFM 4A.3.15</span></h3>
+      <div class="callout warning">
+        <span class="label">Warning</span>
+        لازم يشتغل المحرك على Idle لمدة <strong>دقيقتين على الأقل</strong> قبل
+        الإيقاف — تجنباً لتلف حراري بالتوربو تشارجر.
+      </div>
+      <p>
+        وبعد الهبوط، افحص الـ ELT بالاستماع على تردد <strong>121.5 MHz</strong>.
+        وقبل التزود بالوقود، لازم توصيل الطائرة بأرضي كهربائي (Grounding) من
+        نقاط التوصيل غير المطلية على الـ steps.
+      </p>
+
+      <div class="related"><span class="dot"></span> الأسئلة المرتبطة: <strong>27</strong> سؤال في هذا الموضوع</div>
+    </section>
+    <!-- ============================================================ -->
+    <!-- 04 ABNORMAL PROCEDURES -->
+    <!-- ============================================================ -->
+    <section class="sec" id="abnormal">
+      <h2><span class="num">04</span> الإجراءات غير الاعتيادية <span class="en">Abnormal Procedures</span></h2>
+      <p class="lead">
+        الفرق عن قسم الطوارئ: هون المشاكل "أخف" — مؤشر خرج عن الأخضر، ضوء
+        Caution اشتغل — مو بالضرورة إنك تهبط فوراً، بس لازم تعرف بالضبط شو
+        الخطوة الصح.
+      </p>
+
+      <h3 class="sub">مؤشرات خارج المنطقة الخضراء <span class="ref">AFM 4B.2</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>المؤشر</th><th>الحالة</th><th>الإجراء</th></tr></thead>
+        <tbody>
+          <tr><td>RPM مرتفع</td><td>—</td><td>خفف القدرة. مسموح تكون بالمنطقة الصفراء لفترة قصيرة (مثلاً go-around).</td></tr>
+          <tr><td>حرارة الكولانت مرتفعة</td><td>ضوء WATER LEVEL مطفي، أثناء التسلق</td><td>خفف القدرة 10%، زد السرعة 10 عقدة. لو ما رجعت خضراء خلال 60 ثانية، خفف أكثر.</td></tr>
+          <tr><td>حرارة الكولانت مرتفعة/منخفضة</td><td>ضوء WATER LEVEL مضاء</td><td>توقع فقدان كولانت — جهّز نفسك لهبوط طارئ بدون محرك.</td></tr>
+          <tr><td>حرارة الزيت مرتفعة</td><td>ضغط الزيت منخفض</td><td>توقع فقدان زيت وفشل محرك — جهّز لهبوط طارئ.</td></tr>
+          <tr><td>حرارة الزيت مرتفعة</td><td>ضغط الزيت أخضر</td><td>خفف القدرة، زد السرعة، راقب الحرارة.</td></tr>
+          <tr><td>حرارة الزيت منخفضة</td><td>—</td><td>زد القدرة، قلل السرعة، راقب.</td></tr>
+          <tr><td>ضغط الزيت مرتفع</td><td>الحرارات خضراء</td><td>على الأغلب مؤشر خاطئ — استمر بمراقبة الحرارات.</td></tr>
+          <tr><td>ضغط الزيت مرتفع</td><td>الحرارات مو خضراء</td><td>خفف القدرة — توقع فشل محرك، جهّز لهبوط طارئ.</td></tr>
+          <tr><td>حرارة الجيربوكس مرتفعة</td><td>—</td><td>خفف القدرة وزد السرعة.</td></tr>
+          <tr><td>حرارة الوقود مرتفعة</td><td>—</td><td>خفف القدرة، زد السرعة. ممكن تنقل وقود من AUX لتخفيض الحرارة.</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="callout note">
+        <span class="label">Note</span>
+        لو RPM أقل من 1500 والـ Power lever على IDLE — ضغط الزيت لازم ينزل
+        فعلياً للمنطقة الحمراء قبل ما ضوء الـ Caution يضوي، هذا طبيعي وليس
+        عطل بالمؤشر.
+      </div>
+
+      <h3 class="sub">أعطال كهربائية على لوحة الإنذار <span class="ref">AFM 4B.3</span></h3>
+      <ul>
+        <li><strong>LOW VOLTS:</strong> الفولتية الطبيعية 14V، والتنبيه يشتغل تحت 12.6V. الأسباب المحتملة: عطل بالتزويد أو RPM منخفض جداً.</li>
+        <li><strong>ECU A / ECU B:</strong> اضغط زر ECU TEST أكتر من ثانيتين لإعادة الضبط. لو رجعت أو ما انضبطت — اهبط بأقرب مطار مناسب والمحرك لازم يتفحص بعدها بكل الأحوال.</li>
+        <li><strong>PITOT:</strong> لو صار بعد تشغيل طويل على الأرض — طبيعي، هذا مفتاح حراري يحمي من السخونة الزايدة، وبيرجع يشتغل لحاله بعد فترة تبريد.</li>
+        <li><strong>LOW FUEL:</strong> يضوي لما الوقود القابل للاستخدام بـ MAIN تحت تقريباً 3 غالون (± 2/-1).</li>
+      </ul>
+
+      <h3 class="sub">أعطال على شاشة AED 125 <span class="ref">AFM 4B.4</span></h3>
+      <ul>
+        <li><strong>GENERATOR (حمل كهربائي عالي):</strong> على الأغلب عطل بالأسلاك أو المعدات — أطفي أي جهاز مو ضروري.</li>
+        <li><strong>VOLT مرتفع:</strong> اهبط بأقرب مطار مناسب. (وممكن ضوء ENGINE يضوي أثناء الإحماء على الأرض بسبب فولتية عالية طبيعية لمحرك بارد — مو عطل حقيقي.)</li>
+      </ul>
+
+      <h3 class="sub">الإقلاع من مدرج عشبي قصير <span class="ref">AFM 4B.5</span></h3>
+      <p>
+        فرامل مشدودة، فلاب T/O، Power lever MAX، عصا التحكم للخلف بالكامل،
+        بعدين حرّر الفرامل. حرّر العصا بالتدريج بعد ما ترفع العجلة الأمامية.
+      </p>
+
+      <h3 class="sub">أعطال نظام الفلاب <span class="ref">AFM 4B.6</span></h3>
+      <p>
+        لو بقي بس UP أو بس T/O متاح: اقترب بزاوية منخفضة، وتحكم بالسرعة
+        ومعدل الهبوط عن طريق الـ Power lever. لو بقي بس LDG متاح: اهبط بشكل
+        طبيعي عادي.
+      </p>
+
+      <h3 class="sub">الهبوط بوزن هبوط مرتفع <span class="ref">AFM 4B.7</span></h3>
+      <p>
+        بالنسبة للطائرات اللي أقصى وزن هبوط عندها 1092 كغم — الهبوط بوزن بين
+        1092 و1150 كغم يعتبر إجراء غير اعتيادي، وسرعة الاقتراب المطلوبة
+        <strong>71 KIAS</strong>.
+      </p>
+
+      <div class="related"><span class="dot"></span> الأسئلة المرتبطة: <strong>19</strong> سؤال في هذا الموضوع</div>
+    </section>
+    <!-- ============================================================ -->
+    <!-- 05 POWERPLANT -->
+    <!-- ============================================================ -->
+    <section class="sec" id="powerplant">
+      <h2><span class="num">05</span> المحرك <span class="en">Powerplant</span></h2>
+      <p class="lead">
+        هذا مو محرك بنزين عادي بمكربن — هذا محرك ديزل حقيقي، رباعي الأشواط،
+        بحقن مباشر بـ Common Rail، ومبرّد بالسائل، وله تربو مع Intercooler.
+        وأهم شي: عنده وحدتين تحكم إلكتروني (ECU A و ECU B) تشتغل بدالك عن
+        كل شي — أنت بس تحرك Power lever وحدة، وهي تدبّر الباقي.
+      </p>
+
+      <h3 class="sub">نظرة عامة على المحرك <span class="ref">AFM 7.9.1</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>البند</th><th class="num">القيمة</th></tr></thead>
+        <tbody>
+          <tr><td>النوع</td><td class="num">ديزل رباعي الأشواط، تبريد سائل، تشحيم Wet Sump</td></tr>
+          <tr><td>نسبة تخفيض علبة تروس المروحة</td><td class="num">1 : 1.69</td></tr>
+          <tr><td>سعة المحرك — TAE 125-01</td><td class="num">1689 سم³ (103 إنش³)</td></tr>
+          <tr><td>سعة المحرك — TAE 125-02-99</td><td class="num">1991 سم³ (121.5 إنش³)</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="callout note">
+        <span class="label">Note</span>
+        حتى لو فصلت البطارية عن نظام التوزيع بمفتاح ELECTRIC MASTER، الـ ECU
+        بيضل ياخذ تغذية كهربائية مباشرة من البطارية — لأنه أهم شي بالطائرة.
+      </div>
+
+      <h3 class="sub">أدوات التحكم <span class="ref">AFM 7.9.2</span></h3>
+      <ul>
+        <li><strong>Power lever:</strong> ما يتحكم مباشرة بالوقود أو المانيفولد — هو بس يحدد نسبة القدرة المطلوبة (LOAD %)، والـ ECU هو اللي يترجمها لضغط مانيفولد وكمية حقن وسرعة مروحة.</li>
+        <li><strong>ELECTRIC MASTER:</strong> ثلاث وضعيات — OFF / ON / START.</li>
+        <li><strong>ENGINE MASTER:</strong> لازم يكون ON عشان تقدر تدور المحرك أصلاً.</li>
+        <li><strong>ECU SWAP:</strong> بالتشغيل العادي على AUTOMATIC — المحرك يتحكم فيه ECU A، وبيبدّل تلقائياً لـECU B لو صار عطل.</li>
+        <li><strong>ALTERNATE AIR:</strong> بالوضع الطبيعي مسكّر (الذراع للأمام). تسحبه للخلف لو صار فلتر الهواء مسدود أو فيه تجمد — بيسحب هوا من غرفة المحرك بدالاً عنه.</li>
+      </ul>
+      <div class="callout caution">
+        <span class="label">Caution — فقدان ضغط زيت الـ Governor</span>
+        علبة تروس المروحة (Propeller Governor) عندها دائرة زيت منفصلة تماماً
+        عن زيت المحرك. لو فقدت هذي الدائرة ضغطها، الريش تروح تلقائياً لأنعم
+        زاوية pitch ممكنة — يعني أقصى RPM، مو أقلها.
+      </div>
+
+      <h3 class="sub">زر ECU TEST — وظيفتين بوظيفة وحدة <span class="ref">AFM 7.9.2</span></h3>
+      <p>
+        شو بيصير لما تضغطه يعتمد على وضع الـ Power lever:
+      </p>
+      <ul>
+        <li><strong>Power lever على IDLE و RPM تحت ~900:</strong> يبدأ الاختبار الذاتي الكامل للـ ECU — بيبدّل من A لـ B وبالعكس مع دوران بالمروحة، وتراقب الأضواء توضي وتنطفي.</li>
+        <li><strong>Power lever فوق IDLE:</strong> يصير بس زر "إعادة ضبط" لتنبيه ECU A أو ECU B — مرة وحدة بس، وبس للأعطال البسيطة.</li>
+        <li><strong>طائرات IFR:</strong> نفس الزر يفحص بطارية الـ ECU Backup — لو طاقتها تحت <strong>70%</strong> من سعتها المقننة، ضوء ECU BACKUP UNSAFE يضل مضاء بشكل ثابت.</li>
+      </ul>
+
+      <h3 class="sub">أجهزة قياس المحرك (CED / AED) <span class="ref">AFM 7.9.4</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>الجهاز</th><th>يعرض</th></tr></thead>
+        <tbody>
+          <tr><td><span class="ltr">CED 125</span></td><td>RPM، ضغط الزيت (OP)، حرارة الزيت (OT)، حرارة الكولانت (CT)، حرارة الجيربوكس (GT)، LOAD</td></tr>
+          <tr><td><span class="ltr">AED 125</span></td><td>كمية وقود MAIN/AUX، مستوى الكولانت (WATER LEVEL)، حرارة وقود يمين/يسار، الأميتر (GENERATOR)، الفولتميتر (VOLT)، معدل تدفق الوقود (FUEL FLOW)</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">التبريد والتوربو <span class="ref">AFM 7.9.6, 7.9.7</span></h3>
+      <p>
+        نظام التبريد فيه رادياتير و"باي-باس" — الباي-باس يشتغل والمحرك بارد
+        (يسرّع الإحماء)، ولما الحرارة توصل تقريباً <strong>80°C</strong> صمام
+        ثرموستات يفعّل الرادياتير. فيه كمان مبادل حراري منفصل للتدفئة الداخلية،
+        يشتغل بغض النظر عن حرارة الكولانت، وخزان توسّع مع صمام تنفيس ضغط زائد.
+      </p>
+      <p>
+        التوربو: العادم يدور التوربين، والفائض يتجاوزه عبر <code class="ltr">waste gate valve</code>
+        يتحكم فيه الـ ECU حسب قراءة حساس ضغط خلف الكمبروسر — هيك يمنع ضغط
+        مانيفولد زايد بالارتفاعات المنخفضة. الهواء المضغوط يبرد بالـ Intercooler
+        قبل ما يدخل المحرك — هوا أبرد = أكثف = قدرة أكبر.
+      </p>
+
+      <h3 class="sub">نظامين زيت، مو نظام واحد <span class="ref">AFM 7.9.8</span></h3>
+      <ul>
+        <li><strong>تشحيم المحرك والتوربو:</strong> نظام Wet Sump عادي، مع مبرّد منفصل تحت المحرك. الفحص بالـ dipstick من فتحة بالغطاء العلوي.</li>
+        <li><strong>الجيربوكس وحاكم المروحة:</strong> دائرة زيت منفصلة تماماً، تُفحص بزجاجة معاينة من فتحة بالغطاء السفلي الأمامي.</li>
+      </ul>
+
+      <h3 class="sub">ECU A وECU B — كيف تشتغل الحماية المزدوجة <span class="ref">AFM 7.10.2</span></h3>
+      <p>
+        الـ ECU يراقب كل شي بالمحرك — حرارة وضغط الزيت، حرارة الكولانت
+        والجيربوكس، سرعة الكامشافت والكرانك شافت (كل وحدة مزدوجة الحساس
+        للأمان)، ضغط الوقود بالـ common rail، ضغط وحرارة المانيفولد، وحتى
+        موضع الـ power lever (مزدوج كمان). وبناءً عليها يتحكم بالستارتر،
+        صمام حاكم المروحة، صمام ضغط الـ rail، فوهات الحقن الأربع، شمعات
+        التسخين (glow plugs)، وصمام الـ waste gate.
+      </p>
+      <div class="diagram">
+        <svg viewBox="0 0 480 180" role="img" aria-label="مخطط تبديل ECU A و ECU B">
+          <g font-family="inherit">
+            <rect x="30" y="30" width="150" height="60" rx="12" fill="var(--brand-light)" stroke="var(--brand)" stroke-width="2"/>
+            <text x="105" y="55" text-anchor="middle" font-size="14" font-weight="700" fill="var(--brand)">ECU A</text>
+            <text x="105" y="74" text-anchor="middle" font-size="11.5" fill="var(--ink-2)">يتحكم بالمحرك عادةً</text>
+
+            <rect x="300" y="30" width="150" height="60" rx="12" fill="var(--surface-2)" stroke="var(--line)" stroke-width="2"/>
+            <text x="375" y="55" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink)">ECU B</text>
+            <text x="375" y="74" text-anchor="middle" font-size="11.5" fill="var(--ink-2)">احتياطي جاهز</text>
+
+            <path d="M180 50 L300 50" stroke="var(--caution-line)" stroke-width="2.5" fill="none" marker-end="url(#arrow1)"/>
+            <text x="240" y="40" text-anchor="middle" font-size="11.5" fill="var(--caution-ink)" font-weight="700">عطل داخلي / فقدان حساس ← تبديل تلقائي</text>
+
+            <path d="M300 70 L180 70" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="5 4" fill="none" marker-end="url(#arrow2)"/>
+            <text x="240" y="105" text-anchor="middle" font-size="11" fill="var(--muted)">لو السبب كان فقدان حساس ورجع — تبديل رجوع تلقائي</text>
+
+            <rect x="130" y="130" width="220" height="34" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+            <text x="240" y="152" text-anchor="middle" font-size="12" fill="var(--ink-2)">زر ECU TEST: تبديل يدوي / اختبار / فحص بطارية IFR</text>
+
+            <defs>
+              <marker id="arrow1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--caution-line)"/></marker>
+              <marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--muted)"/></marker>
+            </defs>
+          </g>
+        </svg>
+        <div class="cap">ECU B مو "بديل يدوي فقط" — هو نظام تبديل تلقائي بالكامل، وBتحول لتكون هي الأساس أثناء العطل</div>
+      </div>
+      <div class="callout warning">
+        <span class="label">Warning</span>
+        بعد ما تظهر رسالة <code class="ltr">ECU A/B FAIL</code>، المحرك <strong>لازم</strong>
+        يتفحص بالصيانة — حتى لو قدرت تصفّر التنبيه من الطيران نفسه.
+      </div>
+
+      <div class="related"><span class="dot"></span> الأسئلة المرتبطة: <strong>26</strong> سؤال في هذا الموضوع</div>
+    </section>
+    <!-- ============================================================ -->
+    <!-- 06 FUEL SYSTEM -->
+    <!-- ============================================================ -->
+    <section class="sec" id="fuel">
+      <h2><span class="num">06</span> نظام الوقود <span class="en">Fuel System</span></h2>
+      <div class="callout note">
+        <span class="label">أول شي لازم تصحّحه بدماغك</span>
+        <strong>ماكو "Fuel Selector" بهالطائرة.</strong> لو جاي من C172 أو أي
+        طائرة فيها LEFT/RIGHT/BOTH — انسى الفكرة. المحرك هون ياخذ وقوده من
+        خزان MAIN (الجناح الأيسر) بس، ودايماً. خزان AUX (الجناح الأيمن) دوره
+        إنه "يزوّد" MAIN عن طريق مضخة نقل كهربائية، مو إنه يغذّي المحرك مباشرة.
+      </div>
+
+      <h3 class="sub">كيف يشتغل النظام <span class="ref">AFM 7.9.5</span></h3>
+      <p>
+        الحقن مباشر وبضغط عالي داخل الاسطوانات — فوهة حقن وحدة لكل اسطوانة،
+        كلهم يتغذّون من الـ Common Rail. الضغط جوا الـ rail توفره مضخة ضغط
+        عالي، تتغذى بدورها من مضخة ضغط منخفض — الاثنتين ميكانيكيتين، يدورهم
+        المحرك نفسه مباشرة.
+      </p>
+      <p>
+        الوقود اللي ما يتحقن (والكمية أكبر بكثير من اللي يتحرق فعلاً بمحرك
+        ديزل) يرجع عبر خزان AUX لخزان MAIN — هيك الوقود الساخن الراجع من
+        الـ rail يبرد، والوقود البارد بالخزانين يسخن شوي. ضغط الـ rail نفسه
+        يتحكم فيه صمام كهربائي، ياخذ قراءته من معدل خط الرجوع.
+      </p>
+
+      <div class="diagram">
+        <svg viewBox="0 0 520 380" role="img" aria-label="مخطط مسار الوقود من الخزانات للمحرك">
+          <defs>
+            <marker id="fArrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="var(--brand)"/></marker>
+            <marker id="fArrowMuted" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="var(--muted)"/></marker>
+          </defs>
+          <g font-family="inherit">
+            <rect x="60" y="20" width="150" height="54" rx="10" fill="var(--caution-bg)" stroke="var(--caution-line)" stroke-width="2"/>
+            <text x="135" y="42" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--caution-ink)">AUX — الجناح الأيمن</text>
+            <text x="135" y="60" text-anchor="middle" font-size="11" fill="var(--caution-ink)">مصدر ثانوي / احتياطي</text>
+
+            <rect x="310" y="20" width="150" height="54" rx="10" fill="var(--brand-light)" stroke="var(--brand)" stroke-width="2"/>
+            <text x="385" y="42" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--brand)">MAIN — الجناح الأيسر</text>
+            <text x="385" y="60" text-anchor="middle" font-size="11" fill="var(--brand)">المصدر الوحيد للمحرك</text>
+
+            <rect x="150" y="98" width="220" height="42" rx="10" fill="var(--surface)" stroke="var(--line)" stroke-width="1.6"/>
+            <text x="260" y="115" text-anchor="middle" font-size="11.5" fill="var(--ink)" font-weight="700">مضخة النقل + صمام الطوارئ</text>
+            <text x="260" y="131" text-anchor="middle" font-size="10.5" fill="var(--muted)">NORMAL · EMERG.TRANSFER · OFF</text>
+
+            <path d="M135 74 L135 88 L195 88 L195 98" fill="none" stroke="var(--caution-line)" stroke-width="2" marker-end="url(#fArrow)"/>
+            <path d="M325 98 L325 88 L385 88 L385 74" fill="none" stroke="var(--brand)" stroke-width="2" marker-end="url(#fArrow)"/>
+
+            <rect x="310" y="168" width="150" height="40" rx="10" fill="var(--surface)" stroke="var(--line)" stroke-width="1.6"/>
+            <text x="385" y="192" text-anchor="middle" font-size="12" fill="var(--ink-2)">مضخة ضغط منخفض ← عالي</text>
+            <path d="M385 74 L385 168" fill="none" stroke="var(--brand)" stroke-width="2" marker-end="url(#fArrow)"/>
+
+            <rect x="310" y="228" width="150" height="40" rx="10" fill="var(--surface)" stroke="var(--line)" stroke-width="1.6"/>
+            <text x="385" y="252" text-anchor="middle" font-size="12" fill="var(--ink-2)">Common Rail — 4 حاقنات</text>
+            <path d="M385 208 L385 228" fill="none" stroke="var(--brand)" stroke-width="2" marker-end="url(#fArrow)"/>
+
+            <rect x="310" y="288" width="150" height="46" rx="10" fill="var(--brand)" stroke="var(--brand)" stroke-width="2"/>
+            <text x="385" y="316" text-anchor="middle" font-size="13" fill="var(--brand-ink)" font-weight="700">المحرك</text>
+            <path d="M385 268 L385 288" fill="none" stroke="var(--brand)" stroke-width="2" marker-end="url(#fArrow)"/>
+
+            <path d="M310 248 L270 248 L270 47 L210 47" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#fArrowMuted)"/>
+            <text x="270" y="235" text-anchor="middle" font-size="10.5" fill="var(--muted)">خط رجوع الفائض (يبرّد عبر AUX)</text>
+          </g>
+        </svg>
+        <div class="cap">الخط المتقطع = فائض الوقود الراجع من الـ Rail، يمر عبر AUX قبل ما يرجع MAIN — هذا اللي "يبرّد" الوقود الساخن</div>
+      </div>
+
+      <h3 class="sub">الخزانات <span class="ref">AFM 7.9.5</span></h3>
+      <ul>
+        <li><strong>MAIN (يسار):</strong> غرفة ألمنيوم + أنبوب تعبئة، خرطوم مرن. فيها فتحتا تنفيس: وحدة بصمام لاصق (check valve+capillary) تسمح دخول هواء وتمنع خروج وقود، والثانية بصمام تنفيس ضغط عند <strong>150 مليبار (2 psi)</strong> — يحمي الخزان من التعبئة الزايدة لو فشلت عملية النقل.</li>
+        <li><strong>AUX (يمين):</strong> نفس الفكرة، بس الفتحتان كلاهما فيهم Capillary (وحدة مع check valve، والثانية إضافية للأمان فقط).</li>
+        <li>فلتر خشن (finger filter) قبل مخرج كل خزان، وصمام تصريف بأخفض نقطة لكل خزان — عشان تفحص الماء والرواسب.</li>
+        <li><strong>Gascolator:</strong> بأخفض نقطة بكامل نظام الوقود، بمنتصف بطن جسم الطائرة، تقريباً 30 سم أمام حافة الجناح — له صمام تصريف خاص فيه.</li>
+      </ul>
+      <div class="callout note">
+        <span class="label">Note</span>
+        مؤشر كمية الوقود (Capacity probe) قراءته غير خطية — يعني ما تقدر تحسب
+        الاستهلاك أو الكمية المتبقية بقسمة/نسبة بسيطة من الرقم اللي يطلعلك.
+      </div>
+
+      <h3 class="sub">Long Range Tank <span class="ref">AFM 7.9.5</span></h3>
+      <p>
+        بيضيف غرفة خزان إضافية تقريباً <strong>5 غالون (19 لتر)</strong> مكان
+        أنبوب التعبئة العادي. الكمية القابلة للاستخدام تطلع 19.5 غالون لكل
+        جهة، بس المؤشر نفسه ما يقدر يعرض أكتر من <strong>15 غالون</strong> —
+        فوق هيك الرقم يضل "واقف" على 15 حتى لو فعلياً في أكتر.
+      </p>
+
+      <h3 class="sub">حرارة الوقود <span class="ref">AFM 7.9.5</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>البند</th><th class="num">القيمة</th></tr></thead>
+        <tbody>
+          <tr><td>مدى المؤشر الكامل</td><td class="num">-30°C إلى +75°C</td></tr>
+          <tr><td>الشريط الأصفر السفلي (عام)</td><td class="num">-30°C إلى +4°C</td></tr>
+          <tr><td>وامض (ممنوع بدء التشغيل بديزل/مزيج غير مؤكد)</td><td class="num">-30°C إلى -6°C</td></tr>
+          <tr><td>ثابت (ممنوع الإقلاع بديزل/مزيج غير مؤكد)</td><td class="num">-5°C إلى +4°C</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>لو تشغّل بـ Jet Fuel بس (مو ديزل ولا مزيج)، التشغيل بالمنطقة الصفراء مسموح عادي.</p>
+
+      <h3 class="sub">أنواع الوقود المعتمدة <span class="ref">AFM 2.14</span></h3>
+      <p>
+        <span class="ltr">JET A-1</span>، <span class="ltr">JET A</span>،
+        <span class="ltr">JP-8</span>، <span class="ltr">JET Fuel No. 3</span>
+        (الصين)، <span class="ltr">TS-1</span> (بس لو تم تنفيذ MÄM 40-256)، و
+        <span class="ltr">Diesel Fuel (EN590)</span> — وكل المزيجات بين هالأنواع
+        مسموحة. استثناء وحيد: <strong>إندونيسيا وماليزيا ما بيسمحوا بالديزل إطلاقاً.</strong>
+      </p>
+      <div class="callout caution">
+        <span class="label">Caution</span>
+        الديزل البارد ممكن يكوّن جزيئات صلبة تسد فلتر الـ Gascolator — وهو مو
+        مسخّن. لو رجعت لبيئة باردة بعد تشغيل بديزل، لازم تعبي كل خزان مرتين
+        على الأقل بأكتر من 10.6 غالون (40 لتر) Jet Fuel (أو 17.2 غالون/65 لتر
+        مع Long Range Tank) — أو تفرّغ الخزانين بالكامل قبل التعبئة بـJet Fuel.
+      </div>
+
+      <h3 class="sub">مبرّد الوقود <span class="ref">AFM 7.9.5</span></h3>
+      <p>
+        مركّب بالجناح الأيمن (بين الـ spars)، يسحب هواء تبريد من فتحة بالسطح
+        السفلي، مسكّرة بحاجز (baffle) — تشيله لو حرارة الأرض فوق 20°C، وتركبه
+        لو تحتها.
+      </p>
+
+      <h3 class="sub">الأداة البديلة لقياس الكمية <span class="ref">AFM 7.9.5</span></h3>
+      <p>
+        تشتغل بمبدأ "الأوعية المتصلة" — تحطها بمكانها على شريحة الـ Stall
+        بحافة الجناح، توصلها بصمام تصريف الخزان، وتقرأ الكمية من الأنبوب
+        الصاعد. لازم الطائرة تكون واقفة على أرض أفقية للقراءة الصحيحة، ومكانها
+        الطبيعي هو جيب خلف مقعد الطيار.
+      </p>
+
+      <div class="related"><span class="dot"></span> الأسئلة المرتبطة: <strong>25</strong> سؤال في هذا الموضوع</div>
+    </section>
+    <!-- ============================================================ -->
+    <!-- 07 ELECTRICAL -->
+    <!-- ============================================================ -->
+    <section class="sec" id="electrical">
+      <h2><span class="num">07</span> النظام الكهربائي <span class="en">Electrical System</span></h2>
+      <p class="lead">
+        نظام 12 فولت DC، بس فيه <strong>أربع بطاريات مختلفة</strong> — مو
+        وحدة بس — كل وحدة لها دور محدد. لو فهمت مين يغذي مين، لوحة الإنذار
+        كلها بتصير منطقية بدل ما تكون قائمة أسماء تحفظها عن ظهر قلب.
+      </p>
+
+      <h3 class="sub">التوليد والتخزين — البطاريات الأربع <span class="ref">AFM 7.10.1</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>المصدر</th><th class="num">المواصفات</th><th>دوره</th></tr></thead>
+        <tbody>
+          <tr><td>الألترنيتر (Generator)</td><td class="num">90 أمبير</td><td>أسفل يسار المحرك، بيرّه Flat-belt. ينظّم الفولتية بين 12 و14V.</td></tr>
+          <tr><td>البطارية الرئيسية (Main)</td><td class="num">12V / 23Ah</td><td>جهة يمين الـ firewall — المصدر الأساسي للتخزين.</td></tr>
+          <tr><td>بطارية التحفيز (Excitation)</td><td class="num">12V / 1.3Ah</td><td>خلف لوحة القيادة — تغذي مجال الألترنيتر لو البطارية الرئيسية فشلت.</td></tr>
+          <tr><td>بطارية ECU Backup</td><td class="num">12V / 12Ah</td><td>تحت المقعد الخلفي الأيمن — مصدر إضافي لـECU B بس، عبر فيوز 30A.</td></tr>
+          <tr><td>بطارية الطوارئ (نماذج IFR فقط)</td><td class="num">جافة، غير قابلة إعادة الشحن</td><td>تغذي الـ attitude gyro وضوء الـ flood light لمدة <strong>ساعة كاملة</strong> عند تشغيل مفتاح EMERGENCY.</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>
+        خرج الألترنيتر يتوصل لـ battery bus عبر فيوز <strong>100A</strong>.
+        البطارية الرئيسية توصل الـ hot battery bus مباشرة عبر فيوز
+        <strong>50A</strong> (ثابت، ما ينفصل أبداً)، وتوصل battery bus عبر
+        "ريلاي البطارية" اللي يتحكم فيه مفتاح ELECTRIC MASTER.
+      </p>
+      <div class="callout note">
+        <span class="label">Note</span>
+        بطارية الطوارئ بنماذج IFR تُفحص كل 100 ساعة صيانة، وتتبدّل خلاياها كل
+        سنتين أو بعد أي استخدام فعلي (لما ختم المفتاح ينكسر).
+      </div>
+
+      <h3 class="sub">التوزيع — سبع "باصات" <span class="ref">AFM 7.10.1</span></h3>
+      <div class="diagram">
+        <svg viewBox="0 0 560 380" role="img" aria-label="مخطط توزيع الباصات الكهربائية">
+          <defs>
+            <marker id="eArrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="var(--brand)"/></marker>
+          </defs>
+          <g font-family="inherit" font-size="11.5">
+            <rect x="15" y="16" width="150" height="40" rx="8" fill="var(--caution-bg)" stroke="var(--caution-line)"/>
+            <text x="90" y="40" text-anchor="middle" fill="var(--caution-ink)" font-weight="700">الألترنيتر (90A)</text>
+            <rect x="205" y="16" width="150" height="40" rx="8" fill="var(--brand-light)" stroke="var(--brand)"/>
+            <text x="280" y="40" text-anchor="middle" fill="var(--brand)" font-weight="700">البطارية الرئيسية</text>
+            <rect x="395" y="16" width="150" height="40" rx="8" fill="var(--surface-2)" stroke="var(--line)"/>
+            <text x="470" y="40" text-anchor="middle" fill="var(--ink)" font-weight="700">ECU Backup</text>
+
+            <rect x="205" y="88" width="150" height="34" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+            <text x="280" y="109" text-anchor="middle" fill="var(--ink-2)">Hot Battery Bus (دائم)</text>
+            <rect x="205" y="150" width="150" height="34" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+            <text x="280" y="171" text-anchor="middle" fill="var(--ink-2)">Battery Bus</text>
+
+            <rect x="50" y="214" width="150" height="34" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+            <text x="125" y="235" text-anchor="middle" fill="var(--ink-2)">ECU Bus</text>
+            <rect x="360" y="214" width="150" height="34" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+            <text x="435" y="235" text-anchor="middle" fill="var(--ink-2)">Main Bus</text>
+
+            <rect x="205" y="278" width="150" height="34" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+            <text x="280" y="299" text-anchor="middle" fill="var(--ink-2)">Essential Bus</text>
+            <rect x="360" y="278" width="150" height="34" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+            <text x="435" y="299" text-anchor="middle" fill="var(--ink-2)">Avionic Bus</text>
+
+            <rect x="205" y="336" width="150" height="34" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+            <text x="280" y="357" text-anchor="middle" fill="var(--ink-2)">Essential Avionic Bus</text>
+
+            <path d="M90 56 L90 70 L280 70 L280 88" fill="none" stroke="var(--brand)" stroke-width="1.8" marker-end="url(#eArrow)"/>
+            <path d="M280 56 L280 88" fill="none" stroke="var(--brand)" stroke-width="1.8" marker-end="url(#eArrow)"/>
+            <path d="M280 122 L280 150" fill="none" stroke="var(--brand)" stroke-width="1.8" marker-end="url(#eArrow)"/>
+            <path d="M235 184 L125 214" fill="none" stroke="var(--brand)" stroke-width="1.8" marker-end="url(#eArrow)"/>
+            <path d="M325 184 L435 214" fill="none" stroke="var(--brand)" stroke-width="1.8" marker-end="url(#eArrow)"/>
+            <path d="M125 248 L125 260 L470 260 L470 56" fill="none" stroke="var(--muted)" stroke-width="1.6" stroke-dasharray="5 4"/>
+            <path d="M435 248 L435 278" fill="none" stroke="var(--brand)" stroke-width="1.8" marker-end="url(#eArrow)"/>
+            <path d="M435 248 L280 278" fill="none" stroke="var(--brand)" stroke-width="1.8" marker-end="url(#eArrow)"/>
+            <path d="M280 312 L280 336" fill="none" stroke="var(--brand)" stroke-width="1.8" marker-end="url(#eArrow)"/>
+            <path d="M280 122 L280 260 L280 278" fill="none" stroke="var(--warn-line)" stroke-width="1.6" stroke-dasharray="4 4"/>
+
+            <text x="280" y="80" text-anchor="middle" font-size="10" fill="var(--muted)">فيوز 50A</text>
+            <text x="200" y="140" text-anchor="middle" font-size="10" fill="var(--muted)">ELECTRIC MASTER</text>
+            <text x="100" y="205" text-anchor="middle" font-size="10" fill="var(--muted)">ENGINE MASTER</text>
+            <text x="440" y="205" text-anchor="middle" font-size="10" fill="var(--muted)">power relay</text>
+            <text x="470" y="130" text-anchor="middle" font-size="10" fill="var(--muted)">شحن ECU Backup</text>
+            <text x="440" y="270" text-anchor="middle" font-size="10" fill="var(--muted)">AVIONIC MASTER</text>
+            <text x="330" y="290" text-anchor="middle" font-size="10" fill="var(--muted)">essential tie relay</text>
+            <text x="240" y="330" text-anchor="middle" font-size="10" fill="var(--muted)">AVIONIC MASTER</text>
+            <text x="160" y="255" text-anchor="middle" font-size="10" fill="var(--warn-ink)">مسار بديل لو ESSENTIAL BUS ON</text>
+          </g>
+        </svg>
+        <div class="cap">الخط الأحمر المتقطع = مسار الطوارئ: تشغيل مفتاح ESSENTIAL BUS يفصل الـ Essential Bus عن Main Bus ويوصلها مباشرة بـ Hot Battery Bus</div>
+      </div>
+      <p>
+        باختصار الفكرة: <strong>Hot Battery Bus</strong> دايماً حيّة، تغذي بس
+        ضوء القراءة ومقبس الملحقات. <strong>Battery Bus</strong> هي المحور —
+        منها يتغذى ECU Bus (المحرك) و Main Bus (كل شي ثاني). لو صار عطل
+        بالألترنيتر، تشغّل مفتاح <code class="ltr">ESSENTIAL BUS</code> فيفصل
+        Main Bus ويربط Essential Bus مباشرة بالبطارية — عشان تضمن تغذية
+        للأجهزة الضرورية بس لفترة محدودة.
+      </p>
+
+      <h3 class="sub">أجهزة القياس <span class="ref">AFM 7.10.1</span></h3>
+      <ul>
+        <li><strong>الفولتميتر:</strong> يعرض فولتية ECU Bus — يعني الألترنيتر بالتشغيل العادي. طبيعي يكون بالمنطقة الصفراء العليا أول 10 دقائق من تشغيل المحرك؛ لو ضل صفراء أكثر من دقيقة، ضوء ENGINE يضوي (على اللوحة التقليدية).</li>
+        <li><strong>الأميتر:</strong> يعرض شدة التيار اللي يزوده الألترنيتر للنظام.</li>
+      </ul>
+
+      <h3 class="sub">لوحة الإنذار — الأضواء الثلاثة عشر <span class="ref">AFM 2.6, 7.10.3</span></h3>
+      <p>
+        كل ضوء له لون واحد وسبب واحد. أحمر = <strong>Warning</strong> (نبرة
+        صوتية مستمرة + وميض أحمر مزدوج). كهرماني = <strong>Caution</strong>
+        (نبرة صوتية لحظية + وميض كهرماني مزدوج). أبيض = <strong>Status</strong>
+        (بدون صوت، مجرد إعلام).
+      </p>
+      <div class="diagram">
+        <svg viewBox="0 0 520 350" role="img" aria-label="لوحة الإنذار بالألوان الثلاثة">
+          <g font-family="inherit" font-size="10.5" text-anchor="middle" font-weight="700">
+            <text x="260" y="18" font-size="12" fill="var(--warn-line)">أحمر — WARNING</text>
+            <g fill="var(--warn-ink)">
+              <circle cx="52" cy="45" r="9" fill="var(--warn-line)"/><text x="52" y="70">WARNING</text>
+              <circle cx="156" cy="45" r="9" fill="var(--warn-line)"/><text x="156" y="70">START</text>
+              <circle cx="260" cy="45" r="9" fill="var(--warn-line)"/><text x="260" y="70">DOOR</text>
+              <circle cx="364" cy="45" r="9" fill="var(--warn-line)"/><text x="364" y="70">TRIM FAIL</text>
+              <circle cx="468" cy="45" r="9" fill="var(--warn-line)"/><text x="468" y="65">ECU BACKUP</text><text x="468" y="77">UNSAFE</text>
+            </g>
+
+            <text x="260" y="118" font-size="12" fill="var(--caution-line)">كهرماني — CAUTION</text>
+            <g fill="var(--caution-ink)">
+              <circle cx="65" cy="145" r="9" fill="var(--caution-line)"/><text x="65" y="170">CAUTION</text>
+              <circle cx="195" cy="145" r="9" fill="var(--caution-line)"/><text x="195" y="170">LOW VOLTS</text>
+              <circle cx="325" cy="145" r="9" fill="var(--caution-line)"/><text x="325" y="170">ALTERNATOR</text>
+              <circle cx="455" cy="145" r="9" fill="var(--caution-line)"/><text x="455" y="170">PITOT</text>
+              <circle cx="65" cy="205" r="9" fill="var(--caution-line)"/><text x="65" y="230">LOW FUEL</text>
+              <circle cx="195" cy="205" r="9" fill="var(--caution-line)"/><text x="195" y="230">ENGINE</text>
+              <circle cx="325" cy="205" r="9" fill="var(--caution-line)"/><text x="325" y="230">ECU A</text>
+              <circle cx="455" cy="205" r="9" fill="var(--caution-line)"/><text x="455" y="230">ECU B</text>
+            </g>
+
+            <text x="260" y="278" font-size="12" fill="var(--ink-2)">أبيض — STATUS</text>
+            <g fill="var(--ink-2)">
+              <circle cx="130" cy="305" r="9" fill="#c9d2e0" stroke="var(--line)"/><text x="130" y="330">FUEL TRANS</text>
+              <circle cx="390" cy="305" r="9" fill="#c9d2e0" stroke="var(--line)"/><text x="390" y="330">GLOW</text>
+            </g>
+          </g>
+        </svg>
+        <div class="cap">13 ضوء، 3 ألوان، سبب واحد لكل ضوء — جدول المعاني الكامل تحت</div>
+      </div>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>الضوء</th><th>السبب</th></tr></thead>
+        <tbody>
+          <tr><td><span class="ltr">DOOR</span></td><td>الكانوبي الأمامي و/أو الباب الخلفي مو مقفول تماماً</td></tr>
+          <tr><td><span class="ltr">START</span></td><td>الستارتر ما انفصل عن المحرك بعد التشغيل (طبيعي أثناء التشغيل نفسه)</td></tr>
+          <tr><td><span class="ltr">TRIM FAIL</span></td><td>فشل بنظام التريم الآلي للطيار الآلي</td></tr>
+          <tr><td><span class="ltr">ECU BACKUP UNSAFE</span></td><td>بطارية الـ ECU Backup تحت 70% من طاقتها</td></tr>
+          <tr><td><span class="ltr">LOW VOLTS</span></td><td>فولتية أقل من 12.6V (يرجع طبيعي فوق 12.9V)</td></tr>
+          <tr><td><span class="ltr">ALTERNATOR</span></td><td>فشل الألترنيتر — البطارية صارت المصدر الوحيد</td></tr>
+          <tr><td><span class="ltr">PITOT</span></td><td>تسخين البيتوت مطفي أو معطل</td></tr>
+          <tr><td><span class="ltr">LOW FUEL</span></td><td>وقود MAIN القابل للاستخدام تحت ~3 غالون</td></tr>
+          <tr><td><span class="ltr">ENGINE</span></td><td>قراءة بمؤشرات المحرك خارج المنطقة الخضراء</td></tr>
+          <tr><td><span class="ltr">ECU A / ECU B</span></td><td>عطل بوحدة التحكم المعنية</td></tr>
+          <tr><td><span class="ltr">FUEL TRANS</span></td><td>مضخة النقل شغّالة فعلياً الآن</td></tr>
+          <tr><td><span class="ltr">GLOW</span></td><td>شمعات التسخين (Glow plugs) شغّالة</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>
+        فحص لوحة الإنذار يبدأ تلقائياً لما تشغّل ELECTRIC MASTER — كل الأضواء
+        توضي وميض، والصوت مكتوم، وبتضغط زر <code class="ltr">Acknowledge</code>
+        فتنطفي ويسمع صوت لحظي. تقدر تسوّي فحص إضافي بالضغط المطوّل (ثانيتين)
+        على نفس الزر.
+      </p>
+
+      <h3 class="sub">تسخين الـ Pitot <span class="ref">AFM 7.10.1</span></h3>
+      <p>
+        حماية مزدوجة: مفتاح حراري يحافظ على حرارة ثابتة، وفيوز حراري إضافي
+        كحماية أخيرة. لو الفيوز الحراري اشتغل، تسخين البيتوت ما يرجع يشتغل
+        نهائياً لحد ما يتصلح — والطائرة تحتاج صيانة.
+      </p>
+
+      <div class="related"><span class="dot"></span> الأسئلة المرتبطة: <strong>26</strong> سؤال في هذا الموضوع</div>
+    </section>
+    <!-- ============================================================ -->
+    <!-- 08 PROPELLER -->
+    <!-- ============================================================ -->
+    <section class="sec" id="propeller">
+      <h2><span class="num">08</span> المروحة <span class="en">Propeller</span></h2>
+      <p class="lead">
+        قسم قصير لأن المعلومات عنها مركّزة — بس كل كلمة فيها بتنسأل عنها بشكل
+        أو بآخر.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>البند</th><th class="num">القيمة</th></tr></thead>
+        <tbody>
+          <tr><td>الصانع والموديل</td><td class="num">mt-Propeller — MTV-6-A/187-129</td></tr>
+          <tr><td>النوع</td><td class="num">3 ريش، سرعة ثابتة، تنظيم هيدروليكي</td></tr>
+          <tr><td>القطر</td><td class="num">187 سم (6 قدم 2 إنش)</td></tr>
+          <tr><td>زاوية الريش (عند 0.75R)</td><td class="num">12° إلى 28°</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>
+        الريش نفسها خشب-مركّب (wood-composite) بطلاء فايبر مقوّى وحافة من
+        الستانلس ستيل — قريب من المحور فيه كمان طبقة PU لاصقة إضافية على
+        الحافة الأمامية. الهدف: أخف وزن ممكن مع أقل اهتزاز.
+      </p>
+      <p>
+        زاوية الريش (pitch) ما يتحكم فيها الطيار مباشرة — هي جزء من نظام
+        تحكم المحرك، والـ ECU يضبطها أوتوماتيكياً حسب إعداد القدرة المطلوب.
+      </p>
+      <div class="callout warning">
+        <span class="label">Warning</span>
+        لا تحرّك المروحة بإيدك أبداً — لا وهي شغّالة، ولا حتى فوراً بعد
+        الإيقاف (ممكن يكون فيه ضغط متبقي بخط الحقن).
+      </div>
+      <div class="callout caution">
+        <span class="label">Caution</span>
+        تجنّب تشغيل المحرك بـ RPM عالي وانت واقف على الأرض قد الإمكان —
+        الريش ممكن تتضرر من الحصى المتطاير.
+      </div>
+
+      <div class="related"><span class="dot"></span> الأسئلة المرتبطة: <strong>7</strong> أسئلة في هذا الموضوع</div>
+    </section>
+    <!-- ============================================================ -->
+    <!-- 09 FLIGHT CONTROLS -->
+    <!-- ============================================================ -->
+    <section class="sec" id="flightcontrols">
+      <h2><span class="num">09</span> أسطح التحكم بالطيران <span class="en">Flight Controls</span></h2>
+      <p class="lead">
+        الفكرة الأساسية: الجنيحات والمصعد (Elevator) والفلاب كلهم بقضبان
+        تحكم صلبة (Control rods) — الدفة (Rudder) بس هي اللي تشتغل بكوابل.
+        احفظ هالفرق، لأنه بينسأل بأكتر من صيغة.
+      </p>
+
+      <h3 class="sub">الجنيحات (Ailerons) <span class="ref">AFM 7.3</span></h3>
+      <p>
+        بناء ساندويتش GFRP/CFRP، <strong>4 مفصلات</strong> لكل جنيح — كل
+        مفصل محوره مثبّت بقالب ألمنيوم ومؤمّن بـ Roll Pin. لو فقدت الـ
+        Roll Pin هذا، المحور نفسه ممكن يضيع — يعني فقدان سلامة طيران فعلي،
+        مو مجرد ملاحظة صيانة.
+      </p>
+
+      <h3 class="sub">الفلاب (Flaps) <span class="ref">AFM 7.3</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>البند</th><th class="num">القيمة</th></tr></thead>
+        <tbody>
+          <tr><td>عدد المفصلات لكل فلاب</td><td class="num">6</td></tr>
+          <tr><td>الأوضاع</td><td class="num">Cruise (UP) · T/O · LDG</td></tr>
+          <tr><td>نوع التشغيل</td><td class="num">محرك كهربائي، مفتاح اختيار 3 أوضاع</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>
+        أنبوب الالتواء (Torsion tube) بالجسم هو اللي يربط فلاب اليسار
+        باليمين. وضع Cruise بأعلى المفتاح. الوضعين UP وLDG محميين إضافياً
+        بمفتاح حد (limit switch) يمنع تجاوز نهاية المسار.
+      </p>
+      <p>
+        مؤشر موضع الفلاب: <strong>3 أضواء</strong> جنب المفتاح — الأخضر
+        العلوي = Cruise/UP، الأبيض الأوسط = T/O، الأبيض السفلي = LDG. لو
+        ضوءين مضاءين سوا = الفلاب لسا بالطريق بين وضعين.
+      </p>
+
+      <h3 class="sub">المصعد والدفة (Elevator & Rudder) <span class="ref">AFM 7.3</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>السطح</th><th>البناء</th><th class="num">المفصلات</th><th>التشغيل</th></tr></thead>
+        <tbody>
+          <tr><td>المصعد (Elevator)</td><td>ساندويتش GFRP</td><td class="num">5</td><td>قضبان دفع فولاذية</td></tr>
+          <tr><td>الدفة (Rudder)</td><td>ساندويتش GFRP</td><td class="num">مفصل علوي (بولت واحد) + مفصل سفلي (4 براغي)</td><td><strong>كوابل فولاذية</strong> — الاستثناء الوحيد</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">تريم المصعد <span class="ref">AFM 7.3</span></h3>
+      <p>
+        عجلة سوداء بالكونسول الوسطي، خلف الـ Power lever مباشرة، فيها جهاز
+        احتكاك يمنع الدوران الزايد، وعلامة توضح وضع T/O. تديرها للأمام =
+        أنف لتحت، للخلف = أنف لفوق.
+      </p>
+
+      <h3 class="sub">ضبط الدواسات (Pedals) <span class="ref">AFM 7.3</span></h3>
+      <div class="callout note">
+        <span class="label">Note</span>
+        الدواسات تتضبط بالأرض بس — تسحب المقبض الأسود خلف نقطة التثبيت
+        الخلفية عشان تفكها، وبعدين تحرك رجليك للوضع اللي يريحك وتحرر المقبض
+        حتى تقفل.
+      </div>
+
+      <div class="related"><span class="dot"></span> الأسئلة المرتبطة: <strong>18</strong> سؤال في هذا الموضوع</div>
+    </section>
+    <!-- ============================================================ -->
+    <!-- 10 AIRFRAME -->
+    <!-- ============================================================ -->
+    <section class="sec" id="airframe">
+      <h2><span class="num">10</span> هيكل الطائرة <span class="en">Airframe</span></h2>
+      <p class="lead">
+        كل شي "جسدي" بالطائرة — من الهيكل الخارجي لحد نظام الـ Pitot-Static —
+        بهالقسم. مو نظام واحد، بس مجموعة أجزاء لازم تعرف وصفها الأساسي ووين
+        تلاقيها.
+      </p>
+
+      <h3 class="sub">الهيكل الأساسي <span class="ref">AFM 7.2</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>الجزء</th><th>الوصف</th></tr></thead>
+        <tbody>
+          <tr><td>الجسم (Fuselage)</td><td>GFRP، بناء Semi-monocoque مصبوب. حماية الحريق بالـ firewall من مادة مقاومة، مغطاة بستانلس ستيل من جهة المحرك.</td></tr>
+          <tr><td>الأجنحة</td><td>كل جناح فيه عارضتان (أمامية وخلفية) + قشرة علوية وسفلية — مبدأ "fail-safe". بناء ساندويتش GFRP/CFRP، وفيه خزان وقود ألمنيوم داخل كل جناح.</td></tr>
+          <tr><td>الذيل</td><td>ذيل نوع "T"، بناء GFRP شبه-مونوكوك. الزعانف (stabilizers) بعارضتين بدون ساندويتش، بينما الدفة والمصعد ساندويتش.</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">لوحة القيادة <span class="ref">AFM 7.4</span></h3>
+      <p>
+        الكتاب يشرح نموذجين بس كمثال — <strong>VFR</strong> و<strong>IFR</strong> —
+        مع إن فيه نسخ كثيرة من لوحة القيادة ممكن تركّب فعلياً. التهوية
+        الأمامية من فتحات بلوحة القيادة نفسها، وفيه فتحات كروية إضافية
+        بالـ roll bar جنب المقاعد الأمامية وبالكونسول الأوسط فوق رؤوس الركاب.
+      </p>
+
+      <h3 class="sub">عجلات الهبوط والفرامل <span class="ref">AFM 7.5</span></h3>
+      <p>
+        عجلات هبوط ثابتة (غير قابلة للطي) — رئيسيتان بدعامات فولاذية
+        مرنة، وعجلة أنف حرة الدوران (free-castering) مرنة بمادة إيلاستومر.
+        الفرامل قرصية هيدروليكية، تشتغل بدواسات مستقلة (toe brakes).
+      </p>
+      <div class="callout note">
+        <span class="label">Note</span>
+        الطيران بدون أغطية العجلات (wheel fairings) ممكن، بس فيه انخفاض
+        بجوانب من الأداء.
+      </div>
+      <p>
+        فرامل الوقوف: ذراع بالكونسول الصغير تحت لوحة القيادة، بالوضع العلوي
+        لما محررة. تسحبها للأسفل لحد ما "تعلق" — والضغط يتولّد بالضغط المتكرر
+        على دواسات الفرامل قبلها.
+      </p>
+
+      <h3 class="sub">المقاعد وصندوق الأمتعة <span class="ref">AFM 7.6, 7.7</span></h3>
+      <p>
+        المقاعد من مادة كربون/كيفلار مهجّنة مع GFRP، وفيها عناصر رغوية
+        ماصّة للصدمة — لرفع مستوى الأمان السلبي. صندوق الأمتعة خلف ظهر
+        المقاعد الخلفية، و<strong>بدون شبكة أمتعة ما تحط أي شنطة فيه إطلاقاً</strong>.
+      </p>
+
+      <h3 class="sub">الكانوبي والباب الخلفي <span class="ref">AFM 7.8</span></h3>
+      <ul>
+        <li>الكانوبي الأمامي له وضعين قفل — مقفول بالكامل، أو "Cooling Gap" (فجوة تهوية، للأرض بس، ممنوع بالإقلاع).</li>
+        <li>الباب الخلفي عنده مخمّد غاز يمنعه من السقوط المفاجئ (بس لازم تمسكه بالريح القوية)، وذراع إضافي يحميه من الفتح غير المقصود.</li>
+        <li>قفل المفتاح على الاثنين — ممنوع استخدامه قبل الطيران، عشان يضل ممكن فتح الطائرة من برّه بأي طارئ.</li>
+      </ul>
+      <p>
+        التدفئة والتهوية: ذراعين بالكونسول الصغير — اليساري فوق=تشغيل
+        التدفئة، تحت=إيقاف. الأوسط (توزيع الهواء) فوق=DEFROST (نحو
+        الكانوبي)، تحت=FLOOR (نحو الأرضية).
+      </p>
+      <div class="callout note">
+        <span class="label">Note — لو مركّب</span>
+        فأس الطوارئ (تعديل OÄM 40-326) موجود بأرضية الطائرة تحت مقعد
+        الكوبايلوت، لكسر الكانوبي لو تعذّر فتحه بحالة طارئة.
+      </div>
+
+      <h3 class="sub">نظام Pitot-Static وتحذير الـ Stall <span class="ref">AFM 7.11, 7.12</span></h3>
+      <p>
+        الضغط الكلي يُقاس من حافة أنبوب Pitot تحت الجناح الأيسر، والضغط
+        الساكن من فتحتين على نفس الأنبوب. لو صار عطل، صمام Alternate Static
+        يخليك تستخدم ضغط الكابينة الساكن كبديل.
+      </p>
+      <p>
+        تحذير الـ Stall صوتي (بوق)، يشتغل بالشفط من فتحة على حافة الجناح
+        الأيسر (معلّمة بحلقة حمراء) تقريباً من <strong>10 عقدة لحد أدنى 5
+        عقدة</strong> فوق سرعة الـ Stall — وكل ما قربت من السرعة الحرجة، الصوت
+        يعلى.
+      </p>
+
+      <h3 class="sub">الأفيونكس <span class="ref">AFM 7.13</span></h3>
+      <p>
+        زر الإرسال (PTT) موجود على طرف كل عصا تحكم، وفيه مقابس لغاية
+        <strong>4 سماعات رأس</strong> بين المقاعد الأمامية.
+      </p>
+
+      <div class="related"><span class="dot"></span> الأسئلة المرتبطة: <strong>23</strong> سؤال في هذا الموضوع</div>
+    </section>
+
+
+    <footer>
+      <p>
+        دليل مرجعي غير رسمي، معدّ من دليل الطيران (AFM) الرسمي لطائرة
+        Diamond DA 40 D — Doc. # 6.01.05-E، Revision 6/7. للمراجعة قبل
+        الاختبار فقط، ولا يغني عن قراءة الـ AFM الكامل الخاص بطائرتك.
+      </p>
+    </footer>
+  </main>
+</div>
+
+<button id="top-btn" aria-label="ارجع لفوق">↑</button>
+
+<script>
+(function(){
+  var toc = document.getElementById('toc');
+  var scrim = document.getElementById('scrim');
+  var menuBtn = document.getElementById('menuBtn');
+  var closeToc = document.getElementById('closeToc');
+  function openToc(){ toc.classList.add('open'); scrim.classList.add('show'); }
+  function shutToc(){ toc.classList.remove('open'); scrim.classList.remove('show'); }
+  if (menuBtn) menuBtn.addEventListener('click', openToc);
+  if (closeToc) closeToc.addEventListener('click', shutToc);
+  if (scrim) scrim.addEventListener('click', shutToc);
+  var tocLinks = document.querySelectorAll('nav.toc a');
+  tocLinks.forEach(function(a){
+    a.addEventListener('click', function(){ shutToc(); });
+  });
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section.sec[id]'));
+  var linkFor = {};
+  tocLinks.forEach(function(a){
+    var id = a.getAttribute('href').slice(1);
+    linkFor[id] = a;
+  });
+  function onScroll(){
+    var y = window.scrollY + 110;
+    var current = sections[0];
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].offsetTop <= y) current = sections[i];
+    }
+    tocLinks.forEach(function(a){ a.classList.remove('active'); });
+    if (current && linkFor[current.id]) linkFor[current.id].classList.add('active');
+
+    var topBtn = document.getElementById('top-btn');
+    if (topBtn) topBtn.classList.toggle('show', window.scrollY > 500);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var topBtn = document.getElementById('top-btn');
+  if (topBtn) topBtn.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
+</body>
+</html>
