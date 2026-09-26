@@ -627,15 +627,15 @@ export function TestRunner({
 
   return (
     <div className="pb-24 lg:pb-0">
-      <div className="mb-6">
-        <div className="flex items-baseline justify-between gap-3">
-          <p className="text-xs font-semibold uppercase tracking-wider text-brand">
+      <div className="mb-2 sm:mb-6">
+        <div className="flex items-baseline justify-between gap-2 sm:gap-3">
+          <p className="min-w-0 truncate text-[11px] font-semibold uppercase tracking-wider text-brand sm:text-xs">
             {aircraftCode} · {scope}
             {/* Worth saying plainly: it changes whether an answer can still be
                 changed, which a student needs to know before they answer. */}
             {mode === "exam" ? <span className="text-muted-foreground"> · Exam</span> : null}
           </p>
-          <p className="flex items-baseline gap-3 text-sm text-muted-foreground">
+          <p className="flex shrink-0 items-baseline gap-2 text-xs text-muted-foreground sm:gap-3 sm:text-sm">
             {deadline !== null ? (
               <span
                 // Announced politely rather than on every tick: a screen
@@ -665,13 +665,20 @@ export function TestRunner({
                 {formatClock(elapsed)}
               </span>
             )}
-            <span>
-              Question {index + 1} of {questions.length}
+            <span className="whitespace-nowrap">
+              {/* A shorter form below sm keeps this line from wrapping and
+                  fighting the clock for the same row. */}
+              <span className="sm:hidden">
+                Q{index + 1}/{questions.length}
+              </span>
+              <span className="hidden sm:inline">
+                Question {index + 1} of {questions.length}
+              </span>
             </span>
           </p>
         </div>
         <div
-          className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-surface-muted"
+          className="mt-1.5 h-1 w-full overflow-hidden rounded-full bg-surface-muted sm:mt-2 sm:h-1.5"
           role="progressbar"
           aria-valuenow={index + 1}
           aria-valuemin={1}
@@ -686,13 +693,13 @@ export function TestRunner({
       </div>
 
       <div onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-      <Card>
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <div className="flex flex-wrap items-center gap-2">
+      <Card padding="p-3 sm:p-5">
+        <div className="flex flex-wrap items-center justify-between gap-1.5 sm:gap-2">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
             <Badge tone="brand">{current.topic}</Badge>
             {current.subtopic ? <Badge>{current.subtopic}</Badge> : null}
           </div>
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
             {isSignedIn ? (
               <FlagButton flagged={flaggedIds.has(current.id)} onToggle={toggleCurrentFlag} />
             ) : null}
@@ -709,7 +716,7 @@ export function TestRunner({
           </div>
         </div>
 
-        <h1 className="question-text mt-4 font-semibold text-foreground">{current.question}</h1>
+        <h1 className="question-text mt-2 font-semibold text-foreground sm:mt-4">{current.question}</h1>
 
         {current.media ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -720,9 +727,9 @@ export function TestRunner({
           />
         ) : null}
 
-        <fieldset className="mt-5" disabled={settled}>
+        <fieldset className="mt-3 sm:mt-5" disabled={settled}>
           <legend className="sr-only">Choose one answer</legend>
-          <div className="space-y-2.5">
+          <div className="space-y-1 sm:space-y-2.5">
             {current.options.map((option) => {
               const checked = answers[current.id] === option.id;
               // Before the verdict lands, the chosen option is simply chosen.
@@ -744,7 +751,7 @@ export function TestRunner({
               return (
                 <label
                   key={option.id}
-                  className={`flex items-start gap-3 rounded-lg border p-3.5 transition ${
+                  className={`flex items-start gap-3 rounded-lg border p-2.5 transition sm:p-3.5 ${
                     settled ? "cursor-default" : "cursor-pointer"
                   } ${tone}`}
                 >
@@ -839,7 +846,7 @@ export function TestRunner({
           />
         ) : null}
 
-        <div className="mt-4 border-t border-border pt-3 text-right">
+        <div className="mt-3 border-t border-border pt-2 text-right sm:mt-4 sm:pt-3">
           <QuestionIdTag id={current.id} />
         </div>
       </Card>
@@ -998,8 +1005,8 @@ export function TestRunner({
       {/* Mobile: a sticky bar a thumb can always reach, and the question map
           opens as a sheet from `QuestionNav` itself rather than a separate
           toggle here. */}
-      <div className="safe-bottom fixed inset-x-0 bottom-0 z-30 border-t border-border bg-surface-elevated px-4 pt-3 lg:hidden">
-        <div className="flex items-center justify-between gap-2 pb-3">
+      <div className="safe-bottom fixed inset-x-0 bottom-0 z-30 border-t border-border bg-surface-elevated px-4 pt-2 lg:hidden">
+        <div className="flex items-center justify-between gap-2 pb-2">
           <button
             type="button"
             onClick={goPrevious}

@@ -58,7 +58,7 @@ export async function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-surface-elevated/90 backdrop-blur">
-      <div className="mx-auto flex w-full max-w-5xl items-center gap-3 px-4 py-2.5 sm:px-5">
+      <div className="mx-auto flex w-full max-w-5xl items-center gap-3 px-4 py-2 sm:px-5 sm:py-2.5">
         <Link
           href="/"
           className="tap-target flex items-center rounded-lg text-foreground transition hover:text-brand"

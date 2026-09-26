@@ -48,9 +48,14 @@ export function ReportQuestionButton({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className={`tap-target inline-flex items-center gap-1.5 rounded-lg border border-border px-3 text-sm font-medium text-muted-foreground transition hover:border-warning hover:text-warning ${className}`}
+        aria-label="Report a problem"
+        className={`tap-target inline-flex items-center gap-1.5 rounded-lg border border-border px-2.5 text-sm font-medium text-muted-foreground transition hover:border-warning hover:text-warning sm:px-3 ${className}`}
       >
-        Report a problem
+        {/* A shorter label below sm keeps this beside Flag on one row
+            instead of wrapping to a row of its own; the full wording comes
+            back once there is room for it. */}
+        <span className="sm:hidden">Report</span>
+        <span className="hidden sm:inline">Report a problem</span>
       </button>
     );
   }
