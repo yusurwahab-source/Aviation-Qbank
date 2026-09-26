@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Cessna 152 (1978) — Your Guide Before the Test</title>
-<meta name="description" content="A complete reference guide for the 1978 Cessna 152, built entirely from the official Pilot's Operating Handbook, to read before the Holdshort question bank." />
+<meta name="description" content="A friendly, complete walkthrough of the 1978 Cessna 152, built entirely from the official Pilot's Operating Handbook, to read before the Holdshort question bank." />
 <style>
   :root{
     --bg:#f6f8fb;
@@ -26,6 +26,9 @@
     --note-bg:#eaf1fb;
     --note-line:#3f6fb0;
     --note-ink:#1f3c63;
+    --good-bg:#e9f7ee;
+    --good-line:#1f9d55;
+    --good-ink:#155c33;
     --white-arc:#e9edf3;
     --green-arc:#1f9d55;
     --yellow-arc:#e0b400;
@@ -55,6 +58,9 @@
       --note-bg:#122a44;
       --note-line:#5b93d6;
       --note-ink:#cfe2fb;
+      --good-bg:#0f2b1c;
+      --good-line:#2bb56a;
+      --good-ink:#b6f0d1;
       --white-arc:#324055;
       --green-arc:#2bb56a;
       --yellow-arc:#e0b400;
@@ -68,6 +74,7 @@
     --warn-bg:#3a1613; --warn-line:#e4574d; --warn-ink:#ffd6d1;
     --caution-bg:#3a2c0d; --caution-line:#e0a83a; --caution-ink:#ffe6b0;
     --note-bg:#122a44; --note-line:#5b93d6; --note-ink:#cfe2fb;
+    --good-bg:#0f2b1c; --good-line:#2bb56a; --good-ink:#b6f0d1;
     --white-arc:#324055; --green-arc:#2bb56a; --yellow-arc:#e0b400; --red-arc:#e4574d;
     --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
   }
@@ -123,12 +130,10 @@
   nav.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
   nav.toc li{counter-increment:toc}
   nav.toc a{
-    display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--ink-2);
+    display:flex;gap:9px;align-items:baseline;text-decoration:none;color:var(--ink-2);
     padding:8px 8px;border-radius:9px;font-size:14px;
   }
-  nav.toc a .n{
-    flex:0 0 auto;color:var(--brand);font-weight:700;font-size:12px;min-width:18px;
-  }
+  nav.toc a .em{flex:0 0 auto;font-size:14px}
   nav.toc a:hover{background:var(--surface-2);color:var(--ink)}
   nav.toc a.active{background:var(--brand-light);color:var(--ink);font-weight:600}
   nav.toc .count{margin-inline-start:auto;font-size:11px;color:var(--muted)}
@@ -154,7 +159,7 @@
   }
   section.sec > h2 .num{
     flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--brand);color:var(--brand-ink);
-    display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;font-size:16px;
   }
   section.sec > h2 .en{margin-inline-start:auto;font-size:12px;color:var(--muted);font-weight:600;
     background:var(--surface-2);padding:4px 10px;border-radius:999px}
@@ -180,6 +185,14 @@
   .callout.warning{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-ink)}
   .callout.caution{background:var(--caution-bg);border-color:var(--caution-line);color:var(--caution-ink)}
   .callout.note{background:var(--note-bg);border-color:var(--note-line);color:var(--note-ink)}
+  .callout.good{background:var(--good-bg);border-color:var(--good-line);color:var(--good-ink)}
+  .stat-row{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
+  .stat{
+    flex:1 1 140px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);
+    padding:12px 14px;
+  }
+  .stat .v{font-size:20px;font-weight:800;color:var(--brand);font-variant-numeric:tabular-nums}
+  .stat .k{font-size:12.5px;color:var(--muted);margin-top:2px}
   .diagram{
     background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
     padding:14px;margin:18px 0;text-align:center;
@@ -254,39 +267,105 @@
     <div class="toc-close"><span style="font-size:13px;color:var(--muted);font-weight:700">Contents</span><button id="closeToc">✕</button></div>
     <h2>Sections</h2>
     <ol>
-      <li><a href="#limitations"><span class="n">01</span> Limitations <span class="count">34</span></a></li>
-      <li><a href="#emergency"><span class="n">02</span> Emergency Procedures <span class="count">35</span></a></li>
-      <li><a href="#normal"><span class="n">03</span> Normal Procedures <span class="count">30</span></a></li>
-      <li><a href="#performance"><span class="n">04</span> Performance <span class="count">21</span></a></li>
-      <li><a href="#weightbalance"><span class="n">05</span> Weight &amp; Balance <span class="count">12</span></a></li>
-      <li><a href="#powerplant"><span class="n">06</span> Powerplant <span class="count">25</span></a></li>
-      <li><a href="#fuel"><span class="n">07</span> Fuel System <span class="count">15</span></a></li>
-      <li><a href="#electrical"><span class="n">08</span> Electrical System <span class="count">16</span></a></li>
-      <li><a href="#gear"><span class="n">09</span> Landing Gear &amp; Brakes <span class="count">13</span></a></li>
-      <li><a href="#flightcontrols"><span class="n">10</span> Flight Controls <span class="count">14</span></a></li>
-      <li><a href="#instruments"><span class="n">11</span> Flight Instruments <span class="count">16</span></a></li>
-      <li><a href="#airframe"><span class="n">12</span> Airframe <span class="count">12</span></a></li>
-      <li><a href="#propeller"><span class="n">13</span> Propeller <span class="count">7</span></a></li>
+      <li><a href="#limitations"><span class="em">⚠️</span> Limitations <span class="count">34</span></a></li>
+      <li><a href="#emergency"><span class="em">🚨</span> Emergency Procedures <span class="count">35</span></a></li>
+      <li><a href="#normal"><span class="em">✈️</span> Normal Procedures <span class="count">30</span></a></li>
+      <li><a href="#performance"><span class="em">📊</span> Performance <span class="count">21</span></a></li>
+      <li><a href="#weightbalance"><span class="em">⚖️</span> Weight &amp; Balance <span class="count">12</span></a></li>
+      <li><a href="#powerplant"><span class="em">⚙️</span> Powerplant <span class="count">25</span></a></li>
+      <li><a href="#fuel"><span class="em">⛽</span> Fuel System <span class="count">15</span></a></li>
+      <li><a href="#electrical"><span class="em">🔋</span> Electrical System <span class="count">16</span></a></li>
+      <li><a href="#gear"><span class="em">🛞</span> Landing Gear &amp; Brakes <span class="count">13</span></a></li>
+      <li><a href="#flightcontrols"><span class="em">🕹️</span> Flight Controls <span class="count">14</span></a></li>
+      <li><a href="#instruments"><span class="em">🧭</span> Flight Instruments <span class="count">16</span></a></li>
+      <li><a href="#airframe"><span class="em">🛠️</span> Airframe <span class="count">12</span></a></li>
+      <li><a href="#propeller"><span class="em">🌀</span> Propeller <span class="count">7</span></a></li>
     </ol>
   </nav>
 
   <main>
     <div class="hero">
-      <h1>Before you dive into the questions…</h1>
+      <h1>Alright, let's get you ready. 👋</h1>
       <p>
-        This isn't the POH reformatted, and it isn't a shallow summary either.
-        The point is to actually understand the airplane — why a number is
-        what it is, and what happens if you cross it — before you go test
-        yourself against 250 questions. Every figure here is copied verbatim
-        from the official 1978 Cessna 152 Pilot's Operating Handbook, with a
-        note right next to it saying exactly where it came from — same as
-        the questions.
+        This isn't the POH with the serial numbers filed off, and it isn't a
+        watered-down cheat sheet either. Think of it as sitting next to an
+        instructor who's flown this airplane a hundred times and is walking
+        you through it system by system, in plain language, before you go
+        test yourself against 250 questions. Every number, speed and limit
+        below is copied exactly from the official 1978 Cessna 152 Pilot's
+        Operating Handbook, with a little reference tag next to it
+        (like <span class="ref">POH 2-3</span>) so you can look it up
+        yourself and check we're not making anything up.
       </p>
       <div class="tags">
-        <span class="tag">Lycoming O-235-L2C</span>
-        <span class="tag">250 linked questions</span>
-        <span class="tag">13 systems</span>
-        <span class="tag">1978 Pilot's Operating Handbook</span>
+        <span class="tag">⚙️ Lycoming O-235-L2C</span>
+        <span class="tag">📝 250 linked questions</span>
+        <span class="tag">🗂️ 13 systems</span>
+        <span class="tag">📖 1978 Pilot's Operating Handbook</span>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- MEET THE AIRPLANE -->
+    <!-- ============================================================ -->
+    <div class="hero" style="padding-bottom:6px">
+      <h3 class="sub" style="margin-top:0">🔎 Meet the airplane</h3>
+      <p>
+        Before the numbers, a quick look at the shape of the thing. The 152
+        is about as simple as trainers get: high wing, strut-braced,
+        fixed tricycle gear, one door on each side, one engine up front
+        turning a fixed-pitch prop. Nothing folds, nothing retracts, nothing
+        feathers. Keep this picture in your head — almost every system
+        below is just "what's inside one of these labeled parts."
+      </p>
+      <div class="diagram">
+        <svg viewBox="0 0 640 260" role="img" aria-label="Side-profile line drawing of the Cessna 152 with labeled parts">
+          <g fill="none" stroke="var(--ink-2)" stroke-width="2" stroke-linejoin="round">
+            <path d="M100,173 C100,150 122,122 162,111 L420,101 C460,99 500,106 538,128 L560,148 L554,157
+                     C520,164 470,169 420,171 L162,177 C132,177 106,176 100,173 Z"
+                  fill="var(--surface)"/>
+            <rect x="150" y="72" width="330" height="13" rx="3" fill="var(--surface)" stroke="var(--brand)" stroke-width="2.5"/>
+            <line x1="205" y1="85" x2="182" y2="173" stroke-width="2.5"/>
+            <line x1="345" y1="85" x2="322" y2="173" stroke-width="2.5"/>
+            <path d="M520,101 L560,103 L560,148 L534,148 Z" fill="var(--surface-2)"/>
+            <line x1="548" y1="105" x2="548" y2="147" stroke-dasharray="3 3"/>
+            <rect x="500" y="140" width="66" height="9" rx="2" fill="var(--surface-2)"/>
+            <line x1="533" y1="140" x2="533" y2="149" stroke-dasharray="3 3"/>
+            <circle cx="94" cy="150" r="9" fill="var(--surface-2)"/>
+            <line x1="94" y1="114" x2="94" y2="186" stroke-width="3"/>
+            <line x1="70" y1="128" x2="118" y2="172" stroke-width="3"/>
+            <line x1="236" y1="112" x2="254" y2="100" stroke-width="2"/>
+            <rect x="266" y="123" width="66" height="34" rx="4" fill="var(--surface-2)"/>
+            <rect x="276" y="128" width="42" height="17" rx="3" fill="var(--surface)"/>
+            <line x1="175" y1="112" x2="171" y2="176" stroke-dasharray="3 3"/>
+            <line x1="176" y1="85" x2="163" y2="97" stroke-width="2.5"/>
+            <circle cx="163" cy="97" r="2.4" fill="var(--brand)" stroke="none"/>
+            <circle cx="228" cy="151" r="3" fill="var(--brand)" stroke="none"/>
+            <line x1="150" y1="211" x2="168" y2="177" stroke-width="2.5"/>
+            <circle cx="140" cy="221" r="13" fill="var(--surface-2)"/>
+            <circle cx="140" cy="221" r="5" fill="var(--surface)"/>
+            <line x1="308" y1="208" x2="300" y2="173" stroke-width="2.5"/>
+            <circle cx="316" cy="219" r="16" fill="var(--surface-2)"/>
+            <circle cx="316" cy="219" r="6" fill="var(--surface)"/>
+          </g>
+          <g font-family="inherit" font-size="11.5" fill="var(--ink-2)">
+            <text x="45" y="108" text-anchor="middle">Propeller &amp;<tspan x="45" dy="13">spinner</tspan></text>
+            <line x1="70" y1="112" x2="88" y2="140" stroke="var(--muted)" stroke-width="1"/>
+            <text x="163" y="65" text-anchor="middle" font-weight="700" fill="var(--brand)">Wing (high-mounted,<tspan x="163" dy="13">strut-braced)</tspan></text>
+            <text x="60" y="200" text-anchor="middle">Cowling<tspan x="60" dy="13">(engine)</tspan></text>
+            <line x1="90" y1="185" x2="100" y2="150" stroke="var(--muted)" stroke-width="1"/>
+            <text x="95" y="100" text-anchor="middle">Pitot tube</text>
+            <line x1="120" y1="103" x2="163" y2="97" stroke="var(--muted)" stroke-width="1"/>
+            <text x="230" y="180" text-anchor="middle">Static port</text>
+            <line x1="230" y1="167" x2="228" y2="151" stroke="var(--muted)" stroke-width="1"/>
+            <text x="299" y="185" text-anchor="middle">Cabin door<tspan x="299" dy="13">&amp; window</tspan></text>
+            <text x="140" y="245" text-anchor="middle">Nose wheel</text>
+            <text x="316" y="245" text-anchor="middle">Main wheel</text>
+            <text x="548" y="80" text-anchor="middle">Vertical stab.<tspan x="548" dy="13">&amp; rudder</tspan></text>
+            <text x="533" y="165" text-anchor="middle">Horiz. stab. &amp;<tspan x="533" dy="13">elevator/trim tab</tspan></text>
+          </g>
+        </svg>
+        <div class="cap">A simplified side profile — not to exact scale, but every labeled part shows up again as we go system by system</div>
       </div>
     </div>
 
@@ -294,18 +373,21 @@
     <!-- 01 LIMITATIONS -->
     <!-- ============================================================ -->
     <section class="sec" id="limitations">
-      <h2><span class="num">01</span> Limitations <span class="en">Limitations</span></h2>
+      <h2><span class="num">⚠️</span> Limitations <span class="en">Limitations</span></h2>
       <p class="lead">
-        This is "the law" — the numbers you don't negotiate with. Everything
-        here comes from Section 2 of the POH, approved by the FAA under Type
-        Certificate No. 3A19. None of it is a judgment call, it's execution.
+        Think of this section as "the law" — the numbers you don't argue
+        with, negotiate around, or round in your favor. It's all Section 2
+        of the POH, approved by the FAA under Type Certificate No. 3A19, and
+        none of it is a judgment call. It's just execution.
       </p>
 
-      <h3 class="sub">The speeds that matter (V-Speeds) <span class="ref">POH 2-3</span></h3>
+      <h3 class="sub">The speeds worth knowing cold</h3>
       <p>
-        Notice that <code>V A</code> (maneuvering speed) isn't a single
-        number — it drops as weight drops, because it's built on how much
-        abrupt control input the airframe can absorb at a given weight.
+        Notice <code>V A</code> (maneuvering speed) isn't one number — it
+        drops as the airplane gets lighter, because it's built around how
+        much abrupt control input the airframe can absorb at a given weight.
+        Lighter airplane, less structure needed to protect, lower the
+        threshold. <span class="ref">POH 2-3</span>
       </p>
       <div class="table-wrap">
       <table>
@@ -345,16 +427,16 @@
           </g>
           <g font-size="12.5" font-weight="700" text-anchor="middle" font-family="inherit">
             <text x="197" y="42" fill="var(--ink)">White (35–85)</text>
-            <text x="238" y="42" fill="var(--green-arc)" style="display:none"></text>
             <text x="240" y="130" fill="var(--green-arc)">Green — normal (40–111)</text>
             <text x="381" y="42" fill="var(--caution-line)">Yellow (111–149)</text>
             <text x="431" y="130" fill="var(--red-arc)">V NE 149</text>
           </g>
         </svg>
-        <div class="cap">The colored arcs on the C152 airspeed indicator, in KIAS — full-flap range, normal range, caution range, and the red line at 149</div>
+        <div class="cap">The colored arcs on the C152 airspeed indicator, in KIAS <span class="ref">POH 2-4</span></div>
       </div>
 
-      <h3 class="sub">Engine limits <span class="ref">POH 2-5</span></h3>
+      <h3 class="sub">Engine limits</h3>
+      <p>These are the ones that keep the O-235 alive long-term — cross them and you're borrowing against the next overhaul. <span class="ref">POH 2-5</span></p>
       <div class="table-wrap">
       <table>
         <thead><tr><th>Item</th><th class="num">Value</th></tr></thead>
@@ -369,12 +451,14 @@
       </table>
       </div>
       <div class="callout warning">
-        <span class="label">Warning</span>
-        These aren't soft targets. The static-RPM check on the ground is how
-        you catch a sick engine before you commit to a takeoff roll.
+        <span class="label">⚠️ Warning</span>
+        These aren't soft targets you can lean on a little. The static-RPM
+        check on the ground before takeoff is your one chance to catch a
+        sick engine before you're committed to the runway.
       </div>
 
-      <h3 class="sub">Weight &amp; center of gravity <span class="ref">POH 2-6</span></h3>
+      <h3 class="sub">Weight &amp; center of gravity</h3>
+      <p><span class="ref">POH 2-6</span></p>
       <div class="table-wrap">
       <table>
         <thead><tr><th>Item</th><th class="num">Value</th></tr></thead>
@@ -392,18 +476,19 @@
       </table>
       </div>
       <p>
-        The combined-baggage figure is the one people trip on: Area 2 alone
-        allows 40 lbs, but load it on top of a full 120 lbs in Area 1 and
-        you're over the limit — the <strong>combined</strong> cap is still
-        120 lbs total.
+        The baggage numbers are the classic trap: Area 2 alone allows 40 lbs,
+        but stack that on top of a full 120 lbs already in Area 1 and you're
+        over — the <strong>combined</strong> cap for both areas together is
+        still just 120 lbs, not 160.
       </p>
 
-      <h3 class="sub">Maneuvering &amp; load factors <span class="ref">POH 2-6, 2-7</span></h3>
+      <h3 class="sub">Maneuvering &amp; load factors</h3>
       <p>
-        The 152 is certificated <strong>utility category</strong> with
-        limited aerobatics approved: chandelles, lazy eights, and steep
-        turns up to 95 knots entry speed; spins and stalls (except whip
-        stalls) using slow deceleration instead of a speed limit.
+        The 152 is certificated <strong>utility category</strong>, which
+        buys you a short list of approved aerobatic maneuvers: chandelles,
+        lazy eights and steep turns up to 95 knots entry speed; spins and
+        stalls (except whip stalls) using slow deceleration instead of a
+        hard speed number. <span class="ref">POH 2-6, 2-7</span>
       </p>
       <div class="table-wrap">
       <table>
@@ -414,14 +499,14 @@
         </tbody>
       </table>
       </div>
-      <p>Design load factors are 150% of these limit loads — the structure meets or exceeds design loads in every case.</p>
+      <p>Design load factors sit at 150% of these — the structure meets or exceeds design loads in every case.</p>
       <div class="callout caution">
-        <span class="label">Caution</span>
-        Flight into known icing conditions is prohibited outright — there's
-        no "light icing is OK" clause in Section 2.
+        <span class="label">🚫 Caution</span>
+        Flight into known icing is prohibited, full stop. There's no "just a
+        little light icing" clause anywhere in Section 2.
       </div>
 
-      <h3 class="sub">Fuel limitations <span class="ref">POH 2-7</span></h3>
+      <h3 class="sub">Fuel limitations</h3>
       <div class="table-wrap">
       <table>
         <thead><tr><th>Tanks</th><th class="num">Total</th><th class="num">Usable</th><th class="num">Unusable</th></tr></thead>
@@ -431,7 +516,7 @@
         </tbody>
       </table>
       </div>
-      <p>Approved grades: <strong>100LL</strong> (blue) and <strong>100</strong>, formerly 100/130 (green).</p>
+      <p><span class="ref">POH 2-7</span> Approved grades: <strong>100LL</strong> (blue) and <strong>100</strong>, formerly 100/130 (green).</p>
 
       <div class="related"><span class="dot"></span> Related questions: <strong>34</strong> in this topic</div>
     </section>
@@ -440,105 +525,112 @@
     <!-- 02 EMERGENCY PROCEDURES -->
     <!-- ============================================================ -->
     <section class="sec" id="emergency">
-      <h2><span class="num">02</span> Emergency Procedures <span class="en">Emergency Procedures</span></h2>
+      <h2><span class="num">🚨</span> Emergency Procedures <span class="en">Emergency Procedures</span></h2>
       <p class="lead">
-        Section 3 of the POH. The checklists are short on purpose — memorize
-        the shape of each one, not just the numbers, because under stress
-        you'll reach for the shape first.
+        Section 3 of the POH. These checklists are short on purpose — under
+        stress you won't recall a paragraph, you'll recall a shape. So learn
+        the shape of each one, not just the numbers inside it.
       </p>
 
-      <h3 class="sub">Airspeeds for emergency operation <span class="ref">POH 3-3</span></h3>
-      <div class="table-wrap">
-      <table>
-        <thead><tr><th>Situation</th><th class="num">KIAS</th></tr></thead>
-        <tbody>
-          <tr><td>Engine failure after takeoff</td><td class="num">60</td></tr>
-          <tr><td>Maximum glide</td><td class="num">60</td></tr>
-          <tr><td>Precautionary landing with power</td><td class="num">55</td></tr>
-          <tr><td>Landing without power — flaps up</td><td class="num">65</td></tr>
-          <tr><td>Landing without power — flaps down</td><td class="num">60</td></tr>
-        </tbody>
-      </table>
-      </div>
-
-      <h3 class="sub">Engine failure <span class="ref">POH 3-3, 3-4</span></h3>
-      <p>
-        Three different checklists depending on when the failure happens,
-        and the differences matter:
-      </p>
+      <h3 class="sub">🛬 Engine failure — three different checklists, three different reasons</h3>
+      <p><span class="ref">POH 3-3, 3-4</span></p>
       <ul>
-        <li><strong>During the takeoff run</strong> — you're not flying yet. Throttle idle, brakes, flaps retract, mixture idle cut-off, ignition off, master off. The whole point is stopping on the runway.</li>
-        <li><strong>Immediately after takeoff</strong> — 60 KIAS, mixture idle cut-off, fuel shutoff OFF, ignition OFF, flaps as required, master OFF. No restart attempt — you don't have the altitude to spare.</li>
-        <li><strong>During flight</strong> — 60 KIAS, then carb heat ON, primer in and locked, fuel shutoff ON, mixture RICH, ignition BOTH (or START if the prop has stopped). Here you do try to restart, because you have altitude and time.</li>
+        <li><strong>During the takeoff run</strong> — you're not flying yet. Throttle idle, brakes, flaps retract, mixture idle cut-off, ignition off, master off. The whole point is stopping on the pavement you already have.</li>
+        <li><strong>Immediately after takeoff</strong> — 60 KIAS, mixture idle cut-off, fuel shutoff OFF, ignition OFF, flaps as required, master OFF. No restart attempt here — you simply don't have the altitude to spare on one.</li>
+        <li><strong>During flight, with altitude to spare</strong> — 60 KIAS, then carb heat ON, primer in and locked, fuel shutoff ON, mixture RICH, ignition BOTH (or START if the prop has actually stopped). This one, you try to restart.</li>
       </ul>
       <div class="callout note">
         <span class="label">Why it matters</span>
-        The amplified procedures are blunt about the 180° turn back to the
-        runway: altitude and airspeed are seldom sufficient. Plan straight
-        ahead with small heading changes instead.
+        The amplified procedures are blunt about turning back: altitude and
+        airspeed are seldom sufficient for a 180° gliding turn to the
+        runway. Plan on landing straight ahead with only small heading
+        changes instead.
       </div>
 
-      <h3 class="sub">Fires <span class="ref">POH 3-5, 3-6, 3-7</span></h3>
-      <p>
-        Four separate checklists — engine fire in flight, electrical fire in
-        flight, cabin fire, wing fire — and each shuts down a different
-        thing first. Engine fire cuts mixture/fuel/master and glides at 85
-        KIAS. Electrical fire cuts the master switch first, then works
-        through switches one at a time to isolate the short. Both carry the
-        same warning after discharging an extinguisher in a closed cabin:
-        ventilate it.
-      </p>
+      <div class="stat-row">
+        <div class="stat"><div class="v">60 KIAS</div><div class="k">Engine failure after T/O &amp; max glide</div></div>
+        <div class="stat"><div class="v">55 KIAS</div><div class="k">Precautionary landing, power on</div></div>
+        <div class="stat"><div class="v">65 / 60 KIAS</div><div class="k">Landing w/o power, flaps up / down</div></div>
+      </div>
 
-      <h3 class="sub">Electrical malfunctions <span class="ref">POH 3-8, 3-13</span></h3>
+      <h3 class="sub">🔥 Fires — four checklists, each shuts down something different first</h3>
+      <p>
+        Engine fire in flight, electrical fire in flight, cabin fire, wing
+        fire — four separate situations, four separate first moves.
+        <span class="ref">POH 3-5, 3-6, 3-7</span>
+      </p>
+      <p>
+        An <strong>engine fire</strong> cuts mixture, fuel and master, then
+        glides at 85 KIAS toward a forced landing — no restart attempt
+        afterward. An <strong>electrical fire</strong> cuts the master
+        switch first, then works back through switches one at a time to
+        hunt down the short. Both fire-in-the-cabin checklists (electrical
+        and cabin fire) carry the exact same warning:
+      </p>
+      <div class="callout warning">
+        <span class="label">⚠️ Warning</span>
+        After discharging a fire extinguisher inside a closed cabin —
+        ventilate it.
+      </div>
+
+      <h3 class="sub">🔋 Electrical malfunctions</h3>
+      <p><span class="ref">POH 3-8, 3-13</span></p>
       <div class="table-wrap">
       <table>
-        <thead><tr><th>Symptom</th><th>Meaning</th><th>Action</th></tr></thead>
+        <thead><tr><th>Symptom</th><th>What it means</th><th>What you do</th></tr></thead>
         <tbody>
-          <tr><td>HIGH VOLTAGE light on</td><td>Over-voltage sensor tripped near 31.5V, alternator shut down</td><td>Master OFF then ON; if it lights again, terminate the flight</td></tr>
-          <tr><td>Ammeter shows discharge</td><td>Alternator not supplying the system</td><td>Alternator OFF, nonessential equipment OFF, terminate the flight</td></tr>
+          <tr><td>HIGH VOLTAGE light on</td><td>Over-voltage sensor tripped near 31.5V, alternator shut itself down</td><td>Master OFF then ON; light again? Terminate the flight</td></tr>
+          <tr><td>Ammeter shows discharge</td><td>Alternator isn't feeding the system anymore</td><td>Alternator OFF, kill nonessential equipment, terminate the flight</td></tr>
         </tbody>
       </table>
       </div>
 
-      <h3 class="sub">Vacuum failure in clouds <span class="ref">POH 3-10, 3-11</span></h3>
+      <h3 class="sub">☁️ Losing the gyros in the clouds</h3>
       <p>
-        If the vacuum system fails and you're relying on the turn
+        If the vacuum system fails and you're stuck relying on the turn
         coordinator alone: a 180° turn is a <strong>standard rate left
-        turn held 60 seconds</strong>. An emergency descent stabilizes at
-        <strong>500–800 ft/min at 70 KIAS</strong>. Recovering from a spiral
-        dive brings the airspeed back to <strong>70 KIAS</strong> as well —
-        hands off the wheel, rudder only.
+        turn, held 60 seconds</strong>. An emergency descent stabilizes at
+        <strong>500–800 ft/min, 70 KIAS</strong>. And recovering from a
+        spiral dive brings you back to <strong>70 KIAS</strong> too — hands
+        off the wheel the whole time, rudder only. <span class="ref">POH 3-10, 3-11</span>
       </p>
 
-      <h3 class="sub">Spin recovery <span class="ref">POH 3-12</span></h3>
+      <h3 class="sub">🌀 Spin recovery, in order</h3>
       <ol>
         <li>Ailerons neutral.</li>
         <li>Throttle idle.</li>
         <li>Full rudder opposite the direction of rotation.</li>
         <li>Just after the rudder hits the stop, control wheel briskly forward to break the stall.</li>
-        <li>Hold until rotation stops.</li>
+        <li>Hold everything until rotation actually stops.</li>
         <li>As rotation stops, neutralize rudder and recover smoothly from the dive.</li>
       </ol>
+      <p style="margin-top:-2px"><span class="ref">POH 3-12</span></p>
 
-      <h3 class="sub">Rough engine / low oil pressure <span class="ref">POH 3-12, 3-13</span></h3>
+      <h3 class="sub">🔧 Rough engine, low oil pressure</h3>
       <p>
-        Carburetor icing shows up as a gradual RPM loss — full throttle,
-        full carb heat until smooth, then remove heat. Spark plug fouling
-        and magneto trouble both show up the same way: switch momentarily
-        from BOTH to L or R and look for an obvious power loss on one side.
-        Total loss of oil pressure <strong>with rising oil temperature</strong>
-        means an engine failure is likely imminent — reduce power and pick a
-        field now.
+        Carburetor icing shows up as a slow, creeping RPM loss — full
+        throttle, full carb heat until it smooths out, then remove heat.
+        Spark plug fouling and magneto trouble look almost identical:
+        switch briefly from BOTH to L or R and see which side gives you an
+        obvious power loss. But this next one is the one to really
+        remember:
       </p>
+      <div class="callout warning">
+        <span class="label">⚠️ Warning</span>
+        Total loss of oil pressure <strong>with rising oil temperature</strong>
+        means an engine failure is likely imminent. Reduce power and pick a
+        field now — don't wait to see if it gets worse.
+      </div>
+      <p><span class="ref">POH 3-12, 3-13</span></p>
 
-      <h3 class="sub">Emergency Locator Transmitter (ELT) <span class="ref">POH 9-7 to 9-9</span></h3>
+      <h3 class="sub">📡 The ELT</h3>
       <p>
-        Activates automatically at <strong>5G or more</strong> when its
-        switch is set to AUTO, transmitting on <strong>121.5 and 243.0
-        MHz</strong> simultaneously. Check for inadvertent activation (a
-        hard landing can trigger it with nothing actually wrong) by
-        listening on 121.5 MHz — if you hear the tone, cycle the switch to
-        OFF then back to AUTO to reset it.
+        Activates on its own at <strong>5G or more</strong> when its switch
+        is set to AUTO, transmitting on <strong>121.5 and 243.0 MHz</strong>
+        simultaneously. A hard landing with nothing actually wrong can
+        trigger it — check by listening on 121.5 MHz, and if you hear the
+        tone, cycle the switch OFF then back to AUTO to reset it.
+        <span class="ref">POH 9-7 to 9-9</span>
       </p>
 
       <div class="related"><span class="dot"></span> Related questions: <strong>35</strong> in this topic</div>
@@ -548,15 +640,15 @@
     <!-- 03 NORMAL PROCEDURES -->
     <!-- ============================================================ -->
     <section class="sec" id="normal">
-      <h2><span class="num">03</span> Normal Procedures <span class="en">Normal Procedures</span></h2>
+      <h2><span class="num">✈️</span> Normal Procedures <span class="en">Normal Procedures</span></h2>
       <p class="lead">
-        Section 4. This is the everyday flying — the numbers here are the
-        ones your hands should know without thinking.
+        Section 4 — the everyday flying. These are the numbers your hands
+        should reach for without stopping to think.
       </p>
 
-      <h3 class="sub">Speeds for normal operation (1670 lbs) <span class="ref">POH 4-3</span></h3>
       <div class="table-wrap">
       <table>
+        <caption>Speeds for normal operation, at 1670 lbs <span class="ref">POH 4-3</span></caption>
         <thead><tr><th>Phase</th><th class="num">KIAS</th></tr></thead>
         <tbody>
           <tr><td>Normal climb-out</td><td class="num">65–75</td></tr>
@@ -571,56 +663,64 @@
       </table>
       </div>
 
-      <h3 class="sub">Before takeoff checks <span class="ref">POH 4-7, 4-13, 4-14</span></h3>
+      <h3 class="sub">✅ Before-takeoff checks, and what "good" looks like</h3>
+      <p><span class="ref">POH 4-7, 4-13, 4-14</span></p>
       <ul>
-        <li><strong>Magneto check</strong> at 1700 RPM: drop should not exceed 125 RPM on either magneto, nor 50 RPM differential between them.</li>
-        <li><strong>Alternator check</strong>: load the system 3–5 seconds with the landing light or flaps; the ammeter should stay within a needle width of its starting position.</li>
-        <li><strong>Power check</strong> on the takeoff roll: engine should turn 2280–2380 RPM static, carb heat off, mixture leaned.</li>
+        <li><strong>Magneto check</strong>, 1700 RPM: drop shouldn't exceed 125 RPM on either magneto, or a 50 RPM gap between the two.</li>
+        <li><strong>Alternator check</strong>: load the system for 3–5 seconds with the landing light or flaps; the ammeter should barely twitch — within a needle width of where it started.</li>
+        <li><strong>Power check</strong> on the roll: engine should settle around 2280–2380 RPM static, carb heat off, mixture leaned.</li>
       </ul>
 
-      <h3 class="sub">Takeoff flap technique <span class="ref">POH 4-14</span></h3>
+      <h3 class="sub">Takeoff flaps: what 10° actually buys you</h3>
       <p>
-        10° flaps cut the distance over a 50-ft obstacle by about
-        <strong>10%</strong> versus flaps up — but that's the ceiling:
-        anything beyond 10° is not approved for takeoff at all. Left down
-        until obstacles clear and 60 KIAS is reached, then retracted slowly.
+        10° of flap trims about <strong>10%</strong> off the distance to
+        clear a 50-ft obstacle versus flaps up. That's also the ceiling —
+        anything past 10° isn't approved for takeoff at all. Left down
+        until obstacles are behind you and 60 KIAS is reached, then
+        retracted slowly. <span class="ref">POH 4-14</span>
       </p>
 
-      <h3 class="sub">Cruise &amp; leaning <span class="ref">POH 4-15, 4-16</span></h3>
+      <h3 class="sub">Cruise &amp; leaning</h3>
       <p>
-        Normal cruise sits between <strong>55% and 75% power</strong>; the
-        first 50 hours (or until oil consumption stabilizes) should stay in
-        the upper part of that band, 65–75%, to seat the rings. Lean until
-        RPM peaks and then drops 25–50 RPM for the book's fuel-flow figures.
-        The recommended training-flight leaning technique can save up to
-        <strong>13%</strong> fuel over flying full rich throughout.
+        Normal cruise lives between <strong>55% and 75% power</strong>. For
+        the first 50 hours (or until oil consumption settles down), stay
+        toward the top of that, 65–75%, to seat the rings properly. Lean
+        until RPM peaks and then drops 25–50 RPM for the book's fuel-flow
+        numbers — and the recommended training-flight leaning technique can
+        save up to <strong>13% fuel</strong> over flying full rich the
+        whole time. <span class="ref">POH 4-15, 4-16</span>
       </p>
 
-      <h3 class="sub">Stalls &amp; spins <span class="ref">POH 4-16, 4-17, 4-18</span></h3>
+      <h3 class="sub">Stalls &amp; spins</h3>
       <p>
-        The stall horn sounds <strong>5–10 knots</strong> before the actual
-        stall, flaps up or down. For intentional spins: plan recoveries
-        completed <strong>4000 ft AGL or more</strong>, allow at least
-        <strong>1000 ft</strong> of loss for a 1-turn spin, and keep the
-        ailerons dead neutral throughout — any aileron deflection in the
-        spin direction can speed up the rotation. Spins with flaps extended
-        are prohibited outright: recovery speeds could damage the flap/wing
-        structure.
+        The stall horn gives you <strong>5–10 knots</strong> of warning
+        before the actual break, flaps up or down. For intentional spins:
+        plan so recoveries finish <strong>4000 ft AGL or more</strong>, budget
+        at least <strong>1000 ft</strong> of altitude loss for a 1-turn spin,
+        and keep the ailerons dead neutral the entire time — any aileron
+        deflection in the spin's direction can actually speed up the
+        rotation. <span class="ref">POH 4-16, 4-17, 4-18</span>
+      </p>
+      <div class="callout caution">
+        <span class="label">🚫 Caution</span>
+        Spins with flaps extended are prohibited outright — recovery speeds
+        could damage the flap/wing structure.
+      </div>
+
+      <h3 class="sub">Balked landing &amp; cold weather</h3>
+      <p>
+        Balked landing (go-around): full power first, flaps immediately to
+        <strong>20°</strong>, then slowly to fully up once you've got safe
+        airspeed — never all at once. Preheat is generally required below
+        <strong>-18°C (0°F)</strong> and recommended below <strong>-7°C
+        (20°F)</strong>. <span class="ref">POH 4-18, 4-19</span>
       </p>
 
-      <h3 class="sub">Balked landing &amp; cold weather <span class="ref">POH 4-18, 4-19</span></h3>
-      <p>
-        Balked landing (go-around): full power, flaps immediately to
-        <strong>20°</strong>, then slowly to full up once safe airspeed is
-        reached. Preheat is generally required below <strong>-18°C
-        (0°F)</strong> and recommended below <strong>-7°C (20°F)</strong>.
-      </p>
-
-      <div class="callout note">
-        <span class="label">Worth knowing</span>
-        Certificated noise level at max weight is <strong>65.0 dB(A)</strong>
-        — and the recommended altitude over noise-sensitive areas is 2000 ft
-        AGL, weather permitting.
+      <div class="callout good">
+        <span class="label">✅ Worth knowing</span>
+        Certificated noise level at max weight is <strong>65.0 dB(A)</strong>,
+        and the courtesy altitude over noise-sensitive areas is 2000 ft AGL,
+        weather permitting.
       </div>
 
       <div class="related"><span class="dot"></span> Related questions: <strong>30</strong> in this topic</div>
@@ -630,17 +730,18 @@
     <!-- 04 PERFORMANCE -->
     <!-- ============================================================ -->
     <section class="sec" id="performance">
-      <h2><span class="num">04</span> Performance <span class="en">Performance</span></h2>
+      <h2><span class="num">📊</span> Performance <span class="en">Performance</span></h2>
       <p class="lead">
-        Section 5. All of it comes from actual flight test data at 1670 lbs
-        unless the chart says otherwise. These are the numbers a planned
-        cross-country flight is actually built from.
+        Section 5 — actual flight-test data at 1670 lbs unless the chart
+        says otherwise. This is what a real cross-country flight gets
+        planned from, not a theoretical exercise.
       </p>
 
-      <h3 class="sub">Stall speeds, power off <span class="ref">POH 5-9</span></h3>
+      <h3 class="sub">Stall speeds — and how fast bank angle bites</h3>
+      <p>Power off, 1670 lbs. <span class="ref">POH 5-9</span></p>
       <div class="table-wrap">
       <table>
-        <caption>1670 lbs, 0° bank, power off</caption>
+        <caption>0° bank</caption>
         <thead><tr><th>Flap setting</th><th class="num">Most fwd CG (KIAS)</th><th class="num">Most aft CG (KIAS)</th></tr></thead>
         <tbody>
           <tr><td>Up</td><td class="num">40</td><td class="num">36</td></tr>
@@ -650,52 +751,55 @@
       </table>
       </div>
       <p>
-        Bank angle raises stall speed fast: at most-forward CG with 30°
-        flaps, stall speed climbs from <strong>35 KIAS at 0° bank</strong>
-        to <strong>57 KIAS at 60° bank</strong>.
+        Now watch what steepening the bank does to that same 30°-flap,
+        most-forward-CG airplane: <strong>35 KIAS</strong> at 0° bank,
+        climbing to <strong>49 KIAS</strong> by the time you're at 60°
+        bank. That's the whole reason a steep turn close to the ground, or
+        an over-banked base-to-final turn, is such a well-known way to
+        surprise yourself with a stall.
       </p>
 
-      <h3 class="sub">Takeoff &amp; landing distance (short field technique) <span class="ref">POH 5-10, 5-18</span></h3>
+      <h3 class="sub">Takeoff &amp; landing distance (short field technique)</h3>
+      <p>Sea level, standard day, 1670 lbs, paved dry runway, zero wind. <span class="ref">POH 5-10, 5-18</span></p>
       <div class="table-wrap">
       <table>
-        <caption>Sea level, standard conditions, 1670 lbs, paved dry runway, zero wind</caption>
         <thead><tr><th></th><th class="num">Ground roll</th><th class="num">Total over 50 ft</th></tr></thead>
         <tbody>
-          <tr><td>Takeoff (flaps 10°, S.L., 0°C)</td><td class="num">640 ft</td><td class="num">1190 ft</td></tr>
-          <tr><td>Landing (flaps 30°, S.L., 0°C)</td><td class="num">450 ft</td><td class="num">1160 ft</td></tr>
+          <tr><td>Takeoff (flaps 10°)</td><td class="num">640 ft</td><td class="num">1190 ft</td></tr>
+          <tr><td>Landing (flaps 30°)</td><td class="num">450 ft</td><td class="num">1160 ft</td></tr>
         </tbody>
       </table>
       </div>
       <p>
-        Wind correction is the same shape both directions: 10% distance
-        change per 9 knots of headwind, or per 2 knots of tailwind (up to
-        10 kt). Grass runways add <strong>15%</strong> to the takeoff
-        ground roll, but a much larger <strong>45%</strong> to the landing
-        ground roll — soft ground bites much harder while braking than
-        while accelerating.
+        Wind correction runs the same shape both directions: 10% off
+        distance per 9 knots of headwind, or 10% added per 2 knots of
+        tailwind (up to 10 kt). Grass adds <strong>15%</strong> to the
+        takeoff ground roll — but a much steeper <strong>45%</strong> to
+        the landing ground roll. Soft ground fights you a lot harder while
+        you're trying to stop than while you're trying to go.
       </p>
 
-      <h3 class="sub">Cruise performance <span class="ref">POH 5-13</span></h3>
+      <h3 class="sub">Cruise performance</h3>
       <p>
-        Published cruise speeds assume speed fairings are installed, adding
-        about <strong>2 knots</strong>. At 8000 ft, 2550 RPM, standard
-        temperature: <strong>75% BHP, 107 KTAS, 6.1 GPH</strong>.
+        Published cruise numbers assume speed fairings are fitted, worth
+        about <strong>2 knots</strong>. One example worth memorizing: at
+        8000 ft, 2550 RPM, standard temperature — <strong>75% BHP, 107
+        KTAS, 6.1 GPH</strong>. <span class="ref">POH 5-13</span>
       </p>
 
-      <h3 class="sub">Range &amp; endurance reserve <span class="ref">POH 5-3</span></h3>
-      <p>
-        Every range and endurance chart already bakes in a
-        <strong>45-minute reserve at 45% power</strong> — about 2.8
-        gallons. Don't plan a flight to the raw chart number and forget
-        that the reserve is already gone from it.
-      </p>
-      <div class="callout caution">
-        <span class="label">Caution</span>
-        The book itself says mixture technique, engine/prop condition, and
-        turbulence can swing range and endurance by <strong>10% or
-        more</strong>. Treat chart numbers as a planning baseline, not a
-        guarantee.
+      <div class="callout note">
+        <span class="label">📎 Reserve is already baked in</span>
+        Every range and endurance chart already assumes a <strong>45-minute
+        reserve at 45% power</strong> — about 2.8 gallons. Don't plan a trip
+        to the raw chart number and then discover the reserve was never
+        extra to begin with. <span class="ref">POH 5-3</span>
       </div>
+      <p>
+        The book is also refreshingly honest about its own limits here:
+        mixture technique, engine/prop condition and turbulence can swing
+        range and endurance by <strong>10% or more</strong>. Treat these
+        charts as a solid planning baseline, not a promise.
+      </p>
 
       <div class="related"><span class="dot"></span> Related questions: <strong>21</strong> in this topic</div>
     </section>
@@ -704,41 +808,63 @@
     <!-- 05 WEIGHT & BALANCE -->
     <!-- ============================================================ -->
     <section class="sec" id="weightbalance">
-      <h2><span class="num">05</span> Weight &amp; Balance <span class="en">Weight &amp; Balance</span></h2>
+      <h2><span class="num">⚖️</span> Weight &amp; Balance <span class="en">Weight &amp; Balance</span></h2>
       <p class="lead">
-        Section 1 and Section 6. The terminology here is worth memorizing
-        precisely — the words are used exactly, and a test question hinges
-        on the difference between them.
+        Sections 1 and 6. Less about memorizing figures for your specific
+        airplane (that lives in its own W&amp;B paperwork), more about the
+        vocabulary — and this vocabulary gets used precisely, so a test
+        question can hinge on the exact difference between two terms that
+        sound almost the same.
       </p>
 
-      <div class="table-wrap">
-      <table>
-        <thead><tr><th>Model</th><th class="num">Standard empty weight</th><th class="num">Max useful load</th></tr></thead>
-        <tbody>
-          <tr><td>152 (base)</td><td class="num">1081 lbs</td><td class="num">589 lbs</td></tr>
-          <tr><td>152 II</td><td class="num">1118 lbs</td><td class="num">552 lbs</td></tr>
-        </tbody>
-      </table>
+      <div class="stat-row">
+        <div class="stat"><div class="v">1081 / 1118 lbs</div><div class="k">Std. empty weight — 152 / 152 II</div></div>
+        <div class="stat"><div class="v">589 / 552 lbs</div><div class="k">Max useful load — 152 / 152 II</div></div>
+        <div class="stat"><div class="v">10.5 / 15.2</div><div class="k">Wing loading (lb/sq ft) / power loading (lb/hp)</div></div>
       </div>
-      <p>Wing loading <strong>10.5 lbs/sq ft</strong>; power loading <strong>15.2 lbs/hp</strong>.</p>
+      <p><span class="ref">POH 1-7</span> Notice the II isn't a different airplane structurally — it just carries more standard equipment, so it starts heavier and gives up useful load to make room for it.</p>
 
-      <h3 class="sub">Terminology that gets tested <span class="ref">POH 1-10</span></h3>
-      <ul>
-        <li><strong>Arm</strong> — horizontal distance from the datum to an item's CG.</li>
-        <li><strong>Moment</strong> — weight × arm; divided by 1000 in this handbook purely to keep the numbers manageable.</li>
-        <li><strong>Standard Empty Weight</strong> — includes unusable fuel, full fluids, full oil.</li>
-        <li><strong>Basic Empty Weight</strong> — standard empty weight <em>plus</em> optional equipment.</li>
-        <li><strong>Useful Load</strong> — takeoff weight minus basic empty weight.</li>
-        <li><strong>Tare</strong> — the weight of the chocks/stands used while weighing, deducted from the scale reading.</li>
-      </ul>
-
-      <h3 class="sub">Weighing procedure <span class="ref">POH 6-3</span></h3>
+      <h3 class="sub">Where the CG actually has to sit</h3>
       <p>
-        All fuel and oil are drained first. Seats go to the most forward
-        position, flaps fully retracted, controls neutral. Each wheel sits
-        on a scale rated for at least <strong>500 lbs</strong>. Once weight
-        and moment/1000 are totaled, they're plotted on the CG Moment
-        Envelope to confirm the loading actually falls inside it.
+        Everything is measured from one fixed reference point — the
+        <strong>front face of the firewall</strong>, station zero. The
+        allowable range narrows as the airplane gets lighter: the forward
+        limit slides from 32.65 in aft of datum at 1670 lbs in to 31.0 in
+        at 1350 lbs or less, while the aft limit stays fixed at 36.5 in
+        regardless of weight. <span class="ref">POH 2-6</span>
+      </p>
+      <div class="diagram">
+        <svg viewBox="0 0 600 140" role="img" aria-label="CG range diagram along the fuselage stations">
+          <line x1="40" y1="70" x2="580" y2="70" stroke="var(--ink-2)" stroke-width="2"/>
+          <rect x="416" y="58" width="55" height="24" fill="var(--brand-light)" stroke="var(--brand)" stroke-width="1.5"/>
+          <text x="443" y="48" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--brand)" font-family="inherit">Allowable CG range</text>
+          <circle cx="40" cy="70" r="4" fill="var(--brand)"/>
+          <text x="50" y="30" text-anchor="start" font-size="12" font-weight="700" fill="var(--brand)" font-family="inherit">Datum</text>
+          <text x="50" y="43" text-anchor="start" font-size="12" fill="var(--ink-2)" font-family="inherit">(firewall) — 0 in</text>
+          <line x1="416" y1="58" x2="416" y2="82" stroke="var(--ink-2)" stroke-width="1.5"/>
+          <text x="408" y="100" text-anchor="end" font-size="12" fill="var(--ink-2)" font-family="inherit">31.0–32.65 in</text>
+          <text x="408" y="114" text-anchor="end" font-size="11.5" fill="var(--muted)" font-family="inherit">(fwd, varies w/ weight)</text>
+          <line x1="471" y1="58" x2="471" y2="82" stroke="var(--red-arc)" stroke-width="1.5"/>
+          <text x="479" y="100" text-anchor="start" font-size="12" fill="var(--red-arc)" font-weight="700" font-family="inherit">36.5 in</text>
+          <text x="479" y="114" text-anchor="start" font-size="11.5" fill="var(--muted)" font-family="inherit">(aft, fixed)</text>
+        </svg>
+        <div class="cap">Everything is measured aft from the firewall — the forward limit moves with weight, the aft limit never does</div>
+      </div>
+
+      <h3 class="sub">The words that get tested</h3>
+      <p><span class="ref">POH 1-10</span></p>
+      <p><strong>Arm</strong> is just the horizontal distance from the datum to something's center of gravity. <strong>Moment</strong> is weight times arm — this handbook divides it by 1000 purely to keep the numbers on the loading form from getting unwieldy, nothing more mysterious than that.</p>
+      <p><strong>Standard Empty Weight</strong> already includes unusable fuel, full fluids and full oil. Add optional equipment on top of that and you get <strong>Basic Empty Weight</strong>. <strong>Useful Load</strong> is simply takeoff weight minus basic empty weight — everything you're allowed to add.</p>
+      <p>And <strong>Tare</strong>: just the weight of the chocks or stands used while weighing the airplane, subtracted back out of the scale reading so it doesn't sneak into your numbers.</p>
+
+      <h3 class="sub">Weighing the airplane</h3>
+      <p>
+        All fuel and oil get drained first. Seats go fully forward, flaps
+        fully retracted, controls neutral. Each wheel sits on its own scale
+        rated for at least <strong>500 lbs</strong>. Once weight and
+        moment/1000 are totaled up, they get plotted on the CG Moment
+        Envelope to confirm the loading actually falls inside it — not just
+        assumed to. <span class="ref">POH 6-3</span>
       </p>
 
       <div class="related"><span class="dot"></span> Related questions: <strong>12</strong> in this topic</div>
@@ -748,20 +874,21 @@
     <!-- 06 POWERPLANT -->
     <!-- ============================================================ -->
     <section class="sec" id="powerplant">
-      <h2><span class="num">06</span> Powerplant <span class="en">Powerplant</span></h2>
+      <h2><span class="num">⚙️</span> Powerplant <span class="en">Powerplant</span></h2>
       <p class="lead">
-        Section 7. The O-235-L2C is about as simple as engines get — no
-        turbo, no fuel injection, no electronic controls — which means the
-        questions are really about how each subsystem physically works.
+        Section 7. The O-235-L2C is about as uncomplicated as engines get —
+        no turbo, no fuel injection, nothing electronic in the way. Which
+        means most questions here are really just "how does this simple
+        part physically work," not "what number does the computer show you."
       </p>
 
-      <h3 class="sub">The engine <span class="ref">POH 1-5, 7-14</span></h3>
       <p>
         <strong>Lycoming O-235-L2C</strong>: normally-aspirated,
         direct-drive, air-cooled, horizontally opposed, carbureted,
         four-cylinder, 233.3 cu in, rated <strong>110 BHP at 2550
-        RPM</strong>. Starter, belt-driven alternator, and oil cooler mount
-        on the front; dual magnetos sit on a rear accessory pad.
+        RPM</strong>. The starter, a belt-driven alternator and the oil
+        cooler all mount on the front; the dual magnetos sit around back on
+        their own accessory pad. <span class="ref">POH 1-5, 7-14</span>
       </p>
 
       <div class="diagram">
@@ -769,8 +896,8 @@
           <g font-family="inherit">
             <text x="10" y="20" font-size="13" font-weight="700" fill="var(--ink)">Tachometer (RPM)</text>
             <rect x="10" y="30" width="500" height="22" fill="var(--surface)" stroke="var(--line)"/>
-            <rect x="10" y="30" width="372" height="22" fill="var(--green-arc)"/>
-            <rect x="382" y="30" width="128" height="22" fill="var(--surface)" stroke="var(--line)"/>
+            <rect x="10" y="30" width="372" height="22" fill="var(--surface-2)"/>
+            <rect x="382" y="30" width="124" height="22" fill="var(--green-arc)"/>
             <rect x="506" y="30" width="4" height="22" fill="var(--red-arc)"/>
             <text x="10" y="65" font-size="11" fill="var(--ink-2)">0</text>
             <text x="382" y="65" font-size="11" fill="var(--ink-2)">1900</text>
@@ -795,30 +922,32 @@
         <div class="cap">Instrument markings: tachometer green 1900–2550, red line 2550 RPM · oil temperature green 100–245°F, red line 245°F · oil pressure red line (min) 25 psi, green 60–90 psi, red line (max) 100 psi</div>
       </div>
 
-      <h3 class="sub">Ignition &amp; starting <span class="ref">POH 7-16</span></h3>
+      <h3 class="sub">Ignition &amp; starting</h3>
       <p>
-        Right magneto fires lower-right and upper-left plugs; left magneto
-        fires lower-left and upper-right — dual ignition for more complete
-        combustion, which is why normal operation stays on BOTH. Switch
-        positions clockwise: <strong>OFF, R, L, BOTH, START</strong>.
+        Right magneto fires the lower-right and upper-left plugs; left
+        magneto fires lower-left and upper-right — dual ignition for more
+        complete combustion, which is exactly why normal operation stays on
+        BOTH. Switch positions, clockwise: <strong>OFF, R, L, BOTH,
+        START</strong>. <span class="ref">POH 7-16</span>
       </p>
 
-      <h3 class="sub">Induction, carburetor &amp; cooling <span class="ref">POH 7-16, 7-17</span></h3>
+      <h3 class="sub">Induction, carburetor &amp; cooling</h3>
       <p>
-        Up-draft, float-type, fixed-jet carburetor with no accelerator
-        pump — pumping the throttle while starting only causes excessive
-        leaning, it doesn't help. Full carburetor heat at full throttle
-        costs about <strong>150–200 RPM</strong>. Cooling is ram-air only,
-        no manual control; the winterization kit is advisable below
-        <strong>-7°C (20°F)</strong>.
+        Up-draft, float-type, fixed-jet carburetor — and it has no
+        accelerator pump, so pumping the throttle while starting doesn't
+        enrich anything, it just causes excessive leaning. Full carb heat
+        at full throttle costs roughly <strong>150–200 RPM</strong>.
+        Cooling is pure ram-air, no manual control at all; the
+        winterization kit becomes worth installing below <strong>-7°C
+        (20°F)</strong>. <span class="ref">POH 7-16, 7-17</span>
       </p>
 
-      <h3 class="sub">Oil system <span class="ref">POH 7-15, 7-16</span></h3>
+      <h3 class="sub">Oil system</h3>
       <p>
-        Sump capacity <strong>6 quarts</strong> (7 with a filter installed).
-        Factory-fill corrosion-preventive oil is drained after the first
-        <strong>25 hours</strong>; cruise 65–75% power until 50 hours
-        accumulate to seat the rings properly.
+        Sump holds <strong>6 quarts</strong> (7 with a filter installed).
+        The factory-fill corrosion-preventive oil comes out after the first
+        <strong>25 hours</strong>; cruise at 65–75% power until 50 hours
+        accumulate so the rings seat properly. <span class="ref">POH 7-15, 7-16</span>
       </p>
 
       <div class="related"><span class="dot"></span> Related questions: <strong>25</strong> in this topic</div>
@@ -828,74 +957,74 @@
     <!-- 07 FUEL SYSTEM -->
     <!-- ============================================================ -->
     <section class="sec" id="fuel">
-      <h2><span class="num">07</span> Fuel System <span class="en">Fuel System</span></h2>
+      <h2><span class="num">⛽</span> Fuel System <span class="en">Fuel System</span></h2>
       <p class="lead">
-        Gravity feed, start to finish — there's no fuel pump anywhere in
-        this system. That single fact explains most of how it behaves.
+        Gravity, start to finish. There is no fuel pump anywhere in this
+        airplane — and that single fact explains almost everything about
+        how the system behaves.
       </p>
 
       <div class="diagram">
-        <svg viewBox="0 0 520 240" role="img" aria-label="Fuel system schematic">
+        <svg viewBox="0 0 600 260" role="img" aria-label="Top-down schematic of the fuel system, drawn onto the aircraft's wing and fuselage outline">
+          <g fill="none" stroke="var(--ink-2)" stroke-width="2">
+            <path d="M40,120 L180,95 L180,145 L40,140 Z" fill="var(--surface)"/>
+            <path d="M560,120 L420,95 L420,145 L560,140 Z" fill="var(--surface)"/>
+            <rect x="180" y="70" width="240" height="120" rx="14" fill="var(--surface)"/>
+          </g>
+          <rect x="65" y="108" width="55" height="22" rx="3" fill="var(--brand-light)" stroke="var(--brand)" stroke-width="1.5"/>
+          <rect x="480" y="108" width="55" height="22" rx="3" fill="var(--brand-light)" stroke="var(--brand)" stroke-width="1.5"/>
+          <line x1="120" y1="119" x2="480" y2="119" stroke="var(--brand)" stroke-width="2"/>
+          <line x1="92" y1="130" x2="92" y2="150" stroke="var(--muted)" stroke-width="2"/>
+          <path d="M80,150 h24 l-12,14 z" fill="var(--muted)"/>
+          <line x1="270" y1="110" x2="270" y2="150" stroke="var(--ink-2)" stroke-width="2"/>
+          <line x1="330" y1="110" x2="330" y2="150" stroke="var(--ink-2)" stroke-width="2"/>
+          <line x1="270" y1="150" x2="330" y2="150" stroke="var(--ink-2)" stroke-width="2"/>
+          <rect x="266" y="150" width="68" height="22" rx="4" fill="var(--brand-light)" stroke="var(--brand)" stroke-width="1.5"/>
+          <line x1="300" y1="172" x2="300" y2="192" stroke="var(--ink-2)" stroke-width="2"/>
+          <rect x="264" y="192" width="72" height="20" rx="4" fill="var(--surface)" stroke="var(--line)"/>
+          <line x1="300" y1="212" x2="300" y2="228" stroke="var(--ink-2)" stroke-width="2"/>
+          <path d="M270,228 L330,228 L318,246 L282,246 Z" fill="var(--surface-2)" stroke="var(--ink-2)" stroke-width="2"/>
+          <line x1="336" y1="202" x2="380" y2="202" stroke="var(--ink-2)" stroke-width="1.5" stroke-dasharray="3 3"/>
           <g font-family="inherit" font-size="12" fill="var(--ink-2)">
-            <rect x="20" y="20" width="130" height="46" rx="6" fill="var(--surface)" stroke="var(--line)"/>
-            <text x="85" y="48" text-anchor="middle" font-weight="700" fill="var(--ink)">Left tank</text>
-            <rect x="370" y="20" width="130" height="46" rx="6" fill="var(--surface)" stroke="var(--line)"/>
-            <text x="435" y="48" text-anchor="middle" font-weight="700" fill="var(--ink)">Right tank</text>
-
-            <line x1="150" y1="43" x2="370" y2="43" stroke="var(--brand)" stroke-width="2"/>
-            <text x="260" y="35" text-anchor="middle" fill="var(--brand)" font-weight="700">Vent interconnect</text>
-
-            <line x1="85" y1="66" x2="85" y2="90" stroke="var(--muted)" stroke-width="2"/>
-            <path d="M70 90 h30 l-15 18 z" fill="var(--muted)"/>
-            <text x="85" y="122" text-anchor="middle">Check-valve vent<tspan x="85" dy="14">(left, overboard)</tspan></text>
-
-            <line x1="85" y1="66" x2="85" y2="150" stroke="var(--ink-2)" stroke-width="2"/>
-            <line x1="435" y1="66" x2="435" y2="150" stroke="var(--ink-2)" stroke-width="2"/>
-            <line x1="85" y1="150" x2="435" y2="150" stroke="var(--ink-2)" stroke-width="2"/>
-
-            <rect x="220" y="140" width="80" height="24" rx="5" fill="var(--brand-light)" stroke="var(--brand)"/>
-            <text x="260" y="157" text-anchor="middle" fill="var(--brand)" font-weight="700">Shutoff valve</text>
-            <line x1="260" y1="164" x2="260" y2="185" stroke="var(--ink-2)" stroke-width="2"/>
-
-            <rect x="210" y="185" width="100" height="24" rx="5" fill="var(--surface)" stroke="var(--line)"/>
-            <text x="260" y="202" text-anchor="middle" fill="var(--ink)">Strainer</text>
-            <line x1="260" y1="209" x2="260" y2="228" stroke="var(--ink-2)" stroke-width="2"/>
-
-            <rect x="200" y="209" width="0" height="0"/>
-            <text x="260" y="238" text-anchor="middle" font-weight="700" fill="var(--ink)">Carburetor</text>
-
-            <line x1="310" y1="197" x2="360" y2="197" stroke="var(--ink-2)" stroke-width="2" stroke-dasharray="3 3"/>
-            <text x="400" y="201" fill="var(--ink-2)">Primer draws here</text>
+            <text x="92" y="122" text-anchor="middle" fill="var(--brand)" font-weight="700">Left tank</text>
+            <text x="507" y="122" text-anchor="middle" fill="var(--brand)" font-weight="700">Right tank</text>
+            <text x="300" y="103" text-anchor="middle" fill="var(--brand)" font-weight="700">Vent interconnect</text>
+            <text x="92" y="176" text-anchor="middle">Check-valve<tspan x="92" dy="13">vent (overboard)</tspan></text>
+            <text x="300" y="165" text-anchor="middle" fill="var(--brand)" font-weight="700">Shutoff valve</text>
+            <text x="300" y="205" text-anchor="middle">Strainer</text>
+            <text x="300" y="241" text-anchor="middle" font-weight="700" fill="var(--ink)">Carburetor</text>
+            <text x="386" y="206" text-anchor="start">Primer draws from here</text>
           </g>
         </svg>
-        <div class="cap">Fuel flows by gravity from both wing tanks through the shutoff valve and strainer to the carburetor; the tanks vent to each other and overboard through a check valve on the left tank</div>
+        <div class="cap">Top-down view: both wing tanks feed the shutoff valve and strainer by gravity alone, then the carburetor. The tanks vent to each other and overboard through a check valve on the left tank.</div>
       </div>
 
-      <h3 class="sub">Quantity &amp; unusable fuel <span class="ref">POH 7-18</span></h3>
+      <h3 class="sub">Quantity &amp; the unusable fuel nobody thinks about</h3>
       <p>
-        Two float-type transmitters feed two electric indicators. When an
-        indicator reads empty, roughly <strong>0.75 gallon</strong> still
-        sits in that tank. Total unusable fuel across the airplane is about
-        <strong>1.5 gallons</strong>, a figure confirmed with 30-second
-        full-rudder sideslips in the landing configuration — not just
-        straight and level. Takeoffs have never been demonstrated with less
-        than <strong>2 gallons total</strong> (1 per tank) on board.
+        Two float-type transmitters feed two electric indicators. When one
+        reads empty, roughly <strong>0.75 gallon</strong> is still sitting
+        in that tank. Total unusable fuel across the whole airplane is
+        about <strong>1.5 gallons</strong> — a figure actually confirmed
+        with 30-second full-rudder sideslips in the landing configuration,
+        not just measured straight and level. Takeoffs have never been
+        demonstrated with less than <strong>2 gallons total</strong> on
+        board (1 per tank). <span class="ref">POH 7-18</span>
       </p>
       <div class="callout note">
-        <span class="label">Reduced loading option</span>
+        <span class="label">💡 Reduced fuel loading option</span>
         Long range tanks can be serviced only to the bottom of the
-        filler-neck indicator for a lighter fuel load — that gives
-        <strong>12 gallons per tank (12.25 usable total)</strong> instead of
-        the full 19.5.
+        filler-neck indicator for a lighter fuel load — that gives you
+        <strong>12 gallons per tank (12.25 usable total)</strong> instead
+        of the full 19.5, freeing up useful load for a heavier cabin.
       </div>
 
-      <h3 class="sub">Preflight draining <span class="ref">POH 4-5</span></h3>
+      <h3 class="sub">Draining before you fly</h3>
       <p>
         Pull the strainer drain knob for about <strong>4 seconds</strong>
-        before the first flight of the day and after every refueling. If
-        water shows up, keep draining at the strainer, both wing sumps, and
-        the fuel line drain plug — one contaminated point usually means
-        more water is still in the system.
+        before the first flight of the day and after every refueling. Find
+        water? Keep draining — the strainer, both wing sumps, the fuel
+        line drain plug — because one contaminated point usually means
+        there's more of it still in the system. <span class="ref">POH 4-5</span>
       </p>
 
       <div class="related"><span class="dot"></span> Related questions: <strong>15</strong> in this topic</div>
@@ -905,11 +1034,11 @@
     <!-- 08 ELECTRICAL SYSTEM -->
     <!-- ============================================================ -->
     <section class="sec" id="electrical">
-      <h2><span class="num">08</span> Electrical System <span class="en">Electrical System</span></h2>
+      <h2><span class="num">🔋</span> Electrical System <span class="en">Electrical System</span></h2>
       <p class="lead">
-        28 volts, one bus bar, one master switch with two independent
-        halves. Simple enough to reason through from first principles once
-        you know the split.
+        28 volts, a single bus bar, and a master switch that's actually two
+        independent switches wearing one rocker. Once you see the split,
+        the rest of the system reasons itself out.
       </p>
 
       <div class="diagram">
@@ -937,33 +1066,38 @@
         <div class="cap">BAT controls all electrical power; ALT controls only the alternator. The HIGH VOLTAGE light shares the panel with the ammeter, just below it.</div>
       </div>
 
-      <h3 class="sub">Power source <span class="ref">POH 7-20</span></h3>
+      <h3 class="sub">Power source</h3>
       <p>
         <strong>28-volt DC</strong> system: a <strong>60-amp</strong>
-        engine-driven alternator and a <strong>14-amp hour</strong> battery
-        (or 17-amp hour, if installed) on the right forward firewall.
-        Everything runs through one bus bar except the ignition system,
-        clock, and flight-hour recorder — those stay live even with the
-        master switch off.
+        engine-driven alternator, and a <strong>14-amp hour</strong> battery
+        (17-amp hour, if installed) tucked on the right forward firewall.
+        Everything runs through one bus bar except the ignition system, the
+        clock and the flight-hour recorder — those three stay alive even
+        with the master switch off. <span class="ref">POH 7-20</span>
       </p>
 
-      <h3 class="sub">Master switch behavior <span class="ref">POH 7-20</span></h3>
+      <h3 class="sub">The two halves of the master switch</h3>
       <p>
-        <strong>BAT</strong> (right half) controls all electrical power;
-        <strong>ALT</strong> (left half) controls only the alternator. Leave
-        ALT off long enough and the battery drains far enough to open the
-        battery contactor and lock the alternator out of restarting —
-        there's no shortcut back once that happens in flight.
+        <strong>BAT</strong> (right half) is the one controlling all
+        electrical power. <strong>ALT</strong> (left half) controls only
+        the alternator. Leave ALT off long enough in flight and the battery
+        drains down far enough to open the battery contactor and lock the
+        alternator out of ever restarting — there's no in-flight undo once
+        that happens. <span class="ref">POH 7-20</span>
       </p>
 
-      <h3 class="sub">Protection &amp; lighting <span class="ref">POH 7-22, 7-23</span></h3>
+      <h3 class="sub">Protection &amp; lighting</h3>
       <p>
-        Most circuits use push-to-reset breakers under the engine controls.
-        A handful — battery contactor closing, clock, flight-hour recorder —
-        use fuses by the battery instead, since they're meant to stay live
-        with the master off. If a breaker pops twice, the rule is simple:
-        <strong>don't reset it again.</strong>
+        Most circuits sit behind push-to-reset breakers under the engine
+        controls. A handful — battery contactor closing, clock, flight-hour
+        recorder — use fuses by the battery instead, because those three
+        are meant to stay live with the master off. <span class="ref">POH 7-22, 7-23</span>
       </p>
+      <div class="callout good">
+        <span class="label">✅ Key takeaway</span>
+        If a breaker pops twice, the rule is simple and non-negotiable:
+        don't reset it a second time.
+      </div>
 
       <div class="related"><span class="dot"></span> Related questions: <strong>16</strong> in this topic</div>
     </section>
@@ -972,11 +1106,11 @@
     <!-- 09 LANDING GEAR & BRAKES -->
     <!-- ============================================================ -->
     <section class="sec" id="gear">
-      <h2><span class="num">09</span> Landing Gear &amp; Brakes <span class="en">Landing Gear &amp; Brakes</span></h2>
+      <h2><span class="num">🛞</span> Landing Gear &amp; Brakes <span class="en">Landing Gear &amp; Brakes</span></h2>
       <p class="lead">
-        Fixed tricycle gear — nothing retracts, nothing folds, but the
-        steering geometry and the tire/strut figures are exactly the kind of
-        thing a checkride examiner (and this test) expects you to know cold.
+        Fixed tricycle gear — nothing retracts, nothing folds — but the
+        steering geometry and the tire/strut numbers are exactly the sort
+        of thing an examiner (and this test) expects you to have cold.
       </p>
 
       <div class="table-wrap">
@@ -993,22 +1127,26 @@
         </tbody>
       </table>
       </div>
+      <p><span class="ref">POH 7-8, 7-9, 8-11</span></p>
 
-      <h3 class="sub">Brakes <span class="ref">POH 7-19</span></h3>
+      <h3 class="sub">Brakes</h3>
       <p>
         Single-disc, hydraulically-actuated brake on each main wheel, each
-        fed by its own master cylinder at the top of the rudder pedals — the
-        left (pilot's) and right (copilot's) pedal sets are interconnected.
-        Watch for the warning signs: gradual loss of braking, noisy or
-        dragging brakes, spongy pedals, excessive travel. If one brake fails,
-        use the other sparingly with opposite rudder to compensate — don't
-        just stand on the good one.
+        with its own master cylinder at the top of the rudder pedals — the
+        left (pilot's) and right (copilot's) pedal sets are interconnected,
+        so either one works the same brakes. <span class="ref">POH 7-19</span>
+      </p>
+      <p>
+        Watch for the warning signs: gradual loss of braking action, noisy
+        or dragging brakes, spongy pedals, excessive pedal travel. If one
+        brake actually fails, use the good one sparingly with opposite
+        rudder to compensate — don't just stand on it.
       </p>
       <div class="callout caution">
-        <span class="label">Caution</span>
-        Never set the parking brake in freezing weather with accumulated
-        moisture, or when the brakes are already overheated — either can
-        seize them.
+        <span class="label">🚫 Caution</span>
+        Never set the parking brake in freezing weather with moisture
+        around, or when the brakes are already overheated — either way, you
+        risk seizing them.
       </div>
 
       <div class="related"><span class="dot"></span> Related questions: <strong>13</strong> in this topic</div>
@@ -1018,46 +1156,51 @@
     <!-- 10 FLIGHT CONTROLS -->
     <!-- ============================================================ -->
     <section class="sec" id="flightcontrols">
-      <h2><span class="num">10</span> Flight Controls <span class="en">Flight Controls</span></h2>
+      <h2><span class="num">🕹️</span> Flight Controls <span class="en">Flight Controls</span></h2>
       <p class="lead">
-        Conventional three-axis, cable-and-pushrod, nothing powered. The
-        flap system is the one piece with any complexity — it's electric,
-        not mechanical, which surprises people expecting a manual lever.
+        Conventional three-axis controls, cable-and-pushrod, nothing
+        powered. The flap system is really the only piece with any
+        complexity — it's electric, not the manual lever some pilots expect
+        coming from other trainers.
       </p>
 
-      <h3 class="sub">Trim <span class="ref">POH 7-8</span></h3>
+      <h3 class="sub">Trim — easy to get backwards if you're not paying attention</h3>
       <p>
-        A manual elevator trim tab, worked by a vertical trim wheel:
-        <strong>forward rotates nose-down, aft rotates nose-up</strong> —
-        easy to get backwards if you're used to a different airplane, so
-        it's worth saying out loud once.
+        A manually-operated elevator trim tab, worked by a vertical trim
+        wheel: <strong>forward rotation trims nose-down, aft rotation trims
+        nose-up.</strong> Say it out loud once if you're coming from a
+        different airplane — this is the one place muscle memory from
+        elsewhere can bite you. <span class="ref">POH 7-8</span>
       </p>
 
-      <h3 class="sub">Wing flaps <span class="ref">POH 7-9</span></h3>
+      <h3 class="sub">Wing flaps</h3>
       <p>
         Single-slot flaps, positioned by an <strong>electric switch
         lever</strong> with mechanical stops at <strong>10° and
-        20°</strong> — going past 10° means deliberately sliding the lever
-        sideways to clear the stop. Protected by a <strong>15-amp breaker
-        labeled FLAP</strong>. Takeoff is limited to <strong>0°–10°</strong>;
-        short-field and normal landings use up to <strong>30°</strong>,
-        below the 85-KIAS flap-extension limit.
+        20°</strong> — getting past 10° means deliberately sliding the
+        lever sideways to clear that stop. Protected by a <strong>15-amp
+        breaker labeled FLAP</strong>. <span class="ref">POH 7-9</span>
+      </p>
+      <div class="stat-row">
+        <div class="stat"><div class="v">0°–10°</div><div class="k">Approved for takeoff</div></div>
+        <div class="stat"><div class="v">up to 30°</div><div class="k">Available for landing</div></div>
+        <div class="stat"><div class="v">85 KIAS</div><div class="k">V FE — don't extend above this</div></div>
+      </div>
+
+      <h3 class="sub">Control locks</h3>
+      <p>
+        One steel rod locks ailerons and elevator neutral for parking, and
+        it puts a red <strong>CONTROL LOCK, REMOVE BEFORE STARTING
+        ENGINE</strong> flag directly over the ignition switch — genuinely
+        hard to miss on preflight if it was actually installed. <span class="ref">POH 7-14</span>
       </p>
 
-      <h3 class="sub">Control locks <span class="ref">POH 7-14</span></h3>
-      <p>
-        A single steel rod locks ailerons and elevator in neutral for
-        parking, with a red <strong>CONTROL LOCK, REMOVE BEFORE STARTING
-        ENGINE</strong> flag positioned right over the ignition switch —
-        impossible to miss on preflight if it's actually installed correctly.
-      </p>
-
-      <h3 class="sub">Balked landing flap sequence <span class="ref">POH 4-9</span></h3>
-      <p>
-        Full power first, flaps to <strong>20°</strong> immediately, then
-        slowly to fully up only once a safe airspeed is established — never
-        all at once.
-      </p>
+      <div class="callout good">
+        <span class="label">✅ Key takeaway</span>
+        Balked landing: full power first, flaps to <strong>20°</strong>
+        right away, then slowly to fully up only once you have safe
+        airspeed — never dump them all at once. <span class="ref">POH 4-9</span>
+      </div>
 
       <div class="related"><span class="dot"></span> Related questions: <strong>14</strong> in this topic</div>
     </section>
@@ -1066,47 +1209,47 @@
     <!-- 11 FLIGHT INSTRUMENTS -->
     <!-- ============================================================ -->
     <section class="sec" id="instruments">
-      <h2><span class="num">11</span> Flight Instruments <span class="en">Flight Instruments</span></h2>
+      <h2><span class="num">🧭</span> Flight Instruments <span class="en">Flight Instruments</span></h2>
       <p class="lead">
-        Two separate pneumatic systems feed most of the panel: pitot-static
-        for the airspeed/VSI/altimeter trio, and engine-driven vacuum for
-        the gyros. Knowing which system feeds which instrument is most of
-        what gets tested here.
+        Two independent pneumatic systems feed nearly the whole panel:
+        pitot-static for the airspeed/VSI/altimeter trio, engine-driven
+        vacuum for the gyros. Knowing which system feeds which instrument
+        is most of what actually gets tested here.
       </p>
 
-      <h3 class="sub">Pitot-static instruments <span class="ref">POH 7-25, 7-26</span></h3>
+      <h3 class="sub">Pitot-static instruments</h3>
       <p>
-        Pitot tube on the lower left wing, static port on the lower left
+        Pitot tube under the left wing, static port on the lower-left
         fuselage. Static pressure alone feeds the <strong>airspeed
         indicator, rate-of-climb indicator, and altimeter</strong>. The
-        heated pitot option runs on a 15-amp breaker behind a switch labeled
-        <strong>PITOT HT</strong>.
+        heated-pitot option runs on its own 15-amp breaker behind a switch
+        labeled <strong>PITOT HT</strong>. <span class="ref">POH 7-25, 7-26</span>
       </p>
       <p>
         To read pressure altitude off the altimeter (for the true-airspeed
-        ring): set the barometric scale to <strong>29.92</strong>
-        momentarily, read the altitude, then restore the original setting.
+        ring): momentarily set the barometric scale to <strong>29.92</strong>,
+        read the altitude, then put the original setting back before you
+        forget.
       </p>
 
-      <h3 class="sub">Vacuum instruments <span class="ref">POH 7-27, 7-28</span></h3>
+      <h3 class="sub">Vacuum instruments</h3>
       <p>
-        An engine-driven vacuum pump supplies the attitude and directional
+        An engine-driven vacuum pump feeds the attitude and directional
         indicators. Desired suction is <strong>4.6 to 5.4 inches of
-        mercury</strong> — below that range, treat both gyros as
-        unreliable. The attitude indicator's bank scale is marked at
-        <strong>10°, 20°, 30°, 60°, and 90°</strong> each side. The
-        directional indicator precesses over time, so it needs resetting
-        against the magnetic compass before takeoff and periodically on a
-        long flight.
+        mercury</strong> — below that range, stop trusting both gyros.
+        The attitude indicator's bank scale is marked at <strong>10°, 20°,
+        30°, 60° and 90°</strong> each side. The directional indicator
+        precesses over time, so it needs resetting against the magnetic
+        compass before takeoff, and again on a long flight. <span class="ref">POH 7-27, 7-28</span>
       </p>
 
-      <h3 class="sub">Stall warning system <span class="ref">POH 7-28</span></h3>
+      <h3 class="sub">Stall warning system</h3>
       <p>
-        Purely pneumatic: an inlet in the left wing's leading edge feeds an
-        air-operated horn as the low-pressure region migrates forward near
-        the stall, sounding <strong>5–10 knots</strong> before the actual
-        break. Preflight check: cup a handkerchief over the inlet and apply
-        suction — the horn should sound.
+        Purely pneumatic — an inlet in the left wing's leading edge feeds
+        an air-operated horn as the low-pressure region migrates forward
+        near the stall, sounding <strong>5–10 knots</strong> before the
+        actual break. Preflight check: cup a handkerchief over the inlet,
+        apply suction, listen for the horn. <span class="ref">POH 7-28</span>
       </p>
 
       <div class="related"><span class="dot"></span> Related questions: <strong>16</strong> in this topic</div>
@@ -1116,35 +1259,42 @@
     <!-- 12 AIRFRAME -->
     <!-- ============================================================ -->
     <section class="sec" id="airframe">
-      <h2><span class="num">12</span> Airframe <span class="en">Airframe</span></h2>
+      <h2><span class="num">🛠️</span> Airframe <span class="en">Airframe</span></h2>
       <p class="lead">
         All-metal, two-place, high-wing, semimonocoque — every word in that
-        description shows up somewhere in a question, so it's worth being
-        able to say what each one actually means.
+        one-line description turns up somewhere in a question, so it's
+        worth being able to actually explain what each of them means, not
+        just recite them.
       </p>
 
       <p>
-        The fuselage is semimonocoque: formed sheet-metal bulkheads,
-        stringers, and skin sharing the structural load together, rather
-        than a steel-tube truss carrying it alone. The externally braced
-        wings carry the fuel tanks and use front/rear spars with sheet-metal
-        ribs under an all-aluminum skin. The empennage is conventional:
+        <strong>Semimonocoque</strong> means the fuselage's formed
+        sheet-metal bulkheads, stringers and skin all share the structural
+        load together, instead of a steel-tube truss carrying it alone
+        underneath a non-structural skin. The externally-braced wings carry
+        the fuel tanks and use front/rear spars with sheet-metal ribs under
+        one continuous aluminum skin. The empennage is conventional:
         vertical stabilizer, rudder, horizontal stabilizer, elevator — with
-        the rudder's trim tab ground-adjustable, and the entire right half
-        of the elevator's trailing edge hinged to form the elevator trim tab.
+        the rudder's trim tab ground-adjustable, and the <em>entire</em>
+        right half of the elevator's trailing edge hinged to actually form
+        the elevator trim tab. <span class="ref">POH 7-3</span>
       </p>
 
-      <h3 class="sub">Cabin <span class="ref">POH 7-10, 7-13</span></h3>
+      <h3 class="sub">In the cabin</h3>
       <p>
-        Seats come in four-way or six-way adjustable versions — six-way
-        adds <strong>2 inches of height adjustment in 1-inch steps</strong>.
-        A rear child's seat is available but non-adjustable. The baggage net
-        uses <strong>six tie-down straps</strong>. Only the <strong>left
-        door</strong> has a key lock. If a door pops open in flight from a
-        bad latch, the fix is calm and specific: trim around
-        <strong>65 knots</strong>, shove the door out slightly, pull it shut
-        firmly — landing is not required for this alone.
+        Seats come as four-way or six-way adjustable — six-way adds 2
+        inches of height travel in 1-inch steps. A rear child's seat is
+        available but fixed, no adjustment. The baggage net ties down with
+        <strong>six straps</strong>. Only the <strong>left door</strong>
+        gets a key lock. <span class="ref">POH 7-10, 7-13</span>
       </p>
+      <div class="callout good">
+        <span class="label">✅ Good to know</span>
+        If a door pops open in flight from a bad latch, the fix is calm and
+        specific: trim around <strong>65 knots</strong>, shove the door out
+        slightly, pull it firmly shut. Landing is not required for this
+        alone.
+      </div>
 
       <div class="related"><span class="dot"></span> Related questions: <strong>12</strong> in this topic</div>
     </section>
@@ -1153,28 +1303,31 @@
     <!-- 13 PROPELLER -->
     <!-- ============================================================ -->
     <section class="sec" id="propeller">
-      <h2><span class="num">13</span> Propeller <span class="en">Propeller</span></h2>
+      <h2><span class="num">🌀</span> Propeller <span class="en">Propeller</span></h2>
       <p class="lead">
-        No governor, no feathering, no constant-speed complexity — a fixed
-        pitch propeller means RPM is purely a function of throttle and
-        airspeed, which is exactly why the static-RPM check in Limitations
-        matters so much: it's the one direct read you get on engine health.
+        No governor, no feathering, no constant-speed complexity — a
+        fixed-pitch propeller means RPM is purely a function of throttle
+        and airspeed. Which is exactly why the static-RPM check back in
+        Limitations matters so much: it's the one direct read you get on
+        engine health before you commit to the runway.
       </p>
 
       <p>
         <strong>McCauley 1A103/TCM6958</strong>: two-bladed, fixed-pitch,
         one-piece forged aluminum alloy, anodized against corrosion,
-        <strong>69 inches</strong> in diameter (worn limit 67.5 in).
+        <strong>69 inches</strong> in diameter (worn down to 67.5 in is the
+        limit). <span class="ref">POH 1-5, 7-17</span>
       </p>
       <p>
-        Small leading-edge nicks near the tips are not cosmetic — they
-        create stress concentrations that can grow into cracks, so they get
-        dressed out promptly rather than left alone. On gravel, advance the
-        throttle slowly so the airplane is already rolling before RPM builds,
-        which throws gravel behind the blades instead of into them. During
-        storage, the propeller gets turned by hand through five revolutions
-        every seventh day — always treated as if the ignition were live,
-        since a bad ground wire on either magneto could fire the engine.
+        Small leading-edge nicks near the tips aren't just cosmetic — they
+        create stress concentrations that can grow into cracks, so they
+        get dressed out promptly rather than shrugged off. On gravel,
+        advance the throttle slowly so the airplane is already rolling
+        before RPM builds — that throws stones behind the blades instead
+        of into them. During storage, the prop gets turned by hand through
+        five revolutions every seventh day, and always treated as if the
+        ignition were live, since a bad ground wire on either magneto could
+        genuinely fire the engine. <span class="ref">POH 4-14, 8-9, 8-13</span>
       </p>
 
       <div class="related"><span class="dot"></span> Related questions: <strong>7</strong> in this topic</div>
