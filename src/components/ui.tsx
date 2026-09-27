@@ -27,9 +27,21 @@ export function PageHeading({
   );
 }
 
-export function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
+export function Card({
+  children,
+  className = "",
+  padding = "p-5",
+}: {
+  children: ReactNode;
+  className?: string;
+  /** Override the default padding — e.g. tighter on a screen that needs
+   * every pixel of vertical space, such as the test runner on a phone. */
+  padding?: string;
+}) {
   return (
-    <div className={`rounded-xl border border-border bg-surface p-5 ${className}`}>{children}</div>
+    <div className={`rounded-xl border border-border bg-surface ${padding} ${className}`}>
+      {children}
+    </div>
   );
 }
 

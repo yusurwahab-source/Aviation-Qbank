@@ -74,7 +74,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <SiteHeader />
         <SiteAnnouncement />
 
-        <main id="main" className="mx-auto w-full max-w-5xl flex-1 px-4 py-8 sm:px-5">
+        <main id="main" className="mx-auto w-full max-w-5xl flex-1 px-4 pb-8 pt-4 sm:px-5 sm:pt-8">
           {children}
         </main>
 
