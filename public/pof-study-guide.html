@@ -260,7 +260,7 @@
       <li><a href="#aero"><span class="n">01</span> Basic Aerodynamics <span class="count">65</span></a></li>
       <li><a href="#afoil"><span class="n">02</span> Aerofoils &amp; Lift Theory <span class="count">65</span></a></li>
       <li><a href="#lift"><span class="n">03</span> Lift and Drag <span class="count">75</span></a></li>
-      <li><a href="#bl"><span class="n">04</span> Boundary Layer <span class="count">28</span></a></li>
+      <li><a href="#bl"><span class="n">04</span> Boundary Layer <span class="count">55</span></a></li>
       <li><a href="#stall"><span class="n">05</span> Stalling <span class="count">42</span></a></li>
       <li><a href="#hld"><span class="n">06</span> High-Lift Devices <span class="count">30</span></a></li>
       <li><a href="#ctrl"><span class="n">07</span> Flight Controls: Primary <span class="count">38</span></a></li>
@@ -286,7 +286,7 @@
       </p>
       <div class="tags">
         <span class="tag">15 sections</span>
-        <span class="tag">601 linked questions</span>
+        <span class="tag">628 linked questions</span>
         <span class="tag">Equations · graphs · proportionalities</span>
         <span class="tag">Aircraft-independent</span>
       </div>
@@ -841,38 +841,137 @@
     <section class="sec" id="bl">
       <h2><span class="num">04</span> Boundary Layer <span class="en">Boundary Layer</span></h2>
       <p class="lead">
-        The thin layer of slowed air right at the surface governs where a
-        wing separates — and therefore stalls.
+        No-slip at the wall creates a thin viscous layer in which shear stress
+        is of the same order as inertia. Its state — laminar or turbulent —
+        sets skin friction; its momentum against the imposed pressure
+        gradient sets separation, and therefore form drag and the stall.
       </p>
 
-      <h3 class="sub">Transition and separation <span class="ref">4.1</span></h3>
-      <p>
-        The <strong>transition point</strong> is where laminar flow becomes
-        turbulent. <strong>Separation</strong> happens when the boundary
-        layer's kinetic energy can no longer overcome a rising (adverse)
-        pressure gradient — and widespread upper-surface separation
-        <em>is</em>, aerodynamically, a stall.
-      </p>
-
-      <h3 class="sub">Controlling the boundary layer <span class="ref">4.2</span></h3>
+      <h3 class="sub">Structure and definitions <span class="ref">4.1</span></h3>
+      <div class="eq">τ<sub>w</sub> = μ·(∂u/∂y)<sub>wall</sub> &nbsp;&nbsp;&nbsp; ∂p/∂y ≈ 0 across the layer</div>
+      <div class="eq">δ* = ∫(1 − u/U) dy &nbsp;&nbsp; θ = ∫(u/U)(1 − u/U) dy &nbsp;&nbsp; H = δ*/θ</div>
+      <ul>
+        <li>δ: height where u = 0.99U. δ*: outward displacement of the effective body. θ: momentum deficit; H: profile fullness.</li>
+        <li>Static pressure is imposed by the outer inviscid flow and transmitted unchanged to the wall.</li>
+        <li>Turbulent layer: viscous sublayer (u ∝ y), logarithmic region, outer wake.</li>
+      </ul>
+      <div class="diagram">
+        <svg viewBox="0 0 460 235" role="img" aria-label="Boundary-layer velocity profiles: turbulent one-seventh power profile fuller than laminar parabolic profile; near-separation profile with zero wall gradient">
+          <line x1="60.0" y1="40.0" x2="417.0" y2="40.0" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 3"/>
+          <line x1="60.0" y1="190.0" x2="434.0" y2="190.0" stroke="var(--ink-2)" stroke-width="2"/>
+          <line x1="60.0" y1="190.0" x2="60.0" y2="10.0" stroke="var(--ink-2)" stroke-width="1.2"/>
+          <line x1="400.0" y1="190.0" x2="400.0" y2="10.0" stroke="var(--line)" stroke-width="1"/>
+          <text x="54.0" y="44.0" font-size="11" fill="var(--muted)" text-anchor="end">δ</text>
+          <text x="54.0" y="119.0" font-size="11" fill="var(--muted)" text-anchor="end">δ/2</text>
+          <text x="400.0" y="206.0" font-size="11" fill="var(--muted)" text-anchor="middle">u = U</text>
+          <text x="230.0" y="206.0" font-size="11" fill="var(--muted)" text-anchor="middle">0.5U</text>
+          <text x="434.0" y="222.0" font-size="11" fill="var(--muted)" text-anchor="end">u/U →</text>
+          <text x="66.0" y="14.0" font-size="11" fill="var(--muted)">y</text>
+          <polyline points="60.0,190.0 60.2,188.5 60.8,187.0 61.8,185.5 63.1,184.0 64.8,182.5 66.8,181.0 69.1,179.5 71.7,178.0 74.6,176.5 77.8,175.0 81.2,173.5 84.9,172.0 88.8,170.5 92.9,169.0 97.2,167.5 101.8,166.0 106.4,164.5 111.3,163.0 116.3,161.5 121.5,160.0 126.8,158.5 132.2,157.0 137.7,155.5 143.3,154.0 149.0,152.5 154.8,151.0 160.6,149.5 166.5,148.0 172.4,146.5 178.4,145.0 184.4,143.5 190.5,142.0 196.5,140.5 202.5,139.0 208.6,137.5 214.6,136.0 220.6,134.5 226.6,133.0 232.5,131.5 238.4,130.0 244.3,128.5 250.1,127.0 255.8,125.5 261.5,124.0 267.1,122.5 272.6,121.0 278.0,119.5 283.4,118.0 288.6,116.5 293.8,115.0 298.8,113.5 303.7,112.0 308.6,110.5 313.3,109.0 317.9,107.5 322.4,106.0 326.7,104.5 331.0,103.0 335.1,101.5 339.1,100.0 342.9,98.5 346.6,97.0 350.2,95.5 353.7,94.0 357.0,92.5 360.2,91.0 363.2,89.5 366.1,88.0 368.9,86.5 371.5,85.0 374.0,83.5 376.4,82.0 378.7,80.5 380.8,79.0 382.7,77.5 384.6,76.0 386.3,74.5 387.9,73.0 389.4,71.5 390.8,70.0 392.0,68.5 393.1,67.0 394.2,65.5 395.1,64.0 395.9,62.5 396.7,61.0 397.3,59.5 397.9,58.0 398.3,56.5 398.7,55.0 399.1,53.5 399.3,52.0 399.6,50.5 399.7,49.0 399.8,47.5 399.9,46.0 400.0,44.5 400.0,43.0 400.0,41.5 400.0,40.0" fill="none" stroke="var(--warn-line)" stroke-width="2.5"/>
+          <polyline points="60.0,190.0 66.8,188.5 73.5,187.0 80.1,185.5 86.7,184.0 93.2,182.5 99.6,181.0 105.9,179.5 112.2,178.0 118.4,176.5 124.6,175.0 130.7,173.5 136.7,172.0 142.7,170.5 148.5,169.0 154.3,167.5 160.1,166.0 165.8,164.5 171.4,163.0 176.9,161.5 182.4,160.0 187.8,158.5 193.1,157.0 198.4,155.5 203.6,154.0 208.8,152.5 213.8,151.0 218.8,149.5 223.7,148.0 228.6,146.5 233.4,145.0 238.1,143.5 242.8,142.0 247.4,140.5 251.9,139.0 256.4,137.5 260.7,136.0 265.1,134.5 269.3,133.0 273.5,131.5 277.6,130.0 281.6,128.5 285.6,127.0 289.5,125.5 293.4,124.0 297.1,122.5 300.9,121.0 304.5,119.5 308.1,118.0 311.6,116.5 315.0,115.0 318.4,113.5 321.7,112.0 324.9,110.5 328.1,109.0 331.2,107.5 334.2,106.0 337.1,104.5 340.0,103.0 342.8,101.5 345.6,100.0 348.3,98.5 350.9,97.0 353.5,95.5 355.9,94.0 358.3,92.5 360.7,91.0 363.0,89.5 365.2,88.0 367.3,86.5 369.4,85.0 371.4,83.5 373.3,82.0 375.2,80.5 377.0,79.0 378.8,77.5 380.4,76.0 382.0,74.5 383.5,73.0 385.0,71.5 386.4,70.0 387.7,68.5 389.0,67.0 390.2,65.5 391.3,64.0 392.4,62.5 393.3,61.0 394.3,59.5 395.1,58.0 395.9,56.5 396.6,55.0 397.2,53.5 397.8,52.0 398.3,50.5 398.8,49.0 399.1,47.5 399.5,46.0 399.7,44.5 399.9,43.0 400.0,41.5 400.0,40.0" fill="none" stroke="var(--caution-line)" stroke-width="2.5"/>
+          <polyline points="60.0,190.0 236.1,188.5 254.4,187.0 266.0,185.5 274.7,184.0 281.6,182.5 287.5,181.0 292.5,179.5 297.0,178.0 301.0,176.5 304.7,175.0 308.0,173.5 311.2,172.0 314.0,170.5 316.7,169.0 319.3,167.5 321.7,166.0 324.0,164.5 326.1,163.0 328.2,161.5 330.2,160.0 332.1,158.5 333.9,157.0 335.6,155.5 337.3,154.0 338.9,152.5 340.5,151.0 342.0,149.5 343.5,148.0 344.9,146.5 346.3,145.0 347.6,143.5 348.9,142.0 350.2,140.5 351.4,139.0 352.6,137.5 353.8,136.0 355.0,134.5 356.1,133.0 357.2,131.5 358.3,130.0 359.3,128.5 360.4,127.0 361.4,125.5 362.4,124.0 363.3,122.5 364.3,121.0 365.2,119.5 366.2,118.0 367.1,116.5 367.9,115.0 368.8,113.5 369.7,112.0 370.5,110.5 371.4,109.0 372.2,107.5 373.0,106.0 373.8,104.5 374.5,103.0 375.3,101.5 376.1,100.0 376.8,98.5 377.6,97.0 378.3,95.5 379.0,94.0 379.7,92.5 380.4,91.0 381.1,89.5 381.8,88.0 382.4,86.5 383.1,85.0 383.8,83.5 384.4,82.0 385.1,80.5 385.7,79.0 386.3,77.5 386.9,76.0 387.5,74.5 388.1,73.0 388.7,71.5 389.3,70.0 389.9,68.5 390.5,67.0 391.1,65.5 391.6,64.0 392.2,62.5 392.8,61.0 393.3,59.5 393.8,58.0 394.4,56.5 394.9,55.0 395.4,53.5 396.0,52.0 396.5,50.5 397.0,49.0 397.5,47.5 398.0,46.0 398.5,44.5 399.0,43.0 399.5,41.5 400.0,40.0" fill="none" stroke="var(--brand)" stroke-width="3"/>
+          <circle cx="368.0" cy="115.0" r="3.5" fill="var(--brand)"/>
+          <circle cx="315.0" cy="115.0" r="3.5" fill="var(--caution-line)"/>
+          <line x1="80.4" y1="22.0" x2="100.8" y2="22.0" stroke="var(--brand)" stroke-width="3"/>
+          <text x="107.6" y="26.0" font-size="11" font-weight="700" fill="var(--brand)">turbulent, (y/δ)^1/7</text>
+          <line x1="80.4" y1="43.0" x2="100.8" y2="43.0" stroke="var(--caution-line)" stroke-width="2.5"/>
+          <text x="107.6" y="47.0" font-size="11" font-weight="700" fill="var(--caution-line)">laminar, 2η − η²</text>
+          <line x1="80.4" y1="64.0" x2="100.8" y2="64.0" stroke="var(--warn-line)" stroke-width="2.5"/>
+          <text x="107.6" y="68.0" font-size="11" font-weight="700" fill="var(--warn-line)">separating, ∂u/∂y = 0 at wall</text>
+        </svg>
+        <div class="cap">At y = δ/2: turbulent u/U = 0.91, laminar 0.75. Separation where the wall gradient vanishes</div>
+      </div>
       <div class="table-wrap">
       <table>
-        <thead><tr><th>Device</th><th>Effect</th></tr></thead>
+        <thead><tr><th>Profile</th><th class="num">δ*/δ</th><th class="num">θ/δ</th><th class="num">H</th><th>Separation near</th></tr></thead>
         <tbody>
-          <tr><td>Vortex generators</td><td>Mix energetic outer air into the boundary layer, delaying separation</td></tr>
-          <tr><td>Stall strips</td><td>Deliberately trigger early separation at the root</td></tr>
-          <tr><td>Blown/suction boundary layer control</td><td>Re-energises the layer to sustain a higher CLmax</td></tr>
-          <tr><td>Laminar flow sections</td><td>Hold laminar flow further aft to cut cruise drag, at some stall-behaviour cost</td></tr>
+          <tr><td>Laminar (parabolic)</td><td class="num">1/3</td><td class="num">2/15</td><td class="num">2.5</td><td>H ≈ 3.5</td></tr>
+          <tr><td>Turbulent (1/7 power)</td><td class="num">1/8</td><td class="num">7/72</td><td class="num">1.29</td><td>H ≈ 2.4</td></tr>
         </tbody>
       </table>
       </div>
-      <p>
-        Surface contamination (frost, insects, rough paint) trips the
-        boundary layer into turbulence — and separation — earlier than a
-        clean wing, degrading CLmax even before ice has visibly built up.
-      </p>
 
-      <div class="related"><span class="dot"></span> Related questions: <strong>28</strong> in this topic</div>
+      <h3 class="sub">Growth laws and skin friction <span class="ref">4.2</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Quantity</th><th>Laminar</th><th>Turbulent</th></tr></thead>
+        <tbody>
+          <tr><td>δ/x</td><td>5.0/Re<sub>x</sub><sup>0.5</sup></td><td>0.37/Re<sub>x</sub><sup>0.2</sup></td></tr>
+          <tr><td>Local c<sub>f</sub></td><td>0.664/Re<sub>x</sub><sup>0.5</sup></td><td>0.0592/Re<sub>x</sub><sup>0.2</sup></td></tr>
+          <tr><td>Mean C<sub>f</sub></td><td>1.328/Re<sub>L</sub><sup>0.5</sup></td><td>0.074/Re<sub>L</sub><sup>0.2</sup></td></tr>
+          <tr><td>δ ∝</td><td>x<sup>0.5</sup>·V<sup>−0.5</sup></td><td>x<sup>0.8</sup>·V<sup>−0.2</sup></td></tr>
+          <tr><td>Friction drag ∝</td><td>V<sup>1.5</sup></td><td>V<sup>1.8</sup></td></tr>
+        </tbody>
+      </table>
+      </div>
+      <ul>
+        <li>50 m/s, sea level: laminar δ at 0.1 m = 0.85 mm; turbulent δ at 1 m = 18 mm.</li>
+        <li>Re<sub>L</sub> = 10⁶: C<sub>f,turb</sub>/C<sub>f,lam</sub> = 0.00467/0.00133 = 3.5.</li>
+        <li>Plate 2 m × 1 m, 50 m/s: 9.7 N turbulent against 1.6 N laminar.</li>
+        <li>Momentum integral: D′ = ρU²θ (θ = 2 mm, 50 m/s → 6.1 N/m). Far wake: c<sub>d</sub> = 2θ∞/c.</li>
+        <li>Scale: at equal V, C<sub>f</sub> ∝ c<sup>−0.2</sup>; chord ×4 → C<sub>f</sub> −24 %.</li>
+      </ul>
+
+      <h3 class="sub">Transition <span class="ref">4.3</span></h3>
+      <div class="eq">x<sub>tr</sub> = Re<sub>crit</sub>·ν/V &nbsp;&nbsp;&nbsp; Re<sub>crit</sub> ≈ 5 × 10⁵ (flat plate, zero gradient)</div>
+      <p>Sequence: two-dimensional disturbance waves amplify, become three-dimensional, form turbulent spots, merge.</p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Earlier transition</th><th>Later transition</th></tr></thead>
+        <tbody>
+          <tr><td>Higher V (x<sub>tr</sub> ∝ 1/V)</td><td>Higher ν (altitude)</td></tr>
+          <tr><td>Adverse pressure gradient</td><td>Favourable pressure gradient</td></tr>
+          <tr><td>Roughness, contamination, insects</td><td>Smooth surface</td></tr>
+          <tr><td>Free-stream turbulence, noise, vibration</td><td>Low disturbance environment</td></tr>
+          <tr><td>Sweep: crossflow, attachment-line contamination</td><td>Suction; wall cooling (in air)</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>50 m/s at sea level: x<sub>tr</sub> = 0.146 m; 100 m/s: 0.073 m. FL300 (ν ×2.22): ×2.22 aft at equal TAS, ×1.36 aft at equal EAS.</p>
+
+      <h3 class="sub">Pressure gradient and separation <span class="ref">4.4</span></h3>
+      <ul>
+        <li>dp/dx &gt; 0 decelerates the near-wall fluid first; H rises; the profile inflects; separation at (∂u/∂y)<sub>wall</sub> = 0, reversed flow downstream.</li>
+        <li>Turbulent layers carry more near-wall momentum and survive larger pressure recoveries than laminar layers.</li>
+        <li>Laminar separation at low Re: free shear layer transitions and may reattach — a separation bubble; bursting gives abrupt stall.</li>
+        <li>Rising α steepens the recovery behind the suction peak: trailing-edge separation moves forward, lift slope falls, stall follows.</li>
+        <li>Separated region: no pressure recovery → loss of suction (lift) and a low-pressure wake (form drag).</li>
+        <li>Displacement at the trailing edge reduces effective camber and circulation: real lift slopes 0.10–0.11 deg⁻¹, below 2π rad⁻¹.</li>
+      </ul>
+
+      <h3 class="sub">Friction versus form drag <span class="ref">4.5</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Body</th><th>Dominant drag</th><th>Effect of turbulent layer</th></tr></thead>
+        <tbody>
+          <tr><td>Streamlined</td><td>Skin friction</td><td>Drag rises (C<sub>f</sub> ×3–4)</td></tr>
+          <tr><td>Bluff</td><td>Form</td><td>Drag falls: later separation, narrower wake (sphere C<sub>D</sub> 0.47 → ≈ 0.1 near Re 3 × 10⁵)</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">Control, roughness and contamination <span class="ref">4.6</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Method</th><th>Mechanism</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td>Vortex generators</td><td>Streamwise vortices mix outer momentum inward</td><td>Delay separation; small drag cost</td></tr>
+          <tr><td>Turbulators / trip strips</td><td>Force transition ahead of adverse gradient</td><td>Avoid laminar separation</td></tr>
+          <tr><td>Suction</td><td>Remove low-momentum fluid</td><td>Delay transition and separation</td></tr>
+          <tr><td>Blowing, slots</td><td>Add a high-energy wall jet</td><td>Attached flow at higher α / flap angle</td></tr>
+          <tr><td>Fences, vortilons</td><td>Block spanwise drift on swept wings</td><td>Delay tip separation, pitch-up</td></tr>
+          <tr><td>Stall strips</td><td>Trigger separation inboard</td><td>Root-first stall</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <ul>
+        <li>Roughness matters when it protrudes beyond the viscous sublayer; the sublayer thins as Re rises.</li>
+        <li>Frost, ice, rain, insects: early transition and separation; C<sub>L,max</sub> and stall α fall — stall can precede a fixed-α warning.</li>
+        <li>Insect residue on a laminar section: turbulent wedges, loss of the drag bucket.</li>
+        <li>Swept wing: spanwise pressure gradient drives the layer outboard, thickening it at the tips.</li>
+      </ul>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>55</strong> in this topic</div>
     </section>
 
     <!-- ============================================================ -->

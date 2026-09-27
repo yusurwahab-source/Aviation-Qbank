@@ -1,523 +1,1123 @@
 [
   {
-    "id": "POF-BL-0001",
+    "id": "POF-BL-0029",
     "subjectCode": "POF",
     "topic": "Boundary Layer",
-    "subtopic": "Laminar vs Turbulent",
-    "question": "Compared with a laminar boundary layer, a turbulent boundary layer:",
+    "subtopic": "Definition and thickness",
+    "question": "The boundary-layer thickness δ is conventionally defined as the distance from the wall at which:",
     "options": [
-      { "id": "a", "text": "Has less kinetic energy near the surface and separates more easily" },
-      { "id": "b", "text": "Produces less skin friction drag but separates more easily" },
+      { "id": "a", "text": "The static pressure reaches free-stream value" },
+      { "id": "b", "text": "The velocity is half the edge velocity" },
       {
         "id": "c",
-        "text": "Has more kinetic energy near the surface and resists separation better, at the cost of higher skin friction drag"
+        "text": "The local velocity reaches 99 % of the edge velocity"
       },
-      { "id": "d", "text": "Is unaffected by surface roughness or airflow speed" }
+      { "id": "d", "text": "The flow becomes turbulent" }
     ],
     "correct": "c",
-    "explanation": "A turbulent boundary layer mixes energetic outer airflow down toward the surface, giving it more kinetic energy than a smooth laminar layer. This makes it more resistant to separation and stall, but the extra mixing also raises skin friction drag compared with laminar flow.",
-    "tags": ["boundary-layer"],
+    "explanation": "Velocity rises asymptotically from zero at the wall (no-slip) to the inviscid edge value U; δ is taken at u = 0.99U. Static pressure is essentially constant across the layer.",
+    "tags": ["boundary-layer-thickness", "no-slip"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-BL-0002",
+    "id": "POF-BL-0030",
     "subjectCode": "POF",
     "topic": "Boundary Layer",
-    "subtopic": "Transition",
-    "question": "The \"transition point\" on an aerofoil surface is where:",
-    "options": [
-      { "id": "a", "text": "The boundary layer changes from laminar to turbulent flow" },
-      { "id": "b", "text": "The airflow separates completely from the surface" },
-      { "id": "c", "text": "The center of pressure is located" },
-      { "id": "d", "text": "A shockwave forms in transonic flight" }
-    ],
-    "correct": "a",
-    "explanation": "The transition point marks where the initially laminar boundary layer, starting at the leading edge, becomes turbulent. Its position moves forward as speed or surface roughness increases, and aft on a wing specifically shaped to hold laminar flow longer.",
-    "tags": ["boundary-layer", "transition"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-BL-0003",
-    "subjectCode": "POF",
-    "topic": "Boundary Layer",
-    "subtopic": "Separation",
-    "question": "Boundary layer separation occurs when:",
+    "subtopic": "Definition and thickness",
+    "question": "Across a thin boundary layer, the static pressure normal to the surface:",
     "options": [
       {
         "id": "a",
-        "text": "The boundary layer's kinetic energy is overcome by an adverse (rising) pressure gradient, and it can no longer follow the surface's contour"
+        "text": "Is essentially constant, equal to the value impressed by the outer inviscid flow"
       },
-      { "id": "b", "text": "The airflow becomes too fast for the surface" },
-      { "id": "c", "text": "The aircraft descends below its minimum safe altitude" },
-      { "id": "d", "text": "Dynamic pressure drops to zero everywhere" }
-    ],
-    "correct": "a",
-    "explanation": "As airflow moves aft over the rear portion of an aerofoil, pressure rises (an adverse pressure gradient). If the boundary layer's remaining kinetic energy cannot overcome that rising pressure, it separates from the surface, reversing direction locally and leaving turbulent, disorganised flow behind it.",
-    "tags": ["boundary-layer", "separation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-BL-0004",
-    "subjectCode": "POF",
-    "topic": "Boundary Layer",
-    "subtopic": "Separation and the Stall",
-    "question": "When the boundary layer separates from the upper surface of a wing at high angle of attack, the immediate effect is:",
-    "options": [
-      { "id": "a", "text": "A sharp increase in lift and a decrease in drag" },
       {
         "id": "b",
-        "text": "A sharp loss of lift and a sharp increase in drag — the aerodynamic definition of a stall"
+        "text": "Falls toward the wall in proportion to the velocity deficit"
       },
-      { "id": "c", "text": "No measurable change in either lift or drag" },
-      { "id": "d", "text": "An increase in critical Mach number" }
+      { "id": "c", "text": "Rises from zero at the wall to free-stream value" },
+      { "id": "d", "text": "Equals total pressure at the wall" }
     ],
-    "correct": "b",
-    "explanation": "Widespread boundary layer separation over the upper surface is, in aerodynamic terms, exactly what a stall is: the organised airflow that produced most of the wing's lift is lost, lift falls sharply, and pressure drag rises sharply as the separated wake widens.",
-    "tags": ["boundary-layer", "separation", "stall"],
+    "correct": "a",
+    "explanation": "Boundary-layer approximation: ∂p/∂y ≈ 0. The outer flow imposes p(x); the layer transmits it to the wall. This is why a flush static port senses the local outer-flow pressure.",
+    "tags": ["pressure", "boundary-layer-approximation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-BL-0005",
+    "id": "POF-BL-0031",
     "subjectCode": "POF",
     "topic": "Boundary Layer",
-    "subtopic": "Vortex Generators",
-    "question": "Small vortex generators fitted to a wing's upper surface work by:",
+    "subtopic": "Growth laws",
+    "question": "Laminar flow at 50 m/s at sea level (ν = 1.46 × 10⁻⁵ m²/s). With δ = 5x/√Re_x, the boundary-layer thickness 0.1 m from the leading edge is:",
     "options": [
-      { "id": "a", "text": "Reducing skin friction drag directly" },
-      { "id": "b", "text": "Energising the boundary layer by mixing high-energy outer airflow into it, delaying separation" },
-      { "id": "c", "text": "Increasing the wing's aspect ratio" },
-      { "id": "d", "text": "Reducing the wing's angle of incidence" }
+      { "id": "a", "text": "0.85 mm" },
+      { "id": "b", "text": "2.9 mm" },
+      { "id": "c", "text": "0.085 mm" },
+      { "id": "d", "text": "8.5 mm" }
     ],
-    "correct": "b",
-    "explanation": "Vortex generators are small fins angled to the local airflow that shed tiny trailing vortices, mixing energetic air from outside the boundary layer down into it. This re-energised boundary layer resists an adverse pressure gradient for longer, delaying separation to a higher angle of attack.",
-    "tags": ["boundary-layer", "vortex-generators"],
+    "correct": "a",
+    "explanation": "Re_x = 50 × 0.1/1.46 × 10⁻⁵ = 3.42 × 10⁵; √Re_x = 585; δ = 0.5/585 = 0.85 mm.",
+    "tags": ["laminar", "boundary-layer-thickness", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-BL-0006",
+    "id": "POF-BL-0032",
     "subjectCode": "POF",
     "topic": "Boundary Layer",
-    "subtopic": "Stall Strips",
-    "question": "A small \"stall strip\" fitted to the leading edge, near the wing root, is designed to:",
+    "subtopic": "Growth laws",
+    "question": "Doubling the distance from the leading edge increases laminar and turbulent boundary-layer thickness by:",
     "options": [
-      { "id": "a", "text": "Delay the stall at the root so the wingtip stalls first" },
+      { "id": "a", "text": "Both ×2" },
+      { "id": "b", "text": "Laminar ×1.74; turbulent ×1.41" },
+      { "id": "c", "text": "Laminar ×1.41; turbulent ×1.74" },
+      { "id": "d", "text": "Laminar ×2; turbulent ×1.41" }
+    ],
+    "correct": "c",
+    "explanation": "Laminar δ ∝ x/Re_x^½ ∝ x^0.5. Turbulent δ = 0.37x/Re_x^0.2 ∝ x^0.8. The turbulent layer grows faster.",
+    "tags": ["growth-rate", "laminar", "turbulent"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0033",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Growth laws",
+    "question": "At a fixed station, speed is increased fourfold. The laminar boundary-layer thickness changes by:",
+    "options": [
+      { "id": "a", "text": "×0.5" },
+      { "id": "b", "text": "×4" },
+      { "id": "c", "text": "×0.25" },
+      { "id": "d", "text": "×2" }
+    ],
+    "correct": "a",
+    "explanation": "δ ∝ x/√Re_x ∝ √(νx/V) → V^−½ → 4^−½ = 0.5.",
+    "tags": ["laminar", "boundary-layer-thickness", "proportionality"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0034",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Growth laws",
+    "question": "A turbulent boundary layer at 50 m/s, 1 m from the leading edge, sea level (δ = 0.37x/Re_x^0.2), is closest to:",
+    "options": [
+      { "id": "a", "text": "18 mm" },
+      { "id": "b", "text": "180 mm" },
+      { "id": "c", "text": "1.8 mm" },
+      { "id": "d", "text": "5 mm" }
+    ],
+    "correct": "a",
+    "explanation": "Re_x = 3.42 × 10⁶; Re_x^0.2 = 20.3; δ = 0.37/20.3 = 0.018 m. It is an order of magnitude thicker than the laminar layer near the leading edge.",
+    "tags": ["turbulent", "boundary-layer-thickness", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0035",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Transition",
+    "question": "On a smooth flat plate at zero pressure gradient, transition occurs near Re_x = 5 × 10⁵. At 50 m/s at sea level, the transition point is about:",
+    "options": [
+      { "id": "a", "text": "5 m" },
+      { "id": "b", "text": "0.015 m" },
+      { "id": "c", "text": "0.15 m from the leading edge" },
+      { "id": "d", "text": "1.5 m" }
+    ],
+    "correct": "c",
+    "explanation": "x_tr = Re_crit·ν/V = 5 × 10⁵ × 1.46 × 10⁻⁵/50 = 0.146 m.",
+    "tags": ["transition", "reynolds-number", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0036",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Transition",
+    "question": "At the same conditions, speed is doubled to 100 m/s. The transition point:",
+    "options": [
+      { "id": "a", "text": "Is unchanged" },
+      { "id": "b", "text": "Moves aft to about 0.29 m" },
+      { "id": "c", "text": "Moves forward to about 0.037 m" },
+      { "id": "d", "text": "Moves forward to about 0.073 m" }
+    ],
+    "correct": "d",
+    "explanation": "x_tr = Re_crit·ν/V ∝ 1/V at constant ν: halved.",
+    "tags": ["transition", "proportionality"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0037",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Transition",
+    "question": "At FL300, ν is about 2.2 times the sea-level value. At the same TAS, the zero-gradient transition point:",
+    "options": [
+      { "id": "a", "text": "Moves forward by a factor of about 2.2" },
+      { "id": "b", "text": "Is unchanged" },
+      { "id": "c", "text": "Moves aft by a factor of about 2.2" },
+      { "id": "d", "text": "Moves aft by a factor of about 1.5" }
+    ],
+    "correct": "c",
+    "explanation": "x_tr ∝ ν/V. Density falls much faster than viscosity, so ν = μ/ρ rises and a longer run is needed to reach Re_crit.",
+    "tags": ["transition", "altitude"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0038",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Transition",
+    "question": "At the same EAS, moving from sea level to FL300 (σ = 0.374, ν ×2.22) shifts the zero-gradient transition point:",
+    "options": [
+      { "id": "a", "text": "Aft by a factor of about 1.36" },
+      { "id": "b", "text": "Aft by 2.22" },
+      { "id": "c", "text": "Not at all, since EAS is unchanged" },
+      { "id": "d", "text": "Forward by 1.64" }
+    ],
+    "correct": "a",
+    "explanation": "V_T ×1/√σ = 1.64 and ν ×2.22: x_tr ∝ ν/V_T = 2.22/1.64 = 1.36. Equal EAS does not imply equal Reynolds number.",
+    "tags": ["transition", "altitude", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0039",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Transition",
+    "question": "The sequence of events in natural transition on a smooth surface is:",
+    "options": [
+      { "id": "a", "text": "Separation, reattachment, then laminar flow" },
       {
         "id": "b",
-        "text": "Deliberately trigger earlier local separation at the root, ensuring the root stalls before the tip does"
+        "text": "Growth of small two-dimensional disturbance waves, three-dimensional breakdown, turbulent spots, fully turbulent flow"
       },
-      { "id": "c", "text": "Increase the critical Mach number" },
-      { "id": "d", "text": "Reduce induced drag" }
+      { "id": "c", "text": "Immediate turbulence at the leading edge" },
+      { "id": "d", "text": "Turbulent flow becoming laminar downstream" }
     ],
     "correct": "b",
-    "explanation": "A stall strip is a small, deliberately placed leading-edge disruption that provokes earlier boundary layer separation at the wing root. It is one way of ensuring root-first stall progression (keeping the ailerons effective longer) on a wing whose planform alone does not provide enough natural washout.",
-    "tags": ["boundary-layer", "stall-strip"],
+    "explanation": "Above a critical Re, Tollmien–Schlichting waves amplify; they become three-dimensional, break into intermittent turbulent spots that merge. Adverse gradients, roughness and free-stream turbulence shorten the sequence.",
+    "tags": ["transition", "instability"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-BL-0007",
+    "id": "POF-BL-0040",
     "subjectCode": "POF",
     "topic": "Boundary Layer",
-    "subtopic": "Surface Contamination",
-    "question": "Surface contamination such as frost, insect residue, or paint roughness on a wing's leading edge tends to:",
+    "subtopic": "Transition",
+    "question": "Which factor delays transition (extends laminar flow)?",
     "options": [
-      { "id": "a", "text": "Delay transition to turbulent flow, improving performance" },
+      { "id": "a", "text": "Increased surface roughness" },
+      { "id": "b", "text": "An adverse pressure gradient" },
+      { "id": "c", "text": "A favourable (falling) pressure gradient" },
+      { "id": "d", "text": "Increased free-stream turbulence" }
+    ],
+    "correct": "c",
+    "explanation": "Acceleration (dp/dx < 0) fills out the laminar profile and damps disturbances. Roughness, turbulence, noise, vibration and adverse gradients promote transition.",
+    "tags": ["transition", "pressure-gradient"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0041",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Skin friction",
+    "question": "Mean skin-friction coefficients at Re_L = 10⁶ are 1.328/√Re (laminar) and 0.074/Re^0.2 (turbulent). The turbulent value relative to laminar is:",
+    "options": [
+      { "id": "a", "text": "About 3.5 times higher" },
+      { "id": "b", "text": "About equal" },
+      { "id": "c", "text": "About 1.5 times higher" },
+      { "id": "d", "text": "About 10 times higher" }
+    ],
+    "correct": "a",
+    "explanation": "Laminar C_f = 0.00133; turbulent C_f = 0.074/15.85 = 0.00467. Ratio 3.5. Extending laminar flow is the main route to lower skin friction.",
+    "tags": ["skin-friction", "laminar", "turbulent", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0042",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Skin friction",
+    "question": "A plate 2 m long, 1 m wide, one side wetted, at 50 m/s at sea level (Re_L = 6.85 × 10⁶, fully turbulent, C_f = 0.074/Re^0.2 = 0.0032). The skin-friction drag is:",
+    "options": [
+      { "id": "a", "text": "1.6 N" },
+      { "id": "b", "text": "19.5 N" },
+      { "id": "c", "text": "9.7 N" },
+      { "id": "d", "text": "4.9 N" }
+    ],
+    "correct": "c",
+    "explanation": "q = ½ × 1.225 × 50² = 1,531 Pa. D = C_f·q·S_wet = 0.00318 × 1,531 × 2 = 9.7 N. A fully laminar layer would give 1.6 N.",
+    "tags": ["skin-friction", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0043",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Skin friction",
+    "question": "At constant Reynolds-number regime, doubling speed changes the friction drag of a fully laminar and a fully turbulent plate by:",
+    "options": [
+      { "id": "a", "text": "Both ×4" },
+      { "id": "b", "text": "Laminar ×1.41; turbulent ×1.74" },
+      { "id": "c", "text": "Laminar ×2.83; turbulent ×3.48" },
+      { "id": "d", "text": "Laminar ×4; turbulent ×2" }
+    ],
+    "correct": "c",
+    "explanation": "D = C_f·½ρV²S. Laminar C_f ∝ V^−0.5 → D ∝ V^1.5 = 2.83. Turbulent C_f ∝ V^−0.2 → D ∝ V^1.8 = 3.48.",
+    "tags": ["skin-friction", "proportionality"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0044",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Skin friction",
+    "question": "Along a laminar flat plate, the local wall shear stress:",
+    "options": [
+      { "id": "a", "text": "Is zero until transition" },
+      { "id": "b", "text": "Increases with distance" },
+      {
+        "id": "c",
+        "text": "Decreases with distance, as the layer thickens and the wall velocity gradient falls"
+      },
+      { "id": "d", "text": "Is constant" }
+    ],
+    "correct": "c",
+    "explanation": "τ_w = μ(∂u/∂y)_wall ≈ μU/δ. With δ ∝ √x, τ_w ∝ x^−½. At transition τ_w jumps up, then declines again ∝ x^−0.2.",
+    "tags": ["wall-shear", "laminar"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0045",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Skin friction",
+    "question": "The skin-friction difference between laminar and turbulent layers arises because the turbulent layer has:",
+    "options": [
+      { "id": "a", "text": "Slip at the wall" },
+      { "id": "b", "text": "Lower viscosity" },
+      { "id": "c", "text": "Higher static pressure" },
+      {
+        "id": "d",
+        "text": "Higher velocity gradient at the wall, from momentum transported toward the wall by mixing"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Turbulent eddies exchange momentum across the layer, so the near-wall fluid moves faster; τ_w = μ(∂u/∂y)_wall rises.",
+    "tags": ["skin-friction", "turbulence"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0046",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Velocity profiles",
+    "question": "At half the boundary-layer thickness, the velocity ratio u/U for a turbulent 1/7-power profile and for a laminar parabolic profile (2η − η²) is:",
+    "options": [
+      { "id": "a", "text": "Turbulent 0.91; laminar 0.75" },
+      { "id": "b", "text": "Both 0.50" },
+      { "id": "c", "text": "Turbulent 0.50; laminar 0.75" },
+      { "id": "d", "text": "Turbulent 0.75; laminar 0.91" }
+    ],
+    "correct": "a",
+    "explanation": "(0.5)^(1/7) = 0.906; 2(0.5) − 0.25 = 0.75. The fuller turbulent profile carries more momentum near the wall.",
+    "tags": ["velocity-profile", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0047",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Velocity profiles",
+    "question": "Displacement thickness δ* is:",
+    "options": [
+      { "id": "a", "text": "The thickness of the viscous sublayer" },
       {
         "id": "b",
-        "text": "Promote earlier transition to turbulent flow and can promote earlier separation, degrading CLmax"
+        "text": "The distance the wall would have to be displaced outward in inviscid flow to give the same mass-flow deficit"
       },
-      { "id": "c", "text": "Have no effect on the boundary layer" },
-      { "id": "d", "text": "Only matter at supersonic speed" }
+      { "id": "c", "text": "The thickness at which u = 0.99U" },
+      { "id": "d", "text": "The distance to the separation point" }
     ],
     "correct": "b",
-    "explanation": "Roughness disturbs the boundary layer, tripping it into turbulence earlier than it would transition on a clean, smooth surface, and can also promote earlier separation. This is why even light frost on a wing can measurably raise stalling speed and reduce climb performance.",
-    "tags": ["boundary-layer", "contamination"],
+    "explanation": "δ* = ∫(1 − u/U)dy. The outer flow sees the body thickened by δ*; at the trailing edge this effective thickening reduces circulation below the inviscid value.",
+    "tags": ["displacement-thickness"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-BL-0008",
+    "id": "POF-BL-0048",
     "subjectCode": "POF",
     "topic": "Boundary Layer",
-    "subtopic": "Boundary Layer Control",
-    "question": "Some high-lift systems use \"boundary layer control\" by blowing high-pressure air over the wing or flap surface. Its purpose is to:",
+    "subtopic": "Velocity profiles",
+    "question": "For the laminar parabolic profile, δ* = δ/3 and θ = 2δ/15. The shape factor H = δ*/θ is:",
     "options": [
-      { "id": "a", "text": "Re-energise the boundary layer so it resists separation at a higher lift coefficient/angle of attack" },
-      { "id": "b", "text": "Cool the wing surface" },
-      { "id": "c", "text": "Reduce fuel consumption directly" },
-      { "id": "d", "text": "Increase the critical Mach number" }
+      { "id": "a", "text": "5.0" },
+      { "id": "b", "text": "2.5" },
+      { "id": "c", "text": "1.3" },
+      { "id": "d", "text": "0.4" }
+    ],
+    "correct": "b",
+    "explanation": "H = (1/3)/(2/15) = 2.5. The 1/7-power turbulent profile gives δ* = δ/8, θ = 7δ/72, H = 1.29. Higher H means a less full profile, closer to separation.",
+    "tags": ["shape-factor", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0049",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Velocity profiles",
+    "question": "A rising shape factor H along a surface indicates:",
+    "options": [
+      { "id": "a", "text": "Transition to turbulence" },
+      { "id": "b", "text": "A favourable pressure gradient" },
+      {
+        "id": "c",
+        "text": "Reducing skin friction toward zero only because of speed increase"
+      },
+      {
+        "id": "d",
+        "text": "A profile becoming less full, approaching separation"
+      }
+    ],
+    "correct": "d",
+    "explanation": "An adverse gradient decelerates near-wall fluid first, raising δ* relative to θ. Turbulent separation occurs near H ≈ 2.4; laminar near 3.5. Transition drops H sharply.",
+    "tags": ["shape-factor", "separation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0050",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Drag consequences",
+    "question": "Momentum thickness θ at the trailing edge of a flat plate equals 2 mm, flow 50 m/s at sea level. The friction drag per metre span (one side) is:",
+    "options": [
+      { "id": "a", "text": "12.3 N/m" },
+      { "id": "b", "text": "6.1 N/m" },
+      { "id": "c", "text": "3.1 N/m" },
+      { "id": "d", "text": "0.12 N/m" }
+    ],
+    "correct": "b",
+    "explanation": "Momentum integral: D′ = ρU²θ = 1.225 × 2,500 × 0.002 = 6.1 N/m. θ measures the momentum removed from the flow.",
+    "tags": ["momentum-thickness", "drag", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0051",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Drag consequences",
+    "question": "The section drag coefficient can be found from the far-wake momentum thickness θ∞ as cd = 2θ∞/c. With θ∞ = 0.004c:",
+    "options": [
+      { "id": "a", "text": "cd = 0.008" },
+      { "id": "b", "text": "cd = 0.016" },
+      { "id": "c", "text": "cd = 0.004" },
+      { "id": "d", "text": "cd = 0.002" }
     ],
     "correct": "a",
-    "explanation": "Blowing high-energy air over the surface reinjects kinetic energy into the boundary layer, letting it withstand a stronger adverse pressure gradient before separating. This allows a higher usable lift coefficient than the same surface could achieve unaided.",
-    "tags": ["boundary-layer", "boundary-layer-control"],
+    "explanation": "Far downstream the static pressure has recovered, so the entire profile drag (friction plus form) appears as momentum deficit: cd = 2 × 0.004 = 0.008.",
+    "tags": ["wake", "profile-drag", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-BL-0009",
+    "id": "POF-BL-0052",
     "subjectCode": "POF",
     "topic": "Boundary Layer",
-    "subtopic": "Laminar Flow Wings",
-    "question": "A \"laminar flow\" wing section is shaped to keep the boundary layer laminar over as much of the chord as possible, mainly to:",
+    "subtopic": "Pressure gradient and separation",
+    "question": "In an adverse pressure gradient, the boundary layer separates where:",
     "options": [
-      { "id": "a", "text": "Increase CLmax at low speed" },
+      { "id": "a", "text": "The velocity gradient at the wall falls to zero" },
+      { "id": "b", "text": "The static pressure reaches free-stream value" },
+      { "id": "c", "text": "The flow becomes turbulent" },
+      { "id": "d", "text": "The velocity at the edge falls to zero" }
+    ],
+    "correct": "a",
+    "explanation": "The pressure rise decelerates the low-momentum near-wall fluid first. When (∂u/∂y)_wall = 0 (τ_w = 0) the flow separates; downstream the near-wall flow reverses.",
+    "tags": ["separation", "adverse-pressure-gradient"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0053",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Pressure gradient and separation",
+    "question": "Compared with a laminar layer, a turbulent boundary layer in the same adverse gradient:",
+    "options": [
+      { "id": "a", "text": "Separates at the same point" },
+      { "id": "b", "text": "Separates earlier, because it is thicker" },
+      { "id": "c", "text": "Never separates" },
+      {
+        "id": "d",
+        "text": "Separates later, because mixing supplies momentum to the near-wall fluid"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The fuller turbulent profile has more near-wall momentum to overcome the pressure rise. Turbulent layers tolerate larger pressure recoveries before separation.",
+    "tags": ["separation", "turbulent"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0054",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Pressure gradient and separation",
+    "question": "A sphere's drag coefficient drops sharply (about 0.47 to about 0.1) near Re ≈ 3 × 10⁵ because:",
+    "options": [
+      { "id": "a", "text": "The flow becomes laminar" },
+      { "id": "b", "text": "Skin friction falls to zero" },
+      {
+        "id": "c",
+        "text": "The boundary layer becomes turbulent before separating, moving separation aft and shrinking the wake"
+      },
+      { "id": "d", "text": "Compressibility reduces pressure drag" }
+    ],
+    "correct": "c",
+    "explanation": "Laminar separation occurs near the equator; a turbulent layer stays attached further aft. The narrower wake reduces form drag far more than the friction increase — the basis of trip strips on bluff bodies.",
+    "tags": ["drag-crisis", "form-drag", "separation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0055",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Pressure gradient and separation",
+    "question": "A laminar boundary layer at low Reynolds number meets the adverse gradient behind a suction peak. It typically:",
+    "options": [
+      { "id": "a", "text": "Transitions without separating in all cases" },
+      { "id": "b", "text": "Accelerates" },
+      { "id": "c", "text": "Stays attached to the trailing edge" },
+      {
+        "id": "d",
+        "text": "Separates, transitions in the free shear layer, and may reattach, forming a separation bubble"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The laminar layer cannot sustain the pressure rise; the separated shear layer becomes turbulent, entrains momentum and can reattach. Short bubbles are benign; long bubbles and bubble bursting produce abrupt stall.",
+    "tags": ["separation-bubble", "laminar"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0056",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Pressure gradient and separation",
+    "question": "On a conventional section at high angle of attack, trailing-edge separation progresses forward because:",
+    "options": [
+      { "id": "a", "text": "The boundary layer becomes thinner" },
+      { "id": "b", "text": "Skin friction increases at the trailing edge" },
+      {
+        "id": "c",
+        "text": "The adverse gradient behind the suction peak steepens as α rises"
+      },
+      { "id": "d", "text": "The favourable gradient increases" }
+    ],
+    "correct": "c",
+    "explanation": "Higher α → higher suction peak → greater pressure rise to the trailing edge. The separation point moves forward, lift slope decreases and the stall follows.",
+    "tags": ["trailing-edge-separation", "stall"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0057",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Pressure gradient and separation",
+    "question": "Separation reduces lift and increases drag because:",
+    "options": [
+      { "id": "a", "text": "Skin friction rises sharply" },
+      { "id": "b", "text": "Circulation increases" },
+      { "id": "c", "text": "The flow becomes supersonic" },
+      {
+        "id": "d",
+        "text": "Pressure no longer recovers in the separated region, lowering upper-surface suction and leaving a low-pressure wake"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Beyond separation the surface pressure stays near the separation value: the suction peak collapses (lift loss) and the aft-facing surfaces sit in low pressure (form drag).",
+    "tags": ["separation", "form-drag"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0058",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Boundary-layer control",
+    "question": "Vortex generators on a wing upper surface delay separation by:",
+    "options": [
+      { "id": "a", "text": "Removing the boundary layer by suction" },
       {
         "id": "b",
-        "text": "Reduce skin friction drag at cruise, since a laminar boundary layer produces less friction than a turbulent one"
+        "text": "Shedding streamwise vortices that mix high-energy outer air into the near-wall layer"
       },
-      { "id": "c", "text": "Improve stall characteristics" },
-      { "id": "d", "text": "Increase the stalling angle of attack" }
+      { "id": "c", "text": "Reducing the angle of attack locally" },
+      { "id": "d", "text": "Making the flow laminar" }
     ],
     "correct": "b",
-    "explanation": "Laminar flow sections move the point of peak suction, and therefore the natural transition point, further aft, holding the low-friction laminar boundary layer over more of the chord to reduce cruise drag. The trade-off is that such sections can have less benign, more abrupt stall characteristics than a conventional section.",
-    "tags": ["boundary-layer", "laminar-flow-wing"],
+    "explanation": "Each vane acts as a small low-aspect-ratio wing; its tip vortex transfers momentum toward the wall, raising near-wall velocity. Cost: a small parasite-drag increment.",
+    "tags": ["vortex-generators", "separation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-BL-0010",
+    "id": "POF-BL-0059",
     "subjectCode": "POF",
     "topic": "Boundary Layer",
-    "subtopic": "Reynolds Number",
-    "question": "Reynolds number is a dimensionless value used to characterise a flow, broadly comparing:",
+    "subtopic": "Boundary-layer control",
+    "question": "Boundary-layer suction through a porous surface:",
     "options": [
-      { "id": "a", "text": "Inertial forces to viscous forces in the airflow, which affects where transition and separation occur" },
-      { "id": "b", "text": "Lift to drag, at a given angle of attack" },
-      { "id": "c", "text": "True airspeed to the speed of sound" },
-      { "id": "d", "text": "Altitude to air temperature" }
-    ],
-    "correct": "a",
-    "explanation": "Reynolds number compares inertial forces to viscous forces in a flow. A higher Reynolds number (larger scale, higher speed) generally favours earlier transition to turbulent flow, which is one reason boundary layer behaviour observed on a small wind-tunnel model does not scale directly to a full-size aircraft.",
-    "tags": ["boundary-layer", "reynolds-number"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-BL-0011",
-    "subjectCode": "POF",
-    "topic": "Boundary Layer",
-    "subtopic": "Favourable Pressure Gradient",
-    "question": "A \"favourable\" pressure gradient, found over the forward part of a typical aerofoil where airflow is still accelerating, is one in which:",
-    "options": [
-      { "id": "a", "text": "Pressure falls in the direction of flow, helping to keep the boundary layer attached" },
-      { "id": "b", "text": "Pressure rises sharply in the direction of flow" },
-      { "id": "c", "text": "Pressure remains completely constant" },
-      { "id": "d", "text": "Airflow is always turbulent" }
-    ],
-    "correct": "a",
-    "explanation": "Where airflow is still accelerating over the forward part of an aerofoil, static pressure falls in the direction of flow — a favourable gradient that tends to keep the boundary layer thin, energetic and firmly attached, in contrast to the adverse (rising-pressure) gradient found further aft.",
-    "tags": ["boundary-layer", "pressure-gradient"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-BL-0012",
-    "subjectCode": "POF",
-    "topic": "Boundary Layer",
-    "subtopic": "Adverse Pressure Gradient Location",
-    "question": "On a typical subsonic aerofoil below the stall, the adverse pressure gradient is generally most severe:",
-    "options": [
-      { "id": "a", "text": "At the leading edge stagnation point" },
-      { "id": "b", "text": "Toward the rear of the aerofoil, where pressure is recovering back toward the freestream value" },
-      { "id": "c", "text": "Nowhere — subsonic aerofoils have no adverse pressure gradient at all" },
-      { "id": "d", "text": "Only at supersonic speed" }
+      { "id": "a", "text": "Adds energy by blowing high-speed air" },
+      {
+        "id": "b",
+        "text": "Removes low-momentum fluid, thinning the layer and delaying both transition and separation"
+      },
+      { "id": "c", "text": "Moves transition forward" },
+      { "id": "d", "text": "Increases roughness" }
     ],
     "correct": "b",
-    "explanation": "After accelerating over the point of maximum suction (usually well forward on the upper surface), airflow must decelerate and its pressure must rise back toward the freestream value as it approaches the trailing edge. This rear portion is where the adverse pressure gradient is strongest, and therefore where separation is most likely to begin.",
-    "tags": ["boundary-layer", "pressure-gradient"],
+    "explanation": "Suction steepens the wall velocity gradient and stabilises the laminar profile; it requires a pump and ducting, with its own power cost.",
+    "tags": ["suction", "laminar-flow"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-BL-0013",
+    "id": "POF-BL-0060",
     "subjectCode": "POF",
     "topic": "Boundary Layer",
-    "subtopic": "Spanwise Flow on a Swept Wing",
-    "question": "On a swept wing, the boundary layer tends to drift spanwise, outboard toward the tip, mainly because:",
+    "subtopic": "Boundary-layer control",
+    "question": "A leading-edge slot delays stall because:",
     "options": [
-      { "id": "a", "text": "The pressure distribution on a swept wing has a spanwise component that carries the slow-moving boundary layer air outboard" },
-      { "id": "b", "text": "Engine exhaust pushes it outward" },
-      { "id": "c", "text": "The ailerons force it outward" },
-      { "id": "d", "text": "Sweepback has no effect on boundary layer direction" }
+      { "id": "a", "text": "It lowers the Reynolds number" },
+      { "id": "b", "text": "It reduces the angle of attack" },
+      { "id": "c", "text": "It blocks spanwise flow only" },
+      {
+        "id": "d",
+        "text": "High-pressure air from below passes through the slot and re-energises the upper boundary layer"
+      }
     ],
-    "correct": "a",
-    "explanation": "Sweep introduces a spanwise component to the pressure field over the wing, and because the slow-moving air deep in the boundary layer is more easily redirected than the faster air outside it, this drift accumulates a thickened, energy-depleted boundary layer toward the tip — a major contributor to a swept wing's natural tendency to stall tip-first.",
-    "tags": ["boundary-layer", "sweepback"],
+    "correct": "d",
+    "explanation": "The slat/slot gap jet adds momentum at the start of the upper-surface recovery and reduces the suction peak on the main element, so the boundary layer tolerates a higher α.",
+    "tags": ["slot", "high-lift", "separation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-BL-0014",
+    "id": "POF-BL-0061",
     "subjectCode": "POF",
     "topic": "Boundary Layer",
-    "subtopic": "Wing Fences",
-    "question": "A \"wing fence\" — a small, chord-wise fixed vane on the upper surface of a swept wing — is fitted mainly to:",
+    "subtopic": "Boundary-layer control",
+    "question": "Turbulators (trip strips) placed deliberately ahead of a separation-prone region:",
     "options": [
-      { "id": "a", "text": "Block the spanwise drift of the boundary layer toward the tip, helping to delay tip stall" },
-      { "id": "b", "text": "Increase the wing's critical Mach number" },
-      { "id": "c", "text": "Reduce skin friction drag" },
-      { "id": "d", "text": "Act as a lightning conductor" }
-    ],
-    "correct": "a",
-    "explanation": "By physically interrupting the spanwise flow of the outboard-drifting boundary layer on a swept wing, a wing fence keeps more of that flow attached over the tip region for longer, helping ensure the root stalls well before the tip and preserving aileron control into the early stages of a stall.",
-    "tags": ["boundary-layer", "wing-fence", "sweepback"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-BL-0015",
-    "subjectCode": "POF",
-    "topic": "Boundary Layer",
-    "subtopic": "Vortilons",
-    "question": "A \"vortilon\" — a small vane mounted under the wing's leading edge, ahead of the fence position — works by:",
-    "options": [
-      { "id": "a", "text": "Generating a small trailing vortex that helps re-energise the upper-surface boundary layer outboard of it, delaying tip stall" },
-      { "id": "b", "text": "Reducing engine noise" },
-      { "id": "c", "text": "Directly increasing wing area" },
-      { "id": "d", "text": "Cooling the wing structure" }
-    ],
-    "correct": "a",
-    "explanation": "Mounted beneath the leading edge, a vortilon sheds a small vortex that trails back over the upper surface outboard of it, mixing energy into the boundary layer there — a similar tip-stall-delaying purpose to a wing fence, but achieved by energising the flow rather than simply blocking its spanwise drift.",
-    "tags": ["boundary-layer", "vortilon"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-BL-0016",
-    "subjectCode": "POF",
-    "topic": "Boundary Layer",
-    "subtopic": "Flap Deflection Limits",
-    "question": "A plain (unslotted) trailing-edge flap generally has a much lower maximum usable deflection angle than a slotted flap, mainly because:",
-    "options": [
-      { "id": "a", "text": "Beyond a fairly modest angle, the boundary layer over the flap's upper surface separates, and further deflection adds little useful lift" },
-      { "id": "b", "text": "Plain flaps are structurally weaker than slotted flaps" },
-      { "id": "c", "text": "Plain flaps have no maximum deflection limit at all" },
-      { "id": "d", "text": "Slotted flaps cannot be deflected as far as plain flaps" }
-    ],
-    "correct": "a",
-    "explanation": "With no slot to re-energise it, the boundary layer over a plain flap's upper surface separates once the flap is deflected beyond a relatively modest angle, so deflecting it further adds mostly drag rather than lift. A slotted flap's re-energised boundary layer resists this separation, allowing a considerably larger, more useful deflection angle.",
-    "tags": ["boundary-layer", "flaps"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-BL-0017",
-    "subjectCode": "POF",
-    "topic": "Boundary Layer",
-    "subtopic": "Leading-Edge Stall",
-    "question": "A \"leading-edge stall\", typical of aerofoils with a fairly sharp leading edge, is characterised by:",
-    "options": [
-      { "id": "a", "text": "Gradual separation starting at the trailing edge and creeping forward well before the stalling angle is reached" },
-      { "id": "b", "text": "An abrupt, sudden separation right at the leading edge once the critical angle of attack is reached, with little warning" },
-      { "id": "c", "text": "A stall that only occurs at supersonic speed" },
-      { "id": "d", "text": "No change in lift coefficient at all" }
+      { "id": "a", "text": "Reduce skin friction" },
+      {
+        "id": "b",
+        "text": "Force transition so that a turbulent layer resists the downstream adverse gradient"
+      },
+      { "id": "c", "text": "Keep the layer laminar" },
+      { "id": "d", "text": "Increase the Reynolds number" }
     ],
     "correct": "b",
-    "explanation": "On aerofoils with a relatively sharp leading edge, the boundary layer there is already under considerable strain at high angle of attack, and separation at the leading edge tends to be sudden and complete rather than gradual — producing an abrupt loss of lift with comparatively little pre-stall buffet warning.",
-    "tags": ["boundary-layer", "stall-type"],
+    "explanation": "Accepting higher skin friction to avoid laminar separation (or a bursting bubble) is beneficial where form drag or lift loss would be larger.",
+    "tags": ["turbulator", "transition"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-BL-0018",
+    "id": "POF-BL-0062",
     "subjectCode": "POF",
     "topic": "Boundary Layer",
-    "subtopic": "Trailing-Edge Stall",
-    "question": "A \"trailing-edge stall\", typical of aerofoils with a well-rounded, generous leading edge, is characterised by:",
+    "subtopic": "Roughness and contamination",
+    "question": "Surface roughness becomes aerodynamically significant when its height exceeds:",
     "options": [
-      { "id": "a", "text": "Separation beginning at the trailing edge and progressively creeping forward as angle of attack increases, giving a gradual, gentle stall with good warning" },
-      { "id": "b", "text": "A sudden, total loss of lift with the first sign of separation happening at the leading edge" },
-      { "id": "c", "text": "A stall that produces no buffet whatsoever" },
-      { "id": "d", "text": "A stall unrelated to boundary layer behaviour" }
-    ],
-    "correct": "a",
-    "explanation": "A generous leading-edge radius keeps the leading-edge boundary layer robust even at high angle of attack, so separation instead begins at the trailing edge, where the adverse pressure gradient is strongest, and creeps forward gradually — producing a gentler stall with progressive buffet and better aerodynamic warning than a leading-edge stall.",
-    "tags": ["boundary-layer", "stall-type"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-BL-0019",
-    "subjectCode": "POF",
-    "topic": "Boundary Layer",
-    "subtopic": "Thin-Aerofoil Stall",
-    "question": "A \"thin-aerofoil stall\", associated with very thin sections at low Reynolds number, involves:",
-    "options": [
-      { "id": "a", "text": "A small separation bubble forming right at the sharp leading edge at a fairly low angle of attack, which then bursts as angle of attack increases further" },
-      { "id": "b", "text": "Separation that always begins at the trailing edge only" },
-      { "id": "c", "text": "A stall that only affects thick, generously rounded aerofoils" },
-      { "id": "d", "text": "No separation bubble of any kind" }
-    ],
-    "correct": "a",
-    "explanation": "On very thin sections, a small laminar separation bubble tends to form near the sharp leading edge even at a modest angle of attack. As angle of attack increases, this bubble can suddenly burst rather than simply growing, producing a distinct third stall mechanism alongside the classic leading-edge and trailing-edge stall types.",
-    "tags": ["boundary-layer", "stall-type"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-BL-0020",
-    "subjectCode": "POF",
-    "topic": "Boundary Layer",
-    "subtopic": "Reynolds Number and CLmax",
-    "question": "Testing the same aerofoil shape at a much lower Reynolds number than a full-size aircraft normally experiences (as on a small model) generally:",
-    "options": [
-      { "id": "a", "text": "Increases the achievable maximum lift coefficient" },
-      { "id": "b", "text": "Tends to reduce the achievable maximum lift coefficient, since the boundary layer separates more readily at low Reynolds number" },
-      { "id": "c", "text": "Has no effect on maximum lift coefficient at all" },
-      { "id": "d", "text": "Only affects drag, never lift" }
+      {
+        "id": "a",
+        "text": "The displacement thickness only at the trailing edge"
+      },
+      {
+        "id": "b",
+        "text": "The thickness of the viscous sublayer of the turbulent boundary layer"
+      },
+      { "id": "c", "text": "The total boundary-layer thickness" },
+      { "id": "d", "text": "The chord divided by 100" }
     ],
     "correct": "b",
-    "explanation": "At low Reynolds number, the boundary layer carries relatively less kinetic energy and separates more readily, generally reducing the maximum lift coefficient an aerofoil can achieve compared with the same shape at the higher Reynolds number a full-size aircraft experiences — a key reason small-scale wind-tunnel results need correction before being applied to a real aircraft.",
-    "tags": ["boundary-layer", "reynolds-number"],
+    "explanation": "Elements buried within the viscous sublayer do not disturb the flow. The sublayer thins as Re rises, so the admissible roughness height falls with speed and size.",
+    "tags": ["roughness", "viscous-sublayer"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-BL-0021",
+    "id": "POF-BL-0063",
     "subjectCode": "POF",
     "topic": "Boundary Layer",
-    "subtopic": "Separation Bubble",
-    "question": "A \"separation bubble\" (or \"dead air\" region) on an aerofoil surface refers to:",
+    "subtopic": "Roughness and contamination",
+    "question": "Frost or ice roughness on the upper leading-edge region causes:",
     "options": [
-      { "id": "a", "text": "A region where the flow separates from the surface but then reattaches further downstream, enclosing a pocket of slow, recirculating air" },
-      { "id": "b", "text": "A region of supersonic flow found only above the critical Mach number" },
-      { "id": "c", "text": "The wingtip vortex itself" },
-      { "id": "d", "text": "A permanent feature that never reattaches" }
+      {
+        "id": "a",
+        "text": "Early transition and separation, reducing CLmax and the stalling angle"
+      },
+      {
+        "id": "b",
+        "text": "Increased CLmax, since turbulent layers resist separation"
+      },
+      { "id": "c", "text": "No change below 10 knots" },
+      {
+        "id": "d",
+        "text": "Only a drag increase with unchanged stall behaviour"
+      }
     ],
     "correct": "a",
-    "explanation": "Rather than separating permanently, the boundary layer can separate briefly, transition to turbulent flow within the separated region, and then reattach further downstream, enclosing a bubble of slow-moving, recirculating \"dead air\" between the separation and reattachment points — a distinct, more localised phenomenon than full separation.",
-    "tags": ["boundary-layer", "separation-bubble"],
+    "explanation": "Roughness at the suction peak thickens the layer and depletes its momentum ahead of the steepest adverse gradient; separation occurs at lower α. Stall can occur before an α-based warning.",
+    "tags": ["contamination", "frost", "clmax"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-BL-0022",
+    "id": "POF-BL-0064",
     "subjectCode": "POF",
     "topic": "Boundary Layer",
-    "subtopic": "Active Laminar Flow Control",
-    "question": "\"Active\" laminar flow control, using suction through a perforated or porous wing skin, aims to:",
+    "subtopic": "Roughness and contamination",
+    "question": "A stall-warning system triggered at a fixed angle of attack is less protective on a contaminated wing because:",
     "options": [
-      { "id": "a", "text": "Remove the slower, energy-depleted part of the boundary layer, delaying transition to turbulent flow further than the wing's shape alone would achieve" },
-      { "id": "b", "text": "Blow high-pressure air outward through the skin to increase lift" },
-      { "id": "c", "text": "Heat the wing surface to prevent ice" },
-      { "id": "d", "text": "Increase skin friction drag deliberately" }
+      { "id": "a", "text": "The warning depends on airspeed only" },
+      { "id": "b", "text": "Contamination has no effect on α at stall" },
+      { "id": "c", "text": "Contamination raises the stalling angle" },
+      {
+        "id": "d",
+        "text": "Contamination lowers the stalling angle, possibly below the warning threshold"
+      }
     ],
-    "correct": "a",
-    "explanation": "By drawing off the slow-moving, low-energy air nearest the surface through tiny perforations, suction-based laminar flow control keeps the remaining boundary layer thinner and more resistant to the instabilities that trigger transition, holding laminar (low-friction) flow over more of the surface than shaping alone could achieve — an \"active\" system, unlike a passive laminar-flow aerofoil shape.",
-    "tags": ["boundary-layer", "laminar-flow-control"],
+    "correct": "d",
+    "explanation": "The warning α is set for the clean wing. With a reduced stall α, the wing may stall before or at the same α the warning activates.",
+    "tags": ["contamination", "stall-warning"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-BL-0023",
+    "id": "POF-BL-0065",
     "subjectCode": "POF",
     "topic": "Boundary Layer",
-    "subtopic": "Heavy Rain",
-    "question": "Heavy rain on a wing's upper surface can degrade aerodynamic performance partly because it:",
+    "subtopic": "Roughness and contamination",
+    "question": "Insect residue near the leading edge of a laminar-flow section causes:",
     "options": [
-      { "id": "a", "text": "Forms a rough, disturbed water film that can thicken the boundary layer and promote earlier separation, reducing CLmax" },
-      { "id": "b", "text": "Always increases the critical angle of attack" },
-      { "id": "c", "text": "Has no aerodynamic effect until it freezes" },
-      { "id": "d", "text": "Only affects the tailplane, never the wing" }
-    ],
-    "correct": "a",
-    "explanation": "A disturbed film of water, and the impact of individual raindrops, roughens the effective surface and can add momentum loss to the boundary layer, promoting earlier separation and a measurable reduction in maximum lift coefficient — a genuine performance penalty in very heavy rain, distinct from any icing effect.",
-    "tags": ["boundary-layer", "rain"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-BL-0024",
-    "subjectCode": "POF",
-    "topic": "Boundary Layer",
-    "subtopic": "Boundary Layer Diverter",
-    "question": "On some aircraft with an engine intake mounted close to the fuselage, a \"boundary layer diverter\" — a wedge-shaped gap or plate ahead of the intake — is fitted to:",
-    "options": [
-      { "id": "a", "text": "Divert the slow-moving, turbulent fuselage boundary layer away from the intake, so the engine ingests cleaner, undisturbed air" },
-      { "id": "b", "text": "Increase the fuselage's skin friction drag deliberately" },
-      { "id": "c", "text": "Cool the engine compressor" },
-      { "id": "d", "text": "Act as a lightning conductor" }
-    ],
-    "correct": "a",
-    "explanation": "The fuselage's own boundary layer is slow, turbulent and uneven by the time it reaches an intake mounted close behind it. A diverter physically separates this degraded air from the intake's capture area, letting the engine draw in smoother, more uniform air and improving both efficiency and compressor stability.",
-    "tags": ["boundary-layer", "intake"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-BL-0025",
-    "subjectCode": "POF",
-    "topic": "Boundary Layer",
-    "subtopic": "Skin Friction Coefficient",
-    "question": "As Reynolds number increases (for example, as airspeed increases), the skin friction drag coefficient of a given surface generally:",
-    "options": [
-      { "id": "a", "text": "Increases, even though total skin friction drag force also increases with speed" },
-      { "id": "b", "text": "Decreases, even though total skin friction drag force still increases with speed" },
-      { "id": "c", "text": "Remains exactly constant at every Reynolds number" },
-      { "id": "d", "text": "Is undefined for turbulent flow" }
+      { "id": "a", "text": "A reduction in skin friction" },
+      {
+        "id": "b",
+        "text": "Wedge-shaped regions of premature turbulence and a rise in profile drag"
+      },
+      { "id": "c", "text": "An increase in CLmax" },
+      { "id": "d", "text": "Longer laminar runs" }
     ],
     "correct": "b",
-    "explanation": "The skin friction drag coefficient itself actually falls as Reynolds number rises, for both laminar and turbulent flow. Total skin friction drag force still increases with speed regardless, because the drag equation's dynamic pressure term (proportional to the square of speed) rises faster than the coefficient falls.",
-    "tags": ["boundary-layer", "skin-friction"],
+    "explanation": "Each roughness element triggers a turbulent wedge spreading downstream at about ±10°; many elements eliminate the laminar run and the drag bucket.",
+    "tags": ["laminar-flow", "contamination"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-BL-0026",
+    "id": "POF-BL-0066",
     "subjectCode": "POF",
     "topic": "Boundary Layer",
-    "subtopic": "Boundary Layer Growth",
-    "question": "Along the chord of an aerofoil, from the leading edge stagnation point to the trailing edge, the boundary layer:",
+    "subtopic": "Swept wings",
+    "question": "On a swept-back wing, the boundary layer tends to:",
     "options": [
-      { "id": "a", "text": "Starts at its maximum thickness and thins continuously toward the trailing edge" },
-      { "id": "b", "text": "Starts at essentially zero thickness at the stagnation point and grows continuously thicker toward the trailing edge" },
-      { "id": "c", "text": "Has a constant, unchanging thickness along the whole chord" },
-      { "id": "d", "text": "Only exists over the aft half of the aerofoil" }
+      { "id": "a", "text": "Drift toward the root" },
+      { "id": "b", "text": "Become thinner outboard" },
+      {
+        "id": "c",
+        "text": "Drift spanwise toward the tips, thickening outboard"
+      },
+      { "id": "d", "text": "Remain two-dimensional" }
+    ],
+    "correct": "c",
+    "explanation": "The isobars lie along the sweep line; the pressure gradient has a spanwise component that drives low-momentum near-wall air outboard. The outboard layer thickens and separates first.",
+    "tags": ["sweep", "spanwise-flow"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0067",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Swept wings",
+    "question": "Wing fences and vortilons on swept wings:",
+    "options": [
+      { "id": "a", "text": "Reduce wing area" },
+      {
+        "id": "b",
+        "text": "Obstruct or break up spanwise boundary-layer flow toward the tips"
+      },
+      { "id": "c", "text": "Replace the ailerons" },
+      { "id": "d", "text": "Increase spanwise flow" }
     ],
     "correct": "b",
-    "explanation": "The boundary layer begins at essentially zero thickness right at the stagnation point, where the flow is brought to rest, and grows progressively thicker as it moves aft, since viscosity keeps slowing more of the flow near the surface the further it travels across the surface.",
-    "tags": ["boundary-layer", "growth"],
+    "explanation": "A fence blocks outboard drift; a vortilon sheds a vortex at high α that performs the same function. Both delay tip separation and pitch-up.",
+    "tags": ["fence", "vortilon", "sweep"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-BL-0027",
+    "id": "POF-BL-0068",
     "subjectCode": "POF",
     "topic": "Boundary Layer",
-    "subtopic": "Gurney Flap",
-    "question": "A \"Gurney flap\" — a small, right-angled tab fitted along the trailing edge of a wing or aerofoil — increases lift mainly by:",
+    "subtopic": "Swept wings",
+    "question": "Transition on a swept leading edge can be triggered by:",
     "options": [
-      { "id": "a", "text": "Altering the flow pattern right at the trailing edge, effectively increasing the aerofoil's aft camber and creating a small, stabilising pair of vortices behind it" },
-      { "id": "b", "text": "Acting exactly like a large trailing-edge flap, but with a bigger deflection angle" },
-      { "id": "c", "text": "Reducing the wing's angle of attack" },
-      { "id": "d", "text": "Delaying transition to turbulent flow at the leading edge" }
+      { "id": "a", "text": "Nothing, because sweep stabilises the flow" },
+      {
+        "id": "b",
+        "text": "Crossflow instability and attachment-line contamination, not only streamwise instability"
+      },
+      { "id": "c", "text": "Only surface roughness downstream of mid-chord" },
+      { "id": "d", "text": "Only the Reynolds number based on chord" }
     ],
-    "correct": "a",
-    "explanation": "Despite its small size — often just a centimetre or two tall — a Gurney flap changes the pressure distribution right at the trailing edge, effectively adding aft camber and generating a small, stabilising vortex pair immediately behind it, producing a worthwhile lift increase for very little added drag or complexity.",
-    "tags": ["boundary-layer", "gurney-flap"],
+    "correct": "b",
+    "explanation": "Sweep adds a crossflow component to the three-dimensional layer, which is unstable and generates stationary vortices; turbulence from the fuselage can travel along the attachment line.",
+    "tags": ["sweep", "transition", "crossflow"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-BL-0028",
+    "id": "POF-BL-0069",
     "subjectCode": "POF",
     "topic": "Boundary Layer",
-    "subtopic": "Lift Curve Rounding Near CLmax",
-    "question": "Near the top of the lift-versus-angle-of-attack curve, many aerofoils show the curve gradually rounding off rather than rising in a perfectly straight line right up to an abrupt peak. This rounding is caused by:",
+    "subtopic": "Drag consequences",
+    "question": "For a streamlined body, the transition from laminar to turbulent flow mainly increases:",
     "options": [
-      { "id": "a", "text": "Growing regions of boundary layer separation developing progressively before the full stall is reached" },
-      { "id": "b", "text": "A sudden increase in air density near the stall" },
-      { "id": "c", "text": "The onset of compressibility effects, even at low speed" },
-      { "id": "d", "text": "A change in the direction of the relative airflow" }
+      { "id": "a", "text": "Skin-friction drag" },
+      { "id": "b", "text": "Form drag" },
+      { "id": "c", "text": "Induced drag" },
+      { "id": "d", "text": "Wave drag" }
     ],
     "correct": "a",
-    "explanation": "As angle of attack approaches the critical angle, small regions of the boundary layer begin separating even before the wing fully stalls, progressively reducing how much extra lift each further increment of angle of attack produces. This is what rounds off the top of the lift curve, rather than it rising in a straight line right up to a sharp peak followed by an instantaneous drop.",
-    "tags": ["boundary-layer", "lift-curve"],
+    "explanation": "On a streamlined body form drag is small and separation absent; turbulent C_f is several times laminar C_f, so friction dominates.",
+    "tags": ["skin-friction", "streamlined-body"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0070",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Drag consequences",
+    "question": "For a bluff body, forcing the boundary layer turbulent before separation mainly:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Reduces form drag, with a smaller friction increase"
+      },
+      { "id": "b", "text": "Leaves total drag unchanged" },
+      { "id": "c", "text": "Reduces skin friction" },
+      { "id": "d", "text": "Increases form drag" }
+    ],
+    "correct": "a",
+    "explanation": "Delayed separation shrinks the wake. The pressure-drag reduction dominates the increase in friction.",
+    "tags": ["form-drag", "bluff-body"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0071",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Drag consequences",
+    "question": "The displacement effect of the boundary layer at the trailing edge reduces the section lift slope below the inviscid 2π per radian because:",
+    "options": [
+      { "id": "a", "text": "The Kutta condition no longer applies" },
+      { "id": "b", "text": "Static pressure varies across the layer" },
+      { "id": "c", "text": "Skin friction adds a lift component" },
+      {
+        "id": "d",
+        "text": "The effective trailing-edge geometry and circulation are reduced by the thicker upper-surface layer"
+      }
+    ],
+    "correct": "d",
+    "explanation": "At positive α the upper-surface layer is thicker at the trailing edge; the displacement surface has reduced effective camber, so the circulation satisfying the Kutta condition is lower (real slopes ≈ 0.10–0.11 per degree).",
+    "tags": ["displacement-thickness", "lift-curve-slope"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0072",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Drag consequences",
+    "question": "A no-slip condition at the wall means:",
+    "options": [
+      { "id": "a", "text": "The static pressure is zero at the wall" },
+      { "id": "b", "text": "The flow slips at free-stream speed" },
+      {
+        "id": "c",
+        "text": "The fluid in contact with the surface has zero velocity relative to it"
+      },
+      { "id": "d", "text": "The flow is inviscid at the wall" }
+    ],
+    "correct": "c",
+    "explanation": "Viscosity forces the fluid at the wall to move with the wall. The resulting velocity gradient produces shear stress and skin friction.",
+    "tags": ["no-slip", "viscosity"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0073",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Skin friction",
+    "question": "Local laminar skin friction c_f = 0.664/√Re_x. At Re_x = 4 × 10⁵ and q = 1,500 Pa, the wall shear stress is:",
+    "options": [
+      { "id": "a", "text": "0.66 Pa" },
+      { "id": "b", "text": "1.57 Pa" },
+      { "id": "c", "text": "3.15 Pa" },
+      { "id": "d", "text": "996 Pa" }
+    ],
+    "correct": "b",
+    "explanation": "c_f = 0.664/632 = 0.00105; τ_w = c_f·q = 0.00105 × 1,500 = 1.57 Pa.",
+    "tags": ["wall-shear", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0074",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Transition",
+    "question": "At the same station, which change makes a laminar layer less stable (earlier transition)?",
+    "options": [
+      { "id": "a", "text": "Lower free-stream turbulence" },
+      {
+        "id": "b",
+        "text": "A change from favourable to adverse pressure gradient"
+      },
+      { "id": "c", "text": "Wall cooling in air" },
+      { "id": "d", "text": "Smoother surface" }
+    ],
+    "correct": "b",
+    "explanation": "Adverse gradients produce inflected velocity profiles, which are strongly unstable. Cooling the wall in air stabilises the laminar layer.",
+    "tags": ["transition", "stability"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0075",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Growth laws",
+    "question": "Relative to a laminar layer at the same station and Re, a turbulent boundary layer is:",
+    "options": [
+      { "id": "a", "text": "Thinner, with a less full profile" },
+      { "id": "b", "text": "Thicker, with lower wall shear" },
+      {
+        "id": "c",
+        "text": "Thicker, with a fuller velocity profile and higher wall shear"
+      },
+      { "id": "d", "text": "Equal in thickness" }
+    ],
+    "correct": "c",
+    "explanation": "Turbulent mixing spreads momentum loss further from the wall (thicker δ) while bringing faster fluid near the wall (fuller profile, higher τ_w).",
+    "tags": ["turbulent", "velocity-profile"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0076",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Pressure gradient and separation",
+    "question": "Within a boundary layer approaching separation, the velocity profile near the wall:",
+    "options": [
+      { "id": "a", "text": "Becomes fuller" },
+      { "id": "b", "text": "Shows higher velocities than the outer flow" },
+      { "id": "c", "text": "Becomes linear across the whole layer" },
+      {
+        "id": "d",
+        "text": "Becomes inflected, with near-zero gradient at the wall"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Deceleration affects the low-momentum fluid most; the profile develops an inflection point and (∂u/∂y)_wall → 0 at separation.",
+    "tags": ["velocity-profile", "separation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0077",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Definition and thickness",
+    "question": "Relative to chord length, the boundary layer on a full-size wing in cruise is:",
+    "options": [
+      { "id": "a", "text": "About 10 % of the chord everywhere" },
+      { "id": "b", "text": "Zero at the trailing edge" },
+      { "id": "c", "text": "Comparable to the chord" },
+      {
+        "id": "d",
+        "text": "Very thin — millimetres to a few centimetres over metres of chord"
+      }
+    ],
+    "correct": "d",
+    "explanation": "At Re ~10⁷ the layer is thin relative to c (δ/c of order 1 %). This justifies separating the flow into an inviscid outer region and a thin viscous layer.",
+    "tags": ["boundary-layer-thickness", "reynolds-number"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0078",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Roughness and contamination",
+    "question": "Heavy rain on the wing surface primarily:",
+    "options": [
+      { "id": "a", "text": "Increases CLmax by adding mass" },
+      { "id": "b", "text": "Has no aerodynamic effect" },
+      { "id": "c", "text": "Reduces drag through lubrication" },
+      {
+        "id": "d",
+        "text": "Roughens the surface film and thickens the boundary layer, reducing CLmax and raising drag"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Water film and droplet impact act as roughness, promoting early transition and thickening the layer; momentum is also lost accelerating the droplets.",
+    "tags": ["rain", "contamination"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0079",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Boundary-layer control",
+    "question": "Blowing high-velocity air tangentially over a flap (blown flap):",
+    "options": [
+      { "id": "a", "text": "Reduces the Reynolds number" },
+      { "id": "b", "text": "Removes the boundary layer" },
+      {
+        "id": "c",
+        "text": "Adds momentum to the boundary layer so flow stays attached at large deflections"
+      },
+      { "id": "d", "text": "Is equivalent to a stall strip" }
+    ],
+    "correct": "c",
+    "explanation": "The wall jet supplies the kinetic energy needed to negotiate the steep pressure recovery on a deflected flap, raising CLmax.",
+    "tags": ["blowing", "high-lift"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0080",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Transition",
+    "question": "Compared with a turbulent boundary layer, a laminar layer at the same station has:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Lower skin friction but lower resistance to separation"
+      },
+      {
+        "id": "b",
+        "text": "Lower skin friction and higher resistance to separation"
+      },
+      {
+        "id": "c",
+        "text": "Higher skin friction and higher resistance to separation"
+      },
+      {
+        "id": "d",
+        "text": "Higher skin friction and lower resistance to separation"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Laminar: thin, low τ_w, but little near-wall momentum. Turbulent: high τ_w, fuller profile, resists adverse gradients. The design trade-off is friction against separation.",
+    "tags": ["laminar", "turbulent", "separation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0081",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Skin friction",
+    "question": "Two geometrically similar wings differ in chord by a factor of 4 and fly at the same speed and altitude. Turbulent skin-friction coefficient of the larger wing is:",
+    "options": [
+      { "id": "a", "text": "About 50 % lower" },
+      { "id": "b", "text": "About 24 % lower" },
+      { "id": "c", "text": "Equal" },
+      { "id": "d", "text": "4 times lower" }
+    ],
+    "correct": "b",
+    "explanation": "C_f ∝ Re^−0.2 and Re ∝ c: 4^−0.2 = 0.758. Larger aircraft have lower friction coefficients — a scale effect.",
+    "tags": ["skin-friction", "scale-effect", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0082",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Velocity profiles",
+    "question": "In the viscous sublayer of a turbulent boundary layer, the velocity:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Varies approximately linearly with distance from the wall"
+      },
+      { "id": "b", "text": "Exceeds the edge velocity" },
+      { "id": "c", "text": "Follows the 1/7 power law" },
+      { "id": "d", "text": "Is constant" }
+    ],
+    "correct": "a",
+    "explanation": "Very close to the wall turbulence is damped; shear is viscous and nearly constant, giving u ∝ y. The logarithmic region and outer wake lie above it.",
+    "tags": ["viscous-sublayer", "turbulent"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-BL-0083",
+    "subjectCode": "POF",
+    "topic": "Boundary Layer",
+    "subtopic": "Definition and thickness",
+    "question": "A boundary layer is the region in which:",
+    "options": [
+      { "id": "a", "text": "The flow is inviscid" },
+      {
+        "id": "b",
+        "text": "Pressure changes across the flow direction dominate"
+      },
+      { "id": "c", "text": "Compressibility effects dominate" },
+      {
+        "id": "d",
+        "text": "Viscous shear stresses are comparable with inertia forces"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Outside it, viscous terms are negligible and the flow is effectively inviscid. Inside, the shear stress μ∂u/∂y is of the same order as inertia, which sets δ ∝ x/√Re_x.",
+    "tags": ["boundary-layer", "viscosity"],
     "status": "published",
     "version": 1
   }
