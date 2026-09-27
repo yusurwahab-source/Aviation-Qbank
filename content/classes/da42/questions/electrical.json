@@ -1,0 +1,785 @@
+[
+  {
+    "id": "DA42-ELEC-0001",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "What is the nominal voltage of the DA 42 NG's electrical system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "28 Volt DC"
+      },
+      {
+        "id": "b",
+        "text": "12 Volt DC"
+      },
+      {
+        "id": "c",
+        "text": "14 Volt DC"
+      },
+      {
+        "id": "d",
+        "text": "24 Volt DC"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.10.1 describes a 28 Volt DC system, subdivided into power generation, storage, distribution and consumers.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0002",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "How many alternators does the DA 42 NG have, and what is each one's rated output?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Two, each rated at 60 Ampère"
+      },
+      {
+        "id": "b",
+        "text": "Two, each rated at 70 Ampère"
+      },
+      {
+        "id": "c",
+        "text": "One, rated at 140 Ampère, shared between both engines"
+      },
+      {
+        "id": "d",
+        "text": "Two, each rated at 90 Ampère"
+      }
+    ],
+    "correct": "b",
+    "explanation": "AFM 7.10.1: power generation comes from two 70 Ampère alternators, one mounted on the bottom left side of each engine, driven by a flat belt.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0003",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "What protects the power output line of each alternator on its way to the main bus?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A 30 Ampère circuit breaker"
+      },
+      {
+        "id": "b",
+        "text": "A 10 Ampère fuse"
+      },
+      {
+        "id": "c",
+        "text": "A 60 Ampère circuit breaker"
+      },
+      {
+        "id": "d",
+        "text": "A 90 Ampère circuit breaker"
+      }
+    ],
+    "correct": "c",
+    "explanation": "AFM 7.10.1: each alternator's power line connects to its MAIN BUS via an alternator relay and a 60 Ampère circuit breaker; both main buses connect to the BATTERY BUS via a 90 Ampère breaker.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0004",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "What circuit breaker size protects the connection between the two MAIN buses and the BATTERY BUS?",
+    "options": [
+      {
+        "id": "a",
+        "text": "60 Ampère"
+      },
+      {
+        "id": "b",
+        "text": "30 Ampère"
+      },
+      {
+        "id": "c",
+        "text": "70 Ampère"
+      },
+      {
+        "id": "d",
+        "text": "90 Ampère"
+      }
+    ],
+    "correct": "d",
+    "explanation": "AFM 7.10.1: both LH and RH MAIN buses connect to the BATTERY BUS via a 90 Ampère circuit breaker.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0005",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "In the event of a main battery failure, what energizes the field of each alternator?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Two 12 V, 7.2 Ah sealed lead-acid ECU backup batteries connected in series, under the passenger seats"
+      },
+      {
+        "id": "b",
+        "text": "The RH alternator's own output, cross-connected to the LH field coil"
+      },
+      {
+        "id": "c",
+        "text": "A dedicated capacitor bank in the relay junction box"
+      },
+      {
+        "id": "d",
+        "text": "External power only — the alternators cannot self-excite otherwise"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.10.1: the ECU backup batteries (two 12V 7.2Ah cells in series, under the passenger seats) energize each alternator field if the main battery fails.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0006",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "For how long can the ECU backup batteries provide electrical power to the ECUs, under the stated condition?",
+    "options": [
+      {
+        "id": "a",
+        "text": "1 hour"
+      },
+      {
+        "id": "b",
+        "text": "30 minutes"
+      },
+      {
+        "id": "c",
+        "text": "1.5 hours"
+      },
+      {
+        "id": "d",
+        "text": "10 minutes"
+      }
+    ],
+    "correct": "b",
+    "explanation": "AFM 7.10.1 states the ECU backup batteries provide electrical power for the ECU for a time of 30 minutes.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0007",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "What connects each ENGINE MASTER switch to the ECU backup battery and the alternator field?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A 60 Ampère circuit breaker"
+      },
+      {
+        "id": "b",
+        "text": "A 5 Ampère fuse"
+      },
+      {
+        "id": "c",
+        "text": "A 10 Ampère fuse"
+      },
+      {
+        "id": "d",
+        "text": "A 30 Ampère circuit breaker"
+      }
+    ],
+    "correct": "c",
+    "explanation": "AFM 7.10.1: the ENGINE MASTER LH (RH) switch connects the ECU backup battery to the alternator field via a 10 Ampère fuse.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0008",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "What controls the current through each alternator's field coils to keep output voltage stable across load and speed changes?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The ECU, via the fuel metering valve"
+      },
+      {
+        "id": "b",
+        "text": "The battery relay"
+      },
+      {
+        "id": "c",
+        "text": "The VOTER switch"
+      },
+      {
+        "id": "d",
+        "text": "The alternator control unit, via a pulse-width modulated signal"
+      }
+    ],
+    "correct": "d",
+    "explanation": "AFM 7.10.1: each alternator control unit modulates the field coil current with a pulse-width modulated signal to keep output voltage stable.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0009",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "How do the two alternators share electrical load (\"paralleling\")?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The LH alternator regulator measures both alternators' outputs via separate current sensors and controls its own alternator's output accordingly"
+      },
+      {
+        "id": "b",
+        "text": "Each alternator operates completely independently with no coordination"
+      },
+      {
+        "id": "c",
+        "text": "The RH alternator regulator always takes priority over the LH regulator"
+      },
+      {
+        "id": "d",
+        "text": "Paralleling is done manually by the pilot using the VOTER switch"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.10.1: the LH alternator regulator measures both LH and RH alternator outputs and adjusts its own alternator's output to provide paralleling between them.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0010",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "What is the capacity of the main battery?",
+    "options": [
+      {
+        "id": "a",
+        "text": "24 V, 7.2 Ah lead-acid"
+      },
+      {
+        "id": "b",
+        "text": "24 V, 13.6 Ah lead-acid"
+      },
+      {
+        "id": "c",
+        "text": "12 V, 7.2 Ah lead-acid"
+      },
+      {
+        "id": "d",
+        "text": "28 V, 20 Ah lead-acid"
+      }
+    ],
+    "correct": "b",
+    "explanation": "AFM 7.10.1: the main battery is a 24 V, 13.6 Ah lead-acid battery mounted on the right-aft side of the front baggage compartment.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0011",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "What switch controls the battery relay that connects the main battery to the BATTERY BUS?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The EMERGENCY switch"
+      },
+      {
+        "id": "b",
+        "text": "The ENGINE MASTER switch"
+      },
+      {
+        "id": "c",
+        "text": "The ELECT. MASTER switch"
+      },
+      {
+        "id": "d",
+        "text": "The AVIONIC MASTER switch"
+      }
+    ],
+    "correct": "c",
+    "explanation": "AFM 7.10.1: the battery relay, in the relay junction box, is controlled by the ELECT. MASTER switch on the instrument panel.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0012",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "What powers the backup attitude gyro (or standby attitude module) and the flood light in a total electrical emergency, and for how long?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The ECU backup batteries, for 30 minutes"
+      },
+      {
+        "id": "b",
+        "text": "The main 24V battery directly, for 1 hour"
+      },
+      {
+        "id": "c",
+        "text": "External power only, with no independent battery"
+      },
+      {
+        "id": "d",
+        "text": "A non-rechargeable dry emergency battery, for at least 1.5 hours when the EMERGENCY switch is set ON"
+      }
+    ],
+    "correct": "d",
+    "explanation": "AFM 7.10.1: a separate non-rechargeable dry battery supplies the standby attitude gyro/module and flood light for at least 1.5 hours when EMERGENCY is switched ON, independent of all other consumers.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0013",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "How often must the emergency (dry) battery package be replaced?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Every 2 years, or after use (broken seal on the switch)"
+      },
+      {
+        "id": "b",
+        "text": "Every 100 flight hours regardless of use"
+      },
+      {
+        "id": "c",
+        "text": "Every 5 years, regardless of use"
+      },
+      {
+        "id": "d",
+        "text": "Only when it fails a capacity test"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.10.1: the emergency battery package must be replaced every 2 years or after use (indicated by a broken seal on the EMERGENCY switch).",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0014",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "What bus is directly and permanently connected to the main battery, and cannot be disconnected from it?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The LH MAIN BUS"
+      },
+      {
+        "id": "b",
+        "text": "The HOT BATTERY BUS"
+      },
+      {
+        "id": "c",
+        "text": "The BATTERY BUS"
+      },
+      {
+        "id": "d",
+        "text": "The AVIONIC BUS"
+      }
+    ],
+    "correct": "b",
+    "explanation": "AFM 7.10.1: the HOT BATTERY BUS is directly wired to the main battery and cannot be disconnected; it feeds the map/reading light and the ELT RCPI unit.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0015",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "What does the BATTERY BUS supply heavy-duty power to, in addition to the MAIN buses?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The avionics bus only"
+      },
+      {
+        "id": "b",
+        "text": "The landing gear hydraulic pump only"
+      },
+      {
+        "id": "c",
+        "text": "Both starters"
+      },
+      {
+        "id": "d",
+        "text": "Both auxiliary fuel pumps"
+      }
+    ],
+    "correct": "c",
+    "explanation": "AFM 7.10.1: the BATTERY BUS, reached via the battery relay, supplies the LH/RH MAIN buses and heavy-duty power to both starters.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0016",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "What connects each ECU BUS to its MAIN BUS?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A relay switched by the AVIONIC MASTER"
+      },
+      {
+        "id": "b",
+        "text": "A fuse only, with no diode"
+      },
+      {
+        "id": "c",
+        "text": "A direct wire with no isolation component"
+      },
+      {
+        "id": "d",
+        "text": "A diode"
+      }
+    ],
+    "correct": "d",
+    "explanation": "AFM 7.10.1: the LH (RH) ECU BUS connects to its MAIN BUS via a diode, and to the alternator output via a diode and a 30 Ampère circuit breaker.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0017",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "What size circuit breaker connects each ECU BUS to its alternator's power output line?",
+    "options": [
+      {
+        "id": "a",
+        "text": "30 Ampère"
+      },
+      {
+        "id": "b",
+        "text": "60 Ampère"
+      },
+      {
+        "id": "c",
+        "text": "90 Ampère"
+      },
+      {
+        "id": "d",
+        "text": "7.5 Ampère"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.10.1: each ECU BUS connects to its alternator's power line via a diode and a 30 Ampère circuit breaker, powering ECU A and its fuel pump directly.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0018",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "How does ECU B (and its fuel pump) receive electrical redundancy from the OPPOSITE engine's side?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Via the AVIONIC BUS, which connects both sides"
+      },
+      {
+        "id": "b",
+        "text": "Via a diode and fuse from the opposite side's ECU BUS"
+      },
+      {
+        "id": "c",
+        "text": "ECU B has no cross-side redundancy at all"
+      },
+      {
+        "id": "d",
+        "text": "Via a shared mechanical linkage to the opposite propeller governor"
+      }
+    ],
+    "correct": "b",
+    "explanation": "AFM 7.10.1: each ECU B and its fuel pump is additionally supplied from the opposite engine's ECU BUS via a diode and fuse, adding cross-side redundancy.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0019",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "What switch must be ON to connect the RH MAIN BUS to the AVIONIC BUS?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The ALTERNATOR switch"
+      },
+      {
+        "id": "b",
+        "text": "The EMERGENCY switch"
+      },
+      {
+        "id": "c",
+        "text": "The AVIONIC MASTER switch"
+      },
+      {
+        "id": "d",
+        "text": "The ELECT. MASTER switch"
+      }
+    ],
+    "correct": "c",
+    "explanation": "AFM 7.10.1: the RH MAIN BUS reaches the AVIONIC BUS only via the avionics master relay, controlled by the AVIONIC MASTER switch.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0020",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "Under normal operating conditions, what voltage does the voltmeter display?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The main battery voltage at all times"
+      },
+      {
+        "id": "b",
+        "text": "The ECU backup battery voltage"
+      },
+      {
+        "id": "c",
+        "text": "An average of both alternators and the battery"
+      },
+      {
+        "id": "d",
+        "text": "The alternator voltage"
+      }
+    ],
+    "correct": "d",
+    "explanation": "AFM 7.10.1: under normal conditions the voltmeter shows alternator voltage; otherwise it displays main battery voltage.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0021",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "What does the ammeter display?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The current supplied to the electrical system by the LH (RH) alternator"
+      },
+      {
+        "id": "b",
+        "text": "The total current drawn by all avionics combined"
+      },
+      {
+        "id": "c",
+        "text": "The current flowing through the ECU backup batteries only"
+      },
+      {
+        "id": "d",
+        "text": "The starter motor current during engine start"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.10.1: the ammeter for each side shows the current supplied to the electrical system by that side's alternator.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0022",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "What protects the external power socket from reverse polarity?",
+    "options": [
+      {
+        "id": "a",
+        "text": "There is no reverse-polarity protection"
+      },
+      {
+        "id": "b",
+        "text": "A diode"
+      },
+      {
+        "id": "c",
+        "text": "A 30 Ampère fuse"
+      },
+      {
+        "id": "d",
+        "text": "A dedicated relay interlock switch"
+      }
+    ],
+    "correct": "b",
+    "explanation": "AFM 7.10.1: a diode in the external power socket circuit protects the system from reverse polarity.",
+    "reference": "AFM 7.10.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0023",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "How many ECUs control each engine, and what is the role of the VOTER switch when set to AUTO?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Two ECUs, with AUTO always favoring ECU A"
+      },
+      {
+        "id": "b",
+        "text": "Three ECUs, with AUTO cycling between them every flight"
+      },
+      {
+        "id": "c",
+        "text": "Two ECUs (A and B) per engine; AUTO lets the system propose the better-performing or lower-hours ECU automatically"
+      },
+      {
+        "id": "d",
+        "text": "One ECU per engine, with the VOTER only used for maintenance testing"
+      }
+    ],
+    "correct": "c",
+    "explanation": "AFM 7.10.2: the electronic ECU consists of two ECUs per engine; a VOTER switch set to AUTO proposes an ECU based on operating hours or, after a failure, better engine control capability.",
+    "reference": "AFM 7.10.2",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0024",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "If the VOTER switch is manually set to A or B instead of AUTO, what happens?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Both ECUs are disabled simultaneously"
+      },
+      {
+        "id": "b",
+        "text": "The engine shuts down for safety"
+      },
+      {
+        "id": "c",
+        "text": "Nothing changes; VOTER position only affects indications"
+      },
+      {
+        "id": "d",
+        "text": "The corresponding ECU is forced to control the engine"
+      }
+    ],
+    "correct": "d",
+    "explanation": "AFM 7.10.2: setting VOTER to A or B forces that specific ECU to control the engine, rather than letting the system choose automatically.",
+    "reference": "AFM 7.10.2",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0025",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "What is the difference between a \"latched\" and a \"non-latched\" ECU fault indication?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A latched fault requires unscheduled maintenance and remains until cleared by maintenance; a non-latched fault clears itself once its cause is gone"
+      },
+      {
+        "id": "b",
+        "text": "A latched fault clears itself after landing; a non-latched fault requires maintenance"
+      },
+      {
+        "id": "c",
+        "text": "Both types always require maintenance, differing only in urgency"
+      },
+      {
+        "id": "d",
+        "text": "A non-latched fault can never be cleared in flight, unlike a latched one"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.10.2: a latched caution needs unscheduled maintenance and notifying Austro Engine; a non-latched caution disappears once its cause is no longer present.",
+    "reference": "AFM 7.10.2",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0026",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "How many crew-alerting levels does the G1000 CAS use?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Five, matching the five engine parameter arcs"
+      },
+      {
+        "id": "b",
+        "text": "Three: Warning, Caution, and Advisory"
+      },
+      {
+        "id": "c",
+        "text": "Two: Warning and Caution only"
+      },
+      {
+        "id": "d",
+        "text": "Four: Warning, Caution, Advisory, and Informational"
+      }
+    ],
+    "correct": "b",
+    "explanation": "AFM 7.10.3 describes three alert levels: Warning (red), Caution (amber), and Advisory (white).",
+    "reference": "AFM 7.10.3",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-ELEC-0027",
+    "classCode": "DA42",
+    "topic": "Electrical",
+    "question": "What does pressing the MSG key do when no master alert is currently active?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Resets the ECU fault-latch counters"
+      },
+      {
+        "id": "b",
+        "text": "Switches the display to reversionary (composite) mode"
+      },
+      {
+        "id": "c",
+        "text": "Opens a pop-up auxiliary flight display page listing all active alerts"
+      },
+      {
+        "id": "d",
+        "text": "Silences all future aural alerts for the remainder of the flight"
+      }
+    ],
+    "correct": "c",
+    "explanation": "AFM 7.10.3: pressing MSG with no new alert active opens the pop-up AFD page, which lists every currently active alert regardless of level.",
+    "reference": "AFM 7.10.3",
+    "status": "published",
+    "version": 1
+  }
+]

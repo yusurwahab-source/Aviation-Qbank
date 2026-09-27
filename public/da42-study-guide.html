@@ -1,0 +1,1370 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DA42 NG — Twin-Engine Confidence Before Your Checkride</title>
+<meta name="description" content="A complete reference guide for the Diamond DA 42 NG, built entirely from the official AFM, to read before the Holdshort question bank." />
+<style>
+  :root{
+    --bg:#f6f8fb;
+    --surface:#ffffff;
+    --surface-2:#eef2f7;
+    --ink:#101826;
+    --ink-2:#3c4758;
+    --muted:#6b7686;
+    --line:#dfe6ef;
+    --brand:#0d6e7d;
+    --brand-ink:#ffffff;
+    --brand-light:#e3f4f6;
+    --warn-bg:#fdecec;
+    --warn-line:#e0413a;
+    --warn-ink:#7a1712;
+    --caution-bg:#fff6e0;
+    --caution-line:#c9821a;
+    --caution-ink:#6b4405;
+    --note-bg:#eaf1fb;
+    --note-line:#3f6fb0;
+    --note-ink:#1f3c63;
+    --white-arc:#e9edf3;
+    --green-arc:#1f9d55;
+    --yellow-arc:#e0b400;
+    --red-arc:#d9362a;
+    --lh:#3f6fb0;
+    --rh:#c9821a;
+    --radius:14px;
+    --radius-sm:8px;
+    --shadow:0 1px 2px rgba(16,24,38,.04), 0 6px 20px rgba(16,24,38,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0d1420;
+      --surface:#141d2c;
+      --surface-2:#1b263a;
+      --ink:#eef2f8;
+      --ink-2:#c3cddc;
+      --muted:#8b97ab;
+      --line:#26334a;
+      --brand:#37c3d6;
+      --brand-ink:#06232a;
+      --brand-light:#12323a;
+      --warn-bg:#3a1613;
+      --warn-line:#e4574d;
+      --warn-ink:#ffd6d1;
+      --caution-bg:#3a2c0d;
+      --caution-line:#e0a83a;
+      --caution-ink:#ffe6b0;
+      --note-bg:#122a44;
+      --note-line:#5b93d6;
+      --note-ink:#cfe2fb;
+      --white-arc:#324055;
+      --green-arc:#2bb56a;
+      --yellow-arc:#e0b400;
+      --red-arc:#e4574d;
+      --lh:#5b93d6;
+      --rh:#e0a83a;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1420; --surface:#141d2c; --surface-2:#1b263a; --ink:#eef2f8; --ink-2:#c3cddc;
+    --muted:#8b97ab; --line:#26334a; --brand:#37c3d6; --brand-ink:#06232a; --brand-light:#12323a;
+    --warn-bg:#3a1613; --warn-line:#e4574d; --warn-ink:#ffd6d1;
+    --caution-bg:#3a2c0d; --caution-line:#e0a83a; --caution-ink:#ffe6b0;
+    --note-bg:#122a44; --note-line:#5b93d6; --note-ink:#cfe2fb;
+    --white-arc:#324055; --green-arc:#2bb56a; --yellow-arc:#e0b400; --red-arc:#e4574d;
+    --lh:#5b93d6; --rh:#e0a83a;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:clip}
+  body{
+    margin:0;
+    overflow-x:clip;
+    max-width:100vw;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,"Segoe UI",system-ui,Roboto,sans-serif;
+    line-height:1.75;
+    font-size:17px;
+  }
+  a{color:var(--brand)}
+  code, .kbd{
+    direction:ltr;unicode-bidi:isolate;display:inline-block;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:6px;
+    padding:0 .35em;font-size:.92em;color:var(--ink);
+  }
+  header.top{
+    position:sticky;top:0;z-index:40;
+    background:linear-gradient(180deg, var(--surface) 85%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    max-width:1180px;margin:0 auto;padding:14px 16px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .brand-mark{display:flex;align-items:center;gap:10px;min-width:0}
+  .brand-mark .plane{
+    width:34px;height:34px;flex:0 0 auto;border-radius:9px;
+    background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+  }
+  .brand-mark .txt{min-width:0}
+  .brand-mark h1{font-size:15px;margin:0;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand-mark .sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .menu-btn{
+    display:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+    border-radius:10px;padding:9px 12px;font-size:14px;cursor:pointer;flex:0 0 auto;
+  }
+  .shell{max-width:1180px;margin:0 auto;display:flex;align-items:flex-start;gap:28px;padding:20px 16px 80px}
+  nav.toc{
+    position:sticky;top:78px;flex:0 0 264px;
+    max-height:calc(100vh - 96px);overflow-y:auto;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;box-shadow:var(--shadow);
+  }
+  nav.toc h2{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:2px 8px 10px}
+  nav.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+  nav.toc li{counter-increment:toc}
+  nav.toc a{
+    display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--ink-2);
+    padding:8px 8px;border-radius:9px;font-size:14px;
+  }
+  nav.toc a .n{
+    flex:0 0 auto;color:var(--brand);font-weight:700;font-size:12px;min-width:18px;
+  }
+  nav.toc a:hover{background:var(--surface-2);color:var(--ink)}
+  nav.toc a.active{background:var(--brand-light);color:var(--ink);font-weight:600}
+  nav.toc .count{margin-inline-start:auto;font-size:11px;color:var(--muted)}
+  main{flex:1 1 auto;min-width:0}
+  .hero{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 22px;margin-bottom:22px;box-shadow:var(--shadow);
+  }
+  .hero h1{margin:0 0 8px;font-size:26px}
+  .hero p{margin:0;color:var(--ink-2);font-size:15.5px}
+  .hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hero .tag{
+    font-size:12.5px;background:var(--brand-light);color:var(--brand);
+    border-radius:999px;padding:5px 12px;font-weight:600;
+  }
+  section.sec{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px 26px;margin-bottom:22px;box-shadow:var(--shadow);scroll-margin-top:76px;
+  }
+  section.sec > h2{
+    display:flex;align-items:center;gap:12px;font-size:21px;margin:0 0 6px;
+    padding-bottom:14px;border-bottom:1px solid var(--line);
+  }
+  section.sec > h2 .num{
+    flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;
+  }
+  section.sec > h2 .en{margin-inline-start:auto;font-size:12px;color:var(--muted);font-weight:600;
+    direction:ltr;background:var(--surface-2);padding:4px 10px;border-radius:999px}
+  .lead{color:var(--ink-2);font-size:16px;margin-top:14px}
+  h3.sub{font-size:16.5px;margin:26px 0 8px;color:var(--ink);border-inline-start:4px solid var(--brand);padding-inline-start:10px}
+  h4.sub2{font-size:15px;margin:18px 0 6px;color:var(--ink-2)}
+  p{margin:10px 0}
+  ul, ol{margin:10px 0;padding-inline-start:22px}
+  li{margin:5px 0}
+  strong{color:var(--ink)}
+  .table-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm)}
+  table{border-collapse:collapse;width:100%;min-width:420px;font-size:14.5px}
+  table caption{text-align:start;font-size:12.5px;color:var(--muted);padding:8px 12px 0}
+  thead th{
+    background:var(--surface-2);color:var(--ink);text-align:start;
+    padding:9px 12px;font-weight:700;white-space:nowrap;font-size:13.5px;
+  }
+  tbody td{padding:8px 12px;border-top:1px solid var(--line);color:var(--ink-2)}
+  tbody tr:nth-child(even){background:color-mix(in srgb, var(--surface-2) 45%, transparent)}
+  td.num, th.num{direction:ltr;text-align:center;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+  .callout{border-radius:var(--radius-sm);padding:12px 14px;margin:14px 0;border-inline-start:4px solid;font-size:14.5px}
+  .callout .label{display:block;font-weight:800;font-size:12px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:4px}
+  .callout.warning{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-ink)}
+  .callout.caution{background:var(--caution-bg);border-color:var(--caution-line);color:var(--caution-ink)}
+  .callout.note{background:var(--note-bg);border-color:var(--note-line);color:var(--note-ink)}
+  .diagram{
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;margin:18px 0;text-align:center;
+    max-width:100%;overflow-x:auto;box-sizing:border-box;
+  }
+  .diagram .cap{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .diagram svg{max-width:100%;height:auto;display:block;margin:0 auto}
+  .ref{
+    display:inline-block;direction:ltr;font-size:11.5px;color:var(--brand);
+    background:var(--brand-light);border-radius:6px;padding:1px 7px;margin-inline-start:4px;
+    font-weight:700;white-space:nowrap;
+  }
+  .related{
+    margin-top:22px;display:flex;align-items:center;gap:10px;
+    background:var(--brand-light);color:var(--brand);border-radius:999px;
+    padding:10px 16px;font-size:14px;font-weight:700;width:fit-content;
+  }
+  .related .dot{width:8px;height:8px;border-radius:50%;background:var(--brand)}
+  footer{max-width:1180px;margin:0 auto;padding:10px 16px 60px;color:var(--muted);font-size:13px;text-align:center}
+  #top-btn{
+    position:fixed;inset-inline-end:18px;bottom:18px;z-index:50;
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+    background:var(--brand);color:var(--brand-ink);font-size:18px;cursor:pointer;
+    box-shadow:var(--shadow);display:none;align-items:center;justify-content:center;
+  }
+  #top-btn.show{display:flex}
+  .lh-rh-legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:10px;font-size:13px}
+  .lh-rh-legend span{display:inline-flex;align-items:center;gap:6px}
+  .lh-rh-legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+  @media (max-width:880px){
+    .shell{flex-direction:column;padding:14px 12px 70px}
+    main{width:100%;min-width:0}
+    nav.toc{
+      position:fixed;inset:0 0 0 auto;top:0;width:82%;max-width:340px;height:100dvh;max-height:100dvh;
+      transform:translateX(100%);transition:transform .25s ease;border-radius:0;z-index:60;
+    }
+    nav.toc.open{transform:translateX(0)}
+    .toc-scrim{
+      position:fixed;inset:0;background:rgba(6,10,18,.5);z-index:55;display:none;
+    }
+    .toc-scrim.show{display:block}
+    .menu-btn{display:inline-flex;align-items:center;gap:6px}
+    section.sec > h2{font-size:18.5px}
+    .hero h1{font-size:22px}
+    body{font-size:16px}
+  }
+  .toc-close{display:none}
+  @media (max-width:880px){
+    .toc-close{
+      display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+      padding-bottom:10px;border-bottom:1px solid var(--line);
+    }
+    .toc-close button{border:none;background:var(--surface-2);border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer;color:var(--ink)}
+  }
+</style>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand-mark">
+      <div class="plane">✈️</div>
+      <div class="txt">
+        <h1>DA42 NG — Twin-Engine Confidence Before Your Checkride</h1>
+        <div class="sub">Built entirely from the official AFM · Doc. # 7.01.16-E, Rev. 4</div>
+      </div>
+    </div>
+    <button class="menu-btn" id="menuBtn">☰ Contents</button>
+  </div>
+</header>
+
+<div class="toc-scrim" id="scrim"></div>
+
+<div class="shell">
+  <nav class="toc" id="toc">
+    <div class="toc-close"><span style="font-size:13px;color:var(--muted);font-weight:700">Contents</span><button id="closeToc">✕</button></div>
+    <h2>Sections</h2>
+    <ol>
+      <li><a href="#limitations"><span class="n">01</span> Limitations <span class="count">82</span></a></li>
+      <li><a href="#emergency"><span class="n">02</span> Emergency Procedures <span class="count">32</span></a></li>
+      <li><a href="#oei"><span class="n">03</span> One Engine Inoperative <span class="count">35</span></a></li>
+      <li><a href="#normal"><span class="n">04</span> Normal Procedures <span class="count">33</span></a></li>
+      <li><a href="#abnormal"><span class="n">05</span> Abnormal Procedures <span class="count">26</span></a></li>
+      <li><a href="#powerplant"><span class="n">06</span> Powerplant <span class="count">21</span></a></li>
+      <li><a href="#propeller"><span class="n">07</span> Propeller <span class="count">9</span></a></li>
+      <li><a href="#fuel"><span class="n">08</span> Fuel System <span class="count">18</span></a></li>
+      <li><a href="#electrical"><span class="n">09</span> Electrical System <span class="count">27</span></a></li>
+      <li><a href="#avionics"><span class="n">10</span> Avionics &amp; Autopilot <span class="count">20</span></a></li>
+      <li><a href="#flightcontrols"><span class="n">11</span> Flight Controls <span class="count">10</span></a></li>
+      <li><a href="#airframe"><span class="n">12</span> Airframe &amp; Landing Gear <span class="count">17</span></a></li>
+      <li><a href="#massbalance"><span class="n">13</span> Mass &amp; Balance <span class="count">9</span></a></li>
+      <li><a href="#performance"><span class="n">14</span> Performance <span class="count">10</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <h1>Two engines change everything. Let's talk about how.</h1>
+      <p>
+        If you've flown a single before, the DA42 NG will feel familiar for
+        about the first five minutes — same G1000, same composite airframe,
+        same diesel smell. Then an engine quits and you realize the whole
+        game changed: you don't glide to a field anymore, you fly the
+        airplane on one motor, and every number in this guide exists because
+        of that one fact. Every figure below is copied verbatim from the
+        official Diamond DA 42 NG Airplane Flight Manual, with a reference
+        tag next to it showing exactly where it came from — same as the
+        question bank it feeds.
+      </p>
+      <div class="tags">
+        <span class="tag">Twin Austro Engine E4-C diesels</span>
+        <span class="tag">349 linked questions</span>
+        <span class="tag">14 systems</span>
+        <span class="tag">Doc. # 7.01.16-E · Rev. 4</span>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 01 LIMITATIONS -->
+    <!-- ============================================================ -->
+    <section class="sec" id="limitations">
+      <h2><span class="num">01</span> Limitations <span class="en">Chapter 2</span></h2>
+      <p class="lead">
+        This is the EASA-approved chapter — the numbers you don't argue
+        with. Read it once knowing that a handful of them move depending on
+        which modification is installed on your particular airframe, and
+        the rest hold for every DA42 NG built.
+      </p>
+
+      <h3 class="sub">V-speeds <span class="ref">AFM 2.2</span></h3>
+      <p>
+        The two speeds worth knowing before anything else are the pair that
+        only exist because there are two engines: <code>vMCA</code> and
+        <code>vYSE</code>. Lose an engine below vMCA and the rudder simply
+        cannot out-vote the yaw the good engine is producing — you lose
+        directional control, full stop, no matter how good your technique
+        is.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Speed</th><th class="num">Value</th><th>What it means</th></tr></thead>
+        <tbody>
+          <tr><td>vMCA — min. control speed, flaps UP</td><td class="num">71 KIAS</td><td>Below this, one engine out, you cannot hold heading</td></tr>
+          <tr><td>vMCA — min. control speed, flaps APP</td><td class="num">68 KIAS</td><td>Slightly lower with approach flaps out</td></tr>
+          <tr><td>vYSE — best rate of climb, one engine out</td><td class="num">85 KIAS</td><td>The single speed that gives you the most climb you're going to get</td></tr>
+          <tr><td>vO — maneuvering, up to 1700 kg</td><td class="num">112 KIAS</td><td>No full/abrupt control inputs above this</td></tr>
+          <tr><td>vO — maneuvering, 1700–1800 kg</td><td class="num">119 KIAS</td><td>—</td></tr>
+          <tr><td>vO — maneuvering, above 1800 kg</td><td class="num">122 KIAS</td><td>—</td></tr>
+          <tr><td>vFE — flaps LDG / APP</td><td class="num">113 / 133 KIAS</td><td>Don't exceed with that flap setting out</td></tr>
+          <tr><td>vLO — gear extension / retraction</td><td class="num">188 / 152 KIAS</td><td>Gear comes out faster than it goes away</td></tr>
+          <tr><td>vNO — max structural cruise</td><td class="num">151 KIAS</td><td>Smooth air only above this</td></tr>
+          <tr><td>vNE — never exceed</td><td class="num">188 KIAS</td><td>Under any circumstance</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="diagram">
+        <svg viewBox="0 0 500 170" role="img" aria-label="Color-coded airspeed indicator with VMC and VNE radials">
+          <rect x="40" y="55" width="420" height="26" fill="var(--surface)" stroke="var(--line)"/>
+          <rect x="170.2" y="55" width="107.1" height="26" fill="var(--white-arc)"/>
+          <rect x="182.8" y="55" width="174.3" height="26" fill="var(--green-arc)"/>
+          <rect x="357.1" y="55" width="77.7" height="26" fill="var(--yellow-arc)"/>
+          <rect x="431.8" y="55" width="4" height="26" fill="var(--red-arc)"/>
+          <line x1="189.1" y1="40" x2="189.1" y2="95" stroke="var(--red-arc)" stroke-width="2.5"/>
+          <line x1="218.5" y1="40" x2="218.5" y2="95" stroke="var(--note-line)" stroke-width="2.5"/>
+          <line x1="40" y1="55" x2="40" y2="90" stroke="var(--muted)" stroke-width="1"/>
+          <line x1="170.2" y1="45" x2="170.2" y2="90" stroke="var(--ink-2)" stroke-width="1"/>
+          <line x1="357.1" y1="45" x2="357.1" y2="90" stroke="var(--ink-2)" stroke-width="1"/>
+          <g font-size="11.5" fill="var(--ink-2)" text-anchor="middle" font-family="inherit">
+            <text x="40" y="110">0</text>
+            <text x="170.2" y="110">62</text>
+            <text x="189.1" y="130" fill="var(--red-arc)" font-weight="700">71</text>
+            <text x="218.5" y="130" fill="var(--note-line)" font-weight="700">85</text>
+            <text x="357.1" y="110">151</text>
+            <text x="431.8" y="110" fill="var(--red-arc)" font-weight="700">188</text>
+          </g>
+          <g font-size="12.5" font-weight="700" text-anchor="middle" font-family="inherit">
+            <text x="223" y="42" fill="var(--ink)">Green (68–151)</text>
+            <text x="395" y="42" fill="var(--caution-line)">Yellow (151–188)</text>
+            <text x="189" y="150" fill="var(--red-arc)">vMCA</text>
+            <text x="228" y="150" fill="var(--note-line)">vYSE</text>
+            <text x="432" y="150" fill="var(--red-arc)">vNE</text>
+          </g>
+        </svg>
+        <div class="cap">
+          Red radial = vMCA (71 KIAS, single-engine minimum control speed). Blue radial = vYSE
+          (85 KIAS, best single-engine climb). Without MÄM 42-678 the white arc is 62–113 KIAS
+          and the green arc is 68–151 KIAS; with it, both shift up by 4 KIAS at the bottom end.
+        </div>
+      </div>
+
+      <div class="callout warning">
+        <span class="label">Warning</span>
+        vMCA and vYSE are not the same speed, and mixing them up is a classic
+        oral-exam trap. vMCA (71/68 KIAS) is the floor — go below it with an
+        engine out and you lose control. vYSE (85 KIAS) is the target — it's
+        where you actually get your best climb performance. You fly at
+        vYSE, not at vMCA, unless you're specifically demonstrating the
+        control-speed itself.
+      </div>
+
+      <h3 class="sub">Power-plant limits <span class="ref">AFM 2.4</span></h3>
+      <p>
+        Two Austro Engine E4-C diesels, each putting out 100% (123.5 kW) for
+        take-off — limited to 5 minutes — and 92% (114 kW) continuous. Learn
+        these as a set; they're what the G1000's color arcs are drawn from.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Parameter</th><th class="num">Min</th><th class="num">Max</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>RPM (take-off / continuous)</td><td class="num">—</td><td class="num">2300</td><td>Overspeed 2500 RPM, max. 20 sec</td></tr>
+          <tr><td>Oil pressure</td><td class="num">0.9 bar (&lt;1500 RPM)</td><td class="num">6.5 bar</td><td>Normal range 2.5–6 bar; min. 2.5 bar at/above 1500 RPM</td></tr>
+          <tr><td>Oil quantity</td><td class="num">5.0 l</td><td class="num">7.0 l</td><td>Max. consumption 0.1 l/hr</td></tr>
+          <tr><td>Oil temperature</td><td class="num">-30 °C</td><td class="num">140 °C</td><td>Normal range 50–135 °C</td></tr>
+          <tr><td>Gearbox temperature</td><td class="num">-30 °C / 35 °C full load</td><td class="num">120 °C</td><td>Cautionary range has no time limit</td></tr>
+          <tr><td>Coolant temperature</td><td class="num">-30 °C startup / 60 °C full load</td><td class="num">105 °C</td><td>—</td></tr>
+          <tr><td>Fuel temperature</td><td class="num">-30 °C</td><td class="num">60 °C</td><td>—</td></tr>
+          <tr><td>Fuel pressure</td><td class="num">4 bar</td><td class="num">7 bar</td><td>Not directly indicated — only a low warning</td></tr>
+          <tr><td>Voltage</td><td class="num">24.1 V</td><td class="num">32.0 V</td><td>—</td></tr>
+          <tr><td>Amperage</td><td class="num">—</td><td class="num">70 A</td><td>Per alternator</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">Engine instrument color arcs <span class="ref">AFM 2.5</span></h3>
+      <p>
+        These are the arcs you'll actually see on the G1000, per engine.
+        The pattern to notice: RPM has no yellow band at all — it's green
+        straight to red at 2300. Everything else gets a cautionary yellow
+        band before its red line, sized differently for each parameter.
+      </p>
+      <div class="diagram">
+        <svg viewBox="0 0 540 300" role="img" aria-label="Engine instrument color-arc gauges for oil pressure, oil temperature, coolant temperature and gearbox temperature">
+          <g font-family="inherit" font-size="12">
+            <!-- Oil pressure: scale 0-7.5 bar -->
+            <text x="20" y="14" fill="var(--ink)" font-weight="700">Oil pressure (bar)</text>
+            <rect x="20" y="20" width="60" height="18" fill="var(--red-arc)"/>
+            <rect x="80" y="20" width="106.7" height="18" fill="var(--yellow-arc)"/>
+            <rect x="186.7" y="20" width="233.3" height="18" fill="var(--green-arc)"/>
+            <rect x="420" y="20" width="33.3" height="18" fill="var(--yellow-arc)"/>
+            <rect x="453.3" y="20" width="66.7" height="18" fill="var(--red-arc)"/>
+            <text x="80" y="52" fill="var(--muted)" text-anchor="middle">0.9</text>
+            <text x="186.7" y="52" fill="var(--muted)" text-anchor="middle">2.5</text>
+            <text x="420" y="52" fill="var(--muted)" text-anchor="middle">6.0</text>
+            <text x="453.3" y="52" fill="var(--muted)" text-anchor="middle">6.5</text>
+
+            <!-- Oil temperature: scale -40 to 150 °C -->
+            <text x="20" y="84" fill="var(--ink)" font-weight="700">Oil temperature (°C)</text>
+            <rect x="20" y="90" width="26.3" height="18" fill="var(--red-arc)"/>
+            <rect x="46.3" y="90" width="210.5" height="18" fill="var(--yellow-arc)"/>
+            <rect x="256.8" y="90" width="223.7" height="18" fill="var(--green-arc)"/>
+            <rect x="480.5" y="90" width="13.2" height="18" fill="var(--yellow-arc)"/>
+            <rect x="493.7" y="90" width="26.3" height="18" fill="var(--red-arc)"/>
+            <text x="46.3" y="122" fill="var(--muted)" text-anchor="middle">-30</text>
+            <text x="256.8" y="122" fill="var(--muted)" text-anchor="middle">50</text>
+            <text x="480.5" y="122" fill="var(--muted)" text-anchor="end">135</text>
+            <text x="519" y="122" fill="var(--muted)" text-anchor="end">140</text>
+
+            <!-- Coolant temperature: scale -40 to 115 °C -->
+            <text x="20" y="154" fill="var(--ink)" font-weight="700">Coolant temperature (°C)</text>
+            <rect x="20" y="160" width="32.3" height="18" fill="var(--red-arc)"/>
+            <rect x="52.3" y="160" width="290.3" height="18" fill="var(--yellow-arc)"/>
+            <rect x="342.6" y="160" width="112.9" height="18" fill="var(--green-arc)"/>
+            <rect x="455.5" y="160" width="32.2" height="18" fill="var(--yellow-arc)"/>
+            <rect x="487.7" y="160" width="32.3" height="18" fill="var(--red-arc)"/>
+            <text x="52.3" y="192" fill="var(--muted)" text-anchor="middle">-30</text>
+            <text x="342.6" y="192" fill="var(--muted)" text-anchor="middle">60</text>
+            <text x="455.5" y="192" fill="var(--muted)" text-anchor="end">95</text>
+            <text x="519" y="192" fill="var(--muted)" text-anchor="end">105</text>
+
+            <!-- Gearbox temperature: scale -40 to 130 °C -->
+            <text x="20" y="224" fill="var(--ink)" font-weight="700">Gearbox temperature (°C)</text>
+            <rect x="20" y="230" width="29.4" height="18" fill="var(--red-arc)"/>
+            <rect x="49.4" y="230" width="191.2" height="18" fill="var(--yellow-arc)"/>
+            <rect x="240.6" y="230" width="235.3" height="18" fill="var(--green-arc)"/>
+            <rect x="475.9" y="230" width="14.7" height="18" fill="var(--yellow-arc)"/>
+            <rect x="490.6" y="230" width="29.4" height="18" fill="var(--red-arc)"/>
+            <text x="49.4" y="262" fill="var(--muted)" text-anchor="middle">-30</text>
+            <text x="240.6" y="262" fill="var(--muted)" text-anchor="middle">35</text>
+            <text x="475.9" y="262" fill="var(--muted)" text-anchor="end">115</text>
+            <text x="519" y="262" fill="var(--muted)" text-anchor="end">120</text>
+          </g>
+        </svg>
+        <div class="cap">
+          Same layout on the G1000 for both LH and RH engines — the pilot reads two identical
+          strips side by side, one per engine, with no shared indicator between them.
+        </div>
+      </div>
+
+      <h3 class="sub">Mass, CG, load factors <span class="ref">AFM 2.7, 2.8, 2.10</span></h3>
+      <p>
+        The DA42 NG's take-off, zero-fuel and landing masses all depend on
+        which mass-related modification is installed on your specific
+        airframe. Never blend the two configurations together — always ask
+        "does this aircraft have that MÄM?" before you answer.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Value</th><th class="num">Without the mod</th><th class="num">With the mod</th></tr></thead>
+        <tbody>
+          <tr><td>Max. take-off mass</td><td class="num">1900 kg (4189 lb)</td><td class="num">1999 kg (4407 lb) — MÄM 42-678</td></tr>
+          <tr><td>Max. zero fuel mass</td><td class="num">1765 kg (3891 lb)</td><td class="num">1835 kg (4045 lb) — MÄM 42-659</td></tr>
+          <tr><td>Max. landing mass</td><td class="num">1805 kg (3979 lb)</td><td class="num">1999 kg (4407 lb) — MÄM 42-659</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Minimum flight mass is fixed regardless of any modification: <strong>1450 kg (3197 lb)</strong>.</p>
+      <div class="callout note">
+        <span class="label">Note</span>
+        Positive load factor is 3.8 at vO/vNE clean, dropping to only 2.0 with flaps out (APP or
+        LDG). Negative is -1.52 clean, 0.0 with flaps out. Intentional negative-g maneuvers, and
+        stalling with asymmetric power or one engine inoperative, are both prohibited outright.
+      </div>
+
+      <h3 class="sub">Fuel &amp; capacities <span class="ref">AFM 2.14</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Item</th><th class="num">Per side</th></tr></thead>
+        <tbody>
+          <tr><td>Main tank — usable</td><td class="num">25.0 US gal (94.6 l)</td></tr>
+          <tr><td>Auxiliary tank — usable (if installed)</td><td class="num">13.2 US gal (50.0 l)</td></tr>
+          <tr><td>Max. LH/RH imbalance</td><td class="num">5.0 US gal (18.9 l)</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">Autopilot &amp; G1000 limits <span class="ref">AFM 2.16.6, 2.16.7</span></h3>
+      <p>
+        This is where the DA42 NG's manual gets noticeably longer than a
+        single's — a lot more of it is about what the autopilot and the
+        G1000 are and are not certified to do.
+      </p>
+      <ul>
+        <li>Autopilot speed range: <strong>90–180 KIAS</strong>. Disconnect it for take-off, landing, and <strong>any single-engine operation</strong>.</li>
+        <li>No altitude-select capture below <strong>1200 ft AGL</strong>; disengage below <strong>200 ft AGL</strong> on approach/departure, or <strong>800 ft AGL</strong> everywhere else.</li>
+        <li>ILS coupled approaches: <strong>Category I only</strong>.</li>
+        <li>G1000 GPS is <strong>not WAAS-approved</strong> — no LPV, LNAV/VNAV, or LNAV+V, and SBAS must stay disabled.</li>
+      </ul>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>82</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 02 EMERGENCY PROCEDURES -->
+    <!-- ============================================================ -->
+    <section class="sec" id="emergency">
+      <h2><span class="num">02</span> Emergency Procedures <span class="en">Chapter 3</span></h2>
+      <p class="lead">
+        This section covers everything Chapter 3 handles that <em>isn't</em>
+        specifically about losing an engine — that gets its own section
+        next, because it deserves one. Here it's G1000 warnings, fire,
+        electrical failure, and the odds-and-ends emergencies every pilot
+        eventually meets.
+      </p>
+
+      <h3 class="sub">G1000 warning alerts <span class="ref">AFM 3.2</span></h3>
+      <p>
+        Every one of these is prefixed <code>L/R</code> because it can
+        happen on either engine independently — that's the whole shape of a
+        twin. Know the trigger value and the same three-step logic applies
+        almost everywhere: reduce power on the <em>affected</em> engine,
+        increase airspeed, and if the value doesn't return to green, start
+        preparing for that engine to fail.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Alert</th><th>Trigger</th></tr></thead>
+        <tbody>
+          <tr><td>L/R ENG TEMP</td><td class="num">Coolant &gt; 105 °C</td></tr>
+          <tr><td>L/R OIL TEMP</td><td class="num">Oil &gt; 140 °C</td></tr>
+          <tr><td>L/R OIL PRES</td><td class="num">Oil &lt; 0.9 bar</td></tr>
+          <tr><td>L/R FUEL TEMP</td><td class="num">Fuel &gt; 60 °C</td></tr>
+          <tr><td>L/R GBOX TEMP</td><td class="num">Gearbox &gt; 120 °C</td></tr>
+          <tr><td>L/R ALTN AMPS</td><td class="num">Alternator &gt; 70 A</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="callout warning">
+        <span class="label">Warning</span>
+        If both alternators fail together, expect battery power to last
+        about 30 minutes before engine stoppage. That's the number to have
+        memorized cold — it tells you exactly how much time you have to get
+        the airplane on the ground.
+      </div>
+
+      <h3 class="sub">Electrical &amp; fire <span class="ref">AFM 3.10, 3.11</span></h3>
+      <p>
+        A complete electrical failure isn't the emergency it would be in a
+        simple single — the ECU backup batteries keep both engines' control
+        systems alive for at least 30 minutes on their own, and a separate
+        dry emergency battery keeps the standby attitude module and flood
+        light lit for at least 1.5 hours. Know where those numbers come
+        from and a total electrical failure stops being frightening and
+        starts being a checklist.
+      </p>
+      <p>
+        The maximum demonstrated airspeed for cracking the front canopy in
+        flight — for smoke, for CO, for an autopilot malfunction diversion —
+        is <strong>117 KIAS</strong>, in every one of those procedures.
+      </p>
+
+      <h3 class="sub">Other emergencies worth knowing cold <span class="ref">AFM 3.9, 3.12</span></h3>
+      <ul>
+        <li>Landing gear unsafe light on for more than <strong>20 seconds</strong> during a cycle → re-cycle the selector below vLOR (152 KIAS).</li>
+        <li>Manual gear extension works up to <strong>152 KIAS</strong> and can take up to 20 seconds by gravity alone.</li>
+        <li>Spin recovery steps 1–4 (power IDLE, opposite rudder, elevator forward, ailerons neutral) must be simultaneous — this airframe was never spin-tested for certification, so the recovery is built from general experience, not a demonstrated maneuver.</li>
+        <li>Emergency descent: flaps UP, gear DOWN (for drag), power IDLE, never above vNE (188 KIAS).</li>
+      </ul>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>32</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 03 ONE ENGINE INOPERATIVE -->
+    <!-- ============================================================ -->
+    <section class="sec" id="oei">
+      <h2><span class="num">03</span> One Engine Inoperative <span class="en">AFM 3.6–3.9</span></h2>
+      <p class="lead">
+        If you only really internalize one section of this whole guide,
+        make it this one. Everything else on this aircraft is a variation
+        on something you already know from single-engine flying. Losing an
+        engine on a twin is not — it is the single scenario the entire
+        multi-engine rating exists to prepare you for, and it is entirely
+        unforgiving of hesitation.
+      </p>
+
+      <h3 class="sub">Recognizing it <span class="ref">AFM 3.7.1</span></h3>
+      <p>
+        An engine failure on a twin doesn't announce itself with silence —
+        it announces itself with yaw and roll toward the dead engine,
+        because thrust just went asymmetric. The memory aid the AFM itself
+        gives you: <strong>"dead foot, dead engine."</strong> Once you've
+        re-established directional control with rudder, the foot pushing
+        hard on a pedal is on the side of the <em>good</em> engine; the foot
+        feeling nothing is on the side of the failure. The left engine is
+        the airplane's designated critical engine for handling and
+        performance purposes — worth knowing which side that puts you on
+        before you're ever surprised by it.
+      </p>
+
+      <div class="diagram">
+        <svg viewBox="0 0 620 230" role="img" aria-label="Twin engine layout diagram showing left and right engine systems, each with its own ECU A/B, alternator and fuel pumps, joined by a crossfeed line">
+          <g font-family="inherit" font-size="12.5">
+            <rect x="15" y="20" width="230" height="150" rx="10" fill="none" stroke="var(--lh)" stroke-width="2"/>
+            <text x="130" y="16" text-anchor="middle" fill="var(--lh)" font-weight="800">LH ENGINE (critical)</text>
+            <rect x="30" y="34" width="90" height="26" rx="5" fill="var(--lh)" fill-opacity=".15" stroke="var(--lh)"/>
+            <text x="75" y="51" text-anchor="middle" fill="var(--ink)">ECU A</text>
+            <rect x="130" y="34" width="90" height="26" rx="5" fill="var(--lh)" fill-opacity=".15" stroke="var(--lh)"/>
+            <text x="175" y="51" text-anchor="middle" fill="var(--ink)">ECU B</text>
+            <rect x="30" y="70" width="190" height="26" rx="5" fill="var(--lh)" fill-opacity=".1" stroke="var(--lh)"/>
+            <text x="125" y="87" text-anchor="middle" fill="var(--ink)">Alternator LH — 70 A</text>
+            <rect x="30" y="106" width="90" height="26" rx="5" fill="var(--lh)" fill-opacity=".1" stroke="var(--lh)"/>
+            <text x="75" y="123" text-anchor="middle" fill="var(--ink)">Pump A</text>
+            <rect x="130" y="106" width="90" height="26" rx="5" fill="var(--lh)" fill-opacity=".1" stroke="var(--lh)"/>
+            <text x="175" y="123" text-anchor="middle" fill="var(--ink)">Pump B</text>
+            <rect x="30" y="142" width="190" height="20" rx="5" fill="var(--lh)" fill-opacity=".08" stroke="var(--lh)"/>
+            <text x="125" y="156" text-anchor="middle" fill="var(--ink)" font-size="11">LH Main Bus / Fuel Selector</text>
+
+            <rect x="375" y="20" width="230" height="150" rx="10" fill="none" stroke="var(--rh)" stroke-width="2"/>
+            <text x="490" y="16" text-anchor="middle" fill="var(--rh)" font-weight="800">RH ENGINE</text>
+            <rect x="390" y="34" width="90" height="26" rx="5" fill="var(--rh)" fill-opacity=".15" stroke="var(--rh)"/>
+            <text x="435" y="51" text-anchor="middle" fill="var(--ink)">ECU A</text>
+            <rect x="490" y="34" width="90" height="26" rx="5" fill="var(--rh)" fill-opacity=".15" stroke="var(--rh)"/>
+            <text x="535" y="51" text-anchor="middle" fill="var(--ink)">ECU B</text>
+            <rect x="390" y="70" width="190" height="26" rx="5" fill="var(--rh)" fill-opacity=".1" stroke="var(--rh)"/>
+            <text x="485" y="87" text-anchor="middle" fill="var(--ink)">Alternator RH — 70 A</text>
+            <rect x="390" y="106" width="90" height="26" rx="5" fill="var(--rh)" fill-opacity=".1" stroke="var(--rh)"/>
+            <text x="435" y="123" text-anchor="middle" fill="var(--ink)">Pump A</text>
+            <rect x="490" y="106" width="90" height="26" rx="5" fill="var(--rh)" fill-opacity=".1" stroke="var(--rh)"/>
+            <text x="535" y="123" text-anchor="middle" fill="var(--ink)">Pump B</text>
+            <rect x="390" y="142" width="190" height="20" rx="5" fill="var(--rh)" fill-opacity=".08" stroke="var(--rh)"/>
+            <text x="485" y="156" text-anchor="middle" fill="var(--ink)" font-size="11">RH Main Bus / Fuel Selector</text>
+
+            <rect x="255" y="80" width="110" height="40" rx="8" fill="var(--surface)" stroke="var(--ink-2)" stroke-width="1.5"/>
+            <text x="310" y="98" text-anchor="middle" fill="var(--ink)" font-size="11" font-weight="700">BATTERY BUS</text>
+            <text x="310" y="112" text-anchor="middle" fill="var(--muted)" font-size="10">24V 13.6Ah + ECU backups</text>
+            <line x1="220" y1="100" x2="255" y2="100" stroke="var(--ink-2)" stroke-width="1.5"/>
+            <line x1="365" y1="100" x2="390" y2="100" stroke="var(--ink-2)" stroke-width="1.5"/>
+
+            <line x1="125" y1="152" x2="485" y2="152" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="5,4" transform="translate(0,28)"/>
+            <text x="310" y="195" text-anchor="middle" fill="var(--muted)" font-size="11">Fuel CROSSFEED line — lets either engine draw from the opposite tank</text>
+          </g>
+        </svg>
+        <div class="cap">
+          Every consumable is doubled and cross-connected: two ECUs per engine (A and B, either
+          one able to run it alone), two independent fuel pumps per engine, two alternators
+          paralleled through the LH regulator, and a crossfeed line joining the fuel systems.
+          Nothing on one side depends entirely on the other — except the airframe itself.
+        </div>
+      </div>
+
+      <h3 class="sub">The decision flow <span class="ref">AFM 3.7.2–3.7.7</span></h3>
+      <div class="diagram">
+        <svg viewBox="0 0 640 630" role="img" aria-label="One engine inoperative decision flow diagram">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/>
+            </marker>
+          </defs>
+          <g font-family="inherit" font-size="12.5">
+            <rect x="60" y="14" width="520" height="46" rx="10" fill="var(--warn-bg)" stroke="var(--warn-line)"/>
+            <text x="320" y="33" text-anchor="middle" fill="var(--warn-ink)" font-weight="700">ENGINE FAILURE — asymmetric thrust loss</text>
+            <text x="320" y="50" text-anchor="middle" fill="var(--warn-ink)">"Dead foot, dead engine"</text>
+            <line x1="320" y1="60" x2="320" y2="85" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow)"/>
+
+            <rect x="60" y="85" width="520" height="56" rx="10" fill="var(--surface-2)" stroke="var(--line)"/>
+            <text x="320" y="107" text-anchor="middle" fill="var(--ink)" font-weight="700">Maintain directional control</text>
+            <text x="320" y="126" text-anchor="middle" fill="var(--ink-2)" font-size="11.5">Rudder + ~3–5° bank toward the good engine · stay above vMCA (71 UP / 68 APP KIAS)</text>
+            <line x1="320" y1="141" x2="320" y2="166" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow)"/>
+
+            <rect x="60" y="166" width="520" height="70" rx="10" fill="var(--surface-2)" stroke="var(--line)"/>
+            <text x="320" y="187" text-anchor="middle" fill="var(--ink)" font-weight="700">Troubleshoot the engine (AFM 3.7.2)</text>
+            <text x="320" y="205" text-anchor="middle" fill="var(--ink-2)" font-size="11.5">POWER idle 1 s → increase slowly (max. 1975 RPM) → VOTER swap ECU</text>
+            <text x="320" y="222" text-anchor="middle" fill="var(--ink-2)" font-size="11.5">→ FUEL SELECTOR crossfeed → ALTERNATE AIR open</text>
+            <line x1="320" y1="236" x2="320" y2="261" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow)"/>
+
+            <polygon points="320,261 420,301 320,341 220,301" fill="var(--note-bg)" stroke="var(--note-line)" stroke-width="2"/>
+            <text x="320" y="297" text-anchor="middle" fill="var(--note-ink)" font-weight="700">Power</text>
+            <text x="320" y="313" text-anchor="middle" fill="var(--note-ink)" font-weight="700">restored?</text>
+
+            <line x1="420" y1="301" x2="470" y2="301" stroke="var(--green-arc)" stroke-width="2" marker-end="url(#arrow)"/>
+            <text x="443" y="292" text-anchor="middle" fill="var(--green-arc)" font-weight="800" font-size="11">YES</text>
+            <rect x="470" y="276" width="140" height="50" rx="8" fill="var(--surface-2)" stroke="var(--green-arc)"/>
+            <text x="540" y="296" text-anchor="middle" fill="var(--ink)" font-size="11">Continue flight,</text>
+            <text x="540" y="311" text-anchor="middle" fill="var(--ink)" font-size="11">land ASAP</text>
+
+            <line x1="320" y1="341" x2="320" y2="366" stroke="var(--warn-line)" stroke-width="2" marker-end="url(#arrow)"/>
+            <text x="336" y="358" fill="var(--warn-line)" font-weight="800" font-size="11">NO</text>
+
+            <rect x="60" y="366" width="520" height="80" rx="10" fill="var(--warn-bg)" stroke="var(--warn-line)"/>
+            <text x="320" y="388" text-anchor="middle" fill="var(--warn-ink)" font-weight="700">SECURE &amp; FEATHER (AFM 3.7.3)</text>
+            <text x="320" y="406" text-anchor="middle" fill="var(--warn-ink)" font-size="11.5">ENGINE MASTER off (never the fuel selector!) → ALTERNATOR off</text>
+            <text x="320" y="423" text-anchor="middle" fill="var(--warn-ink)" font-size="11.5">→ Fuel pump off → FUEL SELECTOR off</text>
+            <line x1="320" y1="446" x2="320" y2="471" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow)"/>
+
+            <rect x="60" y="471" width="520" height="70" rx="10" fill="var(--brand-light)" stroke="var(--brand)"/>
+            <text x="320" y="493" text-anchor="middle" fill="var(--ink)" font-weight="700">Fly at vYSE = 85 KIAS</text>
+            <text x="320" y="511" text-anchor="middle" fill="var(--ink-2)" font-size="11.5">~half ball toward the good engine, 3–5° bank</text>
+            <text x="320" y="528" text-anchor="middle" fill="var(--ink-2)" font-size="11.5">Land ASAP (AFM 3.7.7) — vREF 86 UP / 84 APP / 84 LDG, up to 1900 kg</text>
+            <line x1="320" y1="541" x2="320" y2="566" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow)"/>
+
+            <rect x="130" y="566" width="380" height="46" rx="10" fill="var(--caution-bg)" stroke="var(--caution-line)"/>
+            <text x="320" y="585" text-anchor="middle" fill="var(--caution-ink)" font-weight="700" font-size="11.5">Continued take-off below 3.3% climb gradient</text>
+            <text x="320" y="601" text-anchor="middle" fill="var(--caution-ink)" font-size="11">is not recommended — land straight ahead instead</text>
+          </g>
+        </svg>
+        <div class="cap">
+          This is the spine of the whole chapter. Every named procedure — engine failure during
+          take-off, in initial climb, in cruise, on approach — is this same flow with the entry
+          point moved to match the phase of flight you're in.
+        </div>
+      </div>
+
+      <h3 class="sub">Feathering &amp; restart windows <span class="ref">AFM 3.7.3, 3.7.4</span></h3>
+      <p>
+        Feathering only works above <strong>1300 RPM</strong> — shut an
+        engine down slower than that and the blades stop short of the
+        start-lock position, so you'd need to bring RPM back up first. Once
+        it's feathered and secured, the remaining fuel in that tank isn't
+        wasted: set the operating engine's selector to CROSSFEED and it
+        draws from the dead side too, stretching range and keeping the
+        wings laterally balanced at the same time.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Restart method</th><th class="num">Airspeed window</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>Starter</td><td class="num">≤ 100 KIAS</td><td>Only with the propeller stationary — never on a windmilling prop</td></tr>
+          <tr><td>Windmilling</td><td class="num">125–145 KIAS</td><td>Below 125, prop may not windmill continuously; above 145, restart can overspeed it</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="callout note">
+        <span class="label">Note — conditional on MÄM 42-938</span>
+        Baseline maximum restart altitude is 18,000 ft for an immediate restart, 10,000 ft for a
+        restart within two minutes. With MÄM 42-938 (engine software VC33_2_05_19 or later)
+        installed, the immediate-restart ceiling drops to 15,000 ft, and a table keyed to OAT sets
+        the maximum engine-off time up to 10,000 ft — as short as 2 minutes below -15 °C.
+      </div>
+
+      <h3 class="sub">Landing and going around with one out <span class="ref">AFM 3.7.7, 3.7.8</span></h3>
+      <p>
+        A one-engine-inoperative go-around is not recommended below
+        <strong>800 ft AGL</strong> — below that, committing to land is
+        safer than trying to climb away on one engine with flaps and gear
+        still hanging out. And keep flaps at UP for the approach itself
+        unless the landing is already assured: more flap means more altitude
+        lost transitioning into a single-engine go-around, exactly when you
+        can least afford to lose it.
+      </p>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>35</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 04 NORMAL PROCEDURES -->
+    <!-- ============================================================ -->
+    <section class="sec" id="normal">
+      <h2><span class="num">04</span> Normal Procedures <span class="en">Chapter 4A</span></h2>
+      <p class="lead">
+        Two engines means twice the checklist items in some places, but the
+        logic doesn't change from a single — it's still preflight, start,
+        taxi, takeoff, climb, cruise, descent, land, shutdown. What's new is
+        the ECU/fuel-pump test sequence, and doing everything symmetrically,
+        left then right.
+      </p>
+
+      <h3 class="sub">Pre-flight numbers worth memorizing <span class="ref">AFM 4A.5, 4A.6.1</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Item</th><th class="num">Value</th></tr></thead>
+        <tbody>
+          <tr><td>Main tire pressure</td><td class="num">4.7 bar / 68 PSI</td></tr>
+          <tr><td>Nose tire pressure</td><td class="num">6.0 bar / 87 PSI</td></tr>
+          <tr><td>Main gear strut — min. visible piston</td><td class="num">4 cm (1.6 in)</td></tr>
+          <tr><td>Nose gear strut — min. visible piston</td><td class="num">15 cm (5.9 in)</td></tr>
+          <tr><td>Idle RPM after start</td><td class="num">710 ± 30 RPM</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">The ECU/fuel-pump test <span class="ref">AFM 4A.6.6</span></h3>
+      <p>
+        This is the one check a single-engine pilot has never done. With
+        the power lever at IDLE and RPM below 900, holding the ECU TEST
+        button forces the system through both ECU channels while cycling
+        RPM above 1800 and back — proving each channel, and its fuel pump,
+        can run the engine alone. Both caution lights need to extinguish at
+        the end, and the whole thing has to complete without error or you
+        don't fly.
+      </p>
+      <p>
+        Then the available-power check: power to MAX for 10 seconds, RPM
+        should stabilize <strong>2250–2300 RPM</strong>, LOAD
+        <strong>89–100%</strong>. Do this for both engines, and compare —
+        real asymmetry here on the ground is exactly what you don't want to
+        discover for the first time at rotation.
+      </p>
+
+      <h3 class="sub">Take-off &amp; climb speeds <span class="ref">AFM 4A.6.7, 4A.6.8</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Phase</th><th class="num">Up to 1900 kg</th><th class="num">Above 1900 kg</th></tr></thead>
+        <tbody>
+          <tr><td>vR — standard (flaps UP)</td><td class="num">76 KIAS</td><td class="num">76 KIAS</td></tr>
+          <tr><td>vR — short field (flaps APP)</td><td class="num">71 KIAS</td><td class="num">74 KIAS</td></tr>
+          <tr><td>Best rate of climb, flaps UP</td><td class="num">90 KIAS</td><td class="num">92 KIAS</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="callout note">
+        <span class="label">Note</span>
+        Climb power is set at 92% on the checklist — even though the engine manufacturer's own
+        recommended cruise setting is only 75%. Both figures are correct, they're just for
+        different phases of flight, and it's an easy detail to mix up under exam pressure.
+      </div>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>33</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 05 ABNORMAL PROCEDURES -->
+    <!-- ============================================================ -->
+    <section class="sec" id="abnormal">
+      <h2><span class="num">05</span> Abnormal Procedures <span class="en">Chapter 4B</span></h2>
+      <p class="lead">
+        Abnormal is Chapter 3's quieter sibling — problems that need a
+        response but aren't yet an emergency. On a twin, most of them are
+        about the redundancy actually doing its job: one ECU channel
+        acting up while the other keeps flying the engine, one alternator
+        down while the other carries the bus.
+      </p>
+
+      <h3 class="sub">ECU cautions <span class="ref">AFM 4B.4.2, 4B.4.3</span></h3>
+      <p>
+        An L/R ECU A FAIL or B FAIL caution doesn't mean the engine is
+        about to quit — it means the system has already switched to the
+        other channel automatically. The clearing procedure itself (VOTER
+        to the failed channel, wait 5 seconds, back to AUTO) carries a real
+        warning: doing it in flight can briefly rough-run the engine or
+        cause a momentary power loss, so it's only attempted with a landing
+        site within gliding distance if the single-engine climb rate would
+        otherwise be negative.
+      </p>
+
+      <h3 class="sub">STICK LIMIT — the variable elevator stop <span class="ref">AFM 4B.4.11</span></h3>
+      <p>
+        This one is unique to how this airframe manages power-on stalls.
+        Both power levers above ~20% and the stop fails to engage: stall
+        characteristics with power on are degraded and the airplane must
+        not be stalled in any configuration. At least one lever below ~20%
+        and the stop stays engaged when it shouldn't: elevator authority is
+        reduced, so approach speed must not go below vREF (84 or 86 KIAS,
+        by weight).
+      </p>
+
+      <h3 class="sub">Numbers to hold onto <span class="ref">AFM 4B.3, 4B.4, 4B.11</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Item</th><th class="num">Value</th></tr></thead>
+        <tbody>
+          <tr><td>L/R FUEL LOW threshold</td><td class="num">4 ± 1 US gal usable</td></tr>
+          <tr><td>L/R VOLTS LOW threshold</td><td class="num">&lt; 25 V</td></tr>
+          <tr><td>Fire detection trigger</td><td class="num">&gt; 250 °C (480 °F)</td></tr>
+          <tr><td>Max. main-tank imbalance during an aux transfer fault</td><td class="num">1 US gal (3.8 l)</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>26</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 06 POWERPLANT -->
+    <!-- ============================================================ -->
+    <section class="sec" id="powerplant">
+      <h2><span class="num">06</span> Powerplant <span class="en">AFM 7.9.1, 7.9.3, 7.9.4, 7.9.6–7.9.9</span></h2>
+      <p class="lead">
+        Two Austro Engine E4-C liquid-cooled, four-cylinder, turbocharged
+        diesels, each making 123.5 kW at 2300 RPM. Each one is its own
+        complete, independent power source — the twin's whole safety case
+        rests on that independence actually holding up.
+      </p>
+
+      <h3 class="sub">Cooling, oil and turbocharging</h3>
+      <p>
+        A bypass keeps coolant flow off the radiator until it reaches
+        roughly <strong>88 °C</strong>, letting the engine warm up quickly;
+        only then does the thermostat open the radiator circuit. Each
+        engine actually runs <strong>two separate oil systems</strong> —
+        one lubricating the engine and turbocharger, a completely separate
+        one serving the gearbox and the propeller governor. Check both
+        during preflight; they're not the same fluid and not the same
+        inspection hole.
+      </p>
+      <p>
+        The turbocharger's waste gate is positioned by the ECU itself,
+        reading a manifold pressure sensor behind the compressor — that's
+        what keeps manifold pressure from spiking at low density
+        altitudes, entirely without pilot input.
+      </p>
+
+      <h3 class="sub">Fire detection <span class="ref">AFM 7.9.9</span></h3>
+      <p>
+        One overheat detector per engine, tripping at
+        <strong>250 °C (480 °F)</strong> in the nacelle. Test it the same
+        way you test the gear warning horn — one button next to the gear
+        selector, checking both an aural alert and the fire message for
+        each side.
+      </p>
+
+      <h3 class="sub">Controls that serve BOTH engines at once</h3>
+      <ul>
+        <li><strong>ALTERNATE AIR</strong> — a single lever under the panel that opens alternate air to both engines simultaneously; there is no independent left/right control for it.</li>
+        <li><strong>VOTER switches</strong> — one per engine, set to AUTO for normal operation, letting the system pick the better ECU channel automatically.</li>
+      </ul>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>21</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 07 PROPELLER -->
+    <!-- ============================================================ -->
+    <section class="sec" id="propeller">
+      <h2><span class="num">07</span> Propeller <span class="en">AFM 7.9.2</span></h2>
+      <p class="lead">
+        Two mt-Propeller MTV-6-R-C-F hydraulically regulated, 3-bladed,
+        constant-speed, <strong>feathering</strong> propellers — the
+        feathering part is what makes single-engine flight survivable at
+        all, by letting the dead engine's blades turn edge-on to the
+        airflow instead of windmilling and dragging you down.
+      </p>
+      <p>
+        The pitch logic is simple once you see it: more gearbox oil
+        pressure to the hub means <em>lower</em> pitch and <em>higher</em>
+        RPM; less pressure means higher pitch, lower RPM. Shutting an
+        engine down opens the governor valve, oil drains from the hub, and
+        the blades move all the way to the feathered stop — but only if
+        propeller speed was above <strong>1300 RPM</strong> when you did
+        it. Below that, the pitch stalls short of the start-lock position
+        and you'd need to spin the engine back up before it will feather
+        properly.
+      </p>
+      <div class="callout caution">
+        <span class="label">Caution</span>
+        Never move the propeller by hand — not with ENGINE MASTER ON, and not immediately after
+        it's switched OFF either. Residual pressure in the injection rail can cause serious
+        injury even with the engine stopped.
+      </div>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>9</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 08 FUEL SYSTEM -->
+    <!-- ============================================================ -->
+    <section class="sec" id="fuel">
+      <h2><span class="num">08</span> Fuel System <span class="en">AFM 7.9.5</span></h2>
+      <p class="lead">
+        Symmetric about the fuselage centerline, each side normally feeding
+        its own engine — but joined by crossfeed lines so either engine can
+        draw from either tank when it matters.
+      </p>
+
+      <div class="diagram">
+        <svg viewBox="0 0 600 260" role="img" aria-label="Fuel system diagram showing main and auxiliary tanks, fuel selectors and the crossfeed line">
+          <g font-family="inherit" font-size="12">
+            <rect x="20" y="20" width="150" height="46" rx="8" fill="var(--lh)" fill-opacity=".12" stroke="var(--lh)"/>
+            <text x="95" y="40" text-anchor="middle" fill="var(--ink)">LH AUX tank</text>
+            <text x="95" y="56" text-anchor="middle" fill="var(--muted)" font-size="10.5">13.2 US gal usable, if installed</text>
+            <line x1="95" y1="66" x2="95" y2="90" stroke="var(--lh)" stroke-width="1.5"/>
+            <text x="118" y="82" fill="var(--muted)" font-size="10">aux pump</text>
+
+            <rect x="20" y="90" width="150" height="46" rx="8" fill="var(--lh)" fill-opacity=".18" stroke="var(--lh)"/>
+            <text x="95" y="110" text-anchor="middle" fill="var(--ink)" font-weight="700">LH MAIN tank</text>
+            <text x="95" y="126" text-anchor="middle" fill="var(--muted)" font-size="10.5">25.0 US gal usable</text>
+            <line x1="95" y1="136" x2="95" y2="165" stroke="var(--lh)" stroke-width="1.5"/>
+
+            <rect x="30" y="165" width="130" height="34" rx="16" fill="var(--surface)" stroke="var(--lh)" stroke-width="1.5"/>
+            <text x="95" y="186" text-anchor="middle" fill="var(--ink)" font-size="11">Selector: ON / XFEED / OFF</text>
+            <line x1="95" y1="199" x2="95" y2="222" stroke="var(--lh)" stroke-width="1.5"/>
+            <rect x="45" y="222" width="100" height="28" rx="6" fill="var(--lh)" stroke="none"/>
+            <text x="95" y="240" text-anchor="middle" fill="var(--brand-ink)" font-weight="700">LH ENGINE</text>
+
+            <rect x="430" y="20" width="150" height="46" rx="8" fill="var(--rh)" fill-opacity=".12" stroke="var(--rh)"/>
+            <text x="505" y="40" text-anchor="middle" fill="var(--ink)">RH AUX tank</text>
+            <text x="505" y="56" text-anchor="middle" fill="var(--muted)" font-size="10.5">13.2 US gal usable, if installed</text>
+            <line x1="505" y1="66" x2="505" y2="90" stroke="var(--rh)" stroke-width="1.5"/>
+            <text x="482" y="82" fill="var(--muted)" font-size="10">aux pump</text>
+
+            <rect x="430" y="90" width="150" height="46" rx="8" fill="var(--rh)" fill-opacity=".18" stroke="var(--rh)"/>
+            <text x="505" y="110" text-anchor="middle" fill="var(--ink)" font-weight="700">RH MAIN tank</text>
+            <text x="505" y="126" text-anchor="middle" fill="var(--muted)" font-size="10.5">25.0 US gal usable</text>
+            <line x1="505" y1="136" x2="505" y2="165" stroke="var(--rh)" stroke-width="1.5"/>
+
+            <rect x="440" y="165" width="130" height="34" rx="16" fill="var(--surface)" stroke="var(--rh)" stroke-width="1.5"/>
+            <text x="505" y="186" text-anchor="middle" fill="var(--ink)" font-size="11">Selector: ON / XFEED / OFF</text>
+            <line x1="505" y1="199" x2="505" y2="222" stroke="var(--rh)" stroke-width="1.5"/>
+            <rect x="455" y="222" width="100" height="28" rx="6" fill="var(--rh)" stroke="none"/>
+            <text x="505" y="240" text-anchor="middle" fill="var(--brand-ink)" font-weight="700">RH ENGINE</text>
+
+            <line x1="160" y1="182" x2="440" y2="182" stroke="var(--muted)" stroke-width="2" stroke-dasharray="6,4"/>
+            <text x="300" y="172" text-anchor="middle" fill="var(--muted)" font-size="11.5" font-weight="700">CROSSFEED line</text>
+          </g>
+        </svg>
+        <div class="cap">
+          In CROSSFEED, an engine's feed and return lines both switch to the opposite tank — used
+          to extend range on the good tank during single-engine flight, or to test the system on
+          the ground with both engines running for about 30 seconds.
+        </div>
+      </div>
+
+      <h3 class="sub">The rules that keep it safe</h3>
+      <ul>
+        <li>Two independent electric low-pressure pumps feed each engine — normally one runs, the ECU switches to the other on a pressure fault, and both can be forced on together with the FUEL PUMP switch.</li>
+        <li>The OFF position on each selector needs a safety guard twisted first — a deliberate friction against selecting it by accident.</li>
+        <li>Never shut an engine down with the fuel selector — always ENGINE MASTER — or you risk damaging the high-pressure fuel pump.</li>
+        <li>Both AUX PUMP switches must be run together, never one side alone, to avoid adding lateral imbalance on top of whatever the mains already have.</li>
+      </ul>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>18</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 09 ELECTRICAL SYSTEM -->
+    <!-- ============================================================ -->
+    <section class="sec" id="electrical">
+      <h2><span class="num">09</span> Electrical System <span class="en">AFM 7.10</span></h2>
+      <p class="lead">
+        A 28 V DC system built around the same idea as everything else on
+        this airframe: two of everything that matters, cross-connected so a
+        single failure doesn't take the whole airplane dark.
+      </p>
+
+      <h3 class="sub">Generation and backup</h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Component</th><th class="num">Rating</th></tr></thead>
+        <tbody>
+          <tr><td>Alternator (each side)</td><td class="num">70 A, flat-belt driven</td></tr>
+          <tr><td>Alternator power-line breaker</td><td class="num">60 A</td></tr>
+          <tr><td>Main bus → battery bus breaker</td><td class="num">90 A</td></tr>
+          <tr><td>Main battery</td><td class="num">24 V, 13.6 Ah lead-acid</td></tr>
+          <tr><td>ECU backup batteries (both sides, series)</td><td class="num">2 × 12 V, 7.2 Ah — 30 min of ECU power</td></tr>
+          <tr><td>Emergency (dry) battery</td><td class="num">1.5 hours for standby gyro + flood light</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>
+        Notice the two very different backup numbers: <strong>30 minutes</strong>
+        for the ECUs (from the ECU backup batteries) and <strong>1.5 hours</strong>
+        for the standby attitude module and flood light (from the separate
+        emergency battery). They're not the same battery, they don't share
+        a runtime, and mixing them up is an easy way to lose points on an
+        exam.
+      </p>
+
+      <h3 class="sub">ECU electrical redundancy <span class="ref">AFM 7.10.1, 7.10.2</span></h3>
+      <p>
+        Each ECU BUS reaches its MAIN bus through a diode and connects to
+        its own alternator through a diode and a <strong>30 A</strong>
+        breaker, powering ECU A and its fuel pump directly. ECU B, and its
+        fuel pump, get their power the same way — plus a second path,
+        through a diode and fuse from the <em>opposite</em> engine's ECU
+        bus. That cross-tie is deliberate: it means even a fairly deep
+        electrical fault on one side doesn't necessarily take out both ECU
+        channels on that same engine.
+      </p>
+
+      <h3 class="sub">Bus structure</h3>
+      <ul>
+        <li><strong>HOT BATTERY BUS</strong> — permanently wired to the main battery, feeding the map light and ELT RCPI, with no switch able to disconnect it.</li>
+        <li><strong>BATTERY BUS</strong> — reached via the battery relay (ELECT. MASTER), supplying both MAIN buses and heavy-duty starter power.</li>
+        <li><strong>LH/RH MAIN BUS</strong> — the RH one reaches the AVIONIC BUS only through the AVIONIC MASTER relay.</li>
+      </ul>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>27</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 10 AVIONICS -->
+    <!-- ============================================================ -->
+    <section class="sec" id="avionics">
+      <h2><span class="num">10</span> Avionics &amp; Autopilot <span class="en">AFM 7.13, 7.14</span></h2>
+      <p class="lead">
+        The Garmin G1000 (or G1000 NXi, if MÄM 42-978 is installed) ties
+        flight, engine, nav and comm together on the DA42 NG exactly as it
+        does on the DA40 — but the GFC 700 autopilot section reads longer
+        here, because so much of it is written specifically around what has
+        to happen the moment one engine quits.
+      </p>
+
+      <h3 class="sub">GFC 700 modes and disconnect logic</h3>
+      <p>
+        Vertical modes: ALT, VS (limited to 1500 ft/min climb, 3000 ft/min
+        descent), and FLC (limited to 90–180 KIAS). The autopilot
+        disconnects automatically on AHRS malfunction, loss of air data, or
+        internal failure — and manually via the AP DISC button, the MET
+        switch, the GA button, pulling the AUTOPILOT breaker, or simply
+        switching AVIONIC MASTER or ELECT. MASTER off.
+      </p>
+      <div class="callout warning">
+        <span class="label">Warning</span>
+        The autopilot and yaw damper must be disconnected for take-off, landing, AND any
+        single-engine operation. This isn't a suggestion — flying an asymmetric-thrust condition
+        on the autopilot removes exactly the tactile feedback you need to catch a developing
+        control problem before it becomes a real one.
+      </div>
+
+      <h3 class="sub">Disconnect colors, worth telling apart</h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Disconnect type</th><th>PFD annunciation</th><th>Tone</th></tr></thead>
+        <tbody>
+          <tr><td>Normal (pilot-initiated)</td><td class="num">Yellow flashing AP</td><td class="num">2-second tone</td></tr>
+          <tr><td>Abnormal (system-detected)</td><td class="num">Red flashing AP</td><td class="num">Continuous tone</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">The standby attitude module <span class="ref">AFM 7.15</span></h3>
+      <p>
+        The Mid Continent MD302 gives you an artificial horizon on its left
+        display and airspeed/altitude on its right — powered by the same
+        emergency battery as the flood light, for the same 1.5 hours. It
+        isn't ARINC-429 connected to the G1000 here, so don't expect
+        heading information or automatic baro sync from it; those parts of
+        the Pilot's Guide simply don't apply to this installation.
+      </p>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>20</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 11 FLIGHT CONTROLS -->
+    <!-- ============================================================ -->
+    <section class="sec" id="flightcontrols">
+      <h2><span class="num">11</span> Flight Controls <span class="en">AFM 7.3</span></h2>
+      <p class="lead">
+        Ailerons, elevator and flaps run on control rods; the rudder alone
+        runs on cables — worth remembering exactly because it's the one
+        exception.
+      </p>
+      <p>
+        The feature that matters most here is the
+        <strong>variable elevator stop</strong>: once both power levers
+        exceed roughly 20%, an electric actuator limits elevator-up travel
+        to <strong>13°</strong> (versus 15.5° full deflection), specifically
+        to keep power-on stall characteristics manageable. Drop either
+        lever below 20% and full elevator authority comes back
+        immediately. A caution on the G1000 flags either failure mode — the
+        stop staying disengaged when it should hold, or staying engaged
+        when it should release.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Setting</th><th class="num">Flap position</th></tr></thead>
+        <tbody>
+          <tr><td>Green light</td><td class="num">Cruise (UP)</td></tr>
+          <tr><td>Center white light</td><td class="num">Approach (APP)</td></tr>
+          <tr><td>Lower white light</td><td class="num">Landing (LDG)</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>10</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 12 AIRFRAME -->
+    <!-- ============================================================ -->
+    <section class="sec" id="airframe">
+      <h2><span class="num">12</span> Airframe &amp; Landing Gear <span class="en">AFM 7.2, 7.4, 7.5–7.8</span></h2>
+      <p class="lead">
+        CFRP fuselage, GFRP/CFRP wings and a 'T' tail, same design language
+        as the DA40 — but with two nacelles built into the center wing,
+        each with its own firewall between the engine and everything else.
+      </p>
+
+      <h3 class="sub">Landing gear <span class="ref">AFM 7.5</span></h3>
+      <p>
+        Unlike the DA40's fixed gear, the DA42 NG's is fully retractable
+        and hydraulically operated — extension normally takes 6–10
+        seconds, held retracted by system pressure backed by a gas
+        accumulator so the pump isn't cycling constantly in cruise. Lose
+        that hydraulic pressure for any reason and gravity alone will bring
+        the gear down; the emergency extension lever just releases the
+        pressure holding it up. Retract before 152 KIAS; it may be
+        re-extended at any speed up to 188 KIAS.
+      </p>
+      <div class="callout note">
+        <span class="label">Note</span>
+        The gear warning horn and CHECK GEAR caution both trigger the same way: a power lever
+        below ~20% with the gear not down and locked. It's the identical logic whether the
+        trigger is a slow approach or an engine you just secured — advancing the surviving
+        engine's power lever is what mutes it after a shutdown.
+      </div>
+
+      <h3 class="sub">Canopy &amp; heating <span class="ref">AFM 7.8</span></h3>
+      <p>
+        A detail worth knowing cold: the <strong>RH</strong> engine's waste
+        heat serves the front seats and cabin floor, while the
+        <strong>LH</strong> engine's heat is what defrosts the canopy. It's
+        an easy fact to get backwards under pressure, and exactly the kind
+        of asymmetric-systems detail that separates a twin from a single.
+      </p>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>17</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 13 MASS AND BALANCE -->
+    <!-- ============================================================ -->
+    <section class="sec" id="massbalance">
+      <h2><span class="num">13</span> Mass &amp; Balance <span class="en">Chapter 6</span></h2>
+      <p class="lead">
+        The mechanics are identical to any other airplane — moment arms,
+        a datum plane, empty mass from the Mass and Balance Report — the
+        only twin-specific wrinkle is that fuel and heavy items now sit on
+        <em>two</em> wings you have to keep in balance with each other, not
+        just fore-and-aft.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Item</th><th class="num">Lever arm aft of Datum Plane</th></tr></thead>
+        <tbody>
+          <tr><td>Front seat occupants</td><td class="num">2.30 m (90.6 in)</td></tr>
+          <tr><td>Rear seat occupants</td><td class="num">3.25 m (128.0 in)</td></tr>
+          <tr><td>Main tank fuel</td><td class="num">2.63 m (103.5 in)</td></tr>
+          <tr><td>Auxiliary tank fuel (if installed)</td><td class="num">3.20 m (126.0 in)</td></tr>
+          <tr><td>Nose baggage</td><td class="num">0.60 m (23.6 in)</td></tr>
+          <tr><td>Cabin baggage</td><td class="num">3.89 m (153.1 in)</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>
+        Empty mass is established with both engines' oil full (2 × 7
+        liters), plus unusable fuel in both main tanks (2 × 1 US gal) and,
+        if fitted, both auxiliary tanks (2 × 0.5 US gal) — every one of
+        those quantities doubled from what a single-engine equivalent
+        would carry.
+      </p>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>9</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 14 PERFORMANCE -->
+    <!-- ============================================================ -->
+    <section class="sec" id="performance">
+      <h2><span class="num">14</span> Performance <span class="en">Chapter 5</span></h2>
+      <p class="lead">
+        The number that should genuinely change how you think about this
+        airplane: at max take-off mass, sea level, ISA, on <em>both</em>
+        engines you get about <strong>1337 ft/min</strong> of climb with
+        flaps up. Lose one, and the AFM's own OEI table shows only about
+        <strong>269 ft/min</strong> under the same conditions — roughly an
+        80% loss of climb performance from a 50% loss of power. That's not
+        a rounding error; it's the aerodynamic penalty of asymmetric thrust
+        and drag stacked on top of losing half your power, and it's the
+        entire reason this section of the manual, and this guide, exist.
+      </p>
+
+      <h3 class="sub">Crosswind &amp; fuel flow</h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Item</th><th class="num">Value</th></tr></thead>
+        <tbody>
+          <tr><td>Max. demonstrated crosswind, flaps UP</td><td class="num">25 kts</td></tr>
+          <tr><td>Max. demonstrated crosswind, flaps APP</td><td class="num">20 kts</td></tr>
+          <tr><td>Fuel flow at 65% power (per engine)</td><td class="num">5.6 US gal/h (21 l/h)</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="callout note">
+        <span class="label">Note</span>
+        The G1000's FUEL CALC page is for information only — it's derived from the last manual
+        fuel-quantity update plus actual flow, not from the tank probes themselves, so it must
+        never be used for actual flight planning.
+      </div>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>10</strong> in this topic</div>
+    </section>
+
+    <footer>
+      <p>
+        An unofficial reference guide, prepared from the official Airplane
+        Flight Manual (AFM) for the Diamond DA 42 NG — Doc. # 7.01.16-E,
+        Revision 4. For review before the test only, and it does not
+        replace reading the full AFM for your specific aircraft and its
+        installed MÄM/OÄM modifications.
+      </p>
+    </footer>
+  </main>
+</div>
+
+<button id="top-btn" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  var toc = document.getElementById('toc');
+  var scrim = document.getElementById('scrim');
+  var menuBtn = document.getElementById('menuBtn');
+  var closeToc = document.getElementById('closeToc');
+  function openToc(){ toc.classList.add('open'); scrim.classList.add('show'); }
+  function shutToc(){ toc.classList.remove('open'); scrim.classList.remove('show'); }
+  if (menuBtn) menuBtn.addEventListener('click', openToc);
+  if (closeToc) closeToc.addEventListener('click', shutToc);
+  if (scrim) scrim.addEventListener('click', shutToc);
+  var tocLinks = document.querySelectorAll('nav.toc a');
+  tocLinks.forEach(function(a){
+    a.addEventListener('click', function(){ shutToc(); });
+  });
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section.sec[id]'));
+  var linkFor = {};
+  tocLinks.forEach(function(a){
+    var id = a.getAttribute('href').slice(1);
+    linkFor[id] = a;
+  });
+  function onScroll(){
+    var y = window.scrollY + 110;
+    var current = sections[0];
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].offsetTop <= y) current = sections[i];
+    }
+    tocLinks.forEach(function(a){ a.classList.remove('active'); });
+    if (current && linkFor[current.id]) linkFor[current.id].classList.add('active');
+
+    var topBtn = document.getElementById('top-btn');
+    if (topBtn) topBtn.classList.toggle('show', window.scrollY > 500);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var topBtn = document.getElementById('top-btn');
+  if (topBtn) topBtn.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
+</body>
+</html>

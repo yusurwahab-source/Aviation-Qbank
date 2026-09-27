@@ -1,0 +1,524 @@
+[
+  {
+    "id": "DA42-FUEL-0001",
+    "classCode": "DA42",
+    "topic": "Fuel System",
+    "question": "Where is fuel stored on the DA 42 NG, and how is it normally supplied to each engine?",
+    "options": [
+      {
+        "id": "a",
+        "text": "In tanks located in the wings; normally each engine draws fuel from the main tank on its own side"
+      },
+      {
+        "id": "b",
+        "text": "In a single fuselage tank feeding both engines equally"
+      },
+      {
+        "id": "c",
+        "text": "In wing tanks, with the RH engine always drawing from the LH tank"
+      },
+      {
+        "id": "d",
+        "text": "In nacelle-mounted tanks only, with wing tanks reserved as auxiliary"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.9.5: fuel is stored in tanks in the wings, and normally the right engine draws from the right wing tank and the left engine from the left wing tank.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-FUEL-0002",
+    "classCode": "DA42",
+    "topic": "Fuel System",
+    "question": "How many independent low-pressure fuel pumps feed each engine?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Four, two per ECU channel"
+      },
+      {
+        "id": "b",
+        "text": "Two, installed in parallel"
+      },
+      {
+        "id": "c",
+        "text": "One, with a mechanical backup"
+      },
+      {
+        "id": "d",
+        "text": "Three, one per ECU channel plus a backup"
+      }
+    ],
+    "correct": "b",
+    "explanation": "AFM 7.9.5: each engine is fed by two parallel, independent, electrically driven low-pressure fuel pumps; normally only one runs at a time.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-FUEL-0003",
+    "classCode": "DA42",
+    "topic": "Fuel System",
+    "question": "What happens automatically if a low fuel pressure fault is detected on the active fuel pump?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The affected engine feathers automatically"
+      },
+      {
+        "id": "b",
+        "text": "The fuel selector switches to CROSSFEED automatically"
+      },
+      {
+        "id": "c",
+        "text": "The ECU automatically switches to the second (standby) fuel pump"
+      },
+      {
+        "id": "d",
+        "text": "Both fuel pumps are shut down together for safety"
+      }
+    ],
+    "correct": "c",
+    "explanation": "AFM 7.9.5: in case of a low fuel pressure failure, the ECU switches automatically to the second fuel pump; both can also be manually activated together via the FUEL PUMP switch.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-FUEL-0004",
+    "classCode": "DA42",
+    "topic": "Fuel System",
+    "question": "What happens to fuel that is not injected into the cylinders?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is burned off through the exhaust bypass"
+      },
+      {
+        "id": "b",
+        "text": "It is stored in a dedicated return reservoir until shutdown"
+      },
+      {
+        "id": "c",
+        "text": "It is dumped overboard through the tank vent"
+      },
+      {
+        "id": "d",
+        "text": "It is fed back into the appropriate wing tank via a return line"
+      }
+    ],
+    "correct": "d",
+    "explanation": "AFM 7.9.5: excess fuel from the common rail system is fed back into the wing tank on the same side, via the return line shown in the fuel system schematic.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-FUEL-0005",
+    "classCode": "DA42",
+    "topic": "Fuel System",
+    "question": "What connects the LH and RH sides of the fuel system, allowing CROSSFEED operation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Crossfeed lines interconnecting both sides"
+      },
+      {
+        "id": "b",
+        "text": "A single shared fuel manifold with no selector"
+      },
+      {
+        "id": "c",
+        "text": "The auxiliary fuel tanks only"
+      },
+      {
+        "id": "d",
+        "text": "The fuel return lines alone, with no dedicated crossfeed line"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.9.5 states both sides of the fuel system are interconnected by dedicated crossfeed lines, controlled by the fuel selector valves.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-FUEL-0006",
+    "classCode": "DA42",
+    "topic": "Fuel System",
+    "question": "Each fuel pump is protected by what size circuit breaker, connected to the LH/RH ECU BUS?",
+    "options": [
+      {
+        "id": "a",
+        "text": "30 A"
+      },
+      {
+        "id": "b",
+        "text": "7.5 A"
+      },
+      {
+        "id": "c",
+        "text": "5 A"
+      },
+      {
+        "id": "d",
+        "text": "10 A"
+      }
+    ],
+    "correct": "b",
+    "explanation": "AFM 7.9.5 states each fuel pump is electrically connected to the LH/RH ECU BUS and protected by a 7.5 A circuit breaker.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-FUEL-0007",
+    "classCode": "DA42",
+    "topic": "Fuel System",
+    "question": "What are the three positions of each fuel selector valve?",
+    "options": [
+      {
+        "id": "a",
+        "text": "ON, RESERVE, and CROSSFEED"
+      },
+      {
+        "id": "b",
+        "text": "MAIN, AUX, and CROSSFEED"
+      },
+      {
+        "id": "c",
+        "text": "ON, CROSSFEED, and OFF"
+      },
+      {
+        "id": "d",
+        "text": "ON, AUXILIARY, and OFF"
+      }
+    ],
+    "correct": "c",
+    "explanation": "AFM 7.9.5 lists the fuel selector valve positions as ON, CROSSFEED and OFF.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-FUEL-0008",
+    "classCode": "DA42",
+    "topic": "Fuel System",
+    "question": "What must be checked before selecting CROSSFEED on a fuel selector valve?",
+    "options": [
+      {
+        "id": "a",
+        "text": "That the ALTERNATE AIR lever is open"
+      },
+      {
+        "id": "b",
+        "text": "That the ALTERNATOR is OFF"
+      },
+      {
+        "id": "c",
+        "text": "That the ECU VOTER is set to manual"
+      },
+      {
+        "id": "d",
+        "text": "That the fuel pump for that engine is OFF"
+      }
+    ],
+    "correct": "d",
+    "explanation": "AFM 7.9.5: before crossfeed operation, the fuel pump must be checked OFF, since crossfeed changes both the feed and return line routing.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-FUEL-0009",
+    "classCode": "DA42",
+    "topic": "Fuel System",
+    "question": "What special step is required to move a fuel selector valve into the OFF position?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A safety guard must be twisted, to prevent unintentional selection"
+      },
+      {
+        "id": "b",
+        "text": "The parking brake must first be set"
+      },
+      {
+        "id": "c",
+        "text": "The corresponding ALTERNATOR must first be switched OFF"
+      },
+      {
+        "id": "d",
+        "text": "No special step is needed — OFF is the default spring-loaded position"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.9.5: reaching OFF on the fuel selector requires twisting a safety guard first, ensuring the selection is deliberate.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-FUEL-0010",
+    "classCode": "DA42",
+    "topic": "Fuel System",
+    "question": "If one engine is inoperative, what position should that engine's fuel selector valve normally be in?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It does not matter, since the engine is shut down"
+      },
+      {
+        "id": "b",
+        "text": "OFF"
+      },
+      {
+        "id": "c",
+        "text": "CROSSFEED"
+      },
+      {
+        "id": "d",
+        "text": "ON, feeding the operating engine"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A note under AFM 7.9.5 states that if one engine is inoperative, its fuel selector valve should be in the OFF position (the operating engine can still draw via CROSSFEED if needed).",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-FUEL-0011",
+    "classCode": "DA42",
+    "topic": "Fuel System",
+    "question": "How much fuel is unusable in each wing's main tank?",
+    "options": [
+      {
+        "id": "a",
+        "text": "8 liters (2 US gal)"
+      },
+      {
+        "id": "b",
+        "text": "2 liters (0.5 US gal)"
+      },
+      {
+        "id": "c",
+        "text": "4 liters (1 US gal)"
+      },
+      {
+        "id": "d",
+        "text": "1 liter (0.26 US gal)"
+      }
+    ],
+    "correct": "c",
+    "explanation": "AFM 7.9.5: each main tank holds 4 liters (1 US gal) of unusable fuel, out of a 96-liter (25.4 US gal) usable quantity per side (26.0 US gal total per side).",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-FUEL-0012",
+    "classCode": "DA42",
+    "topic": "Fuel System",
+    "question": "At what pressure does the fuel tank's pressure relief (bleed-type) vent operate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "50 mbar (0.7 PSI)"
+      },
+      {
+        "id": "b",
+        "text": "300 mbar (4.4 PSI)"
+      },
+      {
+        "id": "c",
+        "text": "10 mbar (0.15 PSI)"
+      },
+      {
+        "id": "d",
+        "text": "150 mbar (2 PSI)"
+      }
+    ],
+    "correct": "d",
+    "explanation": "AFM 7.9.5: the pressure relief vent operates at 150 mbar (2 PSI), protecting the tank if it was overfilled by an auxiliary transfer failure.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-FUEL-0013",
+    "classCode": "DA42",
+    "topic": "Fuel System",
+    "question": "What is the purpose of the check valve with a capillary in the fuel tank vent system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It allows air to enter the tank but prevents fuel from flowing out, equalizing pressure during climb"
+      },
+      {
+        "id": "b",
+        "text": "It allows fuel to drain overboard during a rapid descent"
+      },
+      {
+        "id": "c",
+        "text": "It measures fuel temperature for the G1000"
+      },
+      {
+        "id": "d",
+        "text": "It isolates the auxiliary tank from the main tank"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.9.5 describes the check valve with capillary as allowing air in (preventing fuel out) and equalizing pressure during climb.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-FUEL-0014",
+    "classCode": "DA42",
+    "topic": "Fuel System",
+    "question": "If installed, what is the usable capacity of each auxiliary fuel tank?",
+    "options": [
+      {
+        "id": "a",
+        "text": "10.0 US gallons (37.9 liters)"
+      },
+      {
+        "id": "b",
+        "text": "13.2 US gallons (50.0 liters)"
+      },
+      {
+        "id": "c",
+        "text": "25.0 US gallons (94.6 liters)"
+      },
+      {
+        "id": "d",
+        "text": "13.7 US gallons (52.0 liters)"
+      }
+    ],
+    "correct": "b",
+    "explanation": "AFM 7.9.5/2.14: each auxiliary tank holds 13.7 US gal total, of which 13.2 US gal is usable.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-FUEL-0015",
+    "classCode": "DA42",
+    "topic": "Fuel System",
+    "question": "What automatically shuts off an auxiliary fuel transfer pump?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The ECU, once 92% load is reached"
+      },
+      {
+        "id": "b",
+        "text": "The pilot must always shut it off manually — there is no automatic cutoff"
+      },
+      {
+        "id": "c",
+        "text": "A fuel level switch, when the auxiliary tank is empty or the main tank is full"
+      },
+      {
+        "id": "d",
+        "text": "A timer set for exactly 10 minutes"
+      }
+    ],
+    "correct": "c",
+    "explanation": "AFM 7.9.5: the fuel level switch automatically shuts off the auxiliary pump when the auxiliary tank empties or the main tank fills.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-FUEL-0016",
+    "classCode": "DA42",
+    "topic": "Fuel System",
+    "question": "What circuit breaker protects the auxiliary fuel pumps if the ice protection system (OÄM 42-053) is NOT installed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A 10 A circuit breaker plus a 7 A fuse"
+      },
+      {
+        "id": "b",
+        "text": "A 7.5 A circuit breaker"
+      },
+      {
+        "id": "c",
+        "text": "A 30 A circuit breaker"
+      },
+      {
+        "id": "d",
+        "text": "A 5 A circuit breaker"
+      }
+    ],
+    "correct": "d",
+    "explanation": "AFM 7.9.5: without the ice protection system, the auxiliary pumps use a 5 A breaker; with it installed, a 10 A breaker plus an additional 7 A fuse (labeled XFER PUMP/DE ICE) protects both systems.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-FUEL-0017",
+    "classCode": "DA42",
+    "topic": "Fuel System",
+    "question": "How does the alternate means of fuel quantity indication work during the pre-flight inspection?",
+    "options": [
+      {
+        "id": "a",
+        "text": "On the principle of communicating containers, using a measuring device pressed against the tank drain"
+      },
+      {
+        "id": "b",
+        "text": "By reading a float-type dipstick inserted through the filler cap"
+      },
+      {
+        "id": "c",
+        "text": "By comparing G1000 fuel totals against a paper logbook entry"
+      },
+      {
+        "id": "d",
+        "text": "By briefly running the boost pump and timing fuel flow"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.9.5 describes the alternate fuel quantity device working on the communicating-containers principle, read from a vertical ascending pipe against the tank drain.",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-FUEL-0018",
+    "classCode": "DA42",
+    "topic": "Fuel System",
+    "question": "What is the maximum fuel temperature stated in the fuel system description?",
+    "options": [
+      {
+        "id": "a",
+        "text": "50 °C (122 °F)"
+      },
+      {
+        "id": "b",
+        "text": "60 °C (140 °F)"
+      },
+      {
+        "id": "c",
+        "text": "55 °C (131 °F)"
+      },
+      {
+        "id": "d",
+        "text": "65 °C (149 °F)"
+      }
+    ],
+    "correct": "b",
+    "explanation": "AFM 7.9.5 restates the fuel temperature limit from Chapter 2: maximum 60 °C (140 °F).",
+    "reference": "AFM 7.9.5",
+    "status": "published",
+    "version": 1
+  }
+]
