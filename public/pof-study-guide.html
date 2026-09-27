@@ -1,0 +1,990 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Principles of Flight — Your Guide Before the Test</title>
+<meta name="description" content="A full ATPL-level Principles of Flight reference — aerofoils, lift and drag, the boundary layer, stalling, high-lift devices, flight controls, stability, high-speed flight, propellers, loads and limitations, and windshear — to read before the Holdshort question bank." />
+<style>
+  :root{
+    --bg:#f6f8fb;
+    --surface:#ffffff;
+    --surface-2:#eef2f7;
+    --ink:#101826;
+    --ink-2:#3c4758;
+    --muted:#6b7686;
+    --line:#dfe6ef;
+    --brand:#0d6e7d;
+    --brand-ink:#ffffff;
+    --brand-light:#e3f4f6;
+    --warn-bg:#fdecec;
+    --warn-line:#e0413a;
+    --warn-ink:#7a1712;
+    --caution-bg:#fff6e0;
+    --caution-line:#c9821a;
+    --caution-ink:#6b4405;
+    --note-bg:#eaf1fb;
+    --note-line:#3f6fb0;
+    --note-ink:#1f3c63;
+    --white-arc:#e9edf3;
+    --green-arc:#1f9d55;
+    --yellow-arc:#e0b400;
+    --red-arc:#d9362a;
+    --radius:14px;
+    --radius-sm:8px;
+    --shadow:0 1px 2px rgba(16,24,38,.04), 0 6px 20px rgba(16,24,38,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0d1420;
+      --surface:#141d2c;
+      --surface-2:#1b263a;
+      --ink:#eef2f8;
+      --ink-2:#c3cddc;
+      --muted:#8b97ab;
+      --line:#26334a;
+      --brand:#37c3d6;
+      --brand-ink:#06232a;
+      --brand-light:#12323a;
+      --warn-bg:#3a1613;
+      --warn-line:#e4574d;
+      --warn-ink:#ffd6d1;
+      --caution-bg:#3a2c0d;
+      --caution-line:#e0a83a;
+      --caution-ink:#ffe6b0;
+      --note-bg:#122a44;
+      --note-line:#5b93d6;
+      --note-ink:#cfe2fb;
+      --white-arc:#324055;
+      --green-arc:#2bb56a;
+      --yellow-arc:#e0b400;
+      --red-arc:#e4574d;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1420; --surface:#141d2c; --surface-2:#1b263a; --ink:#eef2f8; --ink-2:#c3cddc;
+    --muted:#8b97ab; --line:#26334a; --brand:#37c3d6; --brand-ink:#06232a; --brand-light:#12323a;
+    --warn-bg:#3a1613; --warn-line:#e4574d; --warn-ink:#ffd6d1;
+    --caution-bg:#3a2c0d; --caution-line:#e0a83a; --caution-ink:#ffe6b0;
+    --note-bg:#122a44; --note-line:#5b93d6; --note-ink:#cfe2fb;
+    --white-arc:#324055; --green-arc:#2bb56a; --yellow-arc:#e0b400; --red-arc:#e4574d;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:clip}
+  body{
+    margin:0;
+    overflow-x:clip;
+    max-width:100vw;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,"Segoe UI",system-ui,Roboto,sans-serif;
+    line-height:1.75;
+    font-size:17px;
+  }
+  a{color:var(--brand)}
+  code, .kbd{
+    direction:ltr;unicode-bidi:isolate;display:inline-block;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:6px;
+    padding:0 .35em;font-size:.92em;color:var(--ink);
+  }
+  header.top{
+    position:sticky;top:0;z-index:40;
+    background:linear-gradient(180deg, var(--surface) 85%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    max-width:1180px;margin:0 auto;padding:14px 16px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .brand-mark{display:flex;align-items:center;gap:10px;min-width:0}
+  .brand-mark .plane{
+    width:34px;height:34px;flex:0 0 auto;border-radius:9px;
+    background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+  }
+  .brand-mark .txt{min-width:0}
+  .brand-mark h1{font-size:15px;margin:0;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand-mark .sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .menu-btn{
+    display:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+    border-radius:10px;padding:9px 12px;font-size:14px;cursor:pointer;flex:0 0 auto;
+  }
+  .shell{max-width:1180px;margin:0 auto;display:flex;align-items:flex-start;gap:28px;padding:20px 16px 80px}
+  nav.toc{
+    position:sticky;top:78px;flex:0 0 280px;
+    max-height:calc(100vh - 96px);overflow-y:auto;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;box-shadow:var(--shadow);
+  }
+  nav.toc h2{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:2px 8px 10px}
+  nav.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+  nav.toc li{counter-increment:toc}
+  nav.toc a{
+    display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--ink-2);
+    padding:7px 8px;border-radius:9px;font-size:13.5px;
+  }
+  nav.toc a .n{flex:0 0 auto;color:var(--brand);font-weight:700;font-size:12px;min-width:18px}
+  nav.toc a:hover{background:var(--surface-2);color:var(--ink)}
+  nav.toc a.active{background:var(--brand-light);color:var(--ink);font-weight:600}
+  nav.toc .count{margin-inline-start:auto;font-size:11px;color:var(--muted)}
+  main{flex:1 1 auto;min-width:0}
+  .hero{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 22px;margin-bottom:22px;box-shadow:var(--shadow);
+  }
+  .hero h1{margin:0 0 8px;font-size:26px}
+  .hero p{margin:0;color:var(--ink-2);font-size:15.5px}
+  .hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hero .tag{
+    font-size:12.5px;background:var(--brand-light);color:var(--brand);
+    border-radius:999px;padding:5px 12px;font-weight:600;
+  }
+  section.sec{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px 26px;margin-bottom:22px;box-shadow:var(--shadow);scroll-margin-top:76px;
+  }
+  section.sec > h2{
+    display:flex;align-items:center;gap:12px;font-size:21px;margin:0 0 6px;
+    padding-bottom:14px;border-bottom:1px solid var(--line);
+  }
+  section.sec > h2 .num{
+    flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;
+  }
+  section.sec > h2 .en{margin-inline-start:auto;font-size:12px;color:var(--muted);font-weight:600;
+    direction:ltr;background:var(--surface-2);padding:4px 10px;border-radius:999px}
+  .lead{color:var(--ink-2);font-size:16px;margin-top:14px}
+  h3.sub{font-size:16.5px;margin:26px 0 8px;color:var(--ink);border-inline-start:4px solid var(--brand);padding-inline-start:10px}
+  h4.sub2{font-size:15px;margin:18px 0 6px;color:var(--ink-2)}
+  p{margin:10px 0}
+  ul, ol{margin:10px 0;padding-inline-start:22px}
+  li{margin:5px 0}
+  strong{color:var(--ink)}
+  .table-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm)}
+  table{border-collapse:collapse;width:100%;min-width:420px;font-size:14.5px}
+  table caption{text-align:start;font-size:12.5px;color:var(--muted);padding:8px 12px 0}
+  thead th{
+    background:var(--surface-2);color:var(--ink);text-align:start;
+    padding:9px 12px;font-weight:700;white-space:nowrap;font-size:13.5px;
+  }
+  tbody td{padding:8px 12px;border-top:1px solid var(--line);color:var(--ink-2)}
+  tbody tr:nth-child(even){background:color-mix(in srgb, var(--surface-2) 45%, transparent)}
+  td.num, th.num{direction:ltr;text-align:center;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+  .callout{border-radius:var(--radius-sm);padding:12px 14px;margin:14px 0;border-inline-start:4px solid;font-size:14.5px}
+  .callout .label{display:block;font-weight:800;font-size:12px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:4px}
+  .callout.warning{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-ink)}
+  .callout.caution{background:var(--caution-bg);border-color:var(--caution-line);color:var(--caution-ink)}
+  .callout.note{background:var(--note-bg);border-color:var(--note-line);color:var(--note-ink)}
+  .diagram{
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;margin:18px 0;text-align:center;
+    max-width:100%;overflow-x:auto;box-sizing:border-box;
+  }
+  .diagram .cap{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .diagram svg{max-width:100%;height:auto;display:block;margin:0 auto}
+  .ref{
+    display:inline-block;direction:ltr;font-size:11.5px;color:var(--brand);
+    background:var(--brand-light);border-radius:6px;padding:1px 7px;margin-inline-start:4px;
+    font-weight:700;white-space:nowrap;
+  }
+  .related{
+    margin-top:22px;display:flex;align-items:center;gap:10px;
+    background:var(--brand-light);color:var(--brand);border-radius:999px;
+    padding:10px 16px;font-size:14px;font-weight:700;width:fit-content;
+  }
+  .related .dot{width:8px;height:8px;border-radius:50%;background:var(--brand)}
+  footer{max-width:1180px;margin:0 auto;padding:10px 16px 60px;color:var(--muted);font-size:13px;text-align:center}
+  #top-btn{
+    position:fixed;inset-inline-end:18px;bottom:18px;z-index:50;
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+    background:var(--brand);color:var(--brand-ink);font-size:18px;cursor:pointer;
+    box-shadow:var(--shadow);display:none;align-items:center;justify-content:center;
+  }
+  #top-btn.show{display:flex}
+  @media (max-width:880px){
+    .shell{flex-direction:column;padding:14px 12px 70px}
+    main{width:100%;min-width:0}
+    nav.toc{
+      position:fixed;inset:0 0 0 auto;top:0;width:82%;max-width:340px;height:100dvh;max-height:100dvh;
+      transform:translateX(100%);transition:transform .25s ease;border-radius:0;z-index:60;
+    }
+    nav.toc.open{transform:translateX(0)}
+    .toc-scrim{position:fixed;inset:0;background:rgba(6,10,18,.5);z-index:55;display:none}
+    .toc-scrim.show{display:block}
+    .menu-btn{display:inline-flex;align-items:center;gap:6px}
+    section.sec > h2{font-size:18.5px}
+    .hero h1{font-size:22px}
+    body{font-size:16px}
+  }
+  .toc-close{display:none}
+  @media (max-width:880px){
+    .toc-close{
+      display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+      padding-bottom:10px;border-bottom:1px solid var(--line);
+    }
+    .toc-close button{border:none;background:var(--surface-2);border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer;color:var(--ink)}
+  }
+</style>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand-mark">
+      <div class="plane">✈</div>
+      <div class="txt">
+        <h1>Principles of Flight — Your Guide Before the Test</h1>
+        <div class="sub">Full ATPL-level ground-school reference · Flying Knowledge</div>
+      </div>
+    </div>
+    <button class="menu-btn" id="menuBtn">☰ Contents</button>
+  </div>
+</header>
+
+<div class="toc-scrim" id="scrim"></div>
+
+<div class="shell">
+  <nav class="toc" id="toc">
+    <div class="toc-close"><span style="font-size:13px;color:var(--muted);font-weight:700">Contents</span><button id="closeToc">✕</button></div>
+    <h2>Sections</h2>
+    <ol>
+      <li><a href="#aero"><span class="n">01</span> Basic Aerodynamics <span class="count">35</span></a></li>
+      <li><a href="#afoil"><span class="n">02</span> Aerofoils &amp; Lift Theory <span class="count">32</span></a></li>
+      <li><a href="#lift"><span class="n">03</span> Lift and Drag <span class="count">38</span></a></li>
+      <li><a href="#bl"><span class="n">04</span> Boundary Layer <span class="count">28</span></a></li>
+      <li><a href="#stall"><span class="n">05</span> Stalling <span class="count">42</span></a></li>
+      <li><a href="#hld"><span class="n">06</span> High-Lift Devices <span class="count">30</span></a></li>
+      <li><a href="#ctrl"><span class="n">07</span> Flight Controls: Primary <span class="count">38</span></a></li>
+      <li><a href="#trim"><span class="n">08</span> Secondary Controls &amp; Trim <span class="count">24</span></a></li>
+      <li><a href="#stabl"><span class="n">09</span> Longitudinal Stability <span class="count">34</span></a></li>
+      <li><a href="#stabld"><span class="n">10</span> Lateral &amp; Directional Stability <span class="count">34</span></a></li>
+      <li><a href="#mach"><span class="n">11</span> High-Speed: Compressibility <span class="count">34</span></a></li>
+      <li><a href="#shock"><span class="n">12</span> High-Speed: Shockwaves &amp; Buffet <span class="count">34</span></a></li>
+      <li><a href="#prop"><span class="n">13</span> Propellers <span class="count">40</span></a></li>
+      <li><a href="#load"><span class="n">14</span> Loads &amp; Limitations <span class="count">34</span></a></li>
+      <li><a href="#wshr"><span class="n">15</span> Windshear &amp; Atmospheric Effects <span class="count">24</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <h1>Before you dive into the questions…</h1>
+      <p>
+        A full-syllabus ground-school reference, not a shallow summary — the
+        point is to actually understand <em>why</em> a wing, a control
+        surface or a propeller behaves the way it does, so a wrong answer in
+        the question bank can be ruled out by reasoning about the
+        aerodynamics, not by guessing which option sounds right. It covers
+        every topic the Principles of Flight bank is built from, from basic
+        aerodynamics through to propellers, structural limits and windshear.
+      </p>
+      <div class="tags">
+        <span class="tag">General ATPL theory</span>
+        <span class="tag">501 linked questions</span>
+        <span class="tag">15 topics</span>
+        <span class="tag">Not aircraft-specific</span>
+      </div>
+    </div>
+
+    <div class="callout note">
+      <span class="label">About this guide</span>
+      This page describes concepts and relationships that are taught the
+      same way across ATPL training worldwide — the definition of a stall,
+      the lift equation, why sweepback raises critical Mach number, how a
+      constant-speed propeller governor works — not figures drawn from any
+      single national syllabus, manufacturer's manual, or specific
+      textbook (including the EASA ATPL Principles of Flight reference this
+      bank was requested against). Where a numeric relationship is given
+      (stalling speed scaling with the square root of load factor, for
+      example) it is a general aerodynamic relationship, not a
+      regulator-specific figure. Review it against your own school's
+      syllabus before relying on it for a real exam.
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 01 BASIC AERODYNAMICS -->
+    <!-- ============================================================ -->
+    <section class="sec" id="aero">
+      <h2><span class="num">01</span> Basic Aerodynamics <span class="en">Fundamentals</span></h2>
+      <p class="lead">
+        Everything else in this guide builds on a small set of definitions:
+        what angle of attack actually means, how a wing produces a pressure
+        difference, and what happens in the thin layer of air right at its
+        surface.
+      </p>
+
+      <h3 class="sub">The four forces <span class="ref">1.1</span></h3>
+      <p>
+        In steady, level, unaccelerated flight, four forces balance in
+        pairs: <strong>lift equals weight</strong>, and
+        <strong>thrust equals drag</strong>. Any imbalance produces a climb,
+        a descent, or a change in speed.
+      </p>
+      <div class="diagram">
+        <svg viewBox="0 0 420 220" role="img" aria-label="Diagram of the four forces acting on an aircraft in level flight">
+          <ellipse cx="210" cy="110" rx="90" ry="14" fill="var(--surface)" stroke="var(--ink-2)" stroke-width="2"/>
+          <polygon points="120,110 60,102 60,118" fill="var(--ink-2)"/>
+          <polygon points="300,110 360,102 360,118" fill="var(--ink-2)"/>
+          <line x1="210" y1="96" x2="210" y2="30" stroke="var(--brand)" stroke-width="3"/>
+          <polygon points="210,20 202,36 218,36" fill="var(--brand)"/>
+          <text x="210" y="16" text-anchor="middle" font-size="13" font-weight="700" fill="var(--brand)">LIFT</text>
+          <line x1="210" y1="124" x2="210" y2="190" stroke="var(--warn-line)" stroke-width="3"/>
+          <polygon points="210,200 202,184 218,184" fill="var(--warn-line)"/>
+          <text x="210" y="214" text-anchor="middle" font-size="13" font-weight="700" fill="var(--warn-line)">WEIGHT</text>
+          <line x1="60" y1="110" x2="15" y2="110" stroke="var(--green-arc)" stroke-width="3"/>
+          <polygon points="5,110 21,102 21,118" fill="var(--green-arc)"/>
+          <text x="30" y="96" text-anchor="middle" font-size="13" font-weight="700" fill="var(--green-arc)">THRUST</text>
+          <line x1="360" y1="110" x2="405" y2="110" stroke="var(--caution-line)" stroke-width="3"/>
+          <polygon points="415,110 399,102 399,118" fill="var(--caution-line)"/>
+          <text x="390" y="96" text-anchor="middle" font-size="13" font-weight="700" fill="var(--caution-line)">DRAG</text>
+        </svg>
+        <div class="cap">Lift/weight and thrust/drag: two independent pairs, each balanced in steady, unaccelerated flight</div>
+      </div>
+
+      <h3 class="sub">Angle of attack vs pitch attitude <span class="ref">1.2</span></h3>
+      <p>
+        <strong>Angle of attack</strong> is the angle between the chord line
+        and the <strong>relative airflow</strong> — always exactly opposite
+        the flight path. <strong>Pitch attitude</strong> is the angle
+        between the fuselage and the horizon. The two are easy to confuse
+        but are not the same thing.
+      </p>
+
+      <h3 class="sub">Two explanations of lift <span class="ref">1.3</span></h3>
+      <p>
+        Bernoulli's principle explains lift through the pressure drop that
+        accompanies accelerated airflow over the upper surface. Newton's
+        third law explains the same lift as the reaction to the wing
+        deflecting a mass of air downward (<strong>downwash</strong>). Both
+        are valid, complementary descriptions of the same physical event —
+        and downwash tilting the local lift vector rearward is itself one
+        explanation of <strong>induced drag</strong>.
+      </p>
+
+      <h3 class="sub">Boundary layer basics <span class="ref">1.4</span></h3>
+      <p>
+        Close to the leading edge the boundary layer is
+        <strong>laminar</strong> — smooth, low-friction, but easily
+        separated. Further aft it typically transitions to
+        <strong>turbulent</strong> flow, which resists separation for
+        longer at the cost of more skin friction drag. Section 4 covers this
+        in full.
+      </p>
+
+      <h3 class="sub">Air density and pressure <span class="ref">1.5, 1.6</span></h3>
+      <p>
+        Lift is directly proportional to air density, which falls with
+        rising temperature and altitude alike. Total (stagnation) pressure
+        equals static plus dynamic pressure and stays constant along a
+        streamline — the same relationship Section 11 revisits once
+        compressibility makes it more complicated.
+      </p>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>35</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 02 AEROFOILS AND LIFT THEORY -->
+    <!-- ============================================================ -->
+    <section class="sec" id="afoil">
+      <h2><span class="num">02</span> Aerofoils &amp; Lift Theory <span class="en">Aerofoils</span></h2>
+      <p class="lead">
+        The vocabulary of an aerofoil section, and how its lift, drag and
+        pitching moment characteristics are actually described.
+      </p>
+
+      <h3 class="sub">Geometry <span class="ref">2.1</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td>Chord line</td><td>Straight line from leading edge to trailing edge</td></tr>
+          <tr><td>Camber</td><td>Curvature of the mean camber line relative to the chord line</td></tr>
+          <tr><td>Thickness/chord ratio</td><td>Maximum thickness as a fraction of chord — higher raises CLmax but lowers MCRIT</td></tr>
+          <tr><td>Leading edge radius</td><td>Rounded (subsonic) vs sharp (supersonic) — affects separation onset</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">Center of pressure vs aerodynamic center <span class="ref">2.2</span></h3>
+      <p>
+        The <strong>center of pressure</strong> moves — forward as angle of
+        attack rises below the stall, then sharply aft at and beyond it. The
+        <strong>aerodynamic center</strong> (near the quarter-chord) is a
+        fixed point about which the pitching moment coefficient stays
+        essentially constant — the reference stability calculations
+        actually use.
+      </p>
+
+      <h3 class="sub">Lift curve, zero-lift angle, pitching moment <span class="ref">2.3</span></h3>
+      <p>
+        Below the stall, CL rises essentially linearly with angle of
+        attack. A cambered section reaches zero lift only at a small
+        <strong>negative</strong> angle of attack, and produces a
+        <strong>nose-down</strong> pitching moment about its aerodynamic
+        center — which is exactly why a horizontal tailplane exists.
+      </p>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>32</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 03 LIFT AND DRAG -->
+    <!-- ============================================================ -->
+    <section class="sec" id="lift">
+      <h2><span class="num">03</span> Lift and Drag <span class="en">Lift &amp; Drag</span></h2>
+      <p class="lead">
+        Lift and drag are not independent — every increase in lift carries
+        a drag cost, and where that cost comes from changes with speed.
+      </p>
+
+      <h3 class="sub">Types of drag <span class="ref">3.1</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Drag type</th><th>Cause</th><th>Behaviour with speed</th></tr></thead>
+        <tbody>
+          <tr><td>Induced drag</td><td>A by-product of lift — wingtip vortices / downwash tilt</td><td>Highest at low speed, falls as speed rises</td></tr>
+          <tr><td>Skin friction</td><td>Air viscosity through the boundary layer</td><td>Rises with speed and surface area</td></tr>
+          <tr><td>Form drag</td><td>Overall shape disturbing the airflow</td><td>Rises roughly with speed squared</td></tr>
+          <tr><td>Interference drag</td><td>Airflow disruption where components meet</td><td>Rises with speed</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">The total drag curve <span class="ref">3.2</span></h3>
+      <div class="diagram">
+        <svg viewBox="0 0 460 220" role="img" aria-label="Total drag curve showing induced drag, parasite drag, and their sum with a minimum at L over D max">
+          <line x1="40" y1="190" x2="440" y2="190" stroke="var(--ink-2)" stroke-width="1.5"/>
+          <line x1="40" y1="190" x2="40" y2="20" stroke="var(--ink-2)" stroke-width="1.5"/>
+          <text x="240" y="212" text-anchor="middle" font-size="12" fill="var(--muted)">Airspeed →</text>
+          <text x="18" y="110" text-anchor="middle" font-size="12" fill="var(--muted)" transform="rotate(-90 18 110)">Drag →</text>
+          <path d="M 55 40 C 130 90, 200 150, 420 185" fill="none" stroke="var(--caution-line)" stroke-width="2.5"/>
+          <path d="M 55 185 C 150 180, 300 120, 420 40" fill="none" stroke="var(--green-arc)" stroke-width="2.5"/>
+          <path d="M 55 70 C 140 55, 230 95, 420 165" fill="none" stroke="var(--brand)" stroke-width="3"/>
+          <circle cx="225" cy="93" r="4.5" fill="var(--brand)"/>
+          <line x1="225" y1="93" x2="225" y2="190" stroke="var(--brand)" stroke-width="1" stroke-dasharray="4 3"/>
+          <text x="225" y="205" text-anchor="middle" font-size="11" font-weight="700" fill="var(--brand)">L/D max</text>
+          <text x="70" y="55" font-size="11" fill="var(--caution-line)" font-weight="700">Induced</text>
+          <text x="330" y="70" font-size="11" fill="var(--green-arc)" font-weight="700">Parasite</text>
+          <text x="330" y="150" font-size="11" fill="var(--brand)" font-weight="700">Total</text>
+        </svg>
+        <div class="cap">Total drag's minimum is the point of maximum lift-to-drag ratio — the best glide speed</div>
+      </div>
+      <p>
+        <strong>Power required</strong> (thrust required × velocity) has its
+        own minimum at a <em>lower</em> speed than minimum drag — the
+        difference between best-range and best-endurance speeds. A heavier
+        aircraft's minimum-drag speed is higher, since more speed is needed
+        to hold the same angle of attack.
+      </p>
+
+      <h3 class="sub">Wingtip vortices, aspect ratio, ground effect <span class="ref">3.3</span></h3>
+      <p>
+        Higher-pressure air beneath the wing spills around the tip,
+        producing the trailing vortex that is induced drag's physical
+        source. A higher <strong>aspect ratio</strong> or a
+        <strong>winglet</strong> weakens this effect; flying within about
+        one wingspan of the ground restricts it too — <strong>ground
+        effect</strong> — which is why an aircraft can float during flare.
+      </p>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>38</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 04 BOUNDARY LAYER -->
+    <!-- ============================================================ -->
+    <section class="sec" id="bl">
+      <h2><span class="num">04</span> Boundary Layer <span class="en">Boundary Layer</span></h2>
+      <p class="lead">
+        The thin layer of slowed air right at the surface governs where a
+        wing separates — and therefore stalls.
+      </p>
+
+      <h3 class="sub">Transition and separation <span class="ref">4.1</span></h3>
+      <p>
+        The <strong>transition point</strong> is where laminar flow becomes
+        turbulent. <strong>Separation</strong> happens when the boundary
+        layer's kinetic energy can no longer overcome a rising (adverse)
+        pressure gradient — and widespread upper-surface separation
+        <em>is</em>, aerodynamically, a stall.
+      </p>
+
+      <h3 class="sub">Controlling the boundary layer <span class="ref">4.2</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Device</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td>Vortex generators</td><td>Mix energetic outer air into the boundary layer, delaying separation</td></tr>
+          <tr><td>Stall strips</td><td>Deliberately trigger early separation at the root</td></tr>
+          <tr><td>Blown/suction boundary layer control</td><td>Re-energises the layer to sustain a higher CLmax</td></tr>
+          <tr><td>Laminar flow sections</td><td>Hold laminar flow further aft to cut cruise drag, at some stall-behaviour cost</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>
+        Surface contamination (frost, insects, rough paint) trips the
+        boundary layer into turbulence — and separation — earlier than a
+        clean wing, degrading CLmax even before ice has visibly built up.
+      </p>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>28</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 05 STALLING -->
+    <!-- ============================================================ -->
+    <section class="sec" id="stall">
+      <h2><span class="num">05</span> Stalling <span class="en">The Stall</span></h2>
+      <p class="lead">
+        The single most important idea in this whole guide: a stall is an
+        angle-of-attack event, not a speed event.
+      </p>
+
+      <div class="callout warning">
+        <span class="label">The core rule</span>
+        A wing stalls when its <strong>critical angle of attack</strong> is
+        exceeded — at any airspeed, any attitude, any power setting. A
+        published "stalling speed" is just the speed that angle happens to
+        be reached at, for one weight, load factor and configuration.
+      </div>
+
+      <h3 class="sub">Load factor and weight <span class="ref">5.1</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Load factor</th><th class="num">Stall speed multiplier</th></tr></thead>
+        <tbody>
+          <tr><td>1g</td><td class="num">1.00×</td></tr>
+          <tr><td>1.41g (45° bank)</td><td class="num">1.19×</td></tr>
+          <tr><td>2g (60° bank)</td><td class="num">1.41×</td></tr>
+          <tr><td>4g</td><td class="num">2.00×</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Stalling speed scales with the square root of load factor <em>and</em> the square root of weight.</p>
+
+      <h3 class="sub">Beyond the basic stall <span class="ref">5.2</span></h3>
+      <ul>
+        <li><strong>Accelerated stall</strong> — stalling above 1g stalling speed due to load factor.</li>
+        <li><strong>Secondary stall</strong> — caused by recovering too abruptly, before airspeed is regained.</li>
+        <li><strong>Spin</strong> — autorotation once one wing is more deeply stalled than the other.</li>
+        <li><strong>Deep stall</strong> — a T-tail's stabilizer blanketed by the wing's stalled wake, losing pitch-down authority.</li>
+      </ul>
+
+      <h3 class="sub">Recovery <span class="ref">5.3</span></h3>
+      <p>
+        Reduce angle of attack first — everything else follows. A forward
+        CG resists stalling and spinning but raises stalling speed and
+        elevator demand; washout and stall strips make the root stall
+        before the tip, keeping the ailerons alive.
+      </p>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>42</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 06 HIGH-LIFT DEVICES -->
+    <!-- ============================================================ -->
+    <section class="sec" id="hld">
+      <h2><span class="num">06</span> High-Lift Devices <span class="en">High Lift</span></h2>
+      <p class="lead">
+        Two families of device raise CLmax by different mechanisms — which
+        is why aircraft often carry both.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Device</th><th>Location</th><th>Main effect</th></tr></thead>
+        <tbody>
+          <tr><td>Plain / split flap</td><td>Trailing edge</td><td>Adds camber; split adds more drag</td></tr>
+          <tr><td>Slotted flap</td><td>Trailing edge</td><td>Slot re-energises boundary layer over the flap</td></tr>
+          <tr><td>Fowler flap</td><td>Trailing edge</td><td>Moves aft as it extends — adds area <em>and</em> camber</td></tr>
+          <tr><td>Slat / slot</td><td>Leading edge</td><td>Raises the critical angle of attack itself</td></tr>
+          <tr><td>Krueger flap</td><td>Leading edge</td><td>Hinged panel adding camber ahead of the wing</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>
+        Flaps mostly add camber (raising CL at a given angle of attack);
+        leading-edge devices mostly delay separation (raising the angle of
+        attack itself). Flap asymmetry protection guards against the large,
+        uncommandable rolling moment an uneven flap deployment would cause.
+      </p>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>30</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 07 FLIGHT CONTROLS: PRIMARY -->
+    <!-- ============================================================ -->
+    <section class="sec" id="ctrl">
+      <h2><span class="num">07</span> Flight Controls: Primary <span class="en">Controls</span></h2>
+      <p class="lead">Elevator, aileron and rudder — and what happens when the airframe or airflow fights back.</p>
+
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Control</th><th>Axis</th><th>Mechanism</th></tr></thead>
+        <tbody>
+          <tr><td>Elevator</td><td>Pitch</td><td>Changes tailplane lift/download → pitching moment → wing AoA</td></tr>
+          <tr><td>Aileron</td><td>Roll</td><td>Differential lift (and drag) at each wingtip</td></tr>
+          <tr><td>Rudder</td><td>Yaw</td><td>Changes fin/rudder sideforce</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">Adverse yaw and its fixes <span class="ref">7.1</span></h3>
+      <p>
+        The down-going aileron's extra induced drag yaws the nose <em>away</em>
+        from the turn. <strong>Frise ailerons</strong> add drag on the
+        up-going side by projecting below the wing; <strong>differential
+        ailerons</strong> give more travel to the up-going aileron — both
+        rebalance the drag.
+      </p>
+
+      <h3 class="sub">Balance and high-speed effects <span class="ref">7.2</span></h3>
+      <p>
+        A <strong>horn (aerodynamic) balance</strong> uses airflow ahead of
+        the hinge to assist the pilot; a <strong>mass balance</strong> moves
+        the surface's own center of gravity forward to prevent
+        <strong>flutter</strong>. At very high speed, aerodynamic loads can
+        twist a flexible wing enough to cause <strong>aileron
+        reversal</strong>; spoilers can substitute for roll control where
+        this is a concern. <strong>Artificial feel</strong> restores a sense
+        of load to a pilot flying fully powered controls that would
+        otherwise transmit no natural feedback at all.
+      </p>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>38</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 08 SECONDARY CONTROLS AND TRIM -->
+    <!-- ============================================================ -->
+    <section class="sec" id="trim">
+      <h2><span class="num">08</span> Secondary Controls &amp; Trim <span class="en">Trim</span></h2>
+      <p class="lead">Small surfaces that reduce pilot effort, or combine two functions in one.</p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Device</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td>Trim tab</td><td>Holds the main surface deflected with no continuous pilot force</td></tr>
+          <tr><td>Servo tab</td><td>Pilot moves the tab; the tab's own force moves the main surface</td></tr>
+          <tr><td>Spring tab</td><td>Assists more as airspeed (and hinge moment) rises</td></tr>
+          <tr><td>Anti-balance tab</td><td>Adds force where a control would otherwise feel too light</td></tr>
+          <tr><td>Flaperon</td><td>Flap (symmetric) and aileron (differential) combined</td></tr>
+          <tr><td>Ruddervator (V-tail)</td><td>Together = pitch; differentially = yaw</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="callout caution">
+        <span class="label">Trim runaway</span>
+        An electric trim system running uncommanded can drive a surface to
+        an extreme deflection, building a large out-of-trim force — which
+        is why disconnecting electric trim power is the standard first
+        response.
+      </div>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>24</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 09 LONGITUDINAL STABILITY -->
+    <!-- ============================================================ -->
+    <section class="sec" id="stabl">
+      <h2><span class="num">09</span> Longitudinal Stability <span class="en">Pitch</span></h2>
+      <p class="lead">Static stability is the initial tendency after a disturbance; dynamic stability is what happens next.</p>
+
+      <h3 class="sub">CG, neutral point, static margin <span class="ref">9.1</span></h3>
+      <p>
+        Moving the CG aft shortens the tailplane's moment arm, reducing
+        stability, until it reaches the <strong>neutral point</strong> —
+        zero stability — beyond which the aircraft is unstable in pitch.
+        <strong>Static margin</strong> is the CG-to-neutral-point distance,
+        as a percentage of mean aerodynamic chord.
+      </p>
+
+      <h3 class="sub">Phugoid vs short-period <span class="ref">9.2</span></h3>
+      <p>
+        The <strong>phugoid</strong> is a slow, tens-of-seconds trade
+        between speed and height at constant angle of attack. The
+        <strong>short-period</strong> mode is a fast, heavily damped
+        oscillation in angle of attack at constant speed. A tailplane
+        download in trimmed flight balances the wing's own nose-down
+        pitching moment; setting the tailplane at a slightly lower
+        incidence than the wing ("longitudinal dihedral") helps ensure the
+        wing stalls before the tailplane does.
+      </p>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>34</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 10 LATERAL AND DIRECTIONAL STABILITY -->
+    <!-- ============================================================ -->
+    <section class="sec" id="stabld">
+      <h2><span class="num">10</span> Lateral &amp; Directional Stability <span class="en">Roll &amp; Yaw</span></h2>
+      <p class="lead">Roll stability (dihedral effect) and yaw stability (the fin) interact — and the interaction has a name.</p>
+
+      <ul>
+        <li><strong>Dihedral, sweep, high-wing, keel surface</strong> — all add a rolling moment following a sideslip.</li>
+        <li><strong>Fin (weathercock effect)</strong> — yaws the nose back into the relative airflow.</li>
+        <li><strong>Dutch roll</strong> — coupled yaw/roll, worse when lateral stability is strong relative to directional; a <strong>yaw damper</strong> corrects it automatically.</li>
+        <li><strong>Spiral instability</strong> — the opposite imbalance: bank slowly, progressively increases.</li>
+        <li><strong>Anhedral</strong> — deliberately reduces excess lateral stability on already-stable (usually highly swept) designs.</li>
+      </ul>
+      <div class="callout note">
+        <span class="label">The trade-off</span>
+        Strong directional stability relative to lateral favors spiral
+        stability but worsens Dutch roll; the reverse favors Dutch roll
+        damping but worsens spiral stability. Real aircraft sit at a
+        deliberate compromise.
+      </div>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>34</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 11 HIGH-SPEED: COMPRESSIBILITY -->
+    <!-- ============================================================ -->
+    <section class="sec" id="mach">
+      <h2><span class="num">11</span> High-Speed: Compressibility <span class="en">Mach</span></h2>
+      <p class="lead">At cruise Mach numbers, air can no longer be treated as incompressible.</p>
+
+      <p>
+        <strong>Mach number</strong> = TAS ÷ local speed of sound, which
+        depends only on temperature. <strong>Critical Mach number
+        (MCRIT)</strong> is the freestream Mach at which local airflow over
+        the wing first reaches Mach 1. <strong>Sweepback</strong> raises
+        MCRIT, because only the flow component perpendicular to the leading
+        edge drives the local acceleration. A <strong>thicker section or a
+        higher lift coefficient</strong> (higher weight, higher angle of
+        attack) both lower MCRIT.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Limit</th><th>Governs</th><th>Typically binding</th></tr></thead>
+        <tbody>
+          <tr><td>VMO</td><td>Structural / control, essentially Mach-independent</td><td>Lower altitude</td></tr>
+          <tr><td>MMO</td><td>Compressibility / aerodynamic</td><td>Higher altitude</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>34</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 12 HIGH-SPEED: SHOCKWAVES AND BUFFET -->
+    <!-- ============================================================ -->
+    <section class="sec" id="shock">
+      <h2><span class="num">12</span> High-Speed: Shockwaves &amp; Buffet <span class="en">Transonic</span></h2>
+      <p class="lead">Beyond MCRIT, a shockwave forms — and everything downstream of that shockwave changes.</p>
+
+      <p>
+        A <strong>normal shock</strong> decelerates local flow abruptly from
+        supersonic to subsonic; the sharp pressure rise across it can
+        separate the boundary layer immediately behind it, producing
+        <strong>Mach buffet</strong> and a steep rise in drag —
+        <strong>wave drag</strong>. The rearward shift of center of pressure
+        as shocks form produces an uncommanded nose-down moment,
+        <strong>Mach tuck</strong>, countered by a <strong>Mach trim</strong>
+        system. Design responses include the <strong>area rule</strong>
+        (smoothing the total cross-section along the fuselage) and
+        <strong>supercritical aerofoils</strong> (a flatter top, drooped
+        trailing edge, to weaken the shock).
+      </p>
+
+      <h3 class="sub">Coffin corner <span class="ref">12.1</span></h3>
+      <div class="diagram">
+        <svg viewBox="0 0 460 220" role="img" aria-label="Diagram showing the low-speed buffet boundary and high-speed buffet boundary converging at high altitude">
+          <line x1="60" y1="200" x2="60" y2="20" stroke="var(--ink-2)" stroke-width="1.5"/>
+          <line x1="60" y1="200" x2="420" y2="200" stroke="var(--ink-2)" stroke-width="1.5"/>
+          <text x="240" y="214" text-anchor="middle" font-size="12" fill="var(--muted)">Indicated airspeed →</text>
+          <text x="20" y="110" text-anchor="middle" font-size="12" fill="var(--muted)" transform="rotate(-90 20 110)">Altitude →</text>
+          <path d="M 90 190 C 150 160, 220 90, 260 40" fill="none" stroke="var(--caution-line)" stroke-width="2.5"/>
+          <path d="M 380 190 C 340 150, 280 90, 262 42" fill="none" stroke="var(--warn-line)" stroke-width="2.5"/>
+          <text x="110" y="175" font-size="11" font-weight="700" fill="var(--caution-line)">Low-speed (stall) buffet</text>
+          <text x="300" y="175" font-size="11" font-weight="700" fill="var(--warn-line)">High-speed (Mach) buffet</text>
+          <circle cx="261" cy="41" r="5" fill="var(--ink)"/>
+          <text x="261" y="26" text-anchor="middle" font-size="12" font-weight="800" fill="var(--ink)">Coffin corner</text>
+        </svg>
+        <div class="cap">At high altitude the two buffet boundaries converge, narrowing the safe speed margin between them</div>
+      </div>
+      <p>
+        <strong>Control surface buzz</strong> is a related, smaller effect:
+        an oscillating shock near a hinge line repeatedly separates and
+        reattaches the local boundary layer, vibrating the surface.
+      </p>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>34</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 13 PROPELLERS -->
+    <!-- ============================================================ -->
+    <section class="sec" id="prop">
+      <h2><span class="num">13</span> Propellers <span class="en">Propellers</span></h2>
+      <p class="lead">Each blade is a rotating aerofoil — everything about a propeller follows from that one fact.</p>
+
+      <h3 class="sub">Left-turning tendencies <span class="ref">13.1</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Effect</th><th>Cause</th></tr></thead>
+        <tbody>
+          <tr><td>Torque reaction</td><td>Newton's third law — airframe rolls opposite to propeller rotation</td></tr>
+          <tr><td>Gyroscopic precession</td><td>A pitch/yaw force appears ~90° further round the direction of rotation</td></tr>
+          <tr><td>Asymmetric blade effect (P-factor)</td><td>Descending blade meets a higher AoA at high power/high AoA</td></tr>
+          <tr><td>Slipstream effect</td><td>Spiralling slipstream strikes the fin asymmetrically</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">Constant-speed propellers <span class="ref">13.2</span></h3>
+      <p>
+        A governor coarsens blade angle when RPM rises above the selected
+        value (loading the engine, pulling RPM back down) and fines it when
+        RPM falls — holding a selected RPM across a wide range of speed and
+        power, unlike a fixed-pitch propeller efficient only near one design
+        point (its <strong>advance ratio</strong>).
+        <strong>Feathering</strong> turns the blades edge-on after an engine
+        failure to minimise drag and stop <strong>windmilling</strong>,
+        which otherwise adds substantial drag and can further damage the
+        failed engine.
+      </p>
+
+      <h3 class="sub">Blade count and tip speed <span class="ref">13.3</span></h3>
+      <p>
+        More, narrower blades absorb more power within a limited diameter,
+        at some efficiency cost versus fewer, longer blades. Blade
+        <strong>tip speed</strong> can reach transonic values from
+        rotational speed alone — the same compressibility penalties (shock,
+        drag, noise) that affect a fast wing. High density altitude reduces
+        both propeller thrust and engine power together.
+      </p>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>40</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 14 LOADS AND LIMITATIONS -->
+    <!-- ============================================================ -->
+    <section class="sec" id="load">
+      <h2><span class="num">14</span> Loads &amp; Limitations <span class="en">Limitations</span></h2>
+      <p class="lead">How much load an airframe is built to take, and the speeds that protect it.</p>
+
+      <p>
+        <strong>Load factor</strong> = lift ÷ weight. A level turn raises it
+        because lift must also supply the horizontal, centripetal
+        component. A <strong>V-n diagram</strong> bounds the envelope: the
+        aerodynamic stall limit on one side, the structural limit load
+        factor on the other. <strong>Manoeuvring speed (VA)</strong> is
+        where the wing stalls exactly at limit load factor — it falls with
+        weight, and above VA an abrupt full control input can overstress
+        the structure before the wing stalls to protect it.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Limit load</td><td>Maximum expected in normal operation — no permanent deformation</td></tr>
+          <tr><td>Ultimate load</td><td>Typically 1.5× limit load — structure must not fail completely</td></tr>
+          <tr><td>VNO</td><td>Max structural cruising speed — smooth air only above it</td></tr>
+          <tr><td>VNE</td><td>Never-exceed speed — an absolute limit</td></tr>
+          <tr><td>Wing loading</td><td>Weight ÷ wing area — higher generally means a smoother ride in gusts</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>34</strong> in this topic</div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 15 WINDSHEAR AND ATMOSPHERIC EFFECTS -->
+    <!-- ============================================================ -->
+    <section class="sec" id="wshr">
+      <h2><span class="num">15</span> Windshear &amp; Atmospheric Effects <span class="en">Windshear</span></h2>
+      <p class="lead">A sudden change in wind speed or direction, and the atmospheric patterns that produce it.</p>
+
+      <p>
+        A <strong>decreasing headwind</strong> (or increasing tailwind) on
+        approach momentarily drops airspeed and lift, sinking the aircraft
+        below path; an <strong>increasing headwind</strong> does the
+        opposite, ballooning it above path — both because inertia keeps
+        groundspeed from adjusting instantly. A <strong>microburst</strong>
+        delivers the worst combination in sequence: increasing headwind,
+        then a downdraft, then a sharply increasing tailwind, right as an
+        aircraft is trying to climb away — which is why the standard
+        response to significant windshear is a prompt go-around.
+      </p>
+      <p>
+        <strong>Mountain waves</strong> form when stable air is forced over
+        terrain by a strong, roughly perpendicular wind, producing standing
+        waves and severe turbulence well downwind. <strong>Clear air
+        turbulence</strong> is most often tied to wind shear at the edges of
+        the jet stream, with no cloud to give it away.
+      </p>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>24</strong> in this topic</div>
+    </section>
+
+    <footer>
+      <p>
+        A ground-school reference on general ATPL-level Principles of
+        Flight, prepared for the Holdshort question bank. It describes
+        aerodynamic concepts and relationships taught broadly the same way
+        across ATPL training worldwide, not a specific national syllabus or
+        textbook, and it does not replace your own school's Principles of
+        Flight course material.
+      </p>
+    </footer>
+  </main>
+</div>
+
+<button id="top-btn" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  var toc = document.getElementById('toc');
+  var scrim = document.getElementById('scrim');
+  var menuBtn = document.getElementById('menuBtn');
+  var closeToc = document.getElementById('closeToc');
+  function openToc(){ toc.classList.add('open'); scrim.classList.add('show'); }
+  function shutToc(){ toc.classList.remove('open'); scrim.classList.remove('show'); }
+  if (menuBtn) menuBtn.addEventListener('click', openToc);
+  if (closeToc) closeToc.addEventListener('click', shutToc);
+  if (scrim) scrim.addEventListener('click', shutToc);
+  var tocLinks = document.querySelectorAll('nav.toc a');
+  tocLinks.forEach(function(a){
+    a.addEventListener('click', function(){ shutToc(); });
+  });
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section.sec[id]'));
+  var linkFor = {};
+  tocLinks.forEach(function(a){
+    var id = a.getAttribute('href').slice(1);
+    linkFor[id] = a;
+  });
+  function onScroll(){
+    var y = window.scrollY + 110;
+    var current = sections[0];
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].offsetTop <= y) current = sections[i];
+    }
+    tocLinks.forEach(function(a){ a.classList.remove('active'); });
+    if (current && linkFor[current.id]) linkFor[current.id].classList.add('active');
+
+    var topBtn = document.getElementById('top-btn');
+    if (topBtn) topBtn.classList.toggle('show', window.scrollY > 500);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var topBtn = document.getElementById('top-btn');
+  if (topBtn) topBtn.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
+</body>
+</html>

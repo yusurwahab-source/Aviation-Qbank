@@ -20,7 +20,7 @@ export const dynamic = "force-dynamic";
  * Flying Knowledge's own picker, alongside `type-rating/page.tsx` and
  * `class-rating/page.tsx` — the third of the three sections, reading the
  * third content tree described in the note on `flyingKnowledgeSubjects` in
- * `db/schema.ts`. Every subject (IFR today) sits directly here, the same
+ * `db/schema.ts`. Every subject (IFR, POF today) sits directly here, the same
  * flat shape a class rating uses: no sub-category between it and the
  * section.
  *

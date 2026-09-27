@@ -1,0 +1,707 @@
+[
+  {
+    "id": "POF-LIFT-0001",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Lift Equation",
+    "question": "Which of the following is NOT a factor in the standard lift equation, L = CL × ½ρV²S?",
+    "options": [
+      { "id": "a", "text": "The wing's angle of attack, through the lift coefficient CL" },
+      { "id": "b", "text": "The true airspeed, squared" },
+      { "id": "c", "text": "The outside air temperature, as a term separate from air density" },
+      { "id": "d", "text": "The wing planform area, S" }
+    ],
+    "correct": "c",
+    "explanation": "The lift equation contains the lift coefficient (dependent on angle of attack and airfoil shape), air density, the square of true airspeed, and wing area. Temperature affects lift only indirectly, through its effect on air density — it is not a separate term in the equation.",
+    "tags": ["lift", "lift-equation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0002",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Drag vs Speed",
+    "question": "As airspeed increases in level flight, how do induced drag and parasite drag typically behave?",
+    "options": [
+      { "id": "a", "text": "Both increase steadily with speed" },
+      {
+        "id": "b",
+        "text": "Induced drag decreases with speed, while parasite drag increases with the square of speed"
+      },
+      { "id": "c", "text": "Induced drag increases with speed, while parasite drag decreases with speed" },
+      { "id": "d", "text": "Both remain constant, since total drag is fixed by weight" }
+    ],
+    "correct": "b",
+    "explanation": "Induced drag is a by-product of generating lift and is highest at low speed and high angle of attack, falling as speed increases and angle of attack reduces. Parasite drag comes from skin friction, form and interference effects and increases approximately with the square of airspeed.",
+    "tags": ["drag", "induced-drag", "parasite-drag"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0003",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Total Drag Curve",
+    "question": "The speed at which total drag is at its minimum corresponds to:",
+    "options": [
+      { "id": "a", "text": "The maximum lift-to-drag ratio (L/D max), typically the best glide speed" },
+      { "id": "b", "text": "The stalling speed" },
+      { "id": "c", "text": "The never-exceed speed, VNE" },
+      { "id": "d", "text": "The speed at which parasite drag is zero" }
+    ],
+    "correct": "a",
+    "explanation": "Total drag is the sum of the induced and parasite drag curves, and its minimum occurs where the two curves cross — which is also the point of maximum lift-to-drag ratio. This is the speed that gives the greatest gliding distance for a given height.",
+    "tags": ["drag", "glide", "performance"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0004",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Wingtip Vortices",
+    "question": "Wingtip vortices are formed because:",
+    "options": [
+      { "id": "a", "text": "Engine exhaust is deflected around the wingtip" },
+      { "id": "b", "text": "Higher pressure air beneath the wing spills around the tip toward the lower pressure air above it" },
+      { "id": "c", "text": "The wingtip generates no lift and therefore no airflow" },
+      { "id": "d", "text": "Airflow over the fuselage interferes with airflow over the wing root" }
+    ],
+    "correct": "b",
+    "explanation": "A wing generates lift through a pressure difference between its lower (higher pressure) and upper (lower pressure) surfaces. At the wingtip, where that difference has nowhere else to go, higher-pressure air curls around and up into the lower-pressure region above, creating the trailing vortex that is the source of induced drag.",
+    "tags": ["drag", "induced-drag", "vortices"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0005",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Aspect Ratio",
+    "question": "For a given wing area and lift coefficient, increasing a wing's aspect ratio (span squared divided by area) generally:",
+    "options": [
+      { "id": "a", "text": "Increases induced drag, because the wingtips are further from the fuselage" },
+      { "id": "b", "text": "Has no effect on induced drag, which depends only on speed" },
+      {
+        "id": "c",
+        "text": "Decreases induced drag, because the wingtip vortices become weaker relative to the total lift-generating span"
+      },
+      { "id": "d", "text": "Increases parasite drag proportionally" }
+    ],
+    "correct": "c",
+    "explanation": "A higher aspect ratio wing is long and narrow, so the wingtip regions where vortices form represent a smaller proportion of the total span. This reduces induced drag for a given amount of lift, which is why gliders and long-range aircraft favour high aspect ratio wings.",
+    "tags": ["drag", "induced-drag", "aspect-ratio"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0006",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Wingtip Devices",
+    "question": "What is the main aerodynamic purpose of wingtip devices such as winglets?",
+    "options": [
+      { "id": "a", "text": "To increase the stalling angle of attack" },
+      { "id": "b", "text": "To reduce induced drag by disrupting the formation of the wingtip vortex" },
+      { "id": "c", "text": "To increase the aircraft's never-exceed speed" },
+      { "id": "d", "text": "To reduce skin friction drag over the whole wing" }
+    ],
+    "correct": "b",
+    "explanation": "Winglets interrupt the spanwise flow of high-pressure air curling around the tip, weakening the wingtip vortex. This reduces induced drag and improves fuel efficiency without needing the extra span of a longer wing.",
+    "tags": ["drag", "winglets"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0007",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Ground Effect",
+    "question": "An aircraft flying very close to the surface experiences \"ground effect\", which primarily:",
+    "options": [
+      { "id": "a", "text": "Increases induced drag because airflow is compressed against the ground" },
+      {
+        "id": "b",
+        "text": "Reduces induced drag, because the ground restricts the formation of wingtip vortices and downwash"
+      },
+      { "id": "c", "text": "Increases parasite drag due to ground friction" },
+      { "id": "d", "text": "Has no measurable effect on drag, only on lift" }
+    ],
+    "correct": "b",
+    "explanation": "Close to the ground — typically within about one wingspan — the surface restricts the downward flow of air behind the wing and limits vortex formation at the tips. This reduces induced drag and effectively increases lift for a given angle of attack, which is why aircraft can \"float\" during the landing flare.",
+    "tags": ["drag", "ground-effect"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0008",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Parasite Drag Components",
+    "question": "Skin friction drag and form drag are both types of parasite drag. What distinguishes skin friction drag?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It results from the viscosity of air acting on the aircraft's surface as the boundary layer moves across it"
+      },
+      { "id": "b", "text": "It results from the overall shape of the aircraft disturbing the airflow and causing separation" },
+      { "id": "c", "text": "It only occurs on the wing, never on the fuselage" },
+      { "id": "d", "text": "It is produced exclusively by the wingtip vortices" }
+    ],
+    "correct": "a",
+    "explanation": "Skin friction drag arises from the viscosity of air dragging against the aircraft's surface within the boundary layer, and increases with surface area and roughness. Form drag, by contrast, comes from the overall shape of the aircraft disturbing the airflow and causing separation — a different cause, though both are parasite drag.",
+    "tags": ["drag", "parasite-drag"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0009",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Induced Drag at Low Speed",
+    "question": "Induced drag is directly related to the square of lift and inversely related to the square of speed. Compared with cruise flight, induced drag on final approach (a low speed) is typically:",
+    "options": [
+      { "id": "a", "text": "Much lower than in cruise" },
+      { "id": "b", "text": "Much higher, because a low speed requires a high lift coefficient to support the same weight" },
+      { "id": "c", "text": "Exactly the same as in cruise" },
+      { "id": "d", "text": "Zero, since induced drag only exists above cruise speed" }
+    ],
+    "correct": "b",
+    "explanation": "To support the aircraft's weight at a low approach speed, the wing must operate at a high angle of attack and therefore a high lift coefficient, which drives up induced drag sharply compared with the low angle of attack, low induced-drag condition of cruise flight.",
+    "tags": ["drag", "induced-drag", "approach"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0010",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Weight and Minimum Drag Speed",
+    "question": "Increasing an aircraft's weight, for a given configuration, shifts the speed for minimum drag (L/D max) to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A higher speed, since more lift — and thus a higher speed at the same angle of attack — is needed to support the extra weight"
+      },
+      { "id": "b", "text": "A lower speed" },
+      { "id": "c", "text": "No change at all" },
+      { "id": "d", "text": "A speed where induced drag no longer exists" }
+    ],
+    "correct": "a",
+    "explanation": "The minimum-drag angle of attack for a given aerodynamic configuration does not change with weight, but a heavier aircraft must fly faster to generate the extra lift needed to hold that same angle of attack — so its best L/D speed, and its best glide speed, both rise with weight.",
+    "tags": ["drag", "weight", "performance"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0011",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Power Required",
+    "question": "Unlike the \"thrust required\" (total drag) curve, the \"power required\" curve for a given aircraft:",
+    "options": [
+      { "id": "a", "text": "Is identical in shape, just measured in different units" },
+      {
+        "id": "b",
+        "text": "Is obtained by multiplying thrust required by velocity, so its minimum point occurs at a lower speed than the minimum-drag speed"
+      },
+      { "id": "c", "text": "Has no minimum point at any speed" },
+      { "id": "d", "text": "Is only relevant to jet aircraft, never to propeller aircraft" }
+    ],
+    "correct": "b",
+    "explanation": "Power required equals thrust required multiplied by true airspeed, which shifts the curve's minimum to a speed lower than the minimum-drag (best L/D) speed. This is why the speed for maximum endurance (minimum power) is lower than the speed for maximum range or best glide (minimum drag).",
+    "tags": ["drag", "power-required", "performance"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0012",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Altitude and Drag",
+    "question": "For a given equivalent airspeed and angle of attack (a constant lift coefficient), how does total drag change as an aircraft climbs to a higher altitude?",
+    "options": [
+      { "id": "a", "text": "It increases significantly with altitude" },
+      {
+        "id": "b",
+        "text": "It remains essentially the same, because drag — like lift — depends on dynamic pressure, which a constant equivalent airspeed holds constant"
+      },
+      { "id": "c", "text": "It always decreases to zero" },
+      { "id": "d", "text": "It depends only on outside air temperature, not speed" }
+    ],
+    "correct": "b",
+    "explanation": "Equivalent airspeed is defined so that it represents the same dynamic pressure at any altitude. Since both lift and drag depend on dynamic pressure and the (unchanged) lift/drag coefficients, holding equivalent airspeed and angle of attack constant keeps drag force essentially constant regardless of altitude.",
+    "tags": ["drag", "altitude", "equivalent-airspeed"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0013",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Max Range Speed, Jet",
+    "question": "For a jet aircraft, the speed that gives maximum range (greatest distance per unit of fuel) is:",
+    "options": [
+      { "id": "a", "text": "Exactly the minimum-drag (maximum L/D) speed" },
+      { "id": "b", "text": "Somewhat higher than the minimum-drag speed, since range depends on the product of speed and lift-to-drag ratio, not on L/D alone" },
+      { "id": "c", "text": "Always the never-exceed speed, VNE" },
+      { "id": "d", "text": "Independent of lift-to-drag ratio entirely" }
+    ],
+    "correct": "b",
+    "explanation": "A jet's fuel flow depends on thrust required (drag), so distance per unit fuel is proportional to speed divided by fuel flow — effectively speed multiplied by L/D. This product peaks at a speed somewhat above the pure minimum-drag speed, which is why a jet's long-range cruise speed is faster than its minimum-drag speed.",
+    "tags": ["drag", "range", "jet"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0014",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Max Range Speed, Propeller",
+    "question": "For a propeller aircraft, the speed that gives maximum range is:",
+    "options": [
+      { "id": "a", "text": "The minimum-drag speed itself — maximum lift-to-drag ratio" },
+      { "id": "b", "text": "Always faster than the minimum-drag speed, exactly as for a jet" },
+      { "id": "c", "text": "The minimum-power speed" },
+      { "id": "d", "text": "Unrelated to the lift-to-drag ratio" }
+    ],
+    "correct": "a",
+    "explanation": "A propeller aircraft's fuel flow is roughly proportional to power required, and power required equals drag multiplied by speed. Distance per unit fuel then works out proportional to lift-to-drag ratio alone, independent of the speed term — so maximum range for a propeller aircraft occurs exactly at the maximum L/D (minimum-drag) speed, unlike a jet.",
+    "tags": ["drag", "range", "propeller"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0015",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Max Endurance Speed, Jet",
+    "question": "For a jet aircraft, maximum endurance (the longest time aloft for a given amount of fuel) is achieved at:",
+    "options": [
+      { "id": "a", "text": "The minimum-drag (maximum L/D) speed, where fuel flow — tied to thrust required — is lowest" },
+      { "id": "b", "text": "The maximum range speed" },
+      { "id": "c", "text": "The never-exceed speed" },
+      { "id": "d", "text": "A speed with no relation to the drag curve" }
+    ],
+    "correct": "a",
+    "explanation": "Since a jet's fuel flow tracks thrust required (drag), the longest time aloft per unit of fuel is achieved where drag itself is lowest — the minimum-drag speed — rather than at the somewhat faster maximum-range speed.",
+    "tags": ["drag", "endurance", "jet"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0016",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Max Endurance Speed, Propeller",
+    "question": "For a propeller aircraft, maximum endurance is achieved at:",
+    "options": [
+      { "id": "a", "text": "The minimum-drag speed" },
+      { "id": "b", "text": "The minimum-power-required speed, which is lower than the minimum-drag speed" },
+      { "id": "c", "text": "The maximum-range speed" },
+      { "id": "d", "text": "The best glide speed" }
+    ],
+    "correct": "b",
+    "explanation": "A propeller aircraft's fuel flow tracks power required, not drag directly, so the longest endurance is found where power required is lowest — a speed lower than the minimum-drag speed, since the power-required curve's minimum sits to the left of the drag curve's minimum.",
+    "tags": ["drag", "endurance", "propeller"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0017",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Humidity and Density",
+    "question": "For the same temperature and pressure, humid air is less dense than dry air. What does this mean for a wing at a fixed angle of attack and true airspeed on a humid day?",
+    "options": [
+      { "id": "a", "text": "Lift is slightly higher than on a dry day" },
+      { "id": "b", "text": "Lift is slightly lower than on a dry day, since lift is directly proportional to air density" },
+      { "id": "c", "text": "Lift is completely unaffected by humidity" },
+      { "id": "d", "text": "Humidity only affects engine power, never aerodynamic lift" }
+    ],
+    "correct": "b",
+    "explanation": "Water vapour molecules are lighter than the nitrogen and oxygen molecules they displace, so humid air is very slightly less dense than dry air at the same temperature and pressure. Since lift is directly proportional to density, this gives a small reduction in lift (and in engine and propeller performance) on humid days — a genuinely counter-intuitive but real effect.",
+    "tags": ["lift", "density", "humidity"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0018",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Lift in a Climb",
+    "question": "In a steady, straight climb at a constant climb angle, the lift required to maintain that climb is:",
+    "options": [
+      { "id": "a", "text": "Equal to the aircraft's full weight, exactly as in level flight" },
+      { "id": "b", "text": "Slightly less than the aircraft's full weight, equal to weight multiplied by the cosine of the climb angle" },
+      { "id": "c", "text": "Always greater than the aircraft's weight" },
+      { "id": "d", "text": "Zero, since thrust alone sustains the climb" }
+    ],
+    "correct": "b",
+    "explanation": "In a steady climb, only the component of weight perpendicular to the flight path needs to be balanced by lift, which is weight multiplied by the cosine of the climb angle. The component of weight along the flight path is instead balanced by the excess of thrust over drag, which is what actually sustains the climb.",
+    "tags": ["lift", "climb"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0019",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Lift in a Glide",
+    "question": "In a steady, power-off glide at a constant glide angle, the lift being generated is:",
+    "options": [
+      { "id": "a", "text": "Equal to the aircraft's full weight" },
+      { "id": "b", "text": "Slightly less than the aircraft's full weight, equal to weight multiplied by the cosine of the glide angle" },
+      { "id": "c", "text": "Zero throughout the glide" },
+      { "id": "d", "text": "Greater than the aircraft's weight" }
+    ],
+    "correct": "b",
+    "explanation": "As in a climb, only the component of weight perpendicular to the flight path is balanced by lift in a steady glide — weight multiplied by the cosine of the glide angle. The component along the flight path is what balances drag and sustains the descent with no thrust.",
+    "tags": ["lift", "glide"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0020",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Landing Gear Drag",
+    "question": "Extended landing gear is a significant contributor to an aircraft's total drag mainly because it:",
+    "options": [
+      { "id": "a", "text": "Increases lift substantially, which in turn increases induced drag" },
+      { "id": "b", "text": "Adds form and interference drag with essentially no lift benefit of its own" },
+      { "id": "c", "text": "Reduces the wing's effective aspect ratio" },
+      { "id": "d", "text": "Only matters at speeds above VNE" }
+    ],
+    "correct": "b",
+    "explanation": "Landing gear is a bluff, non-lifting shape whose extension into the airflow adds form drag directly and interference drag where it joins the airframe, without contributing any useful lift — making it a pure parasite-drag penalty, retracted as soon as practical after takeoff for exactly this reason.",
+    "tags": ["drag", "landing-gear"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0021",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Configuration and the Drag Curve",
+    "question": "Extending flaps and landing gear together, compared with the clean configuration, generally:",
+    "options": [
+      { "id": "a", "text": "Shifts the whole drag curve upward and reduces the achievable maximum lift-to-drag ratio" },
+      { "id": "b", "text": "Leaves the drag curve completely unchanged" },
+      { "id": "c", "text": "Only affects induced drag, never parasite drag" },
+      { "id": "d", "text": "Always improves the maximum lift-to-drag ratio" }
+    ],
+    "correct": "a",
+    "explanation": "Flaps and gear both add parasite drag at every speed, shifting the total drag curve upward and lowering the best achievable lift-to-drag ratio compared with the clean configuration — a deliberate trade, since the resulting steeper, more controllable descent at a lower approach speed is exactly what is wanted for landing.",
+    "tags": ["drag", "configuration"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0022",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Drag Polar",
+    "question": "A \"drag polar\" — a plot of drag coefficient against lift coefficient — for a typical subsonic aircraft has a shape that is approximately:",
+    "options": [
+      { "id": "a", "text": "A straight line through the origin" },
+      { "id": "b", "text": "A parabola, since drag coefficient equals a fixed zero-lift value plus a term proportional to the square of the lift coefficient" },
+      { "id": "c", "text": "A perfect circle" },
+      { "id": "d", "text": "Unrelated to lift coefficient at all" }
+    ],
+    "correct": "b",
+    "explanation": "The standard drag polar expresses total drag coefficient as a constant zero-lift (parasite) term plus an induced-drag term proportional to the square of the lift coefficient, producing a parabolic curve when drag coefficient is plotted against lift coefficient — a standard tool for comparing aircraft aerodynamic efficiency.",
+    "tags": ["drag", "drag-polar"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0023",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Oswald Efficiency Factor",
+    "question": "The \"Oswald efficiency factor\", used in a more refined induced-drag calculation, accounts for:",
+    "options": [
+      { "id": "a", "text": "Engine efficiency at different power settings" },
+      { "id": "b", "text": "How closely a real wing's lift distribution approaches the ideal elliptical distribution that minimises induced drag" },
+      { "id": "c", "text": "The efficiency of the landing gear retraction mechanism" },
+      { "id": "d", "text": "Fuel burn per nautical mile" }
+    ],
+    "correct": "b",
+    "explanation": "A perfectly elliptical spanwise lift distribution gives the theoretical minimum induced drag for a given span and lift. Real wings rarely achieve this exactly, so the Oswald efficiency factor is included in the induced-drag formula as a correction, typically a little below 1, reflecting how close the actual lift distribution comes to that ideal.",
+    "tags": ["drag", "oswald-efficiency"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0024",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Elliptical Lift Distribution",
+    "question": "For a given wingspan and total lift, an elliptical spanwise lift distribution is significant because it:",
+    "options": [
+      { "id": "a", "text": "Produces the maximum possible induced drag" },
+      { "id": "b", "text": "Produces the theoretical minimum possible induced drag" },
+      { "id": "c", "text": "Has no bearing on induced drag at all" },
+      { "id": "d", "text": "Only applies to supersonic wings" }
+    ],
+    "correct": "b",
+    "explanation": "An elliptical distribution of lift along the span — highest at the root, tapering smoothly to zero at the tip — produces a uniform downwash across the span and the theoretical minimum induced drag for that span and total lift, which is why it is the benchmark real wing designs (often using taper to approximate it) are measured against.",
+    "tags": ["drag", "lift-distribution"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0025",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Sideslip Drag",
+    "question": "Flying in a sustained sideslip, compared with coordinated flight at the same airspeed, generally:",
+    "options": [
+      { "id": "a", "text": "Reduces total drag" },
+      { "id": "b", "text": "Increases parasite drag, since more of the fuselage's side area is presented to the oncoming airflow" },
+      { "id": "c", "text": "Has no effect on drag whatsoever" },
+      { "id": "d", "text": "Only affects induced drag, never parasite drag" }
+    ],
+    "correct": "b",
+    "explanation": "A sideslip angles the fuselage relative to the oncoming airflow, exposing more of its side area — and control surfaces deflected to hold the slip — to the relative wind. This raises parasite drag noticeably, which is exactly why a forward slip is a useful, controllable way to increase the descent rate without gaining excess airspeed.",
+    "tags": ["drag", "sideslip"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0026",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Excrescence Drag",
+    "question": "Small items such as antennas, rivet heads and access panel gaps contribute to an aircraft's total drag as:",
+    "options": [
+      { "id": "a", "text": "Induced drag" },
+      { "id": "b", "text": "A minor parasite drag component, sometimes called excrescence drag" },
+      { "id": "c", "text": "Wave drag" },
+      { "id": "d", "text": "A component that only appears above the critical Mach number" }
+    ],
+    "correct": "b",
+    "explanation": "Individually tiny, these surface protrusions and imperfections each disturb the local airflow slightly, and collectively they add a real, measurable parasite drag penalty — one reason aircraft manufacturers and operators pay close attention to panel fit, paint smoothness and antenna placement.",
+    "tags": ["drag", "excrescence-drag"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0027",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Cooling Drag",
+    "question": "On an air-cooled piston engine installation, \"cooling drag\" refers to drag produced by:",
+    "options": [
+      { "id": "a", "text": "The propeller's rotation alone" },
+      { "id": "b", "text": "Air deliberately ducted through the engine cowling to cool the cylinders before being exhausted" },
+      { "id": "c", "text": "Ice forming on the cowling" },
+      { "id": "d", "text": "The landing gear doors" }
+    ],
+    "correct": "b",
+    "explanation": "Cooling airflow is deliberately routed through baffles around an air-cooled engine's cylinders to remove heat, and accelerating and then exhausting that air costs momentum — a real drag penalty, distinct from the airframe's other parasite drag sources, that cowl flaps can partly manage by controlling how much cooling air is admitted.",
+    "tags": ["drag", "cooling-drag"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0028",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Glide Ratio",
+    "question": "In a power-off glide, an aircraft's glide ratio (horizontal distance travelled per unit of height lost) is:",
+    "options": [
+      { "id": "a", "text": "Unrelated to its lift-to-drag ratio" },
+      { "id": "b", "text": "Numerically equal to its lift-to-drag ratio at the glide speed flown" },
+      { "id": "c", "text": "Always equal to 1, regardless of speed" },
+      { "id": "d", "text": "Determined only by weight, never by aerodynamics" }
+    ],
+    "correct": "b",
+    "explanation": "In a steady, power-off glide, the geometry of the glide path means the ratio of distance travelled to height lost is numerically identical to the lift-to-drag ratio at that speed — which is exactly why flying the best-glide (maximum L/D) speed gives the greatest gliding distance for a given height.",
+    "tags": ["drag", "glide-ratio"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0029",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Best Range Speed Into a Headwind",
+    "question": "To maximise distance travelled over the ground on a given amount of fuel while flying into a headwind, a pilot should generally fly:",
+    "options": [
+      { "id": "a", "text": "Slower than the zero-wind best-range speed" },
+      { "id": "b", "text": "Faster than the zero-wind best-range speed" },
+      { "id": "c", "text": "Exactly the zero-wind best-range speed, regardless of wind" },
+      { "id": "d", "text": "As slow as possible, right at the stall" }
+    ],
+    "correct": "b",
+    "explanation": "A headwind reduces groundspeed for any given airspeed, cutting into ground distance. Flying a little faster than the still-air best-range speed sacrifices a small amount of specific range in still air, but that penalty is more than offset by spending less time exposed to the headwind — increasing overall ground distance per unit of fuel.",
+    "tags": ["drag", "range", "wind"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0030",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Best Range Speed With a Tailwind",
+    "question": "To maximise distance travelled over the ground with a tailwind, a pilot should generally fly:",
+    "options": [
+      { "id": "a", "text": "Faster than the zero-wind best-range speed" },
+      { "id": "b", "text": "Slower than the zero-wind best-range speed" },
+      { "id": "c", "text": "Exactly the zero-wind best-range speed, regardless of wind" },
+      { "id": "d", "text": "As fast as possible, right at VNE" }
+    ],
+    "correct": "b",
+    "explanation": "A tailwind already boosts groundspeed for free. Flying a little slower than the still-air best-range speed improves specific range (distance per unit fuel through the air) and, with the tailwind's help still fully available, increases the overall ground distance covered for the fuel used.",
+    "tags": ["drag", "range", "wind"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0031",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Excess Thrust and Climb Angle",
+    "question": "An aircraft's climb angle (gradient) at a given speed depends most directly on:",
+    "options": [
+      { "id": "a", "text": "Excess thrust — the amount by which thrust available exceeds thrust required (drag) at that speed" },
+      { "id": "b", "text": "Total drag alone, independent of thrust" },
+      { "id": "c", "text": "Wing area alone" },
+      { "id": "d", "text": "The stalling speed" }
+    ],
+    "correct": "a",
+    "explanation": "Climb angle is governed by excess thrust — thrust available minus drag at the chosen speed — because that excess is what accelerates the aircraft along a path inclined above the horizontal rather than simply maintaining level flight. More excess thrust means a steeper achievable climb angle.",
+    "tags": ["drag", "climb-performance"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0032",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Excess Power and Rate of Climb",
+    "question": "An aircraft's rate of climb (vertical speed) at a given weight depends most directly on:",
+    "options": [
+      { "id": "a", "text": "Excess power — power available minus power required — divided by weight" },
+      { "id": "b", "text": "Excess thrust alone, with weight playing no part" },
+      { "id": "c", "text": "Total drag alone" },
+      { "id": "d", "text": "Wing area alone, independent of power" }
+    ],
+    "correct": "a",
+    "explanation": "Rate of climb is proportional to excess power — the power available beyond what is needed just to overcome drag at that speed — divided by the aircraft's weight, which is why the same excess thrust gives a smaller rate of climb (though not necessarily a smaller climb angle) at higher speed, since power is thrust multiplied by speed.",
+    "tags": ["drag", "climb-performance"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0033",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Maximum Level Speed",
+    "question": "An aircraft's absolute maximum level-flight speed, at a given weight and altitude, is defined by:",
+    "options": [
+      { "id": "a", "text": "The stalling speed alone" },
+      { "id": "b", "text": "The speed at which the thrust-available curve and the thrust-required (total drag) curve intersect" },
+      { "id": "c", "text": "The minimum-drag speed" },
+      { "id": "d", "text": "The best-glide speed" }
+    ],
+    "correct": "b",
+    "explanation": "Level flight requires thrust to equal drag. As speed increases beyond the minimum-drag point, drag (thrust required) rises again while thrust available from the engine typically falls or stays roughly level; the highest speed at which the two curves still meet is the maximum level speed the aircraft can sustain.",
+    "tags": ["drag", "performance"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0034",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Absolute Ceiling",
+    "question": "An aircraft's \"absolute ceiling\" is defined as the altitude at which:",
+    "options": [
+      { "id": "a", "text": "The aircraft first exceeds its critical Mach number" },
+      { "id": "b", "text": "The maximum rate of climb has fallen to zero — excess power available is exhausted" },
+      { "id": "c", "text": "The landing gear must be extended" },
+      { "id": "d", "text": "Cabin pressurisation is first required" }
+    ],
+    "correct": "b",
+    "explanation": "As altitude increases, available power and thrust generally fall while power and thrust required to maintain flight stay similar or rise, narrowing the excess available for climbing. The absolute ceiling is the altitude at which that excess reaches zero, so the maximum achievable rate of climb is also zero.",
+    "tags": ["drag", "ceiling"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0035",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Density Altitude and the Drag Curve",
+    "question": "At a higher density altitude, an aircraft's minimum-drag speed, expressed in true airspeed, will:",
+    "options": [
+      { "id": "a", "text": "Decrease, since thinner air needs less speed to reach the same angle of attack" },
+      { "id": "b", "text": "Increase, since thinner air requires a higher true airspeed to generate the same lift at the same angle of attack" },
+      { "id": "c", "text": "Stay exactly the same in true airspeed terms" },
+      { "id": "d", "text": "Become undefined above 5,000 feet" }
+    ],
+    "correct": "b",
+    "explanation": "Because lift depends on air density as well as speed and angle of attack, thinner air at a higher density altitude requires a higher true airspeed to reproduce the same lift coefficient and angle of attack — shifting the whole drag curve, and its minimum-drag point, to a higher true airspeed, even though the underlying angles of attack and indicated/equivalent airspeeds are unchanged.",
+    "tags": ["drag", "density-altitude"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0036",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Ram (Inlet) Drag",
+    "question": "\"Ram drag\", relevant to jet engine installations, refers to the drag associated with:",
+    "options": [
+      { "id": "a", "text": "The momentum penalty of decelerating incoming air to a usable speed before it enters the engine" },
+      { "id": "b", "text": "The wingtip vortex" },
+      { "id": "c", "text": "Extending the landing gear" },
+      { "id": "d", "text": "Boundary layer separation over the wing" }
+    ],
+    "correct": "a",
+    "explanation": "Air entering a jet engine's intake arrives at the aircraft's flight speed and must be slowed before combustion; the momentum change involved in capturing and decelerating that air produces a drag force on the airframe, accounted for separately from the airframe's own aerodynamic drag when analysing overall aircraft performance.",
+    "tags": ["drag", "ram-drag"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0037",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Raked Wingtips",
+    "question": "A \"raked\" wingtip — one swept back more sharply than the rest of the wing, without a distinct upturned winglet — primarily reduces induced drag by:",
+    "options": [
+      { "id": "a", "text": "Increasing the effective span and aspect ratio of the wing" },
+      { "id": "b", "text": "Increasing the wing's thickness-to-chord ratio" },
+      { "id": "c", "text": "Adding a physical barrier that blocks the wingtip vortex directly" },
+      { "id": "d", "text": "Reducing the wing's overall lift coefficient" }
+    ],
+    "correct": "a",
+    "explanation": "Rather than turning the flow with an upright surface the way a winglet does, a raked wingtip works mainly by extending the span and effective aspect ratio of the wing, spreading the lift over more span and reducing the strength of the wingtip vortex that way — a different geometric route to the same induced-drag benefit.",
+    "tags": ["drag", "wingtip-devices"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LIFT-0038",
+    "subjectCode": "POF",
+    "topic": "Lift and Drag",
+    "subtopic": "Parasite and Induced Drag at Minimum Drag Speed",
+    "question": "At exactly the minimum total-drag speed for a given aircraft and configuration:",
+    "options": [
+      { "id": "a", "text": "Parasite drag is always zero" },
+      { "id": "b", "text": "Induced drag is always zero" },
+      { "id": "c", "text": "Parasite drag and induced drag are exactly equal to one another" },
+      { "id": "d", "text": "Parasite drag is always three times induced drag" }
+    ],
+    "correct": "c",
+    "explanation": "Because parasite drag rises with the square of speed while induced drag falls with the square of speed, the point where their sum is smallest is mathematically exactly where the two are equal to each other — a precise, testable consequence of the two curves' opposite shapes, not just an approximate rule of thumb.",
+    "tags": ["drag", "minimum-drag"],
+    "status": "published",
+    "version": 1
+  }
+]

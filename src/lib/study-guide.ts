@@ -15,7 +15,7 @@
  * new aircraft's guide needs, this line is what makes the app know it is
  * there.
  */
-const STUDY_GUIDE_CODES = new Set(["DA40", "C152", "DA42"]);
+const STUDY_GUIDE_CODES = new Set(["DA40", "C152", "DA42", "POF"]);
 
 export function studyGuideHref(code: string): string | null {
   const upper = code.toUpperCase();

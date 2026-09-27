@@ -19,10 +19,11 @@ today, with no "single engine" or "multi engine" split between it and the
 section; a light aircraft sits directly under Class Rating. `/flying-knowledge`
 is **Flying Knowledge** — general theory that is not tied to any aircraft —
 air law, meteorology, navigation, the material a pilot keeps reviewing
-rather than sits once. It has its first subject now, **IFR**, added the same
-content-only way a second aircraft is (see the note on Flying Knowledge's
-own content tree below); more subjects are still to come, and the page
-title stays "Choose a subject" rather than naming just the one. It is free
+rather than sits once. It has two subjects now, **IFR** and **Principles of
+Flight (POF)**, the second added the same content-only way a second
+aircraft is (see the note on Flying Knowledge's own content tree below);
+more subjects are still to come, and the page title stays "Choose a
+subject" rather than naming just one. It is free
 in full, never behind the free-tier cap or a subscription — decided ahead
 of IFR's own content, and unchanged now that content exists: nothing in
 `flying-knowledge/[code]/test/actions.ts` ever calls `db/subscriptions.ts`
@@ -1575,7 +1576,7 @@ over the internals.
 content/                      Question files. The source of truth.
   <code>/                     One folder per type rating aircraft (b737/ today)
   classes/<code>/             One folder per class rating aircraft (da40/ today)
-  flying-knowledge/<code>/    One folder per Flying Knowledge subject (ifr/ today)
+  flying-knowledge/<code>/    One folder per Flying Knowledge subject (ifr/, pof/ today)
 drizzle/                      Generated SQL migrations. Committed.
 public/                       Manifest icons, the service worker, and any
                               <code>-study-guide.html study guides (see the
@@ -1808,11 +1809,18 @@ ones. `db:seed` syncs this tree exactly as it syncs the other two: insert or
 update by id, delete what the files no longer hold. **Adding a second
 Flying Knowledge subject is a content-only job**, the same rule "many
 aircraft, in two trees" states for a second aircraft — see the note there.
+This is now proven, not just asserted: Principles of Flight (`POF`) was
+added as `content/flying-knowledge/pof/` alone — a `subject.json` and
+fifteen question files, 501 questions covering the full syllabus in real
+depth rather than a thin slice of it — with the only application-code change being the
+same one-line addition to `lib/study-guide.ts`'s hand-kept set that any
+aircraft's own study guide already needs (see the note on that file
+above), exactly the same way IFR itself first proved the rule.
 
 The one thing that does not carry over from either of the other two trees:
 **Flying Knowledge is free in full, not metered by the free-tier cap or
 gated by a subscription**, decided ahead of any content existing and
-unchanged now that IFR is the first subject with content. Every other
+unchanged now that IFR and POF are its two subjects with content. Every other
 section's free allowance exists because the bank behind it is something a
 student sits through once toward one exam, and the cap is what pays for
 building more of it. Flying Knowledge is the opposite kind of content — air
@@ -1838,6 +1846,14 @@ syllabus — the same honesty this file already gives the DA40's unsourced
 topics, not a claim that it has been checked against a specific state's
 regulations.** See the note on the IFR bank in `content/README.md` for what
 that does and does not mean, and "Known gaps, honestly" below.
+
+**The POF bank (Principles of Flight, Flying Knowledge's second subject) is
+the same kind of content, held to the same honesty.** Authored by the
+assistant as general ATPL-level aerodynamics theory — not transcribed from
+the EASA ATPL Principles of Flight reference the owner pointed at, or from
+any other single textbook or syllabus, and not checked against one. See the
+note on the POF bank in `content/README.md`, and "Known gaps, honestly"
+below.
 
 ## Known gaps, honestly
 
@@ -1948,6 +1964,19 @@ that does and does not mean, and "Known gaps, honestly" below.
   should be reviewed by a qualified instructor before a student relies on it
   for a real rating or exam. See the note on the IFR bank in
   `content/README.md`.
+- **The entire POF bank (Principles of Flight, Flying Knowledge's second
+  subject) was authored by the assistant, not transcribed from the EASA
+  ATPL Principles of Flight reference the owner pointed at, or from any
+  other textbook, syllabus or question bank, and not checked against one.**
+  Like the IFR bank, it sticks to general aerodynamic concepts and
+  relationships taught the same way across ATPL training worldwide (the
+  four forces, the lift equation, angle of attack vs pitch attitude, how
+  stalling speed scales with load factor and weight, why sweepback raises
+  critical Mach number) rather than a source-specific figure, and should be
+  reviewed by a qualified instructor before a student relies on it for a
+  real ATPL exam. `public/pof-study-guide.html` carries the same honesty
+  note in its own "About this guide" callout. See the note on the POF bank
+  in `content/README.md`.
 - **Twenty-six B737 questions turn on a figure nobody has confirmed twice.** The
   bank's wrong options were rewritten so a question cannot be answered by
   elimination alone, and that pass deliberately left every uncorroborated number

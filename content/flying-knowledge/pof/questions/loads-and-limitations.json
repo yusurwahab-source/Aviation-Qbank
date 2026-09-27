@@ -1,0 +1,638 @@
+[
+  {
+    "id": "POF-LOAD-0001",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Load Factor Definition",
+    "question": "\"Load factor\", expressed in \"g\", is defined as:",
+    "options": [
+      { "id": "a", "text": "The aircraft's weight divided by its maximum landing weight" },
+      { "id": "b", "text": "The ratio of the total aerodynamic lift force acting on the aircraft to its actual weight" },
+      { "id": "c", "text": "The ratio of thrust to drag" },
+      { "id": "d", "text": "The ratio of true airspeed to stalling speed" }
+    ],
+    "correct": "b",
+    "explanation": "Load factor is lift divided by weight. In straight-and-level, unaccelerated flight this ratio is 1g, since lift exactly balances weight; manoeuvring — a turn, a pull-up, a gust — can raise it well above (or, briefly, below) that value.",
+    "tags": ["limitations", "load-factor"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0002",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Load Factor in a Turn",
+    "question": "In a level, coordinated turn, load factor increases with bank angle because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Lift must be increased beyond simply supporting weight, to also provide the horizontal component needed to turn the aircraft, while its vertical component continues to support weight"
+      },
+      { "id": "b", "text": "Airspeed is always reduced in a turn, which by itself reduces the load factor" },
+      { "id": "c", "text": "Load factor actually decreases as bank angle increases" },
+      { "id": "d", "text": "Load factor depends only on rudder input, not bank angle" }
+    ],
+    "correct": "a",
+    "explanation": "Banking splits the lift vector into a vertical component (still supporting weight) and a horizontal component (providing the centripetal force to turn). To keep the vertical component equal to weight as bank angle increases, total lift — and therefore load factor — must increase, rising steeply as bank angle approaches 90 degrees.",
+    "tags": ["limitations", "load-factor", "turns"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0003",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "V-n Diagram",
+    "question": "A V-n (velocity-load factor) diagram for an aircraft shows:",
+    "options": [
+      { "id": "a", "text": "The relationship between fuel consumption and airspeed" },
+      {
+        "id": "b",
+        "text": "The structural and aerodynamic load factor limits, positive and negative, available at each airspeed, including where the aircraft will stall before reaching a given load factor"
+      },
+      { "id": "c", "text": "The relationship between altitude and true airspeed only" },
+      { "id": "d", "text": "Engine power available at each RPM" }
+    ],
+    "correct": "b",
+    "explanation": "The V-n diagram plots load factor against airspeed, bounded on one side by the aerodynamic stall limit (the maximum load factor the wing can generate before stalling, at each speed) and on the other by the structural limit load factor — together defining the aircraft's whole safe operating envelope.",
+    "tags": ["limitations", "v-n-diagram"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0004",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Manoeuvring Speed",
+    "question": "An aircraft's manoeuvring speed, VA, decreases as weight decreases because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A lighter aircraft has a lower stalling speed, so it will stall — shedding excess load aerodynamically — at a lower speed and correspondingly lower load factor, before the structural limit is reached"
+      },
+      { "id": "b", "text": "VA is a fixed figure that never changes with weight" },
+      { "id": "c", "text": "A lighter aircraft can withstand a higher structural load factor" },
+      { "id": "d", "text": "VA depends only on altitude, never on weight" }
+    ],
+    "correct": "a",
+    "explanation": "VA is defined as the speed at which the wing will stall exactly at the aircraft's limit load factor. Since a lighter aircraft stalls at a lower speed, its VA is correspondingly lower too — which is why VA published for maximum weight overstates the actual protection available at a lighter weight.",
+    "tags": ["limitations", "manoeuvring-speed"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0005",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Controls Above VA",
+    "question": "Applying an abrupt, full control surface deflection at a speed above VA (manoeuvring speed) is inadvisable mainly because:",
+    "options": [
+      { "id": "a", "text": "It is aerodynamically impossible to deflect a control surface above VA" },
+      {
+        "id": "b",
+        "text": "At that speed, the wing may generate enough lift before stalling to exceed the aircraft's structural load factor limit, since a stall no longer protects the structure the way it does below VA"
+      },
+      { "id": "c", "text": "The controls simply stop responding above VA" },
+      { "id": "d", "text": "It has no bearing on structural safety at all" }
+    ],
+    "correct": "b",
+    "explanation": "Below VA, the wing stalls before the structural limit load factor is reached, which naturally caps the load an abrupt control input can generate. Above VA, the wing can reach a high enough lift coefficient — before stalling — to exceed the structural limit, so an abrupt, full control deflection above VA risks a genuine structural overload.",
+    "tags": ["limitations", "manoeuvring-speed"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0006",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Limit Load vs Ultimate Load",
+    "question": "An aircraft's \"limit load\" is the maximum load expected in normal operation, while its \"ultimate load\" is:",
+    "options": [
+      { "id": "a", "text": "Exactly the same figure as the limit load" },
+      {
+        "id": "b",
+        "text": "Typically 1.5 times the limit load — the structure must withstand this without complete failure, though it may sustain permanent deformation beyond the limit load"
+      },
+      { "id": "c", "text": "Always lower than the limit load" },
+      { "id": "d", "text": "Only relevant to military aircraft" }
+    ],
+    "correct": "b",
+    "explanation": "The structure is designed to return to its original shape with no permanent deformation up to the limit load, and to withstand the higher ultimate load — conventionally 1.5 times the limit load — without complete structural failure, even though some permanent deformation is acceptable between the two.",
+    "tags": ["limitations", "limit-load", "ultimate-load"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0007",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Gust Loads",
+    "question": "A sharp-edged vertical gust encountered in flight increases load factor mainly because it:",
+    "options": [
+      { "id": "a", "text": "Reduces the aircraft's weight momentarily" },
+      {
+        "id": "b",
+        "text": "Suddenly changes the wing's effective angle of attack, and therefore its lift, without any change in airspeed or pilot control input"
+      },
+      { "id": "c", "text": "Reduces the wing's angle of attack to zero" },
+      { "id": "d", "text": "Only affects the tailplane, never the wing" }
+    ],
+    "correct": "b",
+    "explanation": "An upward gust adds a vertical component to the relative airflow, momentarily increasing the wing's effective angle of attack and therefore its lift, with no change in true airspeed or any pilot input at all. This sudden lift increase is felt as, and structurally counts as, an increase in load factor.",
+    "tags": ["limitations", "gust-load"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0008",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "VNO and VNE",
+    "question": "The difference between VNO (maximum structural cruising speed) and VNE (never-exceed speed) is that:",
+    "options": [
+      { "id": "a", "text": "They represent the same limit under two different names" },
+      {
+        "id": "b",
+        "text": "VNO may only be exceeded briefly in smooth air and with caution, while VNE must never be deliberately exceeded under any circumstance"
+      },
+      { "id": "c", "text": "VNO is always a higher speed than VNE" },
+      { "id": "d", "text": "VNE only applies to jet aircraft" }
+    ],
+    "correct": "b",
+    "explanation": "VNO marks the upper end of the normal operating range; it may be exceeded briefly in smooth air with caution, but not in turbulence, since gust loads on top of an already-high speed could exceed structural limits. VNE is an absolute limit that must never be deliberately exceeded in any conditions.",
+    "tags": ["limitations", "vno", "vne"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0009",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Wing Loading",
+    "question": "\"Wing loading\" is defined as:",
+    "options": [
+      { "id": "a", "text": "The aircraft's total weight divided by its wing area" },
+      { "id": "b", "text": "The aircraft's total weight divided by its wingspan" },
+      { "id": "c", "text": "The maximum load factor an aircraft can sustain" },
+      { "id": "d", "text": "The ratio of fuel weight to total weight" }
+    ],
+    "correct": "a",
+    "explanation": "Wing loading is simply weight divided by wing area, usually expressed in units such as kilograms per square metre. It is a key factor influencing stalling speed, gust response, and turn performance.",
+    "tags": ["limitations", "wing-loading"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0010",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Wing Loading and Gust Response",
+    "question": "All else being equal, an aircraft with higher wing loading — more weight per unit of wing area — tends to:",
+    "options": [
+      { "id": "a", "text": "Be thrown around more violently by a given gust" },
+      {
+        "id": "b",
+        "text": "Be less affected by a given gust, since the same gust-induced change in lift is a smaller fraction of a heavier aircraft's total weight"
+      },
+      { "id": "c", "text": "Always have a lower stalling speed" },
+      { "id": "d", "text": "Never encounter a limiting load factor from gusts" }
+    ],
+    "correct": "b",
+    "explanation": "A given gust produces roughly the same absolute change in lift regardless of the aircraft's wing loading, but that change is a smaller proportion of a heavier, more highly loaded aircraft's total weight — which is why higher wing loading generally gives a smoother ride in turbulence, though it also typically raises stalling speed.",
+    "tags": ["limitations", "wing-loading", "gust-load"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0011",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Positive vs Negative Load Limits",
+    "question": "An aircraft's certificated positive limit load factor is generally much larger in magnitude than its negative limit load factor mainly because:",
+    "options": [
+      { "id": "a", "text": "Normal flight and manoeuvring spend the overwhelming majority of time in positive-g conditions, so the structure is optimised asymmetrically toward that predominant loading" },
+      { "id": "b", "text": "Negative g is aerodynamically impossible to generate" },
+      { "id": "c", "text": "The two limits are always exactly equal in magnitude" },
+      { "id": "d", "text": "Positive and negative g have no relationship to structural design at all" }
+    ],
+    "correct": "a",
+    "explanation": "Because ordinary flight and manoeuvring are overwhelmingly positive-g, and sustained negative-g flight is rare and generally brief even where permitted, certificated load factor limits are deliberately asymmetric — a considerably larger positive limit than negative — reflecting how the structure is actually expected to be used.",
+    "tags": ["limitations", "load-factor"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0012",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Flap-Extended Load Factor Limit",
+    "question": "The maximum structural load factor permitted with flaps extended is generally:",
+    "options": [
+      { "id": "a", "text": "Considerably lower than the clean-configuration limit, since the flap-extended configuration is not designed for aggressive manoeuvring" },
+      { "id": "b", "text": "Always identical to the clean-configuration limit" },
+      { "id": "c", "text": "Higher than the clean-configuration limit" },
+      { "id": "d", "text": "Unrelated to flap position" }
+    ],
+    "correct": "a",
+    "explanation": "Because flaps are intended for slow, gentle flight during approach and landing rather than aggressive manoeuvring, the flap-extended configuration carries a considerably reduced maximum load factor limit compared with the clean configuration — one reason flap placard speeds and load factor limits are treated as a package.",
+    "tags": ["limitations", "flaps", "load-factor"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0013",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Design Categories",
+    "question": "Certification design categories such as \"normal\", \"utility\" and \"aerobatic\" mainly differ in that:",
+    "options": [
+      { "id": "a", "text": "Each carries a different certificated limit load factor, generally lowest for normal category and highest for aerobatic category" },
+      { "id": "b", "text": "They all carry exactly the same limit load factor" },
+      { "id": "c", "text": "They differ only in paint scheme, not in structural design" },
+      { "id": "d", "text": "Only the aerobatic category has any load factor limit at all" }
+    ],
+    "correct": "a",
+    "explanation": "An aircraft certificated in the normal category is built to a comparatively modest limit load factor suited to ordinary flight, while utility category allows somewhat more aggressive manoeuvring, and aerobatic category is built to withstand the much higher loads deliberate aerobatic manoeuvres can generate — three genuinely different structural design targets, not just a label.",
+    "tags": ["limitations", "design-category"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0014",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Fatigue",
+    "question": "Structural \"fatigue\" refers to a failure mode in which:",
+    "options": [
+      { "id": "a", "text": "Repeated stress cycles, each individually well below the limit load, gradually damage the structure and can eventually cause failure over time" },
+      { "id": "b", "text": "A single load exceeding the ultimate load causes immediate failure" },
+      { "id": "c", "text": "The aircraft becomes tired and needs rest" },
+      { "id": "d", "text": "Only extremely rare, one-off overload events matter, with no relationship to repeated cycles" }
+    ],
+    "correct": "a",
+    "explanation": "Fatigue is a fundamentally different failure mode from a single overload: it accumulates from many repeated load cycles, each individually far below any limit or ultimate load, gradually initiating and growing cracks that can eventually cause failure — which is why aircraft structures are inspected and life-limited on a cyclic basis, not just protected against one-off overloads.",
+    "tags": ["limitations", "fatigue"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0015",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Flutter Speed as a Design Limit",
+    "question": "Beyond any individual control surface's own flutter behaviour, an aircraft's wing and overall airframe have their own flutter speed, which certification requires to be:",
+    "options": [
+      { "id": "a", "text": "Comfortably above the design dive speed, with a defined margin, so flutter cannot occur anywhere within the certificated flight envelope" },
+      { "id": "b", "text": "Exactly equal to the stalling speed" },
+      { "id": "c", "text": "Irrelevant to certification, since only control surfaces can flutter" },
+      { "id": "d", "text": "Always below the normal cruise speed" }
+    ],
+    "correct": "a",
+    "explanation": "Flutter is not only a concern for individual control surfaces — the wing and airframe as a whole have their own flutter speed, and certification requires this whole-aircraft flutter speed to sit safely above the design dive speed with a defined margin, ensuring flutter cannot develop anywhere the aircraft is certified to fly.",
+    "tags": ["limitations", "flutter"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0016",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Maximum Zero Fuel Weight",
+    "question": "Maximum zero fuel weight (MZFW) limits the combined weight of the aircraft structure and its payload, excluding usable fuel, mainly to:",
+    "options": [
+      { "id": "a", "text": "Control wing bending moments, since fuel carried in the wings helps relieve bending loads that payload weight in the fuselage does not" },
+      { "id": "b", "text": "Limit only the total amount of fuel that can be carried" },
+      { "id": "c", "text": "Have no relationship to wing structural loads at all" },
+      { "id": "d", "text": "Replace the need for a maximum takeoff weight limit entirely" }
+    ],
+    "correct": "a",
+    "explanation": "Fuel stored out in the wings helps counteract (relieve) the bending moment the wing structure experiences from lift, in a way that fuselage-carried payload does not. MZFW exists to limit how much weight can be carried without that wing-fuel bending relief, protecting the wing root structure from excessive bending loads.",
+    "tags": ["limitations", "mzfw"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0017",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Maximum Landing Weight",
+    "question": "An aircraft's maximum landing weight can be lower than its maximum takeoff weight mainly because:",
+    "options": [
+      { "id": "a", "text": "The landing gear and airframe are designed for the vertical impact loads of a touchdown at a certain sink rate, which is a more demanding condition at a lower weight than takeoff structural limits alone would suggest" },
+      { "id": "b", "text": "Landing weight has no relationship to structural design" },
+      { "id": "c", "text": "Maximum landing weight is always identical to maximum takeoff weight for every aircraft" },
+      { "id": "d", "text": "It is set purely for fuel-planning convenience, with no structural basis" }
+    ],
+    "correct": "a",
+    "explanation": "Touchdown imposes its own distinct vertical impact loading on the landing gear and surrounding structure, calculated for an expected descent rate at touchdown. This can make maximum landing weight the more restrictive limit compared with maximum takeoff weight, which is why some aircraft need to burn off or dump fuel before landing well above their normal landing weight in an emergency.",
+    "tags": ["limitations", "landing-weight"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0018",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Turbulence Penetration Speed",
+    "question": "A recommended \"turbulence penetration speed\", flown when encountering severe turbulence, is chosen to balance:",
+    "options": [
+      { "id": "a", "text": "Reducing structural gust load risk at high speed against maintaining an adequate margin above the stall at low speed" },
+      { "id": "b", "text": "Only fuel economy, with no relationship to structural loads or stall margin" },
+      { "id": "c", "text": "Maximising speed regardless of turbulence intensity" },
+      { "id": "d", "text": "Passenger comfort alone" }
+    ],
+    "correct": "a",
+    "explanation": "Flying too fast in severe turbulence risks exceeding structural load limits from gust loading, while flying too slowly risks an inadvertent stall if a gust adds enough angle of attack. Turbulence penetration speed is chosen as a deliberate compromise between these two opposing risks.",
+    "tags": ["limitations", "turbulence"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0019",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Negative Gust Load Factor",
+    "question": "A sharp-edged downward (negative) gust, unlike an upward gust, tends to produce:",
+    "options": [
+      { "id": "a", "text": "A reduction in angle of attack and lift, producing a load factor excursion below 1g rather than above it" },
+      { "id": "b", "text": "Exactly the same effect as an upward gust, with no difference in direction" },
+      { "id": "c", "text": "An increase in load factor identical to an upward gust of the same magnitude" },
+      { "id": "d", "text": "No effect on load factor at all" }
+    ],
+    "correct": "a",
+    "explanation": "Where an upward gust adds angle of attack and lift, pushing load factor above 1g, a downward gust does the opposite — reducing angle of attack and lift, and pushing load factor below 1g, toward (or into) the negative load factor range, which is part of why the V-n diagram's negative envelope matters even though it is smaller than the positive one.",
+    "tags": ["limitations", "gust-load"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0020",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Design Dive Speed",
+    "question": "\"Design dive speed\" (VD), used in establishing structural margins during certification, differs from the operational never-exceed speed (VNE) in that:",
+    "options": [
+      { "id": "a", "text": "VD is a certification-only reference speed, never intended to be deliberately flown operationally, with VNE set at a margin below it" },
+      { "id": "b", "text": "VD and VNE are simply two different names for the same operational limit" },
+      { "id": "c", "text": "VD is always lower than VNE" },
+      { "id": "d", "text": "VNE is set with no relationship to VD at all" }
+    ],
+    "correct": "a",
+    "explanation": "VD is used purely as a certification reference — the speed against which structural and flutter margins are demonstrated — and is never meant to be flown deliberately in service. VNE, the speed a pilot must never intentionally exceed, is set with a margin below VD, so operational flight stays comfortably clear of the certification reference point.",
+    "tags": ["limitations", "design-dive-speed", "vne"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0021",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Proof and Ultimate Load Testing",
+    "question": "Structural certification testing generally requires demonstrating that the structure:",
+    "options": [
+      { "id": "a", "text": "Can withstand limit load with no significant permanent deformation, and can withstand ultimate load (typically 1.5 times limit load) for a specified time without complete failure" },
+      { "id": "b", "text": "Only needs to be tested to limit load, with ultimate load never actually verified" },
+      { "id": "c", "text": "Must fail at exactly limit load to pass certification" },
+      { "id": "d", "text": "Requires no physical testing of any kind" }
+    ],
+    "correct": "a",
+    "explanation": "Certification testing is a two-part demonstration: the structure must take limit load without significant permanent deformation (it should still be usable afterward), and separately must withstand the higher ultimate load for a specified period without complete failure, even though some permanent deformation is acceptable at that higher load.",
+    "tags": ["limitations", "certification-testing"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0022",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Gust Load Factor as an Increment",
+    "question": "A calculated \"gust load factor\" from a given gust is generally applied as:",
+    "options": [
+      { "id": "a", "text": "An increment added to (or subtracted from) the aircraft's existing 1g steady-flight load factor, not a standalone, absolute value on its own" },
+      { "id": "b", "text": "A completely independent figure with no relationship to the 1g flight condition" },
+      { "id": "c", "text": "Always exactly equal to 1g, regardless of the gust" },
+      { "id": "d", "text": "A figure that replaces the aircraft's weight in all calculations" }
+    ],
+    "correct": "a",
+    "explanation": "Gust load factor calculations are framed as a change from the aircraft's existing steady 1g flight condition — the gust's effect is added to (or subtracted from) that baseline, giving the total instantaneous load factor, rather than being computed as some independent, standalone figure.",
+    "tags": ["limitations", "gust-load"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0023",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Gust Alleviation Factor",
+    "question": "A \"gust alleviation factor\", used in more refined structural gust load calculations, accounts for:",
+    "options": [
+      { "id": "a", "text": "The aircraft's own dynamic response to a gust reducing the effective load compared with a simplistic assumption of an instantaneous, sharp-edged gust" },
+      { "id": "b", "text": "Increasing the calculated gust load beyond the sharp-edged gust assumption" },
+      { "id": "c", "text": "Eliminating the need to consider gust loads at all" },
+      { "id": "d", "text": "Pilot skill in avoiding turbulence" }
+    ],
+    "correct": "a",
+    "explanation": "A real gust builds up over a finite distance and time, and the aircraft itself responds dynamically as it does, both of which reduce the actual peak load compared with an idealised instantaneous, sharp-edged gust assumption. The gust alleviation factor is the correction applied to reflect this more realistic, somewhat reduced loading.",
+    "tags": ["limitations", "gust-load"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0024",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Category and Weight Interaction",
+    "question": "On some aircraft certificated in more than one category, a higher load factor limit (such as utility category) may:",
+    "options": [
+      { "id": "a", "text": "Only apply up to a reduced maximum weight for that category, rather than at the aircraft's full maximum weight" },
+      { "id": "b", "text": "Always apply at every weight up to the aircraft's absolute maximum weight" },
+      { "id": "c", "text": "Have no relationship to weight at all" },
+      { "id": "d", "text": "Apply only when the aircraft is empty" }
+    ],
+    "correct": "a",
+    "explanation": "A higher load factor limit for a more demanding category is often only certificated up to a correspondingly reduced maximum weight for that category — flying at a weight above that reduced figure, even if still below the aircraft's overall maximum weight, means only the lower, standard category limit actually applies.",
+    "tags": ["limitations", "design-category", "weight"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0025",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "VNE and Flutter Margin",
+    "question": "One of the structural considerations behind where the operational never-exceed speed, VNE, is set is:",
+    "options": [
+      { "id": "a", "text": "Keeping a comfortable margin below the speed at which flutter could occur" },
+      { "id": "b", "text": "Flutter has no bearing on where VNE is set" },
+      { "id": "c", "text": "VNE is always set above the flutter speed" },
+      { "id": "d", "text": "VNE is determined purely by engine limitations, never by the airframe" }
+    ],
+    "correct": "a",
+    "explanation": "Because flutter risk grows with speed, one of the structural considerations that goes into setting VNE — alongside other structural and control limits — is ensuring an adequate margin below the speed at which flutter could develop, so normal operation never approaches that boundary.",
+    "tags": ["limitations", "vne", "flutter"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0026",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Touchdown Load Case",
+    "question": "The vertical loads experienced at touchdown are treated in structural design as:",
+    "options": [
+      { "id": "a", "text": "A distinct load case of their own, separate from in-flight manoeuvring loads, based on an expected sink rate at landing" },
+      { "id": "b", "text": "Identical in every respect to in-flight manoeuvring loads" },
+      { "id": "c", "text": "Irrelevant to structural design, since landing gear absorbs all the load" },
+      { "id": "d", "text": "Only relevant to the wings, never the landing gear" }
+    ],
+    "correct": "a",
+    "explanation": "Touchdown imposes its own characteristic loading — largely driven by vertical descent rate at the moment of impact — that is evaluated as a distinct structural load case from the aerodynamic manoeuvring loads captured in the V-n diagram, since the two arise from entirely different physical events.",
+    "tags": ["limitations", "landing-loads"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0027",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Ground Handling Loads",
+    "question": "Beyond flight and landing loads, aircraft structure must also be designed for:",
+    "options": [
+      { "id": "a", "text": "Ground handling loads, such as those from taxiing over rough surfaces, turning, and braking" },
+      { "id": "b", "text": "No loads at all while the aircraft is on the ground" },
+      { "id": "c", "text": "Only the loads experienced while parked with engines shut down" },
+      { "id": "d", "text": "Exactly the same loads as in-flight manoeuvring, with no distinction" }
+    ],
+    "correct": "a",
+    "explanation": "An aircraft's certified structure accounts for a genuinely separate set of ground handling loads — taxiing over an uneven surface, turning on the ground, braking — on top of the flight manoeuvring loads and the distinct landing impact case, reflecting the full range of conditions the airframe actually experiences over its life.",
+    "tags": ["limitations", "ground-loads"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0028",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Pressurization Fatigue",
+    "question": "On a pressurized aircraft, the repeated pressurize/depressurize cycle of each flight is significant for structural life mainly because it:",
+    "options": [
+      { "id": "a", "text": "Applies a repeated cyclic stress to the fuselage that contributes to fatigue over the aircraft's life, distinct from any single in-flight overload event" },
+      { "id": "b", "text": "Has no effect on the structure at all" },
+      { "id": "c", "text": "Only matters for engine components, never the airframe" },
+      { "id": "d", "text": "Reduces fatigue risk compared with an unpressurized aircraft" }
+    ],
+    "correct": "a",
+    "explanation": "Each flight's pressurization cycle stresses the fuselage skin and structure in a repeated, predictable way, and this cyclic loading — accumulated over thousands of flights — is one of the most significant real-world contributors to fatigue in pressurized aircraft, entirely distinct from the risk of a single overload event.",
+    "tags": ["limitations", "fatigue", "pressurization"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0029",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Hard Landing Inspection",
+    "question": "After a landing suspected to have exceeded normal limits (a \"hard landing\"), the standard practice is to:",
+    "options": [
+      { "id": "a", "text": "Carry out a specified structural inspection before further flight, since load factor limits may have been exceeded without visible external damage" },
+      { "id": "b", "text": "Continue flying normally with no inspection required" },
+      { "id": "c", "text": "Only inspect the landing gear tyres" },
+      { "id": "d", "text": "Assume no inspection is needed unless visible damage is present" }
+    ],
+    "correct": "a",
+    "explanation": "A landing hard enough to have exceeded design load limits can cause internal structural damage — cracked frames, loosened fasteners, damaged gear attachment points — that is not visible from a simple walk-around, which is why a defined inspection is required before the aircraft flies again, rather than relying on visible damage alone.",
+    "tags": ["limitations", "hard-landing"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0030",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Bird Strike Certification",
+    "question": "As part of structural certification, an aircraft's windscreen, leading edges and engines are typically required to demonstrate:",
+    "options": [
+      { "id": "a", "text": "The ability to withstand an impact from a bird of a specified mass at a specified speed without a catastrophic failure" },
+      { "id": "b", "text": "No requirement at all regarding bird impact" },
+      { "id": "c", "text": "Immunity to any impact of any size or speed" },
+      { "id": "d", "text": "A requirement that applies only to military aircraft" }
+    ],
+    "correct": "a",
+    "explanation": "Bird strikes are a real and foreseeable hazard, so certification specifies a defined bird strike energy — a bird of a certain mass at a certain relative speed — that critical structure such as the windscreen, wing leading edges and engines must withstand without a catastrophic failure, even though local damage may still occur.",
+    "tags": ["limitations", "bird-strike"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0031",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Structural Life in Cycles",
+    "question": "Fatigue-critical aircraft structure, especially on a pressurized aircraft, is often life-limited by:",
+    "options": [
+      { "id": "a", "text": "A defined number of flight cycles (takeoff-and-landing, or pressurization cycles), not simply by accumulated flight hours alone" },
+      { "id": "b", "text": "Calendar age alone, with no reference to flight activity" },
+      { "id": "c", "text": "Total fuel burned over the aircraft's life" },
+      { "id": "d", "text": "Flight hours alone, with cycles playing no part" }
+    ],
+    "correct": "a",
+    "explanation": "Because pressurization and ground-air-ground loading are inherently cyclic events, fatigue-critical structure is frequently life-limited in terms of flight cycles as well as (or instead of) flight hours — a short-haul aircraft accumulating many cycles per flight hour can reach a cycle-based life limit well before an hour-based one would matter.",
+    "tags": ["limitations", "fatigue", "flight-cycles"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0032",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "VA Exceedance in Smooth Air",
+    "question": "Flying at a speed above VA in smooth air, using only gentle, moderate control inputs, is:",
+    "options": [
+      { "id": "a", "text": "Not inherently dangerous by itself — the specific structural risk above VA is from abrupt, large, or full control surface deflections, not simply flying faster than VA" },
+      { "id": "b", "text": "Always immediately dangerous regardless of how gently the controls are used" },
+      { "id": "c", "text": "Impossible, since aircraft cannot exceed VA in smooth air" },
+      { "id": "d", "text": "Only a concern for the landing gear, never the wing" }
+    ],
+    "correct": "a",
+    "explanation": "VA itself is simply a speed at which the wing would stall before generating the structure's limit load factor from a full, abrupt control deflection. Cruising above VA in smooth air with gentle inputs carries no special structural risk on its own — the genuine hazard above VA is specifically an abrupt, large control input (or a significant gust), not elevated speed by itself.",
+    "tags": ["limitations", "manoeuvring-speed"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0033",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Gust Line vs Manoeuvring Line",
+    "question": "A complete V-n diagram is normally bounded by both a manoeuvring envelope and a separate gust envelope, because:",
+    "options": [
+      { "id": "a", "text": "At some speeds and configurations the manoeuvring load limit is the more restrictive boundary, while at others the gust load limit governs instead — the actual safe envelope is whichever is more restrictive at each point" },
+      { "id": "b", "text": "Gust loads are always less restrictive than manoeuvring loads at every speed" },
+      { "id": "c", "text": "The two lines are always identical and only one is ever drawn" },
+      { "id": "d", "text": "Gust loads only matter above VNE" }
+    ],
+    "correct": "a",
+    "explanation": "Manoeuvring loads (from deliberate control inputs) and gust loads (from atmospheric turbulence) are calculated separately because they arise from different causes, and at any given speed the actual governing limit is whichever of the two is more restrictive — which is why a complete V-n diagram plots both a manoeuvring envelope and a gust envelope rather than a single combined line.",
+    "tags": ["limitations", "v-n-diagram", "gust-load"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0034",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Composite vs Metal Fatigue",
+    "question": "Compared with traditional metal structure, composite aircraft structure under repeated cyclic loading:",
+    "options": [
+      { "id": "a", "text": "Generally does not exhibit the same classic crack-growth fatigue behaviour as metal, though it has its own distinct damage and failure modes that must be separately understood and inspected for" },
+      { "id": "b", "text": "Is completely immune to any form of damage from repeated loading" },
+      { "id": "c", "text": "Fails in exactly the same way, through exactly the same crack-growth mechanism, as metal structure" },
+      { "id": "d", "text": "Has no fatigue-related certification requirements of any kind" }
+    ],
+    "correct": "a",
+    "explanation": "Composite materials generally do not fail through the same slow, crack-initiation-and-growth process that characterises classic metal fatigue, but they are not immune to cyclic or impact damage — they have their own distinct failure modes (such as delamination), which is why composite structure is inspected and certified against its own specific set of damage-tolerance criteria rather than simply applying metal fatigue assumptions.",
+    "tags": ["limitations", "fatigue", "composite-materials"],
+    "status": "published",
+    "version": 1
+  }
+]
