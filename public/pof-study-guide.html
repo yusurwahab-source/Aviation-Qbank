@@ -259,7 +259,7 @@
     <ol>
       <li><a href="#aero"><span class="n">01</span> Basic Aerodynamics <span class="count">65</span></a></li>
       <li><a href="#afoil"><span class="n">02</span> Aerofoils &amp; Lift Theory <span class="count">65</span></a></li>
-      <li><a href="#lift"><span class="n">03</span> Lift and Drag <span class="count">38</span></a></li>
+      <li><a href="#lift"><span class="n">03</span> Lift and Drag <span class="count">75</span></a></li>
       <li><a href="#bl"><span class="n">04</span> Boundary Layer <span class="count">28</span></a></li>
       <li><a href="#stall"><span class="n">05</span> Stalling <span class="count">42</span></a></li>
       <li><a href="#hld"><span class="n">06</span> High-Lift Devices <span class="count">30</span></a></li>
@@ -286,7 +286,7 @@
       </p>
       <div class="tags">
         <span class="tag">15 sections</span>
-        <span class="tag">564 linked questions</span>
+        <span class="tag">601 linked questions</span>
         <span class="tag">Equations · graphs · proportionalities</span>
         <span class="tag">Aircraft-independent</span>
       </div>
@@ -669,61 +669,170 @@
     <section class="sec" id="lift">
       <h2><span class="num">03</span> Lift and Drag <span class="en">Lift &amp; Drag</span></h2>
       <p class="lead">
-        Lift and drag are not independent — every increase in lift carries
-        a drag cost, and where that cost comes from changes with speed.
+        Total drag is the sum of a term growing with dynamic pressure and a
+        term falling with it. Their balance fixes the minimum-drag and
+        minimum-power conditions, and through them the optimum speeds for
+        range, endurance, climb and glide.
       </p>
 
-      <h3 class="sub">Types of drag <span class="ref">3.1</span></h3>
+      <h3 class="sub">Drag components <span class="ref">3.1</span></h3>
       <div class="table-wrap">
       <table>
-        <thead><tr><th>Drag type</th><th>Cause</th><th>Behaviour with speed</th></tr></thead>
+        <thead><tr><th>Component</th><th>Mechanism</th><th>Scaling (constant W, altitude)</th></tr></thead>
         <tbody>
-          <tr><td>Induced drag</td><td>A by-product of lift — wingtip vortices / downwash tilt</td><td>Highest at low speed, falls as speed rises</td></tr>
-          <tr><td>Skin friction</td><td>Air viscosity through the boundary layer</td><td>Rises with speed and surface area</td></tr>
-          <tr><td>Form drag</td><td>Overall shape disturbing the airflow</td><td>Rises roughly with speed squared</td></tr>
-          <tr><td>Interference drag</td><td>Airflow disruption where components meet</td><td>Rises with speed</td></tr>
+          <tr><td>Skin friction</td><td>Wall shear, c<sub>f</sub>·q·S<sub>wet</sub>; turbulent c<sub>f</sub> &gt; laminar</td><td>∝ V² (weakly less, c<sub>f</sub> falls with Re)</td></tr>
+          <tr><td>Form (pressure)</td><td>Unrecovered pressure behind separation and boundary-layer displacement</td><td>∝ V²</td></tr>
+          <tr><td>Interference</td><td>Interacting pressure fields and boundary layers at junctions</td><td>∝ V²</td></tr>
+          <tr><td>Induced</td><td>Aft tilt of local lift by downwash</td><td>∝ W²/(q·b²) ∝ 1/V²</td></tr>
+          <tr><td>Wave</td><td>Shock waves (Section 12)</td><td>Above M<sub>crit</sub></td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="eq">D₀ = C<sub>D0</sub>·q·S = q·f &nbsp;&nbsp;&nbsp; D<sub>i</sub> = W²/(q·π·e·b²)</div>
+      <p>f = C<sub>D0</sub>·S, the equivalent flat-plate area. Induced drag depends on span loading W/b, not on chord.</p>
+
+      <h3 class="sub">Drag polar and minimum drag <span class="ref">3.2</span></h3>
+      <div class="eq">C<sub>D</sub> = C<sub>D0</sub> + k·C<sub>L</sub>² &nbsp;&nbsp;&nbsp; k = 1/(π·e·A)</div>
+      <div class="eq">C<sub>L,md</sub> = √(C<sub>D0</sub>/k) &nbsp;&nbsp; (L/D)<sub>max</sub> = 1/(2√(k·C<sub>D0</sub>)) = ½√(π·e·A/C<sub>D0</sub>)</div>
+      <div class="eq">D<sub>min</sub> = W/(L/D)<sub>max</sub> &nbsp;&nbsp;&nbsp; D/D<sub>min</sub> = ½[(V/V<sub>md</sub>)² + (V<sub>md</sub>/V)²]</div>
+      <div class="diagram">
+        <svg viewBox="0 0 460 250" role="img" aria-label="Drag relative to minimum drag against speed relative to minimum-drag speed: parasite rising with speed squared, induced falling with inverse speed squared, total minimum at the minimum-drag speed">
+          <line x1="50.0" y1="131.7" x2="440.0" y2="131.7" stroke="var(--line)" stroke-width="1"/><line x1="50.0" y1="78.3" x2="440.0" y2="78.3" stroke="var(--line)" stroke-width="1"/><line x1="50.0" y1="25.0" x2="440.0" y2="25.0" stroke="var(--line)" stroke-width="1"/><line x1="50.0" y1="185.0" x2="440.0" y2="185.0" stroke="var(--ink-2)" stroke-width="1.2"/><line x1="50.0" y1="185.0" x2="50.0" y2="25.0" stroke="var(--ink-2)" stroke-width="1.2"/><text x="71.7" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">0.5</text><text x="180.0" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">1</text><text x="288.3" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">1.5</text><text x="396.7" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">2</text><text x="44.0" y="135.7" font-size="11" fill="var(--muted)" text-anchor="end">1</text><text x="44.0" y="82.3" font-size="11" fill="var(--muted)" text-anchor="end">2</text><text x="44.0" y="29.0" font-size="11" fill="var(--muted)" text-anchor="end">3</text><text x="440.0" y="215.0" font-size="11" fill="var(--muted)" text-anchor="end">V / V_md →</text><text x="56.0" y="29.0" font-size="11" fill="var(--muted)">D / D_min</text>
+          <line x1="50.0" y1="166.3" x2="396.7" y2="91.4" stroke="var(--caution-line)" stroke-width="1" opacity=".7"/>
+          <polyline points="50.0,180.7 52.2,180.5 54.3,180.3 56.5,180.1 58.7,179.8 60.8,179.6 63.0,179.4 65.2,179.1 67.3,178.9 69.5,178.6 71.7,178.3 73.8,178.1 76.0,177.8 78.2,177.5 80.3,177.2 82.5,176.9 84.7,176.6 86.8,176.3 89.0,176.0 91.2,175.7 93.3,175.4 95.5,175.1 97.7,174.7 99.8,174.4 102.0,174.1 104.2,173.7 106.3,173.4 108.5,173.0 110.7,172.7 112.8,172.3 115.0,171.9 117.2,171.6 119.3,171.2 121.5,170.8 123.7,170.4 125.8,170.0 128.0,169.6 130.2,169.2 132.3,168.8 134.5,168.4 136.7,167.9 138.8,167.5 141.0,167.1 143.2,166.6 145.3,166.2 147.5,165.7 149.7,165.3 151.8,164.8 154.0,164.3 156.2,163.9 158.3,163.4 160.5,162.9 162.7,162.4 164.8,161.9 167.0,161.4 169.2,160.9 171.3,160.4 173.5,159.9 175.7,159.4 177.8,158.9 180.0,158.3 182.2,157.8 184.3,157.3 186.5,156.7 188.7,156.2 190.8,155.6 193.0,155.0 195.2,154.5 197.3,153.9 199.5,153.3 201.7,152.7 203.8,152.1 206.0,151.5 208.2,150.9 210.3,150.3 212.5,149.7 214.7,149.1 216.8,148.5 219.0,147.9 221.2,147.2 223.3,146.6 225.5,146.0 227.7,145.3 229.8,144.7 232.0,144.0 234.2,143.3 236.3,142.7 238.5,142.0 240.7,141.3 242.8,140.6 245.0,139.9 247.2,139.2 249.3,138.5 251.5,137.8 253.7,137.1 255.8,136.4 258.0,135.7 260.2,134.9 262.3,134.2 264.5,133.5 266.7,132.7 268.8,132.0 271.0,131.2 273.2,130.5 275.3,129.7 277.5,128.9 279.7,128.2 281.8,127.4 284.0,126.6 286.2,125.8 288.3,125.0 290.5,124.2 292.7,123.4 294.8,122.6 297.0,121.8 299.2,120.9 301.3,120.1 303.5,119.3 305.7,118.4 307.8,117.6 310.0,116.7 312.2,115.9 314.3,115.0 316.5,114.1 318.7,113.3 320.8,112.4 323.0,111.5 325.2,110.6 327.3,109.7 329.5,108.8 331.7,107.9 333.8,107.0 336.0,106.1 338.2,105.2 340.3,104.3 342.5,103.3 344.7,102.4 346.8,101.5 349.0,100.5 351.2,99.6 353.3,98.6 355.5,97.6 357.7,96.7 359.8,95.7 362.0,94.7 364.2,93.7 366.3,92.7 368.5,91.7 370.7,90.7 372.8,89.7 375.0,88.7 377.2,87.7 379.3,86.7 381.5,85.7 383.7,84.6 385.8,83.6 388.0,82.6 390.2,81.5 392.3,80.5 394.5,79.4 396.7,78.3 398.8,77.3 401.0,76.2 403.2,75.1 405.3,74.0 407.5,72.9 409.7,71.8 411.8,70.7 414.0,69.6 416.2,68.5 418.3,67.4 420.5,66.3 422.7,65.1 424.8,64.0 427.0,62.9 429.2,61.7 431.3,60.6 433.5,59.4 435.7,58.3 437.8,57.1 440.0,55.9" fill="none" stroke="var(--caution-line)" stroke-width="2" stroke-dasharray="6 3"/>
+          <polyline points="52.2,26.4 54.3,33.8 56.5,40.8 58.7,47.3 60.8,53.3 63.0,59.0 65.2,64.3 67.3,69.3 69.5,73.9 71.7,78.3 73.8,82.5 76.0,86.4 78.2,90.1 80.3,93.6 82.5,96.8 84.7,100.0 86.8,102.9 89.0,105.7 91.2,108.4 93.3,110.9 95.5,113.3 97.7,115.6 99.8,117.8 102.0,119.9 104.2,121.9 106.3,123.8 108.5,125.6 110.7,127.3 112.8,129.0 115.0,130.6 117.2,132.1 119.3,133.6 121.5,135.0 123.7,136.3 125.8,137.6 128.0,138.8 130.2,140.0 132.3,141.2 134.5,142.3 136.7,143.3 138.8,144.4 141.0,145.3 143.2,146.3 145.3,147.2 147.5,148.1 149.7,148.9 151.8,149.8 154.0,150.6 156.2,151.3 158.3,152.1 160.5,152.8 162.7,153.5 164.8,154.2 167.0,154.8 169.2,155.5 171.3,156.1 173.5,156.7 175.7,157.2 177.8,157.8 180.0,158.3 182.2,158.9 184.3,159.4 186.5,159.9 188.7,160.3 190.8,160.8 193.0,161.3 195.2,161.7 197.3,162.1 199.5,162.6 201.7,163.0 203.8,163.4 206.0,163.7 208.2,164.1 210.3,164.5 212.5,164.8 214.7,165.2 216.8,165.5 219.0,165.8 221.2,166.2 223.3,166.5 225.5,166.8 227.7,167.1 229.8,167.4 232.0,167.7 234.2,167.9 236.3,168.2 238.5,168.5 240.7,168.7 242.8,169.0 245.0,169.2 247.2,169.5 249.3,169.7 251.5,169.9 253.7,170.1 255.8,170.4 258.0,170.6 260.2,170.8 262.3,171.0 264.5,171.2 266.7,171.4 268.8,171.6 271.0,171.8 273.2,172.0 275.3,172.1 277.5,172.3 279.7,172.5 281.8,172.7 284.0,172.8 286.2,173.0 288.3,173.1 290.5,173.3 292.7,173.5 294.8,173.6 297.0,173.8 299.2,173.9 301.3,174.0 303.5,174.2 305.7,174.3 307.8,174.5 310.0,174.6 312.2,174.7 314.3,174.8 316.5,175.0 318.7,175.1 320.8,175.2 323.0,175.3 325.2,175.4 327.3,175.6 329.5,175.7 331.7,175.8 333.8,175.9 336.0,176.0 338.2,176.1 340.3,176.2 342.5,176.3 344.7,176.4 346.8,176.5 349.0,176.6 351.2,176.7 353.3,176.8 355.5,176.9 357.7,176.9 359.8,177.0 362.0,177.1 364.2,177.2 366.3,177.3 368.5,177.4 370.7,177.5 372.8,177.5 375.0,177.6 377.2,177.7 379.3,177.8 381.5,177.8 383.7,177.9 385.8,178.0 388.0,178.1 390.2,178.1 392.3,178.2 394.5,178.3 396.7,178.3 398.8,178.4 401.0,178.5 403.2,178.5 405.3,178.6 407.5,178.7 409.7,178.7 411.8,178.8 414.0,178.8 416.2,178.9 418.3,179.0 420.5,179.0 422.7,179.1 424.8,179.1 427.0,179.2 429.2,179.2 431.3,179.3 433.5,179.3 435.7,179.4 437.8,179.4 440.0,179.5" fill="none" stroke="var(--green-arc)" stroke-width="2" stroke-dasharray="6 3"/>
+          <polyline points="54.3,29.1 56.5,35.8 58.7,42.1 60.8,47.9 63.0,53.3 65.2,58.4 67.3,63.1 69.5,67.5 71.7,71.7 73.8,75.5 76.0,79.2 78.2,82.6 80.3,85.8 82.5,88.8 84.7,91.6 86.8,94.3 89.0,96.8 91.2,99.1 93.3,101.3 95.5,103.4 97.7,105.4 99.8,107.2 102.0,109.0 104.2,110.6 106.3,112.2 108.5,113.6 110.7,115.0 112.8,116.3 115.0,117.5 117.2,118.7 119.3,119.7 121.5,120.7 123.7,121.7 125.8,122.6 128.0,123.4 130.2,124.2 132.3,124.9 134.5,125.6 136.7,126.3 138.8,126.9 141.0,127.4 143.2,127.9 145.3,128.4 147.5,128.8 149.7,129.2 151.8,129.6 154.0,129.9 156.2,130.2 158.3,130.5 160.5,130.7 162.7,130.9 164.8,131.1 167.0,131.3 169.2,131.4 171.3,131.5 173.5,131.6 175.7,131.6 177.8,131.7 180.0,131.7 182.2,131.7 184.3,131.6 186.5,131.6 188.7,131.5 190.8,131.4 193.0,131.3 195.2,131.2 197.3,131.0 199.5,130.9 201.7,130.7 203.8,130.5 206.0,130.3 208.2,130.1 210.3,129.8 212.5,129.6 214.7,129.3 216.8,129.0 219.0,128.7 221.2,128.4 223.3,128.1 225.5,127.7 227.7,127.4 229.8,127.0 232.0,126.7 234.2,126.3 236.3,125.9 238.5,125.5 240.7,125.0 242.8,124.6 245.0,124.2 247.2,123.7 249.3,123.2 251.5,122.8 253.7,122.3 255.8,121.8 258.0,121.3 260.2,120.7 262.3,120.2 264.5,119.7 266.7,119.1 268.8,118.6 271.0,118.0 273.2,117.4 275.3,116.8 277.5,116.3 279.7,115.6 281.8,115.0 284.0,114.4 286.2,113.8 288.3,113.1 290.5,112.5 292.7,111.8 294.8,111.2 297.0,110.5 299.2,109.8 301.3,109.1 303.5,108.5 305.7,107.7 307.8,107.0 310.0,106.3 312.2,105.6 314.3,104.9 316.5,104.1 318.7,103.4 320.8,102.6 323.0,101.8 325.2,101.1 327.3,100.3 329.5,99.5 331.7,98.7 333.8,97.9 336.0,97.1 338.2,96.3 340.3,95.5 342.5,94.6 344.7,93.8 346.8,92.9 349.0,92.1 351.2,91.2 353.3,90.4 355.5,89.5 357.7,88.6 359.8,87.7 362.0,86.8 364.2,85.9 366.3,85.0 368.5,84.1 370.7,83.2 372.8,82.3 375.0,81.3 377.2,80.4 379.3,79.5 381.5,78.5 383.7,77.6 385.8,76.6 388.0,75.6 390.2,74.6 392.3,73.7 394.5,72.7 396.7,71.7 398.8,70.7 401.0,69.7 403.2,68.6 405.3,67.6 407.5,66.6 409.7,65.6 411.8,64.5 414.0,63.5 416.2,62.4 418.3,61.4 420.5,60.3 422.7,59.2 424.8,58.1 427.0,57.1 429.2,56.0 431.3,54.9 433.5,53.8 435.7,52.7 437.8,51.5 440.0,50.4" fill="none" stroke="var(--brand)" stroke-width="3"/>
+          <line x1="128.0" y1="123.4" x2="128.0" y2="185.0" stroke="var(--green-arc)" stroke-width="1" stroke-dasharray="4 3"/><circle cx="128.0" cy="123.4" r="4" fill="var(--green-arc)"/><line x1="180.0" y1="131.7" x2="180.0" y2="185.0" stroke="var(--brand)" stroke-width="1" stroke-dasharray="4 3"/><circle cx="180.0" cy="131.7" r="4" fill="var(--brand)"/><line x1="248.5" y1="123.4" x2="248.5" y2="185.0" stroke="var(--caution-line)" stroke-width="1" stroke-dasharray="4 3"/><circle cx="248.5" cy="123.4" r="4" fill="var(--caution-line)"/>
+          <text x="407.5" y="59.7" font-size="11" font-weight="700" fill="var(--caution-line)" text-anchor="end">parasite ∝ V²</text>
+          <text x="65.2" y="49.0" font-size="11" font-weight="700" fill="var(--green-arc)">induced ∝ 1/V²</text>
+          <text x="180.0" y="121.7" font-size="11" font-weight="700" fill="var(--brand)" text-anchor="middle">total</text>
+          <text x="128.0" y="227.0" font-size="10.5" font-weight="700" fill="var(--green-arc)" text-anchor="middle">V_mp</text>
+          <text x="180.0" y="227.0" font-size="10.5" font-weight="700" fill="var(--brand)" text-anchor="middle">V_md</text>
+          <text x="248.5" y="227.0" font-size="10.5" font-weight="700" fill="var(--caution-line)" text-anchor="middle">1.32 V_md</text>
+        </svg>
+        <div class="cap">At V<sub>md</sub> the two components are equal; the line from the origin is tangent at 1.32 V<sub>md</sub> (maximum V/D)</div>
+      </div>
+      <div class="table-wrap">
+      <table>
+        <caption>Worked polar: W = 600 kN, S = 120 m², C<sub>D0</sub> = 0.020, A = 9, e = 0.8</caption>
+        <thead><tr><th>Quantity</th><th class="num">Value</th></tr></thead>
+        <tbody>
+          <tr><td>k</td><td class="num">0.0442</td></tr>
+          <tr><td>C<sub>L,md</sub></td><td class="num">0.673</td></tr>
+          <tr><td>(L/D)<sub>max</sub></td><td class="num">16.8</td></tr>
+          <tr><td>D<sub>min</sub></td><td class="num">35.7 kN</td></tr>
+          <tr><td>V<sub>md</sub> (EAS)</td><td class="num">214 kt</td></tr>
+          <tr><td>V<sub>mp</sub> = 0.760 V<sub>md</sub></td><td class="num">163 kt</td></tr>
+          <tr><td>1.316 V<sub>md</sub></td><td class="num">282 kt</td></tr>
         </tbody>
       </table>
       </div>
 
-      <h3 class="sub">The total drag curve <span class="ref">3.2</span></h3>
+      <h3 class="sub">Three characteristic conditions <span class="ref">3.3</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Maximised</th><th>C<sub>L</sub></th><th>V/V<sub>md</sub></th><th>D<sub>i</sub> : D₀</th><th>L/D</th><th>D/D<sub>min</sub></th></tr></thead>
+        <tbody>
+          <tr><td>C<sub>L</sub><sup>1.5</sup>/C<sub>D</sub> (minimum power)</td><td>√3·C<sub>L,md</sub></td><td class="num">0.760</td><td class="num">3 : 1</td><td class="num">0.866 max</td><td class="num">1.155</td></tr>
+          <tr><td>C<sub>L</sub>/C<sub>D</sub> (minimum drag)</td><td>C<sub>L,md</sub></td><td class="num">1.000</td><td class="num">1 : 1</td><td class="num">max</td><td class="num">1.000</td></tr>
+          <tr><td>√C<sub>L</sub>/C<sub>D</sub> (maximum V/D)</td><td>C<sub>L,md</sub>/√3</td><td class="num">1.316</td><td class="num">1 : 3</td><td class="num">0.866 max</td><td class="num">1.155</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Off-optimum drag: 0.8 V<sub>md</sub> → 1.10 D<sub>min</sub>; 1.5 V<sub>md</sub> → 1.35; 2 V<sub>md</sub> → 2.13 (94 % parasite).</p>
+
+      <h3 class="sub">Power required <span class="ref">3.4</span></h3>
+      <div class="eq">P<sub>r</sub> = D·V<sub>T</sub> &nbsp;&nbsp;&nbsp; P/(D<sub>min</sub>·V<sub>md</sub>) = ½[(V/V<sub>md</sub>)³ + V<sub>md</sub>/V]</div>
       <div class="diagram">
-        <svg viewBox="0 0 460 220" role="img" aria-label="Total drag curve showing induced drag, parasite drag, and their sum with a minimum at L over D max">
-          <line x1="40" y1="190" x2="440" y2="190" stroke="var(--ink-2)" stroke-width="1.5"/>
-          <line x1="40" y1="190" x2="40" y2="20" stroke="var(--ink-2)" stroke-width="1.5"/>
-          <text x="240" y="212" text-anchor="middle" font-size="12" fill="var(--muted)">Airspeed →</text>
-          <text x="18" y="110" text-anchor="middle" font-size="12" fill="var(--muted)" transform="rotate(-90 18 110)">Drag →</text>
-          <path d="M 55 40 C 130 90, 200 150, 420 185" fill="none" stroke="var(--caution-line)" stroke-width="2.5"/>
-          <path d="M 55 185 C 150 180, 300 120, 420 40" fill="none" stroke="var(--green-arc)" stroke-width="2.5"/>
-          <path d="M 55 70 C 140 55, 230 95, 420 165" fill="none" stroke="var(--brand)" stroke-width="3"/>
-          <circle cx="225" cy="93" r="4.5" fill="var(--brand)"/>
-          <line x1="225" y1="93" x2="225" y2="190" stroke="var(--brand)" stroke-width="1" stroke-dasharray="4 3"/>
-          <text x="225" y="205" text-anchor="middle" font-size="11" font-weight="700" fill="var(--brand)">L/D max</text>
-          <text x="70" y="55" font-size="11" fill="var(--caution-line)" font-weight="700">Induced</text>
-          <text x="330" y="70" font-size="11" fill="var(--green-arc)" font-weight="700">Parasite</text>
-          <text x="330" y="150" font-size="11" fill="var(--brand)" font-weight="700">Total</text>
+        <svg viewBox="0 0 460 250" role="img" aria-label="Power required against speed: minimum at the minimum-power speed; tangent from the origin touches at the minimum-drag speed">
+          <line x1="50.0" y1="153.0" x2="440.0" y2="153.0" stroke="var(--line)" stroke-width="1"/><line x1="50.0" y1="121.0" x2="440.0" y2="121.0" stroke="var(--line)" stroke-width="1"/><line x1="50.0" y1="89.0" x2="440.0" y2="89.0" stroke="var(--line)" stroke-width="1"/><line x1="50.0" y1="57.0" x2="440.0" y2="57.0" stroke="var(--line)" stroke-width="1"/><line x1="50.0" y1="25.0" x2="440.0" y2="25.0" stroke="var(--line)" stroke-width="1"/><line x1="50.0" y1="185.0" x2="440.0" y2="185.0" stroke="var(--ink-2)" stroke-width="1.2"/><line x1="50.0" y1="185.0" x2="50.0" y2="25.0" stroke="var(--ink-2)" stroke-width="1.2"/><text x="71.7" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">0.5</text><text x="180.0" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">1</text><text x="288.3" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">1.5</text><text x="396.7" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">2</text><text x="44.0" y="157.0" font-size="11" fill="var(--muted)" text-anchor="end">1</text><text x="44.0" y="125.0" font-size="11" fill="var(--muted)" text-anchor="end">2</text><text x="44.0" y="93.0" font-size="11" fill="var(--muted)" text-anchor="end">3</text><text x="44.0" y="61.0" font-size="11" fill="var(--muted)" text-anchor="end">4</text><text x="44.0" y="29.0" font-size="11" fill="var(--muted)" text-anchor="end">5</text><text x="440.0" y="215.0" font-size="11" fill="var(--muted)" text-anchor="end">V / V_md →</text><text x="56.0" y="29.0" font-size="11" fill="var(--muted)">P / (D_min·V_md)</text>
+          <line x1="50.0" y1="172.2" x2="396.7" y2="121.0" stroke="var(--brand)" stroke-width="1" opacity=".7"/>
+          <polyline points="50.0,144.0 52.2,144.9 54.3,145.7 56.5,146.5 58.7,147.3 60.8,148.0 63.0,148.7 65.2,149.3 67.3,149.9 69.5,150.5 71.7,151.0 73.8,151.5 76.0,152.0 78.2,152.4 80.3,152.9 82.5,153.2 84.7,153.6 86.8,154.0 89.0,154.3 91.2,154.6 93.3,154.9 95.5,155.1 97.7,155.4 99.8,155.6 102.0,155.8 104.2,156.0 106.3,156.2 108.5,156.3 110.7,156.4 112.8,156.6 115.0,156.7 117.2,156.7 119.3,156.8 121.5,156.9 123.7,156.9 125.8,156.9 128.0,156.9 130.2,156.9 132.3,156.9 134.5,156.9 136.7,156.8 138.8,156.7 141.0,156.7 143.2,156.6 145.3,156.5 147.5,156.4 149.7,156.2 151.8,156.1 154.0,155.9 156.2,155.7 158.3,155.6 160.5,155.4 162.7,155.1 164.8,154.9 167.0,154.7 169.2,154.4 171.3,154.2 173.5,153.9 175.7,153.6 177.8,153.3 180.0,153.0 182.2,152.7 184.3,152.3 186.5,152.0 188.7,151.6 190.8,151.2 193.0,150.8 195.2,150.4 197.3,150.0 199.5,149.6 201.7,149.2 203.8,148.7 206.0,148.2 208.2,147.8 210.3,147.3 212.5,146.8 214.7,146.2 216.8,145.7 219.0,145.2 221.2,144.6 223.3,144.0 225.5,143.4 227.7,142.8 229.8,142.2 232.0,141.6 234.2,140.9 236.3,140.3 238.5,139.6 240.7,138.9 242.8,138.2 245.0,137.5 247.2,136.8 249.3,136.1 251.5,135.3 253.7,134.6 255.8,133.8 258.0,133.0 260.2,132.2 262.3,131.4 264.5,130.5 266.7,129.7 268.8,128.8 271.0,127.9 273.2,127.0 275.3,126.1 277.5,125.2 279.7,124.2 281.8,123.3 284.0,122.3 286.2,121.3 288.3,120.3 290.5,119.3 292.7,118.3 294.8,117.2 297.0,116.2 299.2,115.1 301.3,114.0 303.5,112.9 305.7,111.8 307.8,110.6 310.0,109.5 312.2,108.3 314.3,107.1 316.5,105.9 318.7,104.7 320.8,103.4 323.0,102.2 325.2,100.9 327.3,99.6 329.5,98.3 331.7,97.0 333.8,95.6 336.0,94.3 338.2,92.9 340.3,91.5 342.5,90.1 344.7,88.7 346.8,87.2 349.0,85.8 351.2,84.3 353.3,82.8 355.5,81.3 357.7,79.8 359.8,78.2 362.0,76.6 364.2,75.0 366.3,73.4 368.5,71.8 370.7,70.2 372.8,68.5 375.0,66.8 377.2,65.1 379.3,63.4 381.5,61.7 383.7,59.9 385.8,58.2 388.0,56.4 390.2,54.6 392.3,52.7 394.5,50.9 396.7,49.0 398.8,47.1 401.0,45.2 403.2,43.3 405.3,41.3 407.5,39.4 409.7,37.4 411.8,35.4 414.0,33.3 416.2,31.3 418.3,29.2 420.5,27.1 422.7,25.0" fill="none" stroke="var(--brand)" stroke-width="3"/>
+          <circle cx="128.0" cy="156.9" r="4" fill="var(--green-arc)"/>
+          <circle cx="180.0" cy="153.0" r="4" fill="var(--brand)"/>
+          <text x="119.3" y="137.0" font-size="11" font-weight="700" fill="var(--green-arc)" text-anchor="end">V_mp: P = 0.877</text>
+          <text x="184.3" y="173.8" font-size="11" font-weight="700" fill="var(--brand)">V_md: tangent from origin, P/V = D_min</text>
         </svg>
-        <div class="cap">Total drag's minimum is the point of maximum lift-to-drag ratio — the best glide speed</div>
+        <div class="cap">Minimum power at 0.76 V<sub>md</sub>; P at V<sub>md</sub> is 14 % above P<sub>min</sub></div>
+      </div>
+
+      <h3 class="sub">Range and endurance <span class="ref">3.5</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Powerplant</th><th>Fuel flow ∝</th><th>Max endurance</th><th>Max range (still air, constant altitude)</th></tr></thead>
+        <tbody>
+          <tr><td>Jet (TSFC ≈ const)</td><td>Thrust = D</td><td>V<sub>md</sub></td><td>1.32 V<sub>md</sub> (max V/D)</td></tr>
+          <tr><td>Propeller (η, PSFC ≈ const)</td><td>Power = D·V</td><td>V<sub>mp</sub></td><td>V<sub>md</sub> (max L/D)</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="eq">SAR = V<sub>T</sub>/FF &nbsp;&nbsp;&nbsp; SGR = (V<sub>T</sub> − V<sub>w</sub>)/FF</div>
+      <ul>
+        <li>Headwind: optimum speed higher; tailwind: lower (tangent drawn from the wind-speed point on the speed axis).</li>
+        <li>Jet at constant EAS: D and FF unchanged with altitude, V<sub>T</sub> ×1/√σ → SAR ×1/√σ (σ = 0.374 → ×1.64), until compressibility and engine limits intervene.</li>
+        <li>Optimum speed ∝ √W: it falls as fuel burns. Constant C<sub>L</sub> and TAS require σ ∝ W — cruise-climb.</li>
+      </ul>
+
+      <h3 class="sub">Weight, altitude and configuration <span class="ref">3.6</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Change</th><th>V<sub>md</sub></th><th>D<sub>min</sub></th><th>(L/D)<sub>max</sub></th><th>Drag curve</th></tr></thead>
+        <tbody>
+          <tr><td>W ×1.21</td><td>×1.10</td><td>×1.21</td><td>unchanged</td><td>up, right</td></tr>
+          <tr><td>Altitude (σ), vs TAS</td><td>EAS same; TAS ×1/√σ</td><td>unchanged</td><td>unchanged</td><td>right</td></tr>
+          <tr><td>C<sub>D0</sub> ×1.16 (gear)</td><td>×0.96</td><td>×1.08</td><td>×0.93</td><td>up, left</td></tr>
+          <tr><td>A 8 → 12</td><td>×0.90</td><td>×0.82</td><td>×1.22</td><td>down, left</td></tr>
+          <tr><td>e 0.80 → 0.88</td><td>×0.98</td><td>×0.95</td><td>×1.05</td><td>down</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <ul>
+        <li>P<sub>min</sub> ∝ W<sup>1.5</sup>/√σ: W ×1.21 → ×1.33; σ = 0.374 → ×1.64.</li>
+        <li>Same TAS at altitude: D₀ ×σ, D<sub>i</sub> ×1/σ. Same EAS: total drag unchanged.</li>
+        <li>Turn at constant EAS, V<sub>md</sub>, 60° bank: D₀ = ½D<sub>min</sub>, D<sub>i</sub> ×4 = 2D<sub>min</sub> → 2.5 D<sub>min</sub>.</li>
+      </ul>
+
+      <h3 class="sub">Climb, glide, ceiling <span class="ref">3.7</span></h3>
+      <div class="eq">sin γ = (T − D)/W &nbsp;&nbsp;&nbsp; ROC = (T − D)·V/W &nbsp;&nbsp;&nbsp; glide: tan γ = D/L, sink = V/(L/D)</div>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Optimum</th><th>Jet</th><th>Propeller</th></tr></thead>
+        <tbody>
+          <tr><td>Steepest climb (V<sub>x</sub>)</td><td>V<sub>md</sub></td><td>below V<sub>md</sub> (thrust rises as V falls)</td></tr>
+          <tr><td>Fastest climb (V<sub>y</sub>)</td><td>above V<sub>md</sub></td><td>near V<sub>mp</sub></td></tr>
+          <tr><td>Longest glide</td><td colspan="2">V<sub>md</sub>; higher into a headwind</td></tr>
+          <tr><td>Minimum sink</td><td colspan="2">V<sub>mp</sub></td></tr>
+        </tbody>
+      </table>
       </div>
       <p>
-        <strong>Power required</strong> (thrust required × velocity) has its
-        own minimum at a <em>lower</em> speed than minimum drag — the
-        difference between best-range and best-endurance speeds. A heavier
-        aircraft's minimum-drag speed is higher, since more speed is needed
-        to hold the same angle of attack.
+        Worked polar, T = 80 kN at V<sub>md</sub>: sin γ = 44.3/600 → γ = 4.2°,
+        ROC = 1,600 ft/min. Glide from 10,000 ft at (L/D)<sub>max</sub> 16.8:
+        27.6 nm; sink 6.6 m/s at V<sub>md</sub>, 5.7 m/s at V<sub>mp</sub>.
+        Absolute ceiling: maximum excess power = 0, a single speed for level
+        flight. Maximum level speed falls with weight (D<sub>i</sub> ∝ W²).
       </p>
 
-      <h3 class="sub">Wingtip vortices, aspect ratio, ground effect <span class="ref">3.3</span></h3>
+      <h3 class="sub">Speed stability <span class="ref">3.8</span></h3>
       <p>
-        Higher-pressure air beneath the wing spills around the tip,
-        producing the trailing vortex that is induced drag's physical
-        source. A higher <strong>aspect ratio</strong> or a
-        <strong>winglet</strong> weakens this effect; flying within about
-        one wingspan of the ground restricts it too — <strong>ground
-        effect</strong> — which is why an aircraft can float during flare.
+        dD/dV &gt; 0 above V<sub>md</sub>: a speed loss reduces drag and the
+        aircraft re-accelerates. dD/dV &lt; 0 below V<sub>md</sub>: a speed loss
+        raises drag and the deceleration diverges — the region of reversed
+        command, where holding altitude at lower speed requires more thrust.
       </p>
 
-      <div class="related"><span class="dot"></span> Related questions: <strong>38</strong> in this topic</div>
+      <h3 class="sub">Span effects: winglets, ground effect, trim, vortices <span class="ref">3.9</span></h3>
+      <div class="eq">φ = (16h/b)² / (1 + (16h/b)²) &nbsp;&nbsp;&nbsp; Γ<sub>wake</sub> ∝ W/(ρ·V·b)</div>
+      <ul>
+        <li>Elliptical loading gives uniform downwash and minimum D<sub>i</sub> for a given span; e &lt; 1 otherwise.</li>
+        <li>Winglets raise effective e (0.80 → 0.88: (L/D)<sub>max</sub> +4.9 %).</li>
+        <li>Ground effect: h = 0.1b → D<sub>i</sub> −28 %; 0.25b → −6 %; 0.5b → −1.5 %. Lift rises at constant attitude; float in the flare; tail download falls, nose-down pitch.</li>
+        <li>Trim: download P → L<sub>wing</sub> = W + P; 3 % download → D<sub>i</sub> ×1.06. Aft CG reduces download and trim drag.</li>
+        <li>Wake vortices rotate up outboard, down inboard, and descend. Heavy, slow, clean → strongest: W ×1.2, V ×0.9 → Γ ×1.33.</li>
+        <li>Sideslip raises drag: fuselage side force, associated induced and separation drag.</li>
+      </ul>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>75</strong> in this topic</div>
     </section>
 
     <!-- ============================================================ -->
