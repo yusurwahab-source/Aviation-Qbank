@@ -350,84 +350,78 @@ of it has been checked against a specific state's AIP or training syllabus.
 ## The POF bank (Flying Knowledge)
 
 The subject is **Principles of Flight**, the second subject in Flying
-Knowledge, added the same content-only way IFR was. 969 questions across
-fifteen topics today, all published: Basic Aerodynamics (65), Aerofoils and
-Lift Theory (65), Lift and Drag (75), Boundary Layer (55), Stalling (85),
-High-Lift Devices (60), Flight Controls: Primary (70), Flight Controls:
-Secondary and Trim (45), Longitudinal Stability (70), Lateral and
-Directional Stability (70), High-Speed Flight: Compressibility (70),
-High-Speed Flight: Shockwaves and Buffet (65), Propellers (80), Aeroplane
-Loads and Limitations (70), and Windshear and Atmospheric Effects (24).
+Knowledge, added the same content-only way IFR was. 1,000 questions across
+fifteen topics, all published.
 
-### Being rebuilt toward 1,000, one or two sections at a time
+### Rebuilt to 1,000, one section at a time
 
-At the owner's request the bank and its guide are being rewritten section by
+At the owner's request the bank and its guide were rewritten section by
 section into an analytical, equation-led form, with compound, computational
 questions that need more than one variable to be reasoned about rather than
-a definition to be recalled. The target is 1,000 questions:
+a definition to be recalled. Each section shipped as its own pull request.
 
-| # | Topic | Id prefix | Target | Now |
+| # | Topic | File | Id range | Questions |
 |---|---|---|---|---|
-| 01 | Basic Aerodynamics | `AERO` | 65 | **65 (rebuilt)** |
-| 02 | Aerofoils and Lift Theory | `AFOIL` | 65 | **65 (rebuilt)** |
-| 03 | Lift and Drag | `LIFT` | 75 | **75 (rebuilt)** |
-| 04 | Boundary Layer | `BL` | 55 | **55 (rebuilt)** |
-| 05 | Stalling | `STALL` | 85 | **85 (rebuilt)** |
-| 06 | High-Lift Devices | `HLD` | 60 | **60 (rebuilt)** |
-| 07 | Flight Controls: Primary | `CTRL` | 70 | **70 (rebuilt)** |
-| 08 | Flight Controls: Secondary and Trim | `TRIM` | 45 | **45 (rebuilt)** |
-| 09 | Longitudinal Stability | `STABL` | 70 | **70 (rebuilt)** |
-| 10 | Lateral and Directional Stability | `STABLD` | 70 | **70 (rebuilt)** |
-| 11 | High-Speed Flight: Compressibility | `MACH` | 70 | **70 (rebuilt)** |
-| 12 | High-Speed Flight: Shockwaves and Buffet | `SHOCK` | 65 | **65 (rebuilt)** |
-| 13 | Propellers | `PROP` | 80 | **80 (rebuilt)** |
-| 14 | Aeroplane Loads and Limitations | `LOAD` | 70 | **70 (rebuilt)** |
-| 15 | Windshear and Atmospheric Effects | `WSHR` | 55 | 24 |
-| | | | **1,000** | **969** |
+| 01 | Basic Aerodynamics | `basic-aerodynamics.json` | `POF-AERO-0036`–`0100` | 65 |
+| 02 | Aerofoils and Lift Theory | `aerofoils-and-lift-theory.json` | `POF-AFOIL-0033`–`0097` | 65 |
+| 03 | Lift and Drag | `lift-and-drag.json` | `POF-LIFT-0039`–`0113` | 75 |
+| 04 | Boundary Layer | `boundary-layer.json` | `POF-BL-0029`–`0083` | 55 |
+| 05 | Stalling | `stalling.json` | `POF-STALL-0043`–`0127` | 85 |
+| 06 | High-Lift Devices | `high-lift-devices.json` | `POF-HLD-0031`–`0090` | 60 |
+| 07 | Flight Controls: Primary | `flight-controls-primary.json` | `POF-CTRL-0039`–`0108` | 70 |
+| 08 | Flight Controls: Secondary and Trim | `flight-controls-secondary.json` | `POF-TRIM-0025`–`0069` | 45 |
+| 09 | Longitudinal Stability | `stability-longitudinal.json` | `POF-STABL-0035`–`0104` | 70 |
+| 10 | Lateral and Directional Stability | `stability-lateral-directional.json` | `POF-STABLD-0035`–`0104` | 70 |
+| 11 | High-Speed Flight: Compressibility | `high-speed-compressibility.json` | `POF-MACH-0035`–`0104` | 70 |
+| 12 | High-Speed Flight: Shockwaves and Buffet | `high-speed-shockwaves.json` | `POF-SHOCK-0035`–`0099` | 65 |
+| 13 | Propellers | `propellers.json` | `POF-PROP-0041`–`0120` | 80 |
+| 14 | Aeroplane Loads and Limitations | `loads-and-limitations.json` | `POF-LOAD-0035`–`0104` | 70 |
+| 15 | Windshear and Atmospheric Effects | `windshear-and-atmospheric-effects.json` | `POF-WSHR-0025`–`0079` | 55 |
+| | | | | **1,000** |
 
-A rebuilt section **replaces** its file rather than adding to it, and its
-new questions take **new ids** that continue after the old ones
-(`POF-AERO-0036` onward, `POF-AFOIL-0033` onward, `POF-LIFT-0039` onward, `POF-BL-0029` onward, `POF-STALL-0043` onward, `POF-HLD-0031` onward, `POF-CTRL-0039` onward, `POF-TRIM-0025` onward, `POF-STABL-0035` onward, `POF-STABLD-0035` onward, `POF-MACH-0035` onward, `POF-SHOCK-0035` onward, `POF-PROP-0041` onward, `POF-LOAD-0035` onward). The retired ids are never
-reused for a different question: `attempts` keeps history by question id
-with no foreign key, so a reused id would silently attach an old answer to a
-new question. `db:seed` deletes the retired rows; the history survives.
+Each rebuilt section **replaced** its file rather than adding to it, and its
+questions took **new ids** continuing after the old ones. The retired ids
+(the first-generation 501 questions) are never reused for a different
+question: `attempts` keeps history by question id with no foreign key, so a
+reused id would silently attach an old answer to a new question. `db:seed`
+deleted the retired rows; the history survives. A future edit to a question
+keeps its id and increments `version`; a replacement question takes the next
+free number in its prefix.
 
-The correct letter in a rebuilt file is spread by a deterministic shuffle,
-not by hand: keyed on each question's id for sections 01–02, and from
-section 03 onward a balanced assignment (each letter within one of a
-quarter of the file), with the wrong options still shuffled per id.
+The correct letter is spread by a deterministic shuffle, not by hand: keyed
+on each question's id for sections 01–02, and from section 03 onward a
+balanced assignment (each letter within one of a quarter of the file), with
+the wrong options still shuffled per id.
 
 ### What the student sees never names a source
 
-The rebuilt guide sections and questions are phrased as plain aerodynamic
-statements: no book, school, regulator, question bank or syllabus
-abbreviation appears anywhere a student can read, at the owner's
-instruction. The guide's former "About this guide" callout was removed for
-that reason.
+The guide and questions are phrased as plain aerodynamic statements: no
+book, school, regulator, question bank or syllabus abbreviation appears
+anywhere a student can read, at the owner's instruction. The guide's former
+"About this guide" callout was removed for that reason.
 
 That rule is about user-facing text only. The honest record stays here:
 **every question was authored by the assistant — not transcribed from any
 textbook, syllabus or question bank, including the Principles of Flight
 book the owner pointed at, and not checked against one.** The figures are
 standard aerodynamic relations and standard-atmosphere values, computed
-rather than copied, and every numeric answer in the rebuilt sections was
-recomputed when it was written. It should still be reviewed by a qualified
-instructor before a student relies on it for a real exam — the same caution
-given to the IFR bank and the DA40's unsourced topics above.
+rather than copied, and every numeric answer was recomputed when it was
+written. Where a figure is a typical value rather than a law (limit load
+factors, buffet margins, hazard thresholds), it is stated as typical. It
+should still be reviewed by a qualified instructor before a student relies
+on it for a real exam — the same caution given to the IFR bank and the
+DA40's unsourced topics above.
 
 `public/pof-study-guide.html` is this bank's study guide (see
 `lib/study-guide.ts`): fifteen numbered sections matching the fifteen
-topics. Sections 01–14 are in the rebuilt form — governing equations,
-tables of computed values, and inline SVG graphs computed from the
-equations they illustrate (chordwise pressure distribution, lift curves by
-aspect ratio, drag and power-required curves, boundary-layer velocity
-profiles, stall speed against bank angle, lift curves by high-lift configuration,
-roll rate against speed up to aileron reversal, stick force against
-speed about two trim speeds, Cm against CL for four static margins, and a
-lateral–directional balance schematic, critical Mach number from the
-sonic pressure coefficient, normal-shock relations, blade angle of attack against
-speed, the V–n diagram); section 15 keeps its
-earlier prose until it is rebuilt.
+topics, each giving its governing equations, tables of computed values and
+one or two inline SVG graphs. Every graph is drawn from the equation it
+illustrates (for example the drag and power curves, the critical-Mach
+construction, the normal-shock relations and the V–n diagram), except the
+lateral–directional balance chart, which is labelled as a schematic, and
+the microburst profile, which is labelled as a model. All graphs use the
+page's colour tokens, so they work in both themes, and the page has been
+checked at 375px for horizontal overflow.
 
 ## The B737 bank
 
