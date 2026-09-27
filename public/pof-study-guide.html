@@ -265,7 +265,7 @@
       <li><a href="#hld"><span class="n">06</span> High-Lift Devices <span class="count">60</span></a></li>
       <li><a href="#ctrl"><span class="n">07</span> Flight Controls: Primary <span class="count">70</span></a></li>
       <li><a href="#trim"><span class="n">08</span> Secondary Controls &amp; Trim <span class="count">45</span></a></li>
-      <li><a href="#stabl"><span class="n">09</span> Longitudinal Stability <span class="count">34</span></a></li>
+      <li><a href="#stabl"><span class="n">09</span> Longitudinal Stability <span class="count">70</span></a></li>
       <li><a href="#stabld"><span class="n">10</span> Lateral &amp; Directional Stability <span class="count">34</span></a></li>
       <li><a href="#mach"><span class="n">11</span> High-Speed: Compressibility <span class="count">34</span></a></li>
       <li><a href="#shock"><span class="n">12</span> High-Speed: Shockwaves &amp; Buffet <span class="count">34</span></a></li>
@@ -286,7 +286,7 @@
       </p>
       <div class="tags">
         <span class="tag">15 sections</span>
-        <span class="tag">754 linked questions</span>
+        <span class="tag">790 linked questions</span>
         <span class="tag">Equations · graphs · proportionalities</span>
         <span class="tag">Aircraft-independent</span>
       </div>
@@ -1433,31 +1433,108 @@
     <!-- 09 LONGITUDINAL STABILITY -->
     <!-- ============================================================ -->
     <section class="sec" id="stabl">
-      <h2><span class="num">09</span> Longitudinal Stability <span class="en">Pitch</span></h2>
-      <p class="lead">Static stability is the initial tendency after a disturbance; dynamic stability is what happens next.</p>
-
-      <h3 class="sub">CG, neutral point, static margin <span class="ref">9.1</span></h3>
-      <p>
-        Moving the CG aft shortens the tailplane's moment arm, reducing
-        stability, until it reaches the <strong>neutral point</strong> —
-        zero stability — beyond which the aircraft is unstable in pitch.
-        <strong>Static margin</strong> is the CG-to-neutral-point distance,
-        as a percentage of mean aerodynamic chord.
+      <h2><span class="num">09</span> Longitudinal Stability <span class="en">Pitch Stability</span></h2>
+      <p class="lead">
+        Static stability is the sign of the restoring moment after a
+        disturbance; dynamic stability is whether the ensuing motion decays.
+        In pitch, both are set by the CG position relative to the neutral
+        point, by the tail's lift slope, arm and downwash, and by damping.
       </p>
 
-      <h3 class="sub">Phugoid vs short-period <span class="ref">9.2</span></h3>
-      <p>
-        The <strong>phugoid</strong> is a slow, tens-of-seconds trade
-        between speed and height at constant angle of attack. The
-        <strong>short-period</strong> mode is a fast, heavily damped
-        oscillation in angle of attack at constant speed. A tailplane
-        download in trimmed flight balances the wing's own nose-down
-        pitching moment; setting the tailplane at a slightly lower
-        incidence than the wing ("longitudinal dihedral") helps ensure the
-        wing stalls before the tailplane does.
-      </p>
+      <h3 class="sub">Criterion and trim <span class="ref">9.1</span></h3>
+      <div class="eq">C<sub>m</sub> = C<sub>m0</sub> + (dC<sub>m</sub>/dC<sub>L</sub>)·C<sub>L</sub> &nbsp;&nbsp;&nbsp; dC<sub>m</sub>/dC<sub>L</sub> = h − h<sub>n</sub> &lt; 0 &nbsp;&nbsp;&nbsp; C<sub>L,trim</sub> = C<sub>m0</sub>/(h<sub>n</sub> − h)</div>
+      <div class="diagram">
+        <svg viewBox="0 0 460 255" role="img" aria-label="Pitching-moment coefficient about the CG against lift coefficient for four static margins with Cm0 of 0.05: negative slopes trim at positive CL, zero slope is neutral, positive slope is unstable">
+          <line x1="60.0" y1="185.0" x2="430.0" y2="185.0" stroke="var(--line)" stroke-width="1"/><line x1="60.0" y1="145.0" x2="430.0" y2="145.0" stroke="var(--line)" stroke-width="1"/><line x1="60.0" y1="65.0" x2="430.0" y2="65.0" stroke="var(--line)" stroke-width="1"/><line x1="60.0" y1="25.0" x2="430.0" y2="25.0" stroke="var(--line)" stroke-width="1"/>
+          <line x1="60.0" y1="105.0" x2="430.0" y2="105.0" stroke="var(--ink-2)" stroke-width="1.2"/>
+          <line x1="60.0" y1="185.0" x2="60.0" y2="25.0" stroke="var(--ink-2)" stroke-width="1.2"/>
+          <text x="60.0" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">0</text><text x="183.3" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">0.4</text><text x="306.7" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">0.8</text><text x="430.0" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">1.2</text><text x="54.0" y="189.0" font-size="11" fill="var(--muted)" text-anchor="end">-0.10</text><text x="54.0" y="149.0" font-size="11" fill="var(--muted)" text-anchor="end">-0.05</text><text x="54.0" y="69.0" font-size="11" fill="var(--muted)" text-anchor="end">+0.05</text><text x="54.0" y="29.0" font-size="11" fill="var(--muted)" text-anchor="end">+0.10</text>
+          <text x="54.0" y="109.0" font-size="11" fill="var(--muted)" text-anchor="end">0</text>
+          <text x="66.0" y="21.0" font-size="11" fill="var(--muted)">Cm (nose-up +)</text>
+          <text x="430.0" y="215.0" font-size="11" fill="var(--muted)" text-anchor="end">CL →</text>
+          <line x1="60.0" y1="65.0" x2="430.0" y2="161.0" stroke="var(--brand)" stroke-width="2.5"/><circle cx="214.2" cy="105.0" r="4" fill="var(--brand)"/><line x1="60.0" y1="65.0" x2="430.0" y2="113.0" stroke="var(--green-arc)" stroke-width="2.5"/><circle cx="368.3" cy="105.0" r="4" fill="var(--green-arc)"/><line x1="60.0" y1="65.0" x2="430.0" y2="65.0" stroke="var(--caution-line)" stroke-width="2.5"/><line x1="60.0" y1="65.0" x2="368.3" y2="25.0" stroke="var(--warn-line)" stroke-width="2.5"/>
+          <line x1="20" y1="225" x2="38" y2="225" stroke="var(--brand)" stroke-width="2.5"/><text x="44" y="229" font-size="11" font-weight="700" fill="var(--brand)">SM 0.10 — trim CL 0.5</text><line x1="240" y1="225" x2="258" y2="225" stroke="var(--green-arc)" stroke-width="2.5"/><text x="264" y="229" font-size="11" font-weight="700" fill="var(--green-arc)">SM 0.05 — trim CL 1.0</text><line x1="20" y1="241" x2="38" y2="241" stroke="var(--caution-line)" stroke-width="2.5"/><text x="44" y="245" font-size="11" font-weight="700" fill="var(--caution-line)">SM 0 — neutral</text><line x1="240" y1="241" x2="258" y2="241" stroke="var(--warn-line)" stroke-width="2.5"/><text x="264" y="245" font-size="11" font-weight="700" fill="var(--warn-line)">SM −0.05 — unstable</text>
+        </svg>
+        <div class="cap">C<sub>m0</sub> = 0.05: a negative slope with positive intercept gives a stable trim at positive C<sub>L</sub></div>
+      </div>
+      <ul>
+        <li>Stable and trimmable: negative slope, C<sub>m0</sub> &gt; 0. Neutral: slope 0. Unstable: slope &gt; 0 — a disturbance grows.</li>
+        <li>C<sub>m,α</sub> −0.8/rad, +2° → ΔC<sub>m</sub> = −0.028.</li>
+        <li>Fixed elevator: static margin 0.10 → 0.05 moves C<sub>L,trim</sub> from 0.5 to 1.0 (lower speed).</li>
+      </ul>
 
-      <div class="related"><span class="dot"></span> Related questions: <strong>34</strong> in this topic</div>
+      <h3 class="sub">Neutral point and static margin <span class="ref">9.2</span></h3>
+      <div class="eq">h<sub>n</sub> = h<sub>ac</sub> + η·V<sub>H</sub>·(a<sub>t</sub>/a)·(1 − dε/dα) &nbsp;&nbsp;&nbsp; dε/dα ≈ 2a/(πA) &nbsp;&nbsp;&nbsp; SM = (h<sub>n</sub> − h)·c̄</div>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>V<sub>H</sub></th><th>a<sub>t</sub>/a</th><th>dε/dα</th><th class="num">h<sub>n</sub></th></tr></thead>
+        <tbody>
+          <tr><td>0.6</td><td>0.7</td><td>0.4</td><td class="num">0.50</td></tr>
+          <tr><td>0.8</td><td>0.7</td><td>0.4</td><td class="num">0.59</td></tr>
+          <tr><td>0.6</td><td>0.7</td><td>0.5</td><td class="num">0.46</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <ul>
+        <li>h<sub>ac</sub> 0.25. a = 5.03/rad, A 8 → dε/dα = 0.40. CG 0.30 with h<sub>n</sub> 0.50 → dC<sub>m</sub>/dC<sub>L</sub> = −0.20.</li>
+        <li>η from 1.0 to 0.8 reduces the tail term by 20 %. Ice on the tail lowers a<sub>t</sub>.</li>
+        <li>Contributions: tail stabilising; wing stabilising only with its AC aft of the CG; fuselage, nacelles and propellers ahead of the CG destabilising.</li>
+        <li>SM 12 % of c̄ 4 m = 0.48 m. CG at 11.2 m, LEMAC 10 m, MAC 4 m → 30 % MAC. 500 kg moved 10 m in 50,000 kg → 0.1 m = 2.5 % MAC.</li>
+      </ul>
+
+      <h3 class="sub">CG limits <span class="ref">9.3</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th></th><th>Forward CG</th><th>Aft CG</th></tr></thead>
+        <tbody>
+          <tr><td>Static margin, stiffness</td><td>Large</td><td>Small</td></tr>
+          <tr><td>Stick force per g, elevator per g</td><td>High</td><td>Low</td></tr>
+          <tr><td>Tail download, trim drag, V<sub>S</sub></td><td>Higher</td><td>Lower</td></tr>
+          <tr><td>Limit set by</td><td>Elevator authority (rotation, flare in ground effect)</td><td>Minimum stability and force gradients</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Relaxed static stability with fly-by-wire: CG near or aft of h<sub>n</sub>, reduced trim drag and tail size, artificial stiffness and damping.</p>
+
+      <h3 class="sub">Stick-free stability <span class="ref">9.4</span></h3>
+      <div class="eq">δ<sub>float</sub> = −(b₁/b₂)·α &nbsp;&nbsp;&nbsp; tail slope factor (1 − τ·b₁/b₂)</div>
+      <ul>
+        <li>Floating elevator: stick-free neutral point forward of stick-fixed; τ 0.5, b₁/b₂ 0.6 → tail contribution 70 %.</li>
+        <li>Balancing that reduces |b₂| more than b₁ increases float and moves the stick-free point forward.</li>
+        <li>Stick-free stability appears as force per knot and per g; a reversed force gradient is unacceptable.</li>
+        <li>Downsprings and bobweights add force cues (bobweight ∝ n) without changing aerodynamic stability.</li>
+        <li>Stick-fixed stability appears as elevator-to-trim slope: more up-elevator at lower speed; zero slope at h<sub>n</sub>.</li>
+      </ul>
+
+      <h3 class="sub">Manoeuvre stability <span class="ref">9.5</span></h3>
+      <div class="eq">Δα<sub>t</sub> = q·l<sub>t</sub>/V &nbsp;&nbsp;&nbsp; M<sub>q</sub> ∝ ρ·V·S<sub>t</sub>·a<sub>t</sub>·l<sub>t</sub>²</div>
+      <ul>
+        <li>Pitch damping moves the manoeuvre point aft of the neutral point. Force per g ∝ manoeuvre margin; zero at the manoeuvre point.</li>
+        <li>20 N/g, 1 g → 2.5 g: 30 N. Too small a gradient invites overstress and PIO.</li>
+        <li>At equal EAS, damping ∝ √σ: lower aloft. Longer tail arm raises V<sub>H</sub> (∝ l<sub>t</sub>) and damping (∝ l<sub>t</sub>²).</li>
+      </ul>
+
+      <h3 class="sub">Dynamic modes <span class="ref">9.6</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Mode</th><th>Variables</th><th>Period</th><th>Damping</th></tr></thead>
+        <tbody>
+          <tr><td>Short period</td><td>α, pitch rate; speed ≈ const</td><td>Seconds; ω ∝ √(q·SM)</td><td>Heavy (tail damping); pitch damper where needed</td></tr>
+          <tr><td>Phugoid</td><td>Speed, height; α ≈ const</td><td>T ≈ π√2·V/g (100 m/s → 45 s)</td><td>ζ ≈ 1/(√2·L/D) (L/D 15 → 0.05)</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Time to half amplitude t<sub>½</sub> = 0.693/(ζω). A lightly damped or slightly divergent phugoid is acceptable because its period allows easy correction; a poorly damped short period is not.</p>
+
+      <h3 class="sub">Special configurations <span class="ref">9.7</span></h3>
+      <ul>
+        <li>Swept-wing pitch-up: local positive C<sub>m</sub>–α slope at high α.</li>
+        <li>Transonic: AC aft → more stable, nose-down C<sub>m0</sub> change (tuck under).</li>
+        <li>Canard: foreplane destabilising; wing AC provides stability. Tailless: C<sub>m0</sub> &gt; 0 from reflex or swept, washed-out tips.</li>
+        <li>T-tail: less downwash at normal α; wake immersion at high α.</li>
+      </ul>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>70</strong> in this topic</div>
     </section>
 
     <!-- ============================================================ -->
