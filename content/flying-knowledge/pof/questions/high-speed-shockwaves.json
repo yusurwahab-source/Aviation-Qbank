@@ -1,637 +1,1303 @@
 [
   {
-    "id": "POF-SHOCK-0001",
+    "id": "POF-SHOCK-0035",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Mach Buffet",
-    "question": "High-speed (Mach) buffet at cruise altitude is caused by:",
+    "subtopic": "Normal shock",
+    "question": "Across a normal shock, the flow properties change as follows:",
     "options": [
-      { "id": "a", "text": "Turbulent air disturbing the autopilot's pitch channel" },
+      { "id": "a", "text": "All properties unchanged" },
       {
         "id": "b",
-        "text": "Airflow separation downstream of a shockwave that forms once local airflow exceeds the speed of sound over part of the wing"
+        "text": "Velocity and Mach number fall (to subsonic); static pressure, density and temperature rise; total pressure falls"
       },
-      { "id": "c", "text": "The landing gear doors vibrating at high speed" },
-      { "id": "d", "text": "A stall caused purely by low airspeed, unrelated to Mach number" }
+      { "id": "c", "text": "Velocity rises; pressure falls" },
+      { "id": "d", "text": "Total pressure rises; temperature falls" }
     ],
     "correct": "b",
-    "explanation": "Beyond the critical Mach number, a shockwave forms where the locally supersonic airflow decelerates back to subsonic, and the sudden pressure rise across it can cause the boundary layer behind it to separate. This separation produces buffeting similarly to a low-speed stall, but the mechanism is compressibility, not a high angle of attack at low speed.",
-    "tags": ["high-speed", "mach-buffet"],
+    "explanation": "A shock is a near-discontinuous compression. It is adiabatic (T_t constant) but irreversible, so total pressure is lost.",
+    "tags": ["normal-shock"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0002",
+    "id": "POF-SHOCK-0036",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Wave Drag",
-    "question": "As an aircraft's speed increases past its critical Mach number, total drag typically:",
+    "subtopic": "Normal shock",
+    "question": "Upstream M 1.5. Downstream of a normal shock, Mach number is about:",
     "options": [
-      { "id": "a", "text": "Decreases sharply, since supersonic flow produces less friction" },
-      { "id": "b", "text": "Rises sharply due to the additional \"wave drag\" associated with shockwave formation" },
-      { "id": "c", "text": "Remains identical to subsonic drag at the same angle of attack" },
-      { "id": "d", "text": "Is unaffected until the aircraft reaches Mach 2" }
+      { "id": "a", "text": "1.50" },
+      { "id": "b", "text": "0.90" },
+      { "id": "c", "text": "0.70" },
+      { "id": "d", "text": "0.42" }
     ],
-    "correct": "b",
-    "explanation": "Once local shockwaves form beyond MCRIT, they introduce a new drag component, wave drag, caused by the energy lost across the shock and any resulting flow separation. This produces the characteristic steep rise in the drag curve seen in the transonic region, well before the aircraft reaches the speed of sound overall.",
-    "tags": ["high-speed", "wave-drag"],
+    "correct": "c",
+    "explanation": "M₂² = (1 + 0.2M₁²)/(1.4M₁² − 0.2) = 1.45/2.95 = 0.492 → M₂ = 0.70.",
+    "tags": ["normal-shock", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0003",
+    "id": "POF-SHOCK-0037",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Coffin Corner",
-    "question": "The term \"coffin corner\" describes a high-altitude flight condition in which:",
+    "subtopic": "Normal shock",
+    "question": "Upstream M 1.5. The static pressure ratio across a normal shock is about:",
+    "options": [
+      { "id": "a", "text": "2.46" },
+      { "id": "b", "text": "3.38" },
+      { "id": "c", "text": "1.50" },
+      { "id": "d", "text": "1.86" }
+    ],
+    "correct": "a",
+    "explanation": "p₂/p₁ = (7M₁² − 1)/6 = (15.75 − 1)/6 = 2.46. The density ratio is 1.86; temperature ratio 1.32.",
+    "tags": ["normal-shock", "pressure-ratio", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0038",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Normal shock",
+    "question": "Upstream M 2.0. The total-pressure recovery across a normal shock is about:",
+    "options": [
+      { "id": "a", "text": "0.93" },
+      { "id": "b", "text": "0.72" },
+      { "id": "c", "text": "0.99" },
+      { "id": "d", "text": "0.50" }
+    ],
+    "correct": "b",
+    "explanation": "p_t2/p_t1 = 0.721 at M 2 (0.930 at M 1.5, 0.993 at M 1.2). Loss grows rapidly with Mach number — the reason supersonic intakes use oblique shocks.",
+    "tags": ["total-pressure-loss", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0039",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Normal shock",
+    "question": "Across any shock wave, total temperature:",
+    "options": [
+      { "id": "a", "text": "Rises" },
+      { "id": "b", "text": "Falls" },
+      {
+        "id": "c",
+        "text": "Remains constant, because the process is adiabatic"
+      },
+      { "id": "d", "text": "Falls to static temperature" }
+    ],
+    "correct": "c",
+    "explanation": "No heat is added; kinetic energy converts to enthalpy, so T rises while T_t is unchanged.",
+    "tags": ["total-temperature", "shock"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0040",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Normal shock",
+    "question": "The density ratio across a normal shock can never exceed about 6 (for γ = 1.4) because:",
+    "options": [
+      { "id": "a", "text": "Pressure is limited" },
+      { "id": "b", "text": "ρ₂/ρ₁ = 6M₁²/(M₁² + 5) tends to 6 as M₁ → ∞" },
+      { "id": "c", "text": "Temperature cannot rise" },
+      { "id": "d", "text": "Shocks vanish above M 5" }
+    ],
+    "correct": "b",
+    "explanation": "Compression across a shock is increasingly spent heating the gas rather than compressing it.",
+    "tags": ["normal-shock", "density-ratio"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0041",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Normal shock",
+    "question": "Upstream M 1.2. Downstream Mach number and total-pressure recovery are about:",
+    "options": [
+      { "id": "a", "text": "0.84 and 0.99" },
+      { "id": "b", "text": "1.20 and 1.00" },
+      { "id": "c", "text": "0.58 and 0.72" },
+      { "id": "d", "text": "0.70 and 0.93" }
+    ],
+    "correct": "a",
+    "explanation": "A weak shock: M₂ = 0.842, p_t2/p_t1 = 0.993 — small loss, which is why transonic shocks are initially benign.",
+    "tags": ["normal-shock", "weak-shock", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0042",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Normal shock",
+    "question": "In the free stream at M 1.5 and 216.65 K (V ≈ 443 m/s), the velocity just behind a normal shock is about:",
+    "options": [
+      { "id": "a", "text": "310 m/s" },
+      { "id": "b", "text": "238 m/s" },
+      { "id": "c", "text": "166 m/s" },
+      { "id": "d", "text": "443 m/s" }
+    ],
+    "correct": "b",
+    "explanation": "T₂ = 1.32 × 216.65 = 286 K; a₂ = 339 m/s; V₂ = 0.70 × 339 = 238 m/s.",
+    "tags": ["normal-shock", "velocity", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0043",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Oblique shocks and expansions",
+    "question": "An oblique shock differs from a normal shock in that:",
+    "options": [
+      { "id": "a", "text": "It is always stronger" },
+      {
+        "id": "b",
+        "text": "Only the velocity component normal to the wave is reduced; the flow is deflected and may remain supersonic"
+      },
+      { "id": "c", "text": "It has no pressure rise" },
+      { "id": "d", "text": "It occurs only in subsonic flow" }
+    ],
+    "correct": "b",
+    "explanation": "Normal-shock relations apply to M₁·sin β. The tangential component is unchanged, so total M₂ can exceed 1.",
+    "tags": ["oblique-shock"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0044",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Oblique shocks and expansions",
+    "question": "At M 2 with a shock wave angle of 40°, the normal Mach component and pressure ratio are about:",
+    "options": [
+      { "id": "a", "text": "1.29 and 1.76" },
+      { "id": "b", "text": "2.00 and 4.50" },
+      { "id": "c", "text": "1.53 and 2.56" },
+      { "id": "d", "text": "0.77 and 1.00" }
+    ],
+    "correct": "a",
+    "explanation": "M_n = 2 sin 40° = 1.286; p₂/p₁ = (7M_n² − 1)/6 = 1.76 — far weaker than the 4.5 of a normal shock at M 2.",
+    "tags": ["oblique-shock", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0045",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Oblique shocks and expansions",
+    "question": "Supersonic flow turning away from itself (around a convex corner) passes through:",
+    "options": [
+      { "id": "a", "text": "A normal shock" },
+      { "id": "b", "text": "No change" },
+      { "id": "c", "text": "An oblique shock with pressure rise" },
+      {
+        "id": "d",
+        "text": "An expansion fan: Mach number rises, pressure and temperature fall, isentropically"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Expansion is a continuous, reversible turning (Prandtl–Meyer); total pressure is conserved.",
+    "tags": ["expansion-fan"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0046",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Oblique shocks and expansions",
+    "question": "Supersonic flow turning into itself (concave corner, wedge) produces:",
+    "options": [
+      { "id": "a", "text": "An expansion fan" },
+      { "id": "b", "text": "A drop in temperature" },
+      { "id": "c", "text": "Nothing" },
+      { "id": "d", "text": "An oblique shock with a pressure rise" }
+    ],
+    "correct": "d",
+    "explanation": "Compression turning coalesces into a shock at the corner.",
+    "tags": ["oblique-shock", "compression-corner"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0047",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Oblique shocks and expansions",
+    "question": "If the deflection required exceeds the maximum an attached oblique shock can provide, the shock:",
     "options": [
       {
         "id": "a",
-        "text": "The low-speed (stall) buffet speed and the high-speed (Mach) buffet speed converge to nearly the same indicated airspeed, leaving very little safe margin"
+        "text": "Detaches and stands ahead of the body as a curved bow shock, normal near the nose"
       },
-      { "id": "b", "text": "The aircraft is below its minimum fuel-efficient altitude" },
-      { "id": "c", "text": "The autopilot is disconnected during a descent" },
-      { "id": "d", "text": "The landing gear cannot be extended in time before landing" }
+      { "id": "b", "text": "Disappears" },
+      { "id": "c", "text": "Stays attached with more loss" },
+      { "id": "d", "text": "Becomes an expansion" }
     ],
     "correct": "a",
-    "explanation": "At high altitude, the low-speed buffet boundary — where the wing approaches its critical angle of attack — rises in indicated airspeed, while the high-speed buffet boundary — approaching MCRIT — falls, because of reduced air density and a lower speed of sound. Where the two boundaries nearly meet, only a very narrow speed range keeps the aircraft clear of either buffet.",
-    "tags": ["high-speed", "coffin-corner"],
+    "explanation": "Blunt noses always produce detached bow shocks with a subsonic region behind the normal part.",
+    "tags": ["bow-shock", "detached-shock"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0004",
+    "id": "POF-SHOCK-0048",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Mach Tuck",
-    "question": "\"Mach tuck\", or tuck-under, refers to a tendency, as an aircraft accelerates through the transonic region, to:",
+    "subtopic": "Transonic shock development",
+    "question": "As free-stream Mach number exceeds M_crit on a lifting aerofoil, the first shock appears:",
     "options": [
-      { "id": "a", "text": "Pitch nose-up uncommanded, due to increased tailplane lift" },
+      { "id": "a", "text": "At the trailing edge only" },
+      { "id": "b", "text": "At the leading edge ahead of the aerofoil" },
+      { "id": "c", "text": "On the lower surface" },
       {
-        "id": "b",
-        "text": "Pitch nose-down uncommanded, often due to a shockwave-related rearward shift of the wing's center of pressure and reduced downwash at the tailplane"
-      },
-      { "id": "c", "text": "Roll uncontrollably toward one wing" },
-      { "id": "d", "text": "Yaw away from the direction of turn" }
+        "id": "d",
+        "text": "On the upper surface, terminating the local supersonic region"
+      }
     ],
-    "correct": "b",
-    "explanation": "As shockwaves develop on the wing in the transonic region, the center of pressure tends to shift aft, and changes in the downwash reaching the tailplane can reduce its stabilising up-force. Both effects combine to produce an uncommanded nose-down pitching moment, which many high-speed aircraft counter with a Mach trim system.",
-    "tags": ["high-speed", "mach-tuck"],
+    "correct": "d",
+    "explanation": "The upper surface carries the higher super-velocities at positive lift.",
+    "tags": ["transonic", "upper-surface-shock"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0005",
+    "id": "POF-SHOCK-0049",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Normal Shock Wave",
-    "question": "A shockwave that forms roughly perpendicular to the local airflow is called a:",
+    "subtopic": "Transonic shock development",
+    "question": "With increasing Mach number in the transonic range, the upper-surface shock:",
     "options": [
-      { "id": "a", "text": "Normal shock, across which airflow decelerates abruptly from supersonic to subsonic, with a sharp pressure rise" },
-      { "id": "b", "text": "Oblique shock" },
-      { "id": "c", "text": "Bow wave, exclusively" },
-      { "id": "d", "text": "Boundary layer" }
+      { "id": "a", "text": "Disappears" },
+      { "id": "b", "text": "Weakens and moves forward" },
+      { "id": "c", "text": "Remains fixed" },
+      {
+        "id": "d",
+        "text": "Strengthens and moves aft toward the trailing edge"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The supersonic region grows; by M ≈ 1 both upper and lower shocks reach the trailing edge.",
+    "tags": ["shock-movement"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0050",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Transonic shock development",
+    "question": "Just above M 1, a new shock appears:",
+    "options": [
+      { "id": "a", "text": "A bow wave ahead of the leading edge" },
+      { "id": "b", "text": "On the upper surface at mid-chord" },
+      { "id": "c", "text": "Behind the trailing edge only" },
+      { "id": "d", "text": "Nowhere" }
     ],
     "correct": "a",
-    "explanation": "A normal shock sits roughly at right angles to the local flow direction. Airflow crossing it slows abruptly from supersonic to subsonic, with a sharp, near-instantaneous rise in static pressure, temperature and density — the type of shock typically found on a wing's upper surface in transonic flight.",
-    "tags": ["high-speed", "shockwave"],
+    "explanation": "Once the free stream is supersonic, the nose must be preceded by a bow shock; the trailing-edge shocks become oblique.",
+    "tags": ["bow-wave"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0006",
+    "id": "POF-SHOCK-0051",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Shock-Induced Separation",
-    "question": "A shockwave forming on a wing in transonic flight can trigger boundary layer separation immediately downstream of it mainly because:",
+    "subtopic": "Transonic shock development",
+    "question": "A lower-surface shock usually appears:",
+    "options": [
+      { "id": "a", "text": "Never" },
+      { "id": "b", "text": "At M_crit exactly" },
+      {
+        "id": "c",
+        "text": "At a higher Mach number than the upper-surface shock, and moves aft faster"
+      },
+      { "id": "d", "text": "Before the upper shock" }
+    ],
+    "correct": "c",
+    "explanation": "Lower-surface velocities are lower at positive lift; once formed, the lower shock often moves to the trailing edge first, contributing to lift and moment changes.",
+    "tags": ["lower-surface-shock"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0052",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Transonic shock development",
+    "question": "Where a shock meets the boundary layer, the pressure rise:",
+    "options": [
+      { "id": "a", "text": "Accelerates the boundary layer" },
+      { "id": "b", "text": "Removes the boundary layer" },
+      {
+        "id": "c",
+        "text": "Propagates forward through the subsonic part of the boundary layer, thickening it and forming a λ-shaped foot"
+      },
+      { "id": "d", "text": "Stays confined to the outer flow" }
+    ],
+    "correct": "c",
+    "explanation": "The subsonic layer cannot sustain a discontinuity; the pressure rise spreads upstream, and if strong enough causes separation.",
+    "tags": ["shock-boundary-layer-interaction"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0053",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Shock-induced separation and buffet",
+    "question": "Shock-induced separation occurs when:",
     "options": [
       {
         "id": "a",
-        "text": "The sharp, sudden pressure rise across the shock is more than the boundary layer's kinetic energy can withstand without separating"
+        "text": "The shock pressure rise is too strong for the boundary layer, which separates at the shock foot"
       },
-      { "id": "b", "text": "The shockwave cools the surface" },
-      { "id": "c", "text": "The shockwave increases the critical Mach number locally" },
-      { "id": "d", "text": "The shockwave has no interaction with the boundary layer at all" }
+      { "id": "b", "text": "Only at M above 2" },
+      { "id": "c", "text": "The shock is weak" },
+      { "id": "d", "text": "The flow is subsonic" }
     ],
     "correct": "a",
-    "explanation": "The abrupt pressure rise across a shockwave is a severe adverse pressure gradient concentrated over a very short distance. The boundary layer, already weakened by the shock's effect on it, often cannot withstand this and separates immediately behind the shock — the direct cause of Mach buffet.",
-    "tags": ["high-speed", "shockwave", "boundary-layer"],
+    "explanation": "Typically once the local Mach number ahead of the shock exceeds about 1.3, causing drag rise, buffet and lift loss.",
+    "tags": ["shock-induced-separation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0007",
+    "id": "POF-SHOCK-0054",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Area Rule",
-    "question": "The \"area rule\", applied to some transonic and supersonic aircraft designs and visible as a \"wasp waist\" fuselage, is intended to:",
-    "options": [
-      { "id": "a", "text": "Increase the fuselage's cross-sectional area sharply at the wing" },
-      {
-        "id": "b",
-        "text": "Keep the aircraft's total cross-sectional area increasing and decreasing smoothly along its length, minimising the sharp changes that increase wave drag"
-      },
-      { "id": "c", "text": "Reduce the wing's aspect ratio" },
-      { "id": "d", "text": "Increase the critical Mach number of the tailplane only" }
-    ],
-    "correct": "b",
-    "explanation": "Wave drag is strongly influenced by how smoothly an aircraft's total cross-sectional area (fuselage plus wing plus everything else, at each point along its length) changes. The area rule narrows the fuselage where the wing joins it, so the combined area curve stays as smooth as possible, reducing wave drag at transonic and supersonic speed.",
-    "tags": ["high-speed", "area-rule"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-SHOCK-0008",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Supercritical Aerofoil",
-    "question": "A \"supercritical\" aerofoil section, with a flatter upper surface and a downward-cambered, drooped trailing edge, is designed mainly to:",
+    "subtopic": "Shock-induced separation and buffet",
+    "question": "High-speed buffet is caused by:",
     "options": [
       {
         "id": "a",
-        "text": "Delay and weaken the shockwave that forms in transonic flight, allowing a higher cruise Mach number, or a thicker, structurally lighter wing, for the same wave drag"
+        "text": "Unsteady shock-induced separation, with the shock oscillating and the separated wake striking the structure"
       },
-      { "id": "b", "text": "Increase camber for low-speed lift only" },
-      { "id": "c", "text": "Reduce the wing's critical Mach number deliberately" },
-      { "id": "d", "text": "Eliminate the need for sweepback" }
+      { "id": "b", "text": "Turbulence only" },
+      { "id": "c", "text": "Engine surge" },
+      { "id": "d", "text": "Low-speed stall" }
     ],
     "correct": "a",
-    "explanation": "By flattening the upper surface, a supercritical section reduces the local acceleration of the airflow that would otherwise trigger an early, strong shock, while the drooped trailing edge restores the lift lost from flattening the top. The result is a weaker shockwave (less wave drag) at a given Mach number, or the same wave drag at a higher Mach number.",
-    "tags": ["high-speed", "supercritical-aerofoil"],
+    "explanation": "The oscillating shock and wake produce fluctuating loads on wing and tail — a warning and a limitation.",
+    "tags": ["high-speed-buffet"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0009",
+    "id": "POF-SHOCK-0055",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Mach Trim",
-    "question": "A Mach trim system, fitted to many swept-wing jet transport aircraft, automatically adjusts pitch trim as Mach number increases mainly to:",
+    "subtopic": "Shock-induced separation and buffet",
+    "question": "Shock stall refers to:",
     "options": [
-      { "id": "a", "text": "Increase the critical Mach number directly" },
+      { "id": "a", "text": "Stall at low speed" },
+      { "id": "b", "text": "Engine flame-out" },
+      { "id": "c", "text": "Stall of the tail only" },
+      {
+        "id": "d",
+        "text": "Loss of lift (fall in CL at constant α) due to shock-induced separation"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Beyond drag divergence, CL at fixed α stops rising and falls as separation spreads.",
+    "tags": ["shock-stall"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0056",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Shock-induced separation and buffet",
+    "question": "At constant α, section CL through the high-subsonic and transonic range:",
+    "options": [
+      { "id": "a", "text": "Remains constant" },
+      { "id": "b", "text": "Falls steadily" },
+      {
+        "id": "c",
+        "text": "Rises (Prandtl–Glauert), peaks near drag divergence, then falls with shock-induced separation"
+      },
+      { "id": "d", "text": "Rises continuously to M 1" }
+    ],
+    "correct": "c",
+    "explanation": "Compressibility first raises lift; separation then reduces it until the flow becomes fully supersonic.",
+    "tags": ["lift-coefficient", "mach-effect"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0057",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Shock-induced separation and buffet",
+    "question": "Increasing α at constant Mach number in the transonic range:",
+    "options": [
+      { "id": "a", "text": "Raises M_crit" },
       {
         "id": "b",
-        "text": "Counteract the nose-down pitching moment (Mach tuck) that develops as shockwaves form, keeping the aircraft properly trimmed without constant manual elevator input"
+        "text": "Strengthens the upper shock and lowers the Mach number for buffet onset"
       },
-      { "id": "c", "text": "Increase the maximum operating speed, VMO" },
-      { "id": "d", "text": "Reduce induced drag at cruise" }
+      { "id": "c", "text": "Weakens the shock" },
+      { "id": "d", "text": "Removes buffet" }
     ],
     "correct": "b",
-    "explanation": "As Mach number rises through the transonic region, the developing shockwaves produce a progressively stronger nose-down pitching moment (Mach tuck). A Mach trim system automatically feeds in a compensating trim change as Mach number increases, so the pilot does not have to continuously counteract it by hand.",
-    "tags": ["high-speed", "mach-trim", "mach-tuck"],
+    "explanation": "Higher suction peaks reach sonic sooner and accelerate further ahead of the shock — manoeuvring load factor brings buffet closer.",
+    "tags": ["buffet-onset", "angle-of-attack"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0010",
+    "id": "POF-SHOCK-0058",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Control Surface Buzz",
-    "question": "High-frequency, low-amplitude vibration of a control surface at transonic speed, known as \"buzz\", is caused by:",
+    "subtopic": "Shock-induced separation and buffet",
+    "question": "Vortex generators ahead of the shock location:",
     "options": [
-      { "id": "a", "text": "Engine vibration transmitted through the airframe" },
+      { "id": "a", "text": "Remove the shock" },
+      { "id": "b", "text": "Create the shock" },
+      {
+        "id": "c",
+        "text": "Mix energy into the boundary layer so it tolerates the shock pressure rise, delaying buffet"
+      },
+      { "id": "d", "text": "Reduce the critical Mach number" }
+    ],
+    "correct": "c",
+    "explanation": "They reduce separation behind the shock without changing its position much.",
+    "tags": ["vortex-generators", "buffet"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0059",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Trim and pitch effects",
+    "question": "Mach tuck (tuck under) is:",
+    "options": [
+      { "id": "a", "text": "A yaw at high speed" },
+      { "id": "b", "text": "A roll oscillation" },
+      {
+        "id": "c",
+        "text": "A nose-down pitching tendency with increasing Mach number in the transonic range"
+      },
+      { "id": "d", "text": "A nose-up tendency at low speed" }
+    ],
+    "correct": "c",
+    "explanation": "The wing centre of pressure moves aft with shock movement, and changes in downwash at the tail reduce its download; the aircraft becomes speed-unstable.",
+    "tags": ["mach-tuck"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0060",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Trim and pitch effects",
+    "question": "On a swept wing, shock-induced separation starting near the root can produce:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Loss of inboard lift, moving the centre of pressure aft and down-wash reduction at the tail — nose-down tuck"
+      },
+      { "id": "b", "text": "Pitch-up" },
+      { "id": "c", "text": "No pitch change" },
+      { "id": "d", "text": "Roll only" }
+    ],
+    "correct": "a",
+    "explanation": "Root separation removes forward lift on a swept wing and reduces tail downwash, both nose-down.",
+    "tags": ["mach-tuck", "sweep"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0061",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Trim and pitch effects",
+    "question": "On a swept wing, shock-induced separation starting near the tips produces:",
+    "options": [
+      { "id": "a", "text": "Roll only" },
+      { "id": "b", "text": "Pitch-up, as outboard lift aft of the CG is lost" },
+      { "id": "c", "text": "Nose-down tuck" },
+      { "id": "d", "text": "No effect" }
+    ],
+    "correct": "b",
+    "explanation": "Tip-first separation moves the lift forward — the high-speed analogue of low-speed pitch-up.",
+    "tags": ["pitch-up", "sweep"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0062",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Trim and pitch effects",
+    "question": "Mach trim systems counter tuck by:",
+    "options": [
+      { "id": "a", "text": "Moving the CG forward" },
+      { "id": "b", "text": "Reducing thrust" },
+      { "id": "c", "text": "Extending spoilers" },
+      {
+        "id": "d",
+        "text": "Applying nose-up stabiliser or elevator trim as a function of Mach number"
+      }
+    ],
+    "correct": "d",
+    "explanation": "They restore a positive stick-force gradient with Mach.",
+    "tags": ["mach-trim"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0063",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Trim and pitch effects",
+    "question": "The rearward movement of the aerodynamic centre from about 25 % to about 50 % chord between subsonic and supersonic flight:",
+    "options": [
+      { "id": "a", "text": "Moves the CG" },
       {
         "id": "b",
-        "text": "An oscillating shockwave near the control surface's hinge line, repeatedly separating and reattaching the local boundary layer"
+        "text": "Increases longitudinal stability and the trim download required"
       },
-      { "id": "c", "text": "The autopilot servo cycling rapidly on and off" },
-      { "id": "d", "text": "Turbulent air entirely unrelated to the aircraft's own speed" }
+      { "id": "c", "text": "Reduces stability" },
+      { "id": "d", "text": "Has no effect" }
     ],
     "correct": "b",
-    "explanation": "Buzz occurs when a shockwave sitting near a control surface's hinge line oscillates back and forth, alternately separating and reattaching the boundary layer over the surface as it does. This produces a rapid, self-sustaining vibration driven purely by the local aerodynamics, independent of any mechanical source.",
-    "tags": ["high-speed", "buzz"],
+    "explanation": "Larger static margin at supersonic speed demands more elevator/stabiliser for trim and manoeuvre; fuel transfer aft can compensate.",
+    "tags": ["aerodynamic-centre", "supersonic"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0011",
+    "id": "POF-SHOCK-0064",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Oblique Shock",
-    "question": "An \"oblique\" shockwave, as opposed to a normal shock, forms at an angle to the local flow and:",
+    "subtopic": "Trim and pitch effects",
+    "question": "Asymmetric shock formation on the two wings (e.g. from rigging or sideslip) can produce:",
     "options": [
-      { "id": "a", "text": "Produces a weaker pressure rise than an equivalent normal shock and does not necessarily decelerate the flow all the way down to subsonic speed" },
-      { "id": "b", "text": "Always decelerates flow from supersonic to subsonic, exactly like a normal shock" },
-      { "id": "c", "text": "Can only form on a rounded, blunt leading edge" },
-      { "id": "d", "text": "Never occurs on any real aircraft" }
+      { "id": "a", "text": "Increased roll damping" },
+      { "id": "b", "text": "Transonic wing drop — an uncommanded roll" },
+      { "id": "c", "text": "Pitch-up only" },
+      { "id": "d", "text": "Yaw damping" }
     ],
-    "correct": "a",
-    "explanation": "An oblique shock, typically formed at a sharp leading edge or a compression surface angled into the flow, produces a smaller pressure jump than a normal shock and can leave the flow still supersonic (just redirected) on the far side of it — which is why supersonic aircraft and inlets are often shaped to favour oblique shocks over a single strong normal shock.",
-    "tags": ["high-speed", "oblique-shock"],
+    "correct": "b",
+    "explanation": "One wing reaches separation before the other; lift asymmetry rolls the aircraft.",
+    "tags": ["wing-drop", "transonic"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0012",
+    "id": "POF-SHOCK-0065",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Expansion Wave",
-    "question": "An \"expansion wave\", found where supersonic flow turns around a convex corner, is the counterpart to a compression shock in that it:",
+    "subtopic": "Control effects",
+    "question": "A shock forming ahead of a trailing-edge control hinge line makes the control:",
     "options": [
-      { "id": "a", "text": "Accelerates the flow and reduces its pressure smoothly and gradually, rather than abruptly like a shock" },
-      { "id": "b", "text": "Decelerates the flow abruptly, exactly like a normal shock" },
-      { "id": "c", "text": "Only forms in subsonic flow" },
-      { "id": "d", "text": "Increases pressure sharply, exactly like a shock" }
+      {
+        "id": "a",
+        "text": "Much less effective, since pressure changes behind the shock cannot propagate forward over the wing"
+      },
+      { "id": "b", "text": "Unaffected" },
+      { "id": "c", "text": "More effective" },
+      { "id": "d", "text": "Reversed at all speeds" }
     ],
     "correct": "a",
-    "explanation": "Unlike a shock, which compresses flow abruptly, an expansion (Prandtl-Meyer) wave turns supersonic flow gradually around a convex corner, smoothly accelerating it and reducing its pressure — a continuous process rather than the sudden, discontinuous jump a shockwave produces.",
-    "tags": ["high-speed", "expansion-wave"],
+    "explanation": "In supersonic local flow the surface's influence is confined downstream; the control changes only its own pressure, not the wing's circulation.",
+    "tags": ["control-effectiveness", "shock"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0013",
+    "id": "POF-SHOCK-0066",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Bow Shock",
-    "question": "A \"bow shock\" forms ahead of a blunt (rounded) body flying at supersonic speed because:",
+    "subtopic": "Control effects",
+    "question": "Control buzz is:",
     "options": [
-      { "id": "a", "text": "The rounded shape cannot support an attached oblique shock at every point, so a curved, detached shock stands off ahead of the body instead" },
-      { "id": "b", "text": "Blunt bodies never produce any shockwave at supersonic speed" },
-      { "id": "c", "text": "It only forms on sharp, pointed shapes" },
-      { "id": "d", "text": "It forms only at subsonic speed" }
+      { "id": "a", "text": "Engine vibration" },
+      { "id": "b", "text": "Pilot-induced oscillation" },
+      { "id": "c", "text": "Flutter at low speed" },
+      {
+        "id": "d",
+        "text": "A high-frequency oscillation of a control surface caused by shock oscillation near its hinge"
+      }
     ],
-    "correct": "a",
-    "explanation": "A sufficiently blunt leading shape cannot turn the oncoming supersonic flow smoothly enough for an attached oblique shock to exist right at its surface everywhere, so a curved, detached \"bow\" shock stands off ahead of it instead — strongest, and most like a normal shock, directly ahead of the body's nose, and increasingly oblique further around its curve.",
-    "tags": ["high-speed", "bow-shock"],
+    "correct": "d",
+    "explanation": "Shock movement changes hinge moments cyclically; stiffer actuators and dampers suppress it.",
+    "tags": ["control-buzz"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0014",
+    "id": "POF-SHOCK-0067",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Shock Strength and Separation",
-    "question": "At the same chordwise location, a stronger shockwave, compared with a weaker one, tends to produce:",
+    "subtopic": "Control effects",
+    "question": "An all-moving tailplane is used on high-speed aircraft because:",
     "options": [
-      { "id": "a", "text": "A more severe boundary layer separation immediately behind it, since the pressure rise the boundary layer must withstand is larger" },
-      { "id": "b", "text": "Exactly the same separation regardless of shock strength" },
-      { "id": "c", "text": "Less separation than a weaker shock" },
-      { "id": "d", "text": "No separation at all, regardless of strength" }
+      {
+        "id": "a",
+        "text": "It remains effective when shocks reduce the effectiveness of a trailing-edge elevator"
+      },
+      { "id": "b", "text": "It is lighter" },
+      { "id": "c", "text": "It needs no actuator" },
+      { "id": "d", "text": "It reduces wave drag to zero" }
     ],
     "correct": "a",
-    "explanation": "Because the severity of shock-induced separation depends on how large a pressure rise the boundary layer must survive across the shock, a stronger shock — a bigger pressure jump — tends to produce more severe separation immediately downstream than a weaker shock at the same position would.",
-    "tags": ["high-speed", "shock-boundary-layer-interaction"],
+    "explanation": "Changing the incidence of the whole surface changes its pressure distribution regardless of shock position.",
+    "tags": ["stabilator", "transonic"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0015",
+    "id": "POF-SHOCK-0068",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Sweep and Shock Strength",
-    "question": "Beyond simply raising the critical Mach number, sweepback also tends to affect the shockwave that eventually forms once MCRIT is exceeded by:",
+    "subtopic": "Control effects",
+    "question": "Spoilers are preferred to ailerons for roll control at high speed partly because:",
     "options": [
-      { "id": "a", "text": "Making it comparatively weaker and more oblique than the shock an equivalent unswept wing would show at the same true Mach number" },
-      { "id": "b", "text": "Making it always stronger than an unswept wing's shock" },
-      { "id": "c", "text": "Having no effect on the shock once it has already formed" },
-      { "id": "d", "text": "Preventing any shock from ever forming, at any Mach number" }
+      { "id": "a", "text": "They produce adverse yaw" },
+      {
+        "id": "b",
+        "text": "They are less affected by shock-induced effects and produce little wing twist"
+      },
+      { "id": "c", "text": "They are more effective at low speed" },
+      { "id": "d", "text": "They increase lift" }
     ],
-    "correct": "a",
-    "explanation": "Sweep reduces the flow component perpendicular to the leading edge, which not only delays the onset of local supersonic flow (raising MCRIT) but also means that, once a shock does form past MCRIT, it tends to be weaker and more oblique than the shock an equivalent unswept wing would produce at the same true Mach number.",
-    "tags": ["high-speed", "sweepback", "shock-strength"],
+    "correct": "b",
+    "explanation": "Spoilers act by destroying lift over part of the span; they avoid aileron reversal and transonic ineffectiveness.",
+    "tags": ["spoilers", "high-speed-roll"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0016",
+    "id": "POF-SHOCK-0069",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Elevator Effectiveness at Transonic Speed",
-    "question": "A shockwave forming near the tailplane's elevator hinge line at transonic speed can reduce pitch authority even without producing buzz, mainly because:",
+    "subtopic": "Control effects",
+    "question": "Hinge moments on a control surface in transonic flow can:",
     "options": [
-      { "id": "a", "text": "The shock alters the local pressure distribution around the hinge, reducing how much the elevator's deflection actually changes the tailplane's lift" },
-      { "id": "b", "text": "Shockwaves only ever affect the wing, never the tailplane" },
-      { "id": "c", "text": "Elevator effectiveness always improves at transonic speed" },
-      { "id": "d", "text": "A shock can only reduce effectiveness if it also produces buzz" }
+      { "id": "a", "text": "Depend only on q" },
+      {
+        "id": "b",
+        "text": "Change sign or magnitude abruptly as the shock moves across the surface"
+      },
+      { "id": "c", "text": "Fall to zero at M_crit" },
+      { "id": "d", "text": "Remain perfectly linear" }
     ],
-    "correct": "a",
-    "explanation": "A shock near the elevator's hinge line disturbs the local pressure field the elevator relies on to change the tailplane's lift, which can measurably reduce how much pitching moment a given elevator deflection actually produces — a real loss of control authority distinct from (and not requiring) the separate buzz phenomenon.",
-    "tags": ["high-speed", "control-effectiveness", "elevator"],
+    "correct": "b",
+    "explanation": "Shock position alters the chordwise load on the surface; manual controls may become heavy or reverse.",
+    "tags": ["hinge-moment", "transonic"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0017",
+    "id": "POF-SHOCK-0070",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Aileron Effectiveness at Transonic Speed",
-    "question": "Similarly, a shockwave forming near the wing's trailing edge outboard, close to the aileron, at transonic speed can:",
+    "subtopic": "Buffet boundary",
+    "question": "Buffet onset boundary at FL390 (p = 19,680 Pa): buffet occurs at CL 0.50 at M 0.84. The maximum W/S for 1 g flight at M 0.84 without buffet is about:",
     "options": [
-      { "id": "a", "text": "Reduce roll response for a given aileron deflection, by disturbing the pressure field the aileron relies on" },
-      { "id": "b", "text": "Always increase roll response at transonic speed" },
-      { "id": "c", "text": "Have no relationship to aileron effectiveness at all" },
-      { "id": "d", "text": "Only affect the elevator, never the aileron" }
+      { "id": "a", "text": "2,430 N/m²" },
+      { "id": "b", "text": "6,320 N/m²" },
+      { "id": "c", "text": "4,860 N/m²" },
+      { "id": "d", "text": "3,740 N/m²" }
     ],
-    "correct": "a",
-    "explanation": "Just as a shock near the elevator hinge can reduce pitch authority, a shock forming near the aileron's hinge line at transonic speed disturbs the pressure field the aileron depends on, reducing the roll response produced by a given control deflection — a distinct concern from aileron reversal, which is a structural/aeroelastic effect rather than a purely aerodynamic one.",
-    "tags": ["high-speed", "control-effectiveness", "aileron"],
+    "correct": "c",
+    "explanation": "W/S = 0.7·p·M²·CL = 0.7 × 19,680 × 0.706 × 0.5 = 4,860 N/m².",
+    "tags": ["buffet-boundary", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0018",
+    "id": "POF-SHOCK-0071",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Drag Rise Mach Number",
-    "question": "The \"drag rise Mach number\" (or \"drag divergence Mach number\") is defined as:",
+    "subtopic": "Buffet boundary",
+    "question": "At the same conditions, maintaining a 1.3 g margin to buffet limits W/S to about:",
     "options": [
-      { "id": "a", "text": "The Mach number at which drag coefficient has risen by a specific, defined increment above its low-speed value, typically a little higher than the critical Mach number itself" },
-      { "id": "b", "text": "Exactly the same figure as the critical Mach number, with no distinction between the two" },
-      { "id": "c", "text": "The Mach number at which the aircraft first exceeds the speed of sound" },
-      { "id": "d", "text": "A figure unrelated to drag or wave drag in any way" }
+      { "id": "a", "text": "6,320 N/m²" },
+      { "id": "b", "text": "2,880 N/m²" },
+      { "id": "c", "text": "4,860 N/m²" },
+      { "id": "d", "text": "3,740 N/m²" }
     ],
-    "correct": "a",
-    "explanation": "While MCRIT marks where local supersonic flow first appears, some wave drag can develop before it becomes large enough to be considered a \"rise\". The drag rise (or drag divergence) Mach number is instead defined by a specific increase in drag coefficient above the low-speed value — a distinct, practically useful figure, normally somewhat higher than MCRIT itself.",
-    "tags": ["high-speed", "drag-rise-mach"],
+    "correct": "d",
+    "explanation": "Divide by 1.3: 4,860/1.3 = 3,738 N/m².",
+    "tags": ["buffet-margin", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0019",
+    "id": "POF-SHOCK-0072",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Vortex Generators for Shock Management",
-    "question": "Vortex generators are sometimes placed just ahead of the typical shock location on a transonic wing specifically to:",
+    "subtopic": "Buffet boundary",
+    "question": "A buffet margin of 1.3 g means the aircraft can:",
     "options": [
-      { "id": "a", "text": "Re-energise the boundary layer approaching the shock, delaying or reducing the shock-induced separation that would otherwise occur just behind it" },
-      { "id": "b", "text": "Increase the critical Mach number to above Mach 1" },
-      { "id": "c", "text": "Eliminate the shockwave entirely" },
-      { "id": "d", "text": "Reduce the wing's overall lift" }
+      { "id": "a", "text": "Descend 30 % faster" },
+      { "id": "b", "text": "Accept 30 % more fuel" },
+      {
+        "id": "c",
+        "text": "Pull 1.3 g (e.g. a 40° bank turn or a gust) before reaching buffet"
+      },
+      { "id": "d", "text": "Fly 30 % faster" }
     ],
-    "correct": "a",
-    "explanation": "Rather than preventing the shock itself, vortex generators placed just ahead of its typical location feed extra energy into the boundary layer arriving at the shock, helping it better withstand the shock's pressure rise and reducing the separation and buffet that would otherwise follow immediately behind it.",
-    "tags": ["high-speed", "vortex-generators"],
+    "correct": "c",
+    "explanation": "n = 1.3 ↔ φ = arccos(1/1.3) = 39.7° in a level turn.",
+    "tags": ["buffet-margin"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0020",
+    "id": "POF-SHOCK-0073",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Shock Movement With Mach Number",
-    "question": "As Mach number increases beyond the critical Mach number, the shockwave on a wing's upper surface generally:",
+    "subtopic": "Buffet boundary",
+    "question": "Increasing altitude at constant weight and Mach reduces the buffet margin because:",
     "options": [
-      { "id": "a", "text": "Moves aft along the chord, with this rearward movement itself contributing to the progressive pitching moment change behind Mach tuck" },
-      { "id": "b", "text": "Stays fixed at exactly the same chordwise position regardless of Mach number" },
-      { "id": "c", "text": "Moves forward toward the leading edge as Mach number increases" },
-      { "id": "d", "text": "Disappears once Mach number exceeds MCRIT by any amount" }
+      { "id": "a", "text": "The speed of sound increases" },
+      { "id": "b", "text": "Weight decreases" },
+      { "id": "c", "text": "q increases" },
+      {
+        "id": "d",
+        "text": "Lower static pressure requires a higher CL, closer to the buffet CL"
+      }
     ],
-    "correct": "a",
-    "explanation": "The shock does not simply appear and stay put once MCRIT is exceeded — it moves progressively aft along the chord as Mach number rises further, and that aft movement is itself part of what drives the continuing rearward shift in center of pressure behind Mach tuck as speed increases through the transonic range.",
-    "tags": ["high-speed", "shock-movement", "mach-tuck"],
+    "correct": "d",
+    "explanation": "CL ∝ 1/p at fixed W and M.",
+    "tags": ["buffet-margin", "altitude"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0021",
+    "id": "POF-SHOCK-0074",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Sonic Line",
-    "question": "The \"sonic line\" on a wing's surface at transonic speed is:",
+    "subtopic": "Buffet boundary",
+    "question": "The high-speed buffet boundary on a buffet chart:",
     "options": [
-      { "id": "a", "text": "The boundary separating the region of locally supersonic flow from the surrounding subsonic flow, typically terminated by a shock where it returns to subsonic" },
-      { "id": "b", "text": "A painted line marking the wing's structural limit" },
-      { "id": "c", "text": "A term describing the wingtip vortex" },
-      { "id": "d", "text": "Only relevant at fully supersonic freestream speed" }
+      {
+        "id": "a",
+        "text": "Falls to lower CL as Mach number increases beyond drag divergence"
+      },
+      { "id": "b", "text": "Is independent of Mach" },
+      { "id": "c", "text": "Applies only at low speed" },
+      { "id": "d", "text": "Rises with Mach number without limit" }
     ],
     "correct": "a",
-    "explanation": "The sonic line marks where local flow velocity over the wing exactly equals the speed of sound, enclosing the pocket of locally supersonic flow that forms beyond the critical Mach number — a pocket that is generally terminated, at its downstream edge, by the shockwave that returns the flow to subsonic conditions.",
-    "tags": ["high-speed", "sonic-line"],
+    "explanation": "At higher M, shock-induced separation begins at lower α, so the permissible CL falls.",
+    "tags": ["buffet-boundary"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0022",
+    "id": "POF-SHOCK-0075",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Thickness Ratio and Shock Strength",
-    "question": "Beyond lowering the critical Mach number itself, a thicker aerofoil section that does exceed MCRIT will generally develop, at the same excess Mach number, a shock that is:",
+    "subtopic": "Buffet boundary",
+    "question": "Moving the CG aft affects the buffet-limited envelope by:",
     "options": [
-      { "id": "a", "text": "Stronger than the shock an equivalent thinner section would develop" },
-      { "id": "b", "text": "Always weaker than a thinner section's shock" },
-      { "id": "c", "text": "Identical in strength regardless of thickness" },
-      { "id": "d", "text": "Nonexistent, since thick sections cannot form shocks" }
+      {
+        "id": "a",
+        "text": "Slightly improving it, since less tail download reduces the wing CL required"
+      },
+      { "id": "b", "text": "Worsening it" },
+      { "id": "c", "text": "No effect" },
+      { "id": "d", "text": "Only affecting low-speed buffet" }
     ],
     "correct": "a",
-    "explanation": "A thicker section accelerates the local airflow over its upper surface more than a thinner one does, and this greater local acceleration translates into a stronger shockwave once MCRIT is exceeded, on top of the already-lower MCRIT a thick section starts from.",
-    "tags": ["high-speed", "thickness-ratio", "shock-strength"],
+    "explanation": "Wing lift = W + tail download. An aft CG reduces the download and the wing CL at a given weight.",
+    "tags": ["cg-position", "buffet-margin"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0023",
+    "id": "POF-SHOCK-0076",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Pressure Distribution and Shock Strength",
-    "question": "A supercritical aerofoil's flatter upper surface produces a weaker shockwave (for a given Mach number) than a conventional \"peaky\" pressure distribution mainly because:",
+    "subtopic": "Wave drag",
+    "question": "Wave drag originates from:",
     "options": [
-      { "id": "a", "text": "It spreads the pressure recovery over more of the chord, rather than concentrating a sharp suction peak and rapid recovery in one small region" },
-      { "id": "b", "text": "It always eliminates any local supersonic flow" },
-      { "id": "c", "text": "It has no relationship to the pressure distribution shape at all" },
-      { "id": "d", "text": "It increases the sharpness of the suction peak" }
+      {
+        "id": "a",
+        "text": "The entropy rise and total-pressure loss across shock waves"
+      },
+      { "id": "b", "text": "Skin friction only" },
+      { "id": "c", "text": "Induced drag only" },
+      { "id": "d", "text": "Interference at junctions only" }
     ],
     "correct": "a",
-    "explanation": "A conventional \"peaky\" distribution accelerates flow sharply to a strong, concentrated suction peak, requiring an equally sharp recovery — and a strong shock — to bring it back to subsonic. A supercritical section's flatter top spreads that same overall lift and recovery over more of the chord, producing a weaker, more gradual shock for a given Mach number.",
-    "tags": ["high-speed", "supercritical-aerofoil", "pressure-distribution"],
+    "explanation": "Momentum lost across shocks appears as drag; it also includes the pressure drag of shock-induced separation.",
+    "tags": ["wave-drag"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0024",
+    "id": "POF-SHOCK-0077",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Wave Drag and Altitude",
-    "question": "For a given Mach number and lift coefficient, an aircraft's wave drag coefficient is:",
+    "subtopic": "Wave drag",
+    "question": "Wave drag in the transonic range can be reduced by:",
     "options": [
-      { "id": "a", "text": "Essentially independent of altitude, so the actual wave drag force still varies with altitude only through its effect on dynamic pressure, just like other drag components" },
-      { "id": "b", "text": "Always zero at high altitude" },
-      { "id": "c", "text": "Dependent on altitude in a way unrelated to any other drag component" },
-      { "id": "d", "text": "Only present at low altitude" }
+      { "id": "a", "text": "Higher CL" },
+      { "id": "b", "text": "Blunt leading edges" },
+      {
+        "id": "c",
+        "text": "Sweep, thin supercritical sections and area ruling"
+      },
+      { "id": "d", "text": "Thicker sections" }
     ],
-    "correct": "a",
-    "explanation": "Like other drag coefficients, wave drag coefficient at a fixed Mach number and lift coefficient is essentially a function of the aircraft's shape and speed regime, not altitude directly — the actual wave drag force still changes with altitude, but only because dynamic pressure itself changes with altitude, exactly the same relationship as for parasite and induced drag.",
-    "tags": ["high-speed", "wave-drag", "altitude"],
+    "correct": "c",
+    "explanation": "Each reduces local super-velocities or their normal component, weakening shocks.",
+    "tags": ["wave-drag", "design"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0025",
+    "id": "POF-SHOCK-0078",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Supersonic Inlet Terminal Shock",
-    "question": "Some supersonic aircraft intakes are designed to slow incoming air using a series of oblique shocks followed by:",
+    "subtopic": "Wave drag",
+    "question": "Supersonic intakes use oblique shocks before a final weak normal shock because:",
     "options": [
-      { "id": "a", "text": "A final normal shock inside the diffuser, which brings the flow the rest of the way down to subsonic speed before it reaches the engine" },
-      { "id": "b", "text": "No further shock of any kind, since the oblique shocks alone always achieve subsonic flow" },
-      { "id": "c", "text": "An expansion wave that reaccelerates the flow back to supersonic" },
-      { "id": "d", "text": "A device unrelated to shockwaves entirely" }
+      { "id": "a", "text": "They increase the Mach number at the engine face" },
+      { "id": "b", "text": "Oblique shocks add thrust" },
+      {
+        "id": "c",
+        "text": "A series of weaker shocks loses much less total pressure than one strong normal shock"
+      },
+      { "id": "d", "text": "Normal shocks are impossible in intakes" }
     ],
-    "correct": "a",
-    "explanation": "Because oblique shocks alone can slow supersonic flow only so far while it often remains supersonic, some supersonic inlet designs use a sequence of oblique shocks to reduce speed efficiently in stages before a final, weaker normal shock inside the diffuser completes the deceleration to the subsonic speed the engine's compressor needs.",
-    "tags": ["high-speed", "supersonic-inlet"],
+    "correct": "c",
+    "explanation": "At M 2 a single normal shock recovers only 72 % of p_t; multi-shock systems recover far more.",
+    "tags": ["intake", "total-pressure-loss"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0026",
+    "id": "POF-SHOCK-0079",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Mach Angle",
-    "question": "The \"Mach angle\" — the half-angle of the conical shockwave trailing a body moving at supersonic speed — as Mach number increases:",
+    "subtopic": "Wave drag",
+    "question": "Drag coefficient against Mach number shows a peak near:",
     "options": [
-      { "id": "a", "text": "Decreases, producing a narrower, more swept-back Mach cone at higher Mach numbers" },
-      { "id": "b", "text": "Increases, producing a wider cone at higher Mach numbers" },
-      { "id": "c", "text": "Stays exactly the same at every supersonic Mach number" },
-      { "id": "d", "text": "Is undefined at any Mach number above 1" }
+      { "id": "a", "text": "No peak" },
+      { "id": "b", "text": "M ≈ 0.3" },
+      { "id": "c", "text": "M ≈ 3" },
+      { "id": "d", "text": "M ≈ 1, falling in the low supersonic range" }
     ],
-    "correct": "a",
-    "explanation": "The Mach angle is defined by the relationship between the body's speed and the speed of sound, and it narrows as Mach number increases — a faster-moving body trails a tighter, more swept-back cone of disturbed air than a slower supersonic body does.",
-    "tags": ["high-speed", "mach-angle"],
+    "correct": "d",
+    "explanation": "Wave drag grows steeply through the transonic range and then declines as shocks become oblique.",
+    "tags": ["drag-rise"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0027",
+    "id": "POF-SHOCK-0080",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Sonic Boom",
-    "question": "A \"sonic boom\" heard on the ground beneath a supersonic aircraft is caused by:",
+    "subtopic": "Supersonic phenomena",
+    "question": "A pitot probe in supersonic flight measures:",
     "options": [
-      { "id": "a", "text": "The aircraft's shockwave system reaching the ground and being perceived as a sudden pressure change" },
-      { "id": "b", "text": "A one-time event that only happens at the exact instant an aircraft first exceeds Mach 1" },
-      { "id": "c", "text": "Engine noise alone, unrelated to any shockwave" },
-      { "id": "d", "text": "A phenomenon that only occurs below the speed of sound" }
+      { "id": "a", "text": "Free-stream total pressure exactly" },
+      { "id": "b", "text": "Static pressure" },
+      {
+        "id": "c",
+        "text": "The total pressure behind the normal shock that forms ahead of it, which is lower than free-stream total pressure"
+      },
+      { "id": "d", "text": "Dynamic pressure directly" }
     ],
-    "correct": "a",
-    "explanation": "A sonic boom is not a one-time event at the moment of \"breaking\" the sound barrier — it is the continuous shockwave system trailing a supersonic aircraft sweeping across the ground as it flies, perceived by an observer as a sudden overpressure each time that shock system passes overhead, for as long as the aircraft remains supersonic.",
-    "tags": ["high-speed", "sonic-boom"],
+    "correct": "c",
+    "explanation": "The Mach meter uses a supersonic pitot formula (Rayleigh) to recover M from this reduced pressure.",
+    "tags": ["pitot", "supersonic"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0028",
+    "id": "POF-SHOCK-0081",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Mach Trim Drag",
-    "question": "The automatic trim change applied by a Mach trim system as Mach number increases:",
+    "subtopic": "Supersonic phenomena",
+    "question": "A sonic boom heard on the ground is produced by:",
     "options": [
-      { "id": "a", "text": "Itself adds a small amount of trim drag, in the same way any other trim deflection needed to balance the aircraft does" },
-      { "id": "b", "text": "Always reduces total drag to zero" },
-      { "id": "c", "text": "Has no drag consequence of any kind" },
-      { "id": "d", "text": "Only ever occurs below the critical Mach number" }
+      {
+        "id": "a",
+        "text": "The pressure signature of the aircraft's shock system (N-wave) sweeping over the observer"
+      },
+      { "id": "b", "text": "Only when crossing M = 1" },
+      { "id": "c", "text": "Engine noise" },
+      { "id": "d", "text": "Expansion waves only" }
     ],
     "correct": "a",
-    "explanation": "Like any trim deflection used to balance the aircraft, the trim change a Mach trim system applies to counter Mach tuck itself produces a small drag penalty — an unavoidable, if modest, cost of correctly balancing the aircraft as its pitching moment shifts through the transonic region.",
-    "tags": ["high-speed", "mach-trim", "trim-drag"],
+    "explanation": "It is continuous while supersonic, not a one-off event at M 1.",
+    "tags": ["sonic-boom"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0029",
+    "id": "POF-SHOCK-0082",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Speed Brakes and Shock Position",
-    "question": "Deploying a spoiler or speed brake ahead of a wing's typical shock location at transonic speed can:",
+    "subtopic": "Supersonic phenomena",
+    "question": "Upstream of a supersonic body, the free-stream flow is:",
     "options": [
-      { "id": "a", "text": "Disrupt or shift the local flow and shock pattern, which is part of why speed brakes are effective at reducing speed even at high Mach number" },
-      { "id": "b", "text": "Have no interaction with the shockwave at all" },
-      { "id": "c", "text": "Always move the shock forward toward the leading edge" },
-      { "id": "d", "text": "Eliminate the need for a Mach trim system entirely" }
+      { "id": "a", "text": "Accelerated" },
+      { "id": "b", "text": "Undisturbed until it reaches the bow shock" },
+      { "id": "c", "text": "Reversed" },
+      { "id": "d", "text": "Gradually decelerated well ahead" }
     ],
-    "correct": "a",
-    "explanation": "A deployed spoiler ahead of the usual shock location disrupts the smooth acceleration of flow that builds the shock in the first place, changing the local pressure pattern — part of why speed brakes remain an effective way of shedding speed even in the transonic regime, rather than relying on drag alone.",
-    "tags": ["high-speed", "speed-brakes"],
+    "correct": "b",
+    "explanation": "Signals cannot travel upstream faster than the flow; the flow adjusts abruptly at the shock.",
+    "tags": ["bow-shock"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0030",
+    "id": "POF-SHOCK-0083",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Variable-Sweep Wings",
-    "question": "A variable-sweep (\"swing\") wing design allows an aircraft to:",
+    "subtopic": "Normal shock",
+    "question": "The strength of a normal shock, measured by the pressure ratio, increases with:",
     "options": [
-      { "id": "a", "text": "Use low sweep for better low-speed lift and short-field performance, and high sweep for reduced drag and a higher critical Mach number at high speed" },
-      { "id": "b", "text": "Only ever fly at a single fixed sweep angle, identical to a conventional wing" },
-      { "id": "c", "text": "Eliminate the need for high-lift devices at any sweep setting" },
-      { "id": "d", "text": "Fly supersonically only when the wings are fully unswept" }
+      { "id": "a", "text": "Altitude only" },
+      { "id": "b", "text": "Upstream Mach number squared" },
+      { "id": "c", "text": "Temperature only" },
+      { "id": "d", "text": "Downstream Mach number" }
     ],
-    "correct": "a",
-    "explanation": "A variable-sweep wing lets a single aircraft trade between two otherwise conflicting requirements: low sweep for efficient, high-lift, low-speed flight (takeoff, landing, loitering), and high sweep for reduced drag and a higher critical Mach number at high speed — a mechanically complex solution to a genuine aerodynamic trade-off.",
-    "tags": ["high-speed", "variable-sweep"],
+    "correct": "b",
+    "explanation": "p₂/p₁ − 1 = (7/6)(M₁² − 1).",
+    "tags": ["shock-strength"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0031",
+    "id": "POF-SHOCK-0084",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Area Rule at Supersonic Speed",
-    "question": "The area rule, first discovered as a transonic drag-reduction principle, also has a refined form that applies to supersonic speed, in which:",
+    "subtopic": "Shock-induced separation and buffet",
+    "question": "Buffet onset CL decreases with increasing Mach number because:",
     "options": [
-      { "id": "a", "text": "The ideal smooth cross-sectional area distribution changes with Mach number, so a shape optimised for one supersonic speed is not necessarily optimal at another" },
-      { "id": "b", "text": "The area rule applies identically, with no change, at every Mach number from transonic through supersonic" },
-      { "id": "c", "text": "The area rule has no meaning at all above Mach 1" },
-      { "id": "d", "text": "It only ever applies to subsonic aircraft" }
+      { "id": "a", "text": "Skin friction falls" },
+      { "id": "b", "text": "Density rises" },
+      { "id": "c", "text": "Sweep increases" },
+      { "id": "d", "text": "Shocks form earlier and at a lower α as M rises" }
     ],
-    "correct": "a",
-    "explanation": "The supersonic form of the area rule accounts for how the equivalent smooth cross-sectional area distribution that minimises wave drag actually shifts with Mach number, meaning a fuselage shape ideally area-ruled for efficient transonic acceleration is not necessarily the ideal shape for sustained supersonic cruise at a different Mach number.",
-    "tags": ["high-speed", "area-rule"],
+    "correct": "d",
+    "explanation": "Buffet charts show the onset CL falling from about the low-speed stall value through the transonic range.",
+    "tags": ["buffet-onset", "mach-effect"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0032",
+    "id": "POF-SHOCK-0085",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Buzz Trigger Position",
-    "question": "Control surface buzz is most likely to occur when:",
+    "subtopic": "Trim and pitch effects",
+    "question": "An aircraft with Mach tuck and no Mach trim, if allowed to accelerate, tends to:",
     "options": [
-      { "id": "a", "text": "A shockwave sits at or very near the control surface's own hinge line, rather than well forward or well aft of it" },
-      { "id": "b", "text": "No shockwave is present anywhere on the aircraft" },
-      { "id": "c", "text": "The control surface is fully retracted" },
-      { "id": "d", "text": "The aircraft is flying well below its critical Mach number" }
+      { "id": "a", "text": "Roll" },
+      { "id": "b", "text": "Pitch up and slow" },
+      { "id": "c", "text": "Remain at constant speed" },
+      {
+        "id": "d",
+        "text": "Pitch further nose-down and accelerate further — a divergent tendency"
+      }
     ],
-    "correct": "a",
-    "explanation": "Buzz depends on a shockwave repeatedly separating and reattaching the boundary layer right at a control surface's hinge line. A shock sitting well forward or well aft of the hinge does not drive the same interaction, which is why buzz is closely tied to the shock's chordwise position, not simply to Mach number crossing some fixed threshold.",
-    "tags": ["high-speed", "buzz", "shock-position"],
+    "correct": "d",
+    "explanation": "Stick-force reversal with speed: the aircraft is speed-unstable in this regime.",
+    "tags": ["mach-tuck", "speed-stability"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0033",
+    "id": "POF-SHOCK-0086",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Shock Losses and Wave Drag",
-    "question": "The fundamental thermodynamic source of wave drag is that a shockwave:",
+    "subtopic": "Control effects",
+    "question": "Aileron effectiveness in the transonic range may be reduced by:",
     "options": [
-      { "id": "a", "text": "Always causes some loss of total pressure (an entropy increase) as flow crosses it, and that lost energy is what wave drag represents" },
-      { "id": "b", "text": "Always increases total pressure with no loss whatsoever" },
-      { "id": "c", "text": "Has no thermodynamic effect on the flow crossing it" },
-      { "id": "d", "text": "Only affects temperature, never pressure" }
+      { "id": "a", "text": "Lower q" },
+      {
+        "id": "b",
+        "text": "Shock-induced separation over the aileron and aeroelastic twist"
+      },
+      { "id": "c", "text": "Higher CLmax" },
+      { "id": "d", "text": "Ground effect" }
     ],
-    "correct": "a",
-    "explanation": "Crossing a shockwave is an irreversible process: some of the flow's total pressure is lost (equivalently, entropy increases) as it passes through. This lost energy, extracted from the aircraft's own kinetic energy, is precisely what shows up as the additional drag force known as wave drag.",
-    "tags": ["high-speed", "wave-drag", "thermodynamics"],
+    "correct": "b",
+    "explanation": "Both effects add; outboard ailerons may be locked out in favour of spoilers and inboard surfaces.",
+    "tags": ["ailerons", "transonic"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-SHOCK-0034",
+    "id": "POF-SHOCK-0087",
     "subjectCode": "POF",
     "topic": "High-Speed Flight: Shockwaves and Buffet",
-    "subtopic": "Oblique vs Normal Shock Efficiency",
-    "question": "For achieving the same overall flow deflection or pressure rise, a series of oblique shocks is generally preferred over a single strong normal shock because:",
+    "subtopic": "Oblique shocks and expansions",
+    "question": "Behind an expansion fan, total pressure:",
     "options": [
-      { "id": "a", "text": "The combined total pressure loss across several weaker oblique shocks is generally less than the loss across one strong normal shock achieving a similar overall effect" },
-      { "id": "b", "text": "Oblique shocks always produce more total pressure loss than an equivalent normal shock" },
-      { "id": "c", "text": "There is no efficiency difference between the two approaches" },
-      { "id": "d", "text": "Normal shocks never cause any total pressure loss at all" }
+      { "id": "a", "text": "Rises" },
+      { "id": "b", "text": "Is unchanged, since expansion is isentropic" },
+      { "id": "c", "text": "Becomes zero" },
+      { "id": "d", "text": "Falls" }
+    ],
+    "correct": "b",
+    "explanation": "Only shocks generate entropy.",
+    "tags": ["expansion-fan", "total-pressure"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0088",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Transonic shock development",
+    "question": "At free-stream M ≈ 1.0 on a lifting aerofoil, the upper and lower shocks:",
+    "options": [
+      { "id": "a", "text": "Are ahead of the leading edge" },
+      { "id": "b", "text": "Have both moved to (or near) the trailing edge" },
+      { "id": "c", "text": "Have disappeared" },
+      { "id": "d", "text": "Are both at mid-chord" }
+    ],
+    "correct": "b",
+    "explanation": "The supersonic regions have grown to cover most of both surfaces.",
+    "tags": ["shock-movement"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0089",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Shock-induced separation and buffet",
+    "question": "Shock-induced separation produces a drag increase primarily through:",
+    "options": [
+      { "id": "a", "text": "Lower induced drag" },
+      { "id": "b", "text": "Reduced skin friction" },
+      { "id": "c", "text": "Thrust loss" },
+      {
+        "id": "d",
+        "text": "Increased pressure drag of the thickened, separated wake"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Wave drag proper plus the form drag of separation make up the transonic drag rise.",
+    "tags": ["drag-rise", "separation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0090",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Buffet boundary",
+    "question": "At maximum operating Mach number, an aircraft is protected from high-speed buffet by:",
+    "options": [
+      { "id": "a", "text": "The stick shaker" },
+      { "id": "b", "text": "Mach trim alone" },
+      {
+        "id": "c",
+        "text": "A certification margin between MMO and the Mach at which buffet occurs at 1 g"
+      },
+      { "id": "d", "text": "The yaw damper" }
+    ],
+    "correct": "c",
+    "explanation": "Demonstrated margins (MD beyond MMO) ensure buffet is not reached in normal operation.",
+    "tags": ["mmo", "high-speed-buffet"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0091",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Normal shock",
+    "question": "Behind a normal shock at M₁ = 2, the static temperature ratio is about:",
+    "options": [
+      { "id": "a", "text": "2.67" },
+      { "id": "b", "text": "4.50" },
+      { "id": "c", "text": "1.69" },
+      { "id": "d", "text": "1.32" }
+    ],
+    "correct": "c",
+    "explanation": "T₂/T₁ = (p₂/p₁)/(ρ₂/ρ₁) = 4.50/2.667 = 1.69.",
+    "tags": ["normal-shock", "temperature-ratio", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0092",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Oblique shocks and expansions",
+    "question": "Weak oblique shocks are preferred to normal shocks on supersonic vehicles because:",
+    "options": [
+      { "id": "a", "text": "They eliminate drag" },
+      { "id": "b", "text": "They slow the flow to subsonic" },
+      {
+        "id": "c",
+        "text": "They produce smaller pressure rises and total-pressure losses"
+      },
+      { "id": "d", "text": "They produce more lift" }
+    ],
+    "correct": "c",
+    "explanation": "Oblique shock strength depends on the normal component, which a small deflection keeps low.",
+    "tags": ["oblique-shock"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0093",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Supersonic phenomena",
+    "question": "A supersonic flat plate at incidence generates lift through:",
+    "options": [
+      {
+        "id": "a",
+        "text": "An expansion fan on the upper surface and an oblique shock on the lower surface"
+      },
+      { "id": "b", "text": "Circulation from a Kutta condition" },
+      { "id": "c", "text": "A normal shock on each surface" },
+      { "id": "d", "text": "Only skin friction" }
     ],
     "correct": "a",
-    "explanation": "Because total pressure loss across a shock grows disproportionately with its strength, splitting a given overall compression into several weaker, staged oblique shocks generally loses less total pressure overall than achieving the same compression through one strong normal shock — the efficiency reasoning behind staged supersonic inlet and wing designs.",
-    "tags": ["high-speed", "oblique-shock", "efficiency"],
+    "explanation": "Lower pressure above and higher below produce a uniform ΔCp along the chord: CL = 4α/√(M² − 1).",
+    "tags": ["supersonic-lift"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0094",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Transonic shock development",
+    "question": "Transonic flow over an aerofoil is sensitive to small changes in Mach number because:",
+    "options": [
+      { "id": "a", "text": "Density is constant" },
+      { "id": "b", "text": "The Kutta condition fails" },
+      { "id": "c", "text": "Viscosity vanishes" },
+      {
+        "id": "d",
+        "text": "Shock position and strength shift significantly with M, redistributing pressure"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The size of the supersonic pocket grows rapidly as M approaches 1.",
+    "tags": ["transonic", "sensitivity"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0095",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Shock-induced separation and buffet",
+    "question": "Buffet at high speed and buffet at low speed differ in that:",
+    "options": [
+      {
+        "id": "a",
+        "text": "High-speed buffet results from shock-induced separation; low-speed buffet from high-α separation near stall"
+      },
+      { "id": "b", "text": "High-speed buffet occurs only in turns" },
+      { "id": "c", "text": "Both are identical" },
+      { "id": "d", "text": "Low-speed buffet needs shocks" }
+    ],
+    "correct": "a",
+    "explanation": "Both are separation-induced and set a CL limit; one is Mach-driven, the other α-driven.",
+    "tags": ["buffet"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0096",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Control effects",
+    "question": "Using the elevator near MMO can be less effective than at lower speeds because:",
+    "options": [
+      { "id": "a", "text": "q is lower" },
+      { "id": "b", "text": "Hinge moments vanish" },
+      { "id": "c", "text": "The CG moves aft" },
+      {
+        "id": "d",
+        "text": "Shocks on the tailplane reduce the elevator's influence on the tail's pressure distribution"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Hence trimmable stabilisers and Mach trim carry the trim load at high Mach.",
+    "tags": ["elevator", "transonic"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0097",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Wave drag",
+    "question": "The area rule reduces transonic wave drag because:",
+    "options": [
+      { "id": "a", "text": "It reduces weight" },
+      { "id": "b", "text": "It adds sweep" },
+      { "id": "c", "text": "It increases thickness" },
+      {
+        "id": "d",
+        "text": "Wave drag depends on the aircraft's longitudinal distribution of total cross-sectional area"
+      }
+    ],
+    "correct": "d",
+    "explanation": "A smooth equivalent body of revolution has minimum wave drag; the fuselage is waisted where the wing adds area.",
+    "tags": ["area-rule"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0098",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Buffet boundary",
+    "question": "Buffet-limited maximum altitude (with margin) decreases as:",
+    "options": [
+      { "id": "a", "text": "Weight increases" },
+      { "id": "b", "text": "Weight decreases" },
+      { "id": "c", "text": "The temperature falls" },
+      { "id": "d", "text": "The CG moves aft" }
+    ],
+    "correct": "a",
+    "explanation": "Higher W requires higher CL at any altitude; the altitude giving the required margin is lower.",
+    "tags": ["buffet-margin", "weight"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-SHOCK-0099",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Shockwaves and Buffet",
+    "subtopic": "Normal shock",
+    "question": "A shock is irreversible; the consequence for the flow is:",
+    "options": [
+      { "id": "a", "text": "A decrease in entropy" },
+      { "id": "b", "text": "No change in energy" },
+      {
+        "id": "c",
+        "text": "An increase in entropy with a total-pressure loss"
+      },
+      { "id": "d", "text": "An increase in total temperature" }
+    ],
+    "correct": "c",
+    "explanation": "Entropy rise Δs = −R·ln(p_t2/p_t1).",
+    "tags": ["entropy", "shock"],
     "status": "published",
     "version": 1
   }

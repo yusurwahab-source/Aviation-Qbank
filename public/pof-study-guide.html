@@ -268,7 +268,7 @@
       <li><a href="#stabl"><span class="n">09</span> Longitudinal Stability <span class="count">70</span></a></li>
       <li><a href="#stabld"><span class="n">10</span> Lateral &amp; Directional Stability <span class="count">70</span></a></li>
       <li><a href="#mach"><span class="n">11</span> High-Speed: Compressibility <span class="count">70</span></a></li>
-      <li><a href="#shock"><span class="n">12</span> High-Speed: Shockwaves &amp; Buffet <span class="count">34</span></a></li>
+      <li><a href="#shock"><span class="n">12</span> High-Speed: Shockwaves &amp; Buffet <span class="count">65</span></a></li>
       <li><a href="#prop"><span class="n">13</span> Propellers <span class="count">40</span></a></li>
       <li><a href="#load"><span class="n">14</span> Loads &amp; Limitations <span class="count">34</span></a></li>
       <li><a href="#wshr"><span class="n">15</span> Windshear &amp; Atmospheric Effects <span class="count">24</span></a></li>
@@ -286,7 +286,7 @@
       </p>
       <div class="tags">
         <span class="tag">15 sections</span>
-        <span class="tag">862 linked questions</span>
+        <span class="tag">893 linked questions</span>
         <span class="tag">Equations · graphs · proportionalities</span>
         <span class="tag">Aircraft-independent</span>
       </div>
@@ -1748,46 +1748,103 @@
     <!-- 12 HIGH-SPEED: SHOCKWAVES AND BUFFET -->
     <!-- ============================================================ -->
     <section class="sec" id="shock">
-      <h2><span class="num">12</span> High-Speed: Shockwaves &amp; Buffet <span class="en">Transonic</span></h2>
-      <p class="lead">Beyond MCRIT, a shockwave forms — and everything downstream of that shockwave changes.</p>
-
-      <p>
-        A <strong>normal shock</strong> decelerates local flow abruptly from
-        supersonic to subsonic; the sharp pressure rise across it can
-        separate the boundary layer immediately behind it, producing
-        <strong>Mach buffet</strong> and a steep rise in drag —
-        <strong>wave drag</strong>. The rearward shift of center of pressure
-        as shocks form produces an uncommanded nose-down moment,
-        <strong>Mach tuck</strong>, countered by a <strong>Mach trim</strong>
-        system. Design responses include the <strong>area rule</strong>
-        (smoothing the total cross-section along the fuselage) and
-        <strong>supercritical aerofoils</strong> (a flatter top, drooped
-        trailing edge, to weaken the shock).
+      <h2><span class="num">12</span> High-Speed: Shockwaves &amp; Buffet <span class="en">Shocks</span></h2>
+      <p class="lead">
+        A shock is a thin, adiabatic, irreversible compression: velocity
+        falls, pressure, density and temperature rise, total pressure is
+        lost. On a transonic wing, shock strength and position govern wave
+        drag, separation, buffet, trim and control effectiveness.
       </p>
 
-      <h3 class="sub">Coffin corner <span class="ref">12.1</span></h3>
-      <div class="diagram">
-        <svg viewBox="0 0 460 220" role="img" aria-label="Diagram showing the low-speed buffet boundary and high-speed buffet boundary converging at high altitude">
-          <line x1="60" y1="200" x2="60" y2="20" stroke="var(--ink-2)" stroke-width="1.5"/>
-          <line x1="60" y1="200" x2="420" y2="200" stroke="var(--ink-2)" stroke-width="1.5"/>
-          <text x="240" y="214" text-anchor="middle" font-size="12" fill="var(--muted)">Indicated airspeed →</text>
-          <text x="20" y="110" text-anchor="middle" font-size="12" fill="var(--muted)" transform="rotate(-90 20 110)">Altitude →</text>
-          <path d="M 90 190 C 150 160, 220 90, 260 40" fill="none" stroke="var(--caution-line)" stroke-width="2.5"/>
-          <path d="M 380 190 C 340 150, 280 90, 262 42" fill="none" stroke="var(--warn-line)" stroke-width="2.5"/>
-          <text x="110" y="175" font-size="11" font-weight="700" fill="var(--caution-line)">Low-speed (stall) buffet</text>
-          <text x="300" y="175" font-size="11" font-weight="700" fill="var(--warn-line)">High-speed (Mach) buffet</text>
-          <circle cx="261" cy="41" r="5" fill="var(--ink)"/>
-          <text x="261" y="26" text-anchor="middle" font-size="12" font-weight="800" fill="var(--ink)">Coffin corner</text>
-        </svg>
-        <div class="cap">At high altitude the two buffet boundaries converge, narrowing the safe speed margin between them</div>
+      <h3 class="sub">Normal shock relations <span class="ref">12.1</span></h3>
+      <div class="eq">M₂² = (1 + 0.2M₁²)/(1.4M₁² − 0.2) &nbsp;&nbsp; p₂/p₁ = (7M₁² − 1)/6 &nbsp;&nbsp; ρ₂/ρ₁ = 6M₁²/(M₁² + 5) &nbsp;&nbsp; T<sub>t</sub> const</div>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>M₁</th><th class="num">M₂</th><th class="num">p₂/p₁</th><th class="num">ρ₂/ρ₁</th><th class="num">T₂/T₁</th><th class="num">p<sub>t2</sub>/p<sub>t1</sub></th></tr></thead>
+        <tbody>
+          <tr><td>1.2</td><td class="num">0.842</td><td class="num">1.513</td><td class="num">1.342</td><td class="num">1.128</td><td class="num">0.993</td></tr>
+          <tr><td>1.5</td><td class="num">0.701</td><td class="num">2.458</td><td class="num">1.862</td><td class="num">1.320</td><td class="num">0.930</td></tr>
+          <tr><td>2.0</td><td class="num">0.577</td><td class="num">4.500</td><td class="num">2.667</td><td class="num">1.688</td><td class="num">0.721</td></tr>
+        </tbody>
+      </table>
       </div>
-      <p>
-        <strong>Control surface buzz</strong> is a related, smaller effect:
-        an oscillating shock near a hinge line repeatedly separates and
-        reattaches the local boundary layer, vibrating the surface.
-      </p>
+      <div class="diagram">
+        <svg viewBox="0 0 460 270" role="img" aria-label="Normal shock relations against upstream Mach number: total-pressure recovery and downstream Mach number fall, static pressure ratio rises">
+          <line x1="60.0" y1="185.0" x2="430.0" y2="185.0" stroke="var(--line)" stroke-width="1"/><line x1="60.0" y1="148.6" x2="430.0" y2="148.6" stroke="var(--line)" stroke-width="1"/><line x1="60.0" y1="112.3" x2="430.0" y2="112.3" stroke="var(--line)" stroke-width="1"/><line x1="60.0" y1="75.9" x2="430.0" y2="75.9" stroke="var(--line)" stroke-width="1"/><line x1="60.0" y1="39.5" x2="430.0" y2="39.5" stroke="var(--line)" stroke-width="1"/><line x1="60.0" y1="185.0" x2="430.0" y2="185.0" stroke="var(--ink-2)" stroke-width="1.2"/><line x1="60.0" y1="185.0" x2="60.0" y2="25.0" stroke="var(--ink-2)" stroke-width="1.2"/><text x="60.0" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">1</text><text x="152.5" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">1.5</text><text x="245.0" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">2</text><text x="337.5" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">2.5</text><text x="430.0" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">3</text><text x="54.0" y="189.0" font-size="11" fill="var(--muted)" text-anchor="end">0</text><text x="54.0" y="152.6" font-size="11" fill="var(--muted)" text-anchor="end">0.25</text><text x="54.0" y="116.3" font-size="11" fill="var(--muted)" text-anchor="end">0.5</text><text x="54.0" y="79.9" font-size="11" fill="var(--muted)" text-anchor="end">0.75</text><text x="54.0" y="43.5" font-size="11" fill="var(--muted)" text-anchor="end">1</text><text x="430.0" y="215.0" font-size="11" fill="var(--muted)" text-anchor="end">upstream M₁ →</text><text x="66.0" y="29.0" font-size="11" fill="var(--muted)"></text>
+          <polyline points="60.0,39.5 61.9,39.5 63.7,39.5 65.6,39.6 67.4,39.6 69.3,39.6 71.1,39.6 73.0,39.6 74.8,39.6 76.7,39.7 78.5,39.7 80.4,39.7 82.2,39.8 84.0,39.9 85.9,39.9 87.7,40.0 89.6,40.1 91.4,40.2 93.3,40.3 95.1,40.5 97.0,40.6 98.8,40.7 100.7,40.9 102.5,41.1 104.4,41.2 106.2,41.4 108.1,41.6 110.0,41.8 111.8,42.1 113.7,42.3 115.5,42.5 117.4,42.8 119.2,43.1 121.1,43.4 122.9,43.6 124.8,43.9 126.6,44.3 128.5,44.6 130.3,44.9 132.2,45.3 134.0,45.6 135.9,46.0 137.7,46.4 139.5,46.8 141.4,47.2 143.2,47.6 145.1,48.0 146.9,48.4 148.8,48.9 150.6,49.3 152.5,49.8 154.4,50.2 156.2,50.7 158.1,51.2 159.9,51.7 161.8,52.2 163.6,52.7 165.5,53.2 167.3,53.7 169.1,54.3 171.0,54.8 172.8,55.3 174.7,55.9 176.5,56.4 178.4,57.0 180.2,57.6 182.1,58.2 183.9,58.7 185.8,59.3 187.6,59.9 189.5,60.5 191.3,61.1 193.2,61.7 195.0,62.4 196.9,63.0 198.8,63.6 200.6,64.2 202.5,64.9 204.3,65.5 206.2,66.1 208.0,66.8 209.9,67.4 211.7,68.1 213.6,68.7 215.4,69.4 217.3,70.1 219.1,70.7 221.0,71.4 222.8,72.0 224.7,72.7 226.5,73.4 228.4,74.1 230.2,74.7 232.1,75.4 233.9,76.1 235.8,76.8 237.6,77.4 239.4,78.1 241.3,78.8 243.2,79.5 245.0,80.1 246.8,80.8 248.7,81.5 250.6,82.2 252.4,82.9 254.2,83.5 256.1,84.2 258.0,84.9 259.8,85.6 261.6,86.3 263.5,86.9 265.4,87.6 267.2,88.3 269.0,89.0 270.9,89.6 272.8,90.3 274.6,91.0 276.4,91.6 278.3,92.3 280.1,93.0 282.0,93.6 283.9,94.3 285.7,95.0 287.5,95.6 289.4,96.3 291.2,96.9 293.1,97.6 295.0,98.2 296.8,98.9 298.6,99.5 300.5,100.2 302.4,100.8 304.2,101.4 306.1,102.1 307.9,102.7 309.8,103.3 311.6,104.0 313.5,104.6 315.3,105.2 317.2,105.8 319.0,106.4 320.9,107.0 322.7,107.7 324.5,108.3 326.4,108.9 328.3,109.5 330.1,110.1 331.9,110.7 333.8,111.2 335.7,111.8 337.5,112.4 339.3,113.0 341.2,113.6 343.1,114.1 344.9,114.7 346.7,115.3 348.6,115.9 350.5,116.4 352.3,117.0 354.1,117.5 356.0,118.1 357.9,118.6 359.7,119.2 361.5,119.7 363.4,120.2 365.3,120.8 367.1,121.3 368.9,121.8 370.8,122.4 372.6,122.9 374.5,123.4 376.3,123.9 378.2,124.4 380.1,124.9 381.9,125.4 383.8,125.9 385.6,126.4 387.4,126.9 389.3,127.4 391.2,127.9 393.0,128.4 394.9,128.8 396.7,129.3 398.6,129.8 400.4,130.2 402.2,130.7 404.1,131.2 406.0,131.6 407.8,132.1 409.7,132.5 411.5,133.0 413.4,133.4 415.2,133.8 417.0,134.3 418.9,134.7 420.8,135.1 422.6,135.6 424.4,136.0 426.3,136.4 428.2,136.8 430.0,137.2" fill="none" stroke="var(--brand)" stroke-width="3"/>
+          <polyline points="60.0,39.5 61.9,41.0 63.7,42.4 65.6,43.7 67.4,45.1 69.3,46.4 71.1,47.6 73.0,48.9 74.8,50.1 76.7,51.2 78.5,52.4 80.4,53.5 82.2,54.6 84.0,55.7 85.9,56.7 87.7,57.7 89.6,58.7 91.4,59.7 93.3,60.7 95.1,61.6 97.0,62.5 98.8,63.4 100.7,64.3 102.5,65.1 104.4,66.0 106.2,66.8 108.1,67.6 110.0,68.4 111.8,69.2 113.7,69.9 115.5,70.7 117.4,71.4 119.2,72.1 121.1,72.8 122.9,73.5 124.8,74.2 126.6,74.9 128.5,75.5 130.3,76.2 132.2,76.8 134.0,77.4 135.9,78.0 137.7,78.6 139.5,79.2 141.4,79.8 143.2,80.3 145.1,80.9 146.9,81.4 148.8,82.0 150.6,82.5 152.5,83.0 154.4,83.5 156.2,84.0 158.1,84.5 159.9,85.0 161.8,85.5 163.6,86.0 165.5,86.4 167.3,86.9 169.1,87.3 171.0,87.8 172.8,88.2 174.7,88.6 176.5,89.1 178.4,89.5 180.2,89.9 182.1,90.3 183.9,90.7 185.8,91.1 187.6,91.5 189.5,91.8 191.3,92.2 193.2,92.6 195.0,92.9 196.9,93.3 198.8,93.6 200.6,94.0 202.5,94.3 204.3,94.7 206.2,95.0 208.0,95.3 209.9,95.7 211.7,96.0 213.6,96.3 215.4,96.6 217.3,96.9 219.1,97.2 221.0,97.5 222.8,97.8 224.7,98.1 226.5,98.4 228.4,98.6 230.2,98.9 232.1,99.2 233.9,99.5 235.8,99.7 237.6,100.0 239.4,100.3 241.3,100.5 243.2,100.8 245.0,101.0 246.8,101.3 248.7,101.5 250.6,101.8 252.4,102.0 254.2,102.2 256.1,102.5 258.0,102.7 259.8,102.9 261.6,103.1 263.5,103.4 265.4,103.6 267.2,103.8 269.0,104.0 270.9,104.2 272.8,104.4 274.6,104.6 276.4,104.8 278.3,105.0 280.1,105.2 282.0,105.4 283.9,105.6 285.7,105.8 287.5,106.0 289.4,106.2 291.2,106.4 293.1,106.6 295.0,106.7 296.8,106.9 298.6,107.1 300.5,107.3 302.4,107.4 304.2,107.6 306.1,107.8 307.9,107.9 309.8,108.1 311.6,108.3 313.5,108.4 315.3,108.6 317.2,108.8 319.0,108.9 320.9,109.1 322.7,109.2 324.5,109.4 326.4,109.5 328.3,109.7 330.1,109.8 331.9,110.0 333.8,110.1 335.7,110.2 337.5,110.4 339.3,110.5 341.2,110.7 343.1,110.8 344.9,110.9 346.7,111.1 348.6,111.2 350.5,111.3 352.3,111.5 354.1,111.6 356.0,111.7 357.9,111.8 359.7,112.0 361.5,112.1 363.4,112.2 365.3,112.3 367.1,112.4 368.9,112.6 370.8,112.7 372.6,112.8 374.5,112.9 376.3,113.0 378.2,113.1 380.1,113.2 381.9,113.4 383.8,113.5 385.6,113.6 387.4,113.7 389.3,113.8 391.2,113.9 393.0,114.0 394.9,114.1 396.7,114.2 398.6,114.3 400.4,114.4 402.2,114.5 404.1,114.6 406.0,114.7 407.8,114.8 409.7,114.9 411.5,115.0 413.4,115.1 415.2,115.2 417.0,115.3 418.9,115.4 420.8,115.4 422.6,115.5 424.4,115.6 426.3,115.7 428.2,115.8 430.0,115.9" fill="none" stroke="var(--caution-line)" stroke-width="2.5"/>
+          <polyline points="60.0,170.5 61.9,170.1 63.7,169.8 65.6,169.4 67.4,169.1 69.3,168.7 71.1,168.4 73.0,168.0 74.8,167.6 76.7,167.3 78.5,166.9 80.4,166.5 82.2,166.1 84.0,165.8 85.9,165.4 87.7,165.0 89.6,164.6 91.4,164.2 93.3,163.8 95.1,163.4 97.0,163.0 98.8,162.6 100.7,162.2 102.5,161.8 104.4,161.3 106.2,160.9 108.1,160.5 110.0,160.1 111.8,159.6 113.7,159.2 115.5,158.7 117.4,158.3 119.2,157.9 121.1,157.4 122.9,157.0 124.8,156.5 126.6,156.0 128.5,155.6 130.3,155.1 132.2,154.6 134.0,154.2 135.9,153.7 137.7,153.2 139.5,152.7 141.4,152.2 143.2,151.7 145.1,151.3 146.9,150.8 148.8,150.3 150.6,149.7 152.5,149.2 154.4,148.7 156.2,148.2 158.1,147.7 159.9,147.2 161.8,146.7 163.6,146.1 165.5,145.6 167.3,145.1 169.1,144.5 171.0,144.0 172.8,143.4 174.7,142.9 176.5,142.3 178.4,141.8 180.2,141.2 182.1,140.7 183.9,140.1 185.8,139.5 187.6,139.0 189.5,138.4 191.3,137.8 193.2,137.2 195.0,136.6 196.9,136.0 198.8,135.5 200.6,134.9 202.5,134.3 204.3,133.7 206.2,133.1 208.0,132.4 209.9,131.8 211.7,131.2 213.6,130.6 215.4,130.0 217.3,129.3 219.1,128.7 221.0,128.1 222.8,127.4 224.7,126.8 226.5,126.2 228.4,125.5 230.2,124.9 232.1,124.2 233.9,123.6 235.8,122.9 237.6,122.2 239.4,121.6 241.3,120.9 243.2,120.2 245.0,119.5 246.8,118.9 248.7,118.2 250.6,117.5 252.4,116.8 254.2,116.1 256.1,115.4 258.0,114.7 259.8,114.0 261.6,113.3 263.5,112.6 265.4,111.9 267.2,111.2 269.0,110.4 270.9,109.7 272.8,109.0 274.6,108.3 276.4,107.5 278.3,106.8 280.1,106.0 282.0,105.3 283.9,104.5 285.7,103.8 287.5,103.0 289.4,102.3 291.2,101.5 293.1,100.7 295.0,100.0 296.8,99.2 298.6,98.4 300.5,97.7 302.4,96.9 304.2,96.1 306.1,95.3 307.9,94.5 309.8,93.7 311.6,92.9 313.5,92.1 315.3,91.3 317.2,90.5 319.0,89.7 320.9,88.9 322.7,88.0 324.5,87.2 326.4,86.4 328.3,85.6 330.1,84.7 331.9,83.9 333.8,83.1 335.7,82.2 337.5,81.4 339.3,80.5 341.2,79.7 343.1,78.8 344.9,77.9 346.7,77.1 348.6,76.2 350.5,75.3 352.3,74.5 354.1,73.6 356.0,72.7 357.9,71.8 359.7,70.9 361.5,70.0 363.4,69.2 365.3,68.3 367.1,67.4 368.9,66.4 370.8,65.5 372.6,64.6 374.5,63.7 376.3,62.8 378.2,61.9 380.1,61.0 381.9,60.0 383.8,59.1 385.6,58.2 387.4,57.2 389.3,56.3 391.2,55.3 393.0,54.4 394.9,53.4 396.7,52.5 398.6,51.5 400.4,50.6 402.2,49.6 404.1,48.6 406.0,47.6 407.8,46.7 409.7,45.7 411.5,44.7 413.4,43.7 415.2,42.7 417.0,41.7 418.9,40.7 420.8,39.7 422.6,38.7 424.4,37.7 426.3,36.7 428.2,35.7 430.0,34.7" fill="none" stroke="var(--warn-line)" stroke-width="2.5"/>
+          <circle cx="97.0" cy="40.6" r="3.5" fill="var(--brand)"/><text x="101.0" y="33.6" font-size="10.5" fill="var(--brand)" font-weight="700">0.99</text><circle cx="152.5" cy="49.8" r="3.5" fill="var(--brand)"/><text x="156.5" y="42.8" font-size="10.5" fill="var(--brand)" font-weight="700">0.93</text><circle cx="245.0" cy="80.1" r="3.5" fill="var(--brand)"/><text x="249.0" y="73.1" font-size="10.5" fill="var(--brand)" font-weight="700">0.72</text>
+          <line x1="60" y1="225" x2="78" y2="225" stroke="var(--brand)" stroke-width="2.5"/><text x="84" y="229" font-size="11" font-weight="700" fill="var(--brand)">p_t2/p_t1 (total-pressure recovery)</text><line x1="60" y1="241" x2="78" y2="241" stroke="var(--caution-line)" stroke-width="2.5"/><text x="84" y="245" font-size="11" font-weight="700" fill="var(--caution-line)">M₂ (downstream Mach)</text><line x1="60" y1="257" x2="78" y2="257" stroke="var(--warn-line)" stroke-width="2.5"/><text x="84" y="261" font-size="11" font-weight="700" fill="var(--warn-line)">p₂/p₁ ÷ 10 (static pressure)</text>
+        </svg>
+        <div class="cap">Loss grows steeply with upstream Mach number; weak shocks (M₁ ≲ 1.3) are nearly loss-free</div>
+      </div>
+      <ul>
+        <li>ρ₂/ρ₁ → 6 as M₁ → ∞. Entropy rises: Δs = −R·ln(p<sub>t2</sub>/p<sub>t1</sub>).</li>
+        <li>M 1.5 at 216.65 K: V 443 → 238 m/s (T₂ 286 K).</li>
+      </ul>
 
-      <div class="related"><span class="dot"></span> Related questions: <strong>34</strong> in this topic</div>
+      <h3 class="sub">Oblique shocks and expansions <span class="ref">12.2</span></h3>
+      <div class="eq">M<sub>n1</sub> = M₁·sin β &nbsp;&nbsp;&nbsp; tangential component unchanged</div>
+      <ul>
+        <li>M 2, β 40°: M<sub>n</sub> 1.29, p₂/p₁ 1.76 (normal shock at M 2: 4.5). Downstream flow may remain supersonic.</li>
+        <li>Concave turning → oblique shock; convex turning → isentropic expansion fan (M ↑, p ↓, p<sub>t</sub> const).</li>
+        <li>Excessive deflection or blunt nose → detached bow shock with a subsonic region.</li>
+        <li>Supersonic flat plate: expansion above, shock below → uniform ΔC<sub>p</sub>, C<sub>L</sub> = 4α/√(M² − 1). Intakes use oblique shock trains before a weak normal shock.</li>
+      </ul>
+
+      <h3 class="sub">Transonic shock development <span class="ref">12.3</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Free-stream M</th><th>Shock system on a lifting section</th></tr></thead>
+        <tbody>
+          <tr><td>Just above M<sub>crit</sub></td><td>Weak upper-surface shock ending a small supersonic pocket</td></tr>
+          <tr><td>Increasing</td><td>Upper shock strengthens and moves aft; lower-surface shock appears later and moves aft faster</td></tr>
+          <tr><td>≈ 1.0</td><td>Both shocks at or near the trailing edge</td></tr>
+          <tr><td>&gt; 1.0</td><td>Bow wave ahead of the leading edge; trailing-edge shocks oblique</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>At the shock foot the pressure rise spreads upstream through the subsonic boundary layer (λ-foot). Local M ahead of the shock above ≈ 1.3 typically separates the layer.</p>
+
+      <h3 class="sub">Separation, buffet and lift <span class="ref">12.4</span></h3>
+      <ul>
+        <li>Shock-induced separation → wave plus form drag rise, unsteady shock motion and buffet, shock stall (C<sub>L</sub> at fixed α falls after rising with Prandtl–Glauert).</li>
+        <li>Higher α strengthens the shock and lowers buffet-onset Mach; buffet-onset C<sub>L</sub> falls with M.</li>
+        <li>Vortex generators ahead of the shock reduce separation.</li>
+        <li>C<sub>D</sub> peaks near M ≈ 1, falling in the low supersonic range.</li>
+      </ul>
+
+      <h3 class="sub">Buffet boundary <span class="ref">12.5</span></h3>
+      <div class="eq">(W/S)<sub>max</sub> = 0.7·p·M²·C<sub>L,buffet</sub>/n</div>
+      <ul>
+        <li>FL390 (p 19,680 Pa), M 0.84, C<sub>L,buffet</sub> 0.50: 4,860 N/m² at 1 g; 3,740 N/m² with 1.3 g (≈ 40° bank) margin.</li>
+        <li>Margin falls with altitude and weight; improves slightly with aft CG (less tail download). A certification margin separates MMO from 1 g buffet.</li>
+      </ul>
+
+      <h3 class="sub">Pitch, roll and control effects <span class="ref">12.6</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Effect</th><th>Mechanism</th><th>Countermeasure</th></tr></thead>
+        <tbody>
+          <tr><td>Mach tuck</td><td>CP aft with shock movement; root separation reduces tail downwash</td><td>Mach trim (nose-up with M)</td></tr>
+          <tr><td>High-speed pitch-up</td><td>Tip-first separation on swept wing</td><td>Planform, fences, VGs</td></tr>
+          <tr><td>Wing drop</td><td>Asymmetric shock separation</td><td>Rigging, VGs</td></tr>
+          <tr><td>Control ineffectiveness</td><td>Shock ahead of hinge isolates the surface from the wing's circulation</td><td>All-moving tail, spoilers</td></tr>
+          <tr><td>Buzz, hinge-moment jumps</td><td>Shock oscillating near the hinge</td><td>Stiff actuators, dampers</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Aerodynamic centre moves from ≈ 25 % to ≈ 50 % chord into supersonic flight: more stability, more trim download. Uncorrected tuck is speed-divergent.</p>
+
+      <h3 class="sub">Wave drag and supersonic phenomena <span class="ref">12.7</span></h3>
+      <ul>
+        <li>Wave drag = total-pressure loss across shocks (plus separation). Reduced by sweep, thin supercritical sections and area ruling.</li>
+        <li>Supersonic pitot reads total pressure behind its own normal shock; M is recovered through the supersonic pitot relation.</li>
+        <li>Flow ahead of the bow shock is undisturbed. The sonic boom (N-wave) is continuous while supersonic.</li>
+      </ul>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>65</strong> in this topic</div>
     </section>
 
     <!-- ============================================================ -->
