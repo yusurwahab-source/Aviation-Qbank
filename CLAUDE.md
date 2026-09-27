@@ -1811,8 +1811,8 @@ Flying Knowledge subject is a content-only job**, the same rule "many
 aircraft, in two trees" states for a second aircraft — see the note there.
 This is now proven, not just asserted: Principles of Flight (`POF`) was
 added as `content/flying-knowledge/pof/` alone — a `subject.json` and
-fifteen question files, 501 questions covering the full syllabus in real
-depth rather than a thin slice of it — with the only application-code change being the
+fifteen question files, 501 questions at first (564 now, on the way to
+1,000 — see the note on the POF bank in `content/README.md`) — with the only application-code change being the
 same one-line addition to `lib/study-guide.ts`'s hand-kept set that any
 aircraft's own study guide already needs (see the note on that file
 above), exactly the same way IFR itself first proved the rule.
@@ -1848,12 +1848,17 @@ regulations.** See the note on the IFR bank in `content/README.md` for what
 that does and does not mean, and "Known gaps, honestly" below.
 
 **The POF bank (Principles of Flight, Flying Knowledge's second subject) is
-the same kind of content, held to the same honesty.** Authored by the
-assistant as general ATPL-level aerodynamics theory — not transcribed from
-the EASA ATPL Principles of Flight reference the owner pointed at, or from
-any other single textbook or syllabus, and not checked against one. See the
-note on the POF bank in `content/README.md`, and "Known gaps, honestly"
-below.
+the same kind of content, held to the same honesty — but the honesty lives
+here, not on the page.** Authored by the assistant as general aerodynamics
+theory — not transcribed from the Principles of Flight book the owner
+pointed at, or from any other textbook or syllabus, and not checked against
+one. At the owner's instruction, nothing a student reads in this subject —
+guide or question — names a book, school, regulator, question bank or
+syllabus; the record of where it came from is kept in this file and
+`content/README.md` only. It is being rebuilt section by section toward
+1,000 compound, computational questions; a rebuilt section replaces its file
+with new ids and never reuses a retired one. See the note on the POF bank in
+`content/README.md`, and "Known gaps, honestly" below.
 
 ## Known gaps, honestly
 
@@ -1965,18 +1970,16 @@ below.
   for a real rating or exam. See the note on the IFR bank in
   `content/README.md`.
 - **The entire POF bank (Principles of Flight, Flying Knowledge's second
-  subject) was authored by the assistant, not transcribed from the EASA
-  ATPL Principles of Flight reference the owner pointed at, or from any
-  other textbook, syllabus or question bank, and not checked against one.**
-  Like the IFR bank, it sticks to general aerodynamic concepts and
-  relationships taught the same way across ATPL training worldwide (the
-  four forces, the lift equation, angle of attack vs pitch attitude, how
-  stalling speed scales with load factor and weight, why sweepback raises
-  critical Mach number) rather than a source-specific figure, and should be
-  reviewed by a qualified instructor before a student relies on it for a
-  real ATPL exam. `public/pof-study-guide.html` carries the same honesty
-  note in its own "About this guide" callout. See the note on the POF bank
-  in `content/README.md`.
+  subject) was authored by the assistant, not transcribed from the
+  Principles of Flight book the owner pointed at, or from any other
+  textbook, syllabus or question bank, and not checked against one.**
+  It sticks to general aerodynamic relations and standard-atmosphere
+  values, computed rather than copied, and should be reviewed by a
+  qualified instructor before a student relies on it for a real exam.
+  Unlike the IFR bank, the study guide no longer says so on the page: the
+  owner asked for every source mention to be removed from what a student
+  reads, so this note and `content/README.md` are now the only place the
+  caveat is recorded. See the note on the POF bank in `content/README.md`.
 - **Twenty-six B737 questions turn on a figure nobody has confirmed twice.** The
   bank's wrong options were rewritten so a question cannot be answered by
   elimination alone, and that pass deliberately left every uncorroborated number

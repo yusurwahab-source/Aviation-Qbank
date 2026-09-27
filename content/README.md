@@ -350,41 +350,75 @@ of it has been checked against a specific state's AIP or training syllabus.
 ## The POF bank (Flying Knowledge)
 
 The subject is **Principles of Flight**, the second subject in Flying
-Knowledge, added the same content-only way IFR was. 501 questions across
-fifteen topics, covering the full ATPL Principles of Flight syllabus in
-real depth rather than a thin slice of it: Basic Aerodynamics (35),
-Aerofoils and Lift Theory (32), Lift and Drag (38), Boundary Layer (28),
-Stalling (42), High-Lift Devices (30), Flight Controls: Primary (38),
-Flight Controls: Secondary and Trim (24), Longitudinal Stability (34),
-Lateral and Directional Stability (34), High-Speed Flight: Compressibility
-(34), High-Speed Flight: Shockwaves and Buffet (34), Propellers (40),
-Aeroplane Loads and Limitations (34), and Windshear and Atmospheric
-Effects (24) — all published.
+Knowledge, added the same content-only way IFR was. 564 questions across
+fifteen topics today, all published: Basic Aerodynamics (65), Aerofoils and
+Lift Theory (65), Lift and Drag (38), Boundary Layer (28), Stalling (42),
+High-Lift Devices (30), Flight Controls: Primary (38), Flight Controls:
+Secondary and Trim (24), Longitudinal Stability (34), Lateral and
+Directional Stability (34), High-Speed Flight: Compressibility (34),
+High-Speed Flight: Shockwaves and Buffet (34), Propellers (40), Aeroplane
+Loads and Limitations (34), and Windshear and Atmospheric Effects (24).
 
-**Every question here was authored by the assistant, as general ATPL-level
-aerodynamics theory — not transcribed from any single textbook, syllabus or
-question bank (including the EASA ATPL Principles of Flight reference the
-owner pointed at), and not checked against one.** The same honesty this
-file already applies to the IFR bank applies here: the questions describe
-concepts and relationships taught the same way across ATPL training
-worldwide (the four forces, the lift equation, why a stall is an
-angle-of-attack event rather than a speed event, how sweepback raises
-critical Mach number), and where a numeric relationship is given (stalling
-speed scaling with the square root of load factor or weight, for example)
-it is a general aerodynamic relationship rather than a regulator- or
-textbook-specific figure.
+### Being rebuilt toward 1,000, one or two sections at a time
 
-This should be reviewed by a qualified instructor before a student relies
-on it for a real ATPL exam — the same caution already given to the IFR
-bank and to the DA40's unsourced topics above. None of it has been checked
-against a specific school's Principles of Flight syllabus.
+At the owner's request the bank and its guide are being rewritten section by
+section into an analytical, equation-led form, with compound, computational
+questions that need more than one variable to be reasoned about rather than
+a definition to be recalled. The target is 1,000 questions:
 
-`public/pof-study-guide.html` is this bank's study guide, in the same
-FCOM-styled format as the DA40/C152/DA42 guides (see `lib/study-guide.ts`)
-— fifteen numbered sections matching the fifteen topics above, tables for
-the numeric relationships, and the same honesty note repeated in its own
-"About this guide" callout so a student reading only the guide, not this
-file, sees it too.
+| # | Topic | Id prefix | Target | Now |
+|---|---|---|---|---|
+| 01 | Basic Aerodynamics | `AERO` | 65 | **65 (rebuilt)** |
+| 02 | Aerofoils and Lift Theory | `AFOIL` | 65 | **65 (rebuilt)** |
+| 03 | Lift and Drag | `LIFT` | 75 | 38 |
+| 04 | Boundary Layer | `BL` | 55 | 28 |
+| 05 | Stalling | `STALL` | 85 | 42 |
+| 06 | High-Lift Devices | `HLD` | 60 | 30 |
+| 07 | Flight Controls: Primary | `CTRL` | 70 | 38 |
+| 08 | Flight Controls: Secondary and Trim | `TRIM` | 45 | 24 |
+| 09 | Longitudinal Stability | `STABL` | 70 | 34 |
+| 10 | Lateral and Directional Stability | `STABLD` | 70 | 34 |
+| 11 | High-Speed Flight: Compressibility | `MACH` | 70 | 34 |
+| 12 | High-Speed Flight: Shockwaves and Buffet | `SHOCK` | 65 | 34 |
+| 13 | Propellers | `PROP` | 80 | 40 |
+| 14 | Aeroplane Loads and Limitations | `LOAD` | 70 | 34 |
+| 15 | Windshear and Atmospheric Effects | `WSHR` | 55 | 24 |
+| | | | **1,000** | **564** |
+
+A rebuilt section **replaces** its file rather than adding to it, and its
+new questions take **new ids** that continue after the old ones
+(`POF-AERO-0036` onward, `POF-AFOIL-0033` onward). The retired ids are never
+reused for a different question: `attempts` keeps history by question id
+with no foreign key, so a reused id would silently attach an old answer to a
+new question. `db:seed` deletes the retired rows; the history survives.
+
+The correct letter in a rebuilt file is spread by a deterministic shuffle
+keyed on each question's id, not by hand.
+
+### What the student sees never names a source
+
+The rebuilt guide sections and questions are phrased as plain aerodynamic
+statements: no book, school, regulator, question bank or syllabus
+abbreviation appears anywhere a student can read, at the owner's
+instruction. The guide's former "About this guide" callout was removed for
+that reason.
+
+That rule is about user-facing text only. The honest record stays here:
+**every question was authored by the assistant — not transcribed from any
+textbook, syllabus or question bank, including the Principles of Flight
+book the owner pointed at, and not checked against one.** The figures are
+standard aerodynamic relations and standard-atmosphere values, computed
+rather than copied, and every numeric answer in the rebuilt sections was
+recomputed when it was written. It should still be reviewed by a qualified
+instructor before a student relies on it for a real exam — the same caution
+given to the IFR bank and the DA40's unsourced topics above.
+
+`public/pof-study-guide.html` is this bank's study guide (see
+`lib/study-guide.ts`): fifteen numbered sections matching the fifteen
+topics. Sections 01 and 02 are in the rebuilt form — governing equations,
+tables of computed values, two inline SVG graphs (a chordwise pressure
+distribution and lift curves by aspect ratio); sections 03–15 keep their
+earlier prose until they are rebuilt in turn.
 
 ## The B737 bank
 
