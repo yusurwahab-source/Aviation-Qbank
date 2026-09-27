@@ -1,637 +1,1438 @@
 [
   {
-    "id": "POF-STABLD-0001",
+    "id": "POF-STABLD-0035",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Dihedral",
-    "question": "The primary purpose of wing dihedral, the wings angled upward from root to tip, is to contribute to:",
-    "options": [
-      { "id": "a", "text": "Longitudinal stability" },
-      { "id": "b", "text": "Lateral (roll) stability, by generating a restoring rolling moment following a sideslip" },
-      { "id": "c", "text": "Directional stability about the vertical axis" },
-      { "id": "d", "text": "A reduction in induced drag" }
-    ],
-    "correct": "b",
-    "explanation": "When a sideslip develops, dihedral causes the lower, into-wind wing to meet the airflow at a slightly higher effective angle of attack than the upper wing, generating more lift on the low wing. This produces a rolling moment back toward wings-level — a lateral, not longitudinal or directional, stabilising effect.",
-    "tags": ["stability", "dihedral", "lateral-stability"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-STABLD-0002",
-    "subjectCode": "POF",
-    "topic": "Lateral and Directional Stability",
-    "subtopic": "Directional Stability",
-    "question": "The vertical stabilizer (fin) contributes to directional stability mainly through a \"weathercock\" effect, meaning:",
-    "options": [
-      { "id": "a", "text": "It generates lift to help support the tail in cruise flight" },
-      {
-        "id": "b",
-        "text": "Following a yaw disturbance, the airflow strikes the fin at an angle and generates a restoring yawing moment back toward the original heading"
-      },
-      { "id": "c", "text": "It reduces the aircraft's roll rate during aileron use" },
-      { "id": "d", "text": "It prevents Dutch roll from ever developing" }
-    ],
-    "correct": "b",
-    "explanation": "If the aircraft yaws away from the direction it is travelling through the air, the fin meets the resulting sideways component of airflow at an angle and generates a sideforce that yaws the nose back to align with the relative airflow — the same principle by which a weathercock aligns with the wind.",
-    "tags": ["stability", "directional-stability", "fin"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-STABLD-0003",
-    "subjectCode": "POF",
-    "topic": "Lateral and Directional Stability",
-    "subtopic": "Sweepback",
-    "question": "In a sideslip, a swept wing contributes a stabilising rolling moment similar to dihedral, mainly because:",
+    "subtopic": "Directional stability",
+    "question": "Static directional (weathercock) stability requires that a sideslip β produces:",
     "options": [
       {
         "id": "a",
-        "text": "The forward wing, into the sideslip, presents a greater effective span perpendicular to the airflow, generating relatively more lift than the trailing wing"
+        "text": "A yawing moment that turns the nose into the relative wind (Cn_β > 0)"
       },
-      { "id": "b", "text": "Sweepback increases the wing's aspect ratio during a sideslip" },
-      { "id": "c", "text": "The trailing wing always stalls first during a sideslip, rolling the aircraft toward it" },
-      { "id": "d", "text": "Sweepback has no effect on lateral stability, only on critical Mach number" }
+      { "id": "b", "text": "No yawing moment" },
+      { "id": "c", "text": "A rolling moment only" },
+      { "id": "d", "text": "A yawing moment away from the relative wind" }
     ],
     "correct": "a",
-    "explanation": "During a sideslip, the wing swept toward the direction of the slip presents more of its span perpendicular to the oncoming airflow than the trailing wing, effectively increasing its lift compared with the aft wing. This produces a rolling moment back toward wings-level, adding a dihedral-like lateral stabilising effect.",
-    "tags": ["stability", "sweepback", "lateral-stability"],
+    "explanation": "The fin, aft of the CG, generates side force from β that yaws the nose toward the oncoming flow, reducing β.",
+    "tags": ["directional-stability", "cn-beta"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0004",
+    "id": "POF-STABLD-0036",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Dutch Roll",
-    "question": "\"Dutch roll\" is a dynamic mode combining:",
+    "subtopic": "Directional stability",
+    "question": "The fin's contribution to directional stability: a_v = 0.05 per degree, β = 5°, q = 5 kPa, S_v = 20 m², arm 15 m. The restoring yawing moment is:",
     "options": [
-      { "id": "a", "text": "Pure roll only, with no yaw" },
+      { "id": "a", "text": "25 kN·m" },
+      { "id": "b", "text": "1,875 kN·m" },
+      { "id": "c", "text": "37.5 kN·m" },
+      { "id": "d", "text": "375 kN·m" }
+    ],
+    "correct": "d",
+    "explanation": "C_L,v = 0.05 × 5 = 0.25; F = 0.25 × 5,000 × 20 = 25 kN; N = 25 × 15 = 375 kN·m.",
+    "tags": ["fin", "yawing-moment", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0037",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Directional stability",
+    "question": "The vertical tail volume V_V = S_v·l_v/(S·b). With S_v = 20 m², l_v = 15 m, S = 120 m², b = 30 m:",
+    "options": [
+      { "id": "a", "text": "0.008" },
+      { "id": "b", "text": "0.83" },
+      { "id": "c", "text": "0.083" },
+      { "id": "d", "text": "2.5" }
+    ],
+    "correct": "c",
+    "explanation": "V_V = 300/3,600 = 0.083. Directional stability from the fin scales with V_V.",
+    "tags": ["vertical-tail-volume", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0038",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Directional stability",
+    "question": "The fuselage contributes to directional stability:",
+    "options": [
+      { "id": "a", "text": "Only in roll" },
       {
         "id": "b",
-        "text": "Coupled yawing and rolling oscillation, typically arising when directional (yaw) stability is weak relative to lateral (roll) stability"
+        "text": "Destabilisingly, since its side area ahead of the CG produces a yawing moment away from the wind"
       },
-      { "id": "c", "text": "Pure pitch oscillation" },
-      { "id": "d", "text": "A phenomenon that only affects gliders" }
+      { "id": "c", "text": "Stabilisingly" },
+      { "id": "d", "text": "Not at all" }
     ],
     "correct": "b",
-    "explanation": "Dutch roll is a coupled yaw-roll oscillation: a yaw disturbance produces a sideslip, dihedral effect rolls the aircraft in response, and that roll feeds back into further yaw. It tends to be more pronounced when an aircraft's lateral (dihedral/sweep) stability is strong relative to its directional (fin) stability, which is common on swept-wing jets.",
-    "tags": ["stability", "dutch-roll"],
+    "explanation": "The forward fuselage in sideslip acts like a lifting body ahead of the CG, turning the nose further away.",
+    "tags": ["fuselage", "directional-stability"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0005",
+    "id": "POF-STABLD-0039",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Yaw Damper",
-    "question": "A yaw damper is fitted to many swept-wing jet aircraft mainly to:",
+    "subtopic": "Directional stability",
+    "question": "A dorsal fin improves directional stability at large sideslip angles because:",
     "options": [
-      { "id": "a", "text": "Increase the aircraft's dihedral effect mechanically" },
+      { "id": "a", "text": "It adds weight aft" },
+      { "id": "b", "text": "It moves the CG aft" },
+      { "id": "c", "text": "It reduces fin area" },
+      {
+        "id": "d",
+        "text": "It creates a vortex that delays fin stall, keeping the fin's side force rising"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The low-aspect-ratio dorsal extension behaves like a strake, maintaining attached flow over the fin at high β.",
+    "tags": ["dorsal-fin", "fin-stall"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0040",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Directional stability",
+    "question": "Sweepback's effect on directional stability is:",
+    "options": [
+      { "id": "a", "text": "Destabilising at low speed only" },
+      { "id": "b", "text": "Destabilising" },
+      {
+        "id": "c",
+        "text": "Stabilising, since the forward-moving wing presents more span normal to the flow and more drag"
+      },
+      { "id": "d", "text": "Nil" }
+    ],
+    "correct": "c",
+    "explanation": "In sideslip the advancing swept wing has a smaller effective sweep, more lift and induced drag, yawing the nose back into the wind.",
+    "tags": ["sweepback", "directional-stability"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0041",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Directional stability",
+    "question": "At very high angles of attack, directional stability can deteriorate because:",
+    "options": [
+      { "id": "a", "text": "The CG moves forward" },
       {
         "id": "b",
-        "text": "Automatically apply small rudder inputs to damp out Dutch roll oscillations, which strong lateral stability relative to directional stability can otherwise leave lightly damped"
+        "text": "The fin is immersed in the fuselage and wing wake"
       },
-      { "id": "c", "text": "Trim the aircraft in pitch" },
-      { "id": "d", "text": "Prevent adverse yaw during aileron use" }
+      { "id": "c", "text": "Sideslip becomes impossible" },
+      { "id": "d", "text": "Dynamic pressure increases" }
     ],
     "correct": "b",
-    "explanation": "A yaw damper senses yaw rate and automatically applies small, rapid rudder inputs to damp Dutch roll, a mode that swept-wing aircraft with strong dihedral effect relative to directional stability are otherwise prone to leaving only lightly damped or uncomfortably persistent.",
-    "tags": ["stability", "dutch-roll", "yaw-damper"],
+    "explanation": "Separated flow from the forebody and wing reduces the fin's effective dynamic pressure and lift slope.",
+    "tags": ["high-alpha", "fin"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0006",
+    "id": "POF-STABLD-0042",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Spiral Instability",
-    "question": "An aircraft is said to exhibit \"spiral instability\" (spiral divergence) if, following a small bank disturbance with controls released, it:",
+    "subtopic": "Directional stability",
+    "question": "Supersonic flight tends to reduce directional stability because:",
     "options": [
-      { "id": "a", "text": "Returns smoothly to wings-level on its own" },
-      { "id": "b", "text": "Continues to increase bank angle and enters a slowly tightening, steepening turn" },
-      { "id": "c", "text": "Oscillates in roll with constant amplitude indefinitely" },
-      { "id": "d", "text": "Immediately snaps to inverted flight" }
+      { "id": "a", "text": "Density increases" },
+      { "id": "b", "text": "The CG moves aft" },
+      { "id": "c", "text": "The fin area increases" },
+      {
+        "id": "d",
+        "text": "The fin lift-curve slope decreases with Mach number above M 1"
+      }
     ],
-    "correct": "b",
-    "explanation": "Spiral instability arises when directional (yaw) stability is strong relative to lateral (roll) stability: after a bank disturbance, the resulting sideslip yaws the nose further into the turn faster than dihedral can roll the wings back level, so bank angle slowly and progressively increases into a spiral.",
-    "tags": ["stability", "spiral-instability"],
+    "correct": "d",
+    "explanation": "Supersonic lift slope ≈ 4/√(M² − 1) falls with M, so larger fins or ventral fins are needed.",
+    "tags": ["supersonic", "fin"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0007",
+    "id": "POF-STABLD-0043",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Lateral/Directional Trade-off",
-    "question": "Aircraft design generally involves a trade-off between lateral (dihedral effect) and directional (fin) stability, because:",
+    "subtopic": "Lateral stability",
+    "question": "Lateral static stability (dihedral effect) requires that a sideslip toward the lower wing produces:",
+    "options": [
+      { "id": "a", "text": "A rolling moment that lowers it further" },
+      { "id": "b", "text": "No rolling moment" },
+      { "id": "c", "text": "A yawing moment only" },
+      {
+        "id": "d",
+        "text": "A rolling moment that raises the lower wing (Cl_β < 0)"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The aircraft sideslips toward the low wing; the dihedral effect rolls it back toward wings level.",
+    "tags": ["lateral-stability", "dihedral-effect"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0044",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Lateral stability",
+    "question": "With dihedral Γ = 5° and sideslip β = 5°, the forward wing's angle of attack increases by about:",
+    "options": [
+      { "id": "a", "text": "0.44°" },
+      { "id": "b", "text": "25°" },
+      { "id": "c", "text": "0.09°" },
+      { "id": "d", "text": "5°" }
+    ],
+    "correct": "a",
+    "explanation": "Δα ≈ β·Γ (radians): 0.0873 × 0.0873 = 0.0076 rad = 0.44°. The trailing wing's α decreases by the same amount.",
+    "tags": ["dihedral", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0045",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Lateral stability",
+    "question": "Geometric dihedral provides lateral stability because in a sideslip:",
+    "options": [
+      { "id": "a", "text": "The CG moves toward the upper wing" },
+      {
+        "id": "b",
+        "text": "The forward wing meets the airflow at a higher α and produces more lift"
+      },
+      { "id": "c", "text": "The fin produces lift upward" },
+      { "id": "d", "text": "The lower wing is heavier" }
+    ],
+    "correct": "b",
+    "explanation": "The sideslip velocity component has a normal component on each dihedral panel: up on the leading wing, down on the trailing wing.",
+    "tags": ["dihedral", "angle-of-attack"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0046",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Sweep and wing position",
+    "question": "A high-mounted wing contributes to lateral stability because:",
     "options": [
       {
         "id": "a",
-        "text": "Strong directional stability relative to lateral stability tends to favor spiral stability but can worsen Dutch roll, while the reverse tends to favor Dutch roll damping but worsen spiral stability"
+        "text": "Crossflow around the fuselage raises α at the root of the forward wing and lowers it at the trailing wing"
       },
-      { "id": "b", "text": "The two are always completely independent and never interact" },
-      { "id": "c", "text": "Increasing one always increases the other by an equal amount" },
-      { "id": "d", "text": "Neither has any relationship to the other" }
+      { "id": "b", "text": "The CG is lower" },
+      { "id": "c", "text": "Its weight is higher" },
+      { "id": "d", "text": "Sweep is increased" }
     ],
     "correct": "a",
-    "explanation": "Lateral and directional stability interact rather than acting independently: relatively strong directional stability tends to resist spiral divergence but can leave Dutch roll poorly damped, while relatively strong lateral (dihedral) stability tends to damp Dutch roll but can promote spiral instability — which is why real designs sit at a deliberate compromise, sometimes assisted by a yaw damper.",
-    "tags": ["stability", "spiral-instability", "dutch-roll"],
+    "explanation": "Flow deflected over the top of the fuselage in sideslip is upward at the windward root of a high wing, adding an effective dihedral of a few degrees. A low wing experiences the opposite.",
+    "tags": ["high-wing", "dihedral-effect"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0008",
+    "id": "POF-STABLD-0047",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Keel Surface Effect",
-    "question": "The side area of the fuselage and fin positioned above the aircraft's center of gravity — its \"keel surface\" — contributes to:",
+    "subtopic": "Sweep and wing position",
+    "question": "Relative to a mid wing, a low-mounted wing requires:",
     "options": [
-      { "id": "a", "text": "Longitudinal stability only" },
+      { "id": "a", "text": "Less dihedral" },
+      { "id": "b", "text": "No dihedral" },
+      { "id": "c", "text": "Anhedral" },
+      {
+        "id": "d",
+        "text": "More geometric dihedral, since its fuselage interference reduces the dihedral effect"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Fuselage crossflow reduces the leading wing's α at a low wing; designers add dihedral to compensate.",
+    "tags": ["low-wing", "dihedral"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0048",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Sweep and wing position",
+    "question": "Sweepback provides a dihedral effect because:",
+    "options": [
+      { "id": "a", "text": "It reduces span" },
       {
         "id": "b",
-        "text": "Lateral (roll) stability following a sideslip, in a manner similar to dihedral, because the sideways force acts above the center of gravity"
+        "text": "The forward-moving wing has less effective sweep and more lift in a sideslip"
       },
-      { "id": "c", "text": "Engine cooling only" },
-      { "id": "d", "text": "No aerodynamic effect at all" }
+      { "id": "c", "text": "It moves the fin" },
+      { "id": "d", "text": "It lowers the CG" }
     ],
     "correct": "b",
-    "explanation": "During a sideslip, the sideways aerodynamic force on the fuselage side area and fin above the center of gravity produces a rolling moment back toward wings-level, in essentially the same way dihedral does, adding to an aircraft's overall lateral stability beyond its wing geometry alone.",
-    "tags": ["stability", "keel-surface"],
+    "explanation": "Lift ∝ cos²Λ_eff; sideslip reduces Λ on the leading wing and increases it on the trailing wing, rolling away from the sideslip.",
+    "tags": ["sweepback", "dihedral-effect"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0009",
+    "id": "POF-STABLD-0049",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "High-Wing vs Low-Wing",
-    "question": "All else being equal, a high-wing aircraft generally shows more inherent lateral (dihedral) stability than an equivalent low-wing aircraft, mainly because:",
+    "subtopic": "Sweep and wing position",
+    "question": "The dihedral effect of sweepback is proportional to CL. At CL = 1.0 compared with CL = 0.4, it is:",
     "options": [
-      { "id": "a", "text": "High wings are always built with more geometric dihedral than low wings" },
+      { "id": "a", "text": "1.58 times larger" },
+      { "id": "b", "text": "2.5 times larger" },
+      { "id": "c", "text": "Equal" },
+      { "id": "d", "text": "0.4 times" }
+    ],
+    "correct": "b",
+    "explanation": "Cl_β(sweep) ∝ CL·sin 2Λ at a given sweep: 1.0/0.4 = 2.5. Low-speed flight can make a swept-wing aircraft excessively laterally stable.",
+    "tags": ["sweepback", "lift-coefficient", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0050",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Sweep and wing position",
+    "question": "High-wing swept transports often use anhedral because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "High wing position and sweep together would give excessive dihedral effect and poor Dutch roll damping"
+      },
+      { "id": "b", "text": "Anhedral increases lift" },
+      { "id": "c", "text": "It improves directional stability" },
+      { "id": "d", "text": "It reduces weight" }
+    ],
+    "correct": "a",
+    "explanation": "Anhedral reduces Cl_β to a balanced level relative to Cn_β.",
+    "tags": ["anhedral", "dutch-roll"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0051",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Sweep and wing position",
+    "question": "The fin's side force in sideslip also produces a rolling moment because:",
+    "options": [
+      { "id": "a", "text": "It has a rudder" },
+      { "id": "b", "text": "It is swept" },
+      {
+        "id": "c",
+        "text": "The fin's centre of pressure lies above the roll axis"
+      },
+      { "id": "d", "text": "It is aft of the CG" }
+    ],
+    "correct": "c",
+    "explanation": "Side force × height above the CG gives a rolling moment in the stabilising sense — part of the total dihedral effect.",
+    "tags": ["fin", "dihedral-effect"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0052",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Sweep and wing position",
+    "question": "Extending inboard flaps changes the dihedral effect:",
+    "options": [
+      { "id": "a", "text": "It increases it" },
+      { "id": "b", "text": "It has no effect" },
+      {
+        "id": "c",
+        "text": "It reduces it, because lift is concentrated near the root where the dihedral arm is small"
+      },
+      { "id": "d", "text": "It reverses it only in climbs" }
+    ],
+    "correct": "c",
+    "explanation": "Rolling moments from sideslip act through the spanwise arm; inboard loading shortens it.",
+    "tags": ["flaps", "dihedral-effect"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0053",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Dutch roll",
+    "question": "Dutch roll is:",
+    "options": [
+      { "id": "a", "text": "A pure yaw oscillation" },
+      { "id": "b", "text": "A pitch oscillation" },
+      { "id": "c", "text": "A slow spiral descent" },
+      {
+        "id": "d",
+        "text": "A coupled oscillation in yaw and roll, with the wingtips tracing ellipses"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Yaw produces sideslip; dihedral effect rolls the aircraft; the resulting sideslip and yaw reverse, and the cycle repeats out of phase.",
+    "tags": ["dutch-roll"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0054",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Dutch roll",
+    "question": "Dutch roll tendency increases when:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Directional stability is strong relative to lateral stability"
+      },
+      { "id": "b", "text": "Both are zero" },
+      {
+        "id": "c",
+        "text": "Lateral stability (dihedral effect) is strong relative to directional stability"
+      },
+      { "id": "d", "text": "Pitch damping is high" }
+    ],
+    "correct": "c",
+    "explanation": "A large Cl_β/Cn_β ratio amplifies the roll response to each yaw swing. Swept wings at high CL and high altitude are most prone.",
+    "tags": ["dutch-roll", "stability-balance"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0055",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Dutch roll",
+    "question": "Dutch roll damping decreases with altitude at constant EAS because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Aerodynamic damping ∝ ρ·V ∝ √σ, while the restoring moments ∝ q are unchanged"
+      },
+      { "id": "b", "text": "Stability increases" },
+      { "id": "c", "text": "The fin stalls" },
+      { "id": "d", "text": "TAS decreases" }
+    ],
+    "correct": "a",
+    "explanation": "At σ = 0.374, damping falls to 0.61 of its sea-level value relative to stiffness — yaw dampers are often required aloft.",
+    "tags": ["dutch-roll", "altitude"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0056",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Dutch roll",
+    "question": "The primary recovery input for a large Dutch roll with the yaw damper failed is:",
+    "options": [
+      { "id": "a", "text": "Increasing sweep" },
+      { "id": "b", "text": "Full nose-up elevator" },
+      {
+        "id": "c",
+        "text": "Small, well-timed aileron inputs (or reducing altitude/speed per procedure), avoiding rudder that can amplify it"
+      },
+      { "id": "d", "text": "Full rudder opposite each yaw" }
+    ],
+    "correct": "c",
+    "explanation": "Out-of-phase rudder inputs easily reinforce the oscillation; aileron opposing the roll damps it. Lower altitude and moderate speed improve natural damping.",
+    "tags": ["dutch-roll", "recovery"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0057",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Dutch roll",
+    "question": "Increasing fin area generally:",
+    "options": [
+      { "id": "a", "text": "Reduces directional stability" },
+      { "id": "b", "text": "Increases Dutch roll tendency" },
+      { "id": "c", "text": "Has no effect on spiral mode" },
+      {
+        "id": "d",
+        "text": "Increases directional stability and yaw damping, reducing Dutch roll tendency but promoting spiral instability"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Cn_β and Cn_r both rise; relative to Cl_β the directional side dominates, which slows spiral recovery.",
+    "tags": ["fin-area", "dutch-roll", "spiral-stability"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0058",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Spiral stability",
+    "question": "Spiral instability occurs when:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Lateral stability is strong relative to directional stability"
+      },
       {
         "id": "b",
-        "text": "The fuselage hanging below a high wing acts somewhat like a pendulum, and airflow interference in a sideslip adds a further stabilising rolling moment beyond any geometric dihedral"
+        "text": "Directional stability is strong relative to lateral stability"
       },
-      { "id": "c", "text": "High wings produce inherently more lift than low wings at the same angle of attack" },
-      { "id": "d", "text": "Low-wing aircraft always have anhedral, downward-angled wings" }
+      { "id": "c", "text": "The aircraft has no fin" },
+      { "id": "d", "text": "Pitch stability is low" }
     ],
     "correct": "b",
-    "explanation": "A high wing's pendulum-like weight distribution below the wing, together with airflow shielding and interference effects around the fuselage during a sideslip, both add a stabilising rolling moment on top of whatever geometric dihedral the wing itself has — which is why high-wing aircraft are often built with little or no additional dihedral, while low-wing aircraft typically need more.",
-    "tags": ["stability", "high-wing", "low-wing"],
+    "explanation": "In a slight bank the aircraft sideslips; a strong fin yaws it into the turn faster than dihedral effect can level it; the outer wing speeds up and bank increases.",
+    "tags": ["spiral-stability"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0010",
+    "id": "POF-STABLD-0059",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Anhedral",
-    "question": "\"Anhedral\" — wings angled downward from root to tip, the opposite of dihedral — is sometimes used on aircraft that already have strong lateral stability from another source, such as significant wing sweep, mainly to:",
+    "subtopic": "Spiral stability",
+    "question": "A spirally unstable aircraft left with a small bank will:",
     "options": [
-      { "id": "a", "text": "Increase lateral stability further" },
+      { "id": "a", "text": "Return to wings level" },
       {
         "id": "b",
-        "text": "Reduce excessive lateral stability, which can otherwise make an aircraft's roll response feel heavy or contribute to a poorly damped Dutch roll"
+        "text": "Slowly increase bank and descend in a tightening spiral"
       },
-      { "id": "c", "text": "Increase induced drag intentionally" },
-      { "id": "d", "text": "Improve the stall characteristics only" }
+      { "id": "c", "text": "Pitch up" },
+      { "id": "d", "text": "Oscillate in roll and yaw" }
     ],
     "correct": "b",
-    "explanation": "Because sweepback itself already provides a dihedral-like stabilising effect, a highly swept wing with additional geometric dihedral could end up excessively laterally stable — sluggish in roll and prone to poorly damped Dutch roll. Some such aircraft use anhedral to bring overall lateral stability back down to a better-balanced level.",
-    "tags": ["stability", "anhedral"],
+    "explanation": "The divergence is slow (time to double of tens of seconds) and easily corrected, but dangerous if unnoticed in cloud.",
+    "tags": ["spiral-divergence"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0011",
+    "id": "POF-STABLD-0060",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Adverse Yaw and Dihedral Interaction",
-    "question": "Left uncorrected, adverse yaw during a roll can interact with dihedral effect because:",
+    "subtopic": "Spiral stability",
+    "question": "Designers accept mild spiral instability rather than strong Dutch roll because:",
     "options": [
-      { "id": "a", "text": "The yaw produces a sideslip, and dihedral effect then rolls the aircraft in response to that sideslip, on top of the roll the ailerons themselves commanded" },
-      { "id": "b", "text": "Dihedral effect eliminates adverse yaw entirely on its own" },
-      { "id": "c", "text": "The two effects are completely unrelated and never interact" },
-      { "id": "d", "text": "Adverse yaw only occurs on aircraft with zero dihedral" }
+      { "id": "a", "text": "Spiral mode affects pitch only" },
+      {
+        "id": "b",
+        "text": "Spiral divergence is slow and easily corrected, while poorly damped Dutch roll is objectionable and hard to control"
+      },
+      { "id": "c", "text": "Spiral instability improves climb" },
+      { "id": "d", "text": "Dutch roll never occurs with a fin" }
     ],
-    "correct": "a",
-    "explanation": "Adverse yaw's momentary sideslip is exactly the trigger dihedral effect responds to, producing an additional rolling moment from the sideslip on top of whatever roll the ailerons themselves commanded. Coordinated rudder use is what prevents this sideslip — and the resulting secondary roll effect — from developing in the first place.",
-    "tags": ["stability", "adverse-yaw", "dihedral"],
+    "correct": "b",
+    "explanation": "The two modes pull in opposite directions through Cl_β/Cn_β; the compromise favours good Dutch roll damping.",
+    "tags": ["spiral-stability", "dutch-roll", "design"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0012",
+    "id": "POF-STABLD-0061",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "OEI Yaw-Roll Coupling",
-    "question": "Losing an engine on a multi-engine aircraft with wing-mounted engines typically produces not just a yaw but also a roll, mainly because:",
+    "subtopic": "Spiral stability",
+    "question": "Strong dihedral effect relative to directional stability gives:",
     "options": [
-      { "id": "a", "text": "The resulting yaw creates a sideslip, and the aircraft's own dihedral effect then rolls it in response to that sideslip" },
-      { "id": "b", "text": "Engine failure has no aerodynamic effect beyond the loss of thrust itself" },
-      { "id": "c", "text": "The roll is caused directly by the propeller stopping, with no aerodynamic link to yaw" },
-      { "id": "d", "text": "Roll and yaw are always completely independent of one another on any aircraft" }
+      {
+        "id": "a",
+        "text": "Good spiral stability but a greater Dutch roll tendency"
+      },
+      { "id": "b", "text": "No lateral modes" },
+      { "id": "c", "text": "Poor spiral stability and no Dutch roll" },
+      { "id": "d", "text": "Directional divergence" }
     ],
     "correct": "a",
-    "explanation": "Asymmetric thrust yaws the aircraft toward the dead engine, and that yaw produces a sideslip; the aircraft's own dihedral effect then responds to that sideslip with a rolling moment — which is why an engine failure is felt, and must be corrected, as a combined yaw-and-roll event rather than pure yaw alone.",
-    "tags": ["stability", "engine-failure", "dihedral"],
+    "explanation": "It levels the wings quickly (spiral stable) but amplifies roll in response to yaw (Dutch roll).",
+    "tags": ["dihedral-effect", "spiral-stability"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0013",
+    "id": "POF-STABLD-0062",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Roll-Yaw Coupling",
-    "question": "The general tendency for a yaw disturbance to produce a roll, and for a roll disturbance to produce a yaw, on the same aircraft is known as:",
+    "subtopic": "Rate and cross effects",
+    "question": "Roll damping (Cl_p) arises because:",
     "options": [
-      { "id": "a", "text": "Lateral-directional coupling" },
-      { "id": "b", "text": "Longitudinal stability" },
-      { "id": "c", "text": "Compressibility" },
-      { "id": "d", "text": "Ground effect" }
+      { "id": "a", "text": "Ailerons centre themselves" },
+      { "id": "b", "text": "The fin resists roll" },
+      { "id": "c", "text": "Weight opposes roll" },
+      {
+        "id": "d",
+        "text": "Roll rate increases α on the descending wing and decreases it on the rising wing"
+      }
     ],
-    "correct": "a",
-    "explanation": "Because dihedral effect links sideslip to roll, and because a rolling wing produces differential lift and drag that can induce yaw, the roll and yaw axes are never fully independent on a real aircraft — this cross-linkage, seen in phenomena from adverse yaw to Dutch roll to spiral instability, is what \"lateral-directional coupling\" refers to.",
-    "tags": ["stability", "lateral-directional-coupling"],
+    "correct": "d",
+    "explanation": "Δα = p·y/V; the resulting lift asymmetry opposes the roll — the roll subsidence mode is heavily damped.",
+    "tags": ["roll-damping"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0014",
+    "id": "POF-STABLD-0063",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Wing Loading and Dutch Roll",
-    "question": "An aircraft with high wing loading and low aspect ratio tends to show:",
+    "subtopic": "Rate and cross effects",
+    "question": "Yaw damping (Cn_r) arises mainly from:",
     "options": [
-      { "id": "a", "text": "A more pronounced, sometimes less well damped Dutch roll tendency than a lighter, higher aspect ratio design" },
-      { "id": "b", "text": "No Dutch roll tendency at all, regardless of wing loading" },
-      { "id": "c", "text": "Improved spiral stability as a direct and automatic result of high wing loading" },
-      { "id": "d", "text": "Identical lateral-directional characteristics to any other configuration" }
+      { "id": "a", "text": "Aileron deflection" },
+      { "id": "b", "text": "The wing dihedral" },
+      { "id": "c", "text": "Pitch rate" },
+      {
+        "id": "d",
+        "text": "The fin's change of angle of attack due to yaw rate, r·l_v/V"
+      }
     ],
-    "correct": "a",
-    "explanation": "Wing loading and aspect ratio both influence the balance of inertial and aerodynamic forces behind Dutch roll, and aircraft with high wing loading and low aspect ratio (often swept-wing jets) frequently show a more noticeable, sometimes less naturally damped Dutch roll — a major reason such aircraft commonly rely on a yaw damper.",
-    "tags": ["stability", "dutch-roll", "wing-loading"],
+    "correct": "d",
+    "explanation": "Yaw rate moves the fin sideways, creating a side force that opposes the rate.",
+    "tags": ["yaw-damping", "fin"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0015",
+    "id": "POF-STABLD-0064",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Dorsal Fin Fillet",
-    "question": "A dorsal fin fillet — the fairing blending the fin smoothly into the fuselage — mainly helps directional stability by:",
+    "subtopic": "Rate and cross effects",
+    "question": "Yaw rate produces a rolling moment toward the outside of the yaw because:",
     "options": [
-      { "id": "a", "text": "Delaying the fin's own loss of effectiveness (a form of local stall) at large sideslip angles, maintaining a useful restoring moment further into the sideslip range" },
-      { "id": "b", "text": "Increasing the fin's effectiveness only at very small sideslip angles" },
-      { "id": "c", "text": "Reducing the fin's total area" },
-      { "id": "d", "text": "Having no aerodynamic function, purely a styling feature" }
+      { "id": "a", "text": "Dihedral reverses" },
+      { "id": "b", "text": "The inner wing moves faster" },
+      { "id": "c", "text": "The fin rolls the aircraft inward" },
+      {
+        "id": "d",
+        "text": "The outer wing moves faster and produces more lift"
+      }
     ],
-    "correct": "a",
-    "explanation": "At large sideslip angles, the fin can begin to separate and lose effectiveness much like a wing approaching its own stall. A dorsal fin fillet's shape helps generate a stabilising vortex that keeps flow attached to the fin further into the sideslip range, extending the sideslip angle at which useful directional stability is retained.",
-    "tags": ["stability", "dorsal-fin"],
+    "correct": "d",
+    "explanation": "Local speed V ± r·y changes lift ∝ V²; the advancing wing rises (Cl_r). In a turn this contributes an overbanking tendency.",
+    "tags": ["cross-derivative", "overbanking"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0016",
+    "id": "POF-STABLD-0065",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Rudder-Fixed vs Rudder-Free Stability",
-    "question": "\"Rudder-free\" directional stability, as distinct from \"rudder-fixed\" stability, accounts for:",
+    "subtopic": "Rate and cross effects",
+    "question": "In a rate-one turn at 60 m/s (ω = 0.052 rad/s), wingtips 5 m from the axis see a lift ratio (outer/inner) of about:",
     "options": [
-      { "id": "a", "text": "The rudder being left free to float aerodynamically rather than held rigidly at a set position, which can change the fin/rudder combination's effective stabilising contribution" },
-      { "id": "b", "text": "An aircraft with no rudder installed at all" },
-      { "id": "c", "text": "Only the ailerons, never the rudder" },
-      { "id": "d", "text": "A rudder that has been mechanically disconnected from the pedals" }
+      { "id": "a", "text": "1.0009" },
+      { "id": "b", "text": "1.35" },
+      { "id": "c", "text": "1.018" },
+      { "id": "d", "text": "1.10" }
     ],
-    "correct": "a",
-    "explanation": "Exactly parallel to the stick-fixed/stick-free distinction in longitudinal stability, rudder-fixed directional stability assumes the rudder is locked in position, while rudder-free stability lets it float freely and align aerodynamically with the local airflow — a difference that can genuinely change the fin/rudder assembly's net stabilising contribution.",
-    "tags": ["stability", "rudder-free"],
+    "correct": "c",
+    "explanation": "((60 + 0.26)/(60 − 0.26))² = 1.0176. Small at high speed, larger at low speed and large span.",
+    "tags": ["overbanking", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0017",
+    "id": "POF-STABLD-0066",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Ventral Fin",
-    "question": "A ventral fin — a fixed surface extending below the aft fuselage — contributes to directional stability mainly by:",
+    "subtopic": "Rate and cross effects",
+    "question": "Roll rate produces a yawing moment (Cn_p) mainly because:",
     "options": [
-      { "id": "a", "text": "Adding fin area below the fuselage, which is especially useful at high angles of attack where the upper fin's effectiveness may be reduced" },
-      { "id": "b", "text": "Replacing the need for a vertical fin entirely" },
-      { "id": "c", "text": "Only functioning while the landing gear is extended" },
-      { "id": "d", "text": "Reducing the aircraft's overall directional stability" }
+      { "id": "a", "text": "Induced drag is equal on both wings" },
+      { "id": "b", "text": "Thrust changes" },
+      { "id": "c", "text": "The fin rotates" },
+      {
+        "id": "d",
+        "text": "The descending wing's lift vector tilts forward and the rising wing's aft, yawing the nose away from the roll"
+      }
     ],
-    "correct": "a",
-    "explanation": "At high angles of attack, the fuselage or wing wake can shield part of the upper fin, reducing its effectiveness. A ventral fin adds directional-stabilising area below the fuselage, in a position often less affected by that shielding, helping maintain adequate directional stability exactly when the upper fin alone might not be enough.",
-    "tags": ["stability", "ventral-fin"],
+    "correct": "d",
+    "explanation": "The roll-induced α change tilts local lift; the rising wing's lift tilts aft (drag-like), giving adverse yaw even without aileron.",
+    "tags": ["adverse-yaw", "cross-derivative"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0018",
+    "id": "POF-STABLD-0067",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Weathercocking on Takeoff Roll",
-    "question": "During a crosswind takeoff roll, an aircraft's natural weathercock (directional) stability tends to:",
+    "subtopic": "Rate and cross effects",
+    "question": "Rolling produces sideslip toward the lower wing because:",
     "options": [
-      { "id": "a", "text": "Turn the aircraft's nose toward the direction the wind is coming from, requiring rudder correction to track the runway centerline" },
-      { "id": "b", "text": "Turn the nose directly away from the wind, with no pilot input needed" },
-      { "id": "c", "text": "Have no effect at all while the aircraft is on the ground" },
-      { "id": "d", "text": "Only appear once the aircraft is airborne" }
+      {
+        "id": "a",
+        "text": "The lift vector tilts, and the unbalanced horizontal component moves the aircraft sideways"
+      },
+      { "id": "b", "text": "The CG moves" },
+      { "id": "c", "text": "The fin pushes it" },
+      { "id": "d", "text": "Yaw damping reverses" }
     ],
     "correct": "a",
-    "explanation": "The same fin-driven weathercock effect that stabilises the aircraft in the air also acts on the ground: a crosswind striking the fin from one side tends to yaw the nose into the wind, requiring active rudder correction throughout the takeoff roll to keep the aircraft tracking straight down the runway.",
-    "tags": ["stability", "weathercock", "takeoff"],
+    "explanation": "Until a coordinated turn develops, the horizontal lift component accelerates the aircraft toward the low wing: sideslip, which triggers dihedral effect and weathercock yaw.",
+    "tags": ["sideslip", "bank"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0019",
+    "id": "POF-STABLD-0068",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Spiral Mode Time Constant",
-    "question": "Spiral instability, where it exists, is usually considered a relatively mild handling concern mainly because it:",
+    "subtopic": "Rate and cross effects",
+    "question": "An aircraft with strong dihedral effect can be turned with rudder alone because:",
     "options": [
-      { "id": "a", "text": "Typically develops very slowly, described by a long time constant, giving the pilot ample time to notice and correct the increasing bank with a small aileron input" },
-      { "id": "b", "text": "Develops instantly, with no time for the pilot to react" },
-      { "id": "c", "text": "Is always a rapid, oscillatory motion rather than a slow drift" },
-      { "id": "d", "text": "Cannot occur on any certified aircraft" }
+      { "id": "a", "text": "Yaw reduces lift symmetrically" },
+      {
+        "id": "b",
+        "text": "Yaw produces sideslip, and the dihedral effect converts it into roll"
+      },
+      { "id": "c", "text": "Rudder directly rolls the aircraft" },
+      { "id": "d", "text": "The fin produces lift upward" }
     ],
-    "correct": "a",
-    "explanation": "Spiral divergence is characterised by a long time constant — bank angle increases only gradually over many seconds — which is quite different from a fast, oscillatory mode like Dutch roll. This slow onset gives a pilot ample opportunity to notice the developing bank and correct it easily, which is why mild spiral instability is often accepted in certification even though it is, strictly, an instability.",
-    "tags": ["stability", "spiral-instability"],
+    "correct": "b",
+    "explanation": "Secondary effect of rudder: yaw → sideslip → roll via Cl_β, and the advancing wing's extra speed adds to it.",
+    "tags": ["rudder", "secondary-effect"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0020",
+    "id": "POF-STABLD-0069",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Lateral Control Power Trade-Off",
-    "question": "An aircraft with very strong dihedral effect (strong lateral stability) can present a design trade-off in that:",
+    "subtopic": "Augmentation",
+    "question": "A yaw damper:",
     "options": [
-      { "id": "a", "text": "Any sideslip from adverse yaw or a gust produces a correspondingly larger, more noticeable rolling response, which can demand more active rudder coordination from the pilot" },
-      { "id": "b", "text": "Strong dihedral effect always makes an aircraft easier to fly with no downside" },
-      { "id": "c", "text": "It eliminates the need for ailerons entirely" },
-      { "id": "d", "text": "It has no relationship to adverse yaw or rudder use at all" }
+      { "id": "a", "text": "Trims the aircraft in pitch" },
+      { "id": "b", "text": "Prevents spiral divergence only" },
+      { "id": "c", "text": "Holds a fixed rudder position" },
+      {
+        "id": "d",
+        "text": "Senses yaw rate and applies rudder to oppose it, damping Dutch roll"
+      }
     ],
-    "correct": "a",
-    "explanation": "Because dihedral effect converts sideslip into roll, an aircraft with very strong lateral stability responds more vigorously to any sideslip — including the momentary sideslip from adverse yaw — which can make coordinated rudder use more important, not less, on such an aircraft.",
-    "tags": ["stability", "dihedral"],
+    "correct": "d",
+    "explanation": "It adds artificial Cn_r, especially valuable at high altitude where natural damping is weak.",
+    "tags": ["yaw-damper"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0021",
+    "id": "POF-STABLD-0070",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Wingtip Tanks and Roll Dynamics",
-    "question": "Fitting wingtip fuel tanks tends to affect an aircraft's lateral dynamics mainly by:",
+    "subtopic": "Augmentation",
+    "question": "A yaw damper includes a wash-out (high-pass) filter so that:",
     "options": [
-      { "id": "a", "text": "Increasing roll inertia, since the added mass sits at the greatest possible distance from the roll axis, generally slowing roll response" },
-      { "id": "b", "text": "Reducing roll inertia to essentially zero" },
-      { "id": "c", "text": "Having no effect on roll inertia, only on pitch" },
-      { "id": "d", "text": "Always improving roll rate" }
+      { "id": "a", "text": "It works only on the ground" },
+      {
+        "id": "b",
+        "text": "It damps oscillations but does not oppose the steady yaw rate of a coordinated turn"
+      },
+      { "id": "c", "text": "It opposes all yaw rates" },
+      { "id": "d", "text": "It increases Dutch roll" }
     ],
-    "correct": "a",
-    "explanation": "Because roll inertia depends heavily on how far mass sits from the roll axis, adding fuel tanks right at the wingtips — the furthest point from that axis — increases roll inertia disproportionately to the actual weight added, generally slowing the aircraft's roll response compared with the same fuel carried closer to the fuselage.",
-    "tags": ["stability", "wingtip-tanks", "roll-inertia"],
+    "correct": "b",
+    "explanation": "Steady yaw rate in a turn is intended; the filter removes the steady component and acts only on oscillatory yaw.",
+    "tags": ["yaw-damper", "washout-filter"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0022",
+    "id": "POF-STABLD-0071",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "CG and Lateral-Directional Stability",
-    "question": "Compared with its dominant role in longitudinal stability, the aircraft's center of gravity position along the fuselage generally has:",
+    "subtopic": "Augmentation",
+    "question": "Flight with the yaw damper inoperative is often restricted to:",
     "options": [
-      { "id": "a", "text": "Much less direct effect on lateral and directional static stability, which are governed mainly by wing dihedral/sweep and fin design rather than fore-aft CG position" },
-      { "id": "b", "text": "Exactly the same dominant role in lateral-directional stability as it does in longitudinal stability" },
-      { "id": "c", "text": "No effect whatsoever on any aspect of the aircraft's handling" },
-      { "id": "d", "text": "A greater effect on lateral-directional stability than on longitudinal stability" }
+      {
+        "id": "a",
+        "text": "Lower altitudes and moderate speeds where natural Dutch roll damping is adequate"
+      },
+      { "id": "b", "text": "Higher altitudes" },
+      { "id": "c", "text": "Maximum Mach" },
+      { "id": "d", "text": "Any condition" }
     ],
     "correct": "a",
-    "explanation": "Longitudinal static stability depends directly on how far the CG sits ahead of the neutral point along the fuselage, but lateral and directional stability are governed mainly by geometric factors — dihedral, sweep, fin size and position — that are comparatively insensitive to the small fore-aft CG shifts that matter so much for pitch stability.",
-    "tags": ["stability", "center-of-gravity"],
+    "explanation": "Natural damping ∝ √σ at constant EAS; descending restores it.",
+    "tags": ["yaw-damper", "limitations"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0023",
+    "id": "POF-STABLD-0072",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Torque Reaction and Lateral Trim",
-    "question": "A single-engine propeller aircraft often needs a small, built-in aileron rigging bias or trim setting at cruise power mainly to counter:",
+    "subtopic": "Turning and sideslip",
+    "question": "A skidding turn (ball displaced toward the outside of the turn) indicates:",
     "options": [
-      { "id": "a", "text": "The steady rolling tendency from torque reaction, distinct from any fuel imbalance between the tanks" },
-      { "id": "b", "text": "A crosswind that is always present regardless of conditions" },
-      { "id": "c", "text": "The aircraft's weight alone, with no relationship to the engine" },
-      { "id": "d", "text": "Compressibility effects at cruise power" }
+      { "id": "a", "text": "Too much bank" },
+      { "id": "b", "text": "A coordinated turn" },
+      {
+        "id": "c",
+        "text": "Too much rudder for the bank angle; the nose is yawed toward the inside"
+      },
+      { "id": "d", "text": "Too little rudder" }
     ],
-    "correct": "a",
-    "explanation": "Torque reaction produces a steady rolling tendency toward one side at cruise power, independent of any fuel imbalance between the wing tanks, and many single-engine aircraft are rigged with a small built-in aileron offset — or use trim — specifically to counter this steady torque-driven roll.",
-    "tags": ["stability", "torque-reaction"],
+    "correct": "c",
+    "explanation": "The tail is thrown outward; correct by reducing rudder in the direction of turn (step on the ball).",
+    "tags": ["skid", "coordination"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0024",
+    "id": "POF-STABLD-0073",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Sweep Effect and Lift Coefficient",
-    "question": "The dihedral-like stabilising contribution from wing sweepback is:",
+    "subtopic": "Turning and sideslip",
+    "question": "A slipping turn (ball displaced toward the inside of the turn) indicates:",
     "options": [
-      { "id": "a", "text": "Proportional to the wing's lift coefficient, so it is weaker at high speed/low CL cruise and stronger at low speed/high CL approach" },
-      { "id": "b", "text": "Completely independent of lift coefficient or angle of attack" },
-      { "id": "c", "text": "Only present at supersonic speed" },
-      { "id": "d", "text": "Strongest at zero lift coefficient" }
+      { "id": "a", "text": "Too much rudder" },
+      {
+        "id": "b",
+        "text": "Too little rudder for the bank angle, or too much bank"
+      },
+      { "id": "c", "text": "A coordinated turn" },
+      { "id": "d", "text": "Excess speed" }
     ],
-    "correct": "a",
-    "explanation": "Sweep's lateral-stabilising effect arises from the difference in effective span (and lift) between the forward and trailing wing during a sideslip, and that lift difference scales with the overall lift coefficient being flown — making the effect comparatively weak in fast, low-CL cruise and considerably stronger in slow, high-CL approach or climb.",
-    "tags": ["stability", "sweepback", "lift-coefficient"],
+    "correct": "b",
+    "explanation": "The aircraft sideslips toward the low wing; add rudder toward the turn.",
+    "tags": ["slip", "coordination"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0025",
+    "id": "POF-STABLD-0074",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Dutch Roll at High Altitude",
-    "question": "Dutch roll tends to be less well damped, and therefore more noticeable, at high cruise altitude mainly because:",
+    "subtopic": "Turning and sideslip",
+    "question": "In a steady coordinated turn, the overbanking tendency at low speed is countered by:",
     "options": [
-      { "id": "a", "text": "The thinner air reduces aerodynamic damping forces relative to the aircraft's inertia, compared with the denser air lower down" },
-      { "id": "b", "text": "Thinner air always improves aerodynamic damping" },
-      { "id": "c", "text": "Dutch roll can only occur above 30,000 feet" },
-      { "id": "d", "text": "Altitude has no bearing on Dutch roll damping at all" }
+      { "id": "a", "text": "Slight opposite aileron to hold bank" },
+      { "id": "b", "text": "More bank" },
+      { "id": "c", "text": "Opposite rudder" },
+      { "id": "d", "text": "Full rudder toward the turn" }
     ],
     "correct": "a",
-    "explanation": "Aerodynamic damping forces depend on air density, which falls with altitude, while the aircraft's mass and inertia stay the same. This shifts the balance toward less-damped oscillation at high altitude, which is a major reason Dutch roll is often most noticeable — and yaw dampers most valued — during high-altitude cruise.",
-    "tags": ["stability", "dutch-roll", "altitude"],
+    "explanation": "The outer wing's higher speed produces more lift; at low speed and in steep turns this exceeds lateral stability, requiring aileron against the turn.",
+    "tags": ["overbanking", "aileron"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0026",
+    "id": "POF-STABLD-0075",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Manual Handling of Spiral vs Dutch Roll",
-    "question": "A pilot can generally correct spiral divergence far more easily by hand than Dutch roll mainly because:",
+    "subtopic": "Turning and sideslip",
+    "question": "An aircraft held in a steady sideslip with crossed controls has:",
     "options": [
-      { "id": "a", "text": "Spiral divergence develops slowly enough for an occasional small aileron input to correct, while Dutch roll's rapid oscillation is often too fast for a human pilot to damp effectively without automatic assistance" },
-      { "id": "b", "text": "Dutch roll develops so slowly that no correction is ever needed" },
-      { "id": "c", "text": "Spiral divergence cannot be corrected by a pilot under any circumstances" },
-      { "id": "d", "text": "The two modes require exactly the same corrective technique" }
+      { "id": "a", "text": "Rudder only" },
+      { "id": "b", "text": "Aileron only" },
+      {
+        "id": "c",
+        "text": "Aileron opposing the dihedral effect and rudder opposing weathercock stability"
+      },
+      { "id": "d", "text": "No control deflection" }
     ],
-    "correct": "a",
-    "explanation": "Spiral divergence's long time constant leaves plenty of time for an occasional, small aileron correction, while Dutch roll's oscillation is often fast enough that a pilot's own reaction time and control inputs can lag behind or even inadvertently reinforce it — which is exactly why an automatic yaw damper, rather than pilot skill alone, is the standard solution for Dutch roll.",
-    "tags": ["stability", "spiral-instability", "dutch-roll"],
+    "correct": "c",
+    "explanation": "Dihedral effect tries to roll away from the slip; weathercocking tries to yaw into it. Both must be held.",
+    "tags": ["sideslip", "crossed-controls"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0027",
+    "id": "POF-STABLD-0076",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Fin Aspect Ratio",
-    "question": "A vertical fin of relatively low aspect ratio, common on many aircraft, tends to show:",
+    "subtopic": "Turning and sideslip",
+    "question": "Maximum sustainable sideslip angle (e.g. crosswind limit) is usually set by:",
     "options": [
-      { "id": "a", "text": "A gentler, more gradual loss of effectiveness at high sideslip angles than a higher aspect ratio fin would show" },
-      { "id": "b", "text": "A sharper, more abrupt stall at high sideslip than a high aspect ratio fin" },
-      { "id": "c", "text": "No stalling behaviour of any kind, regardless of sideslip" },
-      { "id": "d", "text": "Exactly the same behaviour as a high aspect ratio fin in every respect" }
+      {
+        "id": "a",
+        "text": "Available rudder authority or aileron authority to oppose dihedral effect"
+      },
+      { "id": "b", "text": "Engine thrust" },
+      { "id": "c", "text": "Pitch trim" },
+      { "id": "d", "text": "Stall speed only" }
     ],
     "correct": "a",
-    "explanation": "Just as a low aspect ratio wing tends to stall more gently and progressively than a high aspect ratio one, a low aspect ratio fin — common on many designs — tends to lose effectiveness gradually as sideslip increases rather than abruptly, contributing to more benign high-sideslip and post-stall handling characteristics.",
-    "tags": ["stability", "fin", "aspect-ratio"],
+    "explanation": "Either control may reach full deflection first; strong dihedral effect makes aileron the limit.",
+    "tags": ["crosswind", "control-authority"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0028",
+    "id": "POF-STABLD-0077",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Weathercocking on Landing Rollout",
-    "question": "During the landing rollout in a crosswind, weathercock stability can contribute to a hazard, particularly on a tailwheel aircraft, because:",
+    "subtopic": "Lateral stability",
+    "question": "Lateral stability alone (without directional stability) cannot restore wings-level flight because:",
     "options": [
-      { "id": "a", "text": "The aircraft's natural tendency to yaw into wind, combined with reduced rudder authority as speed decreases, can produce a swerve toward the upwind side if not actively controlled" },
-      { "id": "b", "text": "Weathercock stability disappears completely once the aircraft has landed" },
-      { "id": "c", "text": "It only ever helps keep the aircraft perfectly straight with no pilot input needed" },
-      { "id": "d", "text": "It has no relationship to ground handling of any kind" }
+      { "id": "a", "text": "It works only in turns" },
+      { "id": "b", "text": "It needs a pitch input" },
+      {
+        "id": "c",
+        "text": "It acts only through the sideslip that a bank produces, which also brings in directional effects"
+      },
+      { "id": "d", "text": "It depends on thrust" }
     ],
-    "correct": "a",
-    "explanation": "The same weathercock tendency that helps in flight can work against the pilot on the ground: as speed (and therefore rudder authority) falls during the landing rollout, the aircraft's tendency to yaw into a crosswind can overcome the available rudder correction, producing a swerve — a classic contributor to a tailwheel aircraft ground loop if not anticipated and corrected.",
-    "tags": ["stability", "weathercock", "landing"],
+    "correct": "c",
+    "explanation": "Rolling moment from Cl_β requires β; the aircraft's response combines roll and yaw in the spiral and Dutch roll modes.",
+    "tags": ["lateral-stability", "coupling"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0029",
+    "id": "POF-STABLD-0078",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Fin Stall and VMCA",
-    "question": "One aerodynamic factor behind a multi-engine aircraft's minimum control speed, VMCA, is that:",
+    "subtopic": "Directional stability",
+    "question": "A ventral fin or strakes below the tail are added to:",
     "options": [
-      { "id": "a", "text": "The fin and rudder combination has a maximum effective sideslip angle, beyond which it stalls and directional control is lost, regardless of how much rudder is applied" },
-      { "id": "b", "text": "The fin can generate an unlimited amount of sideforce at any sideslip angle" },
-      { "id": "c", "text": "VMCA is determined purely by engine power, with no aerodynamic component at all" },
-      { "id": "d", "text": "The fin never contributes to VMCA in any way" }
+      { "id": "a", "text": "Improve roll damping only" },
+      {
+        "id": "b",
+        "text": "Maintain directional stability at high angles of attack or high Mach, where the upper fin loses effectiveness"
+      },
+      { "id": "c", "text": "Reduce drag" },
+      { "id": "d", "text": "Increase lift" }
     ],
-    "correct": "a",
-    "explanation": "Like a wing, the fin and rudder combination can only generate sideforce up to a limiting sideslip angle before it, too, separates and loses effectiveness. VMCA is reached when full rudder deflection can no longer hold the aircraft straight against asymmetric thrust — partly because the required sideslip angle approaches this aerodynamic limit of the fin itself.",
-    "tags": ["stability", "vmca", "fin-stall"],
+    "correct": "b",
+    "explanation": "Below the fuselage they remain in clean flow when the upper fin is blanketed at high α.",
+    "tags": ["ventral-fin"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0030",
+    "id": "POF-STABLD-0079",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "T-Tail End-Plate Effect",
-    "question": "On a T-tail aircraft, the horizontal tailplane mounted at the top of the fin can improve the fin's own effectiveness by acting as:",
+    "subtopic": "Directional stability",
+    "question": "Directional divergence occurs when:",
     "options": [
-      { "id": "a", "text": "An end-plate, reducing losses at the fin's tip and effectively increasing the fin's aerodynamic aspect ratio and efficiency" },
-      { "id": "b", "text": "A device that always reduces the fin's effectiveness" },
-      { "id": "c", "text": "A replacement for the fin, making the fin itself unnecessary" },
-      { "id": "d", "text": "A surface with no aerodynamic interaction with the fin at all" }
+      { "id": "a", "text": "Roll damping is high" },
+      { "id": "b", "text": "Cn_β > 0" },
+      { "id": "c", "text": "Cl_β < 0" },
+      {
+        "id": "d",
+        "text": "Cn_β < 0 — sideslip produces a yawing moment that increases it"
+      }
     ],
-    "correct": "a",
-    "explanation": "Much like a wingtip device reduces losses at a wingtip, the horizontal tailplane sitting atop a T-tail's fin blocks the spillage of high-pressure air around the fin's own tip, acting as an end-plate that improves the fin's effective aspect ratio and directional-stabilising efficiency for a given fin area.",
-    "tags": ["stability", "t-tail", "fin"],
+    "correct": "d",
+    "explanation": "Static directional instability; the aircraft yaws away from the relative wind.",
+    "tags": ["directional-divergence"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0031",
+    "id": "POF-STABLD-0080",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Aft-Mounted Engines and OEI Yaw",
-    "question": "Compared with an aircraft with wing-mounted engines, one with engines mounted on the aft fuselage generally has, following an engine failure:",
+    "subtopic": "Lateral stability",
+    "question": "Anhedral (negative dihedral) produces:",
     "options": [
-      { "id": "a", "text": "A smaller yawing moment from the remaining engine's asymmetric thrust, since the engines sit closer to the aircraft's centerline" },
-      { "id": "b", "text": "A larger yawing moment, since aft-mounted engines are always further from the centerline" },
-      { "id": "c", "text": "Exactly the same yawing moment regardless of engine placement" },
-      { "id": "d", "text": "No yawing moment at all from an engine failure" }
+      {
+        "id": "a",
+        "text": "A destabilising contribution to lateral stability (Cl_β more positive)"
+      },
+      { "id": "b", "text": "Only directional effects" },
+      { "id": "c", "text": "A stabilising contribution" },
+      { "id": "d", "text": "No effect" }
     ],
     "correct": "a",
-    "explanation": "Because aft fuselage-mounted engines sit much closer to the aircraft's centerline than wing-mounted ones, the moment arm for asymmetric thrust following an engine failure is considerably shorter, generally producing a smaller yawing moment — one of the handling advantages sometimes cited for rear-engined and T-tail configurations.",
-    "tags": ["stability", "engine-placement", "asymmetric-thrust"],
+    "explanation": "The forward wing loses α in sideslip; used deliberately where other contributions (high wing, sweep) are excessive.",
+    "tags": ["anhedral"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0032",
+    "id": "POF-STABLD-0081",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Rudder Lock",
-    "question": "\"Rudder lock\" describes a condition in which:",
+    "subtopic": "Dutch roll",
+    "question": "Dutch roll period and damping ratio are typically:",
     "options": [
-      { "id": "a", "text": "At a large sideslip angle, aerodynamic forces can hold the rudder hard against its stop, requiring significant pilot force to bring it back toward neutral" },
-      { "id": "b", "text": "The rudder is mechanically bolted in place and cannot move at all" },
-      { "id": "c", "text": "It only ever happens at zero sideslip" },
-      { "id": "d", "text": "It describes a normal, desirable rudder characteristic with no associated hazard" }
+      { "id": "a", "text": "A few seconds and moderate to light damping" },
+      { "id": "b", "text": "Identical to the phugoid" },
+      { "id": "c", "text": "Minutes and heavy damping" },
+      { "id": "d", "text": "Fractions of a second and zero damping" }
     ],
     "correct": "a",
-    "explanation": "At a sufficiently large sideslip angle, the aerodynamic force on the rudder can overcome the pilot's ability to hold it away from full deflection, effectively \"locking\" it against its travel limit until sideslip is reduced — a real historical handling concern that careful fin and dorsal fin design, among other things, is intended to avoid.",
-    "tags": ["stability", "rudder-lock"],
+    "explanation": "The mode frequency comes from Cn_β stiffness about the yaw inertia; damping from Cn_r, reduced by adverse cross terms.",
+    "tags": ["dutch-roll", "period"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0033",
+    "id": "POF-STABLD-0082",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Asymmetric Ice and Yaw Trim",
-    "question": "Ice accumulating unevenly between the two wings, thicker on one side than the other, can require rudder trim correction because:",
+    "subtopic": "Sweep and wing position",
+    "question": "At high altitude, swept-wing transports have more Dutch roll tendency because:",
     "options": [
-      { "id": "a", "text": "The extra drag on the more heavily iced wing yaws the aircraft toward that side, distinct from any rolling tendency from an uneven weight distribution" },
-      { "id": "b", "text": "Ice never produces any asymmetric aerodynamic effect" },
-      { "id": "c", "text": "Only aileron trim, never rudder trim, is ever affected by icing" },
-      { "id": "d", "text": "Uneven icing always produces exactly the same effect as a fuel imbalance" }
+      {
+        "id": "a",
+        "text": "Higher CL increases sweep dihedral effect while aerodynamic damping falls"
+      },
+      { "id": "b", "text": "Fin area grows" },
+      { "id": "c", "text": "Lower CL reduces dihedral effect" },
+      { "id": "d", "text": "Density increases" }
     ],
     "correct": "a",
-    "explanation": "Beyond any weight-related rolling tendency, ice that accumulates more heavily on one wing adds extra drag on that side specifically, yawing the aircraft toward the more heavily contaminated wing — a distinct, drag-driven directional effect that may call for rudder trim correction alongside anything needed in roll.",
-    "tags": ["stability", "icing", "asymmetric-drag"],
+    "explanation": "Both factors push the Cl_β/Cn_β ratio and damping in the unfavourable direction.",
+    "tags": ["dutch-roll", "altitude", "sweep"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABLD-0034",
+    "id": "POF-STABLD-0083",
     "subjectCode": "POF",
     "topic": "Lateral and Directional Stability",
-    "subtopic": "Fin Stall at High Sideslip",
-    "question": "At a sufficiently large combined angle of attack and sideslip, the vertical fin itself can:",
+    "subtopic": "Rate and cross effects",
+    "question": "Roll subsidence mode is:",
     "options": [
-      { "id": "a", "text": "Stall in essentially the same way a wing does, with airflow separating from it and its restoring sideforce falling away" },
-      { "id": "b", "text": "Never lose effectiveness under any combination of angle of attack and sideslip" },
-      { "id": "c", "text": "Only fail structurally, never aerodynamically" },
-      { "id": "d", "text": "Always become more effective as sideslip increases without limit" }
+      { "id": "a", "text": "A slow divergence" },
+      { "id": "b", "text": "The phugoid" },
+      { "id": "c", "text": "An oscillation in yaw" },
+      {
+        "id": "d",
+        "text": "A rapid, non-oscillatory convergence of roll rate after an aileron input or disturbance"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Strong roll damping gives a first-order response with a short time constant.",
+    "tags": ["roll-subsidence"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0084",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Directional stability",
+    "question": "Propeller slipstream affecting directional trim is caused by:",
+    "options": [
+      { "id": "a", "text": "Symmetric slipstream" },
+      { "id": "b", "text": "Engine weight" },
+      {
+        "id": "c",
+        "text": "The spiralling slipstream striking the fin on one side"
+      },
+      { "id": "d", "text": "Thrust line only" }
+    ],
+    "correct": "c",
+    "explanation": "The rotating wake meets the fin at an angle, producing a side force and yaw that varies with power and speed.",
+    "tags": ["slipstream", "directional-trim"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0085",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Directional stability",
+    "question": "A long fuselage forebody (e.g. a stretched aircraft) typically requires:",
+    "options": [
+      { "id": "a", "text": "No change" },
+      { "id": "b", "text": "More dihedral only" },
+      { "id": "c", "text": "A larger fin to restore directional stability" },
+      { "id": "d", "text": "A smaller fin" }
+    ],
+    "correct": "c",
+    "explanation": "More side area ahead of the CG is destabilising; the fin term V_V must increase.",
+    "tags": ["fuselage", "fin-area"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0086",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Lateral stability",
+    "question": "A roll-coupled problem at high roll rates on long, heavy-fuselage aircraft (inertia coupling) arises because:",
+    "options": [
+      { "id": "a", "text": "The ailerons reverse" },
+      { "id": "b", "text": "Dihedral increases" },
+      { "id": "c", "text": "The wings flex" },
+      {
+        "id": "d",
+        "text": "Mass concentrated along the fuselage generates pitch and yaw moments when rolling about an axis not aligned with the principal axis"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Inertial cross terms convert roll rate into pitch or yaw divergence when aerodynamic stiffness is insufficient.",
+    "tags": ["inertia-coupling"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0087",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Turning and sideslip",
+    "question": "After an engine failure in a twin, holding wings level with zero bank requires:",
+    "options": [
+      { "id": "a", "text": "No control input" },
+      { "id": "b", "text": "Aileron only" },
+      {
+        "id": "c",
+        "text": "Rudder against the yaw and a sideslip toward the dead engine, with aileron against the dihedral roll"
+      },
+      { "id": "d", "text": "Rudder only with zero sideslip" }
+    ],
+    "correct": "c",
+    "explanation": "With no bank, the fin side force must be balanced by a sideslip-generated body side force; a small bank toward the live engine removes most of the sideslip.",
+    "tags": ["engine-failure", "sideslip"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0088",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Spiral stability",
+    "question": "Spiral stability can be improved by:",
+    "options": [
+      { "id": "a", "text": "Reducing roll damping" },
+      { "id": "b", "text": "Increasing dihedral effect or reducing fin area" },
+      { "id": "c", "text": "Increasing fin area and reducing dihedral" },
+      { "id": "d", "text": "Moving the CG aft" }
+    ],
+    "correct": "b",
+    "explanation": "Raising Cl_β relative to Cn_β favours wings-levelling over turning into the sideslip.",
+    "tags": ["spiral-stability", "design"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0089",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Dutch roll",
+    "question": "Dutch roll can be reduced in design by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Increasing fin area/yaw damping or reducing excessive dihedral effect"
+      },
+      { "id": "b", "text": "Adding dihedral" },
+      { "id": "c", "text": "Increasing sweep only" },
+      { "id": "d", "text": "Reducing fin area" }
     ],
     "correct": "a",
-    "explanation": "Like any other aerodynamic surface, the fin has a critical angle beyond which the airflow over it separates and its ability to generate a restoring sideforce collapses — a genuine \"fin stall\", distinct from the wing's own stall, that is a real factor in high-sideslip handling, spin behaviour and VMCA.",
-    "tags": ["stability", "fin-stall"],
+    "explanation": "Lower Cl_β/Cn_β and higher Cn_r both help; hence anhedral on high swept wings and yaw dampers.",
+    "tags": ["dutch-roll", "design"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0090",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Directional stability",
+    "question": "In sideslip, the fin's angle of attack is reduced by sidewash from the fuselage and wing, expressed as:",
+    "options": [
+      { "id": "a", "text": "(1 − dε/dα) only" },
+      {
+        "id": "b",
+        "text": "(1 − dσ/dβ), analogous to downwash at the tailplane"
+      },
+      { "id": "c", "text": "Zero" },
+      { "id": "d", "text": "(1 + dσ/dβ)" }
+    ],
+    "correct": "b",
+    "explanation": "The body deflects the flow near the fin, so the fin sees less than the full β.",
+    "tags": ["sidewash", "fin"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0091",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Lateral stability",
+    "question": "A high-wing aircraft compared with a low-wing aircraft of the same dihedral has:",
+    "options": [
+      { "id": "a", "text": "Identical lateral stability" },
+      { "id": "b", "text": "Less lateral stability" },
+      { "id": "c", "text": "No lateral stability" },
+      { "id": "d", "text": "Greater lateral stability" }
+    ],
+    "correct": "d",
+    "explanation": "Fuselage interference adds effective dihedral to a high wing and subtracts it from a low wing.",
+    "tags": ["high-wing", "lateral-stability"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0092",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Rate and cross effects",
+    "question": "Cross-coupling derivative Cl_r (roll due to yaw rate) grows with CL because:",
+    "options": [
+      { "id": "a", "text": "It depends on the fin only" },
+      { "id": "b", "text": "It is independent of lift" },
+      {
+        "id": "c",
+        "text": "The lift difference from the tips' speed difference is proportional to local lift"
+      },
+      { "id": "d", "text": "It reverses at high CL" }
+    ],
+    "correct": "c",
+    "explanation": "ΔL ∝ CL·(2Vr·y); at low speed and high CL, overbanking and roll due to yaw are strongest.",
+    "tags": ["cross-derivative", "lift-coefficient"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0093",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Turning and sideslip",
+    "question": "Pure rudder-induced yaw at constant speed initially produces, before any roll develops:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sideslip and a side force; then roll toward the yaw"
+      },
+      { "id": "b", "text": "A pitch-down" },
+      { "id": "c", "text": "An immediate roll away" },
+      { "id": "d", "text": "No sideslip" }
+    ],
+    "correct": "a",
+    "explanation": "The aircraft's inertia keeps its flight path while the nose yaws; β creates side force and, through Cl_β, roll.",
+    "tags": ["rudder", "sideslip"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0094",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Augmentation",
+    "question": "Turn coordination in fly-by-wire systems commonly:",
+    "options": [
+      { "id": "a", "text": "Adds pitch trim only" },
+      { "id": "b", "text": "Increases Dutch roll" },
+      { "id": "c", "text": "Removes the rudder" },
+      {
+        "id": "d",
+        "text": "Adds rudder automatically to cancel sideslip during rolling"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Feedback of lateral acceleration or β drives the rudder to keep the ball centred.",
+    "tags": ["turn-coordination", "fly-by-wire"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0095",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Directional stability",
+    "question": "An aircraft whose fin stalls at large sideslip may show:",
+    "options": [
+      { "id": "a", "text": "Improved stability" },
+      { "id": "b", "text": "Roll reversal only" },
+      {
+        "id": "c",
+        "text": "Rudder lock or directional divergence, with the rudder floating to full deflection"
+      },
+      { "id": "d", "text": "Pitch-up" }
+    ],
+    "correct": "c",
+    "explanation": "Beyond fin stall the restoring moment collapses; on reversible controls, hinge moments can drive the rudder to its stop. Dorsal fins help.",
+    "tags": ["rudder-lock", "fin-stall"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0096",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Dutch roll",
+    "question": "At σ = 0.374 and constant EAS, the ratio of aerodynamic damping to sea-level value is:",
+    "options": [
+      { "id": "a", "text": "1.64" },
+      { "id": "b", "text": "0.14" },
+      { "id": "c", "text": "0.61" },
+      { "id": "d", "text": "0.37" }
+    ],
+    "correct": "c",
+    "explanation": "Damping ∝ √σ = 0.612.",
+    "tags": ["damping", "altitude", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0097",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Lateral stability",
+    "question": "Wingtip devices raised well above the wing (winglets) affect lateral stability by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Adding a dihedral-like contribution from their side force above the roll axis"
+      },
+      { "id": "b", "text": "Removing dihedral effect" },
+      { "id": "c", "text": "Reducing directional stability only" },
+      { "id": "d", "text": "Only reducing drag" }
+    ],
+    "correct": "a",
+    "explanation": "In sideslip winglets produce side forces acting above the CG, generating a stabilising rolling moment.",
+    "tags": ["winglets", "dihedral-effect"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0098",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Spiral stability",
+    "question": "The spiral mode is:",
+    "options": [
+      { "id": "a", "text": "A pitch mode" },
+      {
+        "id": "b",
+        "text": "Non-oscillatory: a slow convergence or divergence in bank and heading"
+      },
+      { "id": "c", "text": "The Dutch roll" },
+      { "id": "d", "text": "Oscillatory with a period of seconds" }
+    ],
+    "correct": "b",
+    "explanation": "It is a first-order mode; its time constant depends on the balance of Cl_β, Cn_β and damping.",
+    "tags": ["spiral-mode"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0099",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Dutch roll",
+    "question": "An aircraft with high Cn_β but weak Cn_r (poor yaw damping) would show:",
+    "options": [
+      { "id": "a", "text": "A fast but poorly damped yaw oscillation" },
+      { "id": "b", "text": "No oscillation" },
+      { "id": "c", "text": "Only spiral behaviour" },
+      { "id": "d", "text": "A slow divergence" }
+    ],
+    "correct": "a",
+    "explanation": "Stiffness sets frequency; damping sets decay.",
+    "tags": ["yaw-damping", "dutch-roll"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0100",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Turning and sideslip",
+    "question": "In a correctly coordinated turn, the slip ball is centred because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The resultant of gravity and centripetal acceleration lies along the aircraft's vertical axis"
+      },
+      { "id": "b", "text": "Yaw rate is zero" },
+      { "id": "c", "text": "There is no side force on any surface" },
+      { "id": "d", "text": "Bank angle is zero" }
+    ],
+    "correct": "a",
+    "explanation": "Coordination aligns the apparent gravity vector with the aircraft's normal axis: zero lateral acceleration.",
+    "tags": ["coordinated-turn", "slip-ball"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0101",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Sweep and wing position",
+    "question": "Forward sweep compared with sweepback affects lateral stability by:",
+    "options": [
+      { "id": "a", "text": "Increasing it more than sweepback" },
+      { "id": "b", "text": "Reducing (destabilising) the dihedral effect" },
+      { "id": "c", "text": "Reversing directional stability" },
+      { "id": "d", "text": "Having no effect" }
+    ],
+    "correct": "b",
+    "explanation": "The sweep contribution changes sign with the sweep direction.",
+    "tags": ["forward-sweep", "dihedral-effect"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0102",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Rate and cross effects",
+    "question": "When the aircraft rolls into a bank without rudder, the initial yaw is:",
+    "options": [
+      { "id": "a", "text": "Always proverse" },
+      { "id": "b", "text": "Into the turn" },
+      {
+        "id": "c",
+        "text": "Away from the turn (adverse yaw), from ailerons and roll-rate effects"
+      },
+      { "id": "d", "text": "Zero" }
+    ],
+    "correct": "c",
+    "explanation": "Both aileron drag difference and roll-rate lift tilt give adverse yaw; rudder coordination is needed.",
+    "tags": ["adverse-yaw", "roll-entry"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0103",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Lateral stability",
+    "question": "Total lateral stability Cl_β is the sum of contributions from:",
+    "options": [
+      { "id": "a", "text": "Only sweep" },
+      {
+        "id": "b",
+        "text": "Dihedral, wing position, sweep, fin height and flap/fuselage interference"
+      },
+      { "id": "c", "text": "Only the fin" },
+      { "id": "d", "text": "Only dihedral" }
+    ],
+    "correct": "b",
+    "explanation": "Each geometric feature produces a rolling moment in sideslip; the designer balances their sum against Cn_β.",
+    "tags": ["lateral-stability", "contributions"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABLD-0104",
+    "subjectCode": "POF",
+    "topic": "Lateral and Directional Stability",
+    "subtopic": "Directional stability",
+    "question": "Directional stability in a steep climb at low speed with high power is often reduced because:",
+    "options": [
+      { "id": "a", "text": "CG moves aft" },
+      {
+        "id": "b",
+        "text": "Propeller normal force ahead of the CG and slipstream effects on the fin act destabilisingly"
+      },
+      { "id": "c", "text": "Density increases" },
+      { "id": "d", "text": "Fin area grows" }
+    ],
+    "correct": "b",
+    "explanation": "A propeller disc at yaw produces side force ahead of the CG; asymmetric slipstream alters fin flow.",
+    "tags": ["propeller-effects", "directional-stability"],
     "status": "published",
     "version": 1
   }

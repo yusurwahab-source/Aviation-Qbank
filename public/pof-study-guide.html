@@ -266,7 +266,7 @@
       <li><a href="#ctrl"><span class="n">07</span> Flight Controls: Primary <span class="count">70</span></a></li>
       <li><a href="#trim"><span class="n">08</span> Secondary Controls &amp; Trim <span class="count">45</span></a></li>
       <li><a href="#stabl"><span class="n">09</span> Longitudinal Stability <span class="count">70</span></a></li>
-      <li><a href="#stabld"><span class="n">10</span> Lateral &amp; Directional Stability <span class="count">34</span></a></li>
+      <li><a href="#stabld"><span class="n">10</span> Lateral &amp; Directional Stability <span class="count">70</span></a></li>
       <li><a href="#mach"><span class="n">11</span> High-Speed: Compressibility <span class="count">34</span></a></li>
       <li><a href="#shock"><span class="n">12</span> High-Speed: Shockwaves &amp; Buffet <span class="count">34</span></a></li>
       <li><a href="#prop"><span class="n">13</span> Propellers <span class="count">40</span></a></li>
@@ -286,7 +286,7 @@
       </p>
       <div class="tags">
         <span class="tag">15 sections</span>
-        <span class="tag">790 linked questions</span>
+        <span class="tag">826 linked questions</span>
         <span class="tag">Equations · graphs · proportionalities</span>
         <span class="tag">Aircraft-independent</span>
       </div>
@@ -1542,24 +1542,104 @@
     <!-- ============================================================ -->
     <section class="sec" id="stabld">
       <h2><span class="num">10</span> Lateral &amp; Directional Stability <span class="en">Roll &amp; Yaw</span></h2>
-      <p class="lead">Roll stability (dihedral effect) and yaw stability (the fin) interact — and the interaction has a name.</p>
+      <p class="lead">
+        Sideslip couples roll and yaw. Directional stability (Cn<sub>β</sub> &gt; 0)
+        turns the nose into the relative wind; lateral stability
+        (Cl<sub>β</sub> &lt; 0) rolls away from the sideslip. Their ratio and the
+        damping derivatives set the Dutch roll and spiral modes.
+      </p>
 
+      <h3 class="sub">Directional stability <span class="ref">10.1</span></h3>
+      <div class="eq">N<sub>fin</sub> = a<sub>v</sub>·β·(1 − dσ/dβ)·q·S<sub>v</sub>·l<sub>v</sub> &nbsp;&nbsp;&nbsp; V<sub>V</sub> = S<sub>v</sub>·l<sub>v</sub>/(S·b)</div>
       <ul>
-        <li><strong>Dihedral, sweep, high-wing, keel surface</strong> — all add a rolling moment following a sideslip.</li>
-        <li><strong>Fin (weathercock effect)</strong> — yaws the nose back into the relative airflow.</li>
-        <li><strong>Dutch roll</strong> — coupled yaw/roll, worse when lateral stability is strong relative to directional; a <strong>yaw damper</strong> corrects it automatically.</li>
-        <li><strong>Spiral instability</strong> — the opposite imbalance: bank slowly, progressively increases.</li>
-        <li><strong>Anhedral</strong> — deliberately reduces excess lateral stability on already-stable (usually highly swept) designs.</li>
+        <li>a<sub>v</sub> 0.05/deg, β 5°, q 5 kPa, S<sub>v</sub> 20 m², l<sub>v</sub> 15 m → 25 kN, 375 kN·m. V<sub>V</sub> (S 120 m², b 30 m) = 0.083.</li>
+        <li>Stabilising: fin, sweepback (advancing wing's drag), ventral fins and strakes. Destabilising: forebody side area (longer fuselage needs larger fin), propeller ahead of CG.</li>
+        <li>Dorsal fin: vortex delays fin stall at large β; fin stall can give rudder lock or divergence (Cn<sub>β</sub> &lt; 0).</li>
+        <li>High α: fin in wake. Supersonic: fin lift slope ∝ 1/√(M² − 1).</li>
       </ul>
-      <div class="callout note">
-        <span class="label">The trade-off</span>
-        Strong directional stability relative to lateral favors spiral
-        stability but worsens Dutch roll; the reverse favors Dutch roll
-        damping but worsens spiral stability. Real aircraft sit at a
-        deliberate compromise.
-      </div>
 
-      <div class="related"><span class="dot"></span> Related questions: <strong>34</strong> in this topic</div>
+      <h3 class="sub">Lateral stability (dihedral effect) <span class="ref">10.2</span></h3>
+      <div class="eq">Δα ≈ ±β·Γ &nbsp;&nbsp;&nbsp; Cl<sub>β,sweep</sub> ∝ −C<sub>L</sub>·sin 2Λ</div>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Contribution to −Cl<sub>β</sub></th><th>Mechanism</th></tr></thead>
+        <tbody>
+          <tr><td>Dihedral Γ</td><td>+</td><td>β·Γ on leading/trailing panel (5°, 5° → ±0.44°)</td></tr>
+          <tr><td>Anhedral</td><td>−</td><td>Opposite sign</td></tr>
+          <tr><td>High wing</td><td>+</td><td>Fuselage crossflow raises windward root α</td></tr>
+          <tr><td>Low wing</td><td>−</td><td>Crossflow lowers windward root α</td></tr>
+          <tr><td>Sweepback</td><td>+ (∝ C<sub>L</sub>)</td><td>Leading wing less swept; C<sub>L</sub> 1.0 vs 0.4 → ×2.5</td></tr>
+          <tr><td>Forward sweep</td><td>−</td><td>Opposite sign</td></tr>
+          <tr><td>Fin above CG, winglets</td><td>+</td><td>Side force above roll axis</td></tr>
+          <tr><td>Inboard flaps</td><td>−</td><td>Lift moves inboard, shorter arm</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>High swept-wing transports use anhedral to keep Cl<sub>β</sub> from overwhelming Cn<sub>β</sub>. A high wing is laterally more stable than a low wing of equal dihedral.</p>
+
+      <h3 class="sub">Rate and cross effects <span class="ref">10.3</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Derivative</th><th>Cause</th><th>Consequence</th></tr></thead>
+        <tbody>
+          <tr><td>Cl<sub>p</sub> roll damping</td><td>Δα = p·y/V</td><td>Roll subsidence: rapid, non-oscillatory</td></tr>
+          <tr><td>Cn<sub>r</sub> yaw damping</td><td>Fin Δβ = r·l<sub>v</sub>/V</td><td>Damps Dutch roll</td></tr>
+          <tr><td>Cl<sub>r</sub> roll due to yaw</td><td>Outer wing faster, lift ∝ V² (∝ C<sub>L</sub>)</td><td>Overbanking in turns: rate-one at 60 m/s, ±5 m → ×1.018</td></tr>
+          <tr><td>Cn<sub>p</sub> yaw due to roll</td><td>Lift vectors tilt with roll-induced α</td><td>Adverse yaw on roll entry</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Bank without coordination → horizontal lift component → sideslip toward the low wing → weathercock yaw and dihedral roll. Rudder alone turns an aircraft with sufficient dihedral effect.</p>
+
+      <h3 class="sub">Dutch roll and spiral modes <span class="ref">10.4</span></h3>
+      <div class="diagram">
+        <svg viewBox="0 0 460 225" role="img" aria-label="Schematic of lateral against directional static stability: strong directional relative to lateral stability gives spiral divergence; strong lateral relative to directional gives poorly damped Dutch roll; the acceptable region lies between">
+          <polygon points="60.0,190.0 430.0,134.0 430.0,30.0 273.5,30.0 60.0,150.0" fill="var(--green-arc)" fill-opacity=".12"/>
+          <polygon points="60.0,190.0 430.0,190.0 430.0,134.0" fill="var(--caution-line)" fill-opacity=".16"/>
+          <polygon points="60.0,150.0 273.5,30.0 60.0,30.0" fill="var(--warn-line)" fill-opacity=".14"/>
+          <line x1="60.0" y1="190.0" x2="430.0" y2="134.0" stroke="var(--caution-line)" stroke-width="2"/>
+          <line x1="60.0" y1="150.0" x2="273.5" y2="30.0" stroke="var(--warn-line)" stroke-width="2"/>
+          <line x1="60.0" y1="190.0" x2="441.1" y2="190.0" stroke="var(--ink-2)" stroke-width="1.2"/>
+          <line x1="60.0" y1="190.0" x2="60.0" y2="25.2" stroke="var(--ink-2)" stroke-width="1.2"/>
+          <text x="430.0" y="206.0" font-size="11" fill="var(--muted)" text-anchor="end">directional stability Cn_β →</text>
+          <text x="52.0" y="110.0" font-size="11" fill="var(--muted)" text-anchor="middle" transform="rotate(-90 52.0 110.0)">lateral stability −Cl_β →</text>
+          <text x="326.4" y="177.2" font-size="11" font-weight="700" fill="var(--caution-line)" text-anchor="middle">spiral divergence</text>
+          <text x="108.1" y="54.0" font-size="11" font-weight="700" fill="var(--warn-line)">Dutch roll</text>
+          <text x="289.4" y="94.0" font-size="11" font-weight="700" fill="var(--green-arc)" text-anchor="middle">acceptable balance</text>
+          <text x="289.4" y="109.0" font-size="10.5" fill="var(--ink-2)" text-anchor="middle">(yaw damper widens it)</text>
+        </svg>
+        <div class="cap">Schematic: the ratio of lateral to directional stability decides which lateral mode is critical</div>
+      </div>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th></th><th>Dutch roll</th><th>Spiral</th></tr></thead>
+        <tbody>
+          <tr><td>Character</td><td>Oscillatory roll–yaw, period of seconds</td><td>Non-oscillatory, time constant tens of seconds</td></tr>
+          <tr><td>Aggravated by</td><td>Strong Cl<sub>β</sub> vs Cn<sub>β</sub>; high C<sub>L</sub> with sweep; altitude (damping ∝ √σ: σ 0.374 → 0.61)</td><td>Strong Cn<sub>β</sub> vs Cl<sub>β</sub> (large fin, little dihedral)</td></tr>
+          <tr><td>Remedies</td><td>Larger fin, yaw damper, less dihedral effect</td><td>More dihedral effect, smaller fin</td></tr>
+          <tr><td>Acceptability</td><td>Must be well damped</td><td>Mild divergence acceptable (slow, correctable)</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Dutch roll without a yaw damper: small, well-timed aileron inputs; rudder easily reinforces the oscillation. Descending and slowing improve natural damping.</p>
+
+      <h3 class="sub">Augmentation <span class="ref">10.5</span></h3>
+      <ul>
+        <li>Yaw damper: yaw-rate feedback to rudder with a wash-out filter, so steady turn rates are not opposed.</li>
+        <li>Inoperative yaw damper: altitude and speed restrictions.</li>
+        <li>Fly-by-wire turn coordination drives rudder to null sideslip.</li>
+      </ul>
+
+      <h3 class="sub">Turning, sideslip and asymmetry <span class="ref">10.6</span></h3>
+      <ul>
+        <li>Skid (ball outside): too much rudder. Slip (ball inside): too little rudder or too much bank. Coordinated: resultant acceleration along the normal axis.</li>
+        <li>Low-speed steep turn: overbanking held with slight opposite aileron.</li>
+        <li>Steady sideslip: aileron against dihedral roll, rudder against weathercocking; the first to reach full deflection sets the limit.</li>
+        <li>Engine failure, wings level: sideslip toward the dead engine; small bank toward the live engine removes most of it.</li>
+        <li>Inertia coupling: fuselage-concentrated mass rolling off the principal axis generates pitch and yaw moments.</li>
+      </ul>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>70</strong> in this topic</div>
     </section>
 
     <!-- ============================================================ -->
