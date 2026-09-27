@@ -350,9 +350,9 @@ of it has been checked against a specific state's AIP or training syllabus.
 ## The POF bank (Flying Knowledge)
 
 The subject is **Principles of Flight**, the second subject in Flying
-Knowledge, added the same content-only way IFR was. 628 questions across
+Knowledge, added the same content-only way IFR was. 671 questions across
 fifteen topics today, all published: Basic Aerodynamics (65), Aerofoils and
-Lift Theory (65), Lift and Drag (75), Boundary Layer (55), Stalling (42),
+Lift Theory (65), Lift and Drag (75), Boundary Layer (55), Stalling (85),
 High-Lift Devices (30), Flight Controls: Primary (38), Flight Controls:
 Secondary and Trim (24), Longitudinal Stability (34), Lateral and
 Directional Stability (34), High-Speed Flight: Compressibility (34),
@@ -372,7 +372,7 @@ a definition to be recalled. The target is 1,000 questions:
 | 02 | Aerofoils and Lift Theory | `AFOIL` | 65 | **65 (rebuilt)** |
 | 03 | Lift and Drag | `LIFT` | 75 | **75 (rebuilt)** |
 | 04 | Boundary Layer | `BL` | 55 | **55 (rebuilt)** |
-| 05 | Stalling | `STALL` | 85 | 42 |
+| 05 | Stalling | `STALL` | 85 | **85 (rebuilt)** |
 | 06 | High-Lift Devices | `HLD` | 60 | 30 |
 | 07 | Flight Controls: Primary | `CTRL` | 70 | 38 |
 | 08 | Flight Controls: Secondary and Trim | `TRIM` | 45 | 24 |
@@ -383,11 +383,11 @@ a definition to be recalled. The target is 1,000 questions:
 | 13 | Propellers | `PROP` | 80 | 40 |
 | 14 | Aeroplane Loads and Limitations | `LOAD` | 70 | 34 |
 | 15 | Windshear and Atmospheric Effects | `WSHR` | 55 | 24 |
-| | | | **1,000** | **628** |
+| | | | **1,000** | **671** |
 
 A rebuilt section **replaces** its file rather than adding to it, and its
 new questions take **new ids** that continue after the old ones
-(`POF-AERO-0036` onward, `POF-AFOIL-0033` onward, `POF-LIFT-0039` onward, `POF-BL-0029` onward). The retired ids are never
+(`POF-AERO-0036` onward, `POF-AFOIL-0033` onward, `POF-LIFT-0039` onward, `POF-BL-0029` onward, `POF-STALL-0043` onward). The retired ids are never
 reused for a different question: `attempts` keeps history by question id
 with no foreign key, so a reused id would silently attach an old answer to a
 new question. `db:seed` deletes the retired rows; the history survives.
@@ -417,11 +417,11 @@ given to the IFR bank and the DA40's unsourced topics above.
 
 `public/pof-study-guide.html` is this bank's study guide (see
 `lib/study-guide.ts`): fifteen numbered sections matching the fifteen
-topics. Sections 01–04 are in the rebuilt form — governing equations,
+topics. Sections 01–05 are in the rebuilt form — governing equations,
 tables of computed values, and inline SVG graphs computed from the
 equations they illustrate (chordwise pressure distribution, lift curves by
 aspect ratio, drag and power-required curves, boundary-layer velocity
-profiles); sections 05–15 keep their
+profiles, stall speed against bank angle); sections 06–15 keep their
 earlier prose until they are rebuilt in turn.
 
 ## The B737 bank
