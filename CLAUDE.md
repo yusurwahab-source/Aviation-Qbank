@@ -1811,7 +1811,7 @@ Flying Knowledge subject is a content-only job**, the same rule "many
 aircraft, in two trees" states for a second aircraft — see the note there.
 This is now proven, not just asserted: Principles of Flight (`POF`) was
 added as `content/flying-knowledge/pof/` alone — a `subject.json` and
-fifteen question files, 501 questions at first (671 now, on the way to
+fifteen question files, 501 questions at first (701 now, on the way to
 1,000 — see the note on the POF bank in `content/README.md`) — with the only application-code change being the
 same one-line addition to `lib/study-guide.ts`'s hand-kept set that any
 aircraft's own study guide already needs (see the note on that file

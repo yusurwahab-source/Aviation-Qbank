@@ -1,562 +1,1216 @@
 [
   {
-    "id": "POF-HLD-0001",
+    "id": "POF-HLD-0031",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Trailing-Edge Flaps",
-    "question": "Extending trailing-edge flaps generally affects stalling speed by:",
+    "subtopic": "Purpose and performance",
+    "question": "The primary purpose of high-lift devices is to:",
+    "options": [
+      { "id": "a", "text": "Raise the critical Mach number" },
+      {
+        "id": "b",
+        "text": "Raise CLmax so the aircraft can fly, take off and land at lower speeds"
+      },
+      { "id": "c", "text": "Increase maximum L/D in cruise" },
+      { "id": "d", "text": "Reduce induced drag at high speed" }
+    ],
+    "correct": "b",
+    "explanation": "VS ∝ CLmax^−½. A higher CLmax lowers stall, lift-off and approach speeds, shortening ground distances; the price is drag and pitching moment.",
+    "tags": ["high-lift", "clmax"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0032",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Purpose and performance",
+    "question": "Flaps raise CLmax from 1.5 to 2.4. At the same approach margin (1.3 VS), the landing ground-roll kinetic energy changes by the factor:",
+    "options": [
+      { "id": "a", "text": "0.79" },
+      { "id": "b", "text": "1.60" },
+      { "id": "c", "text": "0.63" },
+      { "id": "d", "text": "0.40" }
+    ],
+    "correct": "c",
+    "explanation": "V ∝ CLmax^−½ = 0.791; kinetic energy ∝ V² → 0.625. Braking distance at a given deceleration scales the same way.",
+    "tags": ["landing", "kinetic-energy", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0033",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Purpose and performance",
+    "question": "Flap extension raises CLmax from 1.5 to 1.9. The stall speed changes by:",
+    "options": [
+      { "id": "a", "text": "×0.79" },
+      { "id": "b", "text": "×0.84" },
+      { "id": "c", "text": "×0.89" },
+      { "id": "d", "text": "×0.94" }
+    ],
+    "correct": "c",
+    "explanation": "√(1.5/1.9) = 0.889. The CLmax ratio itself (0.79) applies to V², not V.",
+    "tags": ["stall-speed", "flaps", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0034",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Purpose and performance",
+    "question": "Slats alone raise CLmax from 1.5 to 2.0. The stall speed changes by:",
+    "options": [
+      { "id": "a", "text": "×1.15" },
+      { "id": "b", "text": "×0.87" },
+      { "id": "c", "text": "×0.93" },
+      { "id": "d", "text": "×0.75" }
+    ],
+    "correct": "b",
+    "explanation": "√(1.5/2.0) = 0.866.",
+    "tags": ["slats", "stall-speed", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0035",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Trailing-edge flaps",
+    "question": "A Fowler flap extends the chord by 20 % (area referenced to the extended wing). At the same CL, the stall speed from the area increase alone falls by the factor:",
+    "options": [
+      { "id": "a", "text": "0.80" },
+      { "id": "b", "text": "0.83" },
+      { "id": "c", "text": "0.95" },
+      { "id": "d", "text": "0.91" }
+    ],
+    "correct": "d",
+    "explanation": "VS ∝ S^−½: 1/√1.2 = 0.913. Deflection adds camber on top of this area gain.",
+    "tags": ["fowler-flap", "wing-area", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0036",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Trailing-edge flaps",
+    "question": "A Fowler flap raises lift at a given angle of attack by:",
+    "options": [
+      { "id": "a", "text": "Reducing wing area and raising speed" },
+      {
+        "id": "b",
+        "text": "Moving aft to increase wing area and deflecting to increase camber, with a slot energising the flap boundary layer"
+      },
+      { "id": "c", "text": "Increasing camber only" },
+      { "id": "d", "text": "Increasing thickness only" }
+    ],
+    "correct": "b",
+    "explanation": "Rearward travel adds area and effective chord; deflection adds camber; the gap supplies high-energy air to the flap upper surface.",
+    "tags": ["fowler-flap"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0037",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Trailing-edge flaps",
+    "question": "A split flap (lower surface hinged down) compared with a plain flap at the same deflection gives:",
+    "options": [
+      { "id": "a", "text": "No lift increase" },
+      { "id": "b", "text": "Less drag and less lift" },
+      { "id": "c", "text": "Much higher CLmax with less drag" },
+      {
+        "id": "d",
+        "text": "Similar or slightly higher CLmax with considerably more drag"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The split flap increases effective camber while leaving a large separated region behind the upper trailing edge — a high-drag, simple device.",
+    "tags": ["split-flap", "drag"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0038",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Trailing-edge flaps",
+    "question": "A slotted flap achieves a higher usable deflection than a plain flap because:",
+    "options": [
+      { "id": "a", "text": "It has a thicker section" },
+      { "id": "b", "text": "It reduces camber" },
+      {
+        "id": "c",
+        "text": "Air through the slot re-energises the flap's boundary layer, delaying separation on it"
+      },
+      { "id": "d", "text": "It moves the CP forward" }
+    ],
+    "correct": "c",
+    "explanation": "A plain flap separates at modest deflections because its boundary layer is inherited from the main wing. The slot starts a fresh, energised layer on the flap.",
+    "tags": ["slotted-flap", "boundary-layer"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0039",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Trailing-edge flaps",
+    "question": "Double- and triple-slotted flaps are used on transport aircraft to:",
+    "options": [
+      { "id": "a", "text": "Raise the critical Mach number" },
+      {
+        "id": "b",
+        "text": "Allow very large total deflection with attached flow on each element"
+      },
+      { "id": "c", "text": "Reduce weight" },
+      { "id": "d", "text": "Reduce drag in cruise" }
+    ],
+    "correct": "b",
+    "explanation": "Each slot restarts the boundary layer, so turning is shared among elements; combined with Fowler motion this maximises CLmax for landing.",
+    "tags": ["multi-slotted-flap"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0040",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Trailing-edge flaps",
+    "question": "Trailing-edge flap extension changes the zero-lift angle and the section moment coefficient as follows:",
     "options": [
       {
         "id": "a",
-        "text": "Increasing the wing's maximum lift coefficient (CLmax), which lowers the stalling speed for a given weight"
+        "text": "α₀ more negative; C_M,ac more negative (nose-down)"
       },
-      { "id": "b", "text": "Decreasing CLmax, which raises the stalling speed" },
-      { "id": "c", "text": "Having no effect, since flaps only change drag, not lift" },
-      { "id": "d", "text": "Increasing the critical angle of attack to a higher value than the clean wing" }
+      { "id": "b", "text": "α₀ more negative; C_M,ac positive" },
+      { "id": "c", "text": "α₀ unchanged; C_M,ac unchanged" },
+      { "id": "d", "text": "α₀ more positive; C_M,ac more positive" }
     ],
     "correct": "a",
-    "explanation": "Flaps increase the wing's effective camber, raising the maximum lift coefficient it can produce before stalling. Because stalling speed varies inversely with the square root of CLmax, a higher CLmax lets the wing support the aircraft's weight at a lower speed. Most flap types also somewhat reduce the critical angle of attack, not increase it.",
-    "tags": ["high-lift-devices", "flaps"],
+    "explanation": "Flap deflection is added aft camber: both α₀ and C_M,ac become more negative, as for positive camber concentrated near the trailing edge.",
+    "tags": ["flaps", "zero-lift-angle", "pitching-moment"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0002",
+    "id": "POF-HLD-0041",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Leading-Edge Slats",
-    "question": "Leading-edge slats improve high angle-of-attack performance primarily by:",
-    "options": [
-      { "id": "a", "text": "Increasing wing area, which increases total lift at any angle of attack" },
-      {
-        "id": "b",
-        "text": "Re-energising the boundary layer over the upper surface, delaying separation to a higher critical angle of attack"
-      },
-      { "id": "c", "text": "Reducing the wing's aspect ratio" },
-      { "id": "d", "text": "Reducing induced drag at low speed" }
-    ],
-    "correct": "b",
-    "explanation": "A slat opens a slot ahead of the leading edge that accelerates high-energy air from beneath the wing over the upper surface. This re-energised boundary layer resists separation for longer, letting the wing reach a higher angle of attack — and a higher CLmax — before stalling.",
-    "tags": ["high-lift-devices", "slats"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-HLD-0003",
-    "subjectCode": "POF",
-    "topic": "High-Lift Devices",
-    "subtopic": "Plain vs Split Flap",
-    "question": "Compared with a plain (hinged) flap, a split flap, hinged only from the lower surface of the wing, tends to produce:",
-    "options": [
-      { "id": "a", "text": "Less drag for the same lift increase" },
-      {
-        "id": "b",
-        "text": "A similar or greater lift increase, but generally more drag, because the upper surface airflow separates behind the break in the surface"
-      },
-      { "id": "c", "text": "No change in CLmax at all" },
-      { "id": "d", "text": "A higher critical Mach number" }
-    ],
-    "correct": "b",
-    "explanation": "A split flap deflects only the lower surface, leaving the upper surface's contour broken at the hinge line. Airflow over the top tends to separate behind that break, giving a useful lift increase but at a higher drag cost than a plain flap of similar size — useful where a steep approach is wanted.",
-    "tags": ["high-lift-devices", "flaps"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-HLD-0004",
-    "subjectCode": "POF",
-    "topic": "High-Lift Devices",
-    "subtopic": "Slotted Flap",
-    "question": "A slotted flap improves on a plain flap mainly by:",
-    "options": [
-      { "id": "a", "text": "Increasing wing area only, with no aerodynamic slot effect" },
-      {
-        "id": "b",
-        "text": "Opening a gap between the flap and the wing that channels high-energy air from below onto the flap's upper surface, re-energising its boundary layer and delaying separation"
-      },
-      { "id": "c", "text": "Reducing the flap's camber" },
-      { "id": "d", "text": "Eliminating induced drag" }
-    ],
-    "correct": "b",
-    "explanation": "The slot between the wing's trailing edge and the flap works the same way a leading-edge slot does: it lets higher-pressure air from below accelerate through the gap and re-energise the boundary layer over the flap's upper surface, allowing a larger flap deflection before that surface's airflow separates.",
-    "tags": ["high-lift-devices", "flaps"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-HLD-0005",
-    "subjectCode": "POF",
-    "topic": "High-Lift Devices",
-    "subtopic": "Fowler Flap",
-    "question": "A Fowler flap differs from a simple slotted flap mainly because, as it extends, it:",
-    "options": [
-      { "id": "a", "text": "Also moves aft, increasing wing area as well as camber" },
-      { "id": "b", "text": "Rotates around a fixed hinge with no aft translation" },
-      { "id": "c", "text": "Only deploys on the leading edge" },
-      { "id": "d", "text": "Reduces wing area to increase speed" }
-    ],
-    "correct": "a",
-    "explanation": "A Fowler flap rides aft on tracks as it extends, before rotating down — increasing both wing area and camber, on top of the slot effect a slotted flap already provides. This combination gives a particularly large increase in CLmax, which is why it is common on airliner wings.",
-    "tags": ["high-lift-devices", "flaps"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-HLD-0006",
-    "subjectCode": "POF",
-    "topic": "High-Lift Devices",
-    "subtopic": "Krueger Flap",
-    "question": "A Krueger flap is a leading-edge high-lift device that, when deployed:",
+    "subtopic": "Lift curve effects",
+    "question": "On the CL–α curve, trailing-edge flaps:",
     "options": [
       {
         "id": "a",
-        "text": "Hinges down and forward from the lower surface of the leading edge to increase camber ahead of the wing"
+        "text": "Extend the curve to a higher stalling angle without shift"
       },
-      { "id": "b", "text": "Is a fixed leading-edge slot that never moves" },
-      { "id": "c", "text": "Is a trailing-edge device only" },
-      { "id": "d", "text": "Reduces the wing's angle of incidence" }
-    ],
-    "correct": "a",
-    "explanation": "A Krueger flap folds out and down from underneath the leading edge, effectively extending and re-shaping it to add camber and delay separation at high angle of attack — a leading-edge alternative (or complement) to a slat, often used further inboard on a swept wing.",
-    "tags": ["high-lift-devices", "krueger-flap"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-HLD-0007",
-    "subjectCode": "POF",
-    "topic": "High-Lift Devices",
-    "subtopic": "Leading-Edge vs Trailing-Edge Devices",
-    "question": "Compared with trailing-edge flaps, leading-edge devices such as slats primarily work by:",
-    "options": [
-      { "id": "a", "text": "Increasing camber near the trailing edge" },
-      { "id": "b", "text": "Raising the critical angle of attack itself, rather than mainly adding camber" },
-      { "id": "c", "text": "Reducing wing area" },
-      { "id": "d", "text": "Increasing induced drag only" }
-    ],
-    "correct": "b",
-    "explanation": "Trailing-edge flaps mainly add camber, shifting the whole lift curve upward. Leading-edge devices instead mainly delay separation, extending the lift curve to a higher angle of attack before it stalls — two different mechanisms for raising CLmax, which is why aircraft often use both together.",
-    "tags": ["high-lift-devices", "slats", "flaps"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-HLD-0008",
-    "subjectCode": "POF",
-    "topic": "High-Lift Devices",
-    "subtopic": "Combined Slats and Flaps",
-    "question": "Many transport aircraft wings use both leading-edge slats and trailing-edge flaps together mainly because:",
-    "options": [
-      { "id": "a", "text": "Slats alone are always sufficient for any approach speed" },
       {
         "id": "b",
-        "text": "The two devices raise CLmax through different, complementary mechanisms — a higher critical angle of attack from the slats and more camber from the flaps"
+        "text": "Shift the curve up/left and raise CLmax, reached at a lower stalling angle"
       },
-      { "id": "c", "text": "Using both eliminates all drag during approach" },
-      { "id": "d", "text": "They are required only for takeoff, never for landing" }
+      { "id": "c", "text": "Shift the curve right" },
+      { "id": "d", "text": "Reduce the slope and CLmax" }
     ],
     "correct": "b",
-    "explanation": "Because slats and flaps improve CLmax by different means — delaying the stall versus adding camber — combining them gives a larger total increase in maximum lift coefficient than either device could achieve alone, letting the aircraft fly a slower, safer approach and takeoff speed.",
-    "tags": ["high-lift-devices", "slats", "flaps"],
+    "explanation": "Camber moves α₀ negative; the lift slope stays similar (slightly higher with Fowler area); the steeper recovery on the upper surface lowers α_stall.",
+    "tags": ["lift-curve", "flaps"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0009",
+    "id": "POF-HLD-0042",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Flaps and Approach Drag",
-    "question": "Extending flaps for approach increases drag as well as lift, which is operationally useful because it:",
+    "subtopic": "Lift curve effects",
+    "question": "On the CL–α curve, leading-edge slats:",
     "options": [
-      { "id": "a", "text": "Reduces the power needed to fly a steeper approach path at a controllable, lower airspeed" },
-      { "id": "b", "text": "Always increases the aircraft's range" },
-      { "id": "c", "text": "Has no effect on approach speed" },
-      { "id": "d", "text": "Is only relevant to jet aircraft" }
+      { "id": "a", "text": "Change only the zero-lift angle" },
+      { "id": "b", "text": "Shift the curve left with lower stalling angle" },
+      { "id": "c", "text": "Lower CLmax" },
+      {
+        "id": "d",
+        "text": "Extend the linear range to a higher stalling angle and CLmax, with little shift at low α"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Slats relieve the leading-edge suction peak; the curve continues along nearly the same line to a higher α before separating.",
+    "tags": ["lift-curve", "slats"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0043",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Lift curve effects",
+    "question": "Flaps and slats deployed together produce:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A left-shifted curve extended to a higher CLmax than either device alone"
+      },
+      { "id": "b", "text": "No change from clean" },
+      { "id": "c", "text": "The same CLmax as flaps alone" },
+      {
+        "id": "d",
+        "text": "A lower stalling angle than flaps alone and lower CLmax"
+      }
     ],
     "correct": "a",
-    "explanation": "The extra drag from flaps lets a pilot fly a steeper, more controllable approach path at idle or near-idle power while still holding a safely low airspeed above the (also-reduced) stalling speed — rather than needing an unrealistically long, shallow, high-speed approach.",
-    "tags": ["high-lift-devices", "flaps", "approach"],
+    "explanation": "Flaps add camber (shift); slats protect the leading edge against the higher suction the cambered wing generates (extension).",
+    "tags": ["flaps", "slats", "lift-curve"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0010",
+    "id": "POF-HLD-0044",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Flap Asymmetry Protection",
-    "question": "Many aircraft include a flap asymmetry protection system, whose purpose is to:",
+    "subtopic": "Lift curve effects",
+    "question": "Clean: lift slope 0.09/deg, α₀ −2°. With flap: same slope, α₀ −12°. At the approach CL of 1.2, the angle of attack with flap compared with clean is:",
     "options": [
-      { "id": "a", "text": "Increase the maximum flap extension speed" },
+      { "id": "a", "text": "About 10° higher" },
+      { "id": "b", "text": "About 5° lower" },
+      { "id": "c", "text": "About 10° lower (1.3° against 11.3°)" },
+      { "id": "d", "text": "Identical" }
+    ],
+    "correct": "c",
+    "explanation": "α = CL/a + α₀: clean 13.3 − 2 = 11.3°; flap 13.3 − 12 = 1.3°. At equal flight path, pitch attitude is lower by the same 10°, improving forward view.",
+    "tags": ["angle-of-attack", "flaps", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0045",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Lift curve effects",
+    "question": "With slats deployed, the stall angle rises from 14° to 22°. At the stall, the aircraft pitch attitude on the same flight path is:",
+    "options": [
+      { "id": "a", "text": "Unchanged" },
+      { "id": "b", "text": "22° higher" },
+      { "id": "c", "text": "8° lower" },
+      { "id": "d", "text": "8° higher" }
+    ],
+    "correct": "d",
+    "explanation": "θ = γ + α. The higher usable α is the price of slat-only lift gain — hence slats are combined with trailing-edge flaps to limit attitude.",
+    "tags": ["slats", "pitch-attitude"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0046",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Leading-edge devices",
+    "question": "A leading-edge slat increases the stalling angle because:",
+    "options": [
+      { "id": "a", "text": "It reduces the angle of attack of the main wing" },
+      { "id": "b", "text": "It adds weight at the leading edge" },
+      {
+        "id": "c",
+        "text": "Airflow through the slot reduces the suction peak on the main wing and feeds high-energy air into its boundary layer"
+      },
+      { "id": "d", "text": "It increases wing thickness" }
+    ],
+    "correct": "c",
+    "explanation": "The slat carries part of the leading-edge suction; the slot jet reduces the main element's adverse gradient and energises its layer, delaying separation.",
+    "tags": ["slats", "slot-effect"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0047",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Leading-edge devices",
+    "question": "A Krueger flap is:",
+    "options": [
+      { "id": "a", "text": "A trailing-edge flap sliding aft" },
       {
         "id": "b",
-        "text": "Detect and stop (or lock) flap movement if one side deploys differently from the other, preventing an uncontrollable rolling moment"
+        "text": "A panel hinged from the lower leading edge that swings forward, typically used inboard on swept wings"
       },
-      { "id": "c", "text": "Automatically retract the flaps at high speed only" },
-      { "id": "d", "text": "Increase camber further on one wing intentionally" }
+      { "id": "c", "text": "A fixed slot near the tip" },
+      { "id": "d", "text": "A spoiler on the upper surface" }
     ],
     "correct": "b",
-    "explanation": "If flaps on one wing extended further than the other, the resulting difference in lift between the two wings could produce a rolling moment beyond the ailerons' authority to counter, especially at low speed. An asymmetry protection system halts or locks the flaps the moment such a difference is detected.",
-    "tags": ["high-lift-devices", "flaps", "systems"],
+    "explanation": "It increases leading-edge camber and radius. Inboard Kruegers with outboard slats help ensure an inboard-first stall on swept wings.",
+    "tags": ["krueger-flap", "sweep"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0011",
+    "id": "POF-HLD-0048",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Triple-Slotted Flap",
-    "question": "A triple-slotted flap, used on some older wide-body jet designs, achieves a very high CLmax mainly by:",
+    "subtopic": "Leading-edge devices",
+    "question": "A droop leading edge raises CLmax by:",
     "options": [
-      { "id": "a", "text": "Using three separate flap surfaces, each energised through its own slot, giving several stages of progressively increasing camber and slot-fed boundary layer control" },
-      { "id": "b", "text": "Extending three times faster than a single-slotted flap" },
-      { "id": "c", "text": "Eliminating induced drag entirely" },
-      { "id": "d", "text": "Being a leading-edge device rather than a trailing-edge one" }
+      {
+        "id": "a",
+        "text": "Increasing leading-edge camber, reducing the suction peak at high α"
+      },
+      { "id": "b", "text": "Reducing wing thickness" },
+      { "id": "c", "text": "Opening a slot" },
+      { "id": "d", "text": "Increasing wing area by 20 %" }
     ],
     "correct": "a",
-    "explanation": "A triple-slotted flap comprises multiple flap elements deployed in sequence, each with its own slot re-energising the boundary layer over the next element downstream. This lets the whole assembly reach a very large usable deflection and camber increase without separating, at the cost of considerable mechanical complexity and weight.",
-    "tags": ["high-lift-devices", "flaps"],
+    "explanation": "The drooped nose aligns with the local flow at high α, lowering the peak velocity round the leading edge and delaying leading-edge separation.",
+    "tags": ["droop-leading-edge"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0012",
+    "id": "POF-HLD-0049",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Fowler Flap Track",
-    "question": "The aft translation of a Fowler flap as it extends is typically achieved by:",
+    "subtopic": "Leading-edge devices",
+    "question": "Automatic slats on some light aircraft deploy:",
     "options": [
-      { "id": "a", "text": "A curved track and roller (or similar guided linkage) fixed to the wing structure, along which the flap rides aft before rotating down" },
-      { "id": "b", "text": "A simple single hinge at the wing trailing edge, identical to a plain flap" },
-      { "id": "c", "text": "Detaching the flap from the wing entirely during extension" },
-      { "id": "d", "text": "Inflating the flap with compressed air" }
+      { "id": "a", "text": "At high speed" },
+      {
+        "id": "b",
+        "text": "Aerodynamically, when leading-edge suction at high α pulls them forward"
+      },
+      { "id": "c", "text": "Only by pilot selection" },
+      { "id": "d", "text": "When the flaps retract" }
     ],
-    "correct": "a",
-    "explanation": "A Fowler flap's characteristic aft movement is produced by rollers or carriages running along a curved track fixed to the wing structure, guiding the flap aft (increasing wing area) before it rotates down to its final deflected position — a more mechanically complex arrangement than a simple hinged plain or slotted flap.",
-    "tags": ["high-lift-devices", "fowler-flap"],
+    "correct": "b",
+    "explanation": "At high α the suction near the leading edge overcomes the retraction force; at low α the stagnation pressure pushes them closed.",
+    "tags": ["automatic-slats"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0013",
+    "id": "POF-HLD-0050",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Leading-Edge Flap vs Slat",
-    "question": "A \"leading-edge flap\" (such as a Krueger flap) differs from a \"leading-edge slat\" mainly in that:",
+    "subtopic": "Leading-edge devices",
+    "question": "Asymmetric slat deployment at high angle of attack produces:",
     "options": [
-      { "id": "a", "text": "A leading-edge flap mainly adds camber ahead of the wing without necessarily opening a slot, while a slat extends forward and down to open a slot that channels energising airflow onto the upper surface" },
-      { "id": "b", "text": "The two terms describe exactly the same device with no difference" },
-      { "id": "c", "text": "A leading-edge flap is always mounted at the trailing edge" },
-      { "id": "d", "text": "A slat never affects the wing's angle of attack characteristics" }
+      { "id": "a", "text": "A nose-down pitch only" },
+      { "id": "b", "text": "A roll toward the slat side" },
+      {
+        "id": "c",
+        "text": "A roll toward the side without the slat, whose wing stalls first"
+      },
+      { "id": "d", "text": "No roll" }
     ],
-    "correct": "a",
-    "explanation": "Both raise CLmax and delay leading-edge separation, but a leading-edge flap (a hinged panel like a Krueger flap) mainly reshapes and adds camber to the leading edge, while a true slat's defining feature is the slot it opens, through which high-energy air is drawn over the upper surface to re-energise the boundary layer directly.",
-    "tags": ["high-lift-devices", "slats", "krueger-flap"],
+    "correct": "c",
+    "explanation": "The unslatted wing reaches its lower stalling α first and loses lift, rolling the aircraft toward it.",
+    "tags": ["slat-asymmetry", "roll"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0014",
+    "id": "POF-HLD-0051",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Flap Extension and Trim",
-    "question": "Extending trailing-edge flaps typically requires a trim change mainly because:",
+    "subtopic": "Leading-edge devices",
+    "question": "On a swept wing, slats are often placed outboard and Krueger flaps inboard because:",
     "options": [
-      { "id": "a", "text": "Flaps change the wing's camber and shift its center of pressure, altering the pitching moment about the center of gravity and requiring a compensating elevator/trim input" },
-      { "id": "b", "text": "Flaps have no effect on pitching moment whatsoever" },
-      { "id": "c", "text": "Flap extension always requires exactly the same trim change as gear extension" },
-      { "id": "d", "text": "Trim changes are needed only when flaps are retracted, never when extended" }
+      {
+        "id": "a",
+        "text": "Stronger outboard stall protection ensures the root stalls first, avoiding pitch-up"
+      },
+      { "id": "b", "text": "Inboard slats would increase drag in cruise" },
+      { "id": "c", "text": "Kruegers increase tip lift" },
+      { "id": "d", "text": "Slats are heavier inboard" }
     ],
     "correct": "a",
-    "explanation": "Adding camber with flaps shifts the wing's center of pressure and changes the pitching moment it produces about the aircraft's center of gravity, so a compensating change in elevator deflection — and usually trim — is needed to hold the desired attitude, which is why a noticeable pitch change often accompanies flap selection.",
-    "tags": ["high-lift-devices", "flaps", "trim"],
+    "explanation": "Slats raise the stalling angle more than Kruegers; placing the more effective device at the tips makes the inboard section stall first.",
+    "tags": ["slats", "krueger-flap", "pitch-up"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0015",
+    "id": "POF-HLD-0052",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Flap Placard Speed",
-    "question": "The maximum flap extended speed, VFE, exists mainly because:",
+    "subtopic": "Drag and glide path",
+    "question": "Extending flaps changes (L/D)max and the glide angle as follows:",
     "options": [
-      { "id": "a", "text": "Flaps are structurally and aerodynamically designed for a limited speed range, and exceeding it risks structural damage to the flap or its mechanism" },
-      { "id": "b", "text": "Flaps become more effective the faster the aircraft flies, with no upper limit" },
-      { "id": "c", "text": "VFE only exists for aircraft with retractable landing gear" },
-      { "id": "d", "text": "VFE is identical to the stalling speed for every aircraft" }
+      { "id": "a", "text": "Both unchanged" },
+      { "id": "b", "text": "(L/D)max falls, so the glide becomes shallower" },
+      { "id": "c", "text": "(L/D)max rises, so the glide becomes shallower" },
+      { "id": "d", "text": "(L/D)max falls, so the glide becomes steeper" }
     ],
-    "correct": "a",
-    "explanation": "The extended flap surface and its actuating mechanism are designed to withstand the aerodynamic loads expected within a defined speed range. Beyond VFE, those loads can exceed what the flap structure or drive mechanism is built to handle, risking structural damage — hence the placarded limit.",
-    "tags": ["high-lift-devices", "flaps", "limitations"],
+    "correct": "d",
+    "explanation": "Flaps raise CD0 and usually k. tan γ = 1/(L/D): steeper descent at a given speed — useful for obstacle clearance on approach.",
+    "tags": ["glide-angle", "drag"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0016",
+    "id": "POF-HLD-0053",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Flaps and Flare Float",
-    "question": "Arriving over the runway threshold with excess airspeed while flaps are fully extended tends to produce a longer float during the flare mainly because:",
+    "subtopic": "Drag and glide path",
+    "question": "(L/D) falls from 12 to 7 with landing flap. The power-off glide angle changes from:",
     "options": [
-      { "id": "a", "text": "The lower stalling speed and higher CLmax that flaps provide let the aircraft continue flying, just above the stall, for longer before it is slow enough to settle onto the runway" },
-      { "id": "b", "text": "Flaps always shorten the flare regardless of approach speed" },
-      { "id": "c", "text": "Flaps have no relationship to how long an aircraft floats" },
-      { "id": "d", "text": "Excess speed has no effect on float distance" }
+      { "id": "a", "text": "4.8° to 8.1°" },
+      { "id": "b", "text": "12° to 7°" },
+      { "id": "c", "text": "3.0° to 5.1°" },
+      { "id": "d", "text": "4.8° to 7.0°" }
     ],
     "correct": "a",
-    "explanation": "Because flaps lower the stalling speed, an aircraft arriving with excess airspeed can continue to fly, gradually decelerating in ground effect, for a longer distance before it slows enough to settle — floating further down the runway than an approach flown at the correct reference speed.",
-    "tags": ["high-lift-devices", "flaps", "landing"],
+    "explanation": "γ = arctan(1/(L/D)): arctan(1/12) = 4.76°; arctan(1/7) = 8.13°.",
+    "tags": ["glide-angle", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0017",
+    "id": "POF-HLD-0054",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Slot Gap and Overhang",
-    "question": "In a slotted flap's design, the \"gap\" and \"overhang\" refer to:",
+    "subtopic": "Drag and glide path",
+    "question": "W = 600 kN on a 3° approach path. Thrust required with L/D = 8 compared with L/D = 12 is:",
     "options": [
-      { "id": "a", "text": "The width of the slot between the wing and flap, and how far the flap's leading edge sits ahead of the wing's trailing edge — both tuned to shape the energising jet of air through the slot" },
-      { "id": "b", "text": "The total flap deflection angle and its maximum extension speed" },
-      { "id": "c", "text": "The flap's total surface area and its weight" },
-      { "id": "d", "text": "Terms that apply only to leading-edge slats, never to trailing-edge flaps" }
+      { "id": "a", "text": "18.6 kN against 43.6 kN" },
+      { "id": "b", "text": "43.6 kN against 18.6 kN" },
+      { "id": "c", "text": "31.4 kN in both cases" },
+      { "id": "d", "text": "75 kN against 50 kN" }
     ],
-    "correct": "a",
-    "explanation": "Gap (the slot's width) and overhang (how far forward the flap's leading edge sits relative to the wing's trailing edge) are both carefully tuned geometric parameters, since either being too large or too small can weaken the slot's boundary-layer-energising effect and reduce the flap's effectiveness.",
-    "tags": ["high-lift-devices", "flaps", "slot-design"],
+    "correct": "b",
+    "explanation": "T = D − W·sinγ. W·sin3° = 31.4 kN. L/D 8: D = 75 kN → T = 43.6 kN. L/D 12: D = 50 kN → T = 18.6 kN. Higher drag keeps engines at a responsive thrust setting.",
+    "tags": ["approach", "thrust", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0018",
+    "id": "POF-HLD-0055",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Spoilers With Flaps Extended",
-    "question": "Deploying roll spoilers on one wing while flaps are extended and the aircraft is close to its stalling speed requires particular care because:",
+    "subtopic": "Drag and glide path",
+    "question": "Flap extension increases induced drag at a given CL mainly because:",
     "options": [
-      { "id": "a", "text": "The spoiler further reduces lift on that wing, on top of the already-reduced margin to the stall, and can bring that wing close to stalling ahead of the other" },
-      { "id": "b", "text": "Spoilers always increase lift on the wing they are deployed on" },
-      { "id": "c", "text": "Flaps and spoilers can never be used together on the same aircraft" },
-      { "id": "d", "text": "Spoiler deployment has no effect on stall margin at any speed" }
+      {
+        "id": "a",
+        "text": "Lift is concentrated over the flapped inboard span, departing from elliptical loading"
+      },
+      { "id": "b", "text": "Flaps reduce the aspect ratio geometrically" },
+      { "id": "c", "text": "Flaps reduce lift" },
+      { "id": "d", "text": "Flaps move the CG" }
     ],
     "correct": "a",
-    "explanation": "A roll spoiler works by deliberately spoiling lift on one wing. Close to the stall, with margin already reduced by low speed, this can bring the spoiler-deployed wing uncomfortably close to (or past) its own local stalling angle of attack, which is why spoiler authority is often reduced or scheduled differently at low speed with flaps extended.",
-    "tags": ["high-lift-devices", "spoilers", "stall"],
+    "explanation": "Part-span flaps create a spanwise lift discontinuity, raising k (lower e); trailing vortices shed at the flap ends.",
+    "tags": ["induced-drag", "flaps"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0019",
+    "id": "POF-HLD-0056",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Ice Protection for Leading-Edge Devices",
-    "question": "Leading-edge high-lift devices such as slats are frequently fitted with their own ice protection mainly because:",
+    "subtopic": "Drag and glide path",
+    "question": "At the same approach speed, the rate of descent on a 3° path at 140 kt is about:",
     "options": [
-      { "id": "a", "text": "The leading edge is where ice accretes fastest, and ice on a slat or its track can both degrade the device's aerodynamic benefit and jam its extension mechanism" },
-      { "id": "b", "text": "Ice never forms on leading-edge devices" },
-      { "id": "c", "text": "Leading-edge devices are structurally immune to ice" },
-      { "id": "d", "text": "Ice protection is only ever fitted to trailing-edge flaps" }
+      { "id": "a", "text": "420 ft/min" },
+      { "id": "b", "text": "1,480 ft/min" },
+      { "id": "c", "text": "140 ft/min" },
+      { "id": "d", "text": "740 ft/min" }
     ],
-    "correct": "a",
-    "explanation": "As the first surface the airflow (and any supercooled water droplets) meets, the leading edge accretes ice fastest of any part of the wing, and ice there both disrupts the aerodynamic performance a slat or leading-edge flap is meant to provide and risks jamming the mechanism that extends and retracts it — which is why these devices often carry dedicated anti-ice or de-ice protection.",
-    "tags": ["high-lift-devices", "icing"],
+    "correct": "d",
+    "explanation": "V·sinγ = 140 × 101.3 ft/min per kt × 0.0523 = 742 ft/min (≈ groundspeed × 5 in still air).",
+    "tags": ["rate-of-descent", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0020",
+    "id": "POF-HLD-0057",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Flap Load Relief",
-    "question": "A flap load relief system, fitted to some aircraft, is designed to:",
+    "subtopic": "Drag and glide path",
+    "question": "Small flap deflections compared with large ones typically give:",
     "options": [
-      { "id": "a", "text": "Automatically reduce flap deflection (or limit further extension) if airspeed rises toward a level that would overstress the flap structure" },
-      { "id": "b", "text": "Permanently lock the flaps in the fully extended position" },
-      { "id": "c", "text": "Increase flap deflection automatically as airspeed increases" },
-      { "id": "d", "text": "Only operate while the aircraft is on the ground" }
+      { "id": "a", "text": "Identical ratios" },
+      { "id": "b", "text": "Mainly drag; large deflections add mainly lift" },
+      { "id": "c", "text": "No lift increase" },
+      {
+        "id": "d",
+        "text": "A good CLmax increase for a small drag increase; large deflections add mainly drag"
+      }
     ],
-    "correct": "a",
-    "explanation": "If airspeed inadvertently rises with flaps extended, a load relief system senses the increasing aerodynamic load and automatically reduces (or blocks further) flap deflection to keep loads within the structure's design limits, protecting the flap and its mechanism from an overspeed condition.",
-    "tags": ["high-lift-devices", "flaps", "systems"],
+    "correct": "d",
+    "explanation": "Initial degrees of flap add camber efficiently; beyond moderate angles the lift increment per degree falls while form drag rises steeply — hence take-off flap is small and landing flap is large.",
+    "tags": ["flap-setting", "drag"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0021",
+    "id": "POF-HLD-0058",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Double-Slotted Flap",
-    "question": "A double-slotted flap sits, in complexity and typical lift benefit, between:",
+    "subtopic": "Pitch and trim",
+    "question": "Extending trailing-edge flaps typically moves the wing centre of pressure:",
     "options": [
-      { "id": "a", "text": "A single-slotted flap and a triple-slotted flap, using two flap elements and two energising slots" },
-      { "id": "b", "text": "A plain flap and a split flap only" },
-      { "id": "c", "text": "A slat and a Krueger flap" },
-      { "id": "d", "text": "A spoiler and a speed brake" }
+      { "id": "a", "text": "Forward, giving a nose-up moment" },
+      { "id": "b", "text": "Not at all" },
+      { "id": "c", "text": "Aft, giving a nose-down moment from the wing" },
+      { "id": "d", "text": "To the leading edge" }
     ],
-    "correct": "a",
-    "explanation": "A double-slotted flap uses two separate flap elements, each fed by its own slot, giving a larger CLmax increase and greater flexibility than a single-slotted flap while remaining mechanically simpler than a triple-slotted design — a common middle-ground choice on many airliner wings.",
-    "tags": ["high-lift-devices", "flaps"],
+    "correct": "c",
+    "explanation": "Aft camber loads the rear of the section, making C_M,ac more negative.",
+    "tags": ["centre-of-pressure", "flaps"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0022",
+    "id": "POF-HLD-0059",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Flap Well Seal",
-    "question": "Some aircraft fit a seal or fairing over the flap well when the flaps are fully retracted, mainly to:",
+    "subtopic": "Pitch and trim",
+    "question": "Flap extension increases downwash at the tailplane. The effect on the tailplane is:",
     "options": [
-      { "id": "a", "text": "Reduce the parasite drag that an open, unsealed flap well would otherwise add in cruise" },
-      { "id": "b", "text": "Increase flap deflection speed" },
-      { "id": "c", "text": "Provide additional lift in cruise" },
-      { "id": "d", "text": "Protect the flap only from ice" }
+      { "id": "a", "text": "A nose-down contribution through the tail" },
+      {
+        "id": "b",
+        "text": "A more negative tail angle of attack, producing a nose-up contribution"
+      },
+      { "id": "c", "text": "A less negative tail angle of attack" },
+      { "id": "d", "text": "No change" }
     ],
-    "correct": "a",
-    "explanation": "An open flap well or gap around a retracted flap can disturb the local airflow and add parasite drag even in cruise. A close-fitting seal or fairing keeps the wing's surface smooth when flaps are stowed, avoiding a drag penalty that would otherwise persist throughout the cruise phase of flight.",
-    "tags": ["high-lift-devices", "flaps", "drag"],
+    "correct": "b",
+    "explanation": "More downwash reduces the tail's α, increasing its download and the nose-up moment. The net pitch change is the balance of this against the wing's nose-down moment.",
+    "tags": ["downwash", "tailplane", "flaps"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0023",
+    "id": "POF-HLD-0060",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Automatic Slats",
-    "question": "An \"automatic\" (as opposed to pilot-selected) leading-edge slat typically extends in response to:",
+    "subtopic": "Pitch and trim",
+    "question": "Extending flaps at constant attitude and power produces an initial:",
     "options": [
-      { "id": "a", "text": "Sensed angle of attack or airspeed approaching a threshold, extending on its own to raise the critical angle of attack when it is needed" },
-      { "id": "b", "text": "A fixed schedule tied only to landing gear position" },
-      { "id": "c", "text": "Cabin altitude" },
-      { "id": "d", "text": "Engine oil temperature" }
+      { "id": "a", "text": "Increase in speed" },
+      { "id": "b", "text": "No change" },
+      {
+        "id": "c",
+        "text": "Increase in lift (balloon), until speed decays and the aircraft is retrimmed"
+      },
+      { "id": "d", "text": "Loss of lift" }
     ],
-    "correct": "a",
-    "explanation": "Rather than being manually selected by the pilot, an automatic slat is driven out by aerodynamic loads or a dedicated sensor once angle of attack (or a corresponding low airspeed) approaches a set threshold, providing the stall-delaying benefit of a slat exactly when it is aerodynamically needed without requiring pilot action.",
-    "tags": ["high-lift-devices", "slats", "automatic-systems"],
+    "correct": "c",
+    "explanation": "At fixed attitude and α, CL jumps; the aircraft climbs momentarily while added drag reduces speed.",
+    "tags": ["ballooning", "flaps"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0024",
+    "id": "POF-HLD-0061",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Flap Interconnect Mechanism",
-    "question": "Flap asymmetry protection is often physically implemented using:",
+    "subtopic": "Pitch and trim",
+    "question": "Retracting flaps at low speed and constant attitude produces:",
     "options": [
-      { "id": "a", "text": "A mechanical torque-tube or cross-shaft connecting the flap drive on both wings, so an uneven load or jam on one side is detected and stops the whole system" },
-      { "id": "b", "text": "Two entirely independent electrical systems with no mechanical or logical connection between the wings" },
-      { "id": "c", "text": "A single flap panel shared by both wings" },
-      { "id": "d", "text": "The autopilot alone, with no dedicated flap system involvement" }
+      {
+        "id": "a",
+        "text": "A loss of lift and sink, requiring higher α or speed"
+      },
+      { "id": "b", "text": "No change" },
+      { "id": "c", "text": "A pitch-up only" },
+      { "id": "d", "text": "A gain in lift" }
     ],
     "correct": "a",
-    "explanation": "Many flap systems drive both wings' flaps from a shared torque-tube or cross-shaft arrangement, so that a jam or excessive load difference on one side is mechanically detectable (through twist or a shear-pin failure, for instance) and halts flap movement before a large, uncommanded asymmetry can develop.",
-    "tags": ["high-lift-devices", "flaps", "systems"],
+    "explanation": "CL at the given α falls; unless α is increased (within the clean stall margin) or speed has increased, the aircraft sinks.",
+    "tags": ["flap-retraction", "sink"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0025",
+    "id": "POF-HLD-0062",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Blown Flap Trade-Off",
-    "question": "Compared with a purely mechanical slotted flap, a blown flap (using engine bleed air for boundary layer control) trades off:",
+    "subtopic": "Operation and limits",
+    "question": "The aerodynamic load on an extended flap is proportional to q. Flying at 200 kt instead of 150 kt increases it by the factor:",
     "options": [
-      { "id": "a", "text": "A potentially higher CLmax against added complexity and the need to divert engine bleed air, which can reduce available thrust when the system is in use" },
-      { "id": "b", "text": "Nothing at all — blown flaps are strictly superior in every respect with no downside" },
-      { "id": "c", "text": "Being simpler and lighter than any mechanical slotted flap" },
-      { "id": "d", "text": "Requiring no engine at all to function" }
+      { "id": "a", "text": "1.15" },
+      { "id": "b", "text": "1.33" },
+      { "id": "c", "text": "2.37" },
+      { "id": "d", "text": "1.78" }
     ],
-    "correct": "a",
-    "explanation": "A blown flap can push CLmax higher than a purely mechanical slot design, but it needs engine bleed air ducted to the flap, adding weight, complexity and maintenance, and diverting bleed air can measurably reduce the thrust or power otherwise available from the engine while the system is active.",
-    "tags": ["high-lift-devices", "blown-flap"],
+    "correct": "d",
+    "explanation": "(200/150)² = 1.78. VFE limits protect the flap structure and mechanism from this growth.",
+    "tags": ["vfe", "flap-load", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0026",
+    "id": "POF-HLD-0063",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Circulation Control Wing",
-    "question": "A \"circulation control wing\", which blows a thin jet of air over a rounded trailing edge, increases lift by exploiting:",
+    "subtopic": "Operation and limits",
+    "question": "A flap load-relief system:",
     "options": [
-      { "id": "a", "text": "The Coandă effect, where the jet stays attached to the curved surface and deflects the surrounding flow, changing circulation around the wing without a conventional hinged flap" },
-      { "id": "b", "text": "A conventional hinged flap identical to a plain flap" },
-      { "id": "c", "text": "Increasing the wing's aspect ratio" },
-      { "id": "d", "text": "Reducing engine power" }
+      { "id": "a", "text": "Extends the flap at high speed" },
+      { "id": "b", "text": "Reduces flap drag at low speed" },
+      {
+        "id": "c",
+        "text": "Retracts the flap automatically when airspeed exceeds its limit for that setting"
+      },
+      { "id": "d", "text": "Locks the flap at any speed" }
     ],
-    "correct": "a",
-    "explanation": "Blown over a rounded (rather than sharp) trailing edge, the jet tends to follow the curved surface — the Coandă effect — pulling the surrounding flow around with it and changing the effective circulation, and hence lift, around the wing without needing a conventional moving flap surface at all.",
-    "tags": ["high-lift-devices", "circulation-control"],
+    "correct": "c",
+    "explanation": "It prevents structural overload from over-speed with flap extended by moving to a lesser setting until speed falls.",
+    "tags": ["flap-load-relief"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0027",
+    "id": "POF-HLD-0064",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Staged Flap Retraction",
-    "question": "Flaps are typically retracted in stages after takeoff, rather than all at once, mainly because:",
+    "subtopic": "Operation and limits",
+    "question": "Asymmetric flap extension (one side failed) produces:",
     "options": [
-      { "id": "a", "text": "Each stage of retraction raises stalling speed and reduces CLmax, so retraction is sequenced with acceleration to keep an adequate margin above the stall throughout" },
-      { "id": "b", "text": "The flap motor is only able to move a small amount at a time" },
-      { "id": "c", "text": "Staged retraction has no relationship to stalling speed" },
-      { "id": "d", "text": "It is done purely to reduce noise" }
+      { "id": "a", "text": "No roll" },
+      { "id": "b", "text": "A roll toward the side with more flap" },
+      { "id": "c", "text": "Only a yaw away from the extended flap" },
+      {
+        "id": "d",
+        "text": "A roll toward the side with less flap, requiring large lateral control"
+      }
     ],
-    "correct": "a",
-    "explanation": "Because each stage of flap retraction reduces CLmax and raises stalling speed, retracting in scheduled stages as the aircraft accelerates keeps an adequate safety margin above the stall throughout the process, rather than risking an abrupt loss of lift margin if flaps were retracted all at once at too low a speed.",
-    "tags": ["high-lift-devices", "flaps", "takeoff"],
+    "correct": "d",
+    "explanation": "The fully flapped wing has more lift and rolls up. Most systems detect asymmetry and stop flap movement.",
+    "tags": ["flap-asymmetry", "roll"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0028",
+    "id": "POF-HLD-0065",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Fowler vs Plain Flap CLmax",
-    "question": "At the same flap deflection angle, a Fowler flap typically achieves a higher CLmax than a plain flap mainly because:",
+    "subtopic": "Operation and limits",
+    "question": "During a go-around, flaps are typically retracted to an intermediate setting first because:",
     "options": [
-      { "id": "a", "text": "It adds usable wing area as it translates aft, on top of the camber increase a plain flap alone would provide" },
-      { "id": "b", "text": "It always deflects through a larger angle than a plain flap" },
-      { "id": "c", "text": "It eliminates induced drag" },
-      { "id": "d", "text": "Plain and Fowler flaps always produce identical CLmax by design" }
+      {
+        "id": "a",
+        "text": "It reduces drag while keeping CLmax margin at the current speed"
+      },
+      { "id": "b", "text": "It moves the CG forward" },
+      { "id": "c", "text": "It increases drag for control" },
+      { "id": "d", "text": "Full retraction improves CLmax" }
     ],
     "correct": "a",
-    "explanation": "Because a Fowler flap slides aft before rotating down, it increases the wing's effective area as well as its camber — an additional source of lift beyond what a plain flap's camber change alone provides at the same deflection angle, which is why Fowler flaps typically achieve a noticeably higher CLmax.",
-    "tags": ["high-lift-devices", "fowler-flap"],
+    "explanation": "Retracting fully at approach speed would put the aircraft near or below the clean stall speed (e.g. 1.2 VS,flap = 0.95 VS,clean for CLmax 2.4 → 1.5).",
+    "tags": ["go-around", "flap-retraction"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0029",
+    "id": "POF-HLD-0066",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Krueger Flap Placement",
-    "question": "On a swept-wing airliner using both a Krueger flap and a slat, the Krueger flap is often found:",
+    "subtopic": "Operation and limits",
+    "question": "Stall-warning thresholds must change with flap and slat position because:",
     "options": [
-      { "id": "a", "text": "Inboard, where a pure camber-adding device is adequate, while the outboard wing — more prone to tip stall — carries the slat" },
-      { "id": "b", "text": "Outboard only, with slats never used on the same wing" },
-      { "id": "c", "text": "On the trailing edge, never the leading edge" },
-      { "id": "d", "text": "Only on the vertical stabilizer" }
+      {
+        "id": "a",
+        "text": "Each configuration has a different stalling angle of attack"
+      },
+      { "id": "b", "text": "Flaps change the weight" },
+      { "id": "c", "text": "Stall speed is independent of configuration" },
+      { "id": "d", "text": "Slats remove the stall" }
     ],
     "correct": "a",
-    "explanation": "The outboard wing of a swept design is more prone to early tip stall and benefits most from a slat's slot-fed, angle-of-attack-raising effect, while the inboard wing — less prone to early separation — can often be adequately served by the simpler, purely camber-adding Krueger flap, which is a common reason the two devices appear together on the same wing.",
-    "tags": ["high-lift-devices", "krueger-flap", "slats"],
+    "explanation": "Flaps lower α_stall; slats raise it. An α-based warning uses a configuration-dependent threshold.",
+    "tags": ["stall-warning", "configuration"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-HLD-0030",
+    "id": "POF-HLD-0067",
     "subjectCode": "POF",
     "topic": "High-Lift Devices",
-    "subtopic": "Landing Reference Speed",
-    "question": "An aircraft's landing reference speed, Vref, is generally defined with respect to high-lift devices as:",
+    "subtopic": "Take-off and landing",
+    "question": "A take-off flap setting that raises CLmax from 1.6 to 1.9, ignoring drag changes, reduces the lift-off speed and ground roll (∝ V²) by the factors:",
     "options": [
-      { "id": "a", "text": "A fixed multiple (commonly around 1.3 times) of the stalling speed in the landing configuration, with landing flap extended" },
-      { "id": "b", "text": "Exactly equal to the stalling speed in the landing configuration, with no margin" },
-      { "id": "c", "text": "Unrelated to flap position" },
-      { "id": "d", "text": "Always higher than the clean-configuration stalling speed" }
+      { "id": "a", "text": "V ×0.97; ground roll ×0.95" },
+      { "id": "b", "text": "V ×0.92; ground roll ×0.92" },
+      { "id": "c", "text": "V ×0.92; ground roll ×0.84" },
+      { "id": "d", "text": "V ×0.84; ground roll ×0.71" }
+    ],
+    "correct": "c",
+    "explanation": "V ∝ CLmax^−½ = √(1.6/1.9) = 0.918; distance ∝ V² at the same mean acceleration = 0.842.",
+    "tags": ["take-off", "flaps", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0068",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Take-off and landing",
+    "question": "Take-off flap settings are smaller than landing settings because:",
+    "options": [
+      { "id": "a", "text": "Landing does not need CLmax" },
+      {
+        "id": "b",
+        "text": "Take-off needs climb performance, which large-flap drag would erode"
+      },
+      { "id": "c", "text": "Large flaps cannot be extended on the ground" },
+      { "id": "d", "text": "Large flaps increase lift-off speed" }
+    ],
+    "correct": "b",
+    "explanation": "Take-off needs low V_LOF and a good climb gradient ((T − D)/W). Landing benefits from both high CLmax and high drag for a steep, slow approach.",
+    "tags": ["take-off", "landing", "flap-setting"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0069",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Take-off and landing",
+    "question": "At a high-elevation hot aerodrome with limited climb performance, a lower flap setting for take-off:",
+    "options": [
+      { "id": "a", "text": "Lowers V_LOF and reduces climb gradient" },
+      { "id": "b", "text": "Shortens the runway required and improves climb" },
+      {
+        "id": "c",
+        "text": "Raises lift-off speed and runway length but improves the climb gradient"
+      },
+      { "id": "d", "text": "Has no effect" }
+    ],
+    "correct": "c",
+    "explanation": "Less flap → lower CLmax → higher V_LOF → longer run; less drag → higher (T − D)/W. The optimum depends on whether runway or obstacle limits.",
+    "tags": ["take-off", "flap-selection"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0070",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Take-off and landing",
+    "question": "Landing speed 160 kt reduced to 140 kt by higher flap. Energy to be absorbed on the runway changes by:",
+    "options": [
+      { "id": "a", "text": "×0.77" },
+      { "id": "b", "text": "×0.66" },
+      { "id": "c", "text": "×1.31" },
+      { "id": "d", "text": "×0.88" }
     ],
     "correct": "a",
-    "explanation": "Vref is conventionally set at a fixed margin — commonly around 1.3 times — above the stalling speed in the full landing configuration, so the lower stalling speed that landing flap provides directly lowers the target approach speed, letting the aircraft fly a slower, shorter final approach with an adequate protective margin above the stall.",
-    "tags": ["high-lift-devices", "flaps", "reference-speed"],
+    "explanation": "(140/160)² = 0.766.",
+    "tags": ["landing", "kinetic-energy", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0071",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Take-off and landing",
+    "question": "Flap extension reduces the landing distance mainly because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Lower approach and touchdown speed (kinetic energy ∝ V²) and higher drag"
+      },
+      { "id": "b", "text": "It increases the landing weight" },
+      { "id": "c", "text": "It reduces the stall angle" },
+      { "id": "d", "text": "It increases tyre friction directly" }
+    ],
+    "correct": "a",
+    "explanation": "Lower V_ref cuts energy by the square of the speed ratio; aerodynamic drag contributes to deceleration in the flare and early roll.",
+    "tags": ["landing-distance", "flaps"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0072",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Lift curve effects",
+    "question": "With trailing-edge flaps extended at a fixed CL, the stall margin in angle of attack terms:",
+    "options": [
+      { "id": "a", "text": "Is increased" },
+      { "id": "b", "text": "Is unchanged" },
+      { "id": "c", "text": "Is reduced, because the stalling angle is lower" },
+      { "id": "d", "text": "Becomes infinite" }
+    ],
+    "correct": "c",
+    "explanation": "Flaps lower α_stall. Speed margin is preserved by scheduling speeds on the flap stall speed, but α margin shrinks.",
+    "tags": ["stall-margin", "flaps"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0073",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Trailing-edge flaps",
+    "question": "Compared with a plain flap, the CLmax gain of a Fowler flap is larger because:",
+    "options": [
+      { "id": "a", "text": "It reduces drag" },
+      {
+        "id": "b",
+        "text": "It adds wing area and a slot in addition to camber"
+      },
+      { "id": "c", "text": "It is heavier" },
+      { "id": "d", "text": "It lowers wing loading only" }
+    ],
+    "correct": "b",
+    "explanation": "Area increase raises lift at equal CL; the slot permits larger effective camber; both add to CLmax referenced to the original area.",
+    "tags": ["fowler-flap", "plain-flap"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0074",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Trailing-edge flaps",
+    "question": "A Gurney flap (small tab normal to the lower trailing edge):",
+    "options": [
+      { "id": "a", "text": "Removes the Kutta condition" },
+      { "id": "b", "text": "Acts only as a speed brake" },
+      { "id": "c", "text": "Reduces CL" },
+      {
+        "id": "d",
+        "text": "Increases effective camber, raising CL at given α and CLmax, with a drag increment"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The tab alters the trailing-edge flow, shifting the rear stagnation point and producing extra circulation — a small, fixed high-lift aid.",
+    "tags": ["gurney-flap", "camber"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0075",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Leading-edge devices",
+    "question": "The slot of a slatted wing is most effective:",
+    "options": [
+      { "id": "a", "text": "At zero angle of attack" },
+      {
+        "id": "b",
+        "text": "At high angles of attack, where the main element's leading-edge suction peak is severe"
+      },
+      { "id": "c", "text": "In cruise at high Mach number" },
+      { "id": "d", "text": "Only with flaps retracted" }
+    ],
+    "correct": "b",
+    "explanation": "At low α the slot contributes little and adds drag; at high α it relieves the peak and energises the layer, delaying the stall.",
+    "tags": ["slats", "slot-effect"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0076",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Leading-edge devices",
+    "question": "Vortex generators ahead of the ailerons improve low-speed handling by:",
+    "options": [
+      { "id": "a", "text": "Increasing wing area" },
+      { "id": "b", "text": "Increasing induced drag deliberately" },
+      {
+        "id": "c",
+        "text": "Keeping outboard flow attached at higher α, preserving aileron authority"
+      },
+      { "id": "d", "text": "Reducing the stall speed of the root" }
+    ],
+    "correct": "c",
+    "explanation": "Streamwise vortices transfer momentum toward the wall, delaying separation over the control surface.",
+    "tags": ["vortex-generators", "aileron"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0077",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Purpose and performance",
+    "question": "Boundary-layer control by blowing or suction raises CLmax by:",
+    "options": [
+      { "id": "a", "text": "Reducing dynamic pressure" },
+      {
+        "id": "b",
+        "text": "Delaying separation at high α or on deflected flaps"
+      },
+      { "id": "c", "text": "Reducing weight" },
+      { "id": "d", "text": "Increasing wing area" }
+    ],
+    "correct": "b",
+    "explanation": "Suction removes low-energy fluid; blowing adds momentum. Either lets the flow negotiate larger pressure recoveries.",
+    "tags": ["boundary-layer-control"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0078",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Purpose and performance",
+    "question": "Increasing CLmax by 30 % at constant approach margin reduces the approach speed by about:",
+    "options": [
+      { "id": "a", "text": "12 %" },
+      { "id": "b", "text": "6 %" },
+      { "id": "c", "text": "23 %" },
+      { "id": "d", "text": "30 %" }
+    ],
+    "correct": "a",
+    "explanation": "V ∝ CLmax^−½: 1/√1.3 = 0.877.",
+    "tags": ["approach-speed", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0079",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Drag and glide path",
+    "question": "Spoilers deployed in flight (speed brake) compared with clean:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Increase drag and reduce CLmax, raising the stall speed"
+      },
+      { "id": "b", "text": "Reduce drag" },
+      { "id": "c", "text": "Have no effect on stall speed" },
+      { "id": "d", "text": "Increase CLmax" }
+    ],
+    "correct": "a",
+    "explanation": "Spoilers spoil upper-surface lift over part of the span and add form drag; the reduced CLmax means a higher VS while deployed.",
+    "tags": ["spoilers", "stall-speed"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0080",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Take-off and landing",
+    "question": "Ground spoilers deployed at touchdown improve braking because:",
+    "options": [
+      { "id": "a", "text": "They increase lift" },
+      { "id": "b", "text": "They reverse thrust" },
+      { "id": "c", "text": "They reduce tyre friction" },
+      {
+        "id": "d",
+        "text": "They dump lift, transferring weight onto the wheels, and add drag"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Braking force = μ·(W − L). Reducing L raises the wheel load and the available friction force.",
+    "tags": ["ground-spoilers", "braking"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0081",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Lift curve effects",
+    "question": "Flaps in the take-off setting change the lift-curve slope relative to clean mainly through:",
+    "options": [
+      { "id": "a", "text": "A large reduction in slope" },
+      { "id": "b", "text": "No mechanism at all" },
+      { "id": "c", "text": "Doubling the slope" },
+      {
+        "id": "d",
+        "text": "Fowler area gain (slope referenced to the original area rises slightly)"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Camber alone leaves the slope unchanged; extending chord increases lift per degree referenced to the nominal area.",
+    "tags": ["lift-curve-slope", "fowler-flap"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0082",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Pitch and trim",
+    "question": "The pitch change on flap extension in a given aircraft depends on:",
+    "options": [
+      { "id": "a", "text": "Only the engine thrust" },
+      { "id": "b", "text": "Only the flap area" },
+      { "id": "c", "text": "Only the CG position" },
+      {
+        "id": "d",
+        "text": "The balance between wing C_M,ac change and the change in tailplane downwash"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Aft camber adds nose-down wing moment; increased downwash reduces tail α (nose-up). Tail height and position decide which dominates.",
+    "tags": ["pitch-change", "flaps"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0083",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Operation and limits",
+    "question": "Extending flaps above VFE risks:",
+    "options": [
+      { "id": "a", "text": "Loss of engine thrust" },
+      { "id": "b", "text": "A stall" },
+      {
+        "id": "c",
+        "text": "Structural overload of the flap and its mechanism"
+      },
+      { "id": "d", "text": "A reduction in drag" }
+    ],
+    "correct": "c",
+    "explanation": "Air loads grow with q; VFE is set by the flap structure, not by aerodynamic performance.",
+    "tags": ["vfe"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0084",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Take-off and landing",
+    "question": "With landing flap, the aircraft touches down at a lower pitch attitude than with less flap because:",
+    "options": [
+      { "id": "a", "text": "The stall speed is higher" },
+      { "id": "b", "text": "The flap reduces drag" },
+      {
+        "id": "c",
+        "text": "The required CL is reached at a lower angle of attack"
+      },
+      { "id": "d", "text": "The weight is lower" }
+    ],
+    "correct": "c",
+    "explanation": "Camber reduces the α for a given CL; for the same flight path and speed margin, attitude is lower (better view, tail clearance).",
+    "tags": ["pitch-attitude", "landing"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0085",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Leading-edge devices",
+    "question": "Slats deployed at high cruise speed would mainly:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Add drag with no benefit, and are limited by a maximum extension speed"
+      },
+      { "id": "b", "text": "Increase critical Mach number" },
+      { "id": "c", "text": "Reduce drag" },
+      { "id": "d", "text": "Increase maximum speed" }
+    ],
+    "correct": "a",
+    "explanation": "Slats help only at high α; at low α they add parasite drag and structural load, so they are retracted in cruise.",
+    "tags": ["slats", "cruise"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0086",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Lift curve effects",
+    "question": "Clean CLmax 1.5 at α 15°. Flaps raise CLmax to 2.2 at α 12°. At 1.3 VS in each configuration, CL is:",
+    "options": [
+      { "id": "a", "text": "1.50 clean; 2.20 with flap" },
+      { "id": "b", "text": "0.89 in both" },
+      { "id": "c", "text": "1.15 clean; 1.69 with flap" },
+      { "id": "d", "text": "0.89 clean; 1.30 with flap" }
+    ],
+    "correct": "d",
+    "explanation": "CL = CLmax/1.69: 1.5/1.69 = 0.89; 2.2/1.69 = 1.30.",
+    "tags": ["stall-margin", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0087",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Purpose and performance",
+    "question": "High-lift devices compared with a larger fixed wing area for the same low-speed CLmax:",
+    "options": [
+      { "id": "a", "text": "Improve cruise L/D" },
+      {
+        "id": "b",
+        "text": "Give low stall speed without the cruise drag and weight of a larger wing"
+      },
+      { "id": "c", "text": "Reduce wing loading in cruise" },
+      { "id": "d", "text": "Are always lighter and add no drag" }
+    ],
+    "correct": "b",
+    "explanation": "A larger wing would carry its wetted area and weight into cruise, where CL is low; retractable devices provide lift only when needed.",
+    "tags": ["high-lift", "design-trade-off"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0088",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Drag and glide path",
+    "question": "The drag curve with landing flap compared with clean (same weight) is:",
+    "options": [
+      { "id": "a", "text": "Higher and shifted to higher speed" },
+      { "id": "b", "text": "Lower and shifted to higher speed" },
+      { "id": "c", "text": "Identical" },
+      { "id": "d", "text": "Higher and shifted to lower speed" }
+    ],
+    "correct": "d",
+    "explanation": "CD0 rises (curve up); V_md ∝ (k/CD0)^¼ falls (left). Minimum drag speed and stall speed both decrease.",
+    "tags": ["drag-curve", "flaps"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0089",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Operation and limits",
+    "question": "Flap extension in a turn at constant speed and bank:",
+    "options": [
+      { "id": "a", "text": "Has no effect on stall margin" },
+      {
+        "id": "b",
+        "text": "Increases the stall margin in speed terms but reduces it in angle-of-attack terms"
+      },
+      {
+        "id": "c",
+        "text": "Reduces the stall speed and raises the stalling angle"
+      },
+      { "id": "d", "text": "Reduces both margins" }
+    ],
+    "correct": "b",
+    "explanation": "VS falls (larger speed margin) while α_stall falls. The load factor is unchanged by flap; CL demand is reached at a lower α.",
+    "tags": ["stall-margin", "turning-flight"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HLD-0090",
+    "subjectCode": "POF",
+    "topic": "High-Lift Devices",
+    "subtopic": "Trailing-edge flaps",
+    "question": "Increasing flap deflection beyond the optimum produces:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Little further CLmax gain, flap-surface separation and a steep rise in drag"
+      },
+      { "id": "b", "text": "A reduction in drag" },
+      { "id": "c", "text": "A higher stalling angle" },
+      { "id": "d", "text": "A continued linear CLmax gain" }
+    ],
+    "correct": "a",
+    "explanation": "Beyond the angle at which the flap boundary layer can stay attached, extra deflection separates the flap and adds pressure drag.",
+    "tags": ["flap-deflection", "separation"],
     "status": "published",
     "version": 1
   }
