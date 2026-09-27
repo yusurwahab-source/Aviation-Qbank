@@ -347,6 +347,38 @@ it for a real IFR rating or exam — exactly the caution already given to the
 DA40's `Airframe`, `Electrical` and `Flight Controls` questions above. None
 of it has been checked against a specific state's AIP or training syllabus.
 
+## The POF bank (Flying Knowledge)
+
+The subject is **Principles of Flight**, the second subject in Flying
+Knowledge, added the same content-only way IFR was. 40 questions across five
+topics — Basic Aerodynamics, Lift and Drag, Stall and High-Lift Devices,
+Stability and Control, and High-Speed Flight — all published.
+
+**Every question here was authored by the assistant, as general ATPL-level
+aerodynamics theory — not transcribed from any single textbook, syllabus or
+question bank (including the EASA ATPL Principles of Flight reference the
+owner pointed at), and not checked against one.** The same honesty this
+file already applies to the IFR bank applies here: the questions describe
+concepts and relationships taught the same way across ATPL training
+worldwide (the four forces, the lift equation, why a stall is an
+angle-of-attack event rather than a speed event, how sweepback raises
+critical Mach number), and where a numeric relationship is given (stalling
+speed scaling with the square root of load factor or weight, for example)
+it is a general aerodynamic relationship rather than a regulator- or
+textbook-specific figure.
+
+This should be reviewed by a qualified instructor before a student relies
+on it for a real ATPL exam — the same caution already given to the IFR
+bank and to the DA40's unsourced topics above. None of it has been checked
+against a specific school's Principles of Flight syllabus.
+
+`public/pof-study-guide.html` is this bank's study guide, in the same
+FCOM-styled format as the DA40/C152/DA42 guides (see `lib/study-guide.ts`)
+— five numbered sections matching the five topics above, tables for the
+numeric relationships, and the same honesty note repeated in its own
+"About this guide" callout so a student reading only the guide, not this
+file, sees it too.
+
 ## The B737 bank
 
 The aircraft is the **Boeing 737-800**, the stretched Next Generation variant

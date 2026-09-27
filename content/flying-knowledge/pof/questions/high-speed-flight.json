@@ -1,0 +1,164 @@
+[
+  {
+    "id": "POF-HSPD-0001",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight",
+    "subtopic": "Mach Number",
+    "question": "Mach number is defined as:",
+    "options": [
+      { "id": "a", "text": "The aircraft's indicated airspeed divided by its true airspeed" },
+      { "id": "b", "text": "The ratio of the aircraft's true airspeed to the local speed of sound in the surrounding air" },
+      { "id": "c", "text": "The aircraft's groundspeed divided by the speed of sound at sea level" },
+      { "id": "d", "text": "A fixed speed of 660 knots at all altitudes" }
+    ],
+    "correct": "b",
+    "explanation": "Mach number is the ratio of true airspeed to the local speed of sound, which depends only on air temperature. Because the speed of sound falls as temperature drops with altitude, the same true airspeed corresponds to a higher Mach number at altitude than at sea level.",
+    "tags": ["high-speed", "mach-number"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HSPD-0002",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight",
+    "subtopic": "Critical Mach Number",
+    "question": "An aircraft's \"critical Mach number\" (MCRIT) is the freestream Mach number at which:",
+    "options": [
+      { "id": "a", "text": "The entire aircraft first reaches the speed of sound" },
+      {
+        "id": "b",
+        "text": "Airflow accelerating over part of the wing, typically the upper surface, first reaches local Mach 1, even though the freestream flow is still subsonic"
+      },
+      { "id": "c", "text": "The engines can no longer produce thrust" },
+      { "id": "d", "text": "The landing gear must be retracted for structural reasons" }
+    ],
+    "correct": "b",
+    "explanation": "Airflow accelerates as it passes over the curved upper surface of a wing, so local airflow there can reach the speed of sound while the aircraft itself is still flying below Mach 1. The freestream Mach number at which this first happens, anywhere on the aircraft, is defined as the critical Mach number.",
+    "tags": ["high-speed", "critical-mach"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HSPD-0003",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight",
+    "subtopic": "Sweepback",
+    "question": "Sweeping a wing back increases its critical Mach number mainly because:",
+    "options": [
+      { "id": "a", "text": "It reduces the wing's overall surface area" },
+      {
+        "id": "b",
+        "text": "Only the component of airflow perpendicular to the leading edge governs the local acceleration of the flow, and sweep reduces that component for a given true airspeed"
+      },
+      { "id": "c", "text": "It increases the wing's angle of attack at cruise" },
+      { "id": "d", "text": "It increases the wing's aspect ratio" }
+    ],
+    "correct": "b",
+    "explanation": "For a swept wing, it is the velocity component perpendicular to the leading edge — not the full freestream velocity — that governs how much the local airflow accelerates and how soon it reaches the speed of sound. Sweep reduces this perpendicular component for a given true airspeed, delaying the onset of local supersonic flow and raising the critical Mach number.",
+    "tags": ["high-speed", "sweepback", "critical-mach"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HSPD-0004",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight",
+    "subtopic": "Mach Buffet",
+    "question": "High-speed (Mach) buffet at cruise altitude is caused by:",
+    "options": [
+      { "id": "a", "text": "Turbulent air disturbing the autopilot's pitch channel" },
+      {
+        "id": "b",
+        "text": "Airflow separation downstream of a shockwave that forms once local airflow exceeds the speed of sound over part of the wing"
+      },
+      { "id": "c", "text": "The landing gear doors vibrating at high speed" },
+      { "id": "d", "text": "A stall caused purely by low airspeed, unrelated to Mach number" }
+    ],
+    "correct": "b",
+    "explanation": "Beyond the critical Mach number, a shockwave forms where the locally supersonic airflow decelerates back to subsonic, and the sudden pressure rise across it can cause the boundary layer behind it to separate. This separation produces buffeting similarly to a low-speed stall, but the mechanism is compressibility, not a high angle of attack at low speed.",
+    "tags": ["high-speed", "mach-buffet"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HSPD-0005",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight",
+    "subtopic": "Wave Drag",
+    "question": "As an aircraft's speed increases past its critical Mach number, total drag typically:",
+    "options": [
+      { "id": "a", "text": "Decreases sharply, since supersonic flow produces less friction" },
+      { "id": "b", "text": "Rises sharply due to the additional \"wave drag\" associated with shockwave formation" },
+      { "id": "c", "text": "Remains identical to subsonic drag at the same angle of attack" },
+      { "id": "d", "text": "Is unaffected until the aircraft reaches Mach 2" }
+    ],
+    "correct": "b",
+    "explanation": "Once local shockwaves form beyond MCRIT, they introduce a new drag component, wave drag, caused by the energy lost across the shock and any resulting flow separation. This produces the characteristic steep rise in the drag curve seen in the transonic region, well before the aircraft reaches the speed of sound overall.",
+    "tags": ["high-speed", "wave-drag"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HSPD-0006",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight",
+    "subtopic": "Altitude and Mach",
+    "question": "An aircraft climbs at a constant true airspeed into the stratosphere, where air temperature stabilises. Its Mach number will:",
+    "options": [
+      { "id": "a", "text": "Decrease, because true airspeed is unaffected by temperature" },
+      {
+        "id": "b",
+        "text": "Increase, because the local speed of sound falls as temperature drops, and Mach number is TAS divided by the speed of sound"
+      },
+      { "id": "c", "text": "Remain exactly constant regardless of temperature changes" },
+      { "id": "d", "text": "Depend only on indicated airspeed, not true airspeed" }
+    ],
+    "correct": "b",
+    "explanation": "The speed of sound depends only on air temperature, and falls as the aircraft climbs through the troposphere. At a constant true airspeed, a lower speed of sound means a higher Mach number — which is why high-flying jet aircraft can approach their critical Mach number even while their true airspeed has not increased.",
+    "tags": ["high-speed", "mach-number", "altitude"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HSPD-0007",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight",
+    "subtopic": "Coffin Corner",
+    "question": "The term \"coffin corner\" describes a high-altitude flight condition in which:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The low-speed (stall) buffet speed and the high-speed (Mach) buffet speed converge to nearly the same indicated airspeed, leaving very little safe margin"
+      },
+      { "id": "b", "text": "The aircraft is below its minimum fuel-efficient altitude" },
+      { "id": "c", "text": "The autopilot is disconnected during a descent" },
+      { "id": "d", "text": "The landing gear cannot be extended in time before landing" }
+    ],
+    "correct": "a",
+    "explanation": "At high altitude, the low-speed buffet boundary — where the wing approaches its critical angle of attack — rises in indicated airspeed, while the high-speed buffet boundary — approaching MCRIT — falls, because of reduced air density and a lower speed of sound. Where the two boundaries nearly meet, only a very narrow speed range keeps the aircraft clear of either buffet.",
+    "tags": ["high-speed", "coffin-corner"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-HSPD-0008",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight",
+    "subtopic": "Mach Tuck",
+    "question": "\"Mach tuck\", or tuck-under, refers to a tendency, as an aircraft accelerates through the transonic region, to:",
+    "options": [
+      { "id": "a", "text": "Pitch nose-up uncommanded, due to increased tailplane lift" },
+      {
+        "id": "b",
+        "text": "Pitch nose-down uncommanded, often due to a shockwave-related rearward shift of the wing's center of pressure and reduced downwash at the tailplane"
+      },
+      { "id": "c", "text": "Roll uncontrollably toward one wing" },
+      { "id": "d", "text": "Yaw away from the direction of turn" }
+    ],
+    "correct": "b",
+    "explanation": "As shockwaves develop on the wing in the transonic region, the center of pressure tends to shift aft, and changes in the downwash reaching the tailplane can reduce its stabilising up-force. Both effects combine to produce an uncommanded nose-down pitching moment, which many high-speed aircraft counter with a Mach trim system.",
+    "tags": ["high-speed", "mach-tuck"],
+    "status": "published",
+    "version": 1
+  }
+]
