@@ -269,7 +269,7 @@
       <li><a href="#stabld"><span class="n">10</span> Lateral &amp; Directional Stability <span class="count">70</span></a></li>
       <li><a href="#mach"><span class="n">11</span> High-Speed: Compressibility <span class="count">70</span></a></li>
       <li><a href="#shock"><span class="n">12</span> High-Speed: Shockwaves &amp; Buffet <span class="count">65</span></a></li>
-      <li><a href="#prop"><span class="n">13</span> Propellers <span class="count">40</span></a></li>
+      <li><a href="#prop"><span class="n">13</span> Propellers <span class="count">80</span></a></li>
       <li><a href="#load"><span class="n">14</span> Loads &amp; Limitations <span class="count">34</span></a></li>
       <li><a href="#wshr"><span class="n">15</span> Windshear &amp; Atmospheric Effects <span class="count">24</span></a></li>
     </ol>
@@ -286,7 +286,7 @@
       </p>
       <div class="tags">
         <span class="tag">15 sections</span>
-        <span class="tag">893 linked questions</span>
+        <span class="tag">933 linked questions</span>
         <span class="tag">Equations · graphs · proportionalities</span>
         <span class="tag">Aircraft-independent</span>
       </div>
@@ -1852,45 +1852,109 @@
     <!-- ============================================================ -->
     <section class="sec" id="prop">
       <h2><span class="num">13</span> Propellers <span class="en">Propellers</span></h2>
-      <p class="lead">Each blade is a rotating aerofoil — everything about a propeller follows from that one fact.</p>
+      <p class="lead">
+        Each blade section is a rotating aerofoil whose relative flow
+        combines forward speed V and rotational speed ωr. Blade angle minus
+        helix angle gives its angle of attack; lift and drag resolve into
+        thrust and torque. Speed, rpm and tip Mach number set efficiency;
+        rotation produces torque, slipstream, asymmetric-thrust and
+        gyroscopic moments.
+      </p>
 
-      <h3 class="sub">Left-turning tendencies <span class="ref">13.1</span></h3>
+      <h3 class="sub">Blade geometry <span class="ref">13.1</span></h3>
+      <div class="eq">φ = arctan(V/(ω·r)) &nbsp;&nbsp;&nbsp; α = β − φ &nbsp;&nbsp;&nbsp; geometric pitch = 2πr·tan β &nbsp;&nbsp;&nbsp; slip = geometric − effective pitch</div>
       <div class="table-wrap">
       <table>
-        <thead><tr><th>Effect</th><th>Cause</th></tr></thead>
+        <caption>2,400 rpm (ω = 251 rad/s)</caption>
+        <thead><tr><th>Station, V</th><th class="num">φ</th><th>Consequence</th></tr></thead>
         <tbody>
-          <tr><td>Torque reaction</td><td>Newton's third law — airframe rolls opposite to propeller rotation</td></tr>
-          <tr><td>Gyroscopic precession</td><td>A pitch/yaw force appears ~90° further round the direction of rotation</td></tr>
-          <tr><td>Asymmetric blade effect (P-factor)</td><td>Descending blade meets a higher AoA at high power/high AoA</td></tr>
-          <tr><td>Slipstream effect</td><td>Spiralling slipstream strikes the fin asymmetrically</td></tr>
+          <tr><td>r 1 m, V 60 m/s</td><td class="num">13.4°</td><td>β 25° → α 11.6°</td></tr>
+          <tr><td>r 0.5 m, V 60 m/s</td><td class="num">25.5°</td><td>Twist: β must be larger inboard</td></tr>
+          <tr><td>r 1 m, V 120 m/s</td><td class="num">25.5°</td><td>β 25° → α ≈ −0.5° (no thrust)</td></tr>
+          <tr><td>V 0 (static)</td><td class="num">0°</td><td>α = β; coarse blades stall</td></tr>
         </tbody>
       </table>
       </div>
+      <p>Blade angle is quoted at ≈ 0.75R, measured from the plane of rotation to the chord.</p>
 
-      <h3 class="sub">Constant-speed propellers <span class="ref">13.2</span></h3>
-      <p>
-        A governor coarsens blade angle when RPM rises above the selected
-        value (loading the engine, pulling RPM back down) and fines it when
-        RPM falls — holding a selected RPM across a wide range of speed and
-        power, unlike a fixed-pitch propeller efficient only near one design
-        point (its <strong>advance ratio</strong>).
-        <strong>Feathering</strong> turns the blades edge-on after an engine
-        failure to minimise drag and stop <strong>windmilling</strong>,
-        which otherwise adds substantial drag and can further damage the
-        failed engine.
-      </p>
+      <h3 class="sub">Blade element forces and moments <span class="ref">13.2</span></h3>
+      <div class="eq">T = L·cos φ − D·sin φ &nbsp;&nbsp;&nbsp; Q<sub>f</sub> = L·sin φ + D·cos φ &nbsp;&nbsp;&nbsp; torque = Q<sub>f</sub>·r</div>
+      <ul>
+        <li>L 500 N, D 30 N, φ 15° → T 475 N, Q<sub>f</sub> 158 N. Larger φ shifts lift from thrust into torque.</li>
+        <li>Outboard sections carry most thrust (∝ (ωr)²).</li>
+        <li>Centrifugal twisting moment → fine; aerodynamic twisting moment → coarse (smaller); thrust bends tips forward, centrifugal force straightens them.</li>
+      </ul>
 
-      <h3 class="sub">Blade count and tip speed <span class="ref">13.3</span></h3>
-      <p>
-        More, narrower blades absorb more power within a limited diameter,
-        at some efficiency cost versus fewer, longer blades. Blade
-        <strong>tip speed</strong> can reach transonic values from
-        rotational speed alone — the same compressibility penalties (shock,
-        drag, noise) that affect a fast wing. High density altitude reduces
-        both propeller thrust and engine power together.
-      </p>
+      <h3 class="sub">Efficiency and advance ratio <span class="ref">13.3</span></h3>
+      <div class="eq">η = T·V/P<sub>shaft</sub> &nbsp;&nbsp;&nbsp; J = V/(n·D) &nbsp;&nbsp;&nbsp; η<sub>ideal</sub> = 2/(1 + V<sub>s</sub>/V)</div>
+      <ul>
+        <li>T 3,000 N at 60 m/s, 225 kW → η 0.80. 60 m/s, 40 rev/s, D 2 m → J 0.75.</li>
+        <li>Fixed pitch: η peaks at one J. Static: η = 0 with thrust near maximum. Practical maximum ≈ 0.80–0.88.</li>
+        <li>Larger disc, smaller velocity increment → higher ideal efficiency.</li>
+      </ul>
+      <div class="diagram">
+        <svg viewBox="0 0 460 270" role="img" aria-label="Blade angle of attack against true airspeed at fixed rpm: fixed-pitch blades lose angle of attack as speed rises, a coarse blade is stalled at low speed; a constant-speed propeller holds a chosen angle of attack">
+          <line x1="60.0" y1="164.9" x2="430.0" y2="164.9" stroke="var(--line)" stroke-width="1"/><line x1="60.0" y1="124.6" x2="430.0" y2="124.6" stroke="var(--line)" stroke-width="1"/><line x1="60.0" y1="84.4" x2="430.0" y2="84.4" stroke="var(--line)" stroke-width="1"/><line x1="60.0" y1="44.1" x2="430.0" y2="44.1" stroke="var(--line)" stroke-width="1"/><line x1="60.0" y1="164.9" x2="430.0" y2="164.9" stroke="var(--ink-2)" stroke-width="1.2"/><line x1="60.0" y1="185.0" x2="60.0" y2="20.0" stroke="var(--ink-2)" stroke-width="1.2"/><text x="60.0" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">0</text><text x="112.9" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">20</text><text x="165.7" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">40</text><text x="218.6" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">60</text><text x="271.4" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">80</text><text x="324.3" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">100</text><text x="377.1" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">120</text><text x="430.0" y="200.0" font-size="11" fill="var(--muted)" text-anchor="middle">140</text><text x="54.0" y="168.9" font-size="11" fill="var(--muted)" text-anchor="end">0</text><text x="54.0" y="128.6" font-size="11" fill="var(--muted)" text-anchor="end">10</text><text x="54.0" y="88.4" font-size="11" fill="var(--muted)" text-anchor="end">20</text><text x="54.0" y="48.1" font-size="11" fill="var(--muted)" text-anchor="end">30</text><text x="430.0" y="215.0" font-size="11" fill="var(--muted)" text-anchor="end">TAS (m/s) →</text><text x="66.0" y="24.0" font-size="11" fill="var(--muted)">blade α (deg)</text>
+          <polyline points="60.0,84.4 62.6,85.3 65.3,86.2 67.9,87.1 70.6,88.1 73.2,89.0 75.9,89.9 78.5,90.8 81.1,91.7 83.8,92.6 86.4,93.6 89.1,94.5 91.7,95.4 94.4,96.3 97.0,97.2 99.6,98.1 102.3,99.0 104.9,100.0 107.6,100.9 110.2,101.8 112.9,102.7 115.5,103.6 118.1,104.5 120.8,105.4 123.4,106.3 126.1,107.3 128.7,108.2 131.4,109.1 134.0,110.0 136.6,110.9 139.3,111.8 141.9,112.7 144.6,113.6 147.2,114.5 149.9,115.4 152.5,116.3 155.1,117.2 157.8,118.1 160.4,119.0 163.1,119.9 165.7,120.8 168.4,121.7 171.0,122.6 173.6,123.5 176.3,124.4 178.9,125.2 181.6,126.1 184.2,127.0 186.9,127.9 189.5,128.8 192.1,129.7 194.8,130.6 197.4,131.4 200.1,132.3 202.7,133.2 205.4,134.1 208.0,134.9 210.6,135.8 213.3,136.7 215.9,137.6 218.6,138.4 221.2,139.3 223.9,140.2 226.5,141.0 229.1,141.9 231.8,142.7 234.4,143.6 237.1,144.5 239.7,145.3 242.4,146.2 245.0,147.0 247.6,147.9 250.3,148.7 252.9,149.6 255.6,150.4 258.2,151.3 260.9,152.1 263.5,152.9 266.1,153.8 268.8,154.6 271.4,155.4 274.1,156.3 276.7,157.1 279.4,157.9 282.0,158.8 284.6,159.6 287.3,160.4 289.9,161.2 292.6,162.0 295.2,162.9 297.9,163.7 300.5,164.5 303.1,165.3 305.8,166.1 308.4,166.9 311.1,167.7 313.7,168.5 316.4,169.3 319.0,170.1 321.6,170.9 324.3,171.7 326.9,172.5 329.6,173.3 332.2,174.1 334.9,174.9 337.5,175.6 340.1,176.4 342.8,177.2 345.4,178.0 348.1,178.7 350.7,179.5 353.4,180.3 356.0,181.1 358.6,181.8 361.3,182.6 363.9,183.3 366.6,184.1 369.2,184.9 371.9,185.6 374.5,186.4 377.1,187.1 379.8,187.9 382.4,188.6 385.1,189.3 387.7,190.1 390.4,190.8 393.0,191.5 395.6,192.3 398.3,193.0 400.9,193.7 403.6,194.5 406.2,195.2 408.9,195.9 411.5,196.6 414.1,197.3 416.8,198.0 419.4,198.8 422.1,199.5 424.7,200.2 427.4,200.9 430.0,201.6" fill="none" stroke="var(--green-arc)" stroke-width="2.5"/><polyline points="60.0,24.0 62.6,24.9 65.3,25.9 67.9,26.8 70.6,27.7 73.2,28.6 75.9,29.5 78.5,30.4 81.1,31.4 83.8,32.3 86.4,33.2 89.1,34.1 91.7,35.0 94.4,35.9 97.0,36.9 99.6,37.8 102.3,38.7 104.9,39.6 107.6,40.5 110.2,41.4 112.9,42.3 115.5,43.2 118.1,44.2 120.8,45.1 123.4,46.0 126.1,46.9 128.7,47.8 131.4,48.7 134.0,49.6 136.6,50.5 139.3,51.4 141.9,52.3 144.6,53.2 147.2,54.1 149.9,55.0 152.5,55.9 155.1,56.8 157.8,57.7 160.4,58.6 163.1,59.5 165.7,60.4 168.4,61.3 171.0,62.2 173.6,63.1 176.3,64.0 178.9,64.9 181.6,65.8 184.2,66.7 186.9,67.5 189.5,68.4 192.1,69.3 194.8,70.2 197.4,71.1 200.1,71.9 202.7,72.8 205.4,73.7 208.0,74.6 210.6,75.4 213.3,76.3 215.9,77.2 218.6,78.1 221.2,78.9 223.9,79.8 226.5,80.7 229.1,81.5 231.8,82.4 234.4,83.2 237.1,84.1 239.7,85.0 242.4,85.8 245.0,86.7 247.6,87.5 250.3,88.4 252.9,89.2 255.6,90.0 258.2,90.9 260.9,91.7 263.5,92.6 266.1,93.4 268.8,94.2 271.4,95.1 274.1,95.9 276.7,96.7 279.4,97.6 282.0,98.4 284.6,99.2 287.3,100.0 289.9,100.9 292.6,101.7 295.2,102.5 297.9,103.3 300.5,104.1 303.1,104.9 305.8,105.7 308.4,106.6 311.1,107.4 313.7,108.2 316.4,109.0 319.0,109.8 321.6,110.5 324.3,111.3 326.9,112.1 329.6,112.9 332.2,113.7 334.9,114.5 337.5,115.3 340.1,116.1 342.8,116.8 345.4,117.6 348.1,118.4 350.7,119.2 353.4,119.9 356.0,120.7 358.6,121.5 361.3,122.2 363.9,123.0 366.6,123.7 369.2,124.5 371.9,125.2 374.5,126.0 377.1,126.7 379.8,127.5 382.4,128.2 385.1,129.0 387.7,129.7 390.4,130.4 393.0,131.2 395.6,131.9 398.3,132.6 400.9,133.4 403.6,134.1 406.2,134.8 408.9,135.5 411.5,136.3 414.1,137.0 416.8,137.7 419.4,138.4 422.1,139.1 424.7,139.8 427.4,140.5 430.0,141.2" fill="none" stroke="var(--caution-line)" stroke-width="2.5"/><line x1="60.0" y1="140.7" x2="430.0" y2="140.7" stroke="var(--brand)" stroke-width="3"/><line x1="60.0" y1="104.5" x2="430.0" y2="104.5" stroke="var(--warn-line)" stroke-width="1.2" stroke-dasharray="5 3"/><text x="430.0" y="99.5" font-size="10.5" fill="var(--warn-line)" text-anchor="end" font-weight="700">blade stall ≈ 15°</text>
+          <line x1="60" y1="225" x2="78" y2="225" stroke="var(--green-arc)" stroke-width="2.5"/><text x="84" y="229" font-size="11" font-weight="700" fill="var(--green-arc)">fixed pitch β = 20° (r = 1 m, 2,400 rpm)</text><line x1="60" y1="241" x2="78" y2="241" stroke="var(--caution-line)" stroke-width="2.5"/><text x="84" y="245" font-size="11" font-weight="700" fill="var(--caution-line)">fixed pitch β = 35° (r = 1 m, 2,400 rpm)</text><line x1="60" y1="257" x2="78" y2="257" stroke="var(--brand)" stroke-width="2.5"/><text x="84" y="261" font-size="11" font-weight="700" fill="var(--brand)">constant speed: β = φ + 6° (α held)</text>
+        </svg>
+        <div class="cap">Fixed blade angle: α falls with speed (fine blade unloads, coarse blade stalled at low speed); constant speed holds α</div>
+      </div>
 
-      <div class="related"><span class="dot"></span> Related questions: <strong>40</strong> in this topic</div>
+      <h3 class="sub">Fixed pitch and constant speed <span class="ref">13.4</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Condition</th><th>Fixed pitch</th><th>Constant speed</th></tr></thead>
+        <tbody>
+          <tr><td>TAS ↑, same power</td><td>α ↓, torque ↓, rpm ↑ (overspeed risk)</td><td>β ↑ (coarser), rpm held</td></tr>
+          <tr><td>Throttle ↑</td><td>rpm ↑</td><td>β ↑ to absorb power at set rpm</td></tr>
+          <tr><td>Take-off</td><td>Coarse blade: low rpm, low thrust; fine: good</td><td>Fine / max rpm</td></tr>
+          <tr><td>Glide, throttle closed</td><td>Windmilling</td><td>Fine stop, then rpm decays</td></tr>
+          <tr><td>Lower rpm selected in cruise</td><td>—</td><td>β ↑, lower tip speed, often better η</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Governor: flyweights sense rpm; oil pressure, springs, counterweights change β; overspeed → coarser. Oil-to-coarsen designs go fine on oil loss; oil-to-fine designs with counterweights go coarse/feather.</p>
+
+      <h3 class="sub">Feathering, windmilling, reverse <span class="ref">13.5</span></h3>
+      <ul>
+        <li>Feathered: β ≈ 90°, edge-on, rotation stops, minimum drag. Windmilling fine-pitch disc: α &lt; 0, large drag, drives the engine.</li>
+        <li>Auto-feather on take-off power loss; negative torque sensing drives blades coarse when the propeller drives the engine.</li>
+        <li>Beta range: direct blade-angle control on the ground; reverse for deceleration; locked out in flight.</li>
+      </ul>
+
+      <h3 class="sub">Tip speed and compressibility <span class="ref">13.6</span></h3>
+      <div class="eq">V<sub>tip</sub> = √((ω·r)² + V²) &nbsp;&nbsp;&nbsp; n<sub>max</sub> = M<sub>tip</sub>·a/(π·D)</div>
+      <ul>
+        <li>ωr 251 m/s, V 100 m/s → 270 m/s, M 0.79. V 60 → 150 m/s: 258 → 293 m/s.</li>
+        <li>Tip M 0.85 static: D 2.4 m → 2,300 rpm; D 2.0 m → 2,760 rpm. Turbines need reduction gearboxes.</li>
+        <li>Tip shocks: efficiency loss and noise; conventional propellers are limited to about M 0.6–0.7.</li>
+      </ul>
+
+      <h3 class="sub">Thrust and power <span class="ref">13.7</span></h3>
+      <div class="eq">T = η·P/V &nbsp;&nbsp;&nbsp; P<sub>a</sub> ≈ η·P (≈ constant with speed)</div>
+      <ul>
+        <li>200 kW, η 0.8: T 3,200 N at 50 m/s, 1,600 N at 100 m/s.</li>
+        <li>Best rate of climb near V<sub>mp</sub>; best range at V<sub>md</sub>. Piston power ∝ ≈ σ (normally aspirated).</li>
+        <li>Solidity (blade area/disc area), blade count and chord absorb power without higher tip speed; larger diameter raises η but tip speed and clearance limit it.</li>
+        <li>Slipstream raises q over wing root and tail: lower power-on V<sub>S</sub>, better tail authority. Pushers lose most of this.</li>
+      </ul>
+
+      <h3 class="sub">Propeller moments (clockwise viewed from behind) <span class="ref">13.8</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Effect</th><th>Mechanism</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>Torque reaction</td><td>Opposite to rotation</td><td>Roll left; on the ground, left-wheel friction → yaw left</td></tr>
+          <tr><td>Spiral slipstream</td><td>Rotating wake strikes the fin's left side</td><td>Yaw left</td></tr>
+          <tr><td>Asymmetric blade effect</td><td>Descending (right) blade: higher α and speed at high aircraft α</td><td>Yaw left</td></tr>
+          <tr><td>Gyroscopic precession</td><td>Force acts 90° later in rotation; ∝ I·ω<sub>prop</sub>·Ω</td><td>Pitch-down (tail raise) → yaw left</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>All four act left for this rotation at high power and low speed: right rudder. Counter-rotating twins remove the critical engine; contra-rotating coaxial propellers recover swirl and cancel torque.</p>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>80</strong> in this topic</div>
     </section>
 
     <!-- ============================================================ -->
