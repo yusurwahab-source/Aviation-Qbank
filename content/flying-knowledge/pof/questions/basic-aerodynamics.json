@@ -220,5 +220,470 @@
     "tags": ["aerodynamics", "bernoulli", "pressure"],
     "status": "published",
     "version": 1
+  },
+  {
+    "id": "POF-AERO-0013",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Continuity Equation",
+    "question": "The continuity equation states that for a streamtube of air flowing steadily, if the cross-sectional area of the streamtube decreases, the velocity of the airflow within it must:",
+    "options": [
+      { "id": "a", "text": "Decrease, to keep the volume flow rate constant" },
+      {
+        "id": "b",
+        "text": "Increase, so that the mass flow rate through every section of the streamtube remains constant"
+      },
+      { "id": "c", "text": "Stay exactly the same, since mass flow rate is unrelated to area" },
+      { "id": "d", "text": "Become turbulent, with no predictable change in speed" }
+    ],
+    "correct": "b",
+    "explanation": "For a given mass flow rate, density times area times velocity must stay constant along a streamtube. If the air is effectively incompressible and the area narrows, velocity must rise to keep that product the same — the same principle that lets a wing's curved upper surface accelerate the airflow passing over it.",
+    "tags": ["aerodynamics", "continuity", "streamtube"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0014",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Venturi Effect",
+    "question": "In a venturi tube, as airflow accelerates through the narrowed throat, what happens to the static pressure there?",
+    "options": [
+      { "id": "a", "text": "Static pressure increases, since the air is being compressed" },
+      {
+        "id": "b",
+        "text": "Static pressure decreases, by the same Bernoulli relationship that lowers pressure over a wing's accelerated upper-surface airflow"
+      },
+      { "id": "c", "text": "Static pressure is unaffected, since only dynamic pressure ever changes" },
+      { "id": "d", "text": "Static pressure oscillates unpredictably as the tube narrows" }
+    ],
+    "correct": "b",
+    "explanation": "The venturi effect is a direct illustration of Bernoulli's principle: as the throat narrows and speeds the flow up, dynamic pressure rises and static pressure falls to keep their sum constant. A wing's curved upper surface acts as one side of a venturi in exactly the same way.",
+    "tags": ["aerodynamics", "venturi", "bernoulli"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0015",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Dynamic Pressure",
+    "question": "Dynamic pressure, one of the two terms that sum to total pressure in subsonic airflow, is best defined as:",
+    "options": [
+      { "id": "a", "text": "½ρV² — the kinetic energy per unit volume of the moving air" },
+      { "id": "b", "text": "The pressure exerted by still air in every direction" },
+      { "id": "c", "text": "The pressure difference between a wing's upper and lower surfaces" },
+      { "id": "d", "text": "The pressure that exists only at the stagnation point" }
+    ],
+    "correct": "a",
+    "explanation": "Dynamic pressure, ½ρV², represents the pressure a moving air mass would exert if brought to rest. It rises with the square of airspeed and directly with air density, which is why it appears in the lift equation and drives an airspeed indicator.",
+    "tags": ["aerodynamics", "dynamic-pressure"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0016",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Static Pressure",
+    "question": "Static pressure, as used in aerodynamics, is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The pressure exerted by air molecules in every direction, present whether the air is moving or at rest"
+      },
+      { "id": "b", "text": "A pressure that exists only when the air is completely stationary" },
+      { "id": "c", "text": "The pressure produced solely by an aircraft's own motion through the air" },
+      { "id": "d", "text": "Always exactly equal to dynamic pressure in subsonic flow" }
+    ],
+    "correct": "a",
+    "explanation": "Static pressure is the pressure air exerts simply by being present, acting equally in all directions regardless of whether that parcel of air is moving. It is what a static port senses, distinct from the dynamic pressure that depends on the air's speed relative to the aircraft.",
+    "tags": ["aerodynamics", "static-pressure"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0017",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Pressure Altitude and Density",
+    "question": "For a constant temperature, as pressure altitude increases, air density:",
+    "options": [
+      { "id": "a", "text": "Increases, since air molecules pack closer together higher up" },
+      {
+        "id": "b",
+        "text": "Decreases, because atmospheric pressure — and with it the mass of air molecules in a given volume — falls with altitude"
+      },
+      { "id": "c", "text": "Remains constant up to the tropopause" },
+      { "id": "d", "text": "Depends only on humidity, never on altitude" }
+    ],
+    "correct": "b",
+    "explanation": "Air density is directly related to pressure at a given temperature. Since atmospheric pressure falls steadily with height, so does the number of air molecules packed into each unit of volume, reducing density even before temperature is considered.",
+    "tags": ["aerodynamics", "density", "altitude"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0018",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Density Altitude",
+    "question": "\"Density altitude\" is best described as:",
+    "options": [
+      { "id": "a", "text": "The actual height above mean sea level shown by a pressure altimeter" },
+      {
+        "id": "b",
+        "text": "Pressure altitude corrected for the deviation of the actual outside air temperature from the ISA standard temperature for that altitude"
+      },
+      { "id": "c", "text": "The altitude at which air density is always exactly 1.225 kg/m3" },
+      { "id": "d", "text": "A figure that only matters to jet aircraft, never to piston aircraft" }
+    ],
+    "correct": "b",
+    "explanation": "Density altitude expresses how the air is actually behaving aerodynamically, not just how high the aircraft is. Temperatures above ISA push density altitude higher than the pressure altitude, meaning the air behaves as if the aircraft were higher still, with the lift and engine/propeller performance penalties that implies.",
+    "tags": ["aerodynamics", "density-altitude", "temperature"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0019",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Longitudinal Axis",
+    "question": "Rotation about an aircraft's longitudinal axis, controlled primarily by the ailerons, is called:",
+    "options": [
+      { "id": "a", "text": "Yaw" },
+      { "id": "b", "text": "Pitch" },
+      { "id": "c", "text": "Roll" },
+      { "id": "d", "text": "Precession" }
+    ],
+    "correct": "c",
+    "explanation": "The longitudinal axis runs from nose to tail through the center of gravity. Rotation about it is roll, produced mainly by differential aileron deflection creating unequal lift on each wing.",
+    "tags": ["aerodynamics", "axes", "roll"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0020",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Lateral Axis",
+    "question": "Rotation about an aircraft's lateral axis, controlled primarily by the elevator, is called:",
+    "options": [
+      { "id": "a", "text": "Roll" },
+      { "id": "b", "text": "Pitch" },
+      { "id": "c", "text": "Yaw" },
+      { "id": "d", "text": "Slip" }
+    ],
+    "correct": "b",
+    "explanation": "The lateral axis runs wingtip to wingtip through the center of gravity. Rotation about it is pitch, controlled mainly by the elevator changing the tailplane's lift and the resulting moment about the center of gravity.",
+    "tags": ["aerodynamics", "axes", "pitch"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0021",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Normal Axis",
+    "question": "Rotation about an aircraft's normal (vertical) axis, controlled primarily by the rudder, is called:",
+    "options": [
+      { "id": "a", "text": "Roll" },
+      { "id": "b", "text": "Pitch" },
+      { "id": "c", "text": "Yaw" },
+      { "id": "d", "text": "Bank" }
+    ],
+    "correct": "c",
+    "explanation": "The normal (vertical) axis runs top to bottom through the center of gravity. Rotation about it is yaw, controlled mainly by the rudder deflecting the fin's airflow to create a turning moment.",
+    "tags": ["aerodynamics", "axes", "yaw"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0022",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Moments",
+    "question": "A moment (or couple) produced by an aerodynamic force about a given axis is calculated as:",
+    "options": [
+      { "id": "a", "text": "The force alone, independent of where along the airframe it acts" },
+      {
+        "id": "b",
+        "text": "The force multiplied by the perpendicular distance from its line of action to the axis or reference point"
+      },
+      { "id": "c", "text": "The square of the force" },
+      { "id": "d", "text": "The force divided by the total wing area" }
+    ],
+    "correct": "b",
+    "explanation": "A moment is force times moment arm. The same aerodynamic force produces a larger moment the further its line of action is from the axis or point being considered, which is why control surfaces are placed as far as practical from the center of gravity.",
+    "tags": ["aerodynamics", "moment"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0023",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Pitch Attitude and Flight Path",
+    "question": "In steady, non-accelerating flight, an aircraft's pitch attitude relative to the horizon is approximately equal to:",
+    "options": [
+      { "id": "a", "text": "Angle of attack alone, regardless of the flight path" },
+      { "id": "b", "text": "The flight path angle alone, regardless of angle of attack" },
+      { "id": "c", "text": "The sum of angle of attack and flight path angle" },
+      { "id": "d", "text": "Angle of attack minus twice the flight path angle" }
+    ],
+    "correct": "c",
+    "explanation": "Pitch attitude is what the horizon shows; flight path angle is the actual direction of travel relative to the horizon; angle of attack is the difference between the chord line and that flight path. The three are linked by pitch attitude ≈ angle of attack + flight path angle, which is why an identical pitch attitude can hide very different angles of attack in a climb versus a descent.",
+    "tags": ["aerodynamics", "pitch-attitude", "angle-of-attack", "flight-path"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0024",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Boundary Layer",
+    "question": "The \"boundary layer\" over a wing's surface is:",
+    "options": [
+      { "id": "a", "text": "The layer of free-stream air far above the wing, unaffected by its surface" },
+      {
+        "id": "b",
+        "text": "The thin layer of air next to the surface within which viscosity slows the airflow from free-stream velocity down to zero at the surface itself"
+      },
+      { "id": "c", "text": "A layer of air found only ahead of the stagnation point" },
+      { "id": "d", "text": "The region in which wingtip vortices form" }
+    ],
+    "correct": "b",
+    "explanation": "Viscosity means air right at a solid surface has zero relative velocity, rising through a thin boundary layer to the full free-stream speed just outside it. Its behaviour — laminar or turbulent, attached or separated — governs skin friction drag and the onset of the stall.",
+    "tags": ["aerodynamics", "boundary-layer"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0025",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Laminar Boundary Layer",
+    "question": "A laminar boundary layer, compared with a turbulent one, is characterised by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Smooth, orderly airflow in parallel layers, giving lower skin friction drag but a greater tendency to separate under an adverse pressure gradient"
+      },
+      { "id": "b", "text": "Chaotic, mixing airflow with high skin friction drag but strong resistance to separation" },
+      { "id": "c", "text": "No skin friction drag at all" },
+      { "id": "d", "text": "Airflow that can only occur at supersonic speed" }
+    ],
+    "correct": "a",
+    "explanation": "A laminar boundary layer moves in smooth, orderly layers with little mixing, which keeps skin friction low, but it carries relatively little kinetic energy near the surface and separates more readily once pressure begins rising again along the flow.",
+    "tags": ["aerodynamics", "boundary-layer", "laminar"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0026",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Turbulent Boundary Layer",
+    "question": "Compared with a laminar boundary layer, a turbulent boundary layer:",
+    "options": [
+      { "id": "a", "text": "Produces less skin friction drag" },
+      {
+        "id": "b",
+        "text": "Produces more skin friction drag, but resists flow separation better because mixing carries energy from the outer flow closer to the surface"
+      },
+      { "id": "c", "text": "Cannot exist on an aircraft in normal flight" },
+      { "id": "d", "text": "Always forms ahead of the stagnation point" }
+    ],
+    "correct": "b",
+    "explanation": "The chaotic mixing in a turbulent boundary layer increases skin friction compared with a laminar one, but that same mixing re-energises the air nearest the surface, letting it withstand an adverse pressure gradient for longer before separating.",
+    "tags": ["aerodynamics", "boundary-layer", "turbulent"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0027",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Boundary Layer Separation",
+    "question": "Boundary layer separation from a surface occurs when:",
+    "options": [
+      { "id": "a", "text": "The boundary layer accelerates faster than the free-stream flow around it" },
+      {
+        "id": "b",
+        "text": "An adverse pressure gradient (rising pressure in the direction of flow) overcomes the boundary layer's remaining momentum, causing the flow near the surface to reverse and lift away from it"
+      },
+      { "id": "c", "text": "The airflow becomes perfectly laminar" },
+      { "id": "d", "text": "Dynamic pressure exceeds static pressure" }
+    ],
+    "correct": "b",
+    "explanation": "As the boundary layer moves into a region of rising pressure, it loses speed; if it loses too much, the flow nearest the surface reverses direction and the boundary layer separates from the surface entirely — the basic flow-level cause of an aerodynamic stall.",
+    "tags": ["aerodynamics", "boundary-layer", "separation", "stall"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0028",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Newton's Second Law and Thrust",
+    "question": "A jet engine's thrust is best explained by Newton's second law as:",
+    "options": [
+      { "id": "a", "text": "A force produced entirely by Bernoulli's principle acting on the compressor blades" },
+      {
+        "id": "b",
+        "text": "The rate of change of momentum given to the air passing through the engine — its mass flow rate multiplied by the change in the air's velocity"
+      },
+      { "id": "c", "text": "A force unrelated to the mass of air the engine moves" },
+      { "id": "d", "text": "A force that depends only on fuel flow, not airflow" }
+    ],
+    "correct": "b",
+    "explanation": "Newton's second law, expressed as force equals the rate of change of momentum, gives thrust as mass flow rate multiplied by the increase in velocity the engine imparts to the air passing through it — the same underlying relationship, applied to a propulsive jet of air rather than a wing's downwash.",
+    "tags": ["aerodynamics", "newtons-laws", "thrust"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0029",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Forces in a Climb",
+    "question": "In a steady, unaccelerated climb, compared with straight-and-level flight at the same weight, lift:",
+    "options": [
+      { "id": "a", "text": "Must be greater than weight to sustain the climb" },
+      { "id": "b", "text": "Must equal the total weight exactly, unchanged from level flight" },
+      {
+        "id": "c",
+        "text": "Is normally slightly less than weight, since lift need only balance the component of weight acting perpendicular to the flight path"
+      },
+      { "id": "d", "text": "Becomes zero once a steady climb is established" }
+    ],
+    "correct": "c",
+    "explanation": "Once the flight path is tilted upward, weight can be resolved into a component perpendicular to the flight path, which lift balances, and a component along the flight path, which drag and the excess of thrust over drag must overcome. Lift in a steady climb is therefore slightly less than the aircraft's full weight.",
+    "tags": ["aerodynamics", "forces", "climb"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0030",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Forces in a Glide",
+    "question": "In a steady, power-off glide, with no thrust acting, the forces on the aircraft are in equilibrium because:",
+    "options": [
+      { "id": "a", "text": "Lift alone balances the entire weight" },
+      {
+        "id": "b",
+        "text": "Lift balances the component of weight acting perpendicular to the flight path, and drag balances the component of weight acting along the flight path"
+      },
+      { "id": "c", "text": "Drag balances the entire weight" },
+      { "id": "d", "text": "There is no drag acting during a glide" }
+    ],
+    "correct": "b",
+    "explanation": "With thrust removed, weight itself has to supply the force that overcomes drag, which it does through the component acting along the flight path; the perpendicular component is what lift balances. This resolution of weight into two components is what allows a steady glide angle to exist at all.",
+    "tags": ["aerodynamics", "forces", "glide"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0031",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Turning Flight",
+    "question": "In a level, coordinated turn, why must the wing generate more total lift than in straight-and-level flight at the same weight?",
+    "options": [
+      { "id": "a", "text": "It does not; the lift required is the same in any turn" },
+      {
+        "id": "b",
+        "text": "Because part of the increased total lift provides the horizontal (centripetal) force needed to turn, while the vertical component must still equal weight to hold altitude"
+      },
+      { "id": "c", "text": "Because drag increases sharply in a turn and must be balanced by extra lift" },
+      { "id": "d", "text": "Because airspeed always decreases automatically in any turn" }
+    ],
+    "correct": "b",
+    "explanation": "Banking tilts the lift vector, so the vertical component that supports weight is now only part of the total lift produced. To keep that vertical component equal to weight, total lift — and therefore angle of attack or speed — must increase, with the horizontal component of the extra lift providing the turn's centripetal force.",
+    "tags": ["aerodynamics", "load-factor", "turning-flight"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0032",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Load Factor and Stalling Speed",
+    "question": "As load factor increases in a turn, the stalling speed:",
+    "options": [
+      { "id": "a", "text": "Decreases" },
+      {
+        "id": "b",
+        "text": "Increases, because more lift — and therefore a higher angle of attack or airspeed — is needed to support the increased effective weight"
+      },
+      { "id": "c", "text": "Is unaffected by load factor" },
+      { "id": "d", "text": "Only increases beyond 60 degrees of bank, and not before" }
+    ],
+    "correct": "b",
+    "explanation": "Stalling speed rises with the square root of load factor, since a higher effective weight demands more lift at the same maximum lift coefficient, which can only be delivered at a higher speed. This is why a steep turn stalls at a noticeably higher indicated airspeed than level flight.",
+    "tags": ["aerodynamics", "load-factor", "stalling-speed"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0033",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Wing Loading",
+    "question": "\"Wing loading\" is defined as:",
+    "options": [
+      { "id": "a", "text": "Total lift divided by wingspan" },
+      { "id": "b", "text": "Aircraft weight divided by wing area" },
+      { "id": "c", "text": "Wing area divided by aspect ratio" },
+      { "id": "d", "text": "Total drag divided by wing area" }
+    ],
+    "correct": "b",
+    "explanation": "Wing loading is weight per unit of wing area. For a given maximum lift coefficient, a higher wing loading means a higher stalling speed, since more lift per square metre of wing must be generated to support the same weight.",
+    "tags": ["aerodynamics", "wing-loading"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0034",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Icing and Stall",
+    "question": "Ice or frost contamination on a wing's leading edge and upper surface, even in a thin layer, primarily degrades performance by:",
+    "options": [
+      { "id": "a", "text": "Increasing the stalling angle of attack and maximum lift coefficient" },
+      {
+        "id": "b",
+        "text": "Disrupting smooth airflow, which reduces the maximum lift coefficient and causes the stall to occur at a lower angle of attack and a higher speed"
+      },
+      { "id": "c", "text": "Having no aerodynamic effect as long as the temperature stays below freezing" },
+      { "id": "d", "text": "Increasing lift by adding beneficial surface roughness" }
+    ],
+    "correct": "b",
+    "explanation": "Even light ice or frost roughens and distorts the wing's carefully shaped surface, promoting earlier boundary layer separation. The practical result is a lower usable maximum lift coefficient and a stall that arrives at a lower angle of attack and higher indicated airspeed than the clean wing would give.",
+    "tags": ["aerodynamics", "icing", "stall", "safety"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0035",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Angle of Incidence",
+    "question": "The \"angle of incidence\" of a wing is:",
+    "options": [
+      { "id": "a", "text": "Another name for angle of attack, identical to it in every respect" },
+      {
+        "id": "b",
+        "text": "A fixed rigging angle built into the airframe, between the wing chord line and a longitudinal reference line of the fuselage, that does not change in flight"
+      },
+      { "id": "c", "text": "The angle between the chord line and the relative airflow, changing continuously in flight" },
+      { "id": "d", "text": "A term that only applies to swept-wing aircraft" }
+    ],
+    "correct": "b",
+    "explanation": "Angle of incidence is a fixed structural angle set when the aircraft is built, describing how the wing is mounted relative to the fuselage. Angle of attack, by contrast, is measured against the relative airflow and changes constantly with the flight path — the two are related but not the same thing.",
+    "tags": ["aerodynamics", "angle-of-incidence"],
+    "status": "published",
+    "version": 1
   }
 ]

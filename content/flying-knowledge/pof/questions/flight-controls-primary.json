@@ -235,5 +235,473 @@
     "tags": ["control", "artificial-feel", "powered-controls"],
     "status": "published",
     "version": 1
+  },
+  {
+    "id": "POF-CTRL-0013",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Hinge Moment",
+    "question": "The \"hinge moment\" of a control surface refers to:",
+    "options": [
+      { "id": "a", "text": "The aerodynamic moment about the hinge line that a pilot (or actuator) must overcome to deflect or hold the surface at a given position" },
+      { "id": "b", "text": "The total lift the whole wing produces" },
+      { "id": "c", "text": "The weight of the control surface alone" },
+      { "id": "d", "text": "A measure of the aircraft's overall stability" }
+    ],
+    "correct": "a",
+    "explanation": "Hinge moment is the aerodynamic moment generated about a control surface's own hinge line by the airflow acting on it, and it is what the pilot's muscular effort (or a powered actuator) must overcome to move or hold the surface at any given deflection — the physical basis of what a pilot actually feels as \"control force\".",
+    "tags": ["control", "hinge-moment"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0014",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Floating Tendency",
+    "question": "If a control surface is left completely free (unheld and unlinked), its natural \"floating tendency\" is generally to:",
+    "options": [
+      { "id": "a", "text": "Trail in a position where its own center of pressure aligns with the hinge line, rather than staying at neutral" },
+      { "id": "b", "text": "Always remain locked exactly at neutral" },
+      { "id": "c", "text": "Immediately move to its maximum deflection in one direction" },
+      { "id": "d", "text": "Have no aerodynamic tendency to move at all" }
+    ],
+    "correct": "a",
+    "explanation": "With no pilot input or mechanical restraint, a control surface tends to float to whatever angle relative to the local airflow puts its own center of pressure at the hinge line, since that is the position with zero net hinge moment — rarely exactly the neutral, streamlined position, which is why a free-floating surface (such as an unlinked servo-tab-driven elevator) is a deliberate design feature rather than an accident.",
+    "tags": ["control", "floating-tendency"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0015",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Aerodynamic Overbalance",
+    "question": "A control surface is said to be \"aerodynamically overbalanced\" when:",
+    "options": [
+      { "id": "a", "text": "Its balancing area is so large or effective that, once deflected, the surface tends to move further in that same direction on its own, rather than requiring continued force" },
+      { "id": "b", "text": "It has no aerodynamic balance area at all" },
+      { "id": "c", "text": "It requires unusually high pilot force to move" },
+      { "id": "d", "text": "It is balanced by a mass weight rather than an aerodynamic area" }
+    ],
+    "correct": "a",
+    "explanation": "A normally balanced control needs some pilot force to hold any deflection away from neutral; an overbalanced one has so much aerodynamic assistance that, past a certain deflection, the airflow itself tends to drive the surface further in the same direction — an unstable, dangerous control-force characteristic that designers deliberately avoid.",
+    "tags": ["control", "aerodynamic-balance", "overbalance"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0016",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Geared Tab",
+    "question": "A \"geared\" tab, distinct from a servo tab the pilot moves directly, is one that:",
+    "options": [
+      { "id": "a", "text": "Is mechanically linked to move automatically, by a fixed ratio, opposite to the main surface as it deflects, purely to assist and balance the main surface's own movement" },
+      { "id": "b", "text": "Is the pilot's sole means of moving the main control surface, which is otherwise unconnected to the cockpit controls" },
+      { "id": "c", "text": "Only moves when the autopilot is engaged" },
+      { "id": "d", "text": "Has no mechanical connection to the main control surface whatsoever" }
+    ],
+    "correct": "a",
+    "explanation": "A geared tab is linked through gearing to deflect automatically, by a set ratio, opposite to the main surface whenever that surface moves — an aerodynamic balance aid built into the control run itself, rather than a separate control the pilot operates directly the way a servo tab is used.",
+    "tags": ["control", "geared-tab"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0017",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Internal (Shielded) Balance",
+    "question": "An \"internal\" (or shielded) aerodynamic balance achieves the same purpose as a horn balance, but:",
+    "options": [
+      { "id": "a", "text": "By enclosing a balance area within the wing or tail structure, sealed from the external slipstream, using the pressure difference across it to assist movement without an external protrusion" },
+      { "id": "b", "text": "By adding a visible external horn projecting ahead of the hinge line" },
+      { "id": "c", "text": "By adding weight ahead of the hinge line" },
+      { "id": "d", "text": "By eliminating the need for any hinge at all" }
+    ],
+    "correct": "a",
+    "explanation": "Rather than an external horn exposed to the airflow, an internal balance encloses part of the control surface's forward area within the fixed structure, where a pressure difference generated as the surface deflects still produces an assisting moment — achieving aerodynamic balance without the drag or exposure of an external horn.",
+    "tags": ["control", "internal-balance"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0018",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Control Surface Gap Sealing",
+    "question": "The narrow gap between a fixed surface (such as a wing or tailplane) and its hinged control surface is often sealed, mainly because an open gap:",
+    "options": [
+      { "id": "a", "text": "Lets air leak through from the high-pressure to the low-pressure side, reducing the control surface's effectiveness and sometimes producing buffet or noise" },
+      { "id": "b", "text": "Always increases control effectiveness if left open" },
+      { "id": "c", "text": "Has no aerodynamic significance whatsoever" },
+      { "id": "d", "text": "Is required to be open for the control to move at all" }
+    ],
+    "correct": "a",
+    "explanation": "An unsealed gap allows air to leak from the higher-pressure side of a deflected control surface to the lower-pressure side, undermining the pressure difference the surface is meant to create and reducing its effectiveness — which is why gaps are commonly closed with a flexible seal while still allowing free movement.",
+    "tags": ["control", "gap-seal"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0019",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Reversible vs Irreversible Systems",
+    "question": "A \"reversible\" flight control system, as commonly found on light aircraft, is one in which:",
+    "options": [
+      { "id": "a", "text": "Aerodynamic loads on the control surface are transmitted back through the cables or pushrods to the pilot's controls, giving natural feedback" },
+      { "id": "b", "text": "The control surface can be moved in either direction but never returns to neutral" },
+      { "id": "c", "text": "A hydraulic actuator isolates the pilot from all aerodynamic loads" },
+      { "id": "d", "text": "The aircraft has no control surfaces at all" }
+    ],
+    "correct": "a",
+    "explanation": "In a reversible system, the mechanical linkage between the control surface and the cockpit controls carries load in both directions, so aerodynamic forces on the surface are felt directly by the pilot — unlike an \"irreversible\" system (typically a powered, often hydraulic, actuator) that isolates the pilot from those loads and requires an artificial feel system instead.",
+    "tags": ["control", "reversible-controls"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0020",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Fly-By-Wire Normal Law",
+    "question": "Under a fly-by-wire aircraft's \"normal law\", flight control protections such as bank angle, load factor and angle-of-attack limiting typically:",
+    "options": [
+      { "id": "a", "text": "Prevent the pilot's control inputs from commanding the aircraft beyond a protected envelope, even with full control deflection" },
+      { "id": "b", "text": "Have no effect on what the pilot's inputs can command" },
+      { "id": "c", "text": "Only apply while the aircraft is on the ground" },
+      { "id": "d", "text": "Disable the flight controls entirely" }
+    ],
+    "correct": "a",
+    "explanation": "Normal law is the fly-by-wire control mode with the fullest set of protections active, translating pilot stick or column input into a flight computer command that is kept within limits such as maximum bank angle, load factor and angle of attack — so that even full, abrupt control input cannot command the aircraft outside its protected envelope under normal conditions.",
+    "tags": ["control", "fly-by-wire"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0021",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Fly-By-Wire Alternate/Direct Law",
+    "question": "If certain sensors or computers fail on a fly-by-wire aircraft, it may revert to an \"alternate\" or \"direct\" control law, in which:",
+    "options": [
+      { "id": "a", "text": "Some or all of the automatic envelope protections are reduced or removed, giving the pilot more direct authority but also more responsibility for staying within limits" },
+      { "id": "b", "text": "All flight controls are disabled entirely" },
+      { "id": "c", "text": "Protections become stronger than in normal law" },
+      { "id": "d", "text": "The aircraft can no longer be flown manually at all" }
+    ],
+    "correct": "a",
+    "explanation": "Alternate and direct law are reversionary modes used when the aircraft can no longer safely provide the full protections of normal law — control response becomes more directly tied to the pilot's input, with fewer or no automatic limits, meaning the pilot must exercise the judgement those protections would otherwise have provided.",
+    "tags": ["control", "fly-by-wire"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0022",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Ice and Control Effectiveness",
+    "question": "Ice accumulation on a control surface or its leading edge can affect flight controls by:",
+    "options": [
+      { "id": "a", "text": "Changing hinge moments, reducing aerodynamic effectiveness, and in severe cases risking a jam or an imbalance that could contribute to flutter" },
+      { "id": "b", "text": "Always making the control surface lighter and easier to move" },
+      { "id": "c", "text": "Having no effect on control surfaces, only on the wing" },
+      { "id": "d", "text": "Only affecting the trim tabs, never the primary control surface itself" }
+    ],
+    "correct": "a",
+    "explanation": "Ice changes the shape and weight distribution of a control surface, which can alter hinge moments and reduce aerodynamic effectiveness, restrict free movement, or in severe cases disturb the careful mass balance built into the surface — a genuine, multi-faceted hazard beyond simply adding weight.",
+    "tags": ["control", "icing"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0023",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Elevons",
+    "question": "On a tailless delta or flying-wing aircraft, \"elevons\" are trailing-edge surfaces that:",
+    "options": [
+      { "id": "a", "text": "Combine the functions of elevator and aileron — moving together for pitch control and differentially for roll control" },
+      { "id": "b", "text": "Provide yaw control only" },
+      { "id": "c", "text": "Are used exclusively as speed brakes" },
+      { "id": "d", "text": "Exist only on aircraft with a conventional separate tailplane" }
+    ],
+    "correct": "a",
+    "explanation": "With no separate tailplane to carry a dedicated elevator, a tailless design combines pitch and roll control into the same trailing-edge surfaces: deflecting both together produces a pitching moment, while deflecting them differentially produces a rolling moment, exactly as an elevator and ailerons would separately on a conventional aircraft.",
+    "tags": ["control", "elevons", "flying-wing"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0024",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Canard Pitch Control",
+    "question": "On a canard configuration, with a small lifting surface ahead of the main wing rather than a conventional aft tailplane, pitch control and trim are typically provided by generating:",
+    "options": [
+      { "id": "a", "text": "Lift on the canard surface itself, rather than the download a conventional aft tailplane typically provides" },
+      { "id": "b", "text": "Download on the canard, identical in principle to a conventional tail" },
+      { "id": "c", "text": "No aerodynamic force from the canard at all — it is purely decorative" },
+      { "id": "d", "text": "Thrust vectoring alone, with no aerodynamic surface involved" }
+    ],
+    "correct": "a",
+    "explanation": "Because it sits ahead of the center of gravity, a canard surface generally needs to produce upward lift, not the download a conventional aft tailplane typically provides, to create the pitching moment needed to trim and control the aircraft — one reason some canard designs can, in principle, add total lift rather than subtracting from it the way a conventional tail's download does.",
+    "tags": ["control", "canard"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0025",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Rudder Travel Limiter",
+    "question": "A rudder travel limiter, which reduces the maximum available rudder deflection as airspeed increases, exists mainly to:",
+    "options": [
+      { "id": "a", "text": "Prevent a full rudder deflection at high airspeed from generating loads on the fin and rear fuselage beyond their structural design limits" },
+      { "id": "b", "text": "Increase rudder authority at high speed" },
+      { "id": "c", "text": "Prevent the rudder from moving at all below a certain speed" },
+      { "id": "d", "text": "Improve fuel efficiency" }
+    ],
+    "correct": "a",
+    "explanation": "The sideforce a fully deflected rudder can generate rises with dynamic pressure, and at high airspeed a full, abrupt rudder deflection (or a rapid full reversal) could load the fin and rear fuselage structure beyond its design limits. A travel limiter progressively reduces the maximum available deflection as speed increases to keep those loads within safe bounds.",
+    "tags": ["control", "rudder-limiter"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0026",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Flutter Speed",
+    "question": "An aircraft's susceptibility to control surface flutter is closely tied to airspeed because:",
+    "options": [
+      { "id": "a", "text": "The aerodynamic energy available to drive a self-sustaining oscillation increases with dynamic pressure, so flutter tends to appear only above a certain critical speed" },
+      { "id": "b", "text": "Flutter is equally likely at any airspeed, including when the aircraft is stationary" },
+      { "id": "c", "text": "Flutter only occurs at very low airspeed" },
+      { "id": "d", "text": "Airspeed has no bearing on flutter risk at all" }
+    ],
+    "correct": "a",
+    "explanation": "Flutter is a self-sustaining aeroelastic oscillation fed by aerodynamic energy, and the amount of energy available from the airflow rises with dynamic pressure. Below a critical flutter speed for a given structure and mass balance, any disturbance damps out; above it, the same disturbance can grow instead — which is why flutter is treated as a speed-dependent structural limit.",
+    "tags": ["control", "flutter"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0027",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Effectiveness Loss Before Reversal",
+    "question": "As airspeed increases toward an aircraft's aileron reversal speed, aileron effectiveness (roll rate per unit of deflection):",
+    "options": [
+      { "id": "a", "text": "Typically declines gradually well before the reversal speed itself is reached, rather than staying constant right up to that point" },
+      { "id": "b", "text": "Remains perfectly constant right up to the exact reversal speed" },
+      { "id": "c", "text": "Increases steadily all the way to the reversal speed" },
+      { "id": "d", "text": "Has no relationship to wing flexibility at all" }
+    ],
+    "correct": "a",
+    "explanation": "Wing twist under aileron load grows progressively with dynamic pressure, so the aerodynamic twisting effect that eventually causes full reversal at a high enough speed already erodes aileron effectiveness at speeds well below that reversal point — a gradual decline rather than a sudden effect only at the reversal speed itself.",
+    "tags": ["control", "aileron-reversal"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0028",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Control Power",
+    "question": "For a given control surface deflection, a control surface's \"control power\" (the moment it generates on the aircraft) increases with:",
+    "options": [
+      { "id": "a", "text": "Higher dynamic pressure (broadly, higher indicated airspeed) and a larger control surface area or moment arm from the center of gravity" },
+      { "id": "b", "text": "Altitude alone, independent of airspeed" },
+      { "id": "c", "text": "Outside air temperature alone" },
+      { "id": "d", "text": "Nothing — control power is fixed regardless of speed or size" }
+    ],
+    "correct": "a",
+    "explanation": "The moment a deflected control surface generates depends on the aerodynamic force it produces (which rises with dynamic pressure, and hence broadly with indicated airspeed) multiplied by its distance from the aircraft's center of gravity — so a larger surface, a longer moment arm, or a higher indicated airspeed all increase control power for the same deflection angle.",
+    "tags": ["control", "control-power"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0029",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Actuator Redundancy",
+    "question": "Critical flight control surfaces on transport aircraft are often driven by more than one hydraulic actuator, mainly to:",
+    "options": [
+      { "id": "a", "text": "Provide redundancy, so the surface can still be moved if one hydraulic system or actuator fails" },
+      { "id": "b", "text": "Increase the surface's maximum deflection angle" },
+      { "id": "c", "text": "Reduce the aircraft's overall weight" },
+      { "id": "d", "text": "Eliminate the need for any mass balance" }
+    ],
+    "correct": "a",
+    "explanation": "Because a powered (irreversible) control system gives the pilot no mechanical fallback if its actuator fails, critical surfaces are typically driven by two or more independent actuators fed from separate hydraulic systems, so the loss of any single system or actuator still leaves the surface controllable.",
+    "tags": ["control", "redundancy"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0030",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Rudder Blanketing",
+    "question": "At certain angles of sideslip, an aircraft's rudder can lose some effectiveness because:",
+    "options": [
+      { "id": "a", "text": "The horizontal stabilizer or fuselage can blanket (shield) part of the fin and rudder from the oncoming airflow" },
+      { "id": "b", "text": "The rudder always becomes more effective as sideslip angle increases, with no limit" },
+      { "id": "c", "text": "Blanketing only affects the elevator, never the rudder" },
+      { "id": "d", "text": "It has nothing to do with the tailplane's position" }
+    ],
+    "correct": "a",
+    "explanation": "Depending on the tail's geometry, a large sideslip angle can place the horizontal stabilizer (or part of the fuselage) in a position that shields part of the fin and rudder from clean airflow, reducing the rudder's effectiveness right when a large sideslip may most need correcting — an important consideration in tail design and in spin recovery on some configurations.",
+    "tags": ["control", "rudder-blanketing"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0031",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Slipstream and Control Effectiveness",
+    "question": "On a propeller aircraft, the rudder and elevator often remain reasonably effective even at very low forward airspeed with high power applied, mainly because:",
+    "options": [
+      { "id": "a", "text": "The propeller's slipstream passes directly over the tail surfaces, providing dynamic pressure well beyond what the aircraft's own forward speed alone would give them" },
+      { "id": "b", "text": "Control surfaces are always equally effective regardless of any local airflow" },
+      { "id": "c", "text": "Low forward speed always increases control effectiveness" },
+      { "id": "d", "text": "The engine directly drives the control surfaces mechanically" }
+    ],
+    "correct": "a",
+    "explanation": "Because the propeller accelerates a column of air rearward over the fuselage and tail, the tail surfaces sitting in that slipstream see a dynamic pressure much higher than the aircraft's own forward airspeed alone would produce — which is why rudder and elevator authority at high power and low airspeed (as during a slow taxi or a tailwheel liftoff) is often better than the aircraft's raw forward speed would suggest.",
+    "tags": ["control", "slipstream"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0032",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Trim and Holding Force",
+    "question": "Once a control surface has been correctly trimmed for a given flight condition, the pilot needs to apply:",
+    "options": [
+      { "id": "a", "text": "Essentially no sustained holding force, even though the main control surface itself may still be significantly deflected" },
+      { "id": "b", "text": "The same holding force as before trimming, with no change at all" },
+      { "id": "c", "text": "More force than before trimming" },
+      { "id": "d", "text": "Force only in the opposite direction to the original out-of-trim force" }
+    ],
+    "correct": "a",
+    "explanation": "The trim tab's own aerodynamic force holds the main control surface at whatever deflection balances the aircraft, so once correctly trimmed the pilot's hands can be removed from the controls with no sustained holding force needed — the trim tab, not continuous pilot effort, is doing the work.",
+    "tags": ["control", "trim"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0033",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Control Effectiveness and Altitude",
+    "question": "At the same indicated (or calibrated) airspeed, an aircraft's control surface effectiveness at high altitude, compared with low altitude, is:",
+    "options": [
+      { "id": "a", "text": "Essentially unchanged, since indicated airspeed already reflects the dynamic pressure the controls actually respond to" },
+      { "id": "b", "text": "Always much lower at high altitude" },
+      { "id": "c", "text": "Always much higher at high altitude" },
+      { "id": "d", "text": "Undefined above 10,000 feet" }
+    ],
+    "correct": "a",
+    "explanation": "Because indicated (or calibrated) airspeed is derived from dynamic pressure, and control surface hinge moments and effectiveness depend on that same dynamic pressure, flying at the same indicated airspeed gives essentially the same control feel and effectiveness at high altitude as at low altitude, even though the true airspeed involved is quite different.",
+    "tags": ["control", "altitude"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0034",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Stabilator and Anti-Servo Tab",
+    "question": "A stabilator (all-moving tailplane) typically needs an anti-servo tab mainly because, without one, it would tend to be:",
+    "options": [
+      { "id": "a", "text": "Dangerously sensitive and lightly damped, given its large area and comparatively small natural aerodynamic resistance to movement" },
+      { "id": "b", "text": "Impossible to move by the pilot at all" },
+      { "id": "c", "text": "Unaffected by any change in speed" },
+      { "id": "d", "text": "Already perfectly damped with no assistance needed" }
+    ],
+    "correct": "a",
+    "explanation": "A stabilator's whole surface pivots as one large, comparatively low-drag unit, which can leave it feeling unnaturally light and overly sensitive to small control inputs. An anti-servo tab, deflecting with the stabilator to increase the force needed to move it, restores a more natural, better-damped control feel and reduces the risk of over-controlling in pitch.",
+    "tags": ["control", "stabilator"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0035",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Manual Reversion",
+    "question": "Some aircraft with powered flight controls are designed with a \"manual reversion\" capability, meaning that if hydraulic power is lost:",
+    "options": [
+      { "id": "a", "text": "The pilot can still move the control surfaces directly through cables or pushrods, though typically with much higher control forces than normal" },
+      { "id": "b", "text": "The aircraft becomes completely uncontrollable" },
+      { "id": "c", "text": "The autopilot automatically takes over with no pilot input" },
+      { "id": "d", "text": "Only the rudder remains controllable" }
+    ],
+    "correct": "a",
+    "explanation": "A manual reversion system retains a direct mechanical link, alongside the normal powered actuation, so that a total loss of hydraulic power still leaves the pilot able to fly the aircraft — at the cost of much higher control forces than the powered system would have required, since the pilot is now overcoming the full aerodynamic hinge moment unaided.",
+    "tags": ["control", "manual-reversion"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0036",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Jammed Control Backup",
+    "question": "If a primary flight control surface jams in flight, a possible fallback for maintaining some control of the aircraft is:",
+    "options": [
+      { "id": "a", "text": "Using pitch or roll trim, and differential engine thrust where available, to influence the aircraft's attitude indirectly" },
+      { "id": "b", "text": "There is never any alternative once a primary control has jammed" },
+      { "id": "c", "text": "Immediately shutting down all engines" },
+      { "id": "d", "text": "Relying solely on the landing gear for control" }
+    ],
+    "correct": "a",
+    "explanation": "With a jammed primary control, pitch or roll trim surfaces (which are still independently actuated) and, on a multi-engine aircraft, differential thrust between engines can both provide a degree of indirect attitude control — documented emergency techniques that have allowed otherwise crippled aircraft to be flown to a landing.",
+    "tags": ["control", "jammed-controls"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0037",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Distributed Mass Balance",
+    "question": "On some large control surfaces, mass balance weight is distributed along the span rather than concentrated at a single point, mainly to:",
+    "options": [
+      { "id": "a", "text": "Guard against both bending-related and torsional flutter modes, not just the simplest single-mode case a single concentrated weight would address" },
+      { "id": "b", "text": "Reduce the total weight added to the aircraft" },
+      { "id": "c", "text": "Make the control surface easier for the pilot to move" },
+      { "id": "d", "text": "Eliminate the need for any aerodynamic balance" }
+    ],
+    "correct": "a",
+    "explanation": "A long control surface can flutter in more than one mode — coupling with wing bending in one case, with torsion in another — and a single concentrated mass balance weight may only address the simplest of these. Distributing the balance mass along the span helps guard against multiple flutter modes rather than just one.",
+    "tags": ["control", "mass-balance", "flutter"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-CTRL-0038",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Primary",
+    "subtopic": "Control Surface Sealing at High Speed",
+    "question": "Maintaining a well-fitted, sealed gap around a control surface matters more, not less, as design speed increases, mainly because:",
+    "options": [
+      { "id": "a", "text": "The pressure difference driving leakage through an unsealed gap grows with dynamic pressure, so the effectiveness penalty from a poor seal becomes larger at higher speed" },
+      { "id": "b", "text": "Gap sealing is only relevant at very low airspeed" },
+      { "id": "c", "text": "A larger gap always improves control effectiveness at high speed" },
+      { "id": "d", "text": "Sealing has no relationship to speed at all" }
+    ],
+    "correct": "a",
+    "explanation": "Because the pressure difference across a deflected control surface rises with dynamic pressure, any leakage path through a poorly sealed gap becomes a proportionally larger loss of effectiveness at higher speed — which is why gap seals and their condition are specifically checked on faster aircraft.",
+    "tags": ["control", "gap-seal"],
+    "status": "published",
+    "version": 1
   }
 ]

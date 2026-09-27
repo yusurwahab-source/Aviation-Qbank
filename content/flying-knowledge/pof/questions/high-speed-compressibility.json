@@ -202,5 +202,437 @@
     "tags": ["high-speed", "speed-of-sound"],
     "status": "published",
     "version": 1
+  },
+  {
+    "id": "POF-MACH-0011",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Mach Meter Operation",
+    "question": "Unlike a simple airspeed indicator, which responds to dynamic pressure alone, a Mach meter is built to indicate Mach number directly by:",
+    "options": [
+      { "id": "a", "text": "Combining pitot (total) and static pressure in a way that reflects their ratio, which relates directly to Mach number, rather than their simple difference alone" },
+      { "id": "b", "text": "Measuring outside air temperature alone, with no pressure input" },
+      { "id": "c", "text": "Measuring engine RPM directly" },
+      { "id": "d", "text": "Having no functional difference from an ordinary airspeed indicator" }
+    ],
+    "correct": "a",
+    "explanation": "An airspeed indicator responds to the simple difference between pitot and static pressure (dynamic pressure). A Mach meter's mechanism instead responds to the ratio between them, which — given the compressible flow relationships involved — corresponds directly to Mach number, letting it display Mach independent of temperature or altitude.",
+    "tags": ["high-speed", "mach-meter"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0012",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Buffet Margin",
+    "question": "An aircraft's \"buffet margin\" at a given weight, altitude and Mach number is defined as:",
+    "options": [
+      { "id": "a", "text": "The additional load factor, in g, available above 1g before buffet (low-speed or high-speed) begins" },
+      { "id": "b", "text": "The difference between VNE and the current airspeed" },
+      { "id": "c", "text": "The distance remaining to the nearest airport" },
+      { "id": "d", "text": "A fixed number that never changes with weight or altitude" }
+    ],
+    "correct": "a",
+    "explanation": "Buffet margin expresses, in terms of load factor, how much manoeuvring room remains before the aircraft reaches either the low-speed (stall-related) or high-speed (Mach-related) buffet boundary — a practical, operationally tracked figure that shrinks as weight or altitude increases and expands as either decreases.",
+    "tags": ["high-speed", "buffet-margin"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0013",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Bank Angle and Buffet Onset",
+    "question": "At a constant weight and altitude, increasing bank angle in a turn moves an aircraft closer to high-speed (Mach) buffet mainly because:",
+    "options": [
+      { "id": "a", "text": "The increased load factor in the turn raises the lift coefficient required, which lowers the Mach number at which buffet begins" },
+      { "id": "b", "text": "Bank angle has no relationship to Mach buffet, only to stall buffet" },
+      { "id": "c", "text": "Turning always increases the critical Mach number" },
+      { "id": "d", "text": "Bank angle changes have no effect on required lift coefficient" }
+    ],
+    "correct": "a",
+    "explanation": "A steeper bank angle raises load factor, which raises the lift coefficient the wing must produce to maintain altitude. Since a higher lift coefficient lowers the critical (and buffet-onset) Mach number, a steep turn at cruise altitude can bring an aircraft measurably closer to high-speed buffet even with no change in weight or altitude.",
+    "tags": ["high-speed", "buffet-margin", "load-factor"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0014",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Weight, Altitude and Buffet Margin",
+    "question": "The smallest buffet margin for a given aircraft is generally found when it is:",
+    "options": [
+      { "id": "a", "text": "Heavy and at high altitude, since both factors independently raise the lift coefficient required and reduce the gap to both buffet boundaries" },
+      { "id": "b", "text": "Light and at low altitude, which always minimises buffet margin" },
+      { "id": "c", "text": "Unrelated to either weight or altitude" },
+      { "id": "d", "text": "Only affected by altitude, never by weight" }
+    ],
+    "correct": "a",
+    "explanation": "Both a heavier weight and a higher altitude independently push the required lift coefficient upward — weight because more lift is needed outright, altitude because thinner air needs a higher angle of attack for the same lift — so the two effects compound, which is exactly why a heavy aircraft at high altitude has the least buffet margin to work with.",
+    "tags": ["high-speed", "buffet-margin", "weight", "altitude"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0015",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Non-Standard Temperature",
+    "question": "On a day warmer than ISA standard temperature at a given altitude, for the same indicated Mach number, an aircraft's true airspeed will be:",
+    "options": [
+      { "id": "a", "text": "Higher than on a standard day, since warmer air has a higher local speed of sound" },
+      { "id": "b", "text": "Lower than on a standard day" },
+      { "id": "c", "text": "Exactly the same regardless of temperature" },
+      { "id": "d", "text": "Undefined on a non-standard day" }
+    ],
+    "correct": "a",
+    "explanation": "Because the speed of sound rises with temperature, a warmer-than-standard day means a higher local speed of sound at that altitude. Since true airspeed equals Mach number multiplied by the speed of sound, the same Mach number corresponds to a higher true airspeed on a warm day than it would on a standard or cold day.",
+    "tags": ["high-speed", "temperature"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0016",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Speed Regime Classification",
+    "question": "In terms of Mach number, \"transonic\" flight generally refers to the range:",
+    "options": [
+      { "id": "a", "text": "Roughly Mach 0.8 to 1.2, where both subsonic and locally supersonic flow can exist on the same aircraft at the same time" },
+      { "id": "b", "text": "Mach 5 and above" },
+      { "id": "c", "text": "Below Mach 0.3 only" },
+      { "id": "d", "text": "Exactly Mach 1.0, and no other value" }
+    ],
+    "correct": "a",
+    "explanation": "Transonic flight covers the range, roughly Mach 0.8 to 1.2, in which an aircraft's freestream speed is subsonic (or just supersonic) but local flow accelerated over parts of it can already be supersonic — the mixed-flow regime where shockwaves first appear, distinct from fully subsonic flight below it and fully supersonic flight above it.",
+    "tags": ["high-speed", "flight-regimes"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0017",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Compressibility and the ASI",
+    "question": "At high Mach number and altitude, a simple airspeed indicator calibrated assuming incompressible flow:",
+    "options": [
+      { "id": "a", "text": "Reads with a growing error that requires a compressibility correction to recover an accurate calibrated airspeed" },
+      { "id": "b", "text": "Remains perfectly accurate at any Mach number" },
+      { "id": "c", "text": "Stops working completely above Mach 0.5" },
+      { "id": "d", "text": "Only shows an error at low altitude, never at high altitude" }
+    ],
+    "correct": "a",
+    "explanation": "An airspeed indicator's basic calibration assumes incompressible flow, which becomes progressively less accurate as Mach number rises. At high Mach and altitude, this compressibility error becomes large enough that a correction (compressibility correction) is needed to recover an accurate calibrated airspeed from the raw indicated reading.",
+    "tags": ["high-speed", "airspeed-indicator"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0018",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Ram Rise",
+    "question": "\"Ram rise\" refers to the fact that at high Mach number, air brought to rest at a stagnation point (such as on a temperature probe) is:",
+    "options": [
+      { "id": "a", "text": "Heated significantly above the surrounding static air temperature, due to the compression involved in decelerating it" },
+      { "id": "b", "text": "Cooled well below the surrounding static air temperature" },
+      { "id": "c", "text": "Unaffected in temperature by being brought to rest" },
+      { "id": "d", "text": "Only relevant below Mach 0.3" }
+    ],
+    "correct": "a",
+    "explanation": "Decelerating fast-moving air to rest at a stagnation point compresses it, and that compression raises its temperature — a rise that grows significantly with Mach number. This \"ram rise\" is why a probe measuring temperature at a stagnation point reads meaningfully hotter than the surrounding static air at high speed.",
+    "tags": ["high-speed", "ram-rise", "temperature"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0019",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Total Air Temperature",
+    "question": "A Total Air Temperature (TAT) probe reads higher than the actual Static Air Temperature (SAT) at high Mach number, so flight computers:",
+    "options": [
+      { "id": "a", "text": "Apply a Mach-number-based correction to the TAT reading to derive the true static air temperature" },
+      { "id": "b", "text": "Simply ignore the difference at any speed" },
+      { "id": "c", "text": "Only use TAT and never need SAT for any calculation" },
+      { "id": "d", "text": "Assume TAT and SAT are always identical" }
+    ],
+    "correct": "a",
+    "explanation": "Because the ram rise between TAT and SAT grows with Mach number, an accurate static air temperature — needed for true airspeed and other performance calculations — is recovered from the TAT probe's reading by applying a correction based on the aircraft's current Mach number, not by assuming the two temperatures are the same.",
+    "tags": ["high-speed", "total-air-temperature"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0020",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Engine Inlet Diffusion",
+    "question": "At high flight Mach number, a jet engine's intake must slow the incoming air considerably before it reaches the compressor, mainly because:",
+    "options": [
+      { "id": "a", "text": "The compressor and combustion process are designed to work with air arriving at a much lower, subsonic internal speed than the aircraft's own flight speed" },
+      { "id": "b", "text": "Faster incoming air always improves compressor efficiency with no limit" },
+      { "id": "c", "text": "Intakes have no effect on the speed of air reaching the compressor" },
+      { "id": "d", "text": "Slowing incoming air is only relevant to propeller engines" }
+    ],
+    "correct": "a",
+    "explanation": "A conventional gas turbine's compressor and combustor are designed around air arriving at a comparatively low, subsonic internal speed. At high flight Mach number, the intake must diffuse (slow and pressurise) the fast-incoming air considerably before it reaches the compressor face, or the engine cannot work as designed.",
+    "tags": ["high-speed", "engine-intake"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0021",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Long-Range Cruise Mach",
+    "question": "Airlines often choose to cruise at a \"long-range cruise\" (LRC) Mach number that is:",
+    "options": [
+      { "id": "a", "text": "Slightly faster than the exact maximum-range Mach number, trading a small fuel penalty (commonly around 1%) for a worthwhile reduction in flight time" },
+      { "id": "b", "text": "Always identical to the exact maximum-range Mach number, with no trade-off involved" },
+      { "id": "c", "text": "Always faster than MMO" },
+      { "id": "d", "text": "Unrelated to fuel efficiency in any way" }
+    ],
+    "correct": "a",
+    "explanation": "Because the specific-range curve is quite flat near its peak, cruising a little faster than the exact maximum-range Mach number costs only a small fuel penalty — conventionally around 1% — while saving a worthwhile amount of flight time, which is why long-range cruise Mach, rather than the theoretical maximum-range Mach, is the commonly flown compromise.",
+    "tags": ["high-speed", "cruise-performance"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0022",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Suction Peak Movement",
+    "question": "As Mach number increases toward the critical Mach number, the point of maximum suction (peak negative pressure) on a wing's upper surface tends to:",
+    "options": [
+      { "id": "a", "text": "Shift aft along the chord as the local supersonic region grows" },
+      { "id": "b", "text": "Move forward all the way to the leading edge" },
+      { "id": "c", "text": "Disappear entirely" },
+      { "id": "d", "text": "Remain completely fixed regardless of Mach number" }
+    ],
+    "correct": "a",
+    "explanation": "As Mach number rises toward MCRIT, the region of locally accelerated, near-sonic flow over the upper surface grows and its associated pressure minimum moves aft along the chord — part of the changing pressure distribution that eventually leads to shock formation and the aft-shifting center of pressure behind Mach tuck.",
+    "tags": ["high-speed", "pressure-distribution"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0023",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Incompressible Flow Approximation",
+    "question": "As a rule of thumb used in basic aerodynamic analysis, compressibility effects are often considered negligible enough to treat airflow as incompressible:",
+    "options": [
+      { "id": "a", "text": "Below roughly Mach 0.3, with corrections becoming increasingly necessary above that" },
+      { "id": "b", "text": "At any Mach number up to Mach 1" },
+      { "id": "c", "text": "Only above Mach 2" },
+      { "id": "d", "text": "Compressibility is always negligible at every speed" }
+    ],
+    "correct": "a",
+    "explanation": "Below roughly Mach 0.3, density changes in the airflow around an aircraft are small enough that simple incompressible (Bernoulli-based) theory gives a good approximation. Above that threshold, compressibility effects grow increasingly significant, which is why more detailed, compressible-flow analysis becomes necessary at higher speed.",
+    "tags": ["high-speed", "compressibility"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0024",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Humidity and Speed of Sound",
+    "question": "Compared with the strong, well-known effect of temperature on the speed of sound, the effect of humidity is:",
+    "options": [
+      { "id": "a", "text": "Comparatively small, and generally considered negligible next to temperature's dominant effect" },
+      { "id": "b", "text": "Far larger than temperature's effect" },
+      { "id": "c", "text": "Exactly equal in magnitude to temperature's effect" },
+      { "id": "d", "text": "The only factor that affects the speed of sound at all" }
+    ],
+    "correct": "a",
+    "explanation": "While humidity does have a small, measurable effect on the speed of sound (moist air's slightly different composition changes it marginally), this effect is minor enough to be considered negligible compared with the strong, direct dependence of the speed of sound on air temperature, which is why speed-of-sound calculations are normally based on temperature alone.",
+    "tags": ["high-speed", "speed-of-sound", "humidity"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0025",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Indicated vs True Mach Number",
+    "question": "Similar to the distinction between indicated and calibrated airspeed, a Mach meter's raw reading can differ slightly from the aircraft's true Mach number because of:",
+    "options": [
+      { "id": "a", "text": "Position error in the pitot-static system, the same source of error that affects airspeed indication" },
+      { "id": "b", "text": "The Mach meter being entirely unaffected by any installation or position error" },
+      { "id": "c", "text": "Mach number having no possible source of measurement error" },
+      { "id": "d", "text": "Engine power setting alone" }
+    ],
+    "correct": "a",
+    "explanation": "Because a Mach meter derives its reading from the same pitot and static pressure sources as the airspeed indicator, it is subject to the same position error from imperfect sensor placement, meaning indicated Mach number can differ slightly from the aircraft's true Mach number, just as indicated airspeed differs from calibrated airspeed.",
+    "tags": ["high-speed", "mach-meter", "position-error"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0026",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Ram Effect on Jet Thrust",
+    "question": "As flight Mach number increases, a jet engine's intake compresses the incoming air before it even reaches the compressor — a \"ram effect\" that:",
+    "options": [
+      { "id": "a", "text": "Contributes additional pressure rise to the engine cycle, which can increase thrust up to a point as Mach number increases" },
+      { "id": "b", "text": "Always reduces engine thrust as speed increases" },
+      { "id": "c", "text": "Has no effect on the engine cycle whatsoever" },
+      { "id": "d", "text": "Only occurs on propeller engines, never on jets" }
+    ],
+    "correct": "a",
+    "explanation": "As an aircraft flies faster, the intake itself compresses (diffuses) the incoming air more before it reaches the compressor, contributing an additional pressure rise — a \"ram\" contribution to the overall engine cycle that can increase available thrust as Mach number rises, up to the point where other high-speed losses and limits begin to dominate.",
+    "tags": ["high-speed", "engine-performance"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0027",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Design Cruise Mach Margin",
+    "question": "An aircraft's design cruise Mach number is generally chosen to be:",
+    "options": [
+      { "id": "a", "text": "Somewhat below its critical Mach number, keeping a margin against buffet and the steep wave-drag rise during normal cruise operations" },
+      { "id": "b", "text": "Always exactly equal to its critical Mach number" },
+      { "id": "c", "text": "Always above MMO" },
+      { "id": "d", "text": "Unrelated to critical Mach number in any way" }
+    ],
+    "correct": "a",
+    "explanation": "Because approaching or exceeding the critical Mach number brings buffet and a steep rise in wave drag, an aircraft's normal design cruise Mach is deliberately set with a margin below its critical Mach number, keeping normal operations comfortably clear of both the drag penalty and buffet onset that lie beyond it.",
+    "tags": ["high-speed", "cruise-mach", "critical-mach"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0028",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Mach Number vs Dynamic Pressure",
+    "question": "Unlike calibrated airspeed, Mach number by itself does not directly indicate:",
+    "options": [
+      { "id": "a", "text": "The dynamic pressure (and therefore the aerodynamic/structural loads) the aircraft is experiencing" },
+      { "id": "b", "text": "The ratio of true airspeed to the speed of sound" },
+      { "id": "c", "text": "Anything at all about the aircraft's speed" },
+      { "id": "d", "text": "Whether the aircraft is flying subsonically or supersonically" }
+    ],
+    "correct": "a",
+    "explanation": "The same Mach number corresponds to very different dynamic pressures at different altitudes, since dynamic pressure depends on air density as well as speed. This is exactly why an aircraft needs both a structural/dynamic-pressure-based limit (VMO) and a separate, purely Mach-based aerodynamic limit (MMO) — one number alone cannot describe both kinds of limit.",
+    "tags": ["high-speed", "mach-number", "vmo-mmo"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0029",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "MMO's True Airspeed at Altitude",
+    "question": "For a fixed MMO value, the true airspeed it corresponds to, as altitude increases through the troposphere:",
+    "options": [
+      { "id": "a", "text": "Decreases, since the speed of sound itself falls with the falling temperature at altitude" },
+      { "id": "b", "text": "Increases steadily with altitude" },
+      { "id": "c", "text": "Remains exactly constant at every altitude" },
+      { "id": "d", "text": "Is undefined above the tropopause" }
+    ],
+    "correct": "a",
+    "explanation": "Because MMO is a fixed Mach number and the speed of sound falls as temperature drops through the troposphere, the true airspeed corresponding to that same MMO value also falls with increasing altitude, even though the Mach number limit itself never changes.",
+    "tags": ["high-speed", "mmo", "altitude"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0030",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Speed of Sound Above the Tropopause",
+    "question": "Above the tropopause, in the isothermal layer of the lower stratosphere, the speed of sound:",
+    "options": [
+      { "id": "a", "text": "Stops falling with altitude and remains essentially constant, since temperature itself is essentially constant there" },
+      { "id": "b", "text": "Continues falling at the same rate as in the troposphere" },
+      { "id": "c", "text": "Begins rising steadily with altitude" },
+      { "id": "d", "text": "Becomes undefined above the tropopause" }
+    ],
+    "correct": "a",
+    "explanation": "Because the speed of sound depends only on temperature, and the lower stratosphere's isothermal layer holds a essentially constant temperature with height, the speed of sound also levels off and stays essentially constant through that layer, unlike its steady fall through the troposphere below.",
+    "tags": ["high-speed", "speed-of-sound", "tropopause"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0031",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Compressibility and Lift Curve Slope",
+    "question": "As Mach number increases through the subsonic compressible range, below the critical Mach number, a wing's lift curve slope (lift coefficient change per degree of angle of attack) generally:",
+    "options": [
+      { "id": "a", "text": "Increases somewhat compared with its low-speed, incompressible value" },
+      { "id": "b", "text": "Decreases sharply toward zero" },
+      { "id": "c", "text": "Remains completely unaffected by Mach number below MCRIT" },
+      { "id": "d", "text": "Becomes negative" }
+    ],
+    "correct": "a",
+    "explanation": "Subsonic compressibility theory (the Prandtl-Glauert correction) shows that a wing's lift curve slope rises somewhat above its incompressible, low-speed value as Mach number increases through the subsonic range, right up until shock formation near and beyond the critical Mach number changes the picture entirely.",
+    "tags": ["high-speed", "lift-curve", "compressibility"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0032",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Drag Rise Before MCRIT",
+    "question": "For Mach numbers comfortably below an aircraft's critical Mach number, compressibility's contribution to total drag is:",
+    "options": [
+      { "id": "a", "text": "Negligible — the sharp wave-drag rise is specifically a phenomenon that begins at, and beyond, the critical Mach number" },
+      { "id": "b", "text": "Already the dominant source of drag at any subsonic speed" },
+      { "id": "c", "text": "Identical in magnitude to induced drag at every speed" },
+      { "id": "d", "text": "Impossible to define below MCRIT" }
+    ],
+    "correct": "a",
+    "explanation": "Wave drag specifically arises from the shockwaves that form once local airflow first reaches the speed of sound — a threshold defined by MCRIT. Comfortably below that Mach number, compressibility's contribution to total drag is negligible, which is exactly why the drag curve shows a distinct, sharp rise beginning at MCRIT rather than a gradual increase from very low Mach numbers.",
+    "tags": ["high-speed", "wave-drag", "critical-mach"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0033",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Mach Meter and Density",
+    "question": "Unlike a true airspeed indicator, which needs a separate air density (or altitude/temperature) input to compute its reading, a Mach meter:",
+    "options": [
+      { "id": "a", "text": "Can derive Mach number from pitot and static pressure alone, without needing a separate density input" },
+      { "id": "b", "text": "Requires exactly the same density input as a true airspeed indicator" },
+      { "id": "c", "text": "Cannot function without knowing the aircraft's weight" },
+      { "id": "d", "text": "Requires a separate temperature probe to function at all" }
+    ],
+    "correct": "a",
+    "explanation": "Mach number's relationship to the ratio of pitot and static pressure means a Mach meter's basic mechanism needs only those two pressures to compute its reading, without a separate density (or temperature/altitude) input the way a true airspeed indicator does — a genuine mechanical simplicity, even though other instruments like the TAT probe are still needed for other calculations.",
+    "tags": ["high-speed", "mach-meter"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-MACH-0034",
+    "subjectCode": "POF",
+    "topic": "High-Speed Flight: Compressibility",
+    "subtopic": "Mach Tuck Onset and MCRIT",
+    "question": "The onset of Mach tuck is tied most directly to:",
+    "options": [
+      { "id": "a", "text": "The aircraft's critical Mach number and the shockwave formation that follows it, an aerodynamic phenomenon rather than a structural speed limit" },
+      { "id": "b", "text": "VMO, a structural and control-related limit unrelated to Mach number" },
+      { "id": "c", "text": "The aircraft's weight alone, independent of Mach number" },
+      { "id": "d", "text": "Landing gear position" }
+    ],
+    "correct": "a",
+    "explanation": "Mach tuck arises from the shockwave formation and center-of-pressure shift that follow once an aircraft exceeds its critical Mach number — an aerodynamic, compressibility-driven phenomenon tied to MCRIT, not to VMO, which instead protects against unrelated structural and control limits that have little to do with Mach number as such.",
+    "tags": ["high-speed", "mach-tuck", "critical-mach"],
+    "status": "published",
+    "version": 1
   }
 ]

@@ -350,15 +350,16 @@ of it has been checked against a specific state's AIP or training syllabus.
 ## The POF bank (Flying Knowledge)
 
 The subject is **Principles of Flight**, the second subject in Flying
-Knowledge, added the same content-only way IFR was. 160 questions across
-fifteen topics, covering the full ATPL Principles of Flight syllabus rather
-than a thin slice of it: Basic Aerodynamics, Aerofoils and Lift Theory,
-Lift and Drag, Boundary Layer, Stalling, High-Lift Devices, Flight
-Controls: Primary, Flight Controls: Secondary and Trim, Longitudinal
-Stability, Lateral and Directional Stability, High-Speed Flight:
-Compressibility, High-Speed Flight: Shockwaves and Buffet, Propellers,
-Aeroplane Loads and Limitations, and Windshear and Atmospheric Effects —
-all published.
+Knowledge, added the same content-only way IFR was. 501 questions across
+fifteen topics, covering the full ATPL Principles of Flight syllabus in
+real depth rather than a thin slice of it: Basic Aerodynamics (35),
+Aerofoils and Lift Theory (32), Lift and Drag (38), Boundary Layer (28),
+Stalling (42), High-Lift Devices (30), Flight Controls: Primary (38),
+Flight Controls: Secondary and Trim (24), Longitudinal Stability (34),
+Lateral and Directional Stability (34), High-Speed Flight: Compressibility
+(34), High-Speed Flight: Shockwaves and Buffet (34), Propellers (40),
+Aeroplane Loads and Limitations (34), and Windshear and Atmospheric
+Effects (24) — all published.
 
 **Every question here was authored by the assistant, as general ATPL-level
 aerodynamics theory — not transcribed from any single textbook, syllabus or
