@@ -350,9 +350,9 @@ of it has been checked against a specific state's AIP or training syllabus.
 ## The POF bank (Flying Knowledge)
 
 The subject is **Principles of Flight**, the second subject in Flying
-Knowledge, added the same content-only way IFR was. 564 questions across
+Knowledge, added the same content-only way IFR was. 601 questions across
 fifteen topics today, all published: Basic Aerodynamics (65), Aerofoils and
-Lift Theory (65), Lift and Drag (38), Boundary Layer (28), Stalling (42),
+Lift Theory (65), Lift and Drag (75), Boundary Layer (28), Stalling (42),
 High-Lift Devices (30), Flight Controls: Primary (38), Flight Controls:
 Secondary and Trim (24), Longitudinal Stability (34), Lateral and
 Directional Stability (34), High-Speed Flight: Compressibility (34),
@@ -370,7 +370,7 @@ a definition to be recalled. The target is 1,000 questions:
 |---|---|---|---|---|
 | 01 | Basic Aerodynamics | `AERO` | 65 | **65 (rebuilt)** |
 | 02 | Aerofoils and Lift Theory | `AFOIL` | 65 | **65 (rebuilt)** |
-| 03 | Lift and Drag | `LIFT` | 75 | 38 |
+| 03 | Lift and Drag | `LIFT` | 75 | **75 (rebuilt)** |
 | 04 | Boundary Layer | `BL` | 55 | 28 |
 | 05 | Stalling | `STALL` | 85 | 42 |
 | 06 | High-Lift Devices | `HLD` | 60 | 30 |
@@ -383,17 +383,19 @@ a definition to be recalled. The target is 1,000 questions:
 | 13 | Propellers | `PROP` | 80 | 40 |
 | 14 | Aeroplane Loads and Limitations | `LOAD` | 70 | 34 |
 | 15 | Windshear and Atmospheric Effects | `WSHR` | 55 | 24 |
-| | | | **1,000** | **564** |
+| | | | **1,000** | **601** |
 
 A rebuilt section **replaces** its file rather than adding to it, and its
 new questions take **new ids** that continue after the old ones
-(`POF-AERO-0036` onward, `POF-AFOIL-0033` onward). The retired ids are never
+(`POF-AERO-0036` onward, `POF-AFOIL-0033` onward, `POF-LIFT-0039` onward). The retired ids are never
 reused for a different question: `attempts` keeps history by question id
 with no foreign key, so a reused id would silently attach an old answer to a
 new question. `db:seed` deletes the retired rows; the history survives.
 
-The correct letter in a rebuilt file is spread by a deterministic shuffle
-keyed on each question's id, not by hand.
+The correct letter in a rebuilt file is spread by a deterministic shuffle,
+not by hand: keyed on each question's id for sections 01–02, and from
+section 03 onward a balanced assignment (each letter within one of a
+quarter of the file), with the wrong options still shuffled per id.
 
 ### What the student sees never names a source
 
@@ -415,9 +417,10 @@ given to the IFR bank and the DA40's unsourced topics above.
 
 `public/pof-study-guide.html` is this bank's study guide (see
 `lib/study-guide.ts`): fifteen numbered sections matching the fifteen
-topics. Sections 01 and 02 are in the rebuilt form — governing equations,
-tables of computed values, two inline SVG graphs (a chordwise pressure
-distribution and lift curves by aspect ratio); sections 03–15 keep their
+topics. Sections 01–03 are in the rebuilt form — governing equations,
+tables of computed values, and inline SVG graphs computed from the
+equations they illustrate (chordwise pressure distribution, lift curves by
+aspect ratio, drag and power-required curves); sections 04–15 keep their
 earlier prose until they are rebuilt in turn.
 
 ## The B737 bank
