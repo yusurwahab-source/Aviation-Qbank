@@ -1,0 +1,263 @@
+[
+  {
+    "id": "DA42-PROP-0001",
+    "classCode": "DA42",
+    "topic": "Propeller",
+    "question": "What type of propeller is fitted to each engine of the DA 42 NG?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A hydraulically regulated, 3-bladed, constant-speed feathering propeller (mt-Propeller MTV-6-R-C-F)"
+      },
+      {
+        "id": "b",
+        "text": "A fixed-pitch, 2-bladed wooden propeller"
+      },
+      {
+        "id": "c",
+        "text": "An electrically regulated, 3-bladed, non-feathering propeller"
+      },
+      {
+        "id": "d",
+        "text": "A hydraulically regulated, 2-bladed feathering propeller"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.9.2 describes two mt-Propeller MTV-6-R-C-F / CF 190-69 hydraulically regulated, 3-bladed, constant-speed feathering propellers.",
+    "reference": "AFM 7.9.2",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PROP-0002",
+    "classCode": "DA42",
+    "topic": "Propeller",
+    "question": "What effect does INCREASING gearbox oil pressure to the propeller hub have on pitch and RPM?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Feathers the propeller immediately"
+      },
+      {
+        "id": "b",
+        "text": "Decreases pitch and increases RPM"
+      },
+      {
+        "id": "c",
+        "text": "Increases pitch and decreases RPM"
+      },
+      {
+        "id": "d",
+        "text": "Has no effect on pitch, only on RPM"
+      }
+    ],
+    "correct": "b",
+    "explanation": "AFM 7.9.2: increasing oil pressure decreases pitch and raises RPM; decreasing pressure increases pitch and lowers RPM.",
+    "reference": "AFM 7.9.2",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PROP-0003",
+    "classCode": "DA42",
+    "topic": "Propeller",
+    "question": "What is the function of the pressure accumulator in the propeller system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It stores fuel for emergency engine restart"
+      },
+      {
+        "id": "b",
+        "text": "It supplies backup electrical power to the ECU"
+      },
+      {
+        "id": "c",
+        "text": "It ensures adequate oil pressure is available even when gearbox oil pump feed decreases under negative acceleration"
+      },
+      {
+        "id": "d",
+        "text": "It cools the gearbox oil during high-power climbs"
+      }
+    ],
+    "correct": "c",
+    "explanation": "AFM 7.9.2 describes the nitrogen-oil pressure accumulator maintaining adequate propeller pitch control oil pressure during negative acceleration.",
+    "reference": "AFM 7.9.2",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PROP-0004",
+    "classCode": "DA42",
+    "topic": "Propeller",
+    "question": "What opens the electric valve at the pressure accumulator?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Setting the ALTERNATOR switch to ON"
+      },
+      {
+        "id": "b",
+        "text": "Pressing the ECU TEST button"
+      },
+      {
+        "id": "c",
+        "text": "Moving the VOTER switch to AUTO"
+      },
+      {
+        "id": "d",
+        "text": "Setting the ENGINE MASTER switch to ON"
+      }
+    ],
+    "correct": "d",
+    "explanation": "AFM 7.9.2: the accumulator's electric valve is controlled by the ENGINE MASTER switch — ON opens it, connecting it to the gearbox oil circuit.",
+    "reference": "AFM 7.9.2",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PROP-0005",
+    "classCode": "DA42",
+    "topic": "Propeller",
+    "question": "What happens to the propeller blades if the engine is shut down (ENGINE MASTER OFF) at a propeller speed BELOW 1300 RPM?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The propeller pitch remains below the start-lock position, and speed must be increased to feather correctly"
+      },
+      {
+        "id": "b",
+        "text": "The propeller feathers normally regardless of RPM"
+      },
+      {
+        "id": "c",
+        "text": "The propeller automatically unfeathers again"
+      },
+      {
+        "id": "d",
+        "text": "Nothing unusual happens — feathering always completes below 1300 RPM"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.9.2 cautions that feathering below 1300 RPM leaves the pitch below the start-lock position, requiring an RPM increase to correct it.",
+    "reference": "AFM 7.9.2",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PROP-0006",
+    "classCode": "DA42",
+    "topic": "Propeller",
+    "question": "During unfeathering, what supplies the initial oil pressure that moves the propeller blades to a low pitch position, before the gearbox oil pump takes over?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The turbocharger oil supply"
+      },
+      {
+        "id": "b",
+        "text": "The pressure accumulator"
+      },
+      {
+        "id": "c",
+        "text": "The ECU backup battery, via an electric actuator"
+      },
+      {
+        "id": "d",
+        "text": "The main engine oil pump"
+      }
+    ],
+    "correct": "b",
+    "explanation": "AFM 7.9.2: unfeathering opens the accumulator's electric valve, and its stored pressure moves the blades to low pitch until the gearbox oil pump takes over as the propeller starts turning.",
+    "reference": "AFM 7.9.2",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PROP-0007",
+    "classCode": "DA42",
+    "topic": "Propeller",
+    "question": "Why should ground operation at high RPM be avoided where possible?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It causes excessive ECU cycling between channels"
+      },
+      {
+        "id": "b",
+        "text": "It drains the ECU backup batteries"
+      },
+      {
+        "id": "c",
+        "text": "The wooden composite propeller blades could suffer stone damage"
+      },
+      {
+        "id": "d",
+        "text": "High RPM on the ground overheats the gearbox oil"
+      }
+    ],
+    "correct": "c",
+    "explanation": "AFM 7.9.2 recommends selecting a suitable ground-run site free of loose stones, since the blades could suffer stone damage at high RPM.",
+    "reference": "AFM 7.9.2",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PROP-0008",
+    "classCode": "DA42",
+    "topic": "Propeller",
+    "question": "What sets the propeller pitch according to the ECU's commands?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A manual cable directly from the power lever"
+      },
+      {
+        "id": "b",
+        "text": "The alternator field current"
+      },
+      {
+        "id": "c",
+        "text": "The VOTER switch position"
+      },
+      {
+        "id": "d",
+        "text": "An electro-mechanical actuator on the mt-Propeller P-877-16 governor"
+      }
+    ],
+    "correct": "d",
+    "explanation": "AFM 7.9.2: the ECU sets pitch via an electro-mechanical actuator on the P-877-16 governor valve, pumping gearbox oil into the propeller hub as needed.",
+    "reference": "AFM 7.9.2",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PROP-0009",
+    "classCode": "DA42",
+    "topic": "Propeller",
+    "question": "Is it ever permissible to move the propeller by hand while the ENGINE MASTER switch is OFF, immediately after operation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "No — remaining pressure in the injection system rail can cause serious personal injury"
+      },
+      {
+        "id": "b",
+        "text": "Yes, this is routine and safe once the engine has stopped"
+      },
+      {
+        "id": "c",
+        "text": "Yes, but only on the RH engine"
+      },
+      {
+        "id": "d",
+        "text": "Yes, provided the ALTERNATOR switch is also OFF"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 4A.6.1 warns never to move the propeller by hand with ENGINE MASTER ON, and not immediately after shutdown either, due to remaining injection rail pressure.",
+    "reference": "AFM 4A.6.1",
+    "status": "published",
+    "version": 1
+  }
+]

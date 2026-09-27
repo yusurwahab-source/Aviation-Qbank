@@ -82,9 +82,13 @@ the checkout link and the webhook.)
 
 The platform supports several aircraft, each with its own question bank, and
 each sits in one of two genuinely separate content trees — type rating or
-class rating — rather than one table with a "kind" column. Two aircraft
-exist today: the B737, a type rating, and the DA40, a class rating. Nothing
-in the code knows about either aircraft specifically, and nothing outside
+class rating — rather than one table with a "kind" column. Four aircraft
+exist today: the B737, a type rating, and the DA40, C152 and DA42 (a light
+twin, sitting under Class Rating with the other light aircraft precisely
+because the class/type split is about aircraft size, not engine count — see
+"there is no 'single engine' or 'multi engine' split" above), all three
+class ratings. Nothing in the code knows about any aircraft specifically,
+and nothing outside
 `db:seed`'s own sync knows that a table pair is "for" one tree rather than
 the other — see the note on `classRatings` in `db/schema.ts` for why the
 split runs all the way down rather than being folded into one.

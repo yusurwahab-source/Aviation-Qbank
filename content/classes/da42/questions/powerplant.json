@@ -1,0 +1,611 @@
+[
+  {
+    "id": "DA42-PWRP-0001",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "What type of engine is fitted to the DA 42 NG?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A liquid-cooled, four-cylinder, four-stroke inline diesel engine with common rail direct injection"
+      },
+      {
+        "id": "b",
+        "text": "An air-cooled, six-cylinder, horizontally opposed AVGAS engine"
+      },
+      {
+        "id": "c",
+        "text": "A liquid-cooled, six-cylinder, two-stroke inline engine"
+      },
+      {
+        "id": "d",
+        "text": "An air-cooled, four-cylinder rotary diesel engine"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.9.1 describes the Austro Engine E4-C as liquid-cooled, four-cylinder, four-stroke, inline, with common rail direct injection, wet sump lubrication and a turbocharger with intercooler.",
+    "reference": "AFM 7.9.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0002",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "What is the propeller speed reducing gear ratio?",
+    "options": [
+      {
+        "id": "a",
+        "text": "1:3.0"
+      },
+      {
+        "id": "b",
+        "text": "1:1.69"
+      },
+      {
+        "id": "c",
+        "text": "1:1.0"
+      },
+      {
+        "id": "d",
+        "text": "1:2.5"
+      }
+    ],
+    "correct": "b",
+    "explanation": "AFM 7.9.1 gives the propeller speed reducing gear ratio as 1:1.69.",
+    "reference": "AFM 7.9.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0003",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "What is the maximum power output of each engine, and at what RPM/conditions?",
+    "options": [
+      {
+        "id": "a",
+        "text": "123.5 kW at 2500 RPM, sea level, ISA"
+      },
+      {
+        "id": "b",
+        "text": "135 kW at 2300 RPM, sea level, ISA"
+      },
+      {
+        "id": "c",
+        "text": "123.5 kW (165.6 DIN-HP) at 2300 RPM, sea level, ISA"
+      },
+      {
+        "id": "d",
+        "text": "114 kW (152.3 DIN-HP) at 2300 RPM, sea level, ISA"
+      }
+    ],
+    "correct": "c",
+    "explanation": "AFM 7.9.1 gives maximum power as 123.5 kW (165.6 DIN-HP) at 2300 RPM at sea level and ISA; maximum continuous power is 113.6 kW (152.3 DIN-HP).",
+    "reference": "AFM 7.9.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0004",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "Where does each engine's ECU receive its electrical power from when both engines are at standstill?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The ECU backup battery only"
+      },
+      {
+        "id": "b",
+        "text": "External power only"
+      },
+      {
+        "id": "c",
+        "text": "It has no power source with both engines stopped"
+      },
+      {
+        "id": "d",
+        "text": "The battery"
+      }
+    ],
+    "correct": "d",
+    "explanation": "AFM 7.9.1: each ECU is normally powered by its engine's own generator when running, or by the battery when both engines are at standstill.",
+    "reference": "AFM 7.9.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0005",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "What must be switched ON before an engine can be cranked at all?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The ENGINE MASTER switch for that engine"
+      },
+      {
+        "id": "b",
+        "text": "The AVIONIC MASTER switch"
+      },
+      {
+        "id": "c",
+        "text": "The ALTERNATOR switch only"
+      },
+      {
+        "id": "d",
+        "text": "The VOTER switch"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.9.1/7.9.3: each engine can only be operated (cranked and run) with its own ENGINE MASTER switch ON.",
+    "reference": "AFM 7.9.1",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0006",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "What effect does moving the POWER lever forward to MAX have?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It engages the ECU TEST sequence"
+      },
+      {
+        "id": "b",
+        "text": "It sets full power (LOAD %)"
+      },
+      {
+        "id": "c",
+        "text": "It sets idle"
+      },
+      {
+        "id": "d",
+        "text": "It only adjusts propeller pitch, not power"
+      }
+    ],
+    "correct": "b",
+    "explanation": "AFM 7.9.3: each power lever sets the desired engine power LOAD (%); forward is MAX, rearward is IDLE.",
+    "reference": "AFM 7.9.3",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0007",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "Following a propeller governor failure, what maximum RPM should every effort be made not to exceed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "1975 RPM"
+      },
+      {
+        "id": "b",
+        "text": "2250 RPM"
+      },
+      {
+        "id": "c",
+        "text": "2300 RPM"
+      },
+      {
+        "id": "d",
+        "text": "2500 RPM"
+      }
+    ],
+    "correct": "c",
+    "explanation": "AFM 7.9.3 cautions that, following a governor failure, RPM should be adjusted with the power lever and every effort made not to exceed 2300 RPM.",
+    "reference": "AFM 7.9.3",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0008",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "What happens automatically if oil pressure to the propeller governor is lost?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The propeller locks at the current pitch"
+      },
+      {
+        "id": "b",
+        "text": "RPM increases uncontrollably toward overspeed"
+      },
+      {
+        "id": "c",
+        "text": "The affected ECU switches to manual mode"
+      },
+      {
+        "id": "d",
+        "text": "The propeller blades feather"
+      }
+    ],
+    "correct": "d",
+    "explanation": "AFM 7.9.3: a loss of governor oil pressure leads to feathering of the propeller blades, allowing the flight to continue per 3.12.3.",
+    "reference": "AFM 7.9.3",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0009",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "Turning the START key switch to the LEFT does what?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Starts the LH engine"
+      },
+      {
+        "id": "b",
+        "text": "Starts the RH engine"
+      },
+      {
+        "id": "c",
+        "text": "Starts both engines simultaneously"
+      },
+      {
+        "id": "d",
+        "text": "Tests both ECUs"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.9.3: turning the START key left starts the LH engine, and right starts the RH engine.",
+    "reference": "AFM 7.9.3",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0010",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "For normal operation, what position should both VOTER switches be set to?",
+    "options": [
+      {
+        "id": "a",
+        "text": "OFF"
+      },
+      {
+        "id": "b",
+        "text": "AUTO"
+      },
+      {
+        "id": "c",
+        "text": "ECU A"
+      },
+      {
+        "id": "d",
+        "text": "ECU B"
+      }
+    ],
+    "correct": "b",
+    "explanation": "AFM 7.9.3: for normal operation both VOTER switches are set to AUTO, letting each engine's ECU A or B control it automatically.",
+    "reference": "AFM 7.9.3",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0011",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "At what power lever position and RPM must the ECU TEST procedure be initiated?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Power lever at IDLE, RPM below 1000 exactly"
+      },
+      {
+        "id": "b",
+        "text": "Power lever at 50%, RPM below 1500"
+      },
+      {
+        "id": "c",
+        "text": "Power lever at IDLE, RPM below approximately 900"
+      },
+      {
+        "id": "d",
+        "text": "Power lever at MAX, RPM at 2300"
+      }
+    ],
+    "correct": "c",
+    "explanation": "AFM 7.9.3: the ECU self-test can only be started with the power lever at IDLE and RPM below approximately 900, and only on the ground.",
+    "reference": "AFM 7.9.3",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0012",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "What is the purpose of the ALTERNATE AIR lever?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It supplies backup electrical power to the ECUs"
+      },
+      {
+        "id": "b",
+        "text": "It opens a bypass around the turbocharger"
+      },
+      {
+        "id": "c",
+        "text": "It controls cabin heat independently of engine bleed air"
+      },
+      {
+        "id": "d",
+        "text": "It draws air from the engine compartment for both engines simultaneously, in case of icing or air filter blockage"
+      }
+    ],
+    "correct": "d",
+    "explanation": "AFM 7.9.3: the single ALTERNATE AIR lever serves both engines simultaneously, providing an alternate air source in case of icing or a blocked filter.",
+    "reference": "AFM 7.9.3",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0013",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "How is coolant temperature kept low during engine warm-up, before the radiator is activated?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A bypass around the radiator is in operation while coolant temperature is low"
+      },
+      {
+        "id": "b",
+        "text": "The intercooler routes air across the coolant expansion tank"
+      },
+      {
+        "id": "c",
+        "text": "The gearbox oil cooler pre-cools the coolant"
+      },
+      {
+        "id": "d",
+        "text": "There is no warm-up bypass; the radiator is always active"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.9.6: a bypass around the radiator operates at low coolant temperatures to allow quick engine warm-up; a thermostatic valve activates the radiator once the coolant reaches about 88 °C.",
+    "reference": "AFM 7.9.6",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0014",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "At approximately what coolant temperature does the thermostat valve activate the radiator?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Approximately 120 °C (248 °F)"
+      },
+      {
+        "id": "b",
+        "text": "Approximately 88 °C (190 °F)"
+      },
+      {
+        "id": "c",
+        "text": "Approximately 105 °C (221 °F)"
+      },
+      {
+        "id": "d",
+        "text": "Approximately 60 °C (140 °F)"
+      }
+    ],
+    "correct": "b",
+    "explanation": "AFM 7.9.6 states the radiator is activated by a thermostat valve at approximately 88 °C (190 °F).",
+    "reference": "AFM 7.9.6",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0015",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "How many separate oil systems does each engine have?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Three — engine, gearbox, and turbocharger"
+      },
+      {
+        "id": "b",
+        "text": "One system for lubrication, shared between both engines"
+      },
+      {
+        "id": "c",
+        "text": "Two — one for engine lubrication, one for the gearbox and propeller governor"
+      },
+      {
+        "id": "d",
+        "text": "One shared oil system for everything"
+      }
+    ],
+    "correct": "c",
+    "explanation": "AFM 7.9.7: each engine has two separate oil circuits — engine/turbocharger lubrication, and a second circuit lubricating the gearbox and serving the propeller governor.",
+    "reference": "AFM 7.9.7",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0016",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "How is engine oil quantity checked during the pre-flight inspection?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only via the G1000 MFD oil quantity page"
+      },
+      {
+        "id": "b",
+        "text": "With a sight glass on the exterior of the cowling"
+      },
+      {
+        "id": "c",
+        "text": "There is no way to check oil quantity before flight"
+      },
+      {
+        "id": "d",
+        "text": "With a dip-stick, through an inspection hole in the upper cowling"
+      }
+    ],
+    "correct": "d",
+    "explanation": "AFM 7.9.7 (and 4A.6.1) describe checking engine oil with a dip-stick through an inspection hole in the upper cowling; gearbox oil is checked visually through a separate inspection hole.",
+    "reference": "AFM 7.9.7",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0017",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "What component compresses intake air before it passes through the intercooler?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The compressor, driven by the turbine"
+      },
+      {
+        "id": "b",
+        "text": "The waste gate valve"
+      },
+      {
+        "id": "c",
+        "text": "The alternate air valve"
+      },
+      {
+        "id": "d",
+        "text": "The ECU metering valve"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.9.8: intake air is compressed by the turbine-driven compressor, then cooled in the intercooler to increase density and power.",
+    "reference": "AFM 7.9.8",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0018",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "What controls the position of the waste gate valve in the turbocharger system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A fixed mechanical spring with no active control"
+      },
+      {
+        "id": "b",
+        "text": "The ECU, based on a manifold pressure sensor behind the compressor"
+      },
+      {
+        "id": "c",
+        "text": "The pilot, via a dedicated waste-gate lever"
+      },
+      {
+        "id": "d",
+        "text": "The propeller governor"
+      }
+    ],
+    "correct": "b",
+    "explanation": "AFM 7.9.8: the ECU calculates the correct waste gate position from a manifold pressure sensor reading, preventing excessive manifold pressure at low density altitudes.",
+    "reference": "AFM 7.9.8",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0019",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "How is the fire detection system on each engine tested during the pre-flight inspection?",
+    "options": [
+      {
+        "id": "a",
+        "text": "There is no pre-flight self-test; it is checked only during maintenance"
+      },
+      {
+        "id": "b",
+        "text": "By manually heating the overheat detector with a hand-held device"
+      },
+      {
+        "id": "c",
+        "text": "By pushing the test button next to the gear selector switch, checking for an aural alert and fire warning message for LH and RH"
+      },
+      {
+        "id": "d",
+        "text": "By momentarily setting ENGINE MASTER OFF then back ON"
+      }
+    ],
+    "correct": "c",
+    "explanation": "AFM 7.9.9 (and 4A.6.1) describe testing the fire detection system with the test button beside the gear selector, confirming an aural alert and PFD fire warning for each engine.",
+    "reference": "AFM 7.9.9",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0020",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "Each engine's fire detection consists of what kind of sensor?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A smoke detector in the engine cowling"
+      },
+      {
+        "id": "b",
+        "text": "A CO2 concentration sensor"
+      },
+      {
+        "id": "c",
+        "text": "A vibration sensor tuned to combustion knock"
+      },
+      {
+        "id": "d",
+        "text": "An overheat detector in the hot area of the engine"
+      }
+    ],
+    "correct": "d",
+    "explanation": "AFM 7.9.9 describes an overheat detector per engine that closes an electric circuit above 250 °C (480 °F), triggering the fire warning.",
+    "reference": "AFM 7.9.9",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "DA42-PWRP-0021",
+    "classCode": "DA42",
+    "topic": "Powerplant",
+    "question": "What indications for the LH and RH engines are shown on the G1000 MFD, and how are they arranged?",
+    "options": [
+      {
+        "id": "a",
+        "text": "LH engine indications on the left side of the display, RH engine indications on the right"
+      },
+      {
+        "id": "b",
+        "text": "Both engines' data interleaved in a single combined column"
+      },
+      {
+        "id": "c",
+        "text": "RH engine on the left, LH engine on the right"
+      },
+      {
+        "id": "d",
+        "text": "Only the active (VOTER-selected) engine is shown at a time"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFM 7.9.4 states engine indications on the G1000 MFD are laid out with LH engine data on the left and RH engine data on the right, mirroring the airplane.",
+    "reference": "AFM 7.9.4",
+    "status": "published",
+    "version": 1
+  }
+]

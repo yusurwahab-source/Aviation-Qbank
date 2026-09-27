@@ -241,6 +241,87 @@ browser" reason the DA40 guide's own note gives. The C152 overview page links
 to it because `C152` is in `lib/study-guide.ts`'s small hand-kept set of
 codes, alongside `DA40`.
 
+## The DA42 bank
+
+The aircraft is the **Diamond DA 42 NG** — a four-seat, twin-engine composite
+trainer with two liquid-cooled Austro Engine E4-C diesels, retractable
+tricycle gear and full dual-engine redundancy (independent alternators,
+ECUs and fuel pumps per side). The third class rating, added the same
+content-only way the C152 already proved: `content/classes/da42/` alone, no
+application code touched. It is a light twin, not a large aircraft, so it
+sits under Class Rating like the DA40 and C152 — the class/type split is
+about aircraft size, not engine count; see the note on the three sections
+in `CLAUDE.md`.
+
+Every question was written directly from the **Diamond DA 42 NG Airplane
+Flight Manual, Doc. # 7.01.16-E, Revision 4**, read chapter by chapter
+(General, Operating Limitations, Emergency Procedures, Normal/Abnormal
+Operating Procedures, Performance, Mass and Balance, and Description of the
+Airplane and its Systems). Every question carries a `reference` naming the
+AFM chapter/section it came from (`AFM 2.4`, `AFM 3.7.3`, and so on), and
+every number was checked against the manual's own wording rather than
+invented. Several limits in this AFM depend on which Mandatory or Optional
+Design Change Advisory (MÄM/OÄM) is installed on a given airframe — maximum
+take-off mass is 1900 kg by default but 1999 kg with MÄM 42-678 installed,
+for instance. No question blends two configurations' numbers into one
+answer: a conditional question either names the configuration explicitly
+("without MÄM 42-678 installed…") or is built on the baseline figure alone,
+with the explanation noting that a different value applies under the other
+configuration.
+
+Because this is a twin, one topic exists here that neither the DA40 nor the
+C152 bank has: **One Engine Inoperative**, covering engine-failure
+recognition, troubleshooting, securing/feathering, restart windows, and
+landing or going around on one engine (AFM 3.6-3.9). `Avionics` and `Mass
+and Balance` are also new relative to the DA40's own ten topics — the DA42's
+AFM carries substantially more G1000/GFC 700-specific limitations than the
+DA40's, and Chapter 5 (Performance) and Chapter 6 (Mass and Balance) both
+have enough single-value, non-chart content (crosswind limits, fuel flow,
+climb rates, moment arms) to support a topic of their own here, unlike the
+DA40 bank which folded what little it had elsewhere.
+
+| File | Topic | Questions |
+|---|---|---|
+| `limitations.json` | Limitations | 82 |
+| `emergency-procedures.json` | Emergency Procedures | 32 |
+| `one-engine-inoperative.json` | One Engine Inoperative | 35 |
+| `normal-procedures.json` | Normal Procedures | 33 |
+| `abnormal-procedures.json` | Abnormal Procedures | 26 |
+| `powerplant.json` | Powerplant | 21 |
+| `propeller.json` | Propeller | 9 |
+| `fuel.json` | Fuel System | 18 |
+| `electrical.json` | Electrical | 27 |
+| `avionics.json` | Avionics | 20 |
+| `flight-controls.json` | Flight Controls | 10 |
+| `airframe.json` | Airframe | 17 |
+| `mass-balance.json` | Mass and Balance | 9 |
+| `performance.json` | Performance | 10 |
+
+349 questions, all published. `Limitations` draws on AFM Chapter 2,
+`Emergency Procedures` and `One Engine Inoperative` on Chapter 3,
+`Normal Procedures` and `Abnormal Procedures` on Chapters 4A and 4B,
+`Performance` on Chapter 5, `Mass and Balance` on Chapter 6, and the
+remaining seven topics on Chapter 7 (Description of the Airplane and its
+Systems).
+
+The correct answer is spread as evenly as each file's own count allows,
+using the same cycling technique as the DA40 and C152 banks: correct
+options were generated in a natural first position, then mechanically
+rotated through A, B, C and D in order of appearance, keeping the
+distractors' relative order around whichever position the correct answer
+landed on.
+
+A self-contained study guide covering the same fourteen topics, with the
+same AFM references, lives at `public/da42-study-guide.html`, in English —
+not under `content/`, for the same "nothing under `content/` is ever served
+to a browser" reason the DA40 guide's own note gives. It gives the
+one-engine-inoperative material its own diagrams — a twin-engine systems
+layout, an airspeed indicator marked with vMCA and vYSE, and a decision-flow
+diagram for the engine-failure procedure — since that is the single most
+safety-critical topic in a twin-engine AFM. The DA42 overview page links to
+it because `DA42` is in `lib/study-guide.ts`'s small hand-kept set of codes,
+alongside `DA40` and `C152`.
+
 ## The IFR bank (Flying Knowledge)
 
 The subject is **Instrument Flight Rules (IFR)**, the first subject in the
