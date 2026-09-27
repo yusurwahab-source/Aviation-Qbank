@@ -1,631 +1,1399 @@
 [
   {
-    "id": "POF-STABL-0001",
+    "id": "POF-STABL-0035",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Static Stability",
-    "question": "An aircraft is said to be \"statically stable\" about an axis if, when disturbed from equilibrium, it:",
+    "subtopic": "Definitions",
+    "question": "Static stability describes:",
     "options": [
-      { "id": "a", "text": "Immediately returns to its original attitude with no further oscillation" },
-      { "id": "b", "text": "Shows an initial tendency to move back toward its original equilibrium condition" },
-      { "id": "c", "text": "Continues to diverge further away from its original equilibrium condition" },
-      { "id": "d", "text": "Remains exactly where the disturbance left it, with no tendency to move either way" }
+      { "id": "a", "text": "The speed at which control is lost" },
+      { "id": "b", "text": "The maximum load factor" },
+      {
+        "id": "c",
+        "text": "The time history of the motion after a disturbance"
+      },
+      {
+        "id": "d",
+        "text": "The initial tendency after a disturbance to generate a moment back toward equilibrium"
+      }
     ],
-    "correct": "b",
-    "explanation": "Static stability describes only the initial tendency following a disturbance: a statically stable aircraft's forces and moments initially act to move it back toward equilibrium. Whether it actually gets there smoothly, oscillates, or overshoots is a separate question of dynamic stability.",
-    "tags": ["stability", "static-stability"],
+    "correct": "d",
+    "explanation": "Static: sign of the restoring moment. Dynamic: whether the subsequent motion converges. Static stability is necessary but not sufficient for dynamic stability.",
+    "tags": ["static-stability", "definitions"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0002",
+    "id": "POF-STABL-0036",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Center of Gravity",
-    "question": "Moving an aircraft's center of gravity further aft, toward the aft limit, generally has what effect on longitudinal stability?",
+    "subtopic": "Definitions",
+    "question": "An aircraft that is statically stable but dynamically unstable, after a disturbance:",
     "options": [
-      { "id": "a", "text": "It increases longitudinal stability, requiring larger elevator inputs" },
-      { "id": "b", "text": "It decreases longitudinal stability, and reduces the elevator authority needed to raise the nose" },
-      { "id": "c", "text": "It has no effect, since longitudinal stability depends only on tailplane area" },
-      { "id": "d", "text": "It changes the aircraft from statically stable in pitch to stable only at low speed" }
+      { "id": "a", "text": "Stays at the disturbed attitude" },
+      { "id": "b", "text": "Returns without overshoot" },
+      {
+        "id": "c",
+        "text": "Oscillates about the equilibrium with increasing amplitude"
+      },
+      { "id": "d", "text": "Diverges without oscillating" }
     ],
-    "correct": "b",
-    "explanation": "As the center of gravity moves aft, it moves closer to the aircraft's neutral point, shortening the stabilising moment arm the tailplane can generate. This reduces longitudinal static stability, makes the aircraft more sensitive to elevator input, and — beyond the aft limit — can make it unstable in pitch.",
-    "tags": ["stability", "center-of-gravity"],
+    "correct": "c",
+    "explanation": "A restoring moment with insufficient (negative) damping overshoots repeatedly with growing amplitude.",
+    "tags": ["dynamic-stability"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0003",
+    "id": "POF-STABL-0037",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Phugoid",
-    "question": "The \"phugoid\" oscillation is best described as:",
+    "subtopic": "Definitions",
+    "question": "Neutral static stability means that after a disturbance the aircraft:",
     "options": [
-      { "id": "a", "text": "A rapid, short-period oscillation in angle of attack with the airspeed remaining almost constant" },
+      { "id": "a", "text": "Returns to equilibrium" },
       {
         "id": "b",
-        "text": "A long-period oscillation in pitch attitude, airspeed and altitude, occurring at a nearly constant angle of attack"
+        "text": "Remains in the disturbed condition, with no restoring or diverging moment"
       },
-      { "id": "c", "text": "A purely lateral oscillation involving roll and yaw with no change in pitch" },
-      { "id": "d", "text": "An oscillation that only occurs when the aircraft is stalled" }
+      { "id": "c", "text": "Oscillates with constant amplitude" },
+      { "id": "d", "text": "Diverges" }
     ],
     "correct": "b",
-    "explanation": "The phugoid is a slow, long-period exchange between kinetic and potential energy: the nose rises and speed falls, then the nose drops and speed rises, repeating over tens of seconds, while angle of attack stays nearly constant throughout. This is distinct from the short-period pitch oscillation, which involves rapid angle-of-attack changes at almost constant speed.",
-    "tags": ["stability", "dynamic-stability", "phugoid"],
+    "explanation": "dCm/dα = 0: no moment arises from the change in α.",
+    "tags": ["neutral-stability"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0004",
+    "id": "POF-STABL-0038",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Short-Period Oscillation",
-    "question": "The \"short-period\" pitch oscillation, unlike the phugoid, involves:",
+    "subtopic": "Static stability criterion",
+    "question": "Longitudinal static stability requires:",
     "options": [
-      { "id": "a", "text": "A slow trade between speed and altitude at a constant angle of attack" },
-      { "id": "b", "text": "A rapid change in angle of attack at essentially constant airspeed, usually heavily damped" },
-      { "id": "c", "text": "Only lateral motion, with no pitch change at all" },
-      { "id": "d", "text": "A motion that only occurs below the stalling speed" }
+      { "id": "a", "text": "dCL/dα < 0" },
+      { "id": "b", "text": "Cm = 0 at all α" },
+      {
+        "id": "c",
+        "text": "dCm/dα < 0 (equivalently dCm/dCL < 0) about the CG"
+      },
+      { "id": "d", "text": "dCm/dα > 0" }
     ],
-    "correct": "b",
-    "explanation": "The short-period mode is a fast oscillation in angle of attack and pitch rate that occurs over a couple of seconds at essentially constant airspeed, and it is normally strongly damped by the tailplane. It is the mode a pilot excites with a single, brief elevator pulse; the phugoid is the much slower mode that follows afterward.",
-    "tags": ["stability", "dynamic-stability", "short-period"],
+    "correct": "c",
+    "explanation": "An increase in α must produce a nose-down moment. Together with Cm = 0 at a positive CL, this also requires Cm0 > 0.",
+    "tags": ["pitch-stiffness", "static-stability"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0005",
+    "id": "POF-STABL-0039",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Neutral Point",
-    "question": "The \"neutral point\" of an aircraft is the center of gravity position at which:",
+    "subtopic": "Static stability criterion",
+    "question": "For an aircraft to be both stable and trimmable at positive lift, the Cm–CL line must have:",
     "options": [
-      { "id": "a", "text": "Longitudinal static stability is at its maximum" },
+      { "id": "a", "text": "A positive slope and a positive intercept" },
+      { "id": "b", "text": "A negative slope and a positive intercept Cm0" },
+      { "id": "c", "text": "Zero slope" },
+      { "id": "d", "text": "A negative slope and a negative intercept" }
+    ],
+    "correct": "b",
+    "explanation": "Trim: Cm = Cm0 + (dCm/dCL)·CL = 0 at CL > 0 → Cm0 > 0 when the slope is negative.",
+    "tags": ["trim", "cm0"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0040",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Trim and CG",
+    "question": "Cm0 = 0.05 and dCm/dCL = −0.10. The trimmed CL is:",
+    "options": [
+      { "id": "a", "text": "0.05" },
+      { "id": "b", "text": "0.50" },
+      { "id": "c", "text": "0.20" },
+      { "id": "d", "text": "2.00" }
+    ],
+    "correct": "b",
+    "explanation": "CL_trim = −Cm0/(dCm/dCL) = 0.05/0.10 = 0.50.",
+    "tags": ["trim", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0041",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Trim and CG",
+    "question": "With the same Cm0 = 0.05, the CG moves aft so that dCm/dCL = −0.05. The trimmed CL (fixed controls) becomes:",
+    "options": [
+      { "id": "a", "text": "0.25, higher speed" },
+      { "id": "b", "text": "Negative" },
+      { "id": "c", "text": "1.00, so the aircraft trims at a lower speed" },
+      { "id": "d", "text": "0.50, unchanged" }
+    ],
+    "correct": "c",
+    "explanation": "CL_trim = 0.05/0.05 = 1.0. A smaller static margin shifts the stick-fixed trim to higher CL; the elevator must be re-set to trim at the original speed.",
+    "tags": ["trim", "cg-position", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0042",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Neutral point and static margin",
+    "question": "The neutral point is:",
+    "options": [
+      { "id": "a", "text": "The centre of pressure at CLmax" },
       {
         "id": "b",
-        "text": "The aircraft has zero longitudinal static stability — moving the CG any further aft would make it unstable"
+        "text": "The CG position at which dCm/dCL = 0 (neutral static stability)"
       },
-      { "id": "c", "text": "The aircraft cannot be trimmed at all" },
-      { "id": "d", "text": "The elevator has no effect whatsoever" }
+      { "id": "c", "text": "The aerodynamic centre of the wing alone" },
+      { "id": "d", "text": "The CG position at the forward limit" }
     ],
     "correct": "b",
-    "explanation": "The neutral point is the theoretical center of gravity position at which the whole aircraft's pitching moment no longer changes with angle of attack — zero static stability. A center of gravity ahead of it gives positive stability; one behind it gives negative stability (instability), which is why the aft CG limit is always set forward of the neutral point.",
-    "tags": ["stability", "neutral-point"],
+    "explanation": "It is the aerodynamic centre of the complete aircraft. Stability requires the CG ahead of it.",
+    "tags": ["neutral-point"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0006",
+    "id": "POF-STABL-0043",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Static Margin",
-    "question": "The \"static margin\" is defined as the distance between:",
-    "options": [
-      { "id": "a", "text": "The wingtip and the fuselage centerline" },
-      {
-        "id": "b",
-        "text": "The center of gravity and the neutral point, expressed as a percentage of the mean aerodynamic chord — a larger margin means greater longitudinal stability"
-      },
-      { "id": "c", "text": "The leading edge and the trailing edge" },
-      { "id": "d", "text": "The aerodynamic center and the wingtip" }
-    ],
-    "correct": "b",
-    "explanation": "Static margin measures how far ahead of the neutral point the center of gravity sits, normalised to the mean aerodynamic chord so it can be compared between different aircraft sizes. The larger this margin, the more strongly the aircraft resists a pitch disturbance.",
-    "tags": ["stability", "static-margin"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-STABL-0007",
-    "subjectCode": "POF",
-    "topic": "Longitudinal Stability",
-    "subtopic": "Stick-Fixed vs Stick-Free",
-    "question": "\"Stick-free\" longitudinal stability differs from \"stick-fixed\" stability in that it accounts for:",
-    "options": [
-      { "id": "a", "text": "The aircraft flying with no pilot at all" },
-      {
-        "id": "b",
-        "text": "The elevator being free to float aerodynamically, with the controls released, rather than held rigidly in place — which can change the effective stability"
-      },
-      { "id": "c", "text": "Only ground handling, not flight" },
-      { "id": "d", "text": "The landing gear position" }
-    ],
-    "correct": "b",
-    "explanation": "\"Stick-fixed\" stability assumes the elevator is locked at a set position; \"stick-free\" stability instead lets it float freely and align itself aerodynamically with the local airflow, which changes the tailplane's effective contribution and can make stick-free stability somewhat different — usually slightly less — than stick-fixed stability.",
-    "tags": ["stability", "stick-free"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-STABL-0008",
-    "subjectCode": "POF",
-    "topic": "Longitudinal Stability",
-    "subtopic": "Tailplane Download",
-    "question": "In trimmed, straight-and-level flight, a conventional horizontal tailplane typically produces a small download. This download exists mainly to:",
-    "options": [
-      { "id": "a", "text": "Increase total lift beyond what the wing alone produces" },
-      { "id": "b", "text": "Balance the wing's own nose-down pitching moment, produced by its camber, about the center of gravity" },
-      { "id": "c", "text": "Reduce induced drag" },
-      { "id": "d", "text": "Increase the critical Mach number" }
-    ],
-    "correct": "b",
-    "explanation": "A cambered wing alone produces a nose-down pitching moment about its aerodynamic center. To balance the whole aircraft in trimmed flight, the tailplane usually generates a small download at a moment arm from the center of gravity, and that download's own moment offsets the wing's nose-down tendency.",
-    "tags": ["stability", "tailplane"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-STABL-0009",
-    "subjectCode": "POF",
-    "topic": "Longitudinal Stability",
-    "subtopic": "Forward CG and Elevator Authority",
-    "question": "Moving the center of gravity forward, within limits, generally:",
+    "subtopic": "Neutral point and static margin",
+    "question": "Static margin (stick fixed) is defined as:",
     "options": [
       {
         "id": "a",
-        "text": "Increases longitudinal stability but requires more elevator (up-elevator) authority to reach a high angle of attack, such as for a landing flare"
+        "text": "(h_n − h)·c̄, the distance of the CG ahead of the neutral point"
       },
-      { "id": "b", "text": "Decreases longitudinal stability and reduces elevator authority" },
-      { "id": "c", "text": "Has no effect on stability or elevator requirements" },
-      { "id": "d", "text": "Makes the aircraft impossible to trim" }
+      { "id": "b", "text": "The CG range" },
+      {
+        "id": "c",
+        "text": "The distance between the CG and the wing leading edge"
+      },
+      { "id": "d", "text": "The distance from the CG to the tail" }
     ],
     "correct": "a",
-    "explanation": "A forward CG lengthens the tailplane's stabilising moment arm and improves stability, but it also means the tailplane must work harder — deflecting the elevator further — to generate enough nose-up moment to reach a given angle of attack, which is why a very forward CG can, in the extreme, threaten enough elevator authority to flare for landing.",
-    "tags": ["stability", "center-of-gravity", "elevator"],
+    "explanation": "dCm/dCL = −(h_n − h) in chord fractions; larger static margin, stiffer pitch stability.",
+    "tags": ["static-margin"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0010",
+    "id": "POF-STABL-0044",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Longitudinal Dihedral",
-    "question": "The horizontal tailplane on many aircraft is set at a slightly lower angle of incidence than the wing — a difference sometimes called \"longitudinal dihedral\". Its main purpose is to help ensure that:",
+    "subtopic": "Neutral point and static margin",
+    "question": "h_ac = 0.25, V_H = 0.6, a_t/a = 0.7, dε/dα = 0.4 (η = 1). The stick-fixed neutral point is at:",
     "options": [
-      { "id": "a", "text": "The tailplane always stalls before the wing" },
+      { "id": "a", "text": "0.42 c̄" },
+      { "id": "b", "text": "0.25 c̄" },
+      { "id": "c", "text": "0.67 c̄" },
+      { "id": "d", "text": "0.50 c̄" }
+    ],
+    "correct": "d",
+    "explanation": "h_n = h_ac + V_H·(a_t/a)·(1 − dε/dα) = 0.25 + 0.6 × 0.7 × 0.6 = 0.502.",
+    "tags": ["neutral-point", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0045",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Neutral point and static margin",
+    "question": "With the neutral point at 0.50 c̄ and the CG at 0.30 c̄, dCm/dCL is:",
+    "options": [
+      { "id": "a", "text": "−0.30" },
+      { "id": "b", "text": "+0.20" },
+      { "id": "c", "text": "−0.50" },
+      { "id": "d", "text": "−0.20" }
+    ],
+    "correct": "d",
+    "explanation": "dCm/dCL = h − h_n = 0.30 − 0.50 = −0.20; static margin 20 % MAC.",
+    "tags": ["static-margin", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0046",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Neutral point and static margin",
+    "question": "Increasing tail volume from 0.6 to 0.8 (other values as before: h_ac 0.25, a_t/a 0.7, dε/dα 0.4) moves the neutral point to:",
+    "options": [
+      { "id": "a", "text": "0.42 c̄" },
+      { "id": "b", "text": "0.50 c̄" },
+      { "id": "c", "text": "0.59 c̄" },
+      { "id": "d", "text": "0.67 c̄" }
+    ],
+    "correct": "c",
+    "explanation": "h_n = 0.25 + 0.8 × 0.7 × 0.6 = 0.586. A larger or longer tail moves the neutral point aft, widening the permissible CG range.",
+    "tags": ["tail-volume", "neutral-point", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0047",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Neutral point and static margin",
+    "question": "Increasing the downwash gradient dε/dα from 0.4 to 0.5 (V_H 0.6, a_t/a 0.7) moves the neutral point from 0.50 c̄ to:",
+    "options": [
+      { "id": "a", "text": "0.46 c̄" },
+      { "id": "b", "text": "0.50 c̄" },
+      { "id": "c", "text": "0.54 c̄" },
+      { "id": "d", "text": "0.36 c̄" }
+    ],
+    "correct": "a",
+    "explanation": "0.25 + 0.6 × 0.7 × 0.5 = 0.46. Downwash reduces the tail's effective α change, weakening its stabilising contribution.",
+    "tags": ["downwash", "neutral-point", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0048",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Contributions",
+    "question": "The downwash gradient at the tail of an elliptically loaded wing is approximately 2a/(πA). With a = 5.03 per rad and A = 8, it is:",
+    "options": [
+      { "id": "a", "text": "0.10" },
+      { "id": "b", "text": "0.80" },
+      { "id": "c", "text": "0.40" },
+      { "id": "d", "text": "0.20" }
+    ],
+    "correct": "c",
+    "explanation": "dε/dα ≈ 2 × 5.03/(π × 8) = 0.40: the tail sees only 60 % of the α change seen by the wing.",
+    "tags": ["downwash-gradient", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0049",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Contributions",
+    "question": "The wing's contribution to longitudinal static stability is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Stabilising if its aerodynamic centre is aft of the CG, destabilising if ahead"
+      },
+      { "id": "b", "text": "Always destabilising" },
+      { "id": "c", "text": "Always stabilising" },
+      { "id": "d", "text": "Zero" }
+    ],
+    "correct": "a",
+    "explanation": "A lift increase at the wing's AC produces a nose-down moment only if the AC lies behind the CG.",
+    "tags": ["wing-contribution"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0050",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Contributions",
+    "question": "The fuselage and engine nacelles usually contribute to longitudinal stability:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Destabilisingly, moving the neutral point forward"
+      },
+      { "id": "b", "text": "Only in yaw" },
+      { "id": "c", "text": "Not at all" },
+      { "id": "d", "text": "Stabilisingly" }
+    ],
+    "correct": "a",
+    "explanation": "Bodies generate pitching moments that grow with α (Munk moment), mostly ahead of the CG.",
+    "tags": ["fuselage-contribution"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0051",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Contributions",
+    "question": "The horizontal tailplane's contribution is stabilising because:",
+    "options": [
+      { "id": "a", "text": "It is ahead of the CG" },
       {
         "id": "b",
-        "text": "The wing stalls before the tailplane loses effectiveness, since the tailplane operates at a correspondingly lower local angle of attack for a given aircraft attitude"
+        "text": "An increase in α raises tail lift acting well aft of the CG, producing a nose-down moment"
       },
-      { "id": "c", "text": "The tailplane produces more lift than the wing" },
-      { "id": "d", "text": "The tailplane always stalls at the same time as the wing" }
+      { "id": "c", "text": "It carries a download" },
+      { "id": "d", "text": "It reduces drag" }
     ],
     "correct": "b",
-    "explanation": "By setting the tailplane at a lower incidence than the wing, the tailplane operates at a correspondingly lower angle of attack for any given aircraft attitude — helping to ensure the main wing reaches its own critical angle of attack and stalls before the tailplane could lose effectiveness first, which would be far more dangerous.",
-    "tags": ["stability", "tailplane", "longitudinal-dihedral"],
+    "explanation": "ΔM = −a_t·Δα·(1 − dε/dα)·q_t·S_t·l_t: the long arm amplifies a modest force.",
+    "tags": ["tailplane", "stability"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0011",
+    "id": "POF-STABL-0052",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Stability vs Controllability",
-    "question": "\"Stability\" and \"controllability\" are related but distinct design requirements, in that a highly stable aircraft can end up:",
+    "subtopic": "Contributions",
+    "question": "A propeller ahead of the CG at high power and high α:",
     "options": [
-      { "id": "a", "text": "Sluggish and resistant to change, making it less responsive to deliberate control inputs — the two properties can trade off against each other" },
-      { "id": "b", "text": "Automatically more manoeuvrable as a direct result of being more stable" },
-      { "id": "c", "text": "Identical in every respect to a highly controllable one" },
-      { "id": "d", "text": "Unable to be trimmed at all" }
+      {
+        "id": "a",
+        "text": "Is destabilising, since its normal force grows with α ahead of the CG"
+      },
+      { "id": "b", "text": "Is stabilising" },
+      { "id": "c", "text": "Only affects directional stability" },
+      { "id": "d", "text": "Has no effect" }
     ],
     "correct": "a",
-    "explanation": "Stability describes an aircraft's tendency to resist and recover from a disturbance on its own; controllability describes how readily a pilot can deliberately change its flight condition. A very stable aircraft resists disturbances well but can also resist a pilot's own deliberate inputs, making the two genuinely separate — sometimes conflicting — design goals.",
-    "tags": ["stability", "controllability"],
+    "explanation": "The propeller disc acts like a fin in pitch; slipstream also changes tail downwash and dynamic pressure.",
+    "tags": ["propeller-effects", "stability"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0012",
+    "id": "POF-STABL-0053",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Thrust Line Effect",
-    "question": "An engine thrust line positioned above the center of gravity tends to produce, when power is increased:",
+    "subtopic": "Contributions",
+    "question": "Tail efficiency η = q_t/q. Reducing η from 1.0 to 0.8 (e.g. in the wing wake):",
+    "options": [
+      { "id": "a", "text": "Has no effect" },
+      {
+        "id": "b",
+        "text": "Reduces the tail's stabilising contribution by 20 %, moving the neutral point forward"
+      },
+      { "id": "c", "text": "Moves the neutral point aft" },
+      { "id": "d", "text": "Increases stability" }
+    ],
+    "correct": "b",
+    "explanation": "The tail term V_H·(a_t/a)(1 − dε/dα)·η scales with η.",
+    "tags": ["tail-efficiency", "neutral-point"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0054",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Trim and CG",
+    "question": "The CG lies at 11.2 m from datum; LEMAC is at 10 m and the MAC is 4 m. The CG in % MAC is:",
+    "options": [
+      { "id": "a", "text": "28 %" },
+      { "id": "b", "text": "11.2 %" },
+      { "id": "c", "text": "30 %" },
+      { "id": "d", "text": "12 %" }
+    ],
+    "correct": "c",
+    "explanation": "(11.2 − 10)/4 = 0.30.",
+    "tags": ["cg-percent-mac", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0055",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Trim and CG",
+    "question": "A 500 kg mass moves 10 m aft in a 50,000 kg aircraft with a 4 m MAC. The CG moves aft by:",
+    "options": [
+      { "id": "a", "text": "10 % MAC" },
+      { "id": "b", "text": "2.5 % MAC" },
+      { "id": "c", "text": "0.25 % MAC" },
+      { "id": "d", "text": "5 % MAC" }
+    ],
+    "correct": "b",
+    "explanation": "ΔCG = m·d/M = 500 × 10/50,000 = 0.10 m = 2.5 % of 4 m.",
+    "tags": ["cg-shift", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0056",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Trim and CG",
+    "question": "The aft CG limit is set primarily by:",
+    "options": [
+      { "id": "a", "text": "Stall speed" },
+      { "id": "b", "text": "Elevator authority to flare" },
+      {
+        "id": "c",
+        "text": "Minimum acceptable static and manoeuvre stability (stick-force gradients)"
+      },
+      { "id": "d", "text": "Tailplane structural strength" }
+    ],
+    "correct": "c",
+    "explanation": "As the CG approaches the neutral point, stick force per g and per knot fall toward zero; the aft limit keeps a margin ahead of the (stick-free) neutral and manoeuvre points.",
+    "tags": ["aft-cg-limit"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0057",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Trim and CG",
+    "question": "The forward CG limit is set primarily by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Elevator authority, especially for rotation and flare at low speed"
+      },
+      { "id": "b", "text": "Minimum stability" },
+      { "id": "c", "text": "Roll control" },
+      { "id": "d", "text": "Flutter" }
+    ],
+    "correct": "a",
+    "explanation": "A forward CG requires a large tail download; the elevator must still produce it at the lowest operating speeds and in ground effect.",
+    "tags": ["forward-cg-limit"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0058",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Trim and CG",
+    "question": "Moving the CG forward, compared with aft, results in:",
+    "options": [
+      { "id": "a", "text": "No change in stall speed" },
+      { "id": "b", "text": "Lower trim drag" },
+      {
+        "id": "c",
+        "text": "Lower stability, lighter controls, lower stall speed"
+      },
+      {
+        "id": "d",
+        "text": "Higher stability, heavier controls, higher stall speed and more trim drag"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Larger static margin stiffens pitch; larger download raises wing lift required (stall speed, induced drag).",
+    "tags": ["cg-position"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0059",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Stick-free stability",
+    "question": "The stick-free neutral point lies:",
+    "options": [
+      { "id": "a", "text": "Aft of the stick-fixed neutral point" },
+      { "id": "b", "text": "Forward of the stick-fixed neutral point" },
+      { "id": "c", "text": "At the wing leading edge" },
+      { "id": "d", "text": "At the same position" }
+    ],
+    "correct": "b",
+    "explanation": "A free elevator floats with the flow (trails), reducing the tail's effective lift slope by (1 − τ·b₁/b₂). The stick-free static margin is therefore smaller.",
+    "tags": ["stick-free", "neutral-point"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0060",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Stick-free stability",
+    "question": "Elevator floating reduces the tail's effective lift slope by the factor (1 − τ·b₁/b₂). With τ = 0.5 and b₁/b₂ = 0.6, the tail's stabilising contribution is reduced to:",
+    "options": [
+      { "id": "a", "text": "50 %" },
+      { "id": "b", "text": "70 % of the stick-fixed value" },
+      { "id": "c", "text": "60 %" },
+      { "id": "d", "text": "30 %" }
+    ],
+    "correct": "b",
+    "explanation": "1 − 0.5 × 0.6 = 0.70.",
+    "tags": ["stick-free", "floating", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0061",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Stick-free stability",
+    "question": "Stick-free stability is what the pilot perceives as:",
+    "options": [
+      { "id": "a", "text": "Stick force gradients with speed and load factor" },
+      { "id": "b", "text": "Engine response" },
+      { "id": "c", "text": "Roll rate" },
+      { "id": "d", "text": "Elevator position changes only" }
+    ],
+    "correct": "a",
+    "explanation": "Holding the stick fixed, stability appears as elevator deflection per unit CL; released (or via force), it appears as force per knot and per g.",
+    "tags": ["stick-free", "stick-force"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0062",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Stick-free stability",
+    "question": "A negative (reversed) stick-force gradient with speed would mean:",
+    "options": [
+      { "id": "a", "text": "Increased stall margin" },
+      {
+        "id": "b",
+        "text": "A pull force is needed to hold a speed above the trim speed — unacceptable handling"
+      },
+      { "id": "c", "text": "Neutral stability" },
+      { "id": "d", "text": "Normal stable behaviour" }
+    ],
+    "correct": "b",
+    "explanation": "Positive speed stability requires a push above trim speed and a pull below it.",
+    "tags": ["stick-force-gradient"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0063",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Manoeuvre stability",
+    "question": "Stick force per g decreases as the CG moves aft because:",
+    "options": [
+      { "id": "a", "text": "The elevator becomes larger" },
+      { "id": "b", "text": "The stall speed rises" },
+      { "id": "c", "text": "Pitch damping increases" },
+      {
+        "id": "d",
+        "text": "The manoeuvre margin (CG to manoeuvre point) shrinks"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Force per g ∝ manoeuvre margin; it becomes zero when the CG reaches the (stick-free) manoeuvre point.",
+    "tags": ["stick-force-per-g", "manoeuvre-margin"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0064",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Manoeuvre stability",
+    "question": "The manoeuvre point lies:",
+    "options": [
+      { "id": "a", "text": "At the wing aerodynamic centre" },
+      { "id": "b", "text": "At the same point" },
+      {
+        "id": "c",
+        "text": "Aft of the neutral point, because pitch damping in a pull-up adds stability"
+      },
+      { "id": "d", "text": "Forward of the neutral point" }
+    ],
+    "correct": "c",
+    "explanation": "In a pull-up the pitch rate increases the tail's α, adding a restoring moment beyond static stiffness.",
+    "tags": ["manoeuvre-point"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0065",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Manoeuvre stability",
+    "question": "Pitch damping from the tail depends on pitch rate q through the tail's angle-of-attack change:",
+    "options": [
+      { "id": "a", "text": "Δα_t = q/l_t" },
+      { "id": "b", "text": "Δα_t = q·V/l_t" },
+      { "id": "c", "text": "Δα_t = V/l_t" },
+      { "id": "d", "text": "Δα_t = q·l_t/V" }
+    ],
+    "correct": "d",
+    "explanation": "The tail moves vertically at q·l_t relative to the air; with V gives Δα_t. Damping moment ∝ ρ·V·S_t·a_t·l_t².",
+    "tags": ["pitch-damping"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0066",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Manoeuvre stability",
+    "question": "At the same EAS, pitch damping at high altitude compared with sea level is:",
+    "options": [
+      { "id": "a", "text": "Lower, in proportion to √σ" },
+      { "id": "b", "text": "Lower, in proportion to σ" },
+      { "id": "c", "text": "Higher" },
+      { "id": "d", "text": "Unchanged" }
+    ],
+    "correct": "a",
+    "explanation": "Damping ∝ ρ·V_T = ρ₀·σ·V_E/√σ = ρ₀·V_E·√σ. Stiffness ∝ q is unchanged, so oscillations are less damped aloft.",
+    "tags": ["pitch-damping", "altitude"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0067",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Manoeuvre stability",
+    "question": "An aircraft with a very small manoeuvre margin is prone to:",
+    "options": [
+      { "id": "a", "text": "Spiral divergence" },
+      { "id": "b", "text": "Excess stability" },
+      {
+        "id": "c",
+        "text": "Over-controlling and pilot-induced oscillation, with light forces per g"
+      },
+      { "id": "d", "text": "Heavy controls" }
+    ],
+    "correct": "c",
+    "explanation": "Small inputs produce large n; the pilot's correction lag can couple with the response.",
+    "tags": ["pio", "manoeuvre-margin"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0068",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Manoeuvre stability",
+    "question": "Elevator deflection per g increases when:",
+    "options": [
+      { "id": "a", "text": "The tail is enlarged" },
+      { "id": "b", "text": "The CG moves forward" },
+      { "id": "c", "text": "Weight decreases" },
+      { "id": "d", "text": "The CG moves aft" }
+    ],
+    "correct": "b",
+    "explanation": "More static margin requires a larger control moment to generate each increment of CL.",
+    "tags": ["elevator-per-g", "cg-position"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0069",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Dynamic stability",
+    "question": "The short-period pitch oscillation is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A rapid, well-damped oscillation in α and pitch rate at nearly constant speed"
+      },
+      { "id": "b", "text": "A lateral oscillation" },
+      { "id": "c", "text": "A divergent spiral" },
+      { "id": "d", "text": "A slow exchange of speed and height" }
+    ],
+    "correct": "a",
+    "explanation": "Period a few seconds; frequency set by pitch stiffness, damping by tail damping.",
+    "tags": ["short-period"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0070",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Dynamic stability",
+    "question": "The phugoid is:",
+    "options": [
+      { "id": "a", "text": "A rapid α oscillation" },
+      { "id": "b", "text": "A roll–yaw oscillation" },
+      { "id": "c", "text": "A spiral" },
+      {
+        "id": "d",
+        "text": "A long-period, lightly damped exchange of speed and height at nearly constant α"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Kinetic and potential energy exchange: speed rises in the dive, lift rises, the aircraft climbs, slows, and repeats.",
+    "tags": ["phugoid"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0071",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Dynamic stability",
+    "question": "The phugoid period is approximately π√2·V/g. At 100 m/s it is about:",
+    "options": [
+      { "id": "a", "text": "4.5 s" },
+      { "id": "b", "text": "90 s" },
+      { "id": "c", "text": "14 s" },
+      { "id": "d", "text": "45 s" }
+    ],
+    "correct": "d",
+    "explanation": "π × 1.414 × 100/9.81 = 45.3 s. At 200 m/s it doubles to about 91 s.",
+    "tags": ["phugoid", "period", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0072",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Dynamic stability",
+    "question": "The phugoid damping ratio is approximately 1/(√2·L/D). For L/D = 15 it is about:",
+    "options": [
+      { "id": "a", "text": "0.05" },
+      { "id": "b", "text": "0.5" },
+      { "id": "c", "text": "0.15" },
+      { "id": "d", "text": "0.005" }
+    ],
+    "correct": "a",
+    "explanation": "1/(1.414 × 15) = 0.047. Efficient aircraft have very lightly damped phugoids; the pilot or autopilot suppresses them easily because the period is long.",
+    "tags": ["phugoid", "damping", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0073",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Dynamic stability",
+    "question": "An aircraft whose short-period mode were poorly damped would be:",
+    "options": [
+      { "id": "a", "text": "Unaffected" },
+      {
+        "id": "b",
+        "text": "Difficult to control precisely, since pitch responds with overshoot at a frequency close to pilot inputs"
+      },
+      { "id": "c", "text": "More fuel efficient" },
+      { "id": "d", "text": "Only affected in cruise" }
+    ],
+    "correct": "b",
+    "explanation": "The short period lies near the pilot's control bandwidth; poor damping invites PIO. The phugoid, being slow, is easily corrected.",
+    "tags": ["short-period", "handling-qualities"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0074",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Dynamic stability",
+    "question": "Short-period frequency increases when:",
+    "options": [
+      { "id": "a", "text": "The CG moves aft" },
+      { "id": "b", "text": "Speed decreases" },
+      {
+        "id": "c",
+        "text": "Static margin (pitch stiffness) or dynamic pressure increases"
+      },
+      { "id": "d", "text": "Altitude increases at constant TAS" }
+    ],
+    "correct": "c",
+    "explanation": "ω ∝ √(−M_α/I_y), with M_α ∝ q·(static margin).",
+    "tags": ["short-period", "frequency"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0075",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Dynamic stability",
+    "question": "The phugoid period at a given TAS is:",
+    "options": [
+      { "id": "a", "text": "Proportional to altitude" },
+      {
+        "id": "b",
+        "text": "Largely independent of static margin and altitude, proportional to V"
+      },
+      { "id": "c", "text": "Constant at 10 s" },
+      { "id": "d", "text": "Proportional to static margin" }
+    ],
+    "correct": "b",
+    "explanation": "It is essentially a point-mass energy exchange: T ≈ π√2·V/g.",
+    "tags": ["phugoid"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0076",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Special cases",
+    "question": "As the CG moves aft of the neutral point:",
+    "options": [
+      { "id": "a", "text": "Nothing happens until the stall" },
+      {
+        "id": "b",
+        "text": "The aircraft becomes statically unstable in pitch: a disturbance in α grows"
+      },
+      { "id": "c", "text": "Stability increases" },
+      { "id": "d", "text": "Only stick forces change" }
+    ],
+    "correct": "b",
+    "explanation": "dCm/dCL > 0; the aircraft diverges from trim unless actively controlled (possible with fly-by-wire).",
+    "tags": ["unstable", "cg-position"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0077",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Special cases",
+    "question": "Swept-wing pitch-up at high α corresponds, on the Cm–α curve, to:",
+    "options": [
+      { "id": "a", "text": "A shift of Cm0 only" },
+      { "id": "b", "text": "A steeper negative slope" },
+      {
+        "id": "c",
+        "text": "A local change of slope from negative to positive"
+      },
+      { "id": "d", "text": "A constant slope" }
+    ],
+    "correct": "c",
+    "explanation": "Tip stall moves the wing lift forward; the aircraft becomes locally unstable and α increases further.",
+    "tags": ["pitch-up", "cm-alpha"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0078",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Special cases",
+    "question": "In the transonic range, rearward movement of the wing centre of pressure typically:",
+    "options": [
+      { "id": "a", "text": "Reduces stability" },
+      { "id": "b", "text": "Produces pitch-up only" },
+      { "id": "c", "text": "Has no effect" },
+      {
+        "id": "d",
+        "text": "Increases longitudinal static stability and produces a nose-down trim change (tuck under)"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The AC moves aft toward 50 % chord, increasing static margin; Cm0 changes nose-down, needing Mach trim.",
+    "tags": ["transonic", "tuck-under"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0079",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Special cases",
+    "question": "A canard configuration obtains longitudinal stability by:",
+    "options": [
+      { "id": "a", "text": "The foreplane alone" },
+      { "id": "b", "text": "Reflex camber on the foreplane" },
+      { "id": "c", "text": "A large fin" },
+      {
+        "id": "d",
+        "text": "Having the main wing's aerodynamic centre far enough aft of the CG to outweigh the destabilising foreplane"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The foreplane ahead of the CG is destabilising; the neutral point must still lie aft of the CG, provided by the wing.",
+    "tags": ["canard", "stability"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0080",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Special cases",
+    "question": "A tailless aircraft achieves Cm0 > 0 by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Reflexed sections or sweep with washout (tips at lower incidence aft of the CG)"
+      },
+      { "id": "b", "text": "Forward CG alone" },
+      { "id": "c", "text": "A large tailplane" },
+      { "id": "d", "text": "Positive camber only" }
+    ],
+    "correct": "a",
+    "explanation": "Swept, washed-out tips carry a download aft of the CG, producing the nose-up Cm0 needed to trim at positive CL.",
+    "tags": ["tailless", "cm0"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0081",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Static stability criterion",
+    "question": "A statically stable aircraft is disturbed nose-up (α increases). The initial response is:",
     "options": [
       { "id": "a", "text": "A nose-down pitching moment" },
       { "id": "b", "text": "A nose-up pitching moment" },
-      { "id": "c", "text": "No pitching moment at all, regardless of thrust line position" },
-      { "id": "d", "text": "A rolling moment only" }
+      { "id": "c", "text": "A roll" },
+      { "id": "d", "text": "No moment" }
     ],
     "correct": "a",
-    "explanation": "Thrust acting along a line above the center of gravity creates a moment that pitches the nose down as power is increased, since the thrust vector's line of action passes above, rather than through, the point the aircraft actually rotates about — the opposite effect to a thrust line below the CG, which pitches the nose up with increasing power.",
-    "tags": ["stability", "thrust-line"],
+    "explanation": "dCm/dα < 0: Δα > 0 gives ΔCm < 0.",
+    "tags": ["static-stability"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0013",
+    "id": "POF-STABL-0082",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "T-Tail Elevator Power",
-    "question": "A T-tail's elevator often provides particularly strong pitch authority at high angle of attack mainly because the tailplane, mounted atop the fin, is:",
+    "subtopic": "Static stability criterion",
+    "question": "Increasing the static margin affects the speed-trim relationship by:",
     "options": [
-      { "id": "a", "text": "Positioned clear of the wing's downwash, letting it operate in relatively undisturbed airflow across a wider range of aircraft attitudes" },
-      { "id": "b", "text": "Always smaller in area than a conventional low-mounted tailplane" },
-      { "id": "c", "text": "Unable to move at all" },
-      { "id": "d", "text": "Directly connected to the wing's own flaps" }
+      { "id": "a", "text": "Reducing elevator required" },
+      {
+        "id": "b",
+        "text": "Requiring larger elevator changes to change the trimmed speed"
+      },
+      { "id": "c", "text": "Making trimming unnecessary" },
+      { "id": "d", "text": "Reversing elevator direction" }
     ],
-    "correct": "a",
-    "explanation": "Mounted well above the fuselage and wing, a T-tail's tailplane largely avoids the wing's downwash field that a conventional low-set tailplane sits within, letting it operate in cleaner, more predictable airflow across a wider range of attitudes — part of why T-tails are often praised for strong elevator authority, right up until the wing's wake can blanket them entirely at a high enough angle of attack.",
-    "tags": ["stability", "t-tail"],
+    "correct": "b",
+    "explanation": "δ_e to trim ∝ (static margin)·CL: stiffer aircraft needs more control per ΔCL.",
+    "tags": ["elevator-to-trim", "static-margin"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0014",
+    "id": "POF-STABL-0083",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Tailplane Icing and Stability Margin",
-    "question": "Even before reaching a full tailplane stall, ice accumulation on the tailplane's leading edge can:",
+    "subtopic": "Trim and CG",
+    "question": "The elevator-angle-to-trim curve against speed for a stable aircraft shows:",
     "options": [
-      { "id": "a", "text": "Reduce the tailplane's lift (or download) margin and effectiveness, eroding longitudinal stability well before any dramatic event occurs" },
-      { "id": "b", "text": "Have absolutely no effect until the tailplane fully stalls" },
-      { "id": "c", "text": "Always increase the tailplane's effectiveness" },
-      { "id": "d", "text": "Only affect the wing, never the tailplane's own performance" }
+      { "id": "a", "text": "More down-elevator at lower speed" },
+      { "id": "b", "text": "Up-elevator at high speed only" },
+      { "id": "c", "text": "The same elevator at all speeds" },
+      { "id": "d", "text": "More up-elevator at lower speed (higher CL)" }
     ],
-    "correct": "a",
-    "explanation": "Well short of a full tailplane stall, ice on the tailplane's leading edge already degrades its aerodynamic performance and reduces its margin before losing effectiveness — a progressive erosion of longitudinal stability, not simply a binary condition that is fine until it suddenly is not.",
-    "tags": ["stability", "tailplane", "icing"],
+    "correct": "d",
+    "explanation": "Higher CL at low speed requires a larger nose-up control moment in a stable aircraft; the slope reflects stick-fixed stability.",
+    "tags": ["elevator-to-trim"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0015",
+    "id": "POF-STABL-0084",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "One Engine Inoperative Pitch Effect",
-    "question": "On a twin-engine aircraft with wing-mounted engines, losing one engine can have a secondary effect on longitudinal control because:",
+    "subtopic": "Trim and CG",
+    "question": "With the CG exactly at the stick-fixed neutral point, elevator angle to trim:",
     "options": [
-      { "id": "a", "text": "The loss of that engine's slipstream over the tail can locally reduce elevator effectiveness, on top of the more obvious yaw and roll effects of asymmetric thrust" },
-      { "id": "b", "text": "Engine failure has no effect on the tailplane in any way" },
-      { "id": "c", "text": "It always increases elevator effectiveness" },
-      { "id": "d", "text": "It only affects rudder, never elevator" }
+      { "id": "a", "text": "Does not vary with speed" },
+      { "id": "b", "text": "Reverses" },
+      { "id": "c", "text": "Becomes infinite" },
+      { "id": "d", "text": "Varies strongly with speed" }
     ],
     "correct": "a",
-    "explanation": "Beyond the well-known yawing and rolling consequences of asymmetric thrust, losing an engine also removes that engine's own contribution to slipstream-energised airflow reaching the tail, which can measurably affect elevator effectiveness alongside the primary directional control challenge.",
-    "tags": ["stability", "engine-failure"],
+    "explanation": "dδ_e/dCL ∝ static margin = 0: no change in elevator is needed to trim at a different CL.",
+    "tags": ["neutral-point", "elevator-to-trim"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0016",
+    "id": "POF-STABL-0085",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "In-Flight CG Shift",
-    "question": "An aircraft's center of gravity can shift rearward during a flight mainly due to:",
+    "subtopic": "Definitions",
+    "question": "Positive dynamic stability requires:",
     "options": [
-      { "id": "a", "text": "Fuel being burned from tanks positioned ahead of the CG, or passengers/cargo shifting aft" },
-      { "id": "b", "text": "The aircraft's structure permanently changing shape" },
-      { "id": "c", "text": "Increasing altitude alone, with no other cause" },
-      { "id": "d", "text": "Airspeed changes alone" }
+      { "id": "a", "text": "Negative static stability" },
+      { "id": "b", "text": "Only positive static stability" },
+      { "id": "c", "text": "Positive static stability and positive damping" },
+      { "id": "d", "text": "Only damping" }
     ],
-    "correct": "a",
-    "explanation": "As fuel is consumed from tanks that sit ahead of the center of gravity, or if cargo or passenger weight shifts aft during flight, the overall center of gravity moves progressively rearward — which is why loading calculations must account not just for the CG at takeoff, but for how it will move over the course of the flight.",
-    "tags": ["stability", "center-of-gravity"],
+    "correct": "c",
+    "explanation": "The restoring moment gives oscillation; damping makes it decay. A statically unstable mode diverges regardless of damping.",
+    "tags": ["dynamic-stability"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0017",
+    "id": "POF-STABL-0086",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Trim Drag",
-    "question": "\"Trim drag\" refers to the extra drag produced because:",
+    "subtopic": "Definitions",
+    "question": "A dynamically stable oscillation with a time to half amplitude of 2 s after a disturbance means:",
     "options": [
-      { "id": "a", "text": "Balancing the aircraft in trimmed flight usually requires a small deflection of the elevator (or tailplane), which itself adds a small amount of drag" },
-      { "id": "b", "text": "Trimming the aircraft always eliminates all drag" },
-      { "id": "c", "text": "Trim drag only exists on aircraft with no tailplane at all" },
-      { "id": "d", "text": "It is unrelated to the elevator or tailplane in any way" }
+      { "id": "a", "text": "It stops after 2 s" },
+      { "id": "b", "text": "Its period is 2 s" },
+      { "id": "c", "text": "The amplitude halves every 2 s" },
+      { "id": "d", "text": "It doubles every 2 s" }
     ],
-    "correct": "a",
-    "explanation": "Because trimmed flight usually requires the tailplane (whether through a fixed elevator deflection, a trim tab, or an adjustable stabilizer) to produce a specific balancing force, that surface's own deflection or setting adds a small drag penalty on top of the aircraft's basic drag — the extra drag cost of staying in balance rather than flying perfectly clean.",
-    "tags": ["stability", "trim-drag"],
+    "correct": "c",
+    "explanation": "Exponential decay: A(t) = A₀·e^(−ζωt); t½ = 0.693/(ζω).",
+    "tags": ["damping", "time-to-half"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0018",
+    "id": "POF-STABL-0087",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Relaxed Static Stability",
-    "question": "Some modern aircraft, particularly certain fighters, are deliberately designed with \"relaxed static stability\" — meaning:",
+    "subtopic": "Contributions",
+    "question": "A T-tail compared with a low tail, in normal flight:",
     "options": [
-      { "id": "a", "text": "The aircraft is built with reduced, neutral, or even slightly negative natural static stability, relying on a fly-by-wire flight control computer to maintain control and stability artificially, in exchange for greater manoeuvrability" },
-      { "id": "b", "text": "The aircraft has no flight controls at all" },
-      { "id": "c", "text": "It refers only to aircraft that are statically unstable in roll, never in pitch" },
-      { "id": "d", "text": "It means the aircraft cannot be trimmed" }
+      { "id": "a", "text": "Is destabilising" },
+      { "id": "b", "text": "Has no downwash effect at any α" },
+      { "id": "c", "text": "Always has lower efficiency" },
+      {
+        "id": "d",
+        "text": "Sits above most of the wing downwash and wake, often giving higher tail efficiency"
+      }
     ],
-    "correct": "a",
-    "explanation": "A naturally stable aircraft resists changing its flight condition, which works against rapid manoeuvring. By deliberately reducing (or even removing) natural static stability and having a fast-acting flight control computer provide artificial stability instead, a relaxed-stability design can be made far more manoeuvrable than natural aerodynamics alone would allow.",
-    "tags": ["stability", "relaxed-static-stability"],
+    "correct": "d",
+    "explanation": "At normal α the high tail sees less downwash; the penalty appears at high α, when it enters the wake (deep stall).",
+    "tags": ["t-tail", "downwash"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0019",
+    "id": "POF-STABL-0088",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Neutral Point at High Speed",
-    "question": "At high subsonic and transonic Mach numbers, an aircraft's neutral point tends to:",
+    "subtopic": "Contributions",
+    "question": "Wing sweep influences longitudinal stability through:",
     "options": [
-      { "id": "a", "text": "Shift aft, as compressibility and wing bending effects change the aerodynamic center's position, generally increasing static margin and stability at high speed" },
-      { "id": "b", "text": "Shift forward, reducing stability at high speed" },
-      { "id": "c", "text": "Remain in exactly the same position at any Mach number" },
-      { "id": "d", "text": "Move only with changes in weight, never with speed" }
+      { "id": "a", "text": "Changing the CG" },
+      { "id": "b", "text": "Removing downwash" },
+      {
+        "id": "c",
+        "text": "Aft movement of the wing aerodynamic centre, and tip-first stall tendencies at high α"
+      },
+      { "id": "d", "text": "Reducing tail efficiency only" }
     ],
-    "correct": "a",
-    "explanation": "Compressibility effects and aeroelastic wing bending both tend to shift the aerodynamic center — and with it the neutral point — aft as Mach number increases through the high subsonic and transonic range, generally increasing static margin and longitudinal stability at high speed compared with low-speed flight, for the same center of gravity.",
-    "tags": ["stability", "neutral-point", "high-speed"],
+    "correct": "c",
+    "explanation": "Sweep places outboard lift aft, stabilising at low α; tip stall at high α reverses this (pitch-up).",
+    "tags": ["sweep", "stability"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0020",
+    "id": "POF-STABL-0089",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Downwash and Tail Effectiveness",
-    "question": "A conventional, low-mounted tailplane sitting within the wing's downwash typically has its stabilising contribution:",
+    "subtopic": "Special cases",
+    "question": "Fly-by-wire aircraft can operate with relaxed static stability because:",
     "options": [
-      { "id": "a", "text": "Somewhat reduced compared with an identical tailplane operating in clean, undisturbed air, since downwash reduces its effective angle of attack change per degree of aircraft pitch" },
-      { "id": "b", "text": "Increased, since downwash always adds extra lift to the tailplane" },
-      { "id": "c", "text": "Completely unaffected by downwash of any kind" },
-      { "id": "d", "text": "Eliminated entirely by any amount of downwash" }
+      { "id": "a", "text": "They have no tail" },
+      { "id": "b", "text": "They cannot stall" },
+      {
+        "id": "c",
+        "text": "The flight control computer provides artificial stability, reducing trim drag and tail size"
+      },
+      { "id": "d", "text": "They fly only at high Mach" }
     ],
-    "correct": "a",
-    "explanation": "Downwash changes the local airflow direction the tailplane actually experiences, reducing how much its effective angle of attack changes for a given change in aircraft attitude compared with a tailplane in clean air — which somewhat reduces (without eliminating) its stabilising contribution, one reason the position of a low tailplane relative to the wing's wake is carefully considered in design.",
-    "tags": ["stability", "downwash", "tailplane"],
+    "correct": "c",
+    "explanation": "A CG near or aft of the neutral point reduces tail download (trim drag); the computer supplies the required damping and stiffness.",
+    "tags": ["relaxed-stability", "fly-by-wire"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0021",
+    "id": "POF-STABL-0090",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Downwash Change Near the Stall",
-    "question": "As a wing approaches its stalling angle of attack, the downwash reaching a conventional tailplane can change abruptly, which can:",
+    "subtopic": "Manoeuvre stability",
+    "question": "Stick force per g in a certificated aircraft must be:",
     "options": [
-      { "id": "a", "text": "Produce a sudden change in the tailplane's effective angle of attack and pitching contribution right around the stall, distinct from the wing's own loss of lift" },
-      { "id": "b", "text": "Have no effect on the tailplane whatsoever" },
-      { "id": "c", "text": "Only affect the ailerons, never the tailplane" },
-      { "id": "d", "text": "Always increase the tailplane's stabilising effect at the exact moment of the stall" }
+      { "id": "a", "text": "Zero" },
+      {
+        "id": "b",
+        "text": "Positive and not too low, so that a strong force is needed to reach limit load"
+      },
+      { "id": "c", "text": "Negative" },
+      { "id": "d", "text": "Independent of CG" }
     ],
-    "correct": "a",
-    "explanation": "The airflow pattern behind a wing changes significantly as it approaches and passes the stall, and the downwash reaching the tailplane can shift correspondingly — adding a further, sometimes abrupt, change in the tail's own pitching contribution right around the stall, on top of whatever the wing itself is doing.",
-    "tags": ["stability", "downwash", "stall"],
+    "correct": "b",
+    "explanation": "A minimum gradient protects against inadvertent overstress; a maximum keeps manoeuvring practicable.",
+    "tags": ["stick-force-per-g"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0022",
+    "id": "POF-STABL-0091",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Aft CG and Trim Drag",
-    "question": "Moving the center of gravity aft, within its approved range, generally reduces trim drag mainly because:",
+    "subtopic": "Manoeuvre stability",
+    "question": "If limit load is 2.5 g and the stick force per g is 20 N, the force to reach limit load from 1 g is:",
     "options": [
-      { "id": "a", "text": "A shorter moment arm to the tailplane means less tailplane download is needed to balance the aircraft, reducing the drag that download itself produces" },
-      { "id": "b", "text": "An aft CG always increases the tailplane download required" },
-      { "id": "c", "text": "Trim drag is completely unrelated to CG position" },
-      { "id": "d", "text": "Aft CG eliminates the need for a tailplane entirely" }
+      { "id": "a", "text": "30 N" },
+      { "id": "b", "text": "20 N" },
+      { "id": "c", "text": "70 N" },
+      { "id": "d", "text": "50 N" }
     ],
     "correct": "a",
-    "explanation": "With the CG further aft, the wing's own nose-down pitching moment needs a smaller balancing download from the tailplane, since the moment arm involved has changed. That smaller required download itself produces less drag — one reason airlines pay close attention to managing CG toward the aft part of its approved range for fuel efficiency.",
-    "tags": ["stability", "trim-drag", "center-of-gravity"],
+    "explanation": "Δn = 1.5 g × 20 N/g = 30 N.",
+    "tags": ["stick-force-per-g", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0023",
+    "id": "POF-STABL-0092",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Aft CG Limit Margin",
-    "question": "An aircraft's certified aft center of gravity limit is normally set somewhat ahead of the theoretical neutral point, rather than right at it, mainly to:",
+    "subtopic": "Trim and CG",
+    "question": "A heavier aircraft at the same CG (same static margin) trims at the same elevator setting at:",
     "options": [
-      { "id": "a", "text": "Provide a safety margin for CG measurement uncertainty, in-flight CG shift, and the difference between stick-fixed and stick-free stability, so a small error cannot push the aircraft into instability" },
-      { "id": "b", "text": "Make the aircraft as unstable as legally possible" },
-      { "id": "c", "text": "Match exactly the forward CG limit" },
-      { "id": "d", "text": "Have no relationship to the neutral point at all" }
+      {
+        "id": "a",
+        "text": "A higher EAS, since the same CL occurs at higher q"
+      },
+      { "id": "b", "text": "The same EAS" },
+      { "id": "c", "text": "Any EAS" },
+      { "id": "d", "text": "A lower EAS" }
     ],
     "correct": "a",
-    "explanation": "Because CG position is never known with perfect precision, can shift during flight, and stick-free stability can differ somewhat from stick-fixed, the certified aft limit is deliberately placed with a margin ahead of the theoretical neutral point — so ordinary uncertainty and in-flight variation cannot accidentally carry the aircraft into instability.",
-    "tags": ["stability", "center-of-gravity", "neutral-point"],
+    "explanation": "Stick-fixed trim fixes CL; V_E ∝ √(W/(S·CL)).",
+    "tags": ["trim", "weight"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0024",
+    "id": "POF-STABL-0093",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Testing Static Stability",
-    "question": "A classic flight test for static longitudinal stability involves:",
+    "subtopic": "Static stability criterion",
+    "question": "Stability in pitch is described mathematically by Cm_α. With Cm_α = −0.8 per rad, a 2° nose-up disturbance produces ΔCm of:",
     "options": [
-      { "id": "a", "text": "Trimming for a target speed, then displacing the control column a known amount to change speed, releasing it, and observing whether the aircraft tends to return toward the trimmed speed" },
-      { "id": "b", "text": "Measuring only the aircraft's maximum speed" },
-      { "id": "c", "text": "Checking fuel flow at a fixed power setting" },
-      { "id": "d", "text": "Observing the ailerons alone, with no reference to the elevator" }
+      { "id": "a", "text": "+0.028" },
+      { "id": "b", "text": "−1.6" },
+      { "id": "c", "text": "−0.008" },
+      { "id": "d", "text": "−0.028" }
     ],
-    "correct": "a",
-    "explanation": "A standard static stability check trims the aircraft at a chosen speed, then displaces it away from that trimmed speed with a control input before releasing the controls — a genuinely stable aircraft shows a clear, reasonable tendency to return toward the original trimmed speed on its own, which is exactly the initial-tendency definition static stability is built around.",
-    "tags": ["stability", "flight-test"],
+    "correct": "d",
+    "explanation": "ΔCm = −0.8 × (2/57.3) = −0.028 (nose-down).",
+    "tags": ["cm-alpha", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0025",
+    "id": "POF-STABL-0094",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Manoeuvre Point",
-    "question": "The \"manoeuvre point\", distinct from the static neutral point, is the center of gravity position at which:",
+    "subtopic": "Neutral point and static margin",
+    "question": "Moving the CG aft by 5 % MAC from a static margin of 15 %:",
     "options": [
-      { "id": "a", "text": "Stick-force-per-g in a manoeuvring (accelerated) condition falls to zero, accounting for pitch damping effects that the purely static neutral point does not include" },
-      { "id": "b", "text": "The aircraft has exactly zero static stability in level, unaccelerated flight" },
-      { "id": "c", "text": "The wing itself stalls" },
-      { "id": "d", "text": "The two terms are simply different names for exactly the same CG position" }
+      { "id": "a", "text": "Leaves the margin unchanged" },
+      {
+        "id": "b",
+        "text": "Reduces the static margin to 10 %, so dCm/dCL changes from −0.15 to −0.10"
+      },
+      { "id": "c", "text": "Makes the aircraft unstable" },
+      { "id": "d", "text": "Increases the margin to 20 %" }
     ],
-    "correct": "a",
-    "explanation": "The static neutral point is defined for steady, unaccelerated flight and does not account for the tailplane's pitch-damping contribution during a manoeuvre. The manoeuvre point extends the concept to accelerated (turning or pulling-g) flight, and is generally further aft than the static neutral point because pitch damping adds an extra stabilising effect once the aircraft is actually rotating.",
-    "tags": ["stability", "manoeuvre-point"],
+    "correct": "b",
+    "explanation": "SM = h_n − h. Stiffness falls in proportion.",
+    "tags": ["static-margin", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0026",
+    "id": "POF-STABL-0095",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Pitch Damping",
-    "question": "Beyond providing a static restoring moment, the tailplane also contributes \"pitch damping\", meaning it:",
+    "subtopic": "Stick-free stability",
+    "question": "Aerodynamic balancing of the elevator that reduces b₂ more than b₁:",
     "options": [
-      { "id": "a", "text": "Generates a moment that resists the rate of pitching itself, not just the aircraft's displacement from its trimmed attitude" },
-      { "id": "b", "text": "Only resists displacement, never the rate of rotation" },
-      { "id": "c", "text": "Has no relationship to pitch rate whatsoever" },
-      { "id": "d", "text": "Amplifies any pitching motion once it begins" }
+      {
+        "id": "a",
+        "text": "Increases the floating tendency and moves the stick-free neutral point forward"
+      },
+      { "id": "b", "text": "Moves the stick-free neutral point aft" },
+      { "id": "c", "text": "Removes floating" },
+      { "id": "d", "text": "Has no effect on stability" }
     ],
     "correct": "a",
-    "explanation": "As the aircraft pitches, the tailplane's own velocity through the air (from the rotation itself) changes its local angle of attack in a way that opposes the rotation — a genuine damping moment resisting pitch rate, distinct from and additional to the static restoring moment that resists simple displacement from trim.",
-    "tags": ["stability", "pitch-damping"],
+    "explanation": "The float angle −(b₁/b₂)·α grows as |b₂| shrinks, weakening the stick-free tail contribution.",
+    "tags": ["aerodynamic-balance", "stick-free"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0027",
+    "id": "POF-STABL-0096",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Swept-Wing Pitch-Up",
-    "question": "A classic swept-wing longitudinal stability problem, \"pitch-up\", occurs because at high angle of attack:",
+    "subtopic": "Stick-free stability",
+    "question": "A spring (bobweight or downspring) in the elevator circuit is used to:",
     "options": [
-      { "id": "a", "text": "The wingtips (which are also further aft on a swept wing) tend to stall first, shifting the wing's overall center of lift forward and inboard, producing an additional nose-up pitching moment" },
-      { "id": "b", "text": "The wing root always stalls before the tips on a swept wing" },
-      { "id": "c", "text": "Pitch-up only affects unswept, rectangular wings" },
-      { "id": "d", "text": "It has no relationship to which part of the wing stalls first" }
+      {
+        "id": "a",
+        "text": "Add a stick-force gradient, improving apparent stick-free stability"
+      },
+      { "id": "b", "text": "Increase roll rate" },
+      { "id": "c", "text": "Remove all stick forces" },
+      { "id": "d", "text": "Lock the elevator" }
     ],
     "correct": "a",
-    "explanation": "Because a swept wing's tips are both aft of the root and prone to stalling first, losing lift there shifts the wing's effective center of lift forward (and inboard), and that forward shift produces an additional nose-up pitching moment right when the aircraft is already at high angle of attack — a self-reinforcing tendency that swept-wing designs must specifically guard against.",
-    "tags": ["stability", "sweepback", "pitch-up"],
+    "explanation": "A downspring adds a speed-dependent force balance; a bobweight adds force proportional to n — both improve force cues without changing aerodynamic stability.",
+    "tags": ["downspring", "bobweight"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0028",
+    "id": "POF-STABL-0097",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Tailless Pitch Stability",
-    "question": "A tailless flying-wing aircraft, with no separate horizontal tailplane, typically achieves longitudinal stability instead through:",
+    "subtopic": "Dynamic stability",
+    "question": "The short-period mode is suppressed in practice by:",
     "options": [
-      { "id": "a", "text": "A wing planform and aerofoil section (often with reflexed or twisted camber) shaped so the wing itself provides the needed restoring moment" },
-      { "id": "b", "text": "An invisible tailplane with no physical structure" },
-      { "id": "c", "text": "Relying entirely on engine thrust for pitch stability" },
-      { "id": "d", "text": "It is aerodynamically impossible for a tailless aircraft to be stable" }
+      { "id": "a", "text": "Trim" },
+      { "id": "b", "text": "The yaw damper" },
+      {
+        "id": "c",
+        "text": "Natural pitch damping, augmented by a pitch damper on some aircraft"
+      },
+      { "id": "d", "text": "The phugoid" }
     ],
-    "correct": "a",
-    "explanation": "Without a separate tailplane to provide a stabilising moment, a flying wing must build the equivalent effect into the wing itself — commonly through washout and a reflexed (upward-curved) trailing edge or specific twist distribution — so the wing's own pitching moment characteristics provide the restoring tendency a conventional design gets from its tail.",
-    "tags": ["stability", "flying-wing"],
+    "correct": "c",
+    "explanation": "Tail damping ∝ ρ·V·l_t²; at high altitude augmentation may be needed.",
+    "tags": ["short-period", "pitch-damper"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0029",
+    "id": "POF-STABL-0098",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "CG and the Phugoid",
-    "question": "Moving the center of gravity aft, within the approved range, tends to affect the phugoid oscillation by:",
+    "subtopic": "Contributions",
+    "question": "Increasing tail arm at constant tail area:",
     "options": [
-      { "id": "a", "text": "Changing its period and damping somewhat, generally in the direction of reduced damping as stability margin decreases" },
-      { "id": "b", "text": "Having no effect on the phugoid at all" },
-      { "id": "c", "text": "Eliminating the phugoid mode entirely" },
-      { "id": "d", "text": "Only affecting the short-period mode, never the phugoid" }
+      { "id": "a", "text": "Reduces both" },
+      {
+        "id": "b",
+        "text": "Increases both static stability (V_H) and pitch damping (∝ l_t²)"
+      },
+      { "id": "c", "text": "Increases stability but reduces damping" },
+      { "id": "d", "text": "Has no effect" }
     ],
-    "correct": "a",
-    "explanation": "Because the phugoid is bound up with the aircraft's overall longitudinal stability characteristics, moving the CG aft — and reducing static margin — tends to change the phugoid's period and generally reduce its damping, consistent with the aircraft's reduced overall resistance to a pitch/speed disturbance.",
-    "tags": ["stability", "phugoid", "center-of-gravity"],
+    "correct": "b",
+    "explanation": "V_H ∝ l_t; damping ∝ l_t² — long tails give strong, well-damped pitch behaviour.",
+    "tags": ["tail-arm", "damping"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0030",
+    "id": "POF-STABL-0099",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Wing Loading and Short-Period Response",
-    "question": "A heavier, more highly wing-loaded aircraft generally shows a short-period pitch response that is:",
+    "subtopic": "Trim and CG",
+    "question": "A statically unstable aircraft trimmed at one speed, after a small speed disturbance, will:",
     "options": [
-      { "id": "a", "text": "Slower, since greater mass and pitch inertia resist a rapid change in angle of attack more than a lighter, less loaded aircraft" },
-      { "id": "b", "text": "Always faster than a lighter aircraft's" },
-      { "id": "c", "text": "Completely unaffected by weight or wing loading" },
-      { "id": "d", "text": "Only relevant to the phugoid, never the short-period mode" }
+      { "id": "a", "text": "Return to trim speed" },
+      { "id": "b", "text": "Stay at the new speed" },
+      { "id": "c", "text": "Oscillate with constant amplitude" },
+      { "id": "d", "text": "Diverge further from the trim speed" }
     ],
-    "correct": "a",
-    "explanation": "The short-period mode's frequency and response speed are influenced by the aircraft's pitch inertia as well as its aerodynamic damping. A heavier, more highly loaded aircraft generally has greater pitch inertia, giving it a slower, more sluggish short-period response than a lighter aircraft of similar aerodynamic design.",
-    "tags": ["stability", "short-period", "wing-loading"],
+    "correct": "d",
+    "explanation": "With dCm/dCL > 0, an increase in CL (lower speed) produces a nose-up moment, increasing CL further.",
+    "tags": ["unstable", "divergence"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0031",
+    "id": "POF-STABL-0100",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Canard Static Margin",
-    "question": "On a canard configuration, achieving positive longitudinal static stability generally requires the center of gravity to be positioned:",
+    "subtopic": "Dynamic stability",
+    "question": "The long-period phugoid is generally acceptable even if lightly damped or slightly divergent because:",
     "options": [
-      { "id": "a", "text": "Ahead of the whole aircraft's neutral point, exactly the same underlying requirement as a conventional aft-tail design, even though the canard itself sits ahead of the wing" },
-      { "id": "b", "text": "Behind the aircraft's neutral point" },
-      { "id": "c", "text": "Exactly on top of the canard surface itself" },
-      { "id": "d", "text": "Irrelevant to stability on a canard design" }
+      { "id": "a", "text": "It is always heavily damped" },
+      { "id": "b", "text": "It never occurs" },
+      { "id": "c", "text": "It affects only roll" },
+      {
+        "id": "d",
+        "text": "Its period is long enough for the pilot to correct it easily"
+      }
     ],
-    "correct": "a",
-    "explanation": "The fundamental static stability requirement — center of gravity ahead of the whole aircraft's neutral point — holds regardless of whether the stabilising surface sits ahead of or behind the wing; only the details of where that neutral point ends up, and how the canard and wing share the lift, differ between a canard and a conventional configuration.",
-    "tags": ["stability", "canard"],
+    "correct": "d",
+    "explanation": "Tens of seconds between cycles allow easy correction; handling criteria accept limited divergence with a long doubling time.",
+    "tags": ["phugoid", "handling-qualities"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0032",
+    "id": "POF-STABL-0101",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Stick Pusher",
-    "question": "A \"stick pusher\", fitted to some aircraft (particularly certain T-tail designs) as a stall protection device, works by:",
+    "subtopic": "Special cases",
+    "question": "Ice on the tailplane reduces longitudinal stability because:",
     "options": [
-      { "id": "a", "text": "Physically and forcefully moving the control column forward as angle of attack approaches a critical value, actively reducing angle of attack rather than merely warning the pilot" },
-      { "id": "b", "text": "Only sounding an aural alert, with no physical control input" },
-      { "id": "c", "text": "Permanently disabling the elevator once installed" },
-      { "id": "d", "text": "Increasing the aircraft's critical angle of attack" }
+      { "id": "a", "text": "It increases pitch damping" },
+      { "id": "b", "text": "It increases tail volume" },
+      {
+        "id": "c",
+        "text": "It lowers the tail's lift slope and stalling angle, reducing its stabilising contribution"
+      },
+      { "id": "d", "text": "It moves the CG forward" }
     ],
-    "correct": "a",
-    "explanation": "Unlike a simple warning device, a stick pusher actively intervenes: as angle of attack approaches a dangerous value, it drives the control column forward with real, sometimes considerable force, physically reducing angle of attack before a full stall (or, on some T-tail designs, a deep stall) develops — a protection against configurations where a full stall could otherwise be difficult or impossible to recover from.",
-    "tags": ["stability", "stick-pusher"],
+    "correct": "c",
+    "explanation": "The tail term a_t·V_H·(1 − dε/dα) falls; at high downwash (flaps) the tail may stall.",
+    "tags": ["icing", "tailplane"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0033",
+    "id": "POF-STABL-0102",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Stick Shaker vs Stick Pusher",
-    "question": "A \"stick shaker\" differs from a \"stick pusher\" in that the shaker:",
+    "subtopic": "Neutral point and static margin",
+    "question": "Static margin expressed as a length for c̄ = 4 m and SM = 12 % is:",
     "options": [
-      { "id": "a", "text": "Only vibrates the control column to warn the pilot of an approaching stall, without itself moving the column or changing angle of attack" },
-      { "id": "b", "text": "Actively forces the control column forward, exactly like a pusher" },
-      { "id": "c", "text": "Is only found on aircraft that also have a pusher, and never appears alone" },
-      { "id": "d", "text": "Increases engine power automatically" }
+      { "id": "a", "text": "0.33 m" },
+      { "id": "b", "text": "4.8 m" },
+      { "id": "c", "text": "0.12 m" },
+      { "id": "d", "text": "0.48 m" }
     ],
-    "correct": "a",
-    "explanation": "A stick shaker is purely a warning device, vibrating the control column to alert the pilot to an approaching stall while leaving the actual flying entirely to them, whereas a stick pusher goes a step further and physically intervenes to reduce angle of attack — the two are often fitted together, with the shaker warning first and the pusher acting only if angle of attack continues increasing.",
-    "tags": ["stability", "stick-shaker", "stick-pusher"],
+    "correct": "d",
+    "explanation": "0.12 × 4 = 0.48 m.",
+    "tags": ["static-margin", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-STABL-0034",
+    "id": "POF-STABL-0103",
     "subjectCode": "POF",
     "topic": "Longitudinal Stability",
-    "subtopic": "Relaxed Stability and Fuel Efficiency",
-    "question": "Beyond improving manoeuvrability, some modern transport aircraft are deliberately designed and operated toward the aft end of their CG range (a milder form of relaxed stability) mainly because:",
+    "subtopic": "Manoeuvre stability",
+    "question": "A bobweight in the elevator circuit increases stick force:",
     "options": [
-      { "id": "a", "text": "A more aft CG reduces the tailplane download — and the trim drag that comes with it — needed for balanced flight, improving fuel efficiency" },
-      { "id": "b", "text": "It has no effect on fuel efficiency at all" },
-      { "id": "c", "text": "It always makes the aircraft impossible to trim" },
-      { "id": "d", "text": "It only matters for fighter aircraft, never transport aircraft" }
+      { "id": "a", "text": "Independent of manoeuvre" },
+      { "id": "b", "text": "Only on the ground" },
+      { "id": "c", "text": "In proportion to speed only" },
+      {
+        "id": "d",
+        "text": "In proportion to load factor, since its weight acts at n·g"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The mass pulls the stick forward with force ∝ n, increasing force per g.",
+    "tags": ["bobweight", "stick-force-per-g"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-STABL-0104",
+    "subjectCode": "POF",
+    "topic": "Longitudinal Stability",
+    "subtopic": "Dynamic stability",
+    "question": "A pilot releasing the controls after a gust in a stable aircraft first observes:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A quick damped α oscillation (short period), then a slow speed–height oscillation (phugoid)"
+      },
+      { "id": "b", "text": "Only a spiral" },
+      { "id": "c", "text": "Only the phugoid" },
+      { "id": "d", "text": "A roll oscillation" }
     ],
     "correct": "a",
-    "explanation": "Managing the CG toward the aft part of its approved range reduces the tailplane download needed to balance the aircraft, and with it the trim drag that download produces — a genuine fuel-efficiency motivation, distinct from (though related to) the manoeuvrability motivation behind fighter aircraft's much more aggressive relaxed-stability designs.",
-    "tags": ["stability", "trim-drag", "center-of-gravity"],
+    "explanation": "The modes are well separated in frequency; the short period decays within seconds, the phugoid persists.",
+    "tags": ["short-period", "phugoid"],
     "status": "published",
     "version": 1
   }
