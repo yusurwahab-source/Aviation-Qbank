@@ -262,7 +262,7 @@
       <li><a href="#lift"><span class="n">03</span> Lift and Drag <span class="count">75</span></a></li>
       <li><a href="#bl"><span class="n">04</span> Boundary Layer <span class="count">55</span></a></li>
       <li><a href="#stall"><span class="n">05</span> Stalling <span class="count">85</span></a></li>
-      <li><a href="#hld"><span class="n">06</span> High-Lift Devices <span class="count">30</span></a></li>
+      <li><a href="#hld"><span class="n">06</span> High-Lift Devices <span class="count">60</span></a></li>
       <li><a href="#ctrl"><span class="n">07</span> Flight Controls: Primary <span class="count">38</span></a></li>
       <li><a href="#trim"><span class="n">08</span> Secondary Controls &amp; Trim <span class="count">24</span></a></li>
       <li><a href="#stabl"><span class="n">09</span> Longitudinal Stability <span class="count">34</span></a></li>
@@ -286,7 +286,7 @@
       </p>
       <div class="tags">
         <span class="tag">15 sections</span>
-        <span class="tag">671 linked questions</span>
+        <span class="tag">701 linked questions</span>
         <span class="tag">Equations · graphs · proportionalities</span>
         <span class="tag">Aircraft-independent</span>
       </div>
@@ -1103,31 +1103,107 @@
     <!-- 06 HIGH-LIFT DEVICES -->
     <!-- ============================================================ -->
     <section class="sec" id="hld">
-      <h2><span class="num">06</span> High-Lift Devices <span class="en">High Lift</span></h2>
+      <h2><span class="num">06</span> High-Lift Devices <span class="en">High-Lift</span></h2>
       <p class="lead">
-        Two families of device raise CLmax by different mechanisms — which
-        is why aircraft often carry both.
+        High-lift devices raise C<sub>L,max</sub> by adding camber, area and
+        boundary-layer energy, lowering stall, lift-off and approach speeds.
+        The costs are drag, pitching moment and, for trailing-edge devices,
+        a lower stalling angle.
       </p>
+
+      <h3 class="sub">Speed and energy scaling <span class="ref">6.1</span></h3>
+      <div class="eq">V<sub>S</sub> ∝ C<sub>L,max</sub><sup>−½</sup>·S<sup>−½</sup> &nbsp;&nbsp;&nbsp; E<sub>k</sub> ∝ V² ∝ 1/C<sub>L,max</sub></div>
       <div class="table-wrap">
       <table>
-        <thead><tr><th>Device</th><th>Location</th><th>Main effect</th></tr></thead>
+        <thead><tr><th>C<sub>L,max</sub> change</th><th class="num">V<sub>S</sub></th><th class="num">V² (energy, ground roll)</th></tr></thead>
         <tbody>
-          <tr><td>Plain / split flap</td><td>Trailing edge</td><td>Adds camber; split adds more drag</td></tr>
-          <tr><td>Slotted flap</td><td>Trailing edge</td><td>Slot re-energises boundary layer over the flap</td></tr>
-          <tr><td>Fowler flap</td><td>Trailing edge</td><td>Moves aft as it extends — adds area <em>and</em> camber</td></tr>
-          <tr><td>Slat / slot</td><td>Leading edge</td><td>Raises the critical angle of attack itself</td></tr>
-          <tr><td>Krueger flap</td><td>Leading edge</td><td>Hinged panel adding camber ahead of the wing</td></tr>
+          <tr><td>1.6 → 1.9 (take-off flap)</td><td class="num">×0.918</td><td class="num">×0.842</td></tr>
+          <tr><td>1.5 → 2.0 (slats)</td><td class="num">×0.866</td><td class="num">×0.750</td></tr>
+          <tr><td>1.5 → 2.4 (landing flap)</td><td class="num">×0.791</td><td class="num">×0.625</td></tr>
+          <tr><td>+30 %</td><td class="num">×0.877</td><td class="num">×0.769</td></tr>
+          <tr><td>Fowler area +20 % (area alone)</td><td class="num">×0.913</td><td class="num">×0.833</td></tr>
         </tbody>
       </table>
       </div>
-      <p>
-        Flaps mostly add camber (raising CL at a given angle of attack);
-        leading-edge devices mostly delay separation (raising the angle of
-        attack itself). Flap asymmetry protection guards against the large,
-        uncommandable rolling moment an uneven flap deployment would cause.
-      </p>
 
-      <div class="related"><span class="dot"></span> Related questions: <strong>30</strong> in this topic</div>
+      <h3 class="sub">Trailing-edge flaps <span class="ref">6.2</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Type</th><th>Mechanism</th><th>Character</th></tr></thead>
+        <tbody>
+          <tr><td>Plain</td><td>Camber</td><td>Separates at moderate deflection</td></tr>
+          <tr><td>Split</td><td>Lower-surface camber; separated wake</td><td>Similar lift, high drag</td></tr>
+          <tr><td>Slotted</td><td>Camber + fresh boundary layer on the flap</td><td>Larger usable deflection</td></tr>
+          <tr><td>Fowler</td><td>Area + camber + slot</td><td>Largest C<sub>L,max</sub> gain per device</td></tr>
+          <tr><td>Double/triple slotted</td><td>Turning shared between elements</td><td>Transport landing configurations</td></tr>
+          <tr><td>Gurney tab</td><td>Trailing-edge circulation increase</td><td>Small fixed increment, drag cost</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <ul>
+        <li>α₀ more negative; C<sub>M,ac</sub> more negative; slope unchanged (camber) or slightly higher (area); α<sub>stall</sub> lower.</li>
+        <li>Beyond the optimum deflection the flap separates: little C<sub>L,max</sub> gain, steep drag rise.</li>
+        <li>Clean a = 0.09/deg, α₀ −2°; flap α₀ −12°: at C<sub>L</sub> 1.2, α = 11.3° clean against 1.3° flapped — attitude 10° lower.</li>
+      </ul>
+
+      <h3 class="sub">Leading-edge devices <span class="ref">6.3</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Device</th><th>Mechanism</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td>Slat (slotted)</td><td>Carries part of the suction peak; slot jet energises main element</td><td>α<sub>stall</sub> and C<sub>L,max</sub> ↑; high nose attitude</td></tr>
+          <tr><td>Krueger</td><td>Lower-surface panel swung forward: LE camber and radius</td><td>Inboard on swept wings</td></tr>
+          <tr><td>Droop leading edge</td><td>LE camber aligned with high-α flow</td><td>Suction peak reduced</td></tr>
+          <tr><td>Automatic slat</td><td>Deployed by LE suction at high α</td><td>Self-acting; asymmetry → roll to the unslatted side</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Outboard slats with inboard Kruegers give the tips the larger α margin, so the root stalls first and pitch-up is avoided.</p>
+
+      <h3 class="sub">Lift-curve effects <span class="ref">6.4</span></h3>
+      <div class="diagram">
+        <svg viewBox="0 0 460 265" role="img" aria-label="Lift coefficient against angle of attack: flaps shift the curve left and lower the stalling angle; slats extend it to a higher stalling angle; combined devices give the highest maximum lift coefficient">
+          <line x1="50.0" y1="170.0" x2="440.0" y2="170.0" stroke="var(--line)" stroke-width="1"/><line x1="50.0" y1="120.0" x2="440.0" y2="120.0" stroke="var(--line)" stroke-width="1"/><line x1="50.0" y1="70.0" x2="440.0" y2="70.0" stroke="var(--line)" stroke-width="1"/><line x1="50.0" y1="20.0" x2="440.0" y2="20.0" stroke="var(--line)" stroke-width="1"/><line x1="50.0" y1="170.0" x2="440.0" y2="170.0" stroke="var(--ink-2)" stroke-width="1.2"/><line x1="50.0" y1="190.0" x2="50.0" y2="20.0" stroke="var(--ink-2)" stroke-width="1.2"/><text x="103.2" y="205.0" font-size="11" fill="var(--muted)" text-anchor="middle">-10</text><text x="191.8" y="205.0" font-size="11" fill="var(--muted)" text-anchor="middle">0</text><text x="280.5" y="205.0" font-size="11" fill="var(--muted)" text-anchor="middle">10</text><text x="369.1" y="205.0" font-size="11" fill="var(--muted)" text-anchor="middle">20</text><text x="44.0" y="174.0" font-size="11" fill="var(--muted)" text-anchor="end">0</text><text x="44.0" y="124.0" font-size="11" fill="var(--muted)" text-anchor="end">1</text><text x="44.0" y="74.0" font-size="11" fill="var(--muted)" text-anchor="end">2</text><text x="44.0" y="24.0" font-size="11" fill="var(--muted)" text-anchor="end">3</text><text x="440.0" y="220.0" font-size="11" fill="var(--muted)" text-anchor="end">α (deg) →</text><text x="56.0" y="24.0" font-size="11" fill="var(--muted)">CL</text>
+          <line x1="191.8" y1="190.0" x2="191.8" y2="20.0" stroke="var(--line)" stroke-width="1"/>
+          <polyline points="138.6,190.0 140.9,188.8 143.1,187.5 145.3,186.2 147.5,185.0 149.7,183.8 151.9,182.5 154.1,181.2 156.4,180.0 158.6,178.8 160.8,177.5 163.0,176.2 165.2,175.0 167.4,173.8 169.7,172.5 171.9,171.2 174.1,170.0 176.3,168.8 178.5,167.5 180.7,166.2 183.0,165.0 185.2,163.8 187.4,162.5 189.6,161.2 191.8,160.0 194.0,158.8 196.2,157.5 198.5,156.2 200.7,155.0 202.9,153.8 205.1,152.5 207.3,151.2 209.5,150.0 211.8,148.8 214.0,147.5 216.2,146.2 218.4,145.0 220.6,143.8 222.8,142.5 225.1,141.2 227.3,140.0 229.5,138.8 231.7,137.5 233.9,136.2 236.1,135.0 238.4,133.8 240.6,132.5 242.8,131.2 245.0,130.0 247.2,128.8 249.4,127.5 251.6,126.2 253.9,125.0 256.1,123.7 258.3,122.5 260.5,121.2 262.7,120.0 264.9,118.7 267.2,117.5 269.4,116.2 271.6,115.0 273.8,113.8 276.0,112.5 278.2,111.2 280.5,110.0 282.7,108.8 284.9,107.5 287.1,106.2 289.3,104.8 291.5,103.5 293.8,102.2 296.0,101.1 298.2,100.0 300.4,99.0 302.6,98.2 304.8,97.5 307.0,96.8 309.3,96.2 311.5,95.8 313.7,95.5 315.9,95.2 318.1,95.0 320.3,95.0 322.6,95.5 324.8,96.3 327.0,97.3 329.2,98.5 331.4,99.8 333.6,101.2 335.9,102.7 338.1,104.2 340.3,105.9 342.5,107.6 344.7,109.4 346.9,111.3 349.1,113.2 351.4,115.2 353.6,117.3 355.8,119.4 358.0,121.5 360.2,123.7 362.4,126.0 364.7,128.3 366.9,130.7 369.1,133.1 371.3,135.5 373.5,138.0 375.7,140.5 378.0,143.1 380.2,145.7 382.4,148.4 384.6,151.0 386.8,153.8 389.0,156.5 391.2,159.3 393.5,162.2 395.7,165.0 397.9,167.9 400.1,170.9 402.3,173.8 404.5,176.8 406.8,179.9 409.0,182.9 411.2,186.0 413.4,189.1" fill="none" stroke="var(--ink-2)" stroke-width="2.5"/><circle cx="320.3" cy="95.0" r="3.5" fill="var(--ink-2)"/><polyline points="138.6,190.0 140.9,188.8 143.1,187.5 145.3,186.2 147.5,185.0 149.7,183.8 151.9,182.5 154.1,181.2 156.4,180.0 158.6,178.8 160.8,177.5 163.0,176.2 165.2,175.0 167.4,173.8 169.7,172.5 171.9,171.2 174.1,170.0 176.3,168.8 178.5,167.5 180.7,166.2 183.0,165.0 185.2,163.8 187.4,162.5 189.6,161.2 191.8,160.0 194.0,158.8 196.2,157.5 198.5,156.2 200.7,155.0 202.9,153.8 205.1,152.5 207.3,151.2 209.5,150.0 211.8,148.8 214.0,147.5 216.2,146.2 218.4,145.0 220.6,143.8 222.8,142.5 225.1,141.2 227.3,140.0 229.5,138.8 231.7,137.5 233.9,136.2 236.1,135.0 238.4,133.8 240.6,132.5 242.8,131.2 245.0,130.0 247.2,128.8 249.4,127.5 251.6,126.2 253.9,125.0 256.1,123.7 258.3,122.5 260.5,121.2 262.7,120.0 264.9,118.7 267.2,117.5 269.4,116.2 271.6,115.0 273.8,113.8 276.0,112.5 278.2,111.2 280.5,110.0 282.7,108.8 284.9,107.5 287.1,106.2 289.3,105.0 291.5,103.7 293.8,102.5 296.0,101.2 298.2,100.0 300.4,98.7 302.6,97.5 304.8,96.2 307.0,95.0 309.3,93.7 311.5,92.5 313.7,91.2 315.9,90.0 318.1,88.8 320.3,87.5 322.6,86.2 324.8,85.0 327.0,83.8 329.2,82.5 331.4,81.2 333.6,79.8 335.9,78.2 338.1,76.7 340.3,75.2 342.5,73.9 344.7,72.7 346.9,71.6 349.1,70.5 351.4,69.6 353.6,68.7 355.8,67.9 358.0,67.2 360.2,66.6 362.4,66.1 364.7,65.7 366.9,65.4 369.1,65.2 371.3,65.0 373.5,65.0 375.7,65.5 378.0,66.3 380.2,67.3 382.4,68.5 384.6,69.8 386.8,71.2 389.0,72.7 391.2,74.2 393.5,75.9 395.7,77.6 397.9,79.4 400.1,81.3 402.3,83.2 404.5,85.2 406.8,87.3 409.0,89.4 411.2,91.5 413.4,93.7 415.6,96.0 417.8,98.3 420.1,100.7 422.3,103.1 424.5,105.5 426.7,108.0 428.9,110.5 431.1,113.1 433.4,115.7 435.6,118.4 437.8,121.0 440.0,123.8" fill="none" stroke="var(--green-arc)" stroke-width="2.5"/><circle cx="373.5" cy="65.0" r="3.5" fill="var(--green-arc)"/><polyline points="52.2,189.7 54.4,188.4 56.6,187.1 58.9,185.8 61.1,184.4 63.3,183.1 65.5,181.8 67.7,180.5 69.9,179.2 72.2,177.9 74.4,176.6 76.6,175.2 78.8,173.9 81.0,172.6 83.2,171.3 85.5,170.0 87.7,168.7 89.9,167.4 92.1,166.1 94.3,164.8 96.5,163.4 98.8,162.1 101.0,160.8 103.2,159.5 105.4,158.2 107.6,156.9 109.8,155.6 112.0,154.2 114.3,152.9 116.5,151.6 118.7,150.3 120.9,149.0 123.1,147.7 125.3,146.4 127.6,145.1 129.8,143.8 132.0,142.4 134.2,141.1 136.4,139.8 138.6,138.5 140.9,137.2 143.1,135.9 145.3,134.6 147.5,133.2 149.7,131.9 151.9,130.6 154.1,129.3 156.4,128.0 158.6,126.7 160.8,125.4 163.0,124.1 165.2,122.8 167.4,121.4 169.7,120.1 171.9,118.8 174.1,117.5 176.3,116.2 178.5,114.9 180.7,113.6 183.0,112.2 185.2,110.9 187.4,109.6 189.6,108.3 191.8,107.0 194.0,105.7 196.2,104.4 198.5,103.1 200.7,101.7 202.9,100.4 205.1,99.1 207.3,97.8 209.5,96.5 211.8,95.2 214.0,93.9 216.2,92.6 218.4,91.2 220.6,89.9 222.8,88.6 225.1,87.3 227.3,86.0 229.5,84.7 231.7,83.4 233.9,82.1 236.1,80.7 238.4,79.4 240.6,78.1 242.8,76.8 245.0,75.5 247.2,74.2 249.4,72.9 251.6,71.3 253.9,69.6 256.1,68.0 258.3,66.5 260.5,65.1 262.7,63.7 264.9,62.5 267.2,61.4 269.4,60.3 271.6,59.4 273.8,58.5 276.0,57.7 278.2,57.1 280.5,56.5 282.7,56.0 284.9,55.6 287.1,55.3 289.3,55.1 291.5,55.0 293.8,55.1 296.0,55.8 298.2,56.7 300.4,57.8 302.6,59.0 304.8,60.3 307.0,61.7 309.3,63.3 311.5,64.9 313.7,66.5 315.9,68.3 318.1,70.1 320.3,72.0 322.6,74.0 324.8,76.0 327.0,78.1 329.2,80.2 331.4,82.4 333.6,84.6 335.9,86.9 338.1,89.2 340.3,91.6 342.5,94.0 344.7,96.5 346.9,99.0 349.1,101.5 351.4,104.1 353.6,106.7 355.8,109.4 358.0,112.1 360.2,114.8 362.4,117.6 364.7,120.4 366.9,123.2 369.1,126.1 371.3,129.0 373.5,132.0 375.7,135.0 378.0,138.0 380.2,141.0 382.4,144.1 384.6,147.2 386.8,150.3 389.0,153.5 391.2,156.7 393.5,159.9 395.7,163.2 397.9,166.4 400.1,169.7 402.3,173.1 404.5,176.4 406.8,179.8 409.0,183.2 411.2,186.7" fill="none" stroke="var(--caution-line)" stroke-width="2.5"/><circle cx="292.9" cy="55.0" r="3.5" fill="var(--caution-line)"/><polyline points="52.2,189.7 54.4,188.4 56.6,187.1 58.9,185.8 61.1,184.4 63.3,183.1 65.5,181.8 67.7,180.5 69.9,179.2 72.2,177.9 74.4,176.6 76.6,175.2 78.8,173.9 81.0,172.6 83.2,171.3 85.5,170.0 87.7,168.7 89.9,167.4 92.1,166.1 94.3,164.8 96.5,163.4 98.8,162.1 101.0,160.8 103.2,159.5 105.4,158.2 107.6,156.9 109.8,155.6 112.0,154.2 114.3,152.9 116.5,151.6 118.7,150.3 120.9,149.0 123.1,147.7 125.3,146.4 127.6,145.1 129.8,143.8 132.0,142.4 134.2,141.1 136.4,139.8 138.6,138.5 140.9,137.2 143.1,135.9 145.3,134.6 147.5,133.2 149.7,131.9 151.9,130.6 154.1,129.3 156.4,128.0 158.6,126.7 160.8,125.4 163.0,124.1 165.2,122.8 167.4,121.4 169.7,120.1 171.9,118.8 174.1,117.5 176.3,116.2 178.5,114.9 180.7,113.6 183.0,112.2 185.2,110.9 187.4,109.6 189.6,108.3 191.8,107.0 194.0,105.7 196.2,104.4 198.5,103.1 200.7,101.7 202.9,100.4 205.1,99.1 207.3,97.8 209.5,96.5 211.8,95.2 214.0,93.9 216.2,92.6 218.4,91.2 220.6,89.9 222.8,88.6 225.1,87.3 227.3,86.0 229.5,84.7 231.7,83.4 233.9,82.1 236.1,80.7 238.4,79.4 240.6,78.1 242.8,76.8 245.0,75.5 247.2,74.2 249.4,72.9 251.6,71.6 253.9,70.2 256.1,68.9 258.3,67.6 260.5,66.3 262.7,65.0 264.9,63.7 267.2,62.4 269.4,61.1 271.6,59.8 273.8,58.4 276.0,57.1 278.2,55.8 280.5,54.5 282.7,53.2 284.9,51.9 287.1,50.6 289.3,49.2 291.5,47.9 293.8,46.6 296.0,44.7 298.2,42.9 300.4,41.2 302.6,39.6 304.8,38.0 307.0,36.6 309.3,35.2 311.5,33.9 313.7,32.8 315.9,31.6 318.1,30.6 320.3,29.7 322.6,28.8 324.8,28.1 327.0,27.4 329.2,26.8 331.4,26.3 333.6,25.9 335.9,25.5 338.1,25.3 340.3,25.1 342.5,25.0 344.7,25.2 346.9,25.9 349.1,26.8 351.4,27.9 353.6,29.2 355.8,30.5 358.0,31.9 360.2,33.5 362.4,35.1 364.7,36.8 366.9,38.6 369.1,40.4 371.3,42.3 373.5,44.3 375.7,46.3 378.0,48.4 380.2,50.5 382.4,52.7 384.6,54.9 386.8,57.2 389.0,59.5 391.2,61.9 393.5,64.3 395.7,66.8 397.9,69.3 400.1,71.9 402.3,74.5 404.5,77.1 406.8,79.8 409.0,82.5 411.2,85.2 413.4,88.0 415.6,90.8 417.8,93.7 420.1,96.5 422.3,99.5 424.5,102.4 426.7,105.4 428.9,108.4 431.1,111.5 433.4,114.5 435.6,117.6 437.8,120.8 440.0,123.9" fill="none" stroke="var(--brand)" stroke-width="2.5"/><circle cx="343.6" cy="25.0" r="3.5" fill="var(--brand)"/>
+          <line x1="20" y1="240" x2="38" y2="240" stroke="var(--ink-2)" stroke-width="2.5"/><text x="44" y="244" font-size="11" font-weight="700" fill="var(--ink-2)">clean: CLmax 1.5, α_s 14°</text><line x1="240" y1="240" x2="258" y2="240" stroke="var(--green-arc)" stroke-width="2.5"/><text x="264" y="244" font-size="11" font-weight="700" fill="var(--green-arc)">slat: CLmax 2.1, α_s 20°</text><line x1="20" y1="256" x2="38" y2="256" stroke="var(--caution-line)" stroke-width="2.5"/><text x="44" y="260" font-size="11" font-weight="700" fill="var(--caution-line)">flap: CLmax 2.3, α_s 11°</text><line x1="240" y1="256" x2="258" y2="256" stroke="var(--brand)" stroke-width="2.5"/><text x="264" y="260" font-size="11" font-weight="700" fill="var(--brand)">flap + slat: CLmax 2.9, α_s 17°</text>
+        </svg>
+        <div class="cap">Flaps shift the curve left and lower α<sub>stall</sub>; slats extend it; together they give the highest C<sub>L,max</sub></div>
+      </div>
+      <ul>
+        <li>Slats: 14° → 22° stall angle → +8° stall attitude on the same flight path.</li>
+        <li>At 1.3 V<sub>S</sub>, C<sub>L</sub> = C<sub>L,max</sub>/1.69: 1.5 → 0.89; 2.2 → 1.30. With flap, the speed margin is kept; the α margin shrinks.</li>
+      </ul>
+
+      <h3 class="sub">Drag, glide path and approach thrust <span class="ref">6.5</span></h3>
+      <div class="eq">tan γ = 1/(L/D) &nbsp;&nbsp;&nbsp; T = D − W·sin γ &nbsp;&nbsp;&nbsp; V<sub>md</sub> ∝ (k/C<sub>D0</sub>)<sup>¼</sup></div>
+      <ul>
+        <li>Flaps raise C<sub>D0</sub> and k (lift concentrated inboard, vortices at flap ends): (L/D)<sub>max</sub> ↓, drag curve up and left.</li>
+        <li>L/D 12 → 7: power-off glide 4.8° → 8.1°.</li>
+        <li>W 600 kN on a 3° path: T = 43.6 kN at L/D 8, 18.6 kN at L/D 12 — the higher-drag approach keeps thrust in a responsive range.</li>
+        <li>3° path at 140 kt: 740 ft/min.</li>
+        <li>Small deflections: efficient C<sub>L</sub> gain; large deflections: mostly drag. Hence small take-off and large landing settings.</li>
+        <li>Spoilers: drag ↑, C<sub>L,max</sub> ↓, V<sub>S</sub> ↑. Ground spoilers: braking μ(W − L) rises as lift is dumped.</li>
+      </ul>
+
+      <h3 class="sub">Pitch and trim <span class="ref">6.6</span></h3>
+      <ul>
+        <li>Wing: C<sub>M,ac</sub> more nose-down (CP aft).</li>
+        <li>Tail: more downwash, more negative tail α → nose-up contribution. Net pitch change depends on tail geometry.</li>
+        <li>Extension at constant attitude: balloon. Retraction at low speed: sink.</li>
+      </ul>
+
+      <h3 class="sub">Operation <span class="ref">6.7</span></h3>
+      <ul>
+        <li>Flap air load ∝ q: 150 → 200 kt ×1.78. V<sub>FE</sub> protects structure; load relief retracts above the limit.</li>
+        <li>Asymmetry: roll away from the more-flapped wing; systems stop flap travel on detection.</li>
+        <li>Go-around: intermediate flap first — full retraction at 1.2 V<sub>S,flap</sub> leaves 0.95 V<sub>S,clean</sub>.</li>
+        <li>Stall-warning α thresholds are configuration-dependent.</li>
+        <li>Take-off at high elevation and temperature: less flap → longer run, better climb gradient.</li>
+        <li>Landing energy 160 → 140 kt: ×0.77.</li>
+      </ul>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>60</strong> in this topic</div>
     </section>
 
     <!-- ============================================================ -->
