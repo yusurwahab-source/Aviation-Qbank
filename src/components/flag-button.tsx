@@ -18,12 +18,15 @@ export function FlagButton({
   onToggle: () => void;
   className?: string;
 }) {
+  const label = flagged ? "Flagged" : "Flag";
+
   return (
     <button
       type="button"
       aria-pressed={flagged}
+      aria-label={label}
       onClick={onToggle}
-      className={`tap-target inline-flex items-center gap-1.5 rounded-lg border px-3 text-sm font-medium transition ${
+      className={`tap-target inline-flex items-center gap-1.5 rounded-lg border px-2.5 text-sm font-medium transition sm:px-3 ${
         flagged
           ? "border-flag bg-flag-soft text-flag"
           : "border-border text-muted-foreground hover:border-flag hover:text-flag"
@@ -41,7 +44,9 @@ export function FlagButton({
       >
         <path d="M6 3v18M6 4h11l-2.5 3.5L17 11H6" />
       </svg>
-      {flagged ? "Flagged" : "Flag"}
+      {/* Icon-only below sm: the label lives on the button as an accessible
+          name instead, so this is purely a sighted-desktop convenience. */}
+      <span className="hidden sm:inline">{label}</span>
     </button>
   );
 }
