@@ -1,826 +1,1573 @@
 [
   {
-    "id": "POF-PROP-0001",
+    "id": "POF-PROP-0041",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Thrust Production",
-    "question": "A propeller produces thrust fundamentally by:",
+    "subtopic": "Blade geometry and angles",
+    "question": "The blade angle of attack α relates blade angle β and helix angle φ by:",
     "options": [
-      { "id": "a", "text": "Pushing directly against the ground through the air" },
+      { "id": "a", "text": "α = φ − β" },
+      { "id": "b", "text": "α = β·φ" },
+      { "id": "c", "text": "α = β + φ" },
+      { "id": "d", "text": "α = β − φ" }
+    ],
+    "correct": "d",
+    "explanation": "β is measured from the plane of rotation to the chord; φ is the angle of the resultant relative flow (from V and ωr) to that plane.",
+    "tags": ["blade-angle", "helix-angle"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0042",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Blade geometry and angles",
+    "question": "The helix angle φ at a blade station is:",
+    "options": [
+      { "id": "a", "text": "arcsin(V/(ω·r))" },
+      { "id": "b", "text": "arctan(V/(ω·r))" },
+      { "id": "c", "text": "V·ω·r" },
+      { "id": "d", "text": "arctan(ω·r/V)" }
+    ],
+    "correct": "b",
+    "explanation": "The relative flow has axial component V and rotational component ωr.",
+    "tags": ["helix-angle"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0043",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Blade geometry and angles",
+    "question": "At 2,400 rpm (ω = 251 rad/s), a station at r = 1 m, V = 60 m/s: the helix angle is about:",
+    "options": [
+      { "id": "a", "text": "25.5°" },
+      { "id": "b", "text": "76.6°" },
+      { "id": "c", "text": "13.4°" },
+      { "id": "d", "text": "6.8°" }
+    ],
+    "correct": "c",
+    "explanation": "φ = arctan(60/251) = 13.4°.",
+    "tags": ["helix-angle", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0044",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Blade geometry and angles",
+    "question": "With blade angle 25° at that station (φ = 13.4°), the blade angle of attack is:",
+    "options": [
+      { "id": "a", "text": "38.4°" },
+      { "id": "b", "text": "25°" },
+      { "id": "c", "text": "11.6°" },
+      { "id": "d", "text": "13.4°" }
+    ],
+    "correct": "c",
+    "explanation": "α = β − φ = 25 − 13.4 = 11.6°.",
+    "tags": ["blade-angle-of-attack", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0045",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Blade geometry and angles",
+    "question": "At the same rpm, V increases from 60 to 120 m/s. At r = 1 m the helix angle becomes about:",
+    "options": [
+      { "id": "a", "text": "6.7°" },
+      { "id": "b", "text": "13.4°" },
       {
-        "id": "b",
-        "text": "Acting as a rotating aerofoil, each blade generating an aerodynamic force whose forward component is thrust, resulting from its angle of attack to the air it meets"
+        "id": "c",
+        "text": "25.5°, so a fixed blade angle's α falls by about 12°"
       },
-      { "id": "c", "text": "Compressing air ahead of the aircraft, like a piston" },
-      { "id": "d", "text": "Relying entirely on engine exhaust gas" }
+      { "id": "d", "text": "51°" }
     ],
-    "correct": "b",
-    "explanation": "Each propeller blade is an aerofoil moving through the air along a helical path, generating lift and drag exactly as a wing does. The component of that aerodynamic force acting forward, along the aircraft's direction of travel, is thrust.",
-    "tags": ["propellers", "thrust"],
+    "correct": "c",
+    "explanation": "arctan(120/251) = 25.5°. With β fixed, α = 25 − 25.5 ≈ −0.5°: the blade approaches zero thrust.",
+    "tags": ["helix-angle", "fixed-pitch", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0002",
+    "id": "POF-PROP-0046",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Blade Angle and Pitch",
-    "question": "A propeller blade's \"geometric pitch\" is the distance it would theoretically advance along its axis in one revolution, based purely on its blade angle, while the blade's actual angle of attack additionally depends on:",
+    "subtopic": "Blade geometry and angles",
+    "question": "Propeller blades are twisted (blade angle decreasing toward the tip) because:",
     "options": [
-      { "id": "a", "text": "Engine RPM only, never on the aircraft's forward speed" },
+      { "id": "a", "text": "The root is stronger" },
+      { "id": "b", "text": "The tip must carry more lift" },
+      { "id": "c", "text": "It reduces weight" },
       {
-        "id": "b",
-        "text": "The aircraft's forward speed, since the blade's actual angle of attack is the difference between its blade angle and the helical angle of its resultant motion through the air"
-      },
-      { "id": "c", "text": "Ambient temperature only" },
-      { "id": "d", "text": "Nothing else — angle of attack and blade angle are always identical" }
+        "id": "d",
+        "text": "Rotational speed ωr increases with radius, reducing the helix angle, so less blade angle keeps α roughly constant"
+      }
     ],
-    "correct": "b",
-    "explanation": "A propeller blade moves through the air along a helical path combining its rotational speed and the aircraft's forward speed. Its actual angle of attack is the blade angle minus the helix angle of that resultant motion — which is why the same blade angle produces a different angle of attack (and different thrust) at different forward speeds.",
-    "tags": ["propellers", "pitch", "blade-angle"],
+    "correct": "d",
+    "explanation": "At r = 0.5 m and 1 m (V 60 m/s, ω 251) φ is 25.5° and 13.4°; blade angle must fall outboard accordingly.",
+    "tags": ["blade-twist"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0003",
+    "id": "POF-PROP-0047",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Torque Reaction",
-    "question": "\"Torque reaction\" describes the tendency of the aircraft to:",
+    "subtopic": "Blade geometry and angles",
+    "question": "When an aircraft is stationary with the engine at high power, the blade angle of attack:",
     "options": [
-      { "id": "a", "text": "Yaw in the direction of propeller rotation" },
-      { "id": "b", "text": "Roll in the opposite direction to the propeller's rotation, as a Newtonian reaction to the engine turning the propeller" },
-      { "id": "c", "text": "Pitch nose-up at high power" },
-      { "id": "d", "text": "Only occur with a twin-engine aircraft" }
-    ],
-    "correct": "b",
-    "explanation": "By Newton's third law, as the engine applies torque to spin the propeller in one direction, an equal and opposite reaction torque tries to rotate the rest of the airframe in the other direction — felt mainly as a rolling tendency, especially noticeable at high power and low airspeed.",
-    "tags": ["propellers", "torque-reaction"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0004",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Gyroscopic Precession",
-    "question": "Gyroscopic precession from a spinning propeller, when a pitching or yawing force is applied to it, causes the resulting effect to appear:",
-    "options": [
-      { "id": "a", "text": "At the same point the force was applied" },
-      { "id": "b", "text": "Approximately 90 degrees further around the direction of rotation from where the force was applied" },
-      { "id": "c", "text": "With no delay or offset at all" },
-      { "id": "d", "text": "Only when the propeller is stationary" }
-    ],
-    "correct": "b",
-    "explanation": "A spinning propeller behaves like a gyroscope: a force applied to try to tilt its axis in one direction actually produces a reaction roughly 90 degrees further around in the direction of rotation. This is why, for example, raising the tail of a taildragger during the takeoff roll can produce a yaw, rather than the pitching effect one might otherwise expect.",
-    "tags": ["propellers", "gyroscopic-precession"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0005",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Asymmetric Blade Effect",
-    "question": "The \"asymmetric blade effect\" (P-factor), most noticeable at high angle of attack and high power, causes a yaw because:",
-    "options": [
-      { "id": "a", "text": "Both propeller blades always produce identical thrust regardless of aircraft attitude" },
+      { "id": "a", "text": "Is zero" },
+      { "id": "b", "text": "Equals the helix angle" },
+      { "id": "c", "text": "Is negative" },
       {
-        "id": "b",
-        "text": "The descending blade meets the air at a higher angle of attack than the ascending blade, producing more thrust on that side of the disc"
-      },
-      { "id": "c", "text": "The propeller is mounted off-center on the engine" },
-      { "id": "d", "text": "It only occurs with a feathered propeller" }
+        "id": "d",
+        "text": "Equals the blade angle (φ ≈ 0), and may exceed the stalling angle on a coarse blade"
+      }
     ],
-    "correct": "b",
-    "explanation": "At a high angle of attack, the propeller disc is tilted relative to the oncoming airflow, so the descending blade meets the relative airflow at a greater angle of attack than the ascending blade and produces correspondingly more thrust. This asymmetric thrust across the disc yaws the aircraft — most pronounced at low airspeed and high power, such as during takeoff and initial climb.",
-    "tags": ["propellers", "p-factor"],
+    "correct": "d",
+    "explanation": "With V = 0, φ = 0 and α = β. Coarse pitch at static conditions can stall the blades, reducing thrust.",
+    "tags": ["static-thrust", "blade-stall"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0006",
+    "id": "POF-PROP-0048",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Slipstream Effect",
-    "question": "The propeller's \"slipstream effect\" refers to the way its slipstream spirals backward around the fuselage and strikes the tail asymmetrically, typically producing:",
+    "subtopic": "Blade geometry and angles",
+    "question": "For a fixed-pitch propeller at constant rpm, reducing forward speed:",
     "options": [
-      { "id": "a", "text": "A pitch-up tendency only" },
-      {
-        "id": "b",
-        "text": "A yawing tendency, usually requiring rudder trim to counteract, particularly noticeable at high power and low airspeed"
-      },
-      { "id": "c", "text": "No aerodynamic effect on the tail at all" },
-      { "id": "d", "text": "A rolling tendency only, never yaw" }
-    ],
-    "correct": "b",
-    "explanation": "The propeller's slipstream twists into a helix as it travels rearward, and this rotating flow strikes the fin and rudder from one side more than the other, producing a yawing effect. It is strongest when the slipstream is fast relative to the aircraft's own forward speed — high power, low airspeed — the same conditions that also maximise P-factor and torque reaction.",
-    "tags": ["propellers", "slipstream-effect"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0007",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Constant-Speed Propeller",
-    "question": "Compared with a fixed-pitch propeller, a constant-speed propeller's main advantage is that it:",
-    "options": [
-      { "id": "a", "text": "Never needs to be feathered" },
-      {
-        "id": "b",
-        "text": "Automatically adjusts blade angle to maintain a selected RPM across a range of airspeeds and power settings, keeping the blades closer to their most efficient angle of attack throughout"
-      },
-      { "id": "c", "text": "Always produces less drag than a fixed-pitch propeller when stopped" },
-      { "id": "d", "text": "Eliminates torque reaction entirely" }
-    ],
-    "correct": "b",
-    "explanation": "A fixed-pitch propeller is aerodynamically efficient only over a narrow speed range, since its blade angle cannot change. A constant-speed propeller adjusts blade angle continuously to hold a chosen RPM, keeping the blades operating closer to their best angle of attack across a much wider range of airspeeds and power settings.",
-    "tags": ["propellers", "constant-speed"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0008",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Governor Function",
-    "question": "In a constant-speed propeller system, the governor responds to an increase in RPM above the selected value by:",
-    "options": [
-      { "id": "a", "text": "Reducing engine power directly" },
-      {
-        "id": "b",
-        "text": "Increasing propeller blade angle (coarsening pitch), which increases the load on the engine and brings RPM back down"
-      },
-      { "id": "c", "text": "Decreasing blade angle further" },
-      { "id": "d", "text": "Shutting off fuel flow" }
-    ],
-    "correct": "b",
-    "explanation": "The governor senses RPM and adjusts oil pressure to the propeller hub to change blade angle. If RPM rises above the selected value, the governor coarsens the blade angle, which increases the aerodynamic load the propeller presents to the engine and pulls RPM back down to the selected value — and does the reverse if RPM falls too low.",
-    "tags": ["propellers", "governor"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0009",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Feathering",
-    "question": "\"Feathering\" a propeller, typically after an engine failure, means rotating the blades so that:",
-    "options": [
-      { "id": "a", "text": "They lie edge-on to the airflow, close to 90 degrees blade angle, minimising drag and windmilling tendency" },
-      { "id": "b", "text": "They lie flat, face-on to the airflow, to maximise drag for a rapid descent" },
-      { "id": "c", "text": "They rotate to a fixed low pitch angle for maximum thrust" },
-      { "id": "d", "text": "They detach from the hub entirely" }
+      { "id": "a", "text": "Increases the blade angle of attack" },
+      { "id": "b", "text": "Makes it negative" },
+      { "id": "c", "text": "Leaves it unchanged" },
+      { "id": "d", "text": "Decreases the blade angle of attack" }
     ],
     "correct": "a",
-    "explanation": "Feathering turns the blades so their chord line lies nearly parallel to the direction of flight — edge-on to the airflow — which minimises both the drag the stopped propeller presents and its tendency to keep windmilling, protecting a failed engine from further damage and preserving glide performance.",
-    "tags": ["propellers", "feathering"],
+    "explanation": "Lower V → smaller φ → larger α = β − φ.",
+    "tags": ["fixed-pitch", "angle-of-attack"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0010",
+    "id": "POF-PROP-0049",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Windmilling Drag",
-    "question": "A propeller that is unfeathered and windmilling after an engine failure, compared with one that has been feathered, produces:",
-    "options": [
-      { "id": "a", "text": "Less drag" },
-      {
-        "id": "b",
-        "text": "Significantly more drag, because the blades continue to be driven by the airflow at an inefficient angle of attack, and it may also continue to turn — and potentially further damage — the failed engine"
-      },
-      { "id": "c", "text": "Exactly the same drag as a feathered propeller" },
-      { "id": "d", "text": "Additional thrust instead of drag" }
-    ],
-    "correct": "b",
-    "explanation": "A windmilling propeller is essentially acting as an unwanted, inefficient turbine, being driven by the airflow rather than driving the aircraft — producing substantially more drag than a feathered one, degrading glide performance and single-engine climb, and risking further mechanical damage to an already-failed engine.",
-    "tags": ["propellers", "windmilling"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0011",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Propeller Efficiency",
-    "question": "A propeller's efficiency, the ratio of useful power output (thrust times velocity) to the engine's shaft power input:",
-    "options": [
-      { "id": "a", "text": "Is constant at every combination of RPM and forward speed" },
-      {
-        "id": "b",
-        "text": "Varies with the 'advance ratio' — forward speed relative to rotational speed — which is a key reason a fixed-pitch propeller cannot be equally efficient across a wide speed range, unlike a constant-speed propeller"
-      },
-      { "id": "c", "text": "Is always 100%, since a propeller cannot lose energy" },
-      { "id": "d", "text": "Depends only on the number of blades" }
-    ],
-    "correct": "b",
-    "explanation": "Propeller efficiency changes with the advance ratio because a fixed blade angle only presents its best angle of attack to the air at one particular combination of rotational and forward speed. Away from that point, efficiency falls off — which a constant-speed propeller avoids by continuously adjusting blade angle to stay near the optimum.",
-    "tags": ["propellers", "efficiency"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0012",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Number of Blades",
-    "question": "Adding more blades to a propeller of a given diameter, so it can absorb more engine power, compared with using fewer, wider blades, generally:",
-    "options": [
-      { "id": "a", "text": "Always increases overall propeller efficiency, with no downside" },
-      {
-        "id": "b",
-        "text": "Allows more power to be absorbed within a limited diameter — useful where ground clearance or blade tip speed limits diameter — often at some cost in efficiency compared with fewer, longer blades"
-      },
-      { "id": "c", "text": "Has no relationship to the power the propeller can absorb" },
-      { "id": "d", "text": "Is only ever done to reduce noise, never to absorb more power" }
-    ],
-    "correct": "b",
-    "explanation": "When diameter is limited — by ground clearance, blade tip speed, or other constraints — adding blades is a way to absorb more of a powerful engine's output without lengthening the blades. This can come at some cost to overall efficiency compared with an unconstrained design using fewer, longer blades.",
-    "tags": ["propellers", "blade-count"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0013",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Blade Tip Speed",
-    "question": "Propeller blade tip speed is an important design limit mainly because:",
-    "options": [
-      { "id": "a", "text": "It has no aerodynamic significance" },
-      {
-        "id": "b",
-        "text": "As rotational speed and forward speed combine, the blade tips can approach or exceed the local speed of sound, causing the same compressibility losses — shockwaves, increased drag, reduced efficiency, extra noise — as on a wing at high Mach number"
-      },
-      { "id": "c", "text": "Tip speed only affects paint wear on the blades" },
-      { "id": "d", "text": "It only matters for jet engines, not propellers" }
-    ],
-    "correct": "b",
-    "explanation": "A propeller blade's tip moves through the air at the vector sum of its rotational speed and the aircraft's forward speed, and this combined speed can approach transonic values well before the aircraft itself does. The same compressibility effects that afflict a high-speed wing — shock formation, wave drag, reduced efficiency and sharply increased noise — apply to the blade tips.",
-    "tags": ["propellers", "blade-tip-speed"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0014",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Density Altitude Effect",
-    "question": "On a hot day at a high-elevation airport (high density altitude), a fixed-pitch propeller aircraft's takeoff performance is typically degraded partly because:",
+    "subtopic": "Blade geometry and angles",
+    "question": "Geometric pitch is:",
     "options": [
       {
         "id": "a",
-        "text": "The propeller bites into thinner air less effectively for a given RPM, producing less thrust, in addition to the engine itself producing less power"
+        "text": "The distance a blade element would advance in one revolution moving along its chord line: 2πr·tan β"
       },
-      { "id": "b", "text": "Propellers produce more thrust in thin air" },
-      { "id": "c", "text": "Density altitude has no effect on propeller performance, only on wing lift" },
-      { "id": "d", "text": "The propeller automatically increases its pitch to compensate" }
+      { "id": "b", "text": "The blade angle in degrees" },
+      { "id": "c", "text": "The blade chord" },
+      { "id": "d", "text": "The actual advance per revolution" }
     ],
     "correct": "a",
-    "explanation": "Thinner air at high density altitude reduces the mass flow a propeller can accelerate for a given RPM and blade angle, reducing thrust, on top of the naturally aspirated engine itself also producing less power in thin air — a double penalty on takeoff and climb performance that also compounds the wing's own reduced lift in thin air.",
-    "tags": ["propellers", "density-altitude"],
+    "explanation": "Effective pitch (actual advance, V/n) is less than geometric pitch; the difference is slip.",
+    "tags": ["geometric-pitch"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0015",
+    "id": "POF-PROP-0050",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Propeller Solidity",
-    "question": "Propeller \"solidity\" is defined as the ratio of:",
+    "subtopic": "Blade geometry and angles",
+    "question": "Propeller slip is:",
     "options": [
-      { "id": "a", "text": "The total blade area to the area of the disc the propeller sweeps" },
-      { "id": "b", "text": "Blade tip speed to the aircraft's forward speed" },
-      { "id": "c", "text": "Engine RPM to propeller RPM" },
-      { "id": "d", "text": "Propeller diameter to blade chord" }
+      { "id": "a", "text": "Engine rpm minus propeller rpm" },
+      { "id": "b", "text": "Blade angle minus helix angle in metres" },
+      { "id": "c", "text": "Tip speed minus TAS" },
+      {
+        "id": "d",
+        "text": "Geometric pitch minus effective pitch (actual advance per revolution)"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Slip reflects the blade's angle of attack; zero slip means zero α and zero thrust.",
+    "tags": ["slip"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0051",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Blade element forces",
+    "question": "A blade element produces lift 500 N and drag 30 N; helix angle 15°. Its thrust component is:",
+    "options": [
+      { "id": "a", "text": "158 N" },
+      { "id": "b", "text": "483 N" },
+      { "id": "c", "text": "475 N" },
+      { "id": "d", "text": "500 N" }
+    ],
+    "correct": "c",
+    "explanation": "T = L·cos φ − D·sin φ = 483.0 − 7.8 = 475 N.",
+    "tags": ["blade-element", "thrust", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0052",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Blade element forces",
+    "question": "For the same element (L 500 N, D 30 N, φ 15°), the force opposing rotation (torque force) is:",
+    "options": [
+      { "id": "a", "text": "30 N" },
+      { "id": "b", "text": "129 N" },
+      { "id": "c", "text": "475 N" },
+      { "id": "d", "text": "158 N" }
+    ],
+    "correct": "d",
+    "explanation": "Q_f = L·sin φ + D·cos φ = 129.4 + 29.0 = 158 N. Torque = Q_f × r.",
+    "tags": ["blade-element", "torque", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0053",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Blade element forces",
+    "question": "As the helix angle increases at constant α (higher V/ωr), more of the blade lift appears as:",
+    "options": [
+      { "id": "a", "text": "Torque force rather than thrust" },
+      { "id": "b", "text": "Side force" },
+      { "id": "c", "text": "Neither" },
+      { "id": "d", "text": "Thrust rather than torque" }
     ],
     "correct": "a",
-    "explanation": "Solidity is the ratio of the total blade area to the propeller disc area it sweeps. Higher solidity — from more blades, wider blades, or both — lets a propeller absorb more engine power and generate more thrust for a given diameter, generally at some cost in efficiency.",
-    "tags": ["propellers", "solidity"],
+    "explanation": "T ∝ L·cos φ, Q ∝ L·sin φ.",
+    "tags": ["blade-element", "helix-angle"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0016",
+    "id": "POF-PROP-0054",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Diameter, RPM and Tip Speed",
-    "question": "For a fixed maximum allowable blade tip speed, increasing a propeller's diameter requires:",
+    "subtopic": "Blade element forces",
+    "question": "Centrifugal twisting moment on a blade tends to:",
     "options": [
-      { "id": "a", "text": "Increasing RPM further, since diameter has no bearing on tip speed" },
-      {
-        "id": "b",
-        "text": "Reducing RPM, since tip speed depends on both rotational speed and blade radius, and a larger radius reaches the same tip speed at a lower RPM"
-      },
-      { "id": "c", "text": "No change to RPM at all" },
-      { "id": "d", "text": "Tip speed limits only apply to turboprop propellers, never piston ones" }
+      { "id": "a", "text": "Turn the blade toward fine pitch" },
+      { "id": "b", "text": "Bend the blade forward" },
+      { "id": "c", "text": "Turn the blade toward coarse pitch" },
+      { "id": "d", "text": "Have no effect" }
+    ],
+    "correct": "a",
+    "explanation": "Mass elements ahead of and behind the pitch axis are pulled into the plane of rotation, reducing blade angle; counterweights or oil pressure oppose it.",
+    "tags": ["centrifugal-twisting-moment"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0055",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Blade element forces",
+    "question": "Aerodynamic twisting moment on a blade (centre of pressure ahead of pitch axis) tends to:",
+    "options": [
+      { "id": "a", "text": "Stop rotation" },
+      { "id": "b", "text": "Bend the blade aft only" },
+      { "id": "c", "text": "Turn the blade toward coarse pitch" },
+      { "id": "d", "text": "Turn the blade toward fine pitch" }
+    ],
+    "correct": "c",
+    "explanation": "Lift acting ahead of the pitch-change axis produces a nose-up moment on the blade; it is usually smaller than the centrifugal moment.",
+    "tags": ["aerodynamic-twisting-moment"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0056",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Blade element forces",
+    "question": "Thrust bending force on a blade:",
+    "options": [
+      { "id": "a", "text": "Bends the tips forward" },
+      { "id": "b", "text": "Twists the blade to fine pitch" },
+      { "id": "c", "text": "Bends the tips aft" },
+      { "id": "d", "text": "Has no structural effect" }
+    ],
+    "correct": "a",
+    "explanation": "Thrust acts forward along the blade; centrifugal force counteracts the bending by tending to straighten the blade in the plane of rotation.",
+    "tags": ["bending", "thrust"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0057",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Efficiency and advance ratio",
+    "question": "Propeller efficiency η = T·V/P. With T = 3,000 N at 60 m/s and shaft power 225 kW, η is:",
+    "options": [
+      { "id": "a", "text": "0.08" },
+      { "id": "b", "text": "0.80" },
+      { "id": "c", "text": "0.60" },
+      { "id": "d", "text": "1.25" }
     ],
     "correct": "b",
-    "explanation": "Blade tip speed is the vector sum of rotational speed (proportional to RPM times radius) and forward speed. Since tip speed rises with radius for a given RPM, a larger-diameter propeller must turn more slowly to stay under the same tip speed limit — one reason large-diameter propellers are typically geared to run more slowly than the engine driving them.",
-    "tags": ["propellers", "diameter", "tip-speed"],
+    "explanation": "3,000 × 60 = 180 kW thrust power; 180/225 = 0.80.",
+    "tags": ["propeller-efficiency", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0017",
+    "id": "POF-PROP-0058",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Beta Range",
-    "question": "On a variable-pitch propeller with a \"beta range\", this range of blade angles is used mainly for:",
+    "subtopic": "Efficiency and advance ratio",
+    "question": "Advance ratio J = V/(n·D). At 60 m/s, 40 rev/s, D = 2 m, J is:",
     "options": [
-      { "id": "a", "text": "In-flight cruise power management, exactly like the normal constant-speed governing range" },
-      {
-        "id": "b",
-        "text": "Ground operations — from fine pitch through to reverse — where blade angle is commanded directly by the power lever rather than governed to hold a selected RPM"
-      },
-      { "id": "c", "text": "Feathering only" },
-      { "id": "d", "text": "High-altitude cruise exclusively" }
+      { "id": "a", "text": "1.33" },
+      { "id": "b", "text": "0.38" },
+      { "id": "c", "text": "0.75" },
+      { "id": "d", "text": "4,800" }
     ],
-    "correct": "b",
-    "explanation": "Below the normal constant-speed governing range lies the beta range, used on the ground: blade angle is commanded directly rather than governed to maintain a set RPM, covering fine pitch for taxiing through to negative blade angles for reverse thrust.",
-    "tags": ["propellers", "beta-range"],
+    "correct": "c",
+    "explanation": "60/(40 × 2) = 0.75.",
+    "tags": ["advance-ratio", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0018",
+    "id": "POF-PROP-0059",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Reverse Thrust",
-    "question": "A variable-pitch propeller produces reverse thrust by:",
+    "subtopic": "Efficiency and advance ratio",
+    "question": "Efficiency of a fixed-pitch propeller as a function of advance ratio:",
     "options": [
-      { "id": "a", "text": "Reversing the direction the engine and propeller rotate" },
-      {
-        "id": "b",
-        "text": "Rotating the blades to a negative blade angle, so their aerodynamic force now has a rearward component while the direction of rotation stays the same"
-      },
-      { "id": "c", "text": "Deploying a separate reversing duct, as on a turbofan" },
-      { "id": "d", "text": "Simply reducing RPM toward zero" }
+      { "id": "a", "text": "Peaks at one J and falls on either side" },
+      { "id": "b", "text": "Is maximum at J = 0" },
+      { "id": "c", "text": "Is constant" },
+      { "id": "d", "text": "Rises continuously with J" }
     ],
-    "correct": "b",
-    "explanation": "The propeller keeps turning in its normal direction; reverse thrust instead comes from rotating the blades through the beta range to a negative blade angle, so they now meet the air at an angle of attack that produces a rearward-acting force component, helping decelerate the aircraft after landing.",
-    "tags": ["propellers", "reverse-thrust"],
+    "correct": "a",
+    "explanation": "At low J the blades work at high α (drag losses); at high J α falls toward zero thrust. Only one J (one speed at a given rpm) is optimum.",
+    "tags": ["propeller-efficiency", "advance-ratio"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0019",
+    "id": "POF-PROP-0060",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Negative Torque Sensing",
-    "question": "A \"negative torque sensing\" system on a turboprop engine exists to detect the condition where:",
+    "subtopic": "Efficiency and advance ratio",
+    "question": "Propeller efficiency at zero forward speed (static) is:",
     "options": [
-      { "id": "a", "text": "The propeller is producing too much forward thrust" },
-      {
-        "id": "b",
-        "text": "The propeller, rather than being driven by the engine, is instead being driven by the airflow and tending to drive the engine — as after a power-section failure — and to respond automatically, typically by moving the blades toward feather"
-      },
-      { "id": "c", "text": "Engine RPM has exceeded its redline" },
-      { "id": "d", "text": "Reverse thrust has been selected prematurely" }
+      { "id": "a", "text": "About 0.8" },
+      { "id": "b", "text": "Negative" },
+      { "id": "c", "text": "Maximum" },
+      { "id": "d", "text": "Zero, although thrust is at or near its maximum" }
     ],
-    "correct": "b",
-    "explanation": "Normally the engine drives the propeller; if the power section fails, the propeller can instead be driven by the airflow, windmilling and imposing an unwanted (negative) torque back on the engine. A negative torque sensing system detects this reversal and automatically commands the propeller toward feather, protecting the gearbox and reducing drag without waiting for crew action.",
-    "tags": ["propellers", "negative-torque"],
+    "correct": "d",
+    "explanation": "η = T·V/P = 0 at V = 0: no thrust power is produced, even though thrust is large.",
+    "tags": ["static-thrust", "efficiency"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0020",
+    "id": "POF-PROP-0061",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Autofeather System",
-    "question": "An armed autofeather system on a multi-engine turboprop is designed to:",
+    "subtopic": "Efficiency and advance ratio",
+    "question": "The ideal (momentum-theory) efficiency of a propeller increases when:",
     "options": [
-      { "id": "a", "text": "Feather all propellers automatically at the top of climb" },
+      { "id": "a", "text": "Thrust increases at fixed disc" },
+      { "id": "b", "text": "Less air is accelerated more" },
+      { "id": "c", "text": "Diameter decreases" },
       {
-        "id": "b",
-        "text": "Automatically move a failing engine's propeller to feather, without pilot action, if power on that engine drops below a set threshold during a critical phase such as takeoff"
-      },
-      { "id": "c", "text": "Prevent any propeller from ever being feathered" },
-      { "id": "d", "text": "Replace the need for a negative torque sensing system entirely" }
+        "id": "d",
+        "text": "More air is accelerated by a smaller velocity increment (larger disc area for the same thrust)"
+      }
     ],
-    "correct": "b",
-    "explanation": "Armed for takeoff and initial climb, autofeather senses a significant, sudden loss of power on an engine and automatically drives that engine's propeller to feather, removing the very large drag of a windmilling propeller within seconds — faster than a crew could identify and action it manually — during exactly the phase of flight where that drag matters most.",
-    "tags": ["propellers", "autofeather"],
+    "correct": "d",
+    "explanation": "η_ideal = 2/(1 + V_slipstream/V); a small velocity increase means small kinetic energy waste.",
+    "tags": ["momentum-theory", "efficiency"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0021",
+    "id": "POF-PROP-0062",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Tractor Configuration",
-    "question": "A \"tractor\" propeller installation, mounted ahead of the wing or fuselage it drives, compared with a \"pusher\" installation:",
+    "subtopic": "Efficiency and advance ratio",
+    "question": "Maximum practical propeller efficiency is typically about:",
     "options": [
-      { "id": "a", "text": "Always produces less thrust for the same power" },
-      {
-        "id": "b",
-        "text": "Draws relatively undisturbed air into the propeller disc, but its slipstream then passes back over the fuselage, wing and tail"
-      },
-      { "id": "c", "text": "Cannot be fitted with a constant-speed propeller" },
-      { "id": "d", "text": "Eliminates torque reaction entirely" }
+      { "id": "a", "text": "0.50" },
+      { "id": "b", "text": "1.10" },
+      { "id": "c", "text": "0.99" },
+      { "id": "d", "text": "0.80–0.88" }
     ],
-    "correct": "b",
-    "explanation": "A tractor propeller sits ahead of the airframe, so its disc meets air that has not yet been disturbed by the fuselage or wing, which is aerodynamically clean. The cost is that its slipstream then washes back over the rest of the airframe, which is the direct cause of slipstream-induced yaw and the local lift changes it produces over the parts of the wing and tail it strikes.",
-    "tags": ["propellers", "tractor-propeller"],
+    "correct": "d",
+    "explanation": "Profile drag, tip losses, swirl in the slipstream and, at high speed, compressibility keep η below the ideal value.",
+    "tags": ["propeller-efficiency"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0022",
+    "id": "POF-PROP-0063",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Pusher Configuration",
-    "question": "A \"pusher\" propeller installation, mounted behind the wing or fuselage, typically:",
-    "options": [
-      { "id": "a", "text": "Always achieves higher propeller efficiency than a tractor installation" },
-      {
-        "id": "b",
-        "text": "Operates in air already disturbed by the fuselage or wing ahead of it, which can reduce propeller efficiency and increase vibration, though it keeps the slipstream from washing over the airframe"
-      },
-      { "id": "c", "text": "Cannot produce torque reaction" },
-      { "id": "d", "text": "Is only ever used on gliders" }
-    ],
-    "correct": "b",
-    "explanation": "Because the propeller disc is behind the airframe, it meets air that has already been slowed and disturbed by the fuselage or wing's own wake, which can reduce efficiency and increase vibration compared with a tractor installation. In exchange, the airframe itself sits in clean air ahead of the propeller, with no slipstream washing back over the wing or tail.",
-    "tags": ["propellers", "pusher-propeller"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0023",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Ground Fine Pitch Stop",
-    "question": "A mechanical \"ground fine pitch stop\" on a variable-pitch propeller exists to:",
-    "options": [
-      { "id": "a", "text": "Allow the blades to move into reverse at any time during flight" },
-      {
-        "id": "b",
-        "text": "Prevent the blades from moving below a set fine pitch angle while airborne, protecting against overspeed and excessive drag, while allowing that limit to be bypassed on the ground to reach beta and reverse range"
-      },
-      { "id": "c", "text": "Prevent the engine from ever exceeding idle power" },
-      { "id": "d", "text": "Lock the propeller permanently at its most coarse pitch" }
-    ],
-    "correct": "b",
-    "explanation": "The fine pitch stop limits how far the blades can move toward fine pitch in normal flight, protecting against a dangerous propeller overspeed and the very high drag an excessively fine blade angle would create. On the ground, a separate mechanism allows the blades to move past that stop into the beta and reverse range, where fine and negative pitch are wanted for ground handling.",
-    "tags": ["propellers", "fine-pitch-stop"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0024",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Slipstream Effect on Wing Lift",
-    "question": "Where a propeller's slipstream washes directly over part of a wing, the local effect on that section of wing is typically to:",
-    "options": [
-      { "id": "a", "text": "Reduce the local airflow velocity, decreasing lift there" },
-      {
-        "id": "b",
-        "text": "Increase the local airflow velocity over that section, increasing its local lift coefficient and, on some aircraft, delaying local stall in that area"
-      },
-      { "id": "c", "text": "Have no aerodynamic effect on the wing at all, only on the tail" },
-      { "id": "d", "text": "Always cause that section of wing to stall first" }
-    ],
-    "correct": "b",
-    "explanation": "A propeller accelerates the air passing through its disc, so any wing area sitting in that slipstream experiences a higher local airflow velocity than the rest of the wing. This increases the local lift generated there — most noticeable at low airspeed and high power — a separate effect from the slipstream's better-known tendency to yaw the aircraft by striking the tail asymmetrically.",
-    "tags": ["propellers", "slipstream-effect", "wing-lift"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0025",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Counter-Rotating Propellers",
-    "question": "Fitting counter-rotating propellers to a twin-engine aircraft — the two propellers turning in opposite directions — mainly serves to:",
-    "options": [
-      { "id": "a", "text": "Increase the total thrust available beyond what same-rotation propellers could produce" },
-      {
-        "id": "b",
-        "text": "Make the asymmetric effects, such as P-factor, of the two engines mirror-image opposites, so neither engine produces a consistently larger yawing moment when inoperative — removing the concept of a \"critical engine\""
-      },
-      { "id": "c", "text": "Eliminate torque reaction on both engines" },
-      { "id": "d", "text": "Allow the aircraft to be flown with no rudder input after an engine failure" }
-    ],
-    "correct": "b",
-    "explanation": "On a conventional twin with both propellers rotating the same direction, one engine's failure produces a larger yawing moment than the other's because asymmetric effects like P-factor add to the moment arm on one side and subtract on the other. Counter-rotating propellers make those effects mirror images of each other, so both engines produce the same yawing moment if they fail — there is no longer a \"worse\" engine to lose.",
-    "tags": ["propellers", "counter-rotating", "critical-engine"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0026",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Critical Engine Definition",
-    "question": "On a conventional twin-engine aircraft where both propellers rotate in the same direction, the \"critical engine\" is defined as the engine whose failure:",
-    "options": [
-      { "id": "a", "text": "Produces the least reduction in controllability and performance" },
-      {
-        "id": "b",
-        "text": "Produces the greater reduction in controllability and performance, typically because its loss removes the propeller whose asymmetric thrust effects were creating the larger adverse yawing moment"
-      },
-      { "id": "c", "text": "Is always the left-hand engine, regardless of propeller rotation direction" },
-      { "id": "d", "text": "Only matters for single-engine aircraft" }
-    ],
-    "correct": "b",
-    "explanation": "With same-rotation propellers, the two engines are not aerodynamically equal contributors to yaw: because of effects such as P-factor, one engine's descending blade sits further from the aircraft's centreline than the other's, giving it a longer moment arm. The engine whose failure removes the more significant of these effects — leaving the worse controllability and performance problem — is the critical engine.",
-    "tags": ["propellers", "critical-engine"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0027",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "VMCA Definition",
-    "question": "VMCA (air minimum control speed) is defined, for a given configuration, as the minimum speed at which:",
-    "options": [
-      { "id": "a", "text": "The aircraft can be flown with both engines at idle power" },
-      {
-        "id": "b",
-        "text": "Directional control can be maintained with the critical engine suddenly made inoperative and the remaining engine at maximum takeoff power, using a defined maximum bank angle and no more than a specified rudder input"
-      },
-      { "id": "c", "text": "The aircraft will not stall under any circumstances" },
-      { "id": "d", "text": "All propellers must be feathered" }
-    ],
-    "correct": "b",
-    "explanation": "VMCA is a defined, tested speed: with the critical engine failed and the other engine developing maximum takeoff power, it is the minimum speed at which the test pilot can still keep the aircraft on a straight heading, within a specified bank angle, using no more than a stated amount of rudder — below it, directional control cannot be assured.",
-    "tags": ["propellers", "vmca"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0028",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Factors Affecting VMCA",
-    "question": "Compared with its certificated value, VMCA on a given twin will generally be higher if:",
-    "options": [
-      { "id": "a", "text": "The centre of gravity is further forward than certificated" },
-      {
-        "id": "b",
-        "text": "The centre of gravity is further aft than certificated, since this shortens the moment arm the rudder has to counter the asymmetric yawing moment"
-      },
-      { "id": "c", "text": "The failed engine's propeller has been feathered rather than left windmilling" },
-      { "id": "d", "text": "The aircraft is operating at a higher density altitude than certificated" }
-    ],
-    "correct": "b",
-    "explanation": "VMCA is tested with a defined, forward centre of gravity, because a more aft CG reduces the rudder's moment arm and therefore its authority to counter the asymmetric yaw from the operating engine, raising VMCA. Conversely, feathering the failed propeller removes its drag and reduces the yawing moment, and reduced power available at higher density altitude lowers the asymmetric thrust — both tend to lower VMCA rather than raise it.",
-    "tags": ["propellers", "vmca"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0029",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Static Thrust and Efficiency",
-    "question": "A propeller's aerodynamic efficiency — thrust multiplied by true airspeed, divided by shaft power absorbed — at the zero-forward-speed static condition used at the start of a takeoff roll is:",
-    "options": [
-      { "id": "a", "text": "At its maximum, since thrust is highest at this point" },
-      {
-        "id": "b",
-        "text": "Zero by definition, even though the propeller is producing substantial static thrust, because the useful power output term is zero when true airspeed is zero"
-      },
-      { "id": "c", "text": "Impossible to calculate at zero forward speed" },
-      { "id": "d", "text": "Always exactly 100%, since no forward drag exists yet" }
-    ],
-    "correct": "b",
-    "explanation": "Propeller efficiency is useful power output — thrust multiplied by true airspeed — divided by shaft power delivered. At zero forward speed that product is zero no matter how much static thrust is produced, so efficiency is zero by definition at the very start of the takeoff roll, rising rapidly as forward speed builds even though static thrust itself is often near its maximum value.",
-    "tags": ["propellers", "efficiency", "static-thrust"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0030",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Altitude and RPM Limits",
-    "question": "A normally aspirated (non-turbocharged) piston engine driving a fixed-pitch propeller will typically find that, as altitude increases:",
+    "subtopic": "Fixed pitch",
+    "question": "A fixed-pitch propeller designed for cruise (coarse) compared with one designed for climb (fine):",
     "options": [
       {
         "id": "a",
-        "text": "Maximum attainable RPM increases, since thinner air offers the propeller less resistance to turn, even though the engine itself is producing less power"
+        "text": "Gives better cruise efficiency but lower take-off rpm and static thrust"
       },
-      { "id": "b", "text": "Maximum attainable RPM decreases at exactly the same rate the engine's power falls" },
-      { "id": "c", "text": "RPM is completely unaffected by altitude" },
-      { "id": "d", "text": "RPM can only ever be limited by a governor, never by altitude" }
+      { "id": "b", "text": "Allows higher rpm at take-off" },
+      { "id": "c", "text": "Gives better take-off performance" },
+      { "id": "d", "text": "Is identical" }
     ],
     "correct": "a",
-    "explanation": "A fixed-pitch propeller's load on the engine depends on the density of the air it turns in; in the thinner air of altitude it offers less resistance, letting the same power setting spin it to a higher RPM than at sea level, even as the naturally aspirated engine's own maximum power output falls with altitude — the two effects work against each other rather than cancelling exactly.",
-    "tags": ["propellers", "altitude", "rpm"],
+    "explanation": "Coarse blades at low V operate at high α (near stall) and absorb power at lower rpm, reducing engine power and thrust.",
+    "tags": ["fixed-pitch", "coarse-pitch"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0031",
+    "id": "POF-PROP-0064",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Reduction Gearbox",
-    "question": "Many turboprop and some geared piston engines drive their propeller through a reduction gearbox mainly because:",
+    "subtopic": "Fixed pitch",
+    "question": "With a fixed-pitch propeller, increasing airspeed in a dive at constant throttle causes:",
+    "options": [
+      { "id": "a", "text": "Thrust to increase" },
+      {
+        "id": "b",
+        "text": "Rpm to increase (risk of overspeed), as blade α and torque fall"
+      },
+      { "id": "c", "text": "Rpm to remain constant" },
+      { "id": "d", "text": "Rpm to decrease" }
+    ],
+    "correct": "b",
+    "explanation": "Lower α reduces absorbed torque; the engine accelerates the propeller.",
+    "tags": ["fixed-pitch", "overspeed"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0065",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Fixed pitch",
+    "question": "A fine-pitch fixed propeller in cruise:",
+    "options": [
+      { "id": "a", "text": "Is ideal for cruise" },
+      { "id": "b", "text": "Operates near stall" },
+      {
+        "id": "c",
+        "text": "Operates at low α and high rpm, risking engine overspeed and poor efficiency"
+      },
+      { "id": "d", "text": "Produces maximum efficiency" }
+    ],
+    "correct": "c",
+    "explanation": "It is optimised for low speed; at high V the helix angle approaches the blade angle.",
+    "tags": ["fixed-pitch", "fine-pitch"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0066",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Constant speed",
+    "question": "A constant-speed propeller maintains rpm by:",
+    "options": [
+      { "id": "a", "text": "Varying throttle" },
+      {
+        "id": "b",
+        "text": "A governor adjusting blade angle to vary absorbed torque"
+      },
+      { "id": "c", "text": "Varying mixture" },
+      { "id": "d", "text": "Varying engine timing" }
+    ],
+    "correct": "b",
+    "explanation": "Flyweights sense rpm; oil pressure (or springs/counterweights) change blade angle.",
+    "tags": ["constant-speed", "governor"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0067",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Constant speed",
+    "question": "With a constant-speed propeller, increasing TAS at constant power and rpm causes the governor to:",
     "options": [
       {
         "id": "a",
-        "text": "It allows the engine to run at a higher, more efficient RPM while keeping the propeller's own RPM — and therefore blade tip speed — low enough to avoid compressibility losses"
+        "text": "Increase the blade angle (coarser) to keep α and torque roughly constant"
       },
-      { "id": "b", "text": "It increases propeller RPM above engine RPM" },
-      { "id": "c", "text": "It has no effect on propeller tip speed" },
-      { "id": "d", "text": "It exists solely to reduce engine noise" }
+      { "id": "b", "text": "Hold the blade angle constant" },
+      { "id": "c", "text": "Feather the propeller" },
+      { "id": "d", "text": "Decrease the blade angle" }
     ],
     "correct": "a",
-    "explanation": "A gas turbine in particular runs most efficiently at a much higher RPM than a propeller can usefully turn at without its blade tips approaching the speed of sound. A reduction gearbox lets the engine run at its own efficient RPM while turning the propeller at a much lower RPM, keeping tip speed — and the compressibility losses that come with it — within acceptable limits.",
-    "tags": ["propellers", "reduction-gearbox"],
+    "explanation": "Higher V increases φ; β increases to maintain α = β − φ and absorbed torque.",
+    "tags": ["constant-speed", "blade-angle"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0032",
+    "id": "POF-PROP-0068",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Blade Twist",
-    "question": "A propeller blade is typically twisted along its length, with a coarser blade angle at the root than at the tip, mainly because:",
+    "subtopic": "Constant speed",
+    "question": "With a constant-speed propeller, opening the throttle at constant rpm setting results in:",
     "options": [
-      { "id": "a", "text": "It looks more aerodynamic" },
+      { "id": "a", "text": "A finer blade angle" },
       {
         "id": "b",
-        "text": "Rotational speed increases from root to tip, so without twist the outer sections would meet the air at a much smaller angle of attack than the inner sections; twist keeps angle of attack more consistent along the blade's span"
+        "text": "A coarser blade angle to absorb the extra power at the same rpm"
       },
-      { "id": "c", "text": "It reduces the total weight of the blade" },
-      { "id": "d", "text": "It has no aerodynamic purpose, only a structural one" }
+      { "id": "c", "text": "Higher rpm" },
+      { "id": "d", "text": "No change in blade angle" }
     ],
     "correct": "b",
-    "explanation": "Every point along a propeller blade moves at a different rotational speed — faster toward the tip, slower toward the root — while the aircraft's forward speed is the same for the whole blade. Twisting the blade so the angle progressively decreases from root to tip compensates for this, keeping each section closer to its own most efficient angle of attack rather than the tip stalling or the root angle of attack being far too high.",
-    "tags": ["propellers", "blade-twist"],
+    "explanation": "More engine torque would accelerate the propeller; the governor increases β to absorb it.",
+    "tags": ["constant-speed", "throttle"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0033",
+    "id": "POF-PROP-0069",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Synchrophasing",
-    "question": "A synchrophasing system on a multi-engine, multi-propeller aircraft is used to:",
+    "subtopic": "Constant speed",
+    "question": "In a glide with throttle closed, a constant-speed propeller:",
     "options": [
-      { "id": "a", "text": "Automatically feather a propeller after an engine failure" },
+      { "id": "a", "text": "Feathers automatically" },
+      { "id": "b", "text": "Goes coarse" },
+      {
+        "id": "c",
+        "text": "Moves to the fine-pitch stop; rpm then falls as power is insufficient"
+      },
+      { "id": "d", "text": "Maintains full rpm indefinitely" }
+    ],
+    "correct": "c",
+    "explanation": "The governor fines the blades to hold rpm until the fine stop is reached; then rpm decays and the windmilling propeller may produce drag.",
+    "tags": ["constant-speed", "fine-stop"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0070",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Constant speed",
+    "question": "For take-off, a constant-speed propeller is set to:",
+    "options": [
+      { "id": "a", "text": "Feathered" },
+      { "id": "b", "text": "Coarse pitch / low rpm" },
+      { "id": "c", "text": "Reverse" },
+      {
+        "id": "d",
+        "text": "Fine pitch / maximum rpm, allowing the engine to develop full power at low forward speed"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Low blade angle at low V keeps blades unstalled and lets the engine reach rated rpm.",
+    "tags": ["take-off", "fine-pitch"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0071",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Constant speed",
+    "question": "The advantage of a constant-speed propeller over a fixed-pitch propeller is:",
+    "options": [
+      { "id": "a", "text": "Simplicity" },
+      { "id": "b", "text": "Lower weight" },
+      { "id": "c", "text": "No need for a governor" },
+      {
+        "id": "d",
+        "text": "Near-optimum blade angle of attack (and efficiency) over a wide speed range"
+      }
+    ],
+    "correct": "d",
+    "explanation": "It avoids the single-optimum limitation of a fixed blade angle.",
+    "tags": ["constant-speed", "efficiency"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0072",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Constant speed",
+    "question": "If oil pressure to a single-acting propeller that uses oil to increase pitch fails, the blades typically move:",
+    "options": [
+      { "id": "a", "text": "To feather" },
       {
         "id": "b",
-        "text": "Hold the propellers at matched RPM and a set relative blade phase angle to each other, reducing the beat-frequency noise and vibration that unsynchronised propellers produce"
+        "text": "Toward fine pitch (high rpm), driven by centrifugal twisting moment and springs"
       },
-      { "id": "c", "text": "Reverse all propellers simultaneously on landing" },
-      { "id": "d", "text": "Deliberately increase the RPM of one propeller above the others" }
+      { "id": "c", "text": "Nowhere; the blades lock" },
+      { "id": "d", "text": "Toward coarse pitch (low rpm)" }
     ],
     "correct": "b",
-    "explanation": "Propellers that are close in RPM but not identical produce a distinctive, fluctuating beat noise and vibration as their blades pass in and out of phase with each other. A synchrophasing system fine-tunes each propeller's RPM and controls the relative angular position between them, holding a fixed phase relationship that noticeably reduces cabin noise and airframe vibration.",
-    "tags": ["propellers", "synchrophasing"],
+    "explanation": "With oil only able to coarsen the blades, losing it leaves the fine-pitch forces unopposed. Twin-engine designs reverse the arrangement: oil fines the blades and counterweights/springs drive them coarse or to feather on failure.",
+    "tags": ["constant-speed", "failure-mode"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0034",
+    "id": "POF-PROP-0073",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Feathering Accumulator",
-    "question": "After an engine failure causes a loss of its own oil pressure, a propeller that still succeeds in feathering typically relies on:",
+    "subtopic": "Feathering, windmilling and reverse",
+    "question": "A feathered propeller has its blades:",
     "options": [
-      { "id": "a", "text": "The failed engine somehow regenerating oil pressure on its own" },
+      { "id": "a", "text": "At 0° blade angle" },
+      { "id": "b", "text": "At negative angle" },
+      { "id": "c", "text": "At maximum rpm" },
+      {
+        "id": "d",
+        "text": "At about 90° to the plane of rotation, edge-on to the airflow, minimising drag and stopping rotation"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Feathering removes windmilling drag after engine failure, improving single-engine performance and control.",
+    "tags": ["feathering"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0074",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Feathering, windmilling and reverse",
+    "question": "A windmilling propeller produces:",
+    "options": [
+      { "id": "a", "text": "No drag" },
+      { "id": "b", "text": "Positive thrust" },
+      { "id": "c", "text": "Lift" },
+      {
+        "id": "d",
+        "text": "Drag (negative thrust), being driven by the airflow at negative α"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The relative flow strikes the blade's front face; the propeller extracts energy from the air to turn the engine.",
+    "tags": ["windmilling", "drag"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0075",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Feathering, windmilling and reverse",
+    "question": "Windmilling drag of a fine-pitch propeller compared with a feathered propeller is:",
+    "options": [
+      { "id": "a", "text": "Much larger" },
+      { "id": "b", "text": "Equal" },
+      { "id": "c", "text": "Smaller" },
+      { "id": "d", "text": "Zero in both cases" }
+    ],
+    "correct": "a",
+    "explanation": "The disc of a windmilling fine-pitch propeller behaves like a large drag plate; feathering can reduce the drag several-fold.",
+    "tags": ["windmilling", "feathering"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0076",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Feathering, windmilling and reverse",
+    "question": "Reverse pitch is used:",
+    "options": [
+      { "id": "a", "text": "To feather" },
       {
         "id": "b",
-        "text": "A separate reserve, such as an accumulator or the still-operating engine's own oil supply, dedicated to driving the feathering mechanism independently of the failed engine's own oil pressure"
+        "text": "On the ground after landing to produce reverse thrust for deceleration"
       },
-      { "id": "c", "text": "Gravity alone acting on the blades" },
-      { "id": "d", "text": "The propeller being unable to feather once its engine's oil pressure is lost" }
+      { "id": "c", "text": "In cruise for descent" },
+      { "id": "d", "text": "For take-off" }
     ],
     "correct": "b",
-    "explanation": "Many constant-speed propeller systems normally use engine oil pressure to control blade angle, which would be lost along with the failed engine's own oil pressure at the worst possible moment. To feather reliably after such a failure, the system provides a separate source of pressure — such as a spring-loaded or nitrogen-charged accumulator, or a supply routed from the still-running engine on a twin — dedicated to driving the blades to feather independently of the failed engine's own oil.",
-    "tags": ["propellers", "feathering", "accumulator"],
+    "explanation": "A negative blade angle directs the slipstream forward.",
+    "tags": ["reverse-pitch"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0035",
+    "id": "POF-PROP-0077",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Critical Vibration Range",
-    "question": "Some aircraft placard a particular propeller RPM range as unsuitable for sustained (continuous) operation, mainly because:",
+    "subtopic": "Feathering, windmilling and reverse",
+    "question": "The beta range on a turboprop refers to:",
     "options": [
-      { "id": "a", "text": "That RPM range wastes the most fuel" },
+      { "id": "a", "text": "Feathered state" },
       {
         "id": "b",
-        "text": "That RPM range coincides with a natural vibration frequency of the propeller, engine mount or airframe, and continuous operation there risks a damaging resonance building up over time"
+        "text": "Direct pilot control of blade angle (ground operations, reverse) rather than governed constant-speed operation"
       },
-      { "id": "c", "text": "It is illegal to operate below the aircraft's maximum RPM at any time" },
-      { "id": "d", "text": "It only affects the electrical system, not the structure" }
+      { "id": "c", "text": "Take-off setting" },
+      { "id": "d", "text": "Maximum cruise" }
     ],
     "correct": "b",
-    "explanation": "A propeller-engine combination has natural resonant frequencies, and running continuously at an RPM that excites one of them can allow vibration amplitude to build up over time, risking fatigue damage to the propeller, engine mounting or nearby airframe structure. The fix is not to avoid that RPM outright, but to placard it against sustained operation while allowing a brief transit through it.",
-    "tags": ["propellers", "vibration", "resonance"],
+    "explanation": "Power lever positions below flight idle select blade angle directly.",
+    "tags": ["beta-range", "turboprop"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0036",
+    "id": "POF-PROP-0078",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Coarse Pitch for Cruise",
-    "question": "In cruise flight, a constant-speed propeller is typically operated at a coarser blade angle and lower RPM than during the takeoff roll, mainly because:",
+    "subtopic": "Feathering, windmilling and reverse",
+    "question": "Selecting ground fine or reverse in flight is dangerous because:",
+    "options": [
+      { "id": "a", "text": "It feathers the propeller" },
+      { "id": "b", "text": "It increases thrust" },
+      {
+        "id": "c",
+        "text": "The large drag and loss of lift over the wing behind the propeller can cause loss of control"
+      },
+      { "id": "d", "text": "It has no effect" }
+    ],
+    "correct": "c",
+    "explanation": "Very low blade angles at flight speeds produce huge drag and disturbed flow; systems lock these ranges out in flight.",
+    "tags": ["beta-range", "safety"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0079",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Tip speed and compressibility",
+    "question": "Helical tip speed is √((ω·r)² + V²). At ω·r = 251 m/s and V = 100 m/s, with a = 340 m/s, tip Mach number is about:",
+    "options": [
+      { "id": "a", "text": "1.04" },
+      { "id": "b", "text": "0.79" },
+      { "id": "c", "text": "0.74" },
+      { "id": "d", "text": "0.29" }
+    ],
+    "correct": "b",
+    "explanation": "√(251² + 100²) = 270 m/s; 270/340 = 0.79.",
+    "tags": ["tip-mach", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0080",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Tip speed and compressibility",
+    "question": "High tip Mach numbers are avoided because:",
+    "options": [
+      { "id": "a", "text": "They reduce thrust only at low speed" },
+      {
+        "id": "b",
+        "text": "Shock formation at the tips reduces efficiency and increases noise"
+      },
+      { "id": "c", "text": "They increase efficiency" },
+      { "id": "d", "text": "They reduce noise" }
+    ],
+    "correct": "b",
+    "explanation": "Compressibility losses rise steeply above tip M ≈ 0.85–0.9.",
+    "tags": ["tip-mach", "compressibility"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0081",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Tip speed and compressibility",
+    "question": "For a tip Mach limit of 0.85 statically (a = 340 m/s), the maximum rpm for a 2.4 m propeller is about:",
+    "options": [
+      { "id": "a", "text": "4,600 rpm" },
+      { "id": "b", "text": "1,150 rpm" },
+      { "id": "c", "text": "2,300 rpm" },
+      { "id": "d", "text": "2,760 rpm" }
+    ],
+    "correct": "c",
+    "explanation": "n = M·a/(π·D) = 0.85 × 340.3/(π × 2.4) = 38.4 rev/s = 2,300 rpm; a 2.0 m propeller could turn 2,760 rpm.",
+    "tags": ["tip-speed", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0082",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Tip speed and compressibility",
+    "question": "Reduction gearboxes are fitted between turbine engines and propellers because:",
     "options": [
       {
         "id": "a",
-        "text": "Coarse pitch and low RPM together give the best fuel efficiency for the modest thrust needed to maintain cruise speed, since the high angle of attack that fine pitch and high RPM provide is not needed for maximum static thrust"
+        "text": "Turbine shaft speeds would give supersonic propeller tips"
       },
-      { "id": "b", "text": "Coarse pitch always produces more total thrust than fine pitch at any airspeed" },
-      { "id": "c", "text": "RPM has no effect on fuel consumption" },
-      { "id": "d", "text": "Cruise flight requires the maximum RPM available, the same as takeoff" }
+      { "id": "b", "text": "They increase engine power" },
+      { "id": "c", "text": "They reduce weight" },
+      { "id": "d", "text": "They reduce torque" }
     ],
     "correct": "a",
-    "explanation": "Takeoff needs maximum thrust, which a fine blade angle and high RPM deliver even though this is aerodynamically inefficient. In cruise, far less thrust is needed to maintain speed, so a coarser blade angle at a lower, more fuel-efficient RPM keeps the blades near their best angle of attack for the higher forward speed and lower power required, trading maximum thrust capability for efficiency.",
-    "tags": ["propellers", "cruise", "blade-angle"],
+    "explanation": "Propeller rpm must be limited to keep the helical tip Mach number acceptable.",
+    "tags": ["reduction-gearbox"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0037",
+    "id": "POF-PROP-0083",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Fixed-Pitch Compromise",
-    "question": "A fixed-pitch propeller's blade angle must be chosen as a single compromise value because it cannot adjust in flight, which means an aircraft fitted with one:",
+    "subtopic": "Tip speed and compressibility",
+    "question": "Propeller efficiency falls at high cruise speeds mainly because:",
     "options": [
-      { "id": "a", "text": "Achieves its best propeller efficiency at every combination of RPM and airspeed simultaneously" },
-      {
-        "id": "b",
-        "text": "Can be optimised for good climb performance or for good cruise efficiency, but not fully for both — a \"climb\" propeller sacrifices some cruise efficiency, and a \"cruise\" propeller sacrifices some climb performance"
-      },
-      { "id": "c", "text": "Cannot produce thrust at all in cruise flight" },
-      { "id": "d", "text": "Is always more efficient overall than a constant-speed propeller" }
+      { "id": "a", "text": "Air density increases" },
+      { "id": "b", "text": "Helical tip Mach number rises toward sonic" },
+      { "id": "c", "text": "Thrust rises" },
+      { "id": "d", "text": "Blade angle becomes too fine" }
     ],
     "correct": "b",
-    "explanation": "Because a fixed-pitch propeller's single blade angle can only be near-optimal at one particular combination of airspeed and RPM, the manufacturer or owner must choose which flight regime to favour. A propeller pitched fine for strong static and climb performance will be somewhat inefficient at cruise speed, and one pitched coarser for efficient cruise will give a longer takeoff roll and a shallower climb.",
-    "tags": ["propellers", "fixed-pitch"],
+    "explanation": "This limits conventional propeller aircraft to about M 0.6–0.7.",
+    "tags": ["tip-mach", "high-speed"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0038",
+    "id": "POF-PROP-0084",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Disc Loading",
-    "question": "A propeller's \"disc loading\" is defined as:",
+    "subtopic": "Propeller moments",
+    "question": "A propeller rotating clockwise when viewed from behind produces a torque reaction that:",
     "options": [
-      { "id": "a", "text": "The thrust produced divided by the area of the disc the propeller sweeps" },
-      { "id": "b", "text": "The total weight of the propeller blades" },
-      { "id": "c", "text": "The number of blades divided by propeller diameter" },
-      { "id": "d", "text": "Maximum RPM divided by disc area" }
+      { "id": "a", "text": "Rolls the aircraft to the left (anticlockwise)" },
+      { "id": "b", "text": "Yaws it right" },
+      { "id": "c", "text": "Pitches it up" },
+      { "id": "d", "text": "Rolls it to the right" }
     ],
     "correct": "a",
-    "explanation": "Disc loading is thrust divided by the swept disc area. A propeller of larger diameter turning more slowly can produce the same thrust at a lower disc loading than a smaller, faster-turning one, generally with better propulsive efficiency, though at the cost of the ground clearance and practical diameter limits covered elsewhere.",
-    "tags": ["propellers", "disc-loading"],
+    "explanation": "Newton's third law: the airframe reacts opposite to propeller rotation.",
+    "tags": ["torque-reaction"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0039",
+    "id": "POF-PROP-0085",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Governor Failure and Overspeed",
-    "question": "In most constant-speed propeller systems, a failure that causes a complete loss of governing oil pressure will tend to drive the propeller toward:",
+    "subtopic": "Propeller moments",
+    "question": "During the take-off roll, torque reaction (clockwise propeller from behind) also causes a yaw to the left because:",
     "options": [
-      { "id": "a", "text": "Feather, protecting the engine automatically" },
       {
-        "id": "b",
-        "text": "Fine pitch, risking an overspeed, since a spring and/or counterweights typically drive the blades toward fine pitch by default when governing oil pressure is lost"
+        "id": "a",
+        "text": "It loads the left main wheel more, increasing its rolling friction"
       },
-      { "id": "c", "text": "Reverse pitch" },
-      { "id": "d", "text": "Whatever blade angle it happened to be at, with no tendency to move" }
+      { "id": "b", "text": "The fin is forced right" },
+      { "id": "c", "text": "Gyroscopic precession" },
+      { "id": "d", "text": "Thrust is asymmetric" }
     ],
-    "correct": "b",
-    "explanation": "A typical constant-speed hub uses oil pressure, opposed by springs or counterweights, to hold a coarser blade angle; losing that oil pressure lets the springs or counterweights win, driving the blades toward fine pitch by default. Fine pitch offers little resistance to rotation, so the engine can accelerate toward a dangerous overspeed unless power is reduced immediately — a different failure mode from the loss of a failed engine's own oil pressure feathering system described elsewhere, which most designs protect against with a separate mechanism.",
-    "tags": ["propellers", "overspeed", "governor"],
+    "correct": "a",
+    "explanation": "Rolling moment transfers weight to the left wheel; increased drag on that side yaws the nose left.",
+    "tags": ["torque-reaction", "take-off"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-PROP-0040",
+    "id": "POF-PROP-0086",
     "subjectCode": "POF",
     "topic": "Propellers",
-    "subtopic": "Windmill Restart",
-    "question": "An in-flight restart of a failed engine using \"windmill\" relighting relies on:",
+    "subtopic": "Propeller moments",
+    "question": "The spiral slipstream of a clockwise propeller (from behind) strikes the fin:",
     "options": [
-      { "id": "a", "text": "The starter motor exclusively, with the propeller stopped" },
+      {
+        "id": "a",
+        "text": "On its left side, yawing the aircraft to the left"
+      },
+      { "id": "b", "text": "Only in reverse pitch" },
+      { "id": "c", "text": "On its right side, yawing right" },
+      { "id": "d", "text": "Symmetrically" }
+    ],
+    "correct": "a",
+    "explanation": "The slipstream rotates with the propeller and meets the fin from the left below it.",
+    "tags": ["spiral-slipstream"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0087",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Propeller moments",
+    "question": "Asymmetric blade effect (P-factor) at high angle of attack, clockwise propeller from behind:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Gives more thrust from the descending (right) blade, yawing left"
+      },
+      { "id": "b", "text": "Pitches the nose up only" },
+      { "id": "c", "text": "Produces no yaw" },
+      {
+        "id": "d",
+        "text": "Gives more thrust from the ascending blade, yawing right"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Inclined disc: the descending blade meets the air at higher α and speed.",
+    "tags": ["p-factor"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0088",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Propeller moments",
+    "question": "Gyroscopic precession: a force applied to a spinning propeller disc takes effect:",
+    "options": [
+      { "id": "a", "text": "At the point of application" },
+      { "id": "b", "text": "90° against rotation" },
+      { "id": "c", "text": "90° later in the direction of rotation" },
+      { "id": "d", "text": "180° later" }
+    ],
+    "correct": "c",
+    "explanation": "The angular momentum vector turns toward the applied torque vector.",
+    "tags": ["gyroscopic-precession"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0089",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Propeller moments",
+    "question": "Raising the tail of a tailwheel aircraft on take-off (clockwise propeller from behind) produces, through precession:",
+    "options": [
+      { "id": "a", "text": "A roll to the right" },
+      { "id": "b", "text": "No effect" },
+      { "id": "c", "text": "A yaw to the left" },
+      { "id": "d", "text": "A yaw to the right" }
+    ],
+    "correct": "c",
+    "explanation": "Pitching nose-down tilts the disc; the resulting precession moment yaws the nose left for this rotation direction.",
+    "tags": ["gyroscopic-precession", "tailwheel"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0090",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Propeller moments",
+    "question": "Counter-rotating propellers on a twin (opposite rotation on each side) remove:",
+    "options": [
+      { "id": "a", "text": "Gyroscopic loads within each propeller" },
       {
         "id": "b",
-        "text": "Airflow through the still-unfeathered, windmilling propeller continuing to turn the engine fast enough to permit relighting, without needing the electric starter"
+        "text": "The critical-engine asymmetry and cancel net torque and P-factor effects"
       },
-      { "id": "c", "text": "The propeller being fully feathered throughout the restart attempt" },
-      { "id": "d", "text": "Ground personnel manually turning the propeller" }
+      { "id": "c", "text": "All drag" },
+      { "id": "d", "text": "The need for rudder" }
     ],
     "correct": "b",
-    "explanation": "If the propeller has not been feathered, the airflow keeps driving it — and through it, the engine — as the aircraft continues to fly. Provided the resulting windmilling RPM is high enough, this alone can supply the rotation needed to attempt a relight without engaging the electric starter, which is one reason a crew might deliberately delay feathering if a prompt restart looks likely.",
-    "tags": ["propellers", "restart", "windmilling"],
+    "explanation": "Each side's effects mirror the other; engine failure on either side gives the same yawing moment.",
+    "tags": ["counter-rotating", "critical-engine"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0091",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Propeller moments",
+    "question": "Contra-rotating propellers (two coaxial propellers turning opposite ways) mainly:",
+    "options": [
+      { "id": "a", "text": "Remove the need for a gearbox" },
+      { "id": "b", "text": "Increase torque" },
+      {
+        "id": "c",
+        "text": "Recover slipstream swirl energy and cancel torque"
+      },
+      { "id": "d", "text": "Reduce thrust" }
+    ],
+    "correct": "c",
+    "explanation": "The rear propeller removes the swirl left by the front one, improving efficiency.",
+    "tags": ["contra-rotating"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0092",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Propeller moments",
+    "question": "All four propeller effects in a single-engine aircraft with a clockwise propeller (from behind) at high power and low speed tend to:",
+    "options": [
+      { "id": "a", "text": "Pitch it down" },
+      { "id": "b", "text": "Yaw it right" },
+      {
+        "id": "c",
+        "text": "Yaw the aircraft to the left, requiring right rudder"
+      },
+      { "id": "d", "text": "Cancel each other" }
+    ],
+    "correct": "c",
+    "explanation": "Torque (via wheel friction), slipstream, asymmetric blade effect and, when pitching down, precession all act to the left.",
+    "tags": ["propeller-effects", "rudder"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0093",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Thrust and power",
+    "question": "At constant shaft power 200 kW and η = 0.8, thrust at 50 m/s and 100 m/s is:",
+    "options": [
+      { "id": "a", "text": "4,000 N at both" },
+      { "id": "b", "text": "3,200 N at both" },
+      { "id": "c", "text": "1,600 N and 3,200 N" },
+      { "id": "d", "text": "3,200 N and 1,600 N" }
+    ],
+    "correct": "d",
+    "explanation": "T = η·P/V: 160,000/50 = 3,200 N; 160,000/100 = 1,600 N. Propeller thrust falls with speed at constant power.",
+    "tags": ["thrust", "power", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0094",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Thrust and power",
+    "question": "Power available from a propeller aircraft is approximately:",
+    "options": [
+      { "id": "a", "text": "Zero at cruise" },
+      {
+        "id": "b",
+        "text": "Constant with speed (η·P), so thrust available falls with speed"
+      },
+      { "id": "c", "text": "Proportional to speed squared" },
+      { "id": "d", "text": "Proportional to speed" }
+    ],
+    "correct": "b",
+    "explanation": "Unlike a jet (roughly constant thrust), a propeller converts roughly constant engine power.",
+    "tags": ["power-available"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0095",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Thrust and power",
+    "question": "Best rate of climb for a propeller aircraft occurs near the minimum-power speed because:",
+    "options": [
+      { "id": "a", "text": "Drag is minimum there" },
+      {
+        "id": "b",
+        "text": "Power available is roughly constant, so maximum excess power coincides with minimum power required"
+      },
+      { "id": "c", "text": "Efficiency is zero there" },
+      { "id": "d", "text": "Thrust is maximum there" }
+    ],
+    "correct": "b",
+    "explanation": "ROC = (P_a − P_r)/W; with P_a flat, the maximum is where P_r is least.",
+    "tags": ["rate-of-climb", "propeller-aircraft"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0096",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Thrust and power",
+    "question": "A normally aspirated piston engine's power at altitude falls roughly in proportion to:",
+    "options": [
+      { "id": "a", "text": "Pressure squared" },
+      { "id": "b", "text": "Temperature" },
+      { "id": "c", "text": "Air density" },
+      { "id": "d", "text": "Speed" }
+    ],
+    "correct": "c",
+    "explanation": "Mass flow of air per cycle falls with ρ; turbocharging restores sea-level manifold pressure to a critical altitude.",
+    "tags": ["piston-power", "altitude"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0097",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Thrust and power",
+    "question": "Propeller thrust at low speed is highest with:",
+    "options": [
+      { "id": "a", "text": "Fine pitch and maximum rpm" },
+      { "id": "b", "text": "Reverse pitch" },
+      { "id": "c", "text": "Feathered blades" },
+      { "id": "d", "text": "Coarse pitch and low rpm" }
+    ],
+    "correct": "a",
+    "explanation": "Fine blades at low V avoid stall and allow full engine power.",
+    "tags": ["static-thrust", "fine-pitch"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0098",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Design parameters",
+    "question": "To absorb more engine power without raising tip speed, a designer can:",
+    "options": [
+      { "id": "a", "text": "Reduce chord" },
+      { "id": "b", "text": "Reduce blade count" },
+      { "id": "c", "text": "Increase diameter only" },
+      {
+        "id": "d",
+        "text": "Increase the number of blades or blade chord (solidity)"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Solidity (total blade area/disc area) sets power absorption at a given rpm and diameter.",
+    "tags": ["solidity", "blade-number"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0099",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Design parameters",
+    "question": "Increasing propeller diameter at constant power:",
+    "options": [
+      { "id": "a", "text": "Has no effect" },
+      {
+        "id": "b",
+        "text": "Improves ideal efficiency but raises tip speed and needs more ground clearance"
+      },
+      { "id": "c", "text": "Reduces tip speed" },
+      { "id": "d", "text": "Reduces efficiency" }
+    ],
+    "correct": "b",
+    "explanation": "A larger disc accelerates more air more gently; tip Mach and clearance limit diameter.",
+    "tags": ["diameter", "efficiency"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0100",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Design parameters",
+    "question": "Propeller solidity is:",
+    "options": [
+      { "id": "a", "text": "Blade angle divided by helix angle" },
+      { "id": "b", "text": "Total blade area divided by disc area" },
+      { "id": "c", "text": "Rpm times diameter" },
+      { "id": "d", "text": "Blade length divided by chord" }
+    ],
+    "correct": "b",
+    "explanation": "Higher solidity absorbs more power but increases blade interference losses.",
+    "tags": ["solidity"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0101",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Design parameters",
+    "question": "A propeller slipstream over the wing root and tail affects the aircraft by:",
+    "options": [
+      { "id": "a", "text": "Reducing lift" },
+      { "id": "b", "text": "Removing tail authority" },
+      { "id": "c", "text": "Having no effect" },
+      {
+        "id": "d",
+        "text": "Increasing local dynamic pressure, raising lift behind the propeller and tail effectiveness at high power"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Power-on stall speeds are lower and elevator/rudder authority improves at high power and low speed.",
+    "tags": ["slipstream", "control-effectiveness"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0102",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Design parameters",
+    "question": "Propeller-induced stall-speed reduction at high power arises from:",
+    "options": [
+      { "id": "a", "text": "Reduced wing area" },
+      { "id": "b", "text": "Increased weight" },
+      { "id": "c", "text": "Lower CLmax" },
+      {
+        "id": "d",
+        "text": "The thrust component supporting weight and the slipstream raising local q over the wing"
+      }
+    ],
+    "correct": "d",
+    "explanation": "L + T sin α = W and higher local dynamic pressure behind the disc.",
+    "tags": ["power-on-stall", "slipstream"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0103",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Efficiency and advance ratio",
+    "question": "For a constant-speed propeller in climb (low V, high power), the blade angle compared with cruise is:",
+    "options": [
+      { "id": "a", "text": "Identical" },
+      { "id": "b", "text": "Finer" },
+      { "id": "c", "text": "Coarser" },
+      { "id": "d", "text": "Feathered" }
+    ],
+    "correct": "b",
+    "explanation": "Lower V gives lower φ; the governor reduces β to keep α suitable.",
+    "tags": ["climb", "blade-angle"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0104",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Blade geometry and angles",
+    "question": "Blade angle is measured between:",
+    "options": [
+      { "id": "a", "text": "The relative airflow and the plane of rotation" },
+      { "id": "b", "text": "The chord and the relative airflow" },
+      { "id": "c", "text": "The chord and the thrust line" },
+      { "id": "d", "text": "The blade chord line and the plane of rotation" }
+    ],
+    "correct": "d",
+    "explanation": "The chord-to-relative-flow angle is the blade α; the relative-flow-to-plane angle is φ.",
+    "tags": ["blade-angle", "definitions"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0105",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Blade geometry and angles",
+    "question": "The blade station usually quoted as the reference for blade angle is:",
+    "options": [
+      { "id": "a", "text": "About 75 % of the radius" },
+      { "id": "b", "text": "The root" },
+      { "id": "c", "text": "Mid-chord" },
+      { "id": "d", "text": "The tip" }
+    ],
+    "correct": "a",
+    "explanation": "The 0.75R station is representative of the thrust-producing region.",
+    "tags": ["reference-station"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0106",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Thrust and power",
+    "question": "Thrust horsepower (thrust power) is:",
+    "options": [
+      { "id": "a", "text": "Torque × rpm" },
+      { "id": "b", "text": "Shaft power × rpm" },
+      { "id": "c", "text": "Thrust × true airspeed" },
+      { "id": "d", "text": "Thrust × rpm" }
+    ],
+    "correct": "c",
+    "explanation": "P_thrust = T·V; efficiency relates it to shaft power.",
+    "tags": ["thrust-power"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0107",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Constant speed",
+    "question": "Governor overspeed protection moves the blades:",
+    "options": [
+      { "id": "a", "text": "Coarser, to absorb more torque and reduce rpm" },
+      { "id": "b", "text": "To reverse" },
+      { "id": "c", "text": "To zero" },
+      { "id": "d", "text": "Finer" }
+    ],
+    "correct": "a",
+    "explanation": "Increasing α and torque decelerates the propeller.",
+    "tags": ["governor", "overspeed"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0108",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Feathering, windmilling and reverse",
+    "question": "Auto-feather systems on twin turboprops:",
+    "options": [
+      { "id": "a", "text": "Unfeather in cruise" },
+      { "id": "b", "text": "Feather both propellers" },
+      {
+        "id": "c",
+        "text": "Feather the failed engine's propeller automatically when torque drops below a threshold during take-off"
+      },
+      { "id": "d", "text": "Reverse the live propeller" }
+    ],
+    "correct": "c",
+    "explanation": "Rapid feathering removes windmilling drag during the critical take-off phase.",
+    "tags": ["auto-feather"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0109",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Feathering, windmilling and reverse",
+    "question": "Negative torque sensing on a turboprop:",
+    "options": [
+      { "id": "a", "text": "Increases fuel flow" },
+      { "id": "b", "text": "Reverses pitch" },
+      { "id": "c", "text": "Opens the throttle" },
+      {
+        "id": "d",
+        "text": "Drives the blades toward coarse/feather when the propeller starts driving the engine"
+      }
+    ],
+    "correct": "d",
+    "explanation": "It limits windmilling drag after power loss before full feathering.",
+    "tags": ["negative-torque-sensing"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0110",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Tip speed and compressibility",
+    "question": "At the same rpm and diameter, increasing TAS from 60 to 150 m/s raises the helical tip speed from 258 to:",
+    "options": [
+      { "id": "a", "text": "401 m/s" },
+      { "id": "b", "text": "251 m/s" },
+      { "id": "c", "text": "293 m/s" },
+      { "id": "d", "text": "150 m/s" }
+    ],
+    "correct": "c",
+    "explanation": "√(251² + 150²) = 292.5 m/s (from √(251² + 60²) = 258 m/s).",
+    "tags": ["tip-speed", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0111",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Propeller moments",
+    "question": "Gyroscopic effects are largest when:",
+    "options": [
+      { "id": "a", "text": "The propeller is feathered" },
+      {
+        "id": "b",
+        "text": "Pitch or yaw rates are high and propeller rpm and inertia are large"
+      },
+      { "id": "c", "text": "The aircraft flies straight" },
+      { "id": "d", "text": "Speed is high but rates zero" }
+    ],
+    "correct": "b",
+    "explanation": "Precession moment = I·ω_prop·Ω (Ω = aircraft rotation rate).",
+    "tags": ["gyroscopic-precession"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0112",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Efficiency and advance ratio",
+    "question": "At constant rpm, a fixed-pitch propeller's thrust falls to zero at the forward speed where:",
+    "options": [
+      { "id": "a", "text": "Efficiency is maximum" },
+      { "id": "b", "text": "Tip speed is sonic" },
+      { "id": "c", "text": "V = 0" },
+      {
+        "id": "d",
+        "text": "The helix angle at the reference station equals the zero-lift blade angle"
+      }
+    ],
+    "correct": "d",
+    "explanation": "α (from the blade's zero-lift line) becomes zero; beyond it the propeller windmills.",
+    "tags": ["zero-thrust", "fixed-pitch"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0113",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Design parameters",
+    "question": "A pusher propeller behind the wing compared with a tractor:",
+    "options": [
+      { "id": "a", "text": "Eliminates P-factor" },
+      { "id": "b", "text": "Removes torque reaction" },
+      { "id": "c", "text": "Improves slipstream over the tail" },
+      {
+        "id": "d",
+        "text": "Works in the disturbed wake of the airframe and gives less slipstream over the wing and tail"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The inflow is non-uniform; propeller effects on tail authority are smaller.",
+    "tags": ["pusher", "tractor"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0114",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Thrust and power",
+    "question": "Doubling TAS at constant shaft power and efficiency changes thrust by:",
+    "options": [
+      { "id": "a", "text": "×½" },
+      { "id": "b", "text": "×2" },
+      { "id": "c", "text": "×1" },
+      { "id": "d", "text": "×¼" }
+    ],
+    "correct": "a",
+    "explanation": "T = η·P/V.",
+    "tags": ["thrust", "proportionality"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0115",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Constant speed",
+    "question": "In cruise, selecting lower rpm on a constant-speed propeller at the same power:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Increases blade angle and often improves efficiency (lower tip speed)"
+      },
+      { "id": "b", "text": "Reduces power" },
+      { "id": "c", "text": "Decreases blade angle" },
+      { "id": "d", "text": "Feathers the propeller" }
+    ],
+    "correct": "a",
+    "explanation": "The governor holds the new rpm with coarser blades; manifold pressure increases to keep power.",
+    "tags": ["constant-speed", "rpm"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0116",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Blade geometry and angles",
+    "question": "In a steep descent with a windmilling fine-pitch propeller, the blade angle of attack is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Negative, as the helix angle exceeds the blade angle"
+      },
+      { "id": "b", "text": "Positive and large" },
+      { "id": "c", "text": "Equal to the blade angle" },
+      { "id": "d", "text": "Zero" }
+    ],
+    "correct": "a",
+    "explanation": "High V at low rpm gives large φ > β.",
+    "tags": ["windmilling", "angle-of-attack"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0117",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Propeller moments",
+    "question": "A clockwise propeller (from behind) aircraft in a steep climb at low speed needs right rudder mainly because of:",
+    "options": [
+      { "id": "a", "text": "Torque via wheels" },
+      { "id": "b", "text": "Weight" },
+      { "id": "c", "text": "Asymmetric blade effect and slipstream" },
+      { "id": "d", "text": "Gyroscopic precession only" }
+    ],
+    "correct": "c",
+    "explanation": "Airborne, wheel friction is absent; high α increases P-factor and high power strengthens the slipstream.",
+    "tags": ["p-factor", "slipstream"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0118",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Tip speed and compressibility",
+    "question": "Propeller noise increases sharply when:",
+    "options": [
+      { "id": "a", "text": "The propeller is feathered" },
+      { "id": "b", "text": "Tip speed approaches sonic" },
+      { "id": "c", "text": "Rpm is reduced" },
+      { "id": "d", "text": "Blade count increases at lower rpm" }
+    ],
+    "correct": "b",
+    "explanation": "Compressibility and shock formation at the tips dominate noise.",
+    "tags": ["noise", "tip-speed"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0119",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Blade element forces",
+    "question": "Along the blade, thrust is produced mostly by:",
+    "options": [
+      { "id": "a", "text": "Equal amounts per unit span" },
+      { "id": "b", "text": "The hub" },
+      { "id": "c", "text": "The outer half, where relative speed is highest" },
+      { "id": "d", "text": "The root" }
+    ],
+    "correct": "c",
+    "explanation": "Lift ∝ (ωr)², so outboard sections dominate; the tip itself loses load to tip vortices.",
+    "tags": ["thrust-distribution"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-PROP-0120",
+    "subjectCode": "POF",
+    "topic": "Propellers",
+    "subtopic": "Thrust and power",
+    "question": "A propeller aircraft cruising at the minimum-drag speed achieves:",
+    "options": [
+      { "id": "a", "text": "Maximum climb rate" },
+      {
+        "id": "b",
+        "text": "Maximum range (at constant η and specific fuel consumption)"
+      },
+      { "id": "c", "text": "Maximum speed" },
+      { "id": "d", "text": "Maximum endurance" }
+    ],
+    "correct": "b",
+    "explanation": "Fuel flow ∝ power = D·V, so distance per unit fuel ∝ 1/D.",
+    "tags": ["range", "propeller-aircraft"],
     "status": "published",
     "version": 1
   }
