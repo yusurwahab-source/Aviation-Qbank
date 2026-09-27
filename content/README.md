@@ -350,11 +350,11 @@ of it has been checked against a specific state's AIP or training syllabus.
 ## The POF bank (Flying Knowledge)
 
 The subject is **Principles of Flight**, the second subject in Flying
-Knowledge, added the same content-only way IFR was. 733 questions across
+Knowledge, added the same content-only way IFR was. 754 questions across
 fifteen topics today, all published: Basic Aerodynamics (65), Aerofoils and
 Lift Theory (65), Lift and Drag (75), Boundary Layer (55), Stalling (85),
 High-Lift Devices (60), Flight Controls: Primary (70), Flight Controls:
-Secondary and Trim (24), Longitudinal Stability (34), Lateral and
+Secondary and Trim (45), Longitudinal Stability (34), Lateral and
 Directional Stability (34), High-Speed Flight: Compressibility (34),
 High-Speed Flight: Shockwaves and Buffet (34), Propellers (40), Aeroplane
 Loads and Limitations (34), and Windshear and Atmospheric Effects (24).
@@ -375,7 +375,7 @@ a definition to be recalled. The target is 1,000 questions:
 | 05 | Stalling | `STALL` | 85 | **85 (rebuilt)** |
 | 06 | High-Lift Devices | `HLD` | 60 | **60 (rebuilt)** |
 | 07 | Flight Controls: Primary | `CTRL` | 70 | **70 (rebuilt)** |
-| 08 | Flight Controls: Secondary and Trim | `TRIM` | 45 | 24 |
+| 08 | Flight Controls: Secondary and Trim | `TRIM` | 45 | **45 (rebuilt)** |
 | 09 | Longitudinal Stability | `STABL` | 70 | 34 |
 | 10 | Lateral and Directional Stability | `STABLD` | 70 | 34 |
 | 11 | High-Speed Flight: Compressibility | `MACH` | 70 | 34 |
@@ -383,11 +383,11 @@ a definition to be recalled. The target is 1,000 questions:
 | 13 | Propellers | `PROP` | 80 | 40 |
 | 14 | Aeroplane Loads and Limitations | `LOAD` | 70 | 34 |
 | 15 | Windshear and Atmospheric Effects | `WSHR` | 55 | 24 |
-| | | | **1,000** | **733** |
+| | | | **1,000** | **754** |
 
 A rebuilt section **replaces** its file rather than adding to it, and its
 new questions take **new ids** that continue after the old ones
-(`POF-AERO-0036` onward, `POF-AFOIL-0033` onward, `POF-LIFT-0039` onward, `POF-BL-0029` onward, `POF-STALL-0043` onward, `POF-HLD-0031` onward, `POF-CTRL-0039` onward). The retired ids are never
+(`POF-AERO-0036` onward, `POF-AFOIL-0033` onward, `POF-LIFT-0039` onward, `POF-BL-0029` onward, `POF-STALL-0043` onward, `POF-HLD-0031` onward, `POF-CTRL-0039` onward, `POF-TRIM-0025` onward). The retired ids are never
 reused for a different question: `attempts` keeps history by question id
 with no foreign key, so a reused id would silently attach an old answer to a
 new question. `db:seed` deletes the retired rows; the history survives.
@@ -417,12 +417,13 @@ given to the IFR bank and the DA40's unsourced topics above.
 
 `public/pof-study-guide.html` is this bank's study guide (see
 `lib/study-guide.ts`): fifteen numbered sections matching the fifteen
-topics. Sections 01–07 are in the rebuilt form — governing equations,
+topics. Sections 01–08 are in the rebuilt form — governing equations,
 tables of computed values, and inline SVG graphs computed from the
 equations they illustrate (chordwise pressure distribution, lift curves by
 aspect ratio, drag and power-required curves, boundary-layer velocity
 profiles, stall speed against bank angle, lift curves by high-lift configuration,
-roll rate against speed up to aileron reversal); sections 08–15 keep their
+roll rate against speed up to aileron reversal, stick force against
+speed about two trim speeds); sections 09–15 keep their
 earlier prose until they are rebuilt in turn.
 
 ## The B737 bank

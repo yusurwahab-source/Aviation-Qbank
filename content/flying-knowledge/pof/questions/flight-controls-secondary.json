@@ -1,448 +1,892 @@
 [
   {
-    "id": "POF-TRIM-0001",
+    "id": "POF-TRIM-0025",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Trim Tab",
-    "question": "A trim tab, deflected opposite to the main control surface's desired holding position, works by:",
+    "subtopic": "Trim tabs",
+    "question": "To trim the elevator in a nose-up (trailing edge up) position, the elevator trim tab deflects:",
     "options": [
-      { "id": "a", "text": "Directly moving the main control surface itself via a mechanical link the pilot cannot override" },
-      {
-        "id": "b",
-        "text": "Using its own small aerodynamic force to hold the main control surface at a deflection that balances the aircraft, without the pilot needing to hold continuous control force"
-      },
-      { "id": "c", "text": "Only working when the aircraft is on the ground" },
-      { "id": "d", "text": "Increasing the control surface's mass balance" }
+      { "id": "a", "text": "In the same direction as the elevator" },
+      { "id": "b", "text": "Neutral" },
+      { "id": "c", "text": "Down" },
+      { "id": "d", "text": "Up" }
     ],
-    "correct": "b",
-    "explanation": "A trim tab is deflected against the airflow so that its own small aerodynamic force holds the much larger main control surface at whatever position balances the aircraft, relieving the pilot of the need to hold a continuous control force to maintain that trimmed condition.",
-    "tags": ["trim", "trim-tab"],
+    "correct": "c",
+    "explanation": "The tab's upward force behind the hinge holds the elevator trailing edge up with zero stick force. A trim tab always deflects opposite to the surface it trims.",
+    "tags": ["trim-tab"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0002",
+    "id": "POF-TRIM-0026",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Servo Tab",
-    "question": "A \"servo tab\", as opposed to a simple trim tab, is:",
+    "subtopic": "Trim tabs",
+    "question": "Elevator hinge-moment slope |b₂| = 0.006 per degree, tab effectiveness |b₃| = 0.004 per degree. To hold the elevator 4° up with zero stick force, the tab must be:",
+    "options": [
+      { "id": "a", "text": "4° down" },
+      { "id": "b", "text": "6° up" },
+      { "id": "c", "text": "2.7° down" },
+      { "id": "d", "text": "6° down" }
+    ],
+    "correct": "d",
+    "explanation": "Zero hinge moment: b₂·δ_e + b₃·δ_t = 0 → |δ_t| = 0.006 × 4/0.004 = 6°, opposite to the elevator.",
+    "tags": ["trim-tab", "hinge-moment", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0027",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Trim tabs",
+    "question": "A trim tab removes stick force by:",
+    "options": [
+      { "id": "a", "text": "Moving the stabiliser" },
+      { "id": "b", "text": "Changing the aircraft's CG" },
+      { "id": "c", "text": "Increasing control power" },
+      {
+        "id": "d",
+        "text": "Producing a hinge moment that holds the surface at the required deflection"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The tab alters only the hinge moment balance; the pitching moment is still produced by the deflected elevator.",
+    "tags": ["trim-tab", "hinge-moment"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0028",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Trim tabs",
+    "question": "Trimming with an elevator tab reduces the remaining elevator travel available:",
     "options": [
       {
         "id": "a",
-        "text": "Moved directly by the pilot, and its own aerodynamic force then moves the otherwise unconnected main control surface — used to reduce pilot effort on large control surfaces"
+        "text": "In the direction the elevator is already deflected"
       },
-      { "id": "b", "text": "Only used for trimming, never for primary control input" },
-      { "id": "c", "text": "Fixed and never adjustable" },
-      { "id": "d", "text": "Found only on the rudder" }
+      { "id": "b", "text": "In neither direction" },
+      { "id": "c", "text": "In both directions equally" },
+      { "id": "d", "text": "Only in the opposite direction" }
     ],
     "correct": "a",
-    "explanation": "With a servo tab, the pilot's control input moves only the small tab directly; the tab's aerodynamic force then does the work of moving the main control surface, which may otherwise have little or no direct mechanical link to the cockpit controls. This is a way of controlling a large surface without excessive pilot effort.",
-    "tags": ["trim", "servo-tab"],
+    "explanation": "A tab trims by holding the elevator deflected; that deflection is taken from its travel range. A trimmable stabiliser avoids this.",
+    "tags": ["trim-tab", "control-authority"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0003",
+    "id": "POF-TRIM-0029",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Spring Tab",
-    "question": "A \"spring tab\" assists a pilot's control input mainly at:",
+    "subtopic": "Trim tabs",
+    "question": "A ground-adjustable (fixed) tab is used to:",
     "options": [
-      { "id": "a", "text": "Low airspeed, where control forces are lightest" },
+      { "id": "a", "text": "Trim in flight" },
       {
         "id": "b",
-        "text": "High airspeed, where aerodynamic control forces are greatest — a spring linkage lets the tab deflect more, assisting more, as airload increases"
+        "text": "Correct a permanent out-of-trim tendency found in flight test, such as a wing heaviness"
       },
-      { "id": "c", "text": "All airspeeds equally, by a fixed, constant amount" },
-      { "id": "d", "text": "Only when the autopilot is engaged" }
+      { "id": "c", "text": "Balance the elevator in turbulence" },
+      { "id": "d", "text": "Act as a servo tab" }
     ],
     "correct": "b",
-    "explanation": "A spring tab's linkage lets the tab deflect further, providing more assistance, exactly when aerodynamic hinge moments (and therefore control forces) are highest — at high airspeed — while contributing little at low speed, where the unassisted forces are already light.",
-    "tags": ["trim", "spring-tab"],
+    "explanation": "Bent on the ground to a set angle, it removes a constant hinge moment at a typical cruise condition.",
+    "tags": ["fixed-tab"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0004",
+    "id": "POF-TRIM-0030",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Anti-Balance Tab",
-    "question": "An \"anti-balance tab\", linked to move in the same direction as the main control surface, is used to:",
+    "subtopic": "Trim tabs",
+    "question": "When the pilot selects nose-up trim, the stick force needed to hold a nose-up attitude:",
     "options": [
-      { "id": "a", "text": "Reduce control forces that would otherwise be too light, restoring adequate 'feel' to the controls" },
-      { "id": "b", "text": "Reduce control forces that are too heavy" },
-      { "id": "c", "text": "Prevent flutter" },
-      { "id": "d", "text": "Trim the aircraft automatically" }
+      { "id": "a", "text": "Increases" },
+      { "id": "b", "text": "Is unchanged" },
+      { "id": "c", "text": "Reverses permanently at every speed" },
+      {
+        "id": "d",
+        "text": "Falls toward zero, because the tab now holds the elevator"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Trim re-centres the zero-force condition at the new elevator angle.",
+    "tags": ["trim", "stick-force"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0031",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Trimmable stabiliser",
+    "question": "An adjustable (trimmable) horizontal stabiliser trims the aircraft by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Changing the tailplane incidence so the elevator can be faired at zero stick force"
+      },
+      { "id": "b", "text": "Moving the CG" },
+      { "id": "c", "text": "Deflecting a tab on the elevator" },
+      { "id": "d", "text": "Changing wing incidence" }
     ],
     "correct": "a",
-    "explanation": "Deflecting in the same sense as the main surface, an anti-balance tab increases the hinge moment (and therefore the control force) the pilot feels, rather than reducing it — used where a control would otherwise feel unnaturally light, which can itself be a hazard if it lets a pilot inadvertently over-control the aircraft.",
-    "tags": ["trim", "anti-balance-tab"],
+    "explanation": "The whole stabiliser produces the trim load; the elevator stays near neutral with its full travel available.",
+    "tags": ["trimmable-stabiliser"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0005",
+    "id": "POF-TRIM-0032",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Spoilers as Speed Brakes",
-    "question": "Deployed symmetrically on both wings, spoiler panels are also used as speed brakes/lift dumpers to:",
+    "subtopic": "Trimmable stabiliser",
+    "question": "Compared with tab trim, a trimmable stabiliser is preferred on large, high-speed aircraft because:",
     "options": [
-      { "id": "a", "text": "Increase lift for takeoff" },
+      { "id": "a", "text": "It needs no actuator" },
+      { "id": "b", "text": "It is lighter" },
+      { "id": "c", "text": "It reduces the CG range" },
+      {
+        "id": "d",
+        "text": "It provides large trim forces over a wide CG and speed range while keeping full elevator authority and lower trim drag"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Large trim changes (flap, Mach, CG) would consume most elevator travel if trimmed by tab; the faired elevator also reduces drag.",
+    "tags": ["trimmable-stabiliser", "trim-drag"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0033",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Trimmable stabiliser",
+    "question": "At take-off, the stabiliser trim is set according to CG position because:",
+    "options": [
+      { "id": "a", "text": "Trim changes the stall speed" },
       {
         "id": "b",
-        "text": "Increase drag and reduce lift, for a steeper descent or to shorten the landing roll by transferring the aircraft's weight onto the wheels"
+        "text": "Rotation force and pitch response depend on the CG; a forward CG needs more nose-up trim"
       },
-      { "id": "c", "text": "Increase the critical Mach number" },
-      { "id": "d", "text": "Trim the aircraft in pitch" }
+      { "id": "c", "text": "Trim is only for cruise" },
+      { "id": "d", "text": "Trim affects V1" }
     ],
     "correct": "b",
-    "explanation": "Deployed together on both wings (rather than differentially, as for roll control), the same spoiler panels destroy lift and add drag symmetrically — useful for a steeper descent without gaining speed, or after touchdown to 'dump' lift onto the wheels so the brakes and reversers can work effectively.",
-    "tags": ["trim", "spoilers", "speed-brake"],
+    "explanation": "A forward CG needs a larger tail download to rotate. Correct setting gives normal rotation force; a mis-set can make rotation heavy or premature.",
+    "tags": ["take-off-trim", "cg-position"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0006",
+    "id": "POF-TRIM-0034",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Flaperons",
-    "question": "A \"flaperon\" is a control surface that combines the functions of:",
+    "subtopic": "Trimmable stabiliser",
+    "question": "A runaway stabiliser trim is dangerous because:",
     "options": [
-      { "id": "a", "text": "A flap and an aileron, deflecting together as a flap and differentially as ailerons at the same time" },
-      { "id": "b", "text": "A rudder and an elevator" },
-      { "id": "c", "text": "A slat and a slot" },
-      { "id": "d", "text": "A spoiler and a speed brake, only" }
+      {
+        "id": "a",
+        "text": "The stabiliser is more powerful than the elevator and can produce forces the elevator cannot counter at high q"
+      },
+      { "id": "b", "text": "It is self-correcting" },
+      { "id": "c", "text": "It only affects roll" },
+      { "id": "d", "text": "It reduces the stall speed" }
     ],
     "correct": "a",
-    "explanation": "A flaperon serves as both a flap and an aileron: it can droop symmetrically on both wings to act as a flap, while still being deflected differentially, on top of that drooped position, to provide roll control.",
-    "tags": ["trim", "flaperons"],
+    "explanation": "Tail force from stabiliser incidence acts on the whole surface; elevator authority to oppose it is limited and diminishes as the mistrim grows.",
+    "tags": ["trim-runaway"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0007",
+    "id": "POF-TRIM-0035",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Ruddervators",
-    "question": "On a V-tail aircraft, the two tail surfaces — each combining the role of a horizontal and vertical stabilizer — are called \"ruddervators\" because control inputs are mixed so that:",
+    "subtopic": "Stick force and trim speed",
+    "question": "With tab trim, stick force varies as F = K·(q_trim − q). Trimmed at 150 kt, holding 180 kt requires 50 N push. Holding 200 kt requires:",
     "options": [
-      { "id": "a", "text": "Moving them together produces pitch, and moving them differentially produces yaw" },
-      { "id": "b", "text": "Moving them together produces roll only" },
-      { "id": "c", "text": "They only ever move together, never differentially" },
-      { "id": "d", "text": "They have no connection to the rudder pedals or control column at all" }
+      { "id": "a", "text": "67 N push" },
+      { "id": "b", "text": "88 N push" },
+      { "id": "c", "text": "111 N push" },
+      { "id": "d", "text": "56 N push" }
     ],
-    "correct": "a",
-    "explanation": "A mixing mechanism converts elevator (pitch) and rudder (yaw) inputs into combined movement of the two V-tail surfaces: moving both surfaces together, in the same sense, produces a pitching moment, while moving them differentially, opposite to each other, produces a yawing moment.",
-    "tags": ["trim", "v-tail", "ruddervator"],
+    "correct": "b",
+    "explanation": "F ∝ (V² − V_t²): 50 × (200² − 150²)/(180² − 150²) = 50 × 17,500/9,900 = 88 N.",
+    "tags": ["stick-force", "trim-speed", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0008",
+    "id": "POF-TRIM-0036",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Trim Runaway",
-    "question": "An electric trim system that continues running without a pilot command, known as a \"trim runaway\", is dangerous mainly because:",
+    "subtopic": "Stick force and trim speed",
+    "question": "For a statically stable aircraft trimmed at a given speed, a speed increase with no change in trim requires:",
     "options": [
-      { "id": "a", "text": "It has no effect on control forces" },
+      {
+        "id": "a",
+        "text": "A push force, and the aircraft then accelerates further"
+      },
+      { "id": "b", "text": "No force" },
+      {
+        "id": "c",
+        "text": "A push force, and releasing it returns the aircraft toward the trim speed"
+      },
+      { "id": "d", "text": "A pull force" }
+    ],
+    "correct": "c",
+    "explanation": "Positive speed stability: above trim speed the aircraft pitches up; the pilot must push to hold the higher speed.",
+    "tags": ["speed-stability", "stick-force"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0037",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Stick force and trim speed",
+    "question": "Trimming for a new speed changes:",
+    "options": [
+      { "id": "a", "text": "The CG position" },
+      { "id": "b", "text": "The static margin" },
+      { "id": "c", "text": "The neutral point" },
+      {
+        "id": "d",
+        "text": "The speed at which stick force is zero, not the aircraft's basic stability"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Trim moves the zero-force point along the force–speed line; the gradient reflects stability, which trim does not alter.",
+    "tags": ["trim-speed", "stability"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0038",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Stick force and trim speed",
+    "question": "The stick force gradient per knot about the trim speed (tab trim) is:",
+    "options": [
+      { "id": "a", "text": "Independent of trim speed" },
       {
         "id": "b",
-        "text": "It can move the trim surface to an extreme position, building up a large out-of-trim control force that the pilot must then hold against continuously"
+        "text": "Larger at higher trim speeds, since F ∝ (V² − V_t²) has slope ∝ V_t"
       },
-      { "id": "c", "text": "It automatically shuts down the engines" },
-      { "id": "d", "text": "It only affects the ailerons" }
+      { "id": "c", "text": "Larger at low trim speeds" },
+      { "id": "d", "text": "Zero" }
     ],
     "correct": "b",
-    "explanation": "Because a trim surface is designed to hold a control surface deflected with little or no pilot effort, an uncommanded trim runaway can drive it to a large, uncorrected deflection. The resulting out-of-trim force can become severe enough to demand significant, sustained pilot strength to counter — which is why trim runaway procedures emphasise disconnecting electric trim power promptly.",
-    "tags": ["trim", "trim-runaway"],
+    "explanation": "dF/dV at V = V_t equals 2K·V_t (in magnitude). High-speed flight gives firmer speed cues per knot.",
+    "tags": ["stick-force-gradient"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0009",
+    "id": "POF-TRIM-0039",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Electric vs Manual Trim",
-    "question": "Compared with a manual trim wheel connected by cables directly to the trim tab, an electric trim system:",
+    "subtopic": "Stick force and trim speed",
+    "question": "A trimmed aircraft is disturbed nose-down, gains speed and is left alone (stick free). It will:",
     "options": [
-      { "id": "a", "text": "Uses a small motor, commanded by a cockpit switch, to drive the same trim mechanism instead of a hand-turned wheel" },
-      { "id": "b", "text": "Has no mechanical connection to any trim surface at all" },
-      { "id": "c", "text": "Can only be used while the autopilot is engaged" },
-      { "id": "d", "text": "Eliminates the need for a trim tab entirely" }
+      { "id": "a", "text": "Pitch down further" },
+      { "id": "b", "text": "Continue to accelerate" },
+      { "id": "c", "text": "Remain at the new speed" },
+      { "id": "d", "text": "Pitch up and oscillate back toward the trim speed" }
     ],
-    "correct": "a",
-    "explanation": "Electric trim simply substitutes a small, switch-commanded motor for the pilot's hand on a mechanical trim wheel, driving the same underlying trim tab or stabilizer mechanism — most aircraft with electric trim retain a manual wheel as a backup, since the mechanism being driven is fundamentally the same either way.",
-    "tags": ["trim", "electric-trim"],
+    "correct": "d",
+    "explanation": "Above trim speed the aircraft generates a nose-up tendency (stick-free speed stability) — the phugoid follows.",
+    "tags": ["speed-stability", "trim"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0010",
+    "id": "POF-TRIM-0040",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Runaway vs Mistrim",
-    "question": "A simple \"mistrim\" (trim set incorrectly for the current flight condition) differs from a \"trim runaway\" in that:",
+    "subtopic": "Trim changes",
+    "question": "Thrust of 50 kN acts on a line 1.2 m below the CG; the tail arm is 15 m. The change in tail load to trim a thrust increase from zero to 50 kN is:",
     "options": [
-      { "id": "a", "text": "A mistrim is a static, one-time incorrect setting, while a runaway is trim continuing to move on its own without a pilot command" },
-      { "id": "b", "text": "The two terms describe exactly the same condition" },
-      { "id": "c", "text": "A mistrim always involves the trim motor running continuously" },
-      { "id": "d", "text": "A runaway can only happen with manual trim, never electric trim" }
+      { "id": "a", "text": "0.8 kN more download" },
+      { "id": "b", "text": "4 kN more download" },
+      { "id": "c", "text": "4 kN more upward (less download)" },
+      { "id": "d", "text": "60 kN more upward" }
     ],
-    "correct": "a",
-    "explanation": "A mistrim is simply trim left at the wrong position for the current speed and configuration — correctable with a normal trim input — while a runaway is a fault condition in which the trim mechanism keeps moving on its own, uncommanded, and calls for isolating trim power rather than just retrimming.",
-    "tags": ["trim", "trim-runaway"],
+    "correct": "c",
+    "explanation": "Thrust below the CG produces a nose-up moment 50 × 1.2 = 60 kN·m. The tail must supply a nose-down moment: 60/15 = 4 kN of additional up-load (reduced download).",
+    "tags": ["thrust-line", "pitch-trim", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0011",
+    "id": "POF-TRIM-0041",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Trim and Configuration Changes",
-    "question": "A noticeable trim change is generally needed after changing flap setting, extending or retracting the landing gear, or making a significant power change mainly because:",
+    "subtopic": "Trim changes",
+    "question": "On an aircraft with engines below the CG, increasing thrust typically produces:",
     "options": [
-      { "id": "a", "text": "Each of these changes the balance of pitching moments acting on the aircraft, requiring a different elevator deflection — and therefore a different trim setting — to hold the desired attitude hands-off" },
-      { "id": "b", "text": "None of these actually requires any trim change in practice" },
-      { "id": "c", "text": "Only flap changes ever require a trim change" },
-      { "id": "d", "text": "Trim only needs adjusting once per flight, regardless of configuration changes" }
+      { "id": "a", "text": "No pitch change" },
+      { "id": "b", "text": "A nose-down pitch change" },
+      { "id": "c", "text": "A roll" },
+      { "id": "d", "text": "A nose-up pitch change requiring nose-down trim" }
     ],
-    "correct": "a",
-    "explanation": "Flaps, gear and power all change the pitching moments acting on the aircraft — flaps and gear aerodynamically, power partly through thrust line effects and slipstream — so each shift in configuration generally calls for a corresponding trim change to keep the aircraft balanced hands-off at the new condition.",
-    "tags": ["trim", "configuration"],
+    "correct": "d",
+    "explanation": "Moment = T × vertical offset; engines below the CG rotate the nose up as thrust increases.",
+    "tags": ["thrust-line", "pitch-change"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0012",
+    "id": "POF-TRIM-0042",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Rudder Trim for Asymmetric Thrust",
-    "question": "Rudder trim is particularly useful on a single-engine propeller aircraft at cruise power, and essential on a multi-engine aircraft after an engine failure, mainly because it:",
+    "subtopic": "Trim changes",
+    "question": "Moving the CG forward within limits requires:",
     "options": [
-      { "id": "a", "text": "Relieves the continuous rudder pressure otherwise needed to counteract a steady yawing tendency from propeller/slipstream effects or asymmetric thrust" },
-      { "id": "b", "text": "Has no relationship to yaw or asymmetric thrust at all" },
-      { "id": "c", "text": "Only functions when both engines are producing equal thrust" },
-      { "id": "d", "text": "Replaces the need for rudder pedals entirely" }
+      { "id": "a", "text": "Less tail download" },
+      { "id": "b", "text": "More nose-up trim and a larger tail download" },
+      { "id": "c", "text": "More nose-down trim" },
+      { "id": "d", "text": "No trim change" }
     ],
-    "correct": "a",
-    "explanation": "A steady yawing tendency — whether from propeller effects at cruise power on a single, or from asymmetric thrust after an engine failure on a twin — otherwise requires continuous rudder pressure to counteract. Rudder trim lets that steady correction be held by the trim tab instead, relieving the pilot of a sustained leg force.",
-    "tags": ["trim", "rudder-trim"],
+    "correct": "b",
+    "explanation": "The wing lift's nose-down moment arm about the CG grows; the tail must produce more download.",
+    "tags": ["cg-position", "trim"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0013",
+    "id": "POF-TRIM-0043",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Trimming for Speed",
-    "question": "The technique of \"trimming for a speed\" relies on the fact that:",
+    "subtopic": "Trim changes",
+    "question": "Extending trailing-edge flaps usually requires a trim change because:",
     "options": [
-      { "id": "a", "text": "An aircraft trimmed hands-off at a given speed tends to return to that same speed if briefly disturbed, due to its own longitudinal stability" },
-      { "id": "b", "text": "Trim has no relationship to airspeed at all, only to attitude" },
-      { "id": "c", "text": "Trim setting determines engine power directly" },
-      { "id": "d", "text": "An aircraft trimmed at one speed will drift to a random, unrelated speed if disturbed" }
+      { "id": "a", "text": "Engine thrust rises" },
+      {
+        "id": "b",
+        "text": "The wing moment and the tail downwash both change, altering pitch balance"
+      },
+      { "id": "c", "text": "The fin area changes" },
+      { "id": "d", "text": "The CG moves aft" }
     ],
-    "correct": "a",
-    "explanation": "Because a statically stable aircraft naturally returns toward its trimmed angle of attack — and therefore its trimmed airspeed — after a disturbance, trimming for a target speed is a genuine, reliable technique: release the controls at the desired speed, and the aircraft's own stability tends to hold, or return to, that speed on its own.",
-    "tags": ["trim", "trimming-for-speed"],
+    "correct": "b",
+    "explanation": "C_M,ac becomes more negative and tail downwash increases; the net change depends on the configuration.",
+    "tags": ["flaps", "trim-change"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0014",
+    "id": "POF-TRIM-0044",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Autopilot Trim Following",
-    "question": "While an autopilot is engaged and holding pitch through its own elevator servo, many systems also drive the electric trim automatically, mainly so that:",
+    "subtopic": "Trim changes",
+    "question": "Burning fuel from a tank aft of the CG changes the trim requirement because:",
     "options": [
-      { "id": "a", "text": "The elevator servo is relieved of a sustained load, and the aircraft is left correctly trimmed if the autopilot disconnects" },
-      { "id": "b", "text": "The trim wheel is disabled entirely while the autopilot is engaged" },
-      { "id": "c", "text": "Trim following has no purpose and is purely cosmetic" },
-      { "id": "d", "text": "It prevents the pilot from ever retrimming manually" }
+      { "id": "a", "text": "The neutral point moves" },
+      { "id": "b", "text": "Only weight changes" },
+      { "id": "c", "text": "The CG moves aft, requiring more nose-up trim" },
+      { "id": "d", "text": "The CG moves forward, requiring more nose-up trim" }
     ],
-    "correct": "a",
-    "explanation": "If the autopilot's elevator servo alone held a sustained out-of-trim force, disconnecting the autopilot would hand the pilot a large, unexpected control force at that moment. By driving the trim to follow the servo's own effort, the aircraft stays correctly trimmed throughout, so a disconnect is not compounded by a sudden trim surprise.",
-    "tags": ["trim", "autopilot"],
+    "correct": "d",
+    "explanation": "Removing mass aft of the CG shifts the CG forward.",
+    "tags": ["fuel-burn", "cg-shift"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0015",
+    "id": "POF-TRIM-0045",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Speed Trim System",
-    "question": "A \"speed trim system\", found on some swept-wing jet transports, automatically adjusts pitch trim in certain conditions mainly to:",
+    "subtopic": "Trim changes",
+    "question": "Trim drag is reduced when:",
     "options": [
-      { "id": "a", "text": "Compensate for reduced natural speed stability that a swept wing and aft-mounted engines can exhibit at low speed, particularly after takeoff or with an engine inoperative" },
-      { "id": "b", "text": "Replace the need for manual trim entirely in every phase of flight" },
-      { "id": "c", "text": "Only operate at cruise Mach number, never at low speed" },
-      { "id": "d", "text": "Control roll rather than pitch" }
+      {
+        "id": "a",
+        "text": "The tail trim load is reduced, e.g. by an aft CG within limits"
+      },
+      { "id": "b", "text": "The elevator is deflected with tab" },
+      { "id": "c", "text": "The tail download increases" },
+      { "id": "d", "text": "The CG moves forward" }
     ],
     "correct": "a",
-    "explanation": "Certain swept-wing, aft-engined jet designs can show weaker natural speed stability at low speed than a pilot would otherwise expect, especially with an asymmetric thrust condition. A speed trim system automatically adjusts pitch trim in exactly those conditions to restore more conventional speed-stable handling, without needing constant manual pilot correction.",
-    "tags": ["trim", "speed-trim-system"],
+    "explanation": "Less download means less wing lift to carry and less tail induced drag. Some aircraft move fuel aft in cruise for this reason.",
+    "tags": ["trim-drag", "cg-position"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0016",
+    "id": "POF-TRIM-0046",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Aileron Trim",
-    "question": "An aileron trim mechanism, found on many aircraft, is used mainly to:",
+    "subtopic": "Spoilers and speed brakes",
+    "question": "Speed brakes increase drag. W = 600 kN, idle thrust 5 kN, drag 40 kN. Deploying speed brakes adds 20 kN. The descent angle at constant speed changes from:",
     "options": [
-      { "id": "a", "text": "Relieve a sustained control-wheel force otherwise needed to hold the wings level, due to causes such as a fuel imbalance or minor rigging asymmetry" },
-      { "id": "b", "text": "Provide the aircraft's only means of roll control" },
-      { "id": "c", "text": "Replace the need for a rudder entirely" },
-      { "id": "d", "text": "Only function while the landing gear is extended" }
+      { "id": "a", "text": "3.3° to 3.8°" },
+      { "id": "b", "text": "3.8° to 5.7°" },
+      { "id": "c", "text": "3.3° to 5.3°" },
+      { "id": "d", "text": "1.9° to 3.8°" }
     ],
-    "correct": "a",
-    "explanation": "A small, steady difference between the two wings — commonly an uneven fuel load, but also possible rigging tolerances — can require a constant small aileron input to keep the wings level. An aileron trim tab or spring-bias mechanism lets that steady correction be held without continuous pilot effort on the control wheel.",
-    "tags": ["trim", "aileron-trim"],
+    "correct": "c",
+    "explanation": "sin γ = (D − T)/W: 35/600 → 3.3°; 55/600 → 5.3°.",
+    "tags": ["speed-brakes", "descent-angle", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0017",
+    "id": "POF-TRIM-0047",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Go-Around Out-of-Trim Forces",
-    "question": "Initiating a go-around from an aircraft trimmed nose-up for a slow, flaps-extended approach typically produces:",
+    "subtopic": "Spoilers and speed brakes",
+    "question": "With speed brakes extended at 280 kt TAS in the previous example (sin γ = 0.092), the rate of descent is about:",
     "options": [
-      { "id": "a", "text": "A significant nose-up pitching tendency requiring active forward control pressure as power is increased, until the aircraft can be retrimmed for the new, faster, climbing condition" },
-      { "id": "b", "text": "No change in the control force needed at all" },
-      { "id": "c", "text": "A nose-down pitching tendency requiring aft control pressure" },
-      { "id": "d", "text": "An automatic retrim with no pilot action required" }
+      { "id": "a", "text": "26,000 ft/min" },
+      { "id": "b", "text": "2,600 ft/min" },
+      { "id": "c", "text": "260 ft/min" },
+      { "id": "d", "text": "1,600 ft/min" }
     ],
-    "correct": "a",
-    "explanation": "The approach trim setting was chosen for a slow, low-power, nose-up condition. Applying go-around power adds a further nose-up pitching tendency (from thrust line and slipstream effects) on top of that existing trim setting, producing a strong nose-up tendency the pilot must actively counter with forward pressure until the aircraft is retrimmed for the climb.",
-    "tags": ["trim", "go-around"],
+    "correct": "b",
+    "explanation": "ROD = V·sin γ = 280 × 101.3 × 0.092 = 2,600 ft/min.",
+    "tags": ["rate-of-descent", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0018",
+    "id": "POF-TRIM-0048",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Rudder Trim and Cruise Drag",
-    "question": "Flying with the rudder trim slightly out of its correct setting for the current condition, even by a small amount, generally:",
+    "subtopic": "Spoilers and speed brakes",
+    "question": "Flight spoilers used as speed brakes reduce CLmax by 10 %. The stall speed rises by:",
     "options": [
-      { "id": "a", "text": "Introduces a small, continuous sideslip or rudder deflection that adds unnecessary parasite drag over the course of a flight" },
-      { "id": "b", "text": "Has absolutely no effect on drag or performance" },
-      { "id": "c", "text": "Always improves fuel efficiency" },
-      { "id": "d", "text": "Only matters during takeoff and landing, never in cruise" }
+      { "id": "a", "text": "5.4 %" },
+      { "id": "b", "text": "2.6 %" },
+      { "id": "c", "text": "11 %" },
+      { "id": "d", "text": "10 %" }
     ],
     "correct": "a",
-    "explanation": "An incorrectly set rudder trim holds either a small sideslip angle or an unneeded rudder deflection throughout the flight, both of which add a small but real parasite drag penalty — a minor effect on any single flight, but one airlines take seriously enough to monitor across a fleet for its cumulative fuel cost.",
-    "tags": ["trim", "rudder-trim", "drag"],
+    "explanation": "VS ∝ CLmax^−½: 1/√0.9 = 1.054.",
+    "tags": ["spoilers", "stall-speed", "calculation"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0019",
+    "id": "POF-TRIM-0049",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Trimmable Horizontal Stabilizer",
-    "question": "On many larger transport aircraft, pitch trim is provided not by a small tab on the elevator but by:",
+    "subtopic": "Spoilers and speed brakes",
+    "question": "Speed brakes allow a steeper descent without increasing speed because:",
     "options": [
-      { "id": "a", "text": "Adjusting the angle of incidence of the entire horizontal stabilizer itself" },
-      { "id": "b", "text": "A tab mounted on the rudder instead of the elevator" },
-      { "id": "c", "text": "Changing the wing's flap setting" },
-      { "id": "d", "text": "Adjusting engine thrust alone, with no aerodynamic surface involved" }
+      {
+        "id": "a",
+        "text": "They increase drag, so a larger weight component along the path is needed to balance it at the same speed"
+      },
+      { "id": "b", "text": "They increase thrust" },
+      { "id": "c", "text": "They reduce weight" },
+      { "id": "d", "text": "They increase lift" }
     ],
     "correct": "a",
-    "explanation": "Rather than a small trim tab on the elevator, many larger aircraft trim in pitch by moving the whole horizontal stabilizer to a different angle of incidence — a \"trimmable horizontal stabilizer\" — which can generate a much larger range of trimming moment than a tab alone, appropriate to a much larger and heavier aircraft.",
-    "tags": ["trim", "trimmable-stabilizer"],
+    "explanation": "At constant speed D − T = W·sin γ; more drag → larger γ.",
+    "tags": ["speed-brakes", "descent"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0020",
+    "id": "POF-TRIM-0050",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Stabilizer Trim Runaway Severity",
-    "question": "An uncommanded runaway of a trimmable horizontal stabilizer is generally considered more severe than a runaway of a simple elevator trim tab because:",
+    "subtopic": "Spoilers and speed brakes",
+    "question": "Lift dumpers (ground spoilers) are designed to:",
     "options": [
-      { "id": "a", "text": "Moving the whole stabilizer surface produces a much larger pitching moment than a small tab could, building an out-of-trim force more quickly and to a greater magnitude" },
-      { "id": "b", "text": "A stabilizer can never actually run away, unlike a tab" },
-      { "id": "c", "text": "The two produce exactly the same magnitude of pitching moment" },
-      { "id": "d", "text": "A stabilizer runaway has no effect on pitch at all" }
+      { "id": "a", "text": "Increase lift for take-off" },
+      { "id": "b", "text": "Provide roll control in cruise only" },
+      {
+        "id": "c",
+        "text": "Destroy wing lift after touchdown so weight transfers to the wheels for braking"
+      },
+      { "id": "d", "text": "Reduce drag on landing" }
     ],
-    "correct": "a",
-    "explanation": "Because the whole horizontal stabilizer is a much larger aerodynamic surface than a small elevator trim tab, an uncommanded runaway of the stabilizer builds a pitching moment — and an out-of-trim control force — far more quickly and to a far greater magnitude, which is why stabilizer trim runaway procedures place such emphasis on rapid recognition and immediate trim power isolation.",
-    "tags": ["trim", "trimmable-stabilizer", "trim-runaway"],
+    "correct": "c",
+    "explanation": "Wheel braking force = μ(W − L); dumping lift raises the normal force and adds aerodynamic drag.",
+    "tags": ["lift-dumpers", "braking"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0021",
+    "id": "POF-TRIM-0051",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Trim Cutout Switches",
-    "question": "Dedicated electric trim cutout switches are provided in the cockpit mainly so that, in the event of a trim runaway, the pilot can:",
+    "subtopic": "Spoilers and speed brakes",
+    "question": "Deploying upper-surface spoilers symmetrically in flight typically produces:",
     "options": [
-      { "id": "a", "text": "Isolate electrical power to the trim motor directly, stopping the runaway without needing to diagnose the exact cause" },
-      { "id": "b", "text": "Increase the speed of the trim motor" },
-      { "id": "c", "text": "Only be used to test the trim system on the ground" },
-      { "id": "d", "text": "Reverse the direction of the autopilot" }
+      { "id": "a", "text": "A roll only" },
+      {
+        "id": "b",
+        "text": "A drag increase, a lift decrease at constant α, and a pitch change that may need trim"
+      },
+      { "id": "c", "text": "No pitch change on any aircraft" },
+      { "id": "d", "text": "A lift increase" }
     ],
-    "correct": "a",
-    "explanation": "Rather than requiring the crew to work out exactly why trim is running away, dedicated cutout switches let them immediately remove electrical power from the trim motor, stopping the uncommanded movement — a simple, fast, and deliberately robust response to a fault whose exact cause may not be known in the moment.",
-    "tags": ["trim", "trim-runaway", "systems"],
+    "correct": "b",
+    "explanation": "Spoilers alter the wing's lift and pitching moment and the downwash at the tail; the resulting pitch change depends on geometry.",
+    "tags": ["spoilers", "pitch-change"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0022",
+    "id": "POF-TRIM-0052",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Trim Position Indicator",
-    "question": "A cockpit trim position indicator is checked before takeoff mainly to:",
+    "subtopic": "Spoilers and speed brakes",
+    "question": "Spoiler panels used for roll control are raised on:",
     "options": [
-      { "id": "a", "text": "Confirm the trim is set within the normal takeoff range, since a grossly mis-set trim can cause serious pitch control difficulty during rotation and initial climb" },
-      { "id": "b", "text": "Show the current outside air temperature" },
-      { "id": "c", "text": "Indicate engine oil pressure" },
-      { "id": "d", "text": "Confirm the landing gear is retracted" }
+      { "id": "a", "text": "The down-going wing" },
+      { "id": "b", "text": "Neither wing in flight" },
+      { "id": "c", "text": "Both wings equally" },
+      { "id": "d", "text": "The up-going wing" }
     ],
     "correct": "a",
-    "explanation": "Because trim position directly affects the elevator (or stabilizer) force needed to rotate and control pitch during takeoff, checking that the trim indicator reads within the normal takeoff range beforehand is a deliberate safeguard against a mis-set trim causing a serious pitch upset right at the most speed- and altitude-limited part of the flight.",
-    "tags": ["trim", "pre-takeoff-checks"],
+    "explanation": "Spoiling lift on the wing that should descend produces the roll and proverse yaw.",
+    "tags": ["roll-spoilers"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0023",
+    "id": "POF-TRIM-0053",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Mis-Set Takeoff Trim",
-    "question": "Taking off with trim set to an extreme nose-up position, well outside the normal range, risks:",
+    "subtopic": "Spoilers and speed brakes",
+    "question": "Speed brakes are generally not used below a certain height on approach because:",
     "options": [
-      { "id": "a", "text": "An excessively early or abrupt pitch-up at rotation, potentially exceeding the pilot's ability to control the resulting attitude" },
-      { "id": "b", "text": "Making rotation completely impossible" },
-      { "id": "c", "text": "No effect whatsoever on the takeoff" },
-      { "id": "d", "text": "Only affecting the aircraft after landing" }
+      { "id": "a", "text": "They are ineffective at low speed" },
+      { "id": "b", "text": "They increase lift" },
+      {
+        "id": "c",
+        "text": "They raise the stall speed and sink rate and reduce the margin available for recovery"
+      },
+      { "id": "d", "text": "They reduce drag" }
     ],
-    "correct": "a",
-    "explanation": "An extreme nose-up trim setting adds its own strong pitching moment on top of whatever elevator input the pilot applies at rotation, which can produce an unexpectedly early, rapid, or excessive pitch-up — a documented cause of serious takeoff accidents, and exactly why trim setting is verified before every takeoff.",
-    "tags": ["trim", "takeoff"],
+    "correct": "c",
+    "explanation": "Lower CLmax and higher drag reduce energy margin close to the ground.",
+    "tags": ["speed-brakes", "approach"],
     "status": "published",
     "version": 1
   },
   {
-    "id": "POF-TRIM-0024",
+    "id": "POF-TRIM-0054",
     "subjectCode": "POF",
     "topic": "Flight Controls: Secondary and Trim",
-    "subtopic": "Fuel Imbalance and Aileron Trim",
-    "question": "An unequal fuel quantity between the left and right wing tanks typically requires:",
+    "subtopic": "Lateral and directional trim",
+    "question": "A fuel imbalance of 1,000 kg at 6 m from the centreline produces a rolling moment of:",
     "options": [
-      { "id": "a", "text": "A small, steady aileron trim input to counter the resulting rolling tendency toward the heavier wing" },
-      { "id": "b", "text": "No control input of any kind, since fuel imbalance has no aerodynamic effect" },
-      { "id": "c", "text": "A rudder trim change only, never an aileron trim change" },
-      { "id": "d", "text": "Immediately shutting down an engine" }
+      { "id": "a", "text": "589 kN·m" },
+      { "id": "b", "text": "6.0 kN·m" },
+      { "id": "c", "text": "58.9 kN·m" },
+      { "id": "d", "text": "5.9 kN·m" }
+    ],
+    "correct": "c",
+    "explanation": "M = m·g·d = 1,000 × 9.81 × 6 = 58,860 N·m. Aileron trim (or fuel transfer) removes it.",
+    "tags": ["fuel-imbalance", "rolling-moment", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0055",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Lateral and directional trim",
+    "question": "After an engine failure on a twin, rudder trim is used to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Remove the sustained rudder pedal force needed to balance the asymmetric yawing moment"
+      },
+      { "id": "b", "text": "Increase the yawing moment" },
+      { "id": "c", "text": "Replace the need for rudder authority" },
+      { "id": "d", "text": "Lower the minimum control speed" }
     ],
     "correct": "a",
-    "explanation": "A heavier wing (from more fuel remaining in that tank) tends to roll the aircraft toward that side under gravity, requiring a small, steady opposite aileron input to hold the wings level — exactly the sustained, low-level correction that an aileron trim mechanism is meant to relieve the pilot from holding by hand.",
-    "tags": ["trim", "aileron-trim", "fuel-imbalance"],
+    "explanation": "Trim holds the rudder deflection with zero pedal force; it does not add authority beyond full rudder.",
+    "tags": ["rudder-trim", "engine-failure"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0056",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Lateral and directional trim",
+    "question": "Aileron trim in a light aircraft is often a ground-adjustable tab because:",
+    "options": [
+      { "id": "a", "text": "It increases roll rate" },
+      { "id": "b", "text": "Roll trim changes with speed squared only" },
+      { "id": "c", "text": "Ailerons cannot be trimmed in flight" },
+      {
+        "id": "d",
+        "text": "Lateral out-of-trim is small and nearly constant, arising from rigging and asymmetry"
+      }
+    ],
+    "correct": "d",
+    "explanation": "A fixed correction is sufficient where lateral trim changes are small in flight.",
+    "tags": ["aileron-trim", "fixed-tab"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0057",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Lateral and directional trim",
+    "question": "A yaw from propeller effects at high power and low speed in a single-engine aircraft is best removed by:",
+    "options": [
+      { "id": "a", "text": "Elevator trim" },
+      { "id": "b", "text": "Aileron trim" },
+      {
+        "id": "c",
+        "text": "Rudder trim (where fitted) or an offset fin/engine thrust line"
+      },
+      { "id": "d", "text": "Flap extension" }
+    ],
+    "correct": "c",
+    "explanation": "Slipstream and asymmetric blade effects produce a yawing moment that varies with power and speed; rudder trim cancels the residual.",
+    "tags": ["rudder-trim", "propeller-effects"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0058",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Mach trim",
+    "question": "Mach trim systems compensate for:",
+    "options": [
+      { "id": "a", "text": "Adverse yaw" },
+      { "id": "b", "text": "Roll due to fuel imbalance" },
+      {
+        "id": "c",
+        "text": "The nose-down pitch (tuck under) caused by aft movement of the centre of pressure at high Mach"
+      },
+      { "id": "d", "text": "The pitch-up at low speed" }
+    ],
+    "correct": "c",
+    "explanation": "As shock waves form, the wing CP moves aft and tail downwash changes; Mach trim applies nose-up trim or elevator automatically with Mach number.",
+    "tags": ["mach-trim", "tuck-under"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0059",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Mach trim",
+    "question": "Without a functioning Mach trim, an aircraft at high Mach number will:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Develop a nose-down tendency with increasing speed, requiring increasing pull force"
+      },
+      { "id": "b", "text": "Pitch up with increasing speed" },
+      { "id": "c", "text": "Have no pitch change" },
+      { "id": "d", "text": "Roll" }
+    ],
+    "correct": "a",
+    "explanation": "Tuck under is a speed-unstable pitch characteristic; limitations usually reduce the permitted Mach number when the system is inoperative.",
+    "tags": ["mach-trim", "speed-stability"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0060",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Trim tabs",
+    "question": "When an elevator trim tab is set and speed then changes, the trim tab's own hinge-moment contribution:",
+    "options": [
+      { "id": "a", "text": "Reverses sign" },
+      { "id": "b", "text": "Scales with q, like the elevator's hinge moment" },
+      { "id": "c", "text": "Falls with speed" },
+      { "id": "d", "text": "Is constant" }
+    ],
+    "correct": "b",
+    "explanation": "Both tab and elevator hinge moments are proportional to q; the zero-force deflection is maintained only where the aerodynamic balance matches the aircraft's trim requirement — hence force changes with speed.",
+    "tags": ["trim-tab", "dynamic-pressure"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0061",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Stick force and trim speed",
+    "question": "Trimmed at 200 kt, the aircraft slows to 180 kt without re-trimming. The pilot must:",
+    "options": [
+      { "id": "a", "text": "Apply no force" },
+      { "id": "b", "text": "Push" },
+      { "id": "c", "text": "Pull to hold the lower speed" },
+      { "id": "d", "text": "Pull at higher speed, push at lower speed" }
+    ],
+    "correct": "c",
+    "explanation": "Below trim speed a stable aircraft tends to pitch down to regain the trim speed; holding the lower speed needs a pull.",
+    "tags": ["stick-force", "trim-speed"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0062",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Trimmable stabiliser",
+    "question": "A trimmable stabiliser is typically driven by:",
+    "options": [
+      { "id": "a", "text": "A spring tab" },
+      { "id": "b", "text": "Aerodynamic floating" },
+      { "id": "c", "text": "A servo tab" },
+      {
+        "id": "d",
+        "text": "A jackscrew actuator that holds position under load (irreversible)"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The screw jack resists back-driving by the large tail loads, keeping the set incidence.",
+    "tags": ["trimmable-stabiliser", "actuator"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0063",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Trim tabs",
+    "question": "On a servo-tab-operated elevator, trimming is achieved by:",
+    "options": [
+      { "id": "a", "text": "Moving the stabiliser" },
+      { "id": "b", "text": "Offsetting the neutral position of the servo tab" },
+      { "id": "c", "text": "Moving the CG" },
+      { "id": "d", "text": "Deflecting the elevator directly" }
+    ],
+    "correct": "b",
+    "explanation": "Changing the tab's datum sets the elevator's floating position for zero pilot force.",
+    "tags": ["servo-tab", "trim"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0064",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Trim changes",
+    "question": "Landing-gear extension commonly produces a nose-down pitch change, caused mainly by:",
+    "options": [
+      { "id": "a", "text": "The gear's weight moving aft" },
+      { "id": "b", "text": "Thrust increase" },
+      { "id": "c", "text": "The drag of the gear acting below the CG" },
+      { "id": "d", "text": "Increased lift" }
+    ],
+    "correct": "c",
+    "explanation": "Drag below the CG produces a nose-down moment; gear extension also shifts mass forward or aft depending on retraction direction.",
+    "tags": ["landing-gear", "pitch-change"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0065",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Spoilers and speed brakes",
+    "question": "Speed brakes that increase drag without changing lift distribution significantly are typically located:",
+    "options": [
+      { "id": "a", "text": "On the fuselage or as split surfaces at the tail" },
+      { "id": "b", "text": "As spoilers on the outer wing" },
+      { "id": "c", "text": "On the flaps" },
+      { "id": "d", "text": "On the ailerons" }
+    ],
+    "correct": "a",
+    "explanation": "Fuselage or tail-cone brakes add drag near the CG line with little effect on lift or roll.",
+    "tags": ["speed-brakes"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0066",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Trim changes",
+    "question": "The trim change on selecting a large power reduction in a propeller aircraft with engines above the CG line is:",
+    "options": [
+      { "id": "a", "text": "Nose-down" },
+      { "id": "b", "text": "None" },
+      { "id": "c", "text": "A roll" },
+      { "id": "d", "text": "Nose-up" }
+    ],
+    "correct": "d",
+    "explanation": "Thrust above the CG gives a nose-down moment; reducing it removes that moment, pitching the nose up. Slipstream over the tail modifies the result.",
+    "tags": ["thrust-line", "pitch-change"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0067",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Stick force and trim speed",
+    "question": "The aim of trimming is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "To reduce the control force to zero at the desired flight condition"
+      },
+      { "id": "b", "text": "To move the neutral point" },
+      { "id": "c", "text": "To increase stability" },
+      { "id": "d", "text": "To increase control authority" }
+    ],
+    "correct": "a",
+    "explanation": "Trim is a hinge-moment or incidence adjustment for zero force; stability and authority are set elsewhere.",
+    "tags": ["trim"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0068",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Trimmable stabiliser",
+    "question": "Trimming the stabiliser nose-up means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Its leading edge moves down, increasing the tailplane's negative incidence and download"
+      },
+      { "id": "b", "text": "The tab deflects up" },
+      { "id": "c", "text": "The elevator deflects down" },
+      { "id": "d", "text": "Its leading edge moves up" }
+    ],
+    "correct": "a",
+    "explanation": "More negative incidence increases the download, pitching the nose up.",
+    "tags": ["trimmable-stabiliser"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-TRIM-0069",
+    "subjectCode": "POF",
+    "topic": "Flight Controls: Secondary and Trim",
+    "subtopic": "Trim changes",
+    "question": "An aircraft trimmed in cruise is slowed by 20 % at constant altitude. With a trimmable stabiliser, the trim change needed is:",
+    "options": [
+      { "id": "a", "text": "Only rudder trim" },
+      {
+        "id": "b",
+        "text": "Nose-up, to increase the tail download for the higher α and CL"
+      },
+      { "id": "c", "text": "None" },
+      { "id": "d", "text": "Nose-down" }
+    ],
+    "correct": "b",
+    "explanation": "Lower speed needs a higher CL (×1.56) and α; the tail must hold the new α — a nose-up trim input in a stable aircraft.",
+    "tags": ["trim-change", "speed"],
     "status": "published",
     "version": 1
   }
