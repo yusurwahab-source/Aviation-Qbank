@@ -99,17 +99,17 @@
     "id": "POF-AERO-0006",
     "subjectCode": "POF",
     "topic": "Basic Aerodynamics",
-    "subtopic": "Airfoil Geometry",
-    "question": "The \"chord line\" of an airfoil is best described as:",
+    "subtopic": "Newton's Third Law",
+    "question": "Explaining lift using Newton's third law, the upward force on a wing is the reaction to:",
     "options": [
-      { "id": "a", "text": "A curved line following the upper camber of the wing" },
-      { "id": "b", "text": "A straight line joining the leading edge to the trailing edge" },
-      { "id": "c", "text": "The line traced by the wingtip vortex" },
-      { "id": "d", "text": "A line perpendicular to the wing's leading edge" }
+      { "id": "a", "text": "Accelerating air forward, ahead of the aircraft" },
+      { "id": "b", "text": "Deflecting a mass of air downward (downwash), producing an equal and opposite upward reaction" },
+      { "id": "c", "text": "Increasing air temperature above the wing" },
+      { "id": "d", "text": "The engines pushing air rearward" }
     ],
     "correct": "b",
-    "explanation": "The chord line is a straight reference line from the leading edge to the trailing edge of an airfoil section. Both angle of attack and camber (the curvature of the mean camber line above and below it) are measured against this line.",
-    "tags": ["aerodynamics", "airfoil"],
+    "explanation": "A wing continuously deflects a mass of air downward as it passes over and under it. By Newton's third law, the equal and opposite reaction to that downward momentum change is an upward force on the wing — a second, equally valid way of explaining lift alongside the pressure-difference (Bernoulli) explanation.",
+    "tags": ["aerodynamics", "newtons-laws"],
     "status": "published",
     "version": 1
   },
@@ -117,20 +117,17 @@
     "id": "POF-AERO-0007",
     "subjectCode": "POF",
     "topic": "Basic Aerodynamics",
-    "subtopic": "Boundary Layer",
-    "question": "Compared with a laminar boundary layer, a turbulent boundary layer:",
+    "subtopic": "Upwash",
+    "question": "As air approaches a wing that is generating lift, it begins to change direction slightly upward just before reaching the leading edge. This is known as:",
     "options": [
-      { "id": "a", "text": "Has less kinetic energy near the surface and separates more easily" },
-      { "id": "b", "text": "Produces less skin friction drag but separates more easily" },
-      {
-        "id": "c",
-        "text": "Has more kinetic energy near the surface and resists separation better, at the cost of higher skin friction drag"
-      },
-      { "id": "d", "text": "Is unaffected by surface roughness or airflow speed" }
+      { "id": "a", "text": "Downwash" },
+      { "id": "b", "text": "Upwash" },
+      { "id": "c", "text": "A wingtip vortex" },
+      { "id": "d", "text": "Boundary layer separation" }
     ],
-    "correct": "c",
-    "explanation": "A turbulent boundary layer mixes energetic outer airflow down toward the surface, giving it more kinetic energy than a smooth laminar layer. This makes it more resistant to separation and stall, but the extra mixing also raises skin friction drag compared with laminar flow.",
-    "tags": ["aerodynamics", "boundary-layer"],
+    "correct": "b",
+    "explanation": "Upwash is the upward deflection of air ahead of a lifting wing, caused by the wing's own pressure field reaching forward into the oncoming airflow. It is the counterpart to downwash, the downward deflection of air behind the wing.",
+    "tags": ["aerodynamics", "upwash"],
     "status": "published",
     "version": 1
   },
@@ -138,17 +135,89 @@
     "id": "POF-AERO-0008",
     "subjectCode": "POF",
     "topic": "Basic Aerodynamics",
-    "subtopic": "Center of Pressure",
-    "question": "As angle of attack is increased, below the stalling angle, on a conventional cambered airfoil, the center of pressure typically:",
+    "subtopic": "Downwash",
+    "question": "Downwash behind a wing tilts the local lift vector rearward by the downwash angle. The rearward component this produces is known as:",
     "options": [
-      { "id": "a", "text": "Moves forward, toward the leading edge" },
-      { "id": "b", "text": "Moves aft, toward the trailing edge" },
-      { "id": "c", "text": "Remains fixed at the quarter-chord point at all times" },
-      { "id": "d", "text": "Moves outward toward the wingtip" }
+      { "id": "a", "text": "Parasite drag" },
+      { "id": "b", "text": "Induced drag" },
+      { "id": "c", "text": "Wave drag" },
+      { "id": "d", "text": "Interference drag" }
     ],
-    "correct": "a",
-    "explanation": "On a cambered airfoil, increasing angle of attack below the stall generally moves the center of pressure forward as more lift is generated further ahead on the wing. At and beyond the stalling angle, the opposite happens — the center of pressure moves rapidly aft as the airflow separates, producing a nose-down pitching moment.",
-    "tags": ["aerodynamics", "center-of-pressure"],
+    "correct": "b",
+    "explanation": "Because a wing deflects air downward to produce lift, the resulting local flow direction at the wing is tilted slightly rearward relative to the freestream. This tilts the wing's lift vector rearward too, and the small rearward component that results is induced drag — the same phenomenon that can also be explained through wingtip vortex formation.",
+    "tags": ["aerodynamics", "downwash", "induced-drag"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0009",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Stagnation Point",
+    "question": "The \"stagnation point\" on an aerofoil is the point where:",
+    "options": [
+      { "id": "a", "text": "Airflow separates from the surface" },
+      { "id": "b", "text": "Local airflow velocity is zero and static pressure is at its local maximum" },
+      { "id": "c", "text": "Airflow reaches its highest local velocity" },
+      { "id": "d", "text": "The boundary layer transitions from laminar to turbulent" }
+    ],
+    "correct": "b",
+    "explanation": "The stagnation point is where the oncoming airflow is brought to rest relative to the surface (usually near, but not exactly at, the leading edge). Because velocity is zero there, dynamic pressure is zero and static pressure reaches its local maximum, by Bernoulli's principle.",
+    "tags": ["aerodynamics", "stagnation-point"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0010",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Temperature and Density",
+    "question": "On a hot day, for the same pressure altitude, air density is lower than on a cold day. For a wing held at a fixed angle of attack and constant true airspeed, this means:",
+    "options": [
+      { "id": "a", "text": "Lift is unaffected, because true airspeed is unchanged" },
+      { "id": "b", "text": "Lift is reduced, because lift is directly proportional to air density" },
+      { "id": "c", "text": "Lift increases, because warm air moves faster over the wing" },
+      { "id": "d", "text": "Stalling speed decreases" }
+    ],
+    "correct": "b",
+    "explanation": "Air density falls as temperature rises, for a given pressure altitude. Since lift is directly proportional to density, the same angle of attack and true airspeed produce less lift on a hot day — part of why high-density-altitude conditions degrade both lift and engine/propeller performance.",
+    "tags": ["aerodynamics", "density", "temperature"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0011",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Axes of Rotation",
+    "question": "An aircraft's three axes of rotation — longitudinal, lateral and normal — all pass through:",
+    "options": [
+      { "id": "a", "text": "The wingtips" },
+      { "id": "b", "text": "The aircraft's center of gravity" },
+      { "id": "c", "text": "The nose of the aircraft" },
+      { "id": "d", "text": "The tailplane" }
+    ],
+    "correct": "b",
+    "explanation": "The longitudinal (roll), lateral (pitch) and normal (yaw) axes all intersect at the aircraft's center of gravity, which is the point about which the aircraft actually rotates in each of the three planes of motion.",
+    "tags": ["aerodynamics", "axes"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-AERO-0012",
+    "subjectCode": "POF",
+    "topic": "Basic Aerodynamics",
+    "subtopic": "Pressure Relationships",
+    "question": "Total (or stagnation) pressure at any point in a subsonic flow equals:",
+    "options": [
+      { "id": "a", "text": "Static pressure minus dynamic pressure" },
+      { "id": "b", "text": "Static pressure plus dynamic pressure" },
+      { "id": "c", "text": "Dynamic pressure alone" },
+      { "id": "d", "text": "Atmospheric pressure at sea level, always" }
+    ],
+    "correct": "b",
+    "explanation": "Bernoulli's equation for incompressible flow states that total pressure — the sum of static and dynamic pressure — is constant along a streamline. As one rises the other falls, but their sum, the total pressure, stays the same.",
+    "tags": ["aerodynamics", "bernoulli", "pressure"],
     "status": "published",
     "version": 1
   }

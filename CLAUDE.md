@@ -1810,9 +1810,12 @@ update by id, delete what the files no longer hold. **Adding a second
 Flying Knowledge subject is a content-only job**, the same rule "many
 aircraft, in two trees" states for a second aircraft — see the note there.
 This is now proven, not just asserted: Principles of Flight (`POF`) was
-added as `content/flying-knowledge/pof/` alone — a `subject.json` and five
-question files — with no application code touched, exactly the same way
-IFR itself first proved the rule.
+added as `content/flying-knowledge/pof/` alone — a `subject.json` and
+fifteen question files, 160 questions covering the full syllabus rather
+than a thin slice of it — with the only application-code change being the
+same one-line addition to `lib/study-guide.ts`'s hand-kept set that any
+aircraft's own study guide already needs (see the note on that file
+above), exactly the same way IFR itself first proved the rule.
 
 The one thing that does not carry over from either of the other two trees:
 **Flying Knowledge is free in full, not metered by the free-tier cap or

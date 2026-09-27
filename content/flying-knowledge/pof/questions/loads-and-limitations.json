@@ -1,0 +1,206 @@
+[
+  {
+    "id": "POF-LOAD-0001",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Load Factor Definition",
+    "question": "\"Load factor\", expressed in \"g\", is defined as:",
+    "options": [
+      { "id": "a", "text": "The aircraft's weight divided by its maximum landing weight" },
+      { "id": "b", "text": "The ratio of the total aerodynamic lift force acting on the aircraft to its actual weight" },
+      { "id": "c", "text": "The ratio of thrust to drag" },
+      { "id": "d", "text": "The ratio of true airspeed to stalling speed" }
+    ],
+    "correct": "b",
+    "explanation": "Load factor is lift divided by weight. In straight-and-level, unaccelerated flight this ratio is 1g, since lift exactly balances weight; manoeuvring — a turn, a pull-up, a gust — can raise it well above (or, briefly, below) that value.",
+    "tags": ["limitations", "load-factor"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0002",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Load Factor in a Turn",
+    "question": "In a level, coordinated turn, load factor increases with bank angle because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Lift must be increased beyond simply supporting weight, to also provide the horizontal component needed to turn the aircraft, while its vertical component continues to support weight"
+      },
+      { "id": "b", "text": "Airspeed is always reduced in a turn, which by itself reduces the load factor" },
+      { "id": "c", "text": "Load factor actually decreases as bank angle increases" },
+      { "id": "d", "text": "Load factor depends only on rudder input, not bank angle" }
+    ],
+    "correct": "a",
+    "explanation": "Banking splits the lift vector into a vertical component (still supporting weight) and a horizontal component (providing the centripetal force to turn). To keep the vertical component equal to weight as bank angle increases, total lift — and therefore load factor — must increase, rising steeply as bank angle approaches 90 degrees.",
+    "tags": ["limitations", "load-factor", "turns"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0003",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "V-n Diagram",
+    "question": "A V-n (velocity-load factor) diagram for an aircraft shows:",
+    "options": [
+      { "id": "a", "text": "The relationship between fuel consumption and airspeed" },
+      {
+        "id": "b",
+        "text": "The structural and aerodynamic load factor limits, positive and negative, available at each airspeed, including where the aircraft will stall before reaching a given load factor"
+      },
+      { "id": "c", "text": "The relationship between altitude and true airspeed only" },
+      { "id": "d", "text": "Engine power available at each RPM" }
+    ],
+    "correct": "b",
+    "explanation": "The V-n diagram plots load factor against airspeed, bounded on one side by the aerodynamic stall limit (the maximum load factor the wing can generate before stalling, at each speed) and on the other by the structural limit load factor — together defining the aircraft's whole safe operating envelope.",
+    "tags": ["limitations", "v-n-diagram"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0004",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Manoeuvring Speed",
+    "question": "An aircraft's manoeuvring speed, VA, decreases as weight decreases because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A lighter aircraft has a lower stalling speed, so it will stall — shedding excess load aerodynamically — at a lower speed and correspondingly lower load factor, before the structural limit is reached"
+      },
+      { "id": "b", "text": "VA is a fixed figure that never changes with weight" },
+      { "id": "c", "text": "A lighter aircraft can withstand a higher structural load factor" },
+      { "id": "d", "text": "VA depends only on altitude, never on weight" }
+    ],
+    "correct": "a",
+    "explanation": "VA is defined as the speed at which the wing will stall exactly at the aircraft's limit load factor. Since a lighter aircraft stalls at a lower speed, its VA is correspondingly lower too — which is why VA published for maximum weight overstates the actual protection available at a lighter weight.",
+    "tags": ["limitations", "manoeuvring-speed"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0005",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Controls Above VA",
+    "question": "Applying an abrupt, full control surface deflection at a speed above VA (manoeuvring speed) is inadvisable mainly because:",
+    "options": [
+      { "id": "a", "text": "It is aerodynamically impossible to deflect a control surface above VA" },
+      {
+        "id": "b",
+        "text": "At that speed, the wing may generate enough lift before stalling to exceed the aircraft's structural load factor limit, since a stall no longer protects the structure the way it does below VA"
+      },
+      { "id": "c", "text": "The controls simply stop responding above VA" },
+      { "id": "d", "text": "It has no bearing on structural safety at all" }
+    ],
+    "correct": "b",
+    "explanation": "Below VA, the wing stalls before the structural limit load factor is reached, which naturally caps the load an abrupt control input can generate. Above VA, the wing can reach a high enough lift coefficient — before stalling — to exceed the structural limit, so an abrupt, full control deflection above VA risks a genuine structural overload.",
+    "tags": ["limitations", "manoeuvring-speed"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0006",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Limit Load vs Ultimate Load",
+    "question": "An aircraft's \"limit load\" is the maximum load expected in normal operation, while its \"ultimate load\" is:",
+    "options": [
+      { "id": "a", "text": "Exactly the same figure as the limit load" },
+      {
+        "id": "b",
+        "text": "Typically 1.5 times the limit load — the structure must withstand this without complete failure, though it may sustain permanent deformation beyond the limit load"
+      },
+      { "id": "c", "text": "Always lower than the limit load" },
+      { "id": "d", "text": "Only relevant to military aircraft" }
+    ],
+    "correct": "b",
+    "explanation": "The structure is designed to return to its original shape with no permanent deformation up to the limit load, and to withstand the higher ultimate load — conventionally 1.5 times the limit load — without complete structural failure, even though some permanent deformation is acceptable between the two.",
+    "tags": ["limitations", "limit-load", "ultimate-load"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0007",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Gust Loads",
+    "question": "A sharp-edged vertical gust encountered in flight increases load factor mainly because it:",
+    "options": [
+      { "id": "a", "text": "Reduces the aircraft's weight momentarily" },
+      {
+        "id": "b",
+        "text": "Suddenly changes the wing's effective angle of attack, and therefore its lift, without any change in airspeed or pilot control input"
+      },
+      { "id": "c", "text": "Reduces the wing's angle of attack to zero" },
+      { "id": "d", "text": "Only affects the tailplane, never the wing" }
+    ],
+    "correct": "b",
+    "explanation": "An upward gust adds a vertical component to the relative airflow, momentarily increasing the wing's effective angle of attack and therefore its lift, with no change in true airspeed or any pilot input at all. This sudden lift increase is felt as, and structurally counts as, an increase in load factor.",
+    "tags": ["limitations", "gust-load"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0008",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "VNO and VNE",
+    "question": "The difference between VNO (maximum structural cruising speed) and VNE (never-exceed speed) is that:",
+    "options": [
+      { "id": "a", "text": "They represent the same limit under two different names" },
+      {
+        "id": "b",
+        "text": "VNO may only be exceeded briefly in smooth air and with caution, while VNE must never be deliberately exceeded under any circumstance"
+      },
+      { "id": "c", "text": "VNO is always a higher speed than VNE" },
+      { "id": "d", "text": "VNE only applies to jet aircraft" }
+    ],
+    "correct": "b",
+    "explanation": "VNO marks the upper end of the normal operating range; it may be exceeded briefly in smooth air with caution, but not in turbulence, since gust loads on top of an already-high speed could exceed structural limits. VNE is an absolute limit that must never be deliberately exceeded in any conditions.",
+    "tags": ["limitations", "vno", "vne"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0009",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Wing Loading",
+    "question": "\"Wing loading\" is defined as:",
+    "options": [
+      { "id": "a", "text": "The aircraft's total weight divided by its wing area" },
+      { "id": "b", "text": "The aircraft's total weight divided by its wingspan" },
+      { "id": "c", "text": "The maximum load factor an aircraft can sustain" },
+      { "id": "d", "text": "The ratio of fuel weight to total weight" }
+    ],
+    "correct": "a",
+    "explanation": "Wing loading is simply weight divided by wing area, usually expressed in units such as kilograms per square metre. It is a key factor influencing stalling speed, gust response, and turn performance.",
+    "tags": ["limitations", "wing-loading"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "POF-LOAD-0010",
+    "subjectCode": "POF",
+    "topic": "Aeroplane Loads and Limitations",
+    "subtopic": "Wing Loading and Gust Response",
+    "question": "All else being equal, an aircraft with higher wing loading — more weight per unit of wing area — tends to:",
+    "options": [
+      { "id": "a", "text": "Be thrown around more violently by a given gust" },
+      {
+        "id": "b",
+        "text": "Be less affected by a given gust, since the same gust-induced change in lift is a smaller fraction of a heavier aircraft's total weight"
+      },
+      { "id": "c", "text": "Always have a lower stalling speed" },
+      { "id": "d", "text": "Never encounter a limiting load factor from gusts" }
+    ],
+    "correct": "b",
+    "explanation": "A given gust produces roughly the same absolute change in lift regardless of the aircraft's wing loading, but that change is a smaller proportion of a heavier, more highly loaded aircraft's total weight — which is why higher wing loading generally gives a smoother ride in turbulence, though it also typically raises stalling speed.",
+    "tags": ["limitations", "wing-loading", "gust-load"],
+    "status": "published",
+    "version": 1
+  }
+]

@@ -350,9 +350,15 @@ of it has been checked against a specific state's AIP or training syllabus.
 ## The POF bank (Flying Knowledge)
 
 The subject is **Principles of Flight**, the second subject in Flying
-Knowledge, added the same content-only way IFR was. 40 questions across five
-topics — Basic Aerodynamics, Lift and Drag, Stall and High-Lift Devices,
-Stability and Control, and High-Speed Flight — all published.
+Knowledge, added the same content-only way IFR was. 160 questions across
+fifteen topics, covering the full ATPL Principles of Flight syllabus rather
+than a thin slice of it: Basic Aerodynamics, Aerofoils and Lift Theory,
+Lift and Drag, Boundary Layer, Stalling, High-Lift Devices, Flight
+Controls: Primary, Flight Controls: Secondary and Trim, Longitudinal
+Stability, Lateral and Directional Stability, High-Speed Flight:
+Compressibility, High-Speed Flight: Shockwaves and Buffet, Propellers,
+Aeroplane Loads and Limitations, and Windshear and Atmospheric Effects —
+all published.
 
 **Every question here was authored by the assistant, as general ATPL-level
 aerodynamics theory — not transcribed from any single textbook, syllabus or
@@ -374,8 +380,8 @@ against a specific school's Principles of Flight syllabus.
 
 `public/pof-study-guide.html` is this bank's study guide, in the same
 FCOM-styled format as the DA40/C152/DA42 guides (see `lib/study-guide.ts`)
-— five numbered sections matching the five topics above, tables for the
-numeric relationships, and the same honesty note repeated in its own
+— fifteen numbered sections matching the fifteen topics above, tables for
+the numeric relationships, and the same honesty note repeated in its own
 "About this guide" callout so a student reading only the guide, not this
 file, sees it too.
 
