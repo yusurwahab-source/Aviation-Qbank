@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Principles of Flight — Your Guide Before the Test</title>
-<meta name="description" content="A full ATPL-level Principles of Flight reference — aerofoils, lift and drag, the boundary layer, stalling, high-lift devices, flight controls, stability, high-speed flight, propellers, loads and limitations, and windshear — to read before the Holdshort question bank." />
+<title>Principles of Flight — Reference</title>
+<meta name="description" content="Principles of Flight reference: atmosphere, continuity, Bernoulli, airspeeds, section and wing aerodynamics, drag, boundary layer, stall, high-lift devices, controls, stability, compressibility, propellers, loads and atmospheric shear — equations, graphs and proportional relationships." />
 <style>
   :root{
     --bg:#f6f8fb;
@@ -178,6 +178,13 @@
   .callout.warning{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-ink)}
   .callout.caution{background:var(--caution-bg);border-color:var(--caution-line);color:var(--caution-ink)}
   .callout.note{background:var(--note-bg);border-color:var(--note-line);color:var(--note-ink)}
+  .eq{
+    direction:ltr;font-family:"Cambria Math","STIX Two Math","Latin Modern Math",Georgia,serif;font-size:16.5px;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);
+    padding:10px 14px;margin:12px 0;text-align:center;white-space:nowrap;color:var(--ink);
+    max-width:100%;overflow-x:auto;contain:paint;box-sizing:border-box;
+  }
+  .eq sub,.eq sup{font-size:.72em}
   .diagram{
     background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
     padding:14px;margin:18px 0;text-align:center;
@@ -235,8 +242,8 @@
     <div class="brand-mark">
       <div class="plane">✈</div>
       <div class="txt">
-        <h1>Principles of Flight — Your Guide Before the Test</h1>
-        <div class="sub">Full ATPL-level ground-school reference · Flying Knowledge</div>
+        <h1>Principles of Flight — Reference</h1>
+        <div class="sub">Equations, graphs and proportional relationships · Flying Knowledge</div>
       </div>
     </div>
     <button class="menu-btn" id="menuBtn">☰ Contents</button>
@@ -250,8 +257,8 @@
     <div class="toc-close"><span style="font-size:13px;color:var(--muted);font-weight:700">Contents</span><button id="closeToc">✕</button></div>
     <h2>Sections</h2>
     <ol>
-      <li><a href="#aero"><span class="n">01</span> Basic Aerodynamics <span class="count">35</span></a></li>
-      <li><a href="#afoil"><span class="n">02</span> Aerofoils &amp; Lift Theory <span class="count">32</span></a></li>
+      <li><a href="#aero"><span class="n">01</span> Basic Aerodynamics <span class="count">65</span></a></li>
+      <li><a href="#afoil"><span class="n">02</span> Aerofoils &amp; Lift Theory <span class="count">65</span></a></li>
       <li><a href="#lift"><span class="n">03</span> Lift and Drag <span class="count">38</span></a></li>
       <li><a href="#bl"><span class="n">04</span> Boundary Layer <span class="count">28</span></a></li>
       <li><a href="#stall"><span class="n">05</span> Stalling <span class="count">42</span></a></li>
@@ -270,37 +277,19 @@
 
   <main>
     <div class="hero">
-      <h1>Before you dive into the questions…</h1>
+      <h1>Principles of Flight</h1>
       <p>
-        A full-syllabus ground-school reference, not a shallow summary — the
-        point is to actually understand <em>why</em> a wing, a control
-        surface or a propeller behaves the way it does, so a wrong answer in
-        the question bank can be ruled out by reasoning about the
-        aerodynamics, not by guessing which option sounds right. It covers
-        every topic the Principles of Flight bank is built from, from basic
-        aerodynamics through to propellers, structural limits and windshear.
+        Governing relations, proportional consequences and limits of
+        validity for aerodynamic flight, in fifteen sections: from the
+        equation of state and the pressure field of a section to
+        compressibility, propellers, structural loads and atmospheric shear.
       </p>
       <div class="tags">
-        <span class="tag">General ATPL theory</span>
-        <span class="tag">501 linked questions</span>
-        <span class="tag">15 topics</span>
-        <span class="tag">Not aircraft-specific</span>
+        <span class="tag">15 sections</span>
+        <span class="tag">564 linked questions</span>
+        <span class="tag">Equations · graphs · proportionalities</span>
+        <span class="tag">Aircraft-independent</span>
       </div>
-    </div>
-
-    <div class="callout note">
-      <span class="label">About this guide</span>
-      This page describes concepts and relationships that are taught the
-      same way across ATPL training worldwide — the definition of a stall,
-      the lift equation, why sweepback raises critical Mach number, how a
-      constant-speed propeller governor works — not figures drawn from any
-      single national syllabus, manufacturer's manual, or specific
-      textbook (including the EASA ATPL Principles of Flight reference this
-      bank was requested against). Where a numeric relationship is given
-      (stalling speed scaling with the square root of load factor, for
-      example) it is a general aerodynamic relationship, not a
-      regulator-specific figure. Review it against your own school's
-      syllabus before relying on it for a real exam.
     </div>
 
     <!-- ============================================================ -->
@@ -309,80 +298,178 @@
     <section class="sec" id="aero">
       <h2><span class="num">01</span> Basic Aerodynamics <span class="en">Fundamentals</span></h2>
       <p class="lead">
-        Everything else in this guide builds on a small set of definitions:
-        what angle of attack actually means, how a wing produces a pressure
-        difference, and what happens in the thin layer of air right at its
-        surface.
+        Aerodynamic force is the surface integral of pressure and shear
+        stress. The pressure field follows from four relations — state,
+        continuity, momentum and energy; shear stress follows from viscosity,
+        scaled by Reynolds number.
       </p>
 
-      <h3 class="sub">The four forces <span class="ref">1.1</span></h3>
+      <h3 class="sub">Equation of state and the standard atmosphere <span class="ref">1.1</span></h3>
+      <div class="eq">p = ρ·R·T &nbsp;&nbsp;&nbsp; R = 287.05 J·kg⁻¹·K⁻¹</div>
+      <div class="eq">σ = ρ/ρ₀ = δ/θ &nbsp;&nbsp;&nbsp; δ = p/p₀ &nbsp;&nbsp; θ = T/T₀</div>
       <p>
-        In steady, level, unaccelerated flight, four forces balance in
-        pairs: <strong>lift equals weight</strong>, and
-        <strong>thrust equals drag</strong>. Any imbalance produces a climb,
-        a descent, or a change in speed.
+        Datum: p₀ = 101,325 Pa, T₀ = 288.15 K, ρ₀ = 1.225 kg/m³. Lapse rate
+        −6.5 K/km (−1.98 K per 1,000 ft) to the tropopause at 11,000 m
+        (36,089 ft); isothermal at 216.65 K from there to 20,000 m
+        (65,617 ft). All temperature ratios use absolute temperature.
       </p>
-      <div class="diagram">
-        <svg viewBox="0 0 420 220" role="img" aria-label="Diagram of the four forces acting on an aircraft in level flight">
-          <ellipse cx="210" cy="110" rx="90" ry="14" fill="var(--surface)" stroke="var(--ink-2)" stroke-width="2"/>
-          <polygon points="120,110 60,102 60,118" fill="var(--ink-2)"/>
-          <polygon points="300,110 360,102 360,118" fill="var(--ink-2)"/>
-          <line x1="210" y1="96" x2="210" y2="30" stroke="var(--brand)" stroke-width="3"/>
-          <polygon points="210,20 202,36 218,36" fill="var(--brand)"/>
-          <text x="210" y="16" text-anchor="middle" font-size="13" font-weight="700" fill="var(--brand)">LIFT</text>
-          <line x1="210" y1="124" x2="210" y2="190" stroke="var(--warn-line)" stroke-width="3"/>
-          <polygon points="210,200 202,184 218,184" fill="var(--warn-line)"/>
-          <text x="210" y="214" text-anchor="middle" font-size="13" font-weight="700" fill="var(--warn-line)">WEIGHT</text>
-          <line x1="60" y1="110" x2="15" y2="110" stroke="var(--green-arc)" stroke-width="3"/>
-          <polygon points="5,110 21,102 21,118" fill="var(--green-arc)"/>
-          <text x="30" y="96" text-anchor="middle" font-size="13" font-weight="700" fill="var(--green-arc)">THRUST</text>
-          <line x1="360" y1="110" x2="405" y2="110" stroke="var(--caution-line)" stroke-width="3"/>
-          <polygon points="415,110 399,102 399,118" fill="var(--caution-line)"/>
-          <text x="390" y="96" text-anchor="middle" font-size="13" font-weight="700" fill="var(--caution-line)">DRAG</text>
-        </svg>
-        <div class="cap">Lift/weight and thrust/drag: two independent pairs, each balanced in steady, unaccelerated flight</div>
+      <div class="table-wrap">
+      <table>
+        <caption>Standard atmosphere</caption>
+        <thead><tr><th>Pressure altitude</th><th class="num">T</th><th class="num">p</th><th class="num">σ</th><th class="num">a</th></tr></thead>
+        <tbody>
+          <tr><td>0 ft</td><td class="num">+15.0 °C</td><td class="num">1013.25 hPa</td><td class="num">1.000</td><td class="num">661.5 kt</td></tr>
+          <tr><td>5,000 ft</td><td class="num">+5.1 °C</td><td class="num">843.1 hPa</td><td class="num">0.862</td><td class="num">650 kt</td></tr>
+          <tr><td>10,000 ft</td><td class="num">−4.8 °C</td><td class="num">696.8 hPa</td><td class="num">0.738</td><td class="num">638 kt</td></tr>
+          <tr><td>20,000 ft</td><td class="num">−24.6 °C</td><td class="num">465.6 hPa</td><td class="num">0.533</td><td class="num">614 kt</td></tr>
+          <tr><td>30,000 ft</td><td class="num">−44.4 °C</td><td class="num">300.9 hPa</td><td class="num">0.374</td><td class="num">589 kt</td></tr>
+          <tr><td>36,089 ft</td><td class="num">−56.5 °C</td><td class="num">226.3 hPa</td><td class="num">0.297</td><td class="num">574 kt</td></tr>
+          <tr><td>40,000 ft</td><td class="num">−56.5 °C</td><td class="num">187.5 hPa</td><td class="num">0.246</td><td class="num">574 kt</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <ul>
+        <li>At constant p: ρ ∝ 1/T. +15 K at 288 K → ρ −5 %.</li>
+        <li>Troposphere: θ &lt; 1, so σ &gt; δ. Density falls more slowly than pressure.</li>
+        <li>Isothermal layer: a constant; p and ρ decay exponentially with scale height RT/g = 6,340 m, halving every ≈ 14,400 ft; σ/δ = 1/θ constant.</li>
+        <li>Water vapour (molar mass 18) replaces dry air (28.96): the mixture's R rises and ρ falls at fixed p and T.</li>
+        <li>Density altitude: H<sub>ρ</sub> ≈ H<sub>p</sub> + 120 ft/°C × (T − T<sub>std</sub>).</li>
+      </ul>
+
+      <h3 class="sub">Continuity <span class="ref">1.2</span></h3>
+      <div class="eq">ṁ = ρ·A·V = constant</div>
+      <div class="eq">dA/A = (M² − 1)·dV/V &nbsp;&nbsp;&nbsp; dρ/ρ = −M²·dV/V</div>
+      <ul>
+        <li>Incompressible limit: A₁V₁ = A₂V₂; velocity ∝ 1/A.</li>
+        <li>M &lt; 1: a contraction accelerates the flow; |dV/V| = |dA/A|/(1 − M²), exceeding the incompressible value.</li>
+        <li>M &gt; 1: the sign reverses; a divergent passage accelerates the flow. M = 1 occurs only at minimum area.</li>
+        <li>At M 0.3 stagnation density exceeds free-stream density by 4.6 %: the practical boundary of the incompressible approximation.</li>
+      </ul>
+
+      <h3 class="sub">Bernoulli, dynamic pressure and pressure coefficient <span class="ref">1.3</span></h3>
+      <div class="eq">p + ½ρV² = p<sub>t</sub> &nbsp;(steady, inviscid, incompressible; along a streamline)</div>
+      <div class="eq">q = ½ρV² &nbsp;&nbsp;&nbsp; C<sub>p</sub> = (p − p∞)/q∞ = 1 − (V/V∞)²</div>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>V/V∞</th><th class="num">0</th><th class="num">1.0</th><th class="num">1.2</th><th class="num">1.41</th><th class="num">1.5</th><th class="num">2.0</th></tr></thead>
+        <tbody><tr><td>C<sub>p</sub></td><td class="num">+1.00</td><td class="num">0</td><td class="num">−0.44</td><td class="num">−1.00</td><td class="num">−1.25</td><td class="num">−3.00</td></tr></tbody>
+      </table>
+      </div>
+      <ul>
+        <li>C<sub>p</sub> is bounded above by +1 (stagnation) and unbounded below.</li>
+        <li>q ∝ V²: +40 % V → q ×1.96. At 100 kt sea level q = 1.62 kPa.</li>
+        <li>Invalid inside the boundary layer and wake, where viscous dissipation reduces p<sub>t</sub>. Above M ≈ 0.3 the isentropic form applies: p<sub>t</sub>/p = (1 + 0.2M²)<sup>3.5</sup>.</li>
+        <li>Normal to curved streamlines: ∂p/∂n = ρV²/R, pressure rising away from the centre of curvature. Over a convex surface the surface pressure is the minimum.</li>
+      </ul>
+      <div class="eq">T<sub>t</sub> = T + V²/(2c<sub>p</sub>) &nbsp;&nbsp;&nbsp; T<sub>t</sub>/T = 1 + 0.2M²</div>
+      <p>c<sub>p</sub> = 1,005 J·kg⁻¹·K⁻¹. At 250 m/s the stagnation temperature rise is 31 K.</p>
+
+      <h3 class="sub">Airspeeds <span class="ref">1.4</span></h3>
+      <div class="eq">IAS → CAS → EAS → TAS → M</div>
+      <div class="eq">q = ½ρ₀V<sub>E</sub>² &nbsp;&nbsp;&nbsp; V<sub>T</sub> = V<sub>E</sub>/√σ</div>
+      <div class="eq">a = √(γRT) = 38.97·√T kt &nbsp;&nbsp;&nbsp; M = V<sub>T</sub>/a</div>
+      <p>
+        IAS → CAS: instrument and position error. CAS → EAS: compressibility;
+        above sea level at high speed the ram air is compressed beyond ½ρV²,
+        so EAS &lt; CAS. EAS → TAS: density. TAS → M: temperature only.
+        At a given pressure altitude, CAS and M are uniquely related (both
+        are functions of impact pressure and static pressure only).
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Manoeuvre</th><th>TAS</th><th>M</th><th>CAS/EAS</th></tr></thead>
+        <tbody>
+          <tr><td>Climb at constant CAS (troposphere)</td><td>↑</td><td>↑ (TAS ↑, a ↓)</td><td>constant</td></tr>
+          <tr><td>Climb at constant M (troposphere)</td><td>↓ (a ↓)</td><td>constant</td><td>↓</td></tr>
+          <tr><td>Climb at constant M (isothermal layer)</td><td>constant</td><td>constant</td><td>↓</td></tr>
+          <tr><td>Warmer air, constant pressure altitude and CAS</td><td>↑ (∝ √T)</td><td>constant</td><td>constant</td></tr>
+          <tr><td>Warmer air, constant pressure altitude and TAS</td><td>constant</td><td>↓ (∝ 1/√T)</td><td>↓</td></tr>
+        </tbody>
+      </table>
       </div>
 
-      <h3 class="sub">Angle of attack vs pitch attitude <span class="ref">1.2</span></h3>
-      <p>
-        <strong>Angle of attack</strong> is the angle between the chord line
-        and the <strong>relative airflow</strong> — always exactly opposite
-        the flight path. <strong>Pitch attitude</strong> is the angle
-        between the fuselage and the horizon. The two are easy to confuse
-        but are not the same thing.
-      </p>
+      <h3 class="sub">Force and moment coefficients <span class="ref">1.5</span></h3>
+      <div class="eq">L = C<sub>L</sub>·q·S &nbsp;&nbsp; D = C<sub>D</sub>·q·S &nbsp;&nbsp; M = C<sub>M</sub>·q·S·c̄</div>
+      <div class="eq">R = √(L² + D²) &nbsp;&nbsp;&nbsp; tan ε = D/L &nbsp;&nbsp;&nbsp; P = D·V</div>
+      <div class="eq">V<sub>E</sub> = √(2W / (ρ₀·S·C<sub>L</sub>)) &nbsp;&nbsp;&nbsp; V<sub>S</sub> = √(2W / (ρ₀·S·C<sub>L,max</sub>))</div>
+      <ul>
+        <li>Fixed C<sub>L</sub> (fixed α): every reference speed ∝ √(W/S). +20 % W → +9.5 %; +44 % S → −16.7 %.</li>
+        <li>Level flight at constant weight: equal EAS ⇒ equal q ⇒ equal C<sub>L</sub> and α at any altitude (low M).</li>
+        <li>Constant TAS: C<sub>L</sub> ∝ 1/σ.</li>
+        <li>At constant coefficients: force ∝ V², power ∝ V³.</li>
+      </ul>
 
-      <h3 class="sub">Two explanations of lift <span class="ref">1.3</span></h3>
-      <p>
-        Bernoulli's principle explains lift through the pressure drop that
-        accompanies accelerated airflow over the upper surface. Newton's
-        third law explains the same lift as the reaction to the wing
-        deflecting a mass of air downward (<strong>downwash</strong>). Both
-        are valid, complementary descriptions of the same physical event —
-        and downwash tilting the local lift vector rearward is itself one
-        explanation of <strong>induced drag</strong>.
-      </p>
+      <h3 class="sub">Equilibrium on a flight path <span class="ref">1.6</span></h3>
+      <div class="eq">T − D − W·sin γ = 0 &nbsp;&nbsp;&nbsp; L − W·cos γ = 0</div>
+      <div class="eq">sin γ = (T − D)/W &nbsp;&nbsp;&nbsp; ROC = V·sin γ = (P<sub>a</sub> − P<sub>r</sub>)/W</div>
+      <div class="eq">Glide (T = 0): tan γ = D/L &nbsp;&nbsp;&nbsp; distance = h·(L/D)</div>
+      <ul>
+        <li>Climb: L &lt; W (L = 0.94 W at γ = 20°). Gradient is set by excess thrust per unit weight; rate by excess power per unit weight.</li>
+        <li>Glide at fixed α: γ and still-air distance independent of W; V and sink rate ∝ √W.</li>
+      </ul>
 
-      <h3 class="sub">Boundary layer basics <span class="ref">1.4</span></h3>
-      <p>
-        Close to the leading edge the boundary layer is
-        <strong>laminar</strong> — smooth, low-friction, but easily
-        separated. Further aft it typically transitions to
-        <strong>turbulent</strong> flow, which resists separation for
-        longer at the cost of more skin friction drag. Section 4 covers this
-        in full.
-      </p>
+      <h3 class="sub">Turning flight <span class="ref">1.7</span></h3>
+      <div class="eq">L·cos φ = W &nbsp;&nbsp;&nbsp; L·sin φ = W·V²/(g·r)</div>
+      <div class="eq">n = 1/cos φ &nbsp;&nbsp; r = V²/(g·tan φ) &nbsp;&nbsp; ω = g·tan φ/V</div>
+      <div class="eq">V<sub>S,φ</sub> = V<sub>S</sub>·√n &nbsp;&nbsp;&nbsp; n<sub>max</sub> = (V/V<sub>S</sub>)²</div>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>φ</th><th class="num">15°</th><th class="num">30°</th><th class="num">45°</th><th class="num">60°</th><th class="num">75.5°</th></tr></thead>
+        <tbody>
+          <tr><td>n</td><td class="num">1.035</td><td class="num">1.155</td><td class="num">1.414</td><td class="num">2.000</td><td class="num">4.00</td></tr>
+          <tr><td>V<sub>S,φ</sub>/V<sub>S</sub> = √n</td><td class="num">1.017</td><td class="num">1.075</td><td class="num">1.189</td><td class="num">1.414</td><td class="num">2.00</td></tr>
+          <tr><td>D<sub>i</sub>/D<sub>i,1g</sub> = n² (constant EAS)</td><td class="num">1.07</td><td class="num">1.33</td><td class="num">2.00</td><td class="num">4.00</td><td class="num">16.0</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <ul>
+        <li>Constant φ: r ∝ V², ω ∝ 1/V. Bank angle alone fixes n.</li>
+        <li>Rate-one (3°/s): φ ≈ V/10 + 7 (V in kt).</li>
+        <li>At 1.3 V<sub>S</sub>: n<sub>max</sub> = 1.69, φ<sub>max</sub> = 53.7°.</li>
+      </ul>
 
-      <h3 class="sub">Air density and pressure <span class="ref">1.5, 1.6</span></h3>
-      <p>
-        Lift is directly proportional to air density, which falls with
-        rising temperature and altitude alike. Total (stagnation) pressure
-        equals static plus dynamic pressure and stays constant along a
-        streamline — the same relationship Section 11 revisits once
-        compressibility makes it more complicated.
-      </p>
+      <h3 class="sub">Circulation and lift <span class="ref">1.8</span></h3>
+      <div class="eq">L′ = ρ·V·Γ &nbsp;&nbsp;&nbsp; (Kutta–Joukowski, per unit span)</div>
+      <div class="eq">L = ṁ·Δw &nbsp;&nbsp;&nbsp; α<sub>eff</sub> = α − α<sub>i</sub> &nbsp;&nbsp;&nbsp; D<sub>i</sub> = L·tan α<sub>i</sub></div>
+      <ul>
+        <li>Kutta condition: of all potential-flow solutions, only one circulation places the rear stagnation point at a sharp trailing edge. That value fixes Γ.</li>
+        <li>Kelvin: total circulation is conserved. Bound circulation Γ is balanced by a shed starting vortex −Γ.</li>
+        <li>Finite span: the bound vortex turns into trailing vortices, inducing downwash w and an induced angle α<sub>i</sub> = w/V. Local lift is tilted aft by α<sub>i</sub>; its streamwise component is induced drag.</li>
+        <li>At constant L′ and ρ: Γ ∝ 1/V.</li>
+      </ul>
 
-      <div class="related"><span class="dot"></span> Related questions: <strong>35</strong> in this topic</div>
+      <h3 class="sub">Viscosity and Reynolds number <span class="ref">1.9</span></h3>
+      <div class="eq">Re = ρ·V·c/μ = V·c/ν &nbsp;&nbsp;&nbsp; τ<sub>w</sub> = μ·(∂u/∂y)<sub>wall</sub></div>
+      <ul>
+        <li>Sea level: μ₀ = 1.79 × 10⁻⁵ Pa·s, ν₀ = 1.46 × 10⁻⁵ m²/s. c = 1.5 m at 60 m/s → Re = 6.2 × 10⁶.</li>
+        <li>μ depends on T only (−17 % sea level → FL300). ρ falls faster, so ν rises with altitude.</li>
+        <li>Constant EAS: Re ∝ √σ/(μ/μ₀). FL300 → 0.74 × sea-level Re.</li>
+        <li>Turbulent layer: fuller profile, larger wall gradient, larger τ<sub>w</sub>, higher resistance to separation.</li>
+        <li>Similarity requires equal Re and M together. A 1:10 model in the same fluid needs 10 × V for Re alone.</li>
+      </ul>
+
+      <h3 class="sub">Moments and pitch equilibrium <span class="ref">1.10</span></h3>
+      <div class="eq">ΣM<sub>cg</sub> = 0: &nbsp; P·l<sub>t</sub> = L<sub>w</sub>·a + |M<sub>ac</sub>| &nbsp;&nbsp;&nbsp; L<sub>w</sub> = W + P</div>
+      <p>
+        P: tail download; l<sub>t</sub>: tail arm; a: distance of the wing
+        aerodynamic centre aft of the CG. A couple (equal, opposite, parallel
+        forces) has zero resultant and the same moment about every point;
+        the moment about a section's aerodynamic centre is a couple.
+      </p>
+      <div class="table-wrap">
+      <table>
+        <caption>Worked equilibrium</caption>
+        <thead><tr><th>Quantity</th><th class="num">Value</th></tr></thead>
+        <tbody>
+          <tr><td>Wing lift L<sub>w</sub>, at a = 0.15 m aft of CG</td><td class="num">60,000 N</td></tr>
+          <tr><td>M<sub>ac</sub></td><td class="num">−6,000 N·m</td></tr>
+          <tr><td>Nose-down total: 60,000 × 0.15 + 6,000</td><td class="num">15,000 N·m</td></tr>
+          <tr><td>Tail download at l<sub>t</sub> = 12 m</td><td class="num">1,250 N</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>65</strong> in this topic</div>
     </section>
 
     <!-- ============================================================ -->
@@ -391,43 +478,189 @@
     <section class="sec" id="afoil">
       <h2><span class="num">02</span> Aerofoils &amp; Lift Theory <span class="en">Aerofoils</span></h2>
       <p class="lead">
-        The vocabulary of an aerofoil section, and how its lift, drag and
-        pitching moment characteristics are actually described.
+        A section is defined by three functions of angle of attack —
+        c<sub>l</sub>(α), c<sub>d</sub>(α), C<sub>M</sub>(α) — set by camber
+        line, thickness distribution and leading-edge radius. A finite wing
+        modifies each through downwash and planform.
       </p>
 
-      <h3 class="sub">Geometry <span class="ref">2.1</span></h3>
+      <h3 class="sub">Section geometry <span class="ref">2.1</span></h3>
       <div class="table-wrap">
       <table>
-        <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+        <thead><tr><th>Quantity</th><th>Definition and effect</th></tr></thead>
         <tbody>
-          <tr><td>Chord line</td><td>Straight line from leading edge to trailing edge</td></tr>
-          <tr><td>Camber</td><td>Curvature of the mean camber line relative to the chord line</td></tr>
-          <tr><td>Thickness/chord ratio</td><td>Maximum thickness as a fraction of chord — higher raises CLmax but lowers MCRIT</td></tr>
-          <tr><td>Leading edge radius</td><td>Rounded (subsonic) vs sharp (supersonic) — affects separation onset</td></tr>
+          <tr><td>Chord line, c</td><td>Straight line leading edge → trailing edge; reference for α</td></tr>
+          <tr><td>Mean camber line</td><td>Locus of points midway between the surfaces; maximum ordinate (% c) and its position define camber</td></tr>
+          <tr><td>Thickness ratio t/c</td><td>Maximum thickness / chord; position of maximum thickness sets the minimum-pressure point at low α</td></tr>
+          <tr><td>Leading-edge radius</td><td>r<sub>LE</sub> ∝ (t/c)² within a family; sets suction-peak height at high α</td></tr>
+          <tr><td>Zero-lift angle α₀</td><td>α at c<sub>l</sub> = 0; negative for positive camber</td></tr>
+          <tr><td>Absolute angle α<sub>abs</sub></td><td>α − α₀, measured from the zero-lift line</td></tr>
         </tbody>
       </table>
       </div>
 
-      <h3 class="sub">Center of pressure vs aerodynamic center <span class="ref">2.2</span></h3>
-      <p>
-        The <strong>center of pressure</strong> moves — forward as angle of
-        attack rises below the stall, then sharply aft at and beyond it. The
-        <strong>aerodynamic center</strong> (near the quarter-chord) is a
-        fixed point about which the pitching moment coefficient stays
-        essentially constant — the reference stability calculations
-        actually use.
-      </p>
+      <h3 class="sub">Pressure distribution <span class="ref">2.2</span></h3>
+      <div class="eq">c<sub>l</sub> = ∫₀¹ (C<sub>p,l</sub> − C<sub>p,u</sub>) d(x/c) &nbsp;&nbsp;&nbsp; x<sub>cp</sub>/c = ∫ ΔC<sub>p</sub>·(x/c) d(x/c) / c<sub>l</sub></div>
+      <div class="diagram">
+        <svg viewBox="0 0 460 230" role="img" aria-label="Chordwise pressure-coefficient distribution: upper-surface suction peak near the leading edge, lower-surface overpressure, enclosed area equal to section lift coefficient">
+          <polygon points="60.0,190.0 61.8,57.4 63.6,62.4 65.4,67.1 67.2,71.3 69.0,75.3 70.8,79.0 72.6,82.4 74.4,85.5 76.2,88.4 78.0,91.1 79.8,93.7 81.6,96.0 83.4,98.2 85.2,100.2 87.0,102.1 88.8,103.8 90.6,105.5 92.4,107.0 94.2,108.4 96.0,109.8 97.8,111.0 99.6,112.2 101.4,113.3 103.2,114.3 105.0,115.3 106.8,116.2 108.6,117.1 110.4,117.9 112.2,118.7 114.0,119.4 115.8,120.1 117.6,120.8 119.4,121.4 121.2,122.0 123.0,122.6 124.8,123.1 126.6,123.6 128.4,124.1 130.2,124.6 132.0,125.1 133.8,125.5 135.6,126.0 137.4,126.4 139.2,126.8 141.0,127.2 142.8,127.6 144.6,128.0 146.4,128.3 148.2,128.7 150.0,129.0 151.8,129.4 153.6,129.7 155.4,130.0 157.2,130.3 159.0,130.7 160.8,131.0 162.6,131.3 164.4,131.6 166.2,131.9 168.0,132.1 169.8,132.4 171.6,132.7 173.4,133.0 175.2,133.3 177.0,133.5 178.8,133.8 180.6,134.1 182.4,134.3 184.2,134.6 186.0,134.9 187.8,135.1 189.6,135.4 191.4,135.6 193.2,135.9 195.0,136.1 196.8,136.4 198.6,136.6 200.4,136.8 202.2,137.1 204.0,137.3 205.8,137.6 207.6,137.8 209.4,138.0 211.2,138.3 213.0,138.5 214.8,138.7 216.6,139.0 218.4,139.2 220.2,139.4 222.0,139.6 223.8,139.9 225.6,140.1 227.4,140.3 229.2,140.5 231.0,140.8 232.8,141.0 234.6,141.2 236.4,141.4 238.2,141.6 240.0,141.8 241.8,142.1 243.6,142.3 245.4,142.5 247.2,142.7 249.0,142.9 250.8,143.1 252.6,143.3 254.4,143.5 256.2,143.7 258.0,143.9 259.8,144.1 261.6,144.3 263.4,144.5 265.2,144.7 267.0,144.9 268.8,145.1 270.6,145.3 272.4,145.5 274.2,145.7 276.0,145.9 277.8,146.1 279.6,146.3 281.4,146.4 283.2,146.6 285.0,146.8 286.8,147.0 288.6,147.2 290.4,147.4 292.2,147.5 294.0,147.7 295.8,147.9 297.6,148.1 299.4,148.2 301.2,148.4 303.0,148.6 304.8,148.8 306.6,148.9 308.4,149.1 310.2,149.3 312.0,149.4 313.8,149.6 315.6,149.8 317.4,149.9 319.2,150.1 321.0,150.2 322.8,150.4 324.6,150.5 326.4,150.7 328.2,150.8 330.0,151.0 331.8,151.1 333.6,151.3 335.4,151.4 337.2,151.6 339.0,151.7 340.8,151.9 342.6,152.0 344.4,152.2 346.2,152.3 348.0,152.4 349.8,152.6 351.6,152.7 353.4,152.8 355.2,152.9 357.0,153.1 358.8,153.2 360.6,153.3 362.4,153.4 364.2,153.6 366.0,153.7 367.8,153.8 369.6,153.9 371.4,154.0 373.2,154.1 375.0,154.2 376.8,154.3 378.6,154.4 380.4,154.5 382.2,154.6 384.0,154.7 385.8,154.8 387.6,154.9 389.4,155.0 391.2,155.1 393.0,155.2 394.8,155.3 396.6,155.3 398.4,155.4 400.2,155.5 402.0,155.6 403.8,155.6 405.6,155.7 407.4,155.7 409.2,155.8 411.0,155.8 412.8,155.9 414.6,155.9 416.4,156.0 418.2,156.0 420.0,156.0 420.0,156.0 418.2,156.0 416.4,156.1 414.6,156.1 412.8,156.2 411.0,156.2 409.2,156.2 407.4,156.3 405.6,156.3 403.8,156.3 402.0,156.4 400.2,156.4 398.4,156.4 396.6,156.5 394.8,156.5 393.0,156.6 391.2,156.6 389.4,156.6 387.6,156.7 385.8,156.7 384.0,156.7 382.2,156.8 380.4,156.8 378.6,156.8 376.8,156.9 375.0,156.9 373.2,157.0 371.4,157.0 369.6,157.0 367.8,157.1 366.0,157.1 364.2,157.1 362.4,157.2 360.6,157.2 358.8,157.2 357.0,157.3 355.2,157.3 353.4,157.3 351.6,157.3 349.8,157.4 348.0,157.4 346.2,157.4 344.4,157.5 342.6,157.5 340.8,157.5 339.0,157.6 337.2,157.6 335.4,157.6 333.6,157.6 331.8,157.7 330.0,157.7 328.2,157.7 326.4,157.7 324.6,157.8 322.8,157.8 321.0,157.8 319.2,157.8 317.4,157.9 315.6,157.9 313.8,157.9 312.0,157.9 310.2,158.0 308.4,158.0 306.6,158.0 304.8,158.0 303.0,158.0 301.2,158.1 299.4,158.1 297.6,158.1 295.8,158.1 294.0,158.1 292.2,158.2 290.4,158.2 288.6,158.2 286.8,158.2 285.0,158.2 283.2,158.2 281.4,158.2 279.6,158.3 277.8,158.3 276.0,158.3 274.2,158.3 272.4,158.3 270.6,158.3 268.8,158.3 267.0,158.3 265.2,158.3 263.4,158.4 261.6,158.4 259.8,158.4 258.0,158.4 256.2,158.4 254.4,158.4 252.6,158.4 250.8,158.4 249.0,158.4 247.2,158.4 245.4,158.4 243.6,158.4 241.8,158.4 240.0,158.4 238.2,158.4 236.4,158.4 234.6,158.4 232.8,158.4 231.0,158.4 229.2,158.4 227.4,158.4 225.6,158.4 223.8,158.4 222.0,158.4 220.2,158.4 218.4,158.4 216.6,158.4 214.8,158.3 213.0,158.3 211.2,158.3 209.4,158.3 207.6,158.3 205.8,158.3 204.0,158.3 202.2,158.3 200.4,158.3 198.6,158.2 196.8,158.2 195.0,158.2 193.2,158.2 191.4,158.2 189.6,158.2 187.8,158.2 186.0,158.1 184.2,158.1 182.4,158.1 180.6,158.1 178.8,158.1 177.0,158.0 175.2,158.0 173.4,158.0 171.6,158.0 169.8,158.0 168.0,157.9 166.2,157.9 164.4,157.9 162.6,157.9 160.8,157.9 159.0,157.8 157.2,157.8 155.4,157.8 153.6,157.8 151.8,157.7 150.0,157.7 148.2,157.7 146.4,157.7 144.6,157.6 142.8,157.6 141.0,157.6 139.2,157.6 137.4,157.5 135.6,157.5 133.8,157.5 132.0,157.5 130.2,157.4 128.4,157.4 126.6,157.4 124.8,157.4 123.0,157.4 121.2,157.3 119.4,157.3 117.6,157.3 115.8,157.3 114.0,157.3 112.2,157.3 110.4,157.3 108.6,157.4 106.8,157.4 105.0,157.4 103.2,157.5 101.4,157.6 99.6,157.7 97.8,157.8 96.0,158.0 94.2,158.1 92.4,158.4 90.6,158.6 88.8,159.0 87.0,159.4 85.2,159.8 83.4,160.4 81.6,161.1 79.8,161.8 78.0,162.8 76.2,163.9 74.4,165.3 72.6,166.9 70.8,168.7 69.0,171.0 67.2,173.6 65.4,176.7 63.6,180.4 61.8,184.8 60.0,190.0" fill="var(--brand)" fill-opacity=".14"/>
+          <line x1="60" y1="150" x2="430" y2="150" stroke="var(--ink-2)" stroke-width="1.2"/>
+          <line x1="60" y1="30" x2="60" y2="195" stroke="var(--ink-2)" stroke-width="1.2"/>
+          <text x="440" y="154" font-size="11" fill="var(--muted)" text-anchor="end" dy="-6">x/c</text>
+          <text x="54" y="70" font-size="11" fill="var(--muted)" text-anchor="end">−2</text>
+          <text x="54" y="110" font-size="11" fill="var(--muted)" text-anchor="end">−1</text>
+          <text x="54" y="154" font-size="11" fill="var(--muted)" text-anchor="end">0</text>
+          <text x="54" y="194" font-size="11" fill="var(--muted)" text-anchor="end">+1</text>
+          <text x="20" y="110" font-size="12" fill="var(--muted)" text-anchor="middle" transform="rotate(-90 20 110)">Cp (negative up)</text>
+          <text x="420" y="168" font-size="11" fill="var(--muted)" text-anchor="middle">1</text>
+          <polyline points="60.0,190.0 61.8,57.4 63.6,62.4 65.4,67.1 67.2,71.3 69.0,75.3 70.8,79.0 72.6,82.4 74.4,85.5 76.2,88.4 78.0,91.1 79.8,93.7 81.6,96.0 83.4,98.2 85.2,100.2 87.0,102.1 88.8,103.8 90.6,105.5 92.4,107.0 94.2,108.4 96.0,109.8 97.8,111.0 99.6,112.2 101.4,113.3 103.2,114.3 105.0,115.3 106.8,116.2 108.6,117.1 110.4,117.9 112.2,118.7 114.0,119.4 115.8,120.1 117.6,120.8 119.4,121.4 121.2,122.0 123.0,122.6 124.8,123.1 126.6,123.6 128.4,124.1 130.2,124.6 132.0,125.1 133.8,125.5 135.6,126.0 137.4,126.4 139.2,126.8 141.0,127.2 142.8,127.6 144.6,128.0 146.4,128.3 148.2,128.7 150.0,129.0 151.8,129.4 153.6,129.7 155.4,130.0 157.2,130.3 159.0,130.7 160.8,131.0 162.6,131.3 164.4,131.6 166.2,131.9 168.0,132.1 169.8,132.4 171.6,132.7 173.4,133.0 175.2,133.3 177.0,133.5 178.8,133.8 180.6,134.1 182.4,134.3 184.2,134.6 186.0,134.9 187.8,135.1 189.6,135.4 191.4,135.6 193.2,135.9 195.0,136.1 196.8,136.4 198.6,136.6 200.4,136.8 202.2,137.1 204.0,137.3 205.8,137.6 207.6,137.8 209.4,138.0 211.2,138.3 213.0,138.5 214.8,138.7 216.6,139.0 218.4,139.2 220.2,139.4 222.0,139.6 223.8,139.9 225.6,140.1 227.4,140.3 229.2,140.5 231.0,140.8 232.8,141.0 234.6,141.2 236.4,141.4 238.2,141.6 240.0,141.8 241.8,142.1 243.6,142.3 245.4,142.5 247.2,142.7 249.0,142.9 250.8,143.1 252.6,143.3 254.4,143.5 256.2,143.7 258.0,143.9 259.8,144.1 261.6,144.3 263.4,144.5 265.2,144.7 267.0,144.9 268.8,145.1 270.6,145.3 272.4,145.5 274.2,145.7 276.0,145.9 277.8,146.1 279.6,146.3 281.4,146.4 283.2,146.6 285.0,146.8 286.8,147.0 288.6,147.2 290.4,147.4 292.2,147.5 294.0,147.7 295.8,147.9 297.6,148.1 299.4,148.2 301.2,148.4 303.0,148.6 304.8,148.8 306.6,148.9 308.4,149.1 310.2,149.3 312.0,149.4 313.8,149.6 315.6,149.8 317.4,149.9 319.2,150.1 321.0,150.2 322.8,150.4 324.6,150.5 326.4,150.7 328.2,150.8 330.0,151.0 331.8,151.1 333.6,151.3 335.4,151.4 337.2,151.6 339.0,151.7 340.8,151.9 342.6,152.0 344.4,152.2 346.2,152.3 348.0,152.4 349.8,152.6 351.6,152.7 353.4,152.8 355.2,152.9 357.0,153.1 358.8,153.2 360.6,153.3 362.4,153.4 364.2,153.6 366.0,153.7 367.8,153.8 369.6,153.9 371.4,154.0 373.2,154.1 375.0,154.2 376.8,154.3 378.6,154.4 380.4,154.5 382.2,154.6 384.0,154.7 385.8,154.8 387.6,154.9 389.4,155.0 391.2,155.1 393.0,155.2 394.8,155.3 396.6,155.3 398.4,155.4 400.2,155.5 402.0,155.6 403.8,155.6 405.6,155.7 407.4,155.7 409.2,155.8 411.0,155.8 412.8,155.9 414.6,155.9 416.4,156.0 418.2,156.0 420.0,156.0" fill="none" stroke="var(--brand)" stroke-width="2.5"/>
+          <polyline points="60.0,190.0 61.8,184.8 63.6,180.4 65.4,176.7 67.2,173.6 69.0,171.0 70.8,168.7 72.6,166.9 74.4,165.3 76.2,163.9 78.0,162.8 79.8,161.8 81.6,161.1 83.4,160.4 85.2,159.8 87.0,159.4 88.8,159.0 90.6,158.6 92.4,158.4 94.2,158.1 96.0,158.0 97.8,157.8 99.6,157.7 101.4,157.6 103.2,157.5 105.0,157.4 106.8,157.4 108.6,157.4 110.4,157.3 112.2,157.3 114.0,157.3 115.8,157.3 117.6,157.3 119.4,157.3 121.2,157.3 123.0,157.4 124.8,157.4 126.6,157.4 128.4,157.4 130.2,157.4 132.0,157.5 133.8,157.5 135.6,157.5 137.4,157.5 139.2,157.6 141.0,157.6 142.8,157.6 144.6,157.6 146.4,157.7 148.2,157.7 150.0,157.7 151.8,157.7 153.6,157.8 155.4,157.8 157.2,157.8 159.0,157.8 160.8,157.9 162.6,157.9 164.4,157.9 166.2,157.9 168.0,157.9 169.8,158.0 171.6,158.0 173.4,158.0 175.2,158.0 177.0,158.0 178.8,158.1 180.6,158.1 182.4,158.1 184.2,158.1 186.0,158.1 187.8,158.2 189.6,158.2 191.4,158.2 193.2,158.2 195.0,158.2 196.8,158.2 198.6,158.2 200.4,158.3 202.2,158.3 204.0,158.3 205.8,158.3 207.6,158.3 209.4,158.3 211.2,158.3 213.0,158.3 214.8,158.3 216.6,158.4 218.4,158.4 220.2,158.4 222.0,158.4 223.8,158.4 225.6,158.4 227.4,158.4 229.2,158.4 231.0,158.4 232.8,158.4 234.6,158.4 236.4,158.4 238.2,158.4 240.0,158.4 241.8,158.4 243.6,158.4 245.4,158.4 247.2,158.4 249.0,158.4 250.8,158.4 252.6,158.4 254.4,158.4 256.2,158.4 258.0,158.4 259.8,158.4 261.6,158.4 263.4,158.4 265.2,158.3 267.0,158.3 268.8,158.3 270.6,158.3 272.4,158.3 274.2,158.3 276.0,158.3 277.8,158.3 279.6,158.3 281.4,158.2 283.2,158.2 285.0,158.2 286.8,158.2 288.6,158.2 290.4,158.2 292.2,158.2 294.0,158.1 295.8,158.1 297.6,158.1 299.4,158.1 301.2,158.1 303.0,158.0 304.8,158.0 306.6,158.0 308.4,158.0 310.2,158.0 312.0,157.9 313.8,157.9 315.6,157.9 317.4,157.9 319.2,157.8 321.0,157.8 322.8,157.8 324.6,157.8 326.4,157.7 328.2,157.7 330.0,157.7 331.8,157.7 333.6,157.6 335.4,157.6 337.2,157.6 339.0,157.6 340.8,157.5 342.6,157.5 344.4,157.5 346.2,157.4 348.0,157.4 349.8,157.4 351.6,157.3 353.4,157.3 355.2,157.3 357.0,157.3 358.8,157.2 360.6,157.2 362.4,157.2 364.2,157.1 366.0,157.1 367.8,157.1 369.6,157.0 371.4,157.0 373.2,157.0 375.0,156.9 376.8,156.9 378.6,156.8 380.4,156.8 382.2,156.8 384.0,156.7 385.8,156.7 387.6,156.7 389.4,156.6 391.2,156.6 393.0,156.6 394.8,156.5 396.6,156.5 398.4,156.4 400.2,156.4 402.0,156.4 403.8,156.3 405.6,156.3 407.4,156.3 409.2,156.2 411.0,156.2 412.8,156.2 414.6,156.1 416.4,156.1 418.2,156.0 420.0,156.0" fill="none" stroke="var(--caution-line)" stroke-width="2.5"/>
+          <circle cx="61.8" cy="57.4" r="4" fill="var(--brand)"/>
+          <text x="72" y="61" font-size="11" font-weight="700" fill="var(--brand)">suction peak, Cp ≈ −2.3</text>
+          <text x="200" y="100" font-size="11" font-weight="700" fill="var(--brand)">upper surface</text>
+          <text x="200" y="188" font-size="11" font-weight="700" fill="var(--caution-line)">lower surface</text>
+          <text x="250" y="128" font-size="11" fill="var(--ink-2)">dp/dx &gt; 0 (adverse)</text>
+          <text x="66" y="200" font-size="11" fill="var(--ink-2)">stagnation, Cp = +1</text>
+        </svg>
+        <div class="cap">Shaded area between the curves = c<sub>l</sub>; its chordwise centroid = centre of pressure</div>
+      </div>
+      <ul>
+        <li>Front stagnation point (C<sub>p</sub> = +1) moves down and aft on the lower surface as α rises.</li>
+        <li>Upper-surface suction supplies about two-thirds or more of c<sub>l</sub> at moderate α.</li>
+        <li>A higher suction peak requires a steeper pressure recovery (dp/dx &gt; 0) to the trailing edge; boundary-layer separation under that gradient defines the stall.</li>
+        <li>Symmetric section at α = 0: equal suction on both surfaces, c<sub>l</sub> = 0.</li>
+        <li>Load centroids: triangular (peak at LE) → c/3; uniform → c/2; flat plate, subsonic → c/4.</li>
+      </ul>
 
-      <h3 class="sub">Lift curve, zero-lift angle, pitching moment <span class="ref">2.3</span></h3>
-      <p>
-        Below the stall, CL rises essentially linearly with angle of
-        attack. A cambered section reaches zero lift only at a small
-        <strong>negative</strong> angle of attack, and produces a
-        <strong>nose-down</strong> pitching moment about its aerodynamic
-        center — which is exactly why a horizontal tailplane exists.
-      </p>
+      <h3 class="sub">Section lift curve <span class="ref">2.3</span></h3>
+      <div class="eq">c<sub>l</sub> = a₀·(α − α₀) &nbsp;&nbsp;&nbsp; a₀ = 2π rad⁻¹ = 0.1097 deg⁻¹ (thin section)</div>
+      <ul>
+        <li>Real sections: a₀ ≈ 0.10–0.11 deg⁻¹. Linear to about 0.85 c<sub>l,max</sub>; curvature follows as trailing-edge separation advances.</li>
+        <li>Post-stall: c<sub>l</sub> ↓, c<sub>d</sub> ↑ steeply, C<sub>M</sub> more nose-down (load moves toward mid-chord).</li>
+        <li>Camber shifts the curve left (α₀ more negative), leaves the slope unchanged, raises c<sub>l,max</sub>.</li>
+        <li>L′ = c<sub>l</sub>·q·c: c<sub>l</sub> 0.8, q 3 kPa, c 2 m → 4,800 N/m.</li>
+      </ul>
 
-      <div class="related"><span class="dot"></span> Related questions: <strong>32</strong> in this topic</div>
+      <h3 class="sub">Aerodynamic centre and centre of pressure <span class="ref">2.4</span></h3>
+      <div class="eq">C<sub>M,x</sub> = C<sub>M,ac</sub> + c<sub>l</sub>·(x − x<sub>ac</sub>)/c</div>
+      <div class="eq">x<sub>cp</sub> = x<sub>ac</sub> − (C<sub>M,ac</sub>/c<sub>l</sub>)·c &nbsp;&nbsp;&nbsp; x<sub>ac</sub> = x<sub>ref</sub> − (dC<sub>M,ref</sub>/dc<sub>l</sub>)·c</div>
+      <ul>
+        <li>Aerodynamic centre: the point about which dC<sub>M</sub>/dc<sub>l</sub> = 0. Subsonic ≈ c/4; supersonic ≈ c/2.</li>
+        <li>Positive camber: C<sub>M,ac</sub> &lt; 0, so x<sub>cp</sub> lies aft of x<sub>ac</sub> and moves forward toward it as c<sub>l</sub> rises; as c<sub>l</sub> → 0, x<sub>cp</sub> → ∞ (pure couple).</li>
+        <li>Symmetric: C<sub>M,ac</sub> = 0, x<sub>cp</sub> = x<sub>ac</sub> at all α below the stall.</li>
+        <li>M<sub>ac</sub> = C<sub>M,ac</sub>·q·S·c ∝ V<sub>E</sub>²: doubling EAS quadruples the nose-down couple.</li>
+      </ul>
+      <div class="table-wrap">
+      <table>
+        <caption>Centre-of-pressure travel, C<sub>M,ac</sub> = −0.05, x<sub>ac</sub> = 0.25c</caption>
+        <thead><tr><th>c<sub>l</sub></th><th class="num">0.2</th><th class="num">0.5</th><th class="num">1.0</th><th class="num">1.5</th></tr></thead>
+        <tbody><tr><td>x<sub>cp</sub>/c</td><td class="num">0.500</td><td class="num">0.350</td><td class="num">0.300</td><td class="num">0.283</td></tr></tbody>
+      </table>
+      </div>
+
+      <h3 class="sub">Camber <span class="ref">2.5</span></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Camber line</th><th>α₀</th><th>C<sub>M,ac</sub></th><th>c<sub>l,max</sub></th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td>Positive</td><td>&lt; 0</td><td>&lt; 0 (nose-down)</td><td>higher</td><td>Wings</td></tr>
+          <tr><td>Zero (symmetric)</td><td>0</td><td>0</td><td>baseline</td><td>Fins, tailplanes, inverted capability</td></tr>
+          <tr><td>Negative</td><td>&gt; 0</td><td>&gt; 0 (nose-up)</td><td>higher in the negative direction</td><td>Tailplanes carrying a download</td></tr>
+          <tr><td>Reflexed trailing edge</td><td>≈ 0 to small negative</td><td>≈ 0 or &gt; 0</td><td>lower</td><td>Tailless configurations (self-trim)</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>In thin-section theory, α₀ and C<sub>M,ac</sub> are both linear in camber magnitude; slope is independent of camber.</p>
+
+      <h3 class="sub">Thickness and leading edge <span class="ref">2.6</span></h3>
+      <ul>
+        <li>t/c ↑: r<sub>LE</sub> ↑ ∝ (t/c)², c<sub>l,max</sub> ↑ to a maximum near 12–15 % then ↓, form drag ↑, M<sub>crit</sub> ↓.</li>
+        <li>Thin section (≲ 9 %): thin-aerofoil stall — leading-edge bubble lengthens, gradual loss of slope.</li>
+        <li>Moderate (≈ 9–15 %): leading-edge stall — short bubble bursts, abrupt lift loss.</li>
+        <li>Thick (≳ 15 %): trailing-edge stall — separation advances forward from the trailing edge, gradual.</li>
+        <li>Maximum thickness aft: minimum-pressure point aft, longer favourable gradient, longer laminar run; a low-drag bucket in a narrow c<sub>l</sub> range, outside which transition moves forward and c<sub>d</sub> rises sharply.</li>
+      </ul>
+
+      <h3 class="sub">Reynolds-number effects <span class="ref">2.7</span></h3>
+      <ul>
+        <li>Re ↑: c<sub>l,max</sub> ↑, stall α ↑, c<sub>d,min</sub> ↓ (c<sub>f</sub> ∝ Re<sup>−0.5</sup> laminar, ∝ Re<sup>−0.2</sup> turbulent).</li>
+        <li>Re ≲ 5 × 10⁵: laminar separation, transition in the free shear layer, turbulent reattachment — a laminar separation bubble; its bursting produces an abrupt stall.</li>
+        <li>Tapered wing: tip Re = λ × root Re → lower local c<sub>l,max</sub> outboard.</li>
+        <li>Roughness and contamination move transition forward: c<sub>l,max</sub> and stall α fall.</li>
+      </ul>
+
+      <h3 class="sub">Planform geometry <span class="ref">2.8</span></h3>
+      <div class="eq">A = b²/S &nbsp;&nbsp; λ = c<sub>t</sub>/c<sub>r</sub> &nbsp;&nbsp; S = b·(c<sub>r</sub> + c<sub>t</sub>)/2</div>
+      <div class="eq">MAC = (2/3)·c<sub>r</sub>·(1 + λ + λ²)/(1 + λ) &nbsp;&nbsp;&nbsp; y<sub>MAC</sub> = (b/6)·(1 + 2λ)/(1 + λ)</div>
+      <p>b = 30 m, c<sub>r</sub> = 5 m, λ = 0.4 → S = 105 m², A = 8.57, MAC = 3.71 m at y = 6.43 m. Mean geometric chord S/b = 3.50 m.</p>
+
+      <h3 class="sub">Downwash and finite-wing lift slope <span class="ref">2.9</span></h3>
+      <div class="eq">α<sub>i</sub> = C<sub>L</sub>/(π·e·A) &nbsp;&nbsp;&nbsp; C<sub>D,i</sub> = C<sub>L</sub>²/(π·e·A)</div>
+      <div class="eq">a = a₀ / (1 + a₀/(π·e·A)) &nbsp;≈&nbsp; 2π·A/(A + 2) &nbsp;(elliptical, a₀ = 2π)</div>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>A</th><th class="num">∞</th><th class="num">12</th><th class="num">8</th><th class="num">6</th><th class="num">4</th><th class="num">2</th></tr></thead>
+        <tbody><tr><td>a (deg⁻¹)</td><td class="num">0.1097</td><td class="num">0.0940</td><td class="num">0.0877</td><td class="num">0.0822</td><td class="num">0.0731</td><td class="num">0.0548</td></tr></tbody>
+      </table>
+      </div>
+      <div class="diagram">
+        <svg viewBox="0 0 470 230" role="img" aria-label="Lift coefficient against angle of attack for aspect ratio infinite, 8 and 4: equal zero-lift angle, decreasing slope and increasing stalling angle as aspect ratio falls">
+          <line x1="50" y1="122.5" x2="450" y2="122.5" stroke="var(--line)" stroke-width="1"/><line x1="50" y1="85.0" x2="450" y2="85.0" stroke="var(--line)" stroke-width="1"/><line x1="50" y1="47.5" x2="450" y2="47.5" stroke="var(--line)" stroke-width="1"/>
+          <line x1="50" y1="160.0" x2="450" y2="160.0" stroke="var(--ink-2)" stroke-width="1.2"/>
+          <line x1="114.0" y1="20" x2="114.0" y2="195" stroke="var(--ink-2)" stroke-width="1.2"/>
+          <text x="450" y="154" font-size="11" fill="var(--muted)" text-anchor="end">α (deg) →</text>
+          <text x="108" y="52" font-size="11" fill="var(--muted)" text-anchor="end">1.5</text>
+          <text x="108" y="89" font-size="11" fill="var(--muted)" text-anchor="end">1.0</text>
+          <text x="108" y="126" font-size="11" fill="var(--muted)" text-anchor="end">0.5</text>
+          <text x="274" y="176" font-size="11" fill="var(--muted)" text-anchor="middle">10</text>
+          <text x="434" y="176" font-size="11" fill="var(--muted)" text-anchor="middle">20</text>
+          <circle cx="82.0" cy="160.0" r="3.5" fill="var(--ink)"/>
+          <text x="78" y="152" font-size="11" fill="var(--ink)" text-anchor="middle">α₀</text>
+          <polyline points="50.0,176.5 54.0,174.4 58.0,172.3 62.0,170.3 66.0,168.2 70.0,166.2 74.0,164.1 78.0,162.1 82.0,160.0 86.0,157.9 90.0,155.9 94.0,153.8 98.0,151.8 102.0,149.7 106.0,147.7 110.0,145.6 114.0,143.5 118.0,141.5 122.0,139.4 126.0,137.4 130.0,135.3 134.0,133.3 138.0,131.2 142.0,129.1 146.0,127.1 150.0,125.0 154.0,123.0 158.0,120.9 162.0,118.9 166.0,116.8 170.0,114.7 174.0,112.7 178.0,110.6 182.0,108.6 186.0,106.5 190.0,104.5 194.0,102.4 198.0,100.4 202.0,98.3 206.0,96.2 210.0,94.2 214.0,92.1 218.0,90.1 222.0,88.0 226.0,86.0 230.0,83.9 234.0,81.8 238.0,79.8 242.0,77.7 246.0,75.7 250.0,73.6 254.0,71.6 258.0,69.5 262.0,67.4 266.0,65.4 270.0,63.3 274.0,61.3 278.0,59.0 282.0,56.8 286.0,54.8 290.0,53.0 294.0,51.3 298.0,49.8 302.0,48.5 306.0,47.3 310.0,46.3 314.0,45.4 318.0,44.8 322.0,44.3 326.0,43.9 330.0,43.8 334.0,44.0 338.0,44.9 342.0,46.1 346.0,47.5 350.0,49.0 354.0,50.7 358.0,52.6 362.0,54.6 366.0,56.6 370.0,58.8 374.0,61.1 378.0,63.4 382.0,65.9 386.0,68.4 390.0,71.0 394.0,73.7 398.0,76.4 402.0,79.2 406.0,82.1 410.0,85.0 414.0,88.0 418.0,91.1 422.0,94.2 426.0,97.4 430.0,100.6 434.0,103.9 438.0,107.2 442.0,110.6 446.0,114.0 450.0,117.5 454.0,121.0 458.0,124.6 462.0,128.2 466.0,131.9" fill="none" stroke="var(--brand)" stroke-width="2.5"/>
+          <polyline points="50.0,173.2 54.0,171.5 58.0,169.9 62.0,168.2 66.0,166.6 70.0,164.9 74.0,163.3 78.0,161.6 82.0,160.0 86.0,158.4 90.0,156.7 94.0,155.1 98.0,153.4 102.0,151.8 106.0,150.1 110.0,148.5 114.0,146.8 118.0,145.2 122.0,143.6 126.0,141.9 130.0,140.3 134.0,138.6 138.0,137.0 142.0,135.3 146.0,133.7 150.0,132.0 154.0,130.4 158.0,128.8 162.0,127.1 166.0,125.5 170.0,123.8 174.0,122.2 178.0,120.5 182.0,118.9 186.0,117.2 190.0,115.6 194.0,114.0 198.0,112.3 202.0,110.7 206.0,109.0 210.0,107.4 214.0,105.7 218.0,104.1 222.0,102.4 226.0,100.8 230.0,99.2 234.0,97.5 238.0,95.9 242.0,94.2 246.0,92.6 250.0,90.9 254.0,89.3 258.0,87.6 262.0,86.0 266.0,84.4 270.0,82.7 274.0,81.1 278.0,79.4 282.0,77.8 286.0,76.1 290.0,74.5 294.0,72.8 298.0,71.2 302.0,69.6 306.0,67.9 310.0,66.3 314.0,64.4 318.0,62.5 322.0,60.7 326.0,59.0 330.0,57.5 334.0,56.1 338.0,54.8 342.0,53.6 346.0,52.6 350.0,51.7 354.0,50.9 358.0,50.3 362.0,49.8 366.0,49.4 370.0,49.1 374.0,49.0 378.0,49.2 382.0,50.1 386.0,51.3 390.0,52.7 394.0,54.3 398.0,56.0 402.0,57.9 406.0,59.8 410.0,61.9 414.0,64.1 418.0,66.4 422.0,68.7 426.0,71.2 430.0,73.7 434.0,76.3 438.0,79.0 442.0,81.7 446.0,84.5 450.0,87.4 454.0,90.3 458.0,93.3 462.0,96.4 466.0,99.5" fill="none" stroke="var(--caution-line)" stroke-width="2.5"/>
+          <polyline points="50.0,171.0 54.0,169.6 58.0,168.2 62.0,166.9 66.0,165.5 70.0,164.1 74.0,162.7 78.0,161.4 82.0,160.0 86.0,158.6 90.0,157.3 94.0,155.9 98.0,154.5 102.0,153.1 106.0,151.8 110.0,150.4 114.0,149.0 118.0,147.7 122.0,146.3 126.0,144.9 130.0,143.6 134.0,142.2 138.0,140.8 142.0,139.4 146.0,138.1 150.0,136.7 154.0,135.3 158.0,134.0 162.0,132.6 166.0,131.2 170.0,129.8 174.0,128.5 178.0,127.1 182.0,125.7 186.0,124.4 190.0,123.0 194.0,121.6 198.0,120.3 202.0,118.9 206.0,117.5 210.0,116.1 214.0,114.8 218.0,113.4 222.0,112.0 226.0,110.7 230.0,109.3 234.0,107.9 238.0,106.5 242.0,105.2 246.0,103.8 250.0,102.4 254.0,101.1 258.0,99.7 262.0,98.3 266.0,97.0 270.0,95.6 274.0,94.2 278.0,92.8 282.0,91.5 286.0,90.1 290.0,88.7 294.0,87.4 298.0,86.0 302.0,84.6 306.0,83.2 310.0,81.9 314.0,80.5 318.0,79.1 322.0,77.8 326.0,76.4 330.0,75.0 334.0,73.7 338.0,72.3 342.0,70.9 346.0,69.5 350.0,67.8 354.0,66.1 358.0,64.6 362.0,63.1 366.0,61.8 370.0,60.5 374.0,59.4 378.0,58.3 382.0,57.4 386.0,56.5 390.0,55.8 394.0,55.2 398.0,54.6 402.0,54.2 406.0,53.9 410.0,53.6 414.0,53.5 418.0,53.6 422.0,54.4 426.0,55.6 430.0,56.9 434.0,58.5 438.0,60.2 442.0,62.0 446.0,63.9 450.0,66.0 454.0,68.2 458.0,70.4 462.0,72.8 466.0,75.2" fill="none" stroke="var(--green-arc)" stroke-width="2.5"/>
+          <line x1="280" y1="181" x2="300" y2="181" stroke="var(--brand)" stroke-width="2.5"/>
+          <text x="306" y="185" font-size="11" font-weight="700" fill="var(--brand)">A = ∞ (section), 0.110/deg</text>
+          <line x1="280" y1="198" x2="300" y2="198" stroke="var(--caution-line)" stroke-width="2.5"/>
+          <text x="306" y="202" font-size="11" font-weight="700" fill="var(--caution-line)">A = 8, 0.088/deg</text>
+          <line x1="280" y1="215" x2="300" y2="215" stroke="var(--green-arc)" stroke-width="2.5"/>
+          <text x="306" y="219" font-size="11" font-weight="700" fill="var(--green-arc)">A = 4, 0.073/deg</text>
+        </svg>
+        <div class="cap">Common α₀; slope falls and stalling angle rises as aspect ratio decreases</div>
+      </div>
+      <ul>
+        <li>Low A: shallower slope, higher stalling α, similar or slightly lower C<sub>L,max</sub>.</li>
+        <li>Sweep Λ: a<sub>Λ</sub> ≈ a·cos Λ (35° → ×0.82).</li>
+        <li>Level flight at constant W: C<sub>L</sub> ∝ 1/V², so α<sub>i</sub> ∝ 1/V² and D<sub>i</sub> ∝ 1/V².</li>
+        <li>Downwash far behind the wing: ε∞ = 2α<sub>i</sub>. The tailplane sits between α<sub>i</sub> and 2α<sub>i</sub>, and its incidence falls as C<sub>L</sub> rises.</li>
+        <li>Ground effect (h/b ≲ 1): image vortices reduce downwash; C<sub>D,i</sub> ↓, lift slope ↑, tail download ↓ (nose-down pitch).</li>
+      </ul>
+
+      <h3 class="sub">Spanwise loading and stall progression <span class="ref">2.10</span></h3>
+      <p>Local c<sub>l</sub> = local load / (q·local chord). The section with the highest local c<sub>l</sub> relative to its own c<sub>l,max</sub> stalls first.</p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Planform</th><th>Local c<sub>l</sub> peak</th><th>First stall</th><th>Consequence</th></tr></thead>
+        <tbody>
+          <tr><td>Rectangular</td><td>Root</td><td>Root</td><td>Tail buffet, ailerons effective</td></tr>
+          <tr><td>Elliptical</td><td>Uniform</td><td>Whole span</td><td>Minimum induced drag; no progression, no margin</td></tr>
+          <tr><td>Strong taper (λ ≲ 0.3)</td><td>Outboard</td><td>Tip</td><td>Roll-off, aileron loss</td></tr>
+          <tr><td>Swept back</td><td>Outboard, plus spanwise boundary-layer flow</td><td>Tip</td><td>Lift centroid moves forward → pitch-up</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <ul>
+        <li>Elliptical loading: uniform downwash; semi-span lift centroid at 4s/(3π) = 0.424s.</li>
+        <li>Geometric washout: tip incidence reduced. Root stalling at 15° with 2.5° washout → tip at 12.5°.</li>
+        <li>Aerodynamic washout: less camber at the tip (α₀ closer to 0) — equivalent to a twist of α₀,root − α₀,tip.</li>
+        <li>Further control of progression: stall strips (inboard), slots and slats (outboard), fences, vortilons, leading-edge sawtooth.</li>
+      </ul>
+
+      <h3 class="sub">Section versus wing <span class="ref">2.11</span></h3>
+      <div class="eq">C<sub>D</sub> = c<sub>d</sub> + C<sub>L</sub>²/(π·e·A)</div>
+      <p>c<sub>d</sub> = 0.008 at C<sub>L</sub> = 0.8 (section L/D = 100); A = 8, e = 0.85 → C<sub>D,i</sub> = 0.030, C<sub>D</sub> = 0.038, wing L/D = 21. At high C<sub>L</sub> the induced term dominates.</p>
+
+      <div class="related"><span class="dot"></span> Related questions: <strong>65</strong> in this topic</div>
     </section>
 
     <!-- ============================================================ -->
@@ -929,14 +1162,7 @@
     </section>
 
     <footer>
-      <p>
-        A ground-school reference on general ATPL-level Principles of
-        Flight, prepared for the Holdshort question bank. It describes
-        aerodynamic concepts and relationships taught broadly the same way
-        across ATPL training worldwide, not a specific national syllabus or
-        textbook, and it does not replace your own school's Principles of
-        Flight course material.
-      </p>
+      <p>Principles of Flight — Holdshort · Flying Knowledge</p>
     </footer>
   </main>
 </div>
