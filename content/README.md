@@ -423,6 +423,103 @@ the microburst profile, which is labelled as a model. All graphs use the
 page's colour tokens, so they work in both themes, and the page has been
 checked at 375px for horizontal overflow.
 
+## The F AIR bank (Flying Knowledge)
+
+The subject is **FI(A) Course Theory — F AIR** (code `FAIR`), the third
+Flying Knowledge subject: 535 questions from the owner's own bank for the
+aeroplane flight instructor course at F AIR, Benešov (LKBE). It was added
+the same content-only way IFR and POF were — no application code changed.
+
+Unlike IFR and POF, **the assistant did not write this bank.** The owner
+supplied it as `sources/f-air/F-AIR-MCQ-Bank-500plus.json` (source key
+`F-AIR-2026`), and `npm run import:f-air` converts it. **Everything under
+`content/flying-knowledge/fair/` is generated.** To change a question, edit
+the source file or `sources/f-air/corrections.json` and run the import
+again; never edit the generated files by hand. A test fails if they differ
+by one byte from what the importer produces, and the importer refuses to
+run if that folder holds a file it did not write.
+
+| Source topic | File | Topic | Ids | Questions |
+|---|---|---|---|---|
+| AIR LAW | `air-law.json` | Air Law | `FAIR-ALAW-0001`–`0150` | 150 |
+| AIRFRAME, SYSTEMS & ENGINES | `airframe-systems-engines.json` | Airframe, Systems & Engines | `FAIR-ASE-0151`–`0260` | 110 |
+| NAVIGATION & RADIONAVIGATION | `navigation-radionavigation.json` | Navigation & Radionavigation | `FAIR-NAV-0261`–`0350` | 90 |
+| VFR PROCEDURES | `vfr-procedures.json` | VFR Procedures | `FAIR-VFR-0351`–`0450` | 100 |
+| HUMAN PERFORMANCE | `human-performance.json` | Human Performance | `FAIR-HP-0451`–`0535` | 85 |
+| | | | | **535** |
+
+### What the import does
+
+- **The id carries the source id.** The last four digits are the source
+  question's own `id`, so `FAIR-ALAW-0017` is source question 17. That is
+  the stable key: re-running the import upserts the same rows, and `db:seed`
+  never touches another subject's questions. A question dropped from the
+  source keeps its number retired, as everywhere else in this folder.
+- **Options `A`–`D` become `a`–`d`, in the order the source gives them**,
+  and `correct` is lower-cased to match. Nothing is shuffled.
+- **`subtopic` is kept as written**, so the test screen shows it as a badge.
+  Topic names are title-cased for display (`AIR LAW` → `Air Law`) so they
+  read like the other subjects' topics.
+- **Every question carries the tag `F-AIR-2026`.** The ones changed by
+  `corrections.json` also carry `f-air-corrected`.
+- **Text is otherwise exactly as authored**, including °, ±, →, √ and ½,
+  apart from surrounding whitespace, which the schema trims on the way into
+  the database anyway. A test checks every uncorrected question field by
+  field against the source.
+- **The import checks every row before writing anything:** exactly four
+  options A–D, `correct` one of A–D, a non-empty question and explanation,
+  no duplicate ids, and a known topic. A bad file stops the import with
+  every problem listed by row number and source id, and nothing is written.
+
+### Checked before import: 11 questions corrected
+
+Every question was read and checked before import. Eleven had a factual
+error. They are fixed through `sources/f-air/corrections.json` rather than
+by editing the source, so the source file stays exactly what the owner
+supplied. Each correction names the exact text it replaces and gives a
+reason. If a re-exported source has different text in that field, the
+import stops instead of overwriting it.
+
+| Id | What was wrong |
+|---|---|
+| `FAIR-ALAW-0006` | The key said a towing aircraft has priority over everyone. SERA.3210 only makes *power-driven* aircraft give way to a tow, and the tug itself gives way to balloons, gliders and airships. Reworded so exactly one statement is true; same key. |
+| `FAIR-ALAW-0021` | The explanation said flashing white is the only white light signal. In flight it means "land at this aerodrome and proceed to the apron". |
+| `FAIR-ALAW-0071` | The explanation cited FCL.940.FI for the 3-year validity; that rule is in FCL.940. |
+| `FAIR-ALAW-0072`, `0073` | They required "15 h in the last 12 months" for FI revalidation. FCL.940.FI(a) has no such condition; the only 12-month split is 10 h of IR/BIR instruction when IR/BIR privileges are revalidated. |
+| `FAIR-ALAW-0076` | It gave the 200 h / 150 h PIC FI(A) prerequisite as the CPL route. It is the PPL(A) route; a CPL(A) holder meets the prerequisite by holding the CPL (FCL.915.FI(b)). |
+| `FAIR-ALAW-0091` | The explanation said 6 months applies to every pilot aged 40+ and to "passengers over 60". MED.A.045 gives 6 months for a pilot aged 40+ in single-pilot CAT with passengers, or any pilot aged 60+. |
+| `FAIR-ALAW-0141` | The explanation said no full control deflection below Va can exceed the load limits. That holds only for a single full deflection of one control. |
+| `FAIR-ASE-0195` | The explanation said C152 flaps are manual. They are electric. |
+| `FAIR-ASE-0207` | It called the further effect of aileron "adverse yaw". The further effect is yaw toward the lower wing; adverse aileron yaw is a separate effect. |
+| `FAIR-ASE-0225` | **Wrong key.** "Flaps on most C150/152 are manually operated." They are electric (flap switch lever, 15 A FLAP breaker), which this repository's own POH-sourced C152 bank already says. The key moved from A to B. |
+
+### Kept as authored, and worth knowing
+
+- **Local facts were not checked independently.** Czech airspace
+  structure, LKBE's frequency, runways, circuits, hours and fuel, and
+  F AIR's own QRH speeds (65 KIAS best glide, 70/70/65 circuit) come from
+  the school. They are kept exactly as written and are not claimed as
+  checked.
+- **About a third of the explanations are fragments.** They were written as
+  the tail of the correct answer and start mid-sentence, for example
+  `(flashing green = cleared to taxi).` or `then turn left heading 045° to
+  avoid villages.`. They read correctly under the revealed answer and were
+  kept word for word, at the owner's instruction not to rewrite content.
+- **Markdown emphasis shows literally.** Some questions write `*not*` or
+  `*tightest*`, and the test screen renders plain text.
+- **The distractors are weaker than the rest of the product.** The correct
+  option is often the longest and most detailed, several distractors are
+  bare `Nothing` or `Never`, and `FAIR-ALAW-0005` answers "All of the
+  above". That falls short of the rule in `CLAUDE.md` that a wrong option
+  must be ruled out by knowing the subject. It was not rewritten, at the
+  owner's instruction to keep content as-is, so it is the obvious next pass.
+- **A few questions ask the same thing twice across topics:** squawk 7600
+  (`ALAW-0024`, `VFR-0390`), 121.5 MHz (`NAV-0321`, `VFR-0389`), F AIR best
+  glide (`ASE-0251`, `VFR-0426`) and the distance to Kbely (`ALAW-0065`,
+  `VFR-0366`).
+- **It is free, like all of Flying Knowledge.** No free-tier cap and no
+  subscription gate apply — see the note in `CLAUDE.md`.
+
 ## The B737 bank
 
 The aircraft is the **Boeing 737-800**, the stretched Next Generation variant

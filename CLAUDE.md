@@ -19,9 +19,10 @@ today, with no "single engine" or "multi engine" split between it and the
 section; a light aircraft sits directly under Class Rating. `/flying-knowledge`
 is **Flying Knowledge** — general theory that is not tied to any aircraft —
 air law, meteorology, navigation, the material a pilot keeps reviewing
-rather than sits once. It has two subjects now, **IFR** and **Principles of
-Flight (POF)**, the second added the same content-only way a second
-aircraft is (see the note on Flying Knowledge's own content tree below);
+rather than sits once. It has three subjects now, **IFR**, **Principles of
+Flight (POF)** and **FI(A) Course Theory — F AIR (FAIR)**, each after the
+first added the same content-only way a second aircraft is (see the note
+on Flying Knowledge's own content tree below);
 more subjects are still to come, and the page title stays "Choose a
 subject" rather than naming just one. It is free
 in full, never behind the free-tier cap or a subscription — decided ahead
@@ -194,6 +195,7 @@ is what updates them.
 | `npm run validate:content` | Checks every question file against the schema |
 | `npm run icons:generate` | Redraws the favicon, the app icons and the manifest icons from the logo mark. Outputs are committed; run it only when the mark or the brand colours change. |
 | `npm run gift:generate -- --count <n> --days <n> --plan <monthly\|quarterly> [--note "..."]` | Mints free-access gift codes and prints them. |
+| `npm run import:f-air [-- --dry-run]` | Regenerates `content/flying-knowledge/fair/` from `sources/f-air/`. `--dry-run` validates and prints counts per topic, writing nothing. Follow it with `db:seed`. |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | TypeScript, no emit |
 | `npm run test` | Unit tests (Vitest) |
@@ -1576,7 +1578,11 @@ over the internals.
 content/                      Question files. The source of truth.
   <code>/                     One folder per type rating aircraft (b737/ today)
   classes/<code>/             One folder per class rating aircraft (da40/ today)
-  flying-knowledge/<code>/    One folder per Flying Knowledge subject (ifr/, pof/ today)
+  flying-knowledge/<code>/    One folder per Flying Knowledge subject (ifr/, pof/, fair/ today;
+                              fair/ is generated — see sources/)
+sources/
+  f-air/                      The owner's F AIR bank as supplied, plus corrections.json.
+                              The input to `import:f-air`; never read by the app.
 drizzle/                      Generated SQL migrations. Committed.
 public/                       Manifest icons, the service worker, and any
                               <code>-study-guide.html study guides (see the
@@ -1585,6 +1591,7 @@ scripts/
   validate-content.ts         Schema check. Runs before build and seed.
   migrate.ts                  Applies migrations.
   seed.ts                     Syncs content into the database.
+  import-f-air.ts             Converts sources/f-air/ into content/flying-knowledge/fair/.
   generate-icons.tsx          Rasterises the logo mark. Run by hand, outputs committed.
 src/
   app/
@@ -1644,6 +1651,7 @@ src/
     load.ts                   Reads and validates /content (type rating)
     load-classes.ts           Reads and validates content/classes/ (class rating)
     load-flying-knowledge.ts  Reads and validates content/flying-knowledge/ (Flying Knowledge)
+    f-air-import.ts           The F AIR bank's conversion: validate, correct, map (pure, tested)
   db/
     schema.ts                 Drizzle tables
     queries.ts                Every read the app performs — type rating
@@ -1860,6 +1868,25 @@ syllabus; the record of where it came from is kept in this file and
 file with new ids and never reused a retired one. See the note on the POF bank in
 `content/README.md`, and "Known gaps, honestly" below.
 
+**The F AIR bank (`FAIR`, Flying Knowledge's third subject) is the first
+content here the assistant did not write, and the first that is generated
+rather than authored in place.** It is the owner's own 535-question bank
+for the FI(A) course at F AIR, Benešov (LKBE), kept exactly as supplied in
+`sources/f-air/`. `npm run import:f-air` turns it into
+`content/flying-knowledge/fair/`, and `db:seed` loads that like any other
+subject. So the rule "content is the source of truth" holds one step
+further back: the generated files are the database's source, and
+`sources/f-air/` is theirs. `src/content/f-air-import.ts` is pure and
+tested, including a test that the committed files are byte-for-byte what
+it produces. That test is what makes re-running the import safe. It was
+checked question by question before import. Eleven factual errors are
+fixed through `sources/f-air/corrections.json`, never by editing the
+source. Each correction names the exact text it replaces, so a re-exported
+source that differs stops the import instead of being overwritten. This
+bank does name its source on the page (F AIR, its QRH, LKBE), unlike POF,
+because the owner supplied it that way. See the note on the F AIR bank in
+`content/README.md`.
+
 ## Known gaps, honestly
 
 - **A signed-out visitor's preview is metered by a cookie, which they can
@@ -1980,6 +2007,14 @@ file with new ids and never reused a retired one. See the note on the POF bank i
   owner asked for every source mention to be removed from what a student
   reads, so this note and `content/README.md` are now the only place the
   caveat is recorded. See the note on the POF bank in `content/README.md`.
+- **The F AIR bank's local facts are the school's, and its distractors are
+  weak.** Czech airspace details, LKBE's procedures and F AIR's QRH figures
+  were not checked independently; they are kept as the owner supplied
+  them. Many wrong options can be ruled out by their shape rather than by
+  knowledge: the correct option is often the longest, and there are bare
+  `Nothing` and `Never` distractors and one "All of the above". That falls
+  short of the rule at the top of this file. They were not rewritten, at
+  the owner's instruction to keep the content as-is. See `content/README.md`.
 - **Twenty-six B737 questions turn on a figure nobody has confirmed twice.** The
   bank's wrong options were rewritten so a question cannot be answered by
   elimination alone, and that pass deliberately left every uncorroborated number
