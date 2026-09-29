@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Holding Entry — Holding Sim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:            #060a10;
+    --panel:         #0d141e;
+    --panel2:        #111b28;
+    --line:          #1c2c3f;
+    --ink:           #eaf2fb;
+    --ink-dim:       #6f89a3;
+    --ink-mute:      #3d5169;
+    --cyan:          #4fd6ff;
+    --amber:         #ffb020;
+    --beacon:        #ff8a3d;
+    --green:         #35e08a;
+    --blue:          #4f8fff;
+    --red:           #ff4d5e;
+    --font-num:      'JetBrains Mono', monospace;
+    --font-ui:       'Inter', sans-serif;
+  }
+  @media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){ } }
+  *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; user-select:none;}
+  html,body{height:100%; overflow:hidden; background:var(--bg); overscroll-behavior:none;}
+  body{
+    font-family:var(--font-ui); color:var(--ink);
+    display:flex; flex-direction:column;
+    height:100dvh; width:100vw;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+    background:
+      radial-gradient(ellipse 140% 90% at 50% -10%, #0d1826 0%, var(--bg) 55%);
+  }
+
+  /* ============ TOP STRIP ============ */
+  #topStrip{
+    flex:0 0 auto;
+    display:flex; align-items:center; gap:8px;
+    padding:8px 10px 6px;
+  }
+  .brand{
+    font-family:var(--font-num); font-weight:700; font-size:12.5px;
+    letter-spacing:.14em; color:var(--ink-dim);
+  }
+  .brand b{color:var(--beacon); font-weight:800;}
+  .segctl{
+    display:flex; background:var(--panel); border:1px solid var(--line);
+    border-radius:8px; padding:2px; margin-left:auto;
+  }
+  .segctl button{
+    appearance:none; border:none; background:transparent; color:var(--ink-dim);
+    font-family:var(--font-ui); font-weight:700; font-size:10.5px; letter-spacing:.06em;
+    padding:6px 10px; border-radius:6px; cursor:pointer; transition:.15s;
+  }
+  .segctl button.on{ background:var(--beacon); color:#1a0e04; }
+  .turnBadge{
+    display:flex; align-items:center; gap:5px;
+    background:var(--panel); border:1px solid var(--line); border-radius:8px;
+    padding:5px 9px; font-family:var(--font-num); font-weight:700; font-size:11px;
+    color:var(--cyan); cursor:pointer;
+  }
+  .turnBadge.locked{ color:var(--ink-dim); cursor:default; }
+  .turnBadge svg{width:11px;height:11px;}
+
+  /* ============ ATC (side panel) ============ */
+  body:not(.test) #atcCard{ display:none; }
+  #atcDot{ width:6px; height:6px; border-radius:50%; background:var(--ink-mute); flex:0 0 auto; }
+  #atcDot.live{ background:var(--green); box-shadow:0 0 6px var(--green); animation:pulse 1.4s infinite; }
+  @keyframes pulse{ 50%{opacity:.35;} }
+  .atcHead{ display:flex; align-items:center; gap:5px; margin-bottom:4px; }
+  .atcHead .infoLabel{ flex:1; }
+  .iconBtn{
+    appearance:none; border:1px solid var(--line); background:var(--panel2); color:var(--ink-dim);
+    width:18px; height:18px; border-radius:5px; display:flex; align-items:center; justify-content:center;
+    cursor:pointer; flex:0 0 auto;
+  }
+  .iconBtn svg{width:10px; height:10px;}
+  .callsignInput{
+    width:100%; background:#000; border:1px solid var(--line); border-radius:5px;
+    color:var(--ink); font-family:var(--font-num); font-weight:700; font-size:10px;
+    padding:4px 6px; margin-bottom:5px; letter-spacing:.05em; text-transform:uppercase;
+  }
+  .callsignInput::placeholder{ color:var(--ink-mute); text-transform:none; letter-spacing:normal; }
+  .callsignInput:focus{ outline:none; border-color:var(--blue); }
+  #newClearanceBtn{
+    display:none;
+    appearance:none; border:none; background:var(--beacon); color:#1a0e04;
+    font-family:var(--font-ui); font-weight:800; font-size:10.5px; letter-spacing:.04em;
+    padding:6px 11px; border-radius:6px; cursor:pointer; flex:0 0 auto; white-space:nowrap;
+  }
+  body.test #newClearanceBtn{ display:block; }
+
+  /* ============ MAP ZONE ============ */
+  #mapZone{
+    position:relative; flex:1 1 auto; min-height:0;
+    margin:0 6px;
+  }
+  #mapSvg{ width:100%; height:100%; display:block; }
+
+  #entryOverlay{
+    display:none; flex:0 0 auto;
+    grid-template-columns:1fr 1fr; gap:4px;
+  }
+  body.test #entryOverlay{ display:grid; }
+  .entryBtn{
+    flex:1; appearance:none; cursor:pointer;
+    background:rgba(10,15,22,.88); backdrop-filter:blur(6px);
+    border:1.5px solid var(--line); border-radius:8px;
+    padding:5px 2px 4px; color:var(--ink-dim);
+    font-family:var(--font-ui); font-weight:700; font-size:7.5px; letter-spacing:0;
+    display:flex; flex-direction:column; align-items:center; gap:2px;
+    transition:.12s; overflow:hidden; white-space:nowrap;
+  }
+  .entryBtn .sw{width:10px;height:10px;border-radius:3px; border:1.5px solid; opacity:.55; flex:0 0 auto;}
+  .entryBtn[data-t="direct"] .sw{ background:rgba(53,224,138,.18); border-color:var(--green); }
+  .entryBtn[data-t="teardrop"] .sw{ background:rgba(255,176,32,.18); border-color:var(--amber); }
+  .entryBtn[data-t="parallel"] .sw{ background:rgba(79,143,255,.18); border-color:var(--blue); }
+  .entryBtn.sel{ border-color:var(--ink); color:var(--ink); }
+  .entryBtn.sel .sw{ opacity:1; }
+  .entryBtn:disabled{ opacity:.5; }
+
+  #confirmBtn{
+    display:none;
+    appearance:none; border:none; cursor:pointer;
+    background:linear-gradient(180deg,#ffcf6b,var(--beacon));
+    color:#1a0e04; font-family:var(--font-ui); font-weight:800; font-size:8px; letter-spacing:0;
+    border-radius:8px; padding:5px 3px; overflow:hidden; white-space:nowrap;
+  }
+  #confirmBtn:disabled{ background:var(--panel2); color:var(--ink-mute); }
+  body.test #confirmBtn{ display:block; }
+
+  #verdict{
+    position:absolute; top:8px; left:50%; transform:translateX(-50%) translateY(-6px);
+    opacity:0; pointer-events:none; transition:.22s;
+    font-family:var(--font-num); font-weight:800; font-size:12px; letter-spacing:.08em;
+    padding:6px 16px; border-radius:100px; border:1.5px solid; white-space:nowrap;
+  }
+  #verdict.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+  #verdict.ok{ background:rgba(53,224,138,.14); border-color:var(--green); color:var(--green); }
+  #verdict.bad{ background:rgba(255,77,94,.14); border-color:var(--red); color:var(--red); }
+
+  /* ============ DIVIDER ============ */
+  #divider{ flex:0 0 auto; height:1px; margin:6px 10px 0; background:linear-gradient(90deg, transparent, var(--line) 15%, var(--line) 85%, transparent); position:relative; }
+  #divider::after{ content:''; position:absolute; left:50%; top:-2.5px; transform:translateX(-50%); width:34px; height:5px; border-radius:3px; background:var(--line); }
+
+  /* ============ HSI ZONE ============ */
+  #hsiZone{
+    flex:0 0 auto; display:flex; align-items:stretch; gap:8px;
+    padding:8px 10px 10px; height:39dvh; min-height:192px; max-height:278px;
+  }
+  #hsiWrap{ position:relative; height:100%; aspect-ratio:1/1; touch-action:none; flex:0 0 auto; }
+  #hsiInfo{
+    flex:1; min-width:0; display:flex; flex-direction:column; gap:6px; padding:2px 0;
+  }
+  .infoCard{
+    background:var(--panel); border:1px solid var(--line); border-radius:9px;
+    padding:7px 10px; flex:1; display:flex; flex-direction:column; justify-content:center; gap:1px;
+  }
+  .infoLabel{ font-family:var(--font-ui); font-weight:700; font-size:8.5px; letter-spacing:.09em; color:var(--ink-mute); text-transform:uppercase; }
+  .infoVal{ font-family:var(--font-num); font-weight:700; font-size:20px; color:var(--cyan); line-height:1.15; }
+  .infoVal.small{font-size:13px;}
+  .infoRow{ display:flex; gap:6px; }
+  .infoRow .infoCard{ flex:1; }
+  #explainCard{ display:none; }
+  body.revealed #explainCard{ display:flex; }
+  body.revealed #hintCard{ display:none; }
+  #atcBoxVal{ font-size:10px; font-weight:600; color:#c8e6a0; line-height:1.3; font-family:var(--font-num); }
+  #explainCard .infoVal{ font-size:10.5px; color:var(--ink); font-family:var(--font-ui); font-weight:600; line-height:1.35; }
+</style>
+</head>
+<body class="practice">
+
+<div id="topStrip">
+  <div class="brand">HOLDING <b>SIM</b></div>
+  <button class="turnBadge" id="turnBadge" onclick="onTurnBadgeTap()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 12a8 8 0 1 1 8 8"/><path d="M8 16l4 4 4-4"/></svg>
+    <span id="turnLabel">RIGHT</span>
+  </button>
+  <button id="newClearanceBtn" onclick="newClearance()">NEW</button>
+  <div class="segctl">
+    <button id="btnPractice" class="on" onclick="setMode('practice')">PRACTICE</button>
+    <button id="btnTest" onclick="setMode('test')">TEST</button>
+  </div>
+</div>
+
+<div id="mapZone">
+  <svg id="mapSvg" viewBox="0 0 400 410" preserveAspectRatio="xMidYMid meet"></svg>
+  <div id="verdict"></div>
+</div>
+
+<div id="divider"></div>
+
+<div id="hsiZone">
+  <div id="hsiWrap">
+    <svg id="hsiSvg" viewBox="0 0 300 300" style="width:100%;height:100%;touch-action:none;"></svg>
+  </div>
+  <div id="hsiInfo">
+    <div class="infoCard" id="atcCard">
+      <div class="atcHead">
+        <div id="atcDot"></div>
+        <div class="infoLabel">ATC</div>
+        <button class="iconBtn" id="speakBtn" onclick="speakClearance()" title="Read clearance">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M17 8a5 5 0 010 8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <input id="callsignInput" class="callsignInput" placeholder="CALLSIGN" maxlength="12">
+      <div class="infoVal small" id="atcBoxVal">—</div>
+    </div>
+    <div id="entryOverlay">
+      <button class="entryBtn" data-t="direct" onclick="pickEntry('direct')"><span class="sw"></span>DIRECT</button>
+      <button class="entryBtn" data-t="teardrop" onclick="pickEntry('teardrop')"><span class="sw"></span>TEARDROP</button>
+      <button class="entryBtn" data-t="parallel" onclick="pickEntry('parallel')"><span class="sw"></span>PARALLEL</button>
+      <button id="confirmBtn" disabled onclick="confirmAnswer()">CONFIRM</button>
+    </div>
+    <div class="infoRow">
+      <div class="infoCard" id="hintCard">
+        <div class="infoLabel">Entry sector</div>
+        <div class="infoVal small" id="hintVal">DIRECT</div>
+      </div>
+      <div class="infoCard" id="explainCard">
+        <div class="infoLabel">Result</div>
+        <div class="infoVal" id="explainVal">—</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════════════════
+const S = {
+  mode: 'practice',          // 'practice' | 'test'
+  turn: 'R',                 // 'R' | 'L'
+  course: 360,                // dialed inbound course, 1-360
+  acBrg: 180,                 // aircraft POSITION: bearing FROM station (screen), 1-360
+  acHdg: 360,                 // aircraft HEADING (what it's actually flying) — independent of position
+  // test-mode round data
+  round: null,                // {radial, turn, correctCourse, correctEntry, spoken}
+  selectedEntry: null,
+  answered: false,
+};
+
+const svgNS = 'http://www.w3.org/2000/svg';
+const mapSvg = document.getElementById('mapSvg');
+const hsiSvg = document.getElementById('hsiSvg');
+const VOR = {x:200, y:205};      // fixed VOR position — centered in the map viewBox
+const AC_R = 168;                // fixed radius of aircraft from VOR
+
+function el(tag, attrs={}, parent=null){
+  const e = document.createElementNS(svgNS, tag);
+  for(const k in attrs) e.setAttribute(k, attrs[k]);
+  if(parent) parent.appendChild(e);
+  return e;
+}
+const d2r = d => (d-90) * Math.PI/180;   // compass deg -> canvas rad (0=east)
+const norm360 = d => ((d % 360) + 360) % 360;
+const disp = d => { let v = Math.round(norm360(d)); if(v===0) v=360; return String(v).padStart(3,'0'); };
+
+// ═══════════════════════════════════════════════════════════════
+//  BUILD STATIC MAP LAYERS
+// ═══════════════════════════════════════════════════════════════
+const gGrid   = el('g', {}, mapSvg);
+const gRing   = el('g', {}, mapSvg);
+const gPattern= el('g', {}, mapSvg);   // rotates: racetrack + sectors + course labels
+const gStation= el('g', {}, mapSvg);
+const gAircraft = el('g', {}, mapSvg);
+
+function drawGrid(){
+  for(let x=0;x<=400;x+=40) el('line',{x1:x,y1:0,x2:x,y2:410,stroke:'#101b28','stroke-width':1},gGrid);
+  for(let y=0;y<=410;y+=40) el('line',{x1:0,y1:y,x2:400,y2:y,stroke:'#101b28','stroke-width':1},gGrid);
+}
+function drawRing(){
+  el('circle',{cx:VOR.x,cy:VOR.y,r:172,fill:'none',stroke:'#152030','stroke-width':1},gRing);
+  el('circle',{cx:VOR.x,cy:VOR.y,r:172,fill:'none',stroke:'#0d1826','stroke-width':16,opacity:.4},gRing);
+  ['N','E','S','W'].forEach((l,i)=>{
+    const a = d2r(i*90);
+    const t = el('text',{x:VOR.x+Math.cos(a)*190, y:VOR.y+Math.sin(a)*190+4, fill:'#25384e','font-family':'JetBrains Mono','font-size':11,'font-weight':700,'text-anchor':'middle'},gRing);
+    t.textContent=l;
+  });
+}
+function drawStation(){
+  gStation.innerHTML='';
+  const pts=[];
+  for(let i=0;i<6;i++){ const a=d2r(i*60); pts.push((VOR.x+Math.cos(a)*11)+','+(VOR.y+Math.sin(a)*11)); }
+  el('polygon',{points:pts.join(' '),fill:'rgba(79,214,255,.14)',stroke:'var(--cyan)','stroke-width':1.6},gStation);
+  el('line',{x1:VOR.x-5,y1:VOR.y,x2:VOR.x+5,y2:VOR.y,stroke:'var(--cyan)','stroke-width':1.3},gStation);
+  el('line',{x1:VOR.x,y1:VOR.y-5,x2:VOR.x,y2:VOR.y+5,stroke:'var(--cyan)','stroke-width':1.3},gStation);
+}
+
+// Entry sector thresholds — ICAO PANS-OPS / FAA AIM 5-3-8: Direct 180°, Teardrop 70°, Parallel 110°.
+// The rule classifies by the aircraft's ARRIVAL HEADING relative to the inbound course — not by
+// which radial/position it happens to be on. Since the aircraft always flies toward the fix,
+// heading = (position bearing from the station) + 180°.
+function hdgFromBrg(brg){ return norm360(brg + 180); }
+function relBearing(acHdg, course, turn){
+  return turn==='R' ? norm360(acHdg - course) : norm360(course - acHdg);
+}
+function sectorAt(rel){
+  if(rel>110 && rel<=180) return 'teardrop';
+  if(rel>180 && rel<290) return 'parallel';
+  return 'direct';
+}
+function classify(acHdg, course, turn){       // ground-truth entry (exact boundaries)
+  return sectorAt(relBearing(acHdg, course, turn));
+}
+function entryAccepted(picked, acHdg, course, turn){  // grading, with ±3° boundary tolerance
+  const rel = relBearing(acHdg, course, turn);
+  return [rel-3, rel, rel+3].some(r => sectorAt(norm360(r)) === picked);
+}
+function circDiff(a,b){ const d = Math.abs(norm360(a)-norm360(b)); return Math.min(d, 360-d); }
+
+const COLORS = {direct:'#35e08a', teardrop:'#ffb020', parallel:'#4f8fff'};
+
+function drawPattern(){
+  gPattern.innerHTML='';
+  const course = S.course;
+  const turn = S.turn;
+  const mirror = turn==='L' ? -1 : 1;
+  const icRad = d2r(course);              // inbound direction (compass->canvas)
+  const legLen = 118, turnR = 44;
+
+  // ---- sectors (as pie wedges from VOR), colors hidden pre-answer in test mode ----
+  // Sectors are drawn in POSITION space (bearing-from-station), which is the classic textbook
+  // picture — but since heading = position+180, they must be centered on the OUTBOUND course
+  // (course+180), not on the inbound course itself, to actually line up with an aircraft whose
+  // heading matches the sector's rule (this 20° asymmetric tilt off the outbound line is exactly
+  // what produces the 70°/110° split).
+  const showColors = !(S.mode==='test' && !S.answered);
+  const secR = 172;
+  const wedgeRef = course + 180;
+  const wedge = (fromRel, toRel, key) => {
+    const a0 = wedgeRef + mirror*fromRel, a1 = wedgeRef + mirror*toRel;
+    const r0 = d2r(a0), r1 = d2r(a1);
+    const large = Math.abs(toRel-fromRel) > 180 ? 1 : 0;
+    const x0=VOR.x+Math.cos(r0)*secR, y0=VOR.y+Math.sin(r0)*secR;
+    const x1=VOR.x+Math.cos(r1)*secR, y1=VOR.y+Math.sin(r1)*secR;
+    const sweepFlag = mirror>0 ? 1 : 0;
+    const p = el('path',{d:`M${VOR.x},${VOR.y} L${x0},${y0} A${secR},${secR} 0 ${large} ${sweepFlag} ${x1},${y1} Z`,
+      fill: showColors ? COLORS[key] : 'none',
+      opacity: showColors ? .26 : 1,
+      stroke: showColors ? COLORS[key] : 'none', 'stroke-width': showColors?1.4:0, 'stroke-opacity': showColors?.75:0
+    },gPattern);
+  };
+  wedge(110,180,'teardrop');
+  wedge(180,290,'parallel');
+  wedge(290,360+110,'direct');
+
+  // ---- racetrack outline (proper stadium shape) ----
+  // inboundVec: direction of travel on the inbound leg (arriving at the fix = VOR)
+  // sideVec: perpendicular offset toward the holding side (turnR closer / 2*turnR for the far leg)
+  const inbX = Math.cos(icRad), inbY = Math.sin(icRad);
+  const perpRad = d2r(course + mirror*90);
+  const sideX = Math.cos(perpRad), sideY = Math.sin(perpRad);
+
+  const astartX = VOR.x - inbX*legLen, astartY = VOR.y - inbY*legLen;   // start of inbound leg (on centerline)
+  const q1x = VOR.x + sideX*2*turnR,   q1y = VOR.y + sideY*2*turnR;     // start of outbound leg (offset)
+  const q2x = astartX + sideX*2*turnR, q2y = astartY + sideY*2*turnR;   // end of outbound leg (offset)
+  const t1x = VOR.x + sideX*turnR,     t1y = VOR.y + sideY*turnR;       // turn-1 center (unused directly, kept for clarity)
+  const t2x = astartX + sideX*turnR,   t2y = astartY + sideY*turnR;     // turn-2 center (unused directly)
+
+  const path = el('path',{fill:'none',stroke:'#dfeeff','stroke-width':2.4,'stroke-linecap':'round',opacity:.92},gPattern);
+  const sweep = mirror>0?1:0;
+  const dStr = `M ${astartX} ${astartY} L ${VOR.x} ${VOR.y} A ${turnR} ${turnR} 0 0 ${sweep} ${q1x} ${q1y} L ${q2x} ${q2y} A ${turnR} ${turnR} 0 0 ${sweep} ${astartX} ${astartY} Z`;
+  path.setAttribute('d', dStr);
+
+  // arrow marker on inbound leg
+  const midx=(VOR.x+astartX)/2, midy=(VOR.y+astartY)/2;
+  const ah = el('g',{transform:`translate(${midx},${midy}) rotate(${course})`},gPattern);
+  el('path',{d:'M0,-7 L5,5 L-5,5 Z', fill:'#dfeeff'}, ah);
+
+  // course + outbound labels
+  const labelR = legLen*0.45;
+  const lx = VOR.x - Math.cos(icRad)*labelR, ly = VOR.y - Math.sin(icRad)*labelR;
+  const t = el('text',{x:lx,y:ly-10,fill:'#8fb8d8','font-family':'JetBrains Mono','font-size':10,'font-weight':700,'text-anchor':'middle'},gPattern);
+  t.textContent = 'INBD '+disp(course);
+}
+
+function getAircraftPos(){
+  const r = d2r(S.acBrg);
+  return { x: VOR.x + Math.cos(r)*AC_R, y: VOR.y + Math.sin(r)*AC_R };
+}
+function drawAircraft(){
+  gAircraft.innerHTML='';
+  const ap = getAircraftPos();
+  const g = el('g',{transform:`translate(${ap.x},${ap.y}) rotate(${S.acHdg})`},gAircraft);
+  // slim fuselage — no nose engine (DA42 engines are wing-mounted, not on the nose)
+  el('path',{d:'M0,-17 C1.8,-13 2.4,-4 2,8 C1.8,11 1,14 0,16 C-1,14 -1.8,11 -2,8 C-2.4,-4 -1.8,-13 0,-17 Z', fill:'#eaf2fb', stroke:'#050a10','stroke-width':1},g);
+  // straight (unswept) wings — DA42 wings are low, straight, not tapered/swept like a jet
+  el('path',{d:'M-1.5,1 L-25,4 L-25,7 L-1.5,6 Z', fill:'#eaf2fb', stroke:'#050a10','stroke-width':1},g);
+  el('path',{d:'M1.5,1 L25,4 L25,7 L1.5,6 Z', fill:'#eaf2fb', stroke:'#050a10','stroke-width':1},g);
+  // twin engine nacelles on the wings — the DA42's signature silhouette feature
+  el('ellipse',{cx:-16,cy:5.3,rx:3.4,ry:2,fill:'#c7d6e6', stroke:'#050a10','stroke-width':.8},g);
+  el('ellipse',{cx:16,cy:5.3,rx:3.4,ry:2,fill:'#c7d6e6', stroke:'#050a10','stroke-width':.8},g);
+  // aft-mounted horizontal tail (T-tail)
+  el('path',{d:'M-1,13 L-8,15.3 L-8,16.8 L-1,15 Z', fill:'#eaf2fb', stroke:'#050a10','stroke-width':1},g);
+  el('path',{d:'M1,13 L8,15.3 L8,16.8 L1,15 Z', fill:'#eaf2fb', stroke:'#050a10','stroke-width':1},g);
+  // drag halo (position) in practice mode
+  if(S.mode==='practice'){
+    el('circle',{cx:0,cy:0,r:22,fill:'none',stroke:'var(--beacon)','stroke-width':1,'stroke-dasharray':'2 3',opacity:.55},g);
+  }
+}
+
+// correct-course reveal arrow on map (test mode, after confirm)
+function drawCorrectOverlay(){
+  const ex = document.getElementById('mapCorrectOverlay');
+  if(ex) ex.remove();
+  if(!(S.mode==='test' && S.answered)) return;
+  const g = el('g',{id:'mapCorrectOverlay'}, mapSvg);
+  const rad = d2r(S.round.correctCourse);
+  const x1 = VOR.x, y1 = VOR.y;
+  const x2 = VOR.x - Math.cos(rad)*185, y2 = VOR.y - Math.sin(rad)*185;
+  el('line',{x1,y1,x2,y2,stroke:'var(--green)','stroke-width':1.6,'stroke-dasharray':'6 5',opacity:.85},g);
+  const lx = VOR.x - Math.cos(rad)*198, ly = VOR.y - Math.sin(rad)*198;
+  const t = el('text',{x:lx,y:ly,fill:'var(--green)','font-family':'JetBrains Mono','font-size':10,'font-weight':800,'text-anchor':'middle'},g);
+  t.textContent = disp(S.round.correctCourse)+'°';
+}
+
+function renderMap(){
+  drawPattern();
+  drawStation();
+  drawAircraft();
+  drawCorrectOverlay();
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  HSI DIAL — Garmin G1000 style: FIXED compass card, only the
+//  course pointer (needle) rotates when the student drags it.
+// ═══════════════════════════════════════════════════════════════
+const HC = {x:150,y:150}, HR = 132;
+let gNeedle, gCrsBox, gBearing, gBrgBox, gHdgBox;
+
+function buildHsiStatic(){
+  // bezel + knurled rim ticks — inserted first so it always paints behind everything else
+  const g = el('g',{});
+  el('circle',{cx:HC.x,cy:HC.y,r:HR+16,fill:'#04070b'},g);
+  el('circle',{cx:HC.x,cy:HC.y,r:HR+16,fill:'none',stroke:'#1c2c3f','stroke-width':2},g);
+  for(let i=0;i<60;i++){
+    const a=d2r(i*6);
+    el('line',{x1:HC.x+Math.cos(a)*(HR+15),y1:HC.y+Math.sin(a)*(HR+15),x2:HC.x+Math.cos(a)*(HR+11),y2:HC.y+Math.sin(a)*(HR+11),stroke:'#233649','stroke-width':1.4},g);
+  }
+  hsiSvg.insertBefore(g, hsiSvg.firstChild);
+}
+function buildCompassRose(){
+  // rotating compass card — turns with the aircraft's heading, exactly like a real HSI
+  const g = el('g',{},hsiSvg);
+  for(let i=0;i<360;i+=5){
+    const a=d2r(i);
+    const len = i%30===0?14:(i%10===0?9:5);
+    el('line',{x1:HC.x+Math.cos(a)*HR,y1:HC.y+Math.sin(a)*HR,x2:HC.x+Math.cos(a)*(HR-len),y2:HC.y+Math.sin(a)*(HR-len),
+      stroke: i%30===0?'#c8dcee':'#4a6480','stroke-width': i%30===0?2:1},g);
+  }
+  const labels = ['N','03','06','E','12','15','S','21','24','W','30','33'];
+  for(let i=0;i<360;i+=30){
+    const a=d2r(i);
+    const isCard = i%90===0;
+    const t = el('text',{x:HC.x+Math.cos(a)*(HR-26),y:HC.y+Math.sin(a)*(HR-26)+4,
+      fill: isCard?'#eaf2fb':'#7c9ab8','font-family':'JetBrains Mono','font-weight':isCard?800:600,
+      'font-size':isCard?15:11,'text-anchor':'middle'},g);
+    t.textContent = labels[i/30];
+  }
+  return g;
+}
+function updateCompassRotation(){
+  // rotates the card so the current heading sits under the fixed lubber line at top
+  gCompassCard.setAttribute('transform', `rotate(${-S.acHdg} ${HC.x} ${HC.y})`);
+  gHdgBox.innerHTML='';
+  const bw=54,bh=17, bx=HC.x-bw/2, by=HC.y-80;
+  el('rect',{x:bx,y:by,width:bw,height:bh,rx:4,fill:'#000',stroke:'var(--beacon)','stroke-width':1.2}, gHdgBox);
+  const t = el('text',{x:HC.x,y:by+bh/2+4,fill:'var(--beacon)','font-family':'JetBrains Mono','font-weight':800,'font-size':10.5,'text-anchor':'middle'}, gHdgBox);
+  t.textContent = 'HDG '+disp(S.acHdg)+'°';
+}
+function buildFace(){
+  el('circle',{cx:HC.x,cy:HC.y,r:HR-34,fill:'#070c12',stroke:'#1c2c3f','stroke-width':1},hsiSvg);
+}
+function buildTopFixed(){
+  // fixed heading lubber index (top reference) + center miniature-aircraft symbol — always on top, never rotates
+  const g = el('g',{},hsiSvg);
+  el('path',{d:`M${HC.x},${HC.y-HR-3} l-6,-11 h12 z`,fill:'var(--beacon)'},g);
+  el('rect',{x:HC.x-1.4,y:HC.y-HR-2,width:2.8,height:16,fill:'var(--beacon)'},g);
+  el('line',{x1:HC.x-11,y1:HC.y,x2:HC.x+11,y2:HC.y,stroke:'#eaf2fb','stroke-width':2.6,'stroke-linecap':'round'},g);
+  el('line',{x1:HC.x,y1:HC.y-8,x2:HC.x,y2:HC.y+8,stroke:'#eaf2fb','stroke-width':2.6,'stroke-linecap':'round'},g);
+  el('circle',{cx:HC.x,cy:HC.y,r:2.8,fill:'#eaf2fb'},g);
+}
+function drawCourseNeedle(){
+  // only this group rotates — the compass card underneath stays fixed
+  gNeedle.innerHTML='';
+  gNeedle.setAttribute('transform', `rotate(${S.course - S.acHdg} ${HC.x} ${HC.y})`);
+  const cx=HC.x, cy=HC.y;
+  // 2-dot CDI reference scale, rides with the course pointer
+  [-1,1].forEach(side=>{ [22,44].forEach(off=>{
+    el('circle',{cx:cx+side*off, cy:cy-6, r:2.4, fill:'#33475e'}, gNeedle);
+  });});
+  el('line',{x1:cx,y1:cy+54,x2:cx,y2:cy-HR+16,stroke:'var(--blue)','stroke-width':3,'stroke-linecap':'round'}, gNeedle);
+  el('path',{d:`M${cx},${cy-HR+2} l8,18 h-16 z`, fill:'var(--blue)'}, gNeedle);
+  el('line',{x1:cx-7,y1:cy+54,x2:cx+7,y2:cy+54, stroke:'var(--blue)','stroke-width':3,'stroke-linecap':'round'}, gNeedle);
+
+  // ---- CDI deviation bar (real VOR behavior: degrees off the selected radial, ±10° = full scale) ----
+  const rawDiff = norm360(S.acBrg - (S.course+180));
+  const signedDev = rawDiff>180 ? rawDiff-360 : rawDiff;      // -180..180
+  const devClamped = Math.max(-10, Math.min(10, signedDev));
+  const barX = cx + (devClamped/10)*30;                        // ±30px = full deflection, matches the outer dots
+  el('line',{x1:barX,y1:cy-20,x2:barX,y2:cy+20,stroke:'var(--blue)','stroke-width':3.2,'stroke-linecap':'round'}, gNeedle);
+
+  // ---- TO / FROM flag ----
+  const isTo = Math.abs(signedDev) < 90;
+  el('path',{d:`M${cx-6},${cy-16} L${cx+6},${cy-16} L${cx},${cy-25} Z`, fill: isTo?'var(--blue)':'none', stroke:'var(--blue)','stroke-width':1.2}, gNeedle);
+  el('path',{d:`M${cx-6},${cy+16} L${cx+6},${cy+16} L${cx},${cy+25} Z`, fill: !isTo?'var(--blue)':'none', stroke:'var(--blue)','stroke-width':1.2}, gNeedle);
+
+  el('circle',{cx,cy,r:4,fill:'var(--blue)',stroke:'#04070b','stroke-width':1.2}, gNeedle);
+
+  // digital CRS readout on the face — fixed position, text-only update
+  gCrsBox.innerHTML='';
+  const bw=56,bh=20, bx=HC.x-bw/2, by=HC.y+42;
+  el('rect',{x:bx,y:by,width:bw,height:bh,rx:4,fill:'#000',stroke:'var(--blue)','stroke-width':1.2}, gCrsBox);
+  const t = el('text',{x:HC.x,y:by+bh/2+5,fill:'var(--blue)','font-family':'JetBrains Mono','font-weight':800,'font-size':13,'text-anchor':'middle'}, gCrsBox);
+  t.textContent = disp(S.course)+'°';
+}
+function drawBearingNeedle(){
+  // Bearing pointer (ADF/RMI style) — a thin single needle, distinct from the thicker
+  // course pointer, pointing at the bearing FROM the aircraft's current position TO the
+  // station. This is independent of the selected course and of the aircraft's own heading —
+  // exactly like a real ADF/BRG pointer on a G1000 HSI.
+  const brg = hdgFromBrg(S.acBrg);
+  gBearing.innerHTML='';
+  gBearing.setAttribute('transform', `rotate(${brg - S.acHdg} ${HC.x} ${HC.y})`);
+  const cx=HC.x, cy=HC.y;
+  el('line',{x1:cx,y1:cy+40,x2:cx,y2:cy-HR+34,stroke:'var(--amber)','stroke-width':2,'stroke-linecap':'round'}, gBearing);
+  el('path',{d:`M${cx},${cy-HR+22} l7,13 l-7,13 l-7,-13 z`, fill:'none', stroke:'var(--amber)','stroke-width':2}, gBearing);
+  el('circle',{cx,cy:cy+40,r:4,fill:'none',stroke:'var(--amber)','stroke-width':2}, gBearing);
+
+  gBrgBox.innerHTML='';
+  const bw=50,bh=17, bx=HC.x-bw/2, by=HC.y-59;
+  el('rect',{x:bx,y:by,width:bw,height:bh,rx:4,fill:'#000',stroke:'var(--amber)','stroke-width':1.2}, gBrgBox);
+  const t = el('text',{x:HC.x,y:by+bh/2+4,fill:'var(--amber)','font-family':'JetBrains Mono','font-weight':800,'font-size':10.5,'text-anchor':'middle'}, gBrgBox);
+  t.textContent = 'ADF '+disp(brg)+'°';
+}
+function renderHsi(){ updateCompassRotation(); drawCourseNeedle(); drawBearingNeedle(); }
+
+// ── HSI drag-to-rotate — only engages when grabbing the course needle's head or tail ──
+let hsiDragging=false;
+function hsiAngleFromEvent(clientX, clientY){
+  const rect = hsiSvg.getBoundingClientRect();
+  const scale = 300/rect.width;
+  const x = (clientX-rect.left)*scale, y=(clientY-rect.top)*scale;
+  const ang = Math.atan2(y-HC.y, x-HC.x)*180/Math.PI + 90;
+  return norm360(ang);
+}
+function courseNeedleHeadTail(){
+  const rot = (S.course - S.acHdg) * Math.PI/180;
+  const cx=HC.x, cy=HC.y;
+  const rot2 = (px,py) => {
+    const dx=px-cx, dy=py-cy;
+    return { x: cx+dx*Math.cos(rot)-dy*Math.sin(rot), y: cy+dx*Math.sin(rot)+dy*Math.cos(rot) };
+  };
+  return { head: rot2(cx, cy-HR+2), tail: rot2(cx, cy+54) };
+}
+function hsiPointerDown(e){
+  const pt0 = e.touches ? e.touches[0] : e;
+  const rect = hsiSvg.getBoundingClientRect();
+  const scale = 300/rect.width;
+  const x = (pt0.clientX-rect.left)*scale, y = (pt0.clientY-rect.top)*scale;
+  const {head, tail} = courseNeedleHeadTail();
+  const dHead = Math.hypot(x-head.x, y-head.y), dTail = Math.hypot(x-tail.x, y-tail.y);
+  if(dHead>30 && dTail>30){ hsiDragging=false; return; }
+  hsiDragging=true;
+  hsiMove(e);
+}
+function hsiMove(e){
+  if(!hsiDragging) return;
+  const pt = e.touches ? e.touches[0] : e;
+  let a = hsiAngleFromEvent(pt.clientX, pt.clientY);
+  if(a===0) a=360;
+  S.course = Math.round(a);
+  onCourseChanged();
+}
+function hsiUp(){ hsiDragging=false; }
+hsiSvg.addEventListener('mousedown', hsiPointerDown);
+window.addEventListener('mousemove', hsiMove);
+window.addEventListener('mouseup', hsiUp);
+hsiSvg.addEventListener('touchstart', e=>{e.preventDefault(); hsiPointerDown(e.touches[0]);}, {passive:false});
+hsiSvg.addEventListener('touchmove', e=>{e.preventDefault(); hsiMove(e);}, {passive:false});
+hsiSvg.addEventListener('touchend', hsiUp);
+
+// ── aircraft drag (practice mode only, map zone only) ──
+// Dragging the aircraft body sets its position; heading is always recalculated to face the station.
+let dragging = false;
+function mapPointFromEvent(clientX, clientY){
+  const rect = mapSvg.getBoundingClientRect();
+  const vb = mapSvg.viewBox.baseVal;
+  const scaleX = vb.width/rect.width, scaleY = vb.height/rect.height;
+  return { x: (clientX-rect.left)*scaleX, y: (clientY-rect.top)*scaleY };
+}
+function bearingFrom(cx, cy, x, y){
+  let a = norm360(Math.atan2(y-cy, x-cx)*180/Math.PI + 90);
+  return a===0 ? 360 : a;
+}
+function mapPointerDown(e){
+  if(S.mode!=='practice') return;
+  dragging = true;
+  mapMove(e);
+}
+function mapMove(e){
+  if(!dragging) return;
+  const pt0 = e.touches ? e.touches[0] : e;
+  const pt = mapPointFromEvent(pt0.clientX, pt0.clientY);
+  S.acBrg = Math.round(bearingFrom(VOR.x, VOR.y, pt.x, pt.y));
+  S.acHdg = hdgFromBrg(S.acBrg);           // always faces the station
+  renderMap(); renderHsi(); updateHint();
+}
+function mapUp(){ dragging=false; }
+mapSvg.addEventListener('mousedown', mapPointerDown);
+window.addEventListener('mousemove', mapMove);
+window.addEventListener('mouseup', mapUp);
+mapSvg.addEventListener('touchstart', e=>{ if(S.mode==='practice'){e.preventDefault(); mapPointerDown(e.touches[0]);} }, {passive:false});
+mapSvg.addEventListener('touchmove', e=>{ if(S.mode==='practice'){e.preventDefault(); mapMove(e);} }, {passive:false});
+mapSvg.addEventListener('touchend', mapUp);
+
+// ═══════════════════════════════════════════════════════════════
+//  MODE / TURN / COURSE CHANGE HANDLERS
+// ═══════════════════════════════════════════════════════════════
+function onCourseChanged(){
+  renderHsi();
+  renderMap();
+  updateHint();
+}
+function updateHint(){
+  if(S.mode==='practice'){
+    const type = classify(S.acHdg, S.course, S.turn);
+    document.getElementById('hintVal').textContent = type.toUpperCase()+'  ·  HDG '+disp(S.acHdg);
+    document.getElementById('hintVal').style.color = COLORS[type];
+  }
+}
+
+function setMode(m){
+  S.mode = m;
+  document.body.classList.toggle('test', m==='test');
+  document.body.classList.remove('revealed');
+  document.getElementById('btnPractice').classList.toggle('on', m==='practice');
+  document.getElementById('btnTest').classList.toggle('on', m==='test');
+  const badge = document.getElementById('turnBadge');
+  badge.classList.toggle('locked', m==='test');
+  document.getElementById('verdict').classList.remove('show','ok','bad');
+  clearEntrySelection();
+  S.answered = false;
+
+  if(m==='practice'){
+    document.getElementById('atcDot').classList.remove('live');
+    document.getElementById('atcBoxVal').textContent = '—';
+    S.acBrg = 180;
+    S.acHdg = hdgFromBrg(S.acBrg);
+    renderMap(); onCourseChanged();
+  } else {
+    document.getElementById('hintVal').textContent = '—';
+    document.getElementById('hintVal').style.color = '';
+    newClearance();
+  }
+}
+
+function onTurnBadgeTap(){
+  if(S.mode==='test') return;
+  S.turn = S.turn==='R' ? 'L' : 'R';
+  document.getElementById('turnLabel').textContent = S.turn==='R' ? 'RIGHT' : 'LEFT';
+  renderMap(); updateHint();
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  TEST MODE — clearance generation & grading
+// ═══════════════════════════════════════════════════════════════
+const DIRWORD = {10:'NNE',20:'NNE',30:'NE',40:'NE',50:'NE',60:'ENE',70:'ENE',80:'E',90:'E',100:'E',
+  110:'ESE',120:'ESE',130:'SE',140:'SE',150:'SE',160:'SSE',170:'SSE',180:'S',190:'S',200:'S',
+  210:'SSW',220:'SSW',230:'SW',240:'SW',250:'SW',260:'WSW',270:'W',280:'W',290:'W',300:'WNW',
+  310:'WNW',320:'NW',330:'NW',340:'NW',350:'NNW',360:'N'};
+
+const CAPITALS = ['LONDON','PARIS','MADRID','ROME','BERLIN','VIENNA','LISBON','DUBLIN','OSLO','HELSINKI',
+  'WARSAW','PRAGUE','ATHENS','ANKARA','CAIRO','AMMAN','BEIRUT','BAGHDAD','DOHA','RIYADH','MUSCAT',
+  'TOKYO','SEOUL','BEIJING','DELHI','BANGKOK','CANBERRA','WELLINGTON','OTTAWA','NAIROBI','TUNIS','RABAT'];
+
+function newClearance(){
+  clearEntrySelection();
+  S.answered = false;
+  document.body.classList.remove('revealed');
+  document.getElementById('verdict').classList.remove('show','ok','bad');
+  document.getElementById('hintVal').textContent = '—';
+  document.getElementById('hintVal').style.color = '';
+
+  const radial = (Math.floor(Math.random()*36)+1)*10; // 10..360
+  const turn = Math.random()<0.5 ? 'R' : 'L';
+  const correctCourse = ((radial+180-1)%360)+1;
+  S.acBrg = (Math.floor(Math.random()*36)+1)*10;   // random starting position each question — not always south
+  S.acHdg = hdgFromBrg(S.acBrg);
+  S.turn = turn;
+  document.getElementById('turnLabel').textContent = turn==='R' ? 'RIGHT' : 'LEFT';
+  const correctEntry = classify(S.acHdg, correctCourse, turn);
+
+  // scramble the dial to a wrong course
+  let wrong;
+  do { wrong = (Math.floor(Math.random()*360)+1); } while(Math.abs(norm360(wrong-correctCourse))<25);
+  S.course = wrong;
+
+  const stationName = CAPITALS[Math.floor(Math.random()*CAPITALS.length)];
+  S.round = {radial, turn, correctCourse, correctEntry, stationName};
+
+  const cs = (document.getElementById('callsignInput').value || 'STUDENT1').trim().toUpperCase();
+  S.callsign = cs;
+  const dir = DIRWORD[radial] || '';
+  const phrase = `${cs}, HOLD ${dir} OF ${stationName}, ${String(radial).padStart(3,'0')} RADIAL, INBOUND ${String(correctCourse).padStart(3,'0')}, ${turn==='R'?'RIGHT':'LEFT'} TURNS`;
+  document.getElementById('atcBoxVal').textContent = phrase;
+  document.getElementById('atcDot').classList.add('live');
+
+  document.getElementById('confirmBtn').disabled = true;
+  onCourseChanged();
+  renderMap();
+  speakClearance();
+}
+
+function pickEntry(t){
+  if(S.mode!=='test' || S.answered) return;
+  S.selectedEntry = t;
+  document.querySelectorAll('.entryBtn').forEach(b=>b.classList.toggle('sel', b.dataset.t===t));
+  document.getElementById('confirmBtn').disabled = false;
+}
+function clearEntrySelection(){
+  S.selectedEntry = null;
+  document.querySelectorAll('.entryBtn').forEach(b=>{ b.classList.remove('sel'); b.disabled=false; });
+  document.getElementById('confirmBtn').disabled = true;
+}
+
+function confirmAnswer(){
+  if(!S.round || !S.selectedEntry) return;
+  const r = S.round;
+  const courseOk = circDiff(S.course, r.correctCourse) <= 5;
+  const entryOk = entryAccepted(S.selectedEntry, hdgFromBrg(S.acBrg), r.correctCourse, r.turn);
+  const pass = courseOk && entryOk;
+
+  S.answered = true;
+  document.body.classList.add('revealed');
+  document.querySelectorAll('.entryBtn').forEach(b=>b.disabled=true);
+  document.getElementById('confirmBtn').disabled = true;
+
+  const v = document.getElementById('verdict');
+  v.textContent = pass ? 'CORRECT' : 'INCORRECT';
+  v.className = 'show ' + (pass?'ok':'bad');
+
+  const bits = [];
+  bits.push((courseOk?'✓':'✗')+' Course '+disp(S.course)+'° — correct '+disp(r.correctCourse)+'°');
+  bits.push((entryOk?'✓':'✗')+' Entry '+S.selectedEntry.toUpperCase()+' — correct '+r.correctEntry.toUpperCase());
+  document.getElementById('explainVal').textContent = bits.join('   ');
+
+  renderMap();
+  speakVerdict(pass);
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  SPEECH
+// ═══════════════════════════════════════════════════════════════
+function speakClearance(){
+  if(!window.speechSynthesis) return;
+  let text;
+  if(S.mode==='test' && S.round){
+    const r=S.round;
+    text = `${S.callsign}, hold ${DIRWORD[r.radial]} of ${r.stationName}, ${r.radial} radial, inbound ${r.correctCourse}, ${r.turn==='R'?'right':'left'} turns.`;
+  } else return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate=0.95; u.pitch=1.0; u.lang='en-US';
+  window.speechSynthesis.speak(u);
+}
+function speakVerdict(pass){
+  if(!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(pass?'Correct.':'Incorrect.');
+  u.rate=0.95; u.lang='en-US';
+  window.speechSynthesis.speak(u);
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════════════════
+drawGrid();
+drawRing();
+buildHsiStatic();
+const gCompassCard = buildCompassRose();
+buildFace();
+gBearing = el('g',{},hsiSvg);
+gBrgBox = el('g',{},hsiSvg);
+gNeedle = el('g',{},hsiSvg);
+gCrsBox = el('g',{},hsiSvg);
+gHdgBox = el('g',{},hsiSvg);
+buildTopFixed();
+renderMap();
+onCourseChanged();
+</script>
+</body>
+</html>

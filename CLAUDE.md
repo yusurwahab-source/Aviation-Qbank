@@ -126,6 +126,20 @@ which was added as `content/b737/` alone — a manifest and its question
 files, one per FCOM chapter. No application code was touched, and the full
 test suite passed against a database holding both banks.
 
+**Pilot Sims is a fourth section that is not a question bank.** `/pilot-sims`
+lists interactive simulators; today there is one, the Holding Pattern Entry
+Trainer. A simulator is a complete standalone page in `public/pilot-sims/`
+(its own JS and CSS, Google Fonts the only outside dependency), shown at
+`/pilot-sims/<slug>` inside an iframe with `sandbox="allow-scripts"` and no
+other permission. **Its internals are not edited from this repository** — the
+entry-sector rules and SVG geometry were checked against FAA/ICAO sources as
+supplied, so a change there is a new file from the owner, not a patch. The
+list is a constant in `src/app/pilot-sims/sims.ts`: no database, no content
+tree, no free-tier or subscription involvement, free for everyone. Adding a
+simulator is its file in `public/pilot-sims/`, an entry in `sims.ts` and a
+page beside the existing one. The service worker already leaves `.html`
+alone. It is in the header's links and in `sitemap.xml`.
+
 **Old links still work.** `/aircraft` and `/aircraft/[code]` (and its
 `/test` page) were the type rating routes before this split existed;
 `/class` and `/class/[code]` were an earlier name for the class rating

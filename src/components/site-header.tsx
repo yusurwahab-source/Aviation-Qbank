@@ -26,6 +26,7 @@ const SIGNED_OUT_LINKS = [
   { href: "/type-rating", label: "Type Rating Systems Knowledge" },
   { href: "/class-rating", label: "Class Rating Systems Knowledge" },
   { href: "/flying-knowledge", label: "Flying Knowledge" },
+  { href: "/pilot-sims", label: "Pilot Sims" },
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
 ];
@@ -34,6 +35,7 @@ const SIGNED_IN_LINKS = [
   { href: "/type-rating", label: "Type Rating Systems Knowledge" },
   { href: "/class-rating", label: "Class Rating Systems Knowledge" },
   { href: "/flying-knowledge", label: "Flying Knowledge" },
+  { href: "/pilot-sims", label: "Pilot Sims" },
   { href: "/progress", label: "Progress" },
   { href: "/upgrade", label: "Upgrade" },
 ];

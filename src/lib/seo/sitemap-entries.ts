@@ -22,6 +22,8 @@ const STATIC_PAGES = [
   { path: "/type-rating", changeFrequency: "weekly", priority: 0.9 },
   { path: "/class-rating", changeFrequency: "weekly", priority: 0.9 },
   { path: "/flying-knowledge", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/pilot-sims", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/pilot-sims/holding-pattern-entry-trainer", changeFrequency: "monthly", priority: 0.6 },
   { path: "/pricing", changeFrequency: "monthly", priority: 0.6 },
   { path: "/about", changeFrequency: "monthly", priority: 0.5 },
   { path: "/faq", changeFrequency: "monthly", priority: 0.5 },
