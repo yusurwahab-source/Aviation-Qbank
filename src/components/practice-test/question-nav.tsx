@@ -82,13 +82,13 @@ export function QuestionNav({
         tabIndex={-1}
         aria-hidden="true"
         onClick={onClose}
-        className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm lg:hidden"
+        className="fixed inset-0 z-40 bg-background/80 lg:hidden"
       />
 
       <div
         role="dialog"
         aria-label="All questions"
-        className="safe-bottom fixed inset-x-0 bottom-0 z-40 mt-4 max-h-[75vh] overflow-y-auto rounded-t-xl border-t border-border bg-surface-elevated p-4 shadow-md lg:static lg:z-auto lg:max-h-none lg:overflow-visible lg:rounded-lg lg:border lg:bg-surface lg:shadow-none"
+        className="safe-bottom fixed inset-x-0 bottom-0 z-40 mt-4 max-h-[75dvh] overflow-y-auto rounded-t-xl border-t border-border bg-surface-elevated p-4 shadow-md lg:static lg:z-auto lg:max-h-none lg:overflow-visible lg:rounded-lg lg:border lg:bg-surface lg:shadow-none"
       >
         <div className="flex items-center justify-between">
           <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">

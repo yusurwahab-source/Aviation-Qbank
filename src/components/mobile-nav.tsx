@@ -78,11 +78,11 @@ export function MobileNav({ email, links }: { email: string | null; links: NavLi
       </button>
 
       {/*
-        Rendered into <body> rather than in place. The header it sits in is
+        Rendered into <body> rather than in place. The header used to be
         `backdrop-blur`, and a `backdrop-filter` makes an element the
         containing block for every fixed-position descendant — so `inset-0`
-        here resolved against the 64px header instead of the viewport, and
-        the sheet was clipped to the height of its own title bar. A portal
+        here resolved against the 64px header instead of the viewport. The
+        blur is gone (it made scrolling stutter on iPad Safari), but a portal
         is also simply where a modal layer belongs: it cannot be trapped by
         a parent's stacking context or overflow.
 
@@ -98,7 +98,7 @@ export function MobileNav({ email, links }: { email: string | null; links: NavLi
                 tabIndex={-1}
                 aria-label="Close menu"
                 onClick={() => setOpen(false)}
-                className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+                className="absolute inset-0 bg-background/80"
               />
 
               <div className="safe-bottom absolute inset-x-0 top-0 max-h-full overflow-y-auto border-b border-border bg-surface-elevated px-5 pt-4 shadow-md">
