@@ -24,6 +24,13 @@ describe("buildSitemapEntries", () => {
     expect(urls).toContain("https://example.com/flying-knowledge");
   });
 
+  it("includes Pilot Sims and its simulators", () => {
+    const urls = buildSitemapEntries("https://example.com", sections).map((entry) => entry.url);
+
+    expect(urls).toContain("https://example.com/pilot-sims");
+    expect(urls).toContain("https://example.com/pilot-sims/holding-pattern-entry-trainer");
+  });
+
   it("includes an active row from every content tree, at its own uppercase code", () => {
     const urls = buildSitemapEntries("https://example.com", sections).map((entry) => entry.url);
 
