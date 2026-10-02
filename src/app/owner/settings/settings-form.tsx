@@ -8,10 +8,14 @@ import {
   MAX_FREE_QUESTIONS,
   MAX_PASS_MARK_PERCENT,
   MIN_PASS_MARK_PERCENT,
+  itemKey,
   SECTION_KEYS,
   SECTION_LABELS,
+  type ItemSection,
   type SiteSettings,
 } from "@/lib/settings";
+
+export type HideableItem = { section: ItemSection; code: string; name: string };
 
 import { updateSettings, type SettingsState } from "./actions";
 
@@ -32,8 +36,17 @@ function SubmitButton() {
 const inputClass =
   "mt-1.5 w-full rounded-lg border border-border bg-surface px-3 py-2.5 text-sm text-foreground focus:border-brand focus:outline-none";
 
-export function SettingsForm({ settings }: { settings: SiteSettings }) {
-  const [state, formAction] = useActionState<SettingsState, FormData>(updateSettings, {});
+export function SettingsForm({
+  settings,
+  items,
+}: {
+  settings: SiteSettings;
+  items: HideableItem[];
+}) {
+  const [state, formAction] = useActionState<SettingsState, FormData>(
+    updateSettings,
+    {},
+  );
 
   return (
     <form action={formAction} className="space-y-5">
@@ -45,8 +58,9 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
           Free questions per aircraft
         </label>
         <p className="mt-1 text-xs text-muted-foreground">
-          How many questions a signed-in student may answer free, on each aircraft, before a
-          subscription is required. Changing this does not affect questions already answered.
+          How many questions a signed-in student may answer free, on each
+          aircraft, before a subscription is required. Changing this does not
+          affect questions already answered.
         </p>
         <input
           id="freeQuestionsPerAircraft"
@@ -68,10 +82,11 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
           Preview questions when signed out
         </label>
         <p className="mt-1 text-xs text-muted-foreground">
-          How many questions a visitor with no account may be shown the answer to, on each
-          aircraft, before they have to sign up. Keep it small: this is the taste of the bank
-          given away to anyone at all, not the free allowance a signed-in student gets. Zero
-          means a visitor may read questions but is never shown an answer.
+          How many questions a visitor with no account may be shown the answer
+          to, on each aircraft, before they have to sign up. Keep it small: this
+          is the taste of the bank given away to anyone at all, not the free
+          allowance a signed-in student gets. Zero means a visitor may read
+          questions but is never shown an answer.
         </p>
         <input
           id="previewQuestionsSignedOut"
@@ -86,11 +101,15 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
       </div>
 
       <div>
-        <label htmlFor="announcement" className="block text-sm font-medium text-foreground">
+        <label
+          htmlFor="announcement"
+          className="block text-sm font-medium text-foreground"
+        >
           Announcement banner
         </label>
         <p className="mt-1 text-xs text-muted-foreground">
-          One line shown above every page, to everyone. Leave blank to show nothing.
+          One line shown above every page, to everyone. Leave blank to show
+          nothing.
         </p>
         <input
           id="announcement"
@@ -104,12 +123,15 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
       </div>
 
       <div>
-        <label htmlFor="passMarkPercent" className="block text-sm font-medium text-foreground">
+        <label
+          htmlFor="passMarkPercent"
+          className="block text-sm font-medium text-foreground"
+        >
           Pass mark
         </label>
         <p className="mt-1 text-xs text-muted-foreground">
-          The percentage a result screen needs to reach to show as a pass. A label on the score
-          only — it changes nothing about grading or access.
+          The percentage a result screen needs to reach to show as a pass. A
+          label on the score only — it changes nothing about grading or access.
         </p>
         <div className="mt-1.5 flex max-w-40 items-center gap-2">
           <input
@@ -134,9 +156,10 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
           Featured aircraft
         </label>
         <p className="mt-1 text-xs text-muted-foreground">
-          The type rating aircraft named in the landing page&rsquo;s structured data, for search
-          engines. Must be a code already in the type rating bank — this never adds or changes
-          an aircraft, only which one is named by example.
+          The type rating aircraft named in the landing page&rsquo;s structured
+          data, for search engines. Must be a code already in the type rating
+          bank — this never adds or changes an aircraft, only which one is named
+          by example.
         </p>
         <input
           id="featuredAircraftCode"
@@ -157,8 +180,9 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
           Aircraft marked &ldquo;in development&rdquo;
         </label>
         <p className="mt-1 text-xs text-muted-foreground">
-          Shown on the type rating picker with an &ldquo;In development&rdquo; badge instead of
-          a question count. One code per line or comma-separated. Leave blank for none.
+          Shown on the type rating picker with an &ldquo;In development&rdquo;
+          badge instead of a question count. One code per line or
+          comma-separated. Leave blank for none.
         </p>
         <textarea
           id="aircraftInDevelopment"
@@ -171,15 +195,20 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
       </div>
 
       <fieldset>
-        <legend className="block text-sm font-medium text-foreground">Hidden sections</legend>
+        <legend className="block text-sm font-medium text-foreground">
+          Hidden sections
+        </legend>
         <p className="mt-1 text-xs text-muted-foreground">
-          Tick a section to hide it from the navigation, the landing page and the sitemap, and to
-          make its pages return &ldquo;not found&rdquo;. Nothing is deleted: untick it to bring
-          it back, with no deploy.
+          Tick a section to hide it from the navigation, the landing page and
+          the sitemap, and to make its pages return &ldquo;not found&rdquo;.
+          Nothing is deleted: untick it to bring it back, with no deploy.
         </p>
         <div className="mt-2 space-y-1">
           {SECTION_KEYS.map((key) => (
-            <label key={key} className="flex min-h-11 items-center gap-3 text-sm text-foreground">
+            <label
+              key={key}
+              className="flex min-h-11 items-center gap-3 text-sm text-foreground"
+            >
               <input
                 type="checkbox"
                 name="hiddenSections"
@@ -193,6 +222,51 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
         </div>
       </fieldset>
 
+      <fieldset>
+        <legend className="block text-sm font-medium text-foreground">
+          Hidden aircraft and subjects
+        </legend>
+        <p className="mt-1 text-xs text-muted-foreground">
+          Tick an individual aircraft, class rating or subject to keep it off
+          the live site until it is ready for students: it leaves the pickers,
+          the landing page counts and the sitemap, and its pages return
+          &ldquo;not found&rdquo; to everyone except you. Nothing is deleted.
+        </p>
+        {SECTION_KEYS.filter(
+          (key): key is ItemSection => key !== "pilot-sims",
+        ).map((section) => {
+          const rows = items.filter((item) => item.section === section);
+          if (rows.length === 0) return null;
+          return (
+            <div key={section} className="mt-3">
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                {SECTION_LABELS[section]}
+              </p>
+              {rows.map((row) => (
+                <label
+                  key={row.code}
+                  className="flex min-h-11 items-center gap-3 text-sm text-foreground"
+                >
+                  <input
+                    type="checkbox"
+                    name="hiddenItems"
+                    value={itemKey(section, row.code)}
+                    defaultChecked={settings.hiddenItems.includes(
+                      itemKey(section, row.code),
+                    )}
+                    className="h-4 w-4"
+                  />
+                  {row.name}{" "}
+                  <span className="font-mono text-xs text-muted-foreground">
+                    {row.code}
+                  </span>
+                </label>
+              ))}
+            </div>
+          );
+        })}
+      </fieldset>
+
       <div>
         <SubmitButton />
         {state.error ? (
@@ -200,7 +274,9 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
             {state.error}
           </p>
         ) : null}
-        {state.message ? <p className="mt-2 text-xs text-correct">{state.message}</p> : null}
+        {state.message ? (
+          <p className="mt-2 text-xs text-correct">{state.message}</p>
+        ) : null}
       </div>
     </form>
   );

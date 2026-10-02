@@ -5,6 +5,7 @@ import { listFlyingKnowledgeSubjects } from "@/db/flying-knowledge-queries";
 import { listAircraft } from "@/db/queries";
 import { getSiteSettings } from "@/db/settings";
 import { canonicalUrl } from "@/lib/canonical-url";
+import { withoutHidden } from "@/lib/settings";
 import { buildSitemapEntries } from "@/lib/seo/sitemap-entries";
 
 /**
@@ -30,7 +31,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return buildSitemapEntries(
     canonicalUrl(),
-    { aircraft, classRatings, flyingKnowledgeSubjects },
+    {
+      aircraft: withoutHidden(settings, "type-rating", aircraft),
+      classRatings: withoutHidden(settings, "class-rating", classRatings),
+      flyingKnowledgeSubjects: withoutHidden(
+        settings,
+        "flying-knowledge",
+        flyingKnowledgeSubjects,
+      ),
+    },
     settings.hiddenSections,
   );
 }

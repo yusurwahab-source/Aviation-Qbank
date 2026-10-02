@@ -25,6 +25,7 @@ const base = {
   featuredAircraftCode: "B737",
   aircraftInDevelopment: ["DA40"],
   hiddenSections: [] as SectionKey[],
+  hiddenItems: [] as string[],
 };
 
 describeDb("site settings", () => {

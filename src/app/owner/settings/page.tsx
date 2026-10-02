@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
 
 import { Card, PageHeading } from "@/components/ui";
+import { listClassRatings } from "@/db/class-queries";
+import { listFlyingKnowledgeSubjects } from "@/db/flying-knowledge-queries";
+import { listAircraft } from "@/db/queries";
 import { getSiteSettings } from "@/db/settings";
 import { requireOwner } from "@/lib/auth/require-owner";
 
-import { OwnerNav, OwnerPageError, describeError, isNextControlFlowError } from "../owner-ui";
-import { SettingsForm } from "./settings-form";
+import {
+  OwnerNav,
+  OwnerPageError,
+  describeError,
+  isNextControlFlowError,
+} from "../owner-ui";
+import { SettingsForm, type HideableItem } from "./settings-form";
 
 export const metadata: Metadata = { title: "Settings" };
 export const dynamic = "force-dynamic";
@@ -36,6 +44,34 @@ export default async function OwnerSettingsPage() {
   }
   const settings = await getSiteSettings();
 
+  let items: HideableItem[] = [];
+  try {
+    const [fleet, classes, subjects] = await Promise.all([
+      listAircraft(),
+      listClassRatings(),
+      listFlyingKnowledgeSubjects(),
+    ]);
+    items = [
+      ...fleet.map((row) => ({
+        section: "type-rating" as const,
+        code: row.code,
+        name: row.name,
+      })),
+      ...classes.map((row) => ({
+        section: "class-rating" as const,
+        code: row.code,
+        name: row.name,
+      })),
+      ...subjects.map((row) => ({
+        section: "flying-knowledge" as const,
+        code: row.code,
+        name: row.name,
+      })),
+    ];
+  } catch {
+    items = [];
+  }
+
   return (
     <>
       <PageHeading
@@ -45,17 +81,20 @@ export default async function OwnerSettingsPage() {
       <OwnerNav current="/owner/settings" />
 
       <Card>
-        <SettingsForm settings={settings} />
+        <SettingsForm settings={settings} items={items} />
       </Card>
 
       <Card className="mt-6">
-        <h2 className="mb-2 text-sm font-semibold text-foreground">What is not here</h2>
+        <h2 className="mb-2 text-sm font-semibold text-foreground">
+          What is not here
+        </h2>
         <p className="text-xs text-muted-foreground">
-          Question content lives in the repository under <code className="font-mono">/content</code>{" "}
-          and is rewritten from those files on every deploy — a setting stored here could never win
-          against that. Subscription prices are set in Stripe, not here, so a price change is
-          never a deploy. The product&rsquo;s name and branding live in{" "}
-          <code className="font-mono">src/config/site.ts</code>.
+          Question content lives in the repository under{" "}
+          <code className="font-mono">/content</code> and is rewritten from
+          those files on every deploy — a setting stored here could never win
+          against that. Subscription prices are set in Stripe, not here, so a
+          price change is never a deploy. The product&rsquo;s name and branding
+          live in <code className="font-mono">src/config/site.ts</code>.
         </p>
       </Card>
     </>

@@ -1,3 +1,5 @@
+import { getSiteSettings } from "@/db/settings";
+import { withoutHidden } from "@/lib/settings";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -33,7 +35,7 @@ export default async function FlyingKnowledgePickerPage() {
   let subjects: FlyingKnowledgeSubjectSummary[];
 
   try {
-    subjects = await listFlyingKnowledgeSubjects();
+    subjects = withoutHidden(await getSiteSettings(), "flying-knowledge", await listFlyingKnowledgeSubjects());
   } catch (error) {
     return (
       <>
