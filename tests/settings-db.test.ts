@@ -4,7 +4,7 @@ import { afterAll, describe, expect, it } from "vitest";
 import { getDb } from "@/db";
 import { getSiteSettings, saveSiteSettings } from "@/db/settings";
 import { siteSettings } from "@/db/schema";
-import { DEFAULT_SETTINGS } from "@/lib/settings";
+import { DEFAULT_SETTINGS, type SectionKey } from "@/lib/settings";
 
 /**
  * Reading and writing settings against a real database.
@@ -24,6 +24,7 @@ const base = {
   passMarkPercent: 80,
   featuredAircraftCode: "B737",
   aircraftInDevelopment: ["DA40"],
+  hiddenSections: [] as SectionKey[],
 };
 
 describeDb("site settings", () => {

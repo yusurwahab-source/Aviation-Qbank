@@ -39,6 +39,7 @@ describe("validateSettings", () => {
         passMarkPercent: 80,
         featuredAircraftCode: "B737",
         aircraftInDevelopment: ["DA40"],
+        hiddenSections: [],
       },
     });
   });
@@ -213,6 +214,7 @@ describe("parseSettings", () => {
       passMarkPercent: 70,
       featuredAircraftCode: "DA40",
       aircraftInDevelopment: ["B737"],
+      hiddenSections: [],
     });
   });
 
@@ -289,6 +291,7 @@ describe("settingsToRows", () => {
       passMarkPercent: 65,
       featuredAircraftCode: "B737",
       aircraftInDevelopment: ["DA40"],
+      hiddenSections: [],
     };
     expect(parseSettings(settingsToRows(settings))).toEqual(settings);
   });
@@ -301,7 +304,25 @@ describe("settingsToRows", () => {
       passMarkPercent: 65,
       featuredAircraftCode: "B737",
       aircraftInDevelopment: [] as string[],
+      hiddenSections: [] as never[],
     };
     expect(parseSettings(settingsToRows(settings))).toEqual(settings);
+  });
+});
+
+describe("hidden sections", () => {
+  it("keeps only known sections, once each, in a fixed order", () => {
+    const result = validateSettings({
+      ...valid,
+      hiddenSections: ["pilot-sims", "bogus", "type-rating", "pilot-sims"],
+    });
+    expect(result.ok).toBe(true);
+    if (result.ok) expect(result.settings.hiddenSections).toEqual(["type-rating", "pilot-sims"]);
+  });
+
+  it("defaults to nothing hidden, and survives a round trip", () => {
+    expect(parseSettings([]).hiddenSections).toEqual([]);
+    const rows = settingsToRows({ ...DEFAULT_SETTINGS, hiddenSections: ["flying-knowledge"] });
+    expect(parseSettings(rows).hiddenSections).toEqual(["flying-knowledge"]);
   });
 });

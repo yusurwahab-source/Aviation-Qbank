@@ -37,6 +37,7 @@ export const updateSettings = ownerAction<SettingsState, SiteSettings>({
       passMarkPercent: formData.get("passMarkPercent"),
       featuredAircraftCode: formData.get("featuredAircraftCode"),
       aircraftInDevelopment: formData.get("aircraftInDevelopment"),
+      hiddenSections: formData.getAll("hiddenSections"),
     });
 
     if (!validated.ok) return { ok: false, state: { error: validated.error } };

@@ -8,6 +8,8 @@ import {
   MAX_FREE_QUESTIONS,
   MAX_PASS_MARK_PERCENT,
   MIN_PASS_MARK_PERCENT,
+  SECTION_KEYS,
+  SECTION_LABELS,
   type SiteSettings,
 } from "@/lib/settings";
 
@@ -167,6 +169,29 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
           className={`${inputClass} max-w-sm font-mono uppercase`}
         />
       </div>
+
+      <fieldset>
+        <legend className="block text-sm font-medium text-foreground">Hidden sections</legend>
+        <p className="mt-1 text-xs text-muted-foreground">
+          Tick a section to hide it from the navigation, the landing page and the sitemap, and to
+          make its pages return &ldquo;not found&rdquo;. Nothing is deleted: untick it to bring
+          it back, with no deploy.
+        </p>
+        <div className="mt-2 space-y-1">
+          {SECTION_KEYS.map((key) => (
+            <label key={key} className="flex min-h-11 items-center gap-3 text-sm text-foreground">
+              <input
+                type="checkbox"
+                name="hiddenSections"
+                value={key}
+                defaultChecked={settings.hiddenSections.includes(key)}
+                className="h-4 w-4"
+              />
+              {SECTION_LABELS[key]}
+            </label>
+          ))}
+        </div>
+      </fieldset>
 
       <div>
         <SubmitButton />

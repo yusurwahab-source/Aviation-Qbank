@@ -23,7 +23,11 @@ const STATIC_PAGES = [
   { path: "/class-rating", changeFrequency: "weekly", priority: 0.9 },
   { path: "/flying-knowledge", changeFrequency: "weekly", priority: 0.9 },
   { path: "/pilot-sims", changeFrequency: "monthly", priority: 0.7 },
-  { path: "/pilot-sims/holding-pattern-entry-trainer", changeFrequency: "monthly", priority: 0.6 },
+  {
+    path: "/pilot-sims/holding-pattern-entry-trainer",
+    changeFrequency: "monthly",
+    priority: 0.6,
+  },
   { path: "/pricing", changeFrequency: "monthly", priority: 0.6 },
   { path: "/about", changeFrequency: "monthly", priority: 0.5 },
   { path: "/faq", changeFrequency: "monthly", priority: 0.5 },
@@ -32,13 +36,18 @@ const STATIC_PAGES = [
   { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
 ] as const satisfies readonly {
   path: string;
-  changeFrequency: NonNullable<MetadataRoute.Sitemap[number]["changeFrequency"]>;
+  changeFrequency: NonNullable<
+    MetadataRoute.Sitemap[number]["changeFrequency"]
+  >;
   priority: number;
 }[];
 
 /** One picker's URL prefix and the rows behind it, kept together so the
  * three trees can be walked identically below. */
-type Section = { prefix: "type-rating" | "class-rating" | "flying-knowledge"; rows: PublishableSection[] };
+type Section = {
+  prefix: "type-rating" | "class-rating" | "flying-knowledge";
+  rows: PublishableSection[];
+};
 
 /**
  * Builds every publicly indexable URL, from the same facts the pages
@@ -67,16 +76,21 @@ export function buildSitemapEntries(
     classRatings: PublishableSection[];
     flyingKnowledgeSubjects: PublishableSection[];
   },
+  hiddenSections: readonly string[] = [],
 ): MetadataRoute.Sitemap {
+  const isHidden = (path: string) =>
+    hiddenSections.some(
+      (key) => path === `/${key}` || path.startsWith(`/${key}/`),
+    );
   const origin = baseUrl.replace(/\/+$/, "");
 
-  const staticEntries: MetadataRoute.Sitemap = STATIC_PAGES.map(
-    ({ path, changeFrequency, priority }) => ({
-      url: `${origin}${path}`,
-      changeFrequency,
-      priority,
-    }),
-  );
+  const staticEntries: MetadataRoute.Sitemap = STATIC_PAGES.filter(
+    ({ path }) => !isHidden(path),
+  ).map(({ path, changeFrequency, priority }) => ({
+    url: `${origin}${path}`,
+    changeFrequency,
+    priority,
+  }));
 
   const trees: Section[] = [
     { prefix: "type-rating", rows: sections.aircraft },
@@ -84,14 +98,17 @@ export function buildSitemapEntries(
     { prefix: "flying-knowledge", rows: sections.flyingKnowledgeSubjects },
   ];
 
-  const detailEntries: MetadataRoute.Sitemap = trees.flatMap(({ prefix, rows }) =>
-    rows
-      .filter((row) => row.status === "active")
-      .map((row) => ({
-        url: `${origin}/${prefix}/${row.code}`,
-        changeFrequency: "weekly",
-        priority: 0.8,
-      })),
+  const detailEntries: MetadataRoute.Sitemap = trees.flatMap(
+    ({ prefix, rows }) =>
+      isHidden(`/${prefix}`)
+        ? []
+        : rows
+            .filter((row) => row.status === "active")
+            .map((row) => ({
+              url: `${origin}/${prefix}/${row.code}`,
+              changeFrequency: "weekly",
+              priority: 0.8,
+            })),
   );
 
   return [...staticEntries, ...detailEntries];
