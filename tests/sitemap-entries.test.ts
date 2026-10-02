@@ -35,6 +35,7 @@ describe("buildSitemapEntries", () => {
     expect(urls).toContain(
       "https://example.com/pilot-sims/holding-pattern-entry-trainer",
     );
+    expect(urls).toContain("https://example.com/pilot-sims/vor-ndb-trainer");
   });
 
   it("includes an active row from every content tree, at its own uppercase code", () => {
