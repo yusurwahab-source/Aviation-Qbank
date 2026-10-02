@@ -1,3 +1,5 @@
+import { getSiteSettings, overrideItem } from "@/db/settings";
+import { sectionTitle } from "@/lib/settings";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -49,7 +51,7 @@ export default async function FlyingKnowledgeSubjectPage({ params }: PageProps) 
 
   try {
     [subject, topics] = await Promise.all([
-      getFlyingKnowledgeSubject(subjectCode),
+      getFlyingKnowledgeSubject(subjectCode).then((row) => overrideItem("flying-knowledge", row)),
       listFlyingKnowledgeTopics(subjectCode),
     ]);
 
@@ -89,7 +91,7 @@ export default async function FlyingKnowledgeSubjectPage({ params }: PageProps) 
 
   return (
     <>
-      <PageHeading eyebrow={subject.code} title={subject.name} subtitle="Flying Knowledge" />
+      <PageHeading eyebrow={subject.code} title={subject.name} subtitle={sectionTitle(await getSiteSettings(), "flying-knowledge")} />
 
       <Card>
         <p className="text-sm text-muted-foreground">{subject.description}</p>

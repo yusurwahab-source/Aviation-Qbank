@@ -1,5 +1,5 @@
 import { getSiteSettings } from "@/db/settings";
-import { withoutHidden } from "@/lib/settings";
+import { sectionTitle, withItemOverrides, withoutHidden } from "@/lib/settings";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -35,11 +35,11 @@ export default async function FlyingKnowledgePickerPage() {
   let subjects: FlyingKnowledgeSubjectSummary[];
 
   try {
-    subjects = withoutHidden(await getSiteSettings(), "flying-knowledge", await listFlyingKnowledgeSubjects());
+    subjects = withItemOverrides(await getSiteSettings(), "flying-knowledge", withoutHidden(await getSiteSettings(), "flying-knowledge", await listFlyingKnowledgeSubjects()));
   } catch (error) {
     return (
       <>
-        <PageHeading eyebrow="Flying Knowledge" title="Choose a subject" />
+        <PageHeading eyebrow={sectionTitle(await getSiteSettings(), "flying-knowledge")} title="Choose a subject" />
         <DatabaseUnavailable detail={(error as Error).message} />
       </>
     );
@@ -48,7 +48,7 @@ export default async function FlyingKnowledgePickerPage() {
   return (
     <>
       <PageHeading
-        eyebrow="Flying Knowledge"
+        eyebrow={sectionTitle(await getSiteSettings(), "flying-knowledge")}
         title="Choose a subject"
         subtitle="Air law, meteorology, navigation and the rest of ground school — practised on its own, separate from any type or class rating, and free in full for everyone."
       />

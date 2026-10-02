@@ -43,6 +43,131 @@ export const SECTION_LABELS: Record<SectionKey, string> = {
   "pilot-sims": "Pilot Sims",
 };
 
+/** The card text under each section on the landing page, as shipped. */
+export const DEFAULT_SECTION_DESCRIPTIONS: Record<ItemSection, string> = {
+  "type-rating":
+    "Large aircraft, system by system. Study with explanations in front of you, or sit a timed mock exam.",
+  "class-rating":
+    "Light aircraft, practised the same way — no single-engine or multi-engine split, just the aircraft itself.",
+  "flying-knowledge":
+    "The material every pilot keeps reviewing — air law, meteorology, navigation and the rest of ground school. Free in full.",
+};
+
+/** Plain text only, shown through React (which escapes it) — never HTML. */
+export const MAX_LABEL_LENGTH = 80;
+export const MAX_DESCRIPTION_LENGTH = 400;
+
+export type SectionLabel = { title?: string; description?: string };
+export type ItemOverride = { name?: string; description?: string };
+
+function cleanText(value: unknown, max: number): string | undefined {
+  if (typeof value !== "string") return undefined;
+  const text = value.replace(/\s+/g, " ").trim();
+  return text === "" ? undefined : text.slice(0, max);
+}
+
+function parseJson(raw: string | undefined): unknown {
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+function cleanSectionLabels(
+  input: unknown,
+): Partial<Record<SectionKey, SectionLabel>> {
+  const out: Partial<Record<SectionKey, SectionLabel>> = {};
+  if (typeof input !== "object" || input === null) return out;
+  for (const key of SECTION_KEYS) {
+    const entry = (input as Record<string, unknown>)[key];
+    if (typeof entry !== "object" || entry === null) continue;
+    const title = cleanText((entry as SectionLabel).title, MAX_LABEL_LENGTH);
+    const description = cleanText(
+      (entry as SectionLabel).description,
+      MAX_DESCRIPTION_LENGTH,
+    );
+    if (title || description)
+      out[key] = {
+        ...(title ? { title } : {}),
+        ...(description ? { description } : {}),
+      };
+  }
+  return out;
+}
+
+function cleanItemOverrides(input: unknown): Record<string, ItemOverride> {
+  const out: Record<string, ItemOverride> = {};
+  if (typeof input !== "object" || input === null) return out;
+  for (const [key, entry] of Object.entries(input as Record<string, unknown>)) {
+    if (
+      !ITEM_KEY_PATTERN.test(key) ||
+      typeof entry !== "object" ||
+      entry === null
+    )
+      continue;
+    const name = cleanText((entry as ItemOverride).name, MAX_LABEL_LENGTH);
+    const description = cleanText(
+      (entry as ItemOverride).description,
+      MAX_DESCRIPTION_LENGTH,
+    );
+    if (name || description)
+      out[key] = {
+        ...(name ? { name } : {}),
+        ...(description ? { description } : {}),
+      };
+    if (Object.keys(out).length >= MAX_HIDDEN_ITEMS) break;
+  }
+  return out;
+}
+
+export function sectionTitle(
+  settings: Pick<SiteSettings, "sectionLabels">,
+  key: SectionKey,
+): string {
+  return settings.sectionLabels[key]?.title ?? SECTION_LABELS[key];
+}
+
+export function sectionDescription(
+  settings: Pick<SiteSettings, "sectionLabels">,
+  key: ItemSection,
+): string {
+  return (
+    settings.sectionLabels[key]?.description ??
+    DEFAULT_SECTION_DESCRIPTIONS[key]
+  );
+}
+
+/** Shows the owner's display name and description for one aircraft, class
+ * rating or subject. Display only: the code, the id and every question
+ * stay exactly as the content files define them. */
+export function withItemOverride<
+  T extends { code: string; name: string; description: string },
+>(
+  settings: Pick<SiteSettings, "itemOverrides">,
+  section: ItemSection,
+  row: T,
+): T {
+  const override = settings.itemOverrides[itemKey(section, row.code)];
+  if (!override) return row;
+  return {
+    ...row,
+    name: override.name ?? row.name,
+    description: override.description ?? row.description,
+  };
+}
+
+export function withItemOverrides<
+  T extends { code: string; name: string; description: string },
+>(
+  settings: Pick<SiteSettings, "itemOverrides">,
+  section: ItemSection,
+  rows: T[],
+): T[] {
+  return rows.map((row) => withItemOverride(settings, section, row));
+}
+
 function parseSectionKeys(values: Iterable<unknown>): SectionKey[] {
   const wanted = new Set(values);
   return SECTION_KEYS.filter((key) => wanted.has(key));
@@ -141,6 +266,12 @@ export type SiteSettings = {
    * Same behaviour as a hidden section, one row at a time; the owner can
    * still open a hidden item's own URL to preview it. */
   hiddenItems: string[];
+  /** Owner-chosen section names and landing-card text. A missing entry means
+   * the default wording above. Display only; never changes a URL. */
+  sectionLabels: Partial<Record<SectionKey, SectionLabel>>;
+  /** Owner-chosen name and description per aircraft, class rating or
+   * subject, keyed `section:CODE`. Display only; never changes a code. */
+  itemOverrides: Record<string, ItemOverride>;
 };
 
 export const SETTING_KEYS = {
@@ -152,6 +283,8 @@ export const SETTING_KEYS = {
   aircraftInDevelopment: "aircraft_in_development",
   hiddenSections: "hidden_sections",
   hiddenItems: "hidden_items",
+  sectionLabels: "section_labels",
+  itemOverrides: "item_overrides",
 } as const;
 
 /** The default a checkride-style pass mark is usually quoted at. */
@@ -175,6 +308,8 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   aircraftInDevelopment: [...DEFAULT_AIRCRAFT_IN_DEVELOPMENT],
   hiddenSections: [],
   hiddenItems: [],
+  sectionLabels: {},
+  itemOverrides: {},
 };
 
 /** The same shape every other aircraft code in this app is validated
@@ -227,6 +362,10 @@ export function validateSettings(input: {
   hiddenSections?: unknown[];
   /** The checked `section:CODE` boxes, as `formData.getAll` returns them. */
   hiddenItems?: unknown[];
+  /** `{ [sectionKey]: { title, description } }`, built from the form. */
+  sectionLabels?: unknown;
+  /** `{ ["section:CODE"]: { name, description } }`, built from the form. */
+  itemOverrides?: unknown;
 }): SettingsValidation {
   const free = Number(input.freeQuestionsPerAircraft);
 
@@ -336,6 +475,8 @@ export function validateSettings(input: {
       aircraftInDevelopment: inDevelopmentCodes,
       hiddenSections: parseSectionKeys(input.hiddenSections ?? []),
       hiddenItems: parseItemKeys(input.hiddenItems ?? []),
+      sectionLabels: cleanSectionLabels(input.sectionLabels),
+      itemOverrides: cleanItemOverrides(input.itemOverrides),
     },
   };
 }
@@ -410,6 +551,8 @@ export function parseSettings(
     hiddenItems: parseItemKeys(
       (stored.get(SETTING_KEYS.hiddenItems) ?? "").split(","),
     ),
+    sectionLabels: cleanSectionLabels(parseJson(stored.get(SETTING_KEYS.sectionLabels))),
+    itemOverrides: cleanItemOverrides(parseJson(stored.get(SETTING_KEYS.itemOverrides))),
   };
 }
 
@@ -444,5 +587,13 @@ export function settingsToRows(
       value: settings.hiddenSections.join(","),
     },
     { key: SETTING_KEYS.hiddenItems, value: settings.hiddenItems.join(",") },
+    {
+      key: SETTING_KEYS.sectionLabels,
+      value: JSON.stringify(settings.sectionLabels),
+    },
+    {
+      key: SETTING_KEYS.itemOverrides,
+      value: JSON.stringify(settings.itemOverrides),
+    },
   ];
 }

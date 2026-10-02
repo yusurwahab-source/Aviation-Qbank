@@ -8,7 +8,12 @@ import { getCurrentUser } from "@/lib/auth/session";
 import { isOwner } from "@/lib/auth/owner";
 import { getSiteSettings } from "@/db/settings";
 import { envValue } from "@/lib/env";
-import { isSectionHidden, SECTION_KEYS, type SectionKey } from "@/lib/settings";
+import {
+  isSectionHidden,
+  SECTION_KEYS,
+  sectionTitle,
+  type SectionKey,
+} from "@/lib/settings";
 
 /**
  * The application shell's header.
@@ -56,9 +61,13 @@ export async function SiteHeader() {
   // about not advertising a door rather than about locking it.
   const settings = await getSiteSettings();
   const visible = (links: { href: string; label: string }[]) =>
-    links.filter((link) => {
-      const section = SECTION_KEYS.find((key: SectionKey) => link.href === `/${key}`);
-      return !section || !isSectionHidden(settings, section);
+    links.flatMap((link) => {
+      const section = SECTION_KEYS.find(
+        (key: SectionKey) => link.href === `/${key}`,
+      );
+      if (!section) return [link];
+      if (isSectionHidden(settings, section)) return [];
+      return [{ ...link, label: sectionTitle(settings, section) }];
     });
 
   const links = visible(
