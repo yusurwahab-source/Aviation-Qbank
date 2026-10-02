@@ -4,7 +4,11 @@ import { afterAll, describe, expect, it } from "vitest";
 import { getDb } from "@/db";
 import { getSiteSettings, saveSiteSettings } from "@/db/settings";
 import { siteSettings } from "@/db/schema";
-import { DEFAULT_SETTINGS, type SectionKey } from "@/lib/settings";
+import {
+  DEFAULT_SETTINGS,
+  settingsToRows,
+  type SectionKey,
+} from "@/lib/settings";
 
 /**
  * Reading and writing settings against a real database.
@@ -47,7 +51,12 @@ describeDb("site settings", () => {
   });
 
   it("overwrites rather than duplicating on a second save", async () => {
-    await saveSiteSettings({ ...base, freeQuestionsPerAircraft: 5, announcement: "First", passMarkPercent: 70 });
+    await saveSiteSettings({
+      ...base,
+      freeQuestionsPerAircraft: 5,
+      announcement: "First",
+      passMarkPercent: 70,
+    });
     await saveSiteSettings({
       ...base,
       freeQuestionsPerAircraft: 15,
@@ -58,8 +67,8 @@ describeDb("site settings", () => {
     });
 
     const rows = await getDb().select().from(siteSettings);
-    // Six keys, not twelve — the second save updated the existing rows.
-    expect(rows).toHaveLength(6);
+    // One row per setting, not two — the second save updated the existing rows.
+    expect(rows).toHaveLength(settingsToRows(DEFAULT_SETTINGS).length);
     expect(await getSiteSettings()).toEqual({
       ...base,
       freeQuestionsPerAircraft: 15,
@@ -82,7 +91,11 @@ describeDb("site settings", () => {
   });
 
   it("saves and reads back the marketing curation fields", async () => {
-    await saveSiteSettings({ ...base, featuredAircraftCode: "DA40", aircraftInDevelopment: ["B737"] });
+    await saveSiteSettings({
+      ...base,
+      featuredAircraftCode: "DA40",
+      aircraftInDevelopment: ["B737"],
+    });
     const settings = await getSiteSettings();
     expect(settings.featuredAircraftCode).toBe("DA40");
     expect(settings.aircraftInDevelopment).toEqual(["B737"]);
