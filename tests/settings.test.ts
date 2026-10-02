@@ -216,7 +216,6 @@ describe("validateSettings", () => {
         "DA40",
         "B737",
       ]);
-      hiddenItems: [],
     }
   });
 
@@ -270,6 +269,7 @@ describe("parseSettings", () => {
       featuredAircraftCode: "DA40",
       aircraftInDevelopment: ["B737"],
       hiddenSections: [],
+      hiddenItems: [],
     });
   });
 
