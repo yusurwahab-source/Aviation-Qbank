@@ -1,3 +1,4 @@
+import { withoutHidden } from "@/lib/settings";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -39,7 +40,7 @@ export default async function ClassRatingPickerPage() {
   let classes: ClassRatingSummary[];
 
   try {
-    classes = await listClassRatings();
+    classes = withoutHidden(await getSiteSettings(), "class-rating", await listClassRatings());
   } catch (error) {
     return (
       <>

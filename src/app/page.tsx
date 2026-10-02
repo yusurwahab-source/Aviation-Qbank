@@ -1,9 +1,13 @@
 import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { siteConfig } from "@/config/site";
 import { listClassRatings, listClassTopics } from "@/db/class-queries";
-import { listFlyingKnowledgeSubjects, listFlyingKnowledgeTopics } from "@/db/flying-knowledge-queries";
+import {
+  listFlyingKnowledgeSubjects,
+  listFlyingKnowledgeTopics,
+} from "@/db/flying-knowledge-queries";
 import { listAircraft, listTopics } from "@/db/queries";
 import { getSiteSettings } from "@/db/settings";
+import { withoutHidden } from "@/lib/settings";
 import { appUrl } from "@/lib/email/send";
 
 import { Faq } from "./_landing/faq";
@@ -12,7 +16,10 @@ import { FinalCta } from "./_landing/final-cta";
 import type { HeroStats } from "./_landing/hero";
 import { Hero } from "./_landing/hero";
 import { HowItWorks } from "./_landing/how-it-works";
-import { SectionsOverview, type SectionCounts } from "./_landing/sections-overview";
+import {
+  SectionsOverview,
+  type SectionCounts,
+} from "./_landing/sections-overview";
 import { Trust } from "./_landing/trust";
 
 /**
@@ -54,16 +61,27 @@ type LandingData = {
  */
 async function loadLandingData(): Promise<LandingData> {
   try {
+    const settings = await getSiteSettings();
     const [fleet, classes, subjects] = await Promise.all([
-      listAircraft(),
-      listClassRatings(),
-      listFlyingKnowledgeSubjects(),
+      listAircraft().then((rows) =>
+        withoutHidden(settings, "type-rating", rows),
+      ),
+      listClassRatings().then((rows) =>
+        withoutHidden(settings, "class-rating", rows),
+      ),
+      listFlyingKnowledgeSubjects().then((rows) =>
+        withoutHidden(settings, "flying-knowledge", rows),
+      ),
     ]);
 
     const [fleetTopics, classTopics, flyingTopics] = await Promise.all([
       Promise.all(fleet.map((plane) => listTopics(plane.code))),
-      Promise.all(classes.map((ratingClass) => listClassTopics(ratingClass.code))),
-      Promise.all(subjects.map((subject) => listFlyingKnowledgeTopics(subject.code))),
+      Promise.all(
+        classes.map((ratingClass) => listClassTopics(ratingClass.code)),
+      ),
+      Promise.all(
+        subjects.map((subject) => listFlyingKnowledgeTopics(subject.code)),
+      ),
     ]);
 
     const typeRating = summarise(fleet);
@@ -74,7 +92,13 @@ async function loadLandingData(): Promise<LandingData> {
       classTopics.reduce((sum, topics) => sum + topics.length, 0) +
       flyingTopics.reduce((sum, topics) => sum + topics.length, 0);
 
-    return { sectionsOk: true, typeRating, classRating, flyingKnowledge, totalSystems };
+    return {
+      sectionsOk: true,
+      typeRating,
+      classRating,
+      flyingKnowledge,
+      totalSystems,
+    };
   } catch {
     const empty: SectionCounts = { aircraftCount: 0, questionCount: 0 };
     return {
@@ -104,7 +128,9 @@ function summarise(rows: { publishedQuestions: number }[]): SectionCounts {
  * because the product leads with it — see the note on `featuredAircraftCode`
  * in `lib/settings.ts`.
  */
-function jsonLd(featuredAircraftCode: string): { "@type": string; [key: string]: unknown }[] {
+function jsonLd(
+  featuredAircraftCode: string,
+): { "@type": string; [key: string]: unknown }[] {
   const base = appUrl();
 
   return [
@@ -125,7 +151,11 @@ function jsonLd(featuredAircraftCode: string): { "@type": string; [key: string]:
       url: `${base}/type-rating/${featuredAircraftCode}`,
       inLanguage: "en",
       provider: { "@type": "Organization", name: siteConfig.name, url: base },
-      hasCourseInstance: { "@type": "CourseInstance", courseMode: "online", courseWorkload: "Self-paced" },
+      hasCourseInstance: {
+        "@type": "CourseInstance",
+        courseMode: "online",
+        courseWorkload: "Self-paced",
+      },
     },
   ];
 }
@@ -133,13 +163,15 @@ function jsonLd(featuredAircraftCode: string): { "@type": string; [key: string]:
 export default async function LandingPage() {
   const [
     { sectionsOk, typeRating, classRating, flyingKnowledge, totalSystems },
-    { featuredAircraftCode },
+    { featuredAircraftCode, hiddenSections },
   ] = await Promise.all([loadLandingData(), getSiteSettings()]);
 
   const heroStats: HeroStats | null = sectionsOk
     ? {
         totalQuestions:
-          typeRating.questionCount + classRating.questionCount + flyingKnowledge.questionCount,
+          typeRating.questionCount +
+          classRating.questionCount +
+          flyingKnowledge.questionCount,
         totalSystems,
         totalTypes: typeRating.aircraftCount + classRating.aircraftCount,
       }
@@ -157,6 +189,7 @@ export default async function LandingPage() {
           typeRating={typeRating}
           classRating={classRating}
           flyingKnowledge={flyingKnowledge}
+          hiddenSections={hiddenSections}
         />
       ) : (
         <section id="whats-inside" className="scroll-mt-20">
@@ -174,7 +207,9 @@ export default async function LandingPage() {
         <script
           key={entry["@type"]}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(entry).replace(/</g, "\\u003c") }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(entry).replace(/</g, "\\u003c"),
+          }}
         />
       ))}
     </div>

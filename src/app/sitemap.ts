@@ -3,7 +3,9 @@ import type { MetadataRoute } from "next";
 import { listClassRatings } from "@/db/class-queries";
 import { listFlyingKnowledgeSubjects } from "@/db/flying-knowledge-queries";
 import { listAircraft } from "@/db/queries";
+import { getSiteSettings } from "@/db/settings";
 import { canonicalUrl } from "@/lib/canonical-url";
+import { withoutHidden } from "@/lib/settings";
 import { buildSitemapEntries } from "@/lib/seo/sitemap-entries";
 
 /**
@@ -19,11 +21,25 @@ import { buildSitemapEntries } from "@/lib/seo/sitemap-entries";
  * instead of a per-crawler database round trip.
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [aircraft, classRatings, flyingKnowledgeSubjects] = await Promise.all([
-    listAircraft(),
-    listClassRatings(),
-    listFlyingKnowledgeSubjects(),
-  ]);
+  const [aircraft, classRatings, flyingKnowledgeSubjects, settings] =
+    await Promise.all([
+      listAircraft(),
+      listClassRatings(),
+      listFlyingKnowledgeSubjects(),
+      getSiteSettings(),
+    ]);
 
-  return buildSitemapEntries(canonicalUrl(), { aircraft, classRatings, flyingKnowledgeSubjects });
+  return buildSitemapEntries(
+    canonicalUrl(),
+    {
+      aircraft: withoutHidden(settings, "type-rating", aircraft),
+      classRatings: withoutHidden(settings, "class-rating", classRatings),
+      flyingKnowledgeSubjects: withoutHidden(
+        settings,
+        "flying-knowledge",
+        flyingKnowledgeSubjects,
+      ),
+    },
+    settings.hiddenSections,
+  );
 }

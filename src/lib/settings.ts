@@ -26,6 +26,81 @@ import {
  * belongs here is what no file describes.
  */
 
+/** The four top-level sections the owner may hide as a whole. */
+export const SECTION_KEYS = [
+  "type-rating",
+  "class-rating",
+  "flying-knowledge",
+  "pilot-sims",
+] as const;
+
+export type SectionKey = (typeof SECTION_KEYS)[number];
+
+export const SECTION_LABELS: Record<SectionKey, string> = {
+  "type-rating": "Type Rating Systems Knowledge",
+  "class-rating": "Class Rating Systems Knowledge",
+  "flying-knowledge": "Flying Knowledge",
+  "pilot-sims": "Pilot Sims",
+};
+
+function parseSectionKeys(values: Iterable<unknown>): SectionKey[] {
+  const wanted = new Set(values);
+  return SECTION_KEYS.filter((key) => wanted.has(key));
+}
+
+/** The three trees whose individual aircraft, class ratings or subjects may
+ * be hidden — Pilot Sims has no per-item rows to hide. */
+export type ItemSection = Exclude<SectionKey, "pilot-sims">;
+
+const ITEM_KEY_PATTERN =
+  /^(type-rating|class-rating|flying-knowledge):[A-Z][A-Z0-9]{1,7}$/;
+const MAX_HIDDEN_ITEMS = 200;
+
+export function itemKey(section: ItemSection, code: string): string {
+  return `${section}:${code.toUpperCase()}`;
+}
+
+function parseItemKeys(values: Iterable<unknown>): string[] {
+  const keys = new Set<string>();
+  for (const value of values) {
+    if (typeof value !== "string") continue;
+    const key = value
+      .trim()
+      .toUpperCase()
+      .replace(/^([A-Z-]+):/, (m) => m.toLowerCase());
+    if (ITEM_KEY_PATTERN.test(key)) keys.add(key);
+  }
+  return [...keys].slice(0, MAX_HIDDEN_ITEMS);
+}
+
+export function isItemHidden(
+  settings: Pick<SiteSettings, "hiddenSections" | "hiddenItems">,
+  section: ItemSection,
+  code: string,
+): boolean {
+  return (
+    isSectionHidden(settings, section) ||
+    settings.hiddenItems.includes(itemKey(section, code))
+  );
+}
+
+/** Drops the rows the owner has hidden from a list of aircraft, class
+ * ratings or subjects. */
+export function withoutHidden<T extends { code: string }>(
+  settings: Pick<SiteSettings, "hiddenSections" | "hiddenItems">,
+  section: ItemSection,
+  rows: T[],
+): T[] {
+  return rows.filter((row) => !isItemHidden(settings, section, row.code));
+}
+
+export function isSectionHidden(
+  settings: Pick<SiteSettings, "hiddenSections">,
+  key: SectionKey,
+) {
+  return settings.hiddenSections.includes(key);
+}
+
 export type SiteSettings = {
   /** How many questions a signed-in student may answer free, per aircraft. */
   freeQuestionsPerAircraft: number;
@@ -56,6 +131,16 @@ export type SiteSettings = {
    * `featuredAircraftCode` ever writes to the `aircraft` table — both only
    * decide what marketing surfaces say about rows that already exist. */
   aircraftInDevelopment: string[];
+  /** Whole sections switched off by the owner: out of the navigation, the
+   * landing page and the sitemap, and a 404 at their own URLs. Content is
+   * untouched — hiding is a presentation switch, reversible with no deploy,
+   * and `db:seed` never overrules it because it lives here, not in a file. */
+  hiddenSections: SectionKey[];
+  /** Individual aircraft, class ratings or subjects switched off until they
+   * are ready for students, as `section:CODE` (e.g. `type-rating:B737`).
+   * Same behaviour as a hidden section, one row at a time; the owner can
+   * still open a hidden item's own URL to preview it. */
+  hiddenItems: string[];
 };
 
 export const SETTING_KEYS = {
@@ -65,6 +150,8 @@ export const SETTING_KEYS = {
   passMarkPercent: "pass_mark_percent",
   featuredAircraftCode: "featured_aircraft_code",
   aircraftInDevelopment: "aircraft_in_development",
+  hiddenSections: "hidden_sections",
+  hiddenItems: "hidden_items",
 } as const;
 
 /** The default a checkride-style pass mark is usually quoted at. */
@@ -86,6 +173,8 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   passMarkPercent: DEFAULT_PASS_MARK_PERCENT,
   featuredAircraftCode: DEFAULT_FEATURED_AIRCRAFT_CODE,
   aircraftInDevelopment: [...DEFAULT_AIRCRAFT_IN_DEVELOPMENT],
+  hiddenSections: [],
+  hiddenItems: [],
 };
 
 /** The same shape every other aircraft code in this app is validated
@@ -134,6 +223,10 @@ export function validateSettings(input: {
    * parsing the raw field shape is this function's job, the same as every
    * other field here. */
   aircraftInDevelopment: unknown;
+  /** The checked section boxes, as `formData.getAll` returns them. */
+  hiddenSections?: unknown[];
+  /** The checked `section:CODE` boxes, as `formData.getAll` returns them. */
+  hiddenItems?: unknown[];
 }): SettingsValidation {
   const free = Number(input.freeQuestionsPerAircraft);
 
@@ -165,7 +258,8 @@ export function validateSettings(input: {
     };
   }
 
-  const announcement = typeof input.announcement === "string" ? input.announcement.trim() : "";
+  const announcement =
+    typeof input.announcement === "string" ? input.announcement.trim() : "";
 
   if (announcement.length > MAX_ANNOUNCEMENT_LENGTH) {
     return {
@@ -190,7 +284,9 @@ export function validateSettings(input: {
   }
 
   const featuredAircraftCode =
-    typeof input.featuredAircraftCode === "string" ? input.featuredAircraftCode.trim().toUpperCase() : "";
+    typeof input.featuredAircraftCode === "string"
+      ? input.featuredAircraftCode.trim().toUpperCase()
+      : "";
 
   if (!AIRCRAFT_CODE_PATTERN.test(featuredAircraftCode)) {
     return {
@@ -200,7 +296,9 @@ export function validateSettings(input: {
   }
 
   const rawInDevelopment =
-    typeof input.aircraftInDevelopment === "string" ? input.aircraftInDevelopment : "";
+    typeof input.aircraftInDevelopment === "string"
+      ? input.aircraftInDevelopment
+      : "";
   const inDevelopmentCodes = Array.from(
     new Set(
       rawInDevelopment
@@ -217,7 +315,9 @@ export function validateSettings(input: {
     };
   }
 
-  const invalidCode = inDevelopmentCodes.find((code) => !AIRCRAFT_CODE_PATTERN.test(code));
+  const invalidCode = inDevelopmentCodes.find(
+    (code) => !AIRCRAFT_CODE_PATTERN.test(code),
+  );
   if (invalidCode) {
     return {
       ok: false,
@@ -234,6 +334,8 @@ export function validateSettings(input: {
       passMarkPercent: passMark,
       featuredAircraftCode,
       aircraftInDevelopment: inDevelopmentCodes,
+      hiddenSections: parseSectionKeys(input.hiddenSections ?? []),
+      hiddenItems: parseItemKeys(input.hiddenItems ?? []),
     },
   };
 }
@@ -250,7 +352,9 @@ export function validateSettings(input: {
  * has already gone wrong elsewhere; the right answer to that is the
  * behaviour the app shipped with, not an error page.
  */
-export function parseSettings(rows: { key: string; value: string }[]): SiteSettings {
+export function parseSettings(
+  rows: { key: string; value: string }[],
+): SiteSettings {
   const stored = new Map(rows.map((row) => [row.key, row.value]));
 
   const rawFree = stored.get(SETTING_KEYS.freeQuestionsPerAircraft);
@@ -264,7 +368,8 @@ export function parseSettings(rows: { key: string; value: string }[]): SiteSetti
   const rawPassMark = stored.get(SETTING_KEYS.passMarkPercent);
   const passMark = rawPassMark === undefined ? Number.NaN : Number(rawPassMark);
 
-  const rawFeatured = stored.get(SETTING_KEYS.featuredAircraftCode)?.trim().toUpperCase() ?? "";
+  const rawFeatured =
+    stored.get(SETTING_KEYS.featuredAircraftCode)?.trim().toUpperCase() ?? "";
   const featuredAircraftCode = AIRCRAFT_CODE_PATTERN.test(rawFeatured)
     ? rawFeatured
     : DEFAULT_SETTINGS.featuredAircraftCode;
@@ -297,11 +402,21 @@ export function parseSettings(rows: { key: string; value: string }[]): SiteSetti
         : DEFAULT_SETTINGS.passMarkPercent,
     featuredAircraftCode,
     aircraftInDevelopment,
+    hiddenSections: parseSectionKeys(
+      (stored.get(SETTING_KEYS.hiddenSections) ?? "")
+        .split(",")
+        .map((key) => key.trim()),
+    ),
+    hiddenItems: parseItemKeys(
+      (stored.get(SETTING_KEYS.hiddenItems) ?? "").split(","),
+    ),
   };
 }
 
 /** The rows to store for a validated set of settings. */
-export function settingsToRows(settings: SiteSettings): { key: string; value: string }[] {
+export function settingsToRows(
+  settings: SiteSettings,
+): { key: string; value: string }[] {
   return [
     {
       key: SETTING_KEYS.freeQuestionsPerAircraft,
@@ -312,11 +427,22 @@ export function settingsToRows(settings: SiteSettings): { key: string; value: st
       value: String(settings.previewQuestionsSignedOut),
     },
     { key: SETTING_KEYS.announcement, value: settings.announcement },
-    { key: SETTING_KEYS.passMarkPercent, value: String(settings.passMarkPercent) },
-    { key: SETTING_KEYS.featuredAircraftCode, value: settings.featuredAircraftCode },
+    {
+      key: SETTING_KEYS.passMarkPercent,
+      value: String(settings.passMarkPercent),
+    },
+    {
+      key: SETTING_KEYS.featuredAircraftCode,
+      value: settings.featuredAircraftCode,
+    },
     {
       key: SETTING_KEYS.aircraftInDevelopment,
       value: settings.aircraftInDevelopment.join(","),
     },
+    {
+      key: SETTING_KEYS.hiddenSections,
+      value: settings.hiddenSections.join(","),
+    },
+    { key: SETTING_KEYS.hiddenItems, value: settings.hiddenItems.join(",") },
   ];
 }

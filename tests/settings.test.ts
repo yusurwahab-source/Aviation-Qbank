@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   DEFAULT_SETTINGS,
+  isItemHidden,
   MAX_ANNOUNCEMENT_LENGTH,
   MAX_FREE_QUESTIONS,
   MAX_PASS_MARK_PERCENT,
@@ -39,18 +40,26 @@ describe("validateSettings", () => {
         passMarkPercent: 80,
         featuredAircraftCode: "B737",
         aircraftInDevelopment: ["DA40"],
+        hiddenSections: [],
+        hiddenItems: [],
       },
     });
   });
 
   it("accepts a preview allowance of zero — no answers given away at all", () => {
-    const result = validateSettings({ ...valid, previewQuestionsSignedOut: "0" });
+    const result = validateSettings({
+      ...valid,
+      previewQuestionsSignedOut: "0",
+    });
     expect(result.ok).toBe(true);
     if (result.ok) expect(result.settings.previewQuestionsSignedOut).toBe(0);
   });
 
   it("refuses a negative preview allowance", () => {
-    const result = validateSettings({ ...valid, previewQuestionsSignedOut: "-1" });
+    const result = validateSettings({
+      ...valid,
+      previewQuestionsSignedOut: "-1",
+    });
     expect(result.ok).toBe(false);
   });
 
@@ -63,9 +72,15 @@ describe("validateSettings", () => {
   });
 
   it("refuses a non-numeric preview allowance", () => {
-    expect(validateSettings({ ...valid, previewQuestionsSignedOut: "five" }).ok).toBe(false);
-    expect(validateSettings({ ...valid, previewQuestionsSignedOut: "" }).ok).toBe(false);
-    expect(validateSettings({ ...valid, previewQuestionsSignedOut: undefined }).ok).toBe(false);
+    expect(
+      validateSettings({ ...valid, previewQuestionsSignedOut: "five" }).ok,
+    ).toBe(false);
+    expect(
+      validateSettings({ ...valid, previewQuestionsSignedOut: "" }).ok,
+    ).toBe(false);
+    expect(
+      validateSettings({ ...valid, previewQuestionsSignedOut: undefined }).ok,
+    ).toBe(false);
   });
 
   it("trims the announcement", () => {
@@ -81,7 +96,10 @@ describe("validateSettings", () => {
   });
 
   it("allows zero free questions — meaningful, not a mistake", () => {
-    const result = validateSettings({ ...valid, freeQuestionsPerAircraft: "0" });
+    const result = validateSettings({
+      ...valid,
+      freeQuestionsPerAircraft: "0",
+    });
     expect(result.ok).toBe(true);
     if (result.ok) expect(result.settings.freeQuestionsPerAircraft).toBe(0);
   });
@@ -93,12 +111,18 @@ describe("validateSettings", () => {
     ["abc", "not a number"],
     [String(MAX_FREE_QUESTIONS + 1), "over the ceiling"],
   ])("rejects %s free questions (%s)", (value) => {
-    const result = validateSettings({ ...valid, freeQuestionsPerAircraft: value });
+    const result = validateSettings({
+      ...valid,
+      freeQuestionsPerAircraft: value,
+    });
     expect(result.ok).toBe(false);
   });
 
   it("rejects a missing free-questions field rather than defaulting it", () => {
-    const result = validateSettings({ ...valid, freeQuestionsPerAircraft: undefined });
+    const result = validateSettings({
+      ...valid,
+      freeQuestionsPerAircraft: undefined,
+    });
     expect(result.ok).toBe(false);
   });
 
@@ -132,10 +156,16 @@ describe("validateSettings", () => {
 
   it("accepts a pass mark at each bound", () => {
     expect(
-      validateSettings({ ...valid, passMarkPercent: String(MIN_PASS_MARK_PERCENT) }).ok,
+      validateSettings({
+        ...valid,
+        passMarkPercent: String(MIN_PASS_MARK_PERCENT),
+      }).ok,
     ).toBe(true);
     expect(
-      validateSettings({ ...valid, passMarkPercent: String(MAX_PASS_MARK_PERCENT) }).ok,
+      validateSettings({
+        ...valid,
+        passMarkPercent: String(MAX_PASS_MARK_PERCENT),
+      }).ok,
     ).toBe(true);
   });
 
@@ -145,7 +175,10 @@ describe("validateSettings", () => {
   });
 
   it("uppercases and trims the featured aircraft code", () => {
-    const result = validateSettings({ ...valid, featuredAircraftCode: " b737 " });
+    const result = validateSettings({
+      ...valid,
+      featuredAircraftCode: " b737 ",
+    });
     expect(result.ok).toBe(true);
     if (result.ok) expect(result.settings.featuredAircraftCode).toBe("B737");
   });
@@ -161,33 +194,55 @@ describe("validateSettings", () => {
   });
 
   it("parses aircraft-in-development as a comma- or newline-separated list", () => {
-    const commaResult = validateSettings({ ...valid, aircraftInDevelopment: "DA40, B737" });
+    const commaResult = validateSettings({
+      ...valid,
+      aircraftInDevelopment: "DA40, B737",
+    });
     expect(commaResult.ok).toBe(true);
     if (commaResult.ok) {
-      expect(commaResult.settings.aircraftInDevelopment).toEqual(["DA40", "B737"]);
+      expect(commaResult.settings.aircraftInDevelopment).toEqual([
+        "DA40",
+        "B737",
+      ]);
     }
 
-    const newlineResult = validateSettings({ ...valid, aircraftInDevelopment: "DA40\nB737" });
+    const newlineResult = validateSettings({
+      ...valid,
+      aircraftInDevelopment: "DA40\nB737",
+    });
     expect(newlineResult.ok).toBe(true);
     if (newlineResult.ok) {
-      expect(newlineResult.settings.aircraftInDevelopment).toEqual(["DA40", "B737"]);
+      expect(newlineResult.settings.aircraftInDevelopment).toEqual([
+        "DA40",
+        "B737",
+      ]);
     }
   });
 
   it("deduplicates and uppercases aircraft-in-development codes", () => {
-    const result = validateSettings({ ...valid, aircraftInDevelopment: "da40, DA40, Da40" });
+    const result = validateSettings({
+      ...valid,
+      aircraftInDevelopment: "da40, DA40, Da40",
+    });
     expect(result.ok).toBe(true);
-    if (result.ok) expect(result.settings.aircraftInDevelopment).toEqual(["DA40"]);
+    if (result.ok)
+      expect(result.settings.aircraftInDevelopment).toEqual(["DA40"]);
   });
 
   it("treats a missing aircraft-in-development field as an empty list", () => {
-    const result = validateSettings({ ...valid, aircraftInDevelopment: undefined });
+    const result = validateSettings({
+      ...valid,
+      aircraftInDevelopment: undefined,
+    });
     expect(result.ok).toBe(true);
     if (result.ok) expect(result.settings.aircraftInDevelopment).toEqual([]);
   });
 
   it("rejects an invalid code inside the aircraft-in-development list", () => {
-    const result = validateSettings({ ...valid, aircraftInDevelopment: "DA40, not-a-code" });
+    const result = validateSettings({
+      ...valid,
+      aircraftInDevelopment: "DA40, not-a-code",
+    });
     expect(result.ok).toBe(false);
   });
 });
@@ -213,6 +268,8 @@ describe("parseSettings", () => {
       passMarkPercent: 70,
       featuredAircraftCode: "DA40",
       aircraftInDevelopment: ["B737"],
+      hiddenSections: [],
+      hiddenItems: [],
     });
   });
 
@@ -233,7 +290,9 @@ describe("parseSettings", () => {
   });
 
   it("falls back on a corrupt number rather than throwing", () => {
-    const rows = [{ key: "free_questions_per_aircraft", value: "not-a-number" }];
+    const rows = [
+      { key: "free_questions_per_aircraft", value: "not-a-number" },
+    ];
     expect(parseSettings(rows).freeQuestionsPerAircraft).toBe(
       DEFAULT_SETTINGS.freeQuestionsPerAircraft,
     );
@@ -241,42 +300,53 @@ describe("parseSettings", () => {
 
   it("falls back on a negative or out-of-range stored number", () => {
     expect(
-      parseSettings([{ key: "free_questions_per_aircraft", value: "-5" }]).freeQuestionsPerAircraft,
+      parseSettings([{ key: "free_questions_per_aircraft", value: "-5" }])
+        .freeQuestionsPerAircraft,
     ).toBe(DEFAULT_SETTINGS.freeQuestionsPerAircraft);
     expect(
-      parseSettings([{ key: "free_questions_per_aircraft", value: String(MAX_FREE_QUESTIONS + 1) }])
-        .freeQuestionsPerAircraft,
+      parseSettings([
+        {
+          key: "free_questions_per_aircraft",
+          value: String(MAX_FREE_QUESTIONS + 1),
+        },
+      ]).freeQuestionsPerAircraft,
     ).toBe(DEFAULT_SETTINGS.freeQuestionsPerAircraft);
   });
 
   it("falls back on a corrupt or out-of-range stored pass mark", () => {
-    expect(parseSettings([{ key: "pass_mark_percent", value: "not-a-number" }]).passMarkPercent).toBe(
-      DEFAULT_SETTINGS.passMarkPercent,
-    );
-    expect(parseSettings([{ key: "pass_mark_percent", value: "0" }]).passMarkPercent).toBe(
-      DEFAULT_SETTINGS.passMarkPercent,
-    );
     expect(
-      parseSettings([{ key: "pass_mark_percent", value: String(MAX_PASS_MARK_PERCENT + 1) }])
+      parseSettings([{ key: "pass_mark_percent", value: "not-a-number" }])
         .passMarkPercent,
+    ).toBe(DEFAULT_SETTINGS.passMarkPercent);
+    expect(
+      parseSettings([{ key: "pass_mark_percent", value: "0" }]).passMarkPercent,
+    ).toBe(DEFAULT_SETTINGS.passMarkPercent);
+    expect(
+      parseSettings([
+        { key: "pass_mark_percent", value: String(MAX_PASS_MARK_PERCENT + 1) },
+      ]).passMarkPercent,
     ).toBe(DEFAULT_SETTINGS.passMarkPercent);
   });
 
   it("falls back on a corrupt stored featured aircraft code", () => {
     expect(
-      parseSettings([{ key: "featured_aircraft_code", value: "not valid!" }]).featuredAircraftCode,
+      parseSettings([{ key: "featured_aircraft_code", value: "not valid!" }])
+        .featuredAircraftCode,
     ).toBe(DEFAULT_SETTINGS.featuredAircraftCode);
   });
 
   it("drops an invalid code from a stored aircraft-in-development list rather than failing whole", () => {
     expect(
-      parseSettings([{ key: "aircraft_in_development", value: "DA40,not valid!" }])
-        .aircraftInDevelopment,
+      parseSettings([
+        { key: "aircraft_in_development", value: "DA40,not valid!" },
+      ]).aircraftInDevelopment,
     ).toEqual(["DA40"]);
   });
 
   it("ignores an unknown key rather than erroring", () => {
-    expect(parseSettings([{ key: "something_else", value: "1" }])).toEqual(DEFAULT_SETTINGS);
+    expect(parseSettings([{ key: "something_else", value: "1" }])).toEqual(
+      DEFAULT_SETTINGS,
+    );
   });
 });
 
@@ -289,6 +359,8 @@ describe("settingsToRows", () => {
       passMarkPercent: 65,
       featuredAircraftCode: "B737",
       aircraftInDevelopment: ["DA40"],
+      hiddenSections: [],
+      hiddenItems: [],
     };
     expect(parseSettings(settingsToRows(settings))).toEqual(settings);
   });
@@ -301,7 +373,68 @@ describe("settingsToRows", () => {
       passMarkPercent: 65,
       featuredAircraftCode: "B737",
       aircraftInDevelopment: [] as string[],
+      hiddenSections: [] as never[],
+      hiddenItems: [] as string[],
     };
     expect(parseSettings(settingsToRows(settings))).toEqual(settings);
+  });
+});
+
+describe("hidden sections", () => {
+  it("keeps only known sections, once each, in a fixed order", () => {
+    const result = validateSettings({
+      ...valid,
+      hiddenSections: ["pilot-sims", "bogus", "type-rating", "pilot-sims"],
+    });
+    expect(result.ok).toBe(true);
+    if (result.ok)
+      expect(result.settings.hiddenSections).toEqual([
+        "type-rating",
+        "pilot-sims",
+      ]);
+  });
+
+  it("defaults to nothing hidden, and survives a round trip", () => {
+    expect(parseSettings([]).hiddenSections).toEqual([]);
+    const rows = settingsToRows({
+      ...DEFAULT_SETTINGS,
+      hiddenSections: ["flying-knowledge"],
+    });
+    expect(parseSettings(rows).hiddenSections).toEqual(["flying-knowledge"]);
+  });
+});
+
+describe("hidden items", () => {
+  it("keeps only well-formed section:CODE keys, once each", () => {
+    const result = validateSettings({
+      ...valid,
+      hiddenItems: [
+        "type-rating:b737",
+        "type-rating:B737",
+        "nope:B737",
+        "class-rating:",
+        5,
+      ],
+    });
+    expect(result.ok).toBe(true);
+    if (result.ok)
+      expect(result.settings.hiddenItems).toEqual(["type-rating:B737"]);
+  });
+
+  it("hides one item without hiding its siblings, and a hidden section hides all", () => {
+    const base = { ...DEFAULT_SETTINGS, hiddenItems: ["class-rating:DA40"] };
+    expect(isItemHidden(base, "class-rating", "da40")).toBe(true);
+    expect(isItemHidden(base, "class-rating", "C152")).toBe(false);
+    expect(isItemHidden(base, "type-rating", "DA40")).toBe(false);
+    expect(
+      isItemHidden(
+        { ...base, hiddenSections: ["type-rating"] },
+        "type-rating",
+        "B737",
+      ),
+    ).toBe(true);
+    expect(parseSettings(settingsToRows(base)).hiddenItems).toEqual([
+      "class-rating:DA40",
+    ]);
   });
 });

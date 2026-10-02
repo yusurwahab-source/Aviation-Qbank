@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Badge, Card } from "@/components/ui";
+import type { SectionKey } from "@/lib/settings";
 
 import { SectionHeading } from "./section-heading";
 
@@ -28,51 +29,76 @@ export function SectionsOverview({
   typeRating,
   classRating,
   flyingKnowledge,
+  hiddenSections = [],
 }: {
   typeRating: SectionCounts;
   classRating: SectionCounts;
   flyingKnowledge: SectionCounts;
+  hiddenSections?: SectionKey[];
 }) {
+  const shown = (key: SectionKey) => !hiddenSections.includes(key);
+  const visibleCount = (
+    ["type-rating", "class-rating", "flying-knowledge"] as const
+  ).filter(shown).length;
+
+  if (visibleCount === 0) return null;
+
   return (
     <section id="whats-inside" className="scroll-mt-20">
       <SectionHeading
         eyebrow="What's inside"
-        title="Three sections, one question bank each"
+        title={
+          visibleCount === 3
+            ? "Three sections, one question bank each"
+            : "What you can study"
+        }
         subtitle="Every aircraft and every topic lives inside one of these — pick the one you're studying for."
       />
 
-      <ul className="mt-8 grid gap-4 sm:grid-cols-3">
-        <li className="h-full">
-          <SectionCard
-            href="/type-rating"
-            title="Type Rating Systems Knowledge"
-            description="Large aircraft, system by system. Study with explanations in front of you, or sit a timed mock exam."
-            stat={`${typeRating.questionCount} questions across ${typeRating.aircraftCount} aircraft`}
-            cta="Choose an aircraft"
-          />
-        </li>
-        <li className="h-full">
-          <SectionCard
-            href="/class-rating"
-            title="Class Rating Systems Knowledge"
-            description="Light aircraft, practised the same way — no single-engine or multi-engine split, just the aircraft itself."
-            stat={`${classRating.questionCount} questions across ${classRating.aircraftCount} aircraft`}
-            cta="Choose an aircraft"
-          />
-        </li>
-        <li className="h-full">
-          <SectionCard
-            href="/flying-knowledge"
-            title="Flying Knowledge"
-            description="The material every pilot keeps reviewing — air law, meteorology, navigation and the rest of ground school. Free in full."
-            stat={
-              flyingKnowledge.questionCount > 0
-                ? `${flyingKnowledge.questionCount} questions across ${flyingKnowledge.aircraftCount} subject${flyingKnowledge.aircraftCount === 1 ? "" : "s"}`
-                : null
-            }
-            cta={flyingKnowledge.questionCount > 0 ? "Choose a subject" : "See what's planned"}
-          />
-        </li>
+      <ul
+        className={`mt-8 grid gap-4 ${visibleCount === 1 ? "" : visibleCount === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3"}`}
+      >
+        {shown("type-rating") ? (
+          <li className="h-full">
+            <SectionCard
+              href="/type-rating"
+              title="Type Rating Systems Knowledge"
+              description="Large aircraft, system by system. Study with explanations in front of you, or sit a timed mock exam."
+              stat={`${typeRating.questionCount} questions across ${typeRating.aircraftCount} aircraft`}
+              cta="Choose an aircraft"
+            />
+          </li>
+        ) : null}
+        {shown("class-rating") ? (
+          <li className="h-full">
+            <SectionCard
+              href="/class-rating"
+              title="Class Rating Systems Knowledge"
+              description="Light aircraft, practised the same way — no single-engine or multi-engine split, just the aircraft itself."
+              stat={`${classRating.questionCount} questions across ${classRating.aircraftCount} aircraft`}
+              cta="Choose an aircraft"
+            />
+          </li>
+        ) : null}
+        {shown("flying-knowledge") ? (
+          <li className="h-full">
+            <SectionCard
+              href="/flying-knowledge"
+              title="Flying Knowledge"
+              description="The material every pilot keeps reviewing — air law, meteorology, navigation and the rest of ground school. Free in full."
+              stat={
+                flyingKnowledge.questionCount > 0
+                  ? `${flyingKnowledge.questionCount} questions across ${flyingKnowledge.aircraftCount} subject${flyingKnowledge.aircraftCount === 1 ? "" : "s"}`
+                  : null
+              }
+              cta={
+                flyingKnowledge.questionCount > 0
+                  ? "Choose a subject"
+                  : "See what's planned"
+              }
+            />
+          </li>
+        ) : null}
       </ul>
     </section>
   );
@@ -98,7 +124,11 @@ function SectionCard({
       <Card className="flex h-full flex-col transition hover:border-brand hover:shadow-sm">
         <div className="flex items-start justify-between gap-3">
           <h3 className="text-lg font-semibold text-foreground">{title}</h3>
-          {stat ? <Badge tone="brand">{stat}</Badge> : <Badge>Coming soon</Badge>}
+          {stat ? (
+            <Badge tone="brand">{stat}</Badge>
+          ) : (
+            <Badge>Coming soon</Badge>
+          )}
         </div>
 
         <p className="mt-3 text-sm text-muted-foreground">{description}</p>

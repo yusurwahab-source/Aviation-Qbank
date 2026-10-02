@@ -6,7 +6,9 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { UserMenu } from "@/components/user-menu";
 import { getCurrentUser } from "@/lib/auth/session";
 import { isOwner } from "@/lib/auth/owner";
+import { getSiteSettings } from "@/db/settings";
 import { envValue } from "@/lib/env";
+import { isSectionHidden, SECTION_KEYS, type SectionKey } from "@/lib/settings";
 
 /**
  * The application shell's header.
@@ -52,11 +54,20 @@ export async function SiteHeader() {
   // The owner gets one extra link. Everyone else never learns the area
   // exists — the pages themselves 404 for them regardless, so this is
   // about not advertising a door rather than about locking it.
-  const links = email
-    ? isOwner(email, envValue("OWNER_EMAIL"))
-      ? [...SIGNED_IN_LINKS, { href: "/owner", label: "Owner" }]
-      : SIGNED_IN_LINKS
-    : SIGNED_OUT_LINKS;
+  const settings = await getSiteSettings();
+  const visible = (links: { href: string; label: string }[]) =>
+    links.filter((link) => {
+      const section = SECTION_KEYS.find((key: SectionKey) => link.href === `/${key}`);
+      return !section || !isSectionHidden(settings, section);
+    });
+
+  const links = visible(
+    email
+      ? isOwner(email, envValue("OWNER_EMAIL"))
+        ? [...SIGNED_IN_LINKS, { href: "/owner", label: "Owner" }]
+        : SIGNED_IN_LINKS
+      : SIGNED_OUT_LINKS,
+  );
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-surface-elevated/90 backdrop-blur">

@@ -1,3 +1,4 @@
+import { withoutHidden } from "@/lib/settings";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -39,7 +40,7 @@ export default async function TypeRatingPickerPage() {
   let fleet: AircraftSummary[];
 
   try {
-    fleet = await listAircraft();
+    fleet = withoutHidden(await getSiteSettings(), "type-rating", await listAircraft());
   } catch (error) {
     return (
       <>
