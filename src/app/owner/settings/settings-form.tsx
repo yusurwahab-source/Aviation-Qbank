@@ -4,7 +4,10 @@ import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
 import {
+  DEFAULT_SECTION_DESCRIPTIONS,
   MAX_ANNOUNCEMENT_LENGTH,
+  MAX_DESCRIPTION_LENGTH,
+  MAX_LABEL_LENGTH,
   MAX_FREE_QUESTIONS,
   MAX_PASS_MARK_PERCENT,
   MIN_PASS_MARK_PERCENT,
@@ -15,7 +18,12 @@ import {
   type SiteSettings,
 } from "@/lib/settings";
 
-export type HideableItem = { section: ItemSection; code: string; name: string };
+export type HideableItem = {
+  section: ItemSection;
+  code: string;
+  name: string;
+  description: string;
+};
 
 import { updateSettings, type SettingsState } from "./actions";
 
@@ -262,6 +270,58 @@ export function SettingsForm({
                   </span>
                 </label>
               ))}
+            </div>
+          );
+        })}
+      </fieldset>
+
+      <fieldset>
+        <legend className="block text-sm font-medium text-foreground">
+          Aircraft and subject names
+        </legend>
+        <p className="mt-1 text-xs text-muted-foreground">
+          The name and description shown for each aircraft, class rating or
+          subject. Leave a box empty to keep what its content file says. The
+          code (for example B737), the questions and every student&rsquo;s
+          history are never touched.
+        </p>
+        {SECTION_KEYS.filter(
+          (key): key is ItemSection => key !== "pilot-sims",
+        ).map((section) => {
+          const rows = items.filter((item) => item.section === section);
+          if (rows.length === 0) return null;
+          return (
+            <div key={section} className="mt-3">
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                {SECTION_LABELS[section]}
+              </p>
+              {rows.map((row) => {
+                const key = itemKey(section, row.code);
+                return (
+                  <div key={row.code} className="mt-2 space-y-1.5">
+                    <input
+                      name={`itemName:${key}`}
+                      type="text"
+                      maxLength={MAX_LABEL_LENGTH}
+                      defaultValue={settings.itemOverrides[key]?.name ?? ""}
+                      placeholder={row.name}
+                      aria-label={`Name of ${row.code}`}
+                      className={inputClass}
+                    />
+                    <textarea
+                      name={`itemDescription:${key}`}
+                      rows={2}
+                      maxLength={MAX_DESCRIPTION_LENGTH}
+                      defaultValue={
+                        settings.itemOverrides[key]?.description ?? ""
+                      }
+                      placeholder={row.description}
+                      aria-label={`Description of ${row.code}`}
+                      className={inputClass}
+                    />
+                  </div>
+                );
+              })}
             </div>
           );
         })}

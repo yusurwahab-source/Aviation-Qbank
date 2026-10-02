@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { getSiteSettings } from "@/db/settings";
-import { isSectionHidden } from "@/lib/settings";
+import { isSectionHidden, sectionTitle } from "@/lib/settings";
 
 /**
  * The three ways into the product, as a row of equal-weight buttons.
@@ -24,7 +24,7 @@ export async function SectionLinks({ className = "" }: { className?: string }) {
           href="/type-rating"
           className="tap-target inline-flex w-full items-center justify-center rounded-lg bg-brand px-6 text-center text-sm font-semibold text-on-solid transition hover:bg-brand-strong sm:w-auto"
         >
-          Type Rating Systems Knowledge
+          {sectionTitle(settings, "type-rating")}
         </Link>
       )}
       {isSectionHidden(settings, "class-rating") ? null : (
@@ -32,7 +32,7 @@ export async function SectionLinks({ className = "" }: { className?: string }) {
           href="/class-rating"
           className="tap-target inline-flex w-full items-center justify-center rounded-lg border border-border px-6 text-center text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand sm:w-auto"
         >
-          Class Rating Systems Knowledge
+          {sectionTitle(settings, "class-rating")}
         </Link>
       )}
       {isSectionHidden(settings, "flying-knowledge") ? null : (
@@ -40,7 +40,7 @@ export async function SectionLinks({ className = "" }: { className?: string }) {
           href="/flying-knowledge"
           className="tap-target inline-flex w-full items-center justify-center rounded-lg border border-border px-6 text-center text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand sm:w-auto"
         >
-          Flying Knowledge
+          {sectionTitle(settings, "flying-knowledge")}
         </Link>
       )}
     </div>

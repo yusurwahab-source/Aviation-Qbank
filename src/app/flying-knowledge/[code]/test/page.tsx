@@ -18,7 +18,7 @@ import {
 } from "@/db/flying-knowledge-queries";
 import { getFlaggedQuestionIdSet, getFlaggedQuestionIds } from "@/db/flags";
 import { getQuestionIdsToRetry } from "@/db/reports";
-import { getSiteSettings } from "@/db/settings";
+import { getSiteSettings, overrideItem } from "@/db/settings";
 import { getCurrentUser } from "@/lib/auth/session";
 import type { AnswerVerdict } from "@/lib/practice-test-types";
 import {
@@ -102,7 +102,7 @@ export default async function FlyingKnowledgeTestPage({ params, searchParams }: 
   let initialExpiresAt: string | null = null;
 
   try {
-    subject = await getFlyingKnowledgeSubject(subjectCode);
+    subject = await getFlyingKnowledgeSubject(subjectCode).then((row) => overrideItem("flying-knowledge", row));
     if (!subject) notFound();
 
     user = await getCurrentUser();

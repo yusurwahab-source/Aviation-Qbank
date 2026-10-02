@@ -9,6 +9,8 @@ import {
   DEFAULT_SETTINGS,
   parseSettings,
   settingsToRows,
+  withItemOverride,
+  type ItemSection,
   type SiteSettings,
 } from "@/lib/settings";
 
@@ -63,4 +65,13 @@ export async function saveSiteSettings(settings: SiteSettings): Promise<void> {
       target: siteSettings.key,
       set: { value: sql`excluded.value`, updatedAt: sql`now()` },
     });
+}
+
+/** Applies the owner's display name and description to one fetched aircraft,
+ * class rating or subject (or passes `null` straight through). */
+export async function overrideItem<
+  T extends { code: string; name: string; description: string },
+>(section: ItemSection, row: T | null): Promise<T | null> {
+  if (!row) return null;
+  return withItemOverride(await getSiteSettings(), section, row);
 }

@@ -1,4 +1,4 @@
-import { withoutHidden } from "@/lib/settings";
+import { sectionTitle, withItemOverrides, withoutHidden } from "@/lib/settings";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -40,11 +40,11 @@ export default async function ClassRatingPickerPage() {
   let classes: ClassRatingSummary[];
 
   try {
-    classes = withoutHidden(await getSiteSettings(), "class-rating", await listClassRatings());
+    classes = withItemOverrides(await getSiteSettings(), "class-rating", withoutHidden(await getSiteSettings(), "class-rating", await listClassRatings()));
   } catch (error) {
     return (
       <>
-        <PageHeading eyebrow="Class Rating Systems Knowledge" title="Choose an aircraft" />
+        <PageHeading eyebrow={sectionTitle(await getSiteSettings(), "class-rating")} title="Choose an aircraft" />
         <DatabaseUnavailable detail={(error as Error).message} />
       </>
     );
@@ -55,7 +55,7 @@ export default async function ClassRatingPickerPage() {
   return (
     <>
       <PageHeading
-        eyebrow="Class Rating Systems Knowledge"
+        eyebrow={sectionTitle(await getSiteSettings(), "class-rating")}
         title="Choose an aircraft"
         subtitle="Pick an aircraft to start a practice test. Each class has its own question bank."
       />

@@ -3,6 +3,8 @@ import { describe, expect, it } from "vitest";
 import {
   DEFAULT_SETTINGS,
   isItemHidden,
+  sectionTitle,
+  withItemOverride,
   MAX_ANNOUNCEMENT_LENGTH,
   MAX_FREE_QUESTIONS,
   MAX_PASS_MARK_PERCENT,
@@ -42,6 +44,8 @@ describe("validateSettings", () => {
         aircraftInDevelopment: ["DA40"],
         hiddenSections: [],
         hiddenItems: [],
+        sectionLabels: {},
+        itemOverrides: {},
       },
     });
   });
@@ -270,6 +274,8 @@ describe("parseSettings", () => {
       aircraftInDevelopment: ["B737"],
       hiddenSections: [],
       hiddenItems: [],
+      sectionLabels: {},
+      itemOverrides: {},
     });
   });
 
@@ -361,6 +367,8 @@ describe("settingsToRows", () => {
       aircraftInDevelopment: ["DA40"],
       hiddenSections: [],
       hiddenItems: [],
+      sectionLabels: {},
+      itemOverrides: {},
     };
     expect(parseSettings(settingsToRows(settings))).toEqual(settings);
   });
@@ -375,6 +383,8 @@ describe("settingsToRows", () => {
       aircraftInDevelopment: [] as string[],
       hiddenSections: [] as never[],
       hiddenItems: [] as string[],
+      sectionLabels: {},
+      itemOverrides: {},
     };
     expect(parseSettings(settingsToRows(settings))).toEqual(settings);
   });
@@ -436,5 +446,74 @@ describe("hidden items", () => {
     expect(parseSettings(settingsToRows(base)).hiddenItems).toEqual([
       "class-rating:DA40",
     ]);
+  });
+});
+
+describe("editable names", () => {
+  it("keeps clean text, drops blanks and unknown keys, and trims length", () => {
+    const result = validateSettings({
+      ...valid,
+      sectionLabels: {
+        "type-rating": { title: "  Airliners  ", description: "" },
+        bogus: { title: "x" },
+      },
+      itemOverrides: {
+        "class-rating:DA40": {
+          name: "Diamond DA40",
+          description: "  A light   trainer. ",
+        },
+        "nope:DA40": { name: "x" },
+        "type-rating:B737": { name: "   ", description: "" },
+      },
+    });
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.settings.sectionLabels).toEqual({
+        "type-rating": { title: "Airliners" },
+      });
+      expect(result.settings.itemOverrides).toEqual({
+        "class-rating:DA40": {
+          name: "Diamond DA40",
+          description: "A light trainer.",
+        },
+      });
+    }
+  });
+
+  it("shows the owner's wording but never changes the code, and falls back otherwise", () => {
+    const settings = {
+      ...DEFAULT_SETTINGS,
+      sectionLabels: { "flying-knowledge": { title: "Ground School" } },
+      itemOverrides: { "class-rating:DA40": { name: "DA40 TDI" } },
+    };
+    expect(sectionTitle(settings, "flying-knowledge")).toBe("Ground School");
+    expect(sectionTitle(settings, "type-rating")).toBe(
+      "Type Rating Systems Knowledge",
+    );
+    const row = { code: "DA40", name: "Diamond", description: "Light." };
+    expect(withItemOverride(settings, "class-rating", row)).toEqual({
+      code: "DA40",
+      name: "DA40 TDI",
+      description: "Light.",
+    });
+    expect(withItemOverride(settings, "type-rating", row)).toBe(row);
+  });
+
+  it("survives a round trip and ignores a corrupt stored value", () => {
+    const settings = {
+      ...DEFAULT_SETTINGS,
+      sectionLabels: { "pilot-sims": { title: "Simulators" } },
+      itemOverrides: { "type-rating:B737": { description: "Narrow-body." } },
+    };
+    expect(parseSettings(settingsToRows(settings))).toMatchObject({
+      sectionLabels: settings.sectionLabels,
+      itemOverrides: settings.itemOverrides,
+    });
+    const broken = parseSettings([
+      { key: "section_labels", value: "{not json" },
+      { key: "item_overrides", value: "[]" },
+    ]);
+    expect(broken.sectionLabels).toEqual({});
+    expect(broken.itemOverrides).toEqual({});
   });
 });

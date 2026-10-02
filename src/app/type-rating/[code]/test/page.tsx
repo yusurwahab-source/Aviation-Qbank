@@ -21,7 +21,7 @@ import { getQuestionIdsToRetry } from "@/db/reports";
 import { countPreviewQuestionsAnswered } from "@/db/preview";
 import { countQuestionsAnswered, getSubscription } from "@/db/subscriptions";
 import { hasActiveSubscription, remainingFreeQuestions } from "@/lib/billing/access-policy";
-import { getSiteSettings } from "@/db/settings";
+import { getSiteSettings, overrideItem } from "@/db/settings";
 import { getPreviewVisitorId } from "@/lib/auth/preview-visitor";
 import { getCurrentUser } from "@/lib/auth/session";
 import type { AnswerVerdict } from "@/lib/practice-test-types";
@@ -142,7 +142,7 @@ export default async function TestPage({ params, searchParams }: PageProps) {
   let previewLimitReached = false;
 
   try {
-    plane = await getAircraft(aircraftCode);
+    plane = await getAircraft(aircraftCode).then((row) => overrideItem("type-rating", row));
     if (!plane) notFound();
 
     user = await getCurrentUser();

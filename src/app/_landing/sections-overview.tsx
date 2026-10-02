@@ -1,7 +1,12 @@
 import Link from "next/link";
 
 import { Badge, Card } from "@/components/ui";
-import type { SectionKey } from "@/lib/settings";
+import {
+  sectionDescription,
+  sectionTitle,
+  type SectionKey,
+  type SiteSettings,
+} from "@/lib/settings";
 
 import { SectionHeading } from "./section-heading";
 
@@ -30,11 +35,13 @@ export function SectionsOverview({
   classRating,
   flyingKnowledge,
   hiddenSections = [],
+  settings,
 }: {
   typeRating: SectionCounts;
   classRating: SectionCounts;
   flyingKnowledge: SectionCounts;
   hiddenSections?: SectionKey[];
+  settings: Pick<SiteSettings, "sectionLabels">;
 }) {
   const shown = (key: SectionKey) => !hiddenSections.includes(key);
   const visibleCount = (
@@ -62,8 +69,8 @@ export function SectionsOverview({
           <li className="h-full">
             <SectionCard
               href="/type-rating"
-              title="Type Rating Systems Knowledge"
-              description="Large aircraft, system by system. Study with explanations in front of you, or sit a timed mock exam."
+              title={sectionTitle(settings, "type-rating")}
+              description={sectionDescription(settings, "type-rating")}
               stat={`${typeRating.questionCount} questions across ${typeRating.aircraftCount} aircraft`}
               cta="Choose an aircraft"
             />
@@ -73,8 +80,8 @@ export function SectionsOverview({
           <li className="h-full">
             <SectionCard
               href="/class-rating"
-              title="Class Rating Systems Knowledge"
-              description="Light aircraft, practised the same way — no single-engine or multi-engine split, just the aircraft itself."
+              title={sectionTitle(settings, "class-rating")}
+              description={sectionDescription(settings, "class-rating")}
               stat={`${classRating.questionCount} questions across ${classRating.aircraftCount} aircraft`}
               cta="Choose an aircraft"
             />
@@ -84,8 +91,8 @@ export function SectionsOverview({
           <li className="h-full">
             <SectionCard
               href="/flying-knowledge"
-              title="Flying Knowledge"
-              description="The material every pilot keeps reviewing — air law, meteorology, navigation and the rest of ground school. Free in full."
+              title={sectionTitle(settings, "flying-knowledge")}
+              description={sectionDescription(settings, "flying-knowledge")}
               stat={
                 flyingKnowledge.questionCount > 0
                   ? `${flyingKnowledge.questionCount} questions across ${flyingKnowledge.aircraftCount} subject${flyingKnowledge.aircraftCount === 1 ? "" : "s"}`

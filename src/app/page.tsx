@@ -163,7 +163,7 @@ function jsonLd(
 export default async function LandingPage() {
   const [
     { sectionsOk, typeRating, classRating, flyingKnowledge, totalSystems },
-    { featuredAircraftCode, hiddenSections },
+    { featuredAircraftCode, hiddenSections, sectionLabels },
   ] = await Promise.all([loadLandingData(), getSiteSettings()]);
 
   const heroStats: HeroStats | null = sectionsOk
@@ -190,6 +190,7 @@ export default async function LandingPage() {
           classRating={classRating}
           flyingKnowledge={flyingKnowledge}
           hiddenSections={hiddenSections}
+          settings={{ sectionLabels }}
         />
       ) : (
         <section id="whats-inside" className="scroll-mt-20">

@@ -56,16 +56,19 @@ export default async function OwnerSettingsPage() {
         section: "type-rating" as const,
         code: row.code,
         name: row.name,
+        description: row.description,
       })),
       ...classes.map((row) => ({
         section: "class-rating" as const,
         code: row.code,
         name: row.name,
+        description: row.description,
       })),
       ...subjects.map((row) => ({
         section: "flying-knowledge" as const,
         code: row.code,
         name: row.name,
+        description: row.description,
       })),
     ];
   } catch {

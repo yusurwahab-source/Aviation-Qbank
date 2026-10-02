@@ -18,7 +18,7 @@ import { countPreviewQuestionsAnswered } from "@/db/preview";
 import { getQuestionIdsToRetry, getTopicPerformance } from "@/db/reports";
 import { countQuestionsAnswered, getSubscription } from "@/db/subscriptions";
 import { hasActiveSubscription, remainingFreeQuestions } from "@/lib/billing/access-policy";
-import { getSiteSettings } from "@/db/settings";
+import { getSiteSettings, overrideItem } from "@/db/settings";
 import { getPreviewVisitorId } from "@/lib/auth/preview-visitor";
 import { getCurrentUser } from "@/lib/auth/session";
 import { studyGuideHref } from "@/lib/study-guide";
@@ -53,7 +53,7 @@ export default async function ClassRatingPage({ params }: PageProps) {
 
   try {
     [ratingClass, topics] = await Promise.all([
-      getClassRating(classCode),
+      getClassRating(classCode).then((row) => overrideItem("class-rating", row)),
       listClassTopics(classCode),
     ]);
 

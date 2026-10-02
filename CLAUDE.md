@@ -1518,6 +1518,15 @@ changed there, never here; the product's name and branding stay in
 `src/config/site.ts`. What belongs in `site_settings` is only what no file
 describes.
 
+**The owner can hide and rename, never delete or recode.** Settings also
+holds `hiddenSections`/`hiddenItems` (a section, or one aircraft, class
+rating or subject, leaves menus, pickers, landing counts and the sitemap,
+and 404s for everyone but the owner), `sectionLabels` (section names and
+landing-card text) and `itemOverrides` (an aircraft's display name and
+description, keyed `section:CODE`). All of it is a display layer over
+content: codes, ids, questions and attempts are never touched, which is why
+it survives `db:seed`. A hidden item's server actions are not gated.
+
 `src/lib/settings.ts` is pure, like `access-policy.ts` and `grading.ts`:
 `validateSettings` is the only way a value is written, and refuses loudly —
 the one person who can fix a bad value is the one who just typed it.

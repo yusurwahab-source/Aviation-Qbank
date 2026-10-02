@@ -2,7 +2,11 @@
 
 import { listAircraft } from "@/db/queries";
 import { saveSiteSettings } from "@/db/settings";
-import { validateSettings, type SiteSettings } from "@/lib/settings";
+import {
+  SECTION_KEYS,
+  validateSettings,
+  type SiteSettings,
+} from "@/lib/settings";
 import { ownerAction } from "@/lib/owner/audited-action";
 
 export type SettingsState = {
@@ -30,6 +34,31 @@ export const updateSettings = ownerAction<SettingsState, SiteSettings>({
   targetType: "site_settings",
 
   parse(formData) {
+    const sectionLabels: Record<
+      string,
+      { title: unknown; description: unknown }
+    > = {};
+    for (const key of SECTION_KEYS) {
+      sectionLabels[key] = {
+        title: formData.get(`sectionTitle:${key}`),
+        description: formData.get(`sectionDescription:${key}`),
+      };
+    }
+
+    const itemOverrides: Record<
+      string,
+      { name: unknown; description: unknown }
+    > = {};
+    for (const [field, value] of formData.entries()) {
+      const match = /^itemName:(.+)$/.exec(field);
+      if (match) {
+        itemOverrides[match[1]] = {
+          name: value,
+          description: formData.get(`itemDescription:${match[1]}`),
+        };
+      }
+    }
+
     const validated = validateSettings({
       freeQuestionsPerAircraft: formData.get("freeQuestionsPerAircraft"),
       previewQuestionsSignedOut: formData.get("previewQuestionsSignedOut"),
@@ -39,6 +68,8 @@ export const updateSettings = ownerAction<SettingsState, SiteSettings>({
       aircraftInDevelopment: formData.get("aircraftInDevelopment"),
       hiddenSections: formData.getAll("hiddenSections"),
       hiddenItems: formData.getAll("hiddenItems"),
+      sectionLabels,
+      itemOverrides,
     });
 
     if (!validated.ok) return { ok: false, state: { error: validated.error } };

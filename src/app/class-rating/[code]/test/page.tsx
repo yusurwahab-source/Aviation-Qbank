@@ -21,7 +21,7 @@ import { getQuestionIdsToRetry } from "@/db/reports";
 import { countPreviewQuestionsAnswered } from "@/db/preview";
 import { countQuestionsAnswered, getSubscription } from "@/db/subscriptions";
 import { hasActiveSubscription, remainingFreeQuestions } from "@/lib/billing/access-policy";
-import { getSiteSettings } from "@/db/settings";
+import { getSiteSettings, overrideItem } from "@/db/settings";
 import { getPreviewVisitorId } from "@/lib/auth/preview-visitor";
 import { getCurrentUser } from "@/lib/auth/session";
 import type { AnswerVerdict } from "@/lib/practice-test-types";
@@ -106,7 +106,7 @@ export default async function ClassTestPage({ params, searchParams }: PageProps)
   let previewLimitReached = false;
 
   try {
-    ratingClass = await getClassRating(classCode);
+    ratingClass = await getClassRating(classCode).then((row) => overrideItem("class-rating", row));
     if (!ratingClass) notFound();
 
     user = await getCurrentUser();

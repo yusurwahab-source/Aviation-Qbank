@@ -18,7 +18,7 @@ import { countPreviewQuestionsAnswered } from "@/db/preview";
 import { getQuestionIdsToRetry, getTopicPerformance } from "@/db/reports";
 import { countQuestionsAnswered, getSubscription } from "@/db/subscriptions";
 import { hasActiveSubscription, remainingFreeQuestions } from "@/lib/billing/access-policy";
-import { getSiteSettings } from "@/db/settings";
+import { getSiteSettings, overrideItem } from "@/db/settings";
 import { getPreviewVisitorId } from "@/lib/auth/preview-visitor";
 import { getCurrentUser } from "@/lib/auth/session";
 import { studyGuideHref } from "@/lib/study-guide";
@@ -63,7 +63,7 @@ export default async function AircraftPage({ params }: PageProps) {
   let presets: BuilderPresets | null = null;
 
   try {
-    [plane, topics] = await Promise.all([getAircraft(aircraftCode), listTopics(aircraftCode)]);
+    [plane, topics] = await Promise.all([getAircraft(aircraftCode).then((row) => overrideItem("type-rating", row)), listTopics(aircraftCode)]);
 
     const user = await getCurrentUser();
     if (user) {

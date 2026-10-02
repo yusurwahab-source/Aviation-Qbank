@@ -30,6 +30,8 @@ const base = {
   aircraftInDevelopment: ["DA40"],
   hiddenSections: [] as SectionKey[],
   hiddenItems: [] as string[],
+  sectionLabels: {},
+  itemOverrides: {},
 };
 
 describeDb("site settings", () => {

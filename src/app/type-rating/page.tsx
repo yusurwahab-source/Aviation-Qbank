@@ -1,4 +1,4 @@
-import { withoutHidden } from "@/lib/settings";
+import { sectionTitle, withItemOverrides, withoutHidden } from "@/lib/settings";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -40,11 +40,11 @@ export default async function TypeRatingPickerPage() {
   let fleet: AircraftSummary[];
 
   try {
-    fleet = withoutHidden(await getSiteSettings(), "type-rating", await listAircraft());
+    fleet = withItemOverrides(await getSiteSettings(), "type-rating", withoutHidden(await getSiteSettings(), "type-rating", await listAircraft()));
   } catch (error) {
     return (
       <>
-        <PageHeading eyebrow="Type Rating Systems Knowledge" title="Choose an aircraft" />
+        <PageHeading eyebrow={sectionTitle(await getSiteSettings(), "type-rating")} title="Choose an aircraft" />
         <DatabaseUnavailable detail={(error as Error).message} />
       </>
     );
@@ -55,7 +55,7 @@ export default async function TypeRatingPickerPage() {
   return (
     <>
       <PageHeading
-        eyebrow="Type Rating Systems Knowledge"
+        eyebrow={sectionTitle(await getSiteSettings(), "type-rating")}
         title="Choose an aircraft"
         subtitle="Pick an aircraft to start a practice test. Each type has its own question bank."
       />
