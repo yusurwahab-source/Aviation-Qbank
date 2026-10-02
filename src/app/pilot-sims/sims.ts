@@ -19,6 +19,13 @@ export const PILOT_SIMS: readonly PilotSim[] = [
       "Drag the aircraft around the fix and read the entry — direct, teardrop or parallel — off the heading, or take a test from an ATC clearance and set the inbound course on the HSI yourself.",
     file: "/pilot-sims/holding-trainer.html",
   },
+  {
+    slug: "vor-ndb-trainer",
+    name: "VOR/NDB Trainer",
+    description:
+      "Practice navigation using VOR and NDB signals. Interpret OBS settings, TO/FROM flags, and track courses using radio navigation aids.",
+    file: "/pilot-sims/vor-ndb.html",
+  },
 ];
 
 export function findPilotSim(slug: string): PilotSim | undefined {
