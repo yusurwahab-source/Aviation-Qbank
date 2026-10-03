@@ -36,7 +36,7 @@ export function OwnerNav({ current }: { current: string }) {
             className={`min-h-11 rounded-lg px-4 py-2.5 text-sm font-medium transition ${
               active
                 ? "bg-brand text-on-solid"
-                : "border border-border bg-surface text-muted-foreground hover:border-brand hover:text-brand"
+                : "border border-border bg-surface text-muted-foreground hover:border-brand hover:text-brand-ink"
             }`}
           >
             {link.label}

@@ -93,13 +93,13 @@ export default async function ClassRatingPickerPage() {
       <p className="mt-6 flex flex-wrap gap-4">
         <Link
           href="/type-rating"
-          className="link-standalone text-sm font-medium text-brand hover:underline"
+          className="link-standalone text-sm font-medium text-brand-ink hover:underline"
         >
           ← Type ratings
         </Link>
         <Link
           href="/flying-knowledge"
-          className="link-standalone text-sm font-medium text-brand hover:underline"
+          className="link-standalone text-sm font-medium text-brand-ink hover:underline"
         >
           Or Flying Knowledge →
         </Link>
@@ -119,7 +119,7 @@ function ClassCard({ ratingClass }: { ratingClass: ClassRatingSummary }) {
     >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="font-mono text-xs font-semibold uppercase tracking-wider text-brand">
+          <p className="font-mono text-xs font-semibold uppercase tracking-wider text-brand-ink">
             {ratingClass.code}
           </p>
           <h2 className="mt-1 text-lg font-semibold text-foreground">{ratingClass.name}</h2>

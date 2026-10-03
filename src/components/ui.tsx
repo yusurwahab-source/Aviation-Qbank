@@ -15,7 +15,7 @@ export function PageHeading({
   return (
     <div className="mb-6">
       {eyebrow ? (
-        <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-brand">
+        <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-brand-ink">
           {eyebrow}
         </p>
       ) : null}
@@ -54,7 +54,7 @@ export function Badge({
 }) {
   const tones = {
     neutral: "bg-surface-muted text-muted-foreground",
-    brand: "bg-brand-soft text-brand",
+    brand: "bg-brand-soft text-brand-ink",
     correct: "bg-correct-soft text-correct",
     incorrect: "bg-incorrect-soft text-incorrect",
     warning: "bg-warning-soft text-warning",

@@ -146,7 +146,7 @@ function RevokeConfirm({ email, onCancel }: { email: string; onCancel: () => voi
           name="intent"
           value="revoke"
           disabled={pending}
-          className="min-h-11 rounded-lg bg-incorrect px-4 py-2 text-xs font-semibold text-on-solid transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+          className="min-h-11 rounded-lg bg-incorrect px-4 py-2 text-xs font-semibold text-on-danger transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {pending ? "Working…" : "Yes, revoke"}
         </button>

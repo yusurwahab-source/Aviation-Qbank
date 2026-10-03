@@ -183,7 +183,7 @@ export default async function OwnerInsightsPage() {
 
       <div className="mb-3 mt-6 flex items-baseline justify-between gap-3">
         <h2 className="text-lg font-semibold text-foreground">Aircraft requests</h2>
-        <Link href="/owner/interest" className="text-sm text-brand hover:underline">
+        <Link href="/owner/interest" className="text-sm text-brand-ink hover:underline">
           See all →
         </Link>
       </div>
@@ -194,7 +194,7 @@ export default async function OwnerInsightsPage() {
             {interestTally.map((row) => (
               <li key={row.aircraft} className="flex items-baseline justify-between gap-4 text-sm">
                 <span className="text-foreground">{row.aircraft}</span>
-                <span className="tabular-nums font-semibold text-brand">{row.requests}</span>
+                <span className="tabular-nums font-semibold text-brand-ink">{row.requests}</span>
               </li>
             ))}
           </ul>

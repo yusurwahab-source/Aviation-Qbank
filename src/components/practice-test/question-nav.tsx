@@ -33,7 +33,7 @@ import {
 
 const TILE_TONES: Record<QuestionStatus, string> = {
   unanswered: "border-border bg-surface text-muted-foreground hover:border-brand",
-  answered: "border-brand bg-brand-soft text-brand",
+  answered: "border-brand bg-brand-soft text-brand-ink",
   correct: "border-correct bg-correct-soft text-correct",
   incorrect: "border-incorrect bg-incorrect-soft text-incorrect",
 };
@@ -98,7 +98,7 @@ export function QuestionNav({
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="tap-target -mr-2 inline-flex items-center justify-center rounded-lg text-muted-foreground transition hover:text-brand"
+            className="tap-target -mr-2 inline-flex items-center justify-center rounded-lg text-muted-foreground transition hover:text-brand-ink"
           >
             <svg
               viewBox="0 0 24 24"
@@ -148,7 +148,7 @@ export function QuestionNav({
           <button
             type="button"
             onClick={() => onJump(nextGap)}
-            className="link-standalone mt-3 text-sm font-medium text-brand hover:underline"
+            className="link-standalone mt-3 text-sm font-medium text-brand-ink hover:underline"
           >
             Go to the next unanswered question →
           </button>

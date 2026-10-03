@@ -111,8 +111,8 @@ export function QuestionNote({
         onClick={() => setOpen((value) => !value)}
         className={`tap-target inline-flex items-center gap-1.5 rounded-lg border px-3 text-sm font-medium transition ${
           hasNote
-            ? "border-accent bg-accent-soft text-accent"
-            : "border-border text-muted-foreground hover:border-accent hover:text-accent"
+            ? "border-accent bg-accent-soft text-accent-ink"
+            : "border-border text-muted-foreground hover:border-accent hover:text-accent-ink"
         }`}
       >
         <svg

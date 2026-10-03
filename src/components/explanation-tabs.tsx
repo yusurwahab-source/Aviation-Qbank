@@ -26,7 +26,7 @@ export function ExplanationTabs({
           className={`flex-1 rounded-lg px-4 py-3 text-sm font-semibold transition ${
             showQuestion
               ? 'bg-brand text-on-solid'
-              : 'border border-border bg-surface text-foreground hover:border-brand hover:text-brand'
+              : 'border border-border bg-surface text-foreground hover:border-brand hover:text-brand-ink'
           }`}
         >
           <span className="mr-2">❓</span>
@@ -37,7 +37,7 @@ export function ExplanationTabs({
           className={`flex-1 rounded-lg px-4 py-3 text-sm font-semibold transition ${
             !showQuestion
               ? 'bg-brand text-on-solid'
-              : 'border border-border bg-surface text-foreground hover:border-brand hover:text-brand'
+              : 'border border-border bg-surface text-foreground hover:border-brand hover:text-brand-ink'
           }`}
         >
           <span className="mr-2">📚</span>

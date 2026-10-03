@@ -200,7 +200,7 @@ export default async function FlyingKnowledgeTestPage({ params, searchParams }: 
               The last time you saw each question, you got it right.{" "}
               <Link
                 href={buildFlyingKnowledgeTestHref(subject.code)}
-                className="font-medium text-brand hover:underline"
+                className="font-medium text-brand-ink hover:underline"
               >
                 Take a normal quiz
               </Link>{" "}
@@ -211,7 +211,7 @@ export default async function FlyingKnowledgeTestPage({ params, searchParams }: 
               Flag a question mid-quiz to come back to it later.{" "}
               <Link
                 href={buildFlyingKnowledgeTestHref(subject.code)}
-                className="font-medium text-brand hover:underline"
+                className="font-medium text-brand-ink hover:underline"
               >
                 Take a normal quiz
               </Link>{" "}
@@ -222,7 +222,7 @@ export default async function FlyingKnowledgeTestPage({ params, searchParams }: 
               That is every question in this subject, at least once.{" "}
               <Link
                 href={buildFlyingKnowledgeTestHref(subject.code)}
-                className="font-medium text-brand hover:underline"
+                className="font-medium text-brand-ink hover:underline"
               >
                 Take a normal quiz
               </Link>{" "}
@@ -233,7 +233,7 @@ export default async function FlyingKnowledgeTestPage({ params, searchParams }: 
               Check the topic name, or{" "}
               <Link
                 href={`/flying-knowledge/${subject.code}`}
-                className="font-medium text-brand hover:underline"
+                className="font-medium text-brand-ink hover:underline"
               >
                 choose different topics
               </Link>
@@ -242,7 +242,7 @@ export default async function FlyingKnowledgeTestPage({ params, searchParams }: 
           ) : (
             <Link
               href={`/flying-knowledge/${subject.code}`}
-              className="font-medium text-brand hover:underline"
+              className="font-medium text-brand-ink hover:underline"
             >
               Back to {subject.code}
             </Link>

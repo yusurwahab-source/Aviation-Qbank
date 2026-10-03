@@ -37,7 +37,7 @@ export function ProgressReport({ data }: { data: ProgressReportData }) {
       <EmptyState title="No practice recorded yet">
         Take a test while signed in and it will appear here — your score, how each topic
         went, and the questions worth another look.{" "}
-        <Link href="/" className="font-medium text-brand hover:underline">
+        <Link href="/" className="font-medium text-brand-ink hover:underline">
           Choose a section to practise
         </Link>
       </EmptyState>
@@ -103,7 +103,7 @@ export function ProgressReport({ data }: { data: ProgressReportData }) {
               {aircraftCode ? (
                 <Link
                   href={buildTestHref(aircraftCode, { topics: [topic.topic] })}
-                  className="link-standalone mt-3 text-sm font-medium text-brand hover:underline"
+                  className="link-standalone mt-3 text-sm font-medium text-brand-ink hover:underline"
                 >
                   Practise {topic.topic} →
                 </Link>
@@ -135,7 +135,7 @@ export function ProgressReport({ data }: { data: ProgressReportData }) {
                   <Card className="h-full transition hover:border-brand">
                     <div className="flex items-start justify-between gap-3">
                       <div>
-                        <p className="font-mono text-xs font-semibold uppercase tracking-wider text-brand">
+                        <p className="font-mono text-xs font-semibold uppercase tracking-wider text-brand-ink">
                           {plane.code}
                         </p>
                         <p className="mt-1 font-medium text-foreground">{plane.name}</p>

@@ -27,9 +27,9 @@ export function SiteFooter() {
           <div className="max-w-sm">
             <Link
               href="/"
-              className="tap-target inline-flex items-center rounded-lg text-foreground transition hover:text-brand"
+              className="tap-target inline-flex items-center rounded-lg text-foreground transition hover:text-brand-ink"
             >
-              <Logo markClassName="h-6 w-6 text-brand" />
+              <Logo markClassName="h-6 w-6 text-brand-ink" />
             </Link>
             <p className="mt-2 text-sm text-muted-foreground">{siteConfig.tagline}</p>
             <p className="mt-1 text-xs text-subtle-foreground">
@@ -46,7 +46,7 @@ export function SiteFooter() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="tap-target inline-flex items-center text-sm text-muted-foreground transition hover:text-brand"
+                    className="tap-target inline-flex items-center text-sm text-muted-foreground transition hover:text-brand-ink"
                   >
                     {link.label}
                   </Link>

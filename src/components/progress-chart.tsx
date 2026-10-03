@@ -67,8 +67,8 @@ export function ProgressChart({ scores }: { scores: TestScore[] }) {
         >
           <defs>
             <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="var(--brand)" stopOpacity="0.16" />
-              <stop offset="100%" stopColor="var(--brand)" stopOpacity="0.02" />
+              <stop offset="0%" stopColor="var(--brand-ink)" stopOpacity="0.16" />
+              <stop offset="100%" stopColor="var(--brand-ink)" stopOpacity="0.02" />
             </linearGradient>
           </defs>
 
@@ -104,7 +104,7 @@ export function ProgressChart({ scores }: { scores: TestScore[] }) {
             <path
               d={linePath}
               fill="none"
-              stroke="var(--brand)"
+              stroke="var(--brand-ink)"
               strokeWidth="2"
               strokeLinejoin="round"
               strokeLinecap="round"
@@ -133,7 +133,7 @@ export function ProgressChart({ scores }: { scores: TestScore[] }) {
                 cx={point.x}
                 cy={point.y}
                 r={hovered === i ? 6 : 4}
-                fill="var(--brand)"
+                fill="var(--brand-ink)"
                 stroke="var(--surface)"
                 strokeWidth="2"
               />
@@ -206,7 +206,7 @@ export function ProgressChart({ scores }: { scores: TestScore[] }) {
       <button
         type="button"
         onClick={() => setShowTable((v) => !v)}
-        className="link-standalone mt-1 text-sm font-medium text-brand hover:underline"
+        className="link-standalone mt-1 text-sm font-medium text-brand-ink hover:underline"
         aria-expanded={showTable}
       >
         {showTable ? "Hide the numbers" : "Show the numbers"}

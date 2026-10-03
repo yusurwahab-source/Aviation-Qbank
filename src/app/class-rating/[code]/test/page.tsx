@@ -230,7 +230,7 @@ export default async function ClassTestPage({ params, searchParams }: PageProps)
           {freeLimitReached ? (
             <>
               Subscribe for unlimited questions on every aircraft and class.{" "}
-              <Link href="/upgrade" className="font-medium text-brand hover:underline">
+              <Link href="/upgrade" className="font-medium text-brand-ink hover:underline">
                 Upgrade
               </Link>
             </>
@@ -238,7 +238,7 @@ export default async function ClassTestPage({ params, searchParams }: PageProps)
             <>
               Signing up is free and gives you more questions, plus your results, flags and
               notes.{" "}
-              <Link href="/signup" className="font-medium text-brand hover:underline">
+              <Link href="/signup" className="font-medium text-brand-ink hover:underline">
                 Create an account
               </Link>
             </>
@@ -247,7 +247,7 @@ export default async function ClassTestPage({ params, searchParams }: PageProps)
               The last time you saw each question, you got it right.{" "}
               <Link
                 href={buildClassTestHref(ratingClass.code)}
-                className="font-medium text-brand hover:underline"
+                className="font-medium text-brand-ink hover:underline"
               >
                 Take a normal test
               </Link>{" "}
@@ -258,7 +258,7 @@ export default async function ClassTestPage({ params, searchParams }: PageProps)
               Flag a question mid-test to come back to it later.{" "}
               <Link
                 href={buildClassTestHref(ratingClass.code)}
-                className="font-medium text-brand hover:underline"
+                className="font-medium text-brand-ink hover:underline"
               >
                 Take a normal test
               </Link>{" "}
@@ -269,7 +269,7 @@ export default async function ClassTestPage({ params, searchParams }: PageProps)
               That is every question in this class, at least once.{" "}
               <Link
                 href={buildClassTestHref(ratingClass.code)}
-                className="font-medium text-brand hover:underline"
+                className="font-medium text-brand-ink hover:underline"
               >
                 Take a normal test
               </Link>{" "}
@@ -280,14 +280,14 @@ export default async function ClassTestPage({ params, searchParams }: PageProps)
               Check the section name, or{" "}
               <Link
                 href={`/class-rating/${ratingClass.code}`}
-                className="font-medium text-brand hover:underline"
+                className="font-medium text-brand-ink hover:underline"
               >
                 choose different sections
               </Link>
               .
             </>
           ) : (
-            <Link href={`/class-rating/${ratingClass.code}`} className="font-medium text-brand hover:underline">
+            <Link href={`/class-rating/${ratingClass.code}`} className="font-medium text-brand-ink hover:underline">
               Back to {ratingClass.code}
             </Link>
           )}

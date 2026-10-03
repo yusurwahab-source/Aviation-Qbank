@@ -34,7 +34,7 @@ export function ShortcutsOverlay({ onClose }: { onClose: () => void }) {
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="tap-target -mr-2 inline-flex items-center justify-center rounded-lg text-muted-foreground transition hover:text-brand"
+            className="tap-target -mr-2 inline-flex items-center justify-center rounded-lg text-muted-foreground transition hover:text-brand-ink"
           >
             <svg
               viewBox="0 0 24 24"

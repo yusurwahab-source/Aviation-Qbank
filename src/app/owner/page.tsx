@@ -59,7 +59,7 @@ export default async function OwnerPage() {
 
       <p className="mt-6 text-sm text-muted-foreground">
         See signup and access trends, expiring subscriptions, and question quality signals at{" "}
-        <Link href="/owner/insights" className="text-brand hover:underline">
+        <Link href="/owner/insights" className="text-brand-ink hover:underline">
           Insights
         </Link>
         .

@@ -100,7 +100,7 @@ export function AuthForm({
               {passwordAside ? (
                 <Link
                   href={passwordAside.href}
-                  className="text-sm font-medium text-brand hover:underline"
+                  className="text-sm font-medium text-brand-ink hover:underline"
                 >
                   {passwordAside.label}
                 </Link>
@@ -138,7 +138,7 @@ export function AuthForm({
 
       <p className="mt-5 text-center text-sm text-muted-foreground">
         {footer.text}{" "}
-        <Link href={footer.href} className="font-medium text-brand hover:underline">
+        <Link href={footer.href} className="font-medium text-brand-ink hover:underline">
           {footer.linkLabel}
         </Link>
       </p>

@@ -46,7 +46,7 @@ export default function HoldingPatternEntryTrainerPage() {
       <p className="mt-6">
         <Link
           href="/pilot-sims"
-          className="link-standalone text-sm font-medium text-brand hover:underline"
+          className="link-standalone text-sm font-medium text-brand-ink hover:underline"
         >
           ← All simulators
         </Link>

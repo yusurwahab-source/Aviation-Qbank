@@ -72,7 +72,7 @@ function LinkProblem({ reason }: { reason: string }) {
         Nothing has changed on your account. Ask for a new link and use it within the hour.
       </p>
       <p className="mt-6 text-center text-sm">
-        <Link href="/forgot-password" className="font-medium text-brand hover:underline">
+        <Link href="/forgot-password" className="font-medium text-brand-ink hover:underline">
           Send a new link
         </Link>
       </p>

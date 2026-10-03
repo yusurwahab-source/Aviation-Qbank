@@ -62,7 +62,7 @@ export function MobileNav({ email, links }: { email: string | null; links: NavLi
         onClick={() => setOpen(true)}
         aria-expanded={open}
         aria-label="Open menu"
-        className="tap-target inline-flex items-center justify-center rounded-lg border border-border text-foreground transition hover:border-brand hover:text-brand md:hidden"
+        className="tap-target inline-flex items-center justify-center rounded-lg border border-border text-foreground transition hover:border-brand hover:text-brand-ink md:hidden"
       >
         <svg
           viewBox="0 0 24 24"
@@ -110,7 +110,7 @@ export function MobileNav({ email, links }: { email: string | null; links: NavLi
                     type="button"
                     onClick={() => setOpen(false)}
                     aria-label="Close menu"
-                    className="tap-target -mr-2 inline-flex items-center justify-center rounded-lg text-muted-foreground transition hover:text-brand"
+                    className="tap-target -mr-2 inline-flex items-center justify-center rounded-lg text-muted-foreground transition hover:text-brand-ink"
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -131,8 +131,8 @@ export function MobileNav({ email, links }: { email: string | null; links: NavLi
                     <Link
                       key={link.href}
                       href={link.href}
-                      className={`tap-target flex items-center border-b border-border text-base font-medium transition hover:text-brand ${
-                        pathname === link.href ? "text-brand" : "text-foreground"
+                      className={`tap-target flex items-center border-b border-border text-base font-medium transition hover:text-brand-ink ${
+                        pathname === link.href ? "text-brand-ink" : "text-foreground"
                       }`}
                     >
                       {link.label}
@@ -149,7 +149,7 @@ export function MobileNav({ email, links }: { email: string | null; links: NavLi
                       <form action={logOut} className="mt-2">
                         <button
                           type="submit"
-                          className="tap-target w-full rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+                          className="tap-target w-full rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink"
                         >
                           Sign out
                         </button>
@@ -159,7 +159,7 @@ export function MobileNav({ email, links }: { email: string | null; links: NavLi
                     <div className="flex flex-col gap-2">
                       <Link
                         href="/login"
-                        className="tap-target flex items-center justify-center rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+                        className="tap-target flex items-center justify-center rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink"
                       >
                         Log in
                       </Link>

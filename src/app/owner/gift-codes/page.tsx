@@ -70,7 +70,7 @@ export default async function OwnerGiftCodesPage() {
         </h2>
         <Link
           href="/owner/gift-codes/export"
-          className="min-h-9 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-foreground transition hover:border-brand hover:text-brand"
+          className="min-h-9 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-foreground transition hover:border-brand hover:text-brand-ink"
         >
           Download all as CSV
         </Link>
@@ -87,7 +87,7 @@ export default async function OwnerGiftCodesPage() {
 
           return [
             <span key="code">
-              <Link href={`/owner/gift-codes/${code.id}`} className="font-mono text-xs text-brand hover:underline">
+              <Link href={`/owner/gift-codes/${code.id}`} className="font-mono text-xs text-brand-ink hover:underline">
                 {code.code}
               </Link>
               {code.unlocksAircraftCode ? (

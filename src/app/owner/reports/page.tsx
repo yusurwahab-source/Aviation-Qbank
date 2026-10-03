@@ -89,7 +89,7 @@ export default async function OwnerReportsPage({
                   className={`min-h-9 rounded-lg px-3 py-1.5 text-xs font-medium transition ${
                     active
                       ? "bg-brand text-on-solid"
-                      : "border border-border text-muted-foreground hover:border-brand hover:text-brand"
+                      : "border border-border text-muted-foreground hover:border-brand hover:text-brand-ink"
                   }`}
                 >
                   {filter.label}
@@ -99,7 +99,7 @@ export default async function OwnerReportsPage({
           </div>
           <Link
             href="/owner/reports/export"
-            className="min-h-9 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-foreground transition hover:border-brand hover:text-brand"
+            className="min-h-9 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-foreground transition hover:border-brand hover:text-brand-ink"
           >
             Export CSV
           </Link>

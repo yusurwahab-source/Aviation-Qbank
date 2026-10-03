@@ -43,11 +43,11 @@ export function UserMenu({ email }: { email: string }) {
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
         aria-haspopup="menu"
-        className="tap-target flex items-center gap-2 rounded-lg border border-border px-3 text-sm font-medium text-foreground transition hover:border-brand hover:text-brand"
+        className="tap-target flex items-center gap-2 rounded-lg border border-border px-3 text-sm font-medium text-foreground transition hover:border-brand hover:text-brand-ink"
       >
         <span
           aria-hidden="true"
-          className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-soft text-xs font-bold uppercase text-brand"
+          className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-soft text-xs font-bold uppercase text-brand-ink"
         >
           {email.slice(0, 1)}
         </span>
@@ -81,7 +81,7 @@ export function UserMenu({ email }: { email: string }) {
             <button
               type="submit"
               role="menuitem"
-              className="tap-target flex w-full items-center px-4 text-left text-sm font-medium text-foreground transition hover:bg-surface-muted hover:text-brand"
+              className="tap-target flex w-full items-center px-4 text-left text-sm font-medium text-foreground transition hover:bg-surface-muted hover:text-brand-ink"
             >
               Sign out
             </button>
