@@ -56,7 +56,7 @@ export function ForgotForm({ emailConfigured }: { emailConfigured: boolean }) {
           the only one that works.
         </p>
         <p className="mt-6 text-center text-sm text-muted-foreground">
-          <Link href="/login" className="font-medium text-brand hover:underline">
+          <Link href="/login" className="font-medium text-brand-ink hover:underline">
             Back to log in
           </Link>
         </p>
@@ -123,7 +123,7 @@ export function ForgotForm({ emailConfigured }: { emailConfigured: boolean }) {
 
       <p className="mt-5 text-center text-sm text-muted-foreground">
         Remembered it?{" "}
-        <Link href="/login" className="font-medium text-brand hover:underline">
+        <Link href="/login" className="font-medium text-brand-ink hover:underline">
           Log in
         </Link>
       </p>

@@ -30,7 +30,7 @@ export async function SectionLinks({ className = "" }: { className?: string }) {
       {isSectionHidden(settings, "class-rating") ? null : (
         <Link
           href="/class-rating"
-          className="tap-target inline-flex w-full items-center justify-center rounded-lg border border-border px-6 text-center text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand sm:w-auto"
+          className="tap-target inline-flex w-full items-center justify-center rounded-lg border border-border px-6 text-center text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink sm:w-auto"
         >
           {sectionTitle(settings, "class-rating")}
         </Link>
@@ -38,7 +38,7 @@ export async function SectionLinks({ className = "" }: { className?: string }) {
       {isSectionHidden(settings, "flying-knowledge") ? null : (
         <Link
           href="/flying-knowledge"
-          className="tap-target inline-flex w-full items-center justify-center rounded-lg border border-border px-6 text-center text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand sm:w-auto"
+          className="tap-target inline-flex w-full items-center justify-center rounded-lg border border-border px-6 text-center text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink sm:w-auto"
         >
           {sectionTitle(settings, "flying-knowledge")}
         </Link>

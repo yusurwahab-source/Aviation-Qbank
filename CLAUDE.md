@@ -301,12 +301,26 @@ application looks is an edit to one file. There is not a single hardcoded
 palette colour anywhere in `src/`, and adding one would be the wrong
 change.
 
-The palette is a dark flight deck: near-black navy behind, panels lifted
-out of it in steps rather than by shadow, and one restrained instrument
-cyan as the only accent. Semantic colour is kept pure and separate from
+The palette is **Aviation Classic**: Deep Navy (`#1A2536`) behind, panels
+lifted out of it in steps rather than by shadow, pure white text, and one
+accent, Aviation Yellow (`#FBC02D`). Light theme is `#F8F9FA` with carbon
+`#212529` text. Yellow is for the thing to do next (primary buttons), where
+you are (the active header link) and how far along you are (progress);
+it is never right or wrong. Semantic colour is kept pure and separate from
 that accent — success, danger, warning and flag each mean exactly one
-thing — so "this is important" and "this is correct" can never be
+thing, and the warning is orange rather than amber so it cannot be read as
+the accent — so "this is important" and "this is correct" can never be
 confused with each other.
+
+**Yellow is a fill, not a text colour, on a pale surface.** `#FBC02D` on
+white is 1.7:1. `--accent` is the fill (navy `--on-solid` text on it, 9.3:1
+in both themes); `--accent-ink` — `text-brand-ink` — is the same hue for
+text, lines and chart marks, and deepens to `#7A5400` in light. Anything
+that is text or a stroke uses the ink, anything that is a fill uses
+`bg-brand`. `--on-danger` is the one on-fill token that still flips with
+the theme. `manifest.ts`, `layout.tsx`'s `themeColor`, the social card and
+the icon cannot read CSS variables, so they carry the same hex values by
+hand — change them with the palette.
 
 The scales are deliberately short: seven type sizes (12/14/16/18/24/32/40),
 four radii, two shadow levels. Spacing rides on Tailwind's own 4px step

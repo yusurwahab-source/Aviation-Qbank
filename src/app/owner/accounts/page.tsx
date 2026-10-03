@@ -133,7 +133,7 @@ async function renderAccounts(query: {
                 className={`min-h-9 rounded-lg px-3 py-1.5 text-xs font-medium transition ${
                   active
                     ? "bg-brand text-on-solid"
-                    : "border border-border text-muted-foreground hover:border-brand hover:text-brand"
+                    : "border border-border text-muted-foreground hover:border-brand hover:text-brand-ink"
                 }`}
               >
                 {filter.label}
@@ -169,7 +169,7 @@ async function renderAccounts(query: {
 
           return [
             <span key="account">
-              <Link href={`/owner/accounts/${account.id}`} className="font-medium text-brand hover:underline">
+              <Link href={`/owner/accounts/${account.id}`} className="font-medium text-brand-ink hover:underline">
                 <span className="block break-all">{account.email}</span>
               </Link>
               <span className="mt-1 block text-xs text-muted-foreground">
@@ -227,7 +227,7 @@ async function renderAccounts(query: {
           {page > 1 ? (
             <Link
               href={pageHref(page - 1)}
-              className="min-h-11 rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-foreground transition hover:border-brand hover:text-brand"
+              className="min-h-11 rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-foreground transition hover:border-brand hover:text-brand-ink"
             >
               ← Previous
             </Link>
@@ -237,7 +237,7 @@ async function renderAccounts(query: {
           {page < totalPages ? (
             <Link
               href={pageHref(page + 1)}
-              className="min-h-11 rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-foreground transition hover:border-brand hover:text-brand"
+              className="min-h-11 rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-foreground transition hover:border-brand hover:text-brand-ink"
             >
               Next →
             </Link>

@@ -19,59 +19,66 @@
  *      any root carrying the attribute.
  *
  * SOLID FILLS
- * `--on-solid` is the text colour that sits on top of any solid brand or
- * semantic fill. It flips with the theme because the fills do: dark theme
- * uses bright accents (dark text on top), light theme uses deep ones (white
- * text on top). That is what keeps a primary button legible in both themes
- * from one class name.
+ * `--on-solid` is the text colour on the yellow accent fill: Deep Navy in
+ * both themes (9.3:1), because the yellow is the same in both. `--on-danger`
+ * is the one that still flips — light theme's red is deep, so it takes white.
  * ========================================================================= */
 
 :root {
   color-scheme: dark;
 
-  /* ── Surfaces ─────────────────────────────────────────────────────────
-   * A flight deck at night: near-black navy behind, panels lifted out of it
-   * in steps rather than by shadow, which is what reads as instrumentation
-   * rather than as paper. */
-  --background: #080c14;
-  --surface: #0f1622;
-  --surface-elevated: #161f2e;
-  --surface-muted: #1a2433;
-  --border: #243044;
+  /* ── Surfaces: Aviation Classic ───────────────────────────────────────
+   * The page itself is Deep Navy (#1A2536). Panels lift out of it in steps
+   * rather than by shadow, which is what reads as instrumentation rather
+   * than as paper: surface → elevated → muted, each one step lighter. */
+  --background: #1a2536;
+  --surface: #202d42;
+  --surface-elevated: #27364e;
+  --surface-muted: #2e3e58;
+  --border: #3a4b66;
 
-  /* ── Text ───────────────────────────────────────────────────────────── */
-  --foreground: #e8eef7;
-  --muted-foreground: #96a5bc;
-  /* #64748b measured 3.48:1 against --surface-elevated, short of WCAG AA's
-   * 4.5:1 for normal-size text — caught by a Lighthouse accessibility audit
-   * of the footer, which uses this token at 12px. Lightened just enough to
-   * clear 4.5:1 against every surface it actually sits on, still dimmer
-   * than --muted-foreground so the two-tier hierarchy holds. */
-  --subtle-foreground: #7f8ea6;
+  /* ── Text ───────────────────────────────────────────────────────────────
+   * Pure white on navy (15.4:1). The two quieter tiers are measured, not
+   * eyeballed: --muted-foreground clears 6:1 and --subtle-foreground 4.8:1
+   * against the lightest surface they sit on (--surface-muted), so both
+   * stay above WCAG AA's 4.5:1 for small text. */
+  --foreground: #ffffff;
+  --muted-foreground: #b8c2d1;
+  --subtle-foreground: #a3afc2;
 
-  /* ── Accent: the instrument cyan ───────────────────────────────────────
-   * One accent, desaturated well short of neon — the cyan of a PFD speed
-   * tape, not of a highlighter. Deliberately nothing near a stock
-   * framework blue. */
-  --accent: #3ab7cc;
-  --accent-hover: #5cc9db;
-  --accent-soft: color-mix(in oklab, var(--accent) 16%, var(--surface));
+  /* ── Accent: Aviation Yellow ───────────────────────────────────────────
+   * #FBC02D, the one accent. Used for the thing to do next (primary
+   * buttons), where you are (the active nav item) and how far along you are
+   * (progress). It never means right or wrong — see the semantic colours
+   * below, which are kept well away from it on purpose.
+   *
+   * --accent-ink is the same hue for *text, lines and icons on a surface*.
+   * In dark it is the accent itself; in light, yellow on white is 1.7:1, so
+   * it deepens to a gold that reads. Fills use --accent, ink uses this. */
+  --accent: #fbc02d;
+  --accent-hover: #ffd04f;
+  --accent-ink: #fbc02d;
+  --accent-soft: color-mix(in oklab, var(--accent) 14%, var(--surface));
 
   /* ── Semantic state ───────────────────────────────────────────────────
-   * Pure: green means right, red means wrong, amber is a caution, violet is
-   * a marker the student set themselves. None of them is ever the accent,
-   * so "this is important" and "this is correct" can never be confused. */
-  --success: #22c55e;
+   * Pure: green means right, red means wrong, orange is a caution, violet
+   * is a marker the student set themselves. The warning is orange rather
+   * than amber precisely so it can never be mistaken for the yellow
+   * accent. Each is lightened just enough to clear 4.5:1 on --surface-
+   * elevated, where answer feedback is actually drawn. */
+  --success: #4ade80;
   --success-soft: color-mix(in oklab, var(--success) 15%, var(--surface));
-  --danger: #f2555a;
+  --danger: #ff7a7f;
   --danger-soft: color-mix(in oklab, var(--danger) 15%, var(--surface));
-  --warning: #f5a524;
+  --warning: #ff8a3d;
   --warning-soft: color-mix(in oklab, var(--warning) 15%, var(--surface));
-  --flag: #a78bfa;
+  --flag: #b79dfb;
   --flag-soft: color-mix(in oklab, var(--flag) 15%, var(--surface));
 
-  /* Text on a solid accent or semantic fill. See the note above. */
-  --on-solid: #05121a;
+  /* Text on a solid fill. Navy on yellow is 9.3:1 and navy on the lighter
+   * semantic fills here is comfortably above AA; see the note above. */
+  --on-solid: #1a2536;
+  --on-danger: #1a2536;
 
   /* ── Shadows ───────────────────────────────────────────────────────────
    * Two levels, and no more. On a dark theme a shadow is mostly a darker
@@ -86,31 +93,37 @@
   :root:not([data-theme]) {
     color-scheme: light;
 
-    --background: #f6f8fb;
+    --background: #f8f9fa;
     --surface: #ffffff;
     --surface-elevated: #ffffff;
-    --surface-muted: #eef2f7;
-    --border: #dde4ed;
+    --surface-muted: #e9ecef;
+    --border: #dee2e6;
 
-    --foreground: #0d1725;
-    --muted-foreground: #4a5a70;
+    --foreground: #212529;
+    --muted-foreground: #5c636a;
     /* See the note beside :root's --subtle-foreground — same WCAG AA fix. */
-    --subtle-foreground: #56667c;
+    --subtle-foreground: #646b72;
 
-    --accent: #0e7490;
-    --accent-hover: #0b5f77;
-    --accent-soft: color-mix(in oklab, var(--accent) 10%, var(--surface));
+    /* Yellow stays the fill; text and lines on a pale surface use the deeper
+     * gold --accent-ink (6.4:1 on #F8F9FA), because yellow itself is 1.7:1. */
+    --accent: #fbc02d;
+    --accent-hover: #f9a825;
+    --accent-ink: #7a5400;
+    --accent-soft: color-mix(in oklab, var(--accent) 22%, var(--surface));
 
     --success: #15803d;
     --success-soft: color-mix(in oklab, var(--success) 10%, var(--surface));
     --danger: #be123c;
     --danger-soft: color-mix(in oklab, var(--danger) 10%, var(--surface));
-    --warning: #b45309;
+    --warning: #c2410c;
     --warning-soft: color-mix(in oklab, var(--warning) 10%, var(--surface));
     --flag: #7c3aed;
     --flag-soft: color-mix(in oklab, var(--flag) 10%, var(--surface));
 
-    --on-solid: #ffffff;
+    /* Navy on the yellow accent; white on the deep red, which a navy label
+     * would not clear. */
+    --on-solid: #1a2536;
+    --on-danger: #ffffff;
 
     --shadow-1: 0 1px 2px 0 rgb(13 23 37 / 0.06);
     --shadow-2: 0 10px 28px -8px rgb(13 23 37 / 0.14), 0 2px 6px -2px rgb(13 23 37 / 0.08);
@@ -123,31 +136,37 @@
 :root[data-theme="light"] {
   color-scheme: light;
 
-  --background: #f6f8fb;
+  --background: #f8f9fa;
   --surface: #ffffff;
   --surface-elevated: #ffffff;
-  --surface-muted: #eef2f7;
-  --border: #dde4ed;
+  --surface-muted: #e9ecef;
+  --border: #dee2e6;
 
-  --foreground: #0d1725;
-  --muted-foreground: #4a5a70;
+  --foreground: #212529;
+  --muted-foreground: #5c636a;
   /* See the note beside :root's --subtle-foreground — same WCAG AA fix. */
-  --subtle-foreground: #56667c;
+  --subtle-foreground: #646b72;
 
-  --accent: #0e7490;
-  --accent-hover: #0b5f77;
-  --accent-soft: color-mix(in oklab, var(--accent) 10%, var(--surface));
+  /* Yellow stays the fill; text and lines on a pale surface use the deeper
+   * gold --accent-ink (6.4:1 on #F8F9FA), because yellow itself is 1.7:1. */
+  --accent: #fbc02d;
+  --accent-hover: #f9a825;
+  --accent-ink: #7a5400;
+  --accent-soft: color-mix(in oklab, var(--accent) 22%, var(--surface));
 
   --success: #15803d;
   --success-soft: color-mix(in oklab, var(--success) 10%, var(--surface));
   --danger: #be123c;
   --danger-soft: color-mix(in oklab, var(--danger) 10%, var(--surface));
-  --warning: #b45309;
+  --warning: #c2410c;
   --warning-soft: color-mix(in oklab, var(--warning) 10%, var(--surface));
   --flag: #7c3aed;
   --flag-soft: color-mix(in oklab, var(--flag) 10%, var(--surface));
 
-  --on-solid: #ffffff;
+  /* Navy on the yellow accent; white on the deep red, which a navy label
+   * would not clear. */
+  --on-solid: #1a2536;
+  --on-danger: #ffffff;
 
   --shadow-1: 0 1px 2px 0 rgb(13 23 37 / 0.06);
   --shadow-2: 0 10px 28px -8px rgb(13 23 37 / 0.14), 0 2px 6px -2px rgb(13 23 37 / 0.08);
@@ -171,6 +190,7 @@
   --brand: var(--accent);
   --brand-strong: var(--accent-hover);
   --brand-soft: var(--accent-soft);
+  --brand-ink: var(--accent-ink);
   --correct: var(--success);
   --correct-soft: var(--success-soft);
   --incorrect: var(--danger);
@@ -182,6 +202,7 @@
     --brand: var(--accent);
     --brand-strong: var(--accent-hover);
     --brand-soft: var(--accent-soft);
+    --brand-ink: var(--accent-ink);
     --correct: var(--success);
     --correct-soft: var(--success-soft);
     --incorrect: var(--danger);
@@ -223,6 +244,7 @@
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
 
   --color-success: var(--success);
   --color-success-soft: var(--success-soft);
@@ -234,11 +256,13 @@
   --color-flag-soft: var(--flag-soft);
 
   --color-on-solid: var(--on-solid);
+  --color-on-danger: var(--on-danger);
 
   /* The older spellings, still used throughout `src/`. */
   --color-brand: var(--brand);
   --color-brand-strong: var(--brand-strong);
   --color-brand-soft: var(--brand-soft);
+  --color-brand-ink: var(--brand-ink);
   --color-correct: var(--correct);
   --color-correct-soft: var(--correct-soft);
   --color-incorrect: var(--incorrect);
@@ -343,7 +367,7 @@ body {
 
 /* Keyboard users must always be able to see where they are. */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-ink);
   outline-offset: 2px;
 }
 

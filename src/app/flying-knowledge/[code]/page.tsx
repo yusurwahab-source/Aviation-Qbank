@@ -101,7 +101,7 @@ export default async function FlyingKnowledgeSubjectPage({ params }: PageProps) 
               href={guideHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="link-standalone font-medium text-brand hover:underline"
+              className="link-standalone font-medium text-brand-ink hover:underline"
             >
               Read the study guide before you start →
             </Link>
@@ -150,13 +150,13 @@ export default async function FlyingKnowledgeSubjectPage({ params }: PageProps) 
       <p className="mt-6 flex flex-wrap gap-4">
         <Link
           href="/flying-knowledge"
-          className="link-standalone text-sm font-medium text-brand hover:underline"
+          className="link-standalone text-sm font-medium text-brand-ink hover:underline"
         >
           ← All subjects
         </Link>
         <Link
           href={`/progress/flying-knowledge/${subject.code}`}
-          className="link-standalone text-sm font-medium text-brand hover:underline"
+          className="link-standalone text-sm font-medium text-brand-ink hover:underline"
         >
           Your {subject.code} progress →
         </Link>

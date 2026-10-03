@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { HeaderNavLink } from "@/components/header-nav-link";
 import { Logo } from "@/components/logo";
 import { MobileNav } from "@/components/mobile-nav";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -83,20 +84,14 @@ export async function SiteHeader() {
       <div className="mx-auto flex w-full max-w-5xl items-center gap-3 px-4 py-2 sm:px-5 sm:py-2.5">
         <Link
           href="/"
-          className="tap-target flex items-center rounded-lg text-foreground transition hover:text-brand"
+          className="tap-target flex items-center rounded-lg text-foreground transition hover:text-brand-ink"
         >
-          <Logo markClassName="h-7 w-7 text-brand" />
+          <Logo markClassName="h-7 w-7 text-brand-ink" />
         </Link>
 
         <nav className="ml-4 hidden items-center gap-1 md:flex">
           {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="tap-target inline-flex items-center rounded-lg px-3 text-sm font-medium text-muted-foreground transition hover:bg-surface-muted hover:text-foreground"
-            >
-              {link.label}
-            </Link>
+            <HeaderNavLink key={link.href} href={link.href} label={link.label} />
           ))}
         </nav>
 

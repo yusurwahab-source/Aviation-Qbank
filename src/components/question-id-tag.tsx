@@ -25,7 +25,7 @@ export function QuestionIdTag({ id, className = "" }: { id: string; className?: 
         }
       }}
       title="Click to copy this question's id"
-      className={`font-mono text-xs text-subtle-foreground transition hover:text-brand ${className}`}
+      className={`font-mono text-xs text-subtle-foreground transition hover:text-brand-ink ${className}`}
     >
       {copied ? "Copied!" : id}
     </button>

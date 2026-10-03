@@ -60,7 +60,7 @@ function Confirm({ code, onCancel }: { code: string; onCancel: () => void }) {
         <button
           type="submit"
           disabled={pending}
-          className="min-h-9 rounded-lg bg-incorrect px-3 py-1.5 text-xs font-semibold text-on-solid transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+          className="min-h-9 rounded-lg bg-incorrect px-3 py-1.5 text-xs font-semibold text-on-danger transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {pending ? "Working…" : "Yes, disable"}
         </button>

@@ -328,7 +328,7 @@ export default async function TestPage({ params, searchParams }: PageProps) {
           {freeLimitReached ? (
             <>
               Subscribe for unlimited questions on every aircraft.{" "}
-              <Link href="/upgrade" className="font-medium text-brand hover:underline">
+              <Link href="/upgrade" className="font-medium text-brand-ink hover:underline">
                 Upgrade
               </Link>
             </>
@@ -336,7 +336,7 @@ export default async function TestPage({ params, searchParams }: PageProps) {
             <>
               Signing up is free and gives you more questions on every aircraft, plus your
               results, your flags and your notes.{" "}
-              <Link href="/signup" className="font-medium text-brand hover:underline">
+              <Link href="/signup" className="font-medium text-brand-ink hover:underline">
                 Create an account
               </Link>
             </>
@@ -345,7 +345,7 @@ export default async function TestPage({ params, searchParams }: PageProps) {
               The last time you saw each question, you got it right.{" "}
               <Link
                 href={buildTestHref(plane.code)}
-                className="font-medium text-brand hover:underline"
+                className="font-medium text-brand-ink hover:underline"
               >
                 Take a normal test
               </Link>{" "}
@@ -356,7 +356,7 @@ export default async function TestPage({ params, searchParams }: PageProps) {
               Flag a question mid-test to come back to it later.{" "}
               <Link
                 href={buildTestHref(plane.code)}
-                className="font-medium text-brand hover:underline"
+                className="font-medium text-brand-ink hover:underline"
               >
                 Take a normal test
               </Link>{" "}
@@ -367,7 +367,7 @@ export default async function TestPage({ params, searchParams }: PageProps) {
               That is every question on this type, at least once.{" "}
               <Link
                 href={buildTestHref(plane.code)}
-                className="font-medium text-brand hover:underline"
+                className="font-medium text-brand-ink hover:underline"
               >
                 Take a normal test
               </Link>{" "}
@@ -378,14 +378,14 @@ export default async function TestPage({ params, searchParams }: PageProps) {
               Check the section name, or{" "}
               <Link
                 href={`/type-rating/${plane.code}`}
-                className="font-medium text-brand hover:underline"
+                className="font-medium text-brand-ink hover:underline"
               >
                 choose different sections
               </Link>
               .
             </>
           ) : (
-            <Link href={`/type-rating/${plane.code}`} className="font-medium text-brand hover:underline">
+            <Link href={`/type-rating/${plane.code}`} className="font-medium text-brand-ink hover:underline">
               Back to {plane.code}
             </Link>
           )}

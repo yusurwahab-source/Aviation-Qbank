@@ -10,7 +10,7 @@ export function SectionHeading({
 }) {
   return (
     <div className="mx-auto max-w-2xl text-center">
-      <p className="text-xs font-semibold uppercase tracking-wider text-brand">{eyebrow}</p>
+      <p className="text-xs font-semibold uppercase tracking-wider text-brand-ink">{eyebrow}</p>
       <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
         {title}
       </h2>

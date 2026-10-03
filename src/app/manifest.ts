@@ -30,8 +30,8 @@ export default function manifest(): MetadataRoute.Manifest {
     // Matches `--background` and `--surface-elevated` on the dark theme, so
     // the splash screen and the status bar are the colours the application
     // actually opens in.
-    background_color: "#080c14",
-    theme_color: "#080c14",
+    background_color: "#1a2536",
+    theme_color: "#1a2536",
     categories: ["education", "productivity"],
     icons: [
       { src: "/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },

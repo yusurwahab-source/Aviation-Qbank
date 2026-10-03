@@ -40,7 +40,7 @@ export default async function PricingPage() {
           appears in your progress.
         </p>
         <p>
-          <Link href="/upgrade" className="font-medium text-brand hover:underline">
+          <Link href="/upgrade" className="font-medium text-brand-ink hover:underline">
             See the current plans →
           </Link>
         </p>

@@ -70,7 +70,7 @@ export function ResultScreen({
 
   return (
     <div>
-      <p className="text-xs font-semibold uppercase tracking-wider text-brand">
+      <p className="text-xs font-semibold uppercase tracking-wider text-brand-ink">
         {aircraftCode} · {aircraftName}
       </p>
       <h1 className="mt-1 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
@@ -206,14 +206,14 @@ export function ResultScreen({
         {weakestTopics.length > 0 ? (
           <Link
             href={buildRetakeHref({ topics: [weakestTopics[0].topic] })}
-            className="inline-flex min-h-11 items-center rounded-lg border border-border bg-surface px-5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+            className="inline-flex min-h-11 items-center rounded-lg border border-border bg-surface px-5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink"
           >
             New test on my weakest system
           </Link>
         ) : null}
         <Link
           href={backHref}
-          className="inline-flex min-h-11 items-center rounded-lg border border-border bg-surface px-5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+          className="inline-flex min-h-11 items-center rounded-lg border border-border bg-surface px-5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink"
         >
           Back to dashboard
         </Link>
@@ -226,7 +226,7 @@ export function ResultScreen({
         <button
           type="button"
           onClick={onRestart}
-          className="link-standalone text-sm font-medium text-brand hover:underline"
+          className="link-standalone text-sm font-medium text-brand-ink hover:underline"
         >
           Or take another test like this one
         </button>
@@ -301,7 +301,7 @@ function SaveNotice({ status }: { status: SaveStatus }) {
           </Link>
           <Link
             href="/login"
-            className="inline-flex min-h-11 items-center rounded-lg border border-border bg-surface px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+            className="inline-flex min-h-11 items-center rounded-lg border border-border bg-surface px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink"
           >
             Log in
           </Link>
@@ -408,7 +408,7 @@ function ReviewCard({
             {withheldReason === "free-tier" ? (
               <>
                 You&apos;ve used your free questions on {aircraftCode}.{" "}
-                <Link href="/upgrade" className="font-medium text-brand hover:underline">
+                <Link href="/upgrade" className="font-medium text-brand-ink hover:underline">
                   Subscribe
                 </Link>{" "}
                 to see every answer and explanation.
@@ -416,7 +416,7 @@ function ReviewCard({
             ) : (
               <>
                 This was past the {aircraftCode} preview.{" "}
-                <Link href="/signup" className="font-medium text-brand hover:underline">
+                <Link href="/signup" className="font-medium text-brand-ink hover:underline">
                   Create a free account
                 </Link>{" "}
                 to keep going.

@@ -65,7 +65,7 @@ export default function OwnerError({
         </button>
         <Link
           href="/owner"
-          className="min-h-11 rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-foreground transition hover:border-brand hover:text-brand"
+          className="min-h-11 rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-foreground transition hover:border-brand hover:text-brand-ink"
         >
           Back to the console
         </Link>

@@ -71,13 +71,13 @@ export default async function FlyingKnowledgePickerPage() {
       <p className="mt-6 flex flex-wrap gap-4">
         <Link
           href="/class-rating"
-          className="link-standalone text-sm font-medium text-brand hover:underline"
+          className="link-standalone text-sm font-medium text-brand-ink hover:underline"
         >
           ← Class ratings
         </Link>
         <Link
           href="/type-rating"
-          className="link-standalone text-sm font-medium text-brand hover:underline"
+          className="link-standalone text-sm font-medium text-brand-ink hover:underline"
         >
           Or type ratings →
         </Link>
@@ -95,7 +95,7 @@ function SubjectCard({ subject }: { subject: FlyingKnowledgeSubjectSummary }) {
     >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="font-mono text-xs font-semibold uppercase tracking-wider text-brand">
+          <p className="font-mono text-xs font-semibold uppercase tracking-wider text-brand-ink">
             {subject.code}
           </p>
           <h2 className="mt-1 text-lg font-semibold text-foreground">{subject.name}</h2>

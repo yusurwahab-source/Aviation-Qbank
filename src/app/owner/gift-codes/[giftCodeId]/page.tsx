@@ -68,7 +68,7 @@ export default async function OwnerGiftCodeDetailPage({
       <OwnerNav current="/owner/gift-codes" />
 
       <p className="mb-6">
-        <Link href="/owner/gift-codes" className="text-sm text-brand hover:underline">
+        <Link href="/owner/gift-codes" className="text-sm text-brand-ink hover:underline">
           ← Back to all codes
         </Link>
       </p>

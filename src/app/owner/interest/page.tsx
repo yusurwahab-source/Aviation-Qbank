@@ -50,7 +50,7 @@ export default async function OwnerInterestPage() {
             {tally.map((row) => (
               <li key={row.aircraft} className="flex items-baseline justify-between gap-4">
                 <span className="text-sm text-foreground">{row.aircraft}</span>
-                <span className="text-sm font-semibold tabular-nums text-brand">
+                <span className="text-sm font-semibold tabular-nums text-brand-ink">
                   {row.requests}
                 </span>
               </li>

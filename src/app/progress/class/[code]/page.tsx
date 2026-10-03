@@ -74,7 +74,7 @@ export default async function ClassProgressPage({ params }: PageProps) {
       <PageHeading eyebrow={classCode} title={`${name} progress`} />
       <ProgressReport data={data} />
       <p className="mt-8">
-        <Link href="/progress" className="link-standalone text-sm font-medium text-brand hover:underline">
+        <Link href="/progress" className="link-standalone text-sm font-medium text-brand-ink hover:underline">
           ← All progress
         </Link>
       </p>

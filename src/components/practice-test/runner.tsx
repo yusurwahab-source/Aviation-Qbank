@@ -629,7 +629,7 @@ export function TestRunner({
     <div className="pb-24 lg:pb-0">
       <div className="mb-2 sm:mb-6">
         <div className="flex items-baseline justify-between gap-2 sm:gap-3">
-          <p className="min-w-0 truncate text-[11px] font-semibold uppercase tracking-wider text-brand sm:text-xs">
+          <p className="min-w-0 truncate text-[11px] font-semibold uppercase tracking-wider text-brand-ink sm:text-xs">
             {aircraftCode} · {scope}
             {/* Worth saying plainly: it changes whether an answer can still be
                 changed, which a student needs to know before they answer. */}
@@ -928,7 +928,7 @@ export function TestRunner({
           type="button"
           onClick={goPrevious}
           disabled={isFirst || isSubmitting}
-          className="min-h-11 rounded-lg border border-border bg-surface px-4 py-2.5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand disabled:cursor-not-allowed disabled:opacity-60"
+          className="min-h-11 rounded-lg border border-border bg-surface px-4 py-2.5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink disabled:cursor-not-allowed disabled:opacity-60"
         >
           ← Previous
         </button>
@@ -958,7 +958,7 @@ export function TestRunner({
         <button
           type="button"
           onClick={() => setShowShortcuts(true)}
-          className="link-standalone underline decoration-dotted underline-offset-2 hover:text-brand"
+          className="link-standalone underline decoration-dotted underline-offset-2 hover:text-brand-ink"
         >
           Press <kbd className="font-mono">?</kbd> for keyboard shortcuts
         </button>
@@ -987,7 +987,7 @@ export function TestRunner({
           onClick={() => setShowNav((value) => !value)}
           aria-expanded={showNav}
           aria-controls={navId}
-          className="link-standalone text-sm font-medium text-brand hover:underline"
+          className="link-standalone text-sm font-medium text-brand-ink hover:underline"
         >
           {showNav ? "Hide" : "Show"} all questions
         </button>
@@ -996,7 +996,7 @@ export function TestRunner({
       <p className="mt-6 text-center">
         <Link
           href={backHref}
-          className="link-standalone text-sm text-muted-foreground hover:text-brand hover:underline"
+          className="link-standalone text-sm text-muted-foreground hover:text-brand-ink hover:underline"
         >
           Abandon test
         </Link>
@@ -1078,7 +1078,7 @@ export function TestRunner({
               <button
                 type="button"
                 onClick={() => setConfirmFinish(false)}
-                className="min-h-11 flex-1 rounded-lg border border-border bg-surface px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+                className="min-h-11 flex-1 rounded-lg border border-border bg-surface px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink"
               >
                 Keep going
               </button>

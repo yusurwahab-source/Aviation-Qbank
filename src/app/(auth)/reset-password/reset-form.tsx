@@ -111,7 +111,7 @@ export function ResetForm({ token, email }: { token: string; email: string }) {
 
       <p className="mt-5 text-center text-sm text-muted-foreground">
         Setting a new password signs you out everywhere else.{" "}
-        <Link href="/login" className="font-medium text-brand hover:underline">
+        <Link href="/login" className="font-medium text-brand-ink hover:underline">
           Log in instead
         </Link>
       </p>

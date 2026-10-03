@@ -164,7 +164,7 @@ export function GenerateForm({ aircraftCodes }: { aircraftCodes: string[] }) {
           <button
             type="button"
             onClick={() => downloadCodesAsCsv(state.codes ?? [])}
-            className="mt-3 min-h-9 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-foreground transition hover:border-brand hover:text-brand"
+            className="mt-3 min-h-9 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-foreground transition hover:border-brand hover:text-brand-ink"
           >
             Download these as CSV
           </button>

@@ -30,7 +30,7 @@ export default async function RedeemPage() {
       {!user ? (
         <Card>
           <p className="text-sm text-muted-foreground">
-            <Link href="/login" className="font-medium text-brand hover:underline">
+            <Link href="/login" className="font-medium text-brand-ink hover:underline">
               Log in
             </Link>{" "}
             first, then come back to this page to redeem your code.

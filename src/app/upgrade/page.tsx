@@ -125,7 +125,7 @@ export default async function UpgradePage({
           {subscription?.provider === "gift" ? (
             <p className="mt-2 text-sm text-muted-foreground">
               Have another code?{" "}
-              <Link href="/redeem" className="font-medium text-brand hover:underline">
+              <Link href="/redeem" className="font-medium text-brand-ink hover:underline">
                 Redeem it
               </Link>{" "}
               — a new code adds to what you have rather than replacing it.
@@ -160,7 +160,7 @@ export default async function UpgradePage({
       {!active ? (
         <p className="mt-6 text-sm text-muted-foreground">
           Have a gift code?{" "}
-          <Link href="/redeem" className="font-medium text-brand hover:underline">
+          <Link href="/redeem" className="font-medium text-brand-ink hover:underline">
             Redeem it here
           </Link>
           .

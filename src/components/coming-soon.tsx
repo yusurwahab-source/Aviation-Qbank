@@ -35,7 +35,7 @@ export function ComingSoon({
       <p className="mt-6">
         <Link
           href="/"
-          className="link-standalone text-sm font-medium text-brand hover:underline"
+          className="link-standalone text-sm font-medium text-brand-ink hover:underline"
         >
           ← Back home
         </Link>

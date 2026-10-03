@@ -72,7 +72,7 @@ const ENTRIES: { question: string; answer: ReactNode }[] = [
     answer: (
       <>
         Tell us —{" "}
-        <Link href="/contact" className="font-medium text-brand hover:underline">
+        <Link href="/contact" className="font-medium text-brand-ink hover:underline">
           the contact page
         </Link>{" "}
         reaches the person who maintains the content. Questions live as files and ship the moment

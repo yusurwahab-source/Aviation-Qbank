@@ -71,7 +71,7 @@ export default async function OwnerAccountDetailPage({
       <OwnerNav current="/owner/accounts" />
 
       <p className="mb-6">
-        <Link href="/owner/accounts" className="text-sm text-brand hover:underline">
+        <Link href="/owner/accounts" className="text-sm text-brand-ink hover:underline">
           ← Back to all accounts
         </Link>
       </p>

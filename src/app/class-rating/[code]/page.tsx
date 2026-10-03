@@ -120,7 +120,7 @@ export default async function ClassRatingPage({ params }: PageProps) {
               href={guideHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="link-standalone font-medium text-brand hover:underline"
+              className="link-standalone font-medium text-brand-ink hover:underline"
             >
               Read the study guide before you start →
             </Link>
@@ -169,13 +169,13 @@ export default async function ClassRatingPage({ params }: PageProps) {
       <p className="mt-6 flex flex-wrap gap-4">
         <Link
           href="/class-rating"
-          className="link-standalone text-sm font-medium text-brand hover:underline"
+          className="link-standalone text-sm font-medium text-brand-ink hover:underline"
         >
           ← All class ratings
         </Link>
         <Link
           href={`/progress/class/${ratingClass.code}`}
-          className="link-standalone text-sm font-medium text-brand hover:underline"
+          className="link-standalone text-sm font-medium text-brand-ink hover:underline"
         >
           Your {ratingClass.code} progress →
         </Link>

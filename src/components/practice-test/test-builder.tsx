@@ -260,7 +260,7 @@ export function TestBuilder({
                 setSelected(new Set(topics.map((topic) => topic.topic)));
               }}
               disabled={allSelected}
-              className="link-standalone min-w-11 justify-center font-medium text-brand hover:underline disabled:cursor-not-allowed disabled:text-muted-foreground disabled:no-underline"
+              className="link-standalone min-w-11 justify-center font-medium text-brand-ink hover:underline disabled:cursor-not-allowed disabled:text-muted-foreground disabled:no-underline"
             >
               Select all
             </button>
@@ -271,7 +271,7 @@ export function TestBuilder({
                 setSelected(new Set());
               }}
               disabled={selected.size === 0}
-              className="link-standalone min-w-11 justify-center font-medium text-brand hover:underline disabled:cursor-not-allowed disabled:text-muted-foreground disabled:no-underline"
+              className="link-standalone min-w-11 justify-center font-medium text-brand-ink hover:underline disabled:cursor-not-allowed disabled:text-muted-foreground disabled:no-underline"
             >
               Clear
             </button>
@@ -333,11 +333,11 @@ export function TestBuilder({
               <>You&apos;ve used your free questions on {aircraftCode}. </>
             )}
             {allowanceKind === "preview" ? (
-              <Link href="/signup" className="font-medium text-brand hover:underline">
+              <Link href="/signup" className="font-medium text-brand-ink hover:underline">
                 Create a free account for more
               </Link>
             ) : (
-              <Link href="/upgrade" className="font-medium text-brand hover:underline">
+              <Link href="/upgrade" className="font-medium text-brand-ink hover:underline">
                 Subscribe for unlimited
               </Link>
             )}
@@ -359,7 +359,7 @@ export function TestBuilder({
                 className={`min-h-11 min-w-11 rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
                   active
                     ? "bg-brand text-on-solid"
-                    : "border border-border bg-surface text-foreground hover:border-brand hover:text-brand"
+                    : "border border-border bg-surface text-foreground hover:border-brand hover:text-brand-ink"
                 }`}
               >
                 {length}
@@ -374,7 +374,7 @@ export function TestBuilder({
             className={`min-h-11 min-w-11 rounded-lg px-4 py-2.5 text-sm font-semibold transition ${
               wantsAll
                 ? "bg-brand text-on-solid"
-                : "border border-border bg-surface text-foreground hover:border-brand hover:text-brand"
+                : "border border-border bg-surface text-foreground hover:border-brand hover:text-brand-ink"
             }`}
           >
             All questions
@@ -527,8 +527,8 @@ function PresetChip({
       onClick={onClick}
       className={`tap-target inline-flex items-center rounded-full border px-4 text-sm font-medium transition ${
         active
-          ? "border-brand bg-brand-soft text-brand"
-          : "border-border bg-surface text-foreground hover:border-brand hover:text-brand"
+          ? "border-brand bg-brand-soft text-brand-ink"
+          : "border-border bg-surface text-foreground hover:border-brand hover:text-brand-ink"
       }`}
     >
       {children}

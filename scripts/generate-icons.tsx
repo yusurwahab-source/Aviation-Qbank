@@ -16,8 +16,8 @@ import { ImageResponse } from "next/og";
  * lines and one arc; if one changes, change the other.
  */
 
-const ACCENT = "#3ab7cc";
-const BACKDROP = "#0b1220";
+const ACCENT = "#fbc02d";
+const BACKDROP = "#1a2536";
 
 const OUT_DIR = path.join(process.cwd(), "public");
 const APP_DIR = path.join(process.cwd(), "src", "app");

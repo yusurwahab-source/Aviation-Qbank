@@ -140,7 +140,7 @@ function SectionCard({
 
         <p className="mt-3 text-sm text-muted-foreground">{description}</p>
 
-        <p className="mt-auto pt-4 text-sm font-semibold text-brand">{cta} →</p>
+        <p className="mt-auto pt-4 text-sm font-semibold text-brand-ink">{cta} →</p>
       </Card>
     </Link>
   );
