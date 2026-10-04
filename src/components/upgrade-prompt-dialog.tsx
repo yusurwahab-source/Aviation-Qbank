@@ -4,13 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { UPGRADE_PROMPT_PRICE } from "@/config/pricing";
+import { subscriptionBenefits, UPGRADE_PROMPT_PRICE } from "@/config/pricing";
 
 /**
  * The "here is what a subscription gets you" dialog.
  *
- * It appears once a few seconds after a signed-in student without access
- * lands on a page, and then stays away for `SNOOZE_DAYS` whether they
+ * It appears once a few seconds after somebody without access lands on a
+ * page — signed in or not, because what a subscription is should be clear
+ * before anyone has made an account — and then stays away for `SNOOZE_DAYS` whether they
  * dismissed it or followed it. The server decides *whether* it may ever
  * show (`UpgradePrompt`: signed in, no active subscription); this only
  * decides *when*.
@@ -29,6 +30,10 @@ import { UPGRADE_PROMPT_PRICE } from "@/config/pricing";
 const STORAGE_KEY = "pilotqbank:upgrade-prompt-snoozed-until";
 const SHOW_AFTER_MS = 5000;
 const SNOOZE_DAYS = 3;
+
+/** The pricing page is where somebody has gone to read exactly this, so it
+ * opens at once and ignores the snooze. */
+const IMMEDIATE_PATHS = ["/pricing"];
 
 const QUIET_PREFIXES = ["/upgrade", "/redeem", "/login", "/signup", "/forgot-password", "/reset-password", "/owner"];
 
@@ -59,14 +64,23 @@ function snooze(): void {
   }
 }
 
-export function UpgradePromptDialog({ freeQuestions }: { freeQuestions: number }) {
+export function UpgradePromptDialog({
+  freeQuestions,
+  signedIn,
+}: {
+  freeQuestions: number;
+  /** Signed out, the way on is an account first and checkout second. */
+  signedIn: boolean;
+}) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (isQuietPath(pathname) || snoozed()) return;
-    const timer = window.setTimeout(() => setOpen(true), SHOW_AFTER_MS);
+    if (isQuietPath(pathname)) return;
+    const immediate = IMMEDIATE_PATHS.includes(pathname);
+    if (!immediate && snoozed()) return;
+    const timer = window.setTimeout(() => setOpen(true), immediate ? 0 : SHOW_AFTER_MS);
     return () => window.clearTimeout(timer);
   }, [pathname]);
 
@@ -113,7 +127,7 @@ export function UpgradePromptDialog({ freeQuestions }: { freeQuestions: number }
 
         <p className="text-xs font-semibold uppercase tracking-wide text-brand-ink">Full access</p>
         <h2 id="upgrade-prompt-title" className="mt-1 text-2xl font-semibold tracking-tight text-foreground">
-          Unlock every aircraft
+          Unlock every subject and tool
         </h2>
 
         <p className="mt-4 flex items-baseline gap-2">
@@ -123,42 +137,33 @@ export function UpgradePromptDialog({ freeQuestions }: { freeQuestions: number }
         <p className="text-xs text-subtle-foreground">{UPGRADE_PROMPT_PRICE.note}</p>
 
         <ul className="mt-5 space-y-3 text-sm text-foreground">
-          <li className="flex gap-3">
-            <Tick />
-            <span>
-              <strong className="font-semibold">Unlimited questions on every aircraft</strong> — every
-              type rating and class rating bank, including ones added later. Free accounts stop at{" "}
-              {freeQuestions} per aircraft.
-            </span>
-          </li>
-          <li className="flex gap-3">
-            <Tick />
-            <span>
-              <strong className="font-semibold">Study and timed exam modes</strong> with an explanation
-              for every question, with no cap partway through a test.
-            </span>
-          </li>
-          <li className="flex gap-3">
-            <Tick />
-            <span>
-              <strong className="font-semibold">Your progress, everywhere</strong> — scores by system,
-              your weakest topics and a retake of what you got wrong.
-            </span>
-          </li>
+          {subscriptionBenefits(freeQuestions).map((benefit) => (
+            <li key={benefit.title} className="flex gap-3">
+              <Tick />
+              <span>
+                <strong className="font-semibold">{benefit.title}</strong> — {benefit.body}
+              </span>
+            </li>
+          ))}
         </ul>
-
-        <p className="mt-4 text-xs text-muted-foreground">
-          Pilot Sims and Flying Knowledge are free for everyone, subscribed or not.
-        </p>
 
         <div className="mt-6 flex flex-col gap-2">
           <Link
-            href="/upgrade"
+            href={signedIn ? "/upgrade" : "/signup"}
             onClick={snooze}
             className="tap-target inline-flex items-center justify-center rounded-lg bg-brand px-6 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
           >
-            See plans and subscribe
+            {signedIn ? "See plans and subscribe" : "Create a free account"}
           </Link>
+          {signedIn ? null : (
+            <Link
+              href="/login"
+              onClick={snooze}
+              className="tap-target inline-flex items-center justify-center rounded-lg border border-border px-6 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink"
+            >
+              Log in to subscribe
+            </Link>
+          )}
           <button
             type="button"
             onClick={dismiss}

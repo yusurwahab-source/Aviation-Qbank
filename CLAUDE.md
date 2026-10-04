@@ -1248,17 +1248,25 @@ The general rule all three findings point at: **the live account is a
 different system from the test account, and only a live request proves a
 live path** — a real card most of all.
 
-**A signed-in student without access gets one upgrade dialog, a few seconds in,
-and then a three-day pause.** `UpgradePrompt` (server, mounted in
-`layout.tsx`) renders `UpgradePromptDialog` only for a signed-in account with
-no active subscription — anyone else never has it in the page. The dialog
-waits five seconds, skips `/upgrade`, `/redeem`, the auth pages, `/owner` and
-any `/test` route (a modal over a question being read costs the student more
-than a missed pitch), and snoozes itself for three days in `localStorage`
-whether it was dismissed or followed. Its price text is `config/pricing.ts`,
-edited by hand with the Stripe Price. It lists only what a subscription
-really adds — uncapped questions on every aircraft — and says plainly that
+**Anyone without access gets one upgrade dialog, and what a subscription is
+stays clear before there is an account.** `UpgradePrompt` (server, mounted in
+`layout.tsx`) renders `UpgradePromptDialog` for a signed-out visitor and for a
+signed-in account with no active subscription — a subscriber or gift-code
+holder never has it in the page. On `/pricing` it opens at once and ignores
+the snooze, because that is where somebody went to read exactly this;
+elsewhere it waits five seconds, skips `/upgrade`, `/redeem`, the auth pages,
+`/owner` and any `/test` route (a modal over a question being read costs the
+student more than a missed pitch), and snoozes itself for three days in
+`localStorage` whether it was dismissed or followed. Signed out, its buttons
+are "Create a free account" and "Log in to subscribe"; signed in, "See plans
+and subscribe". `/pricing` is now a real page, readable by anyone: a Free card
+beside a Subscribed card. The price text and the list of what a subscription
+adds live in `config/pricing.ts` and are shared by the dialog and the page;
+the price is edited by hand with the Stripe Price. The list says only what a
+subscription actually changes — the cap on questions — and says plainly that
 Pilot Sims and Flying Knowledge are free for everyone, because they are.
+Presenting them as paid features would be untrue; making them paid is a
+product decision that would need an access model of its own.
 
 **A refund does not cancel a subscription — they are two separate Stripe
 operations, and the app only reacts to the second one.** Refunding the
