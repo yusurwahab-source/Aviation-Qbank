@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { HeaderNavLink } from "@/components/header-nav-link";
-import { Logo } from "@/components/logo";
+import { LogoWordmark } from "@/components/logo";
 import { MobileNav } from "@/components/mobile-nav";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { UserMenu } from "@/components/user-menu";
@@ -86,7 +86,7 @@ export async function SiteHeader() {
           href="/"
           className="tap-target flex items-center rounded-lg text-foreground transition hover:text-brand-ink"
         >
-          <Logo markClassName="h-7 w-7 text-brand-ink" />
+          <LogoWordmark className="h-5 sm:h-6" />
         </Link>
 
         <nav className="ml-4 hidden items-center gap-1 md:flex">

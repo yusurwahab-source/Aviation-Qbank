@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Logo } from "@/components/logo";
+import { LogoWordmark } from "@/components/logo";
 import { siteConfig } from "@/config/site";
 
 /**
@@ -29,7 +29,7 @@ export function SiteFooter() {
               href="/"
               className="tap-target inline-flex items-center rounded-lg text-foreground transition hover:text-brand-ink"
             >
-              <Logo markClassName="h-6 w-6 text-brand-ink" />
+              <LogoWordmark className="h-5" />
             </Link>
             <p className="mt-2 text-sm text-muted-foreground">{siteConfig.tagline}</p>
             <p className="mt-1 text-xs text-subtle-foreground">
