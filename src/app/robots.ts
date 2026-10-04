@@ -43,6 +43,7 @@ export default function robots(): MetadataRoute.Robots {
         "/upgrade",
         "/redeem",
         "/progress",
+        "/account",
       ],
     },
     sitemap: `${canonicalUrl()}/sitemap.xml`,

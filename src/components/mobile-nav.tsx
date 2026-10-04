@@ -146,6 +146,12 @@ export function MobileNav({ email, links }: { email: string | null; links: NavLi
                       <p className="truncate text-xs text-muted-foreground">
                         Signed in as <span className="text-foreground">{email}</span>
                       </p>
+                      <Link
+                        href="/account"
+                        className="tap-target mt-2 flex w-full items-center justify-center rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink"
+                      >
+                        Account
+                      </Link>
                       <form action={logOut} className="mt-2">
                         <button
                           type="submit"
