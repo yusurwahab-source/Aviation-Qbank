@@ -11,7 +11,7 @@
  * footer, the theme toggle, the manifest, the generated icons).
  */
 export const siteConfig = {
-  name: "Holdshort",
+  name: "PilotQBank",
   tagline: "Understand the aircraft, not just the answers.",
   description:
     "Multiple-choice practice questions across three sections — Type Rating Systems Knowledge for large aircraft, Class Rating Systems Knowledge for light aircraft, and Flying Knowledge, free in full, for the ground-school material every pilot keeps reviewing. Built to teach the aircraft through every question, not to be memorised without understanding it. Study with immediate feedback or simulate the real exam, and track your progress by topic.",
@@ -23,5 +23,5 @@ export const siteConfig = {
    * which already knows how to read `APP_URL` and Vercel's own environment —
    * this is only the static fact of where the product lives.
    */
-  url: "https://aviation-qbank.vercel.app",
+  url: "https://pilotqbank.com",
 } as const;

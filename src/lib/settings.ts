@@ -43,6 +43,16 @@ export const SECTION_LABELS: Record<SectionKey, string> = {
   "pilot-sims": "Pilot Sims",
 };
 
+/** The same sections, short enough for a navigation bar and a row of
+ * buttons. Used only where space is tight; the full name stays the page's
+ * own title. */
+export const SECTION_SHORT_LABELS: Record<SectionKey, string> = {
+  "type-rating": "Type Rating",
+  "class-rating": "Class Rating",
+  "flying-knowledge": "Flying Knowledge",
+  "pilot-sims": "Pilot Sims",
+};
+
 /** The card text under each section on the landing page, as shipped. */
 export const DEFAULT_SECTION_DESCRIPTIONS: Record<ItemSection, string> = {
   "type-rating":
@@ -127,6 +137,15 @@ export function sectionTitle(
   key: SectionKey,
 ): string {
   return settings.sectionLabels[key]?.title ?? SECTION_LABELS[key];
+}
+
+/** The short name, unless the owner has renamed the section — a name they
+ * chose is never second-guessed into something shorter. */
+export function sectionShortTitle(
+  settings: Pick<SiteSettings, "sectionLabels">,
+  key: SectionKey,
+): string {
+  return settings.sectionLabels[key]?.title ?? SECTION_SHORT_LABELS[key];
 }
 
 export function sectionDescription(

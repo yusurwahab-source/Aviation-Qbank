@@ -68,7 +68,7 @@ through Stripe Checkout and confirmed by its webhook. Verified end to end
 against a real Stripe account in test mode. See the note on payments in the
 conventions below and in "Not in scope yet".
 
-The product is called **Holdshort**, and it has an identity to match: a
+The product is called **PilotQBank**, and it has an identity to match: a
 dark flight-deck palette with a light theme beside it, two typefaces, a
 logo mark, and an application shell — header, navigation, theme toggle,
 account menu, footer — that works down to 375px. Everything visual is
@@ -377,16 +377,20 @@ horizontal overflow and for target sizes. `overflow-x: clip` on `html` is
 a safety net, not the fix — overflows get solved where they happen.
 
 **The landing page's job is to start a test, and the hero asks which
-section rather than assuming.** `Hero` used to lead with one featured
-aircraft (`featuredAircraftCode`) and a single "Start practising free"
-button; now it has no featured aircraft at all, and `SectionLinks`
-(`_landing/section-links.tsx`) — three equal-weight buttons, Type Rating
-Systems Knowledge, Class Rating Systems Knowledge, Flying Knowledge — is
-the whole of its call to action,
-reused unchanged in `FinalCta` at the bottom of the page so the two never
-describe the three sections differently. Neither ranks one section above
-the others: the product is three sections, not one section with two
-afterthoughts.
+section rather than assuming.** `Hero` has no featured aircraft. Its one
+primary action is `TryFreeButton` (`_landing/try-free-button.tsx`), a
+yellow "Try free questions" link straight into a ten-question Flying
+Knowledge test — chosen because that section is free in full, so there is
+no preview allowance to run out of — computed in `page.tsx` as `tryHref`
+and omitted when no active subject exists. Under it, `SectionLinks`
+(`_landing/section-links.tsx`) is three identical outlined buttons — Type
+Rating, Class Rating, Flying Knowledge, the short names from
+`sectionShortTitle` — for a visitor who already knows their section.
+`FinalCta` repeats only the try button and a sign-up link, not the three
+sections again. None of the three sections is ranked above the others: the
+product is three sections, not one section with two afterthoughts. The
+header's desktop navigation uses the same short names (the mobile sheet
+keeps the full ones), and its sign-up button reads "Start free".
 
 Directly under the hero, `SectionsOverview` (`_landing/sections-overview.tsx`)
 replaces what used to be two separate things — a systems strip scrolling
@@ -1244,6 +1248,26 @@ The general rule all three findings point at: **the live account is a
 different system from the test account, and only a live request proves a
 live path** — a real card most of all.
 
+**Anyone without access gets one upgrade dialog, and what a subscription is
+stays clear before there is an account.** `UpgradePrompt` (server, mounted in
+`layout.tsx`) renders `UpgradePromptDialog` for a signed-out visitor and for a
+signed-in account with no active subscription — a subscriber or gift-code
+holder never has it in the page. On `/pricing` it opens at once and ignores
+the snooze, because that is where somebody went to read exactly this;
+elsewhere it waits five seconds, skips `/upgrade`, `/redeem`, the auth pages,
+`/owner` and any `/test` route (a modal over a question being read costs the
+student more than a missed pitch), and snoozes itself for three days in
+`localStorage` whether it was dismissed or followed. Signed out, its buttons
+are "Create a free account" and "Log in to subscribe"; signed in, "See plans
+and subscribe". `/pricing` is now a real page, readable by anyone: a Free card
+beside a Subscribed card. The price text and the list of what a subscription
+adds live in `config/pricing.ts` and are shared by the dialog and the page;
+the price is edited by hand with the Stripe Price. The list says only what a
+subscription actually changes — the cap on questions — and says plainly that
+Pilot Sims and Flying Knowledge are free for everyone, because they are.
+Presenting them as paid features would be untrue; making them paid is a
+product decision that would need an access model of its own.
+
 **A refund does not cancel a subscription — they are two separate Stripe
 operations, and the app only reacts to the second one.** Refunding the
 first live charge from the dashboard gave the money back but left the
@@ -1629,7 +1653,7 @@ scripts/
   migrate.ts                  Applies migrations.
   seed.ts                     Syncs content into the database.
   import-f-air.ts             Converts sources/f-air/ into content/flying-knowledge/fair/.
-  generate-icons.tsx          Rasterises the logo mark. Run by hand, outputs committed.
+  generate-icons.tsx          Rasterises the Q favicon (from public/favicon.svg) into the app and manifest icons. Run by hand, outputs committed.
 src/
   app/
     globals.css               THE design tokens. Colour, type, spacing, radius, shadow.
@@ -1672,7 +1696,7 @@ src/
     robots.ts                 robots.txt — points at sitemap.ts; disallows the
                               legacy redirects and every account-only page
     opengraph-image.tsx       The 1200x630 social card
-    icon.svg, favicon.ico, apple-icon.png      Generated; see scripts above
+    favicon.ico                                 Generated; the rest of the favicon set is in public/ (favicon.svg, favicon-32x32.png, apple-touch-icon.png)
   components/                 Shared UI, including the shell (site-header,
                               site-footer, mobile-nav, user-menu, theme-toggle, logo),
                               flag-button, question-note, resume-test-banner,

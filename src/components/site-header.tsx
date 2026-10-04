@@ -12,6 +12,7 @@ import { envValue } from "@/lib/env";
 import {
   isSectionHidden,
   SECTION_KEYS,
+  sectionShortTitle,
   sectionTitle,
   type SectionKey,
 } from "@/lib/settings";
@@ -30,7 +31,9 @@ import {
  * meanwhile.
  */
 
-const SIGNED_OUT_LINKS = [
+type NavItem = { href: string; label: string; shortLabel?: string };
+
+const SIGNED_OUT_LINKS: NavItem[] = [
   { href: "/type-rating", label: "Type Rating Systems Knowledge" },
   { href: "/class-rating", label: "Class Rating Systems Knowledge" },
   { href: "/flying-knowledge", label: "Flying Knowledge" },
@@ -39,7 +42,7 @@ const SIGNED_OUT_LINKS = [
   { href: "/about", label: "About" },
 ];
 
-const SIGNED_IN_LINKS = [
+const SIGNED_IN_LINKS: NavItem[] = [
   { href: "/type-rating", label: "Type Rating Systems Knowledge" },
   { href: "/class-rating", label: "Class Rating Systems Knowledge" },
   { href: "/flying-knowledge", label: "Flying Knowledge" },
@@ -61,14 +64,20 @@ export async function SiteHeader() {
   // exists — the pages themselves 404 for them regardless, so this is
   // about not advertising a door rather than about locking it.
   const settings = await getSiteSettings();
-  const visible = (links: { href: string; label: string }[]) =>
+  const visible = (links: NavItem[]) =>
     links.flatMap((link) => {
       const section = SECTION_KEYS.find(
         (key: SectionKey) => link.href === `/${key}`,
       );
       if (!section) return [link];
       if (isSectionHidden(settings, section)) return [];
-      return [{ ...link, label: sectionTitle(settings, section) }];
+      return [
+        {
+          ...link,
+          label: sectionTitle(settings, section),
+          shortLabel: sectionShortTitle(settings, section),
+        },
+      ];
     });
 
   const links = visible(
@@ -86,12 +95,16 @@ export async function SiteHeader() {
           href="/"
           className="tap-target flex items-center rounded-lg text-foreground transition hover:text-brand-ink"
         >
-          <LogoWordmark className="h-5 sm:h-6" />
+          <LogoWordmark className="h-6 sm:h-7" />
         </Link>
 
         <nav className="ml-4 hidden items-center gap-1 md:flex">
           {links.map((link) => (
-            <HeaderNavLink key={link.href} href={link.href} label={link.label} />
+            <HeaderNavLink
+              key={link.href}
+              href={link.href}
+              label={link.shortLabel ?? link.label}
+            />
           ))}
         </nav>
 
@@ -106,15 +119,15 @@ export async function SiteHeader() {
             <div className="hidden items-center gap-2 md:flex">
               <Link
                 href="/login"
-                className="tap-target inline-flex items-center rounded-lg px-3 text-sm font-medium text-muted-foreground transition hover:text-foreground"
+                className="tap-target inline-flex items-center whitespace-nowrap rounded-lg px-3 text-sm font-medium text-muted-foreground transition hover:text-foreground"
               >
                 Log in
               </Link>
               <Link
                 href="/signup"
-                className="tap-target inline-flex items-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
+                className="tap-target inline-flex items-center whitespace-nowrap rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
               >
-                Sign up
+                Start free
               </Link>
             </div>
           )}
