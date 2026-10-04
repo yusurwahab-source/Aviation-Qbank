@@ -68,7 +68,7 @@ through Stripe Checkout and confirmed by its webhook. Verified end to end
 against a real Stripe account in test mode. See the note on payments in the
 conventions below and in "Not in scope yet".
 
-The product is called **Holdshort**, and it has an identity to match: a
+The product is called **PilotQBank**, and it has an identity to match: a
 dark flight-deck palette with a light theme beside it, two typefaces, a
 logo mark, and an application shell — header, navigation, theme toggle,
 account menu, footer — that works down to 375px. Everything visual is
