@@ -140,6 +140,11 @@ simulator is its file in `public/pilot-sims/`, an entry in `sims.ts` and a
 page beside the existing one. The service worker already leaves `.html`
 alone. It is in the header's links and in `sitemap.xml`.
 
+**Hold Short is a separate experimental section, not a question bank.**
+`/hold-short` is a small static page linked from the header and included in
+the sitemap. It is a place to try new aviation learning ideas; it does not
+have its own content tree or database queries yet.
+
 **Old links still work.** `/aircraft` and `/aircraft/[code]` (and its
 `/test` page) were the type rating routes before this split existed;
 `/class` and `/class/[code]` were an earlier name for the class rating
@@ -1665,6 +1670,7 @@ src/
                               subscribers, gift codes (+ per-code detail, CSV export),
                               reports, aircraft requests, settings, audit log
     api/webhooks/stripe/      The Stripe webhook endpoint
+    hold-short/               Experimental Hold Short section
     about|pricing|faq|terms|privacy|contact/   Short pages the footer links to
     manifest.ts               Web app manifest
     sitemap.ts                sitemap.xml — every public page, generated from the
