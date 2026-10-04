@@ -66,3 +66,36 @@ export function Logo({
     </span>
   );
 }
+
+/**
+ * The PilotQBank wordmark: text only, outlined, one file per background.
+ *
+ * Two plain `<img>`s rather than one inline SVG, because the wordmark's
+ * colours are part of the artwork (black or white lettering, a fixed amber Q)
+ * and must not follow `currentColor`. Which one shows is decided by the same
+ * `.icon-when-dark` / `.icon-when-light` rules the theme toggle uses, so it
+ * cannot disagree with the theme and does not flash on hydration: the white
+ * file sits on the dark palette, the black one on the light palette.
+ */
+export function LogoWordmark({ className = "h-6" }: { className?: string }) {
+  return (
+    <>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/logo-wordmark-light.svg"
+        alt="PilotQBank"
+        width={180}
+        height={30}
+        className={`icon-when-dark w-auto ${className}`}
+      />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/logo-wordmark.svg"
+        alt="PilotQBank"
+        width={180}
+        height={30}
+        className={`icon-when-light w-auto ${className}`}
+      />
+    </>
+  );
+}
