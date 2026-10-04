@@ -1,5 +1,6 @@
 import { HeroBackground } from "./hero-background";
 import { SectionLinks } from "./section-links";
+import { TryFreeButton } from "./try-free-button";
 
 export type HeroStats = {
   totalQuestions: number;
@@ -24,7 +25,13 @@ const NUMBER_FORMAT = new Intl.NumberFormat("en-GB");
  * Knowledge — and the hero asks which one a visitor is here for, through
  * `SectionLinks`, rather than assuming.
  */
-export function Hero({ stats }: { stats: HeroStats | null }) {
+export function Hero({
+  stats,
+  tryHref,
+}: {
+  stats: HeroStats | null;
+  tryHref: string | null;
+}) {
   return (
     <section className="relative isolate overflow-hidden rounded-2xl border border-border bg-surface px-5 py-14 sm:px-10 sm:py-20">
       <HeroBackground />
@@ -35,10 +42,17 @@ export function Hero({ stats }: { stats: HeroStats | null }) {
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-sm text-muted-foreground sm:text-base">
           Study system by system with an explanation for every question, then sit a timed mock
-          exam before the real one does. Pick the section you&rsquo;re studying for.
+          exam before the real one does. No account needed to start.
         </p>
 
         <div className="mt-8">
+          <TryFreeButton href={tryHref} />
+        </div>
+
+        <p className="mt-6 text-xs font-medium uppercase tracking-wide text-subtle-foreground">
+          Or choose what you&rsquo;re studying for
+        </p>
+        <div className="mt-3">
           <SectionLinks />
         </div>
 

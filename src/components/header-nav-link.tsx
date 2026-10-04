@@ -24,7 +24,7 @@ export function HeaderNavLink({ href, label }: { href: string; label: string }) 
     <Link
       href={href}
       aria-current={active ? "page" : undefined}
-      className={`tap-target relative inline-flex items-center rounded-lg px-3 text-sm font-medium transition hover:bg-surface-muted hover:text-foreground ${
+      className={`tap-target relative inline-flex items-center whitespace-nowrap rounded-lg px-3 text-sm font-medium transition hover:bg-surface-muted hover:text-foreground ${
         active ? "text-foreground" : "text-muted-foreground"
       }`}
     >

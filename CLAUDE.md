@@ -377,16 +377,20 @@ horizontal overflow and for target sizes. `overflow-x: clip` on `html` is
 a safety net, not the fix — overflows get solved where they happen.
 
 **The landing page's job is to start a test, and the hero asks which
-section rather than assuming.** `Hero` used to lead with one featured
-aircraft (`featuredAircraftCode`) and a single "Start practising free"
-button; now it has no featured aircraft at all, and `SectionLinks`
-(`_landing/section-links.tsx`) — three equal-weight buttons, Type Rating
-Systems Knowledge, Class Rating Systems Knowledge, Flying Knowledge — is
-the whole of its call to action,
-reused unchanged in `FinalCta` at the bottom of the page so the two never
-describe the three sections differently. Neither ranks one section above
-the others: the product is three sections, not one section with two
-afterthoughts.
+section rather than assuming.** `Hero` has no featured aircraft. Its one
+primary action is `TryFreeButton` (`_landing/try-free-button.tsx`), a
+yellow "Try free questions" link straight into a ten-question Flying
+Knowledge test — chosen because that section is free in full, so there is
+no preview allowance to run out of — computed in `page.tsx` as `tryHref`
+and omitted when no active subject exists. Under it, `SectionLinks`
+(`_landing/section-links.tsx`) is three identical outlined buttons — Type
+Rating, Class Rating, Flying Knowledge, the short names from
+`sectionShortTitle` — for a visitor who already knows their section.
+`FinalCta` repeats only the try button and a sign-up link, not the three
+sections again. None of the three sections is ranked above the others: the
+product is three sections, not one section with two afterthoughts. The
+header's desktop navigation uses the same short names (the mobile sheet
+keeps the full ones), and its sign-up button reads "Start free".
 
 Directly under the hero, `SectionsOverview` (`_landing/sections-overview.tsx`)
 replaces what used to be two separate things — a systems strip scrolling

@@ -7,6 +7,7 @@ import {
 } from "@/db/flying-knowledge-queries";
 import { listAircraft, listTopics } from "@/db/queries";
 import { getSiteSettings } from "@/db/settings";
+import { buildFlyingKnowledgeTestHref } from "@/lib/test-options";
 import { withoutHidden } from "@/lib/settings";
 import { appUrl } from "@/lib/email/send";
 
@@ -49,6 +50,10 @@ type LandingData = {
    * against another's, because a "Fuel System" quiz on one aircraft is a
    * different surface from another aircraft's. */
   totalSystems: number;
+  /** Where "Try free questions" goes: the first active, visible Flying
+   * Knowledge subject, because that section is free in full — no preview
+   * allowance to run out of mid-test. Null when there is none. */
+  tryHref: string | null;
 };
 
 /**
@@ -92,8 +97,15 @@ async function loadLandingData(): Promise<LandingData> {
       classTopics.reduce((sum, topics) => sum + topics.length, 0) +
       flyingTopics.reduce((sum, topics) => sum + topics.length, 0);
 
+    const trySubject = subjects.find(
+      (subject) => subject.status === "active" && subject.publishedQuestions > 0,
+    );
+
     return {
       sectionsOk: true,
+      tryHref: trySubject
+        ? buildFlyingKnowledgeTestHref(trySubject.code, { length: 10 })
+        : null,
       typeRating,
       classRating,
       flyingKnowledge,
@@ -107,6 +119,7 @@ async function loadLandingData(): Promise<LandingData> {
       classRating: empty,
       flyingKnowledge: empty,
       totalSystems: 0,
+      tryHref: null,
     };
   }
 }
@@ -162,7 +175,14 @@ function jsonLd(
 
 export default async function LandingPage() {
   const [
-    { sectionsOk, typeRating, classRating, flyingKnowledge, totalSystems },
+    {
+      sectionsOk,
+      typeRating,
+      classRating,
+      flyingKnowledge,
+      totalSystems,
+      tryHref,
+    },
     { featuredAircraftCode, hiddenSections, sectionLabels },
   ] = await Promise.all([loadLandingData(), getSiteSettings()]);
 
@@ -179,7 +199,7 @@ export default async function LandingPage() {
 
   return (
     <div className="flex flex-col gap-16 sm:gap-24">
-      <Hero stats={heroStats} />
+      <Hero stats={heroStats} tryHref={tryHref} />
 
       {/* Directly under the hero, because it is the only section on this
           page a student can actually start from: every other one explains
@@ -202,7 +222,7 @@ export default async function LandingPage() {
       <HowItWorks />
       <Features />
       <Faq />
-      <FinalCta />
+      <FinalCta tryHref={tryHref} />
 
       {jsonLd(featuredAircraftCode).map((entry) => (
         <script

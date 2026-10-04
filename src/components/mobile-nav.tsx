@@ -167,7 +167,7 @@ export function MobileNav({ email, links }: { email: string | null; links: NavLi
                         href="/signup"
                         className="tap-target flex items-center justify-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
                       >
-                        Sign up
+                        Start free
                       </Link>
                     </div>
                   )}
