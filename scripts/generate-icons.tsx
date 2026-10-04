@@ -1,39 +1,36 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import { ImageResponse } from "next/og";
 
 /**
- * Draws every raster form of the logo mark from one definition.
+ * Draws every raster form of the favicon — a yellow Q on black — from
+ * `public/favicon.svg`, which is the one definition.
  *
  * Run with `npm run icons:generate`. The outputs are committed, so this is
  * not part of the build — a deploy must never depend on rasterising
  * anything. Re-run it when the mark or the brand colours change.
  *
- * The mark itself lives in `src/components/logo.tsx` as a React component
- * for the application, and is repeated here as a string because this script
- * hands SVG to a rasteriser rather than to React. The two are the same four
- * lines and one arc; if one changes, change the other.
+ * The Q's outline is read out of `public/favicon.svg`, so the icons can
+ * never drift from it.
  */
 
-const ACCENT = "#fbc02d";
-const BACKDROP = "#1a2536";
+const BACKDROP = "#000000";
 
 const OUT_DIR = path.join(process.cwd(), "public");
 const APP_DIR = path.join(process.cwd(), "src", "app");
 
-function markSvg(color: string): string {
-  return [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">`,
-    `<path d="M8.54 5.35A13 13 0 1 0 23.46 5.35" fill="none" stroke="${color}"`,
-    ` stroke-width="2" stroke-linecap="round" opacity="0.38"/>`,
-    `<path d="M16 3.2 24 24 16 19.4 8 24Z" fill="${color}"/>`,
-    `</svg>`,
-  ].join("");
-}
-
-function markDataUri(color: string): string {
-  return `data:image/svg+xml;base64,${Buffer.from(markSvg(color)).toString("base64")}`;
+/**
+ * Just the Q, in a viewBox cut tight around it (the favicon's 64-unit
+ * square, centred on 32,32, with the glyph 40 units tall) so that the size
+ * an icon draws it at is the size of the letter itself.
+ */
+async function markDataUri(): Promise<string> {
+  const favicon = await readFile(path.join(OUT_DIR, "favicon.svg"), "utf8");
+  const d = favicon.match(/<path fill="#FFD300" d="([^"]+)"/)?.[1];
+  if (!d) throw new Error("public/favicon.svg has no Q path");
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="12 12 40 40" width="40" height="40"><path fill="#FFD300" d="${d}"/></svg>`;
+  return `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
 }
 
 /**
@@ -45,6 +42,7 @@ function markDataUri(color: string): string {
  * maskable icon needs a wider margin than one that is shown as drawn.
  */
 async function squareIcon(size: number, inset: number, rounded: boolean): Promise<Buffer> {
+  const mark = await markDataUri();
   const markSize = Math.round(size * (1 - inset * 2));
 
   const image = new ImageResponse(
@@ -61,7 +59,7 @@ async function squareIcon(size: number, inset: number, rounded: boolean): Promis
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={markDataUri(ACCENT)} width={markSize} height={markSize} alt="" />
+        <img src={mark} width={markSize} height={markSize} alt="" />
       </div>
     ),
     { width: size, height: size },
@@ -110,7 +108,7 @@ function icoFrom(images: { size: number; png: Buffer }[]): Buffer {
 async function main() {
   await mkdir(OUT_DIR, { recursive: true });
 
-  const [icon192, icon512, maskable512, apple180, ico32, ico16] = await Promise.all([
+  const [icon192, icon512, maskable512, apple180, ico32, ico16, favicon32] = await Promise.all([
     squareIcon(192, 0.18, true),
     squareIcon(512, 0.18, true),
     // Wider margin: a launcher mask crops this one.
@@ -120,6 +118,8 @@ async function main() {
     squareIcon(180, 0.16, false),
     squareIcon(32, 0.08, false),
     squareIcon(16, 0.04, false),
+    // The standalone 32px PNG keeps the favicon's rounded corners.
+    squareIcon(32, 0.16, true),
   ]);
 
   const written: [string, Buffer][] = [
@@ -127,9 +127,9 @@ async function main() {
     [path.join(OUT_DIR, "icon-192.png"), icon192],
     [path.join(OUT_DIR, "icon-512.png"), icon512],
     [path.join(OUT_DIR, "icon-maskable-512.png"), maskable512],
-    // This one is a Next.js file convention: putting it in `app/` is what
-    // emits the `apple-touch-icon` link, with the right size on it.
-    [path.join(APP_DIR, "apple-icon.png"), apple180],
+    // Linked from `layout.tsx`'s `icons`, not by file convention.
+    [path.join(OUT_DIR, "apple-touch-icon.png"), apple180],
+    [path.join(OUT_DIR, "favicon-32x32.png"), favicon32],
     [path.join(APP_DIR, "favicon.ico"), icoFrom([
       { size: 16, png: ico16 },
       { size: 32, png: ico32 },

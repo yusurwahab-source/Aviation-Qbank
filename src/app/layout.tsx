@@ -6,6 +6,7 @@ import { SiteAnnouncement } from "@/components/site-announcement";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeScript } from "@/components/theme-toggle";
+import { UpgradePrompt } from "@/components/upgrade-prompt";
 import { siteConfig } from "@/config/site";
 import { canonicalUrl } from "@/lib/canonical-url";
 
@@ -86,6 +87,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </main>
 
         <SiteFooter />
+        <UpgradePrompt />
         <ServiceWorker />
       </body>
     </html>

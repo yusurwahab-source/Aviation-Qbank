@@ -1248,6 +1248,18 @@ The general rule all three findings point at: **the live account is a
 different system from the test account, and only a live request proves a
 live path** — a real card most of all.
 
+**A signed-in student without access gets one upgrade dialog, a few seconds in,
+and then a three-day pause.** `UpgradePrompt` (server, mounted in
+`layout.tsx`) renders `UpgradePromptDialog` only for a signed-in account with
+no active subscription — anyone else never has it in the page. The dialog
+waits five seconds, skips `/upgrade`, `/redeem`, the auth pages, `/owner` and
+any `/test` route (a modal over a question being read costs the student more
+than a missed pitch), and snoozes itself for three days in `localStorage`
+whether it was dismissed or followed. Its price text is `config/pricing.ts`,
+edited by hand with the Stripe Price. It lists only what a subscription
+really adds — uncapped questions on every aircraft — and says plainly that
+Pilot Sims and Flying Knowledge are free for everyone, because they are.
+
 **A refund does not cancel a subscription — they are two separate Stripe
 operations, and the app only reacts to the second one.** Refunding the
 first live charge from the dashboard gave the money back but left the
@@ -1633,7 +1645,7 @@ scripts/
   migrate.ts                  Applies migrations.
   seed.ts                     Syncs content into the database.
   import-f-air.ts             Converts sources/f-air/ into content/flying-knowledge/fair/.
-  generate-icons.tsx          Rasterises the logo mark. Run by hand, outputs committed.
+  generate-icons.tsx          Rasterises the Q favicon (from public/favicon.svg) into the app and manifest icons. Run by hand, outputs committed.
 src/
   app/
     globals.css               THE design tokens. Colour, type, spacing, radius, shadow.
@@ -1676,7 +1688,7 @@ src/
     robots.ts                 robots.txt — points at sitemap.ts; disallows the
                               legacy redirects and every account-only page
     opengraph-image.tsx       The 1200x630 social card
-    icon.svg, favicon.ico, apple-icon.png      Generated; see scripts above
+    favicon.ico                                 Generated; the rest of the favicon set is in public/ (favicon.svg, favicon-32x32.png, apple-touch-icon.png)
   components/                 Shared UI, including the shell (site-header,
                               site-footer, mobile-nav, user-menu, theme-toggle, logo),
                               flag-button, question-note, resume-test-banner,
