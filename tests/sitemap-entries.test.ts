@@ -38,6 +38,14 @@ describe("buildSitemapEntries", () => {
     expect(urls).toContain("https://example.com/pilot-sims/vor-ndb-trainer");
   });
 
+  it("includes the Hold Short experimental section", () => {
+    const urls = buildSitemapEntries("https://example.com", sections).map(
+      (entry) => entry.url,
+    );
+
+    expect(urls).toContain("https://example.com/hold-short");
+  });
+
   it("includes an active row from every content tree, at its own uppercase code", () => {
     const urls = buildSitemapEntries("https://example.com", sections).map(
       (entry) => entry.url,
