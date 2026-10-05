@@ -392,6 +392,18 @@ product is three sections, not one section with two afterthoughts. The
 header's desktop navigation uses the same short names (the mobile sheet
 keeps the full ones), and its sign-up button reads "Start free".
 
+**The header's desktop navigation starts at `lg`, and the wordmark must not
+shrink.** The wordmark is an `<img>` in a flex row; with the default
+`flex-shrink` a crowded row squeezed it to a quarter of its width while its
+height stayed fixed, so the letters drew tiny inside a box that still looked
+the right size — for everybody, from the day it shipped, and nobody noticed
+because a squeezed logo still looks like a logo. It is `shrink-0` now, 24px
+tall (145px wide), and the nav links are `px-2.5`: measured at 1024, 1100 and
+1280 with the owner's seven links, the row fits exactly. Below `lg` the
+menu button replaces the nav, because the full-size wordmark plus six links
+does not fit in `md`. The account menu shows an avatar only; the address is in
+its dropdown.
+
 Directly under the hero, `SectionsOverview` (`_landing/sections-overview.tsx`)
 replaces what used to be two separate things — a systems strip scrolling
 through one featured aircraft's sections, and a card further down headed
@@ -1293,6 +1305,45 @@ plans. A banner under the header and an Email card on `/account` (with a
 resend button, rate limited on mail under its own `verify-email:` keys, three
 an hour) lead there. The `SessionUser` carries `emailVerified`.
 
+**The owner can write to students, and every message can be refused.**
+`/owner/messages` composes a plain-text message, aims it at one of four
+audiences (everyone, subscribers, free accounts, access ending within two
+weeks — `lib/broadcast/audience.ts`, using the accounts screen's own "active"
+and "soon"), and sends it by email. "Only confirmed addresses" defaults on,
+because an unconfirmed address may be somebody else's and every bounce or
+spam report damages the sending domain for everyone; the owner can switch it
+off and each audience's count, with and without it, is on the button, so it
+never promises more than a send delivers. Anybody who has unsubscribed
+(`users.broadcast_opt_out_at`) is left out of every audience with no option to
+include them.
+
+Every message ends with a footer the owner cannot remove — why they are
+receiving it and an unsubscribe link (`composeBroadcastEmail`, pure and
+tested) — plus `List-Unsubscribe` and one-click headers. The link carries a
+random token unique to that one email; only its SHA-256 is stored
+(`broadcast_deliveries.unsubscribe_token_hash`). `/unsubscribe` looks the
+token up and a button spends it, and `/api/unsubscribe` takes the mail
+client's own POST — a GET there only redirects to the page, so a scanner
+opening the link unsubscribes nobody. `/account` has the same switch.
+Transactional mail (a reset link, a verification link, a security notice) is
+never affected.
+
+Sending is a queue in the database, not a long request. `createBroadcast`
+fixes the recipient list in one transaction (`broadcast_deliveries`, one row
+per student, unique per broadcast); `sendNextBatch` claims eight rows with
+`for update skip locked` — so two tabs never send the same email, and a row
+left `sending` is reclaimed after five minutes — sends them about half a
+second apart (a provider's two-a-second limit) and marks each `sent` or
+`failed`. The progress page calls it in a loop and says how it is going;
+closing the tab is safe, "Continue sending" resumes, "Queue the failed ones
+again" retries. It refuses to run without a mail provider, because without
+one `sendEmail` only prints to the log and every delivery would be marked
+sent for mail nobody received. **`sendBatch` is the one owner action not
+wrapped in `ownerAction`**: the decision to send is audited once, as
+`message.send`, and a row for every batch of eight would bury it; it still
+calls `requireOwner()` first. A provider's own daily limit is the usual cause
+of failed deliveries, and is the owner's to know.
+
 **A refund does not cancel a subscription — they are two separate Stripe
 operations, and the app only reacts to the second one.** Refunding the
 first live charge from the dashboard gave the money back but left the
@@ -1381,8 +1432,10 @@ first, filterable by action. Nothing here needed a second role — the log
 records *who*, but "who" is still always the one `OWNER_EMAIL`; it exists
 for "what did I do and when", not for telling two owners apart.
 
-**`src/db/owner.ts` is the only module in the codebase whose queries take
-no `userId`, and the only one that writes to a row without one.** Every read in `reports.ts` filters on one, precisely so a
+**`src/db/owner.ts` and `src/db/broadcasts.ts` are the only modules in the
+codebase whose queries take no `userId`, and the only ones that write to a
+row without one.** (`broadcasts.ts` reads every account to build a mailing
+list; the rest of this paragraph is about `owner.ts` and holds for both.) Every read in `reports.ts` filters on one, precisely so a
 student can never see another's history; this file inverts that on purpose
 and is the more dangerous for it. The whole guard is that every caller sits
 under `/owner` behind `requireOwner()`, which is why the inversion is
@@ -1712,7 +1765,10 @@ src/
     redeem/                   Where a gift code becomes an active subscription
     owner/                    Owner-only: overview, insights, accounts (+ per-account detail),
                               subscribers, gift codes (+ per-code detail, CSV export),
-                              reports, aircraft requests, settings, audit log
+                              messages (+ per-message delivery), reports, aircraft requests,
+                              settings, audit log
+    account/                  The signed-in student's own page: email, access, password, messages
+    unsubscribe/, api/unsubscribe/   The link at the foot of a message, and one-click
     api/webhooks/stripe/      The Stripe webhook endpoint
     about|pricing|faq|terms|privacy|contact/   Short pages the footer links to
     manifest.ts               Web app manifest
@@ -1752,6 +1808,9 @@ src/
     gift-codes.ts             Minting and redeeming license keys; listing, per-code redemption history
     question-reports.ts       Creating and listing "report a problem" rows; joins questions read-only
     audit-log.ts              Writing (from ownerAction only) and reading the owner action log
+    broadcasts.ts             Audiences, the delivery queue and its counts. /owner only, like owner.ts.
+    email-verification.ts     Issuing and spending email verification links
+    unsubscribe.ts            Unsubscribe by token, and the account page's own switch
     insights.ts               Read-only analytics queries for /owner/insights
     settings.ts               Reading and writing site_settings; owner-only write, publicly read
     owner.ts                  THE unscoped reads, and grant/revoke/notes. /owner only; see the convention above.

@@ -52,7 +52,7 @@ export function UserMenu({ email }: { email: string }) {
         >
           {email.slice(0, 1)}
         </span>
-        <span className="hidden max-w-[10rem] truncate lg:inline">{email}</span>
+        
         <svg
           viewBox="0 0 12 12"
           className={`h-3 w-3 transition ${open ? "rotate-180" : ""}`}

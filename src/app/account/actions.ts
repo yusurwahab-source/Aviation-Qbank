@@ -15,6 +15,7 @@ import { describeWait } from "@/lib/auth/rate-limit-policy";
 import { createSession, destroyAllSessions, getCurrentUser } from "@/lib/auth/session";
 import { passwordChangedEmail } from "@/lib/email/password-changed-email";
 import { appUrl, sendEmail } from "@/lib/email/send";
+import { setBroadcastOptOut } from "@/db/unsubscribe";
 import { hashPassword, verifyPassword } from "@/lib/password";
 
 export type ChangePasswordState = {
@@ -111,4 +112,22 @@ export async function resendVerification(): Promise<ResendVerificationState> {
 
   await sendVerificationEmail(user.id, user.email);
   return { sent: true };
+}
+
+export type MessagePreferenceState = { saved?: boolean; error?: string };
+
+/**
+ * Switches messages from the owner on or off for the signed-in student. The
+ * emails an account needs to work — a reset link, a verification link, a
+ * security notice — are not affected, and cannot be switched off.
+ */
+export async function setMessagePreference(
+  _previous: MessagePreferenceState,
+  formData: FormData,
+): Promise<MessagePreferenceState> {
+  const user = await getCurrentUser();
+  if (!user) return { error: "Your session has ended. Log in again." };
+
+  await setBroadcastOptOut(user.id, formData.get("receive") !== "on");
+  return { saved: true };
 }

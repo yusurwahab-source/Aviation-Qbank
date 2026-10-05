@@ -237,6 +237,12 @@ export const users = pgTable(
      * is taken away from an unverified account except subscribing.
      */
     emailVerifiedAt: timestamp("email_verified_at", { withTimezone: true }),
+    /**
+     * Set when the student has unsubscribed from messages the owner sends.
+     * Never affects the emails an account needs to function (a password
+     * reset, a verification link, a security notice) — only broadcasts.
+     */
+    broadcastOptOutAt: timestamp("broadcast_opt_out_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
@@ -1068,3 +1074,72 @@ export const previewAttempts = pgTable(
 );
 
 export type PreviewAttemptRow = typeof previewAttempts.$inferSelect;
+
+/**
+ * A message the owner sends to many students at once.
+ *
+ * `body` is plain text, kept as written; the HTML version is made from it at
+ * send time (`composeBroadcastEmail`), so what is stored is exactly what the
+ * owner typed. `audience` and `onlyConfirmed` record who it was aimed at
+ * *when it was sent* — the recipient list itself is `broadcast_deliveries`,
+ * fixed at that moment, so a later change to who is subscribed never alters
+ * the history of who was written to.
+ */
+export const broadcasts = pgTable(
+  "broadcasts",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    subject: varchar("subject", { length: 150 }).notNull(),
+    body: text("body").notNull(),
+    audience: varchar("audience", { length: 24 }).notNull(),
+    onlyConfirmed: boolean("only_confirmed").notNull().default(true),
+    createdByEmail: varchar("created_by_email", { length: 254 }).notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [index("broadcasts_created_at_idx").on(table.createdAt)],
+);
+
+/**
+ * One recipient of one broadcast, and what became of the email.
+ *
+ * Doubles as the queue: rows start `queued`, a sender claims a few at a time
+ * (`sending`) and ends each as `sent` or `failed`. A browser tab closing
+ * halfway leaves a half-sent broadcast that can simply be continued; nothing
+ * is held in memory. `email` is a snapshot of the address written to. The
+ * rows go with the account if it is deleted (cascade), which is the right
+ * trade for personal data.
+ *
+ * `unsubscribeTokenHash` is the SHA-256 of the random token in this one
+ * email's unsubscribe link — set at the moment of sending, never the raw
+ * token, for the reason session cookies and reset links are stored that way.
+ */
+export const broadcastDeliveries = pgTable(
+  "broadcast_deliveries",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    broadcastId: uuid("broadcast_id")
+      .notNull()
+      .references(() => broadcasts.id, { onDelete: "cascade" }),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    email: varchar("email", { length: 254 }).notNull(),
+    status: varchar("status", { length: 12 }).notNull().default("queued"),
+    error: varchar("error", { length: 200 }),
+    claimedAt: timestamp("claimed_at", { withTimezone: true }),
+    sentAt: timestamp("sent_at", { withTimezone: true }),
+    unsubscribeTokenHash: varchar("unsubscribe_token_hash", { length: 64 }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    // A student is written to once per broadcast, whatever races.
+    uniqueIndex("broadcast_deliveries_broadcast_user_unique").on(table.broadcastId, table.userId),
+    // Claiming the next queued rows, and counting by status.
+    index("broadcast_deliveries_broadcast_status_idx").on(table.broadcastId, table.status),
+    // Finding the delivery an unsubscribe link belongs to.
+    index("broadcast_deliveries_unsubscribe_hash_idx").on(table.unsubscribeTokenHash),
+  ],
+);
+
+export type BroadcastRow = typeof broadcasts.$inferSelect;
+export type BroadcastDeliveryRow = typeof broadcastDeliveries.$inferSelect;

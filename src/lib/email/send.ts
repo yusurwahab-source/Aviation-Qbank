@@ -27,6 +27,8 @@ export type EmailMessage = {
   text: string;
   /** Optional HTML alternative. */
   html?: string;
+  /** Extra headers, e.g. `List-Unsubscribe` on a broadcast. */
+  headers?: Record<string, string>;
 };
 
 export type EmailOutcome = {
@@ -101,6 +103,7 @@ export async function sendEmail(message: EmailMessage): Promise<EmailOutcome> {
         subject: message.subject,
         text: message.text,
         ...(message.html ? { html: message.html } : {}),
+        ...(message.headers ? { headers: message.headers } : {}),
       }),
     });
 

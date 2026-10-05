@@ -86,7 +86,7 @@ export function LogoWordmark({ className = "h-6" }: { className?: string }) {
         alt="PilotQBank"
         width={180}
         height={30}
-        className={`icon-when-dark w-auto ${className}`}
+        className={`icon-when-dark w-auto max-w-none shrink-0 ${className}`}
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -94,7 +94,7 @@ export function LogoWordmark({ className = "h-6" }: { className?: string }) {
         alt="PilotQBank"
         width={180}
         height={30}
-        className={`icon-when-light w-auto ${className}`}
+        className={`icon-when-light w-auto max-w-none shrink-0 ${className}`}
       />
     </>
   );
