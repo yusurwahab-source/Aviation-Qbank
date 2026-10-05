@@ -62,7 +62,7 @@ export function MobileNav({ email, links }: { email: string | null; links: NavLi
         onClick={() => setOpen(true)}
         aria-expanded={open}
         aria-label="Open menu"
-        className="tap-target inline-flex items-center justify-center rounded-lg border border-border text-foreground transition hover:border-brand hover:text-brand-ink md:hidden"
+        className="tap-target inline-flex items-center justify-center rounded-lg border border-border text-foreground transition hover:border-brand hover:text-brand-ink lg:hidden"
       >
         <svg
           viewBox="0 0 24 24"
@@ -92,7 +92,7 @@ export function MobileNav({ email, links }: { email: string | null; links: NavLi
       */}
       {open
         ? createPortal(
-            <div className="fixed inset-0 z-50 md:hidden">
+            <div className="fixed inset-0 z-50 lg:hidden">
               <button
                 type="button"
                 tabIndex={-1}

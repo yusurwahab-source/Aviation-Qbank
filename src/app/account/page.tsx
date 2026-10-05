@@ -4,10 +4,12 @@ import { redirect } from "next/navigation";
 
 import { Card, PageHeading } from "@/components/ui";
 import { getSubscription } from "@/db/subscriptions";
+import { isOptedOut } from "@/db/unsubscribe";
 import { getCurrentUser } from "@/lib/auth/session";
 import { daysRemaining, hasActiveSubscription } from "@/lib/billing/access-policy";
 
 import { ChangePasswordForm } from "./change-password-form";
+import { MessagePreferenceForm } from "./message-preference-form";
 import { ResendVerificationForm } from "./resend-verification-form";
 
 export const metadata: Metadata = { title: "Account" };
@@ -22,7 +24,7 @@ export default async function AccountPage() {
   const user = await getCurrentUser();
   if (!user) redirect("/login");
 
-  const subscription = await getSubscription(user.id);
+  const [subscription, optedOut] = await Promise.all([getSubscription(user.id), isOptedOut(user.id)]);
   const active = subscription !== null && hasActiveSubscription(subscription);
   const daysLeft = active ? daysRemaining(subscription?.currentPeriodEnd ?? null) : null;
 
@@ -69,6 +71,11 @@ export default async function AccountPage() {
             Changing it signs you out on every other device.
           </p>
           <ChangePasswordForm />
+        </Card>
+
+        <Card className="md:col-span-2">
+          <h2 className="mb-3 text-lg font-semibold text-foreground">Messages</h2>
+          <MessagePreferenceForm receiving={!optedOut} />
         </Card>
       </div>
     </>

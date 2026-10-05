@@ -93,12 +93,12 @@ export async function SiteHeader() {
       <div className="mx-auto flex w-full max-w-5xl items-center gap-3 px-4 py-2 sm:px-5 sm:py-2.5">
         <Link
           href="/"
-          className="tap-target flex items-center rounded-lg text-foreground transition hover:text-brand-ink"
+          className="tap-target flex shrink-0 items-center rounded-lg text-foreground transition hover:text-brand-ink"
         >
-          <LogoWordmark className="h-6 sm:h-7" />
+          <LogoWordmark className="h-6" />
         </Link>
 
-        <nav className="ml-4 hidden items-center gap-1 md:flex">
+        <nav className="ml-3 hidden items-center gap-0.5 lg:flex">
           {links.map((link) => (
             <HeaderNavLink
               key={link.href}
@@ -112,11 +112,11 @@ export async function SiteHeader() {
           <ThemeToggle />
 
           {email ? (
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <UserMenu email={email} />
             </div>
           ) : (
-            <div className="hidden items-center gap-2 md:flex">
+            <div className="hidden items-center gap-2 lg:flex">
               <Link
                 href="/login"
                 className="tap-target inline-flex items-center whitespace-nowrap rounded-lg px-3 text-sm font-medium text-muted-foreground transition hover:text-foreground"

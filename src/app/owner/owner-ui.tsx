@@ -17,6 +17,7 @@ export const OWNER_LINKS = [
   { href: "/owner/accounts", label: "Accounts" },
   { href: "/owner/subscribers", label: "Subscribers" },
   { href: "/owner/gift-codes", label: "Gift codes" },
+  { href: "/owner/messages", label: "Messages" },
   { href: "/owner/reports", label: "Reports" },
   { href: "/owner/interest", label: "Aircraft requests" },
   { href: "/owner/settings", label: "Settings" },
