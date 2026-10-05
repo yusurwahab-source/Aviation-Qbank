@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
 
 import { generate, type GenerateState } from "./actions";
@@ -38,10 +38,28 @@ function downloadCodesAsCsv(codes: string[]): void {
 
 export function GenerateForm({ aircraftCodes }: { aircraftCodes: string[] }) {
   const [state, formAction] = useActionState<GenerateState, FormData>(generate, {});
+  const [grants, setGrants] = useState<"subscription" | "logbook">("subscription");
+  const isLogbook = grants === "logbook";
 
   return (
     <div>
       <form action={formAction} className="grid gap-4 sm:grid-cols-2">
+        <div className="sm:col-span-2">
+          <label htmlFor="grants" className="block text-sm font-medium text-foreground">
+            What the code grants
+          </label>
+          <select
+            id="grants"
+            name="grants"
+            value={grants}
+            onChange={(event) => setGrants(event.target.value as "subscription" | "logbook")}
+            className={inputClass}
+          >
+            <option value="subscription">Full access for a number of days</option>
+            <option value="logbook">One Logbook Scanner unlock (one logbook, up to 40 spreads)</option>
+          </select>
+        </div>
+
         <div>
           <label htmlFor="count" className="block text-sm font-medium text-foreground">
             How many codes
@@ -58,22 +76,30 @@ export function GenerateForm({ aircraftCodes }: { aircraftCodes: string[] }) {
           />
         </div>
 
-        <div>
-          <label htmlFor="days" className="block text-sm font-medium text-foreground">
-            Days of access each
-          </label>
-          <input id="days" name="days" type="number" min={1} defaultValue={30} required className={inputClass} />
-        </div>
+        {isLogbook ? (
+          // A logbook code carries a plan only because the column is not
+          // null; it is never read.
+          <input type="hidden" name="plan" value="monthly" />
+        ) : (
+          <>
+            <div>
+              <label htmlFor="days" className="block text-sm font-medium text-foreground">
+                Days of access each
+              </label>
+              <input id="days" name="days" type="number" min={1} defaultValue={30} required className={inputClass} />
+            </div>
 
-        <div>
-          <label htmlFor="plan" className="block text-sm font-medium text-foreground">
-            Plan
-          </label>
-          <select id="plan" name="plan" defaultValue="monthly" className={inputClass}>
-            <option value="monthly">Monthly</option>
-            <option value="quarterly">Quarterly</option>
-          </select>
-        </div>
+            <div>
+              <label htmlFor="plan" className="block text-sm font-medium text-foreground">
+                Plan
+              </label>
+              <select id="plan" name="plan" defaultValue="monthly" className={inputClass}>
+                <option value="monthly">Monthly</option>
+                <option value="quarterly">Quarterly</option>
+              </select>
+            </div>
+          </>
+        )}
 
         <div>
           <label htmlFor="maxRedemptions" className="block text-sm font-medium text-foreground">
@@ -103,23 +129,25 @@ export function GenerateForm({ aircraftCodes }: { aircraftCodes: string[] }) {
           </p>
         </div>
 
-        <div>
-          <label htmlFor="unlocksAircraftCode" className="block text-sm font-medium text-foreground">
-            Aircraft (optional)
-          </label>
-          <select id="unlocksAircraftCode" name="unlocksAircraftCode" defaultValue="" className={inputClass}>
-            <option value="">All aircraft</option>
-            {aircraftCodes.map((code) => (
-              <option key={code} value={code}>
-                {code}
-              </option>
-            ))}
-          </select>
-          <p className="mt-1 text-xs text-muted-foreground">
-            Recorded for your own reference only — redeeming this code still grants full access to
-            every aircraft, the same as one with no aircraft set.
-          </p>
-        </div>
+        {isLogbook ? null : (
+          <div>
+            <label htmlFor="unlocksAircraftCode" className="block text-sm font-medium text-foreground">
+              Aircraft (optional)
+            </label>
+            <select id="unlocksAircraftCode" name="unlocksAircraftCode" defaultValue="" className={inputClass}>
+              <option value="">All aircraft</option>
+              {aircraftCodes.map((code) => (
+                <option key={code} value={code}>
+                  {code}
+                </option>
+              ))}
+            </select>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Recorded for your own reference only — redeeming this code still grants full access to
+              every aircraft, the same as one with no aircraft set.
+            </p>
+          </div>
+        )}
 
         <div className="sm:col-span-2">
           <label htmlFor="note" className="block text-sm font-medium text-foreground">

@@ -17,6 +17,8 @@ const AIRCRAFT_CODE_PATTERN = /^[A-Z][A-Z0-9]{1,7}$/;
 
 const generateSchema = z.object({
   count: z.coerce.number().int().min(1).max(MAX_GENERATE_COUNT),
+  /** `logbook` codes grant one Logbook Scanner unlock and ignore days and plan. */
+  grants: z.enum(["subscription", "logbook"]).default("subscription"),
   days: z.coerce.number().int().min(1),
   plan: z.enum(["monthly", "quarterly"]),
   note: z
@@ -59,7 +61,10 @@ export const generate = ownerAction<GenerateState, GenerateInput>({
   parse(formData) {
     const raw = {
       count: formData.get("count"),
-      days: formData.get("days"),
+      grants: formData.get("grants") || "subscription",
+      // A logbook code has no duration; any valid number satisfies the
+      // schema and is replaced by 0 below.
+      days: formData.get("grants") === "logbook" ? "1" : formData.get("days"),
       plan: formData.get("plan"),
       note: formData.get("note") ?? undefined,
       maxRedemptions: formData.get("maxRedemptions") || "1",
@@ -107,7 +112,8 @@ export const generate = ownerAction<GenerateState, GenerateInput>({
 
     const codes = await createGiftCodes({
       count: input.count,
-      durationDays: input.days,
+      grants: input.grants,
+      durationDays: input.grants === "logbook" ? 0 : input.days,
       plan: input.plan,
       note: input.note ?? null,
       maxRedemptions: input.maxRedemptions,
@@ -119,7 +125,8 @@ export const generate = ownerAction<GenerateState, GenerateInput>({
       ok: true,
       metadata: {
         count: input.count,
-        days: input.days,
+        grants: input.grants,
+        days: input.grants === "logbook" ? 0 : input.days,
         plan: input.plan,
         maxRedemptions: input.maxRedemptions,
         expiresAt: input.expiresAt?.toISOString() ?? null,

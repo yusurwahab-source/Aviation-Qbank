@@ -43,6 +43,15 @@ export default function PrivacyPage() {
           back here is whether a subscription is active and when its period ends.
         </p>
         <p>
+          <strong className="text-foreground">Logbook Scanner.</strong> Photos of your logbook
+          are held in memory only for as long as it takes to read them, are sent to Anthropic
+          (our AI provider) for that one purpose, and are never stored. The entries read from
+          them stay in your browser unless you press &ldquo;Save to my account&rdquo;; saved
+          logbooks can be deleted at any time with &ldquo;Delete all my logbook data&rdquo;. A
+          count of how many spreads you have scanned — with no content — is kept so the free
+          allowance works.
+        </p>
+        <p>
           <strong className="text-foreground">Email.</strong> Your address is used to sign you
           in and to send a password reset link if you ask for one. Nothing else is sent to it.
         </p>

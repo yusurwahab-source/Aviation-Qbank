@@ -78,11 +78,13 @@ export default async function OwnerGiftCodeDetailPage({
           <dl className="grid grid-cols-2 gap-4 text-sm sm:grid-cols-3">
             <div>
               <dt className="text-xs text-muted-foreground">Plan</dt>
-              <dd className="mt-0.5 text-foreground">{code.plan}</dd>
+              <dd className="mt-0.5 text-foreground">{code.grants === "logbook" ? "—" : code.plan}</dd>
             </div>
             <div>
               <dt className="text-xs text-muted-foreground">Worth</dt>
-              <dd className="mt-0.5 text-foreground">{code.durationDays} days</dd>
+              <dd className="mt-0.5 text-foreground">
+                {code.grants === "logbook" ? "One Logbook Scanner unlock" : `${code.durationDays} days`}
+              </dd>
             </div>
             <div>
               <dt className="text-xs text-muted-foreground">Redemptions</dt>

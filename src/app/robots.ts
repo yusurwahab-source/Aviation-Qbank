@@ -19,7 +19,9 @@ import { canonicalUrl } from "@/lib/canonical-url";
  * - `/owner` and `/api/` have nothing for a search engine to index;
  * - sign-in, sign-up, `/upgrade`, `/redeem` and `/progress` all either
  *   require an account or exist only to redirect to one — none is a page
- *   worth sending a stranger to from a search result.
+ *   worth sending a stranger to from a search result;
+ * - `/tools/logbook/` (trailing slash) is one student's own logbook; the
+ *   tool's landing page, `/tools/logbook`, stays crawlable.
  *
  * `sitemap.ts` is the positive list; this is only the handful of paths
  * deliberately left off it.
@@ -46,6 +48,7 @@ export default function robots(): MetadataRoute.Robots {
         "/account",
         "/verify-email",
         "/unsubscribe",
+        "/tools/logbook/",
       ],
     },
     sitemap: `${canonicalUrl()}/sitemap.xml`,

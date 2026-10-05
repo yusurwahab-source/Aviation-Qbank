@@ -773,6 +773,14 @@ export const giftCodes = pgTable(
     /** Which aircraft this code is meant for, or null for "all aircraft".
      * Recorded, not enforced — see the note above. */
     unlocksAircraftCode: varchar("unlocks_aircraft_code", { length: 8 }),
+    /**
+     * What redeeming this code grants: `subscription` — days of full
+     * access, everything above — or `logbook`, one Logbook Scanner unlock
+     * (a row in `logbook_credits`). A logbook code ignores `plan` and
+     * `durationDays`, which it carries only because both columns predate it
+     * and are not null; it is minted with `durationDays` 0.
+     */
+    grants: varchar("grants", { length: 16 }).notNull().default("subscription"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
   (table) => [uniqueIndex("gift_codes_code_unique").on(table.code)],
@@ -1143,3 +1151,107 @@ export const broadcastDeliveries = pgTable(
 
 export type BroadcastRow = typeof broadcasts.$inferSelect;
 export type BroadcastDeliveryRow = typeof broadcastDeliveries.$inferSelect;
+
+/**
+ * Logbook Scanner: one paper logbook being converted.
+ *
+ * The row exists from the first upload, because what a student has paid for
+ * (`unlockedAt`) belongs to one logbook and has to be findable again. The
+ * logbook's *content* — `data`, the extracted and reviewed pages — is null
+ * until the student presses "Save to my account": photos are never stored at
+ * all, and extracted entries only on request. "Delete all my logbook data"
+ * deletes these rows outright.
+ */
+export const logbooks = pgTable(
+  "logbooks",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    name: varchar("name", { length: 120 }).notNull().default("My logbook"),
+    /** Set once a credit has been spent on this logbook. */
+    unlockedAt: timestamp("unlocked_at", { withTimezone: true }),
+    /** Where the unlock came from: gift, manual, subscription or purchase. */
+    unlockSource: varchar("unlock_source", { length: 16 }),
+    /** The saved review state, only when the student chose to save it. */
+    data: jsonb("data"),
+    savedAt: timestamp("saved_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [index("logbooks_user_idx").on(table.userId, table.updatedAt)],
+);
+
+export type LogbookRowRecord = typeof logbooks.$inferSelect;
+
+/**
+ * One extraction request: the meter for the free allowance and an unlock's
+ * spread limit, and the owner's token and cost log.
+ *
+ * Holds no logbook content — no image, no entries — so it outlives "Delete
+ * all my logbook data" deliberately: the free allowance is "the first two
+ * spreads per account", and deleting would otherwise reset it. `logbookId`
+ * is therefore not a foreign key. A `pending` row is a reservation made
+ * before the model is called, so two uploads racing cannot both take the
+ * last free spread; a stale one stops counting after ten minutes.
+ */
+export const logbookExtractions = pgTable(
+  "logbook_extractions",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    logbookId: uuid("logbook_id"),
+    /** `free` or `unlock` — which allowance this spread was counted against. */
+    chargedTo: varchar("charged_to", { length: 8 }).notNull(),
+    /** `pending`, `ok` or `failed`. Only `ok` (and fresh `pending`) count. */
+    status: varchar("status", { length: 8 }).notNull().default("pending"),
+    model: varchar("model", { length: 64 }).notNull(),
+    inputTokens: integer("input_tokens").notNull().default(0),
+    outputTokens: integer("output_tokens").notNull().default(0),
+    cacheReadTokens: integer("cache_read_tokens").notNull().default(0),
+    cacheWriteTokens: integer("cache_write_tokens").notNull().default(0),
+    /** Millionths of a US dollar; null for a model with no known price. */
+    costMicroUsd: integer("cost_micro_usd"),
+    attempts: smallint("attempts").notNull().default(0),
+    durationMs: integer("duration_ms"),
+    error: varchar("error", { length: 200 }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("logbook_extractions_user_idx").on(table.userId, table.chargedTo, table.status),
+    index("logbook_extractions_logbook_idx").on(table.logbookId),
+    index("logbook_extractions_created_at_idx").on(table.createdAt),
+  ],
+);
+
+/**
+ * One logbook unlock a student holds, spent or not. Granted by a gift code
+ * (`grants = 'logbook'`), by the owner by hand, or — when a provider is
+ * connected — by a purchase. A subscriber's one included conversion is a
+ * row too, written at the moment it is spent; the partial unique index is
+ * what stops it being taken twice.
+ */
+export const logbookCredits = pgTable(
+  "logbook_credits",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    source: varchar("source", { length: 16 }).notNull(),
+    giftCodeId: uuid("gift_code_id").references(() => giftCodes.id, { onDelete: "set null" }),
+    note: varchar("note", { length: 200 }),
+    usedAt: timestamp("used_at", { withTimezone: true }),
+    usedForLogbookId: uuid("used_for_logbook_id"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("logbook_credits_user_idx").on(table.userId, table.usedAt),
+    uniqueIndex("logbook_credits_one_subscription_unique")
+      .on(table.userId)
+      .where(sql`${table.source} = 'subscription'`),
+  ],
+);

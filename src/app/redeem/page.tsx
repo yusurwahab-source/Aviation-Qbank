@@ -24,7 +24,7 @@ export default async function RedeemPage() {
     <>
       <PageHeading
         title="Redeem a gift code"
-        subtitle="Enter the code you were given for full access to every aircraft."
+        subtitle="Enter the code you were given — for full access to every aircraft, or a Logbook Scanner unlock."
       />
 
       {!user ? (
