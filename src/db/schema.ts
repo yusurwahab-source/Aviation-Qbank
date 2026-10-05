@@ -231,6 +231,12 @@ export const users = pgTable(
     /** Always stored trimmed and lowercased; see `normaliseEmail`. */
     email: varchar("email", { length: 254 }).notNull(),
     passwordHash: text("password_hash").notNull(),
+    /**
+     * Null until the owner of the inbox has opened the emailed link. Existing
+     * accounts start null too — nobody has proved anything yet — and nothing
+     * is taken away from an unverified account except subscribing.
+     */
+    emailVerifiedAt: timestamp("email_verified_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
@@ -302,6 +308,29 @@ export const passwordResetTokens = pgTable(
     index("password_reset_tokens_user_id_idx").on(table.userId),
     // Sweeping rows that have aged out.
     index("password_reset_tokens_expires_at_idx").on(table.expiresAt),
+  ],
+);
+
+/**
+ * Email verification links: the same design as `passwordResetTokens`, for the
+ * same reasons — 256 bits of randomness, only the SHA-256 stored, one live
+ * link per account, spent atomically — with a longer life (a day), because
+ * nothing is at stake if one outlives its welcome.
+ */
+export const emailVerificationTokens = pgTable(
+  "email_verification_tokens",
+  {
+    id: varchar("id", { length: 64 }).primaryKey(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    usedAt: timestamp("used_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("email_verification_tokens_user_id_idx").on(table.userId),
+    index("email_verification_tokens_expires_at_idx").on(table.expiresAt),
   ],
 );
 

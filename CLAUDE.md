@@ -1278,6 +1278,21 @@ destroys every other session and gives this device a fresh one. A
 pure and tested) goes out after this and after a reset by link, so a change
 somebody else made is not silent. `/account` is in `robots.ts`' disallow list.
 
+**An email address is confirmed by a link, and only subscribing waits for it.**
+Sign-up mails a link (`lib/auth/verification-mail.ts`, best effort — practice
+never waits on an inbox); `/verify-email` looks it up without spending it and
+a button spends it, for the reason reset links work that way. The design is
+`password_reset_tokens` again: 256 bits, only the SHA-256 stored
+(`email_verification_tokens`), one live link per account, spent in one atomic
+update whose `where` also refuses an expired link — a day, not an hour, since
+a link that only proves an inbox grants nothing. `users.email_verified_at` is
+null for every account that existed before this, because nobody has proved
+anything yet. An unconfirmed account loses exactly one thing: `startCheckout`
+refuses it and `/upgrade` shows a "confirm your email" card instead of the
+plans. A banner under the header and an Email card on `/account` (with a
+resend button, rate limited on mail under its own `verify-email:` keys, three
+an hour) lead there. The `SessionUser` carries `emailVerified`.
+
 **A refund does not cancel a subscription — they are two separate Stripe
 operations, and the app only reacts to the second one.** Refunding the
 first live charge from the dashboard gave the money back but left the
@@ -1855,12 +1870,11 @@ make these harder later, but none of them get built now.
 (Payments and subscriptions were on this list until the owner asked for
 them. What exists now is Phase 6 above: a free allowance per aircraft, a
 Stripe Checkout session, and a webhook that turns a subscription on or off.
-What is still not built: an account page for managing or cancelling a
-subscription from inside this app — Stripe's own customer portal, or the
-receipt email it sends, is the only way to do that today — and email
-verification, so nothing stops someone subscribing under an email address
-they do not control. Neither makes payments not work; both are worth adding
-before this earns real revenue.)
+What is still not built: a way to manage or cancel a subscription from
+inside this app — Stripe's own customer portal, or the receipt email it
+sends, is the only way to do that today. It does not make payments not work,
+but it is worth adding before this earns real revenue. Subscribing now
+needs a confirmed email address; see the note on verification above.)
 
 (Exam simulation was on this list until the owner asked for it. What exists
 now is a mode that withholds the answers until the end, and a clock that is
@@ -2140,10 +2154,9 @@ second. Both are now done — see the conventions above.)
   in production it means the feature is present but unusable. See
   `.env.example`.
 
-- **No email verification.** Anyone can sign up with an address they do not own.
-  Harmless while accounts hold nothing; it matters once they hold progress.
 - **Nothing sweeps the housekeeping tables.** `sweepExpiredSessions()`,
-  `sweepLoginAttempts()` and `sweepExpiredResetTokens()` all exist and are
+  `sweepLoginAttempts()`, `sweepExpiredResetTokens()` and
+  `sweepExpiredVerificationTokens()` all exist and are
   correct, but nothing calls them.
   Expired rows are ignored when reading, so this is tidiness rather than
   correctness. A scheduled job can call them later.

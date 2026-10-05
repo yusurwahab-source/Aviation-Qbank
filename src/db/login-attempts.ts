@@ -42,6 +42,15 @@ export function resetEmailKey(email: string): string {
   return `reset-email:${email}`;
 }
 
+/** Verification mail requests: their own keys, for the same reason. */
+export function verifyIpKey(ip: string): string {
+  return `verify-ip:${ip}`;
+}
+
+export function verifyEmailKey(email: string): string {
+  return `verify-email:${email}`;
+}
+
 /**
  * Gift code redemption attempts get their own key prefixes too, for the same
  * reason reset requests do: sharing a bucket with log-in failures would let
@@ -154,6 +163,34 @@ export async function checkResetAllowed(ip: string, email: string): Promise<Rate
     decide(RATE_LIMIT_RULES.resetPerIp, forIp.failures, forIp.oldest, now),
     decide(RATE_LIMIT_RULES.resetPerEmail, forEmail.failures, forEmail.oldest, now),
   ]);
+}
+
+/** Whether a verification email may be sent for this address right now. */
+export async function checkVerifyAllowed(ip: string, email: string): Promise<RateLimitDecision> {
+  const now = new Date();
+  const windows: KeyWindow[] = [
+    { key: verifyIpKey(ip), since: new Date(now.getTime() - RATE_LIMIT_RULES.verifyPerIp.windowMs) },
+    {
+      key: verifyEmailKey(email),
+      since: new Date(now.getTime() - RATE_LIMIT_RULES.verifyPerEmail.windowMs),
+    },
+  ];
+
+  const counts = await countRecentFailures(windows);
+  const forIp = counts.get(windows[0].key) ?? { failures: 0, oldest: null };
+  const forEmail = counts.get(windows[1].key) ?? { failures: 0, oldest: null };
+
+  return combine([
+    decide(RATE_LIMIT_RULES.verifyPerIp, forIp.failures, forIp.oldest, now),
+    decide(RATE_LIMIT_RULES.verifyPerEmail, forEmail.failures, forEmail.oldest, now),
+  ]);
+}
+
+/** Records one verification mail request against both keys. */
+export async function recordVerifyRequest(ip: string, email: string): Promise<void> {
+  await getDb()
+    .insert(loginAttempts)
+    .values([{ key: verifyIpKey(ip) }, { key: verifyEmailKey(email) }]);
 }
 
 /**

@@ -132,6 +132,20 @@ export default async function UpgradePage({
             </p>
           ) : null}
         </Card>
+      ) : !user.emailVerified ? (
+        <Card>
+          <p className="text-sm text-foreground">Confirm your email address to subscribe.</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            We send your receipt there, and a subscription should belong to an inbox that is
+            yours. It takes a minute, and practice is not affected.
+          </p>
+          <Link
+            href="/account"
+            className="tap-target mt-4 inline-flex items-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
+          >
+            Confirm my email
+          </Link>
+        </Card>
       ) : (
         <ul className="grid gap-4 sm:grid-cols-2">
           {CHECKOUT_PLANS.map((plan) => {

@@ -8,6 +8,7 @@ import { getCurrentUser } from "@/lib/auth/session";
 import { daysRemaining, hasActiveSubscription } from "@/lib/billing/access-policy";
 
 import { ChangePasswordForm } from "./change-password-form";
+import { ResendVerificationForm } from "./resend-verification-form";
 
 export const metadata: Metadata = { title: "Account" };
 export const dynamic = "force-dynamic";
@@ -30,6 +31,21 @@ export default async function AccountPage() {
       <PageHeading eyebrow="Account" title="Your account" subtitle={user.email} />
 
       <div className="grid gap-4 md:grid-cols-2">
+        <Card className="md:col-span-2">
+          <h2 className="text-lg font-semibold text-foreground">Email</h2>
+          {user.emailVerified ? (
+            <p className="mt-2 text-sm text-correct">Confirmed — {user.email}</p>
+          ) : (
+            <>
+              <p className="mt-2 text-sm text-muted-foreground">
+                {user.email} is not confirmed yet. Confirm it to subscribe and to receive messages
+                from us. Practice is not affected.
+              </p>
+              <ResendVerificationForm />
+            </>
+          )}
+        </Card>
+
         <Card>
           <h2 className="text-lg font-semibold text-foreground">Access</h2>
           <p className="mt-2 text-sm text-muted-foreground">

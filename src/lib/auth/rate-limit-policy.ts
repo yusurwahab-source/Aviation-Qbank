@@ -72,6 +72,18 @@ export const RATE_LIMIT_RULES = {
   resetPerIp: { maxFailures: 15, windowMs: 60 * MINUTE } satisfies RateLimitRule,
 
   /**
+   * Verification emails, per address. The limit is about mail, exactly like
+   * `resetPerEmail`: every request for a real, unverified account sends one,
+   * and without a ceiling the "send it again" button is a way to fill
+   * somebody's inbox. Its own key prefix, so asking for verification mail can
+   * never use up somebody's ability to ask for a password reset.
+   */
+  verifyPerEmail: { maxFailures: 3, windowMs: 60 * MINUTE } satisfies RateLimitRule,
+
+  /** Verification emails per source address — the broad brake. */
+  verifyPerIp: { maxFailures: 15, windowMs: 60 * MINUTE } satisfies RateLimitRule,
+
+  /**
    * Gift code redemption attempts, per signed-in account. A code is 80 bits
    * of randomness — nobody legitimate fails more than a handful of times in
    * a row — so this is tight, the same reasoning as `perEmail` for log in.

@@ -2,9 +2,12 @@
 
 import {
   checkLoginAllowed,
+  checkVerifyAllowed,
   clearFailedLogins,
   recordFailedLogin,
+  recordVerifyRequest,
 } from "@/db/login-attempts";
+import { sendVerificationEmail } from "@/lib/auth/verification-mail";
 import { findUserByEmail, updatePasswordHash } from "@/db/users";
 import { getClientIp } from "@/lib/auth/client-ip";
 import { passwordSchema } from "@/lib/auth/credentials";
@@ -83,4 +86,29 @@ export async function changePassword(
   await sendEmail(passwordChangedEmail(user.email, `${appUrl()}/forgot-password`));
 
   return { done: true };
+}
+
+export type ResendVerificationState = { sent?: boolean; error?: string };
+
+/**
+ * Sends the signed-in student a new verification link.
+ *
+ * Rate limited on mail, not guessing — see `verifyPerEmail` — and counted
+ * before anything is sent. Asks who is signed in for itself, like every
+ * action here, and does nothing for an address already verified.
+ */
+export async function resendVerification(): Promise<ResendVerificationState> {
+  const user = await getCurrentUser();
+  if (!user) return { error: "Your session has ended. Log in again." };
+  if (user.emailVerified) return { sent: true };
+
+  const ip = await getClientIp();
+  const allowed = await checkVerifyAllowed(ip, user.email);
+  if (!allowed.allowed) {
+    return { error: `Too many requests. Try again ${describeWait(allowed.retryAfterMs)}.` };
+  }
+  await recordVerifyRequest(ip, user.email);
+
+  await sendVerificationEmail(user.id, user.email);
+  return { sent: true };
 }
