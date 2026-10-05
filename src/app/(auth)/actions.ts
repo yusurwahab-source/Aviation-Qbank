@@ -19,6 +19,8 @@ import { withMinimumDuration } from "@/lib/auth/reset-policy";
 import { createSession, destroyAllSessions, destroySession } from "@/lib/auth/session";
 import { passwordChangedEmail } from "@/lib/email/password-changed-email";
 import { resetEmail } from "@/lib/email/reset-email";
+import { consumeVerificationToken } from "@/db/email-verification";
+import { sendVerificationEmail } from "@/lib/auth/verification-mail";
 import { appUrl, sendEmail } from "@/lib/email/send";
 import { hashPassword, needsRehash, unmatchableHash, verifyPassword } from "@/lib/password";
 
@@ -66,6 +68,9 @@ export async function signUp(
       email,
     };
   }
+
+  // Best effort and never blocking: practice does not wait on an inbox.
+  await sendVerificationEmail(user.id, user.email);
 
   await createSession(user.id);
   redirect("/");
@@ -284,4 +289,31 @@ function describeResetFailure(state: "expired" | "used" | "unknown"): string {
     return "That link has expired. Ask for a new one and use it within the hour.";
   }
   return "That link is not valid. It may have been replaced by a newer one — ask for another.";
+}
+
+/* ───────────────────────── Email verification ───────────────────────── */
+
+export type ConfirmEmailState = { done?: boolean; error?: string };
+
+/**
+ * Spends a verification link. A POST, not the page load, for the reason reset
+ * links work this way: mail clients and security scanners open links, and
+ * opening must not be the same thing as confirming.
+ */
+export async function confirmEmail(
+  _previous: ConfirmEmailState,
+  formData: FormData,
+): Promise<ConfirmEmailState> {
+  const token = String(formData.get("token") ?? "");
+  const outcome = await consumeVerificationToken(token);
+  if (outcome.ok) return { done: true };
+
+  return {
+    error:
+      outcome.state === "used"
+        ? "That link has already been used."
+        : outcome.state === "expired"
+          ? "That link has expired. Ask for a new one from your Account page."
+          : "That link is not valid. It may have been replaced by a newer one.",
+  };
 }

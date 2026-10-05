@@ -35,6 +35,8 @@ const RENEW_AFTER_MS = SESSION_DURATION_MS / 2;
 export type SessionUser = {
   id: string;
   email: string;
+  /** Whether the inbox has been proved. Never blocks practice. */
+  emailVerified: boolean;
 };
 
 /** SHA-256 is right here: the token is already 256 bits of randomness, so there
@@ -85,6 +87,7 @@ export const getCurrentUser = cache(async (): Promise<SessionUser | null> => {
       expiresAt: sessions.expiresAt,
       id: users.id,
       email: users.email,
+      emailVerifiedAt: users.emailVerifiedAt,
     })
     .from(sessions)
     .innerJoin(users, eq(users.id, sessions.userId))
@@ -101,7 +104,7 @@ export const getCurrentUser = cache(async (): Promise<SessionUser | null> => {
     await db.update(sessions).set({ expiresAt }).where(eq(sessions.id, row.sessionId));
   }
 
-  return { id: row.id, email: row.email };
+  return { id: row.id, email: row.email, emailVerified: row.emailVerifiedAt !== null };
 });
 
 /** Ends the current session: deletes the row and clears the cookie. */

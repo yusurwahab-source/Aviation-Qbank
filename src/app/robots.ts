@@ -44,6 +44,7 @@ export default function robots(): MetadataRoute.Robots {
         "/redeem",
         "/progress",
         "/account",
+        "/verify-email",
       ],
     },
     sitemap: `${canonicalUrl()}/sitemap.xml`,

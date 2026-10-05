@@ -43,6 +43,13 @@ export async function startCheckout(
   const user = await getCurrentUser();
   if (!user) redirect("/login");
 
+  // The first payment on an account is the one place an address nobody has
+  // proved matters: a receipt and a subscription tied to an inbox that may
+  // not be theirs. Everything else works unconfirmed.
+  if (!user.emailVerified) {
+    return { error: "Confirm your email address first — you will find the link on your Account page." };
+  }
+
   const plan = parseCheckoutPlan(formData.get("plan"));
   if (!plan) return { error: "Unknown plan." };
 

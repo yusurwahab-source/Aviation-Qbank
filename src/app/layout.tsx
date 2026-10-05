@@ -7,6 +7,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeScript } from "@/components/theme-toggle";
 import { UpgradePrompt } from "@/components/upgrade-prompt";
+import { VerifyEmailBanner } from "@/components/verify-email-banner";
 import { siteConfig } from "@/config/site";
 import { canonicalUrl } from "@/lib/canonical-url";
 
@@ -81,6 +82,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         <SiteHeader />
         <SiteAnnouncement />
+        <VerifyEmailBanner />
 
         <main id="main" className="mx-auto w-full max-w-5xl flex-1 px-4 pb-8 pt-4 sm:px-5 sm:pt-8">
           {children}
