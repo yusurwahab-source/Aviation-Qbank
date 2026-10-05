@@ -74,6 +74,11 @@ export function previewIpKey(ip: string): string {
   return `preview-ip:${ip}`;
 }
 
+/** Logbook Scanner uploads: their own prefix, counted per request. */
+export function logbookUserKey(userId: string): string {
+  return `logbook-user:${userId}`;
+}
+
 type KeyWindow = { key: string; since: Date };
 
 /**
@@ -287,6 +292,21 @@ export async function checkPreviewAllowed(ip: string): Promise<RateLimitDecision
 /** Records one signed-out answer against the address that asked for it. */
 export async function recordPreviewRequest(ip: string): Promise<void> {
   await getDb().insert(loginAttempts).values({ key: previewIpKey(ip) });
+}
+
+/** Whether this account may upload another logbook photo right now.
+ * Checked before the image is even read. */
+export async function checkLogbookUploadAllowed(userId: string): Promise<RateLimitDecision> {
+  const now = new Date();
+  const key = logbookUserKey(userId);
+  const since = new Date(now.getTime() - RATE_LIMIT_RULES.logbookPerUser.windowMs);
+  const counts = await countRecentFailures([{ key, since }]);
+  const forUser = counts.get(key) ?? { failures: 0, oldest: null };
+  return decide(RATE_LIMIT_RULES.logbookPerUser, forUser.failures, forUser.oldest, now);
+}
+
+export async function recordLogbookUpload(userId: string): Promise<void> {
+  await getDb().insert(loginAttempts).values({ key: logbookUserKey(userId) });
 }
 
 /** Records one failed attempt against both keys. */

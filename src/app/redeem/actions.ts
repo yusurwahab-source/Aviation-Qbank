@@ -56,5 +56,5 @@ export async function redeem(_previous: RedeemState, formData: FormData): Promis
   }
 
   await clearFailedRedeems(user.id);
-  redirect("/upgrade?redeemed=1");
+  redirect(result.grants === "logbook" ? "/tools/logbook?redeemed=1" : "/upgrade?redeemed=1");
 }

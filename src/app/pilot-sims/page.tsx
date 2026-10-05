@@ -40,6 +40,24 @@ export default function PilotSimsPage() {
           </li>
         ))}
       </ul>
+
+      <h2 className="mt-10 mb-4 text-lg font-semibold text-foreground">Tools</h2>
+      <ul className="grid gap-4 sm:grid-cols-2">
+        <li>
+          <Link href="/tools/logbook" className="block h-full">
+            <Card className="h-full transition hover:border-brand hover:shadow-sm">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="text-lg font-semibold text-foreground">Logbook Scanner</h3>
+                <Badge tone="brand">Tool</Badge>
+              </div>
+              <p className="mt-3 text-sm text-muted-foreground">
+                Photograph your paper EASA logbook and get a verified e-logbook — every page total and
+                carry-forward checked, with a guide to correcting the paper. First two spreads free.
+              </p>
+            </Card>
+          </Link>
+        </li>
+      </ul>
     </>
   );
 }

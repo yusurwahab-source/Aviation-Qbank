@@ -140,6 +140,64 @@ simulator is its file in `public/pilot-sims/`, an entry in `sims.ts` and a
 page beside the existing one. The service worker already leaves `.html`
 alone. It is in the header's links and in `sitemap.xml`.
 
+**Logbook Scanner (`/tools/logbook`) is a tool, not a question bank.** A
+student photographs their paper EASA logbook, one two-page spread per photo,
+and gets a verified e-logbook back. It is linked from the Pilot Sims page's
+"Tools" list, not the header (the header's row is full; see below). Four
+parts, kept apart on purpose:
+
+1. **Extraction** — `api/logbook/extract/route.ts` sends one photo to the
+   Anthropic Messages API (`@anthropic-ai/sdk`, the one SDK installed here,
+   because the Claude API guidance is to use the official SDK rather than
+   `fetch`). The key (`ANTHROPIC_API_KEY`) and model (`LOGBOOK_MODEL`,
+   default `claude-sonnet-5-5`) are read on the server only. The model is
+   told to **transcribe, never correct**, and every cell comes back as the
+   text written on the page; `lib/logbook/extraction.ts` turns it into
+   minutes. The reply is held to a JSON schema by the API (structured
+   outputs) and checked again with the same Zod schema plus format rules;
+   a bad reply is retried once with its problems named
+   (`lib/logbook/claude.ts`, tested with a stand-in client). Anything that
+   still will not parse becomes a low-confidence blank, not an error page.
+2. **Validation** — `lib/logbook/validate.ts`, deterministic, pure, no AI.
+   Every time is whole minutes; struck-through rows count for nothing. It
+   checks page sums, carry-forward, running totals, the PIC/co-pilot/dual/
+   instructor split per row and per page, block time (±5 min), arrival
+   before departure (a flight past midnight is info, not an error), flights
+   with no function time, a flight missing from the page sum, missing
+   data, date order and low-confidence readings; then recomputes a
+   corrected running total for every page. An instructor logging the same
+   flight as PIC *and* instructor is accepted, not flagged as double
+   counting. A finding's `key` excludes the page index, so "Ignore"
+   survives the student reordering pages.
+3. **Review and results** — all in the browser
+   (`tools/logbook/[logbookId]/`): editable table per page, every edit
+   re-running the whole validation; totals dashboard and the paper fix
+   guide (`lib/logbook/summary.ts`); CSV, XLSX, JSON and an EASA-layout PDF
+   (`lib/logbook/export/`), each carrying the disclaimer. XLSX and PDF are
+   written by hand (a stored zip; Helvetica and lines), so no library ships
+   to the browser for a download button.
+4. **Access** — `logbook_extractions` is the meter: two free spreads per
+   account, then a logbook needs an unlock (one credit, 40 spreads). A
+   spread is reserved as a `pending` row under a per-user advisory lock
+   *before* the model is called, so racing uploads cannot share the last
+   one; a failed call does not count. Credits (`logbook_credits`) come from
+   a license code whose `grants` is `logbook`, a manual grant at
+   `/owner/logbook`, or — once — an active subscription (a partial unique
+   index stops it being taken twice). `LOGBOOK_PURCHASES_ENABLED` is the
+   feature flag for the €4.99 price; **no payment provider is connected**,
+   and `grantLogbookCredits(source: "purchase")` is the hook one will call.
+   Uploads are rate limited (`logbookPerUser`, 60 an hour) and capped at
+   10 MB; the browser scales photos to 2000px JPEG first, which also
+   converts HEIC where the browser can decode it.
+
+**Photos are never stored.** The image exists in the request's memory and
+the API call, nothing else; the review screen's copy is an object URL in
+the tab. Extracted entries reach the database only on "Save to my account"
+(`logbooks.data`), and "Delete all my logbook data" deletes those rows. The
+meter rows hold token counts, not content, and deliberately survive that
+delete — otherwise deleting would hand the free spreads back. Token counts
+and cost per request are visible only at `/owner/logbook`.
+
 **Old links still work.** `/aircraft` and `/aircraft/[code]` (and its
 `/test` page) were the type rating routes before this split existed;
 `/class` and `/class/[code]` were an earlier name for the class rating
@@ -1432,10 +1490,12 @@ first, filterable by action. Nothing here needed a second role — the log
 records *who*, but "who" is still always the one `OWNER_EMAIL`; it exists
 for "what did I do and when", not for telling two owners apart.
 
-**`src/db/owner.ts` and `src/db/broadcasts.ts` are the only modules in the
-codebase whose queries take no `userId`, and the only ones that write to a
-row without one.** (`broadcasts.ts` reads every account to build a mailing
-list; the rest of this paragraph is about `owner.ts` and holds for both.) Every read in `reports.ts` filters on one, precisely so a
+**`src/db/owner.ts`, `src/db/broadcasts.ts` and `src/db/logbook-owner.ts`
+are the only modules in the codebase whose queries take no `userId`, and
+the first two the only ones that write to a row without one.**
+(`broadcasts.ts` reads every account to build a mailing list;
+`logbook-owner.ts` reads Logbook Scanner usage and cost, never content; the
+rest of this paragraph is about `owner.ts` and holds for all three.) Every read in `reports.ts` filters on one, precisely so a
 student can never see another's history; this file inverts that on purpose
 and is the more dangerous for it. The whole guard is that every caller sits
 under `/owner` behind `requireOwner()`, which is why the inversion is
@@ -1770,6 +1830,8 @@ src/
     account/                  The signed-in student's own page: email, access, password, messages
     unsubscribe/, api/unsubscribe/   The link at the foot of a message, and one-click
     api/webhooks/stripe/      The Stripe webhook endpoint
+    api/logbook/extract/      Logbook Scanner: one photo in, one transcribed page out
+    tools/logbook/            Logbook Scanner: landing, and [logbookId]/ the scan-review-results app
     about|pricing|faq|terms|privacy|contact/   Short pages the footer links to
     manifest.ts               Web app manifest
     sitemap.ts                sitemap.xml — every public page, generated from the
@@ -1814,6 +1876,8 @@ src/
     insights.ts               Read-only analytics queries for /owner/insights
     settings.ts               Reading and writing site_settings; owner-only write, publicly read
     owner.ts                  THE unscoped reads, and grant/revoke/notes. /owner only; see the convention above.
+    logbooks.ts               Logbook Scanner: logbooks, the spread meter, unlocks and credits (user-scoped)
+    logbook-owner.ts          Logbook Scanner usage and cost, unscoped. /owner only, like owner.ts.
     index.ts                  Connection pool
   proxy.ts                    Mints the signed-out visitor cookie on /type-rating/* and /class-rating/*
   lib/
@@ -1832,6 +1896,9 @@ src/
     seo/
       sitemap-entries.ts       Builds sitemap.xml's URL list from the three content
                               trees (pure, tested)
+    logbook/                  Logbook Scanner: model, time parsing, validation engine, summary,
+                              extraction schema and prompt, entitlement, exports (all pure, tested)
+                              — plus claude.ts (the API call) and config.ts (env switches)
     grading.ts                Scoring (pure, tested)
     question-status.ts        What the question map may say (pure, tested)
     password.ts               scrypt hashing (pure, tested)

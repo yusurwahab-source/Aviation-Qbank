@@ -5,7 +5,7 @@ import { randomBytes } from "node:crypto";
 import { and, desc, eq, inArray, sql } from "drizzle-orm";
 
 import { getDb } from "@/db";
-import { giftCodeRedemptions, giftCodes, subscriptions, users } from "@/db/schema";
+import { giftCodeRedemptions, giftCodes, logbookCredits, subscriptions, users } from "@/db/schema";
 import type { GiftCodeRow } from "@/db/schema";
 import {
   computeGiftPeriodEnd,
@@ -37,6 +37,9 @@ export type CreateGiftCodesInput = {
   expiresAt?: Date | null;
   /** Recorded, not enforced — see the note on the column in `schema.ts`. */
   unlocksAircraftCode?: string | null;
+  /** What redeeming grants — see the note on the column in `schema.ts`.
+   * Defaults to subscription access, as every code did before. */
+  grants?: "subscription" | "logbook";
 };
 
 /** Mints `count` fresh codes and returns them in their display form (with dashes). */
@@ -61,6 +64,7 @@ export async function createGiftCodes(input: CreateGiftCodesInput): Promise<stri
         maxRedemptions: input.maxRedemptions ?? 1,
         expiresAt: input.expiresAt ?? null,
         unlocksAircraftCode: input.unlocksAircraftCode ?? null,
+        grants: input.grants ?? "subscription",
       })
       .onConflictDoNothing({ target: giftCodes.code })
       .returning({ code: giftCodes.code });
@@ -83,7 +87,8 @@ export async function disableGiftCode(giftCodeId: string): Promise<{ code: strin
 }
 
 export type RedeemGiftCodeResult =
-  | { ok: true; plan: "monthly" | "quarterly"; periodEnd: Date }
+  | { ok: true; grants: "subscription"; plan: "monthly" | "quarterly"; periodEnd: Date }
+  | { ok: true; grants: "logbook" }
   | {
       ok: false;
       reason: "not_found" | "disabled" | "expired" | "exhausted" | "already_redeemed";
@@ -153,6 +158,16 @@ export async function redeemGiftCode(input: {
       })
       .where(eq(giftCodes.id, code.id));
 
+    // A Logbook Scanner code grants one unlock and touches no subscription.
+    if (code.grants === "logbook") {
+      await tx.insert(logbookCredits).values({
+        userId: input.userId,
+        source: "gift",
+        giftCodeId: code.id,
+      });
+      return { ok: true, grants: "logbook" };
+    }
+
     const [existingSubscription] = await tx
       .select({ currentPeriodEnd: subscriptions.currentPeriodEnd })
       .from(subscriptions)
@@ -187,7 +202,7 @@ export async function redeemGiftCode(input: {
         },
       });
 
-    return { ok: true, plan: code.plan, periodEnd };
+    return { ok: true, grants: "subscription", plan: code.plan, periodEnd };
   });
 }
 

@@ -20,6 +20,7 @@ export async function GET(): Promise<Response> {
 
   const headers = [
     "code",
+    "grants",
     "plan",
     "duration_days",
     "max_redemptions",
@@ -34,6 +35,7 @@ export async function GET(): Promise<Response> {
   const rows = codes.map((code) =>
     [
       code.code,
+      code.grants,
       code.plan,
       code.durationDays,
       code.maxRedemptions,

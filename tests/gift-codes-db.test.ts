@@ -61,7 +61,7 @@ describeDb("gift codes", () => {
     const result = await redeemGiftCode({ code, userId });
 
     expect(result.ok).toBe(true);
-    if (!result.ok) return;
+    if (!result.ok || result.grants !== "subscription") throw new Error("expected a subscription grant");
     expect(result.plan).toBe("quarterly");
 
     const [row] = await getDb()
@@ -198,7 +198,7 @@ describeDb("gift codes", () => {
     const result = await redeemGiftCode({ code, userId });
 
     expect(result.ok).toBe(true);
-    if (!result.ok) return;
+    if (!result.ok || result.grants !== "subscription") throw new Error("expected a subscription grant");
     expect(result.periodEnd).toEqual(farFuture);
   });
 

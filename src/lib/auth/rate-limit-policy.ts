@@ -117,6 +117,14 @@ export const RATE_LIMIT_RULES = {
    * couple of minutes.
    */
   previewPerIp: { maxFailures: 40, windowMs: 15 * MINUTE } satisfies RateLimitRule,
+
+  /**
+   * Logbook Scanner uploads, per signed-in account. Counted per request,
+   * like the preview: every upload is a paid model call, so what this
+   * protects is the bill. Sixty an hour is a whole 40-spread logbook with
+   * room for retakes; nobody photographing pages by hand goes faster.
+   */
+  logbookPerUser: { maxFailures: 60, windowMs: 60 * MINUTE } satisfies RateLimitRule,
 } as const;
 
 /**

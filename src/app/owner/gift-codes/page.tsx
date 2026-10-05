@@ -51,7 +51,7 @@ export default async function OwnerGiftCodesPage() {
     <>
       <PageHeading
         title="Gift codes"
-        subtitle="Each code grants full access once redeemed, for as many days as you choose."
+        subtitle="Each code grants full access once redeemed, for as many days as you choose — or one Logbook Scanner unlock."
       />
       <OwnerNav current="/owner/gift-codes" />
 
@@ -96,7 +96,7 @@ export default async function OwnerGiftCodesPage() {
                 </span>
               ) : null}
             </span>,
-            `${code.durationDays} days`,
+            code.grants === "logbook" ? "Logbook unlock" : `${code.durationDays} days`,
             <span key="redemptions" className="tabular-nums">
               {code.redemptionCount} / {code.maxRedemptions}
             </span>,

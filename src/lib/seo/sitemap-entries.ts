@@ -33,6 +33,7 @@ const STATIC_PAGES = [
     changeFrequency: "monthly",
     priority: 0.6,
   },
+  { path: "/tools/logbook", changeFrequency: "monthly", priority: 0.6 },
   { path: "/pricing", changeFrequency: "monthly", priority: 0.6 },
   { path: "/about", changeFrequency: "monthly", priority: 0.5 },
   { path: "/faq", changeFrequency: "monthly", priority: 0.5 },
