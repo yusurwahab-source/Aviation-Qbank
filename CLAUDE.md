@@ -1268,6 +1268,16 @@ Pilot Sims and Flying Knowledge are free for everyone, because they are.
 Presenting them as paid features would be untrue; making them paid is a
 product decision that would need an access model of its own.
 
+**A signed-in student can change their password at `/account`, and every
+change is announced by email.** `changePassword` (`src/app/account/actions.ts`)
+asks who is signed in for itself, requires the current password, checks the
+log-in rate limit *before* verifying it (a wrong current password counts as a
+failed log in, so the form is not a guessing oracle for a stolen session),
+destroys every other session and gives this device a fresh one. A
+"your password was changed" notice (`lib/email/password-changed-email.ts`,
+pure and tested) goes out after this and after a reset by link, so a change
+somebody else made is not silent. `/account` is in `robots.ts`' disallow list.
+
 **A refund does not cancel a subscription — they are two separate Stripe
 operations, and the app only reacts to the second one.** Refunding the
 first live charge from the dashboard gave the money back but left the
@@ -2137,9 +2147,6 @@ second. Both are now done — see the conventions above.)
   correct, but nothing calls them.
   Expired rows are ignored when reading, so this is tidiness rather than
   correctness. A scheduled job can call them later.
-- **No "your password was changed" email.** A reset tells the account's owner
-  nothing after the fact, so somebody who took over an inbox leaves no trace
-  in the other one. Worth adding now that there is a sender to add it with.
 - **The limiter does not stop a distributed attack.** Thousands of addresses
   each trying a few passwords from leaked credential lists would stay under
   both thresholds. Defending that needs rejecting known-breached passwords or a

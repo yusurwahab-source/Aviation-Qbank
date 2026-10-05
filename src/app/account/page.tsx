@@ -1,0 +1,60 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+
+import { Card, PageHeading } from "@/components/ui";
+import { getSubscription } from "@/db/subscriptions";
+import { getCurrentUser } from "@/lib/auth/session";
+import { daysRemaining, hasActiveSubscription } from "@/lib/billing/access-policy";
+
+import { ChangePasswordForm } from "./change-password-form";
+
+export const metadata: Metadata = { title: "Account" };
+export const dynamic = "force-dynamic";
+
+/**
+ * The signed-in student's own account: who they are, what access they have,
+ * and the one thing they can change here — their password. Signed in only,
+ * the same as `/progress` and `/upgrade`.
+ */
+export default async function AccountPage() {
+  const user = await getCurrentUser();
+  if (!user) redirect("/login");
+
+  const subscription = await getSubscription(user.id);
+  const active = subscription !== null && hasActiveSubscription(subscription);
+  const daysLeft = active ? daysRemaining(subscription?.currentPeriodEnd ?? null) : null;
+
+  return (
+    <>
+      <PageHeading eyebrow="Account" title="Your account" subtitle={user.email} />
+
+      <div className="grid gap-4 md:grid-cols-2">
+        <Card>
+          <h2 className="text-lg font-semibold text-foreground">Access</h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {active
+              ? `Full access${
+                  daysLeft !== null ? ` — ${daysLeft} ${daysLeft === 1 ? "day" : "days"} left` : ""
+                }.`
+              : "Free plan. Subscribe for unlimited questions on every aircraft."}
+          </p>
+          <Link
+            href="/upgrade"
+            className="tap-target mt-4 inline-flex items-center rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink"
+          >
+            {active ? "Manage access" : "See plans"}
+          </Link>
+        </Card>
+
+        <Card>
+          <h2 className="text-lg font-semibold text-foreground">Change password</h2>
+          <p className="mb-4 mt-1 text-sm text-muted-foreground">
+            Changing it signs you out on every other device.
+          </p>
+          <ChangePasswordForm />
+        </Card>
+      </div>
+    </>
+  );
+}

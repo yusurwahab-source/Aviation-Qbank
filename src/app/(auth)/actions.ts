@@ -17,6 +17,7 @@ import { emailSchema, logInSchema, passwordSchema, signUpSchema } from "@/lib/au
 import { describeWait } from "@/lib/auth/rate-limit-policy";
 import { withMinimumDuration } from "@/lib/auth/reset-policy";
 import { createSession, destroyAllSessions, destroySession } from "@/lib/auth/session";
+import { passwordChangedEmail } from "@/lib/email/password-changed-email";
 import { resetEmail } from "@/lib/email/reset-email";
 import { appUrl, sendEmail } from "@/lib/email/send";
 import { hashPassword, needsRehash, unmatchableHash, verifyPassword } from "@/lib/password";
@@ -255,6 +256,10 @@ export async function resetPassword(
 
   await destroyAllSessions(outcome.userId);
   await clearFailedLoginsAfterReset(lookup.email);
+
+  // Tells the inbox, so a reset somebody else started and finished is not
+  // silent. Never throws; what the student is told does not depend on it.
+  await sendEmail(passwordChangedEmail(lookup.email, `${appUrl()}/forgot-password`));
 
   // Signed straight in. They have just proved control of the inbox and set a
   // password; making them type it again immediately would be ceremony.
