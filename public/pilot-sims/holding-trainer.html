@@ -27,11 +27,11 @@
   }
   @media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){ } }
   *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; user-select:none;}
-  html,body{height:100%; overflow:hidden; background:var(--bg); overscroll-behavior:none;}
+  html{background:var(--bg); overflow-x:hidden; overflow-y:auto; overscroll-behavior:none;}
   body{
     font-family:var(--font-ui); color:var(--ink);
     display:flex; flex-direction:column;
-    height:100dvh; width:100vw;
+    min-height:100dvh; width:100%; overflow-x:hidden;
     padding-top:env(safe-area-inset-top,0px);
     padding-bottom:env(safe-area-inset-bottom,0px);
     background:
@@ -98,10 +98,10 @@
 
   /* ============ MAP ZONE ============ */
   #mapZone{
-    position:relative; flex:1 1 auto; min-height:0;
+    position:relative; flex:1 1 auto; min-height:clamp(180px, 38dvh, 410px);
     margin:0 6px;
   }
-  #mapSvg{ width:100%; height:100%; display:block; }
+  #mapSvg{ position:absolute; inset:0; width:100%; height:100%; display:block; }
 
   #entryOverlay{
     display:none; flex:0 0 auto;
@@ -152,9 +152,9 @@
   /* ============ HSI ZONE ============ */
   #hsiZone{
     flex:0 0 auto; display:flex; align-items:stretch; gap:8px;
-    padding:8px 10px 10px; height:39dvh; min-height:192px; max-height:278px;
+    padding:8px 10px 6px;
   }
-  #hsiWrap{ position:relative; height:100%; aspect-ratio:1/1; touch-action:none; flex:0 0 auto; }
+  #hsiWrap{ position:relative; width:clamp(170px, min(39dvh, 56vw), 278px); aspect-ratio:1/1; touch-action:none; flex:0 0 auto; }
   #hsiInfo{
     flex:1; min-width:0; display:flex; flex-direction:column; gap:6px; padding:2px 0;
   }
@@ -167,11 +167,15 @@
   .infoVal.small{font-size:13px;}
   .infoRow{ display:flex; gap:6px; }
   .infoRow .infoCard{ flex:1; }
-  #explainCard{ display:none; }
-  body.revealed #explainCard{ display:flex; }
-  body.revealed #hintCard{ display:none; }
+  body.test #hintCard{ display:none; }
+  #resultBar{ display:none; flex:0 0 auto; margin:0 10px 10px; }
+  body.revealed #resultBar{ display:flex; }
+  #explainVal{ white-space:pre-line; }
+  .entryBtn.correct{ border-color:var(--green); color:var(--green); opacity:1; }
+  .entryBtn.wrong{ border-color:var(--red); color:var(--red); opacity:1; }
+  .entryBtn.correct .sw, .entryBtn.wrong .sw{ opacity:1; }
   #atcBoxVal{ font-size:10px; font-weight:600; color:#c8e6a0; line-height:1.3; font-family:var(--font-num); }
-  #explainCard .infoVal{ font-size:10.5px; color:var(--ink); font-family:var(--font-ui); font-weight:600; line-height:1.35; }
+  #explainCard .infoVal{ font-size:12px; color:var(--ink); font-family:var(--font-ui); font-weight:600; line-height:1.45; }
 </style>
 </head>
 <body class="practice">
@@ -223,11 +227,14 @@
         <div class="infoLabel">Entry sector</div>
         <div class="infoVal small" id="hintVal">DIRECT</div>
       </div>
-      <div class="infoCard" id="explainCard">
-        <div class="infoLabel">Result</div>
-        <div class="infoVal" id="explainVal">—</div>
-      </div>
     </div>
+  </div>
+</div>
+
+<div id="resultBar">
+  <div class="infoCard" id="explainCard">
+    <div class="infoLabel">Result</div>
+    <div class="infoVal" id="explainVal">—</div>
   </div>
 </div>
 
@@ -543,8 +550,10 @@ function drawBearingNeedle(){
 }
 function renderHsi(){ updateCompassRotation(); drawCourseNeedle(); drawBearingNeedle(); }
 
-// ── HSI drag-to-rotate — only engages when grabbing the course needle's head or tail ──
-let hsiDragging=false;
+// ── HSI rotary drag — touch or click anywhere on the instrument and turn, like the
+//    VOR/NDB trainer's OBS knob: the course moves by how far the finger turns around
+//    the centre, so there is no need to grab the needle itself.
+const hsiRot = {on:false, startA:0, startV:0};
 function hsiAngleFromEvent(clientX, clientY){
   const rect = hsiSvg.getBoundingClientRect();
   const scale = 300/rect.width;
@@ -552,41 +561,28 @@ function hsiAngleFromEvent(clientX, clientY){
   const ang = Math.atan2(y-HC.y, x-HC.x)*180/Math.PI + 90;
   return norm360(ang);
 }
-function courseNeedleHeadTail(){
-  const rot = (S.course - S.acHdg) * Math.PI/180;
-  const cx=HC.x, cy=HC.y;
-  const rot2 = (px,py) => {
-    const dx=px-cx, dy=py-cy;
-    return { x: cx+dx*Math.cos(rot)-dy*Math.sin(rot), y: cy+dx*Math.sin(rot)+dy*Math.cos(rot) };
-  };
-  return { head: rot2(cx, cy-HR+2), tail: rot2(cx, cy+54) };
+function hsiPointerDown(pt){
+  hsiRot.on = true;
+  hsiRot.startA = hsiAngleFromEvent(pt.clientX, pt.clientY);
+  hsiRot.startV = S.course;
 }
-function hsiPointerDown(e){
-  const pt0 = e.touches ? e.touches[0] : e;
-  const rect = hsiSvg.getBoundingClientRect();
-  const scale = 300/rect.width;
-  const x = (pt0.clientX-rect.left)*scale, y = (pt0.clientY-rect.top)*scale;
-  const {head, tail} = courseNeedleHeadTail();
-  const dHead = Math.hypot(x-head.x, y-head.y), dTail = Math.hypot(x-tail.x, y-tail.y);
-  if(dHead>30 && dTail>30){ hsiDragging=false; return; }
-  hsiDragging=true;
-  hsiMove(e);
-}
-function hsiMove(e){
-  if(!hsiDragging) return;
-  const pt = e.touches ? e.touches[0] : e;
-  let a = hsiAngleFromEvent(pt.clientX, pt.clientY);
-  if(a===0) a=360;
-  S.course = Math.round(a);
+function hsiMove(pt){
+  if(!hsiRot.on) return;
+  let delta = hsiAngleFromEvent(pt.clientX, pt.clientY) - hsiRot.startA;
+  if(delta>180) delta-=360; if(delta<-180) delta+=360;
+  const next = ((Math.round(hsiRot.startV+delta)-1+3600)%360)+1;   // 1..360
+  if(next===S.course) return;
+  S.course = next;
   onCourseChanged();
 }
-function hsiUp(){ hsiDragging=false; }
-hsiSvg.addEventListener('mousedown', hsiPointerDown);
-window.addEventListener('mousemove', hsiMove);
+function hsiUp(){ hsiRot.on=false; }
+hsiSvg.addEventListener('mousedown', e=>{ e.preventDefault(); hsiPointerDown(e); });
+window.addEventListener('mousemove', e=>hsiMove(e));
 window.addEventListener('mouseup', hsiUp);
 hsiSvg.addEventListener('touchstart', e=>{e.preventDefault(); hsiPointerDown(e.touches[0]);}, {passive:false});
-hsiSvg.addEventListener('touchmove', e=>{e.preventDefault(); hsiMove(e);}, {passive:false});
+hsiSvg.addEventListener('touchmove', e=>{e.preventDefault(); hsiMove(e.touches[0]);}, {passive:false});
 hsiSvg.addEventListener('touchend', hsiUp);
+hsiSvg.addEventListener('touchcancel', hsiUp);
 
 // ── aircraft drag (practice mode only, map zone only) ──
 // Dragging the aircraft body sets its position; heading is always recalculated to face the station.
@@ -728,7 +724,7 @@ function pickEntry(t){
 }
 function clearEntrySelection(){
   S.selectedEntry = null;
-  document.querySelectorAll('.entryBtn').forEach(b=>{ b.classList.remove('sel'); b.disabled=false; });
+  document.querySelectorAll('.entryBtn').forEach(b=>{ b.classList.remove('sel','correct','wrong'); b.disabled=false; });
   document.getElementById('confirmBtn').disabled = true;
 }
 
@@ -741,7 +737,11 @@ function confirmAnswer(){
 
   S.answered = true;
   document.body.classList.add('revealed');
-  document.querySelectorAll('.entryBtn').forEach(b=>b.disabled=true);
+  document.querySelectorAll('.entryBtn').forEach(b=>{
+    b.disabled = true;
+    b.classList.toggle('correct', b.dataset.t===r.correctEntry);
+    b.classList.toggle('wrong', b.dataset.t===S.selectedEntry && !entryOk);
+  });
   document.getElementById('confirmBtn').disabled = true;
 
   const v = document.getElementById('verdict');
@@ -751,9 +751,13 @@ function confirmAnswer(){
   const bits = [];
   bits.push((courseOk?'✓':'✗')+' Course '+disp(S.course)+'° — correct '+disp(r.correctCourse)+'°');
   bits.push((entryOk?'✓':'✗')+' Entry '+S.selectedEntry.toUpperCase()+' — correct '+r.correctEntry.toUpperCase());
-  document.getElementById('explainVal').textContent = bits.join('   ');
+  document.getElementById('explainVal').textContent = bits.join('\n');
 
   renderMap();
+  // bring the result into view inside the trainer's own frame
+  const bar = document.getElementById('resultBar');
+  if(bar.getBoundingClientRect().bottom > window.innerHeight)
+    window.scrollTo({top: document.documentElement.scrollHeight, behavior:'smooth'});
   speakVerdict(pass);
 }
 
