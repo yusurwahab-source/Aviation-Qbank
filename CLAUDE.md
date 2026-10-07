@@ -133,7 +133,10 @@ Trainer. A simulator is a complete standalone page in `public/pilot-sims/`
 `/pilot-sims/<slug>` inside an iframe with `sandbox="allow-scripts"` and no
 other permission. **Its internals are not edited from this repository** — the
 entry-sector rules and SVG geometry were checked against FAA/ICAO sources as
-supplied, so a change there is a new file from the owner, not a patch. The
+supplied, so a change there is a new file from the owner, not a patch. (The
+holding trainer's layout, its HSI touch control — now the VOR/NDB trainer's
+turn-anywhere drag — and its reveal of the correct entry were changed here at
+the owner's explicit request; its entry rules and grading were not.) The
 list is a constant in `src/app/pilot-sims/sims.ts`: no database, no content
 tree, no free-tier or subscription involvement, free for everyone. Adding a
 simulator is its file in `public/pilot-sims/`, an entry in `sims.ts` and a

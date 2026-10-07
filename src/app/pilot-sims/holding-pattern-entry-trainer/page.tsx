@@ -17,7 +17,9 @@ export const metadata: Metadata = {
  * The trainer is a complete standalone page (`public/pilot-sims/`), shown
  * here in an iframe rather than re-implemented: its entry-sector maths and
  * SVG geometry were checked against FAA/ICAO sources as they stand, and
- * must not be edited from this side.
+ * must not be edited from this side. (Its layout, the HSI's touch control
+ * and the answer reveal were changed at the owner's request; the entry
+ * rules and grading were not.)
  *
  * `sandbox="allow-scripts"` and nothing else — it needs to run, and needs
  * no access to this origin's cookies or storage. It is drawn at a phone's
@@ -39,7 +41,7 @@ export default function HoldingPatternEntryTrainerPage() {
           src={sim.file}
           title={sim.name}
           sandbox="allow-scripts"
-          className="block h-[40rem] max-h-[75dvh] min-h-[32rem] w-full border-0"
+          className="block h-[calc(100dvh-6rem)] max-h-[46rem] min-h-[34rem] w-full border-0"
         />
       </div>
 
