@@ -6,10 +6,22 @@
     "subtopic": "Mach number and regimes",
     "question": "The speed of sound in air depends on:",
     "options": [
-      { "id": "a", "text": "Pressure and density independently" },
-      { "id": "b", "text": "Pressure only" },
-      { "id": "c", "text": "Density only" },
-      { "id": "d", "text": "Absolute temperature only (a = √(γRT))" }
+      {
+        "id": "a",
+        "text": "Pressure and density independently"
+      },
+      {
+        "id": "b",
+        "text": "Pressure only"
+      },
+      {
+        "id": "c",
+        "text": "Density only"
+      },
+      {
+        "id": "d",
+        "text": "Absolute temperature only (a = √(γRT))"
+      }
     ],
     "correct": "d",
     "explanation": "p/ρ = RT, so pressure and density enter only through their ratio. At constant temperature a is unchanged at any altitude.",
@@ -24,13 +36,22 @@
     "subtopic": "Mach number and regimes",
     "question": "Flight regimes by free-stream Mach number are conventionally:",
     "options": [
-      { "id": "a", "text": "Hypersonic above 2" },
+      {
+        "id": "a",
+        "text": "Hypersonic above 2"
+      },
       {
         "id": "b",
         "text": "Subsonic below about 0.75, transonic about 0.75–1.2, supersonic 1.2–5, hypersonic above 5"
       },
-      { "id": "c", "text": "Transonic 0.3–0.7" },
-      { "id": "d", "text": "Subsonic below 1.0 only, supersonic above" }
+      {
+        "id": "c",
+        "text": "Transonic 0.3–0.7"
+      },
+      {
+        "id": "d",
+        "text": "Subsonic below 1.0 only, supersonic above"
+      }
     ],
     "correct": "b",
     "explanation": "Transonic flow contains both subsonic and supersonic regions; its bounds depend on the body, not on M = 1 exactly.",
@@ -45,9 +66,18 @@
     "subtopic": "Mach number and regimes",
     "question": "Compressibility is usually neglected below M ≈ 0.3 because:",
     "options": [
-      { "id": "a", "text": "Pressure is constant" },
-      { "id": "b", "text": "Air is incompressible below 0.3" },
-      { "id": "c", "text": "The speed of sound is infinite" },
+      {
+        "id": "a",
+        "text": "Pressure is constant"
+      },
+      {
+        "id": "b",
+        "text": "Air is incompressible below 0.3"
+      },
+      {
+        "id": "c",
+        "text": "The speed of sound is infinite"
+      },
       {
         "id": "d",
         "text": "Stagnation density exceeds free-stream density by under 5 %"
@@ -56,150 +86,6 @@
     "correct": "d",
     "explanation": "ρ_t/ρ = (1 + 0.2M²)^2.5 = 1.046 at M 0.3.",
     "tags": ["compressibility", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0038",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Isentropic relations",
-    "question": "At M 0.8, the ratio of total to static pressure is:",
-    "options": [
-      { "id": "a", "text": "1.52" },
-      { "id": "b", "text": "1.13" },
-      { "id": "c", "text": "1.45" },
-      { "id": "d", "text": "1.64" }
-    ],
-    "correct": "a",
-    "explanation": "p_t/p = (1 + 0.2M²)^3.5 = 1.128^3.5 = 1.524.",
-    "tags": ["isentropic", "total-pressure", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0039",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Isentropic relations",
-    "question": "At M 0.8, impact pressure q_c = p_t − p exceeds the incompressible dynamic pressure q = 0.7pM² by about:",
-    "options": [
-      { "id": "a", "text": "17 %" },
-      { "id": "b", "text": "64 %" },
-      { "id": "c", "text": "0 %" },
-      { "id": "d", "text": "4 %" }
-    ],
-    "correct": "a",
-    "explanation": "q_c/q = [(1.128)^3.5 − 1]/(0.7 × 0.64) = 1.170 (≈ 1 + M²/4 + M⁴/40). This is the compressibility error the CAS → EAS correction removes.",
-    "tags": ["impact-pressure", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0040",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Isentropic relations",
-    "question": "Dynamic pressure in terms of Mach number is q = 0.7·p·M². At FL350 (p = 23,840 Pa) and M 0.80, q is:",
-    "options": [
-      { "id": "a", "text": "13.4 kPa" },
-      { "id": "b", "text": "7.6 kPa" },
-      { "id": "c", "text": "16.7 kPa" },
-      { "id": "d", "text": "10.7 kPa" }
-    ],
-    "correct": "d",
-    "explanation": "0.7 × 23,840 × 0.64 = 10,680 Pa. (0.7 = γ/2.)",
-    "tags": ["dynamic-pressure", "mach", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0041",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Isentropic relations",
-    "question": "W/S = 5,500 N/m² at FL350 (p = 23,840 Pa), M 0.78. The cruise CL is:",
-    "options": [
-      { "id": "a", "text": "0.54" },
-      { "id": "b", "text": "0.33" },
-      { "id": "c", "text": "0.77" },
-      { "id": "d", "text": "0.42" }
-    ],
-    "correct": "a",
-    "explanation": "CL = (W/S)/(0.7pM²) = 5,500/(0.7 × 23,840 × 0.608) = 0.54.",
-    "tags": ["lift-coefficient", "mach", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0042",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Isentropic relations",
-    "question": "At constant weight and Mach number, climbing to a lower static pressure requires:",
-    "options": [
-      { "id": "a", "text": "A higher CL in proportion to √p" },
-      { "id": "b", "text": "A lower CL" },
-      { "id": "c", "text": "A higher CL, in inverse proportion to pressure" },
-      { "id": "d", "text": "The same CL" }
-    ],
-    "correct": "c",
-    "explanation": "L = 0.7·p·M²·S·CL. At fixed W and M, CL ∝ 1/p — a key reason high-altitude flight approaches buffet limits.",
-    "tags": ["lift-coefficient", "altitude"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0043",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Compressibility corrections",
-    "question": "The Prandtl–Glauert factor 1/√(1 − M²) at M 0.6 and M 0.8 is:",
-    "options": [
-      { "id": "a", "text": "1.6 and 2.8" },
-      { "id": "b", "text": "1.36 and 2.78" },
-      { "id": "c", "text": "0.8 and 0.6" },
-      { "id": "d", "text": "1.25 and 1.67" }
-    ],
-    "correct": "d",
-    "explanation": "√(1 − 0.36) = 0.8 → 1.25; √(1 − 0.64) = 0.6 → 1.67.",
-    "tags": ["prandtl-glauert", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0044",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Compressibility corrections",
-    "question": "Below the critical Mach number, increasing M at constant α changes the section lift coefficient by:",
-    "options": [
-      { "id": "a", "text": "Decreasing it by √(1 − M²)" },
-      { "id": "b", "text": "Increasing it by 1/√(1 − M²)" },
-      { "id": "c", "text": "Increasing it by M²" },
-      { "id": "d", "text": "No change" }
-    ],
-    "correct": "b",
-    "explanation": "Linearised subsonic theory scales all Cp, hence cl and lift-curve slope, by the Prandtl–Glauert factor.",
-    "tags": ["prandtl-glauert", "lift-curve-slope"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0045",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Compressibility corrections",
-    "question": "A pressure coefficient of −0.43 at low speed becomes, at M 0.6 (below critical):",
-    "options": [
-      { "id": "a", "text": "−0.54" },
-      { "id": "b", "text": "−0.43" },
-      { "id": "c", "text": "−0.34" },
-      { "id": "d", "text": "−0.72" }
-    ],
-    "correct": "a",
-    "explanation": "Cp = Cp₀/√(1 − M²) = −0.43/0.8 = −0.54.",
-    "tags": ["pressure-coefficient", "calculation"],
     "status": "published",
     "version": 1
   },
@@ -214,49 +100,22 @@
         "id": "a",
         "text": "The free-stream Mach number at which local flow first reaches M = 1 somewhere on the body"
       },
-      { "id": "b", "text": "M = 1" },
-      { "id": "c", "text": "The maximum operating Mach number" },
-      { "id": "d", "text": "The Mach number at which drag rises sharply" }
+      {
+        "id": "b",
+        "text": "M = 1"
+      },
+      {
+        "id": "c",
+        "text": "The maximum operating Mach number"
+      },
+      {
+        "id": "d",
+        "text": "The Mach number at which drag rises sharply"
+      }
     ],
     "correct": "a",
     "explanation": "Local acceleration over the upper surface reaches sonic speed below free-stream M = 1; supersonic pockets and shocks form above it.",
     "tags": ["critical-mach"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0047",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Critical Mach number",
-    "question": "A section's minimum incompressible pressure coefficient is −0.6. Using Prandtl–Glauert scaling and the sonic-Cp relation, its critical Mach number is closest to:",
-    "options": [
-      { "id": "a", "text": "0.75" },
-      { "id": "b", "text": "0.69" },
-      { "id": "c", "text": "0.80" },
-      { "id": "d", "text": "0.60" }
-    ],
-    "correct": "b",
-    "explanation": "Solve −0.6/√(1 − M²) = Cp*(M): at M 0.69 both are ≈ −0.83. A stronger suction peak (Cp₀ −1.0) gives about 0.61.",
-    "tags": ["critical-mach", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0048",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Critical Mach number",
-    "question": "The sonic pressure coefficient Cp* (the Cp at which local M = 1) at free-stream M 0.8 is about:",
-    "options": [
-      { "id": "a", "text": "−0.43" },
-      { "id": "b", "text": "−0.78" },
-      { "id": "c", "text": "−1.29" },
-      { "id": "d", "text": "0" }
-    ],
-    "correct": "a",
-    "explanation": "Cp* = (2/γM²)[((2 + (γ−1)M²)/(γ+1))^(γ/(γ−1)) − 1] = −0.435 at M 0.8; −0.78 at M 0.7.",
-    "tags": ["sonic-cp", "calculation"],
     "status": "published",
     "version": 1
   },
@@ -267,13 +126,22 @@
     "subtopic": "Critical Mach number",
     "question": "Critical Mach number is increased by:",
     "options": [
-      { "id": "a", "text": "Higher angle of attack" },
+      {
+        "id": "a",
+        "text": "Higher angle of attack"
+      },
       {
         "id": "b",
         "text": "Thinner sections, less camber, lower CL and sweepback"
       },
-      { "id": "c", "text": "Thicker sections and more camber" },
-      { "id": "d", "text": "Blunter leading edges only" }
+      {
+        "id": "c",
+        "text": "Thicker sections and more camber"
+      },
+      {
+        "id": "d",
+        "text": "Blunter leading edges only"
+      }
     ],
     "correct": "b",
     "explanation": "All reduce the peak local velocity (or its normal component); lower super-velocity reaches sonic at higher free-stream M.",
@@ -288,13 +156,22 @@
     "subtopic": "Critical Mach number",
     "question": "At high altitude (higher cruise CL), the critical Mach number is:",
     "options": [
-      { "id": "a", "text": "Unchanged" },
-      { "id": "b", "text": "Higher" },
+      {
+        "id": "a",
+        "text": "Unchanged"
+      },
+      {
+        "id": "b",
+        "text": "Higher"
+      },
       {
         "id": "c",
         "text": "Lower, because higher α increases the upper-surface suction peak"
       },
-      { "id": "d", "text": "Equal to 1" }
+      {
+        "id": "d",
+        "text": "Equal to 1"
+      }
     ],
     "correct": "c",
     "explanation": "M_crit falls with CL; heavy aircraft at high altitude reach shock formation at a lower Mach number.",
@@ -313,9 +190,18 @@
         "id": "a",
         "text": "A small supersonic region terminated by a weak shock exists, with little drag rise"
       },
-      { "id": "b", "text": "The whole wing is supersonic" },
-      { "id": "c", "text": "No shock exists" },
-      { "id": "d", "text": "Drag falls" }
+      {
+        "id": "b",
+        "text": "The whole wing is supersonic"
+      },
+      {
+        "id": "c",
+        "text": "No shock exists"
+      },
+      {
+        "id": "d",
+        "text": "Drag falls"
+      }
     ],
     "correct": "a",
     "explanation": "The shock is initially weak and near the suction peak; drag rises steeply only when it strengthens and moves aft, triggering separation (drag divergence Mach).",
@@ -330,13 +216,22 @@
     "subtopic": "Critical Mach number",
     "question": "Drag divergence Mach number is:",
     "options": [
-      { "id": "a", "text": "The maximum operating Mach number" },
-      { "id": "b", "text": "Always equal to M_crit" },
+      {
+        "id": "a",
+        "text": "The maximum operating Mach number"
+      },
+      {
+        "id": "b",
+        "text": "Always equal to M_crit"
+      },
       {
         "id": "c",
         "text": "The Mach number at which drag begins to rise steeply (e.g. dCD/dM = 0.1)"
       },
-      { "id": "d", "text": "Always M = 1" }
+      {
+        "id": "d",
+        "text": "Always M = 1"
+      }
     ],
     "correct": "c",
     "explanation": "It lies somewhat above M_crit; supercritical sections widen the gap.",
@@ -355,9 +250,18 @@
         "id": "a",
         "text": "Pressure distribution depends mainly on the velocity component normal to the leading edge, M·cos Λ"
       },
-      { "id": "b", "text": "It increases span" },
-      { "id": "c", "text": "It thins the wing" },
-      { "id": "d", "text": "It removes induced drag" }
+      {
+        "id": "b",
+        "text": "It increases span"
+      },
+      {
+        "id": "c",
+        "text": "It thins the wing"
+      },
+      {
+        "id": "d",
+        "text": "It removes induced drag"
+      }
     ],
     "correct": "a",
     "explanation": "Simple sweep theory: the spanwise component does not accelerate over the section.",
@@ -372,32 +276,26 @@
     "subtopic": "Sweep",
     "question": "Free-stream M 0.85, sweep 35°. The normal Mach component is:",
     "options": [
-      { "id": "a", "text": "0.70" },
-      { "id": "b", "text": "0.85" },
-      { "id": "c", "text": "0.49" },
-      { "id": "d", "text": "1.04" }
+      {
+        "id": "a",
+        "text": "0.70"
+      },
+      {
+        "id": "b",
+        "text": "0.85"
+      },
+      {
+        "id": "c",
+        "text": "0.49"
+      },
+      {
+        "id": "d",
+        "text": "1.04"
+      }
     ],
     "correct": "a",
     "explanation": "M_n = 0.85 × cos 35° = 0.85 × 0.819 = 0.696.",
     "tags": ["sweep", "normal-mach", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0055",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Sweep",
-    "question": "To keep the normal Mach component at 0.70 when cruising at M 0.85, the sweep must be about:",
-    "options": [
-      { "id": "a", "text": "20°" },
-      { "id": "b", "text": "35°" },
-      { "id": "c", "text": "55°" },
-      { "id": "d", "text": "45°" }
-    ],
-    "correct": "b",
-    "explanation": "cos Λ = 0.70/0.85 = 0.824 → Λ = 34.6°.",
-    "tags": ["sweep", "calculation"],
     "status": "published",
     "version": 1
   },
@@ -408,10 +306,22 @@
     "subtopic": "Sweep",
     "question": "A straight wing with M_crit 0.70 is swept 30°. Simple sweep theory predicts M_crit:",
     "options": [
-      { "id": "a", "text": "0.99" },
-      { "id": "b", "text": "0.61" },
-      { "id": "c", "text": "0.81 (in practice somewhat less)" },
-      { "id": "d", "text": "0.70" }
+      {
+        "id": "a",
+        "text": "0.99"
+      },
+      {
+        "id": "b",
+        "text": "0.61"
+      },
+      {
+        "id": "c",
+        "text": "0.81 (in practice somewhat less)"
+      },
+      {
+        "id": "d",
+        "text": "0.70"
+      }
     ],
     "correct": "c",
     "explanation": "M_crit/cos Λ = 0.70/0.866 = 0.81. Root and tip effects and finite span reduce the real gain.",
@@ -426,13 +336,22 @@
     "subtopic": "Sweep",
     "question": "Disadvantages of sweep include:",
     "options": [
-      { "id": "a", "text": "Higher lift slope" },
+      {
+        "id": "a",
+        "text": "Higher lift slope"
+      },
       {
         "id": "b",
         "text": "Lower lift slope and CLmax, tip stall and pitch-up, spanwise flow and higher structural weight"
       },
-      { "id": "c", "text": "Improved low-speed handling" },
-      { "id": "d", "text": "Lower critical Mach number" }
+      {
+        "id": "c",
+        "text": "Improved low-speed handling"
+      },
+      {
+        "id": "d",
+        "text": "Lower critical Mach number"
+      }
     ],
     "correct": "b",
     "explanation": "Lift ∝ cos Λ effect, tip-loaded flow and longer, more twisted structure are the costs of higher M_crit.",
@@ -447,10 +366,22 @@
     "subtopic": "Sweep",
     "question": "Swept-wing lift-curve slope is approximately the unswept value times:",
     "options": [
-      { "id": "a", "text": "sin Λ" },
-      { "id": "b", "text": "cos² Λ" },
-      { "id": "c", "text": "cos Λ" },
-      { "id": "d", "text": "1/cos Λ" }
+      {
+        "id": "a",
+        "text": "sin Λ"
+      },
+      {
+        "id": "b",
+        "text": "cos² Λ"
+      },
+      {
+        "id": "c",
+        "text": "cos Λ"
+      },
+      {
+        "id": "d",
+        "text": "1/cos Λ"
+      }
     ],
     "correct": "c",
     "explanation": "Only the normal velocity component contributes; at 35° the slope falls to 0.82 of the straight-wing value.",
@@ -469,9 +400,18 @@
         "id": "a",
         "text": "A flatter upper surface with lower, more uniform suction and a weak shock, plus aft camber for lift"
       },
-      { "id": "b", "text": "A sharp leading edge" },
-      { "id": "c", "text": "A thicker upper-surface bump" },
-      { "id": "d", "text": "Forward camber only" }
+      {
+        "id": "b",
+        "text": "A sharp leading edge"
+      },
+      {
+        "id": "c",
+        "text": "A thicker upper-surface bump"
+      },
+      {
+        "id": "d",
+        "text": "Forward camber only"
+      }
     ],
     "correct": "a",
     "explanation": "Flatter upper-surface curvature limits local Mach number ahead of a weak shock; aft loading recovers lift. It allows thicker wings at the same cruise Mach.",
@@ -486,9 +426,18 @@
     "subtopic": "Transonic design",
     "question": "The transonic area rule states that wave drag is minimised when:",
     "options": [
-      { "id": "a", "text": "The wing is unswept" },
-      { "id": "b", "text": "The fuselage is cylindrical throughout" },
-      { "id": "c", "text": "The wing is thick" },
+      {
+        "id": "a",
+        "text": "The wing is unswept"
+      },
+      {
+        "id": "b",
+        "text": "The fuselage is cylindrical throughout"
+      },
+      {
+        "id": "c",
+        "text": "The wing is thick"
+      },
       {
         "id": "d",
         "text": "The total cross-sectional area distribution along the aircraft varies smoothly"
@@ -507,38 +456,26 @@
     "subtopic": "Transonic design",
     "question": "Thin wings are used on high-speed aircraft mainly because:",
     "options": [
-      { "id": "a", "text": "They reduce weight" },
+      {
+        "id": "a",
+        "text": "They reduce weight"
+      },
       {
         "id": "b",
         "text": "They raise the critical and drag-divergence Mach numbers"
       },
-      { "id": "c", "text": "They increase fuel volume" },
-      { "id": "d", "text": "They raise CLmax" }
+      {
+        "id": "c",
+        "text": "They increase fuel volume"
+      },
+      {
+        "id": "d",
+        "text": "They raise CLmax"
+      }
     ],
     "correct": "b",
     "explanation": "Lower thickness reduces super-velocity; the cost is lower CLmax and less structural depth.",
     "tags": ["thickness", "critical-mach"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0062",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Transonic design",
-    "question": "Vortex generators on transonic wings are used to:",
-    "options": [
-      { "id": "a", "text": "Reduce the critical Mach number" },
-      { "id": "b", "text": "Increase wing thickness" },
-      { "id": "c", "text": "Create the shock" },
-      {
-        "id": "d",
-        "text": "Energise the boundary layer ahead of the shock, reducing shock-induced separation"
-      }
-    ],
-    "correct": "d",
-    "explanation": "Mixing supplies momentum to withstand the pressure jump across the shock, reducing buffet and drag.",
-    "tags": ["vortex-generators", "shock-induced-separation"],
     "status": "published",
     "version": 1
   },
@@ -553,9 +490,18 @@
         "id": "a",
         "text": "Increases (≈ 0.54 at 10,000 ft, 0.65 at 20,000 ft, 0.79 at 30,000 ft)"
       },
-      { "id": "b", "text": "Remains constant" },
-      { "id": "c", "text": "Increases until the tropopause, then decreases" },
-      { "id": "d", "text": "Decreases" }
+      {
+        "id": "b",
+        "text": "Remains constant"
+      },
+      {
+        "id": "c",
+        "text": "Increases until the tropopause, then decreases"
+      },
+      {
+        "id": "d",
+        "text": "Decreases"
+      }
     ],
     "correct": "a",
     "explanation": "Constant impact pressure over falling static pressure raises q_c/p and hence M; falling temperature reduces a as well.",
@@ -570,10 +516,22 @@
     "subtopic": "Flight envelope",
     "question": "The crossover altitude for a 300 kt CAS / M 0.80 climb schedule is about:",
     "options": [
-      { "id": "a", "text": "36,100 ft" },
-      { "id": "b", "text": "25,000 ft" },
-      { "id": "c", "text": "30,600 ft" },
-      { "id": "d", "text": "20,000 ft" }
+      {
+        "id": "a",
+        "text": "36,100 ft"
+      },
+      {
+        "id": "b",
+        "text": "25,000 ft"
+      },
+      {
+        "id": "c",
+        "text": "30,600 ft"
+      },
+      {
+        "id": "d",
+        "text": "20,000 ft"
+      }
     ],
     "correct": "c",
     "explanation": "Solving M(CAS 300, altitude) = 0.80 in the standard atmosphere gives ≈ 30,600 ft; above it the Mach limit governs.",
@@ -588,10 +546,22 @@
     "subtopic": "Flight envelope",
     "question": "At the 300 kt / M 0.80 crossover altitude, the TAS is about:",
     "options": [
-      { "id": "a", "text": "300 kt" },
-      { "id": "b", "text": "530 kt" },
-      { "id": "c", "text": "470 kt" },
-      { "id": "d", "text": "420 kt" }
+      {
+        "id": "a",
+        "text": "300 kt"
+      },
+      {
+        "id": "b",
+        "text": "530 kt"
+      },
+      {
+        "id": "c",
+        "text": "470 kt"
+      },
+      {
+        "id": "d",
+        "text": "420 kt"
+      }
     ],
     "correct": "c",
     "explanation": "T ≈ 227.5 K → a = 38.97√227.5 = 588 kt; TAS = 0.80 × 588 = 470 kt.",
@@ -610,9 +580,18 @@
         "id": "a",
         "text": "Compressibility effects (Mach-dependent) become the limiting factor before dynamic-pressure limits"
       },
-      { "id": "b", "text": "IAS is unavailable" },
-      { "id": "c", "text": "The airspeed indicator fails" },
-      { "id": "d", "text": "Density increases" }
+      {
+        "id": "b",
+        "text": "IAS is unavailable"
+      },
+      {
+        "id": "c",
+        "text": "The airspeed indicator fails"
+      },
+      {
+        "id": "d",
+        "text": "Density increases"
+      }
     ],
     "correct": "a",
     "explanation": "At high altitude a given CAS corresponds to a high Mach number; shock effects are Mach-driven.",
@@ -627,13 +606,22 @@
     "subtopic": "Flight envelope",
     "question": "Descending at constant Mach number from above the tropopause into the troposphere, CAS:",
     "options": [
-      { "id": "a", "text": "Decreases" },
+      {
+        "id": "a",
+        "text": "Decreases"
+      },
       {
         "id": "b",
         "text": "Increases throughout, and TAS increases in the troposphere as temperature rises"
       },
-      { "id": "c", "text": "Stays constant" },
-      { "id": "d", "text": "Increases, while TAS decreases" }
+      {
+        "id": "c",
+        "text": "Stays constant"
+      },
+      {
+        "id": "d",
+        "text": "Increases, while TAS decreases"
+      }
     ],
     "correct": "b",
     "explanation": "Higher static pressure at the same M increases q_c; rising temperature raises a and TAS.",
@@ -648,10 +636,22 @@
     "subtopic": "Flight envelope",
     "question": "W/S = 5,000 N/m² at FL410 (p = 17,870 Pa). If buffet onset CL is 0.6, the minimum Mach for 1 g flight is about:",
     "options": [
-      { "id": "a", "text": "0.71" },
-      { "id": "b", "text": "0.82" },
-      { "id": "c", "text": "0.93" },
-      { "id": "d", "text": "0.60" }
+      {
+        "id": "a",
+        "text": "0.71"
+      },
+      {
+        "id": "b",
+        "text": "0.82"
+      },
+      {
+        "id": "c",
+        "text": "0.93"
+      },
+      {
+        "id": "d",
+        "text": "0.60"
+      }
     ],
     "correct": "b",
     "explanation": "M = √((W/S)/(0.7·p·CL)) = √(5,000/7,507) = 0.816. A 1.3 g margin requires M 0.93 — the coffin-corner squeeze.",
@@ -666,10 +666,22 @@
     "subtopic": "Flight envelope",
     "question": "With the same data (W/S 5,000, FL410, CL_buffet 0.6), a 1.3 g buffet margin requires a minimum Mach of about:",
     "options": [
-      { "id": "a", "text": "0.87" },
-      { "id": "b", "text": "0.93" },
-      { "id": "c", "text": "0.82" },
-      { "id": "d", "text": "1.07" }
+      {
+        "id": "a",
+        "text": "0.87"
+      },
+      {
+        "id": "b",
+        "text": "0.93"
+      },
+      {
+        "id": "c",
+        "text": "0.82"
+      },
+      {
+        "id": "d",
+        "text": "1.07"
+      }
     ],
     "correct": "b",
     "explanation": "√(1.3 × 5,000/7,507) = 0.93. If MMO or high-speed buffet is below this, the altitude is too high for that weight.",
@@ -684,13 +696,22 @@
     "subtopic": "Flight envelope",
     "question": "The coffin corner is the altitude at which:",
     "options": [
-      { "id": "a", "text": "The tropopause is reached" },
+      {
+        "id": "a",
+        "text": "The tropopause is reached"
+      },
       {
         "id": "b",
         "text": "Low-speed (stall/buffet) and high-speed (Mach buffet) limits converge"
       },
-      { "id": "c", "text": "Engine thrust equals drag" },
-      { "id": "d", "text": "CAS equals TAS" }
+      {
+        "id": "c",
+        "text": "Engine thrust equals drag"
+      },
+      {
+        "id": "d",
+        "text": "CAS equals TAS"
+      }
     ],
     "correct": "b",
     "explanation": "Low-speed buffet Mach rises with altitude (higher CL); high-speed buffet Mach is roughly constant or falls. The margin vanishes where they meet.",
@@ -705,9 +726,18 @@
     "subtopic": "Flight envelope",
     "question": "Increasing weight at constant altitude affects the buffet margin by:",
     "options": [
-      { "id": "a", "text": "Raising MMO" },
-      { "id": "b", "text": "Lowering the low-speed buffet Mach" },
-      { "id": "c", "text": "Having no effect" },
+      {
+        "id": "a",
+        "text": "Raising MMO"
+      },
+      {
+        "id": "b",
+        "text": "Lowering the low-speed buffet Mach"
+      },
+      {
+        "id": "c",
+        "text": "Having no effect"
+      },
       {
         "id": "d",
         "text": "Raising the low-speed buffet Mach and lowering the available margin"
@@ -726,10 +756,22 @@
     "subtopic": "Flight envelope",
     "question": "The Mach meter indicates Mach number from:",
     "options": [
-      { "id": "a", "text": "Temperature and static pressure" },
-      { "id": "b", "text": "TAS and outside air temperature" },
-      { "id": "c", "text": "Density and TAS" },
-      { "id": "d", "text": "Total (pitot) and static pressure only" }
+      {
+        "id": "a",
+        "text": "Temperature and static pressure"
+      },
+      {
+        "id": "b",
+        "text": "TAS and outside air temperature"
+      },
+      {
+        "id": "c",
+        "text": "Density and TAS"
+      },
+      {
+        "id": "d",
+        "text": "Total (pitot) and static pressure only"
+      }
     ],
     "correct": "d",
     "explanation": "M = f(q_c/p) through the isentropic relation; no temperature input is needed.",
@@ -744,10 +786,22 @@
     "subtopic": "Flight envelope",
     "question": "At constant altitude and TAS in warmer air, the Mach meter reading:",
     "options": [
-      { "id": "a", "text": "Increases" },
-      { "id": "b", "text": "Decreases, because the speed of sound is higher" },
-      { "id": "c", "text": "Becomes unreliable" },
-      { "id": "d", "text": "Is unchanged" }
+      {
+        "id": "a",
+        "text": "Increases"
+      },
+      {
+        "id": "b",
+        "text": "Decreases, because the speed of sound is higher"
+      },
+      {
+        "id": "c",
+        "text": "Becomes unreliable"
+      },
+      {
+        "id": "d",
+        "text": "Is unchanged"
+      }
     ],
     "correct": "b",
     "explanation": "M = TAS/a and a ∝ √T.",
@@ -762,10 +816,22 @@
     "subtopic": "Flight envelope",
     "question": "At constant pressure altitude and constant CAS, a temperature increase leaves Mach number:",
     "options": [
-      { "id": "a", "text": "Unchanged, since M depends only on q_c and p" },
-      { "id": "b", "text": "Doubled" },
-      { "id": "c", "text": "Decreased" },
-      { "id": "d", "text": "Increased" }
+      {
+        "id": "a",
+        "text": "Unchanged, since M depends only on q_c and p"
+      },
+      {
+        "id": "b",
+        "text": "Doubled"
+      },
+      {
+        "id": "c",
+        "text": "Decreased"
+      },
+      {
+        "id": "d",
+        "text": "Increased"
+      }
     ],
     "correct": "a",
     "explanation": "CAS fixes q_c; altitude fixes p. TAS rises with √T and so does a, in the same ratio.",
@@ -780,10 +846,22 @@
     "subtopic": "Temperature and heating",
     "question": "Air at M 0.8 and T = 217 K is brought to rest adiabatically. Total temperature is about:",
     "options": [
-      { "id": "a", "text": "231 K (+14 K)" },
-      { "id": "b", "text": "217 K" },
-      { "id": "c", "text": "260 K (+43 K)" },
-      { "id": "d", "text": "245 K (+28 K)" }
+      {
+        "id": "a",
+        "text": "231 K (+14 K)"
+      },
+      {
+        "id": "b",
+        "text": "217 K"
+      },
+      {
+        "id": "c",
+        "text": "260 K (+43 K)"
+      },
+      {
+        "id": "d",
+        "text": "245 K (+28 K)"
+      }
     ],
     "correct": "d",
     "explanation": "T_t = T(1 + 0.2M²) = 217 × 1.128 = 244.8 K.",
@@ -798,10 +876,22 @@
     "subtopic": "Temperature and heating",
     "question": "A total-air-temperature probe with recovery factor 1 reads 245 K at M 0.8. Static air temperature is:",
     "options": [
-      { "id": "a", "text": "272 K" },
-      { "id": "b", "text": "217 K" },
-      { "id": "c", "text": "245 K" },
-      { "id": "d", "text": "196 K" }
+      {
+        "id": "a",
+        "text": "272 K"
+      },
+      {
+        "id": "b",
+        "text": "217 K"
+      },
+      {
+        "id": "c",
+        "text": "245 K"
+      },
+      {
+        "id": "d",
+        "text": "196 K"
+      }
     ],
     "correct": "b",
     "explanation": "SAT = TAT/(1 + 0.2M²) = 245/1.128 = 217 K.",
@@ -816,131 +906,26 @@
     "subtopic": "Temperature and heating",
     "question": "Kinetic heating of the skin is a design constraint mainly at:",
     "options": [
-      { "id": "a", "text": "Take-off" },
-      { "id": "b", "text": "High altitude only at low speed" },
+      {
+        "id": "a",
+        "text": "Take-off"
+      },
+      {
+        "id": "b",
+        "text": "High altitude only at low speed"
+      },
       {
         "id": "c",
         "text": "Supersonic speeds, where stagnation temperature rises steeply with M²"
       },
-      { "id": "d", "text": "Low subsonic speeds" }
+      {
+        "id": "d",
+        "text": "Low subsonic speeds"
+      }
     ],
     "correct": "c",
     "explanation": "At M 2 and 217 K, T_t = 217 × 1.8 = 391 K, affecting material strength.",
     "tags": ["kinetic-heating"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0078",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Supersonic basics",
-    "question": "The Mach angle μ for M 2 is:",
-    "options": [
-      { "id": "a", "text": "45°" },
-      { "id": "b", "text": "30°" },
-      { "id": "c", "text": "15°" },
-      { "id": "d", "text": "60°" }
-    ],
-    "correct": "b",
-    "explanation": "μ = arcsin(1/M) = arcsin 0.5 = 30°. At M 1.414, μ = 45°.",
-    "tags": ["mach-angle", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0079",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Supersonic basics",
-    "question": "In supersonic flow through a diverging passage, the flow:",
-    "options": [
-      { "id": "a", "text": "Becomes subsonic" },
-      { "id": "b", "text": "Accelerates and its pressure falls" },
-      { "id": "c", "text": "Decelerates and its pressure rises" },
-      { "id": "d", "text": "Is unaffected" }
-    ],
-    "correct": "b",
-    "explanation": "dA/A = (M² − 1)dV/V: for M > 1, area and velocity increase together.",
-    "tags": ["area-velocity", "supersonic"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0080",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Supersonic basics",
-    "question": "Supersonic thin-aerofoil theory gives a lift-curve slope of 4/√(M² − 1) per radian. At M 2 it is:",
-    "options": [
-      { "id": "a", "text": "2.31 per radian" },
-      { "id": "b", "text": "4.00 per radian" },
-      { "id": "c", "text": "1.15 per radian" },
-      { "id": "d", "text": "6.28 per radian" }
-    ],
-    "correct": "a",
-    "explanation": "4/√3 = 2.31 — below the subsonic 2π, and falling with M.",
-    "tags": ["supersonic-lift-slope", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0081",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Supersonic basics",
-    "question": "In supersonic flow, disturbances from a body:",
-    "options": [
-      { "id": "a", "text": "Propagate upstream everywhere" },
-      { "id": "b", "text": "Are instantly felt throughout the flow" },
-      { "id": "c", "text": "Cannot propagate upstream beyond the Mach cone" },
-      { "id": "d", "text": "Travel slower than in subsonic flow" }
-    ],
-    "correct": "c",
-    "explanation": "The flow speed exceeds the propagation speed; the zone of influence is confined within the Mach cone, so the flow meets the body unwarned — hence shocks.",
-    "tags": ["mach-cone"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0082",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Supersonic basics",
-    "question": "A sharp leading edge is used on supersonic wings because:",
-    "options": [
-      {
-        "id": "a",
-        "text": "It allows an attached oblique shock with lower wave drag than a detached bow shock"
-      },
-      { "id": "b", "text": "It increases CLmax" },
-      { "id": "c", "text": "It improves low-speed handling" },
-      { "id": "d", "text": "It reduces weight" }
-    ],
-    "correct": "a",
-    "explanation": "A blunt nose forces a detached normal-shock segment with large total-pressure loss; the price is poor low-speed stall behaviour.",
-    "tags": ["leading-edge", "wave-drag"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0083",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Supersonic basics",
-    "question": "A subsonic leading edge on a highly swept supersonic wing is one for which:",
-    "options": [
-      { "id": "a", "text": "The free-stream M is below 1" },
-      {
-        "id": "b",
-        "text": "The Mach number normal to the leading edge is below 1 (leading edge inside the Mach cone)"
-      },
-      { "id": "c", "text": "The leading edge is blunt" },
-      { "id": "d", "text": "The sweep is zero" }
-    ],
-    "correct": "b",
-    "explanation": "M·cos Λ < 1 allows rounded, subsonic-type leading-edge flow and lower wave drag.",
-    "tags": ["subsonic-leading-edge"],
     "status": "published",
     "version": 1
   },
@@ -951,10 +936,22 @@
     "subtopic": "Mach number and regimes",
     "question": "Doubling TAS at constant temperature changes the Mach number by:",
     "options": [
-      { "id": "a", "text": "×√2" },
-      { "id": "b", "text": "No change" },
-      { "id": "c", "text": "×2" },
-      { "id": "d", "text": "×4" }
+      {
+        "id": "a",
+        "text": "×√2"
+      },
+      {
+        "id": "b",
+        "text": "No change"
+      },
+      {
+        "id": "c",
+        "text": "×2"
+      },
+      {
+        "id": "d",
+        "text": "×4"
+      }
     ],
     "correct": "c",
     "explanation": "M = V/a; a depends on temperature only.",
@@ -969,92 +966,26 @@
     "subtopic": "Mach number and regimes",
     "question": "At FL400 in the standard atmosphere, 450 kt TAS corresponds to about:",
     "options": [
-      { "id": "a", "text": "M 0.72" },
-      { "id": "b", "text": "M 0.68" },
-      { "id": "c", "text": "M 0.78" },
-      { "id": "d", "text": "M 0.84" }
+      {
+        "id": "a",
+        "text": "M 0.72"
+      },
+      {
+        "id": "b",
+        "text": "M 0.68"
+      },
+      {
+        "id": "c",
+        "text": "M 0.78"
+      },
+      {
+        "id": "d",
+        "text": "M 0.84"
+      }
     ],
     "correct": "c",
     "explanation": "a = 573.6 kt at 216.65 K; 450/573.6 = 0.785.",
     "tags": ["mach", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0086",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Isentropic relations",
-    "question": "The ratio of impact pressure to dynamic pressure, q_c/q, as Mach number rises from 0.3 to 0.8:",
-    "options": [
-      { "id": "a", "text": "Increases from 1.17 to 1.52" },
-      { "id": "b", "text": "Stays at 1.00" },
-      { "id": "c", "text": "Decreases" },
-      { "id": "d", "text": "Increases from about 1.02 to 1.17" }
-    ],
-    "correct": "d",
-    "explanation": "q_c/q ≈ 1 + M²/4 + M⁴/40: 1.023 at M 0.3; 1.170 at M 0.8.",
-    "tags": ["impact-pressure", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0087",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Compressibility corrections",
-    "question": "Near and above the critical Mach number, Prandtl–Glauert scaling:",
-    "options": [
-      { "id": "a", "text": "Predicts lift decrease" },
-      {
-        "id": "b",
-        "text": "Becomes invalid, since the flow contains shocks and is no longer linear"
-      },
-      { "id": "c", "text": "Remains exact" },
-      { "id": "d", "text": "Applies only above M 1" }
-    ],
-    "correct": "b",
-    "explanation": "It assumes small, isentropic, subsonic perturbations everywhere.",
-    "tags": ["prandtl-glauert", "limitations"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0088",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Transonic design",
-    "question": "Increasing wing thickness for more fuel volume at the same cruise Mach is possible with:",
-    "options": [
-      { "id": "a", "text": "Higher CL" },
-      { "id": "b", "text": "A conventional section and less sweep" },
-      { "id": "c", "text": "A sharper leading edge" },
-      { "id": "d", "text": "A supercritical section and adequate sweep" }
-    ],
-    "correct": "d",
-    "explanation": "The supercritical design delays drag divergence, recovering Mach capability that thickness would cost.",
-    "tags": ["supercritical-aerofoil", "thickness"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0089",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Critical Mach number",
-    "question": "Critical Mach number of the complete aircraft is often set by:",
-    "options": [
-      { "id": "a", "text": "The landing gear" },
-      { "id": "b", "text": "The wingtips only" },
-      {
-        "id": "c",
-        "text": "The component with the highest local velocity: wing upper surface, wing–body junction, nacelles or canopy"
-      },
-      { "id": "d", "text": "The tail alone" }
-    ],
-    "correct": "c",
-    "explanation": "Any local super-velocity reaching sonic defines M_crit; junction fairings and area ruling address this.",
-    "tags": ["critical-mach", "components"],
     "status": "published",
     "version": 1
   },
@@ -1065,9 +996,18 @@
     "subtopic": "Flight envelope",
     "question": "The maximum operating Mach number MMO protects against:",
     "options": [
-      { "id": "a", "text": "Structural overload from q alone" },
-      { "id": "b", "text": "Stall" },
-      { "id": "c", "text": "Engine surge" },
+      {
+        "id": "a",
+        "text": "Structural overload from q alone"
+      },
+      {
+        "id": "b",
+        "text": "Stall"
+      },
+      {
+        "id": "c",
+        "text": "Engine surge"
+      },
       {
         "id": "d",
         "text": "Shock-induced buffet, control problems (e.g. Mach tuck) and drag rise"
@@ -1086,9 +1026,18 @@
     "subtopic": "Flight envelope",
     "question": "At constant altitude, increasing speed from M 0.75 to 0.82 on a transport wing usually:",
     "options": [
-      { "id": "a", "text": "Leaves drag coefficient unchanged" },
-      { "id": "b", "text": "Reduces drag" },
-      { "id": "c", "text": "Reduces lift" },
+      {
+        "id": "a",
+        "text": "Leaves drag coefficient unchanged"
+      },
+      {
+        "id": "b",
+        "text": "Reduces drag"
+      },
+      {
+        "id": "c",
+        "text": "Reduces lift"
+      },
       {
         "id": "d",
         "text": "Increases drag disproportionately as drag divergence is approached"
@@ -1107,13 +1056,22 @@
     "subtopic": "Mach number and regimes",
     "question": "The transonic range is aerodynamically difficult mainly because:",
     "options": [
-      { "id": "a", "text": "The speed of sound changes" },
+      {
+        "id": "a",
+        "text": "The speed of sound changes"
+      },
       {
         "id": "b",
         "text": "Mixed subsonic and supersonic regions and moving shocks cause large, non-linear changes in lift, drag and moments"
       },
-      { "id": "c", "text": "Engines lose all thrust" },
-      { "id": "d", "text": "Air becomes incompressible" }
+      {
+        "id": "c",
+        "text": "Engines lose all thrust"
+      },
+      {
+        "id": "d",
+        "text": "Air becomes incompressible"
+      }
     ],
     "correct": "b",
     "explanation": "Local shock positions shift with small changes in M or α, producing buffet, trim changes and control effectiveness loss.",
@@ -1128,35 +1086,26 @@
     "subtopic": "Sweep",
     "question": "At the same critical Mach number, sweep allows:",
     "options": [
-      { "id": "a", "text": "Lower wing weight" },
-      { "id": "b", "text": "A higher CLmax" },
+      {
+        "id": "a",
+        "text": "Lower wing weight"
+      },
+      {
+        "id": "b",
+        "text": "A higher CLmax"
+      },
       {
         "id": "c",
         "text": "A thicker section, improving structure and fuel volume"
       },
-      { "id": "d", "text": "A thinner section only" }
+      {
+        "id": "d",
+        "text": "A thinner section only"
+      }
     ],
     "correct": "c",
     "explanation": "M_n = M·cos Λ; the section only needs to meet M_crit at the normal component.",
     "tags": ["sweep", "thickness"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0094",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Isentropic relations",
-    "question": "In subsonic compressible flow, the local density at the upper-surface suction peak compared with free stream is:",
-    "options": [
-      { "id": "a", "text": "Higher" },
-      { "id": "b", "text": "Zero" },
-      { "id": "c", "text": "Equal" },
-      { "id": "d", "text": "Lower" }
-    ],
-    "correct": "d",
-    "explanation": "Acceleration lowers pressure and, isentropically, density — the effect grows with M.",
-    "tags": ["density", "compressibility"],
     "status": "published",
     "version": 1
   },
@@ -1167,10 +1116,22 @@
     "subtopic": "Flight envelope",
     "question": "An aircraft cruising at constant Mach number climbs from FL310 to FL370 (both below or near the tropopause). Its IAS:",
     "options": [
-      { "id": "a", "text": "Remains constant" },
-      { "id": "b", "text": "Increases" },
-      { "id": "c", "text": "First increases then decreases" },
-      { "id": "d", "text": "Decreases" }
+      {
+        "id": "a",
+        "text": "Remains constant"
+      },
+      {
+        "id": "b",
+        "text": "Increases"
+      },
+      {
+        "id": "c",
+        "text": "First increases then decreases"
+      },
+      {
+        "id": "d",
+        "text": "Decreases"
+      }
     ],
     "correct": "d",
     "explanation": "At constant M the impact pressure falls with static pressure, so CAS/IAS falls.",
@@ -1185,71 +1146,26 @@
     "subtopic": "Temperature and heating",
     "question": "Ram temperature rise at M 0.5 and T 250 K is about:",
     "options": [
-      { "id": "a", "text": "25 K" },
-      { "id": "b", "text": "50 K" },
-      { "id": "c", "text": "12.5 K" },
-      { "id": "d", "text": "5 K" }
+      {
+        "id": "a",
+        "text": "25 K"
+      },
+      {
+        "id": "b",
+        "text": "50 K"
+      },
+      {
+        "id": "c",
+        "text": "12.5 K"
+      },
+      {
+        "id": "d",
+        "text": "5 K"
+      }
     ],
     "correct": "c",
     "explanation": "ΔT = 0.2M²·T = 0.2 × 0.25 × 250 = 12.5 K.",
     "tags": ["ram-rise", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0097",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Critical Mach number",
-    "question": "Two sections at the same CL: A has t/c 10 %, B has t/c 14 %. Section A's critical Mach number is:",
-    "options": [
-      { "id": "a", "text": "Lower" },
-      { "id": "b", "text": "Always 1.0" },
-      { "id": "c", "text": "Higher" },
-      { "id": "d", "text": "Equal" }
-    ],
-    "correct": "c",
-    "explanation": "Thicker sections accelerate the flow more; sonic conditions arise at a lower free-stream M.",
-    "tags": ["critical-mach", "thickness"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0098",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Supersonic basics",
-    "question": "The wave drag of a slender supersonic body is reduced by:",
-    "options": [
-      { "id": "a", "text": "A blunt nose" },
-      { "id": "b", "text": "Abrupt area changes" },
-      { "id": "c", "text": "High fineness ratio and smooth area distribution" },
-      { "id": "d", "text": "Short length" }
-    ],
-    "correct": "c",
-    "explanation": "Wave drag depends on the second derivative of the area distribution; long, smooth shapes minimise it.",
-    "tags": ["wave-drag", "fineness-ratio"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0099",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Transonic design",
-    "question": "Wing-body fairings on transonic aircraft reduce:",
-    "options": [
-      { "id": "a", "text": "Stall speed" },
-      { "id": "b", "text": "Induced drag only" },
-      { "id": "c", "text": "Skin friction to zero" },
-      {
-        "id": "d",
-        "text": "Local super-velocities and interference shocks at the junction"
-      }
-    ],
-    "correct": "d",
-    "explanation": "The junction combines fuselage and wing velocity increments; fairing shape keeps local M below that giving strong shocks.",
-    "tags": ["fairing", "interference-drag"],
     "status": "published",
     "version": 1
   },
@@ -1264,52 +1180,22 @@
         "id": "a",
         "text": "The maximum altitude or bank at a given weight and Mach number while keeping a load-factor margin to buffet"
       },
-      { "id": "b", "text": "Landing distance" },
-      { "id": "c", "text": "Fuel flow" },
-      { "id": "d", "text": "V1" }
+      {
+        "id": "b",
+        "text": "Landing distance"
+      },
+      {
+        "id": "c",
+        "text": "Fuel flow"
+      },
+      {
+        "id": "d",
+        "text": "V1"
+      }
     ],
     "correct": "a",
     "explanation": "They plot buffet CL against M; with W, p and n the margin can be read directly.",
     "tags": ["buffet-boundary"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0101",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Mach number and regimes",
-    "question": "The local Mach number at a point on the wing depends on:",
-    "options": [
-      { "id": "a", "text": "Pressure only" },
-      { "id": "b", "text": "Free-stream velocity only" },
-      { "id": "c", "text": "Local velocity and local temperature" },
-      { "id": "d", "text": "Altitude only" }
-    ],
-    "correct": "c",
-    "explanation": "Acceleration also cools the air (isentropic expansion), lowering local a — both raise local M.",
-    "tags": ["local-mach"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-MACH-0102",
-    "subjectCode": "POF",
-    "topic": "High-Speed Flight: Compressibility",
-    "subtopic": "Compressibility corrections",
-    "question": "The subsonic compressibility effect on the aerodynamic centre position is:",
-    "options": [
-      {
-        "id": "a",
-        "text": "Small, with the AC staying near the quarter chord until shocks form"
-      },
-      { "id": "b", "text": "A shift to mid-chord at M 0.3" },
-      { "id": "c", "text": "Large and linear" },
-      { "id": "d", "text": "A forward shift to the leading edge" }
-    ],
-    "correct": "a",
-    "explanation": "Prandtl–Glauert scales the whole Cp distribution; its centroid moves little. Aft AC movement comes with shocks.",
-    "tags": ["aerodynamic-centre", "compressibility"],
     "status": "published",
     "version": 1
   },
@@ -1320,10 +1206,22 @@
     "subtopic": "Flight envelope",
     "question": "Flying at constant CAS above the crossover altitude would:",
     "options": [
-      { "id": "a", "text": "Exceed MMO as altitude increases" },
-      { "id": "b", "text": "Keep Mach constant" },
-      { "id": "c", "text": "Reduce TAS" },
-      { "id": "d", "text": "Reduce Mach" }
+      {
+        "id": "a",
+        "text": "Exceed MMO as altitude increases"
+      },
+      {
+        "id": "b",
+        "text": "Keep Mach constant"
+      },
+      {
+        "id": "c",
+        "text": "Reduce TAS"
+      },
+      {
+        "id": "d",
+        "text": "Reduce Mach"
+      }
     ],
     "correct": "a",
     "explanation": "At constant CAS, M continues to rise with altitude.",
@@ -1338,9 +1236,18 @@
     "subtopic": "Temperature and heating",
     "question": "TAT exceeds SAT in flight because:",
     "options": [
-      { "id": "a", "text": "Radiation" },
-      { "id": "b", "text": "Friction with the skin" },
-      { "id": "c", "text": "Engines heat the probe" },
+      {
+        "id": "a",
+        "text": "Radiation"
+      },
+      {
+        "id": "b",
+        "text": "Friction with the skin"
+      },
+      {
+        "id": "c",
+        "text": "Engines heat the probe"
+      },
       {
         "id": "d",
         "text": "The probe brings the air (partly) to rest, converting kinetic energy into enthalpy"

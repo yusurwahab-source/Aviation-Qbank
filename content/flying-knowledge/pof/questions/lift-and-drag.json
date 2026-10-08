@@ -1,33 +1,27 @@
 [
   {
-    "id": "POF-LIFT-0039",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Drag polar",
-    "question": "For a wing of aspect ratio 9 and span efficiency 0.8, the induced-drag factor k in CD = CD0 + k·CL² is:",
-    "options": [
-      { "id": "a", "text": "0.0354" },
-      { "id": "b", "text": "0.0283" },
-      { "id": "c", "text": "0.139" },
-      { "id": "d", "text": "0.0442" }
-    ],
-    "correct": "d",
-    "explanation": "k = 1/(π·e·A) = 1/(π × 0.8 × 9) = 1/22.6 = 0.0442. 0.0354 omits e; 0.139 omits π.",
-    "tags": ["drag-polar", "induced-drag-factor", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
     "id": "POF-LIFT-0040",
     "subjectCode": "POF",
     "topic": "Lift and Drag",
     "subtopic": "Drag polar",
     "question": "Aircraft: W = 600 kN, S = 120 m², CD0 = 0.020, A = 9, e = 0.8. At CL = 0.5, CD and L/D are:",
     "options": [
-      { "id": "a", "text": "CD = 0.031; L/D = 16.1" },
-      { "id": "b", "text": "CD = 0.042; L/D = 11.9" },
-      { "id": "c", "text": "CD = 0.020; L/D = 25.0" },
-      { "id": "d", "text": "CD = 0.031; L/D = 32.2" }
+      {
+        "id": "a",
+        "text": "CD = 0.031; L/D = 16.1"
+      },
+      {
+        "id": "b",
+        "text": "CD = 0.042; L/D = 11.9"
+      },
+      {
+        "id": "c",
+        "text": "CD = 0.020; L/D = 25.0"
+      },
+      {
+        "id": "d",
+        "text": "CD = 0.031; L/D = 32.2"
+      }
     ],
     "correct": "a",
     "explanation": "CD = 0.020 + 0.0442 × 0.5² = 0.0311; L/D = 0.5/0.0311 = 16.1. 0.042 uses CL instead of CL²; 0.020 ignores induced drag.",
@@ -42,10 +36,22 @@
     "subtopic": "Minimum drag",
     "question": "Aircraft: W = 600 kN, S = 120 m², CD0 = 0.020, A = 9, e = 0.8. The lift coefficient for minimum drag is:",
     "options": [
-      { "id": "a", "text": "1.165" },
-      { "id": "b", "text": "0.452" },
-      { "id": "c", "text": "0.388" },
-      { "id": "d", "text": "0.673" }
+      {
+        "id": "a",
+        "text": "1.165"
+      },
+      {
+        "id": "b",
+        "text": "0.452"
+      },
+      {
+        "id": "c",
+        "text": "0.388"
+      },
+      {
+        "id": "d",
+        "text": "0.673"
+      }
     ],
     "correct": "d",
     "explanation": "Minimum D at fixed W is maximum CL/CD: d(CD/CL)/dCL = 0 → CD0 = k·CL². CL_md = √(CD0/k) = √(0.020/0.0442) = 0.673. 1.165 = √3·CL_md (minimum power); 0.388 = CL_md/√3 (maximum √CL/CD).",
@@ -60,10 +66,22 @@
     "subtopic": "Minimum drag",
     "question": "Aircraft: W = 600 kN, S = 120 m², CD0 = 0.020, A = 9, e = 0.8. The maximum lift-to-drag ratio is:",
     "options": [
-      { "id": "a", "text": "22.6" },
-      { "id": "b", "text": "8.4" },
-      { "id": "c", "text": "16.8" },
-      { "id": "d", "text": "33.6" }
+      {
+        "id": "a",
+        "text": "22.6"
+      },
+      {
+        "id": "b",
+        "text": "8.4"
+      },
+      {
+        "id": "c",
+        "text": "16.8"
+      },
+      {
+        "id": "d",
+        "text": "33.6"
+      }
     ],
     "correct": "c",
     "explanation": "(L/D)max = 1/(2√(k·CD0)) = ½√(πeA/CD0) = 1/(2 × 0.0297) = 16.8. 33.6 omits the factor ½; 22.6 is πeA.",
@@ -78,10 +96,22 @@
     "subtopic": "Minimum drag",
     "question": "At the minimum-drag speed, induced drag compared with parasite drag is:",
     "options": [
-      { "id": "a", "text": "Equal" },
-      { "id": "b", "text": "Three times larger" },
-      { "id": "c", "text": "One third" },
-      { "id": "d", "text": "Zero" }
+      {
+        "id": "a",
+        "text": "Equal"
+      },
+      {
+        "id": "b",
+        "text": "Three times larger"
+      },
+      {
+        "id": "c",
+        "text": "One third"
+      },
+      {
+        "id": "d",
+        "text": "Zero"
+      }
     ],
     "correct": "a",
     "explanation": "D = D0 + Di with D0 ∝ V² and Di ∝ 1/V². dD/dV = 0 where D0 = Di. At V_mp, Di = 3·D0; at 1.32 V_md, Di = D0/3.",
@@ -96,32 +126,26 @@
     "subtopic": "Minimum drag",
     "question": "Aircraft: W = 600 kN, S = 120 m², CD0 = 0.020, A = 9, e = 0.8. The minimum drag is:",
     "options": [
-      { "id": "a", "text": "35.7 kN" },
-      { "id": "b", "text": "71.4 kN" },
-      { "id": "c", "text": "17.8 kN" },
-      { "id": "d", "text": "600 kN" }
+      {
+        "id": "a",
+        "text": "35.7 kN"
+      },
+      {
+        "id": "b",
+        "text": "71.4 kN"
+      },
+      {
+        "id": "c",
+        "text": "17.8 kN"
+      },
+      {
+        "id": "d",
+        "text": "600 kN"
+      }
     ],
     "correct": "a",
     "explanation": "D_min = W/(L/D)max = 600/16.8 = 35.7 kN, half parasite and half induced. D_min depends on weight and (L/D)max only, not on altitude.",
     "tags": ["minimum-drag", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0045",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Minimum drag",
-    "question": "Aircraft: W = 600 kN, S = 120 m², CD0 = 0.020, A = 9, e = 0.8. At sea level (ρ = 1.225 kg/m³) the minimum-drag speed is closest to:",
-    "options": [
-      { "id": "a", "text": "303 kt EAS" },
-      { "id": "b", "text": "214 kt EAS" },
-      { "id": "c", "text": "124 kt EAS" },
-      { "id": "d", "text": "151 kt EAS" }
-    ],
-    "correct": "b",
-    "explanation": "V_md = √(2W/(ρ₀·S·CL_md)) = √(1,200,000/(1.225 × 120 × 0.673)) = 110.2 m/s = 214 kt. 151 kt omits the 2; 303 kt doubles it.",
-    "tags": ["minimum-drag-speed", "calculation"],
     "status": "published",
     "version": 1
   },
@@ -132,10 +156,22 @@
     "subtopic": "Power required",
     "question": "The same aircraft has V_md = 214 kt EAS. The minimum-power speed is closest to:",
     "options": [
-      { "id": "a", "text": "163 kt" },
-      { "id": "b", "text": "124 kt" },
-      { "id": "c", "text": "214 kt" },
-      { "id": "d", "text": "282 kt" }
+      {
+        "id": "a",
+        "text": "163 kt"
+      },
+      {
+        "id": "b",
+        "text": "124 kt"
+      },
+      {
+        "id": "c",
+        "text": "214 kt"
+      },
+      {
+        "id": "d",
+        "text": "282 kt"
+      }
     ],
     "correct": "a",
     "explanation": "Minimum power P = D·V requires maximum CL^1.5/CD: CL_mp = √(3·CD0/k) = √3·CL_md. V_mp = V_md/3^¼ = 0.760 × 214 = 163 kt.",
@@ -150,10 +186,22 @@
     "subtopic": "Range and endurance",
     "question": "With V_md = 214 kt EAS, the speed for maximum still-air range of a jet at constant altitude (maximum V/D) is closest to:",
     "options": [
-      { "id": "a", "text": "163 kt" },
-      { "id": "b", "text": "303 kt" },
-      { "id": "c", "text": "214 kt" },
-      { "id": "d", "text": "282 kt" }
+      {
+        "id": "a",
+        "text": "163 kt"
+      },
+      {
+        "id": "b",
+        "text": "303 kt"
+      },
+      {
+        "id": "c",
+        "text": "214 kt"
+      },
+      {
+        "id": "d",
+        "text": "282 kt"
+      }
     ],
     "correct": "d",
     "explanation": "Jet range per unit fuel ∝ V/D (thrust-specific fuel consumption ≈ constant), maximised at maximum √CL/CD: CL = CL_md/√3, V = 3^¼·V_md = 1.316 × 214 = 282 kt.",
@@ -192,133 +240,28 @@
     "version": 1
   },
   {
-    "id": "POF-LIFT-0049",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Range and endurance",
-    "question": "At 1.32 V_md (maximum V/D), the drag components and L/D are:",
-    "options": [
-      { "id": "a", "text": "Induced drag is zero; L/D is 0.5 of maximum" },
-      {
-        "id": "b",
-        "text": "Induced drag is one third of parasite drag; L/D is 0.866 of maximum"
-      },
-      {
-        "id": "c",
-        "text": "Induced drag equals parasite drag; L/D is maximum"
-      },
-      {
-        "id": "d",
-        "text": "Induced drag is three times parasite drag; L/D is 0.866 of maximum"
-      }
-    ],
-    "correct": "b",
-    "explanation": "√CL/CD maximum: CD0 = 3k·CL², so CDi = CD0/3. CD = 4CD0/3, CL = CL_md/√3: L/D = (CL_md/√3)/(4CD0/3) = (√3/2)·CL_md/(2CD0) = 0.866·(L/D)max. Drag at V_mp and at 1.32 V_md are both 15.5 % above minimum.",
-    "tags": ["jet-range", "drag-polar"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0050",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Minimum drag",
-    "question": "Relative to minimum drag, total drag at 1.5 V_md (constant weight and altitude) is:",
-    "options": [
-      { "id": "a", "text": "1.50 times" },
-      { "id": "b", "text": "1.35 times" },
-      { "id": "c", "text": "2.25 times" },
-      { "id": "d", "text": "1.13 times" }
-    ],
-    "correct": "b",
-    "explanation": "With D0 = Di = ½D_min at V_md: D/D_min = ½[(V/V_md)² + (V_md/V)²] = ½(2.25 + 0.444) = 1.35.",
-    "tags": ["drag-curve", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0051",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Minimum drag",
-    "question": "Relative to minimum drag, total drag at 0.8 V_md is:",
-    "options": [
-      { "id": "a", "text": "0.64 times" },
-      { "id": "b", "text": "1.10 times" },
-      { "id": "c", "text": "1.56 times" },
-      { "id": "d", "text": "0.80 times" }
-    ],
-    "correct": "b",
-    "explanation": "D/D_min = ½[(0.8)² + (1/0.8)²] = ½(0.64 + 1.5625) = 1.10. Below V_md the rising induced term outweighs the falling parasite term.",
-    "tags": ["drag-curve", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0052",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Minimum drag",
-    "question": "Relative to minimum drag, total drag at 2 V_md is:",
-    "options": [
-      { "id": "a", "text": "1.50 times" },
-      { "id": "b", "text": "2.00 times" },
-      { "id": "c", "text": "4.00 times" },
-      { "id": "d", "text": "2.13 times" }
-    ],
-    "correct": "d",
-    "explanation": "D/D_min = ½(4 + 0.25) = 2.125. Parasite drag is now 4/4.25 = 94 % of the total.",
-    "tags": ["drag-curve", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0053",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Parasite drag",
-    "question": "At 2 V_md, the fraction of total drag that is parasite drag is closest to:",
-    "options": [
-      { "id": "a", "text": "100 %" },
-      { "id": "b", "text": "94 %" },
-      { "id": "c", "text": "80 %" },
-      { "id": "d", "text": "50 %" }
-    ],
-    "correct": "b",
-    "explanation": "D0/D = (V/V_md)²/[(V/V_md)² + (V_md/V)²] = 4/(4 + 0.25) = 0.94.",
-    "tags": ["parasite-drag", "drag-curve", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0054",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Parasite drag",
-    "question": "An aircraft has CD0 = 0.020 and S = 120 m². The equivalent flat-plate area and the parasite drag at q = 10 kPa are:",
-    "options": [
-      { "id": "a", "text": "6,000 m²; 60 MN" },
-      { "id": "b", "text": "0.17 m²; 1.7 kN" },
-      { "id": "c", "text": "2.4 m²; 24 kN" },
-      { "id": "d", "text": "2.4 m²; 12 kN" }
-    ],
-    "correct": "c",
-    "explanation": "f = CD0·S = 2.4 m² (the area of a plate with CD = 1 giving the same D0). D0 = q·f = 10,000 × 2.4 = 24,000 N.",
-    "tags": ["parasite-drag", "flat-plate-area", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
     "id": "POF-LIFT-0055",
     "subjectCode": "POF",
     "topic": "Lift and Drag",
     "subtopic": "Parasite drag",
     "question": "At constant altitude, TAS increases by 20 %. Parasite drag changes by:",
     "options": [
-      { "id": "a", "text": "+10 %" },
-      { "id": "b", "text": "+73 %" },
-      { "id": "c", "text": "+20 %" },
-      { "id": "d", "text": "+44 %" }
+      {
+        "id": "a",
+        "text": "+10 %"
+      },
+      {
+        "id": "b",
+        "text": "+73 %"
+      },
+      {
+        "id": "c",
+        "text": "+20 %"
+      },
+      {
+        "id": "d",
+        "text": "+44 %"
+      }
     ],
     "correct": "d",
     "explanation": "D0 = CD0·½ρV²·S ∝ V²: 1.2² = 1.44.",
@@ -333,104 +276,26 @@
     "subtopic": "Induced drag",
     "question": "At constant weight and altitude, speed increases by 20 %. Induced drag changes by the factor:",
     "options": [
-      { "id": "a", "text": "0.579" },
-      { "id": "b", "text": "1.44" },
-      { "id": "c", "text": "0.694" },
-      { "id": "d", "text": "0.833" }
+      {
+        "id": "a",
+        "text": "0.579"
+      },
+      {
+        "id": "b",
+        "text": "1.44"
+      },
+      {
+        "id": "c",
+        "text": "0.694"
+      },
+      {
+        "id": "d",
+        "text": "0.833"
+      }
     ],
     "correct": "c",
     "explanation": "Di = k·CL²·q·S with CL ∝ 1/V² and q ∝ V²: Di ∝ 1/V² → 1/1.44 = 0.694.",
     "tags": ["induced-drag", "proportionality"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0057",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Induced drag",
-    "question": "Induced drag can be written Di = W²/(q·π·e·b²). At the same weight, q and e, doubling the span changes induced drag by the factor:",
-    "options": [
-      { "id": "a", "text": "¼" },
-      { "id": "b", "text": "1" },
-      { "id": "c", "text": "½" },
-      { "id": "d", "text": "2" }
-    ],
-    "correct": "a",
-    "explanation": "Di ∝ (W/b)²: span loading, not aspect ratio alone, governs induced drag. Doubling b at constant W → ×¼.",
-    "tags": ["induced-drag", "span-loading"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0058",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Weight and altitude",
-    "question": "Weight increases by 21 % (same altitude and configuration). V_md, minimum drag and (L/D)max change by:",
-    "options": [
-      { "id": "a", "text": "V_md ×1.10; D_min ×1.21; (L/D)max unchanged" },
-      { "id": "b", "text": "V_md unchanged; D_min ×1.46; (L/D)max ×0.83" },
-      { "id": "c", "text": "V_md ×1.10; D_min unchanged; (L/D)max ×0.83" },
-      { "id": "d", "text": "V_md ×1.21; D_min ×1.21; (L/D)max unchanged" }
-    ],
-    "correct": "a",
-    "explanation": "CL_md and (L/D)max depend on CD0 and k only. V_md ∝ √W → ×1.10. D_min = W/(L/D)max → ×1.21. The drag curve moves up and to the right.",
-    "tags": ["weight", "minimum-drag"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0059",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Weight and altitude",
-    "question": "The aircraft climbs from sea level to FL300 (σ = 0.374) at constant weight. V_md in EAS, V_md in TAS, and D_min:",
-    "options": [
-      { "id": "a", "text": "EAS unchanged; TAS ×1.64; D_min unchanged" },
-      { "id": "b", "text": "EAS ×0.61; TAS unchanged; D_min ×1.64" },
-      { "id": "c", "text": "EAS unchanged; TAS ×2.67; D_min ×0.374" },
-      { "id": "d", "text": "EAS ×1.64; TAS ×1.64; D_min unchanged" }
-    ],
-    "correct": "a",
-    "explanation": "V_md EAS = √(2W/(ρ₀S·CL_md)) contains no σ. V_T = V_E/√σ = ×1/0.612 = 1.64. D_min = W/(L/D)max is independent of altitude (low Mach).",
-    "tags": ["altitude", "minimum-drag-speed"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0060",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Weight and altitude",
-    "question": "At constant weight, the minimum power required at FL300 (σ = 0.374) compared with sea level is:",
-    "options": [
-      { "id": "a", "text": "2.67 times" },
-      { "id": "b", "text": "0.61 times" },
-      { "id": "c", "text": "Unchanged" },
-      { "id": "d", "text": "1.64 times" }
-    ],
-    "correct": "d",
-    "explanation": "P_min = D_mp·V_T,mp. D_mp is unchanged; V_T,mp = V_E,mp/√σ → P_min ∝ 1/√σ = 1.64. The power curve moves up and to the right with altitude.",
-    "tags": ["power-required", "altitude", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0061",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Weight and altitude",
-    "question": "Weight increases by 21 % at constant altitude. Minimum power required changes by:",
-    "options": [
-      { "id": "a", "text": "×1.33" },
-      { "id": "b", "text": "×1.10" },
-      { "id": "c", "text": "×1.21" },
-      { "id": "d", "text": "×1.46" }
-    ],
-    "correct": "a",
-    "explanation": "P_min = D·V with D ∝ W and V ∝ √W at fixed CL → P ∝ W^1.5 = 1.21^1.5 = 1.331.",
-    "tags": ["power-required", "weight", "calculation"],
     "status": "published",
     "version": 1
   },
@@ -441,10 +306,22 @@
     "subtopic": "Range and endurance",
     "question": "For a propeller aircraft (constant propulsive efficiency and power-specific fuel consumption), maximum range and maximum endurance occur at:",
     "options": [
-      { "id": "a", "text": "Range at 1.32 V_md; endurance at V_md" },
-      { "id": "b", "text": "Both at V_md" },
-      { "id": "c", "text": "Range at V_mp; endurance at V_md" },
-      { "id": "d", "text": "Range at V_md; endurance at V_mp" }
+      {
+        "id": "a",
+        "text": "Range at 1.32 V_md; endurance at V_md"
+      },
+      {
+        "id": "b",
+        "text": "Both at V_md"
+      },
+      {
+        "id": "c",
+        "text": "Range at V_mp; endurance at V_md"
+      },
+      {
+        "id": "d",
+        "text": "Range at V_md; endurance at V_mp"
+      }
     ],
     "correct": "d",
     "explanation": "Fuel flow ∝ power = D·V. Endurance maximum at minimum power (V_mp). Range per unit fuel ∝ V/P = 1/D → maximum at minimum drag (V_md).",
@@ -459,77 +336,26 @@
     "subtopic": "Range and endurance",
     "question": "For a jet (constant thrust-specific fuel consumption), maximum endurance and maximum range at constant altitude occur at:",
     "options": [
-      { "id": "a", "text": "Endurance at 1.32 V_md; range at V_md" },
-      { "id": "b", "text": "Both at V_md" },
-      { "id": "c", "text": "Endurance at V_md; range at 1.32 V_md" },
-      { "id": "d", "text": "Endurance at V_mp; range at V_md" }
+      {
+        "id": "a",
+        "text": "Endurance at 1.32 V_md; range at V_md"
+      },
+      {
+        "id": "b",
+        "text": "Both at V_md"
+      },
+      {
+        "id": "c",
+        "text": "Endurance at V_md; range at 1.32 V_md"
+      },
+      {
+        "id": "d",
+        "text": "Endurance at V_mp; range at V_md"
+      }
     ],
     "correct": "c",
     "explanation": "Fuel flow ∝ thrust = D: endurance maximum at minimum drag (V_md). Range per unit fuel ∝ V/D: maximum at the tangent from the origin to the drag curve, 3^¼·V_md = 1.32 V_md.",
     "tags": ["jet-aircraft", "range", "endurance"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0064",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Range and endurance",
-    "question": "Match each speed criterion to the aerodynamic parameter it maximises:",
-    "options": [
-      {
-        "id": "a",
-        "text": "Jet range: CL^1.5/CD; prop endurance: √CL/CD; jet endurance: CL/CD"
-      },
-      {
-        "id": "b",
-        "text": "Jet range: CL/CD; prop range: √CL/CD; prop endurance: CL²/CD"
-      },
-      {
-        "id": "c",
-        "text": "Jet range: √CL/CD; prop range and jet endurance: CL/CD; prop endurance: CL^1.5/CD"
-      },
-      { "id": "d", "text": "All four: CL/CD" }
-    ],
-    "correct": "c",
-    "explanation": "V ∝ 1/√CL at fixed W. V/D ∝ √CL/CD; 1/D ∝ CL/CD; 1/(DV) ∝ CL^1.5/CD. The corresponding CL values are CL_md/√3, CL_md and √3·CL_md.",
-    "tags": ["range", "endurance", "drag-polar"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0065",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Range and endurance",
-    "question": "Aircraft: W = 600 kN, S = 120 m², CD0 = 0.020, A = 9, e = 0.8. The CL for maximum √CL/CD and for maximum CL^1.5/CD are:",
-    "options": [
-      { "id": "a", "text": "0.673 and 0.673" },
-      { "id": "b", "text": "0.388 and 1.165" },
-      { "id": "c", "text": "1.165 and 0.388" },
-      { "id": "d", "text": "0.224 and 2.02" }
-    ],
-    "correct": "b",
-    "explanation": "√CL/CD: CL = √(CD0/(3k)) = √(0.020/0.1326) = 0.388. CL^1.5/CD: CL = √(3CD0/k) = √(0.0600/0.0442) = 1.165. Both are CL_md scaled by 1/√3 and √3.",
-    "tags": ["drag-polar", "lift-coefficient", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0066",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Range and endurance",
-    "question": "A jet at constant weight and constant EAS climbs from sea level to FL300 (σ = 0.374). Ignoring changes in engine fuel consumption, specific air range (distance per unit fuel) changes by:",
-    "options": [
-      { "id": "a", "text": "×0.61" },
-      { "id": "b", "text": "Unchanged" },
-      { "id": "c", "text": "×1.64" },
-      { "id": "d", "text": "×2.67" }
-    ],
-    "correct": "c",
-    "explanation": "At constant EAS drag, thrust and fuel flow are unchanged, while V_T = V_E/√σ rises by 1/0.612 = 1.64. Distance per unit fuel ∝ V_T/D rises in proportion.",
-    "tags": ["specific-range", "altitude", "calculation"],
     "status": "published",
     "version": 1
   },
@@ -540,10 +366,22 @@
     "subtopic": "Range and endurance",
     "question": "Relative to the still-air maximum-range speed, the speed for maximum ground range in a headwind is:",
     "options": [
-      { "id": "a", "text": "Unchanged in both cases" },
-      { "id": "b", "text": "Lower, and in a tailwind higher" },
-      { "id": "c", "text": "Higher, and in a tailwind lower" },
-      { "id": "d", "text": "Higher in both cases" }
+      {
+        "id": "a",
+        "text": "Unchanged in both cases"
+      },
+      {
+        "id": "b",
+        "text": "Lower, and in a tailwind higher"
+      },
+      {
+        "id": "c",
+        "text": "Higher, and in a tailwind lower"
+      },
+      {
+        "id": "d",
+        "text": "Higher in both cases"
+      }
     ],
     "correct": "c",
     "explanation": "Ground distance per unit fuel ∝ (V − V_w)/fuel flow. The tangent to the fuel-flow curve is drawn from a point displaced by the wind speed along the speed axis: right for a headwind (higher speed), left for a tailwind (lower speed).",
@@ -558,143 +396,26 @@
     "subtopic": "Range and endurance",
     "question": "As fuel is burnt on a long cruise, the speed for maximum range at constant altitude:",
     "options": [
-      { "id": "a", "text": "Increases in proportion to √W" },
-      { "id": "b", "text": "Decreases in proportion to √W" },
-      { "id": "c", "text": "Remains constant" },
-      { "id": "d", "text": "Decreases in proportion to W" }
+      {
+        "id": "a",
+        "text": "Increases in proportion to √W"
+      },
+      {
+        "id": "b",
+        "text": "Decreases in proportion to √W"
+      },
+      {
+        "id": "c",
+        "text": "Remains constant"
+      },
+      {
+        "id": "d",
+        "text": "Decreases in proportion to W"
+      }
     ],
     "correct": "b",
     "explanation": "At the fixed optimum CL, V ∝ √(W/ρ). Constant CL at constant speed requires W/σ constant — a cruise-climb as weight falls.",
     "tags": ["weight", "range", "cruise-climb"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0069",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Range and endurance",
-    "question": "An aircraft cruises at constant CL and constant TAS. Its weight decreases by 10 %. To hold both, relative density must change by:",
-    "options": [
-      { "id": "a", "text": "−10 % (a climb)" },
-      { "id": "b", "text": "0 %" },
-      { "id": "c", "text": "+10 % (a descent)" },
-      { "id": "d", "text": "−5 % (a climb)" }
-    ],
-    "correct": "a",
-    "explanation": "L = W = CL·½ρV²S. With CL and V fixed, ρ ∝ W: σ must fall by 10 %, which is the basis of the cruise-climb.",
-    "tags": ["cruise-climb", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0070",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Configuration and span",
-    "question": "CD0 increases by 16 % (e.g. landing gear extended), with k unchanged. V_md and (L/D)max change by:",
-    "options": [
-      { "id": "a", "text": "V_md ×1.16; (L/D)max ×0.86" },
-      { "id": "b", "text": "V_md ×0.96; (L/D)max ×0.93" },
-      { "id": "c", "text": "V_md ×1.04; (L/D)max ×0.93" },
-      { "id": "d", "text": "V_md unchanged; (L/D)max ×0.84" }
-    ],
-    "correct": "b",
-    "explanation": "CL_md = √(CD0/k) rises, so V_md ∝ CL_md^−½ ∝ (k/CD0)^¼ = 1.16^−¼ = 0.964. (L/D)max ∝ 1/√CD0 = 0.928. The drag curve moves up and to the left.",
-    "tags": ["configuration", "minimum-drag-speed", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0071",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Configuration and span",
-    "question": "Aspect ratio increases from 8 to 12 at constant CD0, e, weight and area. (L/D)max and V_md change by:",
-    "options": [
-      { "id": "a", "text": "(L/D)max unchanged; V_md ×0.90" },
-      { "id": "b", "text": "(L/D)max ×1.50; V_md ×0.82" },
-      { "id": "c", "text": "(L/D)max ×1.22; V_md ×0.90" },
-      { "id": "d", "text": "(L/D)max ×1.22; V_md ×1.11" }
-    ],
-    "correct": "c",
-    "explanation": "(L/D)max = ½√(πeA/CD0) ∝ √A = √1.5 = 1.22. CL_md = √(CD0·πeA) ∝ √A, so V_md ∝ A^−¼ = 0.904.",
-    "tags": ["aspect-ratio", "lift-drag-ratio", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0072",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Configuration and span",
-    "question": "Winglets raise the effective span efficiency from 0.80 to 0.88 with negligible change in CD0. (L/D)max increases by about:",
-    "options": [
-      { "id": "a", "text": "2.4 %" },
-      { "id": "b", "text": "21 %" },
-      { "id": "c", "text": "4.9 %" },
-      { "id": "d", "text": "10 %" }
-    ],
-    "correct": "c",
-    "explanation": "(L/D)max ∝ √(e·A/CD0) → √1.10 = 1.049. The benefit is largest at high CL, where induced drag dominates (climb, high altitude).",
-    "tags": ["winglets", "span-efficiency", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0073",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Configuration and span",
-    "question": "For a given span, lift and speed, the spanwise lift distribution giving minimum induced drag is:",
-    "options": [
-      {
-        "id": "a",
-        "text": "Any distribution, since induced drag depends only on total lift"
-      },
-      { "id": "b", "text": "Triangular, with maximum load at the root" },
-      { "id": "c", "text": "Rectangular, with maximum load at the tips" },
-      { "id": "d", "text": "Elliptical, with uniform downwash across the span" }
-    ],
-    "correct": "d",
-    "explanation": "Uniform downwash gives e = 1 and Di = L²/(q·π·b²), the minimum for fixed span. Deviations from elliptical loading give e < 1.",
-    "tags": ["elliptical-loading", "induced-drag"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0074",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Ground effect",
-    "question": "Using the induced-drag factor φ = (16h/b)²/(1 + (16h/b)²), a wing at height h = 0.1b has induced drag reduced by about:",
-    "options": [
-      { "id": "a", "text": "10 %" },
-      { "id": "b", "text": "28 %" },
-      { "id": "c", "text": "72 %" },
-      { "id": "d", "text": "6 %" }
-    ],
-    "correct": "b",
-    "explanation": "16h/b = 1.6 → φ = 2.56/3.56 = 0.72: Di falls to 72 % of the free-air value, a 28 % reduction. At h = 0.25b the reduction is 6 %.",
-    "tags": ["ground-effect", "induced-drag", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0075",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Ground effect",
-    "question": "At a height of one half span, ground-effect induced-drag reduction (φ formula) is about:",
-    "options": [
-      { "id": "a", "text": "50 %" },
-      { "id": "b", "text": "15 %" },
-      { "id": "c", "text": "1.5 %" },
-      { "id": "d", "text": "28 %" }
-    ],
-    "correct": "c",
-    "explanation": "16h/b = 8 → φ = 64/65 = 0.985. Ground effect becomes negligible above about one span.",
-    "tags": ["ground-effect", "calculation"],
     "status": "published",
     "version": 1
   },
@@ -705,35 +426,26 @@
     "subtopic": "Ground effect",
     "question": "During a landing flare at constant attitude, entering ground effect causes:",
     "options": [
-      { "id": "a", "text": "Increased downwash at the tail and nose-up pitch" },
+      {
+        "id": "a",
+        "text": "Increased downwash at the tail and nose-up pitch"
+      },
       {
         "id": "b",
         "text": "Reduced induced drag and increased lift, so the aircraft tends to float"
       },
-      { "id": "c", "text": "Increased induced drag and a sink" },
-      { "id": "d", "text": "No change until wheel contact" }
+      {
+        "id": "c",
+        "text": "Increased induced drag and a sink"
+      },
+      {
+        "id": "d",
+        "text": "No change until wheel contact"
+      }
     ],
     "correct": "b",
     "explanation": "Lower downwash raises α_eff at the same attitude and reduces Di. Excess speed dissipates more slowly. Reduced downwash at the tailplane reduces the tail download, pitching nose-down.",
     "tags": ["ground-effect", "landing-flare"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0077",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Trim drag",
-    "question": "A tailplane download of 3 % of weight is needed for trim. The wing lift and its induced drag, compared with zero tail load, are:",
-    "options": [
-      { "id": "a", "text": "Lift unchanged; induced drag ×1.03" },
-      { "id": "b", "text": "Lift ×1.03; induced drag ×1.06" },
-      { "id": "c", "text": "Lift ×0.97; induced drag ×0.94" },
-      { "id": "d", "text": "Lift ×1.03; induced drag ×1.03" }
-    ],
-    "correct": "b",
-    "explanation": "L_wing = W + P = 1.03W. Di ∝ L² at constant q → 1.03² = 1.061. Trim drag also includes the tail's own induced drag.",
-    "tags": ["trim-drag", "induced-drag", "calculation"],
     "status": "published",
     "version": 1
   },
@@ -744,10 +456,22 @@
     "subtopic": "Trim drag",
     "question": "Within the approved envelope, moving the CG aft in cruise:",
     "options": [
-      { "id": "a", "text": "Reduces tail download, wing lift and trim drag" },
-      { "id": "b", "text": "Increases wing lift required" },
-      { "id": "c", "text": "Has no effect on drag" },
-      { "id": "d", "text": "Increases tail download and trim drag" }
+      {
+        "id": "a",
+        "text": "Reduces tail download, wing lift and trim drag"
+      },
+      {
+        "id": "b",
+        "text": "Increases wing lift required"
+      },
+      {
+        "id": "c",
+        "text": "Has no effect on drag"
+      },
+      {
+        "id": "d",
+        "text": "Increases tail download and trim drag"
+      }
     ],
     "correct": "a",
     "explanation": "An aft CG shortens the moment arm of the wing lift about the CG, so less tail download balances the pitching moment. Wing lift = W + P falls, reducing induced drag and fuel flow; longitudinal stability margin also falls.",
@@ -762,9 +486,18 @@
     "subtopic": "Speed stability",
     "question": "Below the minimum-drag speed, a small disturbance reduces speed at constant thrust. The subsequent speed change is:",
     "options": [
-      { "id": "a", "text": "An increase, since drag falls as speed falls" },
-      { "id": "b", "text": "An oscillation of constant amplitude" },
-      { "id": "c", "text": "A return to the original speed" },
+      {
+        "id": "a",
+        "text": "An increase, since drag falls as speed falls"
+      },
+      {
+        "id": "b",
+        "text": "An oscillation of constant amplitude"
+      },
+      {
+        "id": "c",
+        "text": "A return to the original speed"
+      },
       {
         "id": "d",
         "text": "A further decrease, since drag rises as speed falls (speed-unstable)"
@@ -783,7 +516,10 @@
     "subtopic": "Speed stability",
     "question": "Flying above V_md at constant thrust, a gust reduces speed slightly. The aircraft:",
     "options": [
-      { "id": "a", "text": "Continues to decelerate" },
+      {
+        "id": "a",
+        "text": "Continues to decelerate"
+      },
       {
         "id": "b",
         "text": "Accelerates beyond the original speed indefinitely"
@@ -792,7 +528,10 @@
         "id": "c",
         "text": "Returns toward the original speed, because drag falls below thrust"
       },
-      { "id": "d", "text": "Climbs at constant speed" }
+      {
+        "id": "d",
+        "text": "Climbs at constant speed"
+      }
     ],
     "correct": "c",
     "explanation": "Above V_md, lower speed means lower drag; T > D accelerates the aircraft back to equilibrium.",
@@ -807,10 +546,22 @@
     "subtopic": "Climb performance",
     "question": "For a jet with thrust approximately independent of speed, the speed for the steepest climb angle is:",
     "options": [
-      { "id": "a", "text": "1.32 V_md" },
-      { "id": "b", "text": "V_md" },
-      { "id": "c", "text": "The maximum level speed" },
-      { "id": "d", "text": "V_mp" }
+      {
+        "id": "a",
+        "text": "1.32 V_md"
+      },
+      {
+        "id": "b",
+        "text": "V_md"
+      },
+      {
+        "id": "c",
+        "text": "The maximum level speed"
+      },
+      {
+        "id": "d",
+        "text": "V_mp"
+      }
     ],
     "correct": "b",
     "explanation": "sinγ = (T − D)/W is maximum where D is minimum when T is constant: V_x = V_md.",
@@ -825,10 +576,22 @@
     "subtopic": "Climb performance",
     "question": "For a propeller aircraft (thrust decreasing with speed), the speed for the steepest climb angle compared with V_md is:",
     "options": [
-      { "id": "a", "text": "Lower" },
-      { "id": "b", "text": "Higher" },
-      { "id": "c", "text": "Equal" },
-      { "id": "d", "text": "At 1.32 V_md" }
+      {
+        "id": "a",
+        "text": "Lower"
+      },
+      {
+        "id": "b",
+        "text": "Higher"
+      },
+      {
+        "id": "c",
+        "text": "Equal"
+      },
+      {
+        "id": "d",
+        "text": "At 1.32 V_md"
+      }
     ],
     "correct": "a",
     "explanation": "Excess thrust T − D: D is flat near V_md while propeller thrust rises as speed falls, so the maximum of T − D shifts below V_md.",
@@ -843,35 +606,26 @@
     "subtopic": "Climb performance",
     "question": "For a jet, the speed for maximum rate of climb compared with V_md is:",
     "options": [
-      { "id": "a", "text": "Equal" },
+      {
+        "id": "a",
+        "text": "Equal"
+      },
       {
         "id": "b",
         "text": "Higher, because excess power (T − D)·V keeps rising above V_md"
       },
-      { "id": "c", "text": "Always 1.32 V_md exactly" },
-      { "id": "d", "text": "Lower, at V_mp" }
+      {
+        "id": "c",
+        "text": "Always 1.32 V_md exactly"
+      },
+      {
+        "id": "d",
+        "text": "Lower, at V_mp"
+      }
     ],
     "correct": "b",
     "explanation": "Rate of climb = (T·V − D·V)/W. With T constant, T·V increases linearly with V, so the maximum of excess power lies above V_md.",
     "tags": ["rate-of-climb", "jet-aircraft"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0084",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Climb performance",
-    "question": "Aircraft: W = 600 kN, S = 120 m², CD0 = 0.020, A = 9, e = 0.8. T = 80 kN at V_md (110 m/s TAS, sea level), D = 35.7 kN. The climb angle and rate of climb are:",
-    "options": [
-      { "id": "a", "text": "4.2°; 800 ft/min" },
-      { "id": "b", "text": "2.1°; 1,600 ft/min" },
-      { "id": "c", "text": "7.7°; 2,900 ft/min" },
-      { "id": "d", "text": "4.2°; 1,600 ft/min" }
-    ],
-    "correct": "d",
-    "explanation": "sinγ = (80 − 35.7)/600 = 0.0738 → γ = 4.2°. ROC = 110 × 0.0738 = 8.1 m/s = 1,600 ft/min.",
-    "tags": ["climb-gradient", "rate-of-climb", "calculation"],
     "status": "published",
     "version": 1
   },
@@ -882,8 +636,14 @@
     "subtopic": "Climb performance",
     "question": "The absolute ceiling is the altitude at which:",
     "options": [
-      { "id": "a", "text": "Rate of climb falls to a fixed small value" },
-      { "id": "b", "text": "The engine thrust becomes zero" },
+      {
+        "id": "a",
+        "text": "Rate of climb falls to a fixed small value"
+      },
+      {
+        "id": "b",
+        "text": "The engine thrust becomes zero"
+      },
       {
         "id": "c",
         "text": "Indicated airspeed equals the stall speed at any weight"
@@ -900,65 +660,32 @@
     "version": 1
   },
   {
-    "id": "POF-LIFT-0086",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Climb performance",
-    "question": "At high altitude, the maximum level speed (thrust = drag at high speed) with increased weight:",
-    "options": [
-      {
-        "id": "a",
-        "text": "Is unchanged, since induced drag is zero at high speed"
-      },
-      {
-        "id": "b",
-        "text": "Decreases, because induced drag at that speed rises"
-      },
-      {
-        "id": "c",
-        "text": "Decreases, because parasite drag rises with weight"
-      },
-      { "id": "d", "text": "Increases, because more lift is available" }
-    ],
-    "correct": "b",
-    "explanation": "At the high-speed intersection induced drag is small but non-zero; Di ∝ W². More weight raises total drag, moving the intersection to a lower speed.",
-    "tags": ["maximum-speed", "weight"],
-    "status": "published",
-    "version": 1
-  },
-  {
     "id": "POF-LIFT-0087",
     "subjectCode": "POF",
     "topic": "Lift and Drag",
     "subtopic": "Glide",
     "question": "Aircraft: W = 600 kN, S = 120 m², CD0 = 0.020, A = 9, e = 0.8. The maximum still-air glide distance from 10,000 ft is closest to:",
     "options": [
-      { "id": "a", "text": "16.8 nm" },
-      { "id": "b", "text": "55.3 nm" },
-      { "id": "c", "text": "27.6 nm" },
-      { "id": "d", "text": "13.8 nm" }
+      {
+        "id": "a",
+        "text": "16.8 nm"
+      },
+      {
+        "id": "b",
+        "text": "55.3 nm"
+      },
+      {
+        "id": "c",
+        "text": "27.6 nm"
+      },
+      {
+        "id": "d",
+        "text": "13.8 nm"
+      }
     ],
     "correct": "c",
     "explanation": "Distance = h·(L/D)max = 10,000 × 16.8 = 168,000 ft = 27.6 nm, at V_md.",
     "tags": ["glide", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0088",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Glide",
-    "question": "Aircraft: W = 600 kN, S = 120 m², CD0 = 0.020, A = 9, e = 0.8. Sea-level sink rates at V_mp (83.7 m/s, L/D = 14.6) and at V_md (110.2 m/s, L/D = 16.8) are:",
-    "options": [
-      { "id": "a", "text": "5.7 m/s at V_mp; 6.6 m/s at V_md" },
-      { "id": "b", "text": "8.4 m/s at V_mp; 11.0 m/s at V_md" },
-      { "id": "c", "text": "5.7 m/s at both" },
-      { "id": "d", "text": "6.6 m/s at V_mp; 5.7 m/s at V_md" }
-    ],
-    "correct": "a",
-    "explanation": "Sink rate = V·sinγ ≈ V/(L/D): 83.7/14.6 = 5.7 m/s; 110.2/16.8 = 6.6 m/s. Minimum sink (maximum glide endurance) is at V_mp; maximum distance at V_md.",
-    "tags": ["glide", "sink-rate", "calculation"],
     "status": "published",
     "version": 1
   },
@@ -969,200 +696,26 @@
     "subtopic": "Glide",
     "question": "Gliding into a headwind, the speed for maximum distance over the ground compared with still-air V_md is:",
     "options": [
-      { "id": "a", "text": "Higher" },
-      { "id": "b", "text": "Lower" },
-      { "id": "c", "text": "V_mp" },
-      { "id": "d", "text": "Equal" }
+      {
+        "id": "a",
+        "text": "Higher"
+      },
+      {
+        "id": "b",
+        "text": "Lower"
+      },
+      {
+        "id": "c",
+        "text": "V_mp"
+      },
+      {
+        "id": "d",
+        "text": "Equal"
+      }
     ],
     "correct": "a",
     "explanation": "Ground glide ratio = (V − V_w)/sink rate. The tangent from a point V_w to the right along the speed axis on the sink-rate polar touches at a higher speed.",
     "tags": ["glide", "wind"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0090",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Power required",
-    "question": "The speed at which a line from the origin is tangent to the power-required curve (P against V_T) is:",
-    "options": [
-      { "id": "a", "text": "V_mp" },
-      { "id": "b", "text": "The stall speed" },
-      { "id": "c", "text": "1.32 V_md" },
-      { "id": "d", "text": "V_md, since P/V = D is minimum there" }
-    ],
-    "correct": "d",
-    "explanation": "The slope of a line from the origin to a point on the P–V curve is P/V = D. The tangent gives minimum slope, hence minimum drag.",
-    "tags": ["power-required", "graphical-method"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0091",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Range and endurance",
-    "question": "The speed at which a line from the origin is tangent to the drag curve (D against V_T) is:",
-    "options": [
-      { "id": "a", "text": "V_mp" },
-      { "id": "b", "text": "0.76 V_md" },
-      { "id": "c", "text": "V_md" },
-      { "id": "d", "text": "1.32 V_md, since V/D is maximum there" }
-    ],
-    "correct": "d",
-    "explanation": "Slope D/V is minimum at the tangent, so V/D — distance per unit thrust — is maximum: the jet maximum-range speed.",
-    "tags": ["drag-curve", "graphical-method", "jet-range"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0092",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Power required",
-    "question": "Power required at V_md compared with minimum power required is:",
-    "options": [
-      { "id": "a", "text": "About 32 % higher" },
-      { "id": "b", "text": "Equal" },
-      { "id": "c", "text": "About 15.5 % lower" },
-      { "id": "d", "text": "About 14 % higher" }
-    ],
-    "correct": "d",
-    "explanation": "P_mp = 1.155·D_min × 0.760·V_md = 0.877·D_min·V_md. P_md = D_min·V_md. Ratio = 1/0.877 = 1.14.",
-    "tags": ["power-required", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0093",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Minimum drag",
-    "question": "Total drag at V_mp and at 1.32 V_md, relative to minimum drag, is:",
-    "options": [
-      { "id": "a", "text": "1.155 times at both" },
-      { "id": "b", "text": "1.155 at V_mp and 1.32 at 1.32 V_md" },
-      { "id": "c", "text": "1.32 at V_mp and 1.155 at 1.32 V_md" },
-      { "id": "d", "text": "Equal to D_min at both" }
-    ],
-    "correct": "a",
-    "explanation": "D/D_min = ½(r² + 1/r²) is symmetric in r and 1/r. With r = 3^∓¼: ½(√3 + 1/√3) = 1.155.",
-    "tags": ["drag-curve", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0094",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Induced drag",
-    "question": "Level turn at 60° bank at V_md, constant EAS. Total drag relative to straight-flight D_min is:",
-    "options": [
-      { "id": "a", "text": "2.5 times" },
-      { "id": "b", "text": "4.0 times" },
-      { "id": "c", "text": "2.0 times" },
-      { "id": "d", "text": "1.41 times" }
-    ],
-    "correct": "a",
-    "explanation": "Parasite drag unchanged at ½D_min. n = 2 → induced drag ×n² = 4 → 2·D_min. Total 2.5·D_min.",
-    "tags": ["turning-flight", "induced-drag", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0095",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Induced drag",
-    "question": "At the same TAS, an aircraft flies at FL300 (σ = 0.374) instead of sea level, same weight. Parasite and induced drag change by:",
-    "options": [
-      { "id": "a", "text": "Both unchanged" },
-      { "id": "b", "text": "Parasite ×0.374; induced ×2.67" },
-      { "id": "c", "text": "Parasite ×2.67; induced ×0.374" },
-      { "id": "d", "text": "Parasite ×0.61; induced ×1.64" }
-    ],
-    "correct": "b",
-    "explanation": "At constant TAS, q ∝ σ. D0 ∝ q → ×0.374. Di = W²/(q·πeb²) ∝ 1/q → ×2.67.",
-    "tags": ["altitude", "induced-drag", "parasite-drag"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0096",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Induced drag",
-    "question": "At the same EAS and weight, total drag at altitude compared with sea level (low Mach) is:",
-    "options": [
-      { "id": "a", "text": "Lower in proportion to √σ" },
-      { "id": "b", "text": "Lower in proportion to σ" },
-      { "id": "c", "text": "Unchanged" },
-      { "id": "d", "text": "Higher in proportion to 1/σ" }
-    ],
-    "correct": "c",
-    "explanation": "Equal EAS → equal q → equal CL → equal CD. D = CD·q·S is unchanged; only TAS and hence power increase.",
-    "tags": ["eas", "drag"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0097",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Parasite drag",
-    "question": "Parasite drag comprises skin friction, form drag and interference drag. Interference drag is:",
-    "options": [
-      { "id": "a", "text": "The drag caused by the tail download" },
-      { "id": "b", "text": "The drag from shock waves" },
-      {
-        "id": "c",
-        "text": "The excess of the combined drag over the sum of the components' isolated drags, arising at junctions"
-      },
-      { "id": "d", "text": "The drag of the wingtip vortices" }
-    ],
-    "correct": "c",
-    "explanation": "Adjacent boundary layers and pressure fields interact at wing–fuselage and pylon junctions, promoting local separation. Fillets and fairings reduce it.",
-    "tags": ["interference-drag", "parasite-drag"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0098",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Parasite drag",
-    "question": "Streamlining a bluff body (adding a tapered afterbody) at constant frontal area mainly reduces:",
-    "options": [
-      { "id": "a", "text": "Induced drag" },
-      {
-        "id": "b",
-        "text": "Form (pressure) drag, although wetted area and skin friction increase"
-      },
-      { "id": "c", "text": "Interference drag only" },
-      { "id": "d", "text": "Skin friction, although form drag increases" }
-    ],
-    "correct": "b",
-    "explanation": "A gradual afterbody lets the flow recover pressure without separating, shrinking the wake. Wetted area grows, so skin friction rises slightly; the net drag falls sharply.",
-    "tags": ["form-drag", "streamlining"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0099",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Parasite drag",
-    "question": "At constant Reynolds number, the skin-friction drag of a surface is proportional to:",
-    "options": [
-      { "id": "a", "text": "Span² × q" },
-      { "id": "b", "text": "Lift² / q" },
-      { "id": "c", "text": "Frontal area × q" },
-      { "id": "d", "text": "Wetted area × q × skin-friction coefficient" }
-    ],
-    "correct": "d",
-    "explanation": "D_f = c_f·q·S_wet. c_f depends on Re and on the laminar/turbulent state; a turbulent layer has a higher c_f.",
-    "tags": ["skin-friction", "wetted-area"],
     "status": "published",
     "version": 1
   },
@@ -1173,35 +726,26 @@
     "subtopic": "Parasite drag",
     "question": "Sideslip at constant speed increases drag because:",
     "options": [
-      { "id": "a", "text": "Induced drag of the wing falls to zero" },
-      { "id": "b", "text": "Dynamic pressure increases" },
+      {
+        "id": "a",
+        "text": "Induced drag of the wing falls to zero"
+      },
+      {
+        "id": "b",
+        "text": "Dynamic pressure increases"
+      },
       {
         "id": "c",
         "text": "The fuselage presents a larger area to the flow and generates side force with its own induced and separation drag"
       },
-      { "id": "d", "text": "Skin friction coefficient doubles" }
+      {
+        "id": "d",
+        "text": "Skin friction coefficient doubles"
+      }
     ],
     "correct": "c",
     "explanation": "In sideslip the fuselage and fin act as lifting surfaces at incidence to the flow, producing side force and associated drag; separation from the fuselage adds pressure drag.",
     "tags": ["sideslip", "drag"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0101",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Trailing vortices",
-    "question": "Trailing-vortex circulation is proportional to W/(ρ·V·b). The same aircraft is 20 % heavier and 10 % slower at the same altitude. Vortex strength changes by:",
-    "options": [
-      { "id": "a", "text": "×1.08" },
-      { "id": "b", "text": "×1.20" },
-      { "id": "c", "text": "×1.47" },
-      { "id": "d", "text": "×1.33" }
-    ],
-    "correct": "d",
-    "explanation": "Γ ∝ W/(ρVb): 1.2/0.9 = 1.33. Heavy, slow and clean (high CL, no flap-induced diffusion) produces the strongest wake.",
-    "tags": ["wake-turbulence", "circulation", "calculation"],
     "status": "published",
     "version": 1
   },
@@ -1212,13 +756,22 @@
     "subtopic": "Trailing vortices",
     "question": "Trailing vortices behind a wing in level flight:",
     "options": [
-      { "id": "a", "text": "Rise above the flight path" },
+      {
+        "id": "a",
+        "text": "Rise above the flight path"
+      },
       {
         "id": "b",
         "text": "Rotate upward outboard and downward inboard of the tips, and descend behind the aircraft"
       },
-      { "id": "c", "text": "Rotate downward outboard of the tips" },
-      { "id": "d", "text": "Remain at flight level" }
+      {
+        "id": "c",
+        "text": "Rotate downward outboard of the tips"
+      },
+      {
+        "id": "d",
+        "text": "Remain at flight level"
+      }
     ],
     "correct": "b",
     "explanation": "Higher pressure below the wing flows round the tips to the lower pressure above: rotation is up outboard, down inboard. The vortex pair induces a downward velocity on itself and descends.",
@@ -1237,181 +790,22 @@
         "id": "a",
         "text": "Angle of attack, section and planform shape, Reynolds number and Mach number"
       },
-      { "id": "b", "text": "Wing area only" },
-      { "id": "c", "text": "Weight only" },
-      { "id": "d", "text": "Airspeed and density only" }
+      {
+        "id": "b",
+        "text": "Wing area only"
+      },
+      {
+        "id": "c",
+        "text": "Weight only"
+      },
+      {
+        "id": "d",
+        "text": "Airspeed and density only"
+      }
     ],
     "correct": "a",
     "explanation": "ρ, V and S enter explicitly. CL absorbs geometry and angle of attack, with secondary Re and M effects (compressibility raises the lift slope until shock-induced separation).",
     "tags": ["lift-equation", "lift-coefficient"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0104",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Drag polar",
-    "question": "On a CL–CD polar, the line from the origin tangent to the curve locates:",
-    "options": [
-      { "id": "a", "text": "Minimum CD" },
-      { "id": "b", "text": "(L/D)max and CL_md" },
-      { "id": "c", "text": "CLmax" },
-      { "id": "d", "text": "The minimum-power point" }
-    ],
-    "correct": "b",
-    "explanation": "The slope CL/CD of a line from the origin is L/D; the tangent gives its maximum. Minimum CD (at CL ≈ 0) is a different point.",
-    "tags": ["drag-polar", "lift-drag-ratio"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0105",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Drag polar",
-    "question": "Extending flaps changes the drag polar CD = CD0 + k·CL² mainly by:",
-    "options": [
-      { "id": "a", "text": "Reducing k to zero" },
-      { "id": "b", "text": "Changing only CLmax" },
-      {
-        "id": "c",
-        "text": "Increasing CD0 (and usually k), and extending the curve to a higher CLmax"
-      },
-      { "id": "d", "text": "Reducing CD0 and k" }
-    ],
-    "correct": "c",
-    "explanation": "Flaps add profile drag (CD0 ↑) and change the span loading (k ↑ as lift concentrates inboard). (L/D)max falls; lower V_md and higher glide angle result.",
-    "tags": ["flaps", "drag-polar"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0106",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Configuration and span",
-    "question": "Landing gear extension at constant weight moves the drag curve:",
-    "options": [
-      { "id": "a", "text": "Only upward, with V_md unchanged" },
-      { "id": "b", "text": "Up and to the right" },
-      { "id": "c", "text": "Up and to the left: higher D_min at a lower V_md" },
-      { "id": "d", "text": "Down and to the left" }
-    ],
-    "correct": "c",
-    "explanation": "CD0 ↑ raises all parasite drag; V_md ∝ CD0^−¼ falls. D_min = 2W√(k·CD0) rises.",
-    "tags": ["configuration", "drag-curve"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0107",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Weight and altitude",
-    "question": "Weight increase at constant configuration and altitude moves the drag curve:",
-    "options": [
-      { "id": "a", "text": "Down and to the right" },
-      { "id": "b", "text": "Up and to the left" },
-      { "id": "c", "text": "Up and to the right" },
-      { "id": "d", "text": "Only to the right" }
-    ],
-    "correct": "c",
-    "explanation": "D_min ∝ W (up) and V_md ∝ √W (right). Induced drag at any given speed rises ∝ W²; parasite drag at that speed is unchanged.",
-    "tags": ["weight", "drag-curve"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0108",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Weight and altitude",
-    "question": "Increasing altitude at constant weight, plotted against TAS, moves the drag curve:",
-    "options": [
-      { "id": "a", "text": "To the right with the same minimum drag" },
-      { "id": "b", "text": "Up and to the right" },
-      { "id": "c", "text": "Down and to the left" },
-      { "id": "d", "text": "Up with the same V_md" }
-    ],
-    "correct": "a",
-    "explanation": "Against EAS the drag curve is unchanged; against TAS every point moves right by 1/√σ. D_min is unaltered.",
-    "tags": ["altitude", "drag-curve"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0109",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Induced drag",
-    "question": "Doubling speed in level flight at constant weight and altitude changes induced drag and parasite drag by:",
-    "options": [
-      { "id": "a", "text": "Induced ×4; parasite ×¼" },
-      { "id": "b", "text": "Both ×4" },
-      { "id": "c", "text": "Induced ×½; parasite ×2" },
-      { "id": "d", "text": "Induced ×¼; parasite ×4" }
-    ],
-    "correct": "d",
-    "explanation": "Di ∝ 1/V², D0 ∝ V².",
-    "tags": ["induced-drag", "parasite-drag", "proportionality"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0110",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Configuration and span",
-    "question": "At constant span and lift, increasing wing chord (lower aspect ratio) changes induced drag:",
-    "options": [
-      {
-        "id": "a",
-        "text": "Not at all, since induced drag at given span loading is independent of chord"
-      },
-      { "id": "b", "text": "Proportionally to the aspect-ratio decrease" },
-      { "id": "c", "text": "By doubling it" },
-      { "id": "d", "text": "By removing it" }
-    ],
-    "correct": "a",
-    "explanation": "Di = L²/(q·π·e·b²): only span appears. Aspect ratio matters in coefficient form (CDi = CL²/(πeA)) because S enters CL; the dimensional drag depends on span.",
-    "tags": ["induced-drag", "span-loading"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0111",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Power required",
-    "question": "Power required at V_md in terms of drag and speed, compared at σ = 0.25 and at sea level (same EAS, same weight), is:",
-    "options": [
-      { "id": "a", "text": "Unchanged" },
-      { "id": "b", "text": "Half" },
-      { "id": "c", "text": "Twice as high at altitude" },
-      { "id": "d", "text": "Four times as high" }
-    ],
-    "correct": "c",
-    "explanation": "Drag is unchanged at equal EAS; V_T = V_E/√σ = 2V_E. P = D·V_T → ×2.",
-    "tags": ["power-required", "altitude", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-LIFT-0112",
-    "subjectCode": "POF",
-    "topic": "Lift and Drag",
-    "subtopic": "Minimum drag",
-    "question": "The minimum-drag condition corresponds to a flight-path angle of maximum still-air glide range because:",
-    "options": [
-      { "id": "a", "text": "Sink rate is minimum there" },
-      { "id": "b", "text": "tan γ = D/L is minimum at (L/D)max" },
-      { "id": "c", "text": "Lift equals weight there" },
-      { "id": "d", "text": "Parasite drag is zero there" }
-    ],
-    "correct": "b",
-    "explanation": "In the glide, D = W·sinγ and L = W·cosγ. Minimum γ is at maximum L/D; minimum sink is at minimum power, a slower speed.",
-    "tags": ["glide", "minimum-drag"],
     "status": "published",
     "version": 1
   },
@@ -1422,10 +816,22 @@
     "subtopic": "Range and endurance",
     "question": "A jet cruises at 480 kt TAS with a fuel flow of 2,400 kg/h, into a 50 kt headwind. Specific air range and specific ground range are:",
     "options": [
-      { "id": "a", "text": "0.200 nm/kg; 0.179 nm/kg" },
-      { "id": "b", "text": "0.179 nm/kg; 0.200 nm/kg" },
-      { "id": "c", "text": "0.200 nm/kg; 0.221 nm/kg" },
-      { "id": "d", "text": "5.0 nm/kg; 5.6 nm/kg" }
+      {
+        "id": "a",
+        "text": "0.200 nm/kg; 0.179 nm/kg"
+      },
+      {
+        "id": "b",
+        "text": "0.179 nm/kg; 0.200 nm/kg"
+      },
+      {
+        "id": "c",
+        "text": "0.200 nm/kg; 0.221 nm/kg"
+      },
+      {
+        "id": "d",
+        "text": "5.0 nm/kg; 5.6 nm/kg"
+      }
     ],
     "correct": "a",
     "explanation": "SAR = V_T/fuel flow = 480/2,400 = 0.200 nm/kg. SGR = (V_T − V_w)/fuel flow = 430/2,400 = 0.179 nm/kg. Inverting gives kg/nm (5.0 and 5.6).",
