@@ -350,7 +350,7 @@ of it has been checked against a specific state's AIP or training syllabus.
 ## The POF bank (Flying Knowledge)
 
 The subject is **Principles of Flight**, the second subject in Flying
-Knowledge, added the same content-only way IFR was. 570 questions across
+Knowledge, added the same content-only way IFR was. 569 questions across
 fifteen topics, all published (1,000 until the pruning below).
 
 ### Rebuilt to 1,000, one section at a time
@@ -367,7 +367,7 @@ a definition to be recalled. Each section shipped as its own pull request.
 | 03 | Lift and Drag | `lift-and-drag.json` | `POF-LIFT-0039`–`0113` | 28 |
 | 04 | Boundary Layer | `boundary-layer.json` | `POF-BL-0029`–`0083` | 6 |
 | 05 | Stalling | `stalling.json` | `POF-STALL-0043`–`0127` | 70 |
-| 06 | High-Lift Devices | `high-lift-devices.json` | `POF-HLD-0031`–`0090` | 45 |
+| 06 | High-Lift Devices | `high-lift-devices.json` | `POF-HLD-0031`–`0090` | 44 |
 | 07 | Flight Controls: Primary | `flight-controls-primary.json` | `POF-CTRL-0039`–`0108` | 41 |
 | 08 | Flight Controls: Secondary and Trim | `flight-controls-secondary.json` | `POF-TRIM-0025`–`0069` | 40 |
 | 09 | Longitudinal Stability | `stability-longitudinal.json` | `POF-STABL-0035`–`0104` | 30 |
@@ -377,11 +377,11 @@ a definition to be recalled. Each section shipped as its own pull request.
 | 13 | Propellers | `propellers.json` | `POF-PROP-0041`–`0120` | 54 |
 | 14 | Aeroplane Loads and Limitations | `loads-and-limitations.json` | `POF-LOAD-0035`–`0104` | 42 |
 | 15 | Windshear and Atmospheric Effects | `windshear-and-atmospheric-effects.json` | `POF-WSHR-0025`–`0079` | 50 |
-| | | | | **570** |
+| | | | | **569** |
 
-### Pruned to 570, for pilots rather than engineers
+### Pruned to 569, for pilots rather than engineers
 
-At the owner's instruction 430 of the 1,000 were deleted: this site is for
+At the owner's instruction 431 of the 1,000 were deleted: this site is for
 student pilots, and questions on section theory, boundary-layer thickness,
 shock-wave relations, supersonic lift slope, hinge-moment design, stability
 derivatives, blade-element propeller theory and structural analysis are an
@@ -393,6 +393,12 @@ Theory and Boundary Layer lost most of their questions (65 to 6 and 55 to 6).
 The retired ids are never reused, so the id ranges in the table are where
 the surviving questions were first numbered, not a count; the "Questions"
 column is the current count. `attempts` keeps its history, as before.
+
+`public/pof-study-guide.html` was rewritten at the same time to match: a
+pilot's guide rather than an engineering reference, built around the
+questions that remain, with diagrams, worked examples, three small
+calculators (turn and stall speed, crosswind, density altitude) and a cheat
+sheet. It names no book, school, regulator or syllabus.
 
 Each rebuilt section **replaced** its file rather than adding to it, and its
 questions took **new ids** continuing after the old ones. The retired ids

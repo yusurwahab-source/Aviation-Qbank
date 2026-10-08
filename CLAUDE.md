@@ -2034,7 +2034,7 @@ aircraft, in two trees" states for a second aircraft — see the note there.
 This is now proven, not just asserted: Principles of Flight (`POF`) was
 added as `content/flying-knowledge/pof/` alone — a `subject.json` and
 fifteen question files, 501 questions at first, rebuilt to
-1,000 and then pruned to 570 — see the note on the POF bank in `content/README.md`) — with the only application-code change being the
+1,000 and then pruned to 569 — see the note on the POF bank in `content/README.md`) — with the only application-code change being the
 same one-line addition to `lib/study-guide.ts`'s hand-kept set that any
 aircraft's own study guide already needs (see the note on that file
 above), exactly the same way IFR itself first proved the rule.
@@ -2078,7 +2078,7 @@ one. At the owner's instruction, nothing a student reads in this subject —
 guide or question — names a book, school, regulator, question bank or
 syllabus; the record of where it came from is kept in this file and
 `content/README.md` only. It was rebuilt section by section to
-1,000 compound, computational questions, then pruned to 570 at the owner's
+1,000 compound, computational questions, then pruned to 569 at the owner's
 instruction (this site is for pilots, and the removed questions were an
 engineer's); each rebuilt section replaced its
 file with new ids and never reused a retired one. See the note on the POF bank in
