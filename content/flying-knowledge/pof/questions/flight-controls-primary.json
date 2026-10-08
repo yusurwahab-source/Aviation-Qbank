@@ -6,10 +6,22 @@
     "subtopic": "Axes and control power",
     "question": "The elevator, ailerons and rudder control rotation about, respectively:",
     "options": [
-      { "id": "a", "text": "The lateral, longitudinal and normal axes" },
-      { "id": "b", "text": "The lateral, normal and longitudinal axes" },
-      { "id": "c", "text": "The longitudinal, lateral and normal axes" },
-      { "id": "d", "text": "The normal, longitudinal and lateral axes" }
+      {
+        "id": "a",
+        "text": "The lateral, longitudinal and normal axes"
+      },
+      {
+        "id": "b",
+        "text": "The lateral, normal and longitudinal axes"
+      },
+      {
+        "id": "c",
+        "text": "The longitudinal, lateral and normal axes"
+      },
+      {
+        "id": "d",
+        "text": "The normal, longitudinal and lateral axes"
+      }
     ],
     "correct": "a",
     "explanation": "Pitch is rotation about the lateral axis, roll about the longitudinal axis, yaw about the normal axis; all three pass through the CG.",
@@ -24,143 +36,26 @@
     "subtopic": "Axes and control power",
     "question": "A control surface deflection changes the force on its lifting surface mainly by:",
     "options": [
-      { "id": "a", "text": "Changing the surface area" },
-      { "id": "b", "text": "Changing the Reynolds number" },
-      { "id": "c", "text": "Changing the dynamic pressure" },
-      { "id": "d", "text": "Changing the section camber and zero-lift angle" }
+      {
+        "id": "a",
+        "text": "Changing the surface area"
+      },
+      {
+        "id": "b",
+        "text": "Changing the Reynolds number"
+      },
+      {
+        "id": "c",
+        "text": "Changing the dynamic pressure"
+      },
+      {
+        "id": "d",
+        "text": "Changing the section camber and zero-lift angle"
+      }
     ],
     "correct": "d",
     "explanation": "Deflection adds camber: ΔCL = a·τ·δ, with τ the flap-effectiveness factor set by control-chord ratio.",
     "tags": ["camber", "control-effectiveness"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0041",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Axes and control power",
-    "question": "Tail: S_t = 20 m², arm 15 m, q = 6 kPa. An elevator deflection changes the tail CL by 0.1. The pitching-moment change about the CG is:",
-    "options": [
-      { "id": "a", "text": "12 kN·m" },
-      { "id": "b", "text": "180 kN·m" },
-      { "id": "c", "text": "1,800 kN·m" },
-      { "id": "d", "text": "90 kN·m" }
-    ],
-    "correct": "b",
-    "explanation": "ΔM = ΔCL·q·S_t·l_t = 0.1 × 6,000 × 20 × 15 = 180,000 N·m.",
-    "tags": ["pitch-control", "moment", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0042",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Axes and control power",
-    "question": "Control power (moment per unit deflection) at constant configuration is proportional to:",
-    "options": [
-      { "id": "a", "text": "Density only" },
-      { "id": "b", "text": "Dynamic pressure" },
-      { "id": "c", "text": "The square root of dynamic pressure" },
-      { "id": "d", "text": "True airspeed" }
-    ],
-    "correct": "b",
-    "explanation": "Moment = ΔC·q·S·l. At 0.7 of a reference EAS, control power is 0.49 of the reference value — the reason controls feel sluggish at low speed.",
-    "tags": ["control-power", "dynamic-pressure"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0043",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Axes and control power",
-    "question": "Tail volume coefficient V_H = S_t·l_t/(S·c̄). With S_t = 20 m², l_t = 15 m, S = 120 m², c̄ = 3.7 m, V_H is:",
-    "options": [
-      { "id": "a", "text": "0.17" },
-      { "id": "b", "text": "0.68" },
-      { "id": "c", "text": "1.48" },
-      { "id": "d", "text": "2.50" }
-    ],
-    "correct": "b",
-    "explanation": "V_H = 300/444 = 0.68. It measures the tail's pitch authority and stabilising power relative to the wing.",
-    "tags": ["tail-volume", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0044",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Hinge moments and stick force",
-    "question": "Hinge moment H = C_h·q·S_c·c_c. With C_h = −0.005 per degree, δ = 10°, q = 5 kPa, S_c = 2 m², c_c = 0.4 m, |H| is:",
-    "options": [
-      { "id": "a", "text": "20 N·m" },
-      { "id": "b", "text": "40 N·m" },
-      { "id": "c", "text": "2,000 N·m" },
-      { "id": "d", "text": "200 N·m" }
-    ],
-    "correct": "d",
-    "explanation": "|C_h| = 0.05; H = 0.05 × 5,000 × 2 × 0.4 = 200 N·m.",
-    "tags": ["hinge-moment", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0045",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Hinge moments and stick force",
-    "question": "With a stick gearing of 1.5 rad/m, a hinge moment of 200 N·m requires a stick force of:",
-    "options": [
-      { "id": "a", "text": "450 N" },
-      { "id": "b", "text": "300 N" },
-      { "id": "c", "text": "200 N" },
-      { "id": "d", "text": "133 N" }
-    ],
-    "correct": "b",
-    "explanation": "F = G·H = 1.5 × 200 = 300 N (work balance: F·ds = H·dδ).",
-    "tags": ["stick-force", "gearing", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0046",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Hinge moments and stick force",
-    "question": "At constant deflection, speed increases by 50 %. The hinge moment and stick force change by:",
-    "options": [
-      { "id": "a", "text": "×1.5" },
-      { "id": "b", "text": "×1.22" },
-      { "id": "c", "text": "×2.25" },
-      { "id": "d", "text": "×3.4" }
-    ],
-    "correct": "c",
-    "explanation": "H ∝ q ∝ V²: 1.5² = 2.25.",
-    "tags": ["hinge-moment", "proportionality"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0047",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Hinge moments and stick force",
-    "question": "The hinge moment coefficient C_h = b₁·α + b₂·δ. Aerodynamic balance aims to:",
-    "options": [
-      { "id": "a", "text": "Increase b₂ to raise feel" },
-      { "id": "b", "text": "Make C_h independent of δ by making it infinite" },
-      {
-        "id": "c",
-        "text": "Reduce the magnitude of b₂ (and b₁) so that less force is needed"
-      },
-      { "id": "d", "text": "Reverse the sign of the lift" }
-    ],
-    "correct": "c",
-    "explanation": "b₂ sets force per deflection; b₁ sets the floating tendency. Balancing reduces both while keeping the sign that gives natural centring.",
-    "tags": ["hinge-moment", "aerodynamic-balance"],
     "status": "published",
     "version": 1
   },
@@ -171,13 +66,22 @@
     "subtopic": "Hinge moments and stick force",
     "question": "A free (released) elevator tends to float in the direction of the local flow because:",
     "options": [
-      { "id": "a", "text": "The elevator stalls" },
-      { "id": "b", "text": "The CG of the elevator is ahead of the hinge" },
+      {
+        "id": "a",
+        "text": "The elevator stalls"
+      },
+      {
+        "id": "b",
+        "text": "The CG of the elevator is ahead of the hinge"
+      },
       {
         "id": "c",
         "text": "The angle-of-attack term b₁·α produces a hinge moment that trails the surface"
       },
-      { "id": "d", "text": "The trim tab locks it" }
+      {
+        "id": "d",
+        "text": "The trim tab locks it"
+      }
     ],
     "correct": "c",
     "explanation": "With the stick released, H = 0 → δ_float = −(b₁/b₂)·α. The floating elevator reduces tail effectiveness — the stick-free stability reduction.",
@@ -196,97 +100,22 @@
         "id": "a",
         "text": "The hinge moment exceeds the available pilot force (control blow-back)"
       },
-      { "id": "b", "text": "Mass balance locks the surface" },
-      { "id": "c", "text": "Control power falls with q" },
-      { "id": "d", "text": "The surface stalls" }
+      {
+        "id": "b",
+        "text": "Mass balance locks the surface"
+      },
+      {
+        "id": "c",
+        "text": "Control power falls with q"
+      },
+      {
+        "id": "d",
+        "text": "The surface stalls"
+      }
     ],
     "correct": "a",
     "explanation": "H ∝ q; at high speed the achievable deflection is limited by pilot strength, and in powered systems by actuator stall load.",
     "tags": ["blow-back", "hinge-moment"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0050",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Aerodynamic balance",
-    "question": "A horn balance reduces hinge moment by:",
-    "options": [
-      { "id": "a", "text": "Moving the hinge aft of the surface" },
-      {
-        "id": "b",
-        "text": "Placing part of the surface area ahead of the hinge line, where its lift opposes the main surface's moment"
-      },
-      { "id": "c", "text": "Adding weight ahead of the hinge" },
-      { "id": "d", "text": "Sealing the gap" }
-    ],
-    "correct": "b",
-    "explanation": "Air load on the horn acts ahead of the hinge, producing a moment of opposite sign to that of the area behind it.",
-    "tags": ["horn-balance"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0051",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Aerodynamic balance",
-    "question": "An inset (set-back) hinge reduces hinge moment because:",
-    "options": [
-      { "id": "a", "text": "It increases surface area" },
-      {
-        "id": "b",
-        "text": "The hinge moves aft toward the centre of pressure of the surface load, shortening the moment arm"
-      },
-      { "id": "c", "text": "It adds a tab" },
-      { "id": "d", "text": "It moves the surface CG forward only" }
-    ],
-    "correct": "b",
-    "explanation": "H = load × distance from hinge to its centre of pressure. Setting the hinge back reduces that distance.",
-    "tags": ["inset-hinge"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0052",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Aerodynamic balance",
-    "question": "An internal (sealed) balance works by:",
-    "options": [
-      { "id": "a", "text": "Vortex generators" },
-      { "id": "b", "text": "A servo tab" },
-      {
-        "id": "c",
-        "text": "The pressure difference across a balance panel ahead of the hinge, inside the wing, opposing the hinge moment"
-      },
-      { "id": "d", "text": "Mass ahead of the hinge" }
-    ],
-    "correct": "c",
-    "explanation": "The seal separates the upper and lower pressures in a cavity; the panel, hinged ahead of the surface, feels a load that opposes the main moment.",
-    "tags": ["internal-balance"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0053",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Aerodynamic balance",
-    "question": "Excessive aerodynamic balance (overbalance) produces:",
-    "options": [
-      {
-        "id": "a",
-        "text": "Hinge-moment reversal, so the surface tends to run to full deflection"
-      },
-      { "id": "b", "text": "Heavier forces" },
-      { "id": "c", "text": "No effect" },
-      { "id": "d", "text": "Flutter only at low speed" }
-    ],
-    "correct": "a",
-    "explanation": "If the balancing moment exceeds the main one, C_h changes sign: the pilot must hold the surface back from full travel — unacceptable.",
-    "tags": ["overbalance"],
     "status": "published",
     "version": 1
   },
@@ -301,12 +130,18 @@
         "id": "a",
         "text": "Opposite to the control surface, reducing the hinge moment"
       },
-      { "id": "b", "text": "Independent of surface movement" },
+      {
+        "id": "b",
+        "text": "Independent of surface movement"
+      },
       {
         "id": "c",
         "text": "In the same direction as the surface, increasing force"
       },
-      { "id": "d", "text": "Only when trimming" }
+      {
+        "id": "d",
+        "text": "Only when trimming"
+      }
     ],
     "correct": "a",
     "explanation": "Linkage moves the tab against the surface; the tab's lift produces a moment about the hinge that assists the pilot.",
@@ -321,13 +156,22 @@
     "subtopic": "Aerodynamic balance",
     "question": "An anti-balance tab on an all-moving tailplane:",
     "options": [
-      { "id": "a", "text": "Deflects opposite to reduce force" },
-      { "id": "b", "text": "Is used only at low speed" },
+      {
+        "id": "a",
+        "text": "Deflects opposite to reduce force"
+      },
+      {
+        "id": "b",
+        "text": "Is used only at low speed"
+      },
       {
         "id": "c",
         "text": "Deflects in the same direction as the surface, increasing stick force to prevent over-controlling"
       },
-      { "id": "d", "text": "Trims the aircraft only" }
+      {
+        "id": "d",
+        "text": "Trims the aircraft only"
+      }
     ],
     "correct": "c",
     "explanation": "A stabilator's hinge moments are small (pivot near its aerodynamic centre); the anti-balance tab adds feel and increases stability of the control.",
@@ -342,13 +186,22 @@
     "subtopic": "Aerodynamic balance",
     "question": "With a servo tab, the pilot's controls move:",
     "options": [
-      { "id": "a", "text": "The surface directly, with the tab following" },
-      { "id": "b", "text": "The trim wheel only" },
+      {
+        "id": "a",
+        "text": "The surface directly, with the tab following"
+      },
+      {
+        "id": "b",
+        "text": "The trim wheel only"
+      },
       {
         "id": "c",
         "text": "The tab only; the tab's aerodynamic force deflects the free-floating control surface"
       },
-      { "id": "d", "text": "Both surface and tab rigidly together" }
+      {
+        "id": "d",
+        "text": "Both surface and tab rigidly together"
+      }
     ],
     "correct": "c",
     "explanation": "Tab deflects one way, surface goes the other. Force is low, but at very low speed (taxi, early take-off roll) control is weak.",
@@ -367,9 +220,18 @@
         "id": "a",
         "text": "Direct control at low speed and increasing tab assistance as hinge moments grow with speed"
       },
-      { "id": "b", "text": "Assistance only on the ground" },
-      { "id": "c", "text": "Constant assistance at all speeds" },
-      { "id": "d", "text": "Trim only" }
+      {
+        "id": "b",
+        "text": "Assistance only on the ground"
+      },
+      {
+        "id": "c",
+        "text": "Constant assistance at all speeds"
+      },
+      {
+        "id": "d",
+        "text": "Trim only"
+      }
     ],
     "correct": "a",
     "explanation": "The pilot's input goes through a spring. At low q the spring barely deflects (direct drive); at high q the hinge moment compresses it and the tab deflects to help.",
@@ -384,12 +246,18 @@
     "subtopic": "Mass balance and flutter",
     "question": "Mass balancing a control surface places its centre of gravity:",
     "options": [
-      { "id": "a", "text": "Aft of the hinge line to increase feel" },
+      {
+        "id": "a",
+        "text": "Aft of the hinge line to increase feel"
+      },
       {
         "id": "b",
         "text": "On or ahead of the hinge line, to prevent flutter"
       },
-      { "id": "c", "text": "At the trailing edge" },
+      {
+        "id": "c",
+        "text": "At the trailing edge"
+      },
       {
         "id": "d",
         "text": "At the tip of the horn only for aerodynamic balance"
@@ -408,13 +276,22 @@
     "subtopic": "Mass balance and flutter",
     "question": "Flutter is:",
     "options": [
-      { "id": "a", "text": "Vibration from engines" },
+      {
+        "id": "a",
+        "text": "Vibration from engines"
+      },
       {
         "id": "b",
         "text": "A self-excited oscillation from coupling of aerodynamic forces with structural bending and torsion, growing above a critical speed"
       },
-      { "id": "c", "text": "Buffet from separated flow" },
-      { "id": "d", "text": "A pilot-induced oscillation only" }
+      {
+        "id": "c",
+        "text": "Buffet from separated flow"
+      },
+      {
+        "id": "d",
+        "text": "A pilot-induced oscillation only"
+      }
     ],
     "correct": "b",
     "explanation": "Above the flutter speed aerodynamic energy input exceeds structural damping; amplitude grows rapidly to failure. Stiffness, mass distribution and mass balance set that speed.",
@@ -429,128 +306,26 @@
     "subtopic": "Mass balance and flutter",
     "question": "Ice or water accumulation behind a control surface hinge, or loose control cables, can:",
     "options": [
-      { "id": "a", "text": "Remove the need for mass balance" },
-      { "id": "b", "text": "Have no effect on flutter" },
-      { "id": "c", "text": "Raise the flutter speed" },
-      { "id": "d", "text": "Lower the flutter speed" }
+      {
+        "id": "a",
+        "text": "Remove the need for mass balance"
+      },
+      {
+        "id": "b",
+        "text": "Have no effect on flutter"
+      },
+      {
+        "id": "c",
+        "text": "Raise the flutter speed"
+      },
+      {
+        "id": "d",
+        "text": "Lower the flutter speed"
+      }
     ],
     "correct": "d",
     "explanation": "Added mass aft of the hinge and freeplay reduce effective mass balance and stiffness.",
     "tags": ["flutter", "maintenance"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0061",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Roll control",
-    "question": "Steady roll rate for a given aileron deflection is set by pb/2V ≈ constant. With pb/2V = 0.07, b = 30 m, V = 100 m/s, the roll rate is:",
-    "options": [
-      { "id": "a", "text": "27°/s" },
-      { "id": "b", "text": "13°/s" },
-      { "id": "c", "text": "0.47°/s" },
-      { "id": "d", "text": "54°/s" }
-    ],
-    "correct": "a",
-    "explanation": "p = 0.07 × 2V/b = 0.07 × 200/30 = 0.467 rad/s = 26.7°/s.",
-    "tags": ["roll-rate", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0062",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Roll control",
-    "question": "For the same aileron deflection (rigid wing), increasing TAS from 100 to 150 m/s changes the steady roll rate from 27°/s to:",
-    "options": [
-      { "id": "a", "text": "60°/s" },
-      { "id": "b", "text": "27°/s" },
-      { "id": "c", "text": "18°/s" },
-      { "id": "d", "text": "40°/s" }
-    ],
-    "correct": "d",
-    "explanation": "Driving and damping moments both scale with q, so pb/2V is constant and p ∝ V: 26.7 × 1.5 = 40°/s.",
-    "tags": ["roll-rate", "proportionality", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0063",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Roll control",
-    "question": "A roll rate of 0.5 rad/s at 100 m/s changes the local angle of attack at 15 m span station by:",
-    "options": [
-      { "id": "a", "text": "±8.6°" },
-      { "id": "b", "text": "±43°" },
-      { "id": "c", "text": "±0.43°" },
-      { "id": "d", "text": "±4.3°" }
-    ],
-    "correct": "d",
-    "explanation": "Δα = p·y/V = 0.5 × 15/100 = 0.075 rad = 4.3°: up on the descending wing, down on the rising wing — roll damping.",
-    "tags": ["roll-damping", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0064",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Roll control",
-    "question": "Roll damping arises because:",
-    "options": [
-      {
-        "id": "a",
-        "text": "The down-going wing sees increased α and lift, the up-going wing decreased α and lift"
-      },
-      { "id": "b", "text": "The fin produces a rolling moment" },
-      { "id": "c", "text": "The ailerons centre themselves" },
-      { "id": "d", "text": "Induced drag is zero in roll" }
-    ],
-    "correct": "a",
-    "explanation": "The roll-induced α distribution produces a moment opposing the roll rate, so a fixed aileron deflection gives a steady rate, not a steady acceleration.",
-    "tags": ["roll-damping"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0065",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Roll control",
-    "question": "Fuel in the outer wing increases roll inertia. This mainly affects:",
-    "options": [
-      { "id": "a", "text": "Pitch control" },
-      {
-        "id": "b",
-        "text": "Roll acceleration (time to reach steady rate), not the steady roll rate"
-      },
-      { "id": "c", "text": "Stall speed" },
-      { "id": "d", "text": "The steady roll rate only" }
-    ],
-    "correct": "b",
-    "explanation": "Steady rate is set by aerodynamic balance of control and damping moments; inertia governs how quickly it is reached.",
-    "tags": ["roll-inertia"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0066",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Roll control",
-    "question": "At the same EAS and aileron deflection, the steady roll rate at altitude compared with sea level is:",
-    "options": [
-      { "id": "a", "text": "Identical" },
-      { "id": "b", "text": "Higher, in proportion to TAS" },
-      { "id": "c", "text": "Lower, in proportion to density" },
-      { "id": "d", "text": "Lower, in proportion to √σ" }
-    ],
-    "correct": "b",
-    "explanation": "pb/2V is independent of density (both moments ∝ q); p ∝ V_T = V_E/√σ.",
-    "tags": ["roll-rate", "altitude"],
     "status": "published",
     "version": 1
   },
@@ -561,10 +336,22 @@
     "subtopic": "Roll control",
     "question": "To roll right, the aileron positions are:",
     "options": [
-      { "id": "a", "text": "Right aileron up, left aileron down" },
-      { "id": "b", "text": "Right aileron down, left aileron up" },
-      { "id": "c", "text": "Both up" },
-      { "id": "d", "text": "Both down" }
+      {
+        "id": "a",
+        "text": "Right aileron up, left aileron down"
+      },
+      {
+        "id": "b",
+        "text": "Right aileron down, left aileron up"
+      },
+      {
+        "id": "c",
+        "text": "Both up"
+      },
+      {
+        "id": "d",
+        "text": "Both down"
+      }
     ],
     "correct": "a",
     "explanation": "The left wing's increased camber raises its lift; the right wing's reduced camber lowers its lift.",
@@ -583,9 +370,18 @@
         "id": "a",
         "text": "Reduce lift and add drag on that wing, giving proverse yaw"
       },
-      { "id": "b", "text": "Act only on the ground" },
-      { "id": "c", "text": "Produce adverse yaw" },
-      { "id": "d", "text": "Increase lift on that wing" }
+      {
+        "id": "b",
+        "text": "Act only on the ground"
+      },
+      {
+        "id": "c",
+        "text": "Produce adverse yaw"
+      },
+      {
+        "id": "d",
+        "text": "Increase lift on that wing"
+      }
     ],
     "correct": "a",
     "explanation": "Spoiling lift on the descending wing rolls the aircraft; its extra drag yaws the nose into the turn, the opposite of aileron adverse yaw.",
@@ -604,8 +400,14 @@
         "id": "a",
         "text": "Ailerons are ineffective above the stall only on swept wings"
       },
-      { "id": "b", "text": "Roll damping vanishes" },
-      { "id": "c", "text": "Hinge moments become zero" },
+      {
+        "id": "b",
+        "text": "Roll damping vanishes"
+      },
+      {
+        "id": "c",
+        "text": "Hinge moments become zero"
+      },
       {
         "id": "d",
         "text": "The down-going aileron raises local α and can stall the wing it is meant to lift"
@@ -624,9 +426,18 @@
     "subtopic": "Adverse yaw",
     "question": "Adverse yaw from aileron deflection is caused by:",
     "options": [
-      { "id": "a", "text": "Propeller torque" },
-      { "id": "b", "text": "Lower drag on the rising wing" },
-      { "id": "c", "text": "The fin's side force" },
+      {
+        "id": "a",
+        "text": "Propeller torque"
+      },
+      {
+        "id": "b",
+        "text": "Lower drag on the rising wing"
+      },
+      {
+        "id": "c",
+        "text": "The fin's side force"
+      },
       {
         "id": "d",
         "text": "Higher induced and profile drag on the wing with the down-going aileron (the up-going wing)"
@@ -645,10 +456,22 @@
     "subtopic": "Adverse yaw",
     "question": "Adverse yaw is greatest:",
     "options": [
-      { "id": "a", "text": "At low speed and high CL" },
-      { "id": "b", "text": "In cruise at M 0.8 only" },
-      { "id": "c", "text": "At high speed and low CL" },
-      { "id": "d", "text": "At zero lift" }
+      {
+        "id": "a",
+        "text": "At low speed and high CL"
+      },
+      {
+        "id": "b",
+        "text": "In cruise at M 0.8 only"
+      },
+      {
+        "id": "c",
+        "text": "At high speed and low CL"
+      },
+      {
+        "id": "d",
+        "text": "At zero lift"
+      }
     ],
     "correct": "a",
     "explanation": "The induced-drag difference between the wings is proportional to CL·ΔCL, largest at high CL.",
@@ -663,13 +486,22 @@
     "subtopic": "Adverse yaw",
     "question": "Differential ailerons reduce adverse yaw by:",
     "options": [
-      { "id": "a", "text": "Moving both ailerons down" },
+      {
+        "id": "a",
+        "text": "Moving both ailerons down"
+      },
       {
         "id": "b",
         "text": "Deflecting the up-going aileron through a larger angle than the down-going one"
       },
-      { "id": "c", "text": "Deflecting the down-going aileron more" },
-      { "id": "d", "text": "Locking the down-going aileron" }
+      {
+        "id": "c",
+        "text": "Deflecting the down-going aileron more"
+      },
+      {
+        "id": "d",
+        "text": "Locking the down-going aileron"
+      }
     ],
     "correct": "b",
     "explanation": "The larger up-aileron adds profile drag on the descending wing, offsetting the induced-drag increase on the rising wing.",
@@ -692,8 +524,14 @@
         "id": "b",
         "text": "When raised, its nose protrudes below the wing into the airflow, adding drag on the descending wing"
       },
-      { "id": "c", "text": "It is mass-balanced" },
-      { "id": "d", "text": "It seals the gap" }
+      {
+        "id": "c",
+        "text": "It is mass-balanced"
+      },
+      {
+        "id": "d",
+        "text": "It seals the gap"
+      }
     ],
     "correct": "b",
     "explanation": "The offset hinge makes the up-going aileron's leading edge project into the high-pressure flow below the wing, producing drag on the down-going wing and yawing the nose into the turn.",
@@ -708,10 +546,22 @@
     "subtopic": "Adverse yaw",
     "question": "The standard technique to counter adverse yaw on roll entry is:",
     "options": [
-      { "id": "a", "text": "Forward elevator" },
-      { "id": "b", "text": "Coordinated rudder in the direction of the roll" },
-      { "id": "c", "text": "No input — it vanishes" },
-      { "id": "d", "text": "Opposite rudder" }
+      {
+        "id": "a",
+        "text": "Forward elevator"
+      },
+      {
+        "id": "b",
+        "text": "Coordinated rudder in the direction of the roll"
+      },
+      {
+        "id": "c",
+        "text": "No input — it vanishes"
+      },
+      {
+        "id": "d",
+        "text": "Opposite rudder"
+      }
     ],
     "correct": "b",
     "explanation": "Rudder toward the turn cancels the yaw away from it, keeping the slip ball centred.",
@@ -726,35 +576,26 @@
     "subtopic": "Aeroelastic effects",
     "question": "Aileron reversal at high speed occurs because:",
     "options": [
-      { "id": "a", "text": "The ailerons are mass-balanced" },
+      {
+        "id": "a",
+        "text": "The ailerons are mass-balanced"
+      },
       {
         "id": "b",
         "text": "The aileron's air load twists the flexible wing, changing its α so that the net rolling moment reverses"
       },
-      { "id": "c", "text": "The aileron stalls" },
-      { "id": "d", "text": "Hinge moments reverse" }
+      {
+        "id": "c",
+        "text": "The aileron stalls"
+      },
+      {
+        "id": "d",
+        "text": "Hinge moments reverse"
+      }
     ],
     "correct": "b",
     "explanation": "Down-aileron load, acting aft of the elastic axis, twists the leading edge down. Above the reversal speed the lift lost by wing twist exceeds the lift gained from camber.",
     "tags": ["aileron-reversal", "aeroelasticity"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0076",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Aeroelastic effects",
-    "question": "Aileron reversal speed increases when:",
-    "options": [
-      { "id": "a", "text": "Wing torsional stiffness increases" },
-      { "id": "b", "text": "Density decreases at the same TAS only" },
-      { "id": "c", "text": "The aileron is moved outboard" },
-      { "id": "d", "text": "The wing becomes more flexible" }
-    ],
-    "correct": "a",
-    "explanation": "Reversal occurs at a dynamic pressure proportional to torsional stiffness. Stiffness ×1.44 → reversal EAS ×1.2.",
-    "tags": ["aileron-reversal", "stiffness"],
     "status": "published",
     "version": 1
   },
@@ -765,9 +606,18 @@
     "subtopic": "Aeroelastic effects",
     "question": "Large transport aircraft lock out outboard ailerons at high speed and use inboard ailerons and spoilers because:",
     "options": [
-      { "id": "a", "text": "Outboard ailerons produce too little moment" },
-      { "id": "b", "text": "Outboard ailerons are needed for flaps" },
-      { "id": "c", "text": "Inboard ailerons have more adverse yaw" },
+      {
+        "id": "a",
+        "text": "Outboard ailerons produce too little moment"
+      },
+      {
+        "id": "b",
+        "text": "Outboard ailerons are needed for flaps"
+      },
+      {
+        "id": "c",
+        "text": "Inboard ailerons have more adverse yaw"
+      },
       {
         "id": "d",
         "text": "Outboard surfaces twist the flexible outer wing most, risking reduced effectiveness or reversal"
@@ -780,37 +630,28 @@
     "version": 1
   },
   {
-    "id": "POF-CTRL-0078",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Aeroelastic effects",
-    "question": "The effectiveness of a trailing-edge control on a flexible wing, as speed increases toward reversal speed:",
-    "options": [
-      { "id": "a", "text": "Rises continuously" },
-      { "id": "b", "text": "Rises and then stays constant" },
-      {
-        "id": "c",
-        "text": "Falls progressively to zero, then becomes negative"
-      },
-      { "id": "d", "text": "Is constant" }
-    ],
-    "correct": "c",
-    "explanation": "Wing twist opposing the control grows with q; effectiveness ratio decreases from 1 (rigid) through 0 at reversal.",
-    "tags": ["control-effectiveness", "aeroelasticity"],
-    "status": "published",
-    "version": 1
-  },
-  {
     "id": "POF-CTRL-0079",
     "subjectCode": "POF",
     "topic": "Flight Controls: Primary",
     "subtopic": "Yaw control and asymmetric thrust",
     "question": "An engine at 5 m from the centreline producing 120 kN fails. Rudder: fin area 20 m², arm 15 m, ΔCL at full deflection 1.25. The minimum EAS at which full rudder balances the yaw is closest to:",
     "options": [
-      { "id": "a", "text": "70 kt" },
-      { "id": "b", "text": "99 kt" },
-      { "id": "c", "text": "51 kt" },
-      { "id": "d", "text": "140 kt" }
+      {
+        "id": "a",
+        "text": "70 kt"
+      },
+      {
+        "id": "b",
+        "text": "99 kt"
+      },
+      {
+        "id": "c",
+        "text": "51 kt"
+      },
+      {
+        "id": "d",
+        "text": "140 kt"
+      }
     ],
     "correct": "b",
     "explanation": "N = 120,000 × 5 = 600 kN·m = q × 20 × 1.25 × 15 → q = 1,600 Pa → V = √(3,200/1.225) = 51 m/s = 99 kt. 51 is the m/s value.",
@@ -825,10 +666,22 @@
     "subtopic": "Yaw control and asymmetric thrust",
     "question": "If the live engine's thrust increases by 21 %, the minimum control speed (full rudder) changes by:",
     "options": [
-      { "id": "a", "text": "×1.21" },
-      { "id": "b", "text": "×1.46" },
-      { "id": "c", "text": "×1.05" },
-      { "id": "d", "text": "×1.10" }
+      {
+        "id": "a",
+        "text": "×1.21"
+      },
+      {
+        "id": "b",
+        "text": "×1.46"
+      },
+      {
+        "id": "c",
+        "text": "×1.05"
+      },
+      {
+        "id": "d",
+        "text": "×1.10"
+      }
     ],
     "correct": "d",
     "explanation": "q_min ∝ T·y → V ∝ √T: √1.21 = 1.10.",
@@ -843,10 +696,22 @@
     "subtopic": "Yaw control and asymmetric thrust",
     "question": "Minimum control speed (as IAS) with increasing altitude for a normally aspirated engine:",
     "options": [
-      { "id": "a", "text": "Increases, because TAS rises" },
-      { "id": "b", "text": "Increases, because density falls" },
-      { "id": "c", "text": "Is constant" },
-      { "id": "d", "text": "Decreases, because available thrust falls" }
+      {
+        "id": "a",
+        "text": "Increases, because TAS rises"
+      },
+      {
+        "id": "b",
+        "text": "Increases, because density falls"
+      },
+      {
+        "id": "c",
+        "text": "Is constant"
+      },
+      {
+        "id": "d",
+        "text": "Decreases, because available thrust falls"
+      }
     ],
     "correct": "d",
     "explanation": "Rudder moment at a given EAS is unchanged; the asymmetric thrust it must balance falls with density.",
@@ -861,10 +726,22 @@
     "subtopic": "Yaw control and asymmetric thrust",
     "question": "An aft CG raises minimum control speed because:",
     "options": [
-      { "id": "a", "text": "The fin area decreases" },
-      { "id": "b", "text": "The rudder moment arm about the CG is shorter" },
-      { "id": "c", "text": "The stall speed increases" },
-      { "id": "d", "text": "Thrust increases" }
+      {
+        "id": "a",
+        "text": "The fin area decreases"
+      },
+      {
+        "id": "b",
+        "text": "The rudder moment arm about the CG is shorter"
+      },
+      {
+        "id": "c",
+        "text": "The stall speed increases"
+      },
+      {
+        "id": "d",
+        "text": "Thrust increases"
+      }
     ],
     "correct": "b",
     "explanation": "N_rudder = F_fin·l_v. A shorter arm needs a larger fin force, hence a higher q.",
@@ -879,13 +756,22 @@
     "subtopic": "Yaw control and asymmetric thrust",
     "question": "A windmilling propeller on the failed engine raises minimum control speed because:",
     "options": [
-      { "id": "a", "text": "It produces thrust" },
+      {
+        "id": "a",
+        "text": "It produces thrust"
+      },
       {
         "id": "b",
         "text": "Its drag adds to the yawing moment toward the dead engine"
       },
-      { "id": "c", "text": "It moves the CG" },
-      { "id": "d", "text": "It reduces rudder area" }
+      {
+        "id": "c",
+        "text": "It moves the CG"
+      },
+      {
+        "id": "d",
+        "text": "It reduces rudder area"
+      }
     ],
     "correct": "b",
     "explanation": "The yawing moment is (T_live + D_dead)·y; feathering removes most of the dead-engine drag.",
@@ -900,13 +786,22 @@
     "subtopic": "Yaw control and asymmetric thrust",
     "question": "Banking a few degrees toward the live engine after an engine failure:",
     "options": [
-      { "id": "a", "text": "Increases sideslip" },
-      { "id": "b", "text": "Has no effect on rudder required" },
+      {
+        "id": "a",
+        "text": "Increases sideslip"
+      },
+      {
+        "id": "b",
+        "text": "Has no effect on rudder required"
+      },
       {
         "id": "c",
         "text": "Uses a weight component to balance the fin side force, reducing sideslip and the rudder required"
       },
-      { "id": "d", "text": "Increases drag" }
+      {
+        "id": "d",
+        "text": "Increases drag"
+      }
     ],
     "correct": "c",
     "explanation": "With zero bank, the fin force needed to balance yaw also produces an unbalanced side force, forcing a sideslip. A small bank lets gravity supply the side force.",
@@ -921,13 +816,22 @@
     "subtopic": "Yaw control and asymmetric thrust",
     "question": "A rudder ratio changer or limiter at high speed:",
     "options": [
-      { "id": "a", "text": "Locks the rudder at low speed" },
-      { "id": "b", "text": "Improves crosswind capability" },
+      {
+        "id": "a",
+        "text": "Locks the rudder at low speed"
+      },
+      {
+        "id": "b",
+        "text": "Improves crosswind capability"
+      },
       {
         "id": "c",
         "text": "Reduces the available rudder deflection to protect the fin from overload"
       },
-      { "id": "d", "text": "Increases rudder deflection at high speed" }
+      {
+        "id": "d",
+        "text": "Increases rudder deflection at high speed"
+      }
     ],
     "correct": "c",
     "explanation": "Rudder side load ∝ q; full deflection at high speed would exceed fin structural limits.",
@@ -942,7 +846,10 @@
     "subtopic": "Yaw control and asymmetric thrust",
     "question": "In a crosswind landing with the wing-down (sideslip) technique:",
     "options": [
-      { "id": "a", "text": "Only aileron is used" },
+      {
+        "id": "a",
+        "text": "Only aileron is used"
+      },
       {
         "id": "b",
         "text": "Rudder aligns the fuselage with the runway and into-wind aileron holds the drift"
@@ -951,7 +858,10 @@
         "id": "c",
         "text": "Aileron aligns the fuselage and rudder holds the drift"
       },
-      { "id": "d", "text": "Only rudder is used" }
+      {
+        "id": "d",
+        "text": "Only rudder is used"
+      }
     ],
     "correct": "b",
     "explanation": "Rudder yaws the nose to the runway heading; lowering the upwind wing produces a sideways lift component opposing the crosswind.",
@@ -966,9 +876,18 @@
     "subtopic": "Yaw control and asymmetric thrust",
     "question": "Rudder deflection in level flight produces, besides yaw:",
     "options": [
-      { "id": "a", "text": "A roll in the opposite direction only" },
-      { "id": "b", "text": "A secondary pitch-up" },
-      { "id": "c", "text": "No other effect" },
+      {
+        "id": "a",
+        "text": "A roll in the opposite direction only"
+      },
+      {
+        "id": "b",
+        "text": "A secondary pitch-up"
+      },
+      {
+        "id": "c",
+        "text": "No other effect"
+      },
       {
         "id": "d",
         "text": "A secondary roll in the same direction through sideslip"
@@ -987,13 +906,22 @@
     "subtopic": "Pitch control",
     "question": "Moving the elevator trailing edge up:",
     "options": [
-      { "id": "a", "text": "Decreases the download and pitches the nose down" },
-      { "id": "b", "text": "Increases tail lift upward" },
+      {
+        "id": "a",
+        "text": "Decreases the download and pitches the nose down"
+      },
+      {
+        "id": "b",
+        "text": "Increases tail lift upward"
+      },
       {
         "id": "c",
         "text": "Increases the tailplane download and pitches the nose up"
       },
-      { "id": "d", "text": "Rolls the aircraft" }
+      {
+        "id": "d",
+        "text": "Rolls the aircraft"
+      }
     ],
     "correct": "c",
     "explanation": "Up-elevator adds negative camber to the tail, increasing its downward force, rotating the nose up.",
@@ -1008,9 +936,18 @@
     "subtopic": "Pitch control",
     "question": "The forward CG limit is often set by:",
     "options": [
-      { "id": "a", "text": "Rudder power" },
-      { "id": "b", "text": "Aileron reversal" },
-      { "id": "c", "text": "Stall speed only" },
+      {
+        "id": "a",
+        "text": "Rudder power"
+      },
+      {
+        "id": "b",
+        "text": "Aileron reversal"
+      },
+      {
+        "id": "c",
+        "text": "Stall speed only"
+      },
       {
         "id": "d",
         "text": "Elevator authority to flare or rotate at low speed in ground effect"
@@ -1029,59 +966,26 @@
     "subtopic": "Pitch control",
     "question": "An all-moving tailplane (stabilator) compared with a fixed tailplane plus elevator:",
     "options": [
-      { "id": "a", "text": "Cannot be trimmed" },
-      { "id": "b", "text": "Needs no feel system" },
+      {
+        "id": "a",
+        "text": "Cannot be trimmed"
+      },
+      {
+        "id": "b",
+        "text": "Needs no feel system"
+      },
       {
         "id": "c",
         "text": "Produces more pitch moment per degree, since the whole surface changes angle of attack"
       },
-      { "id": "d", "text": "Produces less moment per degree" }
+      {
+        "id": "d",
+        "text": "Produces less moment per degree"
+      }
     ],
     "correct": "c",
     "explanation": "Rotating the entire surface gives the full lift slope per degree, instead of the reduced effectiveness τ of a trailing-edge elevator — used where tail power is critical, e.g. transonic flight.",
     "tags": ["stabilator"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0091",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Pitch control",
-    "question": "Elevator deflection controls load factor in steady flight by:",
-    "options": [
-      { "id": "a", "text": "Changing the CG" },
-      { "id": "b", "text": "Changing the wing area" },
-      {
-        "id": "c",
-        "text": "Setting the wing angle of attack and hence CL at the current q"
-      },
-      { "id": "d", "text": "Changing the thrust" }
-    ],
-    "correct": "c",
-    "explanation": "Elevator → pitching moment → α → CL → lift = n·W at constant speed.",
-    "tags": ["elevator", "load-factor"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0092",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Pitch control",
-    "question": "Gap sealing between an elevator and tailplane improves control effectiveness because:",
-    "options": [
-      { "id": "a", "text": "It reduces weight" },
-      { "id": "b", "text": "It adds area" },
-      { "id": "c", "text": "It adds mass balance" },
-      {
-        "id": "d",
-        "text": "It prevents leakage from the high- to the low-pressure side, which would reduce the pressure difference"
-      }
-    ],
-    "correct": "d",
-    "explanation": "Flow through the gap equalises pressures near the hinge and reduces the effective camber change.",
-    "tags": ["gap-seal", "control-effectiveness"],
     "status": "published",
     "version": 1
   },
@@ -1096,9 +1000,18 @@
         "id": "a",
         "text": "Elevator and aileron functions: symmetric deflection for pitch, differential for roll"
       },
-      { "id": "b", "text": "Rudder and elevator" },
-      { "id": "c", "text": "Rudder and aileron" },
-      { "id": "d", "text": "Flap and aileron" }
+      {
+        "id": "b",
+        "text": "Rudder and elevator"
+      },
+      {
+        "id": "c",
+        "text": "Rudder and aileron"
+      },
+      {
+        "id": "d",
+        "text": "Flap and aileron"
+      }
     ],
     "correct": "a",
     "explanation": "Both up → nose up; one up, one down → roll.",
@@ -1117,9 +1030,18 @@
         "id": "a",
         "text": "Differential deflection, and pitch by symmetric deflection"
       },
-      { "id": "b", "text": "Symmetric deflection only" },
-      { "id": "c", "text": "Differential deflection for pitch" },
-      { "id": "d", "text": "Moving the whole tail" }
+      {
+        "id": "b",
+        "text": "Symmetric deflection only"
+      },
+      {
+        "id": "c",
+        "text": "Differential deflection for pitch"
+      },
+      {
+        "id": "d",
+        "text": "Moving the whole tail"
+      }
     ],
     "correct": "a",
     "explanation": "Each surface's force has vertical and lateral components; symmetric deflection sums the vertical parts, differential deflection sums the lateral parts.",
@@ -1138,9 +1060,18 @@
         "id": "a",
         "text": "Flap (symmetric droop) and aileron (differential) functions"
       },
-      { "id": "b", "text": "Spoiler and rudder" },
-      { "id": "c", "text": "Trim and slat" },
-      { "id": "d", "text": "Elevator and flap" }
+      {
+        "id": "b",
+        "text": "Spoiler and rudder"
+      },
+      {
+        "id": "c",
+        "text": "Trim and slat"
+      },
+      {
+        "id": "d",
+        "text": "Elevator and flap"
+      }
     ],
     "correct": "a",
     "explanation": "Both ailerons droop together for lift and deflect differentially for roll around that datum.",
@@ -1155,13 +1086,22 @@
     "subtopic": "Combined surfaces",
     "question": "A taileron (differentially moving stabilator halves) is used to:",
     "options": [
-      { "id": "a", "text": "Replace the rudder" },
-      { "id": "b", "text": "Trim the aircraft" },
+      {
+        "id": "a",
+        "text": "Replace the rudder"
+      },
+      {
+        "id": "b",
+        "text": "Trim the aircraft"
+      },
       {
         "id": "c",
         "text": "Provide roll control, typically at high speed where wing ailerons suffer aeroelastic losses"
       },
-      { "id": "d", "text": "Increase lift for landing" }
+      {
+        "id": "d",
+        "text": "Increase lift for landing"
+      }
     ],
     "correct": "c",
     "explanation": "Differential stabilator deflection produces a rolling moment from the stiff tail, avoiding wing-twist losses.",
@@ -1176,9 +1116,18 @@
     "subtopic": "Powered controls",
     "question": "Fully powered, irreversible flight controls require an artificial feel system because:",
     "options": [
-      { "id": "a", "text": "Autopilot requires it" },
-      { "id": "b", "text": "Hinge moments become zero" },
-      { "id": "c", "text": "The surfaces are too small" },
+      {
+        "id": "a",
+        "text": "Autopilot requires it"
+      },
+      {
+        "id": "b",
+        "text": "Hinge moments become zero"
+      },
+      {
+        "id": "c",
+        "text": "The surfaces are too small"
+      },
       {
         "id": "d",
         "text": "Aerodynamic hinge moments no longer reach the pilot, who could otherwise overstress the aircraft"
@@ -1201,34 +1150,22 @@
         "id": "a",
         "text": "Increase with dynamic pressure for a given deflection"
       },
-      { "id": "b", "text": "Independent of speed" },
-      { "id": "c", "text": "Depend only on altitude" },
-      { "id": "d", "text": "Decrease with speed" }
+      {
+        "id": "b",
+        "text": "Independent of speed"
+      },
+      {
+        "id": "c",
+        "text": "Depend only on altitude"
+      },
+      {
+        "id": "d",
+        "text": "Decrease with speed"
+      }
     ],
     "correct": "a",
     "explanation": "Force proportional to q mimics a reversible control and scales with the aircraft's response to deflection.",
     "tags": ["q-feel"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0099",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Powered controls",
-    "question": "With irreversible powered controls, air loads on the surface:",
-    "options": [
-      { "id": "a", "text": "Are fed back directly to the pilot" },
-      { "id": "b", "text": "Cause the surface to float freely" },
-      { "id": "c", "text": "Are zero" },
-      {
-        "id": "d",
-        "text": "Are reacted by the actuators and not fed back to the controls"
-      }
-    ],
-    "correct": "d",
-    "explanation": "The hydraulic actuator holds position; the pilot feels only the artificial feel unit.",
-    "tags": ["irreversible-controls"],
     "status": "published",
     "version": 1
   },
@@ -1243,91 +1180,22 @@
         "id": "a",
         "text": "Forces and responses in pitch, roll and yaw are proportioned so that coordinated inputs feel natural (typically roll lightest, yaw heaviest)"
       },
-      { "id": "b", "text": "All three controls need equal force" },
-      { "id": "c", "text": "Controls move together" },
-      { "id": "d", "text": "Only the elevator has feel" }
+      {
+        "id": "b",
+        "text": "All three controls need equal force"
+      },
+      {
+        "id": "c",
+        "text": "Controls move together"
+      },
+      {
+        "id": "d",
+        "text": "Only the elevator has feel"
+      }
     ],
     "correct": "a",
     "explanation": "Balanced gradients prevent over-controlling in one axis while another feels heavy.",
     "tags": ["control-harmony"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0101",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Aeroelastic effects",
-    "question": "At high speed, control-surface deflection to produce a given moment is small; the risk from large deflections is:",
-    "options": [
-      { "id": "a", "text": "Structural overload from the high q" },
-      { "id": "b", "text": "Loss of hinge moment" },
-      { "id": "c", "text": "Reduced drag" },
-      { "id": "d", "text": "Stall of the aircraft" }
-    ],
-    "correct": "a",
-    "explanation": "Moment and load ∝ q·δ; at high q, full deflection can exceed limit loads — hence deflection limiters and load-alleviation laws.",
-    "tags": ["high-speed", "structural-load"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0102",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Roll control",
-    "question": "Steady roll rate at constant aileron deflection is limited by:",
-    "options": [
-      { "id": "a", "text": "Adverse yaw only" },
-      { "id": "b", "text": "Weight" },
-      {
-        "id": "c",
-        "text": "Roll damping from the wing's spanwise α distribution"
-      },
-      { "id": "d", "text": "Pitch stability" }
-    ],
-    "correct": "c",
-    "explanation": "Aileron moment = damping moment → p = constant. Damping ∝ q·(pb/2V), aileron moment ∝ q·δ.",
-    "tags": ["roll-damping", "roll-rate"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0103",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Hinge moments and stick force",
-    "question": "Doubling the chord of a control surface (same span, deflection and C_h) changes the hinge moment by:",
-    "options": [
-      { "id": "a", "text": "×8" },
-      { "id": "b", "text": "×2" },
-      { "id": "c", "text": "×4" },
-      { "id": "d", "text": "×1" }
-    ],
-    "correct": "c",
-    "explanation": "H = C_h·q·S_c·c_c with S_c = span × chord → ∝ chord². Hinge moments grow rapidly with surface size.",
-    "tags": ["hinge-moment", "scale"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0104",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Aerodynamic balance",
-    "question": "A servo-tab-controlled elevator at very low speed (taxi) is:",
-    "options": [
-      { "id": "a", "text": "Fully effective" },
-      { "id": "b", "text": "Heavier than a direct control" },
-      { "id": "c", "text": "Locked by the tab" },
-      {
-        "id": "d",
-        "text": "Largely ineffective, since the tab's aerodynamic force is too small to move the surface"
-      }
-    ],
-    "correct": "d",
-    "explanation": "The surface is moved only by tab lift ∝ q; at negligible q there is no force to deflect it.",
-    "tags": ["servo-tab", "low-speed"],
     "status": "published",
     "version": 1
   },
@@ -1342,76 +1210,22 @@
         "id": "a",
         "text": "The left engine, since the right engine's descending blade acts further from the centreline"
       },
-      { "id": "b", "text": "The right engine" },
-      { "id": "c", "text": "Neither" },
-      { "id": "d", "text": "Both equally" }
+      {
+        "id": "b",
+        "text": "The right engine"
+      },
+      {
+        "id": "c",
+        "text": "Neither"
+      },
+      {
+        "id": "d",
+        "text": "Both equally"
+      }
     ],
     "correct": "a",
     "explanation": "At high α the descending blade produces more thrust (asymmetric blade effect). On the right engine it lies further outboard, giving the larger yawing moment; losing the left engine leaves that larger moment.",
     "tags": ["critical-engine", "p-factor"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0106",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Yaw control and asymmetric thrust",
-    "question": "Fin and rudder effectiveness at a given q is reduced in a large sideslip because:",
-    "options": [
-      { "id": "a", "text": "q increases" },
-      { "id": "b", "text": "Hinge moments fall to zero" },
-      {
-        "id": "c",
-        "text": "The fin approaches its stalling angle and the fuselage may blanket it"
-      },
-      { "id": "d", "text": "Roll damping increases" }
-    ],
-    "correct": "c",
-    "explanation": "Sideslip is the fin's angle of attack; near its stall its lift slope and rudder effectiveness fall. Dorsal fins delay fin stall.",
-    "tags": ["fin-stall", "sideslip"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0107",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Axes and control power",
-    "question": "The rolling moment produced by ailerons increases when the ailerons are placed further outboard because:",
-    "options": [
-      { "id": "a", "text": "Outboard sections have lower CLmax" },
-      { "id": "b", "text": "The local chord is larger outboard" },
-      { "id": "c", "text": "Twist increases effectiveness" },
-      {
-        "id": "d",
-        "text": "The moment arm from the aircraft centreline is longer"
-      }
-    ],
-    "correct": "d",
-    "explanation": "Rolling moment = ΔL × spanwise arm; outboard placement maximises the arm (but increases aeroelastic twist).",
-    "tags": ["ailerons", "moment-arm"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-CTRL-0108",
-    "subjectCode": "POF",
-    "topic": "Flight Controls: Primary",
-    "subtopic": "Pitch control",
-    "question": "Elevator effectiveness is reduced in ground effect mainly because:",
-    "options": [
-      { "id": "a", "text": "The elevator stalls" },
-      { "id": "b", "text": "Hinge moments reverse" },
-      {
-        "id": "c",
-        "text": "Reduced downwash raises the tail's angle of attack, reducing the download and requiring more up-elevator for the same pitch"
-      },
-      { "id": "d", "text": "q decreases near the ground" }
-    ],
-    "correct": "c",
-    "explanation": "The tail sees less downwash; to produce the same nose-up moment the pilot must apply more up-elevator — the flare becomes limited at a forward CG.",
-    "tags": ["ground-effect", "elevator"],
     "status": "published",
     "version": 1
   }

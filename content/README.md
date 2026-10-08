@@ -350,8 +350,8 @@ of it has been checked against a specific state's AIP or training syllabus.
 ## The POF bank (Flying Knowledge)
 
 The subject is **Principles of Flight**, the second subject in Flying
-Knowledge, added the same content-only way IFR was. 1,000 questions across
-fifteen topics, all published.
+Knowledge, added the same content-only way IFR was. 569 questions across
+fifteen topics, all published (1,000 until the pruning below).
 
 ### Rebuilt to 1,000, one section at a time
 
@@ -362,22 +362,43 @@ a definition to be recalled. Each section shipped as its own pull request.
 
 | # | Topic | File | Id range | Questions |
 |---|---|---|---|---|
-| 01 | Basic Aerodynamics | `basic-aerodynamics.json` | `POF-AERO-0036`–`0100` | 65 |
-| 02 | Aerofoils and Lift Theory | `aerofoils-and-lift-theory.json` | `POF-AFOIL-0033`–`0097` | 65 |
-| 03 | Lift and Drag | `lift-and-drag.json` | `POF-LIFT-0039`–`0113` | 75 |
-| 04 | Boundary Layer | `boundary-layer.json` | `POF-BL-0029`–`0083` | 55 |
-| 05 | Stalling | `stalling.json` | `POF-STALL-0043`–`0127` | 85 |
-| 06 | High-Lift Devices | `high-lift-devices.json` | `POF-HLD-0031`–`0090` | 60 |
-| 07 | Flight Controls: Primary | `flight-controls-primary.json` | `POF-CTRL-0039`–`0108` | 70 |
-| 08 | Flight Controls: Secondary and Trim | `flight-controls-secondary.json` | `POF-TRIM-0025`–`0069` | 45 |
-| 09 | Longitudinal Stability | `stability-longitudinal.json` | `POF-STABL-0035`–`0104` | 70 |
-| 10 | Lateral and Directional Stability | `stability-lateral-directional.json` | `POF-STABLD-0035`–`0104` | 70 |
-| 11 | High-Speed Flight: Compressibility | `high-speed-compressibility.json` | `POF-MACH-0035`–`0104` | 70 |
-| 12 | High-Speed Flight: Shockwaves and Buffet | `high-speed-shockwaves.json` | `POF-SHOCK-0035`–`0099` | 65 |
-| 13 | Propellers | `propellers.json` | `POF-PROP-0041`–`0120` | 80 |
-| 14 | Aeroplane Loads and Limitations | `loads-and-limitations.json` | `POF-LOAD-0035`–`0104` | 70 |
-| 15 | Windshear and Atmospheric Effects | `windshear-and-atmospheric-effects.json` | `POF-WSHR-0025`–`0079` | 55 |
-| | | | | **1,000** |
+| 01 | Basic Aerodynamics | `basic-aerodynamics.json` | `POF-AERO-0036`–`0100` | 38 |
+| 02 | Aerofoils and Lift Theory | `aerofoils-and-lift-theory.json` | `POF-AFOIL-0033`–`0097` | 6 |
+| 03 | Lift and Drag | `lift-and-drag.json` | `POF-LIFT-0039`–`0113` | 28 |
+| 04 | Boundary Layer | `boundary-layer.json` | `POF-BL-0029`–`0083` | 6 |
+| 05 | Stalling | `stalling.json` | `POF-STALL-0043`–`0127` | 70 |
+| 06 | High-Lift Devices | `high-lift-devices.json` | `POF-HLD-0031`–`0090` | 44 |
+| 07 | Flight Controls: Primary | `flight-controls-primary.json` | `POF-CTRL-0039`–`0108` | 41 |
+| 08 | Flight Controls: Secondary and Trim | `flight-controls-secondary.json` | `POF-TRIM-0025`–`0069` | 40 |
+| 09 | Longitudinal Stability | `stability-longitudinal.json` | `POF-STABL-0035`–`0104` | 30 |
+| 10 | Lateral and Directional Stability | `stability-lateral-directional.json` | `POF-STABLD-0035`–`0104` | 54 |
+| 11 | High-Speed Flight: Compressibility | `high-speed-compressibility.json` | `POF-MACH-0035`–`0104` | 42 |
+| 12 | High-Speed Flight: Shockwaves and Buffet | `high-speed-shockwaves.json` | `POF-SHOCK-0035`–`0099` | 24 |
+| 13 | Propellers | `propellers.json` | `POF-PROP-0041`–`0120` | 54 |
+| 14 | Aeroplane Loads and Limitations | `loads-and-limitations.json` | `POF-LOAD-0035`–`0104` | 42 |
+| 15 | Windshear and Atmospheric Effects | `windshear-and-atmospheric-effects.json` | `POF-WSHR-0025`–`0079` | 50 |
+| | | | | **569** |
+
+### Pruned to 569, for pilots rather than engineers
+
+At the owner's instruction 431 of the 1,000 were deleted: this site is for
+student pilots, and questions on section theory, boundary-layer thickness,
+shock-wave relations, supersonic lift slope, hinge-moment design, stability
+derivatives, blade-element propeller theory and structural analysis are an
+engineer's examination, not a pilot's. What stayed are the practical
+calculations a pilot does (stall speed against weight and bank, load factor,
+turn radius, density altitude, EAS/TAS/Mach, glide and climb gradients,
+crosswind) and the operational and procedural questions. Aerofoils and Lift
+Theory and Boundary Layer lost most of their questions (65 to 6 and 55 to 6).
+The retired ids are never reused, so the id ranges in the table are where
+the surviving questions were first numbered, not a count; the "Questions"
+column is the current count. `attempts` keeps its history, as before.
+
+`public/pof-study-guide.html` was rewritten at the same time to match: a
+pilot's guide rather than an engineering reference, built around the
+questions that remain, with diagrams, worked examples, three small
+calculators (turn and stall speed, crosswind, density altitude) and a cheat
+sheet. It names no book, school, regulator or syllabus.
 
 Each rebuilt section **replaced** its file rather than adding to it, and its
 questions took **new ids** continuing after the old ones. The retired ids

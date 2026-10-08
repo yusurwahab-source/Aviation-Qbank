@@ -1,431 +1,5 @@
 [
   {
-    "id": "POF-AFOIL-0033",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Camber",
-    "question": "A section with 4 % camber is at zero geometric angle of attack. Its lift and moment about the aerodynamic centre are:",
-    "options": [
-      { "id": "a", "text": "Negative lift and a nose-up moment" },
-      { "id": "b", "text": "Positive lift and a nose-down moment" },
-      { "id": "c", "text": "Positive lift and zero moment" },
-      { "id": "d", "text": "Zero lift and zero moment" }
-    ],
-    "correct": "b",
-    "explanation": "Camber places the zero-lift angle below zero (α₀ < 0), so at α = 0 the section operates at α − α₀ > 0: cl > 0. Camber also produces a negative (nose-down) C_M,ac, constant with α.",
-    "tags": ["camber", "zero-lift-angle", "pitching-moment"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0034",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Camber",
-    "question": "A section with zero-lift angle α₀ = −3° is set at a geometric angle of attack of +2°. The absolute angle of attack is:",
-    "options": [
-      { "id": "a", "text": "3°" },
-      { "id": "b", "text": "5°" },
-      { "id": "c", "text": "−1°" },
-      { "id": "d", "text": "2°" }
-    ],
-    "correct": "b",
-    "explanation": "Absolute angle of attack is measured from the zero-lift line: α_abs = α − α₀ = 2 − (−3) = 5°. Lift is proportional to α_abs below the stall: cl = a₀·α_abs.",
-    "tags": ["absolute-angle-of-attack", "zero-lift-angle", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0035",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Thickness and leading edge",
-    "question": "Within a family of similar sections, leading-edge radius scales with (t/c)². The leading-edge radius of the 15 % thick section compared with the 9 % section is:",
-    "options": [
-      { "id": "a", "text": "1.67 times" },
-      { "id": "b", "text": "4.63 times" },
-      { "id": "c", "text": "2.78 times" },
-      { "id": "d", "text": "1.29 times" }
-    ],
-    "correct": "c",
-    "explanation": "r_LE ∝ (t/c)²: (15/9)² = 1.667² = 2.78. The larger radius lowers the suction peak at high α and delays leading-edge separation.",
-    "tags": ["leading-edge-radius", "thickness", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0036",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Thickness and leading edge",
-    "question": "Moving the point of maximum thickness aft (e.g. from 30 % to 45 % chord) at low angle of attack has the effect that:",
-    "options": [
-      {
-        "id": "a",
-        "text": "The minimum-pressure point moves aft, extending the favourable gradient and the laminar run"
-      },
-      {
-        "id": "b",
-        "text": "Skin friction increases, because the turbulent region lengthens"
-      },
-      { "id": "c", "text": "The zero-lift angle becomes positive" },
-      {
-        "id": "d",
-        "text": "The minimum-pressure point moves forward, shortening the laminar run"
-      }
-    ],
-    "correct": "a",
-    "explanation": "Velocity peaks near maximum thickness at low α. Upstream of the minimum-pressure point the pressure gradient is favourable (dp/dx < 0), which stabilises laminar flow. An aft peak keeps the boundary layer laminar farther back and reduces skin friction within a limited cl range.",
-    "tags": ["max-thickness", "laminar-flow", "pressure-gradient"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0037",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Lift curve",
-    "question": "A symmetric section with lift-curve slope 0.11 per degree is at α = −4°. cl and C_M,ac are:",
-    "options": [
-      { "id": "a", "text": "cl = 0; C_M,ac = 0" },
-      { "id": "b", "text": "cl = −0.44; C_M,ac = −0.11" },
-      { "id": "c", "text": "cl = −0.44; C_M,ac = 0" },
-      { "id": "d", "text": "cl = +0.44; C_M,ac = 0" }
-    ],
-    "correct": "c",
-    "explanation": "Symmetric section: α₀ = 0, cl = 0.11 × (−4) = −0.44. With no camber, C_M,ac = 0 and the centre of pressure stays at the aerodynamic centre at all α below the stall.",
-    "tags": ["symmetric-section", "lift-curve", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0038",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Camber",
-    "question": "To produce the same cl, a cambered section compared with a symmetric section of the same thickness requires:",
-    "options": [
-      { "id": "a", "text": "The same angle of attack" },
-      { "id": "b", "text": "A lower chord-line angle of attack" },
-      { "id": "c", "text": "A higher chord-line angle of attack" },
-      { "id": "d", "text": "A negative angle of attack in every case" }
-    ],
-    "correct": "b",
-    "explanation": "Both have the same slope a₀; camber displaces the curve by α₀ < 0. For equal cl, α_cambered = α_symmetric + α₀, which is lower.",
-    "tags": ["camber", "angle-of-attack"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0039",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Pressure distribution",
-    "question": "As the angle of attack increases below the stall, the front stagnation point:",
-    "options": [
-      { "id": "a", "text": "Moves up onto the upper surface" },
-      {
-        "id": "b",
-        "text": "Moves toward the trailing edge on the upper surface"
-      },
-      { "id": "c", "text": "Moves down and aft on the lower surface" },
-      { "id": "d", "text": "Remains fixed at the leading edge" }
-    ],
-    "correct": "c",
-    "explanation": "Higher α increases circulation. Flow reaching the upper surface must travel round the leading edge from a stagnation point that migrates to the lower surface, aft of the leading edge. This steepens the suction peak just behind the leading edge.",
-    "tags": ["stagnation-point", "angle-of-attack"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0040",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Pressure distribution",
-    "question": "As the upper-surface suction peak rises with increasing α, the pressure recovery downstream of it:",
-    "options": [
-      { "id": "a", "text": "Becomes favourable" },
-      {
-        "id": "b",
-        "text": "Is unaffected, since it depends only on the trailing-edge angle"
-      },
-      {
-        "id": "c",
-        "text": "Steepens, increasing the adverse pressure gradient on the boundary layer"
-      },
-      { "id": "d", "text": "Flattens, reducing the adverse gradient" }
-    ],
-    "correct": "c",
-    "explanation": "The flow must return from the peak suction to near free-stream pressure at the trailing edge. A deeper peak over the same chord requires a larger pressure rise: dp/dx grows. The boundary layer eventually cannot negotiate it, and separation marks the stall.",
-    "tags": ["adverse-pressure-gradient", "suction-peak", "separation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0041",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Pressure distribution",
-    "question": "At a moderate positive angle of attack, the larger share of section lift comes from:",
-    "options": [
-      { "id": "a", "text": "Equal contributions from both surfaces" },
-      { "id": "b", "text": "Lower-surface overpressure" },
-      { "id": "c", "text": "Upper-surface suction" },
-      { "id": "d", "text": "The pressure difference at the trailing edge" }
-    ],
-    "correct": "c",
-    "explanation": "|Cp| on the upper surface reaches −1 to −3 near the leading edge, whereas lower-surface Cp stays between 0 and about +1 except at the stagnation point. Typically about two-thirds or more of cl comes from the upper surface.",
-    "tags": ["pressure-distribution", "suction"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0042",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Pressure distribution",
-    "question": "The chordwise-averaged pressure-coefficient difference between the lower and upper surfaces is 0.8. The section lift coefficient is:",
-    "options": [
-      { "id": "a", "text": "0.4" },
-      { "id": "b", "text": "0.8" },
-      { "id": "c", "text": "0.64" },
-      { "id": "d", "text": "1.6" }
-    ],
-    "correct": "b",
-    "explanation": "cl = ∫₀¹ (Cp,lower − Cp,upper) d(x/c) = mean ΔCp = 0.8. Lift equals the area enclosed by the two Cp curves.",
-    "tags": ["pressure-coefficient", "lift-coefficient", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0043",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Pressure distribution",
-    "question": "A symmetric section at zero angle of attack has:",
-    "options": [
-      { "id": "a", "text": "Overpressure on both surfaces and zero lift" },
-      { "id": "b", "text": "Suction on the upper surface only" },
-      { "id": "c", "text": "Zero pressure change on both surfaces" },
-      { "id": "d", "text": "Equal suction on both surfaces and zero net lift" }
-    ],
-    "correct": "d",
-    "explanation": "Thickness accelerates the flow over both surfaces, producing identical negative Cp distributions. The pressure difference, and hence lift, is zero. Thickness alone does not lift; incidence and camber do.",
-    "tags": ["symmetric-section", "pressure-distribution"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0044",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Pressure distribution",
-    "question": "A chordwise loading ΔCp falls linearly from a maximum at the leading edge to zero at the trailing edge. The centre of pressure is at:",
-    "options": [
-      { "id": "a", "text": "67 % chord" },
-      { "id": "b", "text": "25 % chord" },
-      { "id": "c", "text": "33 % chord" },
-      { "id": "d", "text": "50 % chord" }
-    ],
-    "correct": "c",
-    "explanation": "The centre of pressure is the centroid of the load distribution. A triangle with its apex at the leading edge has its centroid at one third of the base from that edge: x_cp = c/3.",
-    "tags": ["centre-of-pressure", "load-distribution", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0045",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Lift curve",
-    "question": "Thin-aerofoil theory gives a lift-curve slope of 2π per radian. At α_abs = 5°, cl is:",
-    "options": [
-      { "id": "a", "text": "0.10" },
-      { "id": "b", "text": "31.4" },
-      { "id": "c", "text": "0.55" },
-      { "id": "d", "text": "1.10" }
-    ],
-    "correct": "c",
-    "explanation": "cl = 2π·α with α in radians: 5° = 0.0873 rad → cl = 6.283 × 0.0873 = 0.548. 2π per radian = 0.1097 per degree. 31.4 omits the conversion.",
-    "tags": ["lift-curve-slope", "thin-aerofoil", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0046",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Lift curve",
-    "question": "A section has α₀ = −2° and a₀ = 0.11 per degree. At α = +4°, cl is:",
-    "options": [
-      { "id": "a", "text": "0.44" },
-      { "id": "b", "text": "0.66" },
-      { "id": "c", "text": "0.22" },
-      { "id": "d", "text": "0.33" }
-    ],
-    "correct": "b",
-    "explanation": "cl = a₀(α − α₀) = 0.11 × (4 + 2) = 0.66. 0.44 ignores α₀; 0.22 subtracts it with the wrong sign.",
-    "tags": ["lift-curve", "zero-lift-angle", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0047",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Lift curve",
-    "question": "A section has α₀ = −1° and a₀ = 0.11 per degree. The angle of attack for cl = 1.0 is closest to:",
-    "options": [
-      { "id": "a", "text": "10°" },
-      { "id": "b", "text": "9°" },
-      { "id": "c", "text": "6°" },
-      { "id": "d", "text": "8°" }
-    ],
-    "correct": "d",
-    "explanation": "α = cl/a₀ + α₀ = 9.1 − 1 = 8.1°. 9° ignores α₀; 10° adds it with the wrong sign.",
-    "tags": ["lift-curve", "angle-of-attack", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0048",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Lift curve",
-    "question": "Adding camber to a section of the same thickness changes the cl–α curve as follows:",
-    "options": [
-      { "id": "a", "text": "It shifts right and becomes steeper" },
-      { "id": "b", "text": "It shifts left and clmax decreases" },
-      {
-        "id": "c",
-        "text": "It shifts left (α₀ more negative), keeps the same slope, and raises clmax"
-      },
-      { "id": "d", "text": "Its slope increases in proportion to camber" }
-    ],
-    "correct": "c",
-    "explanation": "Thin-aerofoil theory: slope 2π is independent of camber; camber only sets α₀. The more favourable leading-edge pressure distribution at high cl typically raises clmax, although the stall α is similar or slightly lower.",
-    "tags": ["camber", "lift-curve", "clmax"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0049",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Finite-wing lift",
-    "question": "For an elliptically loaded wing of aspect ratio 12, the ratio of the three-dimensional lift-curve slope to the section slope (2π) is closest to:",
-    "options": [
-      { "id": "a", "text": "92 %" },
-      { "id": "b", "text": "86 %" },
-      { "id": "c", "text": "100 %" },
-      { "id": "d", "text": "71 %" }
-    ],
-    "correct": "b",
-    "explanation": "a = 2π·A/(A + 2) → a/a₀ = A/(A + 2) = 12/14 = 0.857. Downwash reduces effective incidence, so a finite wing always has a lower lift-curve slope than its section.",
-    "tags": ["aspect-ratio", "lift-curve-slope", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0050",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Lift curve",
-    "question": "A section with cl = 0.8 operates at q = 3,000 Pa and chord 2 m. The lift per unit span is:",
-    "options": [
-      { "id": "a", "text": "4,800 N/m" },
-      { "id": "b", "text": "9,600 N/m" },
-      { "id": "c", "text": "2,400 N/m" },
-      { "id": "d", "text": "1,200 N/m" }
-    ],
-    "correct": "a",
-    "explanation": "L′ = cl·q·c = 0.8 × 3,000 × 2 = 4,800 N/m.",
-    "tags": ["section-lift", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0051",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Lift curve",
-    "question": "Beyond the stall angle, a conventional section's cl, cd and C_M,ac respond as follows:",
-    "options": [
-      { "id": "a", "text": "cl is constant and cd rises linearly" },
-      {
-        "id": "b",
-        "text": "cl falls, cd falls, and the moment becomes nose-up"
-      },
-      {
-        "id": "c",
-        "text": "cl falls, cd rises steeply, and the pitching moment becomes more nose-down"
-      },
-      {
-        "id": "d",
-        "text": "cl continues to rise at a reduced slope, and cd is constant"
-      }
-    ],
-    "correct": "c",
-    "explanation": "Upper-surface separation collapses the suction peak and forms a wide wake. Lift is lost, pressure drag rises sharply, and the remaining load distribution moves toward mid-chord, increasing the nose-down moment about the quarter chord.",
-    "tags": ["stall", "post-stall", "pitching-moment"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0052",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Finite-wing lift",
-    "question": "The lift-curve slope of an elliptically loaded wing of aspect ratio 8 is closest to:",
-    "options": [
-      { "id": "a", "text": "0.055 per degree" },
-      { "id": "b", "text": "0.088 per degree" },
-      { "id": "c", "text": "0.073 per degree" },
-      { "id": "d", "text": "0.110 per degree" }
-    ],
-    "correct": "b",
-    "explanation": "a = a₀/(1 + a₀/(πA)) = 6.283/(1 + 6.283/25.13) = 6.283/1.25 = 5.03 per rad = 0.0877 per degree. 0.073 corresponds to A = 4; 0.110 to the section value.",
-    "tags": ["lift-curve-slope", "aspect-ratio", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0053",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Finite-wing lift",
-    "question": "Elliptically loaded wings of aspect ratio 8 and 4 must each produce CL = 0.6. The angles of attack above zero lift are:",
-    "options": [
-      { "id": "a", "text": "8.2° and 6.8°" },
-      { "id": "b", "text": "6.8° and 13.7°" },
-      { "id": "c", "text": "6.8° and 8.2°" },
-      { "id": "d", "text": "5.5° for both" }
-    ],
-    "correct": "c",
-    "explanation": "a(A = 8) = 0.0877/deg → α = 0.6/0.0877 = 6.8°. a(A = 4) = 2π·4/6 = 4.19 per rad = 0.0731/deg → α = 8.2°. 5.5° is the section value (0.1097/deg).",
-    "tags": ["aspect-ratio", "angle-of-attack", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0054",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Finite-wing lift",
-    "question": "An elliptically loaded wing of aspect ratio 8 operates at CL = 0.5. The induced angle of attack is:",
-    "options": [
-      { "id": "a", "text": "3.6°" },
-      { "id": "b", "text": "0.020°" },
-      { "id": "c", "text": "1.14°" },
-      { "id": "d", "text": "0.57°" }
-    ],
-    "correct": "c",
-    "explanation": "α_i = CL/(πA) = 0.5/25.13 = 0.0199 rad = 1.14°. 0.020° is the radian value misread as degrees.",
-    "tags": ["induced-angle", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
     "id": "POF-AFOIL-0055",
     "subjectCode": "POF",
     "topic": "Aerofoils and Lift Theory",
@@ -440,531 +14,18 @@
         "id": "b",
         "text": "A steeper lift-curve slope and a lower stalling angle"
       },
-      { "id": "c", "text": "The same slope and stalling angle" },
-      { "id": "d", "text": "A steeper slope and a higher CLmax" }
+      {
+        "id": "c",
+        "text": "The same slope and stalling angle"
+      },
+      {
+        "id": "d",
+        "text": "A steeper slope and a higher CLmax"
+      }
     ],
     "correct": "a",
     "explanation": "Lower A → larger α_i per unit CL, so a = a₀/(1 + a₀/(πA)) is smaller. The wing reaches the section's stalling α_eff only at a higher geometric α. CLmax is similar or slightly lower.",
     "tags": ["aspect-ratio", "stall-angle", "lift-curve-slope"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0056",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Finite-wing lift",
-    "question": "Sweeping a wing by 35° at constant span loading reduces its lift-curve slope to approximately the unswept value times:",
-    "options": [
-      { "id": "a", "text": "1.22" },
-      { "id": "b", "text": "0.82" },
-      { "id": "c", "text": "0.67" },
-      { "id": "d", "text": "0.57" }
-    ],
-    "correct": "b",
-    "explanation": "Simple sweep theory: only the velocity component normal to the leading edge, V·cosΛ, generates the pressure distribution, so the slope based on free-stream q scales with cosΛ = cos35° = 0.819. 0.57 is sin35°; 0.67 is cos²35°.",
-    "tags": ["sweep", "lift-curve-slope", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0057",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Finite-wing lift",
-    "question": "A wing with span efficiency factor e = 0.8 is compared with an elliptically loaded wing (e = 1) of the same aspect ratio at the same CL. Its induced angle is larger by the factor:",
-    "options": [
-      { "id": "a", "text": "1.25" },
-      { "id": "b", "text": "0.80" },
-      { "id": "c", "text": "1.56" },
-      { "id": "d", "text": "1.12" }
-    ],
-    "correct": "a",
-    "explanation": "α_i = CL/(πeA) ∝ 1/e = 1/0.8 = 1.25. Induced drag coefficient CL²/(πeA) is higher by the same factor.",
-    "tags": ["span-efficiency", "induced-angle", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0058",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Finite-wing lift",
-    "question": "At equal CL and span efficiency, the induced-drag coefficient of a wing with aspect ratio 10 compared with one of aspect ratio 5 is:",
-    "options": [
-      { "id": "a", "text": "2 times" },
-      { "id": "b", "text": "0.25 times" },
-      { "id": "c", "text": "0.71 times" },
-      { "id": "d", "text": "0.5 times" }
-    ],
-    "correct": "d",
-    "explanation": "CD,i = CL²/(πeA) ∝ 1/A → 5/10 = 0.5. For equal area, doubling A means span ×√2.",
-    "tags": ["induced-drag", "aspect-ratio", "proportionality"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0059",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Finite-wing lift",
-    "question": "Far behind an elliptically loaded wing, the downwash angle compared with the induced angle at the wing is:",
-    "options": [
-      {
-        "id": "a",
-        "text": "Zero, because the trailing vortices have dissipated"
-      },
-      { "id": "b", "text": "Half as large" },
-      { "id": "c", "text": "Equal" },
-      {
-        "id": "d",
-        "text": "Twice as large; a tailplane lies in a region between the two values"
-      }
-    ],
-    "correct": "d",
-    "explanation": "The trailing vortex sheet is semi-infinite at the wing (half-contribution) and effectively infinite far downstream, so ε∞ = 2α_i. The downwash at the tailplane lies between these limits and varies with CL, reducing tail angle of attack.",
-    "tags": ["downwash", "tailplane", "induced-angle"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0060",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Aerodynamic centre and centre of pressure",
-    "question": "A section has C_M,ac = −0.06 with the aerodynamic centre at 0.25c, and operates at cl = 0.3. The centre of pressure is at:",
-    "options": [
-      { "id": "a", "text": "0.45c" },
-      { "id": "b", "text": "0.23c" },
-      { "id": "c", "text": "0.05c" },
-      { "id": "d", "text": "0.25c" }
-    ],
-    "correct": "a",
-    "explanation": "x_cp = x_ac − C_M,ac/cl = 0.25 + 0.06/0.3 = 0.45c. With a nose-down C_M,ac the centre of pressure lies aft of the aerodynamic centre.",
-    "tags": ["centre-of-pressure", "aerodynamic-centre", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0061",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Aerodynamic centre and centre of pressure",
-    "question": "For the section with C_M,ac = −0.06 (x_ac = 0.25c), cl increases from 0.3 to 1.2. The centre of pressure:",
-    "options": [
-      { "id": "a", "text": "Moves forward by 0.15c" },
-      { "id": "b", "text": "Moves forward by 0.20c" },
-      { "id": "c", "text": "Moves aft by 0.15c" },
-      { "id": "d", "text": "Does not move" }
-    ],
-    "correct": "a",
-    "explanation": "At cl = 0.3: 0.25 + 0.2 = 0.45c. At cl = 1.2: 0.25 + 0.05 = 0.30c. Forward movement of 0.15c; x_cp approaches x_ac asymptotically as cl rises.",
-    "tags": ["centre-of-pressure", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0062",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Aerodynamic centre and centre of pressure",
-    "question": "As cl of a positively cambered section tends to zero, the centre of pressure:",
-    "options": [
-      { "id": "a", "text": "Coincides with the aerodynamic centre" },
-      { "id": "b", "text": "Moves to mid-chord" },
-      { "id": "c", "text": "Moves to the leading edge" },
-      {
-        "id": "d",
-        "text": "Moves toward infinity aft; the section carries a pure couple"
-      }
-    ],
-    "correct": "d",
-    "explanation": "x_cp = x_ac − C_M,ac/cl. With C_M,ac < 0 and cl → 0⁺, the term grows without bound. At zero lift the upper and lower loads are equal and opposite but separated: a pure nose-down couple with no defined point of action.",
-    "tags": ["centre-of-pressure", "couple", "zero-lift"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0063",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Aerodynamic centre and centre of pressure",
-    "question": "A section has C_M,ac = −0.05 at x_ac = 0.25c and cl = 0.8. The moment coefficient about the leading edge is:",
-    "options": [
-      { "id": "a", "text": "−0.05" },
-      { "id": "b", "text": "−0.25" },
-      { "id": "c", "text": "−0.20" },
-      { "id": "d", "text": "+0.15" }
-    ],
-    "correct": "b",
-    "explanation": "C_M,LE = C_M,ac − cl·x_ac = −0.05 − 0.8 × 0.25 = −0.25. Lift acting aft of the leading edge adds a nose-down contribution.",
-    "tags": ["pitching-moment", "reference-point", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0064",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Aerodynamic centre and centre of pressure",
-    "question": "For the same section (C_M,ac = −0.05, x_ac = 0.25c, cl = 0.8), the moment coefficient about the mid-chord point is:",
-    "options": [
-      { "id": "a", "text": "−0.05" },
-      { "id": "b", "text": "+0.20" },
-      { "id": "c", "text": "−0.25" },
-      { "id": "d", "text": "+0.15" }
-    ],
-    "correct": "d",
-    "explanation": "C_M,x = C_M,ac + cl(x − x_ac) = −0.05 + 0.8 × 0.25 = +0.15. Lift acting ahead of the reference point produces a nose-up contribution.",
-    "tags": ["pitching-moment", "reference-point", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0065",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Aerodynamic centre and centre of pressure",
-    "question": "Moments measured about 0.20c are C_M = −0.06 at cl = 0.2 and C_M = −0.10 at cl = 1.0. The aerodynamic centre and C_M,ac are:",
-    "options": [
-      { "id": "a", "text": "x_ac = 0.20c; C_M,ac = −0.08" },
-      { "id": "b", "text": "x_ac = 0.25c; C_M,ac = −0.05" },
-      { "id": "c", "text": "x_ac = 0.15c; C_M,ac = −0.07" },
-      { "id": "d", "text": "x_ac = 0.25c; C_M,ac = −0.06" }
-    ],
-    "correct": "b",
-    "explanation": "dC_M/dcl about 0.20c = −0.04/0.8 = −0.05 = x − x_ac → x_ac = 0.25c. C_M,ac = C_M − cl(x − x_ac) = −0.06 − 0.2 × (−0.05) = −0.05; at cl = 1.0: −0.10 + 0.05 = −0.05.",
-    "tags": ["aerodynamic-centre", "pitching-moment", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0066",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Aerodynamic centre and centre of pressure",
-    "question": "For a symmetric section below the stall, the centre of pressure:",
-    "options": [
-      {
-        "id": "a",
-        "text": "Remains at the aerodynamic centre at all angles of attack"
-      },
-      { "id": "b", "text": "Moves forward with increasing α" },
-      { "id": "c", "text": "Lies at mid-chord" },
-      { "id": "d", "text": "Moves aft with increasing α" }
-    ],
-    "correct": "a",
-    "explanation": "C_M,ac = 0 → x_cp = x_ac − 0/cl = x_ac, independent of α. Hence symmetric sections are used where zero centre-of-pressure travel is required.",
-    "tags": ["symmetric-section", "centre-of-pressure"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0067",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Aerodynamic centre and centre of pressure",
-    "question": "In supersonic flow, the aerodynamic centre of a thin section lies near:",
-    "options": [
-      { "id": "a", "text": "10 % chord" },
-      { "id": "b", "text": "The trailing edge" },
-      { "id": "c", "text": "25 % chord" },
-      { "id": "d", "text": "50 % chord" }
-    ],
-    "correct": "d",
-    "explanation": "Linearised supersonic theory gives a uniform ΔCp over a flat plate at incidence, so the load centroid is at mid-chord. The aft movement from 25 % through the transonic range increases longitudinal stability and trim demand.",
-    "tags": ["aerodynamic-centre", "supersonic"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0068",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Aerodynamic centre and centre of pressure",
-    "question": "A section of 2 m chord has L′ = 5,000 N/m and a moment about its aerodynamic centre of −1,000 N·m per metre. The centre of pressure is located:",
-    "options": [
-      { "id": "a", "text": "0.10c aft of the aerodynamic centre" },
-      { "id": "b", "text": "0.20c aft of the aerodynamic centre" },
-      { "id": "c", "text": "At the aerodynamic centre" },
-      { "id": "d", "text": "0.10c ahead of the aerodynamic centre" }
-    ],
-    "correct": "a",
-    "explanation": "Distance = −M_ac/L′ = 1,000/5,000 = 0.2 m = 0.10c aft. A negative (nose-down) moment places the centre of pressure aft of the aerodynamic centre.",
-    "tags": ["centre-of-pressure", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0069",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Aerodynamic centre and centre of pressure",
-    "question": "The aerodynamic centre is the preferred reference for section moments because:",
-    "options": [
-      { "id": "a", "text": "It coincides with the centre of gravity" },
-      { "id": "b", "text": "The moment about it is always zero" },
-      {
-        "id": "c",
-        "text": "The moment about it is independent of angle of attack below the stall"
-      },
-      { "id": "d", "text": "Lift acts through it at all angles of attack" }
-    ],
-    "correct": "c",
-    "explanation": "Differentiating C_M,x = C_M,ac + cl(x − x_ac) with respect to cl gives zero only at x = x_ac. Aerodynamics about the aerodynamic centre reduce to lift plus a constant couple, which simplifies stability analysis; the centre of pressure moves, the aerodynamic centre does not.",
-    "tags": ["aerodynamic-centre", "pitching-moment"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0070",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Camber",
-    "question": "A reflexed trailing edge (upturned camber line aft) produces:",
-    "options": [
-      { "id": "a", "text": "A strongly nose-down C_M,ac and higher clmax" },
-      { "id": "b", "text": "No change in pitching moment" },
-      {
-        "id": "c",
-        "text": "C_M,ac near zero or positive, at the cost of lower clmax"
-      },
-      { "id": "d", "text": "A positive zero-lift angle and higher clmax" }
-    ],
-    "correct": "c",
-    "explanation": "Reflex creates a local down-load at the trailing edge, cancelling the nose-down moment of forward camber. Tailless aircraft use it for self-trim; the smaller effective camber lowers clmax.",
-    "tags": ["reflex", "pitching-moment", "tailless"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0071",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Camber",
-    "question": "Increasing camber at constant thickness changes α₀, C_M,ac and clmax as follows:",
-    "options": [
-      { "id": "a", "text": "α₀ more negative, C_M,ac unchanged, clmax lower" },
-      {
-        "id": "b",
-        "text": "α₀ more positive, C_M,ac more positive, clmax higher"
-      },
-      {
-        "id": "c",
-        "text": "α₀ more negative, C_M,ac more negative, clmax higher"
-      },
-      { "id": "d", "text": "α₀ unchanged, C_M,ac more negative, clmax lower" }
-    ],
-    "correct": "c",
-    "explanation": "Thin-aerofoil theory: both α₀ and C_M,ac are linear in camber and negative for positive camber. clmax rises until the steeper aft pressure recovery triggers trailing-edge separation.",
-    "tags": ["camber", "zero-lift-angle", "pitching-moment"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0072",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Camber",
-    "question": "A section with negative camber (camber line below the chord) has:",
-    "options": [
-      { "id": "a", "text": "A positive zero-lift angle and zero moment" },
-      { "id": "b", "text": "A zero-lift angle of zero and a nose-down C_M,ac" },
-      { "id": "c", "text": "A positive zero-lift angle and a nose-up C_M,ac" },
-      { "id": "d", "text": "A negative zero-lift angle and a nose-down C_M,ac" }
-    ],
-    "correct": "c",
-    "explanation": "Reversing the camber reverses the signs: α₀ > 0 and C_M,ac > 0. Such a section produces its best cl in the negative direction.",
-    "tags": ["negative-camber", "zero-lift-angle"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0073",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Camber",
-    "question": "Horizontal tail surfaces commonly use symmetric or negatively cambered sections because:",
-    "options": [
-      {
-        "id": "a",
-        "text": "They must generate lift in both directions and often carry a trim download"
-      },
-      {
-        "id": "b",
-        "text": "Positive camber would increase their Reynolds number"
-      },
-      {
-        "id": "c",
-        "text": "Symmetric sections have a higher lift-curve slope"
-      },
-      { "id": "d", "text": "Tailplanes operate at zero lift at all times" }
-    ],
-    "correct": "a",
-    "explanation": "In a conventional trimmed configuration the tail load is usually downward and changes sign with CG position, configuration and manoeuvre. A symmetric section gives equal capability either way; negative camber optimises for download.",
-    "tags": ["tailplane", "negative-camber", "symmetric-section"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0074",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Aerodynamic centre and centre of pressure",
-    "question": "EAS is doubled at constant C_M,ac. The pitching moment about the aerodynamic centre changes by the factor:",
-    "options": [
-      { "id": "a", "text": "8" },
-      { "id": "b", "text": "2" },
-      { "id": "c", "text": "4" },
-      { "id": "d", "text": "1" }
-    ],
-    "correct": "c",
-    "explanation": "M_ac = C_M,ac·q·S·c with q ∝ V_E² → ×4. At high speed the nose-down couple grows with q even though lift is held constant by lower α; the elevator/stabiliser trim load grows correspondingly.",
-    "tags": ["pitching-moment", "dynamic-pressure", "proportionality"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0075",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Thickness and leading edge",
-    "question": "Section thickness increases from 6 % to 12 % of chord. clmax, profile drag and critical Mach number change as follows:",
-    "options": [
-      {
-        "id": "a",
-        "text": "clmax falls, profile drag falls, critical Mach number rises"
-      },
-      {
-        "id": "b",
-        "text": "clmax rises, profile drag falls, critical Mach number rises"
-      },
-      { "id": "c", "text": "All three are unchanged" },
-      {
-        "id": "d",
-        "text": "clmax rises, profile drag rises, critical Mach number falls"
-      }
-    ],
-    "correct": "d",
-    "explanation": "A thicker section has a larger leading-edge radius, delaying leading-edge separation (higher clmax). Higher super-velocities raise pressure drag and bring local M = 1 at a lower free-stream Mach number.",
-    "tags": ["thickness", "clmax", "critical-mach"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0076",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Thickness and leading edge",
-    "question": "For conventional low-speed sections, clmax as a function of thickness ratio:",
-    "options": [
-      { "id": "a", "text": "Falls continuously with thickness" },
-      {
-        "id": "b",
-        "text": "Peaks near 12–15 % and falls for thicker or thinner sections"
-      },
-      { "id": "c", "text": "Rises continuously with thickness" },
-      { "id": "d", "text": "Is independent of thickness" }
-    ],
-    "correct": "b",
-    "explanation": "Thin sections stall by leading-edge separation (small r_LE); very thick sections stall by trailing-edge separation from steep aft recovery. The maximum lies between these regimes.",
-    "tags": ["thickness", "clmax"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0077",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Thickness and leading edge",
-    "question": "Reducing the leading-edge radius at constant thickness ratio results in:",
-    "options": [
-      { "id": "a", "text": "A flatter suction peak and a gentler stall" },
-      { "id": "b", "text": "No change in stall behaviour" },
-      {
-        "id": "c",
-        "text": "A sharper suction peak and earlier, more abrupt leading-edge separation"
-      },
-      { "id": "d", "text": "Higher clmax and a more gradual stall" }
-    ],
-    "correct": "c",
-    "explanation": "Flow turning round a small radius requires high local velocity: steep suction peak followed by a severe adverse gradient. Separation starts at the leading edge at lower α and spreads rapidly — a sudden lift loss.",
-    "tags": ["leading-edge-radius", "stall-type"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0078",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Thickness and leading edge",
-    "question": "The profile-drag component that grows with thickness ratio at constant Reynolds number is predominantly:",
-    "options": [
-      { "id": "a", "text": "Wave drag at low subsonic speed" },
-      { "id": "b", "text": "Interference drag" },
-      { "id": "c", "text": "Induced drag" },
-      { "id": "d", "text": "Pressure (form) drag" }
-    ],
-    "correct": "d",
-    "explanation": "Profile drag = skin friction + form drag. Thickness increases super-velocities and the aft pressure recovery, thickening the boundary layer and leaving an unrecovered pressure deficit at the trailing edge.",
-    "tags": ["form-drag", "thickness"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0079",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Thickness and leading edge",
-    "question": "Sections with maximum thickness far aft (laminar-flow sections) typically show:",
-    "options": [
-      { "id": "a", "text": "Lower drag at all cl and a gentle stall" },
-      { "id": "b", "text": "Higher clmax than conventional sections" },
-      {
-        "id": "c",
-        "text": "A low-drag bucket in a narrow cl range and a sharp stall sensitive to contamination"
-      },
-      { "id": "d", "text": "Drag independent of surface condition" }
-    ],
-    "correct": "c",
-    "explanation": "Favourable gradient to ~40–60 % chord sustains laminar flow only near the design cl. Outside the bucket, or with roughness or contamination, transition moves forward and cd rises abruptly. The small leading-edge radius gives an abrupt stall.",
-    "tags": ["laminar-flow", "drag-bucket", "stall-type"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0080",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Planform",
-    "question": "A straight-tapered wing has span 30 m, root chord 5 m and taper ratio 0.4. Wing area and aspect ratio are:",
-    "options": [
-      { "id": "a", "text": "S = 75 m²; A = 12.0" },
-      { "id": "b", "text": "S = 105 m²; A = 6.0" },
-      { "id": "c", "text": "S = 105 m²; A = 8.6" },
-      { "id": "d", "text": "S = 150 m²; A = 6.0" }
-    ],
-    "correct": "c",
-    "explanation": "c_t = λ·c_r = 2 m. S = b(c_r + c_t)/2 = 30 × 3.5 = 105 m². A = b²/S = 900/105 = 8.57. 150 m² treats the wing as rectangular.",
-    "tags": ["planform", "aspect-ratio", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0081",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Planform",
-    "question": "For the wing with root chord 5 m and taper ratio 0.4, the mean aerodynamic chord is closest to:",
-    "options": [
-      { "id": "a", "text": "3.71 m" },
-      { "id": "b", "text": "4.00 m" },
-      { "id": "c", "text": "3.33 m" },
-      { "id": "d", "text": "3.50 m" }
-    ],
-    "correct": "a",
-    "explanation": "MAC = (2/3)·c_r·(1 + λ + λ²)/(1 + λ) = (2/3) × 5 × 1.56/1.4 = 3.71 m. 3.50 m is the mean geometric chord S/b. MAC is weighted by chord², so it exceeds the geometric mean for a tapered wing.",
-    "tags": ["mean-aerodynamic-chord", "planform", "calculation"],
     "status": "published",
     "version": 1
   },
@@ -975,10 +36,22 @@
     "subtopic": "Spanwise loading and stall progression",
     "question": "On an untwisted rectangular wing, the stall begins:",
     "options": [
-      { "id": "a", "text": "At mid-semi-span" },
-      { "id": "b", "text": "At the tips" },
-      { "id": "c", "text": "At the root" },
-      { "id": "d", "text": "Simultaneously across the span" }
+      {
+        "id": "a",
+        "text": "At mid-semi-span"
+      },
+      {
+        "id": "b",
+        "text": "At the tips"
+      },
+      {
+        "id": "c",
+        "text": "At the root"
+      },
+      {
+        "id": "d",
+        "text": "Simultaneously across the span"
+      }
     ],
     "correct": "c",
     "explanation": "Downwash is strongest near the tips of a rectangular wing, so local α_eff and cl are highest at the root. The root reaches clmax first; separation at the root gives buffet on the tail and preserves aileron effectiveness.",
@@ -997,8 +70,14 @@
         "id": "a",
         "text": "A root-stall tendency, because the root chord is largest"
       },
-      { "id": "b", "text": "No tendency, since taper affects only drag" },
-      { "id": "c", "text": "Uniform spanwise stall" },
+      {
+        "id": "b",
+        "text": "No tendency, since taper affects only drag"
+      },
+      {
+        "id": "c",
+        "text": "Uniform spanwise stall"
+      },
       {
         "id": "d",
         "text": "A tip-stall tendency, because local cl peaks near the tips"
@@ -1011,54 +90,24 @@
     "version": 1
   },
   {
-    "id": "POF-AFOIL-0084",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Spanwise loading and stall progression",
-    "question": "A wing with an elliptical chord distribution and no twist:",
-    "options": [
-      { "id": "a", "text": "Cannot stall" },
-      {
-        "id": "b",
-        "text": "Has uniform local cl and stalls across the whole span at once"
-      },
-      { "id": "c", "text": "Stalls first at the root" },
-      { "id": "d", "text": "Stalls first at the tips" }
-    ],
-    "correct": "b",
-    "explanation": "Elliptical loading gives uniform downwash, so every section operates at the same α_eff and cl. All sections reach clmax together: minimum induced drag, but no warning and no roll control margin at stall.",
-    "tags": ["elliptical-wing", "stall-progression"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0085",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Spanwise loading and stall progression",
-    "question": "Root sections stall at 15° local incidence and the wing has 2.5° of linear geometric washout. When the root reaches 15°, the tip incidence is:",
-    "options": [
-      { "id": "a", "text": "10°, since washout doubles toward the tip" },
-      { "id": "b", "text": "15°, so the whole wing stalls together" },
-      { "id": "c", "text": "12.5°, so the tip remains unstalled" },
-      { "id": "d", "text": "17.5°, so the tip stalls first" }
-    ],
-    "correct": "c",
-    "explanation": "Washout reduces incidence toward the tip: α_tip = α_root − 2.5° = 12.5°, below the section stall angle. The tip retains 2.5° margin, maintaining aileron authority.",
-    "tags": ["washout", "stall-progression", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
     "id": "POF-AFOIL-0086",
     "subjectCode": "POF",
     "topic": "Aerofoils and Lift Theory",
     "subtopic": "Spanwise loading and stall progression",
     "question": "Aerodynamic washout is produced by:",
     "options": [
-      { "id": "a", "text": "Increasing camber toward the tip" },
-      { "id": "b", "text": "Increasing geometric incidence toward the tip" },
-      { "id": "c", "text": "Adding dihedral" },
+      {
+        "id": "a",
+        "text": "Increasing camber toward the tip"
+      },
+      {
+        "id": "b",
+        "text": "Increasing geometric incidence toward the tip"
+      },
+      {
+        "id": "c",
+        "text": "Adding dihedral"
+      },
       {
         "id": "d",
         "text": "Tip sections with less camber (zero-lift angle closer to zero) than root sections"
@@ -1077,89 +126,26 @@
     "subtopic": "Spanwise loading and stall progression",
     "question": "A swept-back wing tends to stall first at the tips because:",
     "options": [
-      { "id": "a", "text": "Sweep reduces local cl at the tips" },
+      {
+        "id": "a",
+        "text": "Sweep reduces local cl at the tips"
+      },
       {
         "id": "b",
         "text": "Spanwise flow thickens the outboard boundary layer and the inboard wing induces upwash on the tips"
       },
-      { "id": "c", "text": "Sweep moves the aerodynamic centre forward" },
-      { "id": "d", "text": "Tips operate at higher Reynolds number" }
+      {
+        "id": "c",
+        "text": "Sweep moves the aerodynamic centre forward"
+      },
+      {
+        "id": "d",
+        "text": "Tips operate at higher Reynolds number"
+      }
     ],
     "correct": "b",
     "explanation": "The spanwise pressure gradient drives low-energy boundary-layer air outboard, thickening it at the tips. The swept geometry loads the outer panels. Tip stall moves the centre of lift forward and produces pitch-up.",
     "tags": ["sweepback", "tip-stall", "spanwise-flow"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0088",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Spanwise loading and stall progression",
-    "question": "An elliptically loaded wing has semi-span 15 m. The spanwise centre of lift on each semi-span lies at:",
-    "options": [
-      { "id": "a", "text": "7.5 m" },
-      { "id": "b", "text": "9.5 m" },
-      { "id": "c", "text": "6.4 m from the root" },
-      { "id": "d", "text": "5.0 m" }
-    ],
-    "correct": "c",
-    "explanation": "The centroid of a quarter ellipse is at 4s/(3π) = 0.424s = 0.424 × 15 = 6.37 m. This spanwise position sets the root bending moment per unit lift.",
-    "tags": ["spanwise-loading", "root-bending", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0089",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Finite-wing lift",
-    "question": "A wing has A = 6, e = 0.9, CL = 0.8 and geometric angle of attack 8°. The effective angle of attack is:",
-    "options": [
-      { "id": "a", "text": "7.95°" },
-      { "id": "b", "text": "5.3°" },
-      { "id": "c", "text": "10.7°" },
-      { "id": "d", "text": "2.7°" }
-    ],
-    "correct": "b",
-    "explanation": "α_i = CL/(πeA) = 0.8/16.96 = 0.0472 rad = 2.70°. α_eff = 8 − 2.7 = 5.3°. 7.95° subtracts the radian value; 2.7° is α_i itself.",
-    "tags": ["induced-angle", "effective-angle", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0090",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Finite-wing lift",
-    "question": "For the wing with A = 6, e = 0.9 and CL = 0.8, the induced-drag coefficient is:",
-    "options": [
-      { "id": "a", "text": "0.038" },
-      { "id": "b", "text": "0.034" },
-      { "id": "c", "text": "0.047" },
-      { "id": "d", "text": "0.128" }
-    ],
-    "correct": "a",
-    "explanation": "CD,i = CL²/(πeA) = 0.64/16.96 = 0.0377. 0.034 omits e; 0.047 uses CL instead of CL².",
-    "tags": ["induced-drag", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0091",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Finite-wing lift",
-    "question": "At constant weight and altitude, the aircraft doubles its airspeed in level flight. The induced angle of attack changes by the factor:",
-    "options": [
-      { "id": "a", "text": "2" },
-      { "id": "b", "text": "½" },
-      { "id": "c", "text": "4" },
-      { "id": "d", "text": "¼" }
-    ],
-    "correct": "d",
-    "explanation": "CL = W/(qS) ∝ 1/V² → ×¼. α_i = CL/(πeA) ∝ CL → ×¼. Induced drag D_i = q·S·CD,i ∝ V²·V⁻⁴ ∝ 1/V² also falls to ¼.",
-    "tags": ["induced-angle", "proportionality"],
     "status": "published",
     "version": 1
   },
@@ -1174,118 +160,22 @@
         "id": "a",
         "text": "Reduced downwash and induced drag, and an increased lift-curve slope"
       },
-      { "id": "b", "text": "Increased downwash and induced drag" },
-      { "id": "c", "text": "Reduced lift and increased induced drag" },
-      { "id": "d", "text": "No change in lift or drag" }
+      {
+        "id": "b",
+        "text": "Increased downwash and induced drag"
+      },
+      {
+        "id": "c",
+        "text": "Reduced lift and increased induced drag"
+      },
+      {
+        "id": "d",
+        "text": "No change in lift or drag"
+      }
     ],
     "correct": "a",
     "explanation": "The ground constrains the vertical velocity of the trailing vortex system (image vortices), reducing downwash. α_eff rises toward α, raising CL for a given α and lowering CD,i. The reduced downwash at the tail also reduces the tail download, producing nose-down pitch.",
     "tags": ["ground-effect", "downwash"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0093",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Reynolds-number effects",
-    "question": "Reynolds number increases tenfold at the same Mach number. Section clmax and minimum cd change as follows:",
-    "options": [
-      { "id": "a", "text": "clmax rises and minimum cd falls" },
-      { "id": "b", "text": "clmax rises and minimum cd rises" },
-      { "id": "c", "text": "clmax falls and minimum cd rises" },
-      { "id": "d", "text": "Both are unchanged" }
-    ],
-    "correct": "a",
-    "explanation": "Higher Re gives a thinner boundary layer with more momentum near the wall, delaying separation (higher clmax). The skin-friction coefficient falls roughly as Re^(−0.2) turbulent or Re^(−0.5) laminar.",
-    "tags": ["reynolds-number", "clmax", "skin-friction"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0094",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Reynolds-number effects",
-    "question": "At low Reynolds number (below ~5 × 10⁵), a section's boundary layer typically:",
-    "options": [
-      {
-        "id": "a",
-        "text": "Separates laminar and may reattach turbulent, forming a laminar separation bubble"
-      },
-      {
-        "id": "b",
-        "text": "Remains fully laminar to the trailing edge at all α"
-      },
-      { "id": "c", "text": "Cannot separate" },
-      { "id": "d", "text": "Becomes turbulent immediately at the leading edge" }
-    ],
-    "correct": "a",
-    "explanation": "A laminar layer cannot sustain the adverse gradient behind the suction peak; it separates, transitions in the free shear layer, and may reattach. The bubble raises drag and can burst at higher α, causing an abrupt stall.",
-    "tags": ["reynolds-number", "separation-bubble"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0095",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Reynolds-number effects",
-    "question": "On a tapered wing the tip chord Reynolds number is 0.4 of the root value. The effect on stall progression is:",
-    "options": [
-      {
-        "id": "a",
-        "text": "Higher local clmax at the tip, delaying tip stall"
-      },
-      { "id": "b", "text": "No effect, because Re affects only drag" },
-      { "id": "c", "text": "Root stall, because the root Re is higher" },
-      {
-        "id": "d",
-        "text": "Lower local clmax at the tip, aggravating tip-stall tendency"
-      }
-    ],
-    "correct": "d",
-    "explanation": "Re ∝ chord. Lower Re lowers the section clmax. Combined with the higher local cl demanded outboard on a tapered wing, the tip reaches its limit first.",
-    "tags": ["reynolds-number", "tip-stall", "taper"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0096",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Thickness and leading edge",
-    "question": "A laminar-flow section operates at a cl outside its low-drag bucket. The profile drag:",
-    "options": [
-      { "id": "a", "text": "Falls, since the section is off-design" },
-      {
-        "id": "b",
-        "text": "Rises sharply, as transition moves forward on one surface"
-      },
-      { "id": "c", "text": "Becomes zero" },
-      { "id": "d", "text": "Is unchanged" }
-    ],
-    "correct": "b",
-    "explanation": "The bucket exists only where the favourable gradient holds on both surfaces. Above the bucket the suction peak forms near the upper leading edge; below it, near the lower. Transition then moves forward on that surface and skin friction jumps.",
-    "tags": ["drag-bucket", "laminar-flow"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-AFOIL-0097",
-    "subjectCode": "POF",
-    "topic": "Aerofoils and Lift Theory",
-    "subtopic": "Finite-wing lift",
-    "question": "A section achieves L/D = 100 at cl = 0.8 (cd = 0.008). A wing using it has A = 8 and e = 0.85 at CL = 0.8. Ignoring other drag, the wing's L/D is closest to:",
-    "options": [
-      { "id": "a", "text": "11" },
-      { "id": "b", "text": "21" },
-      { "id": "c", "text": "100" },
-      { "id": "d", "text": "50" }
-    ],
-    "correct": "b",
-    "explanation": "CD,i = 0.64/(π × 0.85 × 8) = 0.64/21.36 = 0.030. CD = 0.008 + 0.030 = 0.038 → L/D = 0.8/0.038 = 21. Induced drag, not section drag, dominates finite-wing efficiency at this CL.",
-    "tags": ["lift-drag-ratio", "induced-drag", "calculation"],
     "status": "published",
     "version": 1
   }

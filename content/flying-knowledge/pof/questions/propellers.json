@@ -1,150 +1,27 @@
 [
   {
-    "id": "POF-PROP-0041",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Blade geometry and angles",
-    "question": "The blade angle of attack α relates blade angle β and helix angle φ by:",
-    "options": [
-      { "id": "a", "text": "α = φ − β" },
-      { "id": "b", "text": "α = β·φ" },
-      { "id": "c", "text": "α = β + φ" },
-      { "id": "d", "text": "α = β − φ" }
-    ],
-    "correct": "d",
-    "explanation": "β is measured from the plane of rotation to the chord; φ is the angle of the resultant relative flow (from V and ωr) to that plane.",
-    "tags": ["blade-angle", "helix-angle"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0042",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Blade geometry and angles",
-    "question": "The helix angle φ at a blade station is:",
-    "options": [
-      { "id": "a", "text": "arcsin(V/(ω·r))" },
-      { "id": "b", "text": "arctan(V/(ω·r))" },
-      { "id": "c", "text": "V·ω·r" },
-      { "id": "d", "text": "arctan(ω·r/V)" }
-    ],
-    "correct": "b",
-    "explanation": "The relative flow has axial component V and rotational component ωr.",
-    "tags": ["helix-angle"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0043",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Blade geometry and angles",
-    "question": "At 2,400 rpm (ω = 251 rad/s), a station at r = 1 m, V = 60 m/s: the helix angle is about:",
-    "options": [
-      { "id": "a", "text": "25.5°" },
-      { "id": "b", "text": "76.6°" },
-      { "id": "c", "text": "13.4°" },
-      { "id": "d", "text": "6.8°" }
-    ],
-    "correct": "c",
-    "explanation": "φ = arctan(60/251) = 13.4°.",
-    "tags": ["helix-angle", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0044",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Blade geometry and angles",
-    "question": "With blade angle 25° at that station (φ = 13.4°), the blade angle of attack is:",
-    "options": [
-      { "id": "a", "text": "38.4°" },
-      { "id": "b", "text": "25°" },
-      { "id": "c", "text": "11.6°" },
-      { "id": "d", "text": "13.4°" }
-    ],
-    "correct": "c",
-    "explanation": "α = β − φ = 25 − 13.4 = 11.6°.",
-    "tags": ["blade-angle-of-attack", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0045",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Blade geometry and angles",
-    "question": "At the same rpm, V increases from 60 to 120 m/s. At r = 1 m the helix angle becomes about:",
-    "options": [
-      { "id": "a", "text": "6.7°" },
-      { "id": "b", "text": "13.4°" },
-      {
-        "id": "c",
-        "text": "25.5°, so a fixed blade angle's α falls by about 12°"
-      },
-      { "id": "d", "text": "51°" }
-    ],
-    "correct": "c",
-    "explanation": "arctan(120/251) = 25.5°. With β fixed, α = 25 − 25.5 ≈ −0.5°: the blade approaches zero thrust.",
-    "tags": ["helix-angle", "fixed-pitch", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0046",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Blade geometry and angles",
-    "question": "Propeller blades are twisted (blade angle decreasing toward the tip) because:",
-    "options": [
-      { "id": "a", "text": "The root is stronger" },
-      { "id": "b", "text": "The tip must carry more lift" },
-      { "id": "c", "text": "It reduces weight" },
-      {
-        "id": "d",
-        "text": "Rotational speed ωr increases with radius, reducing the helix angle, so less blade angle keeps α roughly constant"
-      }
-    ],
-    "correct": "d",
-    "explanation": "At r = 0.5 m and 1 m (V 60 m/s, ω 251) φ is 25.5° and 13.4°; blade angle must fall outboard accordingly.",
-    "tags": ["blade-twist"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0047",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Blade geometry and angles",
-    "question": "When an aircraft is stationary with the engine at high power, the blade angle of attack:",
-    "options": [
-      { "id": "a", "text": "Is zero" },
-      { "id": "b", "text": "Equals the helix angle" },
-      { "id": "c", "text": "Is negative" },
-      {
-        "id": "d",
-        "text": "Equals the blade angle (φ ≈ 0), and may exceed the stalling angle on a coarse blade"
-      }
-    ],
-    "correct": "d",
-    "explanation": "With V = 0, φ = 0 and α = β. Coarse pitch at static conditions can stall the blades, reducing thrust.",
-    "tags": ["static-thrust", "blade-stall"],
-    "status": "published",
-    "version": 1
-  },
-  {
     "id": "POF-PROP-0048",
     "subjectCode": "POF",
     "topic": "Propellers",
     "subtopic": "Blade geometry and angles",
     "question": "For a fixed-pitch propeller at constant rpm, reducing forward speed:",
     "options": [
-      { "id": "a", "text": "Increases the blade angle of attack" },
-      { "id": "b", "text": "Makes it negative" },
-      { "id": "c", "text": "Leaves it unchanged" },
-      { "id": "d", "text": "Decreases the blade angle of attack" }
+      {
+        "id": "a",
+        "text": "Increases the blade angle of attack"
+      },
+      {
+        "id": "b",
+        "text": "Makes it negative"
+      },
+      {
+        "id": "c",
+        "text": "Leaves it unchanged"
+      },
+      {
+        "id": "d",
+        "text": "Decreases the blade angle of attack"
+      }
     ],
     "correct": "a",
     "explanation": "Lower V → smaller φ → larger α = β − φ.",
@@ -163,9 +40,18 @@
         "id": "a",
         "text": "The distance a blade element would advance in one revolution moving along its chord line: 2πr·tan β"
       },
-      { "id": "b", "text": "The blade angle in degrees" },
-      { "id": "c", "text": "The blade chord" },
-      { "id": "d", "text": "The actual advance per revolution" }
+      {
+        "id": "b",
+        "text": "The blade angle in degrees"
+      },
+      {
+        "id": "c",
+        "text": "The blade chord"
+      },
+      {
+        "id": "d",
+        "text": "The actual advance per revolution"
+      }
     ],
     "correct": "a",
     "explanation": "Effective pitch (actual advance, V/n) is less than geometric pitch; the difference is slip.",
@@ -180,9 +66,18 @@
     "subtopic": "Blade geometry and angles",
     "question": "Propeller slip is:",
     "options": [
-      { "id": "a", "text": "Engine rpm minus propeller rpm" },
-      { "id": "b", "text": "Blade angle minus helix angle in metres" },
-      { "id": "c", "text": "Tip speed minus TAS" },
+      {
+        "id": "a",
+        "text": "Engine rpm minus propeller rpm"
+      },
+      {
+        "id": "b",
+        "text": "Blade angle minus helix angle in metres"
+      },
+      {
+        "id": "c",
+        "text": "Tip speed minus TAS"
+      },
       {
         "id": "d",
         "text": "Geometric pitch minus effective pitch (actual advance per revolution)"
@@ -195,124 +90,28 @@
     "version": 1
   },
   {
-    "id": "POF-PROP-0051",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Blade element forces",
-    "question": "A blade element produces lift 500 N and drag 30 N; helix angle 15°. Its thrust component is:",
-    "options": [
-      { "id": "a", "text": "158 N" },
-      { "id": "b", "text": "483 N" },
-      { "id": "c", "text": "475 N" },
-      { "id": "d", "text": "500 N" }
-    ],
-    "correct": "c",
-    "explanation": "T = L·cos φ − D·sin φ = 483.0 − 7.8 = 475 N.",
-    "tags": ["blade-element", "thrust", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0052",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Blade element forces",
-    "question": "For the same element (L 500 N, D 30 N, φ 15°), the force opposing rotation (torque force) is:",
-    "options": [
-      { "id": "a", "text": "30 N" },
-      { "id": "b", "text": "129 N" },
-      { "id": "c", "text": "475 N" },
-      { "id": "d", "text": "158 N" }
-    ],
-    "correct": "d",
-    "explanation": "Q_f = L·sin φ + D·cos φ = 129.4 + 29.0 = 158 N. Torque = Q_f × r.",
-    "tags": ["blade-element", "torque", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0053",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Blade element forces",
-    "question": "As the helix angle increases at constant α (higher V/ωr), more of the blade lift appears as:",
-    "options": [
-      { "id": "a", "text": "Torque force rather than thrust" },
-      { "id": "b", "text": "Side force" },
-      { "id": "c", "text": "Neither" },
-      { "id": "d", "text": "Thrust rather than torque" }
-    ],
-    "correct": "a",
-    "explanation": "T ∝ L·cos φ, Q ∝ L·sin φ.",
-    "tags": ["blade-element", "helix-angle"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0054",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Blade element forces",
-    "question": "Centrifugal twisting moment on a blade tends to:",
-    "options": [
-      { "id": "a", "text": "Turn the blade toward fine pitch" },
-      { "id": "b", "text": "Bend the blade forward" },
-      { "id": "c", "text": "Turn the blade toward coarse pitch" },
-      { "id": "d", "text": "Have no effect" }
-    ],
-    "correct": "a",
-    "explanation": "Mass elements ahead of and behind the pitch axis are pulled into the plane of rotation, reducing blade angle; counterweights or oil pressure oppose it.",
-    "tags": ["centrifugal-twisting-moment"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0055",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Blade element forces",
-    "question": "Aerodynamic twisting moment on a blade (centre of pressure ahead of pitch axis) tends to:",
-    "options": [
-      { "id": "a", "text": "Stop rotation" },
-      { "id": "b", "text": "Bend the blade aft only" },
-      { "id": "c", "text": "Turn the blade toward coarse pitch" },
-      { "id": "d", "text": "Turn the blade toward fine pitch" }
-    ],
-    "correct": "c",
-    "explanation": "Lift acting ahead of the pitch-change axis produces a nose-up moment on the blade; it is usually smaller than the centrifugal moment.",
-    "tags": ["aerodynamic-twisting-moment"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0056",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Blade element forces",
-    "question": "Thrust bending force on a blade:",
-    "options": [
-      { "id": "a", "text": "Bends the tips forward" },
-      { "id": "b", "text": "Twists the blade to fine pitch" },
-      { "id": "c", "text": "Bends the tips aft" },
-      { "id": "d", "text": "Has no structural effect" }
-    ],
-    "correct": "a",
-    "explanation": "Thrust acts forward along the blade; centrifugal force counteracts the bending by tending to straighten the blade in the plane of rotation.",
-    "tags": ["bending", "thrust"],
-    "status": "published",
-    "version": 1
-  },
-  {
     "id": "POF-PROP-0057",
     "subjectCode": "POF",
     "topic": "Propellers",
     "subtopic": "Efficiency and advance ratio",
     "question": "Propeller efficiency η = T·V/P. With T = 3,000 N at 60 m/s and shaft power 225 kW, η is:",
     "options": [
-      { "id": "a", "text": "0.08" },
-      { "id": "b", "text": "0.80" },
-      { "id": "c", "text": "0.60" },
-      { "id": "d", "text": "1.25" }
+      {
+        "id": "a",
+        "text": "0.08"
+      },
+      {
+        "id": "b",
+        "text": "0.80"
+      },
+      {
+        "id": "c",
+        "text": "0.60"
+      },
+      {
+        "id": "d",
+        "text": "1.25"
+      }
     ],
     "correct": "b",
     "explanation": "3,000 × 60 = 180 kW thrust power; 180/225 = 0.80.",
@@ -327,10 +126,22 @@
     "subtopic": "Efficiency and advance ratio",
     "question": "Advance ratio J = V/(n·D). At 60 m/s, 40 rev/s, D = 2 m, J is:",
     "options": [
-      { "id": "a", "text": "1.33" },
-      { "id": "b", "text": "0.38" },
-      { "id": "c", "text": "0.75" },
-      { "id": "d", "text": "4,800" }
+      {
+        "id": "a",
+        "text": "1.33"
+      },
+      {
+        "id": "b",
+        "text": "0.38"
+      },
+      {
+        "id": "c",
+        "text": "0.75"
+      },
+      {
+        "id": "d",
+        "text": "4,800"
+      }
     ],
     "correct": "c",
     "explanation": "60/(40 × 2) = 0.75.",
@@ -345,10 +156,22 @@
     "subtopic": "Efficiency and advance ratio",
     "question": "Efficiency of a fixed-pitch propeller as a function of advance ratio:",
     "options": [
-      { "id": "a", "text": "Peaks at one J and falls on either side" },
-      { "id": "b", "text": "Is maximum at J = 0" },
-      { "id": "c", "text": "Is constant" },
-      { "id": "d", "text": "Rises continuously with J" }
+      {
+        "id": "a",
+        "text": "Peaks at one J and falls on either side"
+      },
+      {
+        "id": "b",
+        "text": "Is maximum at J = 0"
+      },
+      {
+        "id": "c",
+        "text": "Is constant"
+      },
+      {
+        "id": "d",
+        "text": "Rises continuously with J"
+      }
     ],
     "correct": "a",
     "explanation": "At low J the blades work at high α (drag losses); at high J α falls toward zero thrust. Only one J (one speed at a given rpm) is optimum.",
@@ -363,35 +186,26 @@
     "subtopic": "Efficiency and advance ratio",
     "question": "Propeller efficiency at zero forward speed (static) is:",
     "options": [
-      { "id": "a", "text": "About 0.8" },
-      { "id": "b", "text": "Negative" },
-      { "id": "c", "text": "Maximum" },
-      { "id": "d", "text": "Zero, although thrust is at or near its maximum" }
+      {
+        "id": "a",
+        "text": "About 0.8"
+      },
+      {
+        "id": "b",
+        "text": "Negative"
+      },
+      {
+        "id": "c",
+        "text": "Maximum"
+      },
+      {
+        "id": "d",
+        "text": "Zero, although thrust is at or near its maximum"
+      }
     ],
     "correct": "d",
     "explanation": "η = T·V/P = 0 at V = 0: no thrust power is produced, even though thrust is large.",
     "tags": ["static-thrust", "efficiency"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0061",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Efficiency and advance ratio",
-    "question": "The ideal (momentum-theory) efficiency of a propeller increases when:",
-    "options": [
-      { "id": "a", "text": "Thrust increases at fixed disc" },
-      { "id": "b", "text": "Less air is accelerated more" },
-      { "id": "c", "text": "Diameter decreases" },
-      {
-        "id": "d",
-        "text": "More air is accelerated by a smaller velocity increment (larger disc area for the same thrust)"
-      }
-    ],
-    "correct": "d",
-    "explanation": "η_ideal = 2/(1 + V_slipstream/V); a small velocity increase means small kinetic energy waste.",
-    "tags": ["momentum-theory", "efficiency"],
     "status": "published",
     "version": 1
   },
@@ -402,10 +216,22 @@
     "subtopic": "Efficiency and advance ratio",
     "question": "Maximum practical propeller efficiency is typically about:",
     "options": [
-      { "id": "a", "text": "0.50" },
-      { "id": "b", "text": "1.10" },
-      { "id": "c", "text": "0.99" },
-      { "id": "d", "text": "0.80–0.88" }
+      {
+        "id": "a",
+        "text": "0.50"
+      },
+      {
+        "id": "b",
+        "text": "1.10"
+      },
+      {
+        "id": "c",
+        "text": "0.99"
+      },
+      {
+        "id": "d",
+        "text": "0.80–0.88"
+      }
     ],
     "correct": "d",
     "explanation": "Profile drag, tip losses, swirl in the slipstream and, at high speed, compressibility keep η below the ideal value.",
@@ -424,9 +250,18 @@
         "id": "a",
         "text": "Gives better cruise efficiency but lower take-off rpm and static thrust"
       },
-      { "id": "b", "text": "Allows higher rpm at take-off" },
-      { "id": "c", "text": "Gives better take-off performance" },
-      { "id": "d", "text": "Is identical" }
+      {
+        "id": "b",
+        "text": "Allows higher rpm at take-off"
+      },
+      {
+        "id": "c",
+        "text": "Gives better take-off performance"
+      },
+      {
+        "id": "d",
+        "text": "Is identical"
+      }
     ],
     "correct": "a",
     "explanation": "Coarse blades at low V operate at high α (near stall) and absorb power at lower rpm, reducing engine power and thrust.",
@@ -441,13 +276,22 @@
     "subtopic": "Fixed pitch",
     "question": "With a fixed-pitch propeller, increasing airspeed in a dive at constant throttle causes:",
     "options": [
-      { "id": "a", "text": "Thrust to increase" },
+      {
+        "id": "a",
+        "text": "Thrust to increase"
+      },
       {
         "id": "b",
         "text": "Rpm to increase (risk of overspeed), as blade α and torque fall"
       },
-      { "id": "c", "text": "Rpm to remain constant" },
-      { "id": "d", "text": "Rpm to decrease" }
+      {
+        "id": "c",
+        "text": "Rpm to remain constant"
+      },
+      {
+        "id": "d",
+        "text": "Rpm to decrease"
+      }
     ],
     "correct": "b",
     "explanation": "Lower α reduces absorbed torque; the engine accelerates the propeller.",
@@ -462,13 +306,22 @@
     "subtopic": "Fixed pitch",
     "question": "A fine-pitch fixed propeller in cruise:",
     "options": [
-      { "id": "a", "text": "Is ideal for cruise" },
-      { "id": "b", "text": "Operates near stall" },
+      {
+        "id": "a",
+        "text": "Is ideal for cruise"
+      },
+      {
+        "id": "b",
+        "text": "Operates near stall"
+      },
       {
         "id": "c",
         "text": "Operates at low α and high rpm, risking engine overspeed and poor efficiency"
       },
-      { "id": "d", "text": "Produces maximum efficiency" }
+      {
+        "id": "d",
+        "text": "Produces maximum efficiency"
+      }
     ],
     "correct": "c",
     "explanation": "It is optimised for low speed; at high V the helix angle approaches the blade angle.",
@@ -483,13 +336,22 @@
     "subtopic": "Constant speed",
     "question": "A constant-speed propeller maintains rpm by:",
     "options": [
-      { "id": "a", "text": "Varying throttle" },
+      {
+        "id": "a",
+        "text": "Varying throttle"
+      },
       {
         "id": "b",
         "text": "A governor adjusting blade angle to vary absorbed torque"
       },
-      { "id": "c", "text": "Varying mixture" },
-      { "id": "d", "text": "Varying engine timing" }
+      {
+        "id": "c",
+        "text": "Varying mixture"
+      },
+      {
+        "id": "d",
+        "text": "Varying engine timing"
+      }
     ],
     "correct": "b",
     "explanation": "Flyweights sense rpm; oil pressure (or springs/counterweights) change blade angle.",
@@ -508,9 +370,18 @@
         "id": "a",
         "text": "Increase the blade angle (coarser) to keep α and torque roughly constant"
       },
-      { "id": "b", "text": "Hold the blade angle constant" },
-      { "id": "c", "text": "Feather the propeller" },
-      { "id": "d", "text": "Decrease the blade angle" }
+      {
+        "id": "b",
+        "text": "Hold the blade angle constant"
+      },
+      {
+        "id": "c",
+        "text": "Feather the propeller"
+      },
+      {
+        "id": "d",
+        "text": "Decrease the blade angle"
+      }
     ],
     "correct": "a",
     "explanation": "Higher V increases φ; β increases to maintain α = β − φ and absorbed torque.",
@@ -525,13 +396,22 @@
     "subtopic": "Constant speed",
     "question": "With a constant-speed propeller, opening the throttle at constant rpm setting results in:",
     "options": [
-      { "id": "a", "text": "A finer blade angle" },
+      {
+        "id": "a",
+        "text": "A finer blade angle"
+      },
       {
         "id": "b",
         "text": "A coarser blade angle to absorb the extra power at the same rpm"
       },
-      { "id": "c", "text": "Higher rpm" },
-      { "id": "d", "text": "No change in blade angle" }
+      {
+        "id": "c",
+        "text": "Higher rpm"
+      },
+      {
+        "id": "d",
+        "text": "No change in blade angle"
+      }
     ],
     "correct": "b",
     "explanation": "More engine torque would accelerate the propeller; the governor increases β to absorb it.",
@@ -546,13 +426,22 @@
     "subtopic": "Constant speed",
     "question": "In a glide with throttle closed, a constant-speed propeller:",
     "options": [
-      { "id": "a", "text": "Feathers automatically" },
-      { "id": "b", "text": "Goes coarse" },
+      {
+        "id": "a",
+        "text": "Feathers automatically"
+      },
+      {
+        "id": "b",
+        "text": "Goes coarse"
+      },
       {
         "id": "c",
         "text": "Moves to the fine-pitch stop; rpm then falls as power is insufficient"
       },
-      { "id": "d", "text": "Maintains full rpm indefinitely" }
+      {
+        "id": "d",
+        "text": "Maintains full rpm indefinitely"
+      }
     ],
     "correct": "c",
     "explanation": "The governor fines the blades to hold rpm until the fine stop is reached; then rpm decays and the windmilling propeller may produce drag.",
@@ -567,9 +456,18 @@
     "subtopic": "Constant speed",
     "question": "For take-off, a constant-speed propeller is set to:",
     "options": [
-      { "id": "a", "text": "Feathered" },
-      { "id": "b", "text": "Coarse pitch / low rpm" },
-      { "id": "c", "text": "Reverse" },
+      {
+        "id": "a",
+        "text": "Feathered"
+      },
+      {
+        "id": "b",
+        "text": "Coarse pitch / low rpm"
+      },
+      {
+        "id": "c",
+        "text": "Reverse"
+      },
       {
         "id": "d",
         "text": "Fine pitch / maximum rpm, allowing the engine to develop full power at low forward speed"
@@ -588,9 +486,18 @@
     "subtopic": "Constant speed",
     "question": "The advantage of a constant-speed propeller over a fixed-pitch propeller is:",
     "options": [
-      { "id": "a", "text": "Simplicity" },
-      { "id": "b", "text": "Lower weight" },
-      { "id": "c", "text": "No need for a governor" },
+      {
+        "id": "a",
+        "text": "Simplicity"
+      },
+      {
+        "id": "b",
+        "text": "Lower weight"
+      },
+      {
+        "id": "c",
+        "text": "No need for a governor"
+      },
       {
         "id": "d",
         "text": "Near-optimum blade angle of attack (and efficiency) over a wide speed range"
@@ -609,13 +516,22 @@
     "subtopic": "Constant speed",
     "question": "If oil pressure to a single-acting propeller that uses oil to increase pitch fails, the blades typically move:",
     "options": [
-      { "id": "a", "text": "To feather" },
+      {
+        "id": "a",
+        "text": "To feather"
+      },
       {
         "id": "b",
         "text": "Toward fine pitch (high rpm), driven by centrifugal twisting moment and springs"
       },
-      { "id": "c", "text": "Nowhere; the blades lock" },
-      { "id": "d", "text": "Toward coarse pitch (low rpm)" }
+      {
+        "id": "c",
+        "text": "Nowhere; the blades lock"
+      },
+      {
+        "id": "d",
+        "text": "Toward coarse pitch (low rpm)"
+      }
     ],
     "correct": "b",
     "explanation": "With oil only able to coarsen the blades, losing it leaves the fine-pitch forces unopposed. Twin-engine designs reverse the arrangement: oil fines the blades and counterweights/springs drive them coarse or to feather on failure.",
@@ -630,9 +546,18 @@
     "subtopic": "Feathering, windmilling and reverse",
     "question": "A feathered propeller has its blades:",
     "options": [
-      { "id": "a", "text": "At 0° blade angle" },
-      { "id": "b", "text": "At negative angle" },
-      { "id": "c", "text": "At maximum rpm" },
+      {
+        "id": "a",
+        "text": "At 0° blade angle"
+      },
+      {
+        "id": "b",
+        "text": "At negative angle"
+      },
+      {
+        "id": "c",
+        "text": "At maximum rpm"
+      },
       {
         "id": "d",
         "text": "At about 90° to the plane of rotation, edge-on to the airflow, minimising drag and stopping rotation"
@@ -651,9 +576,18 @@
     "subtopic": "Feathering, windmilling and reverse",
     "question": "A windmilling propeller produces:",
     "options": [
-      { "id": "a", "text": "No drag" },
-      { "id": "b", "text": "Positive thrust" },
-      { "id": "c", "text": "Lift" },
+      {
+        "id": "a",
+        "text": "No drag"
+      },
+      {
+        "id": "b",
+        "text": "Positive thrust"
+      },
+      {
+        "id": "c",
+        "text": "Lift"
+      },
       {
         "id": "d",
         "text": "Drag (negative thrust), being driven by the airflow at negative α"
@@ -672,10 +606,22 @@
     "subtopic": "Feathering, windmilling and reverse",
     "question": "Windmilling drag of a fine-pitch propeller compared with a feathered propeller is:",
     "options": [
-      { "id": "a", "text": "Much larger" },
-      { "id": "b", "text": "Equal" },
-      { "id": "c", "text": "Smaller" },
-      { "id": "d", "text": "Zero in both cases" }
+      {
+        "id": "a",
+        "text": "Much larger"
+      },
+      {
+        "id": "b",
+        "text": "Equal"
+      },
+      {
+        "id": "c",
+        "text": "Smaller"
+      },
+      {
+        "id": "d",
+        "text": "Zero in both cases"
+      }
     ],
     "correct": "a",
     "explanation": "The disc of a windmilling fine-pitch propeller behaves like a large drag plate; feathering can reduce the drag several-fold.",
@@ -690,13 +636,22 @@
     "subtopic": "Feathering, windmilling and reverse",
     "question": "Reverse pitch is used:",
     "options": [
-      { "id": "a", "text": "To feather" },
+      {
+        "id": "a",
+        "text": "To feather"
+      },
       {
         "id": "b",
         "text": "On the ground after landing to produce reverse thrust for deceleration"
       },
-      { "id": "c", "text": "In cruise for descent" },
-      { "id": "d", "text": "For take-off" }
+      {
+        "id": "c",
+        "text": "In cruise for descent"
+      },
+      {
+        "id": "d",
+        "text": "For take-off"
+      }
     ],
     "correct": "b",
     "explanation": "A negative blade angle directs the slipstream forward.",
@@ -711,13 +666,22 @@
     "subtopic": "Feathering, windmilling and reverse",
     "question": "The beta range on a turboprop refers to:",
     "options": [
-      { "id": "a", "text": "Feathered state" },
+      {
+        "id": "a",
+        "text": "Feathered state"
+      },
       {
         "id": "b",
         "text": "Direct pilot control of blade angle (ground operations, reverse) rather than governed constant-speed operation"
       },
-      { "id": "c", "text": "Take-off setting" },
-      { "id": "d", "text": "Maximum cruise" }
+      {
+        "id": "c",
+        "text": "Take-off setting"
+      },
+      {
+        "id": "d",
+        "text": "Maximum cruise"
+      }
     ],
     "correct": "b",
     "explanation": "Power lever positions below flight idle select blade angle directly.",
@@ -732,35 +696,26 @@
     "subtopic": "Feathering, windmilling and reverse",
     "question": "Selecting ground fine or reverse in flight is dangerous because:",
     "options": [
-      { "id": "a", "text": "It feathers the propeller" },
-      { "id": "b", "text": "It increases thrust" },
+      {
+        "id": "a",
+        "text": "It feathers the propeller"
+      },
+      {
+        "id": "b",
+        "text": "It increases thrust"
+      },
       {
         "id": "c",
         "text": "The large drag and loss of lift over the wing behind the propeller can cause loss of control"
       },
-      { "id": "d", "text": "It has no effect" }
+      {
+        "id": "d",
+        "text": "It has no effect"
+      }
     ],
     "correct": "c",
     "explanation": "Very low blade angles at flight speeds produce huge drag and disturbed flow; systems lock these ranges out in flight.",
     "tags": ["beta-range", "safety"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0079",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Tip speed and compressibility",
-    "question": "Helical tip speed is √((ω·r)² + V²). At ω·r = 251 m/s and V = 100 m/s, with a = 340 m/s, tip Mach number is about:",
-    "options": [
-      { "id": "a", "text": "1.04" },
-      { "id": "b", "text": "0.79" },
-      { "id": "c", "text": "0.74" },
-      { "id": "d", "text": "0.29" }
-    ],
-    "correct": "b",
-    "explanation": "√(251² + 100²) = 270 m/s; 270/340 = 0.79.",
-    "tags": ["tip-mach", "calculation"],
     "status": "published",
     "version": 1
   },
@@ -771,35 +726,26 @@
     "subtopic": "Tip speed and compressibility",
     "question": "High tip Mach numbers are avoided because:",
     "options": [
-      { "id": "a", "text": "They reduce thrust only at low speed" },
+      {
+        "id": "a",
+        "text": "They reduce thrust only at low speed"
+      },
       {
         "id": "b",
         "text": "Shock formation at the tips reduces efficiency and increases noise"
       },
-      { "id": "c", "text": "They increase efficiency" },
-      { "id": "d", "text": "They reduce noise" }
+      {
+        "id": "c",
+        "text": "They increase efficiency"
+      },
+      {
+        "id": "d",
+        "text": "They reduce noise"
+      }
     ],
     "correct": "b",
     "explanation": "Compressibility losses rise steeply above tip M ≈ 0.85–0.9.",
     "tags": ["tip-mach", "compressibility"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0081",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Tip speed and compressibility",
-    "question": "For a tip Mach limit of 0.85 statically (a = 340 m/s), the maximum rpm for a 2.4 m propeller is about:",
-    "options": [
-      { "id": "a", "text": "4,600 rpm" },
-      { "id": "b", "text": "1,150 rpm" },
-      { "id": "c", "text": "2,300 rpm" },
-      { "id": "d", "text": "2,760 rpm" }
-    ],
-    "correct": "c",
-    "explanation": "n = M·a/(π·D) = 0.85 × 340.3/(π × 2.4) = 38.4 rev/s = 2,300 rpm; a 2.0 m propeller could turn 2,760 rpm.",
-    "tags": ["tip-speed", "calculation"],
     "status": "published",
     "version": 1
   },
@@ -814,9 +760,18 @@
         "id": "a",
         "text": "Turbine shaft speeds would give supersonic propeller tips"
       },
-      { "id": "b", "text": "They increase engine power" },
-      { "id": "c", "text": "They reduce weight" },
-      { "id": "d", "text": "They reduce torque" }
+      {
+        "id": "b",
+        "text": "They increase engine power"
+      },
+      {
+        "id": "c",
+        "text": "They reduce weight"
+      },
+      {
+        "id": "d",
+        "text": "They reduce torque"
+      }
     ],
     "correct": "a",
     "explanation": "Propeller rpm must be limited to keep the helical tip Mach number acceptable.",
@@ -831,10 +786,22 @@
     "subtopic": "Tip speed and compressibility",
     "question": "Propeller efficiency falls at high cruise speeds mainly because:",
     "options": [
-      { "id": "a", "text": "Air density increases" },
-      { "id": "b", "text": "Helical tip Mach number rises toward sonic" },
-      { "id": "c", "text": "Thrust rises" },
-      { "id": "d", "text": "Blade angle becomes too fine" }
+      {
+        "id": "a",
+        "text": "Air density increases"
+      },
+      {
+        "id": "b",
+        "text": "Helical tip Mach number rises toward sonic"
+      },
+      {
+        "id": "c",
+        "text": "Thrust rises"
+      },
+      {
+        "id": "d",
+        "text": "Blade angle becomes too fine"
+      }
     ],
     "correct": "b",
     "explanation": "This limits conventional propeller aircraft to about M 0.6–0.7.",
@@ -849,10 +816,22 @@
     "subtopic": "Propeller moments",
     "question": "A propeller rotating clockwise when viewed from behind produces a torque reaction that:",
     "options": [
-      { "id": "a", "text": "Rolls the aircraft to the left (anticlockwise)" },
-      { "id": "b", "text": "Yaws it right" },
-      { "id": "c", "text": "Pitches it up" },
-      { "id": "d", "text": "Rolls it to the right" }
+      {
+        "id": "a",
+        "text": "Rolls the aircraft to the left (anticlockwise)"
+      },
+      {
+        "id": "b",
+        "text": "Yaws it right"
+      },
+      {
+        "id": "c",
+        "text": "Pitches it up"
+      },
+      {
+        "id": "d",
+        "text": "Rolls it to the right"
+      }
     ],
     "correct": "a",
     "explanation": "Newton's third law: the airframe reacts opposite to propeller rotation.",
@@ -871,9 +850,18 @@
         "id": "a",
         "text": "It loads the left main wheel more, increasing its rolling friction"
       },
-      { "id": "b", "text": "The fin is forced right" },
-      { "id": "c", "text": "Gyroscopic precession" },
-      { "id": "d", "text": "Thrust is asymmetric" }
+      {
+        "id": "b",
+        "text": "The fin is forced right"
+      },
+      {
+        "id": "c",
+        "text": "Gyroscopic precession"
+      },
+      {
+        "id": "d",
+        "text": "Thrust is asymmetric"
+      }
     ],
     "correct": "a",
     "explanation": "Rolling moment transfers weight to the left wheel; increased drag on that side yaws the nose left.",
@@ -892,9 +880,18 @@
         "id": "a",
         "text": "On its left side, yawing the aircraft to the left"
       },
-      { "id": "b", "text": "Only in reverse pitch" },
-      { "id": "c", "text": "On its right side, yawing right" },
-      { "id": "d", "text": "Symmetrically" }
+      {
+        "id": "b",
+        "text": "Only in reverse pitch"
+      },
+      {
+        "id": "c",
+        "text": "On its right side, yawing right"
+      },
+      {
+        "id": "d",
+        "text": "Symmetrically"
+      }
     ],
     "correct": "a",
     "explanation": "The slipstream rotates with the propeller and meets the fin from the left below it.",
@@ -913,8 +910,14 @@
         "id": "a",
         "text": "Gives more thrust from the descending (right) blade, yawing left"
       },
-      { "id": "b", "text": "Pitches the nose up only" },
-      { "id": "c", "text": "Produces no yaw" },
+      {
+        "id": "b",
+        "text": "Pitches the nose up only"
+      },
+      {
+        "id": "c",
+        "text": "Produces no yaw"
+      },
       {
         "id": "d",
         "text": "Gives more thrust from the ascending blade, yawing right"
@@ -933,10 +936,22 @@
     "subtopic": "Propeller moments",
     "question": "Gyroscopic precession: a force applied to a spinning propeller disc takes effect:",
     "options": [
-      { "id": "a", "text": "At the point of application" },
-      { "id": "b", "text": "90° against rotation" },
-      { "id": "c", "text": "90° later in the direction of rotation" },
-      { "id": "d", "text": "180° later" }
+      {
+        "id": "a",
+        "text": "At the point of application"
+      },
+      {
+        "id": "b",
+        "text": "90° against rotation"
+      },
+      {
+        "id": "c",
+        "text": "90° later in the direction of rotation"
+      },
+      {
+        "id": "d",
+        "text": "180° later"
+      }
     ],
     "correct": "c",
     "explanation": "The angular momentum vector turns toward the applied torque vector.",
@@ -951,10 +966,22 @@
     "subtopic": "Propeller moments",
     "question": "Raising the tail of a tailwheel aircraft on take-off (clockwise propeller from behind) produces, through precession:",
     "options": [
-      { "id": "a", "text": "A roll to the right" },
-      { "id": "b", "text": "No effect" },
-      { "id": "c", "text": "A yaw to the left" },
-      { "id": "d", "text": "A yaw to the right" }
+      {
+        "id": "a",
+        "text": "A roll to the right"
+      },
+      {
+        "id": "b",
+        "text": "No effect"
+      },
+      {
+        "id": "c",
+        "text": "A yaw to the left"
+      },
+      {
+        "id": "d",
+        "text": "A yaw to the right"
+      }
     ],
     "correct": "c",
     "explanation": "Pitching nose-down tilts the disc; the resulting precession moment yaws the nose left for this rotation direction.",
@@ -969,13 +996,22 @@
     "subtopic": "Propeller moments",
     "question": "Counter-rotating propellers on a twin (opposite rotation on each side) remove:",
     "options": [
-      { "id": "a", "text": "Gyroscopic loads within each propeller" },
+      {
+        "id": "a",
+        "text": "Gyroscopic loads within each propeller"
+      },
       {
         "id": "b",
         "text": "The critical-engine asymmetry and cancel net torque and P-factor effects"
       },
-      { "id": "c", "text": "All drag" },
-      { "id": "d", "text": "The need for rudder" }
+      {
+        "id": "c",
+        "text": "All drag"
+      },
+      {
+        "id": "d",
+        "text": "The need for rudder"
+      }
     ],
     "correct": "b",
     "explanation": "Each side's effects mirror the other; engine failure on either side gives the same yawing moment.",
@@ -990,13 +1026,22 @@
     "subtopic": "Propeller moments",
     "question": "Contra-rotating propellers (two coaxial propellers turning opposite ways) mainly:",
     "options": [
-      { "id": "a", "text": "Remove the need for a gearbox" },
-      { "id": "b", "text": "Increase torque" },
+      {
+        "id": "a",
+        "text": "Remove the need for a gearbox"
+      },
+      {
+        "id": "b",
+        "text": "Increase torque"
+      },
       {
         "id": "c",
         "text": "Recover slipstream swirl energy and cancel torque"
       },
-      { "id": "d", "text": "Reduce thrust" }
+      {
+        "id": "d",
+        "text": "Reduce thrust"
+      }
     ],
     "correct": "c",
     "explanation": "The rear propeller removes the swirl left by the front one, improving efficiency.",
@@ -1011,13 +1056,22 @@
     "subtopic": "Propeller moments",
     "question": "All four propeller effects in a single-engine aircraft with a clockwise propeller (from behind) at high power and low speed tend to:",
     "options": [
-      { "id": "a", "text": "Pitch it down" },
-      { "id": "b", "text": "Yaw it right" },
+      {
+        "id": "a",
+        "text": "Pitch it down"
+      },
+      {
+        "id": "b",
+        "text": "Yaw it right"
+      },
       {
         "id": "c",
         "text": "Yaw the aircraft to the left, requiring right rudder"
       },
-      { "id": "d", "text": "Cancel each other" }
+      {
+        "id": "d",
+        "text": "Cancel each other"
+      }
     ],
     "correct": "c",
     "explanation": "Torque (via wheel friction), slipstream, asymmetric blade effect and, when pitching down, precession all act to the left.",
@@ -1032,10 +1086,22 @@
     "subtopic": "Thrust and power",
     "question": "At constant shaft power 200 kW and η = 0.8, thrust at 50 m/s and 100 m/s is:",
     "options": [
-      { "id": "a", "text": "4,000 N at both" },
-      { "id": "b", "text": "3,200 N at both" },
-      { "id": "c", "text": "1,600 N and 3,200 N" },
-      { "id": "d", "text": "3,200 N and 1,600 N" }
+      {
+        "id": "a",
+        "text": "4,000 N at both"
+      },
+      {
+        "id": "b",
+        "text": "3,200 N at both"
+      },
+      {
+        "id": "c",
+        "text": "1,600 N and 3,200 N"
+      },
+      {
+        "id": "d",
+        "text": "3,200 N and 1,600 N"
+      }
     ],
     "correct": "d",
     "explanation": "T = η·P/V: 160,000/50 = 3,200 N; 160,000/100 = 1,600 N. Propeller thrust falls with speed at constant power.",
@@ -1050,13 +1116,22 @@
     "subtopic": "Thrust and power",
     "question": "Power available from a propeller aircraft is approximately:",
     "options": [
-      { "id": "a", "text": "Zero at cruise" },
+      {
+        "id": "a",
+        "text": "Zero at cruise"
+      },
       {
         "id": "b",
         "text": "Constant with speed (η·P), so thrust available falls with speed"
       },
-      { "id": "c", "text": "Proportional to speed squared" },
-      { "id": "d", "text": "Proportional to speed" }
+      {
+        "id": "c",
+        "text": "Proportional to speed squared"
+      },
+      {
+        "id": "d",
+        "text": "Proportional to speed"
+      }
     ],
     "correct": "b",
     "explanation": "Unlike a jet (roughly constant thrust), a propeller converts roughly constant engine power.",
@@ -1071,13 +1146,22 @@
     "subtopic": "Thrust and power",
     "question": "Best rate of climb for a propeller aircraft occurs near the minimum-power speed because:",
     "options": [
-      { "id": "a", "text": "Drag is minimum there" },
+      {
+        "id": "a",
+        "text": "Drag is minimum there"
+      },
       {
         "id": "b",
         "text": "Power available is roughly constant, so maximum excess power coincides with minimum power required"
       },
-      { "id": "c", "text": "Efficiency is zero there" },
-      { "id": "d", "text": "Thrust is maximum there" }
+      {
+        "id": "c",
+        "text": "Efficiency is zero there"
+      },
+      {
+        "id": "d",
+        "text": "Thrust is maximum there"
+      }
     ],
     "correct": "b",
     "explanation": "ROC = (P_a − P_r)/W; with P_a flat, the maximum is where P_r is least.",
@@ -1092,10 +1176,22 @@
     "subtopic": "Thrust and power",
     "question": "A normally aspirated piston engine's power at altitude falls roughly in proportion to:",
     "options": [
-      { "id": "a", "text": "Pressure squared" },
-      { "id": "b", "text": "Temperature" },
-      { "id": "c", "text": "Air density" },
-      { "id": "d", "text": "Speed" }
+      {
+        "id": "a",
+        "text": "Pressure squared"
+      },
+      {
+        "id": "b",
+        "text": "Temperature"
+      },
+      {
+        "id": "c",
+        "text": "Air density"
+      },
+      {
+        "id": "d",
+        "text": "Speed"
+      }
     ],
     "correct": "c",
     "explanation": "Mass flow of air per cycle falls with ρ; turbocharging restores sea-level manifold pressure to a critical altitude.",
@@ -1110,35 +1206,26 @@
     "subtopic": "Thrust and power",
     "question": "Propeller thrust at low speed is highest with:",
     "options": [
-      { "id": "a", "text": "Fine pitch and maximum rpm" },
-      { "id": "b", "text": "Reverse pitch" },
-      { "id": "c", "text": "Feathered blades" },
-      { "id": "d", "text": "Coarse pitch and low rpm" }
+      {
+        "id": "a",
+        "text": "Fine pitch and maximum rpm"
+      },
+      {
+        "id": "b",
+        "text": "Reverse pitch"
+      },
+      {
+        "id": "c",
+        "text": "Feathered blades"
+      },
+      {
+        "id": "d",
+        "text": "Coarse pitch and low rpm"
+      }
     ],
     "correct": "a",
     "explanation": "Fine blades at low V avoid stall and allow full engine power.",
     "tags": ["static-thrust", "fine-pitch"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0098",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Design parameters",
-    "question": "To absorb more engine power without raising tip speed, a designer can:",
-    "options": [
-      { "id": "a", "text": "Reduce chord" },
-      { "id": "b", "text": "Reduce blade count" },
-      { "id": "c", "text": "Increase diameter only" },
-      {
-        "id": "d",
-        "text": "Increase the number of blades or blade chord (solidity)"
-      }
-    ],
-    "correct": "d",
-    "explanation": "Solidity (total blade area/disc area) sets power absorption at a given rpm and diameter.",
-    "tags": ["solidity", "blade-number"],
     "status": "published",
     "version": 1
   },
@@ -1149,35 +1236,26 @@
     "subtopic": "Design parameters",
     "question": "Increasing propeller diameter at constant power:",
     "options": [
-      { "id": "a", "text": "Has no effect" },
+      {
+        "id": "a",
+        "text": "Has no effect"
+      },
       {
         "id": "b",
         "text": "Improves ideal efficiency but raises tip speed and needs more ground clearance"
       },
-      { "id": "c", "text": "Reduces tip speed" },
-      { "id": "d", "text": "Reduces efficiency" }
+      {
+        "id": "c",
+        "text": "Reduces tip speed"
+      },
+      {
+        "id": "d",
+        "text": "Reduces efficiency"
+      }
     ],
     "correct": "b",
     "explanation": "A larger disc accelerates more air more gently; tip Mach and clearance limit diameter.",
     "tags": ["diameter", "efficiency"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0100",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Design parameters",
-    "question": "Propeller solidity is:",
-    "options": [
-      { "id": "a", "text": "Blade angle divided by helix angle" },
-      { "id": "b", "text": "Total blade area divided by disc area" },
-      { "id": "c", "text": "Rpm times diameter" },
-      { "id": "d", "text": "Blade length divided by chord" }
-    ],
-    "correct": "b",
-    "explanation": "Higher solidity absorbs more power but increases blade interference losses.",
-    "tags": ["solidity"],
     "status": "published",
     "version": 1
   },
@@ -1188,9 +1266,18 @@
     "subtopic": "Design parameters",
     "question": "A propeller slipstream over the wing root and tail affects the aircraft by:",
     "options": [
-      { "id": "a", "text": "Reducing lift" },
-      { "id": "b", "text": "Removing tail authority" },
-      { "id": "c", "text": "Having no effect" },
+      {
+        "id": "a",
+        "text": "Reducing lift"
+      },
+      {
+        "id": "b",
+        "text": "Removing tail authority"
+      },
+      {
+        "id": "c",
+        "text": "Having no effect"
+      },
       {
         "id": "d",
         "text": "Increasing local dynamic pressure, raising lift behind the propeller and tail effectiveness at high power"
@@ -1209,9 +1296,18 @@
     "subtopic": "Design parameters",
     "question": "Propeller-induced stall-speed reduction at high power arises from:",
     "options": [
-      { "id": "a", "text": "Reduced wing area" },
-      { "id": "b", "text": "Increased weight" },
-      { "id": "c", "text": "Lower CLmax" },
+      {
+        "id": "a",
+        "text": "Reduced wing area"
+      },
+      {
+        "id": "b",
+        "text": "Increased weight"
+      },
+      {
+        "id": "c",
+        "text": "Lower CLmax"
+      },
       {
         "id": "d",
         "text": "The thrust component supporting weight and the slipstream raising local q over the wing"
@@ -1230,50 +1326,26 @@
     "subtopic": "Efficiency and advance ratio",
     "question": "For a constant-speed propeller in climb (low V, high power), the blade angle compared with cruise is:",
     "options": [
-      { "id": "a", "text": "Identical" },
-      { "id": "b", "text": "Finer" },
-      { "id": "c", "text": "Coarser" },
-      { "id": "d", "text": "Feathered" }
+      {
+        "id": "a",
+        "text": "Identical"
+      },
+      {
+        "id": "b",
+        "text": "Finer"
+      },
+      {
+        "id": "c",
+        "text": "Coarser"
+      },
+      {
+        "id": "d",
+        "text": "Feathered"
+      }
     ],
     "correct": "b",
     "explanation": "Lower V gives lower φ; the governor reduces β to keep α suitable.",
     "tags": ["climb", "blade-angle"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0104",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Blade geometry and angles",
-    "question": "Blade angle is measured between:",
-    "options": [
-      { "id": "a", "text": "The relative airflow and the plane of rotation" },
-      { "id": "b", "text": "The chord and the relative airflow" },
-      { "id": "c", "text": "The chord and the thrust line" },
-      { "id": "d", "text": "The blade chord line and the plane of rotation" }
-    ],
-    "correct": "d",
-    "explanation": "The chord-to-relative-flow angle is the blade α; the relative-flow-to-plane angle is φ.",
-    "tags": ["blade-angle", "definitions"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0105",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Blade geometry and angles",
-    "question": "The blade station usually quoted as the reference for blade angle is:",
-    "options": [
-      { "id": "a", "text": "About 75 % of the radius" },
-      { "id": "b", "text": "The root" },
-      { "id": "c", "text": "Mid-chord" },
-      { "id": "d", "text": "The tip" }
-    ],
-    "correct": "a",
-    "explanation": "The 0.75R station is representative of the thrust-producing region.",
-    "tags": ["reference-station"],
     "status": "published",
     "version": 1
   },
@@ -1284,10 +1356,22 @@
     "subtopic": "Thrust and power",
     "question": "Thrust horsepower (thrust power) is:",
     "options": [
-      { "id": "a", "text": "Torque × rpm" },
-      { "id": "b", "text": "Shaft power × rpm" },
-      { "id": "c", "text": "Thrust × true airspeed" },
-      { "id": "d", "text": "Thrust × rpm" }
+      {
+        "id": "a",
+        "text": "Torque × rpm"
+      },
+      {
+        "id": "b",
+        "text": "Shaft power × rpm"
+      },
+      {
+        "id": "c",
+        "text": "Thrust × true airspeed"
+      },
+      {
+        "id": "d",
+        "text": "Thrust × rpm"
+      }
     ],
     "correct": "c",
     "explanation": "P_thrust = T·V; efficiency relates it to shaft power.",
@@ -1302,10 +1386,22 @@
     "subtopic": "Constant speed",
     "question": "Governor overspeed protection moves the blades:",
     "options": [
-      { "id": "a", "text": "Coarser, to absorb more torque and reduce rpm" },
-      { "id": "b", "text": "To reverse" },
-      { "id": "c", "text": "To zero" },
-      { "id": "d", "text": "Finer" }
+      {
+        "id": "a",
+        "text": "Coarser, to absorb more torque and reduce rpm"
+      },
+      {
+        "id": "b",
+        "text": "To reverse"
+      },
+      {
+        "id": "c",
+        "text": "To zero"
+      },
+      {
+        "id": "d",
+        "text": "Finer"
+      }
     ],
     "correct": "a",
     "explanation": "Increasing α and torque decelerates the propeller.",
@@ -1320,13 +1416,22 @@
     "subtopic": "Feathering, windmilling and reverse",
     "question": "Auto-feather systems on twin turboprops:",
     "options": [
-      { "id": "a", "text": "Unfeather in cruise" },
-      { "id": "b", "text": "Feather both propellers" },
+      {
+        "id": "a",
+        "text": "Unfeather in cruise"
+      },
+      {
+        "id": "b",
+        "text": "Feather both propellers"
+      },
       {
         "id": "c",
         "text": "Feather the failed engine's propeller automatically when torque drops below a threshold during take-off"
       },
-      { "id": "d", "text": "Reverse the live propeller" }
+      {
+        "id": "d",
+        "text": "Reverse the live propeller"
+      }
     ],
     "correct": "c",
     "explanation": "Rapid feathering removes windmilling drag during the critical take-off phase.",
@@ -1341,9 +1446,18 @@
     "subtopic": "Feathering, windmilling and reverse",
     "question": "Negative torque sensing on a turboprop:",
     "options": [
-      { "id": "a", "text": "Increases fuel flow" },
-      { "id": "b", "text": "Reverses pitch" },
-      { "id": "c", "text": "Opens the throttle" },
+      {
+        "id": "a",
+        "text": "Increases fuel flow"
+      },
+      {
+        "id": "b",
+        "text": "Reverses pitch"
+      },
+      {
+        "id": "c",
+        "text": "Opens the throttle"
+      },
       {
         "id": "d",
         "text": "Drives the blades toward coarse/feather when the propeller starts driving the engine"
@@ -1356,62 +1470,32 @@
     "version": 1
   },
   {
-    "id": "POF-PROP-0110",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Tip speed and compressibility",
-    "question": "At the same rpm and diameter, increasing TAS from 60 to 150 m/s raises the helical tip speed from 258 to:",
-    "options": [
-      { "id": "a", "text": "401 m/s" },
-      { "id": "b", "text": "251 m/s" },
-      { "id": "c", "text": "293 m/s" },
-      { "id": "d", "text": "150 m/s" }
-    ],
-    "correct": "c",
-    "explanation": "√(251² + 150²) = 292.5 m/s (from √(251² + 60²) = 258 m/s).",
-    "tags": ["tip-speed", "calculation"],
-    "status": "published",
-    "version": 1
-  },
-  {
     "id": "POF-PROP-0111",
     "subjectCode": "POF",
     "topic": "Propellers",
     "subtopic": "Propeller moments",
     "question": "Gyroscopic effects are largest when:",
     "options": [
-      { "id": "a", "text": "The propeller is feathered" },
+      {
+        "id": "a",
+        "text": "The propeller is feathered"
+      },
       {
         "id": "b",
         "text": "Pitch or yaw rates are high and propeller rpm and inertia are large"
       },
-      { "id": "c", "text": "The aircraft flies straight" },
-      { "id": "d", "text": "Speed is high but rates zero" }
+      {
+        "id": "c",
+        "text": "The aircraft flies straight"
+      },
+      {
+        "id": "d",
+        "text": "Speed is high but rates zero"
+      }
     ],
     "correct": "b",
     "explanation": "Precession moment = I·ω_prop·Ω (Ω = aircraft rotation rate).",
     "tags": ["gyroscopic-precession"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0112",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Efficiency and advance ratio",
-    "question": "At constant rpm, a fixed-pitch propeller's thrust falls to zero at the forward speed where:",
-    "options": [
-      { "id": "a", "text": "Efficiency is maximum" },
-      { "id": "b", "text": "Tip speed is sonic" },
-      { "id": "c", "text": "V = 0" },
-      {
-        "id": "d",
-        "text": "The helix angle at the reference station equals the zero-lift blade angle"
-      }
-    ],
-    "correct": "d",
-    "explanation": "α (from the blade's zero-lift line) becomes zero; beyond it the propeller windmills.",
-    "tags": ["zero-thrust", "fixed-pitch"],
     "status": "published",
     "version": 1
   },
@@ -1422,9 +1506,18 @@
     "subtopic": "Design parameters",
     "question": "A pusher propeller behind the wing compared with a tractor:",
     "options": [
-      { "id": "a", "text": "Eliminates P-factor" },
-      { "id": "b", "text": "Removes torque reaction" },
-      { "id": "c", "text": "Improves slipstream over the tail" },
+      {
+        "id": "a",
+        "text": "Eliminates P-factor"
+      },
+      {
+        "id": "b",
+        "text": "Removes torque reaction"
+      },
+      {
+        "id": "c",
+        "text": "Improves slipstream over the tail"
+      },
       {
         "id": "d",
         "text": "Works in the disturbed wake of the airframe and gives less slipstream over the wing and tail"
@@ -1433,24 +1526,6 @@
     "correct": "d",
     "explanation": "The inflow is non-uniform; propeller effects on tail authority are smaller.",
     "tags": ["pusher", "tractor"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0114",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Thrust and power",
-    "question": "Doubling TAS at constant shaft power and efficiency changes thrust by:",
-    "options": [
-      { "id": "a", "text": "×½" },
-      { "id": "b", "text": "×2" },
-      { "id": "c", "text": "×1" },
-      { "id": "d", "text": "×¼" }
-    ],
-    "correct": "a",
-    "explanation": "T = η·P/V.",
-    "tags": ["thrust", "proportionality"],
     "status": "published",
     "version": 1
   },
@@ -1465,34 +1540,22 @@
         "id": "a",
         "text": "Increases blade angle and often improves efficiency (lower tip speed)"
       },
-      { "id": "b", "text": "Reduces power" },
-      { "id": "c", "text": "Decreases blade angle" },
-      { "id": "d", "text": "Feathers the propeller" }
+      {
+        "id": "b",
+        "text": "Reduces power"
+      },
+      {
+        "id": "c",
+        "text": "Decreases blade angle"
+      },
+      {
+        "id": "d",
+        "text": "Feathers the propeller"
+      }
     ],
     "correct": "a",
     "explanation": "The governor holds the new rpm with coarser blades; manifold pressure increases to keep power.",
     "tags": ["constant-speed", "rpm"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0116",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Blade geometry and angles",
-    "question": "In a steep descent with a windmilling fine-pitch propeller, the blade angle of attack is:",
-    "options": [
-      {
-        "id": "a",
-        "text": "Negative, as the helix angle exceeds the blade angle"
-      },
-      { "id": "b", "text": "Positive and large" },
-      { "id": "c", "text": "Equal to the blade angle" },
-      { "id": "d", "text": "Zero" }
-    ],
-    "correct": "a",
-    "explanation": "High V at low rpm gives large φ > β.",
-    "tags": ["windmilling", "angle-of-attack"],
     "status": "published",
     "version": 1
   },
@@ -1503,50 +1566,26 @@
     "subtopic": "Propeller moments",
     "question": "A clockwise propeller (from behind) aircraft in a steep climb at low speed needs right rudder mainly because of:",
     "options": [
-      { "id": "a", "text": "Torque via wheels" },
-      { "id": "b", "text": "Weight" },
-      { "id": "c", "text": "Asymmetric blade effect and slipstream" },
-      { "id": "d", "text": "Gyroscopic precession only" }
+      {
+        "id": "a",
+        "text": "Torque via wheels"
+      },
+      {
+        "id": "b",
+        "text": "Weight"
+      },
+      {
+        "id": "c",
+        "text": "Asymmetric blade effect and slipstream"
+      },
+      {
+        "id": "d",
+        "text": "Gyroscopic precession only"
+      }
     ],
     "correct": "c",
     "explanation": "Airborne, wheel friction is absent; high α increases P-factor and high power strengthens the slipstream.",
     "tags": ["p-factor", "slipstream"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0118",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Tip speed and compressibility",
-    "question": "Propeller noise increases sharply when:",
-    "options": [
-      { "id": "a", "text": "The propeller is feathered" },
-      { "id": "b", "text": "Tip speed approaches sonic" },
-      { "id": "c", "text": "Rpm is reduced" },
-      { "id": "d", "text": "Blade count increases at lower rpm" }
-    ],
-    "correct": "b",
-    "explanation": "Compressibility and shock formation at the tips dominate noise.",
-    "tags": ["noise", "tip-speed"],
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "POF-PROP-0119",
-    "subjectCode": "POF",
-    "topic": "Propellers",
-    "subtopic": "Blade element forces",
-    "question": "Along the blade, thrust is produced mostly by:",
-    "options": [
-      { "id": "a", "text": "Equal amounts per unit span" },
-      { "id": "b", "text": "The hub" },
-      { "id": "c", "text": "The outer half, where relative speed is highest" },
-      { "id": "d", "text": "The root" }
-    ],
-    "correct": "c",
-    "explanation": "Lift ∝ (ωr)², so outboard sections dominate; the tip itself loses load to tip vortices.",
-    "tags": ["thrust-distribution"],
     "status": "published",
     "version": 1
   },
@@ -1557,13 +1596,22 @@
     "subtopic": "Thrust and power",
     "question": "A propeller aircraft cruising at the minimum-drag speed achieves:",
     "options": [
-      { "id": "a", "text": "Maximum climb rate" },
+      {
+        "id": "a",
+        "text": "Maximum climb rate"
+      },
       {
         "id": "b",
         "text": "Maximum range (at constant η and specific fuel consumption)"
       },
-      { "id": "c", "text": "Maximum speed" },
-      { "id": "d", "text": "Maximum endurance" }
+      {
+        "id": "c",
+        "text": "Maximum speed"
+      },
+      {
+        "id": "d",
+        "text": "Maximum endurance"
+      }
     ],
     "correct": "b",
     "explanation": "Fuel flow ∝ power = D·V, so distance per unit fuel ∝ 1/D.",
