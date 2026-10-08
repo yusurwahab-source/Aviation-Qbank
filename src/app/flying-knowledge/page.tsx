@@ -1,8 +1,5 @@
 import { getSiteSettings } from "@/db/settings";
-import { envValue } from "@/lib/env";
-import { getCurrentUser } from "@/lib/auth/session";
-import { isOwner } from "@/lib/auth/owner";
-import { isItemHidden, sectionTitle, withItemOverrides, withoutHidden } from "@/lib/settings";
+import { sectionTitle, withItemOverrides, withoutHidden } from "@/lib/settings";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -36,28 +33,9 @@ export const dynamic = "force-dynamic";
  */
 export default async function FlyingKnowledgePickerPage() {
   let subjects: FlyingKnowledgeSubjectSummary[];
-  let owner = false;
-  const hiddenCodes = new Set<string>();
 
   try {
-    // The owner sees subjects the owner has hidden from students, marked as
-    // such, so they can review one before showing it. Students never do.
-    try {
-      const email = (await getCurrentUser())?.email;
-      owner = email ? isOwner(email, envValue("OWNER_EMAIL")) : false;
-    } catch {
-      owner = false;
-    }
-    const settings = await getSiteSettings();
-    const rows = await listFlyingKnowledgeSubjects();
-    for (const row of rows) {
-      if (isItemHidden(settings, "flying-knowledge", row.code)) hiddenCodes.add(row.code);
-    }
-    subjects = withItemOverrides(
-      settings,
-      "flying-knowledge",
-      owner ? rows : withoutHidden(settings, "flying-knowledge", rows),
-    );
+    subjects = withItemOverrides(await getSiteSettings(), "flying-knowledge", withoutHidden(await getSiteSettings(), "flying-knowledge", await listFlyingKnowledgeSubjects()));
   } catch (error) {
     return (
       <>
@@ -84,10 +62,7 @@ export default async function FlyingKnowledgePickerPage() {
         <ul className="grid gap-4 sm:grid-cols-2">
           {subjects.map((subject) => (
             <li key={subject.code}>
-              <SubjectCard
-                subject={subject}
-                hiddenFromStudents={owner && hiddenCodes.has(subject.code)}
-              />
+              <SubjectCard subject={subject} />
             </li>
           ))}
         </ul>
@@ -111,13 +86,7 @@ export default async function FlyingKnowledgePickerPage() {
   );
 }
 
-function SubjectCard({
-  subject,
-  hiddenFromStudents,
-}: {
-  subject: FlyingKnowledgeSubjectSummary;
-  hiddenFromStudents: boolean;
-}) {
+function SubjectCard({ subject }: { subject: FlyingKnowledgeSubjectSummary }) {
   const ready = subject.status === "active" && subject.publishedQuestions > 0;
 
   const body = (
@@ -131,14 +100,11 @@ function SubjectCard({
           </p>
           <h2 className="mt-1 text-lg font-semibold text-foreground">{subject.name}</h2>
         </div>
-        <div className="flex flex-wrap justify-end gap-2">
-          {hiddenFromStudents ? <Badge>Hidden from students</Badge> : null}
-          {!ready ? (
-            <Badge>Coming soon</Badge>
-          ) : (
-            <Badge tone="brand">{subject.publishedQuestions} questions</Badge>
-          )}
-        </div>
+        {!ready ? (
+          <Badge>Coming soon</Badge>
+        ) : (
+          <Badge tone="brand">{subject.publishedQuestions} questions</Badge>
+        )}
       </div>
 
       <p className="mt-3 text-sm text-muted-foreground">{subject.description}</p>
