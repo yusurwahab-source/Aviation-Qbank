@@ -1,0 +1,1043 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Aircraft Electrics — Pilot's Guide</title>
+<meta name="description" content="Aircraft electrical systems explained for pilots: DC and AC principles, batteries, generators, distribution, protection, motors, transformers, semiconductors, logic, bonding and handling electrical failures — with tables, diagrams and quick tools." />
+<style>
+  :root{
+    --bg:#f6f8fb;
+    --surface:#ffffff;
+    --surface-2:#eef2f7;
+    --ink:#101826;
+    --ink-2:#3c4758;
+    --muted:#6b7686;
+    --line:#dfe6ef;
+    --brand:#0d6e7d;
+    --brand-ink:#ffffff;
+    --brand-light:#e3f4f6;
+    --warn-bg:#fdecec;
+    --warn-line:#e0413a;
+    --warn-ink:#7a1712;
+    --caution-bg:#fff6e0;
+    --caution-line:#c9821a;
+    --caution-ink:#6b4405;
+    --note-bg:#eaf1fb;
+    --note-line:#3f6fb0;
+    --note-ink:#1f3c63;
+    --green-arc:#1f9d55;
+    --yellow-arc:#e0b400;
+    --red-arc:#d9362a;
+    --radius:14px;
+    --radius-sm:8px;
+    --shadow:0 1px 2px rgba(16,24,38,.04), 0 6px 20px rgba(16,24,38,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0d1420;
+      --surface:#141d2c;
+      --surface-2:#1b263a;
+      --ink:#eef2f8;
+      --ink-2:#c3cddc;
+      --muted:#8b97ab;
+      --line:#26334a;
+      --brand:#37c3d6;
+      --brand-ink:#06232a;
+      --brand-light:#12323a;
+      --warn-bg:#3a1613;
+      --warn-line:#e4574d;
+      --warn-ink:#ffd6d1;
+      --caution-bg:#3a2c0d;
+      --caution-line:#e0a83a;
+      --caution-ink:#ffe6b0;
+      --note-bg:#122a44;
+      --note-line:#5b93d6;
+      --note-ink:#cfe2fb;
+      --green-arc:#2bb56a;
+      --yellow-arc:#e0b400;
+      --red-arc:#e4574d;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1420; --surface:#141d2c; --surface-2:#1b263a; --ink:#eef2f8; --ink-2:#c3cddc;
+    --muted:#8b97ab; --line:#26334a; --brand:#37c3d6; --brand-ink:#06232a; --brand-light:#12323a;
+    --warn-bg:#3a1613; --warn-line:#e4574d; --warn-ink:#ffd6d1;
+    --caution-bg:#3a2c0d; --caution-line:#e0a83a; --caution-ink:#ffe6b0;
+    --note-bg:#122a44; --note-line:#5b93d6; --note-ink:#cfe2fb;
+    --green-arc:#2bb56a; --yellow-arc:#e0b400; --red-arc:#e4574d;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:clip;scroll-padding-top:80px}
+  body{
+    margin:0;
+    overflow-x:clip;
+    max-width:100vw;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,"Segoe UI",system-ui,Roboto,sans-serif;
+    line-height:1.75;
+    font-size:17px;
+  }
+  a{color:var(--brand)}
+  header.top{
+    position:sticky;top:0;z-index:40;
+    background:linear-gradient(180deg, var(--surface) 85%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    max-width:1180px;margin:0 auto;padding:14px 16px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .brand-mark{display:flex;align-items:center;gap:10px;min-width:0}
+  .brand-mark .plane{
+    width:34px;height:34px;flex:0 0 auto;border-radius:9px;
+    background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+  }
+  .brand-mark .txt{min-width:0}
+  .brand-mark h1{font-size:15px;margin:0;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand-mark .sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .menu-btn{
+    display:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+    border-radius:10px;padding:9px 12px;font-size:14px;cursor:pointer;flex:0 0 auto;
+  }
+  .shell{max-width:1180px;margin:0 auto;display:flex;align-items:flex-start;gap:28px;padding:20px 16px 80px}
+  nav.toc{
+    position:sticky;top:78px;flex:0 0 280px;
+    max-height:calc(100vh - 96px);overflow-y:auto;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;box-shadow:var(--shadow);
+  }
+  nav.toc h2{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:2px 8px 10px}
+  nav.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+  nav.toc li{counter-increment:toc}
+  nav.toc a{
+    display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--ink-2);
+    padding:7px 8px;border-radius:9px;font-size:13.5px;
+  }
+  nav.toc a .n{flex:0 0 auto;color:var(--brand);font-weight:700;font-size:15px;min-width:22px}
+  nav.toc a:hover{background:var(--surface-2);color:var(--ink)}
+  nav.toc a.active{background:var(--brand-light);color:var(--ink);font-weight:600}
+  nav.toc .count{margin-inline-start:auto;font-size:11px;color:var(--muted)}
+  main{flex:1 1 auto;min-width:0}
+  .hero{
+    background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 16%,var(--surface)),var(--surface) 60%);
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 22px;margin-bottom:22px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .hero .cloud{position:absolute;inset-inline-end:-10px;top:-6px;font-size:84px;opacity:.16;pointer-events:none;user-select:none}
+  .hero h1{margin:0 0 8px;font-size:26px}
+  .hero p{margin:0;color:var(--ink-2);font-size:15.5px}
+  .hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hero .tag{
+    font-size:12.5px;background:color-mix(in srgb,var(--brand) 16%,var(--surface));color:var(--brand);
+    border-radius:999px;padding:5px 12px;font-weight:600;
+  }
+  section.sec{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px 26px;margin-bottom:22px;box-shadow:var(--shadow);scroll-margin-top:76px;
+    border-top:5px solid var(--accent, var(--brand));
+  }
+  section.sec > h2{
+    display:flex;align-items:center;gap:12px;font-size:21px;margin:0 0 6px;
+    padding-bottom:14px;border-bottom:1px solid var(--line);
+  }
+  section.sec > h2 .num{
+    flex:0 0 auto;width:40px;height:40px;border-radius:12px;background:var(--accent,var(--brand));color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800;
+  }
+  section.sec > h2 .en{margin-inline-start:auto;font-size:12px;color:var(--ink-2);font-weight:600;
+    direction:ltr;background:color-mix(in srgb,var(--accent,var(--brand)) 14%,var(--surface));padding:4px 10px;border-radius:999px}
+  .lead{color:var(--ink-2);font-size:16px;margin-top:14px}
+  h3.sub{font-size:16.5px;margin:26px 0 8px;color:var(--ink);border-inline-start:4px solid var(--accent,var(--brand));padding-inline-start:10px}
+  p{margin:10px 0}
+  ul, ol{margin:10px 0;padding-inline-start:22px}
+  li{margin:5px 0}
+  strong{color:var(--ink)}
+  .table-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm)}
+  table{border-collapse:collapse;width:100%;min-width:420px;font-size:14.5px}
+  thead th{
+    background:var(--surface-2);color:var(--ink);text-align:start;
+    padding:9px 12px;font-weight:700;white-space:nowrap;font-size:13.5px;
+  }
+  tbody td{padding:8px 12px;border-top:1px solid var(--line);color:var(--ink-2)}
+  tbody tr:nth-child(even){background:color-mix(in srgb, var(--surface-2) 45%, transparent)}
+  td.num, th.num{direction:ltr;text-align:center;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+  .callout{border-radius:var(--radius-sm);padding:12px 14px;margin:14px 0;border-inline-start:4px solid;font-size:14.5px}
+  .callout .label{display:block;font-weight:800;font-size:12px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:4px}
+  .callout.warning{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-ink)}
+  .callout.caution{background:var(--caution-bg);border-color:var(--caution-line);color:var(--caution-ink)}
+  .callout.note{background:var(--note-bg);border-color:var(--note-line);color:var(--note-ink)}
+  .diagram{
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;margin:18px 0;text-align:center;
+    max-width:100%;overflow-x:auto;box-sizing:border-box;
+  }
+  .diagram .cap{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .diagram svg{max-width:100%;height:auto;display:block;margin:0 auto;min-width:420px}
+  footer{max-width:1180px;margin:0 auto;padding:10px 16px 60px;color:var(--muted);font-size:13px;text-align:center}
+  #top-btn{
+    position:fixed;inset-inline-end:18px;bottom:18px;z-index:50;
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+    background:var(--accent,var(--brand));color:#fff;font-size:18px;cursor:pointer;
+    box-shadow:var(--shadow);display:none;align-items:center;justify-content:center;
+  }
+  #top-btn.show{display:flex}
+  .glance{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+  .glance span{font-size:13px;background:color-mix(in srgb,var(--accent,var(--brand)) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--accent,var(--brand)) 35%,var(--line));border-radius:999px;padding:4px 12px;color:var(--ink-2)}
+  .keyidea{margin:16px 0;padding:14px 16px;border-radius:var(--radius);background:linear-gradient(135deg,color-mix(in srgb,var(--accent,var(--brand)) 16%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--accent,var(--brand)) 40%,var(--line))}
+  .keyidea .label{display:block;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent,var(--brand));margin-bottom:4px}
+  .keyidea p{margin:4px 0}
+  .tip,.memory{margin:14px 0;padding:12px 14px;border-radius:var(--radius-sm);font-size:14.5px;border-inline-start:4px solid}
+  .tip{background:color-mix(in srgb,var(--green-arc) 12%,var(--surface));border-color:var(--green-arc);color:var(--ink)}
+  .memory{background:color-mix(in srgb,#8b5cf6 12%,var(--surface));border-color:#8b5cf6;color:var(--ink)}
+  .tip .label,.memory .label{display:block;font-weight:800;font-size:12px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+  .tip .label{color:var(--green-arc)} .memory .label{color:#8b5cf6}
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
+  .fcard{background:var(--surface-2);border:1px solid var(--line);border-top:3px solid var(--accent,var(--brand));border-radius:var(--radius-sm);padding:12px 14px}
+  .fcard .f{font-weight:700;color:var(--ink);font-size:15px}
+  .fcard .d{font-size:13.5px;color:var(--ink-2);margin-top:4px}
+  details.example{margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface);overflow:hidden}
+  details.example summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:14.5px;background:color-mix(in srgb,var(--accent,var(--brand)) 10%,var(--surface-2));list-style:none}
+  details.example summary::-webkit-details-marker{display:none}
+  details.example summary::before{content:"▸ ";color:var(--accent,var(--brand))}
+  details.example[open] summary::before{content:"▾ "}
+  details.example .body{padding:6px 16px 14px}
+  .steps{counter-reset:st;list-style:none;padding:0;margin:12px 0}
+  .steps li{counter-increment:st;position:relative;padding-inline-start:40px;margin:10px 0;min-height:28px}
+  .steps li::before{content:counter(st);position:absolute;inset-inline-start:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--accent,var(--brand));color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:14px 0}
+  .compare .card{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px}
+  .compare .card h4{margin:0 0 6px;font-size:15px}
+  .compare .card.good{border-top:3px solid var(--green-arc)} .compare .card.bad{border-top:3px solid var(--red-arc)} .compare .card.mid{border-top:3px solid var(--yellow-arc)} .compare .card.acc{border-top:3px solid var(--accent,var(--brand))}
+  .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .tool{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+  .tool h3{margin:0 0 8px;font-size:15.5px}
+  .tool label{display:block;font-size:12.5px;color:var(--muted);margin-top:8px}
+  .tool input, .tool select{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:16px}
+  .tool .out{margin-top:10px;padding:10px;border-radius:8px;background:color-mix(in srgb,var(--brand) 12%,var(--surface));font-size:14px}
+  .tool .out b{color:var(--brand)}
+  .cheat table{min-width:340px}
+  @media (max-width:880px){
+    .shell{flex-direction:column;padding:14px 12px 70px}
+    main{width:100%;min-width:0}
+    nav.toc{
+      position:fixed;inset:0 0 0 auto;top:0;width:82%;max-width:340px;height:100dvh;max-height:100dvh;
+      transform:translateX(100%);transition:transform .25s ease;border-radius:0;z-index:60;
+    }
+    nav.toc.open{transform:translateX(0)}
+    .toc-scrim{position:fixed;inset:0;background:rgba(6,10,18,.5);z-index:55;display:none}
+    .toc-scrim.show{display:block}
+    .menu-btn{display:inline-flex;align-items:center;gap:6px}
+    section.sec > h2{font-size:18.5px}
+    .hero h1{font-size:22px}
+    body{font-size:16px}
+  }
+  .toc-close{display:none}
+  @media (max-width:880px){
+    .toc-close{
+      display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+      padding-bottom:10px;border-bottom:1px solid var(--line);
+    }
+    .toc-close button{border:none;background:var(--surface-2);border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer;color:var(--ink)}
+  }
+  @media (max-width:520px){.fgrid,.compare{grid-template-columns:1fr}}
+  .fgrid > *,.compare > *,.tools > *{min-width:0}
+
+  .sec .diagram svg text{fill:var(--ink);font:600 12px -apple-system,"Segoe UI",system-ui,sans-serif}
+  .sec .diagram svg text.m{fill:var(--muted);font-weight:500;font-size:11px}
+  .sec .diagram svg .ax{stroke:var(--ink-2);stroke-width:1.5}
+  .sec .diagram svg .grid{stroke:var(--line);stroke-width:1}
+  .sec .diagram svg .curve{stroke:var(--accent,var(--brand));stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sec .diagram svg .fill{fill:color-mix(in srgb,var(--accent,var(--brand)) 18%,transparent)}
+  .sec .diagram svg .dot{fill:var(--accent,var(--brand))}
+  .sec .diagram svg .gn{stroke:var(--green-arc)} .sec .diagram svg .rd{stroke:var(--red-arc)} .sec .diagram svg .yl{stroke:var(--yellow-arc)}
+
+  section#tools{--accent:#0d6e7d}
+  section#dcb{--accent:#f5b13d}
+  section#sw{--accent:#6ea8ff}
+  section#prot{--accent:#e0575a}
+  section#batt{--accent:#34d9a5}
+  section#mag{--accent:#a08cff}
+  section#dcgen{--accent:#ff9a3d}
+  section#dist{--accent:#38bdf8}
+  section#mot{--accent:#9be04a}
+  section#acp{--accent:#2dd4bf}
+  section#acgen{--accent:#f472b6}
+  section#acsys{--accent:#5aa2f0}
+  section#conv{--accent:#8b84ff}
+  section#semi{--accent:#3ddc84}
+  section#logic{--accent:#a78bfa}
+  section#bond{--accent:#ff6b62}
+  section#mgmt{--accent:#ff8a3d}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) section.sec > h2 .num,
+    :root:not([data-theme="light"]) .steps li::before{color:#06121a}
+  }
+  :root[data-theme="dark"] section.sec > h2 .num,
+  :root[data-theme="dark"] .steps li::before{color:#06121a}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand-mark">
+      <div class="plane">⚡</div>
+      <div class="txt">
+        <h1>Aircraft Electrics — Pilot's Guide</h1>
+        <div class="sub">Aircraft General Knowledge · Flying Knowledge</div>
+      </div>
+    </div>
+    <button class="menu-btn" id="menuBtn">☰ Contents</button>
+  </div>
+</header>
+
+<div class="toc-scrim" id="scrim"></div>
+
+<div class="shell">
+  <nav class="toc" id="toc">
+    <div class="toc-close"><span style="font-size:13px;color:var(--muted);font-weight:700">Contents</span><button id="closeToc">✕</button></div>
+    <h2>Sections</h2>
+    <ol>
+      <li><a href="#tools"><span class="n">🧰</span> Quick tools &amp; cheat sheet</a></li>
+      <li><a href="#dcb"><span class="n">🔋</span> DC Principles <span class="count">26</span></a></li>
+      <li><a href="#sw"><span class="n">🔀</span> Switches, Relays &amp; Solenoids <span class="count">20</span></a></li>
+      <li><a href="#prot"><span class="n">🛡️</span> Circuit Protection &amp; Capacitors <span class="count">24</span></a></li>
+      <li><a href="#batt"><span class="n">🪫</span> Batteries <span class="count">26</span></a></li>
+      <li><a href="#mag"><span class="n">🧲</span> Magnetism &amp; Electromagnetism <span class="count">22</span></a></li>
+      <li><a href="#dcgen"><span class="n">⚙️</span> DC Generators &amp; Alternators <span class="count">24</span></a></li>
+      <li><a href="#dist"><span class="n">🔌</span> DC Distribution &amp; Indication <span class="count">24</span></a></li>
+      <li><a href="#mot"><span class="n">🔄</span> Motors &amp; Actuators <span class="count">24</span></a></li>
+      <li><a href="#acp"><span class="n">〰️</span> AC Principles <span class="count">26</span></a></li>
+      <li><a href="#acgen"><span class="n">🌀</span> AC Generators <span class="count">26</span></a></li>
+      <li><a href="#acsys"><span class="n">🏗️</span> AC Power Systems <span class="count">24</span></a></li>
+      <li><a href="#conv"><span class="n">🔁</span> Transformers, TRUs &amp; Inverters <span class="count">22</span></a></li>
+      <li><a href="#semi"><span class="n">💎</span> Semiconductors <span class="count">22</span></a></li>
+      <li><a href="#logic"><span class="n">🔢</span> Logic Circuits <span class="count">20</span></a></li>
+      <li><a href="#bond"><span class="n">🌩️</span> Bonding, Screening &amp; Static <span class="count">20</span></a></li>
+      <li><a href="#mgmt"><span class="n">🧑‍✈️</span> Electrical System Management <span class="count">20</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <span class="cloud">⚡</span>
+      <h1>⚡ Aircraft Electrics</h1>
+      <p>
+        Where the power comes from, how it reaches every busbar, what protects
+        it, and what you do when part of it fails. Each section starts with the
+        physics in one idea and then shows what it means on the flight deck —
+        so a wrong option can be ruled out by understanding, not memory.
+      </p>
+      <div class="tags">
+        <span class="tag">16 sections</span>
+        <span class="tag">370 linked questions</span>
+        <span class="tag">🧮 Quick tools</span>
+        <span class="tag">📊 Diagrams</span>
+        <span class="tag">Aircraft-independent</span>
+      </div>
+    </div>
+
+    <section class="sec" id="tools">
+      <h2><span class="num">🧰</span> Quick tools &amp; cheat sheet <span class="en">play with the numbers</span></h2>
+      <p class="lead">Four calculators for the sums that come up again and again, and a one-screen reference of the relationships behind them.</p>
+
+      <div class="tools">
+        <div class="tool">
+          <h3>Ω Ohm's law &amp; power</h3>
+          <label>Voltage (V)</label><input type="number" inputmode="decimal" id="oV" value="28">
+          <label>Resistance (Ω)</label><input type="number" inputmode="decimal" id="oR" value="7" min="0">
+          <div class="out" id="oOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🪫 Battery endurance</h3>
+          <label>Capacity (Ah)</label><input type="number" inputmode="decimal" id="bCap" value="40" min="0">
+          <label>State of charge (%)</label><input type="number" inputmode="decimal" id="bSoc" value="100" min="0" max="100">
+          <label>Load (A)</label><input type="number" inputmode="decimal" id="bLoad" value="25" min="0">
+          <div class="out" id="bOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🌀 Generator frequency</h3>
+          <label>Speed (rpm)</label><input type="number" inputmode="decimal" id="gRpm" value="12000" min="0">
+          <label>Number of poles (not pairs)</label><input type="number" inputmode="numeric" id="gPoles" value="4" min="2" step="2">
+          <div class="out" id="gOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🔁 Transformer</h3>
+          <label>Primary voltage (V)</label><input type="number" inputmode="decimal" id="tVp" value="115">
+          <label>Primary turns</label><input type="number" inputmode="numeric" id="tNp" value="1000" min="1">
+          <label>Secondary turns</label><input type="number" inputmode="numeric" id="tNs" value="200" min="1">
+          <div class="out" id="tOut"></div>
+        </div>
+      </div>
+
+      <h3 class="sub">📋 Cheat sheet — relationships worth knowing cold</h3>
+      <div class="table-wrap cheat">
+        <table>
+          <thead><tr><th>Relationship</th><th>What it says</th></tr></thead>
+          <tbody>
+            <tr><td>V = I × R</td><td>Ohm's law — any two give the third</td></tr>
+            <tr><td>P = V × I = I²R = V²/R</td><td>Power, in watts</td></tr>
+            <tr><td>Series R: add · Parallel R: 1/R = Σ 1/Rₙ</td><td>Capacitors combine the other way round</td></tr>
+            <tr><td>Time constant τ = R × C</td><td>63% charged after 1 τ, effectively full after 5 τ</td></tr>
+            <tr><td>Ah ÷ A = hours</td><td>Battery endurance, before allowing for cold and state of charge</td></tr>
+            <tr><td>RMS = 0.707 × peak · peak = 1.414 × RMS</td><td>115 V RMS ≈ 163 V peak</td></tr>
+            <tr><td>Star: V<sub>line</sub> = √3 × V<sub>phase</sub></td><td>115 V phase → 200 V line</td></tr>
+            <tr><td>f = rpm × pole pairs ÷ 60</td><td>4 poles at 12,000 rpm → 400 Hz</td></tr>
+            <tr><td>X<sub>L</sub> = 2πfL ↑ with f · X<sub>C</sub> = 1/2πfC ↓ with f</td><td>ELI the ICE man: current lags in L, leads in C</td></tr>
+            <tr><td>Z = √(R² + X²) · PF = cos φ = W ÷ VA</td><td>Generators are rated in kVA</td></tr>
+            <tr><td>V<sub>s</sub>/V<sub>p</sub> = N<sub>s</sub>/N<sub>p</sub> = I<sub>p</sub>/I<sub>s</sub></td><td>Transformers — AC only</td></tr>
+            <tr><td>Fleming: left hand motor, right hand generator</td><td>First finger Field, seCond Current, thuMb Motion</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tip"><span class="label">✈️ How to use this guide</span> Each section stands alone. Jump to the one behind the question you got wrong rather than reading from start to finish.</div>
+    </section>
+
+    <section class="sec" id="dcb">
+      <h2><span class="num">🔋</span> DC Principles <span class="en">26 questions</span></h2>
+      <p class="lead">Every electrical question rests on three quantities — voltage, current and resistance — and on knowing how they behave in series and in parallel.</p>
+      <div class="glance"><span>🎯 Ohm's law and power</span><span>🎯 Series vs parallel</span><span>🎯 EMF vs terminal voltage</span><span>🎯 Open and short circuits</span></div>
+
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Voltage pushes, resistance resists, current is the result.</strong> Voltage is energy per coulomb (J/C), current is coulombs per second (A), and their product is energy per second — power, in watts.</p></div>
+
+      <div class="diagram">
+        <svg viewBox="0 0 640 200" role="img" aria-label="A series circuit with one current path beside a parallel circuit with independent branches">
+          <rect x="30" y="40" width="250" height="120" rx="10" class="ax" fill="none"/>
+          <rect x="70" y="30" width="50" height="20" rx="4" class="fill"/><text x="95" y="24" text-anchor="middle">R₁</text>
+          <rect x="190" y="30" width="50" height="20" rx="4" class="fill"/><text x="215" y="24" text-anchor="middle">R₂</text>
+          <line x1="30" y1="85" x2="30" y2="115" class="ax" style="stroke-width:6"/>
+          <text x="40" y="104" class="m">+  −</text>
+          <text x="155" y="190" text-anchor="middle">Series: one path, same current</text>
+          <rect x="360" y="40" width="250" height="120" rx="10" class="ax" fill="none"/>
+          <line x1="470" y1="40" x2="470" y2="160" class="ax"/>
+          <line x1="540" y1="40" x2="540" y2="160" class="ax"/>
+          <rect x="460" y="80" width="20" height="40" rx="4" class="fill"/><text x="490" y="104" class="m">R₁</text>
+          <rect x="530" y="80" width="20" height="40" rx="4" class="fill"/><text x="560" y="104" class="m">R₂</text>
+          <line x1="360" y1="85" x2="360" y2="115" class="ax" style="stroke-width:6"/>
+          <text x="485" y="190" text-anchor="middle">Parallel: same voltage, currents add</text>
+        </svg>
+        <div class="cap">In series, one break stops everything and the supply voltage divides. In parallel, each branch sees the full voltage and works on its own.</div>
+      </div>
+
+      <div class="compare">
+        <div class="card acc"><h4>🔗 Series</h4><p>Same current everywhere. R<sub>total</sub> = R₁ + R₂ + … Voltage divides in proportion to resistance. One open circuit stops the lot.</p></div>
+        <div class="card acc"><h4>🪜 Parallel</h4><p>Same voltage across each branch. R<sub>total</sub> is less than the smallest branch. Adding a load lowers total resistance and <em>raises</em> total current.</p></div>
+      </div>
+
+      <h3 class="sub">EMF is not what you measure under load</h3>
+      <p>A battery's EMF is its open-circuit voltage. Under load, part of it is lost driving current through its own internal resistance: <strong>V<sub>terminal</sub> = EMF − I × r</strong>. That is why the bus voltage dips during a start, and why a weak battery can look healthy until it is asked for current.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Fault</th><th>Resistance</th><th>Current</th><th>What you see</th></tr></thead>
+        <tbody>
+          <tr><td>Open circuit</td><td class="num">∞</td><td class="num">0</td><td>Load dead; full supply voltage across the break</td></tr>
+          <tr><td>Short circuit</td><td class="num">≈ 0</td><td class="num">Very high</td><td>Wiring overheats until protection opens it</td></tr>
+        </tbody>
+      </table></div>
+      <div class="memory"><span class="label">🧠 Memory aid</span> Metals get <em>more</em> resistive when hot (positive coefficient); semiconductors and carbon get <em>less</em> (negative coefficient). R = ρL/A: longer is worse, thicker is better.</div>
+    </section>
+
+    <section class="sec" id="sw">
+      <h2><span class="num">🔀</span> Switches, Relays &amp; Solenoids <span class="en">20 questions</span></h2>
+      <p class="lead">A light switch on the flight deck can command hundreds of amps somewhere in the aircraft. The trick is that it never carries them.</p>
+      <div class="glance"><span>🎯 Poles and throws</span><span>🎯 Relay vs solenoid</span><span>🎯 Normally open / closed</span><span>🎯 Arcing on inductive loads</span></div>
+
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Small current controls big current.</strong> The cockpit switch energises a coil; the coil's magnetic pull closes heavy contacts close to the load. Thin wires to the cockpit, short thick cables where the current flows.</p></div>
+
+      <div class="fgrid">
+        <div class="fcard"><div class="f">SPST / SPDT / DPDT</div><div class="d">Poles = separate circuits switched; throws = positions each pole can connect to.</div></div>
+        <div class="fcard"><div class="f">Break-before-make</div><div class="d">Old path opens before the new one closes — two sources are never joined, even for an instant.</div></div>
+        <div class="fcard"><div class="f">Microswitch</div><div class="d">Tiny movement, positive snap action. Position sensing for flaps, doors, gear, throttles.</div></div>
+        <div class="fcard"><div class="f">Proximity switch</div><div class="d">No contacts to wear or ice up; senses a target by its effect on a field.</div></div>
+      </div>
+
+      <div class="compare">
+        <div class="card acc"><h4>🧲 Relay</h4><p>Hinged armature, moderate currents. Can be normally open or closed, latching, polarised or time-delayed.</p></div>
+        <div class="card acc"><h4>🔩 Solenoid (contactor)</h4><p>Soft-iron plunger pulled into the coil — a long, strong stroke for battery, ground power and starter contactors.</p></div>
+      </div>
+      <p>Coil pull depends on <strong>ampere-turns</strong>. A low bus voltage means less current, fewer ampere-turns, and a relay that may not pull in or may chatter. Switching off a coil or a motor makes its collapsing field induce a voltage spike — hence suppression diodes across DC coils and de-rated contacts for inductive loads.</p>
+      <div class="tip"><span class="label">✈️ Pilot tip</span> Switches go in the supply (positive) lead. With the switch off, everything downstream is dead — a chafed wire there cannot short to structure.</div>
+    </section>
+
+    <section class="sec" id="prot">
+      <h2><span class="num">🛡️</span> Circuit Protection &amp; Capacitors <span class="en">24 questions</span></h2>
+      <p class="lead">Protection exists for the wiring. A capacitor is the component that stores charge — and sometimes keeps it after everything is switched off.</p>
+      <div class="glance"><span>🎯 Fuse vs breaker vs limiter</span><span>🎯 Trip-free</span><span>🎯 Reset policy</span><span>🎯 Capacitors in series/parallel</span><span>🎯 Time constant</span></div>
+
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The protection is sized to the cable, not to the load.</strong> Fitting a bigger fuse moves the weak link into the wiring behind the panel — where a fire starts unseen.</p></div>
+
+      <div class="table-wrap"><table>
+        <thead><tr><th>Device</th><th>How it works</th><th>Character</th></tr></thead>
+        <tbody>
+          <tr><td>Fuse</td><td>Low-melting-point element melts</td><td>One-shot; replace with same rating</td></tr>
+          <tr><td>Current limiter</td><td>Heavy copper fuse element</td><td>Rides out brief surges; heavy feeders and bus ties</td></tr>
+          <tr><td>Thermal CB</td><td>Bimetal bends, releases latch</td><td>Trip time depends on size and duration of overload</td></tr>
+          <tr><td>Magnetic CB</td><td>Fault current's own field trips it</td><td>Very fast, independent of ambient temperature</td></tr>
+          <tr><td>Arc-fault CB</td><td>Recognises arcing current signature</td><td>Catches intermittent arcs a bimetal ignores</td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout caution"><span class="label">⚠️ Resetting breakers</span> Trip-free breakers cannot be held in against a fault. In flight, reset once only, after a cooling period, and only if the system is needed — never for fuel-system circuits unless the checklist says so. A collar on a breaker means it was pulled on purpose.</div>
+
+      <h3 class="sub">Capacitors</h3>
+      <div class="diagram">
+        <svg viewBox="0 0 560 210" role="img" aria-label="Capacitor charging curve reaching 63 percent at one time constant">
+          <line class="ax" x1="60" y1="180" x2="530" y2="180"/>
+          <line class="ax" x1="60" y1="180" x2="60" y2="20"/>
+          <line class="grid" x1="60" y1="40" x2="530" y2="40"/>
+          <line class="grid" x1="60" y1="92" x2="530" y2="92" stroke-dasharray="4 4"/>
+          <line class="grid" x1="150" y1="20" x2="150" y2="180" stroke-dasharray="4 4"/>
+          <path class="curve" d="M60 180 C 100 110, 130 95, 150 92 C 220 62, 320 46, 520 41"/>
+          <circle class="dot" cx="150" cy="92" r="5"/>
+          <text x="20" y="44" class="m">100%</text><text x="24" y="96" class="m">63%</text>
+          <text x="150" y="198" text-anchor="middle" class="m">1 τ</text>
+          <text x="510" y="198" text-anchor="middle" class="m">5 τ</text>
+          <text x="300" y="150" text-anchor="middle">Voltage across C, charging through R</text>
+        </svg>
+        <div class="cap">τ = R × C. One time constant gives 63%; five give effectively full charge.</div>
+      </div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">Q = C × V</div><div class="d">Charge stored, in coulombs. Energy = ½CV².</div></div>
+        <div class="fcard"><div class="f">Bigger C</div><div class="d">Larger plates, closer plates, better dielectric.</div></div>
+        <div class="fcard"><div class="f">Combining</div><div class="d">Parallel: add. Series: reciprocals — the opposite of resistors.</div></div>
+        <div class="fcard"><div class="f">DC vs AC</div><div class="d">Blocks steady DC once charged; passes AC more easily as frequency rises.</div></div>
+      </div>
+      <div class="tip"><span class="label">✈️ Pilot tip</span> Electrolytic capacitors are polarised, and large capacitors can hold a dangerous charge long after the power is off.</div>
+    </section>
+
+    <section class="sec" id="batt">
+      <h2><span class="num">🪫</span> Batteries <span class="en">26 questions</span></h2>
+      <p class="lead">The battery starts things and stands by. In normal flight the generators carry the load — the battery's real job begins when they stop.</p>
+      <div class="glance"><span>🎯 Ah and endurance</span><span>🎯 Lead-acid vs NiCd</span><span>🎯 Specific gravity</span><span>🎯 Thermal runaway</span><span>🎯 Hot battery bus</span></div>
+
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Ampere-hours ÷ amps = hours — on a good day.</strong> Cold, a partial charge and heavy current all cut what a battery can really deliver. Plan on less, and shed load early.</p></div>
+
+      <div class="table-wrap"><table>
+        <thead><tr><th></th><th>Lead-acid</th><th>Nickel-cadmium</th></tr></thead>
+        <tbody>
+          <tr><td>Electrolyte</td><td>Dilute sulphuric acid</td><td>Potassium hydroxide (alkali)</td></tr>
+          <tr><td>Cell voltage</td><td class="num">≈ 2.0 V (12 cells = 24 V)</td><td class="num">≈ 1.2 V (19–20 cells = 24 V)</td></tr>
+          <tr><td>State of charge</td><td>Specific gravity falls on discharge — hydrometer works</td><td>SG hardly changes — hydrometer useless</td></tr>
+          <tr><td>Discharge voltage</td><td>Falls steadily</td><td>Flat, then drops suddenly near the end</td></tr>
+          <tr><td>Main hazards</td><td>Hydrogen gassing; freezes when discharged; sulphation</td><td>Thermal runaway; electrolyte level lowest when discharged</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="diagram">
+        <svg viewBox="0 0 560 210" role="img" aria-label="Schematic discharge curves: lead-acid falls steadily, nickel-cadmium stays flat then drops">
+          <line class="ax" x1="60" y1="180" x2="530" y2="180"/>
+          <line class="ax" x1="60" y1="180" x2="60" y2="20"/>
+          <path class="curve" d="M60 50 L 480 150 L 500 175"/>
+          <path class="curve yl" d="M60 60 C 150 75, 380 80, 430 90 C 455 100, 470 140, 480 175" style="stroke:var(--yellow-arc)"/>
+          <text x="300" y="198" text-anchor="middle" class="m">Charge removed →</text>
+          <text x="20" y="110" transform="rotate(-90 20 110)" class="m">Voltage</text>
+          <text x="330" y="70">NiCd — flat</text>
+          <text x="120" y="155">Lead-acid — steady fall</text>
+        </svg>
+        <div class="cap">Schematic shapes, not figures. A NiCd's steady voltage is useful but gives little warning that it is nearly flat.</div>
+      </div>
+
+      <div class="callout warning"><span class="label">🔥 Thermal runaway (NiCd, and lithium)</span> Hot cell → lower internal resistance → more charge current → hotter still. A battery-temperature warning with a high charge rate means take it off charge as the checklist directs.</div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">Series</div><div class="d">Voltages add, capacity stays the same.</div></div>
+        <div class="fcard"><div class="f">Parallel</div><div class="d">Capacity adds, voltage stays the same.</div></div>
+        <div class="fcard"><div class="f">Hot battery bus</div><div class="d">Wired straight to the battery — live with the switch off. Why parked aircraft slowly go flat.</div></div>
+        <div class="fcard"><div class="f">After a start</div><div class="d">High charge current that falls away is normal. One that stays high is not.</div></div>
+      </div>
+      <div class="tip"><span class="label">✈️ Pilot tip</span> Never let lead-acid and NiCd share tools or hydrometers — acid traces destroy alkaline cells.</div>
+    </section>
+    <section class="sec" id="mag">
+      <h2><span class="num">🧲</span> Magnetism &amp; Electromagnetism <span class="en">22 questions</span></h2>
+      <p class="lead">Generators, motors, relays and transformers are all the same two facts put to work: current makes a field, and a changing field makes a voltage.</p>
+      <div class="glance"><span>🎯 Soft iron vs hard steel</span><span>🎯 Fleming's rules</span><span>🎯 Faraday and Lenz</span><span>🎯 Eddy currents and laminations</span></div>
+
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Only change induces.</strong> A steady flux produces nothing; a changing one induces an EMF proportional to its rate of change (Faraday), in the direction that opposes the change (Lenz).</p></div>
+
+      <div class="compare">
+        <div class="card acc"><h4>🧲 Soft iron</h4><p>High permeability, low retentivity: magnetises easily and lets go when the current stops. Relay cores, electromagnets, transformer cores.</p></div>
+        <div class="card acc"><h4>🔒 Hard steel / alloys</h4><p>High retentivity and coercivity: keeps its magnetism. Permanent magnets — including the PMG in a brushless generator.</p></div>
+      </div>
+
+      <div class="table-wrap"><table>
+        <thead><tr><th>Rule</th><th>Used for</th><th>Fingers</th></tr></thead>
+        <tbody>
+          <tr><td>Right-hand grip</td><td>Field around a conductor / polarity of a coil</td><td>Thumb = current (or N pole of coil)</td></tr>
+          <tr><td>Fleming's <strong>left</strong> hand</td><td>Motors — force on a conductor</td><td>First = Field, seCond = Current, thuMb = Motion</td></tr>
+          <tr><td>Fleming's <strong>right</strong> hand</td><td>Generators — induced current</td><td>First = Field, thuMb = Motion, seCond = induced Current</td></tr>
+        </tbody>
+      </table></div>
+      <p>Force on a conductor is <strong>F = BIL</strong>. Induced EMF is greatest when a conductor cuts flux at right angles and zero when it moves along it. Parallel conductors attract when their currents flow the same way.</p>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">Reluctance</div><div class="d">Opposition to flux. Air gaps add a lot of it.</div></div>
+        <div class="fcard"><div class="f">Self-induction</div><div class="d">A coil opposes changes in its own current — slow rise, spike at switch-off.</div></div>
+        <div class="fcard"><div class="f">Mutual induction</div><div class="d">One coil's changing flux induces a voltage in another — the transformer.</div></div>
+        <div class="fcard"><div class="f">Core losses</div><div class="d">Eddy currents (cut by laminating) and hysteresis (cut by soft magnetic material).</div></div>
+      </div>
+      <div class="memory"><span class="label">🧠 Memory aid</span> Left for Lifting (motors push), Right for geneRating. Curie point: heat it enough and the magnet forgets.</div>
+    </section>
+
+    <section class="sec" id="dcgen">
+      <h2><span class="num">⚙️</span> DC Generators &amp; Alternators <span class="en">24 questions</span></h2>
+      <p class="lead">Light aircraft and many turboprops make DC. Engine speed changes all the time; the bus voltage must not.</p>
+      <div class="glance"><span>🎯 Commutator</span><span>🎯 Voltage regulation</span><span>🎯 Reverse current cut-out</span><span>🎯 Alternator needs the battery</span><span>🎯 Load sharing</span></div>
+
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Output depends on speed × field; the regulator only controls the field.</strong> Faster engine → less field current. Slower engine → more field current, until even full field is not enough below cut-in speed.</p></div>
+
+      <ol class="steps">
+        <li><strong>Armature coils</strong> always generate alternating EMF.</li>
+        <li><strong>Commutator and brushes</strong> reverse each coil's connection as its EMF reverses, giving DC at the brushes.</li>
+        <li><strong>Shunt field</strong> (in parallel with the armature) is fed through the <strong>voltage regulator</strong> — carbon pile or electronic.</li>
+        <li><strong>Reverse current cut-out</strong> connects the generator only once its voltage exceeds the bus, and opens if current flows back.</li>
+      </ol>
+
+      <div class="compare">
+        <div class="card acc"><h4>⚙️ DC generator</h4><p>Self-excited from residual magnetism (lost it? flash the field). Needs an RCCO. Little output at idle.</p></div>
+        <div class="card acc"><h4>🔆 Alternator</h4><p>Rotating field via slip rings, stator output rectified by built-in diodes — the diodes block reverse current, so no cut-out. Needs battery voltage to excite: a flat battery means no output.</p></div>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Item</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td>Regulated at ≈ 28 V (14 V)</td><td>Must exceed the 24 V (12 V) battery's EMF to charge it</td></tr>
+          <tr><td>Overvoltage relay</td><td>A failed regulator at full field would drive the bus far too high — trip the field</td></tr>
+          <tr><td>Equalising circuit</td><td>Paralleled DC generators share load by trimming each one's field</td></tr>
+          <tr><td>Armature reaction</td><td>Armature current distorts the field — corrected by interpoles</td></tr>
+          <tr><td>Starter-generator</td><td>One machine: motor for the start, generator once running</td></tr>
+        </tbody>
+      </table></div>
+      <div class="tip"><span class="label">✈️ Pilot tip</span> Very bright lights and a big positive ammeter reading together mean overvoltage — take the alternator off line.</div>
+    </section>
+
+    <section class="sec" id="dist">
+      <h2><span class="num">🔌</span> DC Distribution &amp; Indication <span class="en">24 questions</span></h2>
+      <p class="lead">Busbars decide which loads survive a failure. Meters tell you which source is actually carrying them.</p>
+      <div class="glance"><span>🎯 Earth return vs two-wire</span><span>🎯 Essential and battery buses</span><span>🎯 Ammeter vs loadmeter</span><span>🎯 External power interlocks</span></div>
+
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Group loads by importance, feed the important ones from more than one source.</strong> Then losing a source means shedding the bottom of the list, not the top.</p></div>
+
+      <div class="compare">
+        <div class="card acc"><h4>🛩️ Earth return (single-pole)</h4><p>The metal structure is the return conductor — one wire per load, much less weight. A chafed supply wire touching structure is a short.</p></div>
+        <div class="card acc"><h4>➰ Two-wire (double-pole)</h4><p>Supply and return side by side: their fields cancel near the compass, and composite structures that cannot carry the return need it.</p></div>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Instrument</th><th>Connected</th><th>Resistance</th><th>Reads</th></tr></thead>
+        <tbody>
+          <tr><td>Ammeter</td><td>Series (often via a shunt)</td><td>Very low</td><td>Current</td></tr>
+          <tr><td>Voltmeter</td><td>Parallel</td><td>Very high</td><td>Potential difference</td></tr>
+          <tr><td>Centre-zero ammeter</td><td>Battery line</td><td>—</td><td>Charge (+) or discharge (−)</td></tr>
+          <tr><td>Loadmeter</td><td>Generator output</td><td>—</td><td>Generator current, e.g. 0.75 = 75% of rating</td></tr>
+        </tbody>
+      </table></div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">Blocking diodes</div><div class="d">Let two sources feed one essential bus without feeding each other.</div></div>
+        <div class="fcard"><div class="f">Short control pin</div><div class="d">External power relay makes after, and breaks before, the main pins.</div></div>
+        <div class="fcard"><div class="f">Reverse polarity</div><div class="d">The external power relay will not close on a reversed DC supply.</div></div>
+        <div class="fcard"><div class="f">Avionics master</div><div class="d">Radios off during the start, away from voltage spikes.</div></div>
+      </div>
+      <div class="tip"><span class="label">✈️ Pilot tip</span> A bus voltmeter reading about 24 V in flight on a 28 V system means the battery, not the generator, is carrying the load.</div>
+    </section>
+
+    <section class="sec" id="mot">
+      <h2><span class="num">🔄</span> Motors &amp; Actuators <span class="en">24 questions</span></h2>
+      <p class="lead">A motor is a generator run backwards — and the voltage it generates while spinning is what keeps its current in check.</p>
+      <div class="glance"><span>🎯 Back-EMF</span><span>🎯 Series vs shunt</span><span>🎯 Reversing</span><span>🎯 Induction motor slip</span><span>🎯 Phase loss</span></div>
+
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>I = (V − E<sub>back</sub>) ÷ R.</strong> At standstill there is no back-EMF, so starting current is huge. As the motor speeds up, back-EMF rises and the current falls.</p></div>
+
+      <div class="table-wrap"><table>
+        <thead><tr><th>Motor</th><th>Character</th><th>Typical use</th></tr></thead>
+        <tbody>
+          <tr><td>DC series</td><td>Very high starting torque; runs away unloaded</td><td>Starters, actuators</td></tr>
+          <tr><td>DC shunt</td><td>Near-constant speed</td><td>Fans, pumps</td></tr>
+          <tr><td>DC compound</td><td>Good torque with a safe no-load speed</td><td>General</td></tr>
+          <tr><td>Split-field series</td><td>Two opposite field windings — pick the direction</td><td>Reversible actuators</td></tr>
+          <tr><td>3-phase induction</td><td>Rotating field drags a squirrel-cage rotor; runs with slip</td><td>Fuel, hydraulic pumps, fans</td></tr>
+          <tr><td>Synchronous</td><td>Locked to the field — speed set by frequency</td><td>Where an exact speed is needed</td></tr>
+          <tr><td>Stepper</td><td>One step per pulse</td><td>Positioning</td></tr>
+        </tbody>
+      </table></div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">Reverse a DC motor</div><div class="d">Reverse armature <em>or</em> field current — not both.</div></div>
+        <div class="fcard"><div class="f">Reverse a 3-phase motor</div><div class="d">Swap any two phases.</div></div>
+        <div class="fcard"><div class="f">Synchronous speed</div><div class="d">rpm = 60 × f ÷ pole pairs — 4 poles at 400 Hz = 12,000 rpm.</div></div>
+        <div class="fcard"><div class="f">Lost a phase</div><div class="d">Keeps running hot, will not restart. Thermal cut-outs protect it.</div></div>
+      </div>
+      <p>Actuators stop at <strong>limit switches</strong>, are held by a <strong>spring-applied, solenoid-released brake</strong>, and are protected by a <strong>slipping clutch</strong> if the output jams.</p>
+    </section>
+
+    <section class="sec" id="acp">
+      <h2><span class="num">〰️</span> AC Principles <span class="en">26 questions</span></h2>
+      <p class="lead">Large aircraft run on 115/200 V, 400 Hz, three-phase AC. Once current alternates, inductance and capacitance join resistance in deciding how much flows.</p>
+      <div class="glance"><span>🎯 RMS and peak</span><span>🎯 ELI the ICE man</span><span>🎯 Impedance</span><span>🎯 Power factor and kVA</span><span>🎯 Star and delta</span></div>
+
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>RMS is the DC value with the same heating effect.</strong> Every AC figure on an aircraft is RMS unless stated: 115 V RMS swings to about ±163 V peak.</p></div>
+
+      <div class="diagram">
+        <svg viewBox="0 0 600 220" role="img" aria-label="Sine wave voltage with current lagging by a quarter cycle, peak and RMS levels marked">
+          <line class="ax" x1="40" y1="110" x2="580" y2="110"/>
+          <line class="ax" x1="40" y1="20" x2="40" y2="200"/>
+          <line class="grid" x1="40" y1="30" x2="580" y2="30" stroke-dasharray="4 4"/>
+          <line class="grid" x1="40" y1="53" x2="580" y2="53" stroke-dasharray="2 4"/>
+          <path class="curve" d="M40.0 110.0 L45.0 103.7 L50.0 97.5 L55.0 91.3 L60.0 85.3 L65.0 79.4 L70.0 73.7 L75.0 68.2 L80.0 63.0 L85.0 58.0 L90.0 53.4 L95.0 49.2 L100.0 45.3 L105.0 41.8 L110.0 38.7 L115.0 36.1 L120.0 33.9 L125.0 32.2 L130.0 31.0 L135.0 30.2 L140.0 30.0 L145.0 30.2 L150.0 31.0 L155.0 32.2 L160.0 33.9 L165.0 36.1 L170.0 38.7 L175.0 41.8 L180.0 45.3 L185.0 49.2 L190.0 53.4 L195.0 58.0 L200.0 63.0 L205.0 68.2 L210.0 73.7 L215.0 79.4 L220.0 85.3 L225.0 91.3 L230.0 97.5 L235.0 103.7 L240.0 110.0 L245.0 116.3 L250.0 122.5 L255.0 128.7 L260.0 134.7 L265.0 140.6 L270.0 146.3 L275.0 151.8 L280.0 157.0 L285.0 162.0 L290.0 166.6 L295.0 170.8 L300.0 174.7 L305.0 178.2 L310.0 181.3 L315.0 183.9 L320.0 186.1 L325.0 187.8 L330.0 189.0 L335.0 189.8 L340.0 190.0 L345.0 189.8 L350.0 189.0 L355.0 187.8 L360.0 186.1 L365.0 183.9 L370.0 181.3 L375.0 178.2 L380.0 174.7 L385.0 170.8 L390.0 166.6 L395.0 162.0 L400.0 157.0 L405.0 151.8 L410.0 146.3 L415.0 140.6 L420.0 134.7 L425.0 128.7 L430.0 122.5 L435.0 116.3 L440.0 110.0 L445.0 103.7 L450.0 97.5 L455.0 91.3 L460.0 85.3 L465.0 79.4 L470.0 73.7 L475.0 68.2 L480.0 63.0 L485.0 58.0 L490.0 53.4 L495.0 49.2 L500.0 45.3 L505.0 41.8 L510.0 38.7 L515.0 36.1 L520.0 33.9 L525.0 32.2 L530.0 31.0 L535.0 30.2 L540.0 30.0"/>
+          <path class="curve" style="stroke:var(--yellow-arc);stroke-dasharray:6 5" d="M40.0 190.0 L45.0 189.8 L50.0 189.0 L55.0 187.8 L60.0 186.1 L65.0 183.9 L70.0 181.3 L75.0 178.2 L80.0 174.7 L85.0 170.8 L90.0 166.6 L95.0 162.0 L100.0 157.0 L105.0 151.8 L110.0 146.3 L115.0 140.6 L120.0 134.7 L125.0 128.7 L130.0 122.5 L135.0 116.3 L140.0 110.0 L145.0 103.7 L150.0 97.5 L155.0 91.3 L160.0 85.3 L165.0 79.4 L170.0 73.7 L175.0 68.2 L180.0 63.0 L185.0 58.0 L190.0 53.4 L195.0 49.2 L200.0 45.3 L205.0 41.8 L210.0 38.7 L215.0 36.1 L220.0 33.9 L225.0 32.2 L230.0 31.0 L235.0 30.2 L240.0 30.0 L245.0 30.2 L250.0 31.0 L255.0 32.2 L260.0 33.9 L265.0 36.1 L270.0 38.7 L275.0 41.8 L280.0 45.3 L285.0 49.2 L290.0 53.4 L295.0 58.0 L300.0 63.0 L305.0 68.2 L310.0 73.7 L315.0 79.4 L320.0 85.3 L325.0 91.3 L330.0 97.5 L335.0 103.7 L340.0 110.0 L345.0 116.3 L350.0 122.5 L355.0 128.7 L360.0 134.7 L365.0 140.6 L370.0 146.3 L375.0 151.8 L380.0 157.0 L385.0 162.0 L390.0 166.6 L395.0 170.8 L400.0 174.7 L405.0 178.2 L410.0 181.3 L415.0 183.9 L420.0 186.1 L425.0 187.8 L430.0 189.0 L435.0 189.8 L440.0 190.0 L445.0 189.8 L450.0 189.0 L455.0 187.8 L460.0 186.1 L465.0 183.9 L470.0 181.3 L475.0 178.2 L480.0 174.7 L485.0 170.8 L490.0 166.6 L495.0 162.0 L500.0 157.0 L505.0 151.8 L510.0 146.3 L515.0 140.6 L520.0 134.7 L525.0 128.7 L530.0 122.5 L535.0 116.3 L540.0 110.0"/>
+          <text x="548" y="34" class="m">peak</text><text x="548" y="57" class="m">RMS</text>
+          <text x="140" y="22">V</text><text x="240" y="22" style="fill:var(--yellow-arc)">I lags 90°</text>
+        </svg>
+        <div class="cap">In a pure inductance the current (dashed) peaks a quarter cycle after the voltage. In a pure capacitance it peaks a quarter cycle before.</div>
+      </div>
+
+      <div class="table-wrap"><table>
+        <thead><tr><th>Element</th><th>Opposition</th><th>With frequency</th><th>Current vs voltage</th></tr></thead>
+        <tbody>
+          <tr><td>Resistor</td><td>R</td><td>Unchanged</td><td>In phase</td></tr>
+          <tr><td>Inductor</td><td>X<sub>L</sub> = 2πfL</td><td>Rises</td><td>Lags 90° (ELI)</td></tr>
+          <tr><td>Capacitor</td><td>X<sub>C</sub> = 1/2πfC</td><td>Falls</td><td>Leads 90° (ICE)</td></tr>
+        </tbody>
+      </table></div>
+      <p><strong>Impedance</strong> Z = √(R² + (X<sub>L</sub> − X<sub>C</sub>)²): 30 Ω with 40 Ω reactance is 50 Ω, not 70. At <strong>series resonance</strong> X<sub>L</sub> = X<sub>C</sub>, so Z = R and current is at its maximum.</p>
+      <div class="compare">
+        <div class="card acc"><h4>⚡ Power factor</h4><p>PF = cos φ = W ÷ VA. Only in-phase current does work. A pure reactance takes no true power — the energy goes back and forth.</p></div>
+        <div class="card acc"><h4>🏷️ Why kVA</h4><p>Windings heat according to total current, whatever the PF. A 90 kVA generator at PF 0.8 gives at most 72 kW.</p></div>
+      </div>
+      <h3 class="sub">Three-phase</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th></th><th>Star (wye)</th><th>Delta</th></tr></thead>
+        <tbody>
+          <tr><td>Line voltage</td><td>√3 × phase (115 → 200 V)</td><td>= phase</td></tr>
+          <tr><td>Line current</td><td>= phase</td><td>√3 × phase</td></tr>
+          <tr><td>Neutral</td><td>Yes — earthed to structure on aircraft</td><td>No</td></tr>
+        </tbody>
+      </table></div>
+      <p>Power = √3 × V<sub>L</sub> × I<sub>L</sub> × PF. A balanced star load puts zero current in the neutral. 400 Hz is used because transformers and machines get much smaller and lighter; the price is higher reactance, which short aircraft cable runs can live with.</p>
+    </section>
+    <section class="sec" id="acgen">
+      <h2><span class="num">🌀</span> AC Generators <span class="en">26 questions</span></h2>
+      <p class="lead">Two jobs, two controls: hold the frequency by holding the speed, hold the voltage by controlling the field.</p>
+      <div class="glance"><span>🎯 f = rpm × pairs ÷ 60</span><span>🎯 Brushless three-stage</span><span>🎯 CSD and IDG</span><span>🎯 Paralleling conditions</span><span>🎯 kW vs kVAR sharing</span></div>
+
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Speed sets frequency; excitation sets voltage.</strong> Every AC generator fault question becomes easy once you ask which of the two is wrong.</p></div>
+
+      <div class="diagram">
+        <svg viewBox="0 0 660 170" role="img" aria-label="Brushless generator: permanent magnet generator feeds the control unit and exciter field, exciter armature feeds rotating diodes, which feed the main field, which induces the main stator output">
+          <rect x="10" y="60" width="90" height="50" rx="8" class="fill"/><text x="55" y="82" text-anchor="middle">PMG</text><text x="55" y="98" text-anchor="middle" class="m">magnet rotor</text>
+          <rect x="125" y="60" width="90" height="50" rx="8" class="fill"/><text x="170" y="82" text-anchor="middle">GCU</text><text x="170" y="98" text-anchor="middle" class="m">regulator</text>
+          <rect x="240" y="60" width="90" height="50" rx="8" class="fill"/><text x="285" y="82" text-anchor="middle">Exciter</text><text x="285" y="98" text-anchor="middle" class="m">field → armature</text>
+          <rect x="355" y="60" width="90" height="50" rx="8" class="fill"/><text x="400" y="82" text-anchor="middle">Diodes</text><text x="400" y="98" text-anchor="middle" class="m">on the rotor</text>
+          <rect x="470" y="60" width="80" height="50" rx="8" class="fill"/><text x="510" y="82" text-anchor="middle">Main field</text><text x="510" y="98" text-anchor="middle" class="m">rotating DC</text>
+          <rect x="575" y="60" width="75" height="50" rx="8" class="fill"/><text x="612" y="82" text-anchor="middle">Stator</text><text x="612" y="98" text-anchor="middle" class="m">3-ph out</text>
+          <line class="ax" x1="100" y1="85" x2="122" y2="85" marker-end="url(#a-el)"/>
+          <line class="ax" x1="215" y1="85" x2="237" y2="85" marker-end="url(#a-el)"/>
+          <line class="ax" x1="330" y1="85" x2="352" y2="85" marker-end="url(#a-el)"/>
+          <line class="ax" x1="445" y1="85" x2="467" y2="85" marker-end="url(#a-el)"/>
+          <line class="ax" x1="550" y1="85" x2="572" y2="85" marker-end="url(#a-el)"/>
+          <text x="330" y="150" text-anchor="middle" class="m">No brushes anywhere: the rotating parts feed each other through induction and rotor-mounted diodes</text>
+        </svg>
+        <div class="cap">The GCU controls the stationary exciter field — the only adjustment needed to regulate the output voltage.</div>
+      </div>
+
+      <div class="fgrid">
+        <div class="fcard"><div class="f">CSD</div><div class="d">Hydro-mechanical drive: variable engine speed in, constant generator speed out.</div></div>
+        <div class="fcard"><div class="f">IDG</div><div class="d">CSD + generator in one oil-cooled unit. Disconnect in flight = reconnect only on the ground.</div></div>
+        <div class="fcard"><div class="f">VSCF</div><div class="d">No CSD: electronics turn variable-frequency output into 400 Hz.</div></div>
+        <div class="fcard"><div class="f">Variable / wild frequency</div><div class="d">Frequency follows engine speed. Fine for heaters and TRUs; cannot be paralleled.</div></div>
+      </div>
+
+      <h3 class="sub">Paralleling</h3>
+      <ol class="steps">
+        <li>Match <strong>voltage</strong>, <strong>frequency</strong>, <strong>phase sequence</strong> and <strong>phase angle</strong> before closing the breaker.</li>
+        <li>Share <strong>real load (kW)</strong> by adjusting each drive's speed — torque.</li>
+        <li>Share <strong>reactive load (kVAR)</strong> by adjusting each generator's excitation.</li>
+      </ol>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Protection</th><th>Detects</th></tr></thead>
+        <tbody>
+          <tr><td>Differential</td><td>Current leaking out between two sets of current transformers — a feeder or winding fault</td></tr>
+          <tr><td>Over/under-voltage</td><td>Regulator or excitation failure</td></tr>
+          <tr><td>Over/under-frequency</td><td>CSD/IDG not holding speed</td></tr>
+        </tbody>
+      </table></div>
+      <div class="tip"><span class="label">✈️ Pilot tip</span> GCR controls the excitation; GCB connects the output to the bus. A serious fault opens both.</div>
+    </section>
+
+    <section class="sec" id="acsys">
+      <h2><span class="num">🏗️</span> AC Power Systems <span class="en">24 questions</span></h2>
+      <p class="lead">How generators, ground power, the APU, the RAT and the battery are arranged so that any one failure leaves the essentials powered.</p>
+      <div class="glance"><span>🎯 Split vs parallel</span><span>🎯 Bus tie logic</span><span>🎯 External power checks</span><span>🎯 RAT and inverter</span><span>🎯 Load shedding</span></div>
+
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>One source per bus, with automatic transfer.</strong> In a split system generators are never paralleled; bus ties close only to let a healthy source pick up a dead bus.</p></div>
+
+      <div class="diagram">
+        <svg viewBox="0 0 600 200" role="img" aria-label="Split bus system: generator 1 feeds bus 1, generator 2 feeds bus 2, bus tie breakers and the APU generator between them">
+          <rect x="30" y="20" width="110" height="40" rx="8" class="fill"/><text x="85" y="45" text-anchor="middle">GEN 1</text>
+          <rect x="460" y="20" width="110" height="40" rx="8" class="fill"/><text x="515" y="45" text-anchor="middle">GEN 2</text>
+          <rect x="245" y="20" width="110" height="40" rx="8" class="fill"/><text x="300" y="45" text-anchor="middle">APU GEN</text>
+          <line class="ax" x1="85" y1="60" x2="85" y2="120"/><line class="ax" x1="515" y1="60" x2="515" y2="120"/>
+          <line class="ax" x1="300" y1="60" x2="300" y2="120"/>
+          <line class="curve" x1="30" y1="130" x2="200" y2="130"/><text x="115" y="152" text-anchor="middle">AC BUS 1</text>
+          <line class="curve" x1="400" y1="130" x2="570" y2="130"/><text x="485" y="152" text-anchor="middle">AC BUS 2</text>
+          <line class="ax" x1="200" y1="130" x2="400" y2="130" stroke-dasharray="6 5"/>
+          <rect x="225" y="122" width="24" height="16" rx="3" style="fill:var(--surface)" class="ax"/>
+          <rect x="351" y="122" width="24" height="16" rx="3" style="fill:var(--surface)" class="ax"/>
+          <text x="300" y="180" text-anchor="middle" class="m">Bus tie breakers — normally open, close to transfer a dead bus to a live source</text>
+        </svg>
+        <div class="cap">Schematic only. In a parallel system all generators instead feed one tie bus and share the load.</div>
+      </div>
+
+      <div class="compare">
+        <div class="card acc"><h4>✂️ Split-bus</h4><p>No frequency matching needed; a fault stays on its own side. A failure causes a brief transfer.</p></div>
+        <div class="card acc"><h4>🤝 Parallel</h4><p>Load shared, no break when one generator fails — but tight frequency and load control, and a fault is seen by all.</p></div>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Source</th><th>Role</th></tr></thead>
+        <tbody>
+          <tr><td>External power</td><td>Checked for voltage, frequency and phase sequence; not paralleled with the aircraft generators. Short pins E/F energise its contactor.</td></tr>
+          <tr><td>APU generator</td><td>Constant speed by itself; ground power and a backup in flight within its limits.</td></tr>
+          <tr><td>RAT</td><td>Airflow-driven emergency generator or hydraulic pump — essential loads only.</td></tr>
+          <tr><td>Static inverter</td><td>Battery DC → essential AC when all generation is lost.</td></tr>
+          <tr><td>TRUs</td><td>AC → 28 V DC for the DC buses.</td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout note"><span class="label">ℹ️ Remember</span> A bus tie lockout stops a healthy generator being connected to a faulted bus, and no-break power transfer overlaps two sources briefly so the buses never blink.</div>
+    </section>
+
+    <section class="sec" id="conv">
+      <h2><span class="num">🔁</span> Transformers, TRUs &amp; Inverters <span class="en">22 questions</span></h2>
+      <p class="lead">Changing voltage needs AC; changing between AC and DC needs rectifiers one way and inverters the other.</p>
+      <div class="glance"><span>🎯 Turns ratio</span><span>🎯 No DC through a transformer</span><span>🎯 Current transformers</span><span>🎯 Half- vs full-wave</span><span>🎯 Static inverter</span></div>
+
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Power in ≈ power out.</strong> Step the voltage down by ten and the current steps up by ten. V<sub>s</sub>/V<sub>p</sub> = N<sub>s</sub>/N<sub>p</sub>.</p></div>
+
+      <div class="fgrid">
+        <div class="fcard"><div class="f">Double-wound</div><div class="d">Separate windings, electrically isolated.</div></div>
+        <div class="fcard"><div class="f">Autotransformer</div><div class="d">One tapped winding — lighter, no isolation.</div></div>
+        <div class="fcard"><div class="f">Current transformer</div><div class="d">The feeder is its primary. Never open-circuit the secondary under load — dangerous voltage.</div></div>
+        <div class="fcard"><div class="f">Losses</div><div class="d">Copper (I²R) in windings; iron (eddy + hysteresis) in the core.</div></div>
+      </div>
+
+      <div class="diagram">
+        <svg viewBox="0 0 600 190" role="img" aria-label="Half-wave rectifier output has gaps; full-wave output fills every half cycle">
+          <line class="ax" x1="30" y1="80" x2="280" y2="80"/>
+          <path class="curve" d="M30 80 C 45 20, 75 20, 90 80 L 150 80 C 165 20, 195 20, 210 80 L 270 80"/>
+          <text x="155" y="105" text-anchor="middle">Half-wave — 1 diode</text>
+          <line class="ax" x1="320" y1="80" x2="570" y2="80"/>
+          <path class="curve" d="M320 80 C 335 20, 365 20, 380 80 C 395 20, 425 20, 440 80 C 455 20, 485 20, 500 80 C 515 20, 545 20, 560 80"/>
+          <text x="445" y="105" text-anchor="middle">Full-wave bridge — 4 diodes</text>
+          <text x="300" y="150" text-anchor="middle" class="m">A three-phase full-wave bridge (6 diodes) in a TRU gives six pulses per cycle — very little ripple.</text>
+        </svg>
+        <div class="cap">Full-wave rectification doubles the ripple frequency (800 Hz from a 400 Hz single-phase supply); a smoothing capacitor fills in the dips.</div>
+      </div>
+      <div class="compare">
+        <div class="card acc"><h4>➡️ TRU</h4><p>115/200 V AC → transformer → 6-diode bridge → ≈ 28 V DC. Two TRUs + a DC tie give redundancy.</p></div>
+        <div class="card acc"><h4>⬅️ Static inverter</h4><p>DC → oscillator-timed transistor switching through a transformer → 115 V / 26 V AC. No moving parts.</p></div>
+      </div>
+      <div class="tip"><span class="label">✈️ Pilot tip</span> 400 Hz lets a transformer get by with far less iron than one for 50 Hz — the whole reason aircraft use it.</div>
+    </section>
+
+    <section class="sec" id="semi">
+      <h2><span class="num">💎</span> Semiconductors <span class="en">22 questions</span></h2>
+      <p class="lead">Everything from the TRU's rectifier to the warning logic is built from doped silicon junctions.</p>
+      <div class="glance"><span>🎯 N-type and P-type</span><span>🎯 Forward and reverse bias</span><span>🎯 Zener</span><span>🎯 Transistor gain</span><span>🎯 Thyristor latching</span></div>
+
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>A PN junction is a one-way valve.</strong> Forward biased (P positive) it conducts after about 0.6–0.7 V for silicon; reverse biased it blocks until breakdown.</p></div>
+
+      <div class="compare">
+        <div class="card acc"><h4>N-type</h4><p>Five-valence donor (phosphorus, arsenic). Majority carriers: electrons.</p></div>
+        <div class="card acc"><h4>P-type</h4><p>Three-valence acceptor (boron, gallium). Majority carriers: holes.</p></div>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Device</th><th>Works by</th><th>Used for</th></tr></thead>
+        <tbody>
+          <tr><td>Diode</td><td>Conducts one way</td><td>Rectifiers, blocking, suppression</td></tr>
+          <tr><td>Zener</td><td>Reverse breakdown at a fixed voltage</td><td>Voltage regulation, reference</td></tr>
+          <tr><td>LED / photodiode</td><td>Light out when forward biased / leakage up with light in</td><td>Indicators / light sensing</td></tr>
+          <tr><td>Bipolar transistor</td><td>Small base current controls collector current (Ic = β × Ib)</td><td>Amplifier, switch (cut-off ↔ saturation)</td></tr>
+          <tr><td>FET</td><td>Gate voltage controls the channel</td><td>High-impedance inputs, power switching</td></tr>
+          <tr><td>Thyristor (SCR)</td><td>Gate pulse latches it on until current falls below holding value</td><td>Power control</td></tr>
+          <tr><td>NTC thermistor</td><td>Resistance falls as temperature rises</td><td>Temperature sensing</td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout caution"><span class="label">⚠️ Heat and static</span> Semiconductors conduct more when hot, so they need heat sinks to avoid thermal runaway — and body static can destroy them, hence ESD precautions.</div>
+    </section>
+
+    <section class="sec" id="logic">
+      <h2><span class="num">🔢</span> Logic Circuits <span class="en">20 questions</span></h2>
+      <p class="lead">Warnings and system logic are decisions made from yes/no inputs. Six gates cover almost all of it.</p>
+      <div class="glance"><span>🎯 Truth tables</span><span>🎯 NAND and NOR</span><span>🎯 XOR</span><span>🎯 Real warning logic</span></div>
+
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>AND needs all, OR needs any, a bubble inverts.</strong> NAND is 0 only when all inputs are 1; NOR is 1 only when all inputs are 0.</p></div>
+
+      <div class="table-wrap"><table>
+        <thead><tr><th class="num">A</th><th class="num">B</th><th class="num">AND</th><th class="num">OR</th><th class="num">NAND</th><th class="num">NOR</th><th class="num">XOR</th><th class="num">XNOR</th></tr></thead>
+        <tbody>
+          <tr><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">1</td><td class="num">1</td><td class="num">0</td><td class="num">1</td></tr>
+          <tr><td class="num">0</td><td class="num">1</td><td class="num">0</td><td class="num">1</td><td class="num">1</td><td class="num">0</td><td class="num">1</td><td class="num">0</td></tr>
+          <tr><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">1</td><td class="num">1</td><td class="num">0</td><td class="num">1</td><td class="num">0</td></tr>
+          <tr><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">1</td></tr>
+        </tbody>
+      </table></div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">Gear warning</div><div class="d">Gear not locked down AND thrust at idle → AND.</div></div>
+        <div class="fcard"><div class="f">Any pump low</div><div class="d">Pump 1 OR pump 2 OR pump 3 → OR.</div></div>
+        <div class="fcard"><div class="f">Dual-loop fire detection</div><div class="d">Both loops must agree → AND, to stop false warnings.</div></div>
+        <div class="fcard"><div class="f">Flip-flop</div><div class="d">Holds its state after the input goes — one bit of memory.</div></div>
+      </div>
+      <div class="memory"><span class="label">🧠 Memory aid</span> n inputs → 2ⁿ rows. NAND and NOR are universal: any logic can be built from either alone. De Morgan: NOT(A AND B) = NOT A OR NOT B.</div>
+    </section>
+
+    <section class="sec" id="bond">
+      <h2><span class="num">🌩️</span> Bonding, Screening &amp; Static <span class="en">20 questions</span></h2>
+      <p class="lead">Make the aircraft one conductor, let static leave quietly, and keep stray fields out of the wiring.</p>
+      <div class="glance"><span>🎯 Why bond</span><span>🎯 Static wicks</span><span>🎯 Refuelling</span><span>🎯 Lightning paths</span><span>🎯 Screening and HIRF</span></div>
+
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Parts at the same potential cannot spark at each other.</strong> Bonding gives every metal part a milliohm-level path to the rest — for static, for earth-return current and for lightning.</p></div>
+
+      <div class="table-wrap"><table>
+        <thead><tr><th>Measure</th><th>What it does</th><th>What it is not</th></tr></thead>
+        <tbody>
+          <tr><td>Bonding / jumpers</td><td>Same potential; earth return; lightning path across hinges and mounts</td><td>Not a radio screen</td></tr>
+          <tr><td>Static dischargers</td><td>Bleed charge gently off trailing edges, cutting P-static noise</td><td>Not lightning protection</td></tr>
+          <tr><td>Screening (braid)</td><td>Stops cables radiating or picking up interference</td><td>Not the earth return</td></tr>
+          <tr><td>Twisted pairs</td><td>Induced noise cancels between the two wires</td><td>—</td></tr>
+          <tr><td>Diverter strips</td><td>Carry lightning current across a non-metal radome</td><td>—</td></tr>
+        </tbody>
+      </table></div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">P-static</div><div class="d">Charge from rain, snow and ice; noise worst on LF/MF (ADF) and HF.</div></div>
+        <div class="fcard"><div class="f">Lightning</div><div class="d">Attaches at extremities, flows round the skin (Faraday cage), exits elsewhere.</div></div>
+        <div class="fcard"><div class="f">Composites</div><div class="d">Need mesh or foil — they do not carry strike current well.</div></div>
+        <div class="fcard"><div class="f">HIRF / EMC</div><div class="d">Powerful transmitters can upset electronics; screening, bonding and filtering defend against it.</div></div>
+      </div>
+      <div class="tip"><span class="label">✈️ Pilot tip</span> On refuelling, the bonding lead goes on first — before the cap comes off or the nozzle goes in.</div>
+    </section>
+
+    <section class="sec" id="mgmt">
+      <h2><span class="num">🧑‍✈️</span> Electrical System Management <span class="en">20 questions</span></h2>
+      <p class="lead">Putting it together in the cockpit: reading the indications, deciding what to shed, and knowing what keeps working when the electrics do not.</p>
+      <div class="glance"><span>🎯 Endurance sums</span><span>🎯 What still works</span><span>🎯 Smoke and fire</span><span>🎯 One reset only</span><span>🎯 Load priorities</span></div>
+
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Electrical failure is a time problem.</strong> Identify which source has gone, shed load to buy time, and land while the battery still has some to give.</p></div>
+
+      <ol class="steps">
+        <li><strong>Recognise</strong> — warning light, ammeter discharge, low bus voltage, GEN OFF.</li>
+        <li><strong>Check and reset once</strong> — breaker, switch, one reset if permitted.</li>
+        <li><strong>Shed</strong> — keep aviate, navigate, communicate; drop comfort loads first.</li>
+        <li><strong>Plan</strong> — usable Ah ÷ load = time; land well inside it.</li>
+      </ol>
+      <div class="compare">
+        <div class="card good"><h4>✅ Keeps working (typical piston single)</h4><p>Engine on magnetos; airspeed, altimeter, VSI; vacuum-driven attitude and heading; magnetic compass.</p></div>
+        <div class="card bad"><h4>❌ Lost</h4><p>Radios and navigation, electric turn coordinator, fuel gauges, electric flaps and pumps, lights.</p></div>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Indication</th><th>Most likely meaning</th></tr></thead>
+        <tbody>
+          <tr><td>High charge rate long after start</td><td>Battery fault or regulator set too high</td></tr>
+          <tr><td>Battery hot + high charge current</td><td>Thermal runaway — take it off charge</td></tr>
+          <tr><td>AC voltage low, frequency normal</td><td>Excitation / regulation</td></tr>
+          <tr><td>Frequency low, voltage normal</td><td>CSD / IDG speed</td></tr>
+          <tr><td>Loadmeters 0.8 and 0.4</td><td>Poor load sharing</td></tr>
+          <tr><td>Flat battery after parking</td><td>Hot battery bus drain</td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout warning"><span class="label">🔥 Smoke or burning smell</span> Remove power (master off, if the checklist allows), then restore essentials one at a time while watching for the smoke to return. Do not reset a tripped fuel-pump breaker.</div>
+    </section>
+
+    <div style="text-align:center;color:var(--muted);font-size:13px;padding:6px 0 0">This guide explains general aircraft electrical principles for study purposes. Your aircraft's own flight manual and checklists always take precedence.</div>
+  </main>
+</div>
+
+<button id="top-btn" aria-label="Back to top">↑</button>
+<footer>Aircraft Electrics study guide · part of Flying Knowledge</footer>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="a-el" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--ink-2)"/></marker>
+  </defs>
+</svg>
+
+<script>
+(function(){
+  var toc = document.getElementById('toc');
+  var scrim = document.getElementById('scrim');
+  var menuBtn = document.getElementById('menuBtn');
+  var closeToc = document.getElementById('closeToc');
+  function openToc(){ toc.classList.add('open'); scrim.classList.add('show'); }
+  function shutToc(){ toc.classList.remove('open'); scrim.classList.remove('show'); }
+  if (menuBtn) menuBtn.addEventListener('click', openToc);
+  if (closeToc) closeToc.addEventListener('click', shutToc);
+  if (scrim) scrim.addEventListener('click', shutToc);
+  var tocLinks = document.querySelectorAll('nav.toc a');
+  tocLinks.forEach(function(a){ a.addEventListener('click', function(){ shutToc(); }); });
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section.sec[id]'));
+  var linkFor = {};
+  tocLinks.forEach(function(a){ linkFor[a.getAttribute('href').slice(1)] = a; });
+  function onScroll(){
+    var y = window.scrollY + 110, current = sections[0];
+    for (var i = 0; i < sections.length; i++){ if (sections[i].offsetTop <= y) current = sections[i]; }
+    tocLinks.forEach(function(a){ a.classList.remove('active'); });
+    if (current && linkFor[current.id]) linkFor[current.id].classList.add('active');
+    var topBtn = document.getElementById('top-btn');
+    if (topBtn) topBtn.classList.toggle('show', window.scrollY > 500);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  var topBtn = document.getElementById('top-btn');
+  if (topBtn) topBtn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  /* ---- tools ---- */
+  function num(id){ var v = parseFloat(document.getElementById(id).value); return isFinite(v) ? v : NaN; }
+  function put(id, html){ document.getElementById(id).innerHTML = html; }
+  function f(x, d){ return x.toFixed(d); }
+
+  function ohm(){
+    var v = num('oV'), r = num('oR');
+    if (!(r > 0) || isNaN(v)) { put('oOut', 'Enter a voltage and a resistance above zero.'); return; }
+    var i = v / r, p = v * i;
+    put('oOut', 'Current <b>' + f(i, 2) + ' A</b> · Power <b>' + f(p, 1) + ' W</b>');
+  }
+  function batt(){
+    var c = num('bCap'), s = num('bSoc'), l = num('bLoad');
+    if (!(c > 0) || !(s >= 0) || !(l > 0)) { put('bOut', 'Enter a capacity, a state of charge and a load.'); return; }
+    var ah = c * Math.min(s, 100) / 100, h = ah / l, mins = Math.round(h * 60);
+    put('bOut', 'Usable ≈ <b>' + f(ah, 1) + ' Ah</b> → about <b>' + Math.floor(mins / 60) + ' h ' + (mins % 60) + ' min</b><br><span style="font-size:12px">Theoretical. Cold, age and heavy current all reduce it — plan to land well inside this.</span>');
+  }
+  function gen(){
+    var rpm = num('gRpm'), poles = num('gPoles');
+    if (!(rpm > 0) || !(poles >= 2) || poles % 2) { put('gOut', 'Enter a speed and an even number of poles.'); return; }
+    var hz = rpm * (poles / 2) / 60;
+    put('gOut', 'Frequency <b>' + f(hz, 0) + ' Hz</b><br><span style="font-size:12px">' + poles + ' poles = ' + (poles / 2) + ' pole pairs. For 400 Hz this machine needs ' + f(400 * 60 / (poles / 2), 0) + ' rpm.</span>');
+  }
+  function xf(){
+    var vp = num('tVp'), np = num('tNp'), ns = num('tNs');
+    if (isNaN(vp) || !(np > 0) || !(ns > 0)) { put('tOut', 'Enter a voltage and both turn counts.'); return; }
+    var vs = vp * ns / np;
+    put('tOut', 'Secondary <b>' + f(vs, 1) + ' V</b> — ' + (ns < np ? 'step-down' : ns > np ? 'step-up' : 'isolating (1:1)') + '<br><span style="font-size:12px">Current changes by the inverse ratio: ×' + f(np / ns, 2) + '. AC only.</span>');
+  }
+  ['oV','oR'].forEach(function(id){ document.getElementById(id).addEventListener('input', ohm); });
+  ['bCap','bSoc','bLoad'].forEach(function(id){ document.getElementById(id).addEventListener('input', batt); });
+  ['gRpm','gPoles'].forEach(function(id){ document.getElementById(id).addEventListener('input', gen); });
+  ['tVp','tNp','tNs'].forEach(function(id){ document.getElementById(id).addEventListener('input', xf); });
+  ohm(); batt(); gen(); xf();
+})();
+</script>
+</body>
+</html>

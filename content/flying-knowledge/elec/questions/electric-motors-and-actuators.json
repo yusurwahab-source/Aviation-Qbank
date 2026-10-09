@@ -1,0 +1,793 @@
+[
+  {
+    "id": "ELEC-MOT-0001",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "DC motor principles",
+    "question": "A DC motor produces rotation because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A changing current in one coil induces a current in a neighbouring coil"
+      },
+      {
+        "id": "b",
+        "text": "A conductor moved through a magnetic field has an EMF induced in it"
+      },
+      {
+        "id": "c",
+        "text": "A current-carrying conductor in a magnetic field experiences a force"
+      },
+      {
+        "id": "d",
+        "text": "Two parallel conductors carrying current in the same direction repel each other"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The force on the armature conductors (F = BIL, direction from Fleming's left-hand rule) produces torque. The commutator reverses the current in each conductor as it passes between poles, so the torque always acts the same way.",
+    "tags": [
+      "dc-motor",
+      "motor-principle"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0002",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "Back-EMF",
+    "question": "The back-EMF generated in a running DC motor:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Exists only in AC motors and has no effect in DC machines"
+      },
+      {
+        "id": "b",
+        "text": "Opposes the supply, grows with speed and so limits the armature current"
+      },
+      {
+        "id": "c",
+        "text": "Adds to the applied voltage and increases the armature current at high speed"
+      },
+      {
+        "id": "d",
+        "text": "Is greatest when the motor is stationary and falls as it speeds up"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A spinning armature is also a generator. Its EMF opposes the supply (Lenz's law), so the current that flows is (V − Eb)/R. At standstill Eb is zero, which is why starting current is so large.",
+    "tags": [
+      "back-emf",
+      "dc-motor"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0003",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "Back-EMF",
+    "question": "A 28 V DC motor has an armature resistance of 0.5 Ω. When running, its back-EMF is 26 V. What is the armature current running, and what would it be at the instant of starting?",
+    "options": [
+      {
+        "id": "a",
+        "text": "4 A running; 4 A at the instant of starting"
+      },
+      {
+        "id": "b",
+        "text": "56 A running; 4 A at the instant of starting"
+      },
+      {
+        "id": "c",
+        "text": "52 A running; 56 A at the instant of starting"
+      },
+      {
+        "id": "d",
+        "text": "4 A running; 56 A at the instant of starting"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Running: I = (V − Eb)/R = (28 − 26)/0.5 = 4 A. At the instant of starting the armature is still, Eb = 0, so I = 28/0.5 = 56 A — fourteen times the running current. Heavy motors therefore have starting resistances or current-limited supplies.",
+    "tags": [
+      "back-emf",
+      "calculation",
+      "starting-current"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0004",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "Motor types",
+    "question": "A DC series-wound motor is well suited to engine starters and actuators because it:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Runs at a fixed speed set by the supply frequency"
+      },
+      {
+        "id": "b",
+        "text": "Can safely be run with no load connected"
+      },
+      {
+        "id": "c",
+        "text": "Produces a very high starting torque"
+      },
+      {
+        "id": "d",
+        "text": "Runs at an almost constant speed regardless of load"
+      }
+    ],
+    "correct": "c",
+    "explanation": "In a series motor the large starting current flows through both field and armature, giving a very strong field and very high torque from standstill. The trade-off is poor speed regulation.",
+    "tags": [
+      "series-motor",
+      "starting-torque"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0005",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "Motor types",
+    "question": "A DC series-wound motor must never be run with no mechanical load because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Its direction of rotation reverses when the load is removed"
+      },
+      {
+        "id": "b",
+        "text": "It draws its maximum current when unloaded and burns out its field"
+      },
+      {
+        "id": "c",
+        "text": "Its speed rises without limit and it may destroy itself"
+      },
+      {
+        "id": "d",
+        "text": "It will not start at all without a load"
+      }
+    ],
+    "correct": "c",
+    "explanation": "With no load, the current falls, which weakens the series field; a weaker field means the motor must spin faster to generate enough back-EMF. That runaway can burst the armature. Series motors are therefore always permanently coupled to their load.",
+    "tags": [
+      "series-motor",
+      "runaway"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0006",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "Motor types",
+    "question": "A DC shunt-wound motor is used where:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A nearly constant speed is needed under varying load, as with fans and pumps"
+      },
+      {
+        "id": "b",
+        "text": "The speed must vary widely with the load, as with a winch"
+      },
+      {
+        "id": "c",
+        "text": "The motor must run at exactly the speed set by the supply frequency"
+      },
+      {
+        "id": "d",
+        "text": "Very high starting torque is needed, as with engine starters"
+      }
+    ],
+    "correct": "a",
+    "explanation": "With the field across the supply, its flux stays roughly constant whatever the load, so the speed falls only slightly as load increases. Starting torque is moderate.",
+    "tags": [
+      "shunt-motor"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0007",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "Reversing",
+    "question": "The direction of rotation of a DC motor can be reversed by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Increasing the supply voltage beyond its rated value"
+      },
+      {
+        "id": "b",
+        "text": "Reversing the current in either the armature or the field, but not both"
+      },
+      {
+        "id": "c",
+        "text": "Reversing the current in both the armature and the field together"
+      },
+      {
+        "id": "d",
+        "text": "Reversing the polarity of the supply to the whole motor, for any type"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Torque direction depends on both the field direction and the armature current direction. Reverse one and the torque reverses; reverse both and the two reversals cancel. That is why reversing the supply leads of a series or shunt motor does not reverse it.",
+    "tags": [
+      "dc-motor",
+      "reversing"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0008",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "Reversing",
+    "question": "A split-field series motor, used in reversible actuators, has:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A permanent magnet field and a reversible commutator"
+      },
+      {
+        "id": "b",
+        "text": "Two opposite-wound field windings, one selected for each direction"
+      },
+      {
+        "id": "c",
+        "text": "Two armatures on one shaft that drive in opposite directions"
+      },
+      {
+        "id": "d",
+        "text": "A single field winding that is split by a capacitor to give a rotating field"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Selecting one field winding or the other reverses the field while the armature current stays the same, so a simple changeover switch drives the actuator either way — extend or retract, open or close.",
+    "tags": [
+      "split-field",
+      "actuators"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0009",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "Actuators",
+    "question": "An electrical linear actuator, such as one driving a trim tab or flap, is usually stopped at the end of its travel by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A timer that switches the motor off after a fixed period"
+      },
+      {
+        "id": "b",
+        "text": "The motor stalling against a mechanical stop until its circuit breaker trips"
+      },
+      {
+        "id": "c",
+        "text": "The back-EMF of the motor rising to equal the supply voltage"
+      },
+      {
+        "id": "d",
+        "text": "Limit switches that cut the motor supply at the end positions"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Limit switches (often microswitches) open the motor circuit when the actuator reaches each end of its travel. Many actuators also have an electromagnetic brake to stop overrun once the supply is cut.",
+    "tags": [
+      "actuators",
+      "limit-switches"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0010",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "Actuators",
+    "question": "An electromagnetic brake fitted to an actuator motor is typically:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Applied only if the actuator's limit switch fails"
+      },
+      {
+        "id": "b",
+        "text": "Applied by a solenoid whenever the motor is powered, and released by a spring"
+      },
+      {
+        "id": "c",
+        "text": "Used only to slow the motor during start-up to reduce its current"
+      },
+      {
+        "id": "d",
+        "text": "Spring-applied when unpowered, and solenoid-released when the motor runs"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Failing safe to 'brake on' means the actuator stops promptly and holds its position whenever power is removed — at a limit switch, or on a power failure — and cannot be back-driven by air loads.",
+    "tags": [
+      "actuators",
+      "brake"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0011",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "Actuators",
+    "question": "A clutch is often fitted between an actuator motor and its output in order to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Increase the output speed above the motor speed"
+      },
+      {
+        "id": "b",
+        "text": "Slip if the output jams, protecting the motor and gearbox from overload"
+      },
+      {
+        "id": "c",
+        "text": "Allow the motor to run with no load while the actuator is at its limit"
+      },
+      {
+        "id": "d",
+        "text": "Reverse the direction of the output without reversing the motor"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A slipping (friction) clutch limits the torque transmitted. If the driven surface jams, the clutch slips instead of stalling the motor or breaking the gear train.",
+    "tags": [
+      "actuators",
+      "clutch"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0012",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "Starters",
+    "question": "During an engine start, the starter motor current is highest:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Constant throughout the start"
+      },
+      {
+        "id": "b",
+        "text": "At the instant of engagement, before the starter and engine have begun to turn"
+      },
+      {
+        "id": "c",
+        "text": "Just before the starter disengages, when the engine is turning fastest"
+      },
+      {
+        "id": "d",
+        "text": "Midway through the start, when the engine first fires"
+      }
+    ],
+    "correct": "b",
+    "explanation": "At rest the motor has no back-EMF, so only its low resistance limits the current — the large surge that dips the bus voltage at the start. As speed builds, back-EMF rises and the current falls.",
+    "tags": [
+      "starter",
+      "starting-current"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0013",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "AC motors",
+    "question": "A three-phase induction motor runs because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Its three-phase stator sets up a rotating field that drags the rotor round"
+      },
+      {
+        "id": "b",
+        "text": "The rotor is supplied with DC through slip rings and locks to the stator field"
+      },
+      {
+        "id": "c",
+        "text": "A commutator reverses the rotor current every half cycle"
+      },
+      {
+        "id": "d",
+        "text": "The rotor is a permanent magnet attracted by each phase in turn"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Three windings displaced by 120° and fed with currents 120° apart create a field of constant strength rotating at synchronous speed. It cuts the rotor bars, inducing currents whose field interacts with the rotating field to produce torque — no electrical connection to the rotor is needed.",
+    "tags": [
+      "induction-motor",
+      "rotating-field"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0014",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "AC motors",
+    "question": "An induction motor always runs slightly slower than the speed of its rotating field because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Friction in the bearings prevents it reaching synchronous speed"
+      },
+      {
+        "id": "b",
+        "text": "The rotor is locked to the field at half its speed"
+      },
+      {
+        "id": "c",
+        "text": "Without relative motion no rotor current, and so no torque, would be induced"
+      },
+      {
+        "id": "d",
+        "text": "The supply frequency always falls when the motor is loaded"
+      }
+    ],
+    "correct": "c",
+    "explanation": "If the rotor turned at synchronous speed, its bars would not cut any flux, no current would be induced and there would be no torque. The difference, called slip, increases with load.",
+    "tags": [
+      "induction-motor",
+      "slip"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0015",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "AC motors",
+    "question": "A four-pole AC motor is supplied at 400 Hz. Its synchronous speed is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "12,000 rpm"
+      },
+      {
+        "id": "b",
+        "text": "1,600 rpm"
+      },
+      {
+        "id": "c",
+        "text": "6,000 rpm"
+      },
+      {
+        "id": "d",
+        "text": "24,000 rpm"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Synchronous speed = 60 × f / pole pairs = 60 × 400 / 2 = 12,000 rpm. Four poles means two pole pairs; using four instead of two gives 6,000 rpm.",
+    "tags": [
+      "synchronous-speed",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0016",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "AC motors",
+    "question": "The direction of rotation of a three-phase induction motor can be reversed by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Interchanging any two of the three supply phases"
+      },
+      {
+        "id": "b",
+        "text": "Reversing the polarity of the DC supply to the rotor"
+      },
+      {
+        "id": "c",
+        "text": "Interchanging all three supply phases in rotation"
+      },
+      {
+        "id": "d",
+        "text": "Reducing the supply frequency to below half its normal value"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Swapping two phases reverses the phase sequence, so the stator field rotates the other way. Rotating all three connections (A→B→C→A) keeps the same sequence and the same direction. A wrong phase sequence from a ground power unit would run every three-phase motor backwards — which is why it is monitored.",
+    "tags": [
+      "induction-motor",
+      "reversing",
+      "phase-sequence"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0017",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "AC motors",
+    "question": "A three-phase induction motor loses one of its phases while running. The usual result is that it:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Reverses its direction of rotation"
+      },
+      {
+        "id": "b",
+        "text": "Stops immediately and cannot be damaged"
+      },
+      {
+        "id": "c",
+        "text": "Keeps running but overheats, and will not restart once stopped"
+      },
+      {
+        "id": "d",
+        "text": "Runs faster, because the remaining phases carry more current"
+      }
+    ],
+    "correct": "c",
+    "explanation": "On two phases the field is no longer a smooth rotating one, but a running motor can keep turning. It draws excess current in the remaining phases and overheats; from rest it develops no starting torque. Thermal protection is fitted for exactly this case.",
+    "tags": [
+      "induction-motor",
+      "phase-loss"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0018",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "AC motors",
+    "question": "A synchronous motor differs from an induction motor in that it:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Runs at exactly the speed of the rotating field, with its speed fixed by the supply frequency"
+      },
+      {
+        "id": "b",
+        "text": "Has its speed set by the supply voltage rather than the frequency"
+      },
+      {
+        "id": "c",
+        "text": "Runs slightly slower than the rotating field, with a slip that increases with load"
+      },
+      {
+        "id": "d",
+        "text": "Needs no AC supply, running on DC through a commutator"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The synchronous motor's rotor is magnetised (by a permanent magnet or DC field) and locks to the rotating field, so it has no slip. It is used where an exact speed proportional to frequency is wanted. It is not self-starting on its own and needs a starting arrangement.",
+    "tags": [
+      "synchronous-motor"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0019",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "AC motors",
+    "question": "A single-phase induction motor needs a starting arrangement, such as a second winding with a capacitor, because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The supply voltage of a single phase is too low to turn the rotor"
+      },
+      {
+        "id": "b",
+        "text": "A single phase gives a pulsating, not a rotating, field"
+      },
+      {
+        "id": "c",
+        "text": "Single-phase AC cannot induce any current in a squirrel-cage rotor"
+      },
+      {
+        "id": "d",
+        "text": "A single-phase motor would otherwise run at twice its rated speed"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A single winding gives a field that simply grows and reverses in one axis. A second winding with its current shifted in phase (by a capacitor, for example) adds a component at right angles, producing a rotating field that starts the motor.",
+    "tags": [
+      "single-phase",
+      "capacitor-start"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0020",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "AC motors",
+    "question": "The rotor of a squirrel-cage induction motor consists of:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A permanent magnet with its poles fixed to the shaft"
+      },
+      {
+        "id": "b",
+        "text": "A wound field supplied with DC through slip rings"
+      },
+      {
+        "id": "c",
+        "text": "A wound armature fed through a commutator and carbon brushes"
+      },
+      {
+        "id": "d",
+        "text": "Conducting bars joined by end rings, with no external connection"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The cage of bars and end rings is robust and needs no brushes, so the induction motor is simple and reliable — the reason it powers many aircraft fuel pumps, hydraulic pumps and fans running on 115 V 400 Hz.",
+    "tags": [
+      "induction-motor",
+      "squirrel-cage"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0021",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "Motor types",
+    "question": "Compared with an AC induction motor, a DC brushed motor has the disadvantage that:",
+    "options": [
+      {
+        "id": "a",
+        "text": "It cannot produce any torque at standstill"
+      },
+      {
+        "id": "b",
+        "text": "Its speed is fixed by the supply frequency"
+      },
+      {
+        "id": "c",
+        "text": "It cannot have its speed controlled by any means"
+      },
+      {
+        "id": "d",
+        "text": "Its commutator and brushes wear and can spark"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The commutator is the weak point of a brushed DC machine: wear, carbon dust and sparking (a potential ignition source near fuel vapour). Induction motors have no commutator, which is why fuel pumps are commonly AC motors or brushless designs.",
+    "tags": [
+      "dc-motor",
+      "brushes",
+      "comparison"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0022",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "Motor types",
+    "question": "A stepper motor is characterised by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Running continuously at a speed set by the supply voltage"
+      },
+      {
+        "id": "b",
+        "text": "Producing a very high starting torque for engine starting"
+      },
+      {
+        "id": "c",
+        "text": "Running at a speed set only by its load, like a series motor"
+      },
+      {
+        "id": "d",
+        "text": "Turning a fixed angle per input pulse, so pulses set its position"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Each pulse advances the rotor one step. Counting pulses therefore sets position precisely, which suits instrument pointers, valves and other positioning tasks.",
+    "tags": [
+      "stepper-motor"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0023",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "Motor protection",
+    "question": "Many aircraft motors contain a thermal switch in their windings. It is fitted to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cut the motor's supply if its windings overheat"
+      },
+      {
+        "id": "b",
+        "text": "Indicate on the flight deck that the motor has reached operating temperature"
+      },
+      {
+        "id": "c",
+        "text": "Connect a heater to keep the motor warm at altitude"
+      },
+      {
+        "id": "d",
+        "text": "Increase the motor's speed when it gets hot to improve its cooling"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A stalled or overloaded motor draws a large current and heats its windings. A thermal cut-out in the winding breaks the supply before the insulation fails; on some designs it resets automatically when cool.",
+    "tags": [
+      "motor-protection",
+      "thermal-switch"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0024",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "Motor types",
+    "question": "A compound-wound DC motor combines series and shunt fields in order to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Reverse its direction automatically when overloaded"
+      },
+      {
+        "id": "b",
+        "text": "Remove the need for a commutator and brushes"
+      },
+      {
+        "id": "c",
+        "text": "Combine strong starting torque with a safe no-load speed"
+      },
+      {
+        "id": "d",
+        "text": "Run at a speed set exactly by the supply frequency"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The series winding gives strong torque at start; the shunt winding provides a field that does not collapse when the load is removed, setting a safe no-load speed.",
+    "tags": [
+      "compound-motor"
+    ],
+    "status": "published",
+    "version": 1
+  }
+]

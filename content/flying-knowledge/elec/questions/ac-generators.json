@@ -1,0 +1,861 @@
+[
+  {
+    "id": "ELEC-ACGEN-0001",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Frequency",
+    "question": "The output frequency of an AC generator depends on:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Its number of phases only"
+      },
+      {
+        "id": "b",
+        "text": "Its load and its power factor"
+      },
+      {
+        "id": "c",
+        "text": "Its rotational speed and its number of poles"
+      },
+      {
+        "id": "d",
+        "text": "Its field current and its output voltage"
+      }
+    ],
+    "correct": "c",
+    "explanation": "f = (rpm × pole pairs) / 60. Field current controls the voltage, not the frequency. That is why a constant frequency requires a constant generator speed.",
+    "tags": [
+      "frequency",
+      "ac-generator"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0002",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Frequency",
+    "question": "An eight-pole AC generator must produce 400 Hz. Its rotational speed must be:",
+    "options": [
+      {
+        "id": "a",
+        "text": "6,000 rpm"
+      },
+      {
+        "id": "b",
+        "text": "12,000 rpm"
+      },
+      {
+        "id": "c",
+        "text": "24,000 rpm"
+      },
+      {
+        "id": "d",
+        "text": "3,000 rpm"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Eight poles = four pole pairs. rpm = 60 × f / pole pairs = 60 × 400 / 4 = 6,000 rpm.",
+    "tags": [
+      "frequency",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0003",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Frequency",
+    "question": "An AC generator with four poles is driven at 12,000 rpm. Its output frequency is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "400 Hz"
+      },
+      {
+        "id": "b",
+        "text": "48 kHz"
+      },
+      {
+        "id": "c",
+        "text": "200 Hz"
+      },
+      {
+        "id": "d",
+        "text": "800 Hz"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Four poles = two pole pairs. f = rpm × pole pairs / 60 = 12,000 × 2 / 60 = 400 Hz. Using four as the number of pairs would give 800 Hz.",
+    "tags": [
+      "frequency",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0004",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Frequency",
+    "question": "A six-pole generator driven at 7,000 rpm produces what frequency?",
+    "options": [
+      {
+        "id": "a",
+        "text": "233 Hz"
+      },
+      {
+        "id": "b",
+        "text": "400 Hz"
+      },
+      {
+        "id": "c",
+        "text": "700 Hz"
+      },
+      {
+        "id": "d",
+        "text": "350 Hz"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Six poles = three pole pairs. f = 7,000 × 3 / 60 = 350 Hz. To give 400 Hz it would have to run at 8,000 rpm.",
+    "tags": [
+      "frequency",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0005",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Construction",
+    "question": "Most AC generators have a rotating field and a stationary armature (output winding) because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "It allows the generator to run without any field excitation"
+      },
+      {
+        "id": "b",
+        "text": "A rotating armature cannot produce a three-phase output at all"
+      },
+      {
+        "id": "c",
+        "text": "A stationary field would produce DC instead of AC at the terminals"
+      },
+      {
+        "id": "d",
+        "text": "The heavy output is then taken from fixed windings, without slip rings"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Taking tens or hundreds of amps at 200 V through slip rings would mean wear, arcing and losses. Putting the output windings on the stator avoids that; and in a brushless design even the field supply reaches the rotor without brushes.",
+    "tags": [
+      "ac-generator",
+      "rotating-field"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0006",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Brushless generator",
+    "question": "In a typical three-stage brushless AC generator, the main rotating field receives its DC from:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Carbon brushes running on slip rings fed from the aircraft battery"
+      },
+      {
+        "id": "b",
+        "text": "Rotor-mounted diodes rectifying the exciter armature's AC"
+      },
+      {
+        "id": "c",
+        "text": "The main stator output, fed back through a transformer rectifier unit"
+      },
+      {
+        "id": "d",
+        "text": "The permanent magnet generator directly, through a commutator"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The exciter's armature rotates with the shaft and produces AC; rotating rectifier diodes on the same shaft convert it to DC for the main field. No brushes are needed anywhere — reducing maintenance and removing a source of sparking and wear at altitude.",
+    "tags": [
+      "brushless",
+      "rotating-rectifier"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0007",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Brushless generator",
+    "question": "The permanent magnet generator (PMG) stage of a brushless AC generator provides:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Power for the GCU and exciter field, independent of other sources"
+      },
+      {
+        "id": "b",
+        "text": "DC to recharge the aircraft battery directly"
+      },
+      {
+        "id": "c",
+        "text": "The main three-phase output of the generator to the AC busbars"
+      },
+      {
+        "id": "d",
+        "text": "The drive torque that keeps the generator at constant speed"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Because its field is a permanent magnet, the PMG produces power as soon as the shaft turns, with no external excitation. It powers the GCU and the exciter field, so the generator is self-sufficient and can build up voltage with no battery.",
+    "tags": [
+      "brushless",
+      "pmg",
+      "gcu"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0008",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Voltage control",
+    "question": "The output voltage of a brushless AC generator is regulated by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Changing the number of poles in use on the main rotor"
+      },
+      {
+        "id": "b",
+        "text": "Varying the speed of the generator through the constant speed drive"
+      },
+      {
+        "id": "c",
+        "text": "Switching resistors into the main output lines"
+      },
+      {
+        "id": "d",
+        "text": "Varying the DC current in the stationary exciter field winding"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The voltage regulator (in the GCU) controls the exciter field current. That sets the exciter output, which sets the main field current, which sets the output voltage. Speed is held constant separately to fix the frequency.",
+    "tags": [
+      "voltage-regulation",
+      "exciter"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0009",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Constant speed drive",
+    "question": "A constant speed drive (CSD) is fitted between the engine and an AC generator in order to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Convert the generator's AC output into constant-voltage DC"
+      },
+      {
+        "id": "b",
+        "text": "Turn the generator at constant speed, so the frequency stays constant"
+      },
+      {
+        "id": "c",
+        "text": "Keep the generator output voltage constant at 115 V"
+      },
+      {
+        "id": "d",
+        "text": "Disconnect the generator automatically if the engine overspeeds"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Engine speed varies widely between idle and take-off power, but a constant-frequency system must stay at 400 Hz. The CSD — a hydro-mechanical transmission — adds or subtracts speed as needed. Voltage is regulated separately, by the field.",
+    "tags": [
+      "csd",
+      "frequency"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0010",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Constant speed drive",
+    "question": "An integrated drive generator (IDG) is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "An emergency generator driven by a ram air turbine"
+      },
+      {
+        "id": "b",
+        "text": "A generator whose frequency varies freely with engine speed"
+      },
+      {
+        "id": "c",
+        "text": "A constant speed drive and generator in one oil-cooled unit"
+      },
+      {
+        "id": "d",
+        "text": "A generator driven by the APU that can be connected to either engine"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Combining the drive and the generator saves weight and space; the oil both operates the hydraulic speed-control section and cools the generator. IDG warnings typically concern high oil temperature or low oil pressure.",
+    "tags": [
+      "idg",
+      "csd"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0011",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Constant speed drive",
+    "question": "An IDG disconnect switch is operated in flight because of a low oil pressure warning. The IDG:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Can be reconnected in flight once the oil pressure has recovered"
+      },
+      {
+        "id": "b",
+        "text": "Remains connected but its generator output is switched off"
+      },
+      {
+        "id": "c",
+        "text": "Disconnects only temporarily and reconnects automatically after 30 seconds"
+      },
+      {
+        "id": "d",
+        "text": "Is mechanically disconnected and can only be reconnected on the ground"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The disconnect releases a dog clutch so the engine stops driving the unit, preventing it from seizing and damaging the gearbox. Re-engagement is a ground maintenance action with the engine stopped. Because it is irreversible in flight, the switch is guarded.",
+    "tags": [
+      "idg",
+      "disconnect"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0012",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Variable frequency",
+    "question": "A variable speed constant frequency (VSCF) system produces a constant 400 Hz by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Converting the variable-frequency output electronically to 400 Hz"
+      },
+      {
+        "id": "b",
+        "text": "Driving the generator from the APU only, which runs at constant speed"
+      },
+      {
+        "id": "c",
+        "text": "Varying the number of active poles in the generator as the engine speed changes"
+      },
+      {
+        "id": "d",
+        "text": "Using a hydro-mechanical constant speed drive between the engine and the generator"
+      }
+    ],
+    "correct": "a",
+    "explanation": "VSCF removes the mechanical CSD: the generator output, whose frequency varies with engine speed, is processed by power electronics (for example through a DC link and an inverter) into constant-frequency AC.",
+    "tags": [
+      "vscf"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0013",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Variable frequency",
+    "question": "Some modern aircraft use 'variable frequency' AC generators driven directly by the engine. A consequence of this is that:",
+    "options": [
+      {
+        "id": "a",
+        "text": "They cannot be paralleled, and motors may need electronic controllers"
+      },
+      {
+        "id": "b",
+        "text": "They cannot be used to power transformer rectifier units"
+      },
+      {
+        "id": "c",
+        "text": "They require a heavier constant speed drive than a conventional IDG"
+      },
+      {
+        "id": "d",
+        "text": "Their output voltage varies with engine speed and cannot be regulated"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Dropping the CSD saves weight and improves reliability, but the frequency now follows engine speed. Two generators at different frequencies cannot share a bus, so these systems are split-bus. Resistive heaters and TRUs do not care about frequency; motors may need controllers.",
+    "tags": [
+      "variable-frequency"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0014",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Variable frequency",
+    "question": "'Frequency-wild' alternators on some turboprops are typically used to supply:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A busbar paralleled with a constant-frequency generator"
+      },
+      {
+        "id": "b",
+        "text": "Synchronous motors whose speed must be held constant"
+      },
+      {
+        "id": "c",
+        "text": "Navigation instruments that need an exact 400 Hz reference"
+      },
+      {
+        "id": "d",
+        "text": "Resistive de-icing heaters, which work at any frequency"
+      }
+    ],
+    "correct": "d",
+    "explanation": "A heating element only cares about the power it receives, not the frequency. Using an unregulated-frequency alternator for de-icing avoids the weight of a constant-speed drive for a large but undemanding load.",
+    "tags": [
+      "frequency-wild",
+      "de-icing"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0015",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Paralleling",
+    "question": "Before an AC generator can be connected in parallel with another generator or a live bus, which conditions must be met?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Equal voltage and equal load current only"
+      },
+      {
+        "id": "b",
+        "text": "Equal voltage, equal frequency, the same phase sequence and the voltages in phase"
+      },
+      {
+        "id": "c",
+        "text": "Equal frequency only, since voltage is adjusted automatically after connection"
+      },
+      {
+        "id": "d",
+        "text": "Opposite phase sequence, so that the two outputs reinforce each other"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Closing the breaker with a mismatch in voltage, frequency or phase angle drives a large circulating current between the machines and causes a severe mechanical shock to their drives. A wrong phase sequence would amount to a short circuit.",
+    "tags": [
+      "paralleling",
+      "synchronising"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0016",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Paralleling",
+    "question": "In a parallel AC system, real load (kW) sharing between generators is controlled by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Adjusting the number of poles in each generator"
+      },
+      {
+        "id": "b",
+        "text": "Adjusting the power factor of each load on the bus"
+      },
+      {
+        "id": "c",
+        "text": "Adjusting each constant speed drive's speed (torque)"
+      },
+      {
+        "id": "d",
+        "text": "Adjusting the field excitation of each generator"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Generators locked together in parallel run at the same frequency. Asking one CSD for slightly more speed makes it push more torque — and therefore more real power — into the bus. Excitation, by contrast, shifts reactive load.",
+    "tags": [
+      "paralleling",
+      "real-load",
+      "csd"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0017",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Paralleling",
+    "question": "In a parallel AC system, reactive load (kVAR) sharing between generators is controlled by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Adjusting the frequency of each generator independently"
+      },
+      {
+        "id": "b",
+        "text": "Disconnecting and reconnecting each generator in turn"
+      },
+      {
+        "id": "c",
+        "text": "Adjusting each generator's field excitation"
+      },
+      {
+        "id": "d",
+        "text": "Adjusting the speed of each generator's constant speed drive"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Raising one generator's excitation makes it supply more of the reactive (magnetising) current. It cannot change its share of real power that way, because that requires more torque from the drive.",
+    "tags": [
+      "paralleling",
+      "reactive-load",
+      "excitation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0018",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Paralleling",
+    "question": "Two AC generators are running in parallel. The excitation of one of them is increased. The effect is that this generator:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Takes a larger share of the reactive load, while the real load sharing is essentially unchanged"
+      },
+      {
+        "id": "b",
+        "text": "Takes a larger share of the real load, while the reactive load sharing is unchanged"
+      },
+      {
+        "id": "c",
+        "text": "Drops off line because its voltage no longer matches the bus"
+      },
+      {
+        "id": "d",
+        "text": "Increases the frequency of the whole system"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The bus voltage barely changes, but circulating reactive current now flows from the over-excited generator. Its kVAR rises and its power factor falls; its kW does not change, because the drive torque has not changed.",
+    "tags": [
+      "paralleling",
+      "excitation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0019",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Protection",
+    "question": "Differential protection on an AC generator detects:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A wrong phase sequence from the external power unit"
+      },
+      {
+        "id": "b",
+        "text": "A fault in the generator or its feeder between two current transformers"
+      },
+      {
+        "id": "c",
+        "text": "A frequency that has drifted outside its limits"
+      },
+      {
+        "id": "d",
+        "text": "An unequal share of the real load between paralleled generators"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Current transformers at the generator's neutral end and at the bus end of the feeder should see the same current. A difference means current is leaking out in between, so the GCU trips the generator field and breaker to isolate the fault.",
+    "tags": [
+      "differential-protection",
+      "gcu"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0020",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Protection",
+    "question": "The generator control unit (GCU) of an AC generator typically provides:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Conversion of the generator output from AC to DC"
+      },
+      {
+        "id": "b",
+        "text": "Voltage regulation and protection against voltage, frequency and feeder faults"
+      },
+      {
+        "id": "c",
+        "text": "Control of the engine fuel flow to hold the generator speed constant"
+      },
+      {
+        "id": "d",
+        "text": "Charging of the aircraft battery directly from the generator"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The GCU regulates the voltage and monitors the output. On a fault it opens the generator control relay (removing excitation) and the generator breaker (disconnecting it from the bus).",
+    "tags": [
+      "gcu",
+      "protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0021",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Protection",
+    "question": "An under-frequency fault on a constant-frequency AC generator would most likely be caused by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "An open-circuit fault in one of the loads on the bus"
+      },
+      {
+        "id": "b",
+        "text": "A CSD fault, so the generator is turning too slowly"
+      },
+      {
+        "id": "c",
+        "text": "A reverse phase sequence in the generator's own windings"
+      },
+      {
+        "id": "d",
+        "text": "Too high a field current from the voltage regulator"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Frequency is set by speed alone. If the CSD (or IDG) cannot hold the governed speed, the frequency falls, which would make induction motors slow down and transformers overheat. The GCU disconnects the generator before that happens.",
+    "tags": [
+      "under-frequency",
+      "csd"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0022",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Protection",
+    "question": "Two relays/breakers are commonly associated with each AC generator: the generator control relay (GCR) and the generator circuit breaker (GCB). The GCR:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Disconnects the IDG mechanically from the engine gearbox"
+      },
+      {
+        "id": "b",
+        "text": "Connects the generator to the external power receptacle"
+      },
+      {
+        "id": "c",
+        "text": "Controls the generator's excitation, while the GCB connects its output to the busbar"
+      },
+      {
+        "id": "d",
+        "text": "Connects the generator's output to the busbar, while the GCB controls its excitation"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Opening the GCR removes the field supply so the generator stops producing voltage; opening the GCB isolates its output from the bus. A serious fault trips both.",
+    "tags": [
+      "gcr",
+      "gcb"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0023",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Generator rating",
+    "question": "An AC generator is rated at 90 kVA. Supplying a load with a power factor of 0.8, the maximum true power it can deliver is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "54 kW"
+      },
+      {
+        "id": "b",
+        "text": "72 kW"
+      },
+      {
+        "id": "c",
+        "text": "90 kW"
+      },
+      {
+        "id": "d",
+        "text": "112.5 kW"
+      }
+    ],
+    "correct": "b",
+    "explanation": "True power = apparent power × PF = 90 × 0.8 = 72 kW. The generator is limited by current (kVA), whatever the power factor.",
+    "tags": [
+      "kva",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0024",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "APU generator",
+    "question": "The APU generator on a large aircraft is typically:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Driven by a ram air turbine and used only in an emergency"
+      },
+      {
+        "id": "b",
+        "text": "A DC generator used only to start the main engines"
+      },
+      {
+        "id": "c",
+        "text": "Turned at constant speed by the APU itself, so no CSD is needed"
+      },
+      {
+        "id": "d",
+        "text": "Paralleled with the engine generators at all times in flight"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The APU itself is governed to a constant speed, so its generator gives a constant frequency directly. It provides power independently of ground equipment and engines and can replace a failed engine generator in flight, within the APU's operating envelope.",
+    "tags": [
+      "apu-generator"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0025",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Indication",
+    "question": "On the AC electrical panel, a frequency meter reading 380 Hz on a constant-frequency system, with the voltage normal, suggests:",
+    "options": [
+      {
+        "id": "a",
+        "text": "That the generator is turning too slowly, pointing to a problem with its drive"
+      },
+      {
+        "id": "b",
+        "text": "Normal operation, since the frequency of a constant-frequency system may vary freely"
+      },
+      {
+        "id": "c",
+        "text": "That the voltage regulator is faulty"
+      },
+      {
+        "id": "d",
+        "text": "That the generator is overloaded with reactive current"
+      }
+    ],
+    "correct": "a",
+    "explanation": "In a constant-frequency system the frequency only reflects generator speed. A low reading with normal voltage points to the CSD/IDG, not the regulator. If it goes outside limits, the under-frequency protection disconnects the generator.",
+    "tags": [
+      "frequency",
+      "indication",
+      "csd"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0026",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Construction",
+    "question": "Aircraft AC generators are often cooled by oil (in an IDG) or by ram air. Cooling matters because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cooling raises the generator's kVA rating to any value required"
+      },
+      {
+        "id": "b",
+        "text": "The output frequency rises as the generator temperature falls"
+      },
+      {
+        "id": "c",
+        "text": "Without cooling the generator would produce DC instead of AC"
+      },
+      {
+        "id": "d",
+        "text": "Output is limited by the heat its insulation can withstand"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Copper losses (I²R) and iron losses heat the machine. Insulation degrades rapidly above its rated temperature, so the amount of heat that can be removed effectively sets the generator's rating.",
+    "tags": [
+      "cooling",
+      "idg"
+    ],
+    "status": "published",
+    "version": 1
+  }
+]
