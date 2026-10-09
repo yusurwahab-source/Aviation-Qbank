@@ -1,0 +1,1404 @@
+[
+  {
+    "id": "MET-TAF-0001",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Format and validity",
+    "question": "A TAF is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A warning of severe en-route weather for a flight information region"
+      },
+      {
+        "id": "b",
+        "text": "A coded report of the actual weather observed at an aerodrome at a given time"
+      },
+      {
+        "id": "c",
+        "text": "A forecast of upper winds and temperatures at standard flight levels"
+      },
+      {
+        "id": "d",
+        "text": "A coded forecast of the weather expected at an aerodrome over a stated period"
+      }
+    ],
+    "correct": "d",
+    "explanation": "TAFs use much the same codes as METARs but describe expected rather than observed conditions.",
+    "tags": [
+      "definition"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0002",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Format and validity",
+    "question": "TAFs typically cover periods of:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Between 9 and 30 hours"
+      },
+      {
+        "id": "b",
+        "text": "Exactly 2 hours"
+      },
+      {
+        "id": "c",
+        "text": "Up to 7 days"
+      },
+      {
+        "id": "d",
+        "text": "Between 1 and 3 hours"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Short TAFs of 9–12 hours and long TAFs of 24–30 hours are issued, according to the aerodrome's needs.",
+    "tags": [
+      "validity"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0003",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Format and validity",
+    "question": "In general, 9-hour TAFs are issued:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Every 30 minutes, at the same times as routine METARs"
+      },
+      {
+        "id": "b",
+        "text": "Every 12 hours, at 0000 and 1200 UTC"
+      },
+      {
+        "id": "c",
+        "text": "Every 3 hours, with longer TAFs every 6 hours"
+      },
+      {
+        "id": "d",
+        "text": "Once a day, before operations begin"
+      }
+    ],
+    "correct": "c",
+    "explanation": "More frequent issue keeps the short-range forecasts current.",
+    "tags": [
+      "issue"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0004",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Format and validity",
+    "question": "In the TAF \"TAF EDDF 210500Z 2106/2212 ...\", the group \"2106/2212\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Valid from 2106 UTC to 2212 UTC on the same day"
+      },
+      {
+        "id": "b",
+        "text": "Valid from the 21st at 0600 UTC to the 22nd at 1200 UTC"
+      },
+      {
+        "id": "c",
+        "text": "Issued on the 21st at 0600 and amended on the 22nd at 1200"
+      },
+      {
+        "id": "d",
+        "text": "Visibility 2106 m, cloud base 2212 ft"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The validity group gives start day and hour, then end day and hour. This is a 30-hour TAF.",
+    "tags": [
+      "validity",
+      "decode"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0005",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Format and validity",
+    "question": "In \"TAF LOWW 150800Z 1509/1518 ...\", the time of issue is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The 15th at 1800 UTC"
+      },
+      {
+        "id": "b",
+        "text": "The 8th at 1500 UTC"
+      },
+      {
+        "id": "c",
+        "text": "The 15th at 0800 UTC"
+      },
+      {
+        "id": "d",
+        "text": "The 15th at 0900 UTC"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The first date–time group (with Z) is the issue time; the next group is the validity period, here 0900 to 1800 UTC.",
+    "tags": [
+      "issue",
+      "decode"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0006",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Format and validity",
+    "question": "Which of these items is not normally included in a TAF?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The visibility"
+      },
+      {
+        "id": "b",
+        "text": "The QNH"
+      },
+      {
+        "id": "c",
+        "text": "The cloud amount and height"
+      },
+      {
+        "id": "d",
+        "text": "The surface wind"
+      }
+    ],
+    "correct": "b",
+    "explanation": "TAFs do not include QNH, temperature and dew point (except optional maximum and minimum temperatures), recent weather, windshear or runway state.",
+    "tags": [
+      "content"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0007",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Format and validity",
+    "question": "In a TAF, the only cloud type identified by name is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cumulonimbus (CB)"
+      },
+      {
+        "id": "b",
+        "text": "Towering cumulus (TCU) only"
+      },
+      {
+        "id": "c",
+        "text": "Stratus and nimbostratus"
+      },
+      {
+        "id": "d",
+        "text": "All ten main types"
+      }
+    ],
+    "correct": "a",
+    "explanation": "TAFs name only CB, whereas METARs name both CB and TCU.",
+    "tags": [
+      "cloud"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0008",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Format and validity",
+    "question": "\"NSC\" in a TAF means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "No snow has been cleared from the runways, so braking action is not forecast for the period"
+      },
+      {
+        "id": "b",
+        "text": "Night sky clear, used only for periods between sunset and sunrise"
+      },
+      {
+        "id": "c",
+        "text": "No significant change is expected, so no change groups follow in the TAF"
+      },
+      {
+        "id": "d",
+        "text": "No cloud below 5000 ft or the highest MSA (if greater) and no CB, where CAVOK does not apply"
+      }
+    ],
+    "correct": "d",
+    "explanation": "NSC indicates there is no cloud of operational significance.",
+    "tags": [
+      "cloud",
+      "nsc"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0009",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Format and validity",
+    "question": "\"NSW\" in a TAF change group means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "No significant change in the wind"
+      },
+      {
+        "id": "b",
+        "text": "A warning that no snow is forecast"
+      },
+      {
+        "id": "c",
+        "text": "The end of significant weather"
+      },
+      {
+        "id": "d",
+        "text": "A north–south wind is expected"
+      }
+    ],
+    "correct": "c",
+    "explanation": "NSW is used to show that a forecast weather phenomenon, such as rain or thunderstorms, will end.",
+    "tags": [
+      "nsw"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0010",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Change groups",
+    "question": "In a TAF, \"FM\" followed by a date and time indicates:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A temporary fluctuation lasting less than one hour"
+      },
+      {
+        "id": "b",
+        "text": "A gradual change in conditions, taking place over the period that follows the time given"
+      },
+      {
+        "id": "c",
+        "text": "A 30% probability that the conditions will change"
+      },
+      {
+        "id": "d",
+        "text": "A rapid change at that time to entirely new prevailing conditions"
+      }
+    ],
+    "correct": "d",
+    "explanation": "FM introduces a self-contained new forecast (wind, visibility, weather and cloud) that applies until the end of the TAF or the next change group.",
+    "tags": [
+      "change-groups",
+      "fm"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0011",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Change groups",
+    "question": "In \"TAF ... FM191430 25018KT 6000 SHRA BKN015 ...\", the change takes place:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Between 1430 and 1930 UTC"
+      },
+      {
+        "id": "b",
+        "text": "On the 19th at 1430 UTC"
+      },
+      {
+        "id": "c",
+        "text": "19 hours after 1430 UTC"
+      },
+      {
+        "id": "d",
+        "text": "On the 14th at 1930 UTC"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The FM group gives day, hours and minutes of the change.",
+    "tags": [
+      "change-groups",
+      "fm",
+      "decode"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0012",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Change groups",
+    "question": "In a TAF, \"BECMG 1210/1212 4000 BR\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "At some time between 1000 and 1200 UTC on the 12th, a lasting change to 4000 m in mist"
+      },
+      {
+        "id": "b",
+        "text": "On the 12th, 4000 m in mist only from 1000 to 1200 UTC, then a return to the previous visibility"
+      },
+      {
+        "id": "c",
+        "text": "On the 12th, at exactly 1000 UTC, the visibility becomes 4000 m in mist"
+      },
+      {
+        "id": "d",
+        "text": "On the 12th, a 40% probability of 4000 m in mist between 1000 and 1200 UTC"
+      }
+    ],
+    "correct": "a",
+    "explanation": "BECMG describes a lasting change that happens gradually or at an unspecified time within the stated period, and is complete by its end.",
+    "tags": [
+      "change-groups",
+      "becmg"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0013",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Change groups",
+    "question": "After a BECMG group that gives only a new visibility and weather, the wind and cloud are:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Not forecast for the rest of the TAF period"
+      },
+      {
+        "id": "b",
+        "text": "As previously forecast, as only the elements given are changed"
+      },
+      {
+        "id": "c",
+        "text": "The same as in the latest METAR for the aerodrome"
+      },
+      {
+        "id": "d",
+        "text": "Calm and clear, unless they are stated again in the group"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A change group lists only the elements that change; the others carry on as before.",
+    "tags": [
+      "change-groups",
+      "becmg"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0014",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Change groups",
+    "question": "In a TAF, \"TEMPO 0914/0918 3000 TSRA BKN012CB\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Temporary spells, 1400–1800 UTC on the 9th, of thunderstorms with rain, 3000 m and CB at 1200 ft"
+      },
+      {
+        "id": "b",
+        "text": "A permanent change to thunderstorms with rain from 1400 UTC on the 9th, with CB at 1200 ft"
+      },
+      {
+        "id": "c",
+        "text": "Continuous thunderstorms with rain from 1400 to 1800 UTC on the 9th, with 3000 m and CB at 1200 ft"
+      },
+      {
+        "id": "d",
+        "text": "A 30% chance of thunderstorms with rain between 0900 and 1400 UTC, with CB at 1200 ft"
+      }
+    ],
+    "correct": "a",
+    "explanation": "TEMPO conditions each last less than an hour and, in total, cover less than half the stated period. The main conditions apply the rest of the time.",
+    "tags": [
+      "change-groups",
+      "tempo"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0015",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Change groups",
+    "question": "TEMPO conditions in a TAF are each expected to last:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Until the end of the TAF validity period"
+      },
+      {
+        "id": "b",
+        "text": "Exactly one hour each, and exactly half the period in total"
+      },
+      {
+        "id": "c",
+        "text": "Less than an hour each, and less than half the period in total"
+      },
+      {
+        "id": "d",
+        "text": "More than half of the stated period in total"
+      }
+    ],
+    "correct": "c",
+    "explanation": "If the conditions were expected to last longer, BECMG or FM would be used instead.",
+    "tags": [
+      "change-groups",
+      "tempo"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0016",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Change groups",
+    "question": "The probability groups used in TAFs are:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Any value from PROB10 to PROB90"
+      },
+      {
+        "id": "b",
+        "text": "PROB50 and PROB75"
+      },
+      {
+        "id": "c",
+        "text": "PROB10, PROB20 and PROB50"
+      },
+      {
+        "id": "d",
+        "text": "PROB30 and PROB40 only"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Below 30% a change is not considered worth including; 50% or more would be written as part of the main forecast or a TEMPO or BECMG group.",
+    "tags": [
+      "change-groups",
+      "prob"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0017",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Change groups",
+    "question": "In a TAF, \"PROB30 TEMPO 2316/2320 +SHRA\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Visibility of 30 km in heavy showers from 1600 UTC"
+      },
+      {
+        "id": "b",
+        "text": "A 30% chance of temporary heavy showers, 1600–2000 UTC on the 23rd"
+      },
+      {
+        "id": "c",
+        "text": "Heavy showers will definitely occur between 1600 and 2000 UTC"
+      },
+      {
+        "id": "d",
+        "text": "Rain will fall for 30% of the time between 2316 and 2320 UTC"
+      }
+    ],
+    "correct": "b",
+    "explanation": "PROB can be combined with TEMPO to give the probability of temporary fluctuations.",
+    "tags": [
+      "change-groups",
+      "prob"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0018",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Change groups",
+    "question": "A PROB40 group in a TAF indicates:",
+    "options": [
+      {
+        "id": "a",
+        "text": "That the forecast condition is certain to occur"
+      },
+      {
+        "id": "b",
+        "text": "A duration of 40 minutes for the condition"
+      },
+      {
+        "id": "c",
+        "text": "A 40% probability, more likely than PROB30"
+      },
+      {
+        "id": "d",
+        "text": "A forecast visibility of 4000 m"
+      }
+    ],
+    "correct": "c",
+    "explanation": "PROB40 shows a higher chance than PROB30, but it is still less than even.",
+    "tags": [
+      "change-groups",
+      "prob"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0019",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Change groups",
+    "question": "\"TX18/1415Z TN06/1505Z\" in a TAF means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Visibility 1800 m on the 14th, falling to 600 m on the 15th"
+      },
+      {
+        "id": "b",
+        "text": "Maximum wind 18 kt on the 14th; minimum wind 6 kt on the 15th"
+      },
+      {
+        "id": "c",
+        "text": "Temperature 18°C at 1415 UTC; dew point 6°C at 1505 UTC on the same day"
+      },
+      {
+        "id": "d",
+        "text": "Maximum 18°C at 1500 UTC on the 14th; minimum 6°C at 0500 UTC on the 15th"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Some authorities include forecast maximum and minimum temperatures with their expected times.",
+    "tags": [
+      "temperature"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0020",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Change groups",
+    "question": "\"TAF AMD\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "An amended TAF, replacing the previous one for the same period"
+      },
+      {
+        "id": "b",
+        "text": "A TAF produced automatically by computer, without any forecaster"
+      },
+      {
+        "id": "c",
+        "text": "A TAF for an aerodrome in the Americas"
+      },
+      {
+        "id": "d",
+        "text": "A TAF that has been cancelled"
+      }
+    ],
+    "correct": "a",
+    "explanation": "An amendment is issued when the previous TAF is no longer representative of the expected weather.",
+    "tags": [
+      "amendment"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0021",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Change groups",
+    "question": "\"TAF ... CNL\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Changes are not likely"
+      },
+      {
+        "id": "b",
+        "text": "The previously issued TAF is cancelled"
+      },
+      {
+        "id": "c",
+        "text": "Clouds are not low"
+      },
+      {
+        "id": "d",
+        "text": "The aerodrome is closed for snow clearance"
+      }
+    ],
+    "correct": "b",
+    "explanation": "CNL cancels a forecast, for example when an aerodrome closes.",
+    "tags": [
+      "cancel"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0022",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Interpreting TAFs",
+    "question": "TAF: \"TAF EGKK 050500Z 0506/0612 22012KT 9999 SCT030 BECMG 0512/0514 25020G35KT 5000 RA BKN012 TEMPO 0516/0520 2000 +RA BKN006\". What visibility should be planned for an arrival at 1800 UTC on the 5th?",
+    "options": [
+      {
+        "id": "a",
+        "text": "5000 m in rain, with temporary spells of 2000 m in heavy rain"
+      },
+      {
+        "id": "b",
+        "text": "2000 m in heavy rain for the whole of the TAF period"
+      },
+      {
+        "id": "c",
+        "text": "9999 m, as given in the main body of the TAF throughout"
+      },
+      {
+        "id": "d",
+        "text": "9999 m, as given in the main body of the TAF"
+      }
+    ],
+    "correct": "a",
+    "explanation": "After 1400 the prevailing conditions are 5000 m in rain; between 1600 and 2000 there may be temporary deteriorations to 2000 m in heavy rain with cloud at 600 ft.",
+    "tags": [
+      "interpretation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0023",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Interpreting TAFs",
+    "question": "Using the same TAF (\"... BECMG 0512/0514 25020G35KT ...\"), what is the forecast wind at 1300 UTC on the 5th?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Calm, as the wind is changing direction"
+      },
+      {
+        "id": "b",
+        "text": "Exactly 220/12, as the change is not complete until 1400"
+      },
+      {
+        "id": "c",
+        "text": "Exactly 250/20G35, as the BECMG period has already started at 1200"
+      },
+      {
+        "id": "d",
+        "text": "Anywhere between 220/12 and 250/20G35, as the change is in progress"
+      }
+    ],
+    "correct": "d",
+    "explanation": "During a BECMG period the change may occur at any time, so either set of conditions, or something between, is possible until 1400.",
+    "tags": [
+      "interpretation",
+      "becmg"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0024",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Interpreting TAFs",
+    "question": "In a TAF, if no wind is given after an FM group:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The wind is variable in direction"
+      },
+      {
+        "id": "b",
+        "text": "The wind becomes calm from that time until the end of the TAF period"
+      },
+      {
+        "id": "c",
+        "text": "Impossible, as an FM group always contains a complete forecast"
+      },
+      {
+        "id": "d",
+        "text": "The previous wind continues unchanged"
+      }
+    ],
+    "correct": "c",
+    "explanation": "FM introduces new prevailing conditions, so it always contains all the main elements.",
+    "tags": [
+      "interpretation",
+      "fm"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0025",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Interpreting TAFs",
+    "question": "A TAF contains \"FM101800 VRB03KT 0400 FG VV001\". It indicates that from 1800 UTC on the 10th:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Visibility 4000 m in mist, with cloud at 100 ft, from 1800 UTC"
+      },
+      {
+        "id": "b",
+        "text": "There is a 10% chance of fog with 400 m from 1800 UTC"
+      },
+      {
+        "id": "c",
+        "text": "Fog will occur only temporarily, at about 1800 UTC, lasting for less than an hour"
+      },
+      {
+        "id": "d",
+        "text": "Fog, 400 m and vertical visibility 100 ft, becomes the prevailing condition"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The FM group replaces all previous conditions with fog of 400 m and an obscured sky.",
+    "tags": [
+      "interpretation",
+      "fog"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0026",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Interpreting TAFs",
+    "question": "The difference between a METAR TREND and a TAF is that the TREND:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Covers the 2 hours after the observation and is part of the METAR; a TAF covers 9–30 hours"
+      },
+      {
+        "id": "b",
+        "text": "Is a report of the weather during the past hour, not a forecast"
+      },
+      {
+        "id": "c",
+        "text": "Covers the next 24 hours from the observation, while the TAF covers only the next 2 hours from issue"
+      },
+      {
+        "id": "d",
+        "text": "Is only issued in summer, when conditions change more quickly"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A TREND is a short \"landing forecast\" appended to the report; the TAF is a separate, longer-range forecast.",
+    "tags": [
+      "comparison"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0027",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Interpreting TAFs",
+    "question": "When planning, a pilot uses TAFs mainly for:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The upper winds and temperatures along the route"
+      },
+      {
+        "id": "b",
+        "text": "The positions of jet streams and the tropopause"
+      },
+      {
+        "id": "c",
+        "text": "Destination and alternates at the expected arrival times"
+      },
+      {
+        "id": "d",
+        "text": "The current weather at the departure aerodrome only"
+      }
+    ],
+    "correct": "c",
+    "explanation": "TAFs provide the aerodrome forecasts needed to decide whether destination and alternates will be usable on arrival.",
+    "tags": [
+      "use"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0028",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Interpreting TAFs",
+    "question": "TAF: \"... 9999 SCT025 PROB30 TEMPO 1714/1718 TSRA BKN015CB\". A pilot arriving at 1600 UTC on the 17th should consider:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Thunderstorms becoming permanent from 1400 UTC"
+      },
+      {
+        "id": "b",
+        "text": "A 30% chance of temporary thunderstorms with CB at 1500 ft"
+      },
+      {
+        "id": "c",
+        "text": "Certain thunderstorms throughout the whole afternoon"
+      },
+      {
+        "id": "d",
+        "text": "No chance of thunderstorms, as PROB30 groups are ignored"
+      }
+    ],
+    "correct": "b",
+    "explanation": "PROB30 TEMPO indicates a lower, but real, possibility that must be considered in planning, for example in choosing alternates and fuel.",
+    "tags": [
+      "interpretation",
+      "prob"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0029",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Interpreting TAFs",
+    "question": "In a TAF, \"VRB\" in the wind group means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Very rough conditions with severe turbulence"
+      },
+      {
+        "id": "b",
+        "text": "A calm wind with no measurable speed"
+      },
+      {
+        "id": "c",
+        "text": "A wind that is veering steadily throughout the whole of the forecast period"
+      },
+      {
+        "id": "d",
+        "text": "A variable direction, usually because the wind is light or gusty in storms"
+      }
+    ],
+    "correct": "d",
+    "explanation": "For example VRB03KT. VRB may also be used with stronger winds in thunderstorms when the direction cannot be forecast.",
+    "tags": [
+      "wind"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0030",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Interpreting TAFs",
+    "question": "In \"TAF ... 34008KT CAVOK BECMG 2203/2206 0800 FG\", the forecast at 0700 UTC on the 22nd is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "CAVOK"
+      },
+      {
+        "id": "b",
+        "text": "Fog with a visibility of 800 m"
+      },
+      {
+        "id": "c",
+        "text": "Visibility 8 km"
+      },
+      {
+        "id": "d",
+        "text": "Fog for less than an hour only"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The BECMG change is complete by 0600, so from then on the prevailing condition is fog at 800 m.",
+    "tags": [
+      "interpretation",
+      "becmg"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0031",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Interpreting TAFs",
+    "question": "TAF visibility and cloud groups describe:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The prevailing conditions, with changes shown by FM, BECMG, TEMPO or PROB"
+      },
+      {
+        "id": "b",
+        "text": "Conditions at 2000 ft above the aerodrome, for the approach"
+      },
+      {
+        "id": "c",
+        "text": "The worst conditions expected at any time and in any direction during the whole validity period"
+      },
+      {
+        "id": "d",
+        "text": "Conditions expected along the whole route to the aerodrome"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The main body of the TAF gives the prevailing forecast; change groups show expected variations.",
+    "tags": [
+      "content"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0032",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Interpreting TAFs",
+    "question": "A TAF for a 30-hour period would typically be issued:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only for small grass airfields with few movements"
+      },
+      {
+        "id": "b",
+        "text": "Only when thunderstorms are expected"
+      },
+      {
+        "id": "c",
+        "text": "For larger aerodromes used by long-haul flights"
+      },
+      {
+        "id": "d",
+        "text": "Only during the winter season"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Long validity allows planning for long flights, where the arrival time may be many hours after departure.",
+    "tags": [
+      "validity"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0033",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Interpreting TAFs",
+    "question": "In the TAF group \"BKN008\", the height refers to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The forecast visibility, in hundreds of metres"
+      },
+      {
+        "id": "b",
+        "text": "The forecast cloud top, in hundreds of feet above the aerodrome"
+      },
+      {
+        "id": "c",
+        "text": "The forecast cloud base, in hundreds of feet above the aerodrome"
+      },
+      {
+        "id": "d",
+        "text": "The forecast cloud base, in hundreds of feet above MSL"
+      }
+    ],
+    "correct": "c",
+    "explanation": "As in a METAR, cloud heights are above aerodrome level: 800 ft here.",
+    "tags": [
+      "cloud"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0034",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Further TAF interpretation",
+    "question": "TAF: \"TAF EGPH 140500Z 1406/1506 27015KT 9999 FEW030 TEMPO 1410/1416 7000 SHRA BKN020 FM141800 31008KT 9999 NSC\". The forecast wind at 2000 UTC on the 14th is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Calm"
+      },
+      {
+        "id": "b",
+        "text": "270° at 15 kt"
+      },
+      {
+        "id": "c",
+        "text": "Variable between 270° and 310°"
+      },
+      {
+        "id": "d",
+        "text": "310° at 8 kt"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The FM group replaces all previous conditions from 1800 UTC onwards.",
+    "tags": [
+      "interpretation",
+      "fm"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0035",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Further TAF interpretation",
+    "question": "In the same TAF, what weather is expected at 1200 UTC on the 14th?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Mostly 9999 and FEW030, with temporary showers giving 7000 m and BKN020"
+      },
+      {
+        "id": "b",
+        "text": "Thunderstorms with CB, as showers are forecast"
+      },
+      {
+        "id": "c",
+        "text": "NSC and 9999 throughout, as the showers are only temporary"
+      },
+      {
+        "id": "d",
+        "text": "Continuous moderate rain all the time, with 7000 m and BKN020 throughout the period"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The main forecast applies, with temporary fluctuations given by the TEMPO group between 1000 and 1600.",
+    "tags": [
+      "interpretation",
+      "tempo"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0036",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Further TAF interpretation",
+    "question": "TAF: \"... BECMG 2015/2017 VRB03KT 3000 BR BECMG 2020/2022 0300 FG VV002\". At 2300 UTC on the 20th the forecast is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Calm, with 9999 and no cloud"
+      },
+      {
+        "id": "b",
+        "text": "Fog, 300 m, sky obscured, vertical visibility 200 ft"
+      },
+      {
+        "id": "c",
+        "text": "Drizzle, with 300 ft visibility"
+      },
+      {
+        "id": "d",
+        "text": "Mist, 3000 m, with a cloud base of about 200 ft"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Each BECMG change is complete by the end of its period, so by 2200 the fog conditions prevail.",
+    "tags": [
+      "interpretation",
+      "becmg"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0037",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Further TAF interpretation",
+    "question": "In a TAF, \"FM\" is followed by a group such as \"FM071530\". The meaning is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "From 0715 for 30 minutes"
+      },
+      {
+        "id": "b",
+        "text": "For 7 hours from 1530"
+      },
+      {
+        "id": "c",
+        "text": "From the 15th at 0730 UTC"
+      },
+      {
+        "id": "d",
+        "text": "From 1530 UTC on the 7th"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The six-figure group gives day, hour and minutes.",
+    "tags": [
+      "change-groups",
+      "fm"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0038",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Further TAF interpretation",
+    "question": "A TAF contains \"TEMPO 1812/1818 4000 TSRA BKN015CB\" but no PROB group. The chance of these conditions is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "50% or more, as no probability is given"
+      },
+      {
+        "id": "b",
+        "text": "Exactly 40%, the default value"
+      },
+      {
+        "id": "c",
+        "text": "Less than 30%, too low to state"
+      },
+      {
+        "id": "d",
+        "text": "Exactly 30%, the value assumed by default"
+      }
+    ],
+    "correct": "a",
+    "explanation": "When a change is expected with a probability of 50% or more, it is given without a PROB group.",
+    "tags": [
+      "change-groups",
+      "prob"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0039",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Further TAF interpretation",
+    "question": "A TAF wind group \"VRB15G30KT\" would most likely be used when:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The wind is light and its direction is variable, as normally indicated by VRB"
+      },
+      {
+        "id": "b",
+        "text": "The wind is steady from 150° at 30 kt with gusts of 15 kt"
+      },
+      {
+        "id": "c",
+        "text": "The direction cannot be forecast, for example in thunderstorms with strong gusts"
+      },
+      {
+        "id": "d",
+        "text": "The wind is calm, with occasional gusts of up to 30 kt"
+      }
+    ],
+    "correct": "c",
+    "explanation": "VRB normally implies light winds, but in thunderstorms a variable direction may be forecast with strong gusts.",
+    "tags": [
+      "wind"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0040",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Further TAF interpretation",
+    "question": "A TAF reads \"... PROB40 1515/1518 0500 FG\". This means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Visibility 4000 m in fog from 1500 UTC"
+      },
+      {
+        "id": "b",
+        "text": "A 40% chance of fog with 500 m between 1500 and 1800 UTC on the 15th"
+      },
+      {
+        "id": "c",
+        "text": "Fog for 40% of the time between 1515 and 1518 UTC on the 15th day"
+      },
+      {
+        "id": "d",
+        "text": "Fog at 0500 UTC on the 15th"
+      }
+    ],
+    "correct": "b",
+    "explanation": "PROB without TEMPO describes a probability of the conditions prevailing during that period.",
+    "tags": [
+      "change-groups",
+      "prob"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0041",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Further TAF interpretation",
+    "question": "A pilot planning an arrival time of 1730 UTC sees in the TAF: \"BECMG 1716/1718 BKN004\". For planning, the cloud base should be taken as:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Unknown, so the TAF should be ignored"
+      },
+      {
+        "id": "b",
+        "text": "The previous cloud base, since the change is not complete until 1800"
+      },
+      {
+        "id": "c",
+        "text": "400 ft, since the change may already have occurred by 1730"
+      },
+      {
+        "id": "d",
+        "text": "4000 ft"
+      }
+    ],
+    "correct": "c",
+    "explanation": "During a BECMG period either the old or new conditions may apply, so the more restrictive should be assumed.",
+    "tags": [
+      "interpretation",
+      "planning"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0042",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Further TAF interpretation",
+    "question": "TAFs normally describe the visibility as:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The RVR expected on the main runway"
+      },
+      {
+        "id": "b",
+        "text": "The lowest visibility expected in any direction"
+      },
+      {
+        "id": "c",
+        "text": "The vertical visibility only"
+      },
+      {
+        "id": "d",
+        "text": "The prevailing visibility, with no minimum visibility direction"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The minimum-visibility direction and RVR groups used in METARs are not forecast in TAFs.",
+    "tags": [
+      "content",
+      "visibility"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-TAF-0043",
+    "subjectCode": "MET",
+    "topic": "TAFs",
+    "subtopic": "Further TAF interpretation",
+    "question": "Why is the TAF not used to forecast RVR?",
+    "options": [
+      {
+        "id": "a",
+        "text": "RVR is only used in the United States"
+      },
+      {
+        "id": "b",
+        "text": "RVR is an observed value depending on runway lights and instruments"
+      },
+      {
+        "id": "c",
+        "text": "RVR is given in the METAR TREND instead"
+      },
+      {
+        "id": "d",
+        "text": "RVR is always exactly the same as the forecast visibility"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Forecasts give visibility; crews convert it as required by operating regulations.",
+    "tags": [
+      "rvr"
+    ],
+    "status": "published",
+    "version": 1
+  }
+]
