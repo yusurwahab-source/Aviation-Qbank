@@ -1,0 +1,962 @@
+[
+  {
+    "id": "A320-FMS-0001",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "INIT A",
+    "question": "What two main things is the MCDU INIT A page used for?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Entering weights and fuel"
+      },
+      {
+        "id": "b",
+        "text": "Entering take-off speeds"
+      },
+      {
+        "id": "c",
+        "text": "Initialising the flight plan and aligning the inertial reference system"
+      },
+      {
+        "id": "d",
+        "text": "Tuning radio aids"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Weights and fuel go on INIT B.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0002",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "INIT A",
+    "question": "When does the ALTN/CO RTE field on INIT A become available?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Once a primary destination is entered in FROM/TO"
+      },
+      {
+        "id": "b",
+        "text": "Once the IRS is aligned"
+      },
+      {
+        "id": "c",
+        "text": "After engine start"
+      },
+      {
+        "id": "d",
+        "text": "Once the cost index is entered"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A preferred alternate stored with the destination is shown automatically.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0003",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "INIT A",
+    "question": "If no cruise flight level is entered on INIT A, what is the consequence on the ground?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The FMGS uses FL350 by default"
+      },
+      {
+        "id": "b",
+        "text": "The flight plan cannot be entered"
+      },
+      {
+        "id": "c",
+        "text": "The IRS cannot align"
+      },
+      {
+        "id": "d",
+        "text": "The system provides no predictions"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The cruise temperature, if not entered, is assumed to be ISA.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0004",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "INIT A",
+    "question": "What happens when a new FROM/TO pair is entered on INIT A?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The route is kept and the airports are updated"
+      },
+      {
+        "id": "b",
+        "text": "Any previously entered route is deleted and the route selection page is called"
+      },
+      {
+        "id": "c",
+        "text": "The IRS alignment restarts"
+      },
+      {
+        "id": "d",
+        "text": "Nothing until INIT REQUEST is pressed"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A new city pair starts a new flight plan.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0005",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "INIT A",
+    "question": "After engine start, where does an uplinked flight plan from INIT REQUEST go?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Directly into the active flight plan"
+      },
+      {
+        "id": "b",
+        "text": "To the secondary flight plan, to be inserted or rejected manually"
+      },
+      {
+        "id": "c",
+        "text": "Nowhere; uplink is blocked after start"
+      },
+      {
+        "id": "d",
+        "text": "To the alternate flight plan"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Before engine start it is inserted automatically if no active flight plan exists.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0006",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "INIT A",
+    "question": "What is the default tropopause altitude on INIT A?",
+    "options": [
+      {
+        "id": "a",
+        "text": "30 000 ft"
+      },
+      {
+        "id": "b",
+        "text": "39 000 ft"
+      },
+      {
+        "id": "c",
+        "text": "45 000 ft"
+      },
+      {
+        "id": "d",
+        "text": "36 090 ft"
+      }
+    ],
+    "correct": "d",
+    "explanation": "It can be modified up to 60 000 ft.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0007",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "INIT B",
+    "question": "When does the INIT B page automatically change to the FUEL PRED page?",
+    "options": [
+      {
+        "id": "a",
+        "text": "After the first engine is started"
+      },
+      {
+        "id": "b",
+        "text": "After take-off"
+      },
+      {
+        "id": "c",
+        "text": "When the block fuel is entered"
+      },
+      {
+        "id": "d",
+        "text": "After the IRS is aligned"
+      }
+    ],
+    "correct": "a",
+    "explanation": "From then on the FMGC uses fuel on board for its predictions.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0008",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "INIT B",
+    "question": "What is the usual default taxi fuel value on INIT B?",
+    "options": [
+      {
+        "id": "a",
+        "text": "100 kg"
+      },
+      {
+        "id": "b",
+        "text": "500 kg"
+      },
+      {
+        "id": "c",
+        "text": "200 kg (400 lb)"
+      },
+      {
+        "id": "d",
+        "text": "1 000 kg"
+      }
+    ],
+    "correct": "c",
+    "explanation": "It can be adjusted.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0009",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "INIT B",
+    "question": "Before any entry, what does FINAL TIME typically default to on INIT B?",
+    "options": [
+      {
+        "id": "a",
+        "text": "45 minutes"
+      },
+      {
+        "id": "b",
+        "text": "15 minutes"
+      },
+      {
+        "id": "c",
+        "text": "60 minutes"
+      },
+      {
+        "id": "d",
+        "text": "30 minutes"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The default comes from the airline fuel policy.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0010",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "INIT B",
+    "question": "For the final reserve computation, what holding conditions does the FMGS assume by default?",
+    "options": [
+      {
+        "id": "a",
+        "text": "FL100, clean, at green dot"
+      },
+      {
+        "id": "b",
+        "text": "1 500 ft AGL, CONF 1, at maximum endurance speed"
+      },
+      {
+        "id": "c",
+        "text": "5 000 ft, CONF 2, at VLS"
+      },
+      {
+        "id": "d",
+        "text": "1 000 ft AGL, CONF FULL"
+      }
+    ],
+    "correct": "b",
+    "explanation": "These defaults can be changed in the airline fuel policy.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0011",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "INIT B",
+    "question": "By default, what is the MIN DEST FOB equal to?",
+    "options": [
+      {
+        "id": "a",
+        "text": "FINAL fuel only"
+      },
+      {
+        "id": "b",
+        "text": "TRIP + FINAL"
+      },
+      {
+        "id": "c",
+        "text": "ALTN fuel + FINAL fuel"
+      },
+      {
+        "id": "d",
+        "text": "RTE RSV + FINAL"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Entering a lower value triggers CHECK MIN DEST FOB.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0012",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "INIT B",
+    "question": "What must be entered on INIT B to obtain a speed profile and predictions?",
+    "options": [
+      {
+        "id": "a",
+        "text": "ZFW and ZFWCG"
+      },
+      {
+        "id": "b",
+        "text": "Taxi fuel"
+      },
+      {
+        "id": "c",
+        "text": "Trip wind"
+      },
+      {
+        "id": "d",
+        "text": "The cost index only"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Block fuel is also a mandatory entry.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0013",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "INIT B",
+    "question": "When the block fuel is entered on INIT B, what does the page title change to?",
+    "options": [
+      {
+        "id": "a",
+        "text": "INIT FUEL PREDICTION"
+      },
+      {
+        "id": "b",
+        "text": "FUEL PRED"
+      },
+      {
+        "id": "c",
+        "text": "INIT C"
+      },
+      {
+        "id": "d",
+        "text": "BLOCK CONFIRM"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Using FUEL PLANNING instead changes it to INIT FUEL PLANNING.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0014",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "INIT B",
+    "question": "On INIT B, how is a headwind entered in the TRIP WIND field?",
+    "options": [
+      {
+        "id": "a",
+        "text": "With a prefix + or T"
+      },
+      {
+        "id": "b",
+        "text": "With a prefix W"
+      },
+      {
+        "id": "c",
+        "text": "With a prefix –, H or HD"
+      },
+      {
+        "id": "d",
+        "text": "As a negative tailwind only"
+      }
+    ],
+    "correct": "c",
+    "explanation": "+, T or TL means a tailwind.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0015",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "INIT B",
+    "question": "How is EXTRA fuel computed on INIT B?",
+    "options": [
+      {
+        "id": "a",
+        "text": "BLOCK – TRIP"
+      },
+      {
+        "id": "b",
+        "text": "BLOCK – (TAXI + TRIP + RSV + MIN DEST FOB)"
+      },
+      {
+        "id": "c",
+        "text": "BLOCK – (TRIP + FINAL)"
+      },
+      {
+        "id": "d",
+        "text": "FOB – (ALTN + FINAL)"
+      }
+    ],
+    "correct": "b",
+    "explanation": "After engine start the same formula uses FOB instead of BLOCK.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0016",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "PROG",
+    "question": "On the PROG page, what happens to the CRZ FL if the crew sets a higher altitude on the FCU?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Nothing; FCU and CRZ are independent"
+      },
+      {
+        "id": "b",
+        "text": "The FCU altitude is rejected"
+      },
+      {
+        "id": "c",
+        "text": "The FMGC goes to OP CLB"
+      },
+      {
+        "id": "d",
+        "text": "It is adjusted up to the new altitude and a scratchpad message appears"
+      }
+    ],
+    "correct": "d",
+    "explanation": "CRZ cannot be lower than the FCU altitude.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0017",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "PROG",
+    "question": "What minimum estimated cruise time does the FMGC assume when computing OPT FL?",
+    "options": [
+      {
+        "id": "a",
+        "text": "5 minutes"
+      },
+      {
+        "id": "b",
+        "text": "30 minutes"
+      },
+      {
+        "id": "c",
+        "text": "15 minutes"
+      },
+      {
+        "id": "d",
+        "text": "1 hour"
+      }
+    ],
+    "correct": "c",
+    "explanation": "OPT depends on weight, cost index, temperature and wind.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0018",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "PROG",
+    "question": "What buffet margin does REC MAX FL provide?",
+    "options": [
+      {
+        "id": "a",
+        "text": "0.3 g"
+      },
+      {
+        "id": "b",
+        "text": "0.1 g"
+      },
+      {
+        "id": "c",
+        "text": "0.5 g"
+      },
+      {
+        "id": "d",
+        "text": "1.3 g"
+      }
+    ],
+    "correct": "a",
+    "explanation": "It also ensures a minimum climb rate at max climb thrust and level flight at max cruise thrust.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0019",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "PROG",
+    "question": "What is the upper limit of REC MAX on the PROG page?",
+    "options": [
+      {
+        "id": "a",
+        "text": "FL390"
+      },
+      {
+        "id": "b",
+        "text": "FL410"
+      },
+      {
+        "id": "c",
+        "text": "FL370"
+      },
+      {
+        "id": "d",
+        "text": "FL398"
+      }
+    ],
+    "correct": "d",
+    "explanation": "It is computed assuming anti-ice off.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0020",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "PROG",
+    "question": "On the PROG BRG/DIST field, what does the entry ESSA/270/20 mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Runway 27 at ESSA, 20 NM final"
+      },
+      {
+        "id": "b",
+        "text": "A point 20 NM west (bearing 270) of ESSA"
+      },
+      {
+        "id": "c",
+        "text": "ESSA at FL270, 20 minutes"
+      },
+      {
+        "id": "d",
+        "text": "A point 270 NM from ESSA at 20°"
+      }
+    ],
+    "correct": "b",
+    "explanation": "This is a place/bearing/distance (PBD) entry.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0021",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "PROG",
+    "question": "What does ACCUR HIGH on the PROG page mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "GPS PRIMARY is lost"
+      },
+      {
+        "id": "b",
+        "text": "The FMS navigation accuracy meets the criteria of the area currently flown"
+      },
+      {
+        "id": "c",
+        "text": "The IRS has drifted"
+      },
+      {
+        "id": "d",
+        "text": "The required accuracy has been entered manually"
+      }
+    ],
+    "correct": "b",
+    "explanation": "LOW means it does not meet them.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0022",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "PROG",
+    "question": "What scratchpad message appears when GPS PRIMARY is no longer available?",
+    "options": [
+      {
+        "id": "a",
+        "text": "NAV ACCUR DOWNGRAD"
+      },
+      {
+        "id": "b",
+        "text": "CHECK GPS"
+      },
+      {
+        "id": "c",
+        "text": "GPS FAULT"
+      },
+      {
+        "id": "d",
+        "text": "GPS PRIMARY LOST"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The GPS PRIMARY field on PROG then turns blank.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0023",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "FUEL PRED",
+    "question": "On the FUEL PRED page, when does the destination EFOB turn amber?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When it becomes less than the MIN DEST FOB"
+      },
+      {
+        "id": "b",
+        "text": "When it falls below FINAL fuel"
+      },
+      {
+        "id": "c",
+        "text": "When it falls below 2 000 kg"
+      },
+      {
+        "id": "d",
+        "text": "Whenever the trip is longer than planned"
+      }
+    ],
+    "correct": "a",
+    "explanation": "This alerts the crew that fuel is getting short of their plan.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0024",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "FUEL PRED",
+    "question": "After take-off, what happens to the route reserve on the FUEL PRED page?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is kept until landing"
+      },
+      {
+        "id": "b",
+        "text": "It becomes the FINAL fuel"
+      },
+      {
+        "id": "c",
+        "text": "It is dashed and the fuel is added to EXTRA"
+      },
+      {
+        "id": "d",
+        "text": "It is subtracted from FOB"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Contingency is part of extra once airborne.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0025",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "FUEL PRED",
+    "question": "What assumptions does the FMGC use to compute alternate fuel?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The same cost index as the main flight"
+      },
+      {
+        "id": "b",
+        "text": "The maximum cruise speed"
+      },
+      {
+        "id": "c",
+        "text": "The same cruise level as the main flight"
+      },
+      {
+        "id": "d",
+        "text": "Cost index 0 and the default cruise flight level"
+      }
+    ],
+    "correct": "d",
+    "explanation": "If the crew enters a different ALTN fuel, the alternate time is dashed.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0026",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "FUEL PRED",
+    "question": "Which sensor sources can the FMGS use to compute fuel on board?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Fuel quantity only"
+      },
+      {
+        "id": "b",
+        "text": "Fuel flow and fuel quantity sensors, fuel flow only, or fuel quantity only"
+      },
+      {
+        "id": "c",
+        "text": "Fuel flow only"
+      },
+      {
+        "id": "d",
+        "text": "The FADEC alone"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The source is shown as /FF+FQ, /FF or /FQ.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0027",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "FUEL PRED",
+    "question": "If after engine start the ZFWCG is missing, what CG value does the FMS use by default?",
+    "options": [
+      {
+        "id": "a",
+        "text": "0 %"
+      },
+      {
+        "id": "b",
+        "text": "30 %"
+      },
+      {
+        "id": "c",
+        "text": "25 %, shown in amber, with INITIALIZE WEIGHT/CG"
+      },
+      {
+        "id": "d",
+        "text": "It uses no value and shows dashes"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The crew must then enter the ZFWCG.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0028",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "RAD NAV",
+    "question": "When is the RAD NAV page blank on both MCDUs?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When either RMP is set to NAV"
+      },
+      {
+        "id": "b",
+        "text": "When the ILS is tuned"
+      },
+      {
+        "id": "c",
+        "text": "In the approach phase"
+      },
+      {
+        "id": "d",
+        "text": "When the FMGCs are in independent mode"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Back-up navigation tuning on the RMP takes over.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0029",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "RAD NAV",
+    "question": "Within what distance of destination (from climb phase on) is the destination ILS autotuned?",
+    "options": [
+      {
+        "id": "a",
+        "text": "250 NM"
+      },
+      {
+        "id": "b",
+        "text": "100 NM"
+      },
+      {
+        "id": "c",
+        "text": "50 NM"
+      },
+      {
+        "id": "d",
+        "text": "500 NM"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The ILS for the departure runway is also autotuned on the ground.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0030",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "RAD NAV",
+    "question": "What message appears when a manually tuned ILS differs from the one that would be autotuned?",
+    "options": [
+      {
+        "id": "a",
+        "text": "CHECK ILS"
+      },
+      {
+        "id": "b",
+        "text": "ILS NOT AUTOTUNED"
+      },
+      {
+        "id": "c",
+        "text": "RWY-ILS MISMATCH"
+      },
+      {
+        "id": "d",
+        "text": "NAV MISMATCH"
+      }
+    ],
+    "correct": "c",
+    "explanation": "It warns the crew to check the runway against the ILS.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0031",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "RAD NAV",
+    "question": "What does clearing a manually tuned VOR on the RAD NAV page do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Leaves the VOR untuned"
+      },
+      {
+        "id": "b",
+        "text": "Reverts to the autotuned navaid"
+      },
+      {
+        "id": "c",
+        "text": "Tunes the nearest VOR"
+      },
+      {
+        "id": "d",
+        "text": "Tunes the ILS"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Autotuning resumes.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FMS-0032",
+    "aircraft": "A320",
+    "topic": "22 Auto Flight - Flight Management",
+    "subtopic": "RAD NAV",
+    "question": "On the RAD NAV page, what does pressing the ADF/BFO prompt do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Tunes the second ADF"
+      },
+      {
+        "id": "b",
+        "text": "Displays the ADF bearing on the ND"
+      },
+      {
+        "id": "c",
+        "text": "Identifies the NDB by voice"
+      },
+      {
+        "id": "d",
+        "text": "Puts the ADF into BFO (beat frequency oscillator) mode"
+      }
+    ],
+    "correct": "d",
+    "explanation": "A clear action cancels BFO.",
+    "reference": "Study use only. Verify against the FCOM of your operator and aircraft before relying on it.",
+    "status": "published",
+    "version": 1
+  }
+]

@@ -872,3 +872,100 @@ The FAA's Dynamic Regulatory System refuses programmatic access, so **TCDS
 A16WE could not be read**. It is the natural second source for the span and the
 seating capacity and would settle the tail height; anyone with access should
 start there.
+
+## The A320 bank
+
+The aircraft is the **Airbus A320 family** (A319, A320, A321 — one type rating).
+It is a type rating aircraft, so it lives in `content/a320/` beside `b737/`;
+adding it touched no application code beyond the study guide's hand-kept set in
+`src/lib/study-guide.ts`.
+
+**Where it came from, honestly.** The owner first supplied a third-party
+A319/A320/A321 *Air Cond – Press – Vent* training PDF (132 pages of scanned
+images, copy protected, carrying a training website's branding and Airbus's
+drawings) and asked for questions and its diagrams. That material is someone
+else's copyright, so **nothing was transcribed from it and none of its drawings
+were copied** — the same boundary POF and HPL drew. The owner then asked for a
+bank built from **open online sources a reader can check**, one unique fact per
+question, which the owner will review.
+
+The bank was rebuilt on that basis from the **FlyByWire A32NX documentation**
+(`docs.flybywiresim.com`, the public documentation of an open-source A320
+simulation, which describes each cockpit panel, ECAM page and protection in
+detail). Questions and explanations are written in this bank's own words; the
+docs' panel-by-panel facts (thresholds, logic, colours) are what was taken.
+
+**At the owner's instruction, nothing a student reads names that source.** Each
+question first carried a link to its page; the owner (who is reviewing every
+question as a pilot) then asked for the sources to be removed from the
+questions and the study guide, and for every one of them to tell the student
+to check the FCOM of their own operator instead. So every question's
+`reference` is now the same notice — "Study use only. Verify against the FCOM
+of your operator and aircraft before relying on it." — the study guide carries
+a "For study only" box and footer saying the same, and the aircraft
+description says it too. This note and `CLAUDE.md` are the only record of the
+source, the same arrangement as POF and HPL.
+
+Two cautions remain:
+
+- **The source documents an A320neo simulation.** Where a fact is specific to
+  the neo (LEAP engines, centre-tank jet pumps, the N1/N2 red lines), the
+  question says so. Others can differ on a given airframe or operator.
+- **Simulator-only details were left out** — anything the docs mark as an
+  MSFS limitation, the flyPad, or sim-specific behaviour.
+
+**One fact, one question.** The generator refuses two questions with the same
+fact key, and a cross-check of identical correct answers was used to catch the
+same fact asked twice in different chapters (three such pairs were found and
+removed or re-aimed). Two places where the source contradicts itself were
+avoided rather than guessed: the windshear window's start after lift-off (3 s on
+one page, 5 s on another — the question asks only for the 1 300 ft upper
+limit), and an ambiguous APU fuel valve colour row.
+
+**Sections follow the FCOM.** Each topic is named after its FCOM (ATA)
+chapter — `21 Air Conditioning` through `70 Power Plant` — because the app
+lists topics alphabetically, and the leading number makes that the FCOM order.
+Chapter 21 and 22 are split into two or three topics each to keep them a
+practical size, and the autoland limits and rejected take-off material, which
+belong to the procedures and limitations volumes rather than the systems
+description, sit last as `Procedures - Autoland and Rejected Take-off`.
+
+**Not every FCOM chapter is covered.** There is nothing yet for 20 (General:
+dimensions, cockpit layout), 38 (Water and Waste), 45 (Onboard Maintenance)
+or 46 (Information Systems / datalink), and 25 (Equipment, 2 questions), 35
+(Oxygen, 5) and 52 (Doors, 5) are thin, because the open source has little on
+them. The limitations, procedures and performance volumes are touched only by
+the autoland and rejected take-off section.
+
+751 questions, all published, in 23 sections (one file each):
+
+| File | Section | Code | Questions |
+|---|---|---|---|
+| `21-air-conditioning.json` | 21 Air Conditioning | COND | 33 |
+| `21-pressurization.json` | 21 Pressurization | PRESS | 31 |
+| `21-ventilation.json` | 21 Ventilation | VENT | 16 |
+| `22-auto-flight-fcu-fma.json` | 22 Auto Flight - FCU and FMA | AFS | 59 |
+| `22-auto-flight-flight-management.json` | 22 Auto Flight - Flight Management | FMS | 32 |
+| `23-communications.json` | 23 Communications | COM | 18 |
+| `24-electrical.json` | 24 Electrical | ELEC | 52 |
+| `25-equipment.json` | 25 Equipment | EQPT | 2 |
+| `26-fire-protection.json` | 26 Fire Protection | FIRE | 22 |
+| `27-flight-controls.json` | 27 Flight Controls | FCTL | 87 |
+| `28-fuel.json` | 28 Fuel | FUEL | 27 |
+| `29-hydraulic.json` | 29 Hydraulic | HYD | 28 |
+| `30-ice-and-rain-protection.json` | 30 Ice and Rain Protection | ICE | 39 |
+| `31-indicating-recording.json` | 31 Indicating and Recording | IND | 91 |
+| `32-landing-gear.json` | 32 Landing Gear | GEAR | 37 |
+| `33-lights.json` | 33 Lights | LT | 15 |
+| `34-navigation.json` | 34 Navigation | NAV | 45 |
+| `35-oxygen.json` | 35 Oxygen | OXY | 5 |
+| `36-pneumatic.json` | 36 Pneumatic | PNEU | 19 |
+| `49-apu.json` | 49 APU | APU | 20 |
+| `52-doors.json` | 52 Doors | DOOR | 5 |
+| `70-power-plant.json` | 70 Power Plant | ENG | 42 |
+| `pro-autoland-and-rejected-take-off.json` | Procedures - Autoland and Rejected Take-off | PRO | 26 |
+
+The correct answer is spread across A–D (186 / 191 / 187 / 187). The study guide is
+`public/a320-study-guide.html`: the study-only notice, an introduction per FCOM
+chapter, every fact grouped by subtopic, and two original, simplified
+schematics (air conditioning and pressurization).
