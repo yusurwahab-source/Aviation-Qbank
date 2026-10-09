@@ -19,7 +19,8 @@ today, with no "single engine" or "multi engine" split between it and the
 section; a light aircraft sits directly under Class Rating. `/flying-knowledge`
 is **Flying Knowledge** — general theory that is not tied to any aircraft —
 air law, meteorology, navigation, the material a pilot keeps reviewing
-rather than sits once. It has one subject now, **Principles of Flight (POF)**; further
+rather than sits once. It has two subjects now, **Principles of Flight
+(POF)** and **Human Performance & Limitations (HPL)**; further
 subjects are added the same content-only way a second aircraft is (see the
 note on Flying Knowledge's own content tree below), and the page title
 stays "Choose a subject" rather than naming just one. (IFR and FI(A)
@@ -1779,7 +1780,7 @@ over the internals.
 content/                      Question files. The source of truth.
   <code>/                     One folder per type rating aircraft (b737/ today)
   classes/<code>/             One folder per class rating aircraft (da40/ today)
-  flying-knowledge/<code>/    One folder per Flying Knowledge subject (pof/ today)
+  flying-knowledge/<code>/    One folder per Flying Knowledge subject (pof/, hpl/ today)
 drizzle/                      Generated SQL migrations. Committed.
 public/                       Manifest icons, the service worker, and any
                               <code>-study-guide.html study guides (see the
@@ -2030,12 +2031,16 @@ fifteen question files, 501 questions at first, rebuilt to
 1,000 and then pruned to 569 — see the note on the POF bank in `content/README.md`) — with the only application-code change being the
 same one-line addition to `lib/study-guide.ts`'s hand-kept set that any
 aircraft's own study guide already needs (see the note on that file
-above), exactly the way a second aircraft proves the rule.
+above), exactly the way a second aircraft proves the rule. Human
+Performance & Limitations (`HPL`) proves it a further time: `content/flying-knowledge/hpl/` alone, a `subject.json` and sixteen
+question files, 346 questions — see the note on the HPL bank in
+`content/README.md`.
 
 The one thing that does not carry over from either of the other two trees:
 **Flying Knowledge is free in full, not metered by the free-tier cap or
 gated by a subscription**, decided ahead of any content existing and
-unchanged now that POF has content. Every other
+unchanged now that POF and HPL are its two subjects with
+content. Every other
 section's free allowance exists because the bank behind it is something a
 student sits through once toward one exam, and the cap is what pays for
 building more of it. Flying Knowledge is the opposite kind of content — air
@@ -2068,6 +2073,36 @@ instruction (this site is for pilots, and the removed questions were an
 engineer's); each rebuilt section replaced its
 file with new ids and never reused a retired one. See the note on the POF bank in
 `content/README.md`, and "Known gaps, honestly" below.
+
+**The HPL bank (`HPL`, Human Performance & Limitations, Flying Knowledge's
+second subject) is the same kind of content as POF, held to the same
+honesty, for the same underlying reason.** The owner pointed at a specific
+book — CAE Oxford Aviation Academy's *Human Performance and Limitations*,
+Book 8 of its ATPL Ground Training Series — but that book is a
+copyrighted, commercially sold ground-school text, not source material
+this product may transcribe from, closely paraphrase or lean on for
+specific wording or worked examples, the same boundary POF already drew
+around the Principles of Flight book the owner pointed at there. The
+sixteen topics mirror that book's own chapter list (Safety Culture &
+Error Models through CRM & Incident Reporting, skipping only its
+Specimen Questions, Glossary and Index), because that structure is the
+standard EASA ATPL 040 "Human Performance & Limitations" syllabus taught
+broadly the same way across many ground schools, not an expression unique
+to one textbook. Every question and the study guide were authored by the
+assistant from general knowledge of that syllabus — physiological
+mechanisms, standard figures and named models (the stages of hypoxia,
+Reason's Swiss Cheese model, the Skill-Rule-Knowledge model, the five
+hazardous attitudes, somatogyral and somatogravic illusions, and so on)
+that are taught consistently across ICAO/EASA human-factors training
+generally — not transcribed from the book's own prose, worked examples or
+its own Specimen Questions chapter, and not checked against it question by
+question. At the owner's instruction, following the POF precedent exactly,
+nothing a student reads in this subject — guide or question — names a
+book, school, regulator, question bank or syllabus; the record of where
+the topic structure came from is kept in this file and
+`content/README.md` only. 346 questions across sixteen topics, all
+published. See the note on the HPL bank in `content/README.md`, and
+"Known gaps, honestly" below.
 
 ## Known gaps, honestly
 
@@ -2180,6 +2215,23 @@ file with new ids and never reused a retired one. See the note on the POF bank i
   owner asked for every source mention to be removed from what a student
   reads, so this note and `content/README.md` are now the only place the
   caveat is recorded. See the note on the POF bank in `content/README.md`.
+- **The entire HPL bank (Human Performance & Limitations, Flying
+  Knowledge's second subject) was authored by the assistant, not
+  transcribed from the CAE Oxford Aviation Academy ATPL textbook the owner
+  pointed at, or from any other textbook, syllabus or question bank, and
+  not checked against one.** Its sixteen topics follow that book's own
+  chapter structure because that structure is the standard EASA ATPL 040
+  syllabus, not a copyrightable feature of the one textbook — but every
+  question, explanation and the study guide are independently written from
+  general knowledge of standard, widely-taught human-factors concepts
+  (hypoxia physiology, vestibular illusions, stress and error models, CRM),
+  not copied or paraphrased from the book's own prose, worked examples or
+  its Specimen Questions chapter. As with POF, the study guide and
+  questions name no book, school, regulator or syllabus on the page, at the
+  owner's instruction; this note and `content/README.md` are the only
+  record of where the topic structure came from. It should be reviewed by
+  a qualified instructor before a student relies on it for a real exam.
+  See the note on the HPL bank in `content/README.md`.
 - **Twenty-six B737 questions turn on a figure nobody has confirmed twice.** The
   bank's wrong options were rewritten so a question cannot be answered by
   elimination alone, and that pass deliberately left every uncorroborated number

@@ -27,7 +27,7 @@ export const flyingKnowledgeQuestionSchema = z
       .string()
       .regex(
         FLYING_KNOWLEDGE_QUESTION_ID_RE,
-        "Question id must look like IFR-APPR-0001 (subject code, topic code, 4 digits)",
+        "Question id must look like POF-AERO-0001 (subject code, topic code, 4 digits)",
       ),
     subjectCode: z.string().regex(SUBJECT_CODE_RE, "Subject code must be uppercase, e.g. POF"),
     topic: z.string().trim().min(1).max(60),
