@@ -1,0 +1,687 @@
+[
+  {
+    "id": "ELEC-LOGIC-0001",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Basic gates",
+    "question": "The output of a two-input AND gate is logic 1:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only when both inputs are at logic 1"
+      },
+      {
+        "id": "b",
+        "text": "When either input, or both, is at logic 1"
+      },
+      {
+        "id": "c",
+        "text": "Only when the two inputs are different"
+      },
+      {
+        "id": "d",
+        "text": "Only when both inputs are at logic 0"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AND requires every condition to be true. Any input at 0 makes the output 0.",
+    "tags": [
+      "and-gate"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0002",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Basic gates",
+    "question": "The output of a two-input OR gate is logic 0:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only when both inputs are at logic 0"
+      },
+      {
+        "id": "b",
+        "text": "Only when both inputs are at logic 1"
+      },
+      {
+        "id": "c",
+        "text": "Only when the two inputs are different"
+      },
+      {
+        "id": "d",
+        "text": "When either input is at logic 0"
+      }
+    ],
+    "correct": "a",
+    "explanation": "OR gives a 1 if any input is 1, so the only way to get a 0 out is for every input to be 0.",
+    "tags": [
+      "or-gate"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0003",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Basic gates",
+    "question": "A NOT gate (inverter):",
+    "options": [
+      {
+        "id": "a",
+        "text": "Gives logic 0 only when both of its two inputs are at 0"
+      },
+      {
+        "id": "b",
+        "text": "Gives an output that is always the opposite of its single input"
+      },
+      {
+        "id": "c",
+        "text": "Gives logic 1 only when both of its two inputs are at 1"
+      },
+      {
+        "id": "d",
+        "text": "Gives an output that is always the same as its input, delayed by one clock pulse"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The inverter has one input and one output: 1 becomes 0 and 0 becomes 1. In circuit symbols, inversion is shown by a small circle (bubble) on the output or input.",
+    "tags": [
+      "not-gate",
+      "inverter"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0004",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Basic gates",
+    "question": "A two-input NAND gate has inputs A = 1 and B = 0. Its output is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The same as input B"
+      },
+      {
+        "id": "b",
+        "text": "1"
+      },
+      {
+        "id": "c",
+        "text": "0"
+      },
+      {
+        "id": "d",
+        "text": "Undefined"
+      }
+    ],
+    "correct": "b",
+    "explanation": "NAND is AND followed by NOT. A AND B = 0, so NAND gives 1. A NAND gate gives 0 only when all its inputs are 1.",
+    "tags": [
+      "nand-gate",
+      "truth-table"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0005",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Basic gates",
+    "question": "A two-input NOR gate has inputs A = 1 and B = 0. Its output is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The same as input A"
+      },
+      {
+        "id": "b",
+        "text": "Undefined"
+      },
+      {
+        "id": "c",
+        "text": "0"
+      },
+      {
+        "id": "d",
+        "text": "1"
+      }
+    ],
+    "correct": "c",
+    "explanation": "NOR is OR followed by NOT. A OR B = 1, so NOR gives 0. A NOR gate gives 1 only when all its inputs are 0.",
+    "tags": [
+      "nor-gate",
+      "truth-table"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0006",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Basic gates",
+    "question": "The output of a NAND gate is logic 0:",
+    "options": [
+      {
+        "id": "a",
+        "text": "When any one of its inputs is at logic 1"
+      },
+      {
+        "id": "b",
+        "text": "Only when all of its inputs are at logic 0"
+      },
+      {
+        "id": "c",
+        "text": "Only when all of its inputs are at logic 1"
+      },
+      {
+        "id": "d",
+        "text": "Only when its inputs are different"
+      }
+    ],
+    "correct": "c",
+    "explanation": "NAND inverts AND: AND gives 1 only with all inputs at 1, so NAND gives 0 only in that case and 1 in every other.",
+    "tags": [
+      "nand-gate"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0007",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Basic gates",
+    "question": "The output of a NOR gate is logic 1:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only when its inputs are different"
+      },
+      {
+        "id": "b",
+        "text": "Only when all of its inputs are at logic 0"
+      },
+      {
+        "id": "c",
+        "text": "Only when all of its inputs are at logic 1"
+      },
+      {
+        "id": "d",
+        "text": "When any one of its inputs is at logic 1"
+      }
+    ],
+    "correct": "b",
+    "explanation": "NOR inverts OR: OR gives 0 only with all inputs at 0, so NOR gives 1 only in that case.",
+    "tags": [
+      "nor-gate"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0008",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Exclusive gates",
+    "question": "The output of a two-input exclusive-OR (XOR) gate is logic 1 when:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The two inputs are different"
+      },
+      {
+        "id": "b",
+        "text": "Either input, or both, is at logic 1"
+      },
+      {
+        "id": "c",
+        "text": "The two inputs are the same"
+      },
+      {
+        "id": "d",
+        "text": "Both inputs are at logic 1"
+      }
+    ],
+    "correct": "a",
+    "explanation": "XOR excludes the case where both are 1: it gives 1 for (1,0) and (0,1) only. That makes it a 'difference detector', used for example in comparing two channels.",
+    "tags": [
+      "xor-gate"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0009",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Exclusive gates",
+    "question": "A two-input XOR gate has both inputs at logic 1. Its output is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "1"
+      },
+      {
+        "id": "b",
+        "text": "1 for one clock pulse, then 0"
+      },
+      {
+        "id": "c",
+        "text": "0"
+      },
+      {
+        "id": "d",
+        "text": "Undefined"
+      }
+    ],
+    "correct": "c",
+    "explanation": "With both inputs the same, an XOR gate gives 0. An ordinary OR gate would give 1 here — the one case where the two differ.",
+    "tags": [
+      "xor-gate",
+      "truth-table"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0010",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Exclusive gates",
+    "question": "An exclusive-NOR (XNOR) gate gives logic 1 when:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only both inputs are at 0"
+      },
+      {
+        "id": "b",
+        "text": "Only both inputs are at 1"
+      },
+      {
+        "id": "c",
+        "text": "Both inputs are the same"
+      },
+      {
+        "id": "d",
+        "text": "The two inputs are different"
+      }
+    ],
+    "correct": "c",
+    "explanation": "XNOR is the inverse of XOR, so it signals agreement (coincidence) between its inputs.",
+    "tags": [
+      "xnor-gate"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0011",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Combinations",
+    "question": "The output of an AND gate is fed into a NOT gate. The combination behaves as:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A NOR gate"
+      },
+      {
+        "id": "b",
+        "text": "An OR gate"
+      },
+      {
+        "id": "c",
+        "text": "An XOR gate"
+      },
+      {
+        "id": "d",
+        "text": "A NAND gate"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Inverting the output of an AND gives NOT-AND — the NAND function. Likewise an OR followed by a NOT is a NOR.",
+    "tags": [
+      "nand-gate",
+      "combinations"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0012",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Combinations",
+    "question": "NAND and NOR gates are called 'universal' gates because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "They give the same output as every other gate for every input"
+      },
+      {
+        "id": "b",
+        "text": "Any logic function can be built from one type alone"
+      },
+      {
+        "id": "c",
+        "text": "They can work with any supply voltage"
+      },
+      {
+        "id": "d",
+        "text": "They accept both analogue and digital inputs"
+      }
+    ],
+    "correct": "b",
+    "explanation": "With enough NAND gates (or enough NOR gates) you can make NOT, AND, OR and every other function. That is why integrated circuits are often built from one gate type.",
+    "tags": [
+      "universal-gates"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0013",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Truth tables",
+    "question": "A logic gate has three inputs. How many rows are needed in its truth table to cover every possible input combination?",
+    "options": [
+      {
+        "id": "a",
+        "text": "6"
+      },
+      {
+        "id": "b",
+        "text": "9"
+      },
+      {
+        "id": "c",
+        "text": "8"
+      },
+      {
+        "id": "d",
+        "text": "3"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Each input can be 0 or 1, so n inputs give 2ⁿ combinations: 2³ = 8.",
+    "tags": [
+      "truth-table"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0014",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Truth tables",
+    "question": "A three-input AND gate has inputs of 1, 1 and 0. Its output is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "0"
+      },
+      {
+        "id": "b",
+        "text": "1"
+      },
+      {
+        "id": "c",
+        "text": "The majority of its inputs, which is 1"
+      },
+      {
+        "id": "d",
+        "text": "Undefined"
+      }
+    ],
+    "correct": "a",
+    "explanation": "An AND gate needs every input at 1. One input at 0 is enough to make the output 0, however many inputs there are.",
+    "tags": [
+      "and-gate",
+      "truth-table"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0015",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Applications",
+    "question": "A landing gear warning must sound if the gear is not down and locked and the thrust levers are retarded to idle. The basic logic function needed is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "NOR"
+      },
+      {
+        "id": "b",
+        "text": "AND"
+      },
+      {
+        "id": "c",
+        "text": "OR"
+      },
+      {
+        "id": "d",
+        "text": "XOR"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Both conditions must be true together for the warning: 'gear not locked down' AND 'thrust at idle'. An OR would sound the warning whenever either condition alone existed, for example during the whole climb.",
+    "tags": [
+      "applications",
+      "and-gate",
+      "gear-warning"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0016",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Applications",
+    "question": "A warning light must come on if any one of three fuel pumps loses pressure. The basic logic function needed is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "AND"
+      },
+      {
+        "id": "b",
+        "text": "NAND"
+      },
+      {
+        "id": "c",
+        "text": "XNOR"
+      },
+      {
+        "id": "d",
+        "text": "OR"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Any one input alone must trigger the output — the definition of OR. An AND would only warn when all three pumps had failed.",
+    "tags": [
+      "applications",
+      "or-gate"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0017",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Applications",
+    "question": "Some engine fire detection systems use two detection loops and give a fire warning only if both loops detect a fire. This 'AND' logic is used to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Allow the fire to be extinguished automatically"
+      },
+      {
+        "id": "b",
+        "text": "Detect a fire more quickly than a single loop could"
+      },
+      {
+        "id": "c",
+        "text": "Ensure the warning sounds if either loop detects a fire"
+      },
+      {
+        "id": "d",
+        "text": "Reduce false fire warnings caused by a fault in a single loop"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Requiring agreement between two independent loops means that one faulty loop cannot trigger a spurious warning. If a loop is known to be faulty, the system can usually be reconfigured to rely on the remaining one alone.",
+    "tags": [
+      "applications",
+      "and-gate",
+      "fire-detection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0018",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Binary",
+    "question": "The binary number 1011 is equal to which decimal number?",
+    "options": [
+      {
+        "id": "a",
+        "text": "9"
+      },
+      {
+        "id": "b",
+        "text": "1,011"
+      },
+      {
+        "id": "c",
+        "text": "13"
+      },
+      {
+        "id": "d",
+        "text": "11"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Reading from the right, the place values are 1, 2, 4 and 8: (1 × 8) + (0 × 4) + (1 × 2) + (1 × 1) = 11.",
+    "tags": [
+      "binary",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0019",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Memory",
+    "question": "A bistable (flip-flop) circuit is used in digital systems because it:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Holds its output after the setting input has gone, storing one bit"
+      },
+      {
+        "id": "b",
+        "text": "Returns to its original state automatically after a fixed time"
+      },
+      {
+        "id": "c",
+        "text": "Has no stable state and switches continuously at a set frequency"
+      },
+      {
+        "id": "d",
+        "text": "Changes an analogue input into a varying voltage output"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A flip-flop has two stable states and stays in whichever it was last set to until told otherwise. It is the basic memory element of counters, registers and latched warnings.",
+    "tags": [
+      "flip-flop",
+      "memory"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0020",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Theorems",
+    "question": "According to De Morgan's theorem, NOT (A AND B) is equivalent to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "(NOT A) AND (NOT B)"
+      },
+      {
+        "id": "b",
+        "text": "A OR B"
+      },
+      {
+        "id": "c",
+        "text": "NOT (A OR B)"
+      },
+      {
+        "id": "d",
+        "text": "(NOT A) OR (NOT B)"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Inverting an AND turns it into an OR of the inverted inputs. That is why a NAND gate is equivalent to an OR gate with inverted inputs, and NOT (A OR B) = (NOT A) AND (NOT B).",
+    "tags": [
+      "de-morgan"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-LOGIC-0021",
+    "subjectCode": "ELEC",
+    "topic": "Logic Circuits",
+    "subtopic": "Positive and negative logic",
+    "question": "In a system using positive logic:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Logic 1 is the more positive voltage level and logic 0 the less positive"
+      },
+      {
+        "id": "b",
+        "text": "Logic 1 must be a positive voltage and logic 0 a negative one"
+      },
+      {
+        "id": "c",
+        "text": "Logic 1 and logic 0 are both represented by zero volts"
+      },
+      {
+        "id": "d",
+        "text": "Logic 1 is the less positive voltage level and logic 0 the more positive"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Positive logic only requires that '1' is more positive than '0' — both levels could even be negative. Negative logic is the reverse convention. Most digital systems use positive logic.",
+    "tags": [
+      "positive-logic"
+    ],
+    "status": "published",
+    "version": 1
+  }
+]

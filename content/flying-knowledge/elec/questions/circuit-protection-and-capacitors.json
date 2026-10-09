@@ -1,0 +1,933 @@
+[
+  {
+    "id": "ELEC-PROT-0001",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Fuses",
+    "question": "The rating of a fuse or circuit breaker is chosen so that it protects:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The cable and the equipment it supplies, opening before either is overloaded"
+      },
+      {
+        "id": "b",
+        "text": "The load, by holding the voltage across it constant whatever the current"
+      },
+      {
+        "id": "c",
+        "text": "The pilot, by preventing any possibility of electric shock from the circuit"
+      },
+      {
+        "id": "d",
+        "text": "The generator only, by stopping it ever being loaded beyond its rating"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A fuse or breaker is rated no lower than the circuit's normal current, but low enough to open before the current reaches the safe limit of the cable or the equipment on it. That is why only the specified rating may be fitted: a larger one lets a fault overheat the wiring or damage the load before it opens.",
+    "tags": [
+      "fuses",
+      "circuit-breakers",
+      "rating"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0002",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Fuses",
+    "question": "A fuse that has blown is replaced with one of a higher rating. The danger is that:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A fault could overheat the cable before the fuse melts, risking fire"
+      },
+      {
+        "id": "b",
+        "text": "The supply voltage to the circuit would rise above its normal value"
+      },
+      {
+        "id": "c",
+        "text": "The higher-rated fuse would blow immediately when the circuit is switched on"
+      },
+      {
+        "id": "d",
+        "text": "The circuit would no longer receive enough current to operate its load"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The rating is chosen to protect that particular cable. A larger fuse lets a larger current flow indefinitely, so the wire, not the fuse, becomes the weakest link. Always replace a fuse with one of the same rating and type.",
+    "tags": [
+      "fuses",
+      "rating"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0003",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Fuses",
+    "question": "A fuse protects a circuit by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A low-melting-point element melting on a sustained overcurrent"
+      },
+      {
+        "id": "b",
+        "text": "A coil pulling a set of contacts open whenever current flows in the wrong direction"
+      },
+      {
+        "id": "c",
+        "text": "A semiconductor junction blocking all current above a set voltage"
+      },
+      {
+        "id": "d",
+        "text": "A bimetal strip bending and pushing a trip button out when the current is too high"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A fuse is a deliberately weak link: its element heats with I²R like the rest of the circuit but melts first, breaking the circuit permanently. It must then be replaced, unlike a circuit breaker which can be reset.",
+    "tags": [
+      "fuses"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0004",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Current limiters",
+    "question": "A current limiter, as fitted in heavy-current circuits such as generator feeders and bus ties, is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A slow-blow copper-element fuse that rides out brief surges but opens on a sustained fault"
+      },
+      {
+        "id": "b",
+        "text": "A circuit breaker that can be reset from the cockpit after each overload"
+      },
+      {
+        "id": "c",
+        "text": "A resistor that holds the current at a fixed value whatever the load demands"
+      },
+      {
+        "id": "d",
+        "text": "A relay that opens whenever current flows back towards the generator from the bus"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Heavy circuits see short, harmless surges — motor starting, for example. A current limiter's copper element has enough thermal mass to ride through those, while still melting on a sustained overload or short. Despite its name, it does not regulate current.",
+    "tags": [
+      "current-limiter",
+      "fuses"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0005",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Circuit breakers",
+    "question": "A thermal circuit breaker trips because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A diode inside the breaker detects current flowing in the reverse direction"
+      },
+      {
+        "id": "b",
+        "text": "The voltage across the breaker rises above its rated value and arcs the contacts open"
+      },
+      {
+        "id": "c",
+        "text": "Excess current heats a bimetal, which bends and releases the contact latch"
+      },
+      {
+        "id": "d",
+        "text": "Excess current produces a magnetic field that pulls the contacts apart instantly"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The bimetal responds to heating, so the trip time depends on both the size and the duration of the overload: a large overload trips it quickly, a small one more slowly. Magnetic breakers, by contrast, respond to current almost instantaneously.",
+    "tags": [
+      "circuit-breakers",
+      "thermal",
+      "bimetal"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0006",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Circuit breakers",
+    "question": "A circuit breaker described as 'trip-free' is one which:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Never trips on a short circuit, only on a sustained overload"
+      },
+      {
+        "id": "b",
+        "text": "Will still trip on a fault even if its reset button is being held in"
+      },
+      {
+        "id": "c",
+        "text": "Is free of any thermal element, so it trips magnetically only"
+      },
+      {
+        "id": "d",
+        "text": "Can be reset any number of times without any delay between attempts"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Trip-free means the mechanism cannot be overridden: the contacts open on a fault regardless of what is done to the button. Holding a breaker in cannot force current into a faulty circuit.",
+    "tags": [
+      "circuit-breakers",
+      "trip-free"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0007",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Circuit breakers",
+    "question": "Compared with a thermal circuit breaker, a magnetic circuit breaker:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Trips only after the cable has reached a set temperature, however large the current"
+      },
+      {
+        "id": "b",
+        "text": "Trips almost instantly on a large fault, largely regardless of ambient temperature"
+      },
+      {
+        "id": "c",
+        "text": "Can be held closed against a fault by pressing and holding its button"
+      },
+      {
+        "id": "d",
+        "text": "Responds to the voltage across the circuit rather than to the current through it"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A magnetic trip uses the field of the fault current itself to release the latch, so it is fast and independent of how warm the breaker is. Many breakers combine both: thermal for slow overloads, magnetic for short circuits.",
+    "tags": [
+      "circuit-breakers",
+      "magnetic"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0008",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Circuit breakers",
+    "question": "A circuit breaker trips in flight. Unless the checklist directs otherwise, the generally accepted practice is to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Reset it immediately and as many times as necessary until it stays in"
+      },
+      {
+        "id": "b",
+        "text": "Hold it in by hand so the system keeps working until landing"
+      },
+      {
+        "id": "c",
+        "text": "Replace it with a breaker of a higher rating taken from a less important circuit"
+      },
+      {
+        "id": "d",
+        "text": "Reset it once only, after allowing time for it to cool, and only if the system is needed"
+      }
+    ],
+    "correct": "d",
+    "explanation": "A trip means something drew too much current. One reset after a cooling period distinguishes a transient from a real fault; repeated resets push fault current into hot wiring and are a known cause of in-flight fires. Many operators prohibit resets of certain systems (fuel pumps, for example) altogether.",
+    "tags": [
+      "circuit-breakers",
+      "reset",
+      "procedure"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0009",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Circuit breakers",
+    "question": "An advantage of circuit breakers over fuses in an aircraft is that circuit breakers:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Never need maintenance or replacement during the life of the aircraft"
+      },
+      {
+        "id": "b",
+        "text": "Protect the equipment as well as the wiring, so no internal fusing is needed"
+      },
+      {
+        "id": "c",
+        "text": "React faster than any fuse to every type of overload"
+      },
+      {
+        "id": "d",
+        "text": "Can be reset after tripping, and can be pulled manually to isolate a circuit"
+      }
+    ],
+    "correct": "d",
+    "explanation": "A breaker survives its own operation and doubles as an isolating switch — pulled (and sometimes collared) to make a circuit safe. A fuse must be replaced, which requires spares and access.",
+    "tags": [
+      "circuit-breakers",
+      "fuses"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0010",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Circuit breakers",
+    "question": "Arc-fault circuit breakers have been introduced in some modern aircraft because conventional thermal breakers:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Trip too readily on the normal starting currents of motors and pumps"
+      },
+      {
+        "id": "b",
+        "text": "Cannot be used on 28 V DC circuits at all, only on AC circuits"
+      },
+      {
+        "id": "c",
+        "text": "May miss intermittent arcing, as the average current stays below the trip level"
+      },
+      {
+        "id": "d",
+        "text": "Do not protect against a dead short between a conductor and the structure"
+      }
+    ],
+    "correct": "c",
+    "explanation": "An arc through chafed insulation produces short, erratic current spikes. Their heating effect may be too small for a bimetal to notice, yet the arc itself can ignite surrounding material. Arc-fault breakers recognise the current signature of arcing and open the circuit.",
+    "tags": [
+      "circuit-breakers",
+      "arc-fault"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0011",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Circuit protection",
+    "question": "A reverse current circuit breaker (or cut-out) in a DC generating system is fitted to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Limit the generator output current to its rated maximum"
+      },
+      {
+        "id": "b",
+        "text": "Disconnect the generator if current starts to flow back into it"
+      },
+      {
+        "id": "c",
+        "text": "Prevent the battery from being overcharged by the generator"
+      },
+      {
+        "id": "d",
+        "text": "Protect the bus wiring from short circuits between the generator and the battery"
+      }
+    ],
+    "correct": "b",
+    "explanation": "If a generator's voltage falls below the bus voltage (it slows down or fails), the battery and other generators would drive current back into it, motoring it and discharging the battery. Sensing that reversal and opening the line protects both.",
+    "tags": [
+      "reverse-current",
+      "dc-generator"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0012",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Capacitors",
+    "question": "A capacitor in a circuit stores energy:",
+    "options": [
+      {
+        "id": "a",
+        "text": "As heat in a resistive element, released when the circuit is switched off"
+      },
+      {
+        "id": "b",
+        "text": "As chemical energy, converted back into electricity as it discharges"
+      },
+      {
+        "id": "c",
+        "text": "In the magnetic field around a coil of wire carrying current"
+      },
+      {
+        "id": "d",
+        "text": "In the electric field across the dielectric between two plates"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Charging moves electrons onto one plate and off the other, leaving an electric field across the dielectric. Energy stored in a magnetic field describes an inductor; chemical storage describes a battery.",
+    "tags": [
+      "capacitors"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0013",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Capacitors",
+    "question": "The capacitance of a parallel-plate capacitor is increased by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Replacing the dielectric with a material of lower permittivity"
+      },
+      {
+        "id": "b",
+        "text": "Increasing the plate area or reducing the distance between the plates"
+      },
+      {
+        "id": "c",
+        "text": "Increasing the voltage applied across the plates"
+      },
+      {
+        "id": "d",
+        "text": "Reducing the plate area or increasing the distance between the plates"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Capacitance is proportional to plate area and to the permittivity of the dielectric, and inversely proportional to the plate separation. Voltage changes the charge stored (Q = CV), not the capacitance itself.",
+    "tags": [
+      "capacitors",
+      "capacitance"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0014",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Capacitors",
+    "question": "A 50 µF capacitor is charged to 28 V. What charge does it hold?",
+    "options": [
+      {
+        "id": "a",
+        "text": "0.56 µC"
+      },
+      {
+        "id": "b",
+        "text": "1.78 µC"
+      },
+      {
+        "id": "c",
+        "text": "14 mC"
+      },
+      {
+        "id": "d",
+        "text": "1.4 mC"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Q = C × V = 50 × 10⁻⁶ F × 28 V = 1,400 × 10⁻⁶ C = 1.4 mC (millicoulombs).",
+    "tags": [
+      "capacitors",
+      "charge",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0015",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Capacitors",
+    "question": "Two 4 µF capacitors are connected in series. Their combined capacitance is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "16 µF"
+      },
+      {
+        "id": "b",
+        "text": "4 µF"
+      },
+      {
+        "id": "c",
+        "text": "2 µF"
+      },
+      {
+        "id": "d",
+        "text": "8 µF"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Capacitors combine the opposite way to resistors: in series, 1/C = 1/C₁ + 1/C₂ = 1/4 + 1/4 = 1/2, so C = 2 µF. Connecting them in series effectively increases the plate separation.",
+    "tags": [
+      "capacitors",
+      "series",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0016",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Capacitors",
+    "question": "Capacitors of 10 µF and 22 µF are connected in parallel. Their combined capacitance is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "12 µF"
+      },
+      {
+        "id": "b",
+        "text": "6.9 µF"
+      },
+      {
+        "id": "c",
+        "text": "220 µF"
+      },
+      {
+        "id": "d",
+        "text": "32 µF"
+      }
+    ],
+    "correct": "d",
+    "explanation": "In parallel, capacitances simply add (C = C₁ + C₂), because the arrangement is equivalent to one capacitor with a larger plate area.",
+    "tags": [
+      "capacitors",
+      "parallel",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0017",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Capacitors",
+    "question": "A capacitor charges through a resistor from a DC supply. After one time constant (CR seconds) the capacitor voltage has reached approximately:",
+    "options": [
+      {
+        "id": "a",
+        "text": "63% of the supply voltage"
+      },
+      {
+        "id": "b",
+        "text": "100% of the supply voltage"
+      },
+      {
+        "id": "c",
+        "text": "37% of the supply voltage"
+      },
+      {
+        "id": "d",
+        "text": "50% of the supply voltage"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Charging is exponential: in each time constant the voltage covers 63% of the remaining gap to the supply. It is effectively fully charged (over 99%) after about five time constants. During discharge it falls to 37% in one time constant.",
+    "tags": [
+      "capacitors",
+      "time-constant"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0018",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Capacitors",
+    "question": "A 10 µF capacitor charges through a 100 kΩ resistor. The time constant of the circuit is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "10 seconds"
+      },
+      {
+        "id": "b",
+        "text": "1 second"
+      },
+      {
+        "id": "c",
+        "text": "1 millisecond"
+      },
+      {
+        "id": "d",
+        "text": "0.1 second"
+      }
+    ],
+    "correct": "b",
+    "explanation": "τ = R × C = 100,000 Ω × 10 × 10⁻⁶ F = 1 s. The capacitor would be effectively fully charged after about 5 s.",
+    "tags": [
+      "capacitors",
+      "time-constant",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0019",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Capacitors",
+    "question": "Once a capacitor connected to a steady DC supply is fully charged, the current in its circuit is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "At its maximum, because the capacitor holds its maximum charge"
+      },
+      {
+        "id": "b",
+        "text": "Equal to the supply voltage divided by the series resistance"
+      },
+      {
+        "id": "c",
+        "text": "Alternating at a frequency set by the capacitance"
+      },
+      {
+        "id": "d",
+        "text": "Zero, because the capacitor voltage equals the supply voltage"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Current flows only while the charge on the plates is changing. When the capacitor's voltage equals the supply's, there is no net voltage to drive current through the resistor, so a capacitor blocks steady DC.",
+    "tags": [
+      "capacitors",
+      "dc-blocking"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0020",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Capacitors",
+    "question": "Why must care be taken with large capacitors in equipment that has been switched off?",
+    "options": [
+      {
+        "id": "a",
+        "text": "They generate a high-frequency voltage until they are manually earthed"
+      },
+      {
+        "id": "b",
+        "text": "They reverse polarity when switched off and can damage the supply"
+      },
+      {
+        "id": "c",
+        "text": "They can retain a dangerous charge for some time after the supply has been removed"
+      },
+      {
+        "id": "d",
+        "text": "They draw a large current from the supply even when the equipment is off"
+      }
+    ],
+    "correct": "c",
+    "explanation": "With no discharge path, a capacitor keeps its charge. Large capacitors in power supplies and some electronic units can deliver a dangerous shock long after switch-off, which is why they are fitted with bleed resistors and discharged before work starts.",
+    "tags": [
+      "capacitors",
+      "safety"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0021",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Capacitors",
+    "question": "An electrolytic capacitor differs from most other types in that it:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Is polarised, and connecting it the wrong way round can destroy it"
+      },
+      {
+        "id": "b",
+        "text": "Has a capacitance that rises sharply as the voltage across it increases"
+      },
+      {
+        "id": "c",
+        "text": "Stores its energy chemically, in the same way as a battery"
+      },
+      {
+        "id": "d",
+        "text": "Can be connected either way round and works equally well on AC and DC"
+      }
+    ],
+    "correct": "a",
+    "explanation": "An electrolytic capacitor achieves a high capacitance in a small package by using a very thin oxide film as its dielectric. That film is only maintained with the correct polarity; reverse voltage breaks it down and can make the capacitor overheat.",
+    "tags": [
+      "capacitors",
+      "electrolytic"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0022",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Capacitors",
+    "question": "A capacitor is connected across the output of a rectifier. Its function is to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Block the DC output so that only the alternating component reaches the load"
+      },
+      {
+        "id": "b",
+        "text": "Smooth the output, charging on each peak and feeding the load in between"
+      },
+      {
+        "id": "c",
+        "text": "Raise the DC output voltage to twice the peak value of the AC input"
+      },
+      {
+        "id": "d",
+        "text": "Limit the output current if the load is short-circuited"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Rectified AC is a series of pulses. The capacitor fills during each peak and supplies the load in the troughs, so the output becomes a nearly steady DC with only a small ripple.",
+    "tags": [
+      "capacitors",
+      "smoothing",
+      "rectifier"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0023",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Capacitors",
+    "question": "A capacitor of 100 µF is charged to 20 V. How much energy does it store?",
+    "options": [
+      {
+        "id": "a",
+        "text": "0.02 J"
+      },
+      {
+        "id": "b",
+        "text": "0.2 J"
+      },
+      {
+        "id": "c",
+        "text": "0.002 J"
+      },
+      {
+        "id": "d",
+        "text": "0.04 J"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Energy stored = ½CV² = 0.5 × 100 × 10⁻⁶ × 20² = 0.5 × 100 × 10⁻⁶ × 400 = 0.02 J. Forgetting the half gives 0.04 J.",
+    "tags": [
+      "capacitors",
+      "energy",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0024",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Circuit breakers",
+    "question": "A circuit breaker panel has some breakers fitted with coloured collars. A collar is placed on a breaker to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Mark breakers that protect AC circuits as opposed to DC circuits"
+      },
+      {
+        "id": "b",
+        "text": "Stop a deliberately pulled breaker being pushed back in by mistake"
+      },
+      {
+        "id": "c",
+        "text": "Show which breakers have tripped in flight and need resetting after landing"
+      },
+      {
+        "id": "d",
+        "text": "Increase the current rating of the breaker for heavy loads"
+      }
+    ],
+    "correct": "b",
+    "explanation": "When a system is made inoperative under a deferred-defect procedure, its breaker is pulled and collared so nobody inadvertently re-energises it. The collar is a physical lock-out, not an electrical device.",
+    "tags": [
+      "circuit-breakers",
+      "collar"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0025",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Fuses",
+    "question": "In flight a fuse blows. It is replaced once with one of the correct rating, and the new fuse blows as soon as the circuit is switched on. The correct action is to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Fit a fuse of the next higher rating so the circuit can stay on"
+      },
+      {
+        "id": "b",
+        "text": "Bridge the fuse holder with wire until the aircraft has landed"
+      },
+      {
+        "id": "c",
+        "text": "Leave the circuit off: a second failure means a fault that must be found first"
+      },
+      {
+        "id": "d",
+        "text": "Keep replacing fuses of the correct rating until one holds"
+      }
+    ],
+    "correct": "c",
+    "explanation": "One replacement with the correct rating allows for a transient. If that blows too, there is a real defect in the system, and no further fuse should be fitted until the circuit has been investigated. A higher rating or a bridge would let the fault overheat the wiring.",
+    "tags": [
+      "fuses",
+      "procedure"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0026",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Fuses",
+    "question": "Spare fuses must be carried on board. The usual minimum is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "None, since modern circuit breakers have replaced every fuse"
+      },
+      {
+        "id": "b",
+        "text": "One of each rating fitted, whatever the number installed"
+      },
+      {
+        "id": "c",
+        "text": "10% of the number of each rating fitted, with at least three of each"
+      },
+      {
+        "id": "d",
+        "text": "Half of the number of each rating fitted, with at least five of each"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The rule ensures that every rating in use has replacements available in flight: ten per cent of each rating installed, but never fewer than three of any rating.",
+    "tags": [
+      "fuses",
+      "spares"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0027",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Fuses and circuit breakers",
+    "question": "An important difference between a fuse and a circuit breaker is that:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A fuse can be reset after operating, while a breaker must be replaced"
+      },
+      {
+        "id": "b",
+        "text": "A fuse responds to excess voltage, while a breaker responds to excess current"
+      },
+      {
+        "id": "c",
+        "text": "A fuse usually opens before the full fault current is reached; a breaker opens after it"
+      },
+      {
+        "id": "d",
+        "text": "A breaker usually opens before the full fault current is reached; a fuse opens after it"
+      }
+    ],
+    "correct": "c",
+    "explanation": "A fuse element melts very quickly on a heavy fault and often interrupts it before the current has built up fully. A circuit breaker's mechanism takes slightly longer, so the breaker and the equipment it protects must both be able to withstand the full fault current for a short time.",
+    "tags": [
+      "fuses",
+      "circuit-breakers"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-PROT-0028",
+    "subjectCode": "ELEC",
+    "topic": "Circuit Protection and Capacitors",
+    "subtopic": "Fuses",
+    "question": "A high rupture capacity (HRC) fuse differs from a glass cartridge fuse in that it:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Has a glass body, so the blown element can be seen without removing it"
+      },
+      {
+        "id": "b",
+        "text": "Is used for very small currents in instrument circuits"
+      },
+      {
+        "id": "c",
+        "text": "Can be reset by pressing a button once the fault has cleared"
+      },
+      {
+        "id": "d",
+        "text": "Has a ceramic body packed with sand or quartz, so it operates without flame"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The robust ceramic body and filling of sand or powdered quartz quench the arc as the element melts. HRC fuses are used in high-current circuits; they act quickly and accurately, do not deteriorate with age and are little affected by ambient temperature.",
+    "tags": [
+      "fuses",
+      "hrc"
+    ],
+    "status": "published",
+    "version": 1
+  }
+]

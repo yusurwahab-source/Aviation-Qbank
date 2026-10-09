@@ -37,8 +37,10 @@ Rating Systems Knowledge** — light aircraft, each its own folder one level
 down. A light aircraft sits directly here with no sub-category between it
 and the section: there is no "single engine" or "multi engine" split, only
 the aircraft. `content/flying-knowledge/` holds **Flying Knowledge** —
-general theory not tied to any aircraft, each subject (Principles of Flight, Human Performance & Limitations and
-Meteorology today, and whatever follows them) its own folder one level down, free in full by decision — see
+general theory not tied to any aircraft, each subject (Principles of Flight,
+Human Performance & Limitations, Meteorology and Aircraft General Knowledge —
+Electrics today, and whatever follows them) its own folder one level down,
+free in full by decision — see
 the note on the three sections in `CLAUDE.md`.
 
 Adding a second type rating, a second class rating, or a second Flying
@@ -514,6 +516,152 @@ on it for a real exam — the same caution already given to the POF
 bank and the DA40's unsourced topics above. None of it has been checked
 against the CAE Oxford textbook, or against any other human-factors
 syllabus, question by question.
+
+## The ELEC bank (Flying Knowledge)
+
+The subject is **Aircraft General Knowledge — Electrics** (code `ELEC`),
+the fourth subject in Flying Knowledge, added the same content-only way POF,
+HPL and MET were. 400 questions across sixteen topics, all published. On the
+EASA ATPL Ground School picker it is the subject behind row 021, which in
+the syllabus also covers airframe, systems, powerplant and emergency
+equipment; only the electrics part exists so far.
+
+| # | Topic | File | Ids | Questions |
+|---|---|---|---|---|
+| 01 | DC Principles | `dc-principles.json` | `ELEC-DCB-0001`–`0027` | 27 |
+| 02 | Switches, Relays and Solenoids | `switches-relays-and-solenoids.json` | `ELEC-SW-0001`–`0022` | 22 |
+| 03 | Circuit Protection and Capacitors | `circuit-protection-and-capacitors.json` | `ELEC-PROT-0001`–`0028` | 28 |
+| 04 | Batteries | `batteries.json` | `ELEC-BATT-0001`–`0029` | 29 |
+| 05 | Magnetism and Electromagnetism | `magnetism-and-electromagnetism.json` | `ELEC-MAG-0001`–`0023` | 23 |
+| 06 | DC Generators and Alternators | `dc-generators-and-alternators.json` | `ELEC-DCGEN-0001`–`0025` | 25 |
+| 07 | DC Distribution and Indication | `dc-distribution-and-indication.json` | `ELEC-DIST-0001`–`0027` | 27 |
+| 08 | Electric Motors and Actuators | `electric-motors-and-actuators.json` | `ELEC-MOT-0001`–`0026` | 26 |
+| 09 | AC Principles | `ac-principles.json` | `ELEC-ACP-0001`–`0028` | 28 |
+| 10 | AC Generators | `ac-generators.json` | `ELEC-ACGEN-0001`–`0029` | 29 |
+| 11 | AC Power Systems | `ac-power-systems.json` | `ELEC-ACSYS-0001`–`0027` | 27 |
+| 12 | Transformers, TRUs and Inverters | `transformers-trus-and-inverters.json` | `ELEC-CONV-0001`–`0023` | 23 |
+| 13 | Semiconductors | `semiconductors.json` | `ELEC-SEMI-0001`–`0023` | 23 |
+| 14 | Logic Circuits | `logic-circuits.json` | `ELEC-LOGIC-0001`–`0021` | 21 |
+| 15 | Bonding, Screening and Static | `bonding-screening-and-static.json` | `ELEC-BOND-0001`–`0022` | 22 |
+| 16 | Electrical System Management | `electrical-system-management.json` | `ELEC-MGMT-0001`–`0020` | 20 |
+| | | | | **400** |
+
+### Written from general knowledge, then checked against the owner's book
+
+The owner asked for this bank to be built from a textbook they had bought,
+CAE Oxford Aviation Academy's *Electrics and Electronics* (Book 3 of its
+ATPL Ground Training Series): its facts only, not its wording or the way
+it is written. The book was not available at first, so the first 370
+questions and the study guide were written from general knowledge of the
+standard ATPL electrics syllabus, the same way HPL was.
+
+The owner then uploaded the book as text, and every chapter was read
+against the bank. That book is a copyrighted, commercially sold text, so
+the same boundary as POF and HPL applies: it was used to check facts and
+find gaps, never as text to transcribe or paraphrase. Its end-of-chapter
+and specimen questions were read only to see which facts it treats as
+examinable. None was copied, and no new question reuses one's stem or
+options.
+
+**What the check changed.** Seven questions contradicted the book, or
+taught a point differently from how its exam answers expect it, and were
+rewritten:
+
+- `PROT-0001` — fuses and breakers protect the **cable and the equipment**
+  on it, not the wiring alone (the first draft said equipment needs its
+  own protection).
+- `BATT-0002` — battery capacity is quoted at the **one-hour rate**
+  (40 Ah → 40 A for one hour, or 4 A for ten hours at the ten-hour rate).
+- `DIST-0024` — the book treats the battery bus and the "hot bus" as the
+  same thing, so the old question distinguishing them was replaced by one
+  on vital services fed from the hot battery bus.
+- `ACGEN-0025` — 380 Hz is inside a constant speed drive's normal band
+  (380–420 Hz), so the "too slow" example now reads 360 Hz.
+- `ACSYS-0003` — the disadvantage of a parallel system is its **added
+  complexity** (load-sharing and synchronising equipment). The book's own
+  answer key rejects "faults can propagate" as the answer.
+- `MOT-0017` — a lightly loaded three-phase motor that loses a phase keeps
+  running at reduced speed, then will not restart.
+- `SW-0005` — a distractor implying proximity sensors only detect steel was
+  replaced, since capacitive detectors sense any material.
+
+`SEMI-0002`/`0003` now use the book's example dopants (arsenic or antimony;
+aluminium or indium). The earlier examples were also correct.
+
+**What the check added.** Thirty questions on facts the book covers and
+the bank did not, appended to their topics so no existing id moved. They
+cover:
+
+- **DC circuits and protection:** the six ways of producing an EMF;
+  capacitive, inductive and magnetic proximity detectors; centrifugal
+  switches; the replace-a-fuse-once rule; spare fuse quantities; fuse vs
+  breaker timing; HRC fuses.
+- **Batteries and magnetism:** the 80% capacity test and 30-minute
+  essential supply; battery storage and spill neutralisers; demagnetising.
+- **Generators, distribution and motors:** induced-EMF factors; the
+  generator differential cut-out; shunts and multipliers; a stuck reverse
+  current cut-out; slow-start resistors; tacho-generator rpm indicators.
+- **AC:** under-frequency overheating of inductive loads; the stator
+  windings that set the number of phases; CSD frequency band, quill drive
+  and separate oil; the synchronising bus; clearing an earth fault on a
+  load bus; the APU generator never being paralleled; transformer phase
+  inversion.
+- **Electronics and bonding:** transistor symbols; positive logic; clean
+  bonding surfaces; what needs screening.
+
+Everything else in the bank agreed with the book. Where the bank goes
+beyond it (time constants, Zener diodes, thyristors and FETs, XNOR and
+De Morgan, lithium-ion batteries, arc-fault breakers, HIRF, variable-
+frequency generators), the content is standard physics or widely taught
+aircraft-systems material.
+
+Every number in the computational questions was worked out while writing,
+not copied. Procedural questions (breaker resets, IDG disconnection, load
+shedding, smoke drills) are written as general practice and defer to "the
+checklist", because the details differ between aircraft.
+
+### The correct answer does not stand out by its shape
+
+The first draft fell into the classic trap: the correct option was the
+longest of the four in two questions out of three. A student could have
+scored well by picking the longest answer without knowing any electrics,
+which this product treats as a bug. Before publishing, every question
+whose correct option was noticeably longer than the longest wrong one was
+rewritten: the explanation now carries the reasoning, the correct option
+is cut down, and thin wrong options are lengthened. The correct option is
+now the strictly longest in about a third of questions, close to the one
+in four that chance gives. The correct letter is spread evenly across A–D
+by a seeded shuffle per topic.
+
+### What the student sees never names a source
+
+The same rule POF and HPL follow: the guide and the questions name no
+book, school, regulator, question bank or syllabus. This note and
+`CLAUDE.md` are the only record.
+
+`public/elec-study-guide.html` is this bank's study guide (registered in
+`lib/study-guide.ts`). It has sixteen numbered sections matching the
+sixteen topics, each with a key-idea callout and a table or card grid. It
+was corrected alongside the bank on the same points listed above
+(protection, parallel-system complexity, phase loss, dopants) and gained
+the book-checked facts that matter at a glance: spare fuses, HRC fuses,
+the capacity test, vital services on the hot bus, the CSD's frequency
+band and quill drive, the synchronising bus, and autotransformers for
+26 V AC.
+
+Seven sections also carry an inline SVG diagram: series vs parallel, the
+capacitor charging curve, schematic battery discharge shapes, current
+lagging voltage on a true sine wave, the brushless generator chain, a
+split-bus system, and half- vs full-wave rectification. A "quick tools"
+section has four calculators (Ohm's law and power, battery endurance,
+generator frequency from rpm and poles, transformer turns ratio) and a
+cheat sheet of the core formulas. The page uses its own colour tokens in
+both themes, and was checked in Chromium at 375px and 1280px for
+horizontal overflow and script errors.
+
+The bank should still be reviewed by a qualified instructor before a
+student relies on it for a real exam, the same caution given to POF and
+HPL.
 
 ## The MET bank (Flying Knowledge)
 

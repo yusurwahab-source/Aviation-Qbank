@@ -19,9 +19,9 @@ today, with no "single engine" or "multi engine" split between it and the
 section; a light aircraft sits directly under Class Rating. `/flying-knowledge`
 is **Flying Knowledge** — general theory that is not tied to any aircraft —
 air law, meteorology, navigation, the material a pilot keeps reviewing
-rather than sits once. It has three subjects now, **Principles of Flight
-(POF)**, **Human Performance & Limitations (HPL)** and **Meteorology
-(MET)**; further
+rather than sits once. It has four subjects now, **Principles of Flight
+(POF)**, **Human Performance & Limitations (HPL)**, **Meteorology (MET)**
+and **Aircraft General Knowledge — Electrics (ELEC)**; further
 subjects are added the same content-only way a second aircraft is (see the
 note on Flying Knowledge's own content tree below), and the page title
 stays "Choose a subject" rather than naming just one. (IFR and FI(A)
@@ -475,7 +475,9 @@ from a static list (`lib/atpl-subjects.ts`), not from the database.** A
 subject with no questions has no content folder and no row (`db:seed` would
 delete one), so "coming soon" rows cannot be database rows. A row is live
 only when a Flying Knowledge subject is named by its `code` there (POF is
-080, HPL is 040, MET is 050) and is active with published questions; live rows link to
+080, HPL is 040, MET is 050, ELEC is 021 — the electrics part of that
+combined syllabus subject, the only part that exists so far) and is active
+with published questions; live rows link to
 `/flying-knowledge/<code>`, where tests still run, and carry a pulsing
 `LiveBadge`. `/flying-knowledge` itself redirects to the picker. Adding a
 subject to the ATPL list is a content folder plus its `code` in that list.
@@ -1808,7 +1810,7 @@ over the internals.
 content/                      Question files. The source of truth.
   <code>/                     One folder per type rating aircraft (b737/, a320/ today)
   classes/<code>/             One folder per class rating aircraft (da40/ today)
-  flying-knowledge/<code>/    One folder per Flying Knowledge subject (pof/, hpl/, met/ today)
+  flying-knowledge/<code>/    One folder per Flying Knowledge subject (pof/, hpl/, met/, elec/ today)
 drizzle/                      Generated SQL migrations. Committed.
 public/                       Manifest icons, the service worker, and any
                               <code>-study-guide.html study guides (see the
@@ -2064,16 +2066,22 @@ aircraft's own study guide already needs (see the note on that file
 above), exactly the way a second aircraft proves the rule. Human
 Performance & Limitations (`HPL`) proves it a further time: `content/flying-knowledge/hpl/` alone, a `subject.json` and sixteen
 question files, 346 questions — see the note on the HPL bank in
-`content/README.md`. Meteorology (`MET`) is the third: `content/flying-knowledge/met/`
+`content/README.md`. Meteorology (`MET`) is the third:
+`content/flying-knowledge/met/`
 alone, a `subject.json` and twenty-nine question files, 1,400 questions,
 plus its study guide and the same one-line additions to `lib/study-guide.ts`
 and to `lib/atpl-subjects.ts` (code `MET` against 050) — see the note on
 the MET bank in `content/README.md`.
+Aircraft General Knowledge — Electrics (`ELEC`) is the fourth:
+`content/flying-knowledge/elec/` and sixteen question files, 400 questions,
+plus its `code` on the 021 row of `lib/atpl-subjects.ts` and its study
+guide's line in `lib/study-guide.ts` — see the note on the ELEC bank in
+`content/README.md`.
 
 The one thing that does not carry over from either of the other two trees:
 **Flying Knowledge is free in full, not metered by the free-tier cap or
 gated by a subscription**, decided ahead of any content existing and
-unchanged now that POF, HPL and MET are its three subjects with
+unchanged now that POF, HPL, MET and ELEC are its four subjects with
 content. Every other
 section's free allowance exists because the bank behind it is something a
 student sits through once toward one exam, and the cap is what pays for
@@ -2094,7 +2102,7 @@ ever written) — that protects the server from a scripted flood, the same
 "protect the machine, not the product" reasoning `MAX_ANSWERS` already gives
 elsewhere, and is never used to cap how much of the bank a visitor may see.
 
-**The POF bank (Principles of Flight, Flying Knowledge's only subject) is
+**The POF bank (Principles of Flight, Flying Knowledge's first subject) is
 authored content, and the honesty lives here, not on the page.** Authored by the assistant as general aerodynamics
 theory — not transcribed from the Principles of Flight book the owner
 pointed at, or from any other textbook or syllabus, and not checked against
@@ -2293,6 +2301,18 @@ length no longer gives the answer away. See the note on the MET bank in
   question against the book or any other syllabus, and should be reviewed
   by a qualified instructor before a student relies on it for a real exam.
   See the note on the MET bank in `content/README.md`.
+- **The ELEC bank (Aircraft General Knowledge — Electrics, Flying
+  Knowledge's fourth subject, 400 questions) is authored content checked
+  against the owner's textbook, not transcribed from it.** That book, CAE
+  Oxford Aviation Academy's *Electrics and Electronics* (ATPL Book 3), is
+  copyrighted. It was used, at the owner's request, for facts only: every
+  chapter was read against the bank, seven questions that disagreed with
+  it were rewritten, and thirty questions were added for facts it covers
+  that the first draft did not. No wording, worked example or specimen
+  question was copied. As with POF, HPL and MET, nothing a student reads names
+  a source, and a qualified instructor should review the bank before a
+  student relies on it for a real exam. See the note on the ELEC bank in
+  `content/README.md`.
 - **The A320 bank (type rating, 751 questions, by FCOM chapter) is checked
   against open sources, not against an FCOM.** Its facts come from the public
   FlyByWire A32NX documentation (an A320neo simulation's docs); nothing was

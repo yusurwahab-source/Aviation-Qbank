@@ -1,0 +1,895 @@
+[
+  {
+    "id": "ELEC-ACSYS-0001",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "System types",
+    "question": "In a split-bus (non-parallel) AC system on a twin-engine aircraft:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The generators are paralleled in flight and split only on the ground"
+      },
+      {
+        "id": "b",
+        "text": "Each generator supplies its own busbar and the generators are never connected in parallel"
+      },
+      {
+        "id": "c",
+        "text": "One generator supplies all the loads while the other remains on standby, unexcited"
+      },
+      {
+        "id": "d",
+        "text": "Both generators feed a common tie bus and share the load equally"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Keeping the generators separate means their frequencies need not be matched and a fault on one side cannot take down the other. If a generator fails, the bus tie breakers close so a remaining source supplies the dead bus — never two sources on one bus.",
+    "tags": [
+      "split-bus",
+      "system-types"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0002",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "System types",
+    "question": "In a parallel AC system, all generators are connected to a common synchronising (tie) bus. An advantage of this arrangement is that:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The generators do not need any frequency or load-sharing control"
+      },
+      {
+        "id": "b",
+        "text": "A fault on one busbar cannot affect any of the other busbars"
+      },
+      {
+        "id": "c",
+        "text": "Each generator can operate at a different frequency"
+      },
+      {
+        "id": "d",
+        "text": "Load is shared, and losing one generator causes no break in supply"
+      }
+    ],
+    "correct": "d",
+    "explanation": "With every generator feeding the tie bus, losing one simply redistributes the load among the others without a break. The cost is complexity: tight frequency control, real and reactive load sharing, and protection that isolates a fault before it pulls the whole system down.",
+    "tags": [
+      "parallel-system",
+      "system-types"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0003",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "System types",
+    "question": "A disadvantage of a parallel AC system compared with a split-bus system is that:",
+    "options": [
+      {
+        "id": "a",
+        "text": "It cannot use constant speed drives to hold the frequency"
+      },
+      {
+        "id": "b",
+        "text": "It needs extra equipment — load sharing and synchronising circuits — making it more complex"
+      },
+      {
+        "id": "c",
+        "text": "Each generator must be large enough to carry the total aircraft load alone"
+      },
+      {
+        "id": "d",
+        "text": "The failure of one generator always causes a power interruption"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Paralleled generators must share real load (through their constant speed drives) and reactive load (through their excitation), and must be synchronised before connection. All of that control and protection equipment adds complexity, which is why most modern twins run their generators separately on a split-bus system.",
+    "tags": [
+      "parallel-system",
+      "split-bus"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0004",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "Bus ties",
+    "question": "On a split-bus aircraft, generator 1 fails. Bus tie breaker logic then typically:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Closes the bus ties so another generator supplies the dead bus"
+      },
+      {
+        "id": "b",
+        "text": "Parallels the APU generator with generator 2 on both buses"
+      },
+      {
+        "id": "c",
+        "text": "Connects the battery to the affected AC bus through the TRU"
+      },
+      {
+        "id": "d",
+        "text": "Leaves the affected bus unpowered until generator 1 is reset"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The tie closes automatically to restore power to the dead bus from a healthy source. Because one generator now carries both buses, some loads (galleys, for example) are usually shed automatically.",
+    "tags": [
+      "bus-tie",
+      "generator-failure"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0005",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "Bus ties",
+    "question": "A bus tie breaker 'lockout' after a busbar fault exists to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Keep the external power connected while the engines are started"
+      },
+      {
+        "id": "b",
+        "text": "Stop a healthy generator being connected onto a faulted bus"
+      },
+      {
+        "id": "c",
+        "text": "Lock the generators in parallel so that they cannot be separated"
+      },
+      {
+        "id": "d",
+        "text": "Prevent the crew from switching off a generator in flight"
+      }
+    ],
+    "correct": "b",
+    "explanation": "If the fault is on the bus itself, closing the tie would simply feed fault current from the good generator and could lose it too. The protection isolates the faulty bus and stops it being re-energised.",
+    "tags": [
+      "bus-tie",
+      "lockout",
+      "protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0006",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "Transfer",
+    "question": "A 'no-break power transfer' (NBPT) system:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Briefly parallels the two sources so the buses are never interrupted"
+      },
+      {
+        "id": "b",
+        "text": "Uses the battery to supply the AC busbars during every transfer"
+      },
+      {
+        "id": "c",
+        "text": "Prevents any source from being changed while the aircraft is in flight"
+      },
+      {
+        "id": "d",
+        "text": "Disconnects all loads during the transfer to protect them"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Switching from ground or APU power to the engine generators would otherwise cause a brief power interruption that resets displays and computers. NBPT synchronises the two sources and overlaps them momentarily, then opens the outgoing one.",
+    "tags": [
+      "nbpt",
+      "transfer"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0007",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "External power",
+    "question": "Before AC ground power is connected to the aircraft busbars, the aircraft's external power monitoring typically checks:",
+    "options": [
+      {
+        "id": "a",
+        "text": "That all loads have been switched off"
+      },
+      {
+        "id": "b",
+        "text": "That the voltage, frequency and phase sequence are correct"
+      },
+      {
+        "id": "c",
+        "text": "That the battery is fully discharged"
+      },
+      {
+        "id": "d",
+        "text": "That the ground power unit is paralleled with the engine generators"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A ground supply with the wrong voltage or frequency could damage equipment, and a wrong phase sequence would run every three-phase motor backwards — fans, fuel pumps and hydraulic pumps included. If any parameter is wrong, the external power contactor will not close.",
+    "tags": [
+      "external-power",
+      "phase-sequence"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0008",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "External power",
+    "question": "In an AC external power plug, two short pins (often labelled E and F) are used to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Carry the main three-phase current into the aircraft"
+      },
+      {
+        "id": "b",
+        "text": "Energise the contactor only once the plug is fully home"
+      },
+      {
+        "id": "c",
+        "text": "Earth the ground power unit to the aircraft structure"
+      },
+      {
+        "id": "d",
+        "text": "Charge the aircraft battery directly from the ground power unit"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The short interlock pins carry the low DC current for the contactor. Being shorter, they connect last and disconnect first, so the contactor — not the plug's main pins — switches the heavy current. Pulling the plug therefore drops the contactor before the main pins separate.",
+    "tags": [
+      "external-power",
+      "interlock"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0009",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "External power",
+    "question": "On most large aircraft, external power and the engine generators:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Can be connected to the same busbar if the frequencies are within 10%"
+      },
+      {
+        "id": "b",
+        "text": "Are connected in series to give a higher bus voltage"
+      },
+      {
+        "id": "c",
+        "text": "Are paralleled whenever both are available, to share the load"
+      },
+      {
+        "id": "d",
+        "text": "Are not paralleled: only one source supplies a bus at a time"
+      }
+    ],
+    "correct": "d",
+    "explanation": "A ground power unit is not synchronised to the aircraft generators, so paralleling them would be dangerous. Source selection logic (and NBPT where fitted) decides which source feeds each bus.",
+    "tags": [
+      "external-power",
+      "source-priority"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0010",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "Emergency power",
+    "question": "On loss of all normal AC generation in flight, a ram air turbine (RAT) may deploy. Its purpose is to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Recharge the main battery so the main buses can be restored"
+      },
+      {
+        "id": "b",
+        "text": "Drive an emergency generator or hydraulic pump for essential systems"
+      },
+      {
+        "id": "c",
+        "text": "Cool the avionics after the cabin air conditioning has failed"
+      },
+      {
+        "id": "d",
+        "text": "Restart the engines by windmilling them faster"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The RAT uses the airflow past the aircraft to drive an emergency generator directly, or a hydraulic pump which drives a hydraulic-motor generator. Either way, essential AC (and through a TRU, essential DC) is restored for as long as there is enough airspeed.",
+    "tags": [
+      "rat",
+      "emergency-power"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0011",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "Emergency power",
+    "question": "With all generators failed and before (or without) emergency generation, essential AC instruments may be supplied from the battery through:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A static inverter"
+      },
+      {
+        "id": "b",
+        "text": "A current transformer"
+      },
+      {
+        "id": "c",
+        "text": "A transformer rectifier unit"
+      },
+      {
+        "id": "d",
+        "text": "An autotransformer"
+      }
+    ],
+    "correct": "a",
+    "explanation": "An inverter converts DC to AC. A TRU does the opposite (AC to DC), and a transformer — of any kind — only works with AC on its input, so neither could make AC from a battery.",
+    "tags": [
+      "inverter",
+      "emergency-power",
+      "essential-bus"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0012",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "Busbars",
+    "question": "An AC essential (or standby) busbar is one that:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Is the first busbar to be shed when a generator fails"
+      },
+      {
+        "id": "b",
+        "text": "Feeds the equipment essential for safe flight, from emergency sources if needed"
+      },
+      {
+        "id": "c",
+        "text": "Supplies only the galley and cabin entertainment loads"
+      },
+      {
+        "id": "d",
+        "text": "Is powered only when external power is connected on the ground"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Essential buses are kept alive through every failure stage: normally by a main generator, then by the RAT/emergency generator or by the battery through a static inverter.",
+    "tags": [
+      "essential-bus",
+      "standby-bus"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0013",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "Load shedding",
+    "question": "When an aircraft with two engine generators is reduced to one generator, galley power is commonly shed automatically because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The single remaining generator could otherwise be overloaded"
+      },
+      {
+        "id": "b",
+        "text": "Galleys are connected to the external power receptacle in flight"
+      },
+      {
+        "id": "c",
+        "text": "Galley equipment cannot operate at 400 Hz"
+      },
+      {
+        "id": "d",
+        "text": "The galley is supplied only by the failed generator's TRU"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Galleys are among the largest and least essential loads. Shedding them keeps one generator within its rating while it supplies both sides of the aircraft. Some may be restored manually if the remaining capacity allows.",
+    "tags": [
+      "load-shedding",
+      "galley"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0014",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "DC supply",
+    "question": "On an aircraft whose main power is AC, the DC busbars are normally supplied by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The battery, which is recharged on the ground only"
+      },
+      {
+        "id": "b",
+        "text": "Static inverters fed from the AC busbars"
+      },
+      {
+        "id": "c",
+        "text": "Transformer rectifier units fed from the AC busbars"
+      },
+      {
+        "id": "d",
+        "text": "DC generators driven directly by each engine"
+      }
+    ],
+    "correct": "c",
+    "explanation": "A TRU steps 115 V AC down and rectifies it to about 28 V DC. The battery is then charged by a dedicated charger or from the DC system and serves as a standby source.",
+    "tags": [
+      "tru",
+      "dc-supply"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0015",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "Phase sequence",
+    "question": "A ground power unit is connected with an incorrect phase sequence and the protection fails to stop it. The most likely result is that:",
+    "options": [
+      {
+        "id": "a",
+        "text": "All single-phase loads operate at twice their normal voltage"
+      },
+      {
+        "id": "b",
+        "text": "Only DC equipment is affected, through the TRUs"
+      },
+      {
+        "id": "c",
+        "text": "Three-phase motors such as fans and pumps run in reverse"
+      },
+      {
+        "id": "d",
+        "text": "The frequency of the supply is doubled"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Phase sequence sets the direction in which the stator field of an induction motor rotates. Reverse it and every three-phase motor turns the wrong way — a fan blowing backwards, a pump not pumping. That is why phase sequence is one of the checks made before accepting external power.",
+    "tags": [
+      "phase-sequence",
+      "motors"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0016",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "Generator failure",
+    "question": "In flight, a GEN OFF (generator off bus) caution appears for one engine-driven generator. The most likely meaning is that:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The battery has disconnected from the DC bus"
+      },
+      {
+        "id": "b",
+        "text": "The generator is supplying its busbar normally, but its oil is hot"
+      },
+      {
+        "id": "c",
+        "text": "Its generator breaker has opened, so it no longer supplies its bus"
+      },
+      {
+        "id": "d",
+        "text": "The aircraft has switched to external power"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The caution reports that the generator is not connected to its bus — tripped by protection or switched off. Bus tie logic should transfer the bus to another source; the crew then follows the checklist, which may include a reset attempt or starting the APU.",
+    "tags": [
+      "generator-failure",
+      "indication"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0017",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "APU",
+    "question": "A typical use of the APU generator in flight is to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Replace a failed engine-driven generator, within the APU's limits"
+      },
+      {
+        "id": "b",
+        "text": "Provide power only for the APU's own starter"
+      },
+      {
+        "id": "c",
+        "text": "Supply external power to another aircraft"
+      },
+      {
+        "id": "d",
+        "text": "Parallel with both engine generators to increase total output"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The APU generator is a full alternative source. After a generator loss it can restore normal two-source operation — useful for redundancy, especially on extended over-water operations — within its certified altitude and speed limits.",
+    "tags": [
+      "apu-generator",
+      "generator-failure"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0018",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "Busbars",
+    "question": "A 'ground service' or 'ground handling' bus is provided so that:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The flight instruments remain powered after all generators have failed"
+      },
+      {
+        "id": "b",
+        "text": "Loads can be shed automatically during a single-generator flight"
+      },
+      {
+        "id": "c",
+        "text": "Cabin lights and service outlets can be powered without the whole system"
+      },
+      {
+        "id": "d",
+        "text": "The engines can be started from external power without the battery"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Ground crew need lights and outlets for cleaning and servicing without powering avionics and other systems. The ground service bus can be supplied from external power (or the APU) through its own switch.",
+    "tags": [
+      "ground-service-bus"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0019",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "System design",
+    "question": "Aircraft electrical systems are designed so that a single failure does not cause the loss of essential services. One way this is achieved is by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Connecting every load directly to the battery"
+      },
+      {
+        "id": "b",
+        "text": "Protecting all circuits with a single master circuit breaker"
+      },
+      {
+        "id": "c",
+        "text": "Using one very large generator instead of several smaller ones"
+      },
+      {
+        "id": "d",
+        "text": "Feeding essential buses from several sources with automatic transfer"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Redundancy — multiple generators, a battery, an emergency generator, an inverter, bus ties and automatic transfer — ensures any single failure leaves a path for power to the essential loads.",
+    "tags": [
+      "redundancy",
+      "essential-bus"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0020",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "Emergency power",
+    "question": "The emergency generator driven by a RAT can only supply a reduced number of services because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is designed to recharge the battery rather than to supply loads"
+      },
+      {
+        "id": "b",
+        "text": "Its output frequency is too high for normal equipment"
+      },
+      {
+        "id": "c",
+        "text": "A RAT can extract far less power from the airflow than an engine provides"
+      },
+      {
+        "id": "d",
+        "text": "It produces DC only, which most AC equipment cannot use"
+      }
+    ],
+    "correct": "c",
+    "explanation": "A RAT is small and its output falls with airspeed. It is sized for the essential loads — flight instruments, some navigation and communication, and critical controls — not for the full aircraft.",
+    "tags": [
+      "rat",
+      "emergency-power"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0021",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "Busbars",
+    "question": "Transfer busbars on some aircraft are arranged so that, if their normal source fails, they:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Are supplied from the battery directly at AC voltage"
+      },
+      {
+        "id": "b",
+        "text": "Disconnect permanently until the aircraft has landed"
+      },
+      {
+        "id": "c",
+        "text": "Switch automatically to an alternative source to keep their loads powered"
+      },
+      {
+        "id": "d",
+        "text": "Parallel all available generators onto themselves"
+      }
+    ],
+    "correct": "c",
+    "explanation": "A transfer bus is fed through a relay that selects the normal source while it is healthy and switches to an alternate source if it fails, keeping important equipment powered without crew action.",
+    "tags": [
+      "transfer-bus"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0022",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "AC indication",
+    "question": "The AC metering panel of a large aircraft typically allows the crew to read, for each generator:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Voltage, frequency and load"
+      },
+      {
+        "id": "b",
+        "text": "The resistance of each feeder cable"
+      },
+      {
+        "id": "c",
+        "text": "The number of poles and the CSD gear ratio"
+      },
+      {
+        "id": "d",
+        "text": "Battery specific gravity and electrolyte level"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Voltage and frequency confirm the generator is regulated and governed correctly; the load reading shows how much margin remains and whether paralleled generators are sharing correctly. On modern aircraft these appear on an electrical synoptic page.",
+    "tags": [
+      "indication",
+      "metering"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0023",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "System types",
+    "question": "A 'split-parallel' AC system is one in which:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The generators run in series to double the voltage"
+      },
+      {
+        "id": "b",
+        "text": "One generator supplies AC and the other DC"
+      },
+      {
+        "id": "c",
+        "text": "Normally paralleled, but a split breaker can divide it into two halves"
+      },
+      {
+        "id": "d",
+        "text": "Each generator supplies only its own bus and can never be paralleled"
+      }
+    ],
+    "correct": "c",
+    "explanation": "This arrangement offers the load sharing and continuity of a parallel system in normal operation, with the option of splitting into two independent halves to contain a fault.",
+    "tags": [
+      "split-parallel",
+      "system-types"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0024",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "Emergency power",
+    "question": "On battery power alone after a total generator failure, the crew's priority for the electrical system is to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Shed all non-essential load and land within the battery's endurance"
+      },
+      {
+        "id": "b",
+        "text": "Keep all systems running to help diagnose the fault"
+      },
+      {
+        "id": "c",
+        "text": "Increase engine speed to recharge the battery"
+      },
+      {
+        "id": "d",
+        "text": "Switch the battery off to preserve its charge for landing"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Battery capacity is finite and was never sized for the full load. Shedding everything not needed for safe flight, then planning an early landing, makes the most of it.",
+    "tags": [
+      "battery",
+      "emergency-power",
+      "load-shedding"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0025",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "Parallel systems",
+    "question": "In a parallel AC system, the synchronising (tie) bus:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Supplies all the essential loads directly"
+      },
+      {
+        "id": "b",
+        "text": "Is supplied only by the battery through an inverter"
+      },
+      {
+        "id": "c",
+        "text": "Is connected to the generators only on the ground"
+      },
+      {
+        "id": "d",
+        "text": "Carries no loads itself; it lets the generators be connected together"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Each generator feeds its own load bus through its GCB; the bus tie breakers, normally closed in a parallel system, join those load buses to the synchronising bus so the generators run in parallel. Ground or APU power can also be fed in through it.",
+    "tags": [
+      "synchronising-bus",
+      "bus-tie"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0026",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "Faults",
+    "question": "In a parallel system, an earth fault develops on one generator's load bus. To isolate it, the protection opens:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only the generator control relay of that generator"
+      },
+      {
+        "id": "b",
+        "text": "Only that generator's circuit breaker"
+      },
+      {
+        "id": "c",
+        "text": "Every bus tie breaker, splitting all generators"
+      },
+      {
+        "id": "d",
+        "text": "That bus's bus tie breaker and its generator circuit breaker"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Opening only the GCB would leave the other generators feeding the fault through the tie bus. Opening the BTB first protects them; opening the GCB then removes the faulty bus's own supply.",
+    "tags": [
+      "faults",
+      "bus-tie",
+      "gcb"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACSYS-0027",
+    "subjectCode": "ELEC",
+    "topic": "AC Power Systems",
+    "subtopic": "APU",
+    "question": "The APU generator on a typical airliner:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Can only be used on the ground, because it is never certified to run in flight"
+      },
+      {
+        "id": "b",
+        "text": "Supplies DC only, through its own transformer rectifier, to the battery bus"
+      },
+      {
+        "id": "c",
+        "text": "Is always paralleled with the engine generators so that all of them share the load"
+      },
+      {
+        "id": "d",
+        "text": "Cannot be paralleled with the engine generators, and supplies only buses no other source is feeding"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The APU generator is not synchronised with the engine-driven ones, so source-selection logic lets it feed a bus only when that bus has no other supply — on the ground, or in flight to replace a failed generator within the APU's limits.",
+    "tags": [
+      "apu-generator",
+      "source-priority"
+    ],
+    "status": "published",
+    "version": 1
+  }
+]

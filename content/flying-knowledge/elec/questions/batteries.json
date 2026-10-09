@@ -1,0 +1,971 @@
+[
+  {
+    "id": "ELEC-BATT-0001",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Battery basics",
+    "question": "Aircraft batteries are secondary cells. This means they:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Produce electricity only when an external magnetic field is applied"
+      },
+      {
+        "id": "b",
+        "text": "Are used only after the primary battery has been fully discharged"
+      },
+      {
+        "id": "c",
+        "text": "Cannot be recharged and must be replaced when exhausted"
+      },
+      {
+        "id": "d",
+        "text": "Can be recharged by driving current back through them"
+      }
+    ],
+    "correct": "d",
+    "explanation": "In a secondary cell the chemical reaction is reversible: driving current back in restores the active materials. Primary cells (many dry cells and some lithium types) are discharged once and discarded.",
+    "tags": [
+      "batteries",
+      "secondary-cell"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0002",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Battery basics",
+    "question": "A battery has a capacity of 40 Ah, quoted at the usual one-hour rate. In theory it can supply:",
+    "options": [
+      {
+        "id": "a",
+        "text": "40 A for one hour, or 4 A for ten hours at the ten-hour rate"
+      },
+      {
+        "id": "b",
+        "text": "40 A continuously for as long as the engines keep running"
+      },
+      {
+        "id": "c",
+        "text": "40 V for one hour, whatever the load current"
+      },
+      {
+        "id": "d",
+        "text": "4 A for one hour, or 40 A for ten hours"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Capacity is current × time: 40 A × 1 h = 40 Ah, and 4 A × 10 h is also 40 Ah. In practice a battery gives somewhat less at high discharge rates and more at low ones, which is why the rate at which capacity is quoted matters — aircraft batteries are normally rated at the one-hour rate.",
+    "tags": [
+      "batteries",
+      "capacity",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0003",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Battery basics",
+    "question": "Two identical 12 V, 30 Ah batteries are connected in series. The combination provides:",
+    "options": [
+      {
+        "id": "a",
+        "text": "24 V and 30 Ah"
+      },
+      {
+        "id": "b",
+        "text": "12 V and 30 Ah"
+      },
+      {
+        "id": "c",
+        "text": "12 V and 60 Ah"
+      },
+      {
+        "id": "d",
+        "text": "24 V and 60 Ah"
+      }
+    ],
+    "correct": "a",
+    "explanation": "In series the voltages add but the same current passes through both, so the capacity stays that of one battery. Connected in parallel they would give 12 V and 60 Ah.",
+    "tags": [
+      "batteries",
+      "series",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0004",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Battery basics",
+    "question": "Two identical 24 V, 20 Ah batteries are connected in parallel. The combination provides:",
+    "options": [
+      {
+        "id": "a",
+        "text": "24 V and 20 Ah"
+      },
+      {
+        "id": "b",
+        "text": "48 V and 40 Ah"
+      },
+      {
+        "id": "c",
+        "text": "48 V and 20 Ah"
+      },
+      {
+        "id": "d",
+        "text": "24 V and 40 Ah"
+      }
+    ],
+    "correct": "d",
+    "explanation": "In parallel the terminal voltage is that of one battery, but each supplies part of the load current, so the capacities add.",
+    "tags": [
+      "batteries",
+      "parallel",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0005",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Battery endurance",
+    "question": "After a total generator failure, a fully charged 40 Ah battery supplies an essential load of 25 A. Assuming its full rated capacity is available, it will last about:",
+    "options": [
+      {
+        "id": "a",
+        "text": "1 hour 36 minutes"
+      },
+      {
+        "id": "b",
+        "text": "40 minutes"
+      },
+      {
+        "id": "c",
+        "text": "2 hours 30 minutes"
+      },
+      {
+        "id": "d",
+        "text": "1 hour 6 minutes"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Endurance = capacity / current = 40 / 25 = 1.6 h = 1 h 36 min. In practice less is available — the battery may not be fully charged, its capacity falls in the cold and at high discharge rates — so load shedding is used to stretch it.",
+    "tags": [
+      "batteries",
+      "endurance",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0006",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Battery endurance",
+    "question": "A 24 Ah battery is estimated to be at 75% of full charge. With a load of 12 A, the time available is approximately:",
+    "options": [
+      {
+        "id": "a",
+        "text": "1 hour"
+      },
+      {
+        "id": "b",
+        "text": "0.75 hours"
+      },
+      {
+        "id": "c",
+        "text": "1.5 hours"
+      },
+      {
+        "id": "d",
+        "text": "2 hours"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Available capacity = 0.75 × 24 = 18 Ah. Time = 18 / 12 = 1.5 h. Using the full 24 Ah would give 2 hours — the error of assuming the battery is fully charged.",
+    "tags": [
+      "batteries",
+      "endurance",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0007",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Lead-acid",
+    "question": "In a lead-acid cell, the electrolyte is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Dilute sulphuric acid"
+      },
+      {
+        "id": "b",
+        "text": "Potassium hydroxide solution"
+      },
+      {
+        "id": "c",
+        "text": "Sodium chloride solution"
+      },
+      {
+        "id": "d",
+        "text": "Distilled water only"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Lead-acid cells use dilute sulphuric acid. Potassium hydroxide (an alkali) is the electrolyte of a nickel-cadmium cell — the two must never be mixed or share tools.",
+    "tags": [
+      "lead-acid",
+      "electrolyte"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0008",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Lead-acid",
+    "question": "The nominal voltage of one lead-acid cell is about 2 V. How many cells are needed for a nominal 24 V battery?",
+    "options": [
+      {
+        "id": "a",
+        "text": "12"
+      },
+      {
+        "id": "b",
+        "text": "24"
+      },
+      {
+        "id": "c",
+        "text": "6"
+      },
+      {
+        "id": "d",
+        "text": "20"
+      }
+    ],
+    "correct": "a",
+    "explanation": "24 V ÷ 2 V per cell = 12 cells in series. A 12 V light-aircraft battery has six. A nickel-cadmium battery of the same voltage needs about 20 cells, because each gives only about 1.2 V.",
+    "tags": [
+      "lead-acid",
+      "cell-voltage",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0009",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Lead-acid",
+    "question": "As a lead-acid battery discharges, the specific gravity of its electrolyte:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Falls, as sulphate leaves the acid for the plates, leaving more water"
+      },
+      {
+        "id": "b",
+        "text": "Stays constant, because the electrolyte takes no part in the reaction"
+      },
+      {
+        "id": "c",
+        "text": "Rises at first and then falls as the battery approaches full discharge"
+      },
+      {
+        "id": "d",
+        "text": "Rises, because water is consumed by the reaction at the plates"
+      }
+    ],
+    "correct": "a",
+    "explanation": "During discharge both plates turn to lead sulphate, taking sulphate out of the acid. The electrolyte becomes more watery and less dense, which is why a hydrometer reading of specific gravity is a good guide to a lead-acid battery's state of charge.",
+    "tags": [
+      "lead-acid",
+      "specific-gravity"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0010",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Lead-acid",
+    "question": "A discharged lead-acid battery is more likely to freeze in very cold weather than a charged one because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Its internal resistance is lower, so it cools faster"
+      },
+      {
+        "id": "b",
+        "text": "Its weaker, more watery electrolyte freezes at a higher temperature"
+      },
+      {
+        "id": "c",
+        "text": "Its plates have turned to pure lead, which conducts heat away"
+      },
+      {
+        "id": "d",
+        "text": "Its electrolyte has become stronger acid, which freezes more readily"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Strong acid has a very low freezing point; as the battery discharges the acid weakens towards water and freezes at a much higher temperature. Ice can crack the case and buckle the plates, so batteries left in the cold should be kept charged.",
+    "tags": [
+      "lead-acid",
+      "freezing"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0011",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Lead-acid",
+    "question": "Lead-acid batteries must be well ventilated, particularly while charging, because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "They give off potassium hydroxide vapour, which corrodes the airframe"
+      },
+      {
+        "id": "b",
+        "text": "Towards the end of charge they give off hydrogen, which is explosive"
+      },
+      {
+        "id": "c",
+        "text": "They give off carbon monoxide, which is toxic in a closed compartment"
+      },
+      {
+        "id": "d",
+        "text": "They absorb oxygen from the air, which reduces their capacity"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Overcharging electrolyses water in the electrolyte. Battery compartments are vented, often with a sump jar to neutralise acid fumes, and sparks near a charging battery must be avoided.",
+    "tags": [
+      "lead-acid",
+      "gassing",
+      "ventilation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0012",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Nickel-cadmium",
+    "question": "The electrolyte of a nickel-cadmium (NiCd) aircraft battery is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Lithium salt in an organic solvent"
+      },
+      {
+        "id": "b",
+        "text": "Dilute sulphuric acid"
+      },
+      {
+        "id": "c",
+        "text": "Potassium hydroxide, an alkali"
+      },
+      {
+        "id": "d",
+        "text": "Distilled water only"
+      }
+    ],
+    "correct": "c",
+    "explanation": "NiCd cells use an alkaline electrolyte of potassium hydroxide. Acid from a lead-acid battery would contaminate and damage it, which is why the two types are serviced in separate areas with separate tools.",
+    "tags": [
+      "nicd",
+      "electrolyte"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0013",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Nickel-cadmium",
+    "question": "The nominal voltage of a nickel-cadmium cell is approximately:",
+    "options": [
+      {
+        "id": "a",
+        "text": "2.0 V"
+      },
+      {
+        "id": "b",
+        "text": "1.5 V"
+      },
+      {
+        "id": "c",
+        "text": "3.6 V"
+      },
+      {
+        "id": "d",
+        "text": "1.2 V"
+      }
+    ],
+    "correct": "d",
+    "explanation": "A NiCd cell gives about 1.2 V nominal, so a nominal 24 V battery has 19 or 20 cells. 2.0 V is a lead-acid cell; about 3.6 V is typical of a lithium-ion cell.",
+    "tags": [
+      "nicd",
+      "cell-voltage"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0014",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Nickel-cadmium",
+    "question": "Why can a hydrometer not be used to find the state of charge of a nickel-cadmium battery?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Its electrolyte freezes before a reading can be taken"
+      },
+      {
+        "id": "b",
+        "text": "Its electrolyte's specific gravity barely changes with state of charge"
+      },
+      {
+        "id": "c",
+        "text": "Its electrolyte is too corrosive for the glass of a hydrometer"
+      },
+      {
+        "id": "d",
+        "text": "Its cells are sealed and the electrolyte cannot be reached at all"
+      }
+    ],
+    "correct": "b",
+    "explanation": "In a NiCd cell the electrolyte acts mainly as a conductor and is not consumed by the reaction, so its density is almost constant. State of charge has to be established by a controlled charge/discharge in the workshop.",
+    "tags": [
+      "nicd",
+      "specific-gravity",
+      "state-of-charge"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0015",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Nickel-cadmium",
+    "question": "The electrolyte level in a nickel-cadmium cell should only be adjusted when the battery is fully charged because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Topping up a discharged cell reverses the polarity of the plates"
+      },
+      {
+        "id": "b",
+        "text": "Water added to a discharged cell immediately freezes"
+      },
+      {
+        "id": "c",
+        "text": "The level rises on charge, so a cell topped up when discharged later overflows"
+      },
+      {
+        "id": "d",
+        "text": "The level is highest when discharged, so adding water then would weaken the electrolyte"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The plates absorb electrolyte as they discharge and release it as they charge. Filling a discharged cell to the mark would leave it overfull and spilling corrosive alkali once charged.",
+    "tags": [
+      "nicd",
+      "electrolyte-level"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0016",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Nickel-cadmium",
+    "question": "A characteristic of a nickel-cadmium battery is that its voltage:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Varies with the specific gravity of the electrolyte"
+      },
+      {
+        "id": "b",
+        "text": "Rises during discharge as its internal resistance falls"
+      },
+      {
+        "id": "c",
+        "text": "Falls steadily in proportion to the charge removed, giving a good fuel-gauge-like indication"
+      },
+      {
+        "id": "d",
+        "text": "Stays nearly constant through most of the discharge, then falls off rapidly near the end"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The flat discharge curve is useful — the bus voltage holds up well — but it means voltage gives little warning of a nearly flat battery. The drop comes suddenly near exhaustion.",
+    "tags": [
+      "nicd",
+      "discharge-curve"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0017",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Nickel-cadmium",
+    "question": "Thermal runaway in a nickel-cadmium battery is a condition in which:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Low temperature raises internal resistance so much that the battery cannot be charged"
+      },
+      {
+        "id": "b",
+        "text": "The battery discharges itself through its own case when it is cold-soaked"
+      },
+      {
+        "id": "c",
+        "text": "Heat lowers internal resistance, raising charge current and heat further"
+      },
+      {
+        "id": "d",
+        "text": "The electrolyte freezes and expands, cracking the cells"
+      }
+    ],
+    "correct": "c",
+    "explanation": "On a constant-voltage charge, a hotter cell accepts more current, and more current makes it hotter. Left unchecked this can destroy the battery and cause a fire. Aircraft NiCd installations therefore monitor battery temperature and may disconnect the charge automatically.",
+    "tags": [
+      "nicd",
+      "thermal-runaway"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0018",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Nickel-cadmium",
+    "question": "Compared with a lead-acid battery, a nickel-cadmium battery generally:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Uses an acid electrolyte whose specific gravity shows its state of charge"
+      },
+      {
+        "id": "b",
+        "text": "Has a higher cell voltage, so fewer cells are needed for 24 V"
+      },
+      {
+        "id": "c",
+        "text": "Is cheaper, lighter and needs no temperature monitoring, but cannot deliver high currents"
+      },
+      {
+        "id": "d",
+        "text": "Supplies higher currents at a steadier voltage, but risks thermal runaway"
+      }
+    ],
+    "correct": "d",
+    "explanation": "NiCd's low internal resistance suits high-current turbine starts and its voltage holds up well, which is why it is common on larger aircraft. The price is the thermal-runaway risk, the need for temperature monitoring and more involved maintenance.",
+    "tags": [
+      "nicd",
+      "lead-acid",
+      "comparison"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0019",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Battery servicing",
+    "question": "Tools and hydrometers used on lead-acid batteries must never be used on nickel-cadmium batteries because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The tools would be magnetised by the nickel plates"
+      },
+      {
+        "id": "b",
+        "text": "Traces of acid contaminate the alkaline electrolyte and damage the cells"
+      },
+      {
+        "id": "c",
+        "text": "Nickel-cadmium electrolyte attacks the rubber of a lead-acid hydrometer and causes it to leak"
+      },
+      {
+        "id": "d",
+        "text": "Lead-acid tools are calibrated for a different cell voltage"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Acid and alkali neutralise and contaminate each other. Even small traces of sulphuric acid in a NiCd cell will permanently damage it, so the two battery types are kept, charged and serviced apart.",
+    "tags": [
+      "batteries",
+      "servicing",
+      "contamination"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0020",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Battery performance",
+    "question": "The capacity available from a battery is reduced:",
+    "options": [
+      {
+        "id": "a",
+        "text": "At high temperatures and at low rates of discharge"
+      },
+      {
+        "id": "b",
+        "text": "Only when the electrolyte level is above the normal mark"
+      },
+      {
+        "id": "c",
+        "text": "When the battery is connected in series with another identical battery"
+      },
+      {
+        "id": "d",
+        "text": "At low temperatures and at high rates of discharge"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Cold slows the chemical reaction and raises internal resistance; heavy currents waste more energy internally and leave active material unused. A cold-soaked battery making a heavy start can therefore deliver far less than its nameplate capacity.",
+    "tags": [
+      "batteries",
+      "capacity",
+      "temperature"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0021",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Battery performance",
+    "question": "Immediately after an engine start, the battery ammeter shows a high charging current, which then decreases over the following minutes. This indicates:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The onset of thermal runaway in the battery"
+      },
+      {
+        "id": "b",
+        "text": "A fault in the voltage regulator, which is overcharging the battery"
+      },
+      {
+        "id": "c",
+        "text": "Normal recovery: the battery is replacing the charge used by the start"
+      },
+      {
+        "id": "d",
+        "text": "That the generator has failed and the battery is discharging"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The start takes a lot of charge from the battery. The generator's regulated voltage then drives a large current back in; as the battery's own voltage recovers, the difference between it and the bus voltage — and so the charging current — falls away. A current that stays high or rises again is the warning sign.",
+    "tags": [
+      "batteries",
+      "charging",
+      "ammeter"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0022",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Battery performance",
+    "question": "A battery's off-load voltage reads normal, but the voltage drops sharply as soon as a heavy load is applied. This most likely indicates:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Overcharging by the generator"
+      },
+      {
+        "id": "b",
+        "text": "A fully charged battery in good condition"
+      },
+      {
+        "id": "c",
+        "text": "A battery low on charge or with a high internal resistance"
+      },
+      {
+        "id": "d",
+        "text": "A faulty voltmeter, since voltage does not change with load"
+      }
+    ],
+    "correct": "c",
+    "explanation": "On open circuit the terminal voltage equals the EMF and can look healthy even on a weak battery. Under load, the internal voltage drop (I × r) appears; a weak or sulphated battery has a high internal resistance, so its voltage collapses. A test under load is the more meaningful one.",
+    "tags": [
+      "batteries",
+      "internal-resistance"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0023",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Lithium-ion",
+    "question": "Lithium-ion batteries offer high energy for their weight, but their main hazard in aircraft use is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Loss of capacity unless they are deep-discharged regularly"
+      },
+      {
+        "id": "b",
+        "text": "Release of hydrogen during normal charging, which requires a vented compartment"
+      },
+      {
+        "id": "c",
+        "text": "Freezing of the electrolyte at the temperatures met at cruise altitude"
+      },
+      {
+        "id": "d",
+        "text": "Thermal runaway that can spread from cell to cell and is very difficult to extinguish"
+      }
+    ],
+    "correct": "d",
+    "explanation": "A damaged, overcharged or internally shorted lithium cell can overheat, vent flammable electrolyte and ignite its neighbours. Aircraft installations therefore use cell monitoring, charge control and robust containment and venting; loose lithium batteries in the cabin are a recognised fire risk.",
+    "tags": [
+      "lithium-ion",
+      "thermal-runaway"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0024",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Battery basics",
+    "question": "The main functions of the battery in a large aircraft's electrical system include:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Starting the APU or engines, and standby power if all generators fail"
+      },
+      {
+        "id": "b",
+        "text": "Supplying the main AC busbars in normal flight, with the generators as backup"
+      },
+      {
+        "id": "c",
+        "text": "Supplying the galley and cabin loads when the aircraft is on ground power"
+      },
+      {
+        "id": "d",
+        "text": "Regulating the generator voltage so that it remains at 28 V"
+      }
+    ],
+    "correct": "a",
+    "explanation": "In normal flight the generators carry the load and keep the battery charged. The battery's tasks are starting and standing by: if all normal generation is lost, it feeds the essential buses for a limited time.",
+    "tags": [
+      "batteries",
+      "function"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0025",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Battery basics",
+    "question": "A 'hot battery bus' is a busbar that:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Is wired straight to the battery, live whatever the battery switch position"
+      },
+      {
+        "id": "b",
+        "text": "Is powered only when the battery temperature exceeds its normal limit"
+      },
+      {
+        "id": "c",
+        "text": "Is supplied by the generators only and is never connected to the battery"
+      },
+      {
+        "id": "d",
+        "text": "Carries the battery's charging current from the TRU"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Items that must always be available — such as fire extinguisher squibs, some clocks and memory, and certain warnings — are wired to the hot battery bus so that they cannot be switched off with the battery switch. It also means a small drain on the battery when the aircraft is parked.",
+    "tags": [
+      "batteries",
+      "hot-battery-bus"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0026",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Lead-acid",
+    "question": "A lead-acid battery left in a discharged state for a long period will suffer from:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Thermal runaway, as its internal resistance falls while it stands"
+      },
+      {
+        "id": "b",
+        "text": "Memory effect, which a single full charge will always cure"
+      },
+      {
+        "id": "c",
+        "text": "Sulphation: hard sulphate crystals form and permanently cut capacity"
+      },
+      {
+        "id": "d",
+        "text": "Gassing, which replaces the lost electrolyte automatically"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The lead sulphate formed during discharge is normally fine and easily converted back on charge. Left standing, it hardens into large crystals that resist recharging and insulate the plates. Batteries in storage should be kept charged.",
+    "tags": [
+      "lead-acid",
+      "sulphation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0027",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Battery checks",
+    "question": "An aircraft battery's actual capacity is checked periodically. To remain in service it must typically deliver at least:",
+    "options": [
+      {
+        "id": "a",
+        "text": "70% of its rated capacity"
+      },
+      {
+        "id": "b",
+        "text": "80% of its rated capacity"
+      },
+      {
+        "id": "c",
+        "text": "100% of its rated capacity"
+      },
+      {
+        "id": "d",
+        "text": "50% of its rated capacity"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A capacity test (commonly every three months) discharges the battery at its rated load and times it. Below 80% it is withdrawn, because the minimum is set so that, after a generator failure, the battery can still carry the essential loads for about 30 minutes.",
+    "tags": [
+      "batteries",
+      "capacity-test"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0028",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Battery storage",
+    "question": "Spare batteries held in stores should be kept:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Both types fully discharged, to prevent gassing while they stand in storage"
+      },
+      {
+        "id": "b",
+        "text": "Lead-acid charged, to prevent sulphation; nickel-cadmium may be stored discharged"
+      },
+      {
+        "id": "c",
+        "text": "Both types fully charged, since neither type can safely be stored discharged"
+      },
+      {
+        "id": "d",
+        "text": "Lead-acid discharged to prevent gassing, and nickel-cadmium fully charged"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A lead-acid battery left discharged sulphates and loses capacity permanently. A nickel-cadmium battery suffers no harm stored discharged, which gives it a longer shelf life.",
+    "tags": [
+      "batteries",
+      "storage"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-BATT-0029",
+    "subjectCode": "ELEC",
+    "topic": "Batteries",
+    "subtopic": "Battery servicing",
+    "question": "Spilled battery electrolyte is neutralised with:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Distilled water for both, which dilutes them to a safe strength"
+      },
+      {
+        "id": "b",
+        "text": "Sodium bicarbonate for acid; boric acid for alkaline electrolyte"
+      },
+      {
+        "id": "c",
+        "text": "Potassium hydroxide for both, which reacts with any electrolyte"
+      },
+      {
+        "id": "d",
+        "text": "Boric acid for acid; sodium bicarbonate for alkaline electrolyte"
+      }
+    ],
+    "correct": "b",
+    "explanation": "An acid is neutralised by an alkali and vice versa: bicarbonate of soda for the sulphuric acid of a lead-acid battery, boric acid for the potassium hydroxide of a nickel-cadmium one. Both electrolytes are corrosive to aircraft structure.",
+    "tags": [
+      "batteries",
+      "spillage"
+    ],
+    "status": "published",
+    "version": 1
+  }
+]

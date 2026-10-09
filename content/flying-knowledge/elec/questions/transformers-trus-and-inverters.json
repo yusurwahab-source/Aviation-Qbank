@@ -1,0 +1,761 @@
+[
+  {
+    "id": "ELEC-CONV-0001",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Transformers",
+    "question": "A transformer works on the principle of:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Electrostatic charge stored between two plates"
+      },
+      {
+        "id": "b",
+        "text": "Self-induction in a single winding carrying direct current"
+      },
+      {
+        "id": "c",
+        "text": "Rectification of alternating current by a semiconductor junction"
+      },
+      {
+        "id": "d",
+        "text": "Mutual induction between two windings linked by a common magnetic core"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The alternating current in the primary creates an alternating flux in the core, which induces an EMF in the secondary. There is no electrical connection between the two windings in a double-wound transformer — energy passes magnetically.",
+    "tags": [
+      "transformers",
+      "mutual-induction"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0002",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Transformers",
+    "question": "A transformer has 1,000 turns on its primary and 200 turns on its secondary. With 115 V AC applied to the primary, the secondary voltage is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "115 V"
+      },
+      {
+        "id": "b",
+        "text": "23 V"
+      },
+      {
+        "id": "c",
+        "text": "200 V"
+      },
+      {
+        "id": "d",
+        "text": "575 V"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Vs / Vp = Ns / Np, so Vs = 115 × 200 / 1,000 = 23 V. Fewer secondary turns means a step-down transformer.",
+    "tags": [
+      "transformers",
+      "turns-ratio",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0003",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Transformers",
+    "question": "In an ideal step-down transformer, the secondary current compared with the primary current is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Smaller, in the same ratio as the voltage is reduced"
+      },
+      {
+        "id": "b",
+        "text": "Larger, in the same ratio as the voltage is reduced"
+      },
+      {
+        "id": "c",
+        "text": "Zero, since the secondary is isolated from the primary"
+      },
+      {
+        "id": "d",
+        "text": "Exactly the same, since a transformer does not change current"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Power in equals power out (ignoring losses), so if the voltage is stepped down the current is stepped up by the same ratio: Is / Ip = Np / Ns.",
+    "tags": [
+      "transformers",
+      "current-ratio"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0004",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Transformers",
+    "question": "An ideal transformer has a primary supply of 200 V at 5 A. Its secondary voltage is 25 V. The secondary current is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "0.625 A"
+      },
+      {
+        "id": "b",
+        "text": "5 A"
+      },
+      {
+        "id": "c",
+        "text": "8 A"
+      },
+      {
+        "id": "d",
+        "text": "40 A"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Power in = 200 × 5 = 1,000 VA. With no losses, power out is the same, so Is = 1,000 / 25 = 40 A. The voltage is stepped down by 8 and the current is stepped up by 8.",
+    "tags": [
+      "transformers",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0005",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Transformers",
+    "question": "If a transformer's primary is connected to a steady DC supply:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The secondary produces AC at 400 Hz from the steady DC input"
+      },
+      {
+        "id": "b",
+        "text": "The secondary produces DC at the voltage set by the turns ratio"
+      },
+      {
+        "id": "c",
+        "text": "Nothing is induced, and the primary may overheat on excessive current"
+      },
+      {
+        "id": "d",
+        "text": "The transformer works normally, but with reduced efficiency"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Induction needs a changing flux. Steady DC gives a constant flux, so nothing is induced. And with no back-EMF to limit it, the primary current is set only by the winding resistance, which is low — so the winding overheats.",
+    "tags": [
+      "transformers",
+      "dc"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0006",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Transformers",
+    "question": "The two main types of loss in a transformer are:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Friction losses in the bearings, and windage losses in the cooling fan"
+      },
+      {
+        "id": "b",
+        "text": "Leakage of charge from the windings, and radiation from the core"
+      },
+      {
+        "id": "c",
+        "text": "Commutator losses, and brush contact losses"
+      },
+      {
+        "id": "d",
+        "text": "Copper losses in the windings and iron losses in the core"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Copper losses (I²R) rise with load. Iron losses depend on voltage and frequency and are present even at no load. A transformer has no moving parts, so it has no mechanical losses.",
+    "tags": [
+      "transformers",
+      "losses"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0007",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Autotransformers",
+    "question": "An autotransformer differs from a double-wound transformer in that it:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Uses one tapped winding shared by both sides, so gives no isolation"
+      },
+      {
+        "id": "b",
+        "text": "Uses two separate windings with no electrical connection between them"
+      },
+      {
+        "id": "c",
+        "text": "Works on DC as well as AC"
+      },
+      {
+        "id": "d",
+        "text": "Has no iron core, relying on the air between its windings"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Sharing one winding makes an autotransformer smaller and lighter for a modest change of voltage. The penalty is that the input and output are electrically connected, so it cannot isolate one circuit from another.",
+    "tags": [
+      "autotransformer"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0008",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Current transformers",
+    "question": "A current transformer (CT) used for measurement or protection:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Must be connected in parallel with the load it is measuring"
+      },
+      {
+        "id": "b",
+        "text": "Steps the line voltage down to a safe level for a voltmeter"
+      },
+      {
+        "id": "c",
+        "text": "Uses the line conductor as its primary and gives a proportional current"
+      },
+      {
+        "id": "d",
+        "text": "Converts the line current from AC into DC for the indicator"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The heavy feeder simply passes through the CT's toroidal core. The secondary, of many turns, delivers a small current in proportion, used by ammeters, load-sharing circuits and differential protection.",
+    "tags": [
+      "current-transformer"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0009",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Current transformers",
+    "question": "The secondary of a current transformer must never be left open-circuit while the primary is carrying current because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The primary current would then fall to zero, cutting off the load"
+      },
+      {
+        "id": "b",
+        "text": "The secondary would carry a short-circuit current and burn out"
+      },
+      {
+        "id": "c",
+        "text": "A very high, dangerous voltage can be induced across the open secondary terminals"
+      },
+      {
+        "id": "d",
+        "text": "The core would demagnetise and the CT would lose its calibration permanently"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Normally the secondary current's own flux opposes the primary's. With the secondary open there is nothing to oppose it; the core flux rises very high and induces a large voltage across the many secondary turns — a shock hazard and a risk to the insulation.",
+    "tags": [
+      "current-transformer",
+      "safety"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0010",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Transformer rectifier units",
+    "question": "A transformer rectifier unit (TRU) is used to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Convert variable-frequency AC into constant-frequency AC"
+      },
+      {
+        "id": "b",
+        "text": "Convert the aircraft's 115/200 V AC into about 28 V DC"
+      },
+      {
+        "id": "c",
+        "text": "Step 28 V DC up to 115 V DC for heavy loads"
+      },
+      {
+        "id": "d",
+        "text": "Convert 28 V DC from the battery into 115 V AC"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A TRU steps the AC voltage down with a transformer and then rectifies it with diodes. It is the normal source of DC on an AC-generating aircraft. The reverse conversion (DC to AC) is done by an inverter.",
+    "tags": [
+      "tru"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0011",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Transformer rectifier units",
+    "question": "The rectifier stage of a TRU fed from a three-phase supply typically uses:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Six diodes in a three-phase full-wave bridge"
+      },
+      {
+        "id": "b",
+        "text": "Two diodes and a centre-tapped winding"
+      },
+      {
+        "id": "c",
+        "text": "Four diodes in a single bridge"
+      },
+      {
+        "id": "d",
+        "text": "A single diode in each output line"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Each phase needs a pair of diodes to use both half cycles, so a three-phase full-wave bridge has six. The output ripple, at six times the supply frequency, is small and easily smoothed.",
+    "tags": [
+      "tru",
+      "rectifier",
+      "three-phase"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0012",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Rectifiers",
+    "question": "A single-phase half-wave rectifier, using one diode:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Passes both halves of each cycle, giving steady DC"
+      },
+      {
+        "id": "b",
+        "text": "Passes only one half of each cycle, with gaps between pulses"
+      },
+      {
+        "id": "c",
+        "text": "Doubles the frequency of the supply"
+      },
+      {
+        "id": "d",
+        "text": "Reverses the negative half of each cycle using four diodes"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The diode conducts only when its anode is positive, so the load receives the positive half cycles and nothing during the negative ones. It is simple but inefficient and has a large ripple.",
+    "tags": [
+      "rectifiers",
+      "half-wave"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0013",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Rectifiers",
+    "question": "A single-phase full-wave bridge rectifier uses:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Six diodes, one for each half cycle of each phase"
+      },
+      {
+        "id": "b",
+        "text": "One diode, so only the positive half cycle reaches the load"
+      },
+      {
+        "id": "c",
+        "text": "Two transistors that switch alternately at the supply frequency"
+      },
+      {
+        "id": "d",
+        "text": "Four diodes, so both half cycles drive current the same way"
+      }
+    ],
+    "correct": "d",
+    "explanation": "On each half cycle a different pair of diodes conducts, routing the current through the load the same way. The output pulses twice per cycle, so its ripple frequency is double the supply frequency.",
+    "tags": [
+      "rectifiers",
+      "bridge"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0014",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Rectifiers",
+    "question": "The ripple frequency at the output of a single-phase full-wave rectifier supplied at 400 Hz is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "200 Hz"
+      },
+      {
+        "id": "b",
+        "text": "400 Hz"
+      },
+      {
+        "id": "c",
+        "text": "800 Hz"
+      },
+      {
+        "id": "d",
+        "text": "2,400 Hz"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Full-wave rectification turns both halves of every cycle into a pulse, giving two pulses per cycle: 2 × 400 = 800 Hz. A half-wave rectifier's ripple is at the supply frequency; a three-phase full-wave bridge's is at six times it.",
+    "tags": [
+      "rectifiers",
+      "ripple",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0015",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Inverters",
+    "question": "An inverter converts:",
+    "options": [
+      {
+        "id": "a",
+        "text": "DC into AC"
+      },
+      {
+        "id": "b",
+        "text": "AC at one voltage into AC at another voltage"
+      },
+      {
+        "id": "c",
+        "text": "AC into DC"
+      },
+      {
+        "id": "d",
+        "text": "Variable-frequency DC into constant-voltage DC"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Inverters are used where AC is needed but only DC is available — typically to power essential AC instruments and avionics from the battery after a loss of AC generation.",
+    "tags": [
+      "inverters"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0016",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Inverters",
+    "question": "A static inverter has which advantages over a rotary inverter?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It has no moving parts: lighter, quieter and more efficient"
+      },
+      {
+        "id": "b",
+        "text": "It can produce DC as well as AC from the same output"
+      },
+      {
+        "id": "c",
+        "text": "It produces a higher output frequency at higher battery voltages"
+      },
+      {
+        "id": "d",
+        "text": "It can be connected directly in parallel with the main AC generators"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A rotary inverter is a DC motor driving an AC generator — heavy, noisy and with brushes and bearings to wear. A static inverter uses transistors to switch the DC rapidly, then shapes and transforms the result into AC.",
+    "tags": [
+      "inverters",
+      "static-inverter"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0017",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Inverters",
+    "question": "In a static inverter, the DC input is turned into AC by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A motor-driven commutator that reverses the polarity mechanically"
+      },
+      {
+        "id": "b",
+        "text": "A capacitor that charges and discharges at the supply frequency on its own"
+      },
+      {
+        "id": "c",
+        "text": "Transistors switching the current through a transformer, timed by an oscillator"
+      },
+      {
+        "id": "d",
+        "text": "Diodes that block the DC in alternate directions every half cycle"
+      }
+    ],
+    "correct": "c",
+    "explanation": "An oscillator sets the frequency (typically 400 Hz); transistors switch the DC through the transformer primary first one way and then the other. The transformer then produces the required voltage, and filtering shapes the output into a sine wave.",
+    "tags": [
+      "inverters",
+      "static-inverter"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0018",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Transformers",
+    "question": "Transformer cores are laminated mainly to reduce:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Hysteresis in the windings"
+      },
+      {
+        "id": "b",
+        "text": "The voltage ratio between the windings"
+      },
+      {
+        "id": "c",
+        "text": "Copper losses in the windings"
+      },
+      {
+        "id": "d",
+        "text": "Eddy current losses"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The alternating flux induces circulating currents in a solid core. Thin, insulated laminations confine them to small paths and reduce the heat they generate. Hysteresis loss is reduced by the choice of core material, not by laminating.",
+    "tags": [
+      "transformers",
+      "laminations",
+      "eddy-currents"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0019",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Transformers",
+    "question": "A transformer designed for 400 Hz can be much smaller than one of the same rating for 50 Hz because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Less core is needed to induce the same voltage at a higher frequency"
+      },
+      {
+        "id": "b",
+        "text": "At a higher frequency the turns ratio can be ignored"
+      },
+      {
+        "id": "c",
+        "text": "A 400 Hz transformer needs no secondary winding"
+      },
+      {
+        "id": "d",
+        "text": "Copper losses in the windings do not occur at all at 400 Hz"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The induced voltage depends on the rate of change of flux. At eight times the frequency, the same voltage needs only about an eighth of the flux, and so a much smaller core — a major reason for using 400 Hz on aircraft.",
+    "tags": [
+      "transformers",
+      "400hz"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0020",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Transformers",
+    "question": "Aircraft often have a 26 V AC supply for certain instruments. It is normally derived:",
+    "options": [
+      {
+        "id": "a",
+        "text": "From a separate 26 V generator on each engine"
+      },
+      {
+        "id": "b",
+        "text": "From the battery through a step-down transformer"
+      },
+      {
+        "id": "c",
+        "text": "From the 115 V AC supply through a transformer"
+      },
+      {
+        "id": "d",
+        "text": "From the 28 V DC supply through a TRU"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Stepping 115 V AC down to 26 V AC is a simple transformer job. A TRU produces DC, not AC, and a transformer cannot work directly from the battery's DC.",
+    "tags": [
+      "transformers",
+      "26v-ac"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0021",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Transformer rectifier units",
+    "question": "A TRU fails in flight on an aircraft with two TRUs. The usual consequence is that:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The AC generators switch automatically to DC generation"
+      },
+      {
+        "id": "b",
+        "text": "The remaining TRU supplies the DC buses through a DC tie"
+      },
+      {
+        "id": "c",
+        "text": "All DC power is lost until the battery is switched to the AC busbars"
+      },
+      {
+        "id": "d",
+        "text": "The static inverter starts to supply the DC busbars"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Multiple TRUs give redundancy. A DC bus tie lets one TRU supply the busbars normally fed by the other. The inverter converts the other way (DC to AC), so it cannot replace a TRU.",
+    "tags": [
+      "tru",
+      "failure"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0022",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Transformers",
+    "question": "A transformer is rated in VA (or kVA) rather than in watts because:",
+    "options": [
+      {
+        "id": "a",
+        "text": "It only ever supplies purely resistive loads"
+      },
+      {
+        "id": "b",
+        "text": "Its heating depends on current, whatever the power factor"
+      },
+      {
+        "id": "c",
+        "text": "Watts apply only to DC equipment, not to AC"
+      },
+      {
+        "id": "d",
+        "text": "Transformers cannot pass any reactive power"
+      }
+    ],
+    "correct": "b",
+    "explanation": "As with a generator, the windings heat according to the current they carry, whatever its phase relative to the voltage. A low power-factor load can therefore load a transformer to its limit while drawing fewer watts.",
+    "tags": [
+      "transformers",
+      "kva"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0023",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Transformers",
+    "question": "Compared with the voltage across its primary winding, the voltage induced in a transformer's secondary is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Shifted by 180° in phase"
+      },
+      {
+        "id": "b",
+        "text": "Shifted by 120° in phase"
+      },
+      {
+        "id": "c",
+        "text": "Exactly in phase"
+      },
+      {
+        "id": "d",
+        "text": "Shifted by 90° in phase"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The secondary EMF is induced by the alternating flux and, by Lenz's law, acts in opposition to the change producing it, so the output voltage is in antiphase (180°) with the input. 120° is the spacing between phases of a three-phase supply.",
+    "tags": [
+      "transformers",
+      "phase"
+    ],
+    "status": "published",
+    "version": 1
+  }
+]
