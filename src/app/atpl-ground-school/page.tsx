@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import { DatabaseUnavailable } from "@/components/database-unavailable";
+import { LiveBadge } from "@/components/live-badge";
 import { Badge, Card, PageHeading } from "@/components/ui";
 import { siteConfig } from "@/config/site";
 import {
@@ -125,17 +126,5 @@ function SubjectRow({ row, hiddenFromStudents }: { row: AtplRow; hiddenFromStude
     <Link href={`/flying-knowledge/${row.live.code}`} className="block">
       {body}
     </Link>
-  );
-}
-
-function LiveBadge() {
-  return (
-    <span className="inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-correct-soft px-2.5 py-1 text-xs font-medium text-correct">
-      <span className="relative flex h-2 w-2" aria-hidden="true">
-        <span className="absolute inline-flex h-full w-full rounded-full bg-correct opacity-75 motion-safe:animate-ping" />
-        <span className="relative inline-flex h-2 w-2 rounded-full bg-correct" />
-      </span>
-      Live
-    </span>
   );
 }

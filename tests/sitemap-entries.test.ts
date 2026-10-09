@@ -96,4 +96,15 @@ describe("buildSitemapEntries with hidden sections", () => {
     expect(urls.some((url) => url.includes("/atpl-ground-school"))).toBe(false);
     expect(urls.some((url) => url.includes("/flying-knowledge"))).toBe(false);
   });
+
+  it("lists Aircraft Systems unless both aircraft sections are hidden", () => {
+    const has = (hidden: string[]) =>
+      buildSitemapEntries("https://example.com", sections, hidden).some(
+        (entry) => entry.url === "https://example.com/aircraft-systems",
+      );
+
+    expect(has([])).toBe(true);
+    expect(has(["type-rating"])).toBe(true);
+    expect(has(["type-rating", "class-rating"])).toBe(false);
+  });
 });

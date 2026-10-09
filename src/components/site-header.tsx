@@ -10,12 +10,11 @@ import { isOwner } from "@/lib/auth/owner";
 import { getSiteSettings } from "@/db/settings";
 import { envValue } from "@/lib/env";
 import {
-  isSectionHidden,
-  SECTION_KEYS,
-  sectionShortTitle,
-  sectionTitle,
-  type SectionKey,
-} from "@/lib/settings";
+  isPillarHidden,
+  pillarForHref,
+  pillarShortTitle,
+  pillarTitle,
+} from "@/lib/pillars";
 
 /**
  * The application shell's header.
@@ -34,18 +33,16 @@ import {
 type NavItem = { href: string; label: string; shortLabel?: string };
 
 const SIGNED_OUT_LINKS: NavItem[] = [
-  { href: "/type-rating", label: "Type Rating Systems Knowledge" },
-  { href: "/class-rating", label: "Class Rating Systems Knowledge" },
-  { href: "/flying-knowledge", label: "Flying Knowledge" },
+  { href: "/atpl-ground-school", label: "EASA ATPL Ground School" },
+  { href: "/aircraft-systems", label: "Aircraft Systems Knowledge" },
   { href: "/pilot-sims", label: "Pilot Sims" },
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
 ];
 
 const SIGNED_IN_LINKS: NavItem[] = [
-  { href: "/type-rating", label: "Type Rating Systems Knowledge" },
-  { href: "/class-rating", label: "Class Rating Systems Knowledge" },
-  { href: "/flying-knowledge", label: "Flying Knowledge" },
+  { href: "/atpl-ground-school", label: "EASA ATPL Ground School" },
+  { href: "/aircraft-systems", label: "Aircraft Systems Knowledge" },
   { href: "/pilot-sims", label: "Pilot Sims" },
   { href: "/progress", label: "Progress" },
   { href: "/upgrade", label: "Upgrade" },
@@ -66,16 +63,14 @@ export async function SiteHeader() {
   const settings = await getSiteSettings();
   const visible = (links: NavItem[]) =>
     links.flatMap((link) => {
-      const section = SECTION_KEYS.find(
-        (key: SectionKey) => link.href === `/${key}`,
-      );
-      if (!section) return [link];
-      if (isSectionHidden(settings, section)) return [];
+      const pillar = pillarForHref(link.href);
+      if (!pillar) return [link];
+      if (isPillarHidden(settings, pillar)) return [];
       return [
         {
           ...link,
-          label: sectionTitle(settings, section),
-          shortLabel: sectionShortTitle(settings, section),
+          label: pillarTitle(settings, pillar),
+          shortLabel: pillarShortTitle(settings, pillar),
         },
       ];
     });

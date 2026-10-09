@@ -39,8 +39,8 @@ export type SectionKey = (typeof SECTION_KEYS)[number];
 export const SECTION_LABELS: Record<SectionKey, string> = {
   "type-rating": "Type Rating Systems Knowledge",
   "class-rating": "Class Rating Systems Knowledge",
-  "flying-knowledge": "Flying Knowledge",
-  "pilot-sims": "Pilot Sims",
+  "flying-knowledge": "EASA ATPL Ground School",
+  "pilot-sims": "Pilot Sims & Flight Trainers",
 };
 
 /** The same sections, short enough for a navigation bar and a row of
@@ -49,7 +49,7 @@ export const SECTION_LABELS: Record<SectionKey, string> = {
 export const SECTION_SHORT_LABELS: Record<SectionKey, string> = {
   "type-rating": "Type Rating",
   "class-rating": "Class Rating",
-  "flying-knowledge": "Flying Knowledge",
+  "flying-knowledge": "ATPL Ground School",
   "pilot-sims": "Pilot Sims",
 };
 
@@ -60,7 +60,7 @@ export const DEFAULT_SECTION_DESCRIPTIONS: Record<ItemSection, string> = {
   "class-rating":
     "Light aircraft, practised the same way — no single-engine or multi-engine split, just the aircraft itself.",
   "flying-knowledge":
-    "The material every pilot keeps reviewing — air law, meteorology, navigation and the rest of ground school. Free in full.",
+    "The EASA ATPL theory subjects, one question bank each — built so you can see why every answer is right. Free in full.",
 };
 
 /** Plain text only, shown through React (which escapes it) — never HTML. */

@@ -14,7 +14,7 @@ export const siteConfig = {
   name: "PilotQBank",
   tagline: "Understand the aircraft, not just the answers.",
   description:
-    "Multiple-choice practice questions across three sections — Type Rating Systems Knowledge for large aircraft, Class Rating Systems Knowledge for light aircraft, and Flying Knowledge, free in full, for the ground-school material every pilot keeps reviewing. Built to teach the aircraft through every question, not to be memorised without understanding it. Study with immediate feedback or simulate the real exam, and track your progress by topic.",
+    "Multiple-choice practice questions in three parts — EASA ATPL Ground School, free in full; Aircraft Systems Knowledge, for type rating and class rating aircraft; and Pilot Sims & Flight Trainers. Built to teach the aircraft through every question, not to be memorised without understanding it. Study with immediate feedback or simulate the real exam, and track your progress by topic.",
   /**
    * The deployment's canonical origin, no trailing slash. Used as a fallback
    * for metadata (`metadataBase`, absolute Open Graph URLs) when no

@@ -22,6 +22,7 @@ const STATIC_PAGES = [
   { path: "/type-rating", changeFrequency: "weekly", priority: 0.9 },
   { path: "/class-rating", changeFrequency: "weekly", priority: 0.9 },
   { path: "/atpl-ground-school", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/aircraft-systems", changeFrequency: "weekly", priority: 0.9 },
   { path: "/pilot-sims", changeFrequency: "monthly", priority: 0.7 },
   {
     path: "/pilot-sims/holding-pattern-entry-trainer",
@@ -87,6 +88,10 @@ export function buildSitemapEntries(
   // The ATPL picker is the Flying Knowledge section's front door, so hiding
   // that section hides it too.
   const isHidden = (rawPath: string) => {
+    // Aircraft Systems fronts both aircraft trees; it goes only when both do.
+    if (rawPath === "/aircraft-systems") {
+      return hiddenSections.includes("type-rating") && hiddenSections.includes("class-rating");
+    }
     const path = rawPath.replace(/^\/atpl-ground-school/, "/flying-knowledge");
     return hiddenSections.some(
       (key) => path === `/${key}` || path.startsWith(`/${key}/`),

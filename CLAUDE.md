@@ -32,6 +32,9 @@ of any content, and unchanged now that content exists: nothing in
 or `db/preview.ts`. The landing page's hero
 asks which of the three a visitor is here for rather than leading with one
 aircraft; see the note on the three sections in the conventions below.
+The landing page and header present the four sections as three pillars
+(ATPL Ground School, Aircraft Systems, Pilot Sims) — see the note on
+pillars below.
 
 Both picker pages — `/type-rating` and `/class-rating` — title themselves
 **"Choose an aircraft,"** not "Choose a type rating" or "Choose a class
@@ -438,20 +441,49 @@ horizontal overflow and for target sizes. `overflow-x: clip` on `html` is
 a safety net, not the fix — overflows get solved where they happen.
 
 **The landing page's job is to start a test, and the hero asks which
-section rather than assuming.** `Hero` has no featured aircraft. Its one
+pillar rather than assuming.** `Hero` has no featured aircraft. Its one
 primary action is `TryFreeButton` (`_landing/try-free-button.tsx`), a
 yellow "Try free questions" link straight into a ten-question Flying
 Knowledge test — chosen because that section is free in full, so there is
 no preview allowance to run out of — computed in `page.tsx` as `tryHref`
-and omitted when no active subject exists. Under it, `SectionLinks`
-(`_landing/section-links.tsx`) is three identical outlined buttons — Type
-Rating, Class Rating, Flying Knowledge, the short names from
-`sectionShortTitle` — for a visitor who already knows their section.
-`FinalCta` repeats only the try button and a sign-up link, not the three
-sections again. None of the three sections is ranked above the others: the
-product is three sections, not one section with two afterthoughts. The
-header's desktop navigation uses the same short names (the mobile sheet
-keeps the full ones), and its sign-up button reads "Start free".
+and omitted when no active subject exists. Under it, `PillarLinks`
+(`_landing/pillar-links.tsx`) is three identical outlined buttons — ATPL
+Ground School, Aircraft Systems, Pilot Sims, the short names from
+`pillarShortTitle` — for a visitor who already knows where they are going.
+`FinalCta` repeats only the try button and a sign-up link. None of the
+three pillars is ranked above the others. The header's desktop navigation
+uses the same short names (the mobile sheet keeps the full ones), and its
+sign-up button reads "Start free".
+
+**The product is presented as three pillars, over four sections.** A
+pillar (`lib/pillars.ts`, pure and tested) is only a grouping: **EASA ATPL
+Ground School** is the Flying Knowledge section (`/atpl-ground-school`;
+its default label in `lib/settings.ts` is now "EASA ATPL Ground School");
+**Aircraft Systems Knowledge** (`/aircraft-systems`, a thin chooser) groups
+`type-rating` and `class-rating`, which stay two separate trees, pickers and
+sets of tables; **Pilot Sims & Flight Trainers** is `pilot-sims`.
+`SectionKey`, `hiddenSections`, `hiddenItems` and `itemOverrides` are
+unchanged. A pillar is hidden only when every section behind it is. The
+header and the landing cards read pillars; everything else still reads
+sections. A label the owner saved in `site_settings` still beats the new
+default, so an old "Flying Knowledge" label stays until it is cleared at
+`/owner/settings`.
+
+**The ATPL Ground School page lists the fourteen EASA ATPL theory subjects
+from a static list (`lib/atpl-subjects.ts`), not from the database.** A
+subject with no questions has no content folder and no row (`db:seed` would
+delete one), so "coming soon" rows cannot be database rows. A row is live
+only when a Flying Knowledge subject is named by its `code` there (POF is
+080, HPL is 040) and is active with published questions; live rows link to
+`/flying-knowledge/<code>`, where tests still run, and carry a pulsing
+`LiveBadge`. `/flying-knowledge` itself redirects to the picker. Adding a
+subject to the ATPL list is a content folder plus its `code` in that list.
+
+**Pilot Sims is meant to become a paid product, and nothing gates it yet.**
+`PilotSim.tier` (`sims.ts`) is `"free"` for both sims and is display only:
+the landing card says "Premium soon" and shows each sim's tier. Making a sim
+premium needs an access check as well as the flag, and `/pricing` and the
+upgrade dialog still say, truthfully, that Pilot Sims is free.
 
 **The header's desktop navigation starts at `lg`, and the wordmark must not
 shrink.** The wordmark is an `<img>` in a flex row; with the default
@@ -465,20 +497,15 @@ menu button replaces the nav, because the full-size wordmark plus six links
 does not fit in `md`. The account menu shows an avatar only; the address is in
 its dropdown.
 
-Directly under the hero, `SectionsOverview` (`_landing/sections-overview.tsx`)
-replaces what used to be two separate things — a systems strip scrolling
-through one featured aircraft's sections, and a card further down headed
-"Built around the 737-800". Both were built around leading with a single
-aircraft, which is exactly what the three-section split removed. It is
-three cards now, one per section, each with a real count
-(`SectionCounts`, summed in `page.tsx`'s `loadLandingData` from both
-content trees, never read for one featured aircraft alone) or — for
-Flying Knowledge, which has no bank yet — a plain "Coming soon" badge
-rather than a made-up number. Every aircraft and every class rating joins
-one of these three cards; there is no separate "aircraft" section on this
-page any more, and there is no "single engine" / "multi engine" split
-inside the class rating card either, the same rule the route structure
-carries: a light aircraft sits directly under Class Rating.
+Directly under the hero, `PillarsOverview` (`_landing/pillars-overview.tsx`)
+is three cards of identical shape, one per pillar: a title, a line of
+description, a short list of what is inside, and one way in. ATPL lists its
+live subjects with a `LiveBadge` and counts the rest as coming soon;
+Aircraft Systems lists Type Rating and Class Rating with their real
+question counts and aircraft codes (`summariseSection`, from both trees,
+never one featured aircraft); Pilot Sims lists its simulators. There is no
+"single engine" / "multi engine" split anywhere: a light aircraft sits
+directly under Class Rating.
 
 The old systems strip is survived by one thing worth keeping if a
 horizontally-scrolling row of cards is ever built again: `.scroll-x`
@@ -1797,9 +1824,9 @@ src/
     layout.tsx                The shell: header, footer, metadata, viewport
     page.tsx                  The marketing landing page
     _landing/                 Its sections: hero (+ the drawn 737 backdrop) with
-                              SectionLinks, sections-overview (the three section
+                              PillarLinks, pillars-overview (the three pillar
                               cards), trust, how it works, features, FAQ, final CTA
-                              (reuses SectionLinks)
+                              (reuses PillarLinks)
     type-rating/               Type Rating Systems Knowledge picker ("Choose an aircraft")
     type-rating/[code]/        One aircraft's overview
     type-rating/[code]/test/   Test runner, grading action, result screen, shortcuts-overlay
@@ -1814,6 +1841,8 @@ src/
                               free-tier cap, no subscription gate
     flying-knowledge/[code]/
     flying-knowledge/[code]/test/
+    atpl-ground-school/         The EASA ATPL Ground School picker: fourteen subjects, live or coming soon
+    aircraft-systems/           A thin chooser in front of type-rating/ and class-rating/
     aircraft/, class/,
     aviation-knowledge/         Legacy redirects only — see "Old links still work" above
     (auth)/                   Sign up, log in, log out
