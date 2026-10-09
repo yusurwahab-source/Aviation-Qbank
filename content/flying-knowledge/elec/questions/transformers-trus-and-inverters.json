@@ -8,22 +8,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Mutual induction between two windings linked by a common magnetic core"
-      },
-      {
-        "id": "b",
         "text": "Electrostatic charge stored between two plates"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Self-induction in a single winding carrying direct current"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Rectification of alternating current by a semiconductor junction"
+      },
+      {
+        "id": "d",
+        "text": "Mutual induction between two windings linked by a common magnetic core"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The alternating current in the primary creates an alternating flux in the core, which induces an EMF in the secondary. There is no electrical connection between the two windings in a double-wound transformer — energy passes magnetically.",
     "tags": [
       "transformers",
@@ -41,11 +41,11 @@
     "options": [
       {
         "id": "a",
-        "text": "23 V"
+        "text": "115 V"
       },
       {
         "id": "b",
-        "text": "115 V"
+        "text": "23 V"
       },
       {
         "id": "c",
@@ -56,7 +56,7 @@
         "text": "575 V"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Vs / Vp = Ns / Np, so Vs = 115 × 200 / 1,000 = 23 V. Fewer secondary turns means a step-down transformer.",
     "tags": [
       "transformers",
@@ -243,18 +243,18 @@
       },
       {
         "id": "b",
-        "text": "Uses the line conductor as its primary and gives a proportional current"
+        "text": "Steps the line voltage down to a safe level for a voltmeter"
       },
       {
         "id": "c",
-        "text": "Steps the line voltage down to a safe level for a voltmeter"
+        "text": "Uses the line conductor as its primary and gives a proportional current"
       },
       {
         "id": "d",
         "text": "Converts the line current from AC into DC for the indicator"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "The heavy feeder simply passes through the CT's toroidal core. The secondary, of many turns, delivers a small current in proportion, used by ammeters, load-sharing circuits and differential protection.",
     "tags": [
       "current-transformer"
@@ -275,18 +275,18 @@
       },
       {
         "id": "b",
-        "text": "A very high, dangerous voltage can be induced across the open secondary terminals"
+        "text": "The secondary would carry a short-circuit current and burn out"
       },
       {
         "id": "c",
-        "text": "The secondary would carry a short-circuit current and burn out"
+        "text": "A very high, dangerous voltage can be induced across the open secondary terminals"
       },
       {
         "id": "d",
         "text": "The core would demagnetise and the CT would lose its calibration permanently"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Normally the secondary current's own flux opposes the primary's. With the secondary open there is nothing to oppose it; the core flux rises very high and induces a large voltage across the many secondary turns — a shock hazard and a risk to the insulation.",
     "tags": [
       "current-transformer",
@@ -308,18 +308,18 @@
       },
       {
         "id": "b",
-        "text": "Step 28 V DC up to 115 V DC for heavy loads"
+        "text": "Convert the aircraft's 115/200 V AC into about 28 V DC"
       },
       {
         "id": "c",
-        "text": "Convert 28 V DC from the battery into 115 V AC"
+        "text": "Step 28 V DC up to 115 V DC for heavy loads"
       },
       {
         "id": "d",
-        "text": "Convert the aircraft's 115/200 V AC into about 28 V DC"
+        "text": "Convert 28 V DC from the battery into 115 V AC"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "A TRU steps the AC voltage down with a transformer and then rectifies it with diodes. It is the normal source of DC on an AC-generating aircraft. The reverse conversion (DC to AC) is done by an inverter.",
     "tags": [
       "tru"
@@ -336,11 +336,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Two diodes and a centre-tapped winding"
+        "text": "Six diodes in a three-phase full-wave bridge"
       },
       {
         "id": "b",
-        "text": "Six diodes in a three-phase full-wave bridge"
+        "text": "Two diodes and a centre-tapped winding"
       },
       {
         "id": "c",
@@ -351,7 +351,7 @@
         "text": "A single diode in each output line"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Each phase needs a pair of diodes to use both half cycles, so a three-phase full-wave bridge has six. The output ripple, at six times the supply frequency, is small and easily smoothed.",
     "tags": [
       "tru",
@@ -374,18 +374,18 @@
       },
       {
         "id": "b",
-        "text": "Doubles the frequency of the supply"
+        "text": "Passes only one half of each cycle, with gaps between pulses"
       },
       {
         "id": "c",
-        "text": "Passes only one half of each cycle, with gaps between pulses"
+        "text": "Doubles the frequency of the supply"
       },
       {
         "id": "d",
         "text": "Reverses the negative half of each cycle using four diodes"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "The diode conducts only when its anode is positive, so the load receives the positive half cycles and nothing during the negative ones. It is simple but inefficient and has a large ripple.",
     "tags": [
       "rectifiers",
@@ -502,22 +502,22 @@
     "options": [
       {
         "id": "a",
-        "text": "It can produce DC as well as AC from the same output"
+        "text": "It has no moving parts: lighter, quieter and more efficient"
       },
       {
         "id": "b",
-        "text": "It produces a higher output frequency at higher battery voltages"
+        "text": "It can produce DC as well as AC from the same output"
       },
       {
         "id": "c",
-        "text": "It has no moving parts: lighter, quieter and more efficient"
+        "text": "It produces a higher output frequency at higher battery voltages"
       },
       {
         "id": "d",
         "text": "It can be connected directly in parallel with the main AC generators"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "A rotary inverter is a DC motor driving an AC generator — heavy, noisy and with brushes and bearings to wear. A static inverter uses transistors to switch the DC rapidly, then shapes and transforms the result into AC.",
     "tags": [
       "inverters",
@@ -543,14 +543,14 @@
       },
       {
         "id": "c",
-        "text": "Diodes that block the DC in alternate directions every half cycle"
+        "text": "Transistors switching the current through a transformer, timed by an oscillator"
       },
       {
         "id": "d",
-        "text": "Transistors switching the current through a transformer, timed by an oscillator"
+        "text": "Diodes that block the DC in alternate directions every half cycle"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "An oscillator sets the frequency (typically 400 Hz); transistors switch the DC through the transformer primary first one way and then the other. The transformer then produces the required voltage, and filtering shapes the output into a sine wave.",
     "tags": [
       "inverters",
@@ -568,22 +568,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Eddy current losses"
-      },
-      {
-        "id": "b",
         "text": "Hysteresis in the windings"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "The voltage ratio between the windings"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Copper losses in the windings"
+      },
+      {
+        "id": "d",
+        "text": "Eddy current losses"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The alternating flux induces circulating currents in a solid core. Thin, insulated laminations confine them to small paths and reduce the heat they generate. Hysteresis loss is reduced by the choice of core material, not by laminating.",
     "tags": [
       "transformers",
@@ -602,22 +602,22 @@
     "options": [
       {
         "id": "a",
-        "text": "At a higher frequency the turns ratio can be ignored"
+        "text": "Less core is needed to induce the same voltage at a higher frequency"
       },
       {
         "id": "b",
-        "text": "A 400 Hz transformer needs no secondary winding"
+        "text": "At a higher frequency the turns ratio can be ignored"
       },
       {
         "id": "c",
-        "text": "Less core is needed to induce the same voltage at a higher frequency"
+        "text": "A 400 Hz transformer needs no secondary winding"
       },
       {
         "id": "d",
         "text": "Copper losses in the windings do not occur at all at 400 Hz"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "The induced voltage depends on the rate of change of flux. At eight times the frequency, the same voltage needs only about an eighth of the flux, and so a much smaller core — a major reason for using 400 Hz on aircraft.",
     "tags": [
       "transformers",
@@ -639,18 +639,18 @@
       },
       {
         "id": "b",
-        "text": "From the 115 V AC supply through a transformer"
+        "text": "From the battery through a step-down transformer"
       },
       {
         "id": "c",
-        "text": "From the battery through a step-down transformer"
+        "text": "From the 115 V AC supply through a transformer"
       },
       {
         "id": "d",
         "text": "From the 28 V DC supply through a TRU"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Stepping 115 V AC down to 26 V AC is a simple transformer job. A TRU produces DC, not AC, and a transformer cannot work directly from the battery's DC.",
     "tags": [
       "transformers",
@@ -701,11 +701,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Its heating depends on current, whatever the power factor"
+        "text": "It only ever supplies purely resistive loads"
       },
       {
         "id": "b",
-        "text": "It only ever supplies purely resistive loads"
+        "text": "Its heating depends on current, whatever the power factor"
       },
       {
         "id": "c",
@@ -716,11 +716,44 @@
         "text": "Transformers cannot pass any reactive power"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "As with a generator, the windings heat according to the current they carry, whatever its phase relative to the voltage. A low power-factor load can therefore load a transformer to its limit while drawing fewer watts.",
     "tags": [
       "transformers",
       "kva"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-CONV-0023",
+    "subjectCode": "ELEC",
+    "topic": "Transformers, TRUs and Inverters",
+    "subtopic": "Transformers",
+    "question": "Compared with the voltage across its primary winding, the voltage induced in a transformer's secondary is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Shifted by 180° in phase"
+      },
+      {
+        "id": "b",
+        "text": "Shifted by 120° in phase"
+      },
+      {
+        "id": "c",
+        "text": "Exactly in phase"
+      },
+      {
+        "id": "d",
+        "text": "Shifted by 90° in phase"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The secondary EMF is induced by the alternating flux and, by Lenz's law, acts in opposition to the change producing it, so the output voltage is in antiphase (180°) with the input. 120° is the spacing between phases of a three-phase supply.",
+    "tags": [
+      "transformers",
+      "phase"
     ],
     "status": "published",
     "version": 1

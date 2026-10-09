@@ -112,18 +112,18 @@
       },
       {
         "id": "b",
-        "text": "70.7 V"
+        "text": "63.7 V"
       },
       {
         "id": "c",
-        "text": "63.7 V"
+        "text": "70.7 V"
       },
       {
         "id": "d",
         "text": "50 V"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "RMS = 0.707 × peak = 70.7 V. 63.7 V is the average value of a half cycle (0.637 × peak).",
     "tags": [
       "rms",
@@ -173,22 +173,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Lags the voltage by 180°"
+        "text": "Lags the voltage by 90°"
       },
       {
         "id": "b",
-        "text": "Is in phase with the voltage"
+        "text": "Lags the voltage by 180°"
       },
       {
         "id": "c",
-        "text": "Leads the voltage by 90°"
+        "text": "Is in phase with the voltage"
       },
       {
         "id": "d",
-        "text": "Lags the voltage by 90°"
+        "text": "Leads the voltage by 90°"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "The inductor's back-EMF opposes changes in current, so the current reaches its peak a quarter of a cycle after the voltage. The memory aid 'ELI the ICE man': in an inductor (L), voltage (E) comes before current (I); in a capacitor (C), current comes before voltage.",
     "tags": [
       "phase",
@@ -211,18 +211,18 @@
       },
       {
         "id": "b",
-        "text": "Leads the voltage by 90°"
-      },
-      {
-        "id": "c",
         "text": "Leads the voltage by 180°"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Is in phase with the voltage"
+      },
+      {
+        "id": "d",
+        "text": "Leads the voltage by 90°"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Charging current is greatest when the voltage is changing fastest (as it passes through zero) and zero when the voltage is at its peak, so the current peak occurs a quarter of a cycle earlier — it leads.",
     "tags": [
       "phase",
@@ -245,18 +245,18 @@
       },
       {
         "id": "b",
-        "text": "Halves"
+        "text": "Doubles"
       },
       {
         "id": "c",
-        "text": "Doubles"
+        "text": "Halves"
       },
       {
         "id": "d",
         "text": "Is unchanged"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "XL = 2πfL, so reactance is directly proportional to frequency. An inductor opposes rapid change, so it opposes higher frequencies more — and to DC (zero frequency) it offers only its wire resistance.",
     "tags": [
       "reactance",
@@ -311,18 +311,18 @@
       },
       {
         "id": "b",
-        "text": "10 Ω"
+        "text": "50 Ω"
       },
       {
         "id": "c",
-        "text": "35 Ω"
+        "text": "10 Ω"
       },
       {
         "id": "d",
-        "text": "50 Ω"
+        "text": "35 Ω"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Resistance and reactance are 90° apart, so they add as the sides of a right-angled triangle: Z = √(30² + 40²) = √2,500 = 50 Ω. Simply adding them (70 Ω) ignores the phase difference.",
     "tags": [
       "impedance",
@@ -340,22 +340,22 @@
     "options": [
       {
         "id": "a",
-        "text": "2 A"
-      },
-      {
-        "id": "b",
         "text": "2.5 A"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "3.33 A"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "1.43 A"
+      },
+      {
+        "id": "d",
+        "text": "2 A"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Impedance Z = √(30² + 40²) = 50 Ω, so I = V/Z = 100/50 = 2 A. 3.33 A and 2.5 A come from dividing by R or by X alone.",
     "tags": [
       "impedance",
@@ -509,18 +509,18 @@
       },
       {
         "id": "b",
-        "text": "XL equals XC, so impedance is at a minimum, equal to R"
-      },
-      {
-        "id": "c",
         "text": "R equals the sum of XL and XC, so the current is maximum"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "XL is twice XC, so impedance is at a minimum, equal to R"
+      },
+      {
+        "id": "d",
+        "text": "XL equals XC, so impedance is at a minimum, equal to R"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "At resonance the two reactances cancel, leaving only R. Current is therefore at its maximum and in phase with the voltage. A parallel tuned circuit behaves the other way: maximum impedance at resonance — the basis of radio tuning.",
     "tags": [
       "resonance"
@@ -537,11 +537,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Inductively, with the current lagging the voltage"
+        "text": "Capacitively, with the current leading the voltage"
       },
       {
         "id": "b",
-        "text": "Capacitively, with the current leading the voltage"
+        "text": "Inductively, with the current lagging the voltage"
       },
       {
         "id": "c",
@@ -552,7 +552,7 @@
         "text": "Purely resistively, with the current in phase"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Above resonance XL (rising with f) exceeds XC (falling with f), so the net reactance is inductive and the current lags. Below resonance the circuit is capacitive.",
     "tags": [
       "resonance",
@@ -570,22 +570,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Different in magnitude but all in phase"
+        "text": "Equal in magnitude and displaced from each other by 120°"
       },
       {
         "id": "b",
-        "text": "Equal in magnitude and displaced from each other by 90°"
+        "text": "Different in magnitude but all in phase"
       },
       {
         "id": "c",
-        "text": "Displaced by 60°, with the third phase the sum of the other two"
+        "text": "Equal in magnitude and displaced from each other by 90°"
       },
       {
         "id": "d",
-        "text": "Equal in magnitude and displaced from each other by 120°"
+        "text": "Displaced by 60°, with the third phase the sum of the other two"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Three windings spaced 120° apart on the generator produce three sine waves 120° apart. Three-phase gives more power for a given weight of generator and cable, and naturally produces the rotating field induction motors need.",
     "tags": [
       "three-phase"
@@ -636,22 +636,22 @@
     "options": [
       {
         "id": "a",
-        "text": "The line current equals the phase current, and the line voltage is √3 times the phase voltage"
-      },
-      {
-        "id": "b",
         "text": "Both line voltage and line current are √3 times the phase values"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "The line voltage equals the phase voltage, and the line current is √3 times the phase current"
+      },
+      {
+        "id": "c",
+        "text": "The line current equals the phase current, and the line voltage is √3 times the phase voltage"
       },
       {
         "id": "d",
         "text": "Line and phase values are equal for both voltage and current"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Each line is in series with one phase winding, so the currents are the same, while each line-to-line voltage spans two windings 120° apart, giving √3 × phase voltage. In a delta connection it is the other way round.",
     "tags": [
       "three-phase",
@@ -670,22 +670,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Line and phase voltages are equal and there is no neutral"
-      },
-      {
-        "id": "b",
         "text": "The line voltage is √3 times the phase voltage, with a neutral"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "It can only supply single-phase loads from its windings"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Its phase windings are displaced by 90° instead of 120°"
+      },
+      {
+        "id": "d",
+        "text": "Line and phase voltages are equal and there is no neutral"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "In delta each winding is connected directly between two lines, so line and phase voltages are equal; each line current is the phasor sum of two winding currents, giving √3 × phase current. With no common star point there is no neutral.",
     "tags": [
       "three-phase",
@@ -703,11 +703,11 @@
     "options": [
       {
         "id": "a",
-        "text": "The line current is reduced to one third of the phase current"
+        "text": "Both 115 V (phase) and 200 V (line) supplies are available"
       },
       {
         "id": "b",
-        "text": "Both 115 V (phase) and 200 V (line) supplies are available"
+        "text": "The line current is reduced to one third of the phase current"
       },
       {
         "id": "c",
@@ -718,7 +718,7 @@
         "text": "No circuit protection is needed on the single-phase loads"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "With the neutral earthed, single-phase loads connect between one phase and structure (115 V), while three-phase loads use the lines (200 V).",
     "tags": [
       "three-phase",
@@ -737,22 +737,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Three times the current in one phase"
+        "text": "Zero"
       },
       {
         "id": "b",
-        "text": "Equal to the current in one phase"
+        "text": "Three times the current in one phase"
       },
       {
         "id": "c",
-        "text": "Zero"
+        "text": "Equal to the current in one phase"
       },
       {
         "id": "d",
         "text": "√3 times the current in one phase"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Three equal currents 120° apart add to zero at every instant. The neutral only carries current when the phase loads are unequal, which they usually are to some extent in an aircraft.",
     "tags": [
       "three-phase",
@@ -775,18 +775,18 @@
       },
       {
         "id": "b",
-        "text": "48 kW"
+        "text": "27.7 kW"
       },
       {
         "id": "c",
-        "text": "16 kW"
+        "text": "48 kW"
       },
       {
         "id": "d",
-        "text": "27.7 kW"
+        "text": "16 kW"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "P = √3 × VL × IL × PF = 1.732 × 200 × 100 × 0.8 ≈ 27,700 W. The apparent power is √3 × 200 × 100 ≈ 34.6 kVA.",
     "tags": [
       "three-phase",
@@ -809,18 +809,18 @@
       },
       {
         "id": "b",
-        "text": "It is easily transformed and carried at higher voltage in lighter cables"
+        "text": "It needs no circuit protection on its distribution wiring"
       },
       {
         "id": "c",
-        "text": "It needs no circuit protection on its distribution wiring"
+        "text": "It is easily transformed and carried at higher voltage in lighter cables"
       },
       {
         "id": "d",
         "text": "It can be stored directly in the aircraft batteries for later use"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Higher voltage means less current for the same power, and so thinner, lighter cables. Transformers convert AC to whatever voltage a load needs, and brushless AC generators avoid commutator wear. DC is still derived (via TRUs) for the battery and DC equipment.",
     "tags": [
       "ac-advantages"
@@ -837,26 +837,92 @@
     "options": [
       {
         "id": "a",
-        "text": "Transformers and machines can be much smaller and lighter"
-      },
-      {
-        "id": "b",
         "text": "Batteries can be charged directly from a 400 Hz supply"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Reactance and line losses are lower at higher frequencies"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "400 Hz is safer to touch than the lower mains frequencies"
+      },
+      {
+        "id": "d",
+        "text": "Transformers and machines can be much smaller and lighter"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The iron needed in a transformer or machine falls as frequency rises, saving a great deal of weight. The penalty is that inductive reactance (and so voltage drop) is higher, which suits the short cable runs of an aircraft but would not suit a national grid.",
     "tags": [
       "400hz",
       "frequency"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACP-0027",
+    "subjectCode": "ELEC",
+    "topic": "AC Principles",
+    "subtopic": "Frequency effects",
+    "question": "An AC generator runs below its normal frequency. Inductive loads such as motors and transformers are likely to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Be unaffected, because reactance does not depend on frequency"
+      },
+      {
+        "id": "b",
+        "text": "Draw more current and overheat, because their inductive reactance has fallen"
+      },
+      {
+        "id": "c",
+        "text": "Stop completely, because they need exactly 400 Hz to work"
+      },
+      {
+        "id": "d",
+        "text": "Draw less current and run cooler, because their reactance has risen"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Inductive reactance is proportional to frequency (XL = 2πfL). Lower frequency means lower reactance, so more current flows for the same voltage — and the extra current heats the windings. Under-frequency protection exists partly for this reason.",
+    "tags": [
+      "reactance",
+      "under-frequency"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACP-0028",
+    "subjectCode": "ELEC",
+    "topic": "AC Principles",
+    "subtopic": "Three-phase",
+    "question": "The number of phases an AC generator supplies is determined by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The number of separate output windings on its stator"
+      },
+      {
+        "id": "b",
+        "text": "The speed at which its drive turns it"
+      },
+      {
+        "id": "c",
+        "text": "The current supplied to its exciter field"
+      },
+      {
+        "id": "d",
+        "text": "The number of poles on its rotating field"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Each separate stator winding produces its own output; three windings spaced 120° apart give a three-phase supply. Poles and speed together set the frequency, and the field current sets the voltage.",
+    "tags": [
+      "three-phase",
+      "generator"
     ],
     "status": "published",
     "version": 1

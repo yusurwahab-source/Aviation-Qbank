@@ -8,7 +8,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Its number of phases only"
+        "text": "Its rotational speed and its number of poles"
       },
       {
         "id": "b",
@@ -16,14 +16,14 @@
       },
       {
         "id": "c",
-        "text": "Its rotational speed and its number of poles"
+        "text": "Its number of phases only"
       },
       {
         "id": "d",
         "text": "Its field current and its output voltage"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "f = (rpm × pole pairs) / 60. Field current controls the voltage, not the frequency. That is why a constant frequency requires a constant generator speed.",
     "tags": [
       "frequency",
@@ -41,7 +41,7 @@
     "options": [
       {
         "id": "a",
-        "text": "6,000 rpm"
+        "text": "24,000 rpm"
       },
       {
         "id": "b",
@@ -49,14 +49,14 @@
       },
       {
         "id": "c",
-        "text": "24,000 rpm"
+        "text": "3,000 rpm"
       },
       {
         "id": "d",
-        "text": "3,000 rpm"
+        "text": "6,000 rpm"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Eight poles = four pole pairs. rpm = 60 × f / pole pairs = 60 × 400 / 4 = 6,000 rpm.",
     "tags": [
       "frequency",
@@ -74,11 +74,11 @@
     "options": [
       {
         "id": "a",
-        "text": "400 Hz"
+        "text": "48 kHz"
       },
       {
         "id": "b",
-        "text": "48 kHz"
+        "text": "800 Hz"
       },
       {
         "id": "c",
@@ -86,10 +86,10 @@
       },
       {
         "id": "d",
-        "text": "800 Hz"
+        "text": "400 Hz"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Four poles = two pole pairs. f = rpm × pole pairs / 60 = 12,000 × 2 / 60 = 400 Hz. Using four as the number of pairs would give 800 Hz.",
     "tags": [
       "frequency",
@@ -107,22 +107,22 @@
     "options": [
       {
         "id": "a",
-        "text": "233 Hz"
+        "text": "350 Hz"
       },
       {
         "id": "b",
-        "text": "400 Hz"
+        "text": "233 Hz"
       },
       {
         "id": "c",
-        "text": "700 Hz"
+        "text": "400 Hz"
       },
       {
         "id": "d",
-        "text": "350 Hz"
+        "text": "700 Hz"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Six poles = three pole pairs. f = 7,000 × 3 / 60 = 350 Hz. To give 400 Hz it would have to run at 8,000 rpm.",
     "tags": [
       "frequency",
@@ -140,11 +140,11 @@
     "options": [
       {
         "id": "a",
-        "text": "It allows the generator to run without any field excitation"
+        "text": "A rotating armature cannot produce a three-phase output at all"
       },
       {
         "id": "b",
-        "text": "A rotating armature cannot produce a three-phase output at all"
+        "text": "It allows the generator to run without any field excitation"
       },
       {
         "id": "c",
@@ -173,22 +173,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Carbon brushes running on slip rings fed from the aircraft battery"
+        "text": "The permanent magnet generator directly, through a commutator"
       },
       {
         "id": "b",
-        "text": "Rotor-mounted diodes rectifying the exciter armature's AC"
+        "text": "Carbon brushes running on slip rings fed from the aircraft battery"
       },
       {
         "id": "c",
-        "text": "The main stator output, fed back through a transformer rectifier unit"
+        "text": "Rotor-mounted diodes rectifying the exciter armature's AC"
       },
       {
         "id": "d",
-        "text": "The permanent magnet generator directly, through a commutator"
+        "text": "The main stator output, fed back through a transformer rectifier unit"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "The exciter's armature rotates with the shaft and produces AC; rotating rectifier diodes on the same shaft convert it to DC for the main field. No brushes are needed anywhere — reducing maintenance and removing a source of sparking and wear at altitude.",
     "tags": [
       "brushless",
@@ -206,11 +206,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Power for the GCU and exciter field, independent of other sources"
+        "text": "The drive torque that keeps the generator at constant speed"
       },
       {
         "id": "b",
-        "text": "DC to recharge the aircraft battery directly"
+        "text": "Power for the GCU and exciter field, independent of other sources"
       },
       {
         "id": "c",
@@ -218,10 +218,10 @@
       },
       {
         "id": "d",
-        "text": "The drive torque that keeps the generator at constant speed"
+        "text": "DC to recharge the aircraft battery directly"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Because its field is a permanent magnet, the PMG produces power as soon as the shaft turns, with no external excitation. It powers the GCU and the exciter field, so the generator is self-sufficient and can build up voltage with no battery.",
     "tags": [
       "brushless",
@@ -244,18 +244,18 @@
       },
       {
         "id": "b",
-        "text": "Varying the speed of the generator through the constant speed drive"
+        "text": "Varying the DC current in the stationary exciter field winding"
       },
       {
         "id": "c",
-        "text": "Switching resistors into the main output lines"
+        "text": "Varying the speed of the generator through the constant speed drive"
       },
       {
         "id": "d",
-        "text": "Varying the DC current in the stationary exciter field winding"
+        "text": "Switching resistors into the main output lines"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "The voltage regulator (in the GCU) controls the exciter field current. That sets the exciter output, which sets the main field current, which sets the output voltage. Speed is held constant separately to fix the frequency.",
     "tags": [
       "voltage-regulation",
@@ -273,22 +273,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Convert the generator's AC output into constant-voltage DC"
+        "text": "Disconnect the generator automatically if the engine overspeeds"
       },
       {
         "id": "b",
-        "text": "Turn the generator at constant speed, so the frequency stays constant"
+        "text": "Convert the generator's AC output into constant-voltage DC"
       },
       {
         "id": "c",
-        "text": "Keep the generator output voltage constant at 115 V"
+        "text": "Turn the generator at constant speed, so the frequency stays constant"
       },
       {
         "id": "d",
-        "text": "Disconnect the generator automatically if the engine overspeeds"
+        "text": "Keep the generator output voltage constant at 115 V"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Engine speed varies widely between idle and take-off power, but a constant-frequency system must stay at 400 Hz. The CSD — a hydro-mechanical transmission — adds or subtracts speed as needed. Voltage is regulated separately, by the field.",
     "tags": [
       "csd",
@@ -306,22 +306,22 @@
     "options": [
       {
         "id": "a",
-        "text": "An emergency generator driven by a ram air turbine"
+        "text": "A generator driven by the APU that can be connected to either engine"
       },
       {
         "id": "b",
-        "text": "A generator whose frequency varies freely with engine speed"
+        "text": "An emergency generator driven by a ram air turbine"
       },
       {
         "id": "c",
-        "text": "A constant speed drive and generator in one oil-cooled unit"
+        "text": "A generator whose frequency varies freely with engine speed"
       },
       {
         "id": "d",
-        "text": "A generator driven by the APU that can be connected to either engine"
+        "text": "A constant speed drive and generator in one oil-cooled unit"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Combining the drive and the generator saves weight and space; the oil both operates the hydraulic speed-control section and cools the generator. IDG warnings typically concern high oil temperature or low oil pressure.",
     "tags": [
       "idg",
@@ -339,11 +339,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Can be reconnected in flight once the oil pressure has recovered"
+        "text": "Remains connected but its generator output is switched off"
       },
       {
         "id": "b",
-        "text": "Remains connected but its generator output is switched off"
+        "text": "Is mechanically disconnected and can only be reconnected on the ground"
       },
       {
         "id": "c",
@@ -351,10 +351,10 @@
       },
       {
         "id": "d",
-        "text": "Is mechanically disconnected and can only be reconnected on the ground"
+        "text": "Can be reconnected in flight once the oil pressure has recovered"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "The disconnect releases a dog clutch so the engine stops driving the unit, preventing it from seizing and damaging the gearbox. Re-engagement is a ground maintenance action with the engine stopped. Because it is irreversible in flight, the switch is guarded.",
     "tags": [
       "idg",
@@ -372,22 +372,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Converting the variable-frequency output electronically to 400 Hz"
-      },
-      {
-        "id": "b",
         "text": "Driving the generator from the APU only, which runs at constant speed"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Varying the number of active poles in the generator as the engine speed changes"
+      },
+      {
+        "id": "c",
+        "text": "Converting the variable-frequency output electronically to 400 Hz"
       },
       {
         "id": "d",
         "text": "Using a hydro-mechanical constant speed drive between the engine and the generator"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "VSCF removes the mechanical CSD: the generator output, whose frequency varies with engine speed, is processed by power electronics (for example through a DC link and an inverter) into constant-frequency AC.",
     "tags": [
       "vscf"
@@ -404,22 +404,22 @@
     "options": [
       {
         "id": "a",
-        "text": "They cannot be paralleled, and motors may need electronic controllers"
+        "text": "They require a heavier constant speed drive than a conventional IDG"
       },
       {
         "id": "b",
-        "text": "They cannot be used to power transformer rectifier units"
+        "text": "They cannot be paralleled, and motors may need electronic controllers"
       },
       {
         "id": "c",
-        "text": "They require a heavier constant speed drive than a conventional IDG"
+        "text": "They cannot be used to power transformer rectifier units"
       },
       {
         "id": "d",
         "text": "Their output voltage varies with engine speed and cannot be regulated"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Dropping the CSD saves weight and improves reliability, but the frequency now follows engine speed. Two generators at different frequencies cannot share a bus, so these systems are split-bus. Resistive heaters and TRUs do not care about frequency; motors may need controllers.",
     "tags": [
       "variable-frequency"
@@ -436,22 +436,22 @@
     "options": [
       {
         "id": "a",
-        "text": "A busbar paralleled with a constant-frequency generator"
+        "text": "Resistive de-icing heaters, which work at any frequency"
       },
       {
         "id": "b",
-        "text": "Synchronous motors whose speed must be held constant"
-      },
-      {
-        "id": "c",
         "text": "Navigation instruments that need an exact 400 Hz reference"
       },
       {
+        "id": "c",
+        "text": "Synchronous motors whose speed must be held constant"
+      },
+      {
         "id": "d",
-        "text": "Resistive de-icing heaters, which work at any frequency"
+        "text": "A busbar paralleled with a constant-frequency generator"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "A heating element only cares about the power it receives, not the frequency. Using an unregulated-frequency alternator for de-icing avoids the weight of a constant-speed drive for a large but undemanding load.",
     "tags": [
       "frequency-wild",
@@ -469,22 +469,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Equal voltage and equal load current only"
-      },
-      {
-        "id": "b",
-        "text": "Equal voltage, equal frequency, the same phase sequence and the voltages in phase"
-      },
-      {
-        "id": "c",
         "text": "Equal frequency only, since voltage is adjusted automatically after connection"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "Opposite phase sequence, so that the two outputs reinforce each other"
+      },
+      {
+        "id": "c",
+        "text": "Equal voltage, equal frequency, the same phase sequence and the voltages in phase"
+      },
+      {
+        "id": "d",
+        "text": "Equal voltage and equal load current only"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Closing the breaker with a mismatch in voltage, frequency or phase angle drives a large circulating current between the machines and causes a severe mechanical shock to their drives. A wrong phase sequence would amount to a short circuit.",
     "tags": [
       "paralleling",
@@ -510,14 +510,14 @@
       },
       {
         "id": "c",
-        "text": "Adjusting each constant speed drive's speed (torque)"
+        "text": "Adjusting the field excitation of each generator"
       },
       {
         "id": "d",
-        "text": "Adjusting the field excitation of each generator"
+        "text": "Adjusting each constant speed drive's speed (torque)"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Generators locked together in parallel run at the same frequency. Asking one CSD for slightly more speed makes it push more torque — and therefore more real power — into the bus. Excitation, by contrast, shifts reactive load.",
     "tags": [
       "paralleling",
@@ -536,7 +536,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Adjusting the frequency of each generator independently"
+        "text": "Adjusting the speed of each generator's constant speed drive"
       },
       {
         "id": "b",
@@ -544,14 +544,14 @@
       },
       {
         "id": "c",
-        "text": "Adjusting each generator's field excitation"
+        "text": "Adjusting the frequency of each generator independently"
       },
       {
         "id": "d",
-        "text": "Adjusting the speed of each generator's constant speed drive"
+        "text": "Adjusting each generator's field excitation"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Raising one generator's excitation makes it supply more of the reactive (magnetising) current. It cannot change its share of real power that way, because that requires more torque from the drive.",
     "tags": [
       "paralleling",
@@ -574,15 +574,15 @@
       },
       {
         "id": "b",
-        "text": "Takes a larger share of the real load, while the reactive load sharing is unchanged"
-      },
-      {
-        "id": "c",
         "text": "Drops off line because its voltage no longer matches the bus"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Increases the frequency of the whole system"
+      },
+      {
+        "id": "d",
+        "text": "Takes a larger share of the real load, while the reactive load sharing is unchanged"
       }
     ],
     "correct": "a",
@@ -607,18 +607,18 @@
       },
       {
         "id": "b",
-        "text": "A fault in the generator or its feeder between two current transformers"
+        "text": "An unequal share of the real load between paralleled generators"
       },
       {
         "id": "c",
-        "text": "A frequency that has drifted outside its limits"
+        "text": "A fault in the generator or its feeder between two current transformers"
       },
       {
         "id": "d",
-        "text": "An unequal share of the real load between paralleled generators"
+        "text": "A frequency that has drifted outside its limits"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Current transformers at the generator's neutral end and at the bus end of the feeder should see the same current. A difference means current is leaking out in between, so the GCU trips the generator field and breaker to isolate the fault.",
     "tags": [
       "differential-protection",
@@ -636,22 +636,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Conversion of the generator output from AC to DC"
-      },
-      {
-        "id": "b",
         "text": "Voltage regulation and protection against voltage, frequency and feeder faults"
       },
       {
+        "id": "b",
+        "text": "Charging of the aircraft battery directly from the generator"
+      },
+      {
         "id": "c",
-        "text": "Control of the engine fuel flow to hold the generator speed constant"
+        "text": "Conversion of the generator output from AC to DC"
       },
       {
         "id": "d",
-        "text": "Charging of the aircraft battery directly from the generator"
+        "text": "Control of the engine fuel flow to hold the generator speed constant"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "The GCU regulates the voltage and monitors the output. On a fault it opens the generator control relay (removing excitation) and the generator breaker (disconnecting it from the bus).",
     "tags": [
       "gcu",
@@ -669,7 +669,7 @@
     "options": [
       {
         "id": "a",
-        "text": "An open-circuit fault in one of the loads on the bus"
+        "text": "A reverse phase sequence in the generator's own windings"
       },
       {
         "id": "b",
@@ -677,7 +677,7 @@
       },
       {
         "id": "c",
-        "text": "A reverse phase sequence in the generator's own windings"
+        "text": "An open-circuit fault in one of the loads on the bus"
       },
       {
         "id": "d",
@@ -706,18 +706,18 @@
       },
       {
         "id": "b",
-        "text": "Connects the generator to the external power receptacle"
-      },
-      {
-        "id": "c",
         "text": "Controls the generator's excitation, while the GCB connects its output to the busbar"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Connects the generator's output to the busbar, while the GCB controls its excitation"
+      },
+      {
+        "id": "d",
+        "text": "Connects the generator to the external power receptacle"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Opening the GCR removes the field supply so the generator stops producing voltage; opening the GCB isolates its output from the bus. A serious fault trips both.",
     "tags": [
       "gcr",
@@ -735,11 +735,11 @@
     "options": [
       {
         "id": "a",
-        "text": "54 kW"
+        "text": "72 kW"
       },
       {
         "id": "b",
-        "text": "72 kW"
+        "text": "54 kW"
       },
       {
         "id": "c",
@@ -750,7 +750,7 @@
         "text": "112.5 kW"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "True power = apparent power × PF = 90 × 0.8 = 72 kW. The generator is limited by current (kVA), whatever the power factor.",
     "tags": [
       "kva",
@@ -768,7 +768,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Driven by a ram air turbine and used only in an emergency"
+        "text": "Paralleled with the engine generators at all times in flight"
       },
       {
         "id": "b",
@@ -780,7 +780,7 @@
       },
       {
         "id": "d",
-        "text": "Paralleled with the engine generators at all times in flight"
+        "text": "Driven by a ram air turbine and used only in an emergency"
       }
     ],
     "correct": "c",
@@ -796,27 +796,27 @@
     "subjectCode": "ELEC",
     "topic": "AC Generators",
     "subtopic": "Indication",
-    "question": "On the AC electrical panel, a frequency meter reading 380 Hz on a constant-frequency system, with the voltage normal, suggests:",
+    "question": "On a constant-frequency AC system, the frequency meter reads 360 Hz while the voltage is normal. This suggests:",
     "options": [
       {
         "id": "a",
-        "text": "That the generator is turning too slowly, pointing to a problem with its drive"
+        "text": "The generator is turning too slowly, pointing to a problem with its drive"
       },
       {
         "id": "b",
-        "text": "Normal operation, since the frequency of a constant-frequency system may vary freely"
+        "text": "Normal operation, since a constant-frequency system may vary freely"
       },
       {
         "id": "c",
-        "text": "That the voltage regulator is faulty"
+        "text": "The voltage regulator is faulty and needs resetting"
       },
       {
         "id": "d",
-        "text": "That the generator is overloaded with reactive current"
+        "text": "The generator is overloaded with reactive current"
       }
     ],
     "correct": "a",
-    "explanation": "In a constant-frequency system the frequency only reflects generator speed. A low reading with normal voltage points to the CSD/IDG, not the regulator. If it goes outside limits, the under-frequency protection disconnects the generator.",
+    "explanation": "Frequency reflects generator speed only. A constant speed drive normally holds 400 Hz within about 5% (380–420 Hz), so 360 Hz with normal voltage points to the CSD/IDG, not the regulator. Under-frequency protection will disconnect the generator.",
     "tags": [
       "frequency",
       "indication",
@@ -834,26 +834,125 @@
     "options": [
       {
         "id": "a",
-        "text": "Cooling raises the generator's kVA rating to any value required"
-      },
-      {
-        "id": "b",
-        "text": "The output frequency rises as the generator temperature falls"
-      },
-      {
-        "id": "c",
         "text": "Without cooling the generator would produce DC instead of AC"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "Output is limited by the heat its insulation can withstand"
+      },
+      {
+        "id": "c",
+        "text": "The output frequency rises as the generator temperature falls"
+      },
+      {
+        "id": "d",
+        "text": "Cooling raises the generator's kVA rating to any value required"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Copper losses (I²R) and iron losses heat the machine. Insulation degrades rapidly above its rated temperature, so the amount of heat that can be removed effectively sets the generator's rating.",
     "tags": [
       "cooling",
       "idg"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0027",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Constant speed drive",
+    "question": "A constant speed drive normally holds a generator's frequency within about:",
+    "options": [
+      {
+        "id": "a",
+        "text": "50% of 400 Hz — roughly 200 to 600 Hz"
+      },
+      {
+        "id": "b",
+        "text": "0.5% of 400 Hz — roughly 398 to 402 Hz"
+      },
+      {
+        "id": "c",
+        "text": "5% of 400 Hz — roughly 380 to 420 Hz"
+      },
+      {
+        "id": "d",
+        "text": "25% of 400 Hz — roughly 300 to 500 Hz"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The CSD's governor varies its output to keep the generator close to 400 Hz across the engine's speed range. Readings outside that band point to a drive problem and are what the frequency protection acts on.",
+    "tags": [
+      "csd",
+      "frequency"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0028",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Constant speed drive",
+    "question": "If a generator seizes mechanically, its constant speed drive is protected by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A quill drive — a deliberately weak shaft that shears first"
+      },
+      {
+        "id": "b",
+        "text": "A friction clutch that lets the generator freewheel"
+      },
+      {
+        "id": "c",
+        "text": "The generator circuit breaker opening the output"
+      },
+      {
+        "id": "d",
+        "text": "The drive disconnect, which always operates by itself"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The quill drive is a weak link in the drive train: it breaks before a seized generator can damage the CSD or the engine gearbox. The disconnect is a separate, pilot-operated device.",
+    "tags": [
+      "csd",
+      "quill-drive"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-ACGEN-0029",
+    "subjectCode": "ELEC",
+    "topic": "AC Generators",
+    "subtopic": "Constant speed drive",
+    "question": "The oil that operates and cools a constant speed drive comes from:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A common tank shared by all the aircraft's drives"
+      },
+      {
+        "id": "b",
+        "text": "The engine's lubrication system, through a tapping"
+      },
+      {
+        "id": "c",
+        "text": "The aircraft's hydraulic system reservoir"
+      },
+      {
+        "id": "d",
+        "text": "Its own self-contained system, separate from the engine oil"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The CSD (or IDG) has its own oil reservoir and cooler, which is why its oil temperature and pressure are monitored separately on the flight deck and why a drive problem can be isolated by disconnecting it without affecting the engine.",
+    "tags": [
+      "csd",
+      "oil"
     ],
     "status": "published",
     "version": 1

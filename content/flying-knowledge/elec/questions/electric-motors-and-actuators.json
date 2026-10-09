@@ -8,22 +8,22 @@
     "options": [
       {
         "id": "a",
-        "text": "A changing current in one coil induces a current in a neighbouring coil"
+        "text": "A current-carrying conductor in a magnetic field experiences a force"
       },
       {
         "id": "b",
-        "text": "A conductor moved through a magnetic field has an EMF induced in it"
+        "text": "A changing current in one coil induces a current in a neighbouring coil"
       },
       {
         "id": "c",
-        "text": "A current-carrying conductor in a magnetic field experiences a force"
+        "text": "A conductor moved through a magnetic field has an EMF induced in it"
       },
       {
         "id": "d",
         "text": "Two parallel conductors carrying current in the same direction repel each other"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "The force on the armature conductors (F = BIL, direction from Fleming's left-hand rule) produces torque. The commutator reverses the current in each conductor as it passes between poles, so the torque always acts the same way.",
     "tags": [
       "dc-motor",
@@ -45,18 +45,18 @@
       },
       {
         "id": "b",
-        "text": "Opposes the supply, grows with speed and so limits the armature current"
+        "text": "Adds to the applied voltage and increases the armature current at high speed"
       },
       {
         "id": "c",
-        "text": "Adds to the applied voltage and increases the armature current at high speed"
+        "text": "Opposes the supply, grows with speed and so limits the armature current"
       },
       {
         "id": "d",
         "text": "Is greatest when the motor is stationary and falls as it speeds up"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "A spinning armature is also a generator. Its EMF opposes the supply (Lenz's law), so the current that flows is (V − Eb)/R. At standstill Eb is zero, which is why starting current is so large.",
     "tags": [
       "back-emf",
@@ -78,18 +78,18 @@
       },
       {
         "id": "b",
-        "text": "56 A running; 4 A at the instant of starting"
+        "text": "4 A running; 56 A at the instant of starting"
       },
       {
         "id": "c",
-        "text": "52 A running; 56 A at the instant of starting"
+        "text": "56 A running; 4 A at the instant of starting"
       },
       {
         "id": "d",
-        "text": "4 A running; 56 A at the instant of starting"
+        "text": "52 A running; 56 A at the instant of starting"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Running: I = (V − Eb)/R = (28 − 26)/0.5 = 4 A. At the instant of starting the armature is still, Eb = 0, so I = 28/0.5 = 56 A — fourteen times the running current. Heavy motors therefore have starting resistances or current-limited supplies.",
     "tags": [
       "back-emf",
@@ -243,18 +243,18 @@
       },
       {
         "id": "b",
-        "text": "Two opposite-wound field windings, one selected for each direction"
+        "text": "Two armatures on one shaft that drive in opposite directions"
       },
       {
         "id": "c",
-        "text": "Two armatures on one shaft that drive in opposite directions"
+        "text": "Two opposite-wound field windings, one selected for each direction"
       },
       {
         "id": "d",
         "text": "A single field winding that is split by a capacitor to give a rotating field"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Selecting one field winding or the other reverses the field while the armature current stays the same, so a simple changeover switch drives the actuator either way — extend or retract, open or close.",
     "tags": [
       "split-field",
@@ -309,18 +309,18 @@
       },
       {
         "id": "b",
-        "text": "Applied by a solenoid whenever the motor is powered, and released by a spring"
+        "text": "Spring-applied when unpowered, and solenoid-released when the motor runs"
       },
       {
         "id": "c",
-        "text": "Used only to slow the motor during start-up to reduce its current"
+        "text": "Applied by a solenoid whenever the motor is powered, and released by a spring"
       },
       {
         "id": "d",
-        "text": "Spring-applied when unpowered, and solenoid-released when the motor runs"
+        "text": "Used only to slow the motor during start-up to reduce its current"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Failing safe to 'brake on' means the actuator stops promptly and holds its position whenever power is removed — at a limit switch, or on a power failure — and cannot be back-driven by air loads.",
     "tags": [
       "actuators",
@@ -342,18 +342,18 @@
       },
       {
         "id": "b",
-        "text": "Slip if the output jams, protecting the motor and gearbox from overload"
-      },
-      {
-        "id": "c",
         "text": "Allow the motor to run with no load while the actuator is at its limit"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Reverse the direction of the output without reversing the motor"
+      },
+      {
+        "id": "d",
+        "text": "Slip if the output jams, protecting the motor and gearbox from overload"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "A slipping (friction) clutch limits the torque transmitted. If the driven surface jams, the clutch slips instead of stalling the motor or breaking the gear train.",
     "tags": [
       "actuators",
@@ -375,18 +375,18 @@
       },
       {
         "id": "b",
-        "text": "At the instant of engagement, before the starter and engine have begun to turn"
-      },
-      {
-        "id": "c",
         "text": "Just before the starter disengages, when the engine is turning fastest"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Midway through the start, when the engine first fires"
+      },
+      {
+        "id": "d",
+        "text": "At the instant of engagement, before the starter and engine have begun to turn"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "At rest the motor has no back-EMF, so only its low resistance limits the current — the large surge that dips the bus voltage at the start. As speed builds, back-EMF rises and the current falls.",
     "tags": [
       "starter",
@@ -404,11 +404,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Its three-phase stator sets up a rotating field that drags the rotor round"
+        "text": "The rotor is supplied with DC through slip rings and locks to the stator field"
       },
       {
         "id": "b",
-        "text": "The rotor is supplied with DC through slip rings and locks to the stator field"
+        "text": "Its three-phase stator sets up a rotating field that drags the rotor round"
       },
       {
         "id": "c",
@@ -419,7 +419,7 @@
         "text": "The rotor is a permanent magnet attracted by each phase in turn"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Three windings displaced by 120° and fed with currents 120° apart create a field of constant strength rotating at synchronous speed. It cuts the rotor bars, inducing currents whose field interacts with the rotating field to produce torque — no electrical connection to the rotor is needed.",
     "tags": [
       "induction-motor",
@@ -441,18 +441,18 @@
       },
       {
         "id": "b",
-        "text": "The rotor is locked to the field at half its speed"
+        "text": "Without relative motion no rotor current, and so no torque, would be induced"
       },
       {
         "id": "c",
-        "text": "Without relative motion no rotor current, and so no torque, would be induced"
+        "text": "The rotor is locked to the field at half its speed"
       },
       {
         "id": "d",
         "text": "The supply frequency always falls when the motor is loaded"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "If the rotor turned at synchronous speed, its bars would not cut any flux, no current would be induced and there would be no torque. The difference, called slip, increases with load.",
     "tags": [
       "induction-motor",
@@ -503,11 +503,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Interchanging any two of the three supply phases"
+        "text": "Reversing the polarity of the DC supply to the rotor"
       },
       {
         "id": "b",
-        "text": "Reversing the polarity of the DC supply to the rotor"
+        "text": "Interchanging any two of the three supply phases"
       },
       {
         "id": "c",
@@ -518,7 +518,7 @@
         "text": "Reducing the supply frequency to below half its normal value"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Swapping two phases reverses the phase sequence, so the stator field rotates the other way. Rotating all three connections (A→B→C→A) keeps the same sequence and the same direction. A wrong phase sequence from a ground power unit would run every three-phase motor backwards — which is why it is monitored.",
     "tags": [
       "induction-motor",
@@ -533,27 +533,27 @@
     "subjectCode": "ELEC",
     "topic": "Electric Motors and Actuators",
     "subtopic": "AC motors",
-    "question": "A three-phase induction motor loses one of its phases while running. The usual result is that it:",
+    "question": "A lightly loaded three-phase induction motor loses one of its phases while running. The usual result is that it:",
     "options": [
       {
         "id": "a",
-        "text": "Reverses its direction of rotation"
+        "text": "Keeps running at reduced speed, but will not start the next time it is selected"
       },
       {
         "id": "b",
-        "text": "Stops immediately and cannot be damaged"
+        "text": "Reverses its direction of rotation"
       },
       {
         "id": "c",
-        "text": "Keeps running but overheats, and will not restart once stopped"
+        "text": "Stops immediately and cannot be damaged"
       },
       {
         "id": "d",
         "text": "Runs faster, because the remaining phases carry more current"
       }
     ],
-    "correct": "c",
-    "explanation": "On two phases the field is no longer a smooth rotating one, but a running motor can keep turning. It draws excess current in the remaining phases and overheats; from rest it develops no starting torque. Thermal protection is fitted for exactly this case.",
+    "correct": "a",
+    "explanation": "With one phase gone the stator field no longer rotates smoothly, but a turning motor can keep going — typically at about half speed, humming and drawing extra current. The fault often goes unnoticed in a remote motor until the next start, when it develops no starting torque at all.",
     "tags": [
       "induction-motor",
       "phase-loss"
@@ -606,18 +606,18 @@
       },
       {
         "id": "b",
-        "text": "A single phase gives a pulsating, not a rotating, field"
+        "text": "Single-phase AC cannot induce any current in a squirrel-cage rotor"
       },
       {
         "id": "c",
-        "text": "Single-phase AC cannot induce any current in a squirrel-cage rotor"
+        "text": "A single phase gives a pulsating, not a rotating, field"
       },
       {
         "id": "d",
         "text": "A single-phase motor would otherwise run at twice its rated speed"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "A single winding gives a field that simply grows and reverses in one axis. A second winding with its current shifted in phase (by a capacitor, for example) adds a component at right angles, producing a rotating field that starts the motor.",
     "tags": [
       "single-phase",
@@ -635,22 +635,22 @@
     "options": [
       {
         "id": "a",
-        "text": "A permanent magnet with its poles fixed to the shaft"
+        "text": "Conducting bars joined by end rings, with no external connection"
       },
       {
         "id": "b",
-        "text": "A wound field supplied with DC through slip rings"
+        "text": "A permanent magnet with its poles fixed to the shaft"
       },
       {
         "id": "c",
-        "text": "A wound armature fed through a commutator and carbon brushes"
+        "text": "A wound field supplied with DC through slip rings"
       },
       {
         "id": "d",
-        "text": "Conducting bars joined by end rings, with no external connection"
+        "text": "A wound armature fed through a commutator and carbon brushes"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "The cage of bars and end rings is robust and needs no brushes, so the induction motor is simple and reliable — the reason it powers many aircraft fuel pumps, hydraulic pumps and fans running on 115 V 400 Hz.",
     "tags": [
       "induction-motor",
@@ -734,11 +734,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Cut the motor's supply if its windings overheat"
+        "text": "Indicate on the flight deck that the motor has reached operating temperature"
       },
       {
         "id": "b",
-        "text": "Indicate on the flight deck that the motor has reached operating temperature"
+        "text": "Cut the motor's supply if its windings overheat"
       },
       {
         "id": "c",
@@ -749,7 +749,7 @@
         "text": "Increase the motor's speed when it gets hot to improve its cooling"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "A stalled or overloaded motor draws a large current and heats its windings. A thermal cut-out in the winding breaks the supply before the insulation fails; on some designs it resets automatically when cool.",
     "tags": [
       "motor-protection",
@@ -775,17 +775,83 @@
       },
       {
         "id": "c",
-        "text": "Combine strong starting torque with a safe no-load speed"
+        "text": "Run at a speed set exactly by the supply frequency"
       },
       {
         "id": "d",
-        "text": "Run at a speed set exactly by the supply frequency"
+        "text": "Combine strong starting torque with a safe no-load speed"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "The series winding gives strong torque at start; the shunt winding provides a field that does not collapse when the load is removed, setting a safe no-load speed.",
     "tags": [
       "compound-motor"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0025",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "DC motors",
+    "question": "Some DC motors have a resistor switched in series with the armature at start, then bypassed once running. Its purpose is to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Limit the starting current until back-EMF builds up"
+      },
+      {
+        "id": "b",
+        "text": "Reverse the motor when its load becomes too high"
+      },
+      {
+        "id": "c",
+        "text": "Hold the motor at a constant speed once it is running"
+      },
+      {
+        "id": "d",
+        "text": "Increase the starting torque by raising the armature current"
+      }
+    ],
+    "correct": "a",
+    "explanation": "At standstill there is no back-EMF, so only the armature's low resistance limits the current. A slow-start resistor keeps that surge down; a centrifugal or time switch then shorts it out so full current is available at speed.",
+    "tags": [
+      "slow-start",
+      "back-emf"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MOT-0026",
+    "subjectCode": "ELEC",
+    "topic": "Electric Motors and Actuators",
+    "subtopic": "Synchronous motors",
+    "question": "An engine rpm indicator using a tacho-generator works because the tacho-generator's output frequency is proportional to engine speed, and the indicator contains:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A stepper motor, which moves one step per engine revolution"
+      },
+      {
+        "id": "b",
+        "text": "An induction motor, whose speed is set by the supply voltage"
+      },
+      {
+        "id": "c",
+        "text": "A synchronous motor, whose speed follows the supply frequency"
+      },
+      {
+        "id": "d",
+        "text": "A DC series motor, whose speed rises as the load falls"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The small engine-driven alternator produces a frequency proportional to rpm; the synchronous motor in the gauge turns at a speed locked to that frequency and drives the pointer through a magnetic drag cup. Voltage variations do not affect the reading.",
+    "tags": [
+      "synchronous-motor",
+      "tacho"
     ],
     "status": "published",
     "version": 1

@@ -8,7 +8,7 @@
     "options": [
       {
         "id": "a",
-        "text": "The earth-return path formed by the airframe structure"
+        "text": "A device that converts the generator output from AC to DC"
       },
       {
         "id": "b",
@@ -16,14 +16,14 @@
       },
       {
         "id": "c",
-        "text": "A device that converts the generator output from AC to DC"
+        "text": "A common conductor that distributes power from sources to many circuits"
       },
       {
         "id": "d",
-        "text": "A common conductor that distributes power from sources to many circuits"
+        "text": "The earth-return path formed by the airframe structure"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Sources (generators, battery, TRUs, external power) feed busbars; loads are fed from the busbars through their own protection. Grouping loads on separate busbars by importance is what makes load shedding and fault isolation possible.",
     "tags": [
       "busbars",
@@ -49,11 +49,11 @@
       },
       {
         "id": "c",
-        "text": "Every load has both a supply wire and a separate insulated return wire"
+        "text": "The negative side of the battery is left unconnected to the structure"
       },
       {
         "id": "d",
-        "text": "The negative side of the battery is left unconnected to the structure"
+        "text": "Every load has both a supply wire and a separate insulated return wire"
       }
     ],
     "correct": "b",
@@ -74,22 +74,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Earth-return currents cannot flow through the structure near the compass"
+        "text": "A two-wire circuit carries less current than an earth-return circuit for the same load"
       },
       {
         "id": "b",
-        "text": "Two-wire circuits are lighter than earth-return circuits"
+        "text": "Earth-return currents cannot flow through the structure near the compass"
       },
       {
         "id": "c",
-        "text": "Side-by-side supply and return currents have fields that largely cancel"
+        "text": "Two-wire circuits are lighter than earth-return circuits"
       },
       {
         "id": "d",
-        "text": "A two-wire circuit carries less current than an earth-return circuit for the same load"
+        "text": "Side-by-side supply and return currents have fields that largely cancel"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "A current flowing through the structure can follow an unpredictable path and create a magnetic field near the compass. Running the return alongside the supply makes the two fields nearly cancel. Two-wire systems are also needed on non-conducting composite structures.",
     "tags": [
       "two-wire",
@@ -107,22 +107,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Works better than on a metal aircraft, because composites have lower resistance"
-      },
-      {
-        "id": "b",
-        "text": "Needs dedicated return conductors or an added conductive network"
-      },
-      {
-        "id": "c",
         "text": "Is unnecessary, because composite aircraft use only AC power"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "Is provided automatically by the carbon fibres, which conduct as well as aluminium"
+      },
+      {
+        "id": "c",
+        "text": "Needs dedicated return conductors or an added conductive network"
+      },
+      {
+        "id": "d",
+        "text": "Works better than on a metal aircraft, because composites have lower resistance"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Fibreglass does not conduct, and carbon fibre conducts far less well than aluminium and unevenly. Composite aircraft therefore carry return wiring or an embedded current-return network, and also need special provision for lightning protection and bonding.",
     "tags": [
       "earth-return",
@@ -140,22 +140,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Less important loads can be shed if generation is lost"
+        "text": "Each load can be supplied at a different voltage"
       },
       {
         "id": "b",
-        "text": "The total current drawn from the generators is always the same"
-      },
-      {
-        "id": "c",
         "text": "No circuit protection is needed on the essential busbar"
       },
       {
+        "id": "c",
+        "text": "Less important loads can be shed if generation is lost"
+      },
+      {
         "id": "d",
-        "text": "Each load can be supplied at a different voltage"
+        "text": "The total current drawn from the generators is always the same"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "With a generator failure or on battery alone, there is not enough power for everything. Disconnecting the non-essential (and sometimes main) buses — automatically or by the crew — protects the supply to flight-critical equipment.",
     "tags": [
       "busbars",
@@ -182,11 +182,11 @@
       },
       {
         "id": "c",
-        "text": "Ensure only the first source to come on line can ever supply the bus"
+        "text": "Reduce the bus voltage to a level safe for avionics"
       },
       {
         "id": "d",
-        "text": "Reduce the bus voltage to a level safe for avionics"
+        "text": "Ensure only the first source to come on line can ever supply the bus"
       }
     ],
     "correct": "b",
@@ -207,22 +207,22 @@
     "options": [
       {
         "id": "a",
-        "text": "In series with the circuit, and has a very low internal resistance"
-      },
-      {
-        "id": "b",
-        "text": "In parallel with the circuit, and has a very high internal resistance"
-      },
-      {
-        "id": "c",
         "text": "In series with the circuit, and has a very high internal resistance"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "In parallel with the circuit, and has a very low internal resistance"
+      },
+      {
+        "id": "c",
+        "text": "In parallel with the circuit, and has a very high internal resistance"
+      },
+      {
+        "id": "d",
+        "text": "In series with the circuit, and has a very low internal resistance"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "An ammeter must carry the circuit current, so it goes in series, and it must disturb that current as little as possible, so its resistance is very low. A voltmeter is the opposite: in parallel, with very high resistance.",
     "tags": [
       "ammeter",
@@ -240,22 +240,22 @@
     "options": [
       {
         "id": "a",
-        "text": "In series with the component, and has a very high internal resistance"
-      },
-      {
-        "id": "b",
-        "text": "In parallel with the component, and has a very high internal resistance"
-      },
-      {
-        "id": "c",
         "text": "In parallel with the component, and has a very low internal resistance"
       },
       {
-        "id": "d",
+        "id": "b",
+        "text": "In series with the component, and has a very high internal resistance"
+      },
+      {
+        "id": "c",
         "text": "In series with the component, and has a very low internal resistance"
+      },
+      {
+        "id": "d",
+        "text": "In parallel with the component, and has a very high internal resistance"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "A voltmeter measures the potential difference between two points, so it is connected across them. A high resistance means it draws almost no current and does not alter the voltage it is measuring.",
     "tags": [
       "voltmeter",
@@ -273,22 +273,22 @@
     "options": [
       {
         "id": "a",
-        "text": "A reading of the supply voltage in volts"
+        "text": "A correct reading of the current drawn by the circuit"
       },
       {
         "id": "b",
-        "text": "A reading of zero, because no current can flow through an ammeter in parallel"
-      },
-      {
-        "id": "c",
         "text": "A very large current through the meter, damaging it or blowing the circuit protection"
       },
       {
+        "id": "c",
+        "text": "A reading of the supply voltage in volts"
+      },
+      {
         "id": "d",
-        "text": "A correct reading of the current drawn by the circuit"
+        "text": "A reading of zero, because no current can flow through an ammeter in parallel"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "With its very low resistance, an ammeter across the supply is effectively a short circuit. Wrongly connecting a voltmeter in series, by contrast, does no damage: its high resistance simply stops the load working while the meter reads close to the supply voltage.",
     "tags": [
       "ammeter",
@@ -307,22 +307,22 @@
     "options": [
       {
         "id": "a",
-        "text": "A high-resistance coil in series with the meter, limiting its current"
+        "text": "A low-resistance conductor; the meter reads the voltage drop across it"
       },
       {
         "id": "b",
-        "text": "A transformer that steps the current down before it reaches the meter"
+        "text": "A high-resistance coil in series with the meter, limiting its current"
       },
       {
         "id": "c",
-        "text": "A low-resistance conductor; the meter reads the voltage drop across it"
+        "text": "A transformer that steps the current down before it reaches the meter"
       },
       {
         "id": "d",
         "text": "A capacitor across the meter that smooths the reading"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "The heavy current flows through the shunt; the meter, connected across it, sees a few millivolts proportional to that current and is calibrated in amps. Only a tiny current passes through the instrument itself.",
     "tags": [
       "ammeter",
@@ -340,11 +340,11 @@
     "options": [
       {
         "id": "a",
-        "text": "The battery is being charged by the alternator"
+        "text": "The ammeter has failed, since a battery cannot discharge in flight"
       },
       {
         "id": "b",
-        "text": "The ammeter has failed, since a battery cannot discharge in flight"
+        "text": "The battery is being charged by the alternator"
       },
       {
         "id": "c",
@@ -374,22 +374,22 @@
     "options": [
       {
         "id": "a",
-        "text": "The frequency of the generator output"
-      },
-      {
-        "id": "b",
         "text": "The generator's output current, often as a fraction of its rating"
       },
       {
+        "id": "b",
+        "text": "The frequency of the generator output"
+      },
+      {
         "id": "c",
-        "text": "Whether the battery is charging or discharging"
+        "text": "The voltage of the busbar the generator is connected to"
       },
       {
         "id": "d",
-        "text": "The voltage of the busbar the generator is connected to"
+        "text": "Whether the battery is charging or discharging"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "A loadmeter reads from zero upward only, since a generator should never pass reverse current. A reading of 0.6 means the generator is carrying 60% of its rated load — useful for checking load sharing and for load management after a failure.",
     "tags": [
       "loadmeter",
@@ -411,18 +411,18 @@
       },
       {
         "id": "b",
-        "text": "300 A"
+        "text": "225 A"
       },
       {
         "id": "c",
-        "text": "75 A"
+        "text": "300 A"
       },
       {
         "id": "d",
-        "text": "225 A"
+        "text": "75 A"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "A loadmeter graduated in fractions of rated load reads 0.75 × 300 A = 225 A.",
     "tags": [
       "loadmeter",
@@ -440,22 +440,22 @@
     "options": [
       {
         "id": "a",
-        "text": "The external power unit is switched off automatically after a set time"
-      },
-      {
-        "id": "b",
-        "text": "The aircraft can be supplied from two ground power units at once"
-      },
-      {
-        "id": "c",
         "text": "The relay makes after, and breaks before, the main pins, so they never arc"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "The external power is connected only when the aircraft battery is flat"
+      },
+      {
+        "id": "c",
+        "text": "The external power unit is switched off automatically after a set time"
+      },
+      {
+        "id": "d",
+        "text": "The aircraft can be supplied from two ground power units at once"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "The short control pin is the last to make and the first to break. The heavy current is therefore always switched by the relay's contacts, never by the plug being pushed in or pulled out under load.",
     "tags": [
       "external-power",
@@ -473,22 +473,22 @@
     "options": [
       {
         "id": "a",
-        "text": "The external power relay will not close, so the reversed supply never reaches the bus"
-      },
-      {
-        "id": "b",
         "text": "The aircraft battery automatically reverses its own polarity to match"
       },
       {
+        "id": "b",
+        "text": "The external power relay will not close, so the reversed supply never reaches the bus"
+      },
+      {
         "id": "c",
-        "text": "The external power relay closes and the battery fuse blows to protect the aircraft"
+        "text": "The bus is supplied normally, since DC equipment works with either polarity"
       },
       {
         "id": "d",
-        "text": "The bus is supplied normally, since DC equipment works with either polarity"
+        "text": "The external power relay closes and the battery fuse blows to protect the aircraft"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Reversed polarity could destroy electronic equipment and drive a large current into the battery. A diode in the relay coil circuit (or a polarity-sensing unit) lets the relay operate only when the polarity is correct.",
     "tags": [
       "external-power",
@@ -506,7 +506,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Allow the avionics to be supplied by the alternator only, never the battery"
+        "text": "Increase the voltage supplied to the avionics during engine start"
       },
       {
         "id": "b",
@@ -514,14 +514,14 @@
       },
       {
         "id": "c",
-        "text": "Increase the voltage supplied to the avionics during engine start"
+        "text": "Keep the avionics off during engine start, away from voltage transients"
       },
       {
         "id": "d",
-        "text": "Keep the avionics off during engine start, away from voltage transients"
+        "text": "Allow the avionics to be supplied by the alternator only, never the battery"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Starter engagement and disengagement cause voltage dips and spikes on the bus. Switching the radios on only after the start (and off before shutdown) protects them, and gives a single switch to remove all avionics load in an electrical emergency.",
     "tags": [
       "avionics-master",
@@ -543,7 +543,7 @@
       },
       {
         "id": "b",
-        "text": "The ALT half must be switched on before the BAT half for the battery to connect"
+        "text": "The BAT half can be switched off on its own while the alternator continues to supply the bus"
       },
       {
         "id": "c",
@@ -551,7 +551,7 @@
       },
       {
         "id": "d",
-        "text": "The BAT half can be switched off on its own while the alternator continues to supply the bus"
+        "text": "The ALT half must be switched on before the BAT half for the battery to connect"
       }
     ],
     "correct": "a",
@@ -576,7 +576,7 @@
       },
       {
         "id": "b",
-        "text": "Increase the voltage at the far end above the source voltage"
+        "text": "Reduce the cable's inductance so that it can be used on AC"
       },
       {
         "id": "c",
@@ -584,7 +584,7 @@
       },
       {
         "id": "d",
-        "text": "Reduce the cable's inductance so that it can be used on AC"
+        "text": "Increase the voltage at the far end above the source voltage"
       }
     ],
     "correct": "a",
@@ -613,14 +613,14 @@
       },
       {
         "id": "c",
-        "text": "A larger conductor cross-section, able to carry more current"
+        "text": "A smaller conductor cross-section, able to carry less current"
       },
       {
         "id": "d",
-        "text": "A smaller conductor cross-section, able to carry less current"
+        "text": "A larger conductor cross-section, able to carry more current"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "AWG numbers run backwards: a 22 AWG wire is thin and used for signals, while 2 AWG or 0 AWG cables carry the heavy currents of a battery or starter.",
     "tags": [
       "cables",
@@ -642,18 +642,18 @@
       },
       {
         "id": "b",
-        "text": "Drops non-essential loads after a generator failure to avoid overload"
-      },
-      {
-        "id": "c",
         "text": "Reduces the voltage of the bus to lower the total power consumed"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Connects additional generators in parallel when the load exceeds a set value"
+      },
+      {
+        "id": "d",
+        "text": "Drops non-essential loads after a generator failure to avoid overload"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Losing a generator halves (or worse) the available supply. Shedding galley, cabin and other non-essential loads keeps the surviving source within its rating. Crew action may be needed to shed further loads when on battery only.",
     "tags": [
       "load-shedding",
@@ -671,22 +671,22 @@
     "options": [
       {
         "id": "a",
-        "text": "The remaining generator doubles its output voltage to supply both buses"
-      },
-      {
-        "id": "b",
-        "text": "The battery takes over the failed side permanently, with no bus tie"
-      },
-      {
-        "id": "c",
         "text": "A bus tie lets the remaining generator supply both buses, shedding load as needed"
       },
       {
-        "id": "d",
+        "id": "b",
+        "text": "The remaining generator doubles its output voltage to supply both buses"
+      },
+      {
+        "id": "c",
         "text": "Both buses are lost until the failed generator is reset"
+      },
+      {
+        "id": "d",
+        "text": "The battery takes over the failed side permanently, with no bus tie"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Keeping the buses separate in normal operation stops a fault on one side affecting the other. On a generator loss the tie lets the healthy generator feed both, within its rating — which is why load shedding usually accompanies the transfer.",
     "tags": [
       "split-bus",
@@ -704,7 +704,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Chafed insulation could arc and ignite leaking fluids or oxygen"
+        "text": "The magnetic field of the cable can stop fluids flowing in nearby pipes"
       },
       {
         "id": "b",
@@ -712,14 +712,14 @@
       },
       {
         "id": "c",
-        "text": "The magnetic field of the cable can stop fluids flowing in nearby pipes"
+        "text": "Chafed insulation could arc and ignite leaking fluids or oxygen"
       },
       {
         "id": "d",
         "text": "Contact with pipes would change the resistance of the cable"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Vibration and movement wear through insulation over time. A resulting arc is an ignition source; near fuel or hydraulic fluid it can start a fire, and near oxygen it can be catastrophic. Separation, clamping and protection sleeves reduce that risk.",
     "tags": [
       "cables",
@@ -738,22 +738,22 @@
     "options": [
       {
         "id": "a",
-        "text": "The generator is supplying the bus normally and charging the battery"
-      },
-      {
-        "id": "b",
-        "text": "The battery is being overcharged"
-      },
-      {
-        "id": "c",
         "text": "The generator is in an overvoltage condition"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "The generator is not supplying the bus and the battery is carrying the load"
+      },
+      {
+        "id": "c",
+        "text": "The generator is supplying the bus normally and charging the battery"
+      },
+      {
+        "id": "d",
+        "text": "The battery is being overcharged"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "With the generator on line, bus voltage should be at the regulated value of about 28 V. A reading near the battery's own nominal voltage means the battery is the source — the generator has dropped off line, or is not producing enough output.",
     "tags": [
       "voltmeter",
@@ -767,30 +767,130 @@
     "subjectCode": "ELEC",
     "topic": "DC Distribution and Indication",
     "subtopic": "Busbars",
-    "question": "The battery bus (as opposed to the hot battery bus) is normally:",
+    "question": "Vital services, such as emergency lighting and the crash-switch operation of the fire extinguishers, are normally supplied from:",
     "options": [
       {
         "id": "a",
-        "text": "Powered only by external power when the aircraft is on the ground"
+        "text": "The external power receptacle, through its own relay"
       },
       {
         "id": "b",
-        "text": "Powered at all times, whatever the position of the battery switch"
+        "text": "The battery (hot) bus, connected directly to the battery"
       },
       {
         "id": "c",
-        "text": "Powered by the battery when its switch is on, or by the main system"
+        "text": "The galley bus, which is shed first after a failure"
       },
       {
         "id": "d",
-        "text": "Never connected to the battery at all, despite its name"
+        "text": "The non-essential bus, fed only from the generators"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Vital services must work even after a wheels-up landing with every generator stopped and switches off, so they are wired to the bus that is always connected to the battery. Essential services can be fed from generators or batteries; non-essential services come from the generators and are the ones shed.",
+    "tags": [
+      "hot-battery-bus",
+      "vital-services"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-DIST-0025",
+    "subjectCode": "ELEC",
+    "topic": "DC Distribution and Indication",
+    "subtopic": "Paralleling",
+    "question": "On an aircraft with two DC generators, a differential cut-out connects the second generator to the bus only when its voltage is slightly above the bus voltage. This prevents:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Circulating current flowing from the bus into the oncoming generator"
+      },
+      {
+        "id": "b",
+        "text": "The first generator being shut down by the second"
+      },
+      {
+        "id": "c",
+        "text": "The battery being overcharged by two generators at once"
+      },
+      {
+        "id": "d",
+        "text": "The bus voltage exceeding the overvoltage limit"
+      }
+    ],
+    "correct": "a",
+    "explanation": "If the oncoming generator were connected at a lower voltage, current would flow into it from the bus — a circulating current that would try to motor it. Waiting until it is a little higher (around 2%) ensures it takes up load straight away.",
+    "tags": [
+      "differential-cut-out",
+      "paralleling"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-DIST-0026",
+    "subjectCode": "ELEC",
+    "topic": "DC Distribution and Indication",
+    "subtopic": "Indication",
+    "question": "To extend the range of a moving-coil instrument:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Both use a high-resistance multiplier in series with the meter"
+      },
+      {
+        "id": "b",
+        "text": "Both use a low-resistance shunt in parallel with the meter"
+      },
+      {
+        "id": "c",
+        "text": "An ammeter uses a high-resistance multiplier in series; a voltmeter uses a low-resistance shunt in parallel"
+      },
+      {
+        "id": "d",
+        "text": "An ammeter uses a low-resistance shunt in parallel; a voltmeter uses a high-resistance multiplier in series"
+      }
+    ],
+    "correct": "d",
+    "explanation": "A shunt bypasses most of a large current around the delicate coil; a multiplier limits the current through the coil when it is placed across a high voltage. Either way only a small, proportional current passes through the movement.",
+    "tags": [
+      "ammeter",
+      "voltmeter",
+      "shunt"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-DIST-0027",
+    "subjectCode": "ELEC",
+    "topic": "DC Distribution and Indication",
+    "subtopic": "Reverse current cut-out",
+    "question": "If the contacts of a DC generator's reverse current cut-out stuck closed after the engine was shut down, the most likely result is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "No effect, since a stopped generator draws no current"
+      },
+      {
+        "id": "b",
+        "text": "The battery would be overcharged by the generator"
+      },
+      {
+        "id": "c",
+        "text": "The battery would drive current back into the generator, risking burning it out"
+      },
+      {
+        "id": "d",
+        "text": "The generator would continue to charge the battery from its residual magnetism"
       }
     ],
     "correct": "c",
-    "explanation": "The battery bus feeds equipment needed whenever the aircraft is powered, including on battery alone, but it is switched with the battery. The hot battery bus is wired straight to the battery and cannot be switched off from the flight deck.",
+    "explanation": "With the generator stopped, its EMF is zero, so the battery sees a low-resistance path back through the armature. A large reverse current would flow, flattening the battery and possibly burning out the generator — the very thing the cut-out exists to prevent.",
     "tags": [
-      "battery-bus",
-      "hot-battery-bus"
+      "rcco",
+      "fault"
     ],
     "status": "published",
     "version": 1

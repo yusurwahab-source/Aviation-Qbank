@@ -2067,7 +2067,7 @@ Performance & Limitations (`HPL`) proves it a further time: `content/flying-know
 question files, 346 questions — see the note on the HPL bank in
 `content/README.md`. Aircraft General Knowledge — Electrics (`ELEC`)
 proves it once more: `content/flying-knowledge/elec/` and sixteen
-question files, 370 questions, plus its `code` on the 021 row of
+question files, 400 questions, plus its `code` on the 021 row of
 `lib/atpl-subjects.ts` and its study guide's line in
 `lib/study-guide.ts` — see the note on the ELEC bank in
 `content/README.md`.
@@ -2268,16 +2268,18 @@ published. See the note on the HPL bank in `content/README.md`, and
   record of where the topic structure came from. It should be reviewed by
   a qualified instructor before a student relies on it for a real exam.
   See the note on the HPL bank in `content/README.md`.
-- **The entire ELEC bank (Aircraft General Knowledge — Electrics,
-  Flying Knowledge's third subject) was written without the book the owner
-  asked for it to be built from.** That textbook was not attached and was
-  not in the owner's Google Drive, so the 370 questions and the study guide
-  were written from general knowledge of the standard ATPL electrics
-  syllabus — the same approach as HPL — and have not been checked
-  against it. If the book is supplied, check the bank against it topic by
-  topic. As with POF and HPL, nothing a student reads names a source, and
-  a qualified instructor should review the bank before a student relies on
-  it for a real exam. See the note on the ELEC bank in `content/README.md`.
+- **The ELEC bank (Aircraft General Knowledge — Electrics, Flying
+  Knowledge's third subject, 400 questions) is authored content checked
+  against the owner's textbook, not transcribed from it.** That book, CAE
+  Oxford Aviation Academy's *Electrics and Electronics* (ATPL Book 3), is
+  copyrighted. It was used, at the owner's request, for facts only: every
+  chapter was read against the bank, seven questions that disagreed with
+  it were rewritten, and thirty questions were added for facts it covers
+  that the first draft did not. No wording, worked example or specimen
+  question was copied. As with POF and HPL, nothing a student reads names
+  a source, and a qualified instructor should review the bank before a
+  student relies on it for a real exam. See the note on the ELEC bank in
+  `content/README.md`.
 - **The A320 bank (type rating, 751 questions, by FCOM chapter) is checked
   against open sources, not against an FCOM.** Its facts come from the public
   FlyByWire A32NX documentation (an A320neo simulation's docs); nothing was

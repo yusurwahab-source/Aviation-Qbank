@@ -8,7 +8,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Alternating, and it is converted into a unidirectional output by the commutator and brushes"
+        "text": "Alternating, and it is converted to DC by diodes in the field winding"
       },
       {
         "id": "b",
@@ -16,14 +16,14 @@
       },
       {
         "id": "c",
-        "text": "Alternating, and it is converted to DC by diodes in the field winding"
+        "text": "Alternating, and it is converted into a unidirectional output by the commutator and brushes"
       },
       {
         "id": "d",
         "text": "Direct, and the commutator smooths out its ripple"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "A coil rotating in a field always produces an alternating EMF. The commutator — a split ring of segments — reverses each coil's connection to the brushes at the moment its EMF reverses, so the brushes always see the same polarity.",
     "tags": [
       "dc-generator",
@@ -41,22 +41,22 @@
     "options": [
       {
         "id": "a",
-        "text": "The load current only, since voltage rises with load in every generator"
-      },
-      {
-        "id": "b",
         "text": "Its speed of rotation and the strength of its field flux"
       },
       {
+        "id": "b",
+        "text": "Its speed of rotation only, since the field is fixed"
+      },
+      {
         "id": "c",
-        "text": "The field flux only, since speed has no effect on induced EMF"
+        "text": "The load current only, since voltage rises with load in every generator"
       },
       {
         "id": "d",
-        "text": "Its speed of rotation only, since the field is fixed"
+        "text": "The field flux only, since speed has no effect on induced EMF"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Induced EMF is proportional to the rate at which the armature conductors cut flux — so to both speed and flux. Engine speed varies widely, so voltage is held constant by adjusting the flux through the field current.",
     "tags": [
       "dc-generator",
@@ -74,22 +74,22 @@
     "options": [
       {
         "id": "a",
-        "text": "In parallel with the armature, with its current varied to control voltage"
-      },
-      {
-        "id": "b",
-        "text": "Connected in series with the load, after the reverse current cut-out"
-      },
-      {
-        "id": "c",
         "text": "Connected in series with the armature, so it carries the full load current"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "Supplied from a separate permanent magnet machine, never from the armature"
+      },
+      {
+        "id": "c",
+        "text": "In parallel with the armature, with its current varied to control voltage"
+      },
+      {
+        "id": "d",
+        "text": "Connected in series with the load, after the reverse current cut-out"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "A shunt field carries only a small current and its strength can be varied independently of load, which makes voltage regulation straightforward. A series generator's voltage rises with load, which makes it unsuitable for supplying a busbar.",
     "tags": [
       "dc-generator",
@@ -111,18 +111,18 @@
       },
       {
         "id": "b",
-        "text": "Disconnecting the generator from the bus until the speed falls again"
+        "text": "Inserting resistance in series with the armature output"
       },
       {
         "id": "c",
-        "text": "Reducing the current in the field winding, so the flux is weaker"
+        "text": "Disconnecting the generator from the bus until the speed falls again"
       },
       {
         "id": "d",
-        "text": "Inserting resistance in series with the armature output"
+        "text": "Reducing the current in the field winding, so the flux is weaker"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "A faster armature would produce more EMF from the same flux. The regulator compensates by cutting field current. At low speed it does the opposite, up to the point where full field current is not enough — below that speed the generator cannot maintain bus voltage.",
     "tags": [
       "voltage-regulator",
@@ -140,11 +140,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Switching the field current on and off thousands of times per second with transistors"
+        "text": "Changing the number of turns in the field winding through a selector"
       },
       {
         "id": "b",
-        "text": "Changing the number of turns in the field winding through a selector"
+        "text": "Varying the pressure, and so the resistance, of a carbon disc stack in the field circuit"
       },
       {
         "id": "c",
@@ -152,10 +152,10 @@
       },
       {
         "id": "d",
-        "text": "Varying the pressure, and so the resistance, of a carbon disc stack in the field circuit"
+        "text": "Switching the field current on and off thousands of times per second with transistors"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "A spring compresses the carbon stack, lowering its resistance; an electromagnet sensing generator voltage opposes the spring. If voltage rises, the electromagnet relieves the pressure, resistance rises and field current falls. Modern regulators do the same job electronically.",
     "tags": [
       "voltage-regulator",
@@ -177,18 +177,18 @@
       },
       {
         "id": "b",
-        "text": "The generator voltage falls below the battery voltage"
+        "text": "The generator voltage just exceeds the bus voltage"
       },
       {
         "id": "c",
-        "text": "The generator voltage just exceeds the bus voltage"
+        "text": "The generator voltage falls below the battery voltage"
       },
       {
         "id": "d",
         "text": "The load current exceeds the generator's rated output"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Connecting a generator with a lower voltage than the bus would make it draw current. The cut-out therefore waits until generator voltage exceeds bus voltage, so that current flows outward from the start.",
     "tags": [
       "rcco",
@@ -206,7 +206,7 @@
     "options": [
       {
         "id": "a",
-        "text": "The generator voltage would rise to compensate for the lower speed"
+        "text": "The generator would continue to charge the battery at a reduced rate"
       },
       {
         "id": "b",
@@ -214,14 +214,14 @@
       },
       {
         "id": "c",
-        "text": "The battery would discharge into the generator, trying to drive it as a motor"
+        "text": "The generator voltage would rise to compensate for the lower speed"
       },
       {
         "id": "d",
-        "text": "The generator would continue to charge the battery at a reduced rate"
+        "text": "The battery would discharge into the generator, trying to drive it as a motor"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "A DC machine is reversible. With its EMF below the battery's, current would flow from the battery into the armature, discharging the battery and possibly damaging the generator. The RCCO senses that reverse current and disconnects the generator.",
     "tags": [
       "rcco",
@@ -239,22 +239,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Its voltage is always higher than the battery's, whatever the engine speed"
-      },
-      {
-        "id": "b",
         "text": "Its rectifier diodes stop current flowing back into it from the battery"
       },
       {
+        "id": "b",
+        "text": "The battery switch disconnects it automatically when the engine stops"
+      },
+      {
         "id": "c",
-        "text": "Its field is a permanent magnet, so it cannot be motored"
+        "text": "Its voltage is always higher than the battery's, whatever the engine speed"
       },
       {
         "id": "d",
-        "text": "The battery switch disconnects it automatically when the engine stops"
+        "text": "Its field is a permanent magnet, so it cannot be motored"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "The output of an alternator passes through its rectifier bridge. A diode will not conduct in reverse, so when alternator output falls below battery voltage, no current flows back — the diodes do the cut-out's job.",
     "tags": [
       "alternator",
@@ -273,11 +273,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Is on the stator, and the output is taken from the rotor through a commutator"
+        "text": "Is a permanent magnet, so no field current is ever needed"
       },
       {
         "id": "b",
-        "text": "Is in series with the output, so it carries the full load current"
+        "text": "Is on the stator, and the output is taken from the rotor through a commutator"
       },
       {
         "id": "c",
@@ -285,7 +285,7 @@
       },
       {
         "id": "d",
-        "text": "Is a permanent magnet, so no field current is ever needed"
+        "text": "Is in series with the output, so it carries the full load current"
       }
     ],
     "correct": "c",
@@ -306,22 +306,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Fail to produce output, because its field needs battery voltage to be excited"
-      },
-      {
-        "id": "b",
         "text": "Run as a motor and stall the engine"
       },
       {
+        "id": "b",
+        "text": "Fail to produce output, because its field needs battery voltage to be excited"
+      },
+      {
         "id": "c",
-        "text": "Produce normal output and recharge the battery straight away"
+        "text": "Produce excessive voltage, because there is no battery load to regulate against"
       },
       {
         "id": "d",
-        "text": "Produce excessive voltage, because there is no battery load to regulate against"
+        "text": "Produce normal output and recharge the battery straight away"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Unlike a self-excited DC generator with residual magnetism, most aircraft alternators rely on the battery to energise their rotor field. With no battery voltage there is no field and no output. This is one reason a dead battery should be investigated, not simply bypassed.",
     "tags": [
       "alternator",
@@ -340,7 +340,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Can recharge a completely flat battery without external help"
+        "text": "Needs no voltage regulator, because its output is fixed by its design"
       },
       {
         "id": "b",
@@ -348,7 +348,7 @@
       },
       {
         "id": "c",
-        "text": "Needs no voltage regulator, because its output is fixed by its design"
+        "text": "Can recharge a completely flat battery without external help"
       },
       {
         "id": "d",
@@ -381,11 +381,11 @@
       },
       {
         "id": "c",
-        "text": "Connect the battery in parallel to absorb the excess voltage"
+        "text": "Increase the load on the generator until the voltage falls back"
       },
       {
         "id": "d",
-        "text": "Increase the load on the generator until the voltage falls back"
+        "text": "Connect the battery in parallel to absorb the excess voltage"
       }
     ],
     "correct": "b",
@@ -410,18 +410,18 @@
       },
       {
         "id": "b",
-        "text": "An equalising circuit that trims each generator's field excitation"
+        "text": "Connecting both field windings in series across the battery"
       },
       {
         "id": "c",
-        "text": "Inserting a fixed resistor in each generator's output line"
+        "text": "An equalising circuit that trims each generator's field excitation"
       },
       {
         "id": "d",
-        "text": "Connecting both field windings in series across the battery"
+        "text": "Inserting a fixed resistor in each generator's output line"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Even a small voltage difference makes the higher-voltage generator take most of the load. An equalising (load-sharing) loop compares the generators' currents and trims each regulator, raising the field of the lightly loaded one and lowering that of the heavily loaded one.",
     "tags": [
       "paralleling",
@@ -439,22 +439,22 @@
     "options": [
       {
         "id": "a",
-        "text": "One of their reverse current cut-outs has opened"
-      },
-      {
-        "id": "b",
-        "text": "They are rotating in opposite directions"
-      },
-      {
-        "id": "c",
         "text": "Their output frequencies are different"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "Their regulated output voltages are slightly different"
+      },
+      {
+        "id": "c",
+        "text": "One of their reverse current cut-outs has opened"
+      },
+      {
+        "id": "d",
+        "text": "They are rotating in opposite directions"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Because generator internal resistance is very low, a fraction of a volt difference produces a large difference in current. DC machines have no frequency to match; an opened cut-out would put the whole load on the other generator.",
     "tags": [
       "paralleling",
@@ -472,7 +472,7 @@
     "options": [
       {
         "id": "a",
-        "text": "A generator with a separate starter motor sharing the same drive shaft"
+        "text": "One DC machine that motors the engine to start, then generates"
       },
       {
         "id": "b",
@@ -480,14 +480,14 @@
       },
       {
         "id": "c",
-        "text": "One DC machine that motors the engine to start, then generates"
+        "text": "A generator with a separate starter motor sharing the same drive shaft"
       },
       {
         "id": "d",
         "text": "An AC generator that is started by a small DC motor on its end"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Using one machine for both jobs saves weight. During the start it is supplied from the battery or ground power (often with a series winding for high torque); once the engine is self-sustaining it switches to generating, controlled by a regulator and a line contactor.",
     "tags": [
       "starter-generator"
@@ -504,7 +504,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Prevents any sparking at the commutator under all conditions"
+        "text": "Has the lowest resistance of any conducting material available"
       },
       {
         "id": "b",
@@ -512,14 +512,14 @@
       },
       {
         "id": "c",
-        "text": "Is self-lubricating and wears instead of the copper commutator"
+        "text": "Prevents any sparking at the commutator under all conditions"
       },
       {
         "id": "d",
-        "text": "Has the lowest resistance of any conducting material available"
+        "text": "Is self-lubricating and wears instead of the copper commutator"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "A softer, self-lubricating carbon brush rides on the commutator with little wear to the expensive copper segments, and the brushes themselves are the replaceable part. Brush wear increases in very dry air at altitude, an early problem for high-flying DC aircraft.",
     "tags": [
       "brushes",
@@ -537,22 +537,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Distortion of the main field by the armature current's own field"
-      },
-      {
-        "id": "b",
         "text": "The voltage drop across the brushes at high load"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "The mechanical vibration of the armature at high rotational speed"
+      },
+      {
+        "id": "c",
+        "text": "Distortion of the main field by the armature current's own field"
       },
       {
         "id": "d",
         "text": "The reverse current that flows when the generator is motored"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "The current in the armature conductors creates its own field, which twists the main field and shifts the neutral plane, causing sparking at the brushes. Interpoles or compensating windings, carrying the load current, are fitted to cancel it.",
     "tags": [
       "armature-reaction",
@@ -570,11 +570,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Momentarily short-circuiting the output to test the reverse current cut-out"
+        "text": "Briefly feeding the field from the battery to restore residual magnetism"
       },
       {
         "id": "b",
-        "text": "Applying a high voltage to the armature to clean the commutator"
+        "text": "Momentarily short-circuiting the output to test the reverse current cut-out"
       },
       {
         "id": "c",
@@ -582,10 +582,10 @@
       },
       {
         "id": "d",
-        "text": "Briefly feeding the field from the battery to restore residual magnetism"
+        "text": "Applying a high voltage to the armature to clean the commutator"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "A self-excited generator needs residual magnetism in its poles to start building voltage. If it has been lost (by heat, shock or reverse polarity), a short pulse of current from the battery in the correct polarity restores it.",
     "tags": [
       "field-flashing",
@@ -603,7 +603,7 @@
     "options": [
       {
         "id": "a",
-        "text": "So that the battery supplies part of the load in normal flight"
+        "text": "Because 28 V is the voltage at which the reverse current cut-out opens"
       },
       {
         "id": "b",
@@ -611,7 +611,7 @@
       },
       {
         "id": "c",
-        "text": "Because 28 V is the voltage at which the reverse current cut-out opens"
+        "text": "So that the battery supplies part of the load in normal flight"
       },
       {
         "id": "d",
@@ -636,22 +636,22 @@
     "options": [
       {
         "id": "a",
-        "text": "The battery is being overcharged and the alternator should be switched off"
-      },
-      {
-        "id": "b",
-        "text": "The alternator has stopped supplying the bus; the battery carries the load"
-      },
-      {
-        "id": "c",
         "text": "The alternator is supplying more than its rated current"
       },
       {
-        "id": "d",
+        "id": "b",
+        "text": "The battery is being overcharged and the alternator should be switched off"
+      },
+      {
+        "id": "c",
         "text": "The battery is fully charged and the alternator has stopped charging it"
+      },
+      {
+        "id": "d",
+        "text": "The alternator has stopped supplying the bus; the battery carries the load"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "The light typically comes on when alternator output falls below bus voltage. From then on the battery alone supplies everything, and its endurance is limited — the time to reduce load and plan a landing.",
     "tags": [
       "alternator",
@@ -669,22 +669,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Its field winding is supplied from a separate battery at all times"
-      },
-      {
-        "id": "b",
         "text": "Its field is provided by permanent magnets, with no winding"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "It is driven by its own electric motor rather than by the engine"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Its field winding is supplied from its own armature output"
+      },
+      {
+        "id": "d",
+        "text": "Its field winding is supplied from a separate battery at all times"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Self-excitation means the generator feeds its own field. A separately excited machine takes field current from an outside source. Most aircraft DC generators are self-excited shunt machines that rely on residual magnetism to begin building up.",
     "tags": [
       "dc-generator",
@@ -706,15 +706,15 @@
       },
       {
         "id": "b",
-        "text": "Its output is alternating rather than direct current"
-      },
-      {
-        "id": "c",
         "text": "It cannot produce any output until it is fully loaded"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Its field winding carries no current, so it has no means of excitation"
+      },
+      {
+        "id": "d",
+        "text": "Its output is alternating rather than direct current"
       }
     ],
     "correct": "a",
@@ -739,15 +739,15 @@
       },
       {
         "id": "b",
-        "text": "A rheostat in series with the three-phase stator output"
+        "text": "A constant speed drive between the engine and the alternator"
       },
       {
         "id": "c",
-        "text": "The rectifier diodes, which block any voltage above 14 V"
+        "text": "A rheostat in series with the three-phase stator output"
       },
       {
         "id": "d",
-        "text": "A constant speed drive between the engine and the alternator"
+        "text": "The rectifier diodes, which block any voltage above 14 V"
       }
     ],
     "correct": "a",
@@ -768,27 +768,60 @@
     "options": [
       {
         "id": "a",
-        "text": "A normal recharge of the battery after engine start"
+        "text": "An overvoltage condition caused by a failed voltage regulator"
       },
       {
         "id": "b",
-        "text": "A short circuit in the landing light, which has lowered the bus voltage"
-      },
-      {
-        "id": "c",
         "text": "Failure of the alternator, with the battery taking the load"
       },
       {
+        "id": "c",
+        "text": "A normal recharge of the battery after engine start"
+      },
+      {
         "id": "d",
-        "text": "An overvoltage condition caused by a failed voltage regulator"
+        "text": "A short circuit in the landing light, which has lowered the bus voltage"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "A regulator stuck at full field drives the alternator voltage well above normal: the battery is charged hard (high ammeter reading) and lamps burn brightly. If an overvoltage relay is fitted it should trip the alternator; otherwise the alternator side of the master switch is turned off.",
     "tags": [
       "overvoltage",
       "alternator",
       "ammeter"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-DCGEN-0025",
+    "subjectCode": "ELEC",
+    "topic": "DC Generators and Alternators",
+    "subtopic": "Induction",
+    "question": "The EMF induced in a generator's armature can be increased by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Moving the conductors parallel to the lines of flux"
+      },
+      {
+        "id": "b",
+        "text": "Increasing the resistance of the armature winding"
+      },
+      {
+        "id": "c",
+        "text": "Turning it slower, so each conductor stays longer in the field"
+      },
+      {
+        "id": "d",
+        "text": "Turning it faster, using a stronger field, or adding more turns"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The induced EMF depends on how fast flux is cut: more speed, more flux density, or more turns cutting it all raise the voltage. Moving parallel to the flux cuts none at all.",
+    "tags": [
+      "induction",
+      "generator"
     ],
     "status": "published",
     "version": 1

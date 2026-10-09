@@ -41,22 +41,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Magnetises easily and loses nearly all of it when the current stops"
-      },
-      {
-        "id": "b",
         "text": "Retains a strong magnetism indefinitely once it has been magnetised"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Cannot be magnetised at all, so it does not interfere with the coil's field"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Has a very high electrical resistance, so no current flows in it"
+      },
+      {
+        "id": "d",
+        "text": "Magnetises easily and loses nearly all of it when the current stops"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Soft iron has a high permeability (it concentrates flux well) and a low retentivity (it gives that flux up when the current stops). A relay must release when de-energised — a core that stayed magnetised would hold the armature in.",
     "tags": [
       "magnetism",
@@ -112,18 +112,18 @@
       },
       {
         "id": "b",
-        "text": "Opposition to magnetic flux, the magnetic equivalent of resistance"
+        "text": "The loss of magnetism when a material is heated above a critical temperature"
       },
       {
         "id": "c",
-        "text": "The loss of magnetism when a material is heated above a critical temperature"
+        "text": "Opposition to magnetic flux, the magnetic equivalent of resistance"
       },
       {
         "id": "d",
         "text": "The magnetising force produced by a coil, comparable to electromotive force"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Flux = magnetomotive force / reluctance, the magnetic equivalent of Ohm's law. Air has a very high reluctance compared with iron, which is why even a small air gap in a relay's magnetic circuit greatly weakens its pull.",
     "tags": [
       "magnetism",
@@ -440,22 +440,22 @@
     "options": [
       {
         "id": "a",
-        "text": "At 45° to the lines of flux"
+        "text": "At right angles to the lines of flux"
       },
       {
         "id": "b",
-        "text": "In any direction, since the EMF does not depend on direction"
+        "text": "At 45° to the lines of flux"
       },
       {
         "id": "c",
-        "text": "Parallel to the lines of flux"
+        "text": "In any direction, since the EMF does not depend on direction"
       },
       {
         "id": "d",
-        "text": "At right angles to the lines of flux"
+        "text": "Parallel to the lines of flux"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "The EMF depends on the rate at which the conductor cuts flux. Moving perpendicular cuts the most lines per second; moving parallel cuts none and induces nothing. This is why a rotating generator coil produces a sine wave.",
     "tags": [
       "induction",
@@ -611,18 +611,18 @@
       },
       {
         "id": "b",
-        "text": "By friction in the bearings and windage of the rotor"
+        "text": "In reversing the core's magnetisation every cycle"
       },
       {
         "id": "c",
-        "text": "As heat in the resistance of the copper windings"
+        "text": "By friction in the bearings and windage of the rotor"
       },
       {
         "id": "d",
-        "text": "In reversing the core's magnetisation every cycle"
+        "text": "As heat in the resistance of the copper windings"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Each reversal of the field must realign the core's magnetic domains, and some energy is lost as heat each time. The loss rises with frequency and is minimised by using a material with a narrow hysteresis loop, such as silicon steel.",
     "tags": [
       "hysteresis",
@@ -640,22 +640,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Rises gradually, held back by the coil's back-EMF"
-      },
-      {
-        "id": "b",
         "text": "Jumps instantly to its final value and then stays there"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Alternates at a frequency set by the inductance"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Rises instantly to a peak and then decays to zero"
+      },
+      {
+        "id": "d",
+        "text": "Rises gradually, held back by the coil's back-EMF"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The back-EMF of self-induction opposes the rising current, so it builds up exponentially with a time constant L/R. Once steady, only the coil's resistance limits the current. A capacitor is the opposite case: current is greatest at switch-on and decays.",
     "tags": [
       "inductors",
@@ -673,22 +673,22 @@
     "options": [
       {
         "id": "a",
-        "text": "Mounting it next to a permanent magnet of opposite polarity"
+        "text": "A soft magnetic case that diverts the flux around it"
       },
       {
         "id": "b",
-        "text": "Wrapping it in copper braid connected to the battery positive"
+        "text": "Mounting it next to a permanent magnet of opposite polarity"
       },
       {
         "id": "c",
-        "text": "A soft magnetic case that diverts the flux around it"
+        "text": "Wrapping it in copper braid connected to the battery positive"
       },
       {
         "id": "d",
         "text": "Enclosing it in a plastic case, which magnetic flux cannot pass through"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Flux follows the path of least reluctance. A soft-iron or mu-metal shield gives the flux an easy route around the instrument instead of through it. Non-magnetic materials such as plastic or aluminium have essentially no effect on a steady magnetic field.",
     "tags": [
       "screening",
@@ -726,6 +726,39 @@
     "tags": [
       "residual-magnetism",
       "generator"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "ELEC-MAG-0023",
+    "subjectCode": "ELEC",
+    "topic": "Magnetism and Electromagnetism",
+    "subtopic": "Magnets",
+    "question": "A permanent magnet can lose its magnetism if it is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Kept away from all other magnets and iron for a long period"
+      },
+      {
+        "id": "b",
+        "text": "Placed in a coil carrying a steady direct current in the same sense"
+      },
+      {
+        "id": "c",
+        "text": "Heated, hammered, or placed in a coil carrying alternating current"
+      },
+      {
+        "id": "d",
+        "text": "Cooled, stored with its poles bridged by a soft-iron keeper"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Heat, shock and an alternating field all disturb the alignment of the material's magnetic domains. A keeper and a steady field in the same sense help a magnet keep its strength rather than lose it.",
+    "tags": [
+      "magnetism",
+      "demagnetising"
     ],
     "status": "published",
     "version": 1
