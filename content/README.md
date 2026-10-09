@@ -880,43 +880,65 @@ It is a type rating aircraft, so it lives in `content/a320/` beside `b737/`;
 adding it touched no application code beyond the study guide's hand-kept set in
 `src/lib/study-guide.ts`.
 
-**Where it came from, honestly.** The owner supplied a third-party A319/A320/A321
-*Air Cond – Press – Vent* training PDF (132 pages of scanned images, copy
-protected, carrying a training-website's branding and Airbus's drawings) and asked
-for questions and its diagrams. Those drawings and that text are someone else's
-copyright, and the same boundary POF and HPL drew applies: **nothing was
-transcribed from that PDF, and none of its drawings were copied.** Every question,
-explanation and study-guide paragraph was written from general knowledge of the
-A320 family's systems, and the two diagrams in the guide are original, simplified
-schematics. The PDF was only used to confirm the chapter's scope. The bank has
-**not been checked against an FCOM or by a type rating instructor**; it should be
-before a student relies on it for an examination. A student-facing line in the
-guide says as much.
+**Where it came from, honestly.** The owner first supplied a third-party
+A319/A320/A321 *Air Cond – Press – Vent* training PDF (132 pages of scanned
+images, copy protected, carrying a training website's branding and Airbus's
+drawings) and asked for questions and its diagrams. That material is someone
+else's copyright, so **nothing was transcribed from it and none of its drawings
+were copied** — the same boundary POF and HPL drew. The owner then asked for a
+bank built from **open online sources a reader can check**, one unique fact per
+question, which the owner will review.
 
-271 questions, all published, in fourteen sections (one file each). The three
-sections the owner started from — Air Conditioning, Pressurization and
-Ventilation — are the fullest. Topic codes are `COND`, `PRESS`, `VENT`, `PNEU`,
-`ELEC`, `HYD`, `FUEL`, `FCTL`, `GEAR`, `FIRE`, `ENG`, `ICE`, `INST` and `AFS`.
+The bank was rebuilt on that basis from the **FlyByWire A32NX documentation**
+(`docs.flybywiresim.com`, the public documentation of an open-source A320
+simulation, which describes each cockpit panel, ECAM page and protection in
+detail). Every question's `reference` field is the URL of the page its fact was
+checked against, so a reader can open it from the result screen. Questions and
+explanations are written in this bank's own words; the docs' panel-by-panel
+facts (thresholds, logic, colours) are what was taken. Two cautions follow:
 
-| File | Section | Questions |
-|---|---|---|
-| `air-conditioning.json` | Air Conditioning | 35 |
-| `pressurization.json` | Pressurization | 29 |
-| `ventilation.json` | Ventilation | 17 |
-| `pneumatic.json` | Pneumatic | 19 |
-| `electrical.json` | Electrical | 25 |
-| `hydraulics.json` | Hydraulics | 16 |
-| `fuel.json` | Fuel | 18 |
-| `flight-controls.json` | Flight Controls | 22 |
-| `landing-gear-and-brakes.json` | Landing Gear and Brakes | 17 |
-| `fire-protection.json` | Fire Protection | 13 |
-| `apu-and-engines.json` | APU and Engines | 18 |
-| `ice-and-rain-protection.json` | Ice and Rain Protection | 9 |
-| `instruments-and-warnings.json` | Instruments and Warnings | 19 |
-| `automatic-flight.json` | Automatic Flight | 14 |
+- **The source documents an A320neo simulation.** Where a fact is specific to
+  the neo (LEAP engines, centre-tank jet pumps, the N1/N2 red lines), the
+  question says so. Others can differ on a given airframe or operator, so the
+  owner's review against an FCOM is still the last word.
+- **Simulator-only details were left out** — anything the docs mark as an
+  MSFS limitation, the flyPad, or sim-specific behaviour.
 
-The correct answer is spread across A–D (70 / 63 / 70 / 68). Figures that vary by
-aircraft standard or operator (pack-flow percentages, ECAM thresholds, the
-reservoir and bleed pressures) are quoted as typical values and should be
-confirmed against the operator's FCOM. The study guide is
-`public/a320-study-guide.html`.
+**One fact, one question.** The generator refuses two questions with the same
+fact key, and a cross-check of identical correct answers was used to catch the
+same fact asked twice in different chapters (three such pairs were found and
+removed or re-aimed). Two places where the source contradicts itself were
+avoided rather than guessed: the windshear window's start after lift-off (3 s on
+one page, 5 s on another — the question asks only for the 1 300 ft upper
+limit), and an ambiguous APU fuel valve colour row.
+
+751 questions, all published, in 21 sections (one file each):
+
+| File | Section | Code | Questions |
+|---|---|---|---|
+| `air-conditioning.json` | Air Conditioning | COND | 33 |
+| `pressurization.json` | Pressurization | PRESS | 31 |
+| `ventilation.json` | Ventilation | VENT | 16 |
+| `pneumatic.json` | Pneumatic | PNEU | 29 |
+| `electrical.json` | Electrical | ELEC | 52 |
+| `hydraulics.json` | Hydraulics | HYD | 28 |
+| `fuel.json` | Fuel | FUEL | 27 |
+| `flight-controls.json` | Flight Controls | FCTL | 84 |
+| `landing-gear-and-brakes.json` | Landing Gear and Brakes | GEAR | 37 |
+| `fire-protection.json` | Fire Protection | FIRE | 22 |
+| `apu.json` | APU | APU | 20 |
+| `engines.json` | Engines | ENG | 34 |
+| `ice-and-rain-protection.json` | Ice and Rain Protection | ICE | 39 |
+| `navigation-and-instruments.json` | Navigation and Instruments | NAV | 46 |
+| `automatic-flight.json` | Automatic Flight | AFS | 56 |
+| `ecam-and-warnings.json` | ECAM and Warnings | ECAM | 39 |
+| `lights-oxygen-and-emergency.json` | Lights, Oxygen and Emergency Equipment | EMER | 31 |
+| `primary-flight-display.json` | Primary Flight Display | PFD | 47 |
+| `communications.json` | Communications | COM | 22 |
+| `autoland-and-rejected-take-off.json` | Autoland and Rejected Take-off | OPS | 26 |
+| `flight-management.json` | Flight Management (MCDU) | FMS | 32 |
+
+The correct answer is spread across A–D (188 / 190 / 187 / 186). The study guide is
+`public/a320-study-guide.html`: an introduction per section, every fact grouped
+by subtopic, the section's source pages as links, and two original, simplified
+schematics (air conditioning and pressurization).

@@ -2261,14 +2261,12 @@ published. See the note on the HPL bank in `content/README.md`, and
   record of where the topic structure came from. It should be reviewed by
   a qualified instructor before a student relies on it for a real exam.
   See the note on the HPL bank in `content/README.md`.
-- **The A320 bank (type rating, 271 questions) was authored by the assistant
-  from general knowledge, not transcribed from the third-party A319/A320/A321
-  training PDF the owner supplied, and not checked against an FCOM.** That PDF is
-  copyright-protected scanned material with another site's branding and Airbus
-  drawings, so neither its text nor its drawings were reproduced; the two
-  diagrams in `public/a320-study-guide.html` are original. It needs review by a
-  type rating instructor before a student relies on it. See "The A320 bank" in
-  `content/README.md`.
+- **The A320 bank (type rating, 751 questions) is checked against open
+  sources, not against an FCOM.** Each question's `reference` links the public
+  FlyByWire A32NX documentation page its fact came from (an A320neo simulation's
+  docs); nothing was transcribed from the copy-protected third-party PDF the
+  owner first supplied, and its drawings were not reproduced. The owner is
+  reviewing it. See "The A320 bank" in `content/README.md`.
 - **Twenty-six B737 questions turn on a figure nobody has confirmed twice.** The
   bank's wrong options were rewritten so a question cannot be answered by
   elimination alone, and that pass deliberately left every uncorroborated number

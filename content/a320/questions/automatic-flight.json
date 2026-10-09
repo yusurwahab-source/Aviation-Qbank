@@ -3,28 +3,29 @@
     "id": "A320-AFS-0001",
     "aircraft": "A320",
     "topic": "Automatic Flight",
-    "subtopic": "FMGS",
-    "question": "What does the FMGS consist of?",
+    "subtopic": "FCU",
+    "question": "What is the FCU's role?",
     "options": [
       {
         "id": "a",
-        "text": "One FMGC and two MCDUs only"
+        "text": "Entering the flight plan and performance data"
       },
       {
         "id": "b",
-        "text": "Three FMGCs"
+        "text": "Controlling the flight control computers directly"
       },
       {
         "id": "c",
-        "text": "Two FMGCs, two MCDUs and a FCU, with the FADs and the autopilot and autothrust functions"
+        "text": "The short-term interface between the crew and the FMGC for engaging AP/FD/A/THR, selecting modes and setting targets"
       },
       {
         "id": "d",
-        "text": "A GPS and a flight data recorder"
+        "text": "Selecting radio frequencies"
       }
     ],
     "correct": "c",
-    "explanation": "The FMGS combines flight management and flight guidance. The two FMGCs are synchronised.",
+    "explanation": "Long-term inputs (flight plan, performance) go through the MCDU.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
     "status": "published",
     "version": 1
   },
@@ -33,27 +34,28 @@
     "aircraft": "A320",
     "topic": "Automatic Flight",
     "subtopic": "FCU",
-    "question": "What is the function of the FCU?",
+    "question": "How does an FCU window show that its parameter is managed?",
     "options": [
       {
         "id": "a",
-        "text": "It is the interface for selecting speed, heading, altitude and vertical speed for the autopilot"
+        "text": "Three dashes and a dot"
       },
       {
         "id": "b",
-        "text": "It controls the fuel"
+        "text": "The value in green"
       },
       {
         "id": "c",
-        "text": "It controls the cabin temperature"
+        "text": "A flashing value"
       },
       {
         "id": "d",
-        "text": "It controls the engines"
+        "text": "The letters MAN"
       }
     ],
     "correct": "a",
-    "explanation": "The FCU is on the glareshield. The pilot sets targets there and selects managed or selected mode with the knobs.",
+    "explanation": "In selected mode it shows the selected value and no dot.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
     "status": "published",
     "version": 1
   },
@@ -62,27 +64,28 @@
     "aircraft": "A320",
     "topic": "Automatic Flight",
     "subtopic": "FCU",
-    "question": "What is the difference between managed and selected mode?",
+    "question": "What does the FCU altitude window always show?",
     "options": [
       {
         "id": "a",
-        "text": "Managed is manual, selected is automatic"
+        "text": "Dashes in managed mode"
       },
       {
         "id": "b",
-        "text": "Managed is used on the ground only"
+        "text": "The current altitude"
       },
       {
         "id": "c",
-        "text": "There is no difference"
+        "text": "The cruise flight level"
       },
       {
         "id": "d",
-        "text": "Managed follows the FMGS flight plan and targets; selected follows the values set by the pilot on the FCU"
+        "text": "An altitude selected by the pilot, never dashes (the dot means managed altitude)"
       }
     ],
     "correct": "d",
-    "explanation": "The knobs are pushed to engage managed mode and pulled to engage selected mode.",
+    "explanation": "Unlike the other windows, ALT never dashes.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
     "status": "published",
     "version": 1
   },
@@ -91,27 +94,28 @@
     "aircraft": "A320",
     "topic": "Automatic Flight",
     "subtopic": "FCU",
-    "question": "How is selected mode engaged for altitude, speed or heading on the FCU?",
+    "question": "What does pushing an FCU knob (SPD, HDG, ALT or V/S) do?",
     "options": [
       {
         "id": "a",
-        "text": "By pushing the knob"
+        "text": "Engages the selected value"
       },
       {
         "id": "b",
-        "text": "By pulling the knob"
+        "text": "Gives the corresponding mode to the FMGS to manage"
       },
       {
         "id": "c",
-        "text": "By turning the knob"
+        "text": "Levels off the aircraft"
       },
       {
         "id": "d",
-        "text": "By pressing the AP button"
+        "text": "Disconnects the autopilot"
       }
     ],
     "correct": "b",
-    "explanation": "Push means managed, pull means selected. This applies to speed, heading and altitude (vertical speed) knobs.",
+    "explanation": "Push = managed, pull = selected, turn = change the value.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
     "status": "published",
     "version": 1
   },
@@ -119,28 +123,29 @@
     "id": "A320-AFS-0005",
     "aircraft": "A320",
     "topic": "Automatic Flight",
-    "subtopic": "Autopilot",
-    "question": "How many autopilots does the A320 have, and how many can be engaged together?",
+    "subtopic": "FCU",
+    "question": "What does pulling an FCU knob do?",
     "options": [
       {
         "id": "a",
-        "text": "One; always only one"
+        "text": "Hands the mode to the FMGS"
       },
       {
         "id": "b",
-        "text": "Two; both are engaged only in the approach and landing modes"
+        "text": "Uses the crew-selected value for that mode"
       },
       {
         "id": "c",
-        "text": "Three; all three together"
+        "text": "Arms the approach mode"
       },
       {
         "id": "d",
-        "text": "Two; both engaged all the time"
+        "text": "Resets the value to default"
       }
     ],
     "correct": "b",
-    "explanation": "Normally only one is engaged. Both are engaged for an autoland, giving redundancy.",
+    "explanation": "Pull = selected.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
     "status": "published",
     "version": 1
   },
@@ -148,28 +153,29 @@
     "id": "A320-AFS-0006",
     "aircraft": "A320",
     "topic": "Automatic Flight",
-    "subtopic": "Autopilot",
-    "question": "What is the purpose of the flight director (FD)?",
+    "subtopic": "FCU",
+    "question": "In managed lateral mode, how long does a heading pre-selected by turning the HDG knob remain displayed before the dashes return?",
     "options": [
       {
         "id": "a",
-        "text": "To control the engines"
+        "text": "10 seconds"
       },
       {
         "id": "b",
-        "text": "To control the flaps"
+        "text": "20 seconds"
       },
       {
         "id": "c",
-        "text": "To control the fuel"
+        "text": "60 seconds"
       },
       {
         "id": "d",
-        "text": "To display guidance commands on the PFD for the pilot to follow, whether the autopilot is engaged or not"
+        "text": "45 seconds"
       }
     ],
     "correct": "d",
-    "explanation": "Flight director bars show the attitude to follow to meet the target. They can be followed manually.",
+    "explanation": "The same 45 s applies to the V/S window; the SPD/MACH window shows a pre-selection for 10 s.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
     "status": "published",
     "version": 1
   },
@@ -177,28 +183,29 @@
     "id": "A320-AFS-0007",
     "aircraft": "A320",
     "topic": "Automatic Flight",
-    "subtopic": "Autothrust",
-    "question": "What does the autothrust (A/THR) system do?",
+    "subtopic": "FCU",
+    "question": "In managed speed, how long does a speed pre-selected on the SPD/MACH knob remain displayed before the dashes return?",
     "options": [
       {
         "id": "a",
-        "text": "It controls engine thrust to hold a speed or thrust target, with the thrust levers fixed"
+        "text": "10 seconds"
       },
       {
         "id": "b",
-        "text": "It moves the flaps"
+        "text": "5 seconds"
       },
       {
         "id": "c",
-        "text": "It controls the fuel pumps"
+        "text": "45 seconds"
       },
       {
         "id": "d",
-        "text": "It controls the brakes"
+        "text": "Until the knob is pulled"
       }
     ],
     "correct": "a",
-    "explanation": "A/THR is active in the ranges between idle and the thrust lever detent. The levers do not move with the thrust, as the A320 has fixed levers.",
+    "explanation": "The HDG/TRK and V/S windows show pre-selections for 45 s.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
     "status": "published",
     "version": 1
   },
@@ -206,28 +213,29 @@
     "id": "A320-AFS-0008",
     "aircraft": "A320",
     "topic": "Automatic Flight",
-    "subtopic": "Autothrust",
-    "question": "What happens to the thrust levers when the autothrust changes the thrust?",
+    "subtopic": "FCU",
+    "question": "What is the range of the FCU speed window?",
     "options": [
       {
         "id": "a",
-        "text": "They move to follow the thrust"
+        "text": "80 to 350 kt"
       },
       {
         "id": "b",
-        "text": "They lock"
+        "text": "100 to 340 kt"
       },
       {
         "id": "c",
-        "text": "They do not move, since the A320 thrust levers are not motorised"
+        "text": "100 to 399 kt (Mach 0.10 to 0.99)"
       },
       {
         "id": "d",
-        "text": "They are disconnected"
+        "text": "120 to 400 kt"
       }
     ],
     "correct": "c",
-    "explanation": "The thrust levers on the A320 stay in their detent: the pilot sets the detent to define the maximum thrust the A/THR can use.",
+    "explanation": "The SPD/MACH pushbutton toggles between speed and Mach targets.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
     "status": "published",
     "version": 1
   },
@@ -235,28 +243,29 @@
     "id": "A320-AFS-0009",
     "aircraft": "A320",
     "topic": "Automatic Flight",
-    "subtopic": "FMA",
-    "question": "Where are the active modes displayed?",
+    "subtopic": "FCU",
+    "question": "What is the range of the FCU altitude window?",
     "options": [
       {
         "id": "a",
-        "text": "On the ECAM"
+        "text": "0 to 39 800 ft"
       },
       {
         "id": "b",
-        "text": "On the FCU only"
+        "text": "1 000 to 41 000 ft"
       },
       {
         "id": "c",
-        "text": "On the ND"
+        "text": "100 to 45 000 ft"
       },
       {
         "id": "d",
-        "text": "On the flight mode annunciator (FMA) at the top of the PFD"
+        "text": "100 to 49 000 ft"
       }
     ],
     "correct": "d",
-    "explanation": "The FMA shows the autothrust, vertical, lateral, and approach capabilities and status of AP, FD and A/THR.",
+    "explanation": "The outer knob changes the step between 100 ft and 1 000 ft.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
     "status": "published",
     "version": 1
   },
@@ -264,28 +273,29 @@
     "id": "A320-AFS-0010",
     "aircraft": "A320",
     "topic": "Automatic Flight",
-    "subtopic": "FMA",
-    "question": "What does the FMA's first column show?",
+    "subtopic": "FCU",
+    "question": "What is the range of the FCU vertical speed window?",
     "options": [
       {
         "id": "a",
-        "text": "The vertical mode"
+        "text": "–4 000 to +4 000 ft/min"
       },
       {
         "id": "b",
-        "text": "The autothrust mode"
+        "text": "–6 000 to +6 000 ft/min"
       },
       {
         "id": "c",
-        "text": "The lateral mode"
+        "text": "–9 900 to +9 900 ft/min"
       },
       {
         "id": "d",
-        "text": "The approach capability"
+        "text": "–3 000 to +6 000 ft/min"
       }
     ],
     "correct": "b",
-    "explanation": "The columns are autothrust, vertical, lateral, and then approach capability and AP/FD/ATHR status.",
+    "explanation": "In FPA mode the range is –9.9° to +9.9°.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
     "status": "published",
     "version": 1
   },
@@ -293,28 +303,29 @@
     "id": "A320-AFS-0011",
     "aircraft": "A320",
     "topic": "Automatic Flight",
-    "subtopic": "Approach",
-    "question": "Which autoland approach capability category does the A320 achieve with two autopilots?",
+    "subtopic": "FCU",
+    "question": "What is the range of the FCU flight path angle (FPA) target?",
     "options": [
       {
         "id": "a",
-        "text": "CAT 1 only"
+        "text": "–5° to +5°"
       },
       {
         "id": "b",
-        "text": "None"
+        "text": "–15° to +15°"
       },
       {
         "id": "c",
-        "text": "CAT 3 (single or dual, depending on the aircraft's equipment)"
+        "text": "–9.9° to +9.9°"
       },
       {
         "id": "d",
-        "text": "CAT 2 only"
+        "text": "–3° to +10°"
       }
     ],
     "correct": "c",
-    "explanation": "The FMA shows CAT 3 SINGLE or CAT 3 DUAL, according to the redundancy available.",
+    "explanation": "FPA replaces V/S when TRK-FPA is selected.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
     "status": "published",
     "version": 1
   },
@@ -322,28 +333,29 @@
     "id": "A320-AFS-0012",
     "aircraft": "A320",
     "topic": "Automatic Flight",
-    "subtopic": "Autopilot",
-    "question": "How does the pilot disconnect the autopilot?",
+    "subtopic": "FCU",
+    "question": "What does pushing the V/S-FPA knob do?",
     "options": [
       {
         "id": "a",
-        "text": "By pressing the instinctive disconnect pushbutton on the sidestick"
+        "text": "Commands an immediate level off (V/S = 0)"
       },
       {
         "id": "b",
-        "text": "By moving the sidestick"
+        "text": "Engages managed descent"
       },
       {
         "id": "c",
-        "text": "By moving the flap lever"
+        "text": "Engages expedite"
       },
       {
         "id": "d",
-        "text": "By pulling the thrust levers"
+        "text": "Selects FPA"
       }
     ],
     "correct": "a",
-    "explanation": "A press on the sidestick disconnect pushbutton gives a cavalry charge and the red flashing AP OFF message. A second press cancels the warning.",
+    "explanation": "The FMA then shows V/S = 0.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
     "status": "published",
     "version": 1
   },
@@ -351,28 +363,29 @@
     "id": "A320-AFS-0013",
     "aircraft": "A320",
     "topic": "Automatic Flight",
-    "subtopic": "FMGS",
-    "question": "Which sources provide the aircraft's position to the FMGS?",
+    "subtopic": "FCU",
+    "question": "What does the HDG V/S - TRK FPA pushbutton change on the PFD?",
     "options": [
       {
         "id": "a",
-        "text": "IRS, GPS and radio navigation aids, combined by the FMGC"
+        "text": "It shows or removes the flight path vector and switches the FD crossbars to the flight path director"
       },
       {
         "id": "b",
-        "text": "The weather radar only"
+        "text": "It changes the ND mode"
       },
       {
         "id": "c",
-        "text": "The altimeter"
+        "text": "It changes the speed scale to Mach"
       },
       {
         "id": "d",
-        "text": "The radar altimeter"
+        "text": "It switches the PFD to the other pilot"
       }
     ],
     "correct": "a",
-    "explanation": "The FMGC computes a position from these, and the accuracy is displayed in the MCDU.",
+    "explanation": "It also changes the FCU windows between heading/track and V/S/FPA.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
     "status": "published",
     "version": 1
   },
@@ -380,28 +393,1289 @@
     "id": "A320-AFS-0014",
     "aircraft": "A320",
     "topic": "Automatic Flight",
-    "subtopic": "FMGS",
-    "question": "What does the MCDU allow the crew to do?",
+    "subtopic": "Autopilot",
+    "question": "What does a green light on an AP1 or AP2 pushbutton show?",
     "options": [
       {
         "id": "a",
-        "text": "Control the engines"
+        "text": "That autopilot is armed"
       },
       {
         "id": "b",
-        "text": "Select the flaps"
+        "text": "That autopilot has failed"
       },
       {
         "id": "c",
-        "text": "Enter and modify the flight plan, performance data and navigation settings of the FMGS"
+        "text": "That autopilot is engaged"
       },
       {
         "id": "d",
-        "text": "Control the hydraulics"
+        "text": "That autopilot is in approach mode"
       }
     ],
     "correct": "c",
-    "explanation": "The two MCDUs are used for all the FMGS inputs, the flight plan, performance and radio navigation.",
+    "explanation": "The lights are green when engaged.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0015",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Autopilot",
+    "question": "In normal procedures, how is the autopilot disengaged?",
+    "options": [
+      {
+        "id": "a",
+        "text": "With the AP pushbutton on the FCU"
+      },
+      {
+        "id": "b",
+        "text": "With the takeover pushbutton on the sidestick"
+      },
+      {
+        "id": "c",
+        "text": "By moving the thrust levers"
+      },
+      {
+        "id": "d",
+        "text": "By pressing the A/THR pushbutton"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The sidestick pushbutton gives only short warnings.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0016",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Autopilot",
+    "question": "How long does the cavalry charge last when the autopilot is disengaged with the sidestick takeover pushbutton?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 9 seconds"
+      },
+      {
+        "id": "b",
+        "text": "Continuously until cancelled"
+      },
+      {
+        "id": "c",
+        "text": "About 3 seconds"
+      },
+      {
+        "id": "d",
+        "text": "About 1.5 seconds"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The master warning lasts about 3 s and the red AP OFF message about 9 s.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0017",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Autopilot",
+    "question": "Which way of disengaging the autopilot gives continuous warnings with AUTO FLT AP OFF?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The sidestick takeover pushbutton"
+      },
+      {
+        "id": "b",
+        "text": "Landing"
+      },
+      {
+        "id": "c",
+        "text": "Pressing the AP pushbutton on the FCU, a failure, or a force on the sidestick"
+      },
+      {
+        "id": "d",
+        "text": "Selecting a new mode"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Only the takeover pushbutton gives the short, self-cancelling warnings.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0018",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Autothrust",
+    "question": "What does a green light on the FCU A/THR pushbutton show?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Autothrust is armed or active"
+      },
+      {
+        "id": "b",
+        "text": "Autothrust is disconnected"
+      },
+      {
+        "id": "c",
+        "text": "Alpha floor is active"
+      },
+      {
+        "id": "d",
+        "text": "Thrust is locked"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The FMA tells which: A/THR in blue is armed, in white active.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0019",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Autothrust",
+    "question": "In normal procedures, how is the autothrust disconnected?",
+    "options": [
+      {
+        "id": "a",
+        "text": "With the FCU A/THR pushbutton"
+      },
+      {
+        "id": "b",
+        "text": "With the sidestick takeover pushbutton"
+      },
+      {
+        "id": "c",
+        "text": "By selecting TOGA"
+      },
+      {
+        "id": "d",
+        "text": "With the instinctive disconnect pushbutton on the thrust levers, or by setting both levers to idle"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The FCU button is not the normal way of disconnecting.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0020",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Vertical modes",
+    "question": "What does the EXPED pushbutton do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Increases cruise speed"
+      },
+      {
+        "id": "b",
+        "text": "Climbs or descends to the selected altitude with the maximum vertical gradient"
+      },
+      {
+        "id": "c",
+        "text": "Arms the approach"
+      },
+      {
+        "id": "d",
+        "text": "Expedites the flight plan sequencing"
+      }
+    ],
+    "correct": "b",
+    "explanation": "It disregards speed and altitude constraints and the speed limit.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0021",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Vertical modes",
+    "question": "What target speed does EXP CLB use?",
+    "options": [
+      {
+        "id": "a",
+        "text": "VLS"
+      },
+      {
+        "id": "b",
+        "text": "Green dot"
+      },
+      {
+        "id": "c",
+        "text": "250 kt"
+      },
+      {
+        "id": "d",
+        "text": "The FCU speed"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Green dot is held with pitch; A/THR sets climb thrust.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/second-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0022",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Vertical modes",
+    "question": "What target speed does EXP DES use?",
+    "options": [
+      {
+        "id": "a",
+        "text": "VMO"
+      },
+      {
+        "id": "b",
+        "text": "Green dot"
+      },
+      {
+        "id": "c",
+        "text": "The managed descent speed"
+      },
+      {
+        "id": "d",
+        "text": "340 kt or Mach 0.8"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The speed is held with pitch while A/THR sets idle.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/second-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0023",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "FCU",
+    "question": "What does the METRIC ALT pushbutton do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Shows the altitude target in metres on the ECAM, and altitudes in metres on the PFD"
+      },
+      {
+        "id": "b",
+        "text": "Changes the baro unit to hPa"
+      },
+      {
+        "id": "c",
+        "text": "Changes the altitude step to 10 m"
+      },
+      {
+        "id": "d",
+        "text": "Changes the FCU window to flight levels"
+      }
+    ],
+    "correct": "a",
+    "explanation": "It helps in airspace that uses metric levels.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0024",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Approach",
+    "question": "If an ILS approach is in the flight plan, what modes does pressing APPR arm?",
+    "options": [
+      {
+        "id": "a",
+        "text": "APP NAV and FINAL"
+      },
+      {
+        "id": "b",
+        "text": "NAV and DES"
+      },
+      {
+        "id": "c",
+        "text": "LOC and G/S"
+      },
+      {
+        "id": "d",
+        "text": "LOC only"
+      }
+    ],
+    "correct": "c",
+    "explanation": "For a non-precision approach it arms APP NAV and FINAL.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0025",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Approach",
+    "question": "What does the LOC pushbutton do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Arms localizer and glideslope"
+      },
+      {
+        "id": "b",
+        "text": "Tunes the ILS"
+      },
+      {
+        "id": "c",
+        "text": "Displays the LS scales"
+      },
+      {
+        "id": "d",
+        "text": "Arms, engages or disengages localizer mode only"
+      }
+    ],
+    "correct": "d",
+    "explanation": "LOC alone is used for a localizer-only approach or to intercept before the glideslope.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/glareshield/fcu/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0026",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "FMA",
+    "question": "How many columns does the FMA have?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Three"
+      },
+      {
+        "id": "b",
+        "text": "Five"
+      },
+      {
+        "id": "c",
+        "text": "Four"
+      },
+      {
+        "id": "d",
+        "text": "Six"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Autothrust, vertical, lateral, approach capability and engagement status.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/fma/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0027",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "FMA",
+    "question": "On the FMA, what colour is an active mode?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Blue (cyan)"
+      },
+      {
+        "id": "b",
+        "text": "White"
+      },
+      {
+        "id": "c",
+        "text": "Green"
+      },
+      {
+        "id": "d",
+        "text": "Magenta"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Armed modes are cyan; a changed mode has a white box for 10 seconds.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/fma/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0028",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "FMA",
+    "question": "How long is a newly changed mode surrounded by a white box on the FMA?",
+    "options": [
+      {
+        "id": "a",
+        "text": "10 seconds"
+      },
+      {
+        "id": "b",
+        "text": "3 seconds"
+      },
+      {
+        "id": "c",
+        "text": "5 seconds"
+      },
+      {
+        "id": "d",
+        "text": "30 seconds"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The box draws the eye to the change.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/fma/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0029",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Autothrust modes",
+    "question": "When is MAN TOGA shown on the FMA?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When autothrust is armed and at least one thrust lever is in the TO/GA detent"
+      },
+      {
+        "id": "b",
+        "text": "When autothrust is active in TOGA"
+      },
+      {
+        "id": "c",
+        "text": "When alpha floor is active"
+      },
+      {
+        "id": "d",
+        "text": "After a go-around is completed"
+      }
+    ],
+    "correct": "a",
+    "explanation": "It is white in a white box: thrust is set manually by lever position.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/first-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0030",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Autothrust modes",
+    "question": "In MAN FLX XX, what does XX show?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The N1 target"
+      },
+      {
+        "id": "b",
+        "text": "The runway heading"
+      },
+      {
+        "id": "c",
+        "text": "The flex take-off temperature, in blue"
+      },
+      {
+        "id": "d",
+        "text": "The take-off flap setting"
+      }
+    ],
+    "correct": "c",
+    "explanation": "MAN FLX shows when a lever is at FLX/MCT with A/THR armed.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/first-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0031",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Autothrust modes",
+    "question": "When does MAN THR appear in an amber box?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When A/THR is disconnected"
+      },
+      {
+        "id": "b",
+        "text": "When A/THR is armed and the most forward lever is above the climb detent but not in a detent"
+      },
+      {
+        "id": "c",
+        "text": "When the levers are at idle"
+      },
+      {
+        "id": "d",
+        "text": "In alpha floor"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Thrust is set by a lever between detents.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/first-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0032",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Autothrust modes",
+    "question": "When is THR LVR shown?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When the levers are in TOGA"
+      },
+      {
+        "id": "b",
+        "text": "When autothrust is disconnected"
+      },
+      {
+        "id": "c",
+        "text": "When a lever is in reverse"
+      },
+      {
+        "id": "d",
+        "text": "When autothrust is in thrust mode with both levers below the climb detent"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Thrust is limited to the lever position.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/first-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0033",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Autothrust modes",
+    "question": "What does a flashing LVR CLB request?",
+    "options": [
+      {
+        "id": "a",
+        "text": "That the climb mode be engaged"
+      },
+      {
+        "id": "b",
+        "text": "That the pilots check the climb speed"
+      },
+      {
+        "id": "c",
+        "text": "That the pilots set the thrust levers to the climb detent"
+      },
+      {
+        "id": "d",
+        "text": "That flaps be retracted"
+      }
+    ],
+    "correct": "c",
+    "explanation": "It appears at the thrust reduction altitude after take-off.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/first-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0034",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Autothrust modes",
+    "question": "When does LVR ASYM appear in amber?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When one thrust lever is in the climb or FLX/MCT detent and the other is not (two engines)"
+      },
+      {
+        "id": "b",
+        "text": "When one engine has failed"
+      },
+      {
+        "id": "c",
+        "text": "When the levers are in reverse"
+      },
+      {
+        "id": "d",
+        "text": "When N1 differs between engines"
+      }
+    ],
+    "correct": "a",
+    "explanation": "It warns of thrust levers set in different detents.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/first-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0035",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Autothrust modes",
+    "question": "What does a flashing amber THR LK mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Thrust is locked at TOGA after alpha floor"
+      },
+      {
+        "id": "b",
+        "text": "The levers are jammed"
+      },
+      {
+        "id": "c",
+        "text": "Autothrust is armed"
+      },
+      {
+        "id": "d",
+        "text": "Autothrust has been disconnected and thrust is frozen at its last value"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Moving the thrust levers releases the lock.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/first-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0036",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Autothrust modes",
+    "question": "If the crew takes no action with THR LK displayed, what happens?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Autothrust re-engages after 10 seconds"
+      },
+      {
+        "id": "b",
+        "text": "The master caution flashes and a single chime sounds every 5 seconds"
+      },
+      {
+        "id": "c",
+        "text": "The thrust goes to idle"
+      },
+      {
+        "id": "d",
+        "text": "Nothing more"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The same reminder applies to LVR CLB and LVR MCT.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/first-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0037",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Autothrust modes",
+    "question": "How is an armed autobrake mode shown in the FMA first column?",
+    "options": [
+      {
+        "id": "a",
+        "text": "BRK in green with a white box"
+      },
+      {
+        "id": "b",
+        "text": "BRK LO or BRK MED in cyan (BRK MAX on the third line)"
+      },
+      {
+        "id": "c",
+        "text": "AUTO BRK in amber"
+      },
+      {
+        "id": "d",
+        "text": "It is not shown on the FMA"
+      }
+    ],
+    "correct": "b",
+    "explanation": "An active autobrake mode is green in a white box.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/first-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0038",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Vertical modes",
+    "question": "When is SRS displayed in the vertical column?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When climb mode is engaged"
+      },
+      {
+        "id": "b",
+        "text": "When the speed is below VLS"
+      },
+      {
+        "id": "c",
+        "text": "During the approach"
+      },
+      {
+        "id": "d",
+        "text": "When take-off or go-around mode is engaged"
+      }
+    ],
+    "correct": "d",
+    "explanation": "SRS guides pitch to hold a speed defined by the SRS law.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/second-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0039",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Vertical modes",
+    "question": "What is the difference between CLB and OP CLB?",
+    "options": [
+      {
+        "id": "a",
+        "text": "CLB respects altitude constraints; OP CLB disregards them"
+      },
+      {
+        "id": "b",
+        "text": "CLB uses selected speed; OP CLB uses managed speed"
+      },
+      {
+        "id": "c",
+        "text": "CLB is for the climb after take-off only"
+      },
+      {
+        "id": "d",
+        "text": "There is no difference"
+      }
+    ],
+    "correct": "a",
+    "explanation": "OP CLB climbs straight to the FCU altitude.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/second-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0040",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Vertical modes",
+    "question": "What does ALT* on the FMA mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Altitude hold"
+      },
+      {
+        "id": "b",
+        "text": "Capture of an altitude constraint"
+      },
+      {
+        "id": "c",
+        "text": "Altitude capture of the FCU-selected altitude"
+      },
+      {
+        "id": "d",
+        "text": "Altitude alert"
+      }
+    ],
+    "correct": "c",
+    "explanation": "ALT CST* is the capture of an altitude constraint.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/second-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0041",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Vertical modes",
+    "question": "What does ALT CRZ mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Altitude capture at the cruise level"
+      },
+      {
+        "id": "b",
+        "text": "Altitude hold at a constraint"
+      },
+      {
+        "id": "c",
+        "text": "Cruise climb"
+      },
+      {
+        "id": "d",
+        "text": "Altitude hold at the cruise flight level"
+      }
+    ],
+    "correct": "d",
+    "explanation": "It is the altitude hold mode engaged at the cruise FL.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/second-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0042",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Vertical modes",
+    "question": "When does the V/S annunciation flash in an amber box?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When the V/S exceeds 6 000 ft/min"
+      },
+      {
+        "id": "b",
+        "text": "When speed reaches VLS or VMAX and the vertical speed can no longer be held"
+      },
+      {
+        "id": "c",
+        "text": "When altitude capture begins"
+      },
+      {
+        "id": "d",
+        "text": "When autothrust disconnects"
+      }
+    ],
+    "correct": "b",
+    "explanation": "V/S has priority over speed, so the speed limit eventually stops it.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/second-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0043",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Vertical modes",
+    "question": "What does a magenta ALT in the armed vertical modes mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The FCU altitude is the target"
+      },
+      {
+        "id": "b",
+        "text": "Altitude hold is engaged"
+      },
+      {
+        "id": "c",
+        "text": "The target altitude is an altitude constraint"
+      },
+      {
+        "id": "d",
+        "text": "Altitude is in metres"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Blue ALT means the FCU altitude is the target.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/second-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0044",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Lateral modes",
+    "question": "What lateral guidance does RWY mode provide?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Guidance on the take-off roll up to 30 ft RA, if a localizer signal is available"
+      },
+      {
+        "id": "b",
+        "text": "Guidance to the runway on approach"
+      },
+      {
+        "id": "c",
+        "text": "Guidance on the climb to 1 500 ft"
+      },
+      {
+        "id": "d",
+        "text": "Taxi guidance"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Above 30 ft it becomes RWY TRK.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/third-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0045",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Lateral modes",
+    "question": "When is RWY TRK shown?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When runway mode continues once airborne, above 30 ft RA"
+      },
+      {
+        "id": "b",
+        "text": "During the take-off roll"
+      },
+      {
+        "id": "c",
+        "text": "On final approach"
+      },
+      {
+        "id": "d",
+        "text": "On the go-around"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The aircraft holds the track it had at lift-off.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/third-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0046",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Lateral modes",
+    "question": "What does NAV shown in blue mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "NAV mode is engaged"
+      },
+      {
+        "id": "b",
+        "text": "The navigation accuracy is low"
+      },
+      {
+        "id": "c",
+        "text": "NAV mode is armed"
+      },
+      {
+        "id": "d",
+        "text": "The flight plan is discontinued"
+      }
+    ],
+    "correct": "c",
+    "explanation": "It turns green when engaged.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/third-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0047",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Lateral modes",
+    "question": "When is APP NAV shown?",
+    "options": [
+      {
+        "id": "a",
+        "text": "During an ILS approach"
+      },
+      {
+        "id": "b",
+        "text": "When NAV mode is armed or engaged during a non-ILS approach"
+      },
+      {
+        "id": "c",
+        "text": "During the departure"
+      },
+      {
+        "id": "d",
+        "text": "When the ILS is not tuned"
+      }
+    ],
+    "correct": "b",
+    "explanation": "It is the lateral part of a managed non-precision approach.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/third-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0048",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Lateral modes",
+    "question": "Which lateral mode engages on a go-around?",
+    "options": [
+      {
+        "id": "a",
+        "text": "NAV"
+      },
+      {
+        "id": "b",
+        "text": "HDG"
+      },
+      {
+        "id": "c",
+        "text": "RWY TRK"
+      },
+      {
+        "id": "d",
+        "text": "GA TRK"
+      }
+    ],
+    "correct": "d",
+    "explanation": "It holds the track at go-around initiation.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/third-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0049",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Approach",
+    "question": "What does the approach capability (CAT 1/2/3) on the FMA describe?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The category of the runway in use"
+      },
+      {
+        "id": "b",
+        "text": "The ILS category being received"
+      },
+      {
+        "id": "c",
+        "text": "The aircraft's capability, independent of the airport and runway"
+      },
+      {
+        "id": "d",
+        "text": "The crew qualification"
+      }
+    ],
+    "correct": "c",
+    "explanation": "It reflects available equipment and redundancy.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/fourth-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0050",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Approach",
+    "question": "What does CAT 3 SINGLE mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "CAT 3 capability with fail-passive condition (one autopilot)"
+      },
+      {
+        "id": "b",
+        "text": "CAT 3 with fail-operational condition"
+      },
+      {
+        "id": "c",
+        "text": "CAT 3 with one engine"
+      },
+      {
+        "id": "d",
+        "text": "CAT 3 with one ILS receiver"
+      }
+    ],
+    "correct": "a",
+    "explanation": "DUAL is fail-operational, with both autopilots.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/fourth-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0051",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Approach",
+    "question": "What does CAT 3 DUAL mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "CAT 3 fail-passive"
+      },
+      {
+        "id": "b",
+        "text": "Both pilots must monitor"
+      },
+      {
+        "id": "c",
+        "text": "Both ILS receivers are tuned"
+      },
+      {
+        "id": "d",
+        "text": "CAT 3 capability with fail-operational condition (both autopilots)"
+      }
+    ],
+    "correct": "d",
+    "explanation": "A single failure still allows the autoland to be completed.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/fourth-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0052",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Approach",
+    "question": "Where does RADIO followed by a value on the FMA come from?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The radio altimeter reading"
+      },
+      {
+        "id": "b",
+        "text": "The minimum descent height entered in the RADIO field of the MCDU APPR PERF page"
+      },
+      {
+        "id": "c",
+        "text": "The tuned ILS frequency"
+      },
+      {
+        "id": "d",
+        "text": "The ATC transponder code"
+      }
+    ],
+    "correct": "b",
+    "explanation": "BARO shows a minimum descent altitude instead.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/fourth-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0053",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Engagement",
+    "question": "On the FMA, what does 1FD1 mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Both FDs are active"
+      },
+      {
+        "id": "b",
+        "text": "Flight director 2 has failed but both FDs are selected on"
+      },
+      {
+        "id": "c",
+        "text": "Only FD1 is selected"
+      },
+      {
+        "id": "d",
+        "text": "FD1 has failed"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Both PFDs then show FD 1's orders.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/fifth-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0054",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Engagement",
+    "question": "What does A/THR shown in blue in the FMA fifth column mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Autothrust is active"
+      },
+      {
+        "id": "b",
+        "text": "Autothrust has failed"
+      },
+      {
+        "id": "c",
+        "text": "Alpha floor is armed"
+      },
+      {
+        "id": "d",
+        "text": "Autothrust is armed but not active, so thrust follows lever position"
+      }
+    ],
+    "correct": "d",
+    "explanation": "White A/THR means active.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/fifth-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0055",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Engagement",
+    "question": "Which condition, together with at least one FD on and the levers in FLX, arms autothrust?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A FLEX temperature entered in the MCDU"
+      },
+      {
+        "id": "b",
+        "text": "Selecting the A/THR pushbutton first"
+      },
+      {
+        "id": "c",
+        "text": "Setting the autobrake to MAX"
+      },
+      {
+        "id": "d",
+        "text": "Engaging AP1"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Without a FLEX temperature, the FLX detent will not arm A/THR.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/fifth-column/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-AFS-0056",
+    "aircraft": "A320",
+    "topic": "Automatic Flight",
+    "subtopic": "Engagement",
+    "question": "Pushing the A/THR pushbutton engages autothrust when the levers are where?",
+    "options": [
+      {
+        "id": "a",
+        "text": "In the TOGA detent"
+      },
+      {
+        "id": "b",
+        "text": "At idle"
+      },
+      {
+        "id": "c",
+        "text": "In the engagement range: below the climb detent (or below MCT with one engine out)"
+      },
+      {
+        "id": "d",
+        "text": "In the FLX detent"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Alpha floor also engages autothrust.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/fifth-column/",
     "status": "published",
     "version": 1
   }

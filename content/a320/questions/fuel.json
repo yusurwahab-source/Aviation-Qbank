@@ -3,28 +3,29 @@
     "id": "A320-FUEL-0001",
     "aircraft": "A320",
     "topic": "Fuel",
-    "subtopic": "Architecture",
-    "question": "Which tanks make up the basic A320 fuel system?",
+    "subtopic": "Tanks",
+    "question": "What is the capacity of each of the two outer tanks on the A320?",
     "options": [
       {
         "id": "a",
-        "text": "Two wing tanks and a tail trim tank"
+        "text": "880 litres (about 700 kg)"
       },
       {
         "id": "b",
-        "text": "Two engine tanks and one wing box tank"
+        "text": "3 500 litres (about 2 800 kg)"
       },
       {
         "id": "c",
-        "text": "A left wing tank, a right wing tank and a centre tank"
+        "text": "1 760 litres (about 1 408 kg)"
       },
       {
         "id": "d",
-        "text": "Three wing tanks per side"
+        "text": "8 250 litres (about 6 600 kg)"
       }
     ],
     "correct": "c",
-    "explanation": "The wing tanks each have an inner and an outer cell. The centre tank lies in the wing box between the wings. Additional centre tanks (ACTs) may be fitted as an option.",
+    "explanation": "Outer tanks are the small cells near the wing tips.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/fuel/",
     "status": "published",
     "version": 1
   },
@@ -32,28 +33,29 @@
     "id": "A320-FUEL-0002",
     "aircraft": "A320",
     "topic": "Fuel",
-    "subtopic": "Pumps",
-    "question": "How many fuel pumps are there in the centre tank and in each wing tank?",
+    "subtopic": "Tanks",
+    "question": "What is the capacity of each inner tank on the A320?",
     "options": [
       {
         "id": "a",
-        "text": "Two in the centre tank and two in each wing tank"
+        "text": "13 849 litres (about 11 079 kg)"
       },
       {
         "id": "b",
-        "text": "One in each tank"
+        "text": "8 250 litres (about 6 600 kg)"
       },
       {
         "id": "c",
-        "text": "Three in the centre tank and one in each wing tank"
+        "text": "6 924 litres (about 5 540 kg)"
       },
       {
         "id": "d",
-        "text": "Two in the centre tank only"
+        "text": "18 000 litres (about 14 400 kg)"
       }
     ],
     "correct": "a",
-    "explanation": "Having two pumps in each tank means one pump failure does not stop the supply. Each pump has its own pushbutton on the overhead panel.",
+    "explanation": "The inner tanks are the largest single tanks, one in each wing.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/fuel/",
     "status": "published",
     "version": 1
   },
@@ -61,28 +63,29 @@
     "id": "A320-FUEL-0003",
     "aircraft": "A320",
     "topic": "Fuel",
-    "subtopic": "Fuel feed",
-    "question": "Which tank is used first in normal operation, and why?",
+    "subtopic": "Tanks",
+    "question": "What is the capacity of the centre tank on the A320?",
     "options": [
       {
         "id": "a",
-        "text": "The wing tanks, so the centre tank remains as a reserve"
+        "text": "1 760 litres (about 1 408 kg)"
       },
       {
         "id": "b",
-        "text": "The outer cells, to keep the aircraft light at the wing tips"
+        "text": "13 849 litres (about 11 079 kg)"
       },
       {
         "id": "c",
-        "text": "The trim tank"
+        "text": "4 000 litres (about 3 200 kg)"
       },
       {
         "id": "d",
-        "text": "The centre tank, so the wing tanks stay full, giving wing bending relief"
+        "text": "8 250 litres (about 6 600 kg)"
       }
     ],
     "correct": "d",
-    "explanation": "Fuel in the wings reduces the bending moment at the wing root, so it is kept as long as possible. The centre tank fuel is used first.",
+    "explanation": "The centre tank sits in the wing box between the wings.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/fuel/",
     "status": "published",
     "version": 1
   },
@@ -90,28 +93,29 @@
     "id": "A320-FUEL-0004",
     "aircraft": "A320",
     "topic": "Fuel",
-    "subtopic": "Fuel feed",
-    "question": "How is the centre tank fuel used before the wing tank fuel when all the pumps are operating?",
+    "subtopic": "Sequence",
+    "question": "Which tank is emptied first in normal operation?",
     "options": [
       {
         "id": "a",
-        "text": "The crossfeed valve forces the centre tank to feed the engines"
+        "text": "The outer tanks"
       },
       {
         "id": "b",
-        "text": "The centre tank pumps deliver at a higher pressure than the wing tank pumps, so they supply the engines first"
+        "text": "The centre tank"
       },
       {
         "id": "c",
-        "text": "The wing tank pumps switch off automatically"
+        "text": "The inner tanks"
       },
       {
         "id": "d",
-        "text": "The centre tank fuel is pumped into the wings first"
+        "text": "Left and right sides alternately"
       }
     ],
     "correct": "b",
-    "explanation": "The higher pressure of the centre tank pumps keeps the wing tank feed valves closed (no flow from the wing pump) while there is fuel in the centre tank.",
+    "explanation": "Keeping the wing tanks full longest relieves wing bending loads.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/fuel/",
     "status": "published",
     "version": 1
   },
@@ -119,28 +123,29 @@
     "id": "A320-FUEL-0005",
     "aircraft": "A320",
     "topic": "Fuel",
-    "subtopic": "Fuel feed",
-    "question": "How does the fuel get from the outer cells to the inner cells of the wing tanks?",
+    "subtopic": "Sequence",
+    "question": "Down to what quantity are the inner tanks used before the outer tank fuel is transferred?",
     "options": [
       {
         "id": "a",
-        "text": "By the centre tank pumps"
+        "text": "0 kg"
       },
       {
         "id": "b",
-        "text": "By gravity and by transfer valves that open when the inner cell reaches a low level"
+        "text": "750 kg in each inner tank"
       },
       {
         "id": "c",
-        "text": "By a transfer pump in each outer cell"
+        "text": "250 kg"
       },
       {
         "id": "d",
-        "text": "By the pressure of the bleed air"
+        "text": "2 000 kg"
       }
     ],
     "correct": "b",
-    "explanation": "Outer cell fuel flows to the inner cell by a transfer valve. This keeps the fuel weight in the outer wing longer, helping the wing bending moment.",
+    "explanation": "At 750 kg in an inner tank, the outer tank fuel starts transferring into it.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/fuel/",
     "status": "published",
     "version": 1
   },
@@ -148,28 +153,29 @@
     "id": "A320-FUEL-0006",
     "aircraft": "A320",
     "topic": "Fuel",
-    "subtopic": "Fuel feed",
-    "question": "What does the crossfeed valve do?",
+    "subtopic": "Sequence",
+    "question": "How is outer tank fuel used?",
     "options": [
       {
         "id": "a",
-        "text": "It transfers fuel from the centre tank to the wings"
+        "text": "It feeds the engines directly through its own pumps"
       },
       {
         "id": "b",
-        "text": "It lets the APU use the fuel from any tank"
+        "text": "It is transferred to the centre tank"
       },
       {
         "id": "c",
-        "text": "It isolates the engines from the tanks"
+        "text": "It is used only by the APU"
       },
       {
         "id": "d",
-        "text": "It lets one side's pumps feed both engines, or lets either engine be fed from the other side's tank"
+        "text": "It is transferred into the inner tanks"
       }
     ],
     "correct": "d",
-    "explanation": "It is normally closed. It is opened in some failures, for instance when a wing tank pump fails or the fuel imbalance has to be corrected.",
+    "explanation": "Outer tanks have no engine feed of their own; their fuel drains into the inner tanks.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/fuel/",
     "status": "published",
     "version": 1
   },
@@ -177,28 +183,29 @@
     "id": "A320-FUEL-0007",
     "aircraft": "A320",
     "topic": "Fuel",
-    "subtopic": "Fuel feed",
-    "question": "What is the normal position of the crossfeed valve?",
+    "subtopic": "Crossfeed",
+    "question": "What does the crossfeed capability allow?",
     "options": [
       {
         "id": "a",
-        "text": "Closed, with each engine feeding from its own wing tank"
+        "text": "Both engines to be fed from one side, or one engine to be fed from both sides"
       },
       {
         "id": "b",
-        "text": "Open"
+        "text": "The centre tank to be refuelled in flight"
       },
       {
         "id": "c",
-        "text": "Open in flight, closed on the ground"
+        "text": "Fuel to be jettisoned"
       },
       {
         "id": "d",
-        "text": "Open on the ground, closed in flight"
+        "text": "The APU to be fed from the right side only"
       }
     ],
     "correct": "a",
-    "explanation": "Each engine is normally supplied by its own side. The crossfeed is used only to correct an imbalance or deal with a pump failure.",
+    "explanation": "Each engine is normally fed by its own side; the crossfeed valve links the two.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/fuel/",
     "status": "published",
     "version": 1
   },
@@ -206,28 +213,29 @@
     "id": "A320-FUEL-0008",
     "aircraft": "A320",
     "topic": "Fuel",
-    "subtopic": "APU",
-    "question": "Which fuel supplies the APU?",
+    "subtopic": "Pumps",
+    "question": "In normal operation, what is done with the wing tank pumps during flight?",
     "options": [
       {
         "id": "a",
-        "text": "The centre tank only"
+        "text": "They are switched off in cruise"
       },
       {
         "id": "b",
-        "text": "The right wing tank only"
+        "text": "They are switched off after take-off"
       },
       {
         "id": "c",
-        "text": "The left side's fuel system, through the left fuel feed line"
+        "text": "They stay on throughout the flight"
       },
       {
         "id": "d",
-        "text": "A dedicated APU tank"
+        "text": "They alternate every hour"
       }
     ],
     "correct": "c",
-    "explanation": "The APU takes fuel from the left side feed line, and the fuel pump of the APU is used if the tank pumps are not running.",
+    "explanation": "The wing pumps are left on; the system manages the feed sequence.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/fuel/",
     "status": "published",
     "version": 1
   },
@@ -236,27 +244,28 @@
     "aircraft": "A320",
     "topic": "Fuel",
     "subtopic": "Pumps",
-    "question": "What happens when a wing tank pump fails and the other pump in the same tank is working?",
+    "question": "What does a wing tank pump pushbutton show when selected OFF?",
     "options": [
       {
         "id": "a",
-        "text": "The engine shuts down"
+        "text": "An amber FAULT light"
       },
       {
         "id": "b",
-        "text": "The crossfeed valve opens automatically"
+        "text": "A blue ON light"
       },
       {
         "id": "c",
-        "text": "The fuel is jettisoned"
+        "text": "No light"
       },
       {
         "id": "d",
-        "text": "The remaining pump supplies the engine, and the ECAM shows a low pressure message for the failed pump"
+        "text": "A white OFF light"
       }
     ],
     "correct": "d",
-    "explanation": "One pump per tank is enough to supply the engine, so a single pump failure does not require action beyond following the ECAM.",
+    "explanation": "OFF switches the pump off and lights white OFF.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/fuel/",
     "status": "published",
     "version": 1
   },
@@ -264,28 +273,29 @@
     "id": "A320-FUEL-0010",
     "aircraft": "A320",
     "topic": "Fuel",
-    "subtopic": "Fuel feed",
-    "question": "If both wing tank pumps on one side fail, how is the engine fed?",
+    "subtopic": "Pumps",
+    "question": "When does a wing tank pump FAULT light come on?",
     "options": [
       {
         "id": "a",
-        "text": "The engine is fed by the centre tank pumps always"
+        "text": "When the tank is empty and the pump is OFF"
       },
       {
         "id": "b",
-        "text": "By gravity feed from the wing tank (within altitude limits), or through the crossfeed from the other side"
+        "text": "When the pump pressure drops and the pump is not selected OFF"
       },
       {
         "id": "c",
-        "text": "The engine shuts down at once"
+        "text": "When the fuel is too cold"
       },
       {
         "id": "d",
-        "text": "From the APU fuel pump"
+        "text": "When the crossfeed valve is open"
       }
     ],
     "correct": "b",
-    "explanation": "Each engine can draw fuel from its wing tank by gravity, with restrictions on altitude, but opening the crossfeed to use the other side's pumps is the preferred solution.",
+    "explanation": "FAULT, with an ECAM caution, is low delivery pressure on a pump that should be running.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/fuel/",
     "status": "published",
     "version": 1
   },
@@ -293,28 +303,29 @@
     "id": "A320-FUEL-0011",
     "aircraft": "A320",
     "topic": "Fuel",
-    "subtopic": "Indications",
-    "question": "What does the fuel quantity indication (FQI) system measure?",
+    "subtopic": "Centre tank",
+    "question": "On the A320neo, what has replaced the traditional centre tank pumps?",
     "options": [
       {
         "id": "a",
-        "text": "The fuel temperature only"
+        "text": "Larger electric pumps"
       },
       {
         "id": "b",
-        "text": "The fuel flow only"
+        "text": "Gravity feed only"
       },
       {
         "id": "c",
-        "text": "The fuel quantity in each tank, using capacitance probes"
+        "text": "Jet pumps, with only their valves controlled by the crew"
       },
       {
         "id": "d",
-        "text": "The fuel density only"
+        "text": "Hydraulic pumps"
       }
     ],
     "correct": "c",
-    "explanation": "Capacitance probes measure the quantity (and so the weight, with the density) in the tank. The result goes to the ECAM and the FOB display.",
+    "explanation": "The neo transfers centre tank fuel with jet pumps; the CTR TK pushbuttons control valves.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/fuel/",
     "status": "published",
     "version": 1
   },
@@ -322,28 +333,29 @@
     "id": "A320-FUEL-0012",
     "aircraft": "A320",
     "topic": "Fuel",
-    "subtopic": "Indications",
-    "question": "What is FOB?",
+    "subtopic": "Centre tank",
+    "question": "On the A320neo in AUTO, when do the centre-to-inner transfer valves open?",
     "options": [
       {
         "id": "a",
-        "text": "Fuel on board: the total quantity of fuel in the tanks"
+        "text": "When the inner tank is 500 kg below its capacity"
       },
       {
         "id": "b",
-        "text": "Fuel overboard"
+        "text": "When the inner tank reaches 750 kg"
       },
       {
         "id": "c",
-        "text": "Fuel flow balance"
+        "text": "When the centre tank is full"
       },
       {
         "id": "d",
-        "text": "Forward overhead box"
+        "text": "At take-off thrust"
       }
     ],
     "correct": "a",
-    "explanation": "FOB is shown on the upper ECAM and compared with the FMS fuel prediction. It can be confirmed against the fuel used from the engines.",
+    "explanation": "Centre tank fuel tops up the inner tanks once they have used 500 kg.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/fuel/",
     "status": "published",
     "version": 1
   },
@@ -351,28 +363,29 @@
     "id": "A320-FUEL-0013",
     "aircraft": "A320",
     "topic": "Fuel",
-    "subtopic": "Indications",
-    "question": "At what wing tank fuel quantity does the L(R) WING TK LO LVL warning appear on the A320?",
+    "subtopic": "Centre tank",
+    "question": "On the A320neo in AUTO, when do the centre-to-inner transfer valves close?",
     "options": [
       {
         "id": "a",
-        "text": "When the fuel quantity in a wing tank is below about 750 kg"
+        "text": "When the inner tank is full, or 5 minutes after the centre tank low level is reached"
       },
       {
         "id": "b",
-        "text": "Below about 100 kg"
+        "text": "When the inner tank is 500 kg below capacity"
       },
       {
         "id": "c",
-        "text": "Below about 3 000 kg"
+        "text": "Immediately the centre tank low level is reached"
       },
       {
         "id": "d",
-        "text": "Below about 2 000 kg"
+        "text": "When the outer tanks start transferring"
       }
     ],
     "correct": "a",
-    "explanation": "The low level warning is based on the quantity in the inner cell. It is a warning because below that level the supply to the engine is limited.",
+    "explanation": "The 5-minute delay after the low level lets the last centre fuel be transferred.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/fuel/",
     "status": "published",
     "version": 1
   },
@@ -380,28 +393,29 @@
     "id": "A320-FUEL-0014",
     "aircraft": "A320",
     "topic": "Fuel",
-    "subtopic": "Operation",
-    "question": "Why can fuel imbalance between the wings matter?",
+    "subtopic": "Centre tank",
+    "question": "What is the centre tank low fuel level used by the transfer logic?",
     "options": [
       {
         "id": "a",
-        "text": "It affects the engine thrust directly"
+        "text": "50 kg"
       },
       {
         "id": "b",
-        "text": "It affects the packs"
+        "text": "250 kg"
       },
       {
         "id": "c",
-        "text": "It affects the aircraft's lateral balance and control, and exceeding the limits is not allowed"
+        "text": "130 kg"
       },
       {
         "id": "d",
-        "text": "It affects the cabin pressure"
+        "text": "750 kg"
       }
     ],
     "correct": "c",
-    "explanation": "Large imbalance puts the lateral centre of gravity away from the centreline, reducing the aileron margin. It is limited by the AFM.",
+    "explanation": "Transfer stops 5 minutes after the centre tank reaches 130 kg.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/fuel/",
     "status": "published",
     "version": 1
   },
@@ -409,28 +423,29 @@
     "id": "A320-FUEL-0015",
     "aircraft": "A320",
     "topic": "Fuel",
-    "subtopic": "Operation",
-    "question": "How can a fuel imbalance be corrected in flight?",
+    "subtopic": "Centre tank",
+    "question": "What does the fuel MODE SEL in MAN allow?",
     "options": [
       {
         "id": "a",
-        "text": "By dumping fuel from the lighter side"
+        "text": "Manual control of the crossfeed valve"
       },
       {
         "id": "b",
-        "text": "By opening the crossfeed valve and switching off the pumps of the heavier side's tank, following the ECAM or procedure"
+        "text": "Manual control of the centre tank transfer with the centre tank pushbuttons"
       },
       {
         "id": "c",
-        "text": "By switching the centre tank pumps off"
+        "text": "Manual fuel jettison"
       },
       {
         "id": "d",
-        "text": "By closing the APU fuel valve"
+        "text": "Manual control of the outer tank transfer"
       }
     ],
     "correct": "b",
-    "explanation": "Feeding both engines from the heavy side consumes its fuel, restoring balance. The crossfeed valve must be closed again afterwards.",
+    "explanation": "In MAN, ON opens the centre tank valve and OFF closes it.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/fuel/",
     "status": "published",
     "version": 1
   },
@@ -438,28 +453,29 @@
     "id": "A320-FUEL-0016",
     "aircraft": "A320",
     "topic": "Fuel",
-    "subtopic": "Protection",
-    "question": "What happens to the engine LP fuel valve when the engine fire pushbutton is pressed?",
+    "subtopic": "Centre tank",
+    "question": "What triggers the fuel MODE SEL FAULT light?",
     "options": [
       {
         "id": "a",
-        "text": "It opens fully"
+        "text": "The centre tank empty"
       },
       {
         "id": "b",
-        "text": "It remains unchanged"
+        "text": "A wing tank pump failure"
       },
       {
         "id": "c",
-        "text": "It transfers the supply to the other tank"
+        "text": "Fuel imbalance above 500 kg"
       },
       {
         "id": "d",
-        "text": "It closes, cutting the fuel supply to that engine"
+        "text": "A wing tank below 5 000 kg while the centre tank still holds more than 250 kg"
       }
     ],
     "correct": "d",
-    "explanation": "Cutting the fuel supply, together with the other actions of the fire pushbutton, removes the fuel from the fire.",
+    "explanation": "It indicates centre tank fuel is not being transferred as it should.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/fuel/",
     "status": "published",
     "version": 1
   },
@@ -467,28 +483,29 @@
     "id": "A320-FUEL-0017",
     "aircraft": "A320",
     "topic": "Fuel",
-    "subtopic": "Architecture",
-    "question": "Where does the fuel tank venting of the A320 discharge?",
+    "subtopic": "Centre tank",
+    "question": "What does a CTR TK pushbutton show when selected OFF?",
     "options": [
       {
         "id": "a",
-        "text": "Through the engine exhaust"
+        "text": "An amber FAULT"
       },
       {
         "id": "b",
-        "text": "Into the cabin"
+        "text": "No light"
       },
       {
         "id": "c",
-        "text": "Through vent surge tanks at the wing tips, with NACA inlets and outlets"
+        "text": "A white OFF light, with the valve closed"
       },
       {
         "id": "d",
-        "text": "Through the APU exhaust"
+        "text": "A green OPEN light"
       }
     ],
     "correct": "c",
-    "explanation": "Surge tanks collect any fuel that is pushed out by thermal expansion and return it to the tanks, and let air in as fuel is used.",
+    "explanation": "OFF closes the centre tank valve.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/fuel/",
     "status": "published",
     "version": 1
   },
@@ -496,28 +513,299 @@
     "id": "A320-FUEL-0018",
     "aircraft": "A320",
     "topic": "Fuel",
-    "subtopic": "Fuel feed",
-    "question": "What is the effect of selecting a centre tank pump pushbutton OFF with fuel remaining in the tank?",
+    "subtopic": "Crossfeed",
+    "question": "On the X FEED pushbutton, what does the green OPEN light indicate?",
     "options": [
       {
         "id": "a",
-        "text": "The centre tank fuel is not used, and the wing tank pumps take over feeding the engines"
+        "text": "The crossfeed valve is fully open"
       },
       {
         "id": "b",
-        "text": "The engines shut down"
+        "text": "The valve is commanded open but moving"
       },
       {
         "id": "c",
-        "text": "The crossfeed opens"
+        "text": "The valve has failed open"
       },
       {
         "id": "d",
-        "text": "The fuel is transferred to the wings"
+        "text": "The pushbutton is selected but the valve is closed"
       }
     ],
     "correct": "a",
-    "explanation": "With the centre tank pumps off, the wing tank pumps supply the engines. The fuel in the centre tank would be unusable for the remainder of the flight, so it affects range and balance.",
+    "explanation": "ON commands the valve open; the green OPEN light confirms it has reached fully open.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/fuel/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0019",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Indications",
+    "question": "On the FUEL page, what does an amber LO at a wing pump mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The pump pressure is normal"
+      },
+      {
+        "id": "b",
+        "text": "The tank level is low"
+      },
+      {
+        "id": "c",
+        "text": "The fuel is too cold"
+      },
+      {
+        "id": "d",
+        "text": "The pump contactor is off"
+      }
+    ],
+    "correct": "d",
+    "explanation": "An amber crossline would show low pressure with the contactor on.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/fuel/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0020",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Indications",
+    "question": "On the FUEL page, what does an amber crossline at an engine low-pressure valve mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The valve is open normally"
+      },
+      {
+        "id": "b",
+        "text": "The valve is closed while the engine master switch is ON"
+      },
+      {
+        "id": "c",
+        "text": "The valve is open with the master switch off"
+      },
+      {
+        "id": "d",
+        "text": "The valve is in transit"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Closed with the master ON is a disagreement that would starve the engine.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/fuel/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0021",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Indications",
+    "question": "On the FUEL page, what does an amber inline crossfeed valve mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The valve is open normally"
+      },
+      {
+        "id": "b",
+        "text": "The valve is open while the X FEED selector is off"
+      },
+      {
+        "id": "c",
+        "text": "The valve is closed normally"
+      },
+      {
+        "id": "d",
+        "text": "The valve has no position data"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Amber marks disagreement between valve and switch.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/fuel/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0022",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Indications",
+    "question": "In what fuel temperature range are the FUEL page temperatures shown green without advisory?",
+    "options": [
+      {
+        "id": "a",
+        "text": "–20 °C to +30 °C"
+      },
+      {
+        "id": "b",
+        "text": "–50 °C to +60 °C"
+      },
+      {
+        "id": "c",
+        "text": "0 °C to +45 °C"
+      },
+      {
+        "id": "d",
+        "text": "–40 °C to +45 °C"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Outside this range the temperature becomes an advisory.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/fuel/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0023",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Indications",
+    "question": "When is a tank's fuel temperature not displayed on the FUEL page?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When the fuel temperature sensor is dry"
+      },
+      {
+        "id": "b",
+        "text": "When the tank is full"
+      },
+      {
+        "id": "c",
+        "text": "When the engine is stopped"
+      },
+      {
+        "id": "d",
+        "text": "When the temperature is normal"
+      }
+    ],
+    "correct": "a",
+    "explanation": "No fuel at the sensor means no valid fuel temperature.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/fuel/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0024",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Indications",
+    "question": "What do two dashes on the last digits of a tank quantity mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The tank is empty"
+      },
+      {
+        "id": "b",
+        "text": "The tank is overfilled"
+      },
+      {
+        "id": "c",
+        "text": "The fuel quantity is inaccurate"
+      },
+      {
+        "id": "d",
+        "text": "The probe is being tested"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The quantity is still shown but its last digits cannot be trusted.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/fuel/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0025",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Indications",
+    "question": "What does an amber box around the fuel on board (FOB) mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The FOB is below minimum fuel"
+      },
+      {
+        "id": "b",
+        "text": "The fuel figure is invalid"
+      },
+      {
+        "id": "c",
+        "text": "Refuelling is in progress"
+      },
+      {
+        "id": "d",
+        "text": "Some fuel is not usable, for example a failed centre transfer or a low inner tank level"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Causes include a failed or off centre tank pump, transfer valves that cannot open, a low inner tank level or an unusable ACT.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/fuel/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0026",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Indications",
+    "question": "When is an engine's fuel used figure shown in amber on the FUEL page?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When it exceeds the planned figure"
+      },
+      {
+        "id": "b",
+        "text": "When the engine is below idle"
+      },
+      {
+        "id": "c",
+        "text": "When the fuel flow is high"
+      },
+      {
+        "id": "d",
+        "text": "When the fuel is cold"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Fuel used counts from engine start until electrical power off.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/fuel/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0027",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Indications",
+    "question": "What does an amber XX in place of the total fuel flow mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The engines are shut down normally"
+      },
+      {
+        "id": "b",
+        "text": "The fuel flow is excessive"
+      },
+      {
+        "id": "c",
+        "text": "There is no fuel flow data"
+      },
+      {
+        "id": "d",
+        "text": "A leak is detected"
+      }
+    ],
+    "correct": "c",
+    "explanation": "XX is the ECAM's way of saying 'no valid data'.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/fuel/",
     "status": "published",
     "version": 1
   }

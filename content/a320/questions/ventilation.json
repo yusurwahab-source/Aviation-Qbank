@@ -3,28 +3,29 @@
     "id": "A320-VENT-0001",
     "aircraft": "A320",
     "topic": "Ventilation",
-    "subtopic": "Avionics",
-    "question": "What is the purpose of the avionics ventilation system?",
+    "subtopic": "Avionics ventilation",
+    "question": "With BLOWER and EXTRACT in AUTO, what avionics ventilation configuration is used on the ground before take-off power is set (normal skin temperature)?",
     "options": [
       {
         "id": "a",
-        "text": "To supply fresh air to the passengers"
+        "text": "Closed circuit"
       },
       {
         "id": "b",
-        "text": "To pressurise the cargo hold"
+        "text": "Smoke configuration"
       },
       {
         "id": "c",
-        "text": "To cool the electronic equipment in the avionics bay and the cockpit panels, and to remove smoke from them"
+        "text": "Open circuit"
       },
       {
         "id": "d",
-        "text": "To heat the electronic equipment compartment in cold weather only"
+        "text": "Overboard extract with the blower stopped"
       }
     ],
     "correct": "c",
-    "explanation": "Avionics generate heat and are sensitive to temperature. The system circulates air through the avionics bay and cockpit instrument panels and extracts it overboard.",
+    "explanation": "On the ground before take-off power the system runs open circuit, drawing air in and sending it overboard.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/vent/",
     "status": "published",
     "version": 1
   },
@@ -32,28 +33,29 @@
     "id": "A320-VENT-0002",
     "aircraft": "A320",
     "topic": "Ventilation",
-    "subtopic": "Avionics",
-    "question": "Which two fans are part of the avionics ventilation system?",
+    "subtopic": "Avionics ventilation",
+    "question": "On the ground before take-off power, when does the avionics ventilation use the closed circuit instead of the open circuit?",
     "options": [
       {
         "id": "a",
-        "text": "A blower fan and an extract fan"
+        "text": "When the skin temperature is below the ground threshold"
       },
       {
         "id": "b",
-        "text": "A recirculation fan and a pack fan"
+        "text": "When an engine is running"
       },
       {
         "id": "c",
-        "text": "A cargo fan and a lavatory fan"
+        "text": "When the APU is running"
       },
       {
         "id": "d",
-        "text": "An inlet fan and a diffuser fan"
+        "text": "When the cabin doors are closed"
       }
     ],
     "correct": "a",
-    "explanation": "The blower fan pushes air into the system and the extract fan draws it out. A fault in either one is shown by a light on the overhead panel.",
+    "explanation": "A cold skin can cool the recirculated air on its own, so there is no need to take outside air.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/vent/",
     "status": "published",
     "version": 1
   },
@@ -61,28 +63,29 @@
     "id": "A320-VENT-0003",
     "aircraft": "A320",
     "topic": "Ventilation",
-    "subtopic": "Avionics",
-    "question": "Which unit decides the configuration of the avionics ventilation system automatically?",
+    "subtopic": "Avionics ventilation",
+    "question": "With both switches in AUTO, what configuration is used after take-off power is applied and in flight?",
     "options": [
       {
         "id": "a",
-        "text": "The cabin pressure controller"
+        "text": "Open circuit"
       },
       {
         "id": "b",
-        "text": "The zone controller"
+        "text": "Smoke configuration"
       },
       {
         "id": "c",
-        "text": "The flight warning computer"
+        "text": "Overboard with both fans stopped"
       },
       {
         "id": "d",
-        "text": "The avionics equipment ventilation computer (AEVC)"
+        "text": "Closed circuit"
       }
     ],
     "correct": "d",
-    "explanation": "The AEVC selects the valve positions and fan operation according to ground/flight status and skin temperature, and monitors for smoke.",
+    "explanation": "In flight the cold skin cools the recirculated avionics air, so the closed circuit is used.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/vent/",
     "status": "published",
     "version": 1
   },
@@ -90,28 +93,29 @@
     "id": "A320-VENT-0004",
     "aircraft": "A320",
     "topic": "Ventilation",
-    "subtopic": "Avionics",
-    "question": "Which configurations does the avionics ventilation system have?",
+    "subtopic": "Avionics ventilation",
+    "question": "What happens when either the BLOWER or the EXTRACT pushbutton is set to OVRD?",
     "options": [
       {
         "id": "a",
-        "text": "A summer and a winter configuration only"
+        "text": "Both fans stop and the system goes open circuit"
       },
       {
         "id": "b",
-        "text": "An open circuit, a closed circuit, an intermediate configuration and a smoke configuration"
+        "text": "The system goes to closed circuit and air from the air conditioning system is added to the ventilation air"
       },
       {
         "id": "c",
-        "text": "An economy and a high-flow configuration"
+        "text": "The avionics are cooled only by the skin heat exchanger"
       },
       {
         "id": "d",
-        "text": "A ground and a flight configuration only"
+        "text": "The cabin fans stop"
       }
     ],
     "correct": "b",
-    "explanation": "The configurations are selected automatically according to temperature and ground/flight conditions, and the smoke configuration overrides the others.",
+    "explanation": "OVRD on one switch brings conditioned air into the closed avionics circuit.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/vent/",
     "status": "published",
     "version": 1
   },
@@ -119,28 +123,29 @@
     "id": "A320-VENT-0005",
     "aircraft": "A320",
     "topic": "Ventilation",
-    "subtopic": "Avionics",
-    "question": "What happens to the avionics ventilation in the smoke configuration?",
+    "subtopic": "Avionics ventilation",
+    "question": "What happens to the blower fan when the BLOWER pushbutton is set to OVRD?",
     "options": [
       {
         "id": "a",
-        "text": "The blower and extract fans stop"
+        "text": "It runs at high speed"
       },
       {
         "id": "b",
-        "text": "Air is not recirculated and is extracted overboard, with fresh cabin air as the source"
+        "text": "It stops"
       },
       {
         "id": "c",
-        "text": "The system is reconfigured to recirculate all the air"
+        "text": "It reverses"
       },
       {
         "id": "d",
-        "text": "The avionics are depressurised"
+        "text": "It keeps running normally"
       }
     ],
     "correct": "b",
-    "explanation": "In the smoke configuration the system draws in conditioned air and extracts the smoke directly overboard, with no recirculation, so that smoke is cleared from the avionics bay.",
+    "explanation": "With BLOWER in OVRD the blower fan stops and conditioned air takes its place.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/vent/",
     "status": "published",
     "version": 1
   },
@@ -148,28 +153,29 @@
     "id": "A320-VENT-0006",
     "aircraft": "A320",
     "topic": "Ventilation",
-    "subtopic": "Avionics",
-    "question": "What does the skin heat exchanger do in the closed circuit configuration?",
+    "subtopic": "Avionics ventilation",
+    "question": "With both BLOWER and EXTRACT set to OVRD, how does the ventilation air flow?",
     "options": [
       {
         "id": "a",
-        "text": "It heats the cargo hold"
+        "text": "Round the closed circuit only, with both fans stopped"
       },
       {
         "id": "b",
-        "text": "It cools the pack bleed air"
+        "text": "From the cargo compartment into the cabin"
       },
       {
         "id": "c",
-        "text": "It warms the cabin air"
+        "text": "From outside through the skin inlet and back overboard"
       },
       {
         "id": "d",
-        "text": "It cools the avionics ventilation air using the cold of the fuselage skin"
+        "text": "From the air conditioning system, through the avionics, and then overboard, with the extract fan still running"
       }
     ],
     "correct": "d",
-    "explanation": "In flight the outer skin is cold. In closed circuit the air passes alongside the skin and gives up its heat, with no air taken from or sent to the cabin.",
+    "explanation": "This is the configuration used for avionics smoke: conditioned air in, straight out overboard.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/vent/",
     "status": "published",
     "version": 1
   },
@@ -177,28 +183,29 @@
     "id": "A320-VENT-0007",
     "aircraft": "A320",
     "topic": "Ventilation",
-    "subtopic": "Avionics",
-    "question": "Which light on the overhead panel shows a fault in the avionics ventilation blower fan?",
+    "subtopic": "Faults",
+    "question": "Which of the following does NOT turn on the BLOWER FAULT light?",
     "options": [
       {
         "id": "a",
-        "text": "The BLOWER FAULT light"
+        "text": "A pack overheat"
       },
       {
         "id": "b",
-        "text": "The EXTRACT FAULT light only"
+        "text": "Low blowing pressure"
       },
       {
         "id": "c",
-        "text": "The CAB FANS FAULT light"
+        "text": "A duct overheat"
       },
       {
         "id": "d",
-        "text": "The RAM AIR light"
+        "text": "Loss of power to the ventilation computer"
       }
     ],
     "correct": "a",
-    "explanation": "There are separate BLOWER and EXTRACT lights on the VENTILATION panel. Each one comes on, amber, when its fan has a fault or is overheating.",
+    "explanation": "BLOWER FAULT comes from low blowing pressure, duct overheat, computer power failure or the smoke warning.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/vent/",
     "status": "published",
     "version": 1
   },
@@ -206,28 +213,29 @@
     "id": "A320-VENT-0008",
     "aircraft": "A320",
     "topic": "Ventilation",
-    "subtopic": "Cabin",
-    "question": "What is the effect of the CAB FANS pushbutton?",
+    "subtopic": "Faults",
+    "question": "Which of the following turns on the EXTRACT FAULT light?",
     "options": [
       {
         "id": "a",
-        "text": "It starts or stops the avionics blower fan"
+        "text": "A pack outlet overheat"
       },
       {
         "id": "b",
-        "text": "It opens or closes the outflow valve"
+        "text": "A hot air duct overheat"
       },
       {
         "id": "c",
-        "text": "It starts or stops the cabin recirculation fans"
+        "text": "Low extract pressure"
       },
       {
         "id": "d",
-        "text": "It starts or stops the lavatory extract fan"
+        "text": "The recirculation fans stopping"
       }
     ],
     "correct": "c",
-    "explanation": "The pushbutton is on the air conditioning panel. The avionics fans are automatic, with only an override on the ventilation panel.",
+    "explanation": "EXTRACT FAULT comes from low extract pressure, computer power failure or the smoke warning.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/vent/",
     "status": "published",
     "version": 1
   },
@@ -235,28 +243,29 @@
     "id": "A320-VENT-0009",
     "aircraft": "A320",
     "topic": "Ventilation",
-    "subtopic": "Cabin",
-    "question": "How is the air from the lavatories and galleys removed from the cabin?",
+    "subtopic": "Faults",
+    "question": "When the avionics smoke warning is active, what do the BLOWER and EXTRACT pushbuttons show?",
     "options": [
       {
         "id": "a",
-        "text": "By the recirculation fans"
+        "text": "OFF on both"
       },
       {
         "id": "b",
-        "text": "By the avionics extract fan"
+        "text": "FAULT on BLOWER only"
       },
       {
         "id": "c",
-        "text": "By the packs"
+        "text": "Nothing; smoke is shown only on the ECAM"
       },
       {
         "id": "d",
-        "text": "By an extraction fan, and the air is discharged overboard through the outflow valve area"
+        "text": "FAULT on both"
       }
     ],
     "correct": "d",
-    "explanation": "The extraction system prevents odours spreading in the cabin and keeps the lavatory at a slightly lower pressure than the cabin.",
+    "explanation": "The smoke warning lights both FAULT lights, prompting the crew to set them to OVRD in the procedure.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/vent/",
     "status": "published",
     "version": 1
   },
@@ -264,28 +273,29 @@
     "id": "A320-VENT-0010",
     "aircraft": "A320",
     "topic": "Ventilation",
-    "subtopic": "Cargo",
-    "question": "What is the effect on cargo compartment ventilation if the isolation valves are closed?",
+    "subtopic": "Cabin",
+    "question": "How many cabin (recirculation) fans does the CAB FANS pushbutton control?",
     "options": [
       {
         "id": "a",
-        "text": "The cargo compartment becomes pressurised more than the cabin"
+        "text": "One"
       },
       {
         "id": "b",
-        "text": "The cargo compartment is separated from the cabin ventilation system, so its air is not shared"
+        "text": "Two"
       },
       {
         "id": "c",
-        "text": "The cargo compartment receives more hot air"
+        "text": "Three"
       },
       {
         "id": "d",
-        "text": "The packs stop"
+        "text": "Four"
       }
     ],
     "correct": "b",
-    "explanation": "Isolation valves let the cargo compartment ventilation be isolated from the rest, for instance in a smoke procedure.",
+    "explanation": "CAB FANS ON runs both cabin fans; OFF stops both.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/vent/",
     "status": "published",
     "version": 1
   },
@@ -294,27 +304,28 @@
     "aircraft": "A320",
     "topic": "Ventilation",
     "subtopic": "Cargo",
-    "question": "What happens to the ventilation of the forward cargo compartment during the cargo smoke procedure?",
+    "question": "How are the cargo compartments ventilated?",
     "options": [
       {
         "id": "a",
-        "text": "The compartment is connected to the cabin to remove the smoke"
+        "text": "A dedicated pack supplies conditioned air"
       },
       {
         "id": "b",
-        "text": "The compartment's extract fan runs faster"
+        "text": "Ram air flows through them in flight"
       },
       {
         "id": "c",
-        "text": "Its ventilation is isolated, so smoke is not spread to the rest of the aircraft"
+        "text": "An extraction fan draws air out of the compartment and overboard, and cabin air flows in to replace it"
       },
       {
         "id": "d",
-        "text": "The compartment is pressurised"
+        "text": "They are not ventilated"
       }
     ],
     "correct": "c",
-    "explanation": "The aim of the procedure is to contain the smoke and fire so that it does not spread; isolating the ventilation is the first of those steps.",
+    "explanation": "The extract fan creates the flow; the supply is cabin air.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cargo-vent/",
     "status": "published",
     "version": 1
   },
@@ -323,27 +334,28 @@
     "aircraft": "A320",
     "topic": "Ventilation",
     "subtopic": "Cargo",
-    "question": "Which pushbutton isolates the cargo compartment ventilation, and how is it indicated?",
+    "question": "With the AFT ISOL VALVE pushbutton in AUTO, when does the cargo extraction fan run?",
     "options": [
       {
         "id": "a",
-        "text": "The ISOL VALVES pushbuttons on the cargo ventilation panel, with an OFF light"
+        "text": "When no smoke is detected in the aft cargo compartment"
       },
       {
         "id": "b",
-        "text": "The DITCHING pushbutton"
+        "text": "Only on the ground"
       },
       {
         "id": "c",
-        "text": "The RAM AIR pushbutton"
+        "text": "Only when the cargo doors are closed"
       },
       {
         "id": "d",
-        "text": "The MODE SEL selector"
+        "text": "Only when HOT AIR is ON"
       }
     ],
     "correct": "a",
-    "explanation": "Cargo ventilation is controlled from a dedicated panel, where each isolation valve and extract fan has its own switch.",
+    "explanation": "In AUTO the inlet and outlet isolation valves open and the fan runs unless smoke is detected.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cargo-vent/",
     "status": "published",
     "version": 1
   },
@@ -351,28 +363,29 @@
     "id": "A320-VENT-0013",
     "aircraft": "A320",
     "topic": "Ventilation",
-    "subtopic": "Avionics",
-    "question": "What is the source of air for the avionics ventilation system in the open circuit configuration?",
+    "subtopic": "Cargo",
+    "question": "What does setting the AFT ISOL VALVE pushbutton OFF close?",
     "options": [
       {
         "id": "a",
-        "text": "Air from the cabin, which is then extracted overboard"
+        "text": "The inlet and outlet isolation valves and the cargo trim air valve, and the extraction fan stops"
       },
       {
         "id": "b",
-        "text": "Air from the engine bleed"
+        "text": "Only the outlet isolation valve"
       },
       {
         "id": "c",
-        "text": "Air from the cargo hold"
+        "text": "The outflow valve"
       },
       {
         "id": "d",
-        "text": "Fuel tank vent air"
+        "text": "The cargo door"
       }
     ],
     "correct": "a",
-    "explanation": "In open circuit the air is drawn in, passes through the equipment and goes directly overboard, with no recirculation. It is used when cooling needs are high on the ground.",
+    "explanation": "OFF isolates the compartment completely, including the hot trim air used for cargo heating.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cargo-vent/",
     "status": "published",
     "version": 1
   },
@@ -380,28 +393,29 @@
     "id": "A320-VENT-0014",
     "aircraft": "A320",
     "topic": "Ventilation",
-    "subtopic": "Avionics",
-    "question": "In which situation is the avionics ventilation closed circuit configuration typically used?",
+    "subtopic": "Cargo",
+    "question": "What turns on the AFT ISOL VALVE FAULT light?",
     "options": [
       {
         "id": "a",
-        "text": "During engine start only"
+        "text": "Smoke in the aft cargo"
       },
       {
         "id": "b",
-        "text": "On the ground on a hot day"
+        "text": "A cargo door not locked"
       },
       {
         "id": "c",
-        "text": "In flight, when the fuselage skin is cold enough to cool the air"
+        "text": "An inlet or outlet isolation valve not in the selected position"
       },
       {
         "id": "d",
-        "text": "Only when the APU is running"
+        "text": "The extraction fan running"
       }
     ],
     "correct": "c",
-    "explanation": "The skin is cooled by the outside air in flight, so recirculating avionics air against it is efficient and uses no cabin air.",
+    "explanation": "FAULT is a valve disagreement, with an ECAM caution.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cargo-vent/",
     "status": "published",
     "version": 1
   },
@@ -409,28 +423,29 @@
     "id": "A320-VENT-0015",
     "aircraft": "A320",
     "topic": "Ventilation",
-    "subtopic": "Avionics",
-    "question": "What does the ECAM show in the event of an avionics ventilation fault?",
+    "subtopic": "Indications",
+    "question": "When is VENT shown in amber on the PRESS page?",
     "options": [
       {
         "id": "a",
-        "text": "A warning with a master warning light only"
+        "text": "When a pack is off"
       },
       {
         "id": "b",
-        "text": "A caution message with the affected fan or the system, such as BLOWER FAULT or EXTRACT FAULT"
+        "text": "When there is a BLOWER FAULT, an EXTRACT FAULT or an AVNCS SYS FAULT"
       },
       {
         "id": "c",
-        "text": "No message, only an overhead light"
+        "text": "When the cabin fans are off"
       },
       {
         "id": "d",
-        "text": "A memo message in green"
+        "text": "When the outflow valve is open"
       }
     ],
     "correct": "b",
-    "explanation": "Faults of this kind are cautions: an amber message and the master caution, with the relevant light on the panel.",
+    "explanation": "Avionics ventilation is displayed on the PRESS page, below the cabin pressure data.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/press/",
     "status": "published",
     "version": 1
   },
@@ -438,57 +453,29 @@
     "id": "A320-VENT-0016",
     "aircraft": "A320",
     "topic": "Ventilation",
-    "subtopic": "Cabin",
-    "question": "What is the primary purpose of the cabin air filters upstream of the recirculation fans?",
+    "subtopic": "Indications",
+    "question": "On the PRESS page, what does an amber XX on the avionics inlet or extract valve mean?",
     "options": [
       {
         "id": "a",
-        "text": "To dry the air from the packs"
+        "text": "The valve is closed normally"
       },
       {
         "id": "b",
-        "text": "To cool the air from the cabin"
+        "text": "The valve is open normally"
       },
       {
         "id": "c",
-        "text": "To reduce the noise from the fans"
+        "text": "Smoke is detected"
       },
       {
         "id": "d",
-        "text": "To remove dust and contamination from the air before it is recirculated into the mixer unit"
+        "text": "The valve position is unavailable or the data are inconsistent"
       }
     ],
     "correct": "d",
-    "explanation": "Clean recirculated air keeps the ducts and the mixer unit clean and improves cabin air quality.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-VENT-0017",
-    "aircraft": "A320",
-    "topic": "Ventilation",
-    "subtopic": "Avionics",
-    "question": "What does the abbreviation AEVC stand for?",
-    "options": [
-      {
-        "id": "a",
-        "text": "Air extraction valve controller"
-      },
-      {
-        "id": "b",
-        "text": "Automatic engine ventilation control"
-      },
-      {
-        "id": "c",
-        "text": "Avionics equipment ventilation computer"
-      },
-      {
-        "id": "d",
-        "text": "Avionics electrical voltage converter"
-      }
-    ],
-    "correct": "c",
-    "explanation": "The AEVC runs the avionics ventilation system. Its name tells you what it does: it controls the ventilation of the avionics equipment.",
+    "explanation": "XX is always 'no valid data' on the ECAM.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/press/",
     "status": "published",
     "version": 1
   }

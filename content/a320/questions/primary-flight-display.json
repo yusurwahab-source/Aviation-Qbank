@@ -1,0 +1,1412 @@
+[
+  {
+    "id": "A320-PFD-0001",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "What is the lowest airspeed the PFD speed scale indicates?",
+    "options": [
+      {
+        "id": "a",
+        "text": "0 kt"
+      },
+      {
+        "id": "b",
+        "text": "40 kt"
+      },
+      {
+        "id": "c",
+        "text": "30 kt"
+      },
+      {
+        "id": "d",
+        "text": "60 kt"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Below 30 kt the scale does not move further.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0002",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "What does the tip of the yellow speed trend arrow show?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The speed the aircraft will reach in 10 seconds at the current rate of change"
+      },
+      {
+        "id": "b",
+        "text": "The target speed"
+      },
+      {
+        "id": "c",
+        "text": "The speed in 30 seconds"
+      },
+      {
+        "id": "d",
+        "text": "The maximum speed for the configuration"
+      }
+    ],
+    "correct": "a",
+    "explanation": "It appears above 2 kt of trend and disappears below 1 kt.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0003",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "Which failure removes the speed trend arrow?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Failure of one ADR"
+      },
+      {
+        "id": "b",
+        "text": "Failure of the FMGCs"
+      },
+      {
+        "id": "c",
+        "text": "Failure of the DMCs"
+      },
+      {
+        "id": "d",
+        "text": "Failure of the FACs"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The trend is computed by the FACs.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0004",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "In what colour is the speed target triangle when it is computed by the FMGC (managed)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Blue"
+      },
+      {
+        "id": "b",
+        "text": "Magenta"
+      },
+      {
+        "id": "c",
+        "text": "Green"
+      },
+      {
+        "id": "d",
+        "text": "White"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A speed selected on the FCU is shown in blue.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0005",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "Above what Mach number is the Mach number displayed below the speed scale?",
+    "options": [
+      {
+        "id": "a",
+        "text": "0.3"
+      },
+      {
+        "id": "b",
+        "text": "0.5"
+      },
+      {
+        "id": "c",
+        "text": "0.6"
+      },
+      {
+        "id": "d",
+        "text": "0.7"
+      }
+    ],
+    "correct": "b",
+    "explanation": "It is shown in green.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0006",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "How is the speed at which overspeed protection becomes active shown on the speed scale?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A red and black strip"
+      },
+      {
+        "id": "b",
+        "text": "An amber double bar"
+      },
+      {
+        "id": "c",
+        "text": "A magenta triangle"
+      },
+      {
+        "id": "d",
+        "text": "A pair of green lines"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The red and black strip is VMAX; the amber double bar is VFE NEXT.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0007",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "In managed descent with ECON speed, how is the speed target shown?",
+    "options": [
+      {
+        "id": "a",
+        "text": "As two magenta half-triangles marking an upper and lower limit"
+      },
+      {
+        "id": "b",
+        "text": "As a single blue triangle"
+      },
+      {
+        "id": "c",
+        "text": "As a green dot"
+      },
+      {
+        "id": "d",
+        "text": "As an amber bar"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The range is normally ±20 kt around the target, with limits.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0008",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "In ECON speed range, if a speed constraint or limit applies, what is the upper margin limited to?",
+    "options": [
+      {
+        "id": "a",
+        "text": "ECON speed + 20 kt"
+      },
+      {
+        "id": "b",
+        "text": "VMO"
+      },
+      {
+        "id": "c",
+        "text": "ECON speed + 5 kt"
+      },
+      {
+        "id": "d",
+        "text": "ECON speed + 10 kt"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Otherwise the upper limit is target + 20 kt, capped by VMAX, VMO – 3 kt or MMO – 0.006.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0009",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "When is VLS not displayed on the speed scale?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Above FL250"
+      },
+      {
+        "id": "b",
+        "text": "In alternate law"
+      },
+      {
+        "id": "c",
+        "text": "With the flaps retracted"
+      },
+      {
+        "id": "d",
+        "text": "From touchdown until 10 seconds after lift-off"
+      }
+    ],
+    "correct": "d",
+    "explanation": "VLS is the top of the amber strip.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0010",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "Which strip on the speed scale marks the alpha protection speed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The top of the amber strip"
+      },
+      {
+        "id": "b",
+        "text": "The top of the black and amber striped strip"
+      },
+      {
+        "id": "c",
+        "text": "The top of the red strip"
+      },
+      {
+        "id": "d",
+        "text": "The red and black strip"
+      }
+    ],
+    "correct": "b",
+    "explanation": "It is shown in normal pitch law.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0011",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "Which strip on the speed scale marks the alpha max speed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The top of the amber strip"
+      },
+      {
+        "id": "b",
+        "text": "The top of the black and amber strip"
+      },
+      {
+        "id": "c",
+        "text": "The top of the red strip"
+      },
+      {
+        "id": "d",
+        "text": "A green line"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Alpha max is the highest angle of attack the aircraft will allow in normal law.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0012",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "VMAX at the lower end of the red and black strip is the lowest of which speeds?",
+    "options": [
+      {
+        "id": "a",
+        "text": "VMO (or the speed corresponding to MMO), VLE and VFE"
+      },
+      {
+        "id": "b",
+        "text": "VMO and V2"
+      },
+      {
+        "id": "c",
+        "text": "VFE and VLS"
+      },
+      {
+        "id": "d",
+        "text": "VLE and green dot"
+      }
+    ],
+    "correct": "a",
+    "explanation": "It is the maximum speed for the current configuration.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0013",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "When is the stall warning speed (VSW) displayed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only in alternate or direct pitch law"
+      },
+      {
+        "id": "b",
+        "text": "Always"
+      },
+      {
+        "id": "c",
+        "text": "Only in normal law"
+      },
+      {
+        "id": "d",
+        "text": "Only on the ground"
+      }
+    ],
+    "correct": "a",
+    "explanation": "In normal law the aircraft cannot be stalled, so VSW is not shown.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0014",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "How is V1 shown on the speed scale?",
+    "options": [
+      {
+        "id": "a",
+        "text": "As a magenta triangle"
+      },
+      {
+        "id": "b",
+        "text": "As a blue dot"
+      },
+      {
+        "id": "c",
+        "text": "As a blue numeral 1"
+      },
+      {
+        "id": "d",
+        "text": "As a green letter V"
+      }
+    ],
+    "correct": "c",
+    "explanation": "It disappears after lift-off.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0015",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "When is the green F (minimum flap retraction speed) shown?",
+    "options": [
+      {
+        "id": "a",
+        "text": "With the flap lever in position 1"
+      },
+      {
+        "id": "b",
+        "text": "With the flap lever in position 2 or 3"
+      },
+      {
+        "id": "c",
+        "text": "With the flap lever in FULL"
+      },
+      {
+        "id": "d",
+        "text": "Only on the ground"
+      }
+    ],
+    "correct": "b",
+    "explanation": "S appears with the lever in position 1.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0016",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "When is the green S (minimum slat retraction speed) shown?",
+    "options": [
+      {
+        "id": "a",
+        "text": "With the flap lever in position 2 or 3"
+      },
+      {
+        "id": "b",
+        "text": "In CONF FULL"
+      },
+      {
+        "id": "c",
+        "text": "In CONF 0"
+      },
+      {
+        "id": "d",
+        "text": "With the flap lever in position 1"
+      }
+    ],
+    "correct": "d",
+    "explanation": "F appears in positions 2 and 3.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0017",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "How is VFE NEXT shown on the speed scale?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A red line"
+      },
+      {
+        "id": "b",
+        "text": "A blue triangle"
+      },
+      {
+        "id": "c",
+        "text": "An amber double bar (=)"
+      },
+      {
+        "id": "d",
+        "text": "A magenta dot"
+      }
+    ],
+    "correct": "c",
+    "explanation": "It is shown below 15 000 or 20 000 ft depending on the FAC standard.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0018",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "How is VR shown on the speed scale?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A blue dot"
+      },
+      {
+        "id": "b",
+        "text": "A blue numeral 1"
+      },
+      {
+        "id": "c",
+        "text": "A magenta triangle"
+      },
+      {
+        "id": "d",
+        "text": "A green F"
+      }
+    ],
+    "correct": "a",
+    "explanation": "V2 is a magenta triangle.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0019",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "With both engines, what speed is targeted after take-off until acceleration altitude?",
+    "options": [
+      {
+        "id": "a",
+        "text": "V2"
+      },
+      {
+        "id": "b",
+        "text": "VR"
+      },
+      {
+        "id": "c",
+        "text": "Green dot"
+      },
+      {
+        "id": "d",
+        "text": "V2 + 10 kt"
+      }
+    ],
+    "correct": "d",
+    "explanation": "After an engine failure, V2 is the minimum speed.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0020",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Speed scale",
+    "question": "After an engine failure at a speed above V2, what is the maximum speed to maintain?",
+    "options": [
+      {
+        "id": "a",
+        "text": "V2 + 5 kt"
+      },
+      {
+        "id": "b",
+        "text": "V2 + 15 kt"
+      },
+      {
+        "id": "c",
+        "text": "V2 + 25 kt"
+      },
+      {
+        "id": "d",
+        "text": "Green dot"
+      }
+    ],
+    "correct": "b",
+    "explanation": "If the engine is lost below V2, the target is V2.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/speedtape/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0021",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Altitude",
+    "question": "What appears on the altitude readout when the altitude is negative?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A minus sign"
+      },
+      {
+        "id": "b",
+        "text": "NEG"
+      },
+      {
+        "id": "c",
+        "text": "BELOW"
+      },
+      {
+        "id": "d",
+        "text": "An amber box"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The altitude is a green readout on a grey background.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/altitude-indicator/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0022",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Altitude",
+    "question": "When does the altitude window frame change from yellow to amber?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Below the MDA"
+      },
+      {
+        "id": "b",
+        "text": "Below 1 000 ft"
+      },
+      {
+        "id": "c",
+        "text": "When the baro setting is wrong"
+      },
+      {
+        "id": "d",
+        "text": "When the aircraft deviates from the FCU selected altitude"
+      }
+    ],
+    "correct": "d",
+    "explanation": "It alerts the crew to an altitude deviation.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/altitude-indicator/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0023",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Altitude",
+    "question": "With an MDA entered in the MCDU, when do the altitude numbers turn amber?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When the aircraft descends below the MDA"
+      },
+      {
+        "id": "b",
+        "text": "At 100 ft above the MDA"
+      },
+      {
+        "id": "c",
+        "text": "At the final approach fix"
+      },
+      {
+        "id": "d",
+        "text": "When the minimums callout is made"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The MDA is entered on the PERF approach page.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/altitude-indicator/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0024",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Altitude",
+    "question": "What is the range of the green vertical deviation symbol on the altitude scale?",
+    "options": [
+      {
+        "id": "a",
+        "text": "±200 ft"
+      },
+      {
+        "id": "b",
+        "text": "±1 000 ft"
+      },
+      {
+        "id": "c",
+        "text": "±500 ft"
+      },
+      {
+        "id": "d",
+        "text": "±100 ft"
+      }
+    ],
+    "correct": "c",
+    "explanation": "It shows the FMGC's descent profile from top of descent to the missed approach point.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/altitude-indicator/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0025",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Altitude",
+    "question": "Below what radio height is the radio height shown on the PFD?",
+    "options": [
+      {
+        "id": "a",
+        "text": "1 000 ft"
+      },
+      {
+        "id": "b",
+        "text": "5 000 ft"
+      },
+      {
+        "id": "c",
+        "text": "500 ft"
+      },
+      {
+        "id": "d",
+        "text": "2 500 ft"
+      }
+    ],
+    "correct": "d",
+    "explanation": "It appears at the bottom of the attitude display.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/altitude-indicator/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0026",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Altitude",
+    "question": "With no decision height entered, at what radio height does the radio height turn amber?",
+    "options": [
+      {
+        "id": "a",
+        "text": "200 ft or less"
+      },
+      {
+        "id": "b",
+        "text": "400 ft or less"
+      },
+      {
+        "id": "c",
+        "text": "1 000 ft or less"
+      },
+      {
+        "id": "d",
+        "text": "100 ft or less"
+      }
+    ],
+    "correct": "b",
+    "explanation": "With a DH entered, it turns amber below DH + 100 ft.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/altitude-indicator/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0027",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Altitude",
+    "question": "When the aircraft reaches the decision height, how is DH shown?",
+    "options": [
+      {
+        "id": "a",
+        "text": "DH appears in red"
+      },
+      {
+        "id": "b",
+        "text": "DH flashes green"
+      },
+      {
+        "id": "c",
+        "text": "DH flashes amber for 3 seconds, then stays amber"
+      },
+      {
+        "id": "d",
+        "text": "A DH memo appears on the ECAM"
+      }
+    ],
+    "correct": "c",
+    "explanation": "It appears above the radio height.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/altitude-indicator/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0028",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Altitude",
+    "question": "Below 50 ft, in what steps does the radio height display change until 10 ft?",
+    "options": [
+      {
+        "id": "a",
+        "text": "5 ft"
+      },
+      {
+        "id": "b",
+        "text": "10 ft"
+      },
+      {
+        "id": "c",
+        "text": "1 ft"
+      },
+      {
+        "id": "d",
+        "text": "2 ft"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Every 10 ft down to 50 ft, every 5 ft to 10 ft, then every foot.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/altitude-indicator/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0029",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Altitude",
+    "question": "Below what radio height is the red ground reference ribbon displayed on the altitude scale?",
+    "options": [
+      {
+        "id": "a",
+        "text": "570 ft"
+      },
+      {
+        "id": "b",
+        "text": "2 500 ft"
+      },
+      {
+        "id": "c",
+        "text": "1 000 ft"
+      },
+      {
+        "id": "d",
+        "text": "100 ft"
+      }
+    ],
+    "correct": "a",
+    "explanation": "It shows the ground and sits in the middle of the window at touchdown.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/altitude-indicator/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0030",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Vertical speed",
+    "question": "Which data does the PFD vertical speed indicator use?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Barometric only"
+      },
+      {
+        "id": "b",
+        "text": "GPS only"
+      },
+      {
+        "id": "c",
+        "text": "Inertial and barometric data, with barometric alone if inertial is lost"
+      },
+      {
+        "id": "d",
+        "text": "Radio altimeter rate"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The pointer stays at the end of the scale above 6 000 ft/min.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/vertical-speed/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0031",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Vertical speed",
+    "question": "Below what vertical speed does the digital V/S value disappear?",
+    "options": [
+      {
+        "id": "a",
+        "text": "100 ft/min"
+      },
+      {
+        "id": "b",
+        "text": "200 ft/min"
+      },
+      {
+        "id": "c",
+        "text": "500 ft/min"
+      },
+      {
+        "id": "d",
+        "text": "50 ft/min"
+      }
+    ],
+    "correct": "b",
+    "explanation": "It is shown in hundreds of feet per minute.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/vertical-speed/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0032",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Vertical speed",
+    "question": "Below 1 000 ft RA in a descent, above what vertical speed does the V/S turn amber?",
+    "options": [
+      {
+        "id": "a",
+        "text": "2 000 ft/min"
+      },
+      {
+        "id": "b",
+        "text": "1 000 ft/min"
+      },
+      {
+        "id": "c",
+        "text": "1 500 ft/min"
+      },
+      {
+        "id": "d",
+        "text": "1 200 ft/min"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Between 1 000 and 2 500 ft RA the threshold is 2 000 ft/min.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/vertical-speed/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0033",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Heading",
+    "question": "When does TRU appear on the PFD heading scale?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When the heading is invalid"
+      },
+      {
+        "id": "b",
+        "text": "When TRK mode is selected"
+      },
+      {
+        "id": "c",
+        "text": "When true heading is displayed, above 73°N or below 60°S"
+      },
+      {
+        "id": "d",
+        "text": "When the IRS is in ATT mode"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Magnetic variation is unreliable at high latitudes.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/heading-ref/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0034",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Heading",
+    "question": "What does the small green diamond on the heading scale show?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The aircraft's actual track"
+      },
+      {
+        "id": "b",
+        "text": "The selected heading"
+      },
+      {
+        "id": "c",
+        "text": "The ILS course"
+      },
+      {
+        "id": "d",
+        "text": "The wind direction"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The selected heading or track is a blue triangle.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/heading-ref/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0035",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "ILS",
+    "question": "How many degrees of localizer deviation does one dot represent on the PFD?",
+    "options": [
+      {
+        "id": "a",
+        "text": "0.4°"
+      },
+      {
+        "id": "b",
+        "text": "1.0°"
+      },
+      {
+        "id": "c",
+        "text": "2.5°"
+      },
+      {
+        "id": "d",
+        "text": "0.8°"
+      }
+    ],
+    "correct": "d",
+    "explanation": "On the glideslope scale one dot is 0.4°.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/ils-indicator/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0036",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "ILS",
+    "question": "How many degrees of glideslope deviation does one dot represent on the PFD?",
+    "options": [
+      {
+        "id": "a",
+        "text": "0.8°"
+      },
+      {
+        "id": "b",
+        "text": "0.4°"
+      },
+      {
+        "id": "c",
+        "text": "0.2°"
+      },
+      {
+        "id": "d",
+        "text": "1.0°"
+      }
+    ],
+    "correct": "b",
+    "explanation": "On the localizer scale one dot is 0.8°.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/ils-indicator/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0037",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "ILS",
+    "question": "In what colour is OM shown when passing the outer marker?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Amber"
+      },
+      {
+        "id": "b",
+        "text": "Blue"
+      },
+      {
+        "id": "c",
+        "text": "White"
+      },
+      {
+        "id": "d",
+        "text": "Green"
+      }
+    ],
+    "correct": "b",
+    "explanation": "MM is amber and AWY (airway or inner marker) is white.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/ils-indicator/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0038",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "ILS",
+    "question": "Where and in what colour is the ILS identification, frequency and DME shown on the PFD?",
+    "options": [
+      {
+        "id": "a",
+        "text": "In green, above the speed scale"
+      },
+      {
+        "id": "b",
+        "text": "In blue, in the FMA"
+      },
+      {
+        "id": "c",
+        "text": "In white, below the altitude scale"
+      },
+      {
+        "id": "d",
+        "text": "In magenta, to the left of the heading scale"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The ILS course pointer is also magenta.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/ils-indicator/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0039",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "ILS",
+    "question": "On a non-precision approach, what does each graduation of the vertical deviation scale represent?",
+    "options": [
+      {
+        "id": "a",
+        "text": "100 ft, with a range of ±200 ft"
+      },
+      {
+        "id": "b",
+        "text": "0.4°, with a range of ±0.8°"
+      },
+      {
+        "id": "c",
+        "text": "50 ft, with a range of ±100 ft"
+      },
+      {
+        "id": "d",
+        "text": "1 dot, with a range of ±2 dots"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The scale uses bars instead of dots.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/ils-indicator/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0040",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Flags",
+    "question": "When is CHECK ATT shown on both PFDs?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When one IR is in ATT mode"
+      },
+      {
+        "id": "b",
+        "text": "When the attitude is lost"
+      },
+      {
+        "id": "c",
+        "text": "When the two PFDs' attitudes differ by at least 5°"
+      },
+      {
+        "id": "d",
+        "text": "When pitch exceeds 25°"
+      }
+    ],
+    "correct": "c",
+    "explanation": "An ECAM caution accompanies it.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/flags-messages/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0041",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Flags",
+    "question": "What causes the red SPD LIM flag?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Both ADRs failed"
+      },
+      {
+        "id": "b",
+        "text": "An overspeed"
+      },
+      {
+        "id": "c",
+        "text": "The speed selected out of range"
+      },
+      {
+        "id": "d",
+        "text": "Both FACs inoperative, or a dual flap/slat channel failure"
+      }
+    ],
+    "correct": "d",
+    "explanation": "VLS, S, F, green dot, speed trend, VMAX, VFE next and VSW are lost.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/flags-messages/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0042",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Flags",
+    "question": "In QNH, what altitude difference between the two PFDs triggers CHECK ALT?",
+    "options": [
+      {
+        "id": "a",
+        "text": "More than 100 ft"
+      },
+      {
+        "id": "b",
+        "text": "More than 250 ft"
+      },
+      {
+        "id": "c",
+        "text": "More than 500 ft"
+      },
+      {
+        "id": "d",
+        "text": "More than 1 000 ft"
+      }
+    ],
+    "correct": "b",
+    "explanation": "With STD selected the threshold is 500 ft.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/flags-messages/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0043",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Flags",
+    "question": "What heading difference between the two PFDs triggers CHECK HDG?",
+    "options": [
+      {
+        "id": "a",
+        "text": "2°"
+      },
+      {
+        "id": "b",
+        "text": "10°"
+      },
+      {
+        "id": "c",
+        "text": "5°"
+      },
+      {
+        "id": "d",
+        "text": "15°"
+      }
+    ],
+    "correct": "c",
+    "explanation": "It also gives an ECAM caution.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/flags-messages/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0044",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Flags",
+    "question": "When is the red RA flag displayed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When both radio altimeters have failed"
+      },
+      {
+        "id": "b",
+        "text": "When one radio altimeter has failed"
+      },
+      {
+        "id": "c",
+        "text": "Above 2 500 ft"
+      },
+      {
+        "id": "d",
+        "text": "When the radio altimeters disagree"
+      }
+    ],
+    "correct": "a",
+    "explanation": "It replaces the radio height indication.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/flags-messages/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0045",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Flags",
+    "question": "Which condition displays the red FD flag?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Both FMGCs failed (or both FDs disengaged with the FD pushbutton on and valid attitude)"
+      },
+      {
+        "id": "b",
+        "text": "The FD pushbutton selected off"
+      },
+      {
+        "id": "c",
+        "text": "One FMGC failed"
+      },
+      {
+        "id": "d",
+        "text": "The autopilot engaged"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Turning the FD pushbutton off simply removes the bars.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/flags-messages/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0046",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Flags",
+    "question": "After a windshear detection, how long does the red WINDSHEAR message remain on the PFD at least?",
+    "options": [
+      {
+        "id": "a",
+        "text": "5 seconds"
+      },
+      {
+        "id": "b",
+        "text": "30 seconds"
+      },
+      {
+        "id": "c",
+        "text": "15 seconds"
+      },
+      {
+        "id": "d",
+        "text": "Until the crew cancels it"
+      }
+    ],
+    "correct": "c",
+    "explanation": "It comes with an aural windshear warning.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/flags-messages/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PFD-0047",
+    "aircraft": "A320",
+    "topic": "Primary Flight Display",
+    "subtopic": "Flags",
+    "question": "What does W/S AHEAD on the PFD indicate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The aircraft is in a windshear"
+      },
+      {
+        "id": "b",
+        "text": "The predictive windshear function has detected windshear ahead"
+      },
+      {
+        "id": "c",
+        "text": "A windshear was reported by ATC"
+      },
+      {
+        "id": "d",
+        "text": "The weather radar has failed"
+      }
+    ],
+    "correct": "b",
+    "explanation": "It is amber or red depending on the alert level.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/pfd/flags-messages/",
+    "status": "published",
+    "version": 1
+  }
+]

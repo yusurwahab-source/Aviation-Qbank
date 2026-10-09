@@ -3,28 +3,29 @@
     "id": "A320-COND-0001",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Packs",
-    "question": "How many air conditioning packs does the A320 family have, and what normally feeds each one?",
+    "subtopic": "Zones",
+    "question": "Which three temperature zones have their own selector on the A320 AIR COND panel?",
     "options": [
       {
         "id": "a",
-        "text": "Two packs; both are fed from the APU bleed in flight and from the engines only on the ground"
+        "text": "Cockpit, cabin and cargo"
       },
       {
         "id": "b",
-        "text": "Three packs, one per cabin zone, each fed by its own bleed duct"
+        "text": "Left cabin, right cabin and cockpit"
       },
       {
         "id": "c",
-        "text": "Two packs; pack 1 is fed from the left engine bleed and pack 2 from the right engine bleed"
+        "text": "Cockpit, forward cabin and aft cabin"
       },
       {
         "id": "d",
-        "text": "One pack per engine plus a third emergency pack fed by ram air"
+        "text": "Cockpit, galley and lavatories"
       }
     ],
     "correct": "c",
-    "explanation": "Each pack is supplied by the bleed system on its own side in the normal configuration. The cross bleed valve can link the two sides, which is how one engine bleed can feed both packs.",
+    "explanation": "The panel carries COCKPIT, FWD CABIN and AFT CABIN selectors. Cargo has its own ventilation and is not one of the three conditioned zones.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -32,28 +33,29 @@
     "id": "A320-COND-0002",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Packs",
-    "question": "What is the job of the pack flow control valve?",
+    "subtopic": "Zones",
+    "question": "What temperature does a zone selector request in its 12 o'clock position?",
     "options": [
       {
         "id": "a",
-        "text": "It regulates the amount of bleed air entering the pack and closes to isolate the pack when required"
+        "text": "24 °C (76 °F)"
       },
       {
         "id": "b",
-        "text": "It regulates the temperature of the air leaving the pack by mixing in hot air"
+        "text": "20 °C (68 °F)"
       },
       {
         "id": "c",
-        "text": "It lets cabin air recirculate back through the pack"
+        "text": "22 °C (72 °F)"
       },
       {
         "id": "d",
-        "text": "It controls how much ram air flows through the heat exchangers"
+        "text": "26 °C (79 °F)"
       }
     ],
     "correct": "a",
-    "explanation": "Flow control is the valve's job; temperature is controlled elsewhere (the bypass valve and the ram air flap). The valve is electrically controlled and pneumatically operated.",
+    "explanation": "The mid position is about 24 °C. The scale runs from about 18 °C at COLD to about 30 °C at HOT.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -61,28 +63,29 @@
     "id": "A320-COND-0003",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Packs",
-    "question": "What are the three positions of the PACK FLOW selector, and what do they do?",
+    "subtopic": "Zones",
+    "question": "What temperature does a zone selector request at the COLD stop?",
     "options": [
       {
         "id": "a",
-        "text": "OFF, AUTO and MAN, which change who controls the packs"
+        "text": "10 °C (50 °F)"
       },
       {
         "id": "b",
-        "text": "COLD, NORM and HOT, which change the target pack outlet temperature"
+        "text": "15 °C (59 °F)"
       },
       {
         "id": "c",
-        "text": "ECON, NORM and MAX, which change the engine bleed stage used"
+        "text": "21 °C (70 °F)"
       },
       {
         "id": "d",
-        "text": "LO, NORM and HI, which change the pack flow relative to normal"
+        "text": "18 °C (64 °F)"
       }
     ],
     "correct": "d",
-    "explanation": "The selector only changes flow, never temperature. LO gives less flow than normal (around 80%), HI more (around 120%).",
+    "explanation": "COLD is about 18 °C. The selectors cover roughly 18–30 °C, with 24 °C at the top.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -90,28 +93,29 @@
     "id": "A320-COND-0004",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Packs",
-    "question": "Approximately what pack flow do the LO and HI positions give compared with NORM?",
+    "subtopic": "Zones",
+    "question": "What temperature does a zone selector request at the HOT stop?",
     "options": [
       {
         "id": "a",
-        "text": "About 50% for LO and about 150% for HI"
+        "text": "27 °C (81 °F)"
       },
       {
         "id": "b",
-        "text": "About 80% for LO and about 120% for HI"
+        "text": "30 °C (86 °F)"
       },
       {
         "id": "c",
-        "text": "About 90% for LO and about 110% for HI"
+        "text": "35 °C (95 °F)"
       },
       {
         "id": "d",
-        "text": "LO and HI both give 100%; only the flow schedule changes"
+        "text": "40 °C (104 °F)"
       }
     ],
     "correct": "b",
-    "explanation": "NORM is the reference, LO is roughly four fifths of it and HI roughly one fifth more. LO is used for a lightly loaded cabin to save fuel, HI to cool a full one.",
+    "explanation": "HOT is about 30 °C. The selectors cover roughly 18–30 °C, with 24 °C at the top.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -120,27 +124,28 @@
     "aircraft": "A320",
     "topic": "Air Conditioning",
     "subtopic": "Packs",
-    "question": "When is HI pack flow selected automatically, regardless of the selector?",
+    "question": "How do PACK 1 and PACK 2 operate in normal use?",
     "options": [
       {
         "id": "a",
-        "text": "Whenever the aircraft is above FL250"
+        "text": "Pack 2 follows pack 1 as a slave"
       },
       {
         "id": "b",
-        "text": "When a single pack is operating, and when the packs are supplied by the APU bleed"
+        "text": "Automatically and independently of each other"
       },
       {
         "id": "c",
-        "text": "Whenever both engine bleeds are operating"
+        "text": "Only one runs at a time and they alternate each flight"
       },
       {
         "id": "d",
-        "text": "Only during the take-off roll to protect against engine bleed loss"
+        "text": "Manually, from the PACK FLOW selector"
       }
     ],
     "correct": "b",
-    "explanation": "With one pack lost, the remaining pack must supply the whole cabin, so the flow is raised automatically. The same applies when the APU is the bleed source.",
+    "explanation": "Each pack has its own controller and flow control valve; the loss of one does not take the other with it.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -149,27 +154,28 @@
     "aircraft": "A320",
     "topic": "Air Conditioning",
     "subtopic": "Packs",
-    "question": "Which flow setting should be considered when the cabin is lightly loaded, to reduce bleed demand?",
+    "question": "What does the PACK pushbutton in the ON (lights out) position do?",
     "options": [
       {
         "id": "a",
-        "text": "HI"
+        "text": "It opens the pack flow control valve fully regardless of demand"
       },
       {
         "id": "b",
-        "text": "NORM with one pack off"
+        "text": "It selects HI flow on that pack"
       },
       {
         "id": "c",
-        "text": "HI, with the cross bleed valve closed"
+        "text": "It opens the ram air inlet of that pack"
       },
       {
         "id": "d",
-        "text": "LO"
+        "text": "The pack flow control valve is automatically controlled"
       }
     ],
     "correct": "d",
-    "explanation": "A lightly loaded cabin needs less fresh air, so LO saves bleed air and therefore fuel. HI is used when the cabin is full or hot, or when only one pack is available.",
+    "explanation": "ON hands the valve to automatic control. The valve still closes automatically for its protections.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -178,27 +184,28 @@
     "aircraft": "A320",
     "topic": "Air Conditioning",
     "subtopic": "Packs",
-    "question": "What happens to a pack's flow control valve when its engine start is selected?",
+    "question": "What happens when a PACK pushbutton is selected OFF?",
     "options": [
       {
         "id": "a",
-        "text": "It closes automatically so that the start is not penalised by the bleed demand"
+        "text": "The pack flow control valve closes"
       },
       {
         "id": "b",
-        "text": "It opens fully to cool the engine bay"
+        "text": "The pack keeps running but its trim air stops"
       },
       {
         "id": "c",
-        "text": "It stays open but the flow drops to LO"
+        "text": "The pack goes to LO flow"
       },
       {
         "id": "d",
-        "text": "It transfers its supply to the APU bleed"
+        "text": "The cross bleed valve closes"
       }
     ],
     "correct": "a",
-    "explanation": "During engine start, bleed air must go to the starter, so the pack valve closes and the pack goes off line. It reopens once the start is finished.",
+    "explanation": "Selecting OFF shuts the pack's flow control valve, so that pack delivers no air.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -207,27 +214,28 @@
     "aircraft": "A320",
     "topic": "Air Conditioning",
     "subtopic": "Packs",
-    "question": "Which of these events closes a pack flow control valve automatically?",
+    "question": "Which condition does NOT turn on the amber PACK FAULT light?",
     "options": [
       {
         "id": "a",
-        "text": "Selecting the PACK FLOW selector to LO"
+        "text": "The pack flow control valve disagreeing with the selected position"
       },
       {
         "id": "b",
-        "text": "Selecting the RAM AIR pushbutton"
+        "text": "A compressor outlet overheat"
       },
       {
         "id": "c",
-        "text": "Pressing the engine fire pushbutton on the same side"
+        "text": "The PACK FLOW selector set to LO"
       },
       {
         "id": "d",
-        "text": "Moving the zone temperature selectors to COLD"
+        "text": "A pack outlet overheat"
       }
     ],
     "correct": "c",
-    "explanation": "A fire pushbutton shuts the bleed and the pack valve on that side. Ditching and a pack overheat also close it. Flow selection and temperature changes do not.",
+    "explanation": "FAULT means a valve disagreement or a pack overheat (compressor outlet or pack outlet). Flow selection is a normal setting, not a fault.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -235,28 +243,29 @@
     "id": "A320-COND-0009",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Packs",
-    "question": "What does the DITCHING pushbutton do to the air conditioning system?",
+    "subtopic": "Pack flow",
+    "question": "What flow does the PACK FLOW selector give in LO?",
     "options": [
       {
         "id": "a",
-        "text": "It opens the ram air inlet to ventilate the cabin"
+        "text": "50 % of normal"
       },
       {
         "id": "b",
-        "text": "It shuts off only the cargo ventilation"
+        "text": "70 % of normal"
       },
       {
         "id": "c",
-        "text": "It isolates the left pack and keeps the right pack running"
+        "text": "90 % of normal"
       },
       {
         "id": "d",
-        "text": "It closes the pack flow control valves and the outflow valve, together with other openings in the fuselage lower skin"
+        "text": "80 % of normal"
       }
     ],
     "correct": "d",
-    "explanation": "Ditching preparation seals the fuselage as far as possible so the aircraft floats longer. The pack valves, outflow valve and other skin openings are closed.",
+    "explanation": "LO is 80 %, NORM 100 % and HI 120 %.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -264,28 +273,29 @@
     "id": "A320-COND-0010",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Packs",
-    "question": "How is the temperature of the air leaving a pack primarily controlled?",
+    "subtopic": "Pack flow",
+    "question": "What flow does the PACK FLOW selector give in HI?",
     "options": [
       {
         "id": "a",
-        "text": "By the pack flow selector, which sets the outlet temperature directly"
+        "text": "110 % of normal"
       },
       {
         "id": "b",
-        "text": "By the pack controller, which acts on the bypass valve and the ram air flow through the heat exchangers"
+        "text": "120 % of normal"
       },
       {
         "id": "c",
-        "text": "By the position of the outflow valve"
+        "text": "140 % of normal"
       },
       {
         "id": "d",
-        "text": "By the recirculation fans' speed"
+        "text": "150 % of normal"
       }
     ],
     "correct": "b",
-    "explanation": "The pack controller works out the demand from the zone controller and mixes hot bleed air around the cooling process with the bypass valve while the ram air flap sets the cooling.",
+    "explanation": "HI is 120 %, used for smoke removal and hot or wet conditions.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -293,28 +303,29 @@
     "id": "A320-COND-0011",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Packs",
-    "question": "In the pack's air cycle machine, what cools the air most strongly?",
+    "subtopic": "Pack flow",
+    "question": "In which situation is the PACK FLOW selector setting irrelevant, the flow being HI regardless?",
     "options": [
       {
         "id": "a",
-        "text": "Evaporation of fuel in the wing tanks"
+        "text": "Whenever the aircraft is on the ground with engines running"
       },
       {
         "id": "b",
-        "text": "Compression of the air in the compressor stage"
+        "text": "Above FL300"
       },
       {
         "id": "c",
-        "text": "Expansion of the air through a turbine, after it has already been cooled in the heat exchangers"
+        "text": "Single pack operation, or when the APU bleed is supplying the packs"
       },
       {
         "id": "d",
-        "text": "Mixing it with cold cabin air in the mixer unit"
+        "text": "Whenever the zone selectors are at COLD"
       }
     ],
     "correct": "c",
-    "explanation": "The compressor raises pressure and temperature, the heat exchangers (cooled by ram air) take heat out, and the expansion through the turbine then drops the temperature sharply.",
+    "explanation": "With only one pack, or with APU bleed air, the system always uses HI flow; the selector has no effect.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -322,28 +333,29 @@
     "id": "A320-COND-0012",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Packs",
-    "question": "Which component removes the water from the air leaving the pack's turbine?",
+    "subtopic": "Pack flow",
+    "question": "LO pack flow is selected, but the cooling demand cannot be met. What does the system do?",
     "options": [
       {
         "id": "a",
-        "text": "The water extractor (condenser)"
+        "text": "It goes to 100 % flow even though LO is selected"
       },
       {
         "id": "b",
-        "text": "The mixer unit"
+        "text": "It stays at 80 % and the zones warm up"
       },
       {
         "id": "c",
-        "text": "The hot air pressure regulating valve"
+        "text": "It goes to 120 % flow"
       },
       {
         "id": "d",
-        "text": "The recirculation filter"
+        "text": "It shuts the trim air valves"
       }
     ],
     "correct": "a",
-    "explanation": "Cooling the air to a low temperature condenses moisture, which the water extractor separates before the air enters the distribution system. Without it the ducts would fill with water and ice.",
+    "explanation": "LO is a request, not a limit: if cooling cannot be satisfied the flow rises to NORM.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -351,28 +363,29 @@
     "id": "A320-COND-0013",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Packs",
-    "question": "What is the purpose of the anti-ice valve inside a pack?",
+    "subtopic": "Pack flow",
+    "question": "On what basis is the PACK FLOW selector set?",
     "options": [
       {
         "id": "a",
-        "text": "To stop ice forming in the water extractor by modulating warm air to keep the outlet above freezing"
+        "text": "The number of passengers and the ambient conditions (smoke removal, hot or wet conditions)"
       },
       {
         "id": "b",
-        "text": "To heat the cabin during ground operations"
+        "text": "The aircraft's take-off weight"
       },
       {
         "id": "c",
-        "text": "To protect the pack against over-pressure"
+        "text": "The cruise flight level"
       },
       {
         "id": "d",
-        "text": "To prevent ram air inlet icing"
+        "text": "The number of engines running"
       }
     ],
     "correct": "a",
-    "explanation": "The cold air leaving the turbine can carry water at a temperature low enough to freeze in the extractor; the anti-ice valve limits how cold it can get.",
+    "explanation": "Fewer passengers allow LO to save bleed air; smoke removal and hot or humid days call for HI.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -380,28 +393,29 @@
     "id": "A320-COND-0014",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Packs",
-    "question": "What does the pack overheat protection do?",
+    "subtopic": "Trim air",
+    "question": "What does the HOT AIR pushbutton in the ON position provide?",
     "options": [
       {
         "id": "a",
-        "text": "It switches the pack to HI flow to cool it"
+        "text": "Hot air to the wing anti-ice"
       },
       {
         "id": "b",
-        "text": "It opens the ram air inlet fully and keeps the pack running"
+        "text": "Hot air to the cargo heating only"
       },
       {
         "id": "c",
-        "text": "It closes the pack flow control valve and turns the pack off, with the PACK pushbutton FAULT light"
+        "text": "Hot air for the trim air system"
       },
       {
         "id": "d",
-        "text": "It transfers the load to the other pack and keeps both running"
+        "text": "Hot air to the packs' anti-ice valves"
       }
     ],
     "correct": "c",
-    "explanation": "An overheat means the pack's own cooling cannot cope, so the supply must be cut. The crew can try to reset it later once the pack has cooled.",
+    "explanation": "HOT AIR ON opens the hot air pressure regulating valve so trim air is available to raise each zone's temperature.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -409,28 +423,29 @@
     "id": "A320-COND-0015",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Zones",
-    "question": "What are the three temperature zones on an A320 cabin?",
+    "subtopic": "Trim air",
+    "question": "What happens when the HOT AIR pushbutton is selected OFF?",
     "options": [
       {
         "id": "a",
-        "text": "The cockpit, the passenger cabin and the cargo hold"
+        "text": "The packs shut down"
       },
       {
         "id": "b",
-        "text": "The cockpit, the forward cabin and the aft cabin"
+        "text": "The hot air valve closes and any FAULT is reset"
       },
       {
         "id": "c",
-        "text": "Left, right and centre of the cabin"
+        "text": "The trim air valves open fully"
       },
       {
         "id": "d",
-        "text": "Cockpit, galley and lavatories"
+        "text": "The zone controller switches to its secondary channel"
       }
     ],
     "correct": "b",
-    "explanation": "Each zone has its own temperature selector on the overhead panel and its own trim air valve. The cargo compartments are not temperature zones in the same sense.",
+    "explanation": "OFF closes the hot air valve; it is also the action that clears a HOT AIR FAULT.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -438,28 +453,29 @@
     "id": "A320-COND-0016",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Zones",
-    "question": "What is the range of the cabin zone temperature selectors?",
+    "subtopic": "Trim air",
+    "question": "At what duct temperature does the HOT AIR FAULT light come on?",
     "options": [
       {
         "id": "a",
-        "text": "From 0 °C to 40 °C, with the middle at 20 °C"
+        "text": "Above 60 °C (140 °F)"
       },
       {
         "id": "b",
-        "text": "From 10 °C to 25 °C, with the middle at 15 °C"
+        "text": "Above 120 °C (248 °F)"
       },
       {
         "id": "c",
-        "text": "From 15 °C to 35 °C, with the middle at 28 °C"
+        "text": "Above 230 °C (446 °F)"
       },
       {
         "id": "d",
-        "text": "From about 18 °C to about 30 °C, with the middle position around 24 °C"
+        "text": "Above 88 °C (190 °F)"
       }
     ],
     "correct": "d",
-    "explanation": "The selectors are not calibrated to a precise value but the range of 18–30 °C is the commonly quoted one, with the mid position around 24 °C.",
+    "explanation": "A duct overheat above 88 °C gives the amber FAULT and an ECAM caution, and the valves close automatically.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -467,28 +483,29 @@
     "id": "A320-COND-0017",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Zones",
-    "question": "Which unit computes the target temperature for each zone and for the pack outlets?",
+    "subtopic": "Trim air",
+    "question": "After a HOT AIR FAULT, when does the FAULT light go out by itself?",
     "options": [
       {
         "id": "a",
-        "text": "The cabin pressure controller"
+        "text": "After 60 seconds"
       },
       {
         "id": "b",
-        "text": "The pack flow control valve"
+        "text": "When the aircraft lands"
       },
       {
         "id": "c",
-        "text": "The zone controller"
+        "text": "When the duct temperature falls below 70 °C (158 °F)"
       },
       {
         "id": "d",
-        "text": "The flight management guidance computer"
+        "text": "Only when the zone selectors are turned to COLD"
       }
     ],
     "correct": "c",
-    "explanation": "The zone controller compares the selected and actual temperatures of each zone and sends the demands to the pack controllers and the trim air valves.",
+    "explanation": "The light goes out below 70 °C, or when the crew selects the pushbutton OFF.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -496,28 +513,29 @@
     "id": "A320-COND-0018",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Zones",
-    "question": "What is the principle used to set the pack outlet temperature when the three zones want different temperatures?",
+    "subtopic": "Emergency ram air",
+    "question": "What does pressing the guarded RAM AIR pushbutton ON do?",
     "options": [
       {
         "id": "a",
-        "text": "The packs deliver air at the temperature the coolest-demanding zone needs, and trim air warms the others"
+        "text": "It opens the emergency ram air inlet"
       },
       {
         "id": "b",
-        "text": "The packs deliver the average of the three selected temperatures"
+        "text": "It opens the pack ram air inlet flaps fully"
       },
       {
         "id": "c",
-        "text": "The packs deliver the temperature selected for the cockpit"
+        "text": "It shuts the outflow valve"
       },
       {
         "id": "d",
-        "text": "The packs deliver the temperature of the warmest zone and the others are cooled by recirculation"
+        "text": "It switches the packs to HI flow"
       }
     ],
     "correct": "a",
-    "explanation": "Trim air can only add heat; nothing downstream of the pack can cool the air again. So the pack makes air for the coldest need and trim air raises it where needed.",
+    "explanation": "RAM AIR is a separate emergency inlet, used to ventilate the aircraft when the packs are lost or for smoke removal.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -525,28 +543,29 @@
     "id": "A320-COND-0019",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Zones",
-    "question": "What do the trim air valves add to the air going to a zone?",
+    "subtopic": "Emergency ram air",
+    "question": "RAM AIR is selected ON while the cabin differential pressure is 1 psi or more. What happens?",
     "options": [
       {
         "id": "a",
-        "text": "Cold air from the ram air inlet"
+        "text": "Ram air flows in and the cabin depressurises"
       },
       {
         "id": "b",
-        "text": "Recirculated cabin air at a controlled temperature"
+        "text": "The outflow valve closes fully"
       },
       {
         "id": "c",
-        "text": "Hot air from the engine nacelle anti-ice duct"
+        "text": "The packs shut down"
       },
       {
         "id": "d",
-        "text": "Hot bleed air, taken from upstream of the packs"
+        "text": "The outflow valve control stays normal and no emergency ram air flows in"
       }
     ],
     "correct": "d",
-    "explanation": "Hot air is tapped from the bleed duct, passes through the hot air pressure regulating valve, and each zone's trim air valve adds the amount needed to reach the target temperature.",
+    "explanation": "Ram air pressure cannot overcome a cabin at 1 psi or more above ambient, so nothing flows until the differential falls.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -554,28 +573,29 @@
     "id": "A320-COND-0020",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Zones",
-    "question": "What happens to the trim air valves when the HOT AIR pushbutton is released (OFF) or a hot air fault occurs?",
+    "subtopic": "Emergency ram air",
+    "question": "RAM AIR is ON, differential pressure is below 1 psi and pressurisation is in automatic. What does the outflow valve do?",
     "options": [
       {
         "id": "a",
-        "text": "The trim air valves open fully"
+        "text": "It opens fully"
       },
       {
         "id": "b",
-        "text": "The hot air valve and the trim air valves close, and the zones receive only pack air"
+        "text": "It opens to about 50 %"
       },
       {
         "id": "c",
-        "text": "The packs shut down automatically"
+        "text": "It closes fully"
       },
       {
         "id": "d",
-        "text": "The recirculation fans stop"
+        "text": "It stays where it was"
       }
     ],
     "correct": "b",
-    "explanation": "Without trim air the packs' temperature alone governs the zones, which is why the cabin may become too cold in some zones.",
+    "explanation": "Opening the outflow valve about halfway gives the incoming ram air a way out, so it flows through the cabin.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -583,28 +603,29 @@
     "id": "A320-COND-0021",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Distribution",
-    "question": "What is the function of the mixer unit?",
+    "subtopic": "Emergency ram air",
+    "question": "RAM AIR is ON with pressurisation in manual mode. What does the outflow valve do automatically?",
     "options": [
       {
         "id": "a",
-        "text": "To measure the humidity of the air leaving the packs"
+        "text": "It opens to about 50 %"
       },
       {
         "id": "b",
-        "text": "To mix air from the packs with recirculated cabin air and distribute it to the cockpit and cabin ducts"
+        "text": "Nothing: it does not open automatically under manual control"
       },
       {
         "id": "c",
-        "text": "To mix hot and cold air for the trim air valves"
+        "text": "It opens fully"
       },
       {
         "id": "d",
-        "text": "To control cabin pressure"
+        "text": "It closes"
       }
     ],
     "correct": "b",
-    "explanation": "Recirculated air reduces the fresh air that must be taken from the engines and so saves fuel. The mixer unit takes pack air and recirculated air and feeds the zones.",
+    "explanation": "In MAN the crew drives the outflow valve with MAN V/S CTL; the automatic opening only happens under automatic control.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -612,28 +633,29 @@
     "id": "A320-COND-0022",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Distribution",
-    "question": "What is the purpose of the recirculation (cabin) fans?",
+    "subtopic": "Emergency ram air",
+    "question": "Where does emergency ram air go once it flows in?",
     "options": [
       {
         "id": "a",
-        "text": "To cool the avionics equipment"
+        "text": "Through the packs' heat exchangers"
       },
       {
         "id": "b",
-        "text": "To extract air from the lavatories and galley"
+        "text": "To the avionics ventilation only"
       },
       {
         "id": "c",
-        "text": "To pressurise the cargo compartments"
+        "text": "To the cargo compartments only"
       },
       {
         "id": "d",
-        "text": "To draw cabin air through filters back into the mixer unit, reducing the bleed air that is needed"
+        "text": "Directly to the mixer unit"
       }
     ],
     "correct": "d",
-    "explanation": "Every kilogram of recirculated air is a kilogram that does not have to be taken from the engine, which is what makes recirculation economical.",
+    "explanation": "Emergency ram air bypasses the packs and enters the mixer unit, from where it is distributed to the zones.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -641,28 +663,29 @@
     "id": "A320-COND-0023",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Distribution",
-    "question": "What does the CAB FANS pushbutton control?",
+    "subtopic": "Emergency ram air",
+    "question": "What does DITCHING do to the emergency ram air inlet?",
     "options": [
       {
         "id": "a",
-        "text": "The cabin recirculation fans"
+        "text": "It closes it, even if RAM AIR is ON"
       },
       {
         "id": "b",
-        "text": "The cargo compartment extraction fans"
+        "text": "It opens it to flood the cabin slowly"
       },
       {
         "id": "c",
-        "text": "The avionics bay blower fans"
+        "text": "It has no effect on it"
       },
       {
         "id": "d",
-        "text": "The lavatory and galley extraction fans"
+        "text": "It opens it to equalise pressure"
       }
     ],
     "correct": "a",
-    "explanation": "The pushbutton on the overhead panel switches the recirculation fans on or off. They are on in normal operation.",
+    "explanation": "Ditching closes every opening below the floating line, the ram air inlet included.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/ac/",
     "status": "published",
     "version": 1
   },
@@ -670,28 +693,29 @@
     "id": "A320-COND-0024",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Distribution",
-    "question": "Why are recirculation fans switched off in some abnormal situations (such as smoke)?",
+    "subtopic": "Indications",
+    "question": "What does a green ALTN MODE message on the ECAM COND page mean?",
     "options": [
       {
         "id": "a",
-        "text": "To reduce electrical load"
+        "text": "Both packs are in alternate flow"
       },
       {
         "id": "b",
-        "text": "To stop the packs from icing"
+        "text": "The cabin fans have failed"
       },
       {
         "id": "c",
-        "text": "So that smoke or contamination is not drawn around and redistributed through the cabin"
+        "text": "The primary zone controller is faulty"
       },
       {
         "id": "d",
-        "text": "To lower the cabin pressure"
+        "text": "Hot air is off"
       }
     ],
     "correct": "c",
-    "explanation": "Switching them off means the cabin air is made up only from fresh pack air, which is easier to control during smoke procedures.",
+    "explanation": "ALTN MODE shows that the zone controller's primary channel has failed and its back-up is in use.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/cond/",
     "status": "published",
     "version": 1
   },
@@ -699,28 +723,29 @@
     "id": "A320-COND-0025",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Distribution",
-    "question": "Where does the air for the cockpit zone come from?",
+    "subtopic": "Indications",
+    "question": "What does a green PACK REG message on the ECAM COND page mean?",
     "options": [
       {
         "id": "a",
-        "text": "Directly from pack 1 only"
+        "text": "The packs are operating in HI flow"
       },
       {
         "id": "b",
-        "text": "From the avionics bay through the skin heat exchanger"
+        "text": "A pack is overheating"
       },
       {
         "id": "c",
-        "text": "From the forward cargo compartment"
+        "text": "The pack flow control valves are closed"
       },
       {
         "id": "d",
-        "text": "From the mixer unit through its own duct, with its own trim air valve"
+        "text": "The zone controller is faulty, so the packs regulate the temperature themselves"
       }
     ],
     "correct": "d",
-    "explanation": "All three zones are fed from the mixer unit; the trim air valves are what make each zone's temperature different.",
+    "explanation": "With the zone controller lost, the pack controllers take over temperature regulation on their own.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/cond/",
     "status": "published",
     "version": 1
   },
@@ -728,28 +753,29 @@
     "id": "A320-COND-0026",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Emergency",
-    "question": "What does the RAM AIR pushbutton do when pressed?",
+    "subtopic": "Indications",
+    "question": "What does an amber FAN on the ECAM COND page indicate?",
     "options": [
       {
         "id": "a",
-        "text": "It closes the ram air inlet flaps of the packs"
+        "text": "The avionics blower fan is faulty"
       },
       {
         "id": "b",
-        "text": "It opens the emergency ram air inlet so outside air can enter the mixer unit"
+        "text": "A recirculation fan is faulty"
       },
       {
         "id": "c",
-        "text": "It increases the pack flow to HI"
+        "text": "The cargo extraction fan has stopped"
       },
       {
         "id": "d",
-        "text": "It opens the outflow valve fully"
+        "text": "The lavatory extraction fan is off"
       }
     ],
     "correct": "b",
-    "explanation": "The ram air inlet is a last-resort source of ventilation when both packs are lost or the cabin is filled with smoke.",
+    "explanation": "The FAN indication on the COND page concerns the cabin recirculation fans.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/cond/",
     "status": "published",
     "version": 1
   },
@@ -757,28 +783,29 @@
     "id": "A320-COND-0027",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Emergency",
-    "question": "What condition is required for the emergency ram air to actually flow into the cabin?",
+    "subtopic": "Indications",
+    "question": "Above what duct temperature does a zone's duct temperature turn amber on the COND page?",
     "options": [
       {
         "id": "a",
-        "text": "The pack flow selector must be in HI"
+        "text": "50 °C"
       },
       {
         "id": "b",
-        "text": "The cabin altitude must be above 14 000 ft"
+        "text": "88 °C"
       },
       {
         "id": "c",
-        "text": "The differential pressure must be low (below about 1 psi), otherwise the cabin pressure keeps the ram air valve from admitting air"
+        "text": "80 °C"
       },
       {
         "id": "d",
-        "text": "The APU bleed must be supplying the packs"
+        "text": "120 °C"
       }
     ],
     "correct": "c",
-    "explanation": "Ram air pressure is small. If the cabin is pressurised above that, outside air cannot enter, which is why the cabin must be depressurised (outflow valve open) first.",
+    "explanation": "The duct indication turns amber above 80 °C — an early sign of trim air heating too much.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/cond/",
     "status": "published",
     "version": 1
   },
@@ -786,28 +813,29 @@
     "id": "A320-COND-0028",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Emergency",
-    "question": "With the RAM AIR pushbutton on and a low differential pressure, what else helps air flow through the cabin?",
+    "subtopic": "Indications",
+    "question": "On the COND page, the hot air pressure regulating valve shows an amber crossline. What does that mean?",
     "options": [
       {
         "id": "a",
-        "text": "The outflow valve opens so the air can leave"
+        "text": "HOT AIR is OFF with the valve closed, or the valve disagrees with its commanded position"
       },
       {
         "id": "b",
-        "text": "The packs go to HI flow"
+        "text": "The valve is open and operating normally"
       },
       {
         "id": "c",
-        "text": "The recirculation fans run faster"
+        "text": "The hot air duct is leaking"
       },
       {
         "id": "d",
-        "text": "The safety valves close"
+        "text": "The trim air valves are fully open"
       }
     ],
     "correct": "a",
-    "explanation": "Air must have a path out of the aircraft as well as in. With cabin pressure at ambient, the outflow valve can open further to let the air pass.",
+    "explanation": "A green crossline is a normally closed valve with the button in AUTO; amber flags OFF or a disagreement.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/cond/",
     "status": "published",
     "version": 1
   },
@@ -816,27 +844,28 @@
     "aircraft": "A320",
     "topic": "Air Conditioning",
     "subtopic": "Indications",
-    "question": "What does the ECAM COND page show for each zone?",
+    "question": "Above what temperature does the pack outlet temperature turn amber on the BLEED page?",
     "options": [
       {
         "id": "a",
-        "text": "The selected target and the actual temperature, together with the duct temperature"
+        "text": "90 °C"
       },
       {
         "id": "b",
-        "text": "The pack inlet pressure and the compressor outlet pressure"
+        "text": "50 °C"
       },
       {
         "id": "c",
-        "text": "The cabin altitude and the differential pressure"
+        "text": "150 °C"
       },
       {
         "id": "d",
-        "text": "The oxygen pressure and the number of passengers"
+        "text": "230 °C"
       }
     ],
     "correct": "a",
-    "explanation": "The COND page lets the crew see how zone temperatures are tracking their selection, and whether a duct temperature is rising towards its limit.",
+    "explanation": "Pack outlet above 90 °C is an overheat indication.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/bleed/",
     "status": "published",
     "version": 1
   },
@@ -845,27 +874,28 @@
     "aircraft": "A320",
     "topic": "Air Conditioning",
     "subtopic": "Indications",
-    "question": "Which ECAM page shows the pack outlet temperatures and the pack flows?",
+    "question": "Above what temperature does the pack compressor outlet temperature turn amber on the BLEED page?",
     "options": [
       {
         "id": "a",
-        "text": "The PRESS page, which carries them beside the cabin altitude"
+        "text": "90 °C"
       },
       {
         "id": "b",
-        "text": "The HYD page, beside the system pressures"
+        "text": "180 °C"
       },
       {
         "id": "c",
-        "text": "The BLEED page, which carries the pack parameters beside the bleed data"
+        "text": "230 °C"
       },
       {
         "id": "d",
-        "text": "The DOOR page, beside the door and slide status"
+        "text": "290 °C"
       }
     ],
     "correct": "c",
-    "explanation": "The pack outlet temperature and flow sit on the BLEED page with the bleed pressures and temperatures. The COND page is about zone and duct temperatures.",
+    "explanation": "The compressor outlet is the hottest point inside the pack; amber above 230 °C indicates an overheat.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/bleed/",
     "status": "published",
     "version": 1
   },
@@ -874,27 +904,28 @@
     "aircraft": "A320",
     "topic": "Air Conditioning",
     "subtopic": "Indications",
-    "question": "What does an amber PACK pushbutton FAULT light indicate?",
+    "question": "On the BLEED page, how is a pack ram air inlet flap that is fully open on the ground shown?",
     "options": [
       {
         "id": "a",
-        "text": "The pack is switched off by the crew"
+        "text": "Green inline"
       },
       {
         "id": "b",
-        "text": "A pack fault, such as overheat or flow valve disagreement, so the pack is lost or its control is degraded"
+        "text": "Amber inline"
       },
       {
         "id": "c",
-        "text": "The pack is operating in HI flow"
+        "text": "Green crossline"
       },
       {
         "id": "d",
-        "text": "The cargo ventilation has failed"
+        "text": "It is not shown on the ground"
       }
     ],
     "correct": "b",
-    "explanation": "FAULT is an automatic indication. The crew then follows the ECAM, which can include selecting the pack off and increasing the flow of the remaining one.",
+    "explanation": "Fully open in flight is green; fully open on the ground is amber.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/bleed/",
     "status": "published",
     "version": 1
   },
@@ -902,28 +933,29 @@
     "id": "A320-COND-0032",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Ground",
-    "question": "Which source supplies the air conditioning packs on the ground with no engines running and the APU not available?",
+    "subtopic": "Indications",
+    "question": "What do the letters C and H next to a pack's turbine bypass valve on the BLEED page mean?",
     "options": [
       {
         "id": "a",
-        "text": "The packs are supplied by the engines' ground idle bleed"
+        "text": "C: cockpit; H: hold"
       },
       {
         "id": "b",
-        "text": "The recirculation fans alone"
+        "text": "C: cross bleed closed; H: HP valve open"
       },
       {
         "id": "c",
-        "text": "The emergency ram air inlet"
+        "text": "C: controller channel; H: heating mode"
       },
       {
         "id": "d",
-        "text": "A ground low pressure conditioned-air connection feeds the mixer unit directly"
+        "text": "C: the valve is closed (cold); H: the valve is open (hot)"
       }
     ],
     "correct": "d",
-    "explanation": "A low-pressure ground connection delivers conditioned air to the mixer unit, bypassing the packs entirely.",
+    "explanation": "The bypass valve sends hot air around the cooling turbine. Closed gives the coldest outlet, open the hottest.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/bleed/",
     "status": "published",
     "version": 1
   },
@@ -931,86 +963,29 @@
     "id": "A320-COND-0033",
     "aircraft": "A320",
     "topic": "Air Conditioning",
-    "subtopic": "Operation",
-    "question": "Why must the packs be off during the take-off roll in some performance-limited cases?",
+    "subtopic": "Indications",
+    "question": "When is the pack flow indication shown in amber on the BLEED page?",
     "options": [
       {
         "id": "a",
-        "text": "Because the packs cannot work on the runway"
+        "text": "When pack flow is HI"
       },
       {
         "id": "b",
-        "text": "Because the pack ram air flap is closed on the ground"
+        "text": "When the ram air flap is open"
       },
       {
         "id": "c",
-        "text": "Because bleed air taken for the packs reduces engine thrust, and turning them off gives a higher take-off performance"
+        "text": "When the pack flow control valve is closed"
       },
       {
         "id": "d",
-        "text": "Because the recirculation fans would stall"
+        "text": "When the APU supplies the pack"
       }
     ],
     "correct": "c",
-    "explanation": "Bleed extraction costs thrust. A performance-limited take-off may be calculated with packs off, in which case they are switched back on after take-off, once the bleed is no longer a problem.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-COND-0034",
-    "aircraft": "A320",
-    "topic": "Air Conditioning",
-    "subtopic": "Operation",
-    "question": "During a normal flight, which bleed source normally feeds the packs after the engines have started?",
-    "options": [
-      {
-        "id": "a",
-        "text": "The engine bleeds"
-      },
-      {
-        "id": "b",
-        "text": "The APU bleed only"
-      },
-      {
-        "id": "c",
-        "text": "The ground connection"
-      },
-      {
-        "id": "d",
-        "text": "The ram air inlet"
-      }
-    ],
-    "correct": "a",
-    "explanation": "The engines are the normal source in flight. The APU bleed may be used on the ground and in some failure conditions.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-COND-0035",
-    "aircraft": "A320",
-    "topic": "Air Conditioning",
-    "subtopic": "Zones",
-    "question": "What is the general role of the secondary channel of the zone controller?",
-    "options": [
-      {
-        "id": "a",
-        "text": "To control only the cargo compartments"
-      },
-      {
-        "id": "b",
-        "text": "To run only on the ground"
-      },
-      {
-        "id": "c",
-        "text": "To control the packs' ram air flap alone"
-      },
-      {
-        "id": "d",
-        "text": "To take over if the primary channel fails, with less accurate temperature regulation"
-      }
-    ],
-    "correct": "d",
-    "explanation": "The zone controller has two channels so that a single failure does not lose temperature control. If both fail, the pack controllers regulate on fixed default values.",
+    "explanation": "Amber pack flow means no flow through that pack because its flow control valve is closed.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/bleed/",
     "status": "published",
     "version": 1
   }

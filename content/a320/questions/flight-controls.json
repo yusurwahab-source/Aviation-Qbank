@@ -3,28 +3,29 @@
     "id": "A320-FCTL-0001",
     "aircraft": "A320",
     "topic": "Flight Controls",
-    "subtopic": "Principles",
-    "question": "What is the fundamental principle of the A320 flight control system?",
+    "subtopic": "Computers",
+    "question": "In normal operation, which computer commands the ailerons?",
     "options": [
       {
         "id": "a",
-        "text": "Cables and pulleys with hydraulic boost"
+        "text": "ELAC 2"
       },
       {
         "id": "b",
-        "text": "Direct electrical servo control without computers"
+        "text": "SEC 1"
       },
       {
         "id": "c",
-        "text": "Fly-by-wire: pilot inputs go to computers, which command the control surface actuators"
+        "text": "ELAC 1"
       },
       {
         "id": "d",
-        "text": "Hydraulic pushrods from the sidestick"
+        "text": "FAC 1"
       }
     ],
     "correct": "c",
-    "explanation": "The sidestick sends electrical signals to the flight control computers, which apply the control laws and drive the hydraulic actuators.",
+    "explanation": "ELAC 1 normally drives the ailerons; ELAC 2 drives the elevators and stabiliser.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/flight-control-computer/",
     "status": "published",
     "version": 1
   },
@@ -33,27 +34,28 @@
     "aircraft": "A320",
     "topic": "Flight Controls",
     "subtopic": "Computers",
-    "question": "Which computers control the flight control surfaces?",
+    "question": "In normal operation, which computer commands the elevators and the horizontal stabiliser?",
     "options": [
       {
         "id": "a",
-        "text": "Two ELACs, three SECs and two FACs"
+        "text": "ELAC 2"
       },
       {
         "id": "b",
-        "text": "Two FMGCs and two FACs"
+        "text": "ELAC 1"
       },
       {
         "id": "c",
-        "text": "Three ELACs and two SECs"
+        "text": "SEC 3"
       },
       {
         "id": "d",
-        "text": "Two FADECs and three SFCCs"
+        "text": "FAC 2"
       }
     ],
     "correct": "a",
-    "explanation": "The ELACs and SECs give the control laws for pitch and roll. The FACs give rudder control, and flight envelope computation.",
+    "explanation": "ELAC 2 has pitch; ELAC 1 has the ailerons. Each can take over from the other.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/flight-control-computer/",
     "status": "published",
     "version": 1
   },
@@ -62,27 +64,28 @@
     "aircraft": "A320",
     "topic": "Flight Controls",
     "subtopic": "Computers",
-    "question": "What do the ELAC computers mainly control?",
+    "question": "Which computers provide the aileron droop function?",
     "options": [
       {
         "id": "a",
-        "text": "The slats and flaps"
+        "text": "The SECs"
       },
       {
         "id": "b",
-        "text": "The rudder only"
+        "text": "The FACs"
       },
       {
         "id": "c",
-        "text": "The spoilers only"
+        "text": "The SFCCs"
       },
       {
         "id": "d",
-        "text": "Pitch (elevators and horizontal stabiliser) and roll (ailerons), in normal law"
+        "text": "The ELACs"
       }
     ],
     "correct": "d",
-    "explanation": "Each ELAC has a control function of the elevators, the ailerons and the stabiliser. ELAC 2 acts as the master for the pitch control until it fails, with ELAC 1 as the back-up.",
+    "explanation": "Aileron droop, normal and alternate pitch and roll, direct law and autopilot order acquisition are ELAC functions.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/flight-control-computer/",
     "status": "published",
     "version": 1
   },
@@ -91,355 +94,7 @@
     "aircraft": "A320",
     "topic": "Flight Controls",
     "subtopic": "Computers",
-    "question": "What do the SEC computers mainly control?",
-    "options": [
-      {
-        "id": "a",
-        "text": "The rudder only"
-      },
-      {
-        "id": "b",
-        "text": "The spoilers and speedbrakes, and also act as a back-up for the elevators and the stabiliser"
-      },
-      {
-        "id": "c",
-        "text": "The flaps and slats"
-      },
-      {
-        "id": "d",
-        "text": "The ailerons only"
-      }
-    ],
-    "correct": "b",
-    "explanation": "The SECs control the spoilers for roll and the speedbrakes, and also provide back-up control for elevators and the stabiliser.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-FCTL-0005",
-    "aircraft": "A320",
-    "topic": "Flight Controls",
-    "subtopic": "Computers",
-    "question": "What do the FAC computers control?",
-    "options": [
-      {
-        "id": "a",
-        "text": "The elevators"
-      },
-      {
-        "id": "b",
-        "text": "The rudder (yaw damping, turn coordination, rudder trim and travel limiting) and the flight envelope computation"
-      },
-      {
-        "id": "c",
-        "text": "The spoilers"
-      },
-      {
-        "id": "d",
-        "text": "The nosewheel steering"
-      }
-    ],
-    "correct": "b",
-    "explanation": "The FACs also provide characteristic speeds, such as VLS and VFE, which are displayed on the PFD.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-FCTL-0006",
-    "aircraft": "A320",
-    "topic": "Flight Controls",
-    "subtopic": "Laws",
-    "question": "What are the three flight control laws?",
-    "options": [
-      {
-        "id": "a",
-        "text": "Normal, emergency and manual"
-      },
-      {
-        "id": "b",
-        "text": "Auto, semi and manual"
-      },
-      {
-        "id": "c",
-        "text": "Primary, secondary and mechanical"
-      },
-      {
-        "id": "d",
-        "text": "Normal law, alternate law and direct law"
-      }
-    ],
-    "correct": "d",
-    "explanation": "Normal law provides all protections. Alternate law has fewer protections. Direct law makes the surface deflection proportional to the stick movement.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-FCTL-0007",
-    "aircraft": "A320",
-    "topic": "Flight Controls",
-    "subtopic": "Laws",
-    "question": "In normal law, what does a sidestick pitch input command?",
-    "options": [
-      {
-        "id": "a",
-        "text": "A load factor (g demand), not a surface deflection"
-      },
-      {
-        "id": "b",
-        "text": "A fixed elevator deflection"
-      },
-      {
-        "id": "c",
-        "text": "A pitch rate only"
-      },
-      {
-        "id": "d",
-        "text": "An airspeed"
-      }
-    ],
-    "correct": "a",
-    "explanation": "Releasing the stick commands 1 g (corrected for pitch attitude), which is why the aircraft holds its flight path.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-FCTL-0008",
-    "aircraft": "A320",
-    "topic": "Flight Controls",
-    "subtopic": "Laws",
-    "question": "In normal law, what does a sidestick roll input command?",
-    "options": [
-      {
-        "id": "a",
-        "text": "A bank angle"
-      },
-      {
-        "id": "b",
-        "text": "A fixed aileron deflection"
-      },
-      {
-        "id": "c",
-        "text": "A roll rate"
-      },
-      {
-        "id": "d",
-        "text": "A heading"
-      }
-    ],
-    "correct": "c",
-    "explanation": "A given input gives a given roll rate. If the sidestick is released, the aircraft holds the bank angle (up to 33°) with the stick neutral.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-FCTL-0009",
-    "aircraft": "A320",
-    "topic": "Flight Controls",
-    "subtopic": "Protections",
-    "question": "What is the load factor limit in normal law, in the clean configuration?",
-    "options": [
-      {
-        "id": "a",
-        "text": "+3.5 g to –1.5 g"
-      },
-      {
-        "id": "b",
-        "text": "+2 g to 0 g"
-      },
-      {
-        "id": "c",
-        "text": "+4 g to –2 g"
-      },
-      {
-        "id": "d",
-        "text": "+2.5 g to –1 g"
-      }
-    ],
-    "correct": "d",
-    "explanation": "With flaps extended, the limit is +2 g to 0 g. This protection means the structure cannot be overstressed by pilot inputs.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-FCTL-0010",
-    "aircraft": "A320",
-    "topic": "Flight Controls",
-    "subtopic": "Protections",
-    "question": "Which of the following is a normal law protection?",
-    "options": [
-      {
-        "id": "a",
-        "text": "Low fuel"
-      },
-      {
-        "id": "b",
-        "text": "High angle of attack, load factor, pitch attitude, bank angle and high speed"
-      },
-      {
-        "id": "c",
-        "text": "Engine overspeed"
-      },
-      {
-        "id": "d",
-        "text": "Flap overload only"
-      }
-    ],
-    "correct": "b",
-    "explanation": "These protections allow the pilot to command the maximum authority without exceeding the structure's limits or stalling.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-FCTL-0011",
-    "aircraft": "A320",
-    "topic": "Flight Controls",
-    "subtopic": "Protections",
-    "question": "What happens to the sidestick commands in the high angle of attack protection?",
-    "options": [
-      {
-        "id": "a",
-        "text": "The aircraft stalls"
-      },
-      {
-        "id": "b",
-        "text": "The autopilot disengages"
-      },
-      {
-        "id": "c",
-        "text": "The angle of attack is limited to αmax, even if the pilot pulls the stick fully back"
-      },
-      {
-        "id": "d",
-        "text": "The flaps retract"
-      }
-    ],
-    "correct": "c",
-    "explanation": "The aircraft cannot be stalled in normal law. The pilot can hold the full back stick and fly at αmax.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-FCTL-0012",
-    "aircraft": "A320",
-    "topic": "Flight Controls",
-    "subtopic": "Protections",
-    "question": "What is alpha floor?",
-    "options": [
-      {
-        "id": "a",
-        "text": "An automatic application of TOGA thrust when the angle of attack exceeds a threshold"
-      },
-      {
-        "id": "b",
-        "text": "A minimum fuel level"
-      },
-      {
-        "id": "c",
-        "text": "A flap speed limitation"
-      },
-      {
-        "id": "d",
-        "text": "A bank angle limit"
-      }
-    ],
-    "correct": "a",
-    "explanation": "It is triggered by the angle of attack protection, independently of the autothrust mode, and it is shown as A.FLOOR on the FMA.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-FCTL-0013",
-    "aircraft": "A320",
-    "topic": "Flight Controls",
-    "subtopic": "Laws",
-    "question": "Which law is used with the aircraft on the ground?",
-    "options": [
-      {
-        "id": "a",
-        "text": "Ground mode, with a direct relationship between the sidestick and elevators"
-      },
-      {
-        "id": "b",
-        "text": "Normal law with all protections"
-      },
-      {
-        "id": "c",
-        "text": "Alternate law"
-      },
-      {
-        "id": "d",
-        "text": "Abnormal attitude law"
-      }
-    ],
-    "correct": "a",
-    "explanation": "On the ground, the control is direct, with the surface deflection proportional to the sidestick. In flight the laws take over after take-off.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-FCTL-0014",
-    "aircraft": "A320",
-    "topic": "Flight Controls",
-    "subtopic": "Laws",
-    "question": "What happens to the trim in normal law in flight?",
-    "options": [
-      {
-        "id": "a",
-        "text": "The pilot must trim after every speed change"
-      },
-      {
-        "id": "b",
-        "text": "Trim is disabled"
-      },
-      {
-        "id": "c",
-        "text": "The aircraft is trimmed automatically (auto trim), so the pilot does not have to apply manual trim"
-      },
-      {
-        "id": "d",
-        "text": "Trim is applied only with the autopilot"
-      }
-    ],
-    "correct": "c",
-    "explanation": "Auto trim keeps the aircraft's flight path stable, so the pilot flies with a neutral stick. The manual trim wheel remains for back-up.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-FCTL-0015",
-    "aircraft": "A320",
-    "topic": "Flight Controls",
-    "subtopic": "Failures",
-    "question": "How is the aircraft's pitch controlled if all the computers fail?",
-    "options": [
-      {
-        "id": "a",
-        "text": "By the autopilot"
-      },
-      {
-        "id": "b",
-        "text": "Mechanically, using the pitch trim wheel on the pedestal and the rudder pedals"
-      },
-      {
-        "id": "c",
-        "text": "By the throttle"
-      },
-      {
-        "id": "d",
-        "text": "By the flaps"
-      }
-    ],
-    "correct": "b",
-    "explanation": "The mechanical back-up controls the horizontal stabiliser and the rudder. It is the last resort and is only intended for a short duration.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-FCTL-0016",
-    "aircraft": "A320",
-    "topic": "Flight Controls",
-    "subtopic": "Spoilers",
-    "question": "How many spoilers per wing does the A320 have?",
+    "question": "How many SECs (spoiler elevator computers) are there?",
     "options": [
       {
         "id": "a",
@@ -451,111 +106,55 @@
       },
       {
         "id": "c",
-        "text": "Eight"
+        "text": "Four"
       },
       {
         "id": "d",
-        "text": "Five"
+        "text": "One"
       }
     ],
-    "correct": "d",
-    "explanation": "The spoilers are used as roll spoilers, speedbrakes and ground spoilers. Spoiler 1 is not used for speedbrakes.",
+    "correct": "b",
+    "explanation": "SEC 1, 2 and 3 command the spoilers.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/flight-control-computer/",
     "status": "published",
     "version": 1
   },
   {
-    "id": "A320-FCTL-0017",
+    "id": "A320-FCTL-0005",
     "aircraft": "A320",
     "topic": "Flight Controls",
-    "subtopic": "Spoilers",
-    "question": "Which function do the ground spoilers serve?",
+    "subtopic": "Computers",
+    "question": "Which SECs can provide alternate and direct pitch control?",
     "options": [
       {
         "id": "a",
-        "text": "They increase lift on take-off"
+        "text": "SEC 3 only"
       },
       {
         "id": "b",
-        "text": "They control the pitch"
+        "text": "SEC 1 and SEC 2 only"
       },
       {
         "id": "c",
-        "text": "They extend on landing to dump lift and increase the weight on the wheels, improving braking"
+        "text": "All three SECs"
       },
       {
         "id": "d",
-        "text": "They reduce the thrust"
+        "text": "None; pitch is ELAC only"
       }
     ],
-    "correct": "c",
-    "explanation": "On the ground, spoiler extension reduces lift and puts the weight on the wheels, so brakes work better. They arm for landing and for rejected take-off.",
+    "correct": "b",
+    "explanation": "SEC 3 controls spoilers only; SEC 1 and 2 also back up the elevators and stabiliser.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/flight-control-computer/",
     "status": "published",
     "version": 1
   },
   {
-    "id": "A320-FCTL-0018",
+    "id": "A320-FCTL-0006",
     "aircraft": "A320",
     "topic": "Flight Controls",
-    "subtopic": "High lift",
-    "question": "What is the purpose of the slats and flaps?",
-    "options": [
-      {
-        "id": "a",
-        "text": "They increase lift at low speed, allowing a lower take-off and landing speed"
-      },
-      {
-        "id": "b",
-        "text": "They reduce drag at high speed"
-      },
-      {
-        "id": "c",
-        "text": "They control roll"
-      },
-      {
-        "id": "d",
-        "text": "They control yaw"
-      }
-    ],
-    "correct": "a",
-    "explanation": "Leading edge slats and trailing edge flaps change the wing's camber and area to give more lift and delay the stall.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-FCTL-0019",
-    "aircraft": "A320",
-    "topic": "Flight Controls",
-    "subtopic": "High lift",
-    "question": "How many flap lever positions are there on the A320?",
-    "options": [
-      {
-        "id": "a",
-        "text": "Three: 0, 1 and FULL"
-      },
-      {
-        "id": "b",
-        "text": "Four: 0, 1, 2 and 3"
-      },
-      {
-        "id": "c",
-        "text": "Six: 0, 1, 2, 3, 4 and FULL"
-      },
-      {
-        "id": "d",
-        "text": "Five: 0, 1, 2, 3 and FULL"
-      }
-    ],
-    "correct": "d",
-    "explanation": "Position 1 is a slats-only setting in some conditions. Each position gives a combination of slats and flaps angles.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-FCTL-0020",
-    "aircraft": "A320",
-    "topic": "Flight Controls",
-    "subtopic": "High lift",
-    "question": "Which computers control the slats and flaps?",
+    "subtopic": "Computers",
+    "question": "Which computers control the speed brakes and ground spoilers?",
     "options": [
       {
         "id": "a",
@@ -563,7 +162,7 @@
       },
       {
         "id": "b",
-        "text": "The slat flap control computers (SFCCs)"
+        "text": "The FACs"
       },
       {
         "id": "c",
@@ -574,8 +173,429 @@
         "text": "The SECs"
       }
     ],
+    "correct": "d",
+    "explanation": "The SECs control the spoilers for roll, speed brake and ground spoiler functions.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/flight-control-computer/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0007",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Computers",
+    "question": "Which of these is a FAC function?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Wind shear detection"
+      },
+      {
+        "id": "b",
+        "text": "Aileron droop"
+      },
+      {
+        "id": "c",
+        "text": "Speed brake control"
+      },
+      {
+        "id": "d",
+        "text": "Slat and flap sequencing"
+      }
+    ],
+    "correct": "a",
+    "explanation": "FACs handle rudder trim, rudder travel limit, yaw damping, alternate yaw, flight envelope and speed computations, and wind shear detection.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/flight-control-computer/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0008",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Computers",
+    "question": "How is a flight control computer reset from the overhead panel?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By pressing it twice quickly"
+      },
+      {
+        "id": "b",
+        "text": "By pulling its circuit breaker only"
+      },
+      {
+        "id": "c",
+        "text": "By selecting its pushbutton OFF then ON"
+      },
+      {
+        "id": "d",
+        "text": "It cannot be reset in flight"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Cycling the pushbutton OFF then ON resets the computer.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/flight-control-computer/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0009",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Computers",
+    "question": "How long is a flight control computer's power-up test, during which its FAULT light is on?",
+    "options": [
+      {
+        "id": "a",
+        "text": "2 seconds"
+      },
+      {
+        "id": "b",
+        "text": "30 seconds"
+      },
+      {
+        "id": "c",
+        "text": "2 minutes"
+      },
+      {
+        "id": "d",
+        "text": "8 seconds"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The test runs at power application or after a transient; FAULT goes out when it completes satisfactorily.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/flight-control-computer/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0010",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "Does the A320 remain in normal law after a single failure of a sensor, electrical system, hydraulic system or flight control computer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "No, any failure gives alternate law"
+      },
+      {
+        "id": "b",
+        "text": "Yes, normal law is kept after a single failure"
+      },
+      {
+        "id": "c",
+        "text": "No, it goes to direct law"
+      },
+      {
+        "id": "d",
+        "text": "Only if the autopilot is engaged"
+      }
+    ],
     "correct": "b",
-    "explanation": "There are two SFCCs. Each controls both slats and flaps and monitors them.",
+    "explanation": "The redundancy is designed so that a single failure does not degrade the law.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0011",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "Which failure mainly leads to direct law?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Failure of both ELACs"
+      },
+      {
+        "id": "b",
+        "text": "Failure of two ADRs"
+      },
+      {
+        "id": "c",
+        "text": "Failure of all three IRs"
+      },
+      {
+        "id": "d",
+        "text": "Failure of the Blue hydraulic system"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Losing all three inertial references leaves no attitude data for the protected laws.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/abnormallaw/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0012",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "What controls remain in mechanical back-up after loss of all electrical power to the flight controls?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The pitch trim wheel and the rudder pedals"
+      },
+      {
+        "id": "b",
+        "text": "The sidesticks in direct mode"
+      },
+      {
+        "id": "c",
+        "text": "The speed brake lever and the trim wheel"
+      },
+      {
+        "id": "d",
+        "text": "The ailerons through cables"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The stabiliser and the rudder are mechanically controlled as a last resort.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0013",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "At the latest, when does High Speed Protection become active?",
+    "options": [
+      {
+        "id": "a",
+        "text": "At VMO + 6 kt or MMO + 0.015"
+      },
+      {
+        "id": "b",
+        "text": "At VMO"
+      },
+      {
+        "id": "c",
+        "text": "At VMO + 15 kt"
+      },
+      {
+        "id": "d",
+        "text": "At VMO + 30 kt"
+      }
+    ],
+    "correct": "a",
+    "explanation": "It can activate from VMO/MMO depending on conditions, and at the latest at VMO + 6 kt / MMO + 0.015.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0014",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "At what speed does the autopilot disconnect automatically in high speed protection?",
+    "options": [
+      {
+        "id": "a",
+        "text": "VMO"
+      },
+      {
+        "id": "b",
+        "text": "VMO + 6 kt"
+      },
+      {
+        "id": "c",
+        "text": "VMO + 15 kt or MMO + 0.04"
+      },
+      {
+        "id": "d",
+        "text": "VMO + 30 kt"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The AP disconnects at VMO + 15 kt / MMO + 0.04.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0015",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "With full nose-down stick held in high speed protection, to about what speed is the aircraft limited?",
+    "options": [
+      {
+        "id": "a",
+        "text": "VMO exactly"
+      },
+      {
+        "id": "b",
+        "text": "Around VMO + 16 kt and MMO + 0.04"
+      },
+      {
+        "id": "c",
+        "text": "VMO + 50 kt"
+      },
+      {
+        "id": "d",
+        "text": "There is no limit"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Pilot nose-down authority is reduced so the speed is held near VMO + 16 kt.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0016",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "In high speed protection, what happens to the bank angle when the sidestick is released?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It holds the current bank"
+      },
+      {
+        "id": "b",
+        "text": "It returns to 33°"
+      },
+      {
+        "id": "c",
+        "text": "It returns to 15°"
+      },
+      {
+        "id": "d",
+        "text": "It returns to 0°"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Outside HSP a released stick holds up to 33°; in HSP the aircraft rolls level.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0017",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "To what is the bank angle limit reduced in high speed protection?",
+    "options": [
+      {
+        "id": "a",
+        "text": "33°"
+      },
+      {
+        "id": "b",
+        "text": "45°"
+      },
+      {
+        "id": "c",
+        "text": "40°"
+      },
+      {
+        "id": "d",
+        "text": "67°"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The normal 67° limit drops to 40° in high speed protection.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0018",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "What happens to the pitch trim in high speed protection?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is frozen"
+      },
+      {
+        "id": "b",
+        "text": "It trims nose-up automatically"
+      },
+      {
+        "id": "c",
+        "text": "It trims nose-down automatically"
+      },
+      {
+        "id": "d",
+        "text": "It is handed to the pilot"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Auto trim stops so the nose-up correction is not trimmed out.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0019",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "Which of these is part of the recommended recovery from high speed protection?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Extend the flaps"
+      },
+      {
+        "id": "b",
+        "text": "Select TOGA"
+      },
+      {
+        "id": "c",
+        "text": "Disconnect the autothrust and push"
+      },
+      {
+        "id": "d",
+        "text": "Extend the speed brakes"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Extend speed brakes, increase pitch and reduce thrust (or use A/THR).",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0020",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "Above 100 ft RA, when does the high angle of attack protection engage?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When it exceeds α max"
+      },
+      {
+        "id": "b",
+        "text": "When the angle of attack exceeds α prot"
+      },
+      {
+        "id": "c",
+        "text": "When the speed falls below VLS"
+      },
+      {
+        "id": "d",
+        "text": "When the stall warning sounds"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Below 100 ft RA on landing it engages when α max is reached.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
     "status": "published",
     "version": 1
   },
@@ -583,28 +603,29 @@
     "id": "A320-FCTL-0021",
     "aircraft": "A320",
     "topic": "Flight Controls",
-    "subtopic": "High lift",
-    "question": "What is the function of the wing tip brakes on the flaps and slats?",
+    "subtopic": "Protections",
+    "question": "Once α exceeds α prot, how does the angle of attack relate to the sidestick?",
     "options": [
       {
         "id": "a",
-        "text": "To dissipate heat"
+        "text": "The stick commands a load factor as usual"
       },
       {
         "id": "b",
-        "text": "To lock the surfaces in the event of a failure, such as asymmetry or runaway"
+        "text": "The angle of attack becomes proportional to stick deflection, and auto trim stops"
       },
       {
         "id": "c",
-        "text": "To control the speed of the slats"
+        "text": "The stick has no effect"
       },
       {
         "id": "d",
-        "text": "To provide the position indication only"
+        "text": "The stick commands a roll rate"
       }
     ],
     "correct": "b",
-    "explanation": "If the surface positions are mismatched between the left and right, the brakes stop the system and the surfaces remain locked in position.",
+    "explanation": "Neutral stick holds α prot; full aft stick gives α max.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
     "status": "published",
     "version": 1
   },
@@ -612,28 +633,1889 @@
     "id": "A320-FCTL-0022",
     "aircraft": "A320",
     "topic": "Flight Controls",
-    "subtopic": "Rudder",
-    "question": "What does the rudder pedal input do in normal law?",
+    "subtopic": "Protections",
+    "question": "Can a pilot stall an A320 in normal law by pulling the sidestick fully back?",
     "options": [
       {
         "id": "a",
-        "text": "It controls the nosewheel only"
+        "text": "Yes, at low speed"
       },
       {
         "id": "b",
-        "text": "It controls the ailerons"
+        "text": "Yes, in CONF FULL"
       },
       {
         "id": "c",
-        "text": "It controls the flaps"
+        "text": "Only with the autopilot engaged"
       },
       {
         "id": "d",
-        "text": "It commands the rudder, with the FACs adding yaw damping and turn coordination"
+        "text": "No, α max cannot be exceeded"
       }
     ],
     "correct": "d",
-    "explanation": "The rudder is also controlled by the FACs for yaw damping, so in normal flight the pilot does not need to use the pedals for turn coordination.",
+    "explanation": "Full aft stick holds α max, a small margin from the stall angle of attack.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0023",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "To what is the bank angle limit reduced when high angle of attack protection is active?",
+    "options": [
+      {
+        "id": "a",
+        "text": "45°"
+      },
+      {
+        "id": "b",
+        "text": "33°"
+      },
+      {
+        "id": "c",
+        "text": "40°"
+      },
+      {
+        "id": "d",
+        "text": "67°"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The 67° limit is reduced to 45° in high angle of attack protection.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0024",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "What is VLS?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The speed at α max"
+      },
+      {
+        "id": "b",
+        "text": "The best lift-to-drag speed"
+      },
+      {
+        "id": "c",
+        "text": "The lowest selectable speed, giving an appropriate margin to the stall"
+      },
+      {
+        "id": "d",
+        "text": "The landing reference speed in CONF FULL"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The autopilot will not go below VLS with autothrust active.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0025",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "What is green dot speed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The lowest selectable speed"
+      },
+      {
+        "id": "b",
+        "text": "The minimum flap retraction speed"
+      },
+      {
+        "id": "c",
+        "text": "The maximum speed with slats extended"
+      },
+      {
+        "id": "d",
+        "text": "The best lift-to-drag ratio speed in the clean configuration"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Green dot is used as the engine-out and holding reference in the clean configuration.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0026",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Alpha floor",
+    "question": "What is α floor in CONF 0?",
+    "options": [
+      {
+        "id": "a",
+        "text": "13°"
+      },
+      {
+        "id": "b",
+        "text": "9.5°"
+      },
+      {
+        "id": "c",
+        "text": "15°"
+      },
+      {
+        "id": "d",
+        "text": "17.5°"
+      }
+    ],
+    "correct": "b",
+    "explanation": "α floor is 9.5° clean, 15° in CONF 1 and 2, 14° in CONF 3 and 13° in CONF FULL.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0027",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Alpha floor",
+    "question": "What is α floor in CONF FULL?",
+    "options": [
+      {
+        "id": "a",
+        "text": "9.5°"
+      },
+      {
+        "id": "b",
+        "text": "14°"
+      },
+      {
+        "id": "c",
+        "text": "13°"
+      },
+      {
+        "id": "d",
+        "text": "15°"
+      }
+    ],
+    "correct": "c",
+    "explanation": "It falls as flaps extend: 15° in CONF 1/2, 14° in CONF 3, 13° in CONF FULL.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0028",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Alpha floor",
+    "question": "When can alpha floor engage?",
+    "options": [
+      {
+        "id": "a",
+        "text": "From lift-off until 100 ft RA before landing"
+      },
+      {
+        "id": "b",
+        "text": "Only above 1 500 ft"
+      },
+      {
+        "id": "c",
+        "text": "Only in CONF FULL"
+      },
+      {
+        "id": "d",
+        "text": "At any time on the ground"
+      }
+    ],
+    "correct": "a",
+    "explanation": "It is armed through the flight, but not in the last 100 ft before touchdown.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0029",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Alpha floor",
+    "question": "Besides α floor itself, what other trigger can activate alpha floor?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sidestick deflection above 14° with high angle of attack or pitch attitude protection active"
+      },
+      {
+        "id": "b",
+        "text": "Speed below green dot"
+      },
+      {
+        "id": "c",
+        "text": "Engine failure"
+      },
+      {
+        "id": "d",
+        "text": "Flap extension above VFE"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A large aft stick input in a protection is treated as a sign the pilot needs thrust.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0030",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Alpha floor",
+    "question": "When is alpha floor inhibited?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Below 1 000 ft"
+      },
+      {
+        "id": "b",
+        "text": "In CONF FULL"
+      },
+      {
+        "id": "c",
+        "text": "Above Mach 0.6, or with the TCAS mode engaged"
+      },
+      {
+        "id": "d",
+        "text": "With the autopilot off"
+      }
+    ],
+    "correct": "c",
+    "explanation": "TCAS manoeuvres and high Mach are excluded.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0031",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Alpha floor",
+    "question": "What does alpha floor do to the thrust?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sets MCT"
+      },
+      {
+        "id": "b",
+        "text": "Sets TOGA thrust regardless of thrust lever position"
+      },
+      {
+        "id": "c",
+        "text": "Sets climb thrust"
+      },
+      {
+        "id": "d",
+        "text": "Holds the current thrust"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Thrust lever positions are ignored when alpha floor is active.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0032",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Alpha floor",
+    "question": "How is alpha floor shown on the FMA?",
+    "options": [
+      {
+        "id": "a",
+        "text": "ALPHA in red"
+      },
+      {
+        "id": "b",
+        "text": "SPEED SPEED in amber"
+      },
+      {
+        "id": "c",
+        "text": "A/THR in white"
+      },
+      {
+        "id": "d",
+        "text": "A.FLOOR with a flashing amber box"
+      }
+    ],
+    "correct": "d",
+    "explanation": "It appears in the first (autothrust) column.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0033",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Alpha floor",
+    "question": "After alpha floor, what does the FMA show when TOGA thrust remains locked?",
+    "options": [
+      {
+        "id": "a",
+        "text": "THR LK"
+      },
+      {
+        "id": "b",
+        "text": "A.FLOOR"
+      },
+      {
+        "id": "c",
+        "text": "TOGA LK"
+      },
+      {
+        "id": "d",
+        "text": "MAN TOGA"
+      }
+    ],
+    "correct": "c",
+    "explanation": "TOGA LK stays until the crew disconnects autothrust, sets the levers and re-engages A/THR.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/afloor/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0034",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "What is the load factor limit in normal law in the clean configuration?",
+    "options": [
+      {
+        "id": "a",
+        "text": "–1.0 g to +2.5 g"
+      },
+      {
+        "id": "b",
+        "text": "0 g to +2.0 g"
+      },
+      {
+        "id": "c",
+        "text": "–1.5 g to +3.0 g"
+      },
+      {
+        "id": "d",
+        "text": "–2.0 g to +4.0 g"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Load factor protection lets the pilot pull full aft without overstressing the aircraft.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0035",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "What is the load factor limit in normal law with slats or flaps extended?",
+    "options": [
+      {
+        "id": "a",
+        "text": "–1.0 g to +2.5 g"
+      },
+      {
+        "id": "b",
+        "text": "0 g to +1.5 g"
+      },
+      {
+        "id": "c",
+        "text": "–0.5 g to +2.0 g"
+      },
+      {
+        "id": "d",
+        "text": "0 g to +2.0 g"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The limit is lower with high lift devices extended.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0036",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "When does the G LOAD indication appear in amber on the lower ECAM?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Above 2.5 g"
+      },
+      {
+        "id": "b",
+        "text": "Above 1.4 g or below 0.7 g for more than 2 seconds"
+      },
+      {
+        "id": "c",
+        "text": "Above 2.0 g or below 0 g"
+      },
+      {
+        "id": "d",
+        "text": "Whenever the load factor changes"
+      }
+    ],
+    "correct": "b",
+    "explanation": "It appears on the system display as a crew awareness cue.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0037",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "In CONF 0 to 3, what is the nose-up pitch attitude limit?",
+    "options": [
+      {
+        "id": "a",
+        "text": "25°"
+      },
+      {
+        "id": "b",
+        "text": "30°, reduced progressively to 25° at low speed"
+      },
+      {
+        "id": "c",
+        "text": "20°"
+      },
+      {
+        "id": "d",
+        "text": "35°"
+      }
+    ],
+    "correct": "b",
+    "explanation": "In CONF FULL the limit is 25°, reduced to 20° at low speed.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0038",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "What is the nose-down pitch attitude limit?",
+    "options": [
+      {
+        "id": "a",
+        "text": "10°"
+      },
+      {
+        "id": "b",
+        "text": "20°"
+      },
+      {
+        "id": "c",
+        "text": "30°"
+      },
+      {
+        "id": "d",
+        "text": "15°"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Pitch is limited to 15° nose down.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0039",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "At what pitch attitudes do the flight director bars disappear?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Above 25° up or 13° down"
+      },
+      {
+        "id": "b",
+        "text": "Above 30° up or 15° down"
+      },
+      {
+        "id": "c",
+        "text": "Above 20° up or 10° down"
+      },
+      {
+        "id": "d",
+        "text": "Above 15° up or 5° down"
+      }
+    ],
+    "correct": "a",
+    "explanation": "They return at 22° up or 10° down.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0040",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "What is the maximum bank angle with the sidestick held fully laterally in normal law?",
+    "options": [
+      {
+        "id": "a",
+        "text": "33°"
+      },
+      {
+        "id": "b",
+        "text": "45°"
+      },
+      {
+        "id": "c",
+        "text": "67°"
+      },
+      {
+        "id": "d",
+        "text": "60°"
+      }
+    ],
+    "correct": "c",
+    "explanation": "67° corresponds to the 2.5 g limit in a level turn.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0041",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "In normal law the sidestick is released at 50° of bank. What happens?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The bank is held at 50°"
+      },
+      {
+        "id": "b",
+        "text": "The wings level"
+      },
+      {
+        "id": "c",
+        "text": "The bank reduces to 25°"
+      },
+      {
+        "id": "d",
+        "text": "The bank reduces automatically to 33° and is held there"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Up to 33° the bank is held with a neutral stick; above it, the aircraft rolls back to 33°.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0042",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "Above what bank angle does the autopilot disconnect and the FD bars disappear?",
+    "options": [
+      {
+        "id": "a",
+        "text": "33°"
+      },
+      {
+        "id": "b",
+        "text": "45°"
+      },
+      {
+        "id": "c",
+        "text": "40°"
+      },
+      {
+        "id": "d",
+        "text": "67°"
+      }
+    ],
+    "correct": "b",
+    "explanation": "They return below 40°.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0043",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "After take-off, up to what radio height is the reactive windshear warning available?",
+    "options": [
+      {
+        "id": "a",
+        "text": "500 ft RA"
+      },
+      {
+        "id": "b",
+        "text": "2 500 ft RA"
+      },
+      {
+        "id": "c",
+        "text": "1 300 ft RA"
+      },
+      {
+        "id": "d",
+        "text": "1 000 ft RA"
+      }
+    ],
+    "correct": "c",
+    "explanation": "It starts a few seconds after lift-off. On landing it is available from 1 300 ft RA down to 50 ft RA, with at least CONF 1.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0044",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "How is a predictive or reactive windshear warning presented?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A red WINDSHEAR message on both PFDs and the voice 'WINDSHEAR' three times"
+      },
+      {
+        "id": "b",
+        "text": "An amber caution with a single chime"
+      },
+      {
+        "id": "c",
+        "text": "A flashing A/THR on the FMA"
+      },
+      {
+        "id": "d",
+        "text": "A green memo on the ECAM"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The crew sets TOGA and follows the SRS pitch order on the FD.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0045",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "What is the low energy aural alert?",
+    "options": [
+      {
+        "id": "a",
+        "text": "'SPEED SPEED SPEED'"
+      },
+      {
+        "id": "b",
+        "text": "'STALL STALL'"
+      },
+      {
+        "id": "c",
+        "text": "'THRUST THRUST'"
+      },
+      {
+        "id": "d",
+        "text": "'PULL UP'"
+      }
+    ],
+    "correct": "a",
+    "explanation": "It asks the crew to increase thrust to recover a positive flight path.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0046",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "In which configurations is the low energy warning available?",
+    "options": [
+      {
+        "id": "a",
+        "text": "CONF 0 only"
+      },
+      {
+        "id": "b",
+        "text": "CONF 1 only"
+      },
+      {
+        "id": "c",
+        "text": "CONF 2, 3 and FULL"
+      },
+      {
+        "id": "d",
+        "text": "All configurations"
+      }
+    ],
+    "correct": "c",
+    "explanation": "It is computed by the FAC from configuration, deceleration and flight path angle.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0047",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "In which height band is the low energy warning available (outside it, it is inhibited)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Between 50 ft and 1 000 ft RA"
+      },
+      {
+        "id": "b",
+        "text": "Between 100 ft and 2 000 ft RA"
+      },
+      {
+        "id": "c",
+        "text": "Between 500 ft and 5 000 ft RA"
+      },
+      {
+        "id": "d",
+        "text": "At any height"
+      }
+    ],
+    "correct": "b",
+    "explanation": "It is inhibited below 100 ft RA and above 2 000 ft RA, among other conditions.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/overview/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0048",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "Which failure leads to alternate law with reduced protection?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Failure of one SEC"
+      },
+      {
+        "id": "b",
+        "text": "Failure of one ADR"
+      },
+      {
+        "id": "c",
+        "text": "Failure of one FAC"
+      },
+      {
+        "id": "d",
+        "text": "Failure of both ELACs"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Double ADR or IR failures, both ELACs, one elevator, one sidestick, all spoilers, all SECs or a THS jam all give alternate law.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/abnormallaw/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0049",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "Loss of the Green and Yellow hydraulic systems gives which law?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Normal law"
+      },
+      {
+        "id": "b",
+        "text": "Direct law"
+      },
+      {
+        "id": "c",
+        "text": "Alternate law with reduced protection and mechanical yaw control"
+      },
+      {
+        "id": "d",
+        "text": "Alternate law without protection"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Without Green and Yellow, yaw falls back to the mechanical path.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/abnormallaw/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0050",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "Failure of all three ADRs gives which law?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Alternate law without protection"
+      },
+      {
+        "id": "b",
+        "text": "Direct law"
+      },
+      {
+        "id": "c",
+        "text": "Alternate law with reduced protection"
+      },
+      {
+        "id": "d",
+        "text": "Normal law"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Without air data, the speed-based protections cannot work.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/abnormallaw/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0051",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "In alternate law with the autopilot off, what happens to the law when the landing gear is extended?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It returns to normal law"
+      },
+      {
+        "id": "b",
+        "text": "Nothing changes"
+      },
+      {
+        "id": "c",
+        "text": "It changes to abnormal attitude law"
+      },
+      {
+        "id": "d",
+        "text": "It changes to direct law"
+      }
+    ],
+    "correct": "d",
+    "explanation": "There is no flare mode in alternate law, so direct law gives the pilot a natural feel for landing.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/abnormallaw/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0052",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "In alternate law with reduced protection, which protection remains?",
+    "options": [
+      {
+        "id": "a",
+        "text": "High angle of attack protection"
+      },
+      {
+        "id": "b",
+        "text": "Load factor protection"
+      },
+      {
+        "id": "c",
+        "text": "High speed protection"
+      },
+      {
+        "id": "d",
+        "text": "Bank angle protection"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Load factor protection stays; α and overspeed protections are lost, replaced by speed stability.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/abnormallaw/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0053",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "In alternate law, what does speed stability do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It prevents any stall"
+      },
+      {
+        "id": "b",
+        "text": "It pushes the nose down near the stall warning speed and pulls it up at high speed, but can be overridden"
+      },
+      {
+        "id": "c",
+        "text": "It locks the speed at the selected value"
+      },
+      {
+        "id": "d",
+        "text": "It acts only on the thrust"
+      }
+    ],
+    "correct": "b",
+    "explanation": "It is not a protection: sidestick inputs overrule it.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/abnormallaw/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0054",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "In alternate law, how is roll controlled?",
+    "options": [
+      {
+        "id": "a",
+        "text": "As in normal law, with a roll rate demand"
+      },
+      {
+        "id": "b",
+        "text": "Through the rudder only"
+      },
+      {
+        "id": "c",
+        "text": "By the autopilot only"
+      },
+      {
+        "id": "d",
+        "text": "In direct mode, without bank angle protection or turn coordination"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Roll becomes direct; yaw damping is still available.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/abnormallaw/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0055",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "Above what bank angle does abnormal attitude law engage?",
+    "options": [
+      {
+        "id": "a",
+        "text": "125°"
+      },
+      {
+        "id": "b",
+        "text": "67°"
+      },
+      {
+        "id": "c",
+        "text": "90°"
+      },
+      {
+        "id": "d",
+        "text": "45°"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Abnormal attitude law also engages beyond 50° pitch up, 30° pitch down or extreme speeds and angles of attack.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/abnormallaw/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0056",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "At what pitch attitudes does abnormal attitude law engage?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Above 30° up or 15° down"
+      },
+      {
+        "id": "b",
+        "text": "Above 25° up or 13° down"
+      },
+      {
+        "id": "c",
+        "text": "Above 50° nose up or 30° nose down"
+      },
+      {
+        "id": "d",
+        "text": "Above 60° up or 45° down"
+      }
+    ],
+    "correct": "c",
+    "explanation": "These are far beyond the normal law limits of 30° up and 15° down.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/abnormallaw/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0057",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "After recovery from abnormal attitude law, what law remains?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Normal law returns"
+      },
+      {
+        "id": "b",
+        "text": "Direct law"
+      },
+      {
+        "id": "c",
+        "text": "Mechanical back-up"
+      },
+      {
+        "id": "d",
+        "text": "Pitch and yaw stay in alternate law for the rest of the flight"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Flight controls stay degraded after an abnormal attitude.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/abnormallaw/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0058",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "Which PFD message tells the crew that the aircraft is in direct law?",
+    "options": [
+      {
+        "id": "a",
+        "text": "MAN PITCH TRIM ONLY in red"
+      },
+      {
+        "id": "b",
+        "text": "USE MAN PITCH TRIM in amber"
+      },
+      {
+        "id": "c",
+        "text": "DIRECT LAW in green"
+      },
+      {
+        "id": "d",
+        "text": "PROT LOST in white"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Direct law has no auto trim, so the crew must trim manually.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/abnormallaw/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0059",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "In direct law, how is pitch controlled?",
+    "options": [
+      {
+        "id": "a",
+        "text": "As a load factor demand"
+      },
+      {
+        "id": "b",
+        "text": "Through speed stability"
+      },
+      {
+        "id": "c",
+        "text": "Sidestick inputs move the elevators directly, with no auto trim"
+      },
+      {
+        "id": "d",
+        "text": "By the autopilot"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Auto trim and speed stability are lost.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-advanced-guides/protections/abnormallaw/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0060",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Indications",
+    "question": "On the F/CTL page, when is a spoiler shown as a green triangle?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When it is deflected more than 2.5°"
+      },
+      {
+        "id": "b",
+        "text": "When it is retracted"
+      },
+      {
+        "id": "c",
+        "text": "When it has failed"
+      },
+      {
+        "id": "d",
+        "text": "When it is armed"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A green line shows a retracted spoiler.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/f-ctl/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0061",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Indications",
+    "question": "What does an amber PITCH TRIM legend on the F/CTL page mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The pitch trim is jammed"
+      },
+      {
+        "id": "b",
+        "text": "Pitch trim is in manual"
+      },
+      {
+        "id": "c",
+        "text": "The trim is at its limit"
+      },
+      {
+        "id": "d",
+        "text": "Auto trim is off"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A jammed THS is one of the causes of alternate law.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/f-ctl/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0062",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Indications",
+    "question": "On the F/CTL page, what does an amber rudder travel limiter indication mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The rudder is at full deflection"
+      },
+      {
+        "id": "b",
+        "text": "The rudder trim is reset"
+      },
+      {
+        "id": "c",
+        "text": "Both rudder travel limiters have failed"
+      },
+      {
+        "id": "d",
+        "text": "Yaw damping is lost"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The rudder travel limiter reduces rudder authority as speed increases.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/f-ctl/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0063",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Indications",
+    "question": "On the F/CTL page, what does an amber ELAC or SEC number mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is the master computer"
+      },
+      {
+        "id": "b",
+        "text": "That computer has failed or is switched OFF"
+      },
+      {
+        "id": "c",
+        "text": "It is in test"
+      },
+      {
+        "id": "d",
+        "text": "It is controlling the autopilot"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Green numbers show available computers.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/f-ctl/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0064",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "High lift",
+    "question": "How many FLAPS lever positions are there?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Four: 0, 1, 2 and FULL"
+      },
+      {
+        "id": "b",
+        "text": "Six"
+      },
+      {
+        "id": "c",
+        "text": "Seven, including intermediate positions"
+      },
+      {
+        "id": "d",
+        "text": "Five: 0, 1, 2, 3 and FULL"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Intermediate lever positions cannot be selected.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/flaps/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0065",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "High lift",
+    "question": "What slat angle is set in CONF 1?",
+    "options": [
+      {
+        "id": "a",
+        "text": "10°"
+      },
+      {
+        "id": "b",
+        "text": "22°"
+      },
+      {
+        "id": "c",
+        "text": "18°"
+      },
+      {
+        "id": "d",
+        "text": "27°"
+      }
+    ],
+    "correct": "c",
+    "explanation": "CONF 1 is 18° slats with 0° flaps in flight, or 10° flaps (1+F).",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/flaps/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0066",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "High lift",
+    "question": "What slat and flap angles are set in CONF FULL?",
+    "options": [
+      {
+        "id": "a",
+        "text": "27° slats and 40° flaps"
+      },
+      {
+        "id": "b",
+        "text": "22° slats and 20° flaps"
+      },
+      {
+        "id": "c",
+        "text": "27° slats and 35° flaps"
+      },
+      {
+        "id": "d",
+        "text": "22° slats and 40° flaps"
+      }
+    ],
+    "correct": "a",
+    "explanation": "FULL is the normal landing configuration.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/flaps/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0067",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "High lift",
+    "question": "What slat and flap angles are set in CONF 2?",
+    "options": [
+      {
+        "id": "a",
+        "text": "18° slats and 10° flaps"
+      },
+      {
+        "id": "b",
+        "text": "22° slats and 20° flaps"
+      },
+      {
+        "id": "c",
+        "text": "27° slats and 15° flaps"
+      },
+      {
+        "id": "d",
+        "text": "22° slats and 15° flaps"
+      }
+    ],
+    "correct": "d",
+    "explanation": "CONF 2 and CONF 3 share 22° slats.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/flaps/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0068",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "High lift",
+    "question": "What is the maximum speed in CONF 1?",
+    "options": [
+      {
+        "id": "a",
+        "text": "215 kt"
+      },
+      {
+        "id": "b",
+        "text": "230 kt"
+      },
+      {
+        "id": "c",
+        "text": "250 kt"
+      },
+      {
+        "id": "d",
+        "text": "200 kt"
+      }
+    ],
+    "correct": "b",
+    "explanation": "VFE is 230 kt in CONF 1, 215 kt in CONF 2, 185 kt in CONF 3, 177 kt in CONF FULL.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/flaps/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0069",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "High lift",
+    "question": "What is the maximum speed in CONF 2?",
+    "options": [
+      {
+        "id": "a",
+        "text": "200 kt"
+      },
+      {
+        "id": "b",
+        "text": "215 kt"
+      },
+      {
+        "id": "c",
+        "text": "230 kt"
+      },
+      {
+        "id": "d",
+        "text": "185 kt"
+      }
+    ],
+    "correct": "b",
+    "explanation": "VFE CONF 2 is 215 kt.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/flaps/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0070",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "High lift",
+    "question": "What is the maximum speed in CONF 3?",
+    "options": [
+      {
+        "id": "a",
+        "text": "177 kt"
+      },
+      {
+        "id": "b",
+        "text": "195 kt"
+      },
+      {
+        "id": "c",
+        "text": "200 kt"
+      },
+      {
+        "id": "d",
+        "text": "185 kt"
+      }
+    ],
+    "correct": "d",
+    "explanation": "VFE CONF 3 is 185 kt.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/flaps/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0071",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "High lift",
+    "question": "What is the maximum speed in CONF FULL?",
+    "options": [
+      {
+        "id": "a",
+        "text": "177 kt"
+      },
+      {
+        "id": "b",
+        "text": "170 kt"
+      },
+      {
+        "id": "c",
+        "text": "185 kt"
+      },
+      {
+        "id": "d",
+        "text": "190 kt"
+      }
+    ],
+    "correct": "a",
+    "explanation": "VFE CONF FULL is 177 kt.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/flaps/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0072",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "High lift",
+    "question": "Why are there stops at FLAPS lever positions 1 and 3?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To lock the lever in flight"
+      },
+      {
+        "id": "b",
+        "text": "To mark take-off positions"
+      },
+      {
+        "id": "c",
+        "text": "To prevent excessive flap or slat travel being selected in a single action"
+      },
+      {
+        "id": "d",
+        "text": "To prevent selecting FULL on the ground"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The lever must also be pulled out of each detent before it can move.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/flaps/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0073",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "High lift",
+    "question": "After a CONF 1+F take-off, if CONF 0 is not selected, when do the flaps retract automatically?",
+    "options": [
+      {
+        "id": "a",
+        "text": "At 230 kt"
+      },
+      {
+        "id": "b",
+        "text": "At 200 kt"
+      },
+      {
+        "id": "c",
+        "text": "At green dot"
+      },
+      {
+        "id": "d",
+        "text": "At 210 kt"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The automatic retraction protects the flaps from overspeed.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/flaps/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0074",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "High lift",
+    "question": "After flap retraction, when does CONF 1+F become available again (without having selected 2, 3 or FULL)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Below 210 kt"
+      },
+      {
+        "id": "b",
+        "text": "When the airspeed is 100 kt or less"
+      },
+      {
+        "id": "c",
+        "text": "Below 177 kt"
+      },
+      {
+        "id": "d",
+        "text": "Only after landing"
+      }
+    ],
+    "correct": "b",
+    "explanation": "From CONF 0 in flight, CONF 1 gives slats only.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/flaps/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0075",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Speed brakes",
+    "question": "Where is there a detent on the SPEED BRAKE lever?",
+    "options": [
+      {
+        "id": "a",
+        "text": "At the ¼ position"
+      },
+      {
+        "id": "b",
+        "text": "At the full position only"
+      },
+      {
+        "id": "c",
+        "text": "At the ½ position"
+      },
+      {
+        "id": "d",
+        "text": "There is no detent"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The lever has to be pushed down to move to the selected position.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/speedbrake/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0076",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Speed brakes",
+    "question": "How are the ground spoilers armed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By pulling the SPEED BRAKE lever up in the RET position"
+      },
+      {
+        "id": "b",
+        "text": "By pushing the lever down at FULL"
+      },
+      {
+        "id": "c",
+        "text": "By selecting the autobrake"
+      },
+      {
+        "id": "d",
+        "text": "Automatically at gear extension"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Armed ground spoilers extend at landing or in a rejected take-off.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/speedbrake/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0077",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Speed brakes",
+    "question": "If the ground spoilers are not armed, what else makes them extend automatically at landing?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Selecting reverse thrust"
+      },
+      {
+        "id": "b",
+        "text": "Selecting the autobrake to MED"
+      },
+      {
+        "id": "c",
+        "text": "Touching down above 140 kt"
+      },
+      {
+        "id": "d",
+        "text": "Selecting flaps FULL"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Reverse selection also triggers automatic ground spoiler extension.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/speedbrake/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0078",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Rudder",
+    "question": "What effect does the RUD TRIM rotary switch have with the autopilot engaged?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It disconnects the autopilot"
+      },
+      {
+        "id": "b",
+        "text": "It trims the rudder normally"
+      },
+      {
+        "id": "c",
+        "text": "None"
+      },
+      {
+        "id": "d",
+        "text": "It resets the rudder trim"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The rudder trim switch and the RESET pushbutton are inactive with the AP engaged.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/rudder-trim/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0079",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Rudder",
+    "question": "At what rate does the rudder trim RESET pushbutton return the trim to zero?",
+    "options": [
+      {
+        "id": "a",
+        "text": "0.5° per second"
+      },
+      {
+        "id": "b",
+        "text": "1.5° per second"
+      },
+      {
+        "id": "c",
+        "text": "5° per second"
+      },
+      {
+        "id": "d",
+        "text": "Instantly"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The trim runs back at 1.5°/s.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/rudder-trim/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0080",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Rudder",
+    "question": "What is the range of the rudder trim position indicator?",
+    "options": [
+      {
+        "id": "a",
+        "text": "0 to 10° each way"
+      },
+      {
+        "id": "b",
+        "text": "0 to 30° each way"
+      },
+      {
+        "id": "c",
+        "text": "0 to 5° each way"
+      },
+      {
+        "id": "d",
+        "text": "0 to 20° left or right"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The indicator shows the direction (L or R) and value.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/rudder-trim/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0081",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Pitch trim",
+    "question": "What priority does the mechanical pitch trim wheel have over electric trim?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Electric trim has priority"
+      },
+      {
+        "id": "b",
+        "text": "They cannot be used together"
+      },
+      {
+        "id": "c",
+        "text": "The trim wheel has priority over electrical control"
+      },
+      {
+        "id": "d",
+        "text": "The wheel works only on the ground"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The wheels give direct mechanical control of the THS.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/thrust-pitch-trim/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0082",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Pitch trim",
+    "question": "What happens to the autopilot if a pilot moves the pitch trim wheel in flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It disconnects"
+      },
+      {
+        "id": "b",
+        "text": "It stays engaged"
+      },
+      {
+        "id": "c",
+        "text": "It switches to its other channel"
+      },
+      {
+        "id": "d",
+        "text": "It changes to V/S mode"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Manual trim inputs and autopilot cannot coexist.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/thrust-pitch-trim/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0083",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Pitch trim",
+    "question": "Does using the pitch trim wheel disconnect the ELACs?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes, both ELACs disconnect"
+      },
+      {
+        "id": "b",
+        "text": "Yes, ELAC 2 disconnects"
+      },
+      {
+        "id": "c",
+        "text": "Only on the ground"
+      },
+      {
+        "id": "d",
+        "text": "No, so the computers stay synchronised with the manually selected position"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Keeping the ELACs engaged avoids a jump when automatic trim resumes.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/thrust-pitch-trim/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0084",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Pitch trim",
+    "question": "With auto trim in normal law and a neutral sidestick, what does the system maintain in level flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The current pitch attitude only"
+      },
+      {
+        "id": "b",
+        "text": "1 g, with no pilot correction needed for speed, turns or configuration"
+      },
+      {
+        "id": "c",
+        "text": "The current speed"
+      },
+      {
+        "id": "d",
+        "text": "A constant angle of attack"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Auto trim works with the load factor demand law, even with the autopilot off.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/thrust-pitch-trim/",
     "status": "published",
     "version": 1
   }

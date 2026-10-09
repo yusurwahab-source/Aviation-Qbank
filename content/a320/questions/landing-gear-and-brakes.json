@@ -4,27 +4,28 @@
     "aircraft": "A320",
     "topic": "Landing Gear and Brakes",
     "subtopic": "Gear",
-    "question": "What type of landing gear does the A320 have?",
+    "question": "In which direction do the A320's main landing gears retract?",
     "options": [
       {
         "id": "a",
-        "text": "A fixed tricycle gear"
+        "text": "Forward"
       },
       {
         "id": "b",
-        "text": "A retractable tailwheel gear"
+        "text": "Aft"
       },
       {
         "id": "c",
-        "text": "A retractable tricycle gear: two main units and a nose unit"
+        "text": "Inward"
       },
       {
         "id": "d",
-        "text": "A bogie gear with four main units"
+        "text": "Outward"
       }
     ],
     "correct": "c",
-    "explanation": "Each main gear has two wheels and brakes, and the nose gear has two steerable wheels without brakes.",
+    "explanation": "The two main gears retract inward into the fuselage; the nose gear retracts forward.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
     "status": "published",
     "version": 1
   },
@@ -33,27 +34,28 @@
     "aircraft": "A320",
     "topic": "Landing Gear and Brakes",
     "subtopic": "Gear",
-    "question": "Which hydraulic system normally extends and retracts the landing gear?",
+    "question": "In which direction does the nose gear retract?",
     "options": [
       {
         "id": "a",
-        "text": "Green"
+        "text": "Forward"
       },
       {
         "id": "b",
-        "text": "Blue"
+        "text": "Aft"
       },
       {
         "id": "c",
-        "text": "Yellow"
+        "text": "Sideways"
       },
       {
         "id": "d",
-        "text": "The electric pump"
+        "text": "Upward into the cockpit floor without moving fore or aft"
       }
     ],
     "correct": "a",
-    "explanation": "The gear is normally operated by the Green system. If it is not available, the gear can be extended by gravity.",
+    "explanation": "Retracting forward means the airflow helps the nose gear down and lock in an emergency extension.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
     "status": "published",
     "version": 1
   },
@@ -62,94 +64,7 @@
     "aircraft": "A320",
     "topic": "Landing Gear and Brakes",
     "subtopic": "Gear",
-    "question": "Which units control the landing gear sequencing and indication?",
-    "options": [
-      {
-        "id": "a",
-        "text": "The two SFCCs"
-      },
-      {
-        "id": "b",
-        "text": "The two ELACs"
-      },
-      {
-        "id": "c",
-        "text": "The two FMGCs"
-      },
-      {
-        "id": "d",
-        "text": "The two landing gear control and interface units (LGCIUs)"
-      }
-    ],
-    "correct": "d",
-    "explanation": "The LGCIUs control the sequence of doors and gear, and send the position and ground/air signals to many other systems.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-GEAR-0004",
-    "aircraft": "A320",
-    "topic": "Landing Gear and Brakes",
-    "subtopic": "Gear",
-    "question": "What do the LGCIUs do apart from controlling the gear?",
-    "options": [
-      {
-        "id": "a",
-        "text": "They control the fuel pumps"
-      },
-      {
-        "id": "b",
-        "text": "They provide the ground and flight status to many systems, such as the pressurisation and flight controls"
-      },
-      {
-        "id": "c",
-        "text": "They control the cabin lights"
-      },
-      {
-        "id": "d",
-        "text": "They supply the hydraulic pressure"
-      }
-    ],
-    "correct": "b",
-    "explanation": "Many systems need to know if the aircraft is on the ground or in flight, and the main gear compression signals come from the LGCIUs.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-GEAR-0005",
-    "aircraft": "A320",
-    "topic": "Landing Gear and Brakes",
-    "subtopic": "Emergency",
-    "question": "How does the landing gear get extended if the Green system fails?",
-    "options": [
-      {
-        "id": "a",
-        "text": "By the Blue electric pump"
-      },
-      {
-        "id": "b",
-        "text": "By gravity, with the GRAVITY GEAR EXTENSION handcrank in the cockpit"
-      },
-      {
-        "id": "c",
-        "text": "By the RAT only"
-      },
-      {
-        "id": "d",
-        "text": "It cannot be extended"
-      }
-    ],
-    "correct": "b",
-    "explanation": "Turning the crank mechanically releases the gear uplocks and doors so the gear drops and locks down by its own weight and the airstream.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-GEAR-0006",
-    "aircraft": "A320",
-    "topic": "Landing Gear and Brakes",
-    "subtopic": "Indications",
-    "question": "How many green triangles will the landing gear indication show when the gear is down and locked?",
+    "question": "How many Landing Gear Control and Interface Units (LGCIUs) are there?",
     "options": [
       {
         "id": "a",
@@ -157,7 +72,7 @@
       },
       {
         "id": "b",
-        "text": "Two"
+        "text": "Three"
       },
       {
         "id": "c",
@@ -165,82 +80,55 @@
       },
       {
         "id": "d",
-        "text": "Three, one for each gear"
+        "text": "Two"
       }
     ],
     "correct": "d",
-    "explanation": "A green triangle means that gear is down and locked. A red UNLK indication means it is in transit or unlocked.",
+    "explanation": "Two LGCIUs control gear and doors, feed the ECAM, and tell other systems whether the aircraft is on the ground or in flight.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
     "status": "published",
     "version": 1
   },
   {
-    "id": "A320-GEAR-0007",
+    "id": "A320-GEAR-0004",
     "aircraft": "A320",
     "topic": "Landing Gear and Brakes",
-    "subtopic": "Indications",
-    "question": "What does a red UNLK indication on the landing gear panel mean?",
+    "subtopic": "Brakes",
+    "question": "What type of brakes are fitted to the main wheels?",
     "options": [
       {
         "id": "a",
-        "text": "The gear is not locked in the position selected"
+        "text": "Steel single-disc brakes"
       },
       {
         "id": "b",
-        "text": "The gear is locked up"
+        "text": "Carbon multidisc brakes"
       },
       {
         "id": "c",
-        "text": "The gear is damaged"
+        "text": "Drum brakes"
       },
       {
         "id": "d",
-        "text": "A brake is hot"
+        "text": "Electric brakes"
       }
     ],
-    "correct": "a",
-    "explanation": "It is a transit indication. If it remains after the normal transit time, it indicates a gear problem.",
+    "correct": "b",
+    "explanation": "The main wheels have carbon brakes; the nose wheels are unbraked.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
     "status": "published",
     "version": 1
   },
   {
-    "id": "A320-GEAR-0008",
+    "id": "A320-GEAR-0005",
     "aircraft": "A320",
     "topic": "Landing Gear and Brakes",
-    "subtopic": "Steering",
-    "question": "How is the nose wheel steered on the ground?",
+    "subtopic": "Brakes",
+    "question": "Which hydraulic system supplies normal braking?",
     "options": [
       {
         "id": "a",
-        "text": "By differential braking only"
-      },
-      {
-        "id": "b",
-        "text": "By the rudder only, with no tiller"
-      },
-      {
-        "id": "c",
-        "text": "By the tiller (up to ±75°) or by the rudder pedals (up to ±6°)"
-      },
-      {
-        "id": "d",
-        "text": "By the sidestick"
-      }
-    ],
-    "correct": "c",
-    "explanation": "The tiller gives a large steering angle at low speed. The pedals give a small angle, for use at higher speed on the runway.",
-    "status": "published",
-    "version": 1
-  },
-  {
-    "id": "A320-GEAR-0009",
-    "aircraft": "A320",
-    "topic": "Landing Gear and Brakes",
-    "subtopic": "Steering",
-    "question": "Which hydraulic system powers the nosewheel steering?",
-    "options": [
-      {
-        "id": "a",
-        "text": "Blue"
+        "text": "Yellow"
       },
       {
         "id": "b",
@@ -248,15 +136,136 @@
       },
       {
         "id": "c",
-        "text": "None, it is electric"
+        "text": "Blue"
       },
       {
         "id": "d",
-        "text": "Yellow"
+        "text": "Yellow with the accumulator"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Normal braking is Green; alternate is Yellow backed up by the accumulator.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0006",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Brakes",
+    "question": "What supplies alternate braking?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The Blue system"
+      },
+      {
+        "id": "b",
+        "text": "The Green system through the PTU"
+      },
+      {
+        "id": "c",
+        "text": "The RAT"
+      },
+      {
+        "id": "d",
+        "text": "The Yellow system, backed up by the hydraulic accumulator"
       }
     ],
     "correct": "d",
-    "explanation": "The steering relies on the Yellow system. If it fails, the nose wheel is no longer steered and the pilot must use differential braking.",
+    "explanation": "If Green is lost, Yellow takes over automatically.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0007",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Gear",
+    "question": "What does a red UNLK light on the landing gear indicator panel mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The gear is not locked in the selected position"
+      },
+      {
+        "id": "b",
+        "text": "The gear is locked up"
+      },
+      {
+        "id": "c",
+        "text": "The gear doors are open"
+      },
+      {
+        "id": "d",
+        "text": "The gear is locked down"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A green triangle shows down and locked.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0008",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Gear",
+    "question": "What happens to the main wheels when the landing gear lever is selected UP?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The brake fans start"
+      },
+      {
+        "id": "b",
+        "text": "Nothing; they spin down naturally"
+      },
+      {
+        "id": "c",
+        "text": "The brake system brakes them"
+      },
+      {
+        "id": "d",
+        "text": "The anti-skid tests them"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Braking stops the wheels spinning before they enter the gear bay.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0009",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Gear",
+    "question": "Can the gear be retracted with the aircraft on the ground?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes, if the lever is moved quickly"
+      },
+      {
+        "id": "b",
+        "text": "Yes, below 20 kt"
+      },
+      {
+        "id": "c",
+        "text": "Yes, with the Green system pressurised"
+      },
+      {
+        "id": "d",
+        "text": "No"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Ground/flight logic prevents retraction on the ground.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
     "status": "published",
     "version": 1
   },
@@ -264,28 +273,29 @@
     "id": "A320-GEAR-0010",
     "aircraft": "A320",
     "topic": "Landing Gear and Brakes",
-    "subtopic": "Brakes",
-    "question": "What does the autobrake do?",
+    "subtopic": "Gear",
+    "question": "When does the red arrow next to the gear lever come on?",
     "options": [
       {
         "id": "a",
-        "text": "It prevents the wheels from spinning up on landing"
+        "text": "When the gear is in transit"
       },
       {
         "id": "b",
-        "text": "It applies a pre-set deceleration automatically after touchdown or when a rejected take-off is triggered"
+        "text": "When the gear is not down and locked with the aircraft in the landing configuration"
       },
       {
         "id": "c",
-        "text": "It keeps the brakes cool"
+        "text": "When the brakes are hot"
       },
       {
         "id": "d",
-        "text": "It parks the aircraft"
+        "text": "When the gear doors are open on the ground"
       }
     ],
     "correct": "b",
-    "explanation": "The autobrake can be set to LO, MED or MAX. It works on the normal (Green) braking system, not on alternate braking.",
+    "explanation": "It comes with a red ECAM warning.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
     "status": "published",
     "version": 1
   },
@@ -293,28 +303,29 @@
     "id": "A320-GEAR-0011",
     "aircraft": "A320",
     "topic": "Landing Gear and Brakes",
-    "subtopic": "Brakes",
-    "question": "Which are the autobrake settings?",
+    "subtopic": "Anti-skid",
+    "question": "Below what ground speed is the anti-skid deactivated?",
     "options": [
       {
         "id": "a",
-        "text": "1, 2 and 3"
+        "text": "5 kt"
       },
       {
         "id": "b",
-        "text": "OFF, ON and AUTO"
+        "text": "40 kt"
       },
       {
         "id": "c",
-        "text": "LO, MED and MAX"
+        "text": "20 kt"
       },
       {
         "id": "d",
-        "text": "SOFT, NORMAL and HARD"
+        "text": "72 kt"
       }
     ],
     "correct": "c",
-    "explanation": "MAX is used on take-off (RTO). LO and MED are for landing, according to runway length and conditions.",
+    "explanation": "At very low speed the anti-skid is no longer needed.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
     "status": "published",
     "version": 1
   },
@@ -322,28 +333,29 @@
     "id": "A320-GEAR-0012",
     "aircraft": "A320",
     "topic": "Landing Gear and Brakes",
-    "subtopic": "Brakes",
-    "question": "Which setting should the autobrake be armed in for take-off?",
+    "subtopic": "Anti-skid",
+    "question": "With A/SKID & N/W STRG ON, what happens if Green pressure is lost?",
     "options": [
       {
         "id": "a",
-        "text": "MAX, so a rejected take-off will apply maximum braking"
+        "text": "Yellow supplies the brakes automatically and anti-skid remains available"
       },
       {
         "id": "b",
-        "text": "LO"
+        "text": "Braking is lost"
       },
       {
         "id": "c",
-        "text": "MED"
+        "text": "Only the parking brake is available"
       },
       {
         "id": "d",
-        "text": "OFF"
+        "text": "Anti-skid is lost but nosewheel steering remains"
       }
     ],
     "correct": "a",
-    "explanation": "With MAX armed, the brakes will apply fully if the take-off is rejected above 72 kt.",
+    "explanation": "The triple indicator then shows the Yellow brake pressure.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
     "status": "published",
     "version": 1
   },
@@ -351,28 +363,29 @@
     "id": "A320-GEAR-0013",
     "aircraft": "A320",
     "topic": "Landing Gear and Brakes",
-    "subtopic": "Brakes",
-    "question": "What does the anti-skid system do?",
+    "subtopic": "Anti-skid",
+    "question": "With A/SKID & N/W STRG OFF, which statement is correct?",
     "options": [
       {
         "id": "a",
-        "text": "It prevents wheel locking and optimises the braking by modulating the brake pressure on each wheel"
+        "text": "Yellow supplies the brakes, anti-skid and nosewheel steering are lost, and differential braking remains"
       },
       {
         "id": "b",
-        "text": "It prevents the tyres from overheating"
+        "text": "Green supplies the brakes with anti-skid"
       },
       {
         "id": "c",
-        "text": "It keeps the aircraft straight"
+        "text": "Braking is lost altogether"
       },
       {
         "id": "d",
-        "text": "It controls the nose wheel"
+        "text": "Only nosewheel steering is lost"
       }
     ],
     "correct": "a",
-    "explanation": "Anti-skid releases the brake pressure when a wheel starts to skid, giving the most braking force the runway can give.",
+    "explanation": "The pilot must limit brake pressure using the triple indicator to avoid locking a wheel.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
     "status": "published",
     "version": 1
   },
@@ -380,28 +393,29 @@
     "id": "A320-GEAR-0014",
     "aircraft": "A320",
     "topic": "Landing Gear and Brakes",
-    "subtopic": "Brakes",
-    "question": "What are the brake systems on the A320?",
+    "subtopic": "Autobrake",
+    "question": "What are the settings of the A320 autobrake?",
     "options": [
       {
         "id": "a",
-        "text": "Normal braking on Blue and alternate on Green"
+        "text": "1, 2, 3 and MAX"
       },
       {
         "id": "b",
-        "text": "Only one system, with no alternate"
+        "text": "LO, HI and RTO"
       },
       {
         "id": "c",
-        "text": "Normal braking (Green), and alternate braking (Yellow, with accumulator), with the parking brake on the Yellow system"
+        "text": "OFF, LO, MED and MAX"
       },
       {
         "id": "d",
-        "text": "Normal braking on Yellow, alternate on Blue"
+        "text": "OFF, MIN, NORM and MAX"
       }
     ],
     "correct": "c",
-    "explanation": "If the Green system is lost, the brakes are supplied by the Yellow, with anti-skid still available, or without anti-skid if the system is lost.",
+    "explanation": "MAX is for take-off; LO and MED are for landing.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
     "status": "published",
     "version": 1
   },
@@ -409,28 +423,29 @@
     "id": "A320-GEAR-0015",
     "aircraft": "A320",
     "topic": "Landing Gear and Brakes",
-    "subtopic": "Brakes",
-    "question": "What is the brake accumulator for?",
+    "subtopic": "Autobrake",
+    "question": "When can MAX autobrake be armed?",
     "options": [
       {
         "id": "a",
-        "text": "To power the landing gear"
+        "text": "For landing on a contaminated runway"
       },
       {
         "id": "b",
-        "text": "To store hydraulic pressure for the parking brake and for some alternate braking"
+        "text": "For take-off only, not while airborne"
       },
       {
         "id": "c",
-        "text": "To cool the brakes"
+        "text": "At any time"
       },
       {
         "id": "d",
-        "text": "To power the nose steering"
+        "text": "Only after landing"
       }
     ],
     "correct": "b",
-    "explanation": "The accumulator on the Yellow system can supply the brakes when the Yellow pump is not working, and holds the parking brake.",
+    "explanation": "In a rejected take-off it applies maximum pressure as the ground spoilers deploy.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
     "status": "published",
     "version": 1
   },
@@ -438,28 +453,29 @@
     "id": "A320-GEAR-0016",
     "aircraft": "A320",
     "topic": "Landing Gear and Brakes",
-    "subtopic": "Brakes",
-    "question": "Which brake temperature indication is displayed on the ECAM wheel page?",
+    "subtopic": "Autobrake",
+    "question": "What deceleration does MED autobrake target?",
     "options": [
       {
         "id": "a",
-        "text": "The brake pressure only"
+        "text": "2 m/s² (6.6 ft/s²)"
       },
       {
         "id": "b",
-        "text": "The tyre pressure only"
+        "text": "4 m/s² (13 ft/s²)"
       },
       {
         "id": "c",
-        "text": "The brake wear only"
+        "text": "1.5 m/s² (5 ft/s²)"
       },
       {
         "id": "d",
-        "text": "The temperature of each brake, shown in degrees Celsius, with a colour change when it is too hot"
+        "text": "3 m/s² (9.8 ft/s²)"
       }
     ],
     "correct": "d",
-    "explanation": "A high brake temperature indication can delay a take-off, as hot brakes may cause a fire or tyre failure.",
+    "explanation": "MED is usually chosen for a shorter, wet or contaminated runway.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
     "status": "published",
     "version": 1
   },
@@ -467,28 +483,629 @@
     "id": "A320-GEAR-0017",
     "aircraft": "A320",
     "topic": "Landing Gear and Brakes",
-    "subtopic": "Warnings",
-    "question": "What happens if the gear is not down and locked and the aircraft is in the landing configuration?",
+    "subtopic": "Autobrake",
+    "question": "What deceleration does LO autobrake target?",
     "options": [
       {
         "id": "a",
-        "text": "Nothing, as the gear is automatic"
+        "text": "3 m/s² (9.8 ft/s²)"
       },
       {
         "id": "b",
-        "text": "A green message on the ECAM"
+        "text": "1 m/s² (3.3 ft/s²)"
       },
       {
         "id": "c",
-        "text": "A LDG GEAR NOT DOWN warning is given, with a red message and an aural alert"
+        "text": "2 m/s² (6.6 ft/s²)"
       },
       {
         "id": "d",
-        "text": "The flaps retract"
+        "text": "2.5 m/s² (8.2 ft/s²)"
       }
     ],
     "correct": "c",
-    "explanation": "This warning is given at a low radio altitude with a landing flap setting if the gear is not locked down.",
+    "explanation": "LO is usually chosen for a normal-length, dry runway.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0018",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Autobrake",
+    "question": "When do LO and MED autobrake start applying pressure after landing?",
+    "options": [
+      {
+        "id": "a",
+        "text": "2 seconds after the ground spoilers deploy"
+      },
+      {
+        "id": "b",
+        "text": "At main gear touchdown"
+      },
+      {
+        "id": "c",
+        "text": "When the nose gear touches down"
+      },
+      {
+        "id": "d",
+        "text": "5 seconds after touchdown"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Pressure is applied progressively after the 2-second delay.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0019",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Autobrake",
+    "question": "What does the blue ON light on an autobrake pushbutton show?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The brakes are applying"
+      },
+      {
+        "id": "b",
+        "text": "The autobrake has failed"
+      },
+      {
+        "id": "c",
+        "text": "The deceleration is reached"
+      },
+      {
+        "id": "d",
+        "text": "The setting is armed"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Blue ON shows positive arming.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0020",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Autobrake",
+    "question": "When does the green DECEL light come on?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When the autobrake is armed"
+      },
+      {
+        "id": "b",
+        "text": "When the actual deceleration reaches 80 % of the selected rate"
+      },
+      {
+        "id": "c",
+        "text": "As soon as brakes are applied"
+      },
+      {
+        "id": "d",
+        "text": "Below 20 kt"
+      }
+    ],
+    "correct": "b",
+    "explanation": "On a slippery runway, anti-skid may keep DECEL off even though the autobrake is working.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0021",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Brakes",
+    "question": "When do the brake fans run with BRK FAN ON?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only on the ground below 20 kt"
+      },
+      {
+        "id": "b",
+        "text": "When the left main gear is down and locked"
+      },
+      {
+        "id": "c",
+        "text": "Whenever the brakes are above 300 °C"
+      },
+      {
+        "id": "d",
+        "text": "Only with the parking brake set"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The amber HOT light shows hot brakes, with an ECAM caution.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/autobrake-gear/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0022",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Brakes",
+    "question": "How is the parking brake applied?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By pressing both pedals and pulling a lever"
+      },
+      {
+        "id": "b",
+        "text": "By a pushbutton on the overhead panel"
+      },
+      {
+        "id": "c",
+        "text": "By turning the handle counter-clockwise"
+      },
+      {
+        "id": "d",
+        "text": "By pulling the handle and turning it clockwise"
+      }
+    ],
+    "correct": "d",
+    "explanation": "PARK BRK then appears on the ECAM. It is released by turning the handle counter-clockwise.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/parking-brake/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0023",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Emergency extension",
+    "question": "How many clockwise turns of the gravity gear extension crank are needed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "3"
+      },
+      {
+        "id": "b",
+        "text": "1"
+      },
+      {
+        "id": "c",
+        "text": "5"
+      },
+      {
+        "id": "d",
+        "text": "10"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Three turns isolate the gear hydraulics, vent them, unlock the doors and release the gear.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/gravity-gear-ext/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0024",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Emergency extension",
+    "question": "From which hydraulic system does the gravity extension crank isolate the landing gear?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yellow"
+      },
+      {
+        "id": "b",
+        "text": "Blue"
+      },
+      {
+        "id": "c",
+        "text": "Green"
+      },
+      {
+        "id": "d",
+        "text": "All three"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The gear is normally Green-powered, so it is isolated from Green before free-fall.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/gravity-gear-ext/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0025",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Emergency extension",
+    "question": "After a gravity extension, what position are the gear doors left in?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Closed"
+      },
+      {
+        "id": "b",
+        "text": "Partly closed by the airflow"
+      },
+      {
+        "id": "c",
+        "text": "Closed once the gear locks"
+      },
+      {
+        "id": "d",
+        "text": "Open"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The doors remain open after a gravity extension.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/gravity-gear-ext/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0026",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Emergency extension",
+    "question": "What helps the nose gear lock down during a gravity extension?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Locking springs alone"
+      },
+      {
+        "id": "b",
+        "text": "Aerodynamic forces"
+      },
+      {
+        "id": "c",
+        "text": "The Yellow system"
+      },
+      {
+        "id": "d",
+        "text": "The crank turned further"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Springs help the main gear lock; the airflow pushes the forward-retracting nose gear down.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/gravity-gear-ext/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0027",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Emergency extension",
+    "question": "After a training gravity extension in flight, can the system be reset?",
+    "options": [
+      {
+        "id": "a",
+        "text": "No, only on the ground"
+      },
+      {
+        "id": "b",
+        "text": "Yes, at any time"
+      },
+      {
+        "id": "c",
+        "text": "Yes, if Green hydraulic pressure is available"
+      },
+      {
+        "id": "d",
+        "text": "Only by maintenance"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The emergency extension system can be reset in flight with Green pressure.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/pedestal/gravity-gear-ext/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0028",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Brakes",
+    "question": "What does the ACCU PRESS needle on the triple indicator show?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The pressure in the Yellow system brake accumulator"
+      },
+      {
+        "id": "b",
+        "text": "Green brake pressure"
+      },
+      {
+        "id": "c",
+        "text": "Blue system pressure"
+      },
+      {
+        "id": "d",
+        "text": "Tyre pressure"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The two BRAKES needles show Yellow pressure delivered to the brakes.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/front/accu/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0029",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Indications",
+    "question": "On the WHEEL page, what does a red gear triangle mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The gear is in transit"
+      },
+      {
+        "id": "b",
+        "text": "The gear is down and locked"
+      },
+      {
+        "id": "c",
+        "text": "The gear is up and locked"
+      },
+      {
+        "id": "d",
+        "text": "The LGCIU has failed"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Green is down and locked; no triangle is up and locked.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/wheel/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0030",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Indications",
+    "question": "On the WHEEL page, what do amber crosses at the gear indication mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A gear is unlocked"
+      },
+      {
+        "id": "b",
+        "text": "A tyre is flat"
+      },
+      {
+        "id": "c",
+        "text": "LGCIU 1 or 2 has failed"
+      },
+      {
+        "id": "d",
+        "text": "The gear doors are open"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Each LGCIU drives one set of indications.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/wheel/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0031",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Indications",
+    "question": "When does an amber UP LOCK legend appear on the WHEEL page?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When the gear is up and locked"
+      },
+      {
+        "id": "b",
+        "text": "When a gear uplock is engaged while the gear is down and locked"
+      },
+      {
+        "id": "c",
+        "text": "When the gear lever is UP"
+      },
+      {
+        "id": "d",
+        "text": "When a door is open"
+      }
+    ],
+    "correct": "b",
+    "explanation": "An uplock engaged with the gear down is a disagreement.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/wheel/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0032",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Indications",
+    "question": "What does an amber L/G CTL legend on the WHEEL page mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The gear is under gravity extension"
+      },
+      {
+        "id": "b",
+        "text": "Nosewheel steering is lost"
+      },
+      {
+        "id": "c",
+        "text": "The gear is locked down"
+      },
+      {
+        "id": "d",
+        "text": "The gear lever position and the actual gear position disagree"
+      }
+    ],
+    "correct": "d",
+    "explanation": "It flags a mismatch between command and position.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/wheel/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0033",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Indications",
+    "question": "On the WHEEL page, what does a green ACCU ONLY legend mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The accumulator is empty"
+      },
+      {
+        "id": "b",
+        "text": "Normal braking is available"
+      },
+      {
+        "id": "c",
+        "text": "Alternate braking is pressurised by the accumulator only"
+      },
+      {
+        "id": "d",
+        "text": "The parking brake is off"
+      }
+    ],
+    "correct": "c",
+    "explanation": "With Yellow pressure available, ACCU PR is shown with an arrow instead.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/wheel/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0034",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Indications",
+    "question": "When does the AUTO BRK legend flash on the WHEEL page?",
+    "options": [
+      {
+        "id": "a",
+        "text": "After the autobrake disengages"
+      },
+      {
+        "id": "b",
+        "text": "When it is armed"
+      },
+      {
+        "id": "c",
+        "text": "When MAX is selected"
+      },
+      {
+        "id": "d",
+        "text": "When the deceleration is reached"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Green AUTO BRK shows armed; amber shows a failure.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/wheel/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0035",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Indications",
+    "question": "On the WHEEL page, when does a green arc appear on the hottest wheel?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When one brake exceeds 300 °C"
+      },
+      {
+        "id": "b",
+        "text": "Whenever the brake fans run"
+      },
+      {
+        "id": "c",
+        "text": "Only after a rejected take-off"
+      },
+      {
+        "id": "d",
+        "text": "When one brake exceeds 100 °C"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The arc becomes amber when the brake exceeds 300 °C.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/wheel/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0036",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Indications",
+    "question": "Above what brake temperature is an amber arc shown on the WHEEL page?",
+    "options": [
+      {
+        "id": "a",
+        "text": "100 °C"
+      },
+      {
+        "id": "b",
+        "text": "300 °C"
+      },
+      {
+        "id": "c",
+        "text": "150 °C"
+      },
+      {
+        "id": "d",
+        "text": "500 °C"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Above 300 °C the brakes are hot.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/wheel/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-GEAR-0037",
+    "aircraft": "A320",
+    "topic": "Landing Gear and Brakes",
+    "subtopic": "Indications",
+    "question": "On the WHEEL page, what does the letter Y next to N/W STEERING refer to?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yaw damper status"
+      },
+      {
+        "id": "b",
+        "text": "Yellow hydraulic system availability for nosewheel steering"
+      },
+      {
+        "id": "c",
+        "text": "The yellow brake accumulator"
+      },
+      {
+        "id": "d",
+        "text": "The nose gear door"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Green Y when Yellow is available; amber Y otherwise. Nosewheel steering is a Yellow user.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/wheel/",
     "status": "published",
     "version": 1
   }

@@ -3,28 +3,29 @@
     "id": "A320-PRESS-0001",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Principles",
-    "question": "Why is the cabin pressurised?",
+    "subtopic": "Modes",
+    "question": "In which ways can the flight crew run the cabin pressurisation system?",
     "options": [
       {
         "id": "a",
-        "text": "So that the packs can operate at high altitude"
+        "text": "Automatically only, with no manual back-up"
       },
       {
         "id": "b",
-        "text": "So that the cabin air is cooler"
+        "text": "Manually only, with an automatic safety valve"
       },
       {
         "id": "c",
-        "text": "So that occupants experience a much lower cabin altitude than the aircraft's real altitude"
+        "text": "Automatically, semi-automatically (manual landing elevation) or manually"
       },
       {
         "id": "d",
-        "text": "So that the fuselage skin is not stressed in flight"
+        "text": "Automatically or through the emergency ram air only"
       }
     ],
     "correct": "c",
-    "explanation": "A pressurised cabin keeps the occupants at an altitude where oxygen is available in adequate quantity. The skin is in fact stressed by the pressure difference, which is why the differential pressure is limited.",
+    "explanation": "Normal operation is fully automatic. Setting LDG ELEV by hand is the semi-automatic case; MODE SEL MAN is full manual control.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -32,28 +33,29 @@
     "id": "A320-PRESS-0002",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Principles",
-    "question": "What is meant by differential pressure (ΔP)?",
+    "subtopic": "Schedule",
+    "question": "On the ground after landing, how long after touchdown does the outflow valve go fully open?",
     "options": [
       {
         "id": "a",
-        "text": "The cabin pressure minus the outside ambient pressure"
+        "text": "55 seconds"
       },
       {
         "id": "b",
-        "text": "The pressure drop across the outflow valve"
+        "text": "5 seconds"
       },
       {
         "id": "c",
-        "text": "The difference between pack 1 and pack 2 outlet pressure"
+        "text": "2 minutes"
       },
       {
         "id": "d",
-        "text": "The difference between the QNH and the QFE"
+        "text": "Only when the first door is opened"
       }
     ],
     "correct": "a",
-    "explanation": "ΔP is what loads the fuselage structure. The system controls cabin altitude and rate of change so that ΔP remains inside structural limits.",
+    "explanation": "On the ground before take-off and 55 s after landing the outflow valve opens fully so no residual pressure remains.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -61,28 +63,29 @@
     "id": "A320-PRESS-0003",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Controllers",
-    "question": "How many cabin pressure controllers (CPCs) are installed, and how do they operate?",
+    "subtopic": "Schedule",
+    "question": "At touchdown, at what cabin vertical speed is any remaining cabin pressure released?",
     "options": [
       {
         "id": "a",
-        "text": "One for each pack, both active together"
+        "text": "300 ft/min"
       },
       {
         "id": "b",
-        "text": "Three, in a voting arrangement"
+        "text": "1 000 ft/min"
       },
       {
         "id": "c",
-        "text": "One in the cockpit and one in the cargo hold, working in parallel"
+        "text": "2 000 ft/min"
       },
       {
         "id": "d",
-        "text": "Two; one controls at a time and the other is in standby, and they swap roles after each flight"
+        "text": "500 ft/min"
       }
     ],
     "correct": "d",
-    "explanation": "Only one CPC is active, and the roles alternate on each landing so both are exercised. If the active one fails, the standby takes over automatically.",
+    "explanation": "The residual differential is let out at a controlled 500 ft/min so the ears of the passengers are not hit by a sudden change.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -90,28 +93,29 @@
     "id": "A320-PRESS-0004",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Controllers",
-    "question": "What happens when the active cabin pressure controller fails?",
+    "subtopic": "Schedule",
+    "question": "During take-off, at what rate does the system pre-pressurise the cabin?",
     "options": [
       {
         "id": "a",
-        "text": "The outflow valve closes to hold the current pressure"
+        "text": "100 ft/min"
       },
       {
         "id": "b",
-        "text": "The other controller takes over automatically"
+        "text": "400 ft/min"
       },
       {
         "id": "c",
-        "text": "The cabin immediately depressurises"
+        "text": "750 ft/min"
       },
       {
         "id": "d",
-        "text": "The crew must switch to manual at once"
+        "text": "1 000 ft/min"
       }
     ],
     "correct": "b",
-    "explanation": "The system is built to remain automatic after one failure. Only a failure of both controllers sends the crew to manual mode.",
+    "explanation": "Pre-pressurisation runs at 400 ft/min (cabin descending) to avoid a pressure surge at rotation.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -119,28 +123,29 @@
     "id": "A320-PRESS-0005",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Outflow valve",
-    "question": "How many outflow valves does the A320 have, and how are they driven?",
+    "subtopic": "Schedule",
+    "question": "Pre-pressurisation continues until the differential pressure reaches what value?",
     "options": [
       {
         "id": "a",
-        "text": "Two outflow valves, one forward and one aft, driven by hydraulic jacks"
+        "text": "0.5 psi"
       },
       {
         "id": "b",
-        "text": "One outflow valve, driven by one of three electric motors: two automatic and one manual"
+        "text": "0.1 psi"
       },
       {
         "id": "c",
-        "text": "One outflow valve driven only by the pneumatic system"
+        "text": "1.0 psi"
       },
       {
         "id": "d",
-        "text": "Three outflow valves, one per cabin zone"
+        "text": "8.06 psi"
       }
     ],
     "correct": "b",
-    "explanation": "The two automatic motors are used by the CPCs; the manual motor is used when the MODE SEL is set to MAN, via the MAN V/S CTL switch.",
+    "explanation": "A small positive differential of 0.1 psi is enough to stop the pressure bump when the aircraft rotates.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -148,28 +153,29 @@
     "id": "A320-PRESS-0006",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Outflow valve",
-    "question": "Where is the outflow valve located?",
+    "subtopic": "Schedule",
+    "question": "Why does the system pre-pressurise the cabin for take-off?",
     "options": [
       {
         "id": "a",
-        "text": "In the cockpit ceiling"
+        "text": "To test the safety valves"
       },
       {
         "id": "b",
-        "text": "On the forward cargo door"
+        "text": "To cool the avionics before take-off"
       },
       {
         "id": "c",
-        "text": "In the left wing root"
+        "text": "To check the doors are sealed"
       },
       {
         "id": "d",
-        "text": "On the lower rear fuselage, near the aft pressure bulkhead"
+        "text": "To avoid a pressure surge at rotation"
       }
     ],
     "correct": "d",
-    "explanation": "It discharges cabin air overboard in the aft underside of the fuselage, which also gives a small thrust benefit as the air leaves.",
+    "explanation": "Without a small positive differential the cabin would see a pressure bump as the aircraft rotates.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -177,28 +183,29 @@
     "id": "A320-PRESS-0007",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Controllers",
-    "question": "What controls the outflow valve in normal operation?",
+    "subtopic": "Schedule",
+    "question": "When does the pressure controller begin its climb phase?",
     "options": [
       {
         "id": "a",
-        "text": "One of the cabin pressure controllers, using the automatic motors"
+        "text": "At lift-off"
       },
       {
         "id": "b",
-        "text": "The pilot, via the MAN V/S CTL switch"
+        "text": "At V1"
       },
       {
         "id": "c",
-        "text": "The position of the pack flow selector"
+        "text": "When the gear is retracted"
       },
       {
         "id": "d",
-        "text": "The differential pressure alone, through a mechanical bellows"
+        "text": "Passing 1 500 ft above the runway"
       }
     ],
     "correct": "a",
-    "explanation": "The CPC drives the outflow valve to follow the pressurisation schedule it computes from flight data.",
+    "explanation": "The climb phase starts at lift-off, following on from pre-pressurisation.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -206,28 +213,29 @@
     "id": "A320-PRESS-0008",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Controllers",
-    "question": "Which data does the cabin pressure controller use to compute the pressurisation schedule in automatic mode?",
+    "subtopic": "Schedule",
+    "question": "In the climb, how does the cabin altitude change?",
     "options": [
       {
         "id": "a",
-        "text": "The cabin temperature and the passenger count"
+        "text": "At a fixed 1 000 ft/min whatever the aircraft does"
       },
       {
         "id": "b",
-        "text": "The engine N1 and the flap position only"
+        "text": "It stays at the take-off altitude until cruise"
       },
       {
         "id": "c",
-        "text": "Landing elevation, destination QNH and cruise altitude from the FMGS, plus aircraft altitude and air/ground status"
+        "text": "According to a pre-programmed law that takes the aircraft's actual rate of climb into account"
       },
       {
         "id": "d",
-        "text": "The weather radar returns"
+        "text": "It follows the crew's MAN V/S CTL inputs"
       }
     ],
     "correct": "c",
-    "explanation": "The system anticipates the descent: it needs to know where it is going (destination elevation and pressure) and how high it will cruise so that cabin altitude can follow a smooth schedule.",
+    "explanation": "The cabin climbs on a schedule that adapts to how fast the aircraft is actually climbing.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -235,28 +243,29 @@
     "id": "A320-PRESS-0009",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Controls",
-    "question": "What does the LDG ELEV selector do in AUTO?",
+    "subtopic": "Schedule",
+    "question": "What cabin altitude does the system hold in cruise?",
     "options": [
       {
         "id": "a",
-        "text": "The cabin altitude is set to sea level"
+        "text": "Always 8 000 ft"
       },
       {
         "id": "b",
-        "text": "The outflow valve is held fully open"
+        "text": "Always sea level"
       },
       {
         "id": "c",
-        "text": "The cabin altitude warning is inhibited"
+        "text": "The take-off airfield elevation"
       },
       {
         "id": "d",
-        "text": "The landing elevation is taken automatically from the FMGS destination data"
+        "text": "The level-off value or the landing field elevation, whichever is higher"
       }
     ],
     "correct": "d",
-    "explanation": "If the FMGS data are unavailable, the crew sets the landing elevation manually with the selector, so the CPC can still plan the descent.",
+    "explanation": "If the destination is higher than the cruise cabin altitude, the system holds the destination elevation instead.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -264,28 +273,29 @@
     "id": "A320-PRESS-0010",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Controls",
-    "question": "What is the range of the manually selectable landing elevation on the LDG ELEV selector?",
+    "subtopic": "Schedule",
+    "question": "What does the controller aim for during the descent?",
     "options": [
       {
         "id": "a",
-        "text": "From 0 to 10 000 ft"
+        "text": "Cabin altitude equal to sea level at touchdown"
       },
       {
         "id": "b",
-        "text": "From about –2 000 ft to about 14 000 ft"
+        "text": "Cabin pressure equal to the landing field pressure just before landing"
       },
       {
         "id": "c",
-        "text": "From –1 000 ft to 8 000 ft"
+        "text": "Cabin altitude 1 000 ft below the field"
       },
       {
         "id": "d",
-        "text": "From sea level to 20 000 ft"
+        "text": "The departure airfield pressure"
       }
     ],
     "correct": "b",
-    "explanation": "The range covers any airport a transport aircraft will use. The selected value is displayed on the PRESS page.",
+    "explanation": "Matching field pressure at touchdown means nothing is left to release when the doors open.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -293,28 +303,29 @@
     "id": "A320-PRESS-0011",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Controls",
-    "question": "What does setting the MODE SEL to MAN do?",
+    "subtopic": "Schedule",
+    "question": "What is the maximum cabin rate of descent in automatic control?",
     "options": [
       {
         "id": "a",
-        "text": "It switches the active CPC to the standby one"
+        "text": "300 ft/min"
       },
       {
         "id": "b",
-        "text": "It closes the safety valves"
+        "text": "500 ft/min"
       },
       {
         "id": "c",
-        "text": "It disables the automatic CPC control and gives the crew control of the outflow valve through the MAN V/S CTL switch"
+        "text": "750 ft/min"
       },
       {
         "id": "d",
-        "text": "It opens the outflow valve fully"
+        "text": "1 500 ft/min"
       }
     ],
     "correct": "c",
-    "explanation": "In manual mode the crew controls the vertical speed of the cabin altitude (up or down), and must manage the cabin altitude and ΔP by monitoring the ECAM.",
+    "explanation": "The descent rate is limited to 750 ft/min for passenger comfort.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -322,28 +333,29 @@
     "id": "A320-PRESS-0012",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Controls",
-    "question": "With the MODE SEL in MAN, what does moving the MAN V/S CTL switch to UP do?",
+    "subtopic": "Schedule",
+    "question": "During a rejected take-off, what does the pressurisation system do?",
     "options": [
       {
         "id": "a",
-        "text": "It drives the outflow valve towards open, increasing cabin altitude"
+        "text": "It stops the cabin altitude climbing and sets cabin pressure back to take-off altitude + 0.1 psi"
       },
       {
         "id": "b",
-        "text": "It drives the outflow valve towards closed, decreasing cabin altitude"
+        "text": "It opens the outflow valve fully at once"
       },
       {
         "id": "c",
-        "text": "It increases the pack flow"
+        "text": "It switches to manual mode"
       },
       {
         "id": "d",
-        "text": "It raises the landing elevation setting"
+        "text": "It continues the climb schedule"
       }
     ],
     "correct": "a",
-    "explanation": "UP means up with the cabin altitude, which is the outflow valve opening and the cabin pressure falling. DN closes the valve so the cabin pressure rises.",
+    "explanation": "The abort phase holds the cabin at the pre-pressurised take-off condition instead of starting a climb.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -351,28 +363,29 @@
     "id": "A320-PRESS-0013",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Operation",
-    "question": "Why is the outflow valve driven to open fully shortly after landing?",
+    "subtopic": "Controls",
+    "question": "With LDG ELEV in AUTO, where does the landing elevation come from?",
     "options": [
       {
         "id": "a",
-        "text": "So the cabin is fully depressurised and the doors can be opened safely"
+        "text": "From the FMGS, which is used to build an optimised pressure schedule"
       },
       {
         "id": "b",
-        "text": "To cool the cargo hold"
+        "text": "From the radio altimeter"
       },
       {
         "id": "c",
-        "text": "To start the avionics ventilation"
+        "text": "From the departure airfield elevation"
       },
       {
         "id": "d",
-        "text": "To allow the packs to restart"
+        "text": "From the ADIRS barometric setting only"
       }
     ],
     "correct": "a",
-    "explanation": "After touchdown the CPC drives the valve open and the cabin ΔP is brought to zero, which also matters for door safety.",
+    "explanation": "In AUTO the destination data in the FMGS drive the schedule.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -380,28 +393,29 @@
     "id": "A320-PRESS-0014",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Operation",
-    "question": "What is pre-pressurisation, and when is it done?",
+    "subtopic": "Controls",
+    "question": "What range of landing elevation can the crew select with the LDG ELEV selector?",
     "options": [
       {
         "id": "a",
-        "text": "A test of the cabin pressure controller at engine start"
+        "text": "0 to +10 000 ft"
       },
       {
         "id": "b",
-        "text": "A pressurisation of the cargo hold before loading"
+        "text": "–1 000 ft to +12 000 ft"
       },
       {
         "id": "c",
-        "text": "A small cabin pressure increase on the ground before take-off, so that rotation does not cause a pressure bump"
+        "text": "–2 000 ft to +14 000 ft"
       },
       {
         "id": "d",
-        "text": "A reduction of the cabin pressure during taxi"
+        "text": "–2 000 ft to +20 000 ft"
       }
     ],
     "correct": "c",
-    "explanation": "On take-off the cabin altitude is first driven slightly below the airfield elevation, which avoids a sudden pressure change when the aircraft rotates and the thrust changes.",
+    "explanation": "Any position other than AUTO uses the selected value as the landing elevation reference.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -409,28 +423,29 @@
     "id": "A320-PRESS-0015",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Operation",
-    "question": "Which statement describes the cabin altitude during the climb in automatic mode?",
+    "subtopic": "Controls",
+    "question": "How should the crew set an accurate manual landing elevation with the LDG ELEV selector?",
     "options": [
       {
         "id": "a",
-        "text": "It increases as quickly as the aircraft climbs"
+        "text": "By the marks on the selector scale"
       },
       {
         "id": "b",
-        "text": "It increases gradually at a controlled rate, following a schedule that depends on the aircraft altitude"
+        "text": "By reading the value on the ECAM, because the selector scale is only indicative"
       },
       {
         "id": "c",
-        "text": "It stays at sea level until cruise altitude"
+        "text": "By entering it in the MCDU"
       },
       {
         "id": "d",
-        "text": "It follows the ΔP limit only"
+        "text": "By reading it on the PFD"
       }
     ],
     "correct": "b",
-    "explanation": "The CPC limits the cabin rate of climb so passengers are comfortable, and the cabin altitude in cruise is kept well below the aircraft altitude.",
+    "explanation": "The knob's scale is approximate; the ECAM PRESS page shows the value actually selected.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -438,28 +453,29 @@
     "id": "A320-PRESS-0016",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Operation",
-    "question": "During the descent in automatic mode, what determines the cabin altitude the system aims for at landing?",
+    "subtopic": "Controls",
+    "question": "How does the MODE SEL pushbutton show that manual mode is selected?",
     "options": [
       {
         "id": "a",
-        "text": "Always sea level"
+        "text": "MAN appears in amber with an ECAM caution"
       },
       {
         "id": "b",
-        "text": "The highest altitude of the flight"
+        "text": "FAULT comes on in amber"
       },
       {
         "id": "c",
-        "text": "The elevation of the departure airport"
+        "text": "A green MAN light on the glareshield"
       },
       {
         "id": "d",
-        "text": "The landing field elevation, so that the cabin pressure equals the field pressure on touchdown"
+        "text": "MAN appears in white, and FAULT does not come on"
       }
     ],
     "correct": "d",
-    "explanation": "The CPC wants the cabin pressure to equal the outside pressure at touchdown, so the outflow valve can open and the doors can open without a pressure difference.",
+    "explanation": "MAN is a crew choice, so it is white. Amber FAULT is reserved for the failure of both automatic systems.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -467,28 +483,29 @@
     "id": "A320-PRESS-0017",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Safety",
-    "question": "What is the purpose of the two safety valves?",
+    "subtopic": "Controls",
+    "question": "When does the MODE SEL FAULT light come on?",
     "options": [
       {
         "id": "a",
-        "text": "To regulate the cabin altitude in normal flight"
+        "text": "When one automatic system is faulty"
       },
       {
         "id": "b",
-        "text": "To drain water from the cabin"
+        "text": "When the outflow valve is fully open"
       },
       {
         "id": "c",
-        "text": "To prevent excessive positive differential pressure and to provide a negative relief function, as a back-up to the outflow valve"
+        "text": "When both automatic pressure control systems are faulty"
       },
       {
         "id": "d",
-        "text": "To control the cabin temperature"
+        "text": "When MAN is selected"
       }
     ],
     "correct": "c",
-    "explanation": "The safety valves are not normally used for control. They open mechanically if the cabin ΔP gets too high or negative.",
+    "explanation": "One failed system is covered by the other. FAULT with an ECAM caution means both are lost and manual control is needed.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -496,28 +513,29 @@
     "id": "A320-PRESS-0018",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Safety",
-    "question": "At what differential pressure do the safety valves open, approximately?",
+    "subtopic": "Controls",
+    "question": "With MODE SEL in MAN, what does holding the MAN V/S CTL switch UP do?",
     "options": [
       {
         "id": "a",
-        "text": "About 8.6 psi"
+        "text": "Moves the outflow valve towards open"
       },
       {
         "id": "b",
-        "text": "About 5 psi"
+        "text": "Moves the outflow valve towards closed"
       },
       {
         "id": "c",
-        "text": "About 12 psi"
+        "text": "Raises the landing elevation"
       },
       {
         "id": "d",
-        "text": "About 3 psi"
+        "text": "Increases the pack flow"
       }
     ],
     "correct": "a",
-    "explanation": "The normal maximum ΔP is about 8.06 psi; the safety valves lie just above it, to open only when the normal control has failed.",
+    "explanation": "UP opens the valve, so the cabin altitude rises. DN closes it.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -525,28 +543,29 @@
     "id": "A320-PRESS-0019",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Safety",
-    "question": "What is the approximate maximum normal differential pressure of the A320 family in automatic control?",
+    "subtopic": "Controls",
+    "question": "With MODE SEL in MAN, what does holding the MAN V/S CTL switch DN do?",
     "options": [
       {
         "id": "a",
-        "text": "About 4 psi"
+        "text": "Moves the outflow valve towards open"
       },
       {
         "id": "b",
-        "text": "About 12 psi"
+        "text": "Lowers the selected landing elevation"
       },
       {
         "id": "c",
-        "text": "About 15 psi"
+        "text": "Closes the safety valves"
       },
       {
         "id": "d",
-        "text": "About 8 psi (8.06 psi)"
+        "text": "Moves the outflow valve towards closed"
       }
     ],
     "correct": "d",
-    "explanation": "Cabin ΔP is a structural limit: the fuselage is designed to carry it, and the system keeps the cabin altitude as low as that limit allows at the maximum operating altitude.",
+    "explanation": "DN closes the valve, so cabin pressure rises and cabin altitude comes down.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -554,28 +573,29 @@
     "id": "A320-PRESS-0020",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Safety",
-    "question": "What does the negative pressure relief protect against?",
+    "subtopic": "Controls",
+    "question": "Why must the MAN V/S CTL switch be held rather than flicked?",
     "options": [
       {
         "id": "a",
-        "text": "Too high a cabin temperature"
+        "text": "The switch springs back to AUTO if released"
       },
       {
         "id": "b",
-        "text": "A situation where the outside pressure is higher than the cabin pressure, for example in a rapid descent without enough outflow"
+        "text": "The outflow valve moves slowly, so the switch is held until the target vertical speed is reached"
       },
       {
         "id": "c",
-        "text": "Overpressure in the pneumatic duct"
+        "text": "A short flick is ignored by the controller"
       },
       {
         "id": "d",
-        "text": "Electrical overload of the outflow valve motors"
+        "text": "Holding it inhibits the cabin altitude warning"
       }
     ],
     "correct": "b",
-    "explanation": "A negative ΔP loads the structure in the opposite direction. The safety valves are arranged to open inward, so that the cabin pressure never falls too far below ambient.",
+    "explanation": "The valve travel is slow; short inputs barely move it.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -583,28 +603,29 @@
     "id": "A320-PRESS-0021",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Warnings",
-    "question": "At approximately what cabin altitude is the CAB PR EXCESS CAB ALT warning triggered?",
+    "subtopic": "Controls",
+    "question": "Which of these is NOT closed by the DITCHING pushbutton?",
     "options": [
       {
         "id": "a",
-        "text": "About 5 000 ft"
+        "text": "The outflow valve"
       },
       {
         "id": "b",
-        "text": "About 9 550 ft"
+        "text": "The engine bleed valves"
       },
       {
         "id": "c",
-        "text": "About 12 000 ft"
+        "text": "The avionics ventilation inlet and extract valves"
       },
       {
         "id": "d",
-        "text": "About 14 000 ft"
+        "text": "The pack flow control valves"
       }
     ],
     "correct": "b",
-    "explanation": "Above this altitude the ECAM tells the crew that the cabin altitude is excessive. A further rise to 14 000 ft causes the passenger oxygen masks to deploy.",
+    "explanation": "Ditching closes the openings to the outside: outflow valve, emergency ram air inlet, avionics ventilation inlet and extract valves, and pack flow control valves.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/flight-deck/ovhd/cab-press/",
     "status": "published",
     "version": 1
   },
@@ -612,28 +633,29 @@
     "id": "A320-PRESS-0022",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Warnings",
-    "question": "At approximately what cabin altitude do the passenger oxygen masks drop automatically?",
+    "subtopic": "Indications",
+    "question": "On the PRESS page, when are the LDG ELEV mode and value hidden?",
     "options": [
       {
         "id": "a",
-        "text": "About 8 000 ft"
+        "text": "When LDG ELEV is in AUTO"
       },
       {
         "id": "b",
-        "text": "About 10 000 ft"
+        "text": "On the ground"
       },
       {
         "id": "c",
-        "text": "About 20 000 ft"
+        "text": "When one system is faulty"
       },
       {
         "id": "d",
-        "text": "About 14 000 ft"
+        "text": "When MODE SEL is in MAN"
       }
     ],
     "correct": "d",
-    "explanation": "The masks present automatically at around 14 000 ft cabin altitude. The cockpit crew must use their own oxygen masks as soon as the warning appears.",
+    "explanation": "In manual mode the controller is not using a landing elevation, so it is not displayed.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/press/",
     "status": "published",
     "version": 1
   },
@@ -642,27 +664,28 @@
     "aircraft": "A320",
     "topic": "Pressurization",
     "subtopic": "Indications",
-    "question": "What does the PRESS page of the ECAM show?",
+    "question": "Above what cabin vertical speed does the V/S turn amber on the PRESS page?",
     "options": [
       {
         "id": "a",
-        "text": "Cabin altitude, cabin vertical speed, differential pressure, outflow valve position, safety valve position and the CPC in control"
+        "text": "2 000 ft/min"
       },
       {
         "id": "b",
-        "text": "The pack flow and bleed temperatures"
+        "text": "750 ft/min"
       },
       {
         "id": "c",
-        "text": "The hydraulic pressure of each system"
+        "text": "1 000 ft/min"
       },
       {
         "id": "d",
-        "text": "The oxygen bottle pressure"
+        "text": "3 000 ft/min"
       }
     ],
     "correct": "a",
-    "explanation": "It is the page to watch for any pressurisation fault, and it is displayed automatically when an advisory or fault occurs in the system.",
+    "explanation": "Amber above 2 000 ft/min. It begins pulsing green above 1 800 ft/min.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/press/",
     "status": "published",
     "version": 1
   },
@@ -670,28 +693,29 @@
     "id": "A320-PRESS-0024",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Failures",
-    "question": "What happens when both CPCs have failed?",
+    "subtopic": "Indications",
+    "question": "Above what cabin vertical speed does the V/S indication start pulsing?",
     "options": [
       {
         "id": "a",
-        "text": "The system keeps working in a degraded automatic mode"
+        "text": "500 ft/min"
       },
       {
         "id": "b",
-        "text": "The outflow valve closes and stays closed"
+        "text": "1 000 ft/min"
       },
       {
         "id": "c",
-        "text": "A CAB PR SYS 1+2 FAULT message appears and the crew must control the outflow valve manually"
+        "text": "1 800 ft/min (it resets at 1 600 ft/min)"
       },
       {
         "id": "d",
-        "text": "The packs shut down"
+        "text": "2 500 ft/min"
       }
     ],
     "correct": "c",
-    "explanation": "The manual motor and the MAN V/S CTL switch remain available, so the crew can maintain a comfortable cabin altitude manually.",
+    "explanation": "Pulsing is an advisory before the 2 000 ft/min amber limit.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/press/",
     "status": "published",
     "version": 1
   },
@@ -699,28 +723,29 @@
     "id": "A320-PRESS-0025",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Failures",
-    "question": "In manual pressurisation mode, who is responsible for avoiding exceeding the maximum cabin ΔP?",
+    "subtopic": "Indications",
+    "question": "Above what differential pressure does ΔP turn amber on the PRESS page?",
     "options": [
       {
         "id": "a",
-        "text": "The CPC, which still limits ΔP in the background"
+        "text": "6.0 psi"
       },
       {
         "id": "b",
-        "text": "The packs, which reduce flow automatically"
+        "text": "8.0 psi"
       },
       {
         "id": "c",
-        "text": "Nobody, because the safety valves take over"
+        "text": "9.5 psi"
       },
       {
         "id": "d",
-        "text": "The crew, by monitoring the cabin altitude, ΔP and V/S on the ECAM"
+        "text": "8.5 psi"
       }
     ],
     "correct": "d",
-    "explanation": "The safety valves remain as a last resort, but should not be used for control. In manual mode the crew has to manage everything.",
+    "explanation": "ΔP turns amber above 8.5 psi (and also when it goes slightly negative).",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/press/",
     "status": "published",
     "version": 1
   },
@@ -728,28 +753,29 @@
     "id": "A320-PRESS-0026",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Failures",
-    "question": "Which procedure follows a cabin altitude excess warning if the cabin cannot be controlled?",
+    "subtopic": "Indications",
+    "question": "Above what cabin altitude is the cabin altitude shown in red on the PRESS page?",
     "options": [
       {
         "id": "a",
-        "text": "Selecting the packs to HI flow and continuing"
+        "text": "8 000 ft"
       },
       {
         "id": "b",
-        "text": "Crew oxygen masks on, then an emergency descent to a safe altitude"
+        "text": "9 550 ft"
       },
       {
         "id": "c",
-        "text": "Selecting the RAM AIR pushbutton on at once"
+        "text": "10 000 ft"
       },
       {
         "id": "d",
-        "text": "Increasing thrust and climbing"
+        "text": "14 000 ft"
       }
     ],
     "correct": "b",
-    "explanation": "Hypoxia is the first danger. The crew puts on their masks and begins the descent to an altitude where the cabin altitude no longer matters.",
+    "explanation": "Red above 9 550 ft corresponds to the cabin altitude warning.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/press/",
     "status": "published",
     "version": 1
   },
@@ -757,28 +783,29 @@
     "id": "A320-PRESS-0027",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Operation",
-    "question": "How does the DITCHING pushbutton affect the outflow valve?",
+    "subtopic": "Indications",
+    "question": "From what cabin altitude does the cabin altitude indication pulse?",
     "options": [
       {
         "id": "a",
-        "text": "It drives the outflow valve fully open"
+        "text": "7 000 ft"
       },
       {
         "id": "b",
-        "text": "It transfers control to the manual motor"
+        "text": "9 550 ft"
       },
       {
         "id": "c",
-        "text": "It closes the outflow valve"
+        "text": "8 800 ft"
       },
       {
         "id": "d",
-        "text": "It has no effect on the outflow valve"
+        "text": "10 000 ft"
       }
     ],
     "correct": "c",
-    "explanation": "A closed outflow valve means the water cannot enter through the valve opening during a ditching.",
+    "explanation": "Pulsing from 8 800 ft gives warning before the 9 550 ft red limit.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/press/",
     "status": "published",
     "version": 1
   },
@@ -786,28 +813,29 @@
     "id": "A320-PRESS-0028",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Principles",
-    "question": "How is the aircraft pressurised in flight, in simple terms?",
+    "subtopic": "Indications",
+    "question": "On the PRESS page, what does SYS 1 shown in amber mean?",
     "options": [
       {
         "id": "a",
-        "text": "Air supplied by the packs fills the cabin faster than the outflow valve lets it escape, so the cabin pressure rises above ambient"
+        "text": "System 1 is the active system and it is faulty"
       },
       {
         "id": "b",
-        "text": "The outflow valve compresses cabin air with an internal compressor"
+        "text": "System 1 is in standby"
       },
       {
         "id": "c",
-        "text": "The cargo hold is pressurised separately by a dedicated pump"
+        "text": "System 1 is under manual control"
       },
       {
         "id": "d",
-        "text": "The engines push air into the cabin through the doors"
+        "text": "System 1 is running the pre-pressurisation"
       }
     ],
     "correct": "a",
-    "explanation": "The air conditioning flow supplies a constant mass of air. The pressure of the cabin is set by how much the outflow valve restricts the exit.",
+    "explanation": "The active system is shown in green normally and in amber when it is faulty.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/press/",
     "status": "published",
     "version": 1
   },
@@ -815,28 +843,89 @@
     "id": "A320-PRESS-0029",
     "aircraft": "A320",
     "topic": "Pressurization",
-    "subtopic": "Principles",
-    "question": "Why does the cabin altitude in cruise stay well below the aircraft's flight level?",
+    "subtopic": "Indications",
+    "question": "What does a green MAN on the PRESS page system indication show?",
     "options": [
       {
         "id": "a",
-        "text": "The system maintains a cabin pressure above ambient, within the structural ΔP limit"
+        "text": "MODE SEL is in MAN"
       },
       {
         "id": "b",
-        "text": "Because the cabin is heated"
+        "text": "Both systems have failed"
       },
       {
         "id": "c",
-        "text": "Because the pack flow is increased"
+        "text": "The landing elevation is manual"
       },
       {
         "id": "d",
-        "text": "Because the outflow valve is closed completely"
+        "text": "The outflow valve is fully open"
       }
     ],
     "correct": "a",
-    "explanation": "At FL390 the cabin altitude is typically around 7 000–8 000 ft, which requires about 8 psi of ΔP.",
+    "explanation": "With manual mode selected the system indication reads MAN.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/press/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PRESS-0030",
+    "aircraft": "A320",
+    "topic": "Pressurization",
+    "subtopic": "Indications",
+    "question": "When is SAFETY shown in amber on the PRESS page?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When the safety valves are fully closed"
+      },
+      {
+        "id": "b",
+        "text": "When the outflow valve is open"
+      },
+      {
+        "id": "c",
+        "text": "When a safety valve is not fully closed"
+      },
+      {
+        "id": "d",
+        "text": "When MODE SEL is in MAN"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Normally the safety valves are closed and SAFETY is white. An open safety valve is abnormal.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/press/",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-PRESS-0031",
+    "aircraft": "A320",
+    "topic": "Pressurization",
+    "subtopic": "Indications",
+    "question": "When is the outflow valve diagram shown in amber in flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When it is closed more than 95 %"
+      },
+      {
+        "id": "b",
+        "text": "When the valve is open more than 95 %"
+      },
+      {
+        "id": "c",
+        "text": "Whenever MODE SEL is in MAN"
+      },
+      {
+        "id": "d",
+        "text": "When the valve is moving"
+      }
+    ],
+    "correct": "b",
+    "explanation": "In flight a nearly fully open outflow valve means the cabin cannot hold pressure.",
+    "reference": "https://docs.flybywiresim.com/pilots-corner/a32nx/a32nx-briefing/ecam/sd/press/",
     "status": "published",
     "version": 1
   }
