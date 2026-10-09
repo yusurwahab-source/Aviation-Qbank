@@ -3,11 +3,11 @@ import { describe, expect, it } from "vitest";
 import { ATPL_SUBJECTS, buildAtplRows } from "@/lib/atpl-subjects";
 
 describe("buildAtplRows", () => {
-  it("lists all fourteen subjects, in syllabus order, with unique numbers", () => {
+  it("lists all thirteen subjects, in syllabus order, with unique numbers", () => {
     const rows = buildAtplRows([]);
-    expect(rows).toHaveLength(14);
+    expect(rows).toHaveLength(13);
     expect(rows.map((row) => row.number)).toEqual([...rows.map((row) => row.number)].sort());
-    expect(new Set(rows.map((row) => row.number)).size).toBe(14);
+    expect(new Set(rows.map((row) => row.number)).size).toBe(13);
     expect(rows.every((row) => row.live === null)).toBe(true);
   });
 
@@ -15,11 +15,13 @@ describe("buildAtplRows", () => {
     const rows = buildAtplRows([
       { code: "POF", status: "active", publishedQuestions: 569 },
       { code: "HPL", status: "active", publishedQuestions: 346 },
+      { code: "COM", status: "active", publishedQuestions: 300 },
     ]);
     const live = rows.filter((row) => row.live);
     expect(live.map((row) => [row.number, row.live?.code])).toEqual([
       ["040", "HPL"],
       ["080", "POF"],
+      ["090", "COM"],
     ]);
   });
 
@@ -39,6 +41,6 @@ describe("buildAtplRows", () => {
   it("ignores banks that are not an ATPL subject", () => {
     const rows = buildAtplRows([{ code: "XYZ", status: "active", publishedQuestions: 99 }]);
     expect(rows.every((row) => row.live === null)).toBe(true);
-    expect(ATPL_SUBJECTS.filter((s) => s.code)).toHaveLength(2);
+    expect(ATPL_SUBJECTS.filter((s) => s.code)).toHaveLength(3);
   });
 });

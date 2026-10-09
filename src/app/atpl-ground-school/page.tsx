@@ -18,7 +18,7 @@ import { isItemHidden, withoutHidden } from "@/lib/settings";
 
 export const metadata: Metadata = {
   title: "EASA ATPL Ground School",
-  description: `The fourteen EASA ATPL theory subjects, one question bank each. ${siteConfig.name} — free in full, for everyone.`,
+  description: `The thirteen EASA ATPL theory subjects, one question bank each. ${siteConfig.name} — free in full, for everyone.`,
 };
 
 export const dynamic = "force-dynamic";
@@ -26,7 +26,7 @@ export const dynamic = "force-dynamic";
 const EYEBROW = "EASA ATPL Ground School";
 
 /**
- * The fourteen ATPL theory subjects as one vertical list. Subjects with a
+ * The thirteen ATPL theory subjects as one vertical list. Subjects with a
  * bank are live and linked to `/flying-knowledge/<code>`, where their tests
  * still run; the rest are inert "coming soon" rows. Free in full, like the
  * Flying Knowledge tree behind it — nothing here mentions an allowance.
