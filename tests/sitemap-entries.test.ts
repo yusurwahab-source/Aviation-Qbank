@@ -9,7 +9,7 @@ const sections = {
   ],
   classRatings: [{ code: "DA40", status: "active" as const }],
   flyingKnowledgeSubjects: [
-    { code: "IFR", status: "active" as const },
+    { code: "POF", status: "active" as const },
     { code: "MET", status: "coming_soon" as const },
   ],
 };
@@ -45,7 +45,7 @@ describe("buildSitemapEntries", () => {
 
     expect(urls).toContain("https://example.com/type-rating/B737");
     expect(urls).toContain("https://example.com/class-rating/DA40");
-    expect(urls).toContain("https://example.com/flying-knowledge/IFR");
+    expect(urls).toContain("https://example.com/flying-knowledge/POF");
   });
 
   it("never gives a coming-soon row a URL", () => {
@@ -85,6 +85,6 @@ describe("buildSitemapEntries with hidden sections", () => {
     expect(urls.some((url) => url.includes("/type-rating"))).toBe(false);
     expect(urls.some((url) => url.includes("/pilot-sims"))).toBe(false);
     expect(urls).toContain("https://example.com/class-rating/DA40");
-    expect(urls).toContain("https://example.com/flying-knowledge/IFR");
+    expect(urls).toContain("https://example.com/flying-knowledge/POF");
   });
 });

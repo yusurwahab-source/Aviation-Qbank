@@ -100,12 +100,12 @@ gift codes, owner console, Pilot Sims.
 3. **Housekeeping tables are never swept** (expired sessions, rate-limit rows).
    Tidiness only, not correctness.
 4. **No "password changed" email.**
-5. **Question content is not independently reviewed.** The IFR and
-   Principles of Flight banks were written by an AI assistant, not taken from a
-   syllabus or checked against one; they should be reviewed by a qualified
-   instructor before students rely on them. The DA40 bank is from the AFM.
+5. **Question content is not independently reviewed.** The
+   Principles of Flight bank was written by an AI assistant, not taken from a
+   syllabus or checked against one; it should be reviewed by a qualified
+   instructor before students rely on it. The DA40 bank is from the AFM.
    Twenty-six B737 questions turn on figures nobody has confirmed twice (list in
-   `content/README.md`). The F AIR bank is the school's own, kept as supplied.
+   `content/README.md`).
 6. **`npm audit` shows advisories** (a development-only tool chain). Not
    reachable from the deployed site; re-check periodically.
 7. **VOR/NDB simulator loads Tailwind from a public CDN**

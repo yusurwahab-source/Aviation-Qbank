@@ -19,14 +19,14 @@ today, with no "single engine" or "multi engine" split between it and the
 section; a light aircraft sits directly under Class Rating. `/flying-knowledge`
 is **Flying Knowledge** — general theory that is not tied to any aircraft —
 air law, meteorology, navigation, the material a pilot keeps reviewing
-rather than sits once. It has three subjects now, **IFR**, **Principles of
-Flight (POF)** and **FI(A) Course Theory — F AIR (FAIR)**, each after the
-first added the same content-only way a second aircraft is (see the note
-on Flying Knowledge's own content tree below);
-more subjects are still to come, and the page title stays "Choose a
-subject" rather than naming just one. It is free
+rather than sits once. It has one subject now, **Principles of Flight (POF)**; further
+subjects are added the same content-only way a second aircraft is (see the
+note on Flying Knowledge's own content tree below), and the page title
+stays "Choose a subject" rather than naming just one. (IFR and FI(A)
+Course Theory — F AIR were here earlier and were removed at the owner's
+request, content and import tooling both.) It is free
 in full, never behind the free-tier cap or a subscription — decided ahead
-of IFR's own content, and unchanged now that content exists: nothing in
+of any content, and unchanged now that content exists: nothing in
 `flying-knowledge/[code]/test/actions.ts` ever calls `db/subscriptions.ts`
 or `db/preview.ts`. The landing page's hero
 asks which of the three a visitor is here for rather than leading with one
@@ -270,7 +270,6 @@ is what updates them.
 | `npm run validate:content` | Checks every question file against the schema |
 | `npm run icons:generate` | Redraws the favicon, the app icons and the manifest icons from the logo mark. Outputs are committed; run it only when the mark or the brand colours change. |
 | `npm run gift:generate -- --count <n> --days <n> --plan <monthly\|quarterly> [--note "..."]` | Mints free-access gift codes and prints them. |
-| `npm run import:f-air [-- --dry-run]` | Regenerates `content/flying-knowledge/fair/` from `sources/f-air/`. `--dry-run` validates and prints counts per topic, writing nothing. Follow it with `db:seed`. |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | TypeScript, no emit |
 | `npm run test` | Unit tests (Vitest) |
@@ -1780,11 +1779,7 @@ over the internals.
 content/                      Question files. The source of truth.
   <code>/                     One folder per type rating aircraft (b737/ today)
   classes/<code>/             One folder per class rating aircraft (da40/ today)
-  flying-knowledge/<code>/    One folder per Flying Knowledge subject (ifr/, pof/, fair/ today;
-                              fair/ is generated — see sources/)
-sources/
-  f-air/                      The owner's F AIR bank as supplied, plus corrections.json.
-                              The input to `import:f-air`; never read by the app.
+  flying-knowledge/<code>/    One folder per Flying Knowledge subject (pof/ today)
 drizzle/                      Generated SQL migrations. Committed.
 public/                       Manifest icons, the service worker, and any
                               <code>-study-guide.html study guides (see the
@@ -1793,7 +1788,6 @@ scripts/
   validate-content.ts         Schema check. Runs before build and seed.
   migrate.ts                  Applies migrations.
   seed.ts                     Syncs content into the database.
-  import-f-air.ts             Converts sources/f-air/ into content/flying-knowledge/fair/.
   generate-icons.tsx          Rasterises the Q favicon (from public/favicon.svg) into the app and manifest icons. Run by hand, outputs committed.
 src/
   app/
@@ -1815,7 +1809,7 @@ src/
     class-rating/[code]/test/
     flying-knowledge/          The third section — the same picker/overview/test
                               shape as type-rating/ and class-rating/, reading the
-                              third content tree (IFR today). Free in full: no
+                              third content tree (POF today). Free in full: no
                               free-tier cap, no subscription gate
     flying-knowledge/[code]/
     flying-knowledge/[code]/test/
@@ -1858,7 +1852,6 @@ src/
     load.ts                   Reads and validates /content (type rating)
     load-classes.ts           Reads and validates content/classes/ (class rating)
     load-flying-knowledge.ts  Reads and validates content/flying-knowledge/ (Flying Knowledge)
-    f-air-import.ts           The F AIR bank's conversion: validate, correct, map (pure, tested)
   db/
     schema.ts                 Drizzle tables
     queries.ts                Every read the app performs — type rating
@@ -2020,7 +2013,7 @@ from inside the website, an admin panel gets added then — the `status`,
 `aircraft`/`questions` and `classRatings`/`classQuestions`.**
 `flyingKnowledgeSubjects`/`flyingKnowledgeQuestions` (`src/db/schema.ts`) are
 the same shape `classRatings`/`classQuestions` already are, for the same
-reason: a subject (IFR, and whatever follows it) is a genuinely separate
+reason: a subject (POF today, and whatever follows it) is a genuinely separate
 content type, so it gets its own pair of tables rather than a "kind" column
 grafted onto either of the others. `content/flying-knowledge/<code>/` holds
 one `subject.json` manifest plus a `questions/` folder, validated by
@@ -2037,12 +2030,12 @@ fifteen question files, 501 questions at first, rebuilt to
 1,000 and then pruned to 569 — see the note on the POF bank in `content/README.md`) — with the only application-code change being the
 same one-line addition to `lib/study-guide.ts`'s hand-kept set that any
 aircraft's own study guide already needs (see the note on that file
-above), exactly the same way IFR itself first proved the rule.
+above), exactly the way a second aircraft proves the rule.
 
 The one thing that does not carry over from either of the other two trees:
 **Flying Knowledge is free in full, not metered by the free-tier cap or
 gated by a subscription**, decided ahead of any content existing and
-unchanged now that IFR and POF are its two subjects with content. Every other
+unchanged now that POF has content. Every other
 section's free allowance exists because the bank behind it is something a
 student sits through once toward one exam, and the cap is what pays for
 building more of it. Flying Knowledge is the opposite kind of content — air
@@ -2062,16 +2055,8 @@ ever written) — that protects the server from a scripted flood, the same
 "protect the machine, not the product" reasoning `MAX_ANSWERS` already gives
 elsewhere, and is never used to cap how much of the bank a visitor may see.
 
-**The IFR bank is general ICAO-style ground-school content, authored by the
-assistant at the owner's request rather than sourced from one AIP or
-syllabus — the same honesty this file already gives the DA40's unsourced
-topics, not a claim that it has been checked against a specific state's
-regulations.** See the note on the IFR bank in `content/README.md` for what
-that does and does not mean, and "Known gaps, honestly" below.
-
-**The POF bank (Principles of Flight, Flying Knowledge's second subject) is
-the same kind of content, held to the same honesty — but the honesty lives
-here, not on the page.** Authored by the assistant as general aerodynamics
+**The POF bank (Principles of Flight, Flying Knowledge's only subject) is
+authored content, and the honesty lives here, not on the page.** Authored by the assistant as general aerodynamics
 theory — not transcribed from the Principles of Flight book the owner
 pointed at, or from any other textbook or syllabus, and not checked against
 one. At the owner's instruction, nothing a student reads in this subject —
@@ -2083,25 +2068,6 @@ instruction (this site is for pilots, and the removed questions were an
 engineer's); each rebuilt section replaced its
 file with new ids and never reused a retired one. See the note on the POF bank in
 `content/README.md`, and "Known gaps, honestly" below.
-
-**The F AIR bank (`FAIR`, Flying Knowledge's third subject) is the first
-content here the assistant did not write, and the first that is generated
-rather than authored in place.** It is the owner's own 535-question bank
-for the FI(A) course at F AIR, Benešov (LKBE), kept exactly as supplied in
-`sources/f-air/`. `npm run import:f-air` turns it into
-`content/flying-knowledge/fair/`, and `db:seed` loads that like any other
-subject. So the rule "content is the source of truth" holds one step
-further back: the generated files are the database's source, and
-`sources/f-air/` is theirs. `src/content/f-air-import.ts` is pure and
-tested, including a test that the committed files are byte-for-byte what
-it produces. That test is what makes re-running the import safe. It was
-checked question by question before import. Eleven factual errors are
-fixed through `sources/f-air/corrections.json`, never by editing the
-source. Each correction names the exact text it replaces, so a re-exported
-source that differs stops the import instead of being overwritten. This
-bank does name its source on the page (F AIR, its QRH, LKBE), unlike POF,
-because the owner supplied it that way. See the note on the F AIR bank in
-`content/README.md`.
 
 ## Known gaps, honestly
 
@@ -2203,34 +2169,17 @@ because the owner supplied it that way. See the note on the F AIR bank in
   future translated edition of the product — it is reachable at its own
   URL exactly like the English one, but `studyGuideHref()` never returns
   it and nothing in the app links to it.
-- **The entire IFR bank (Flying Knowledge's first subject) was authored by
-  the assistant, not transcribed from any national AIP, syllabus or question
-  bank, and not checked against one.** It sticks to general ICAO-style
-  concepts and figures that are consistent across IFR training worldwide
-  (holding pattern shape and timing, DA/DH vs MDA/MDH, approach categories,
-  RVSM, RNAV) rather than a country-specific regulatory threshold, and
-  should be reviewed by a qualified instructor before a student relies on it
-  for a real rating or exam. See the note on the IFR bank in
-  `content/README.md`.
-- **The entire POF bank (Principles of Flight, Flying Knowledge's second
+- **The entire POF bank (Principles of Flight, Flying Knowledge's only
   subject) was authored by the assistant, not transcribed from the
   Principles of Flight book the owner pointed at, or from any other
   textbook, syllabus or question bank, and not checked against one.**
   It sticks to general aerodynamic relations and standard-atmosphere
   values, computed rather than copied, and should be reviewed by a
   qualified instructor before a student relies on it for a real exam.
-  Unlike the IFR bank, the study guide no longer says so on the page: the
+  The study guide does not say so on the page: the
   owner asked for every source mention to be removed from what a student
   reads, so this note and `content/README.md` are now the only place the
   caveat is recorded. See the note on the POF bank in `content/README.md`.
-- **The F AIR bank's local facts are the school's, and its distractors are
-  weak.** Czech airspace details, LKBE's procedures and F AIR's QRH figures
-  were not checked independently; they are kept as the owner supplied
-  them. Many wrong options can be ruled out by their shape rather than by
-  knowledge: the correct option is often the longest, and there are bare
-  `Nothing` and `Never` distractors and one "All of the above". That falls
-  short of the rule at the top of this file. They were not rewritten, at
-  the owner's instruction to keep the content as-is. See `content/README.md`.
 - **Twenty-six B737 questions turn on a figure nobody has confirmed twice.** The
   bank's wrong options were rewritten so a question cannot be answered by
   elimination alone, and that pass deliberately left every uncorroborated number
