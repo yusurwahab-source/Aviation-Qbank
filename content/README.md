@@ -541,6 +541,102 @@ import stops instead of overwriting it.
 - **It is free, like all of Flying Knowledge.** No free-tier cap and no
   subscription gate apply — see the note in `CLAUDE.md`.
 
+## The HPL bank (Flying Knowledge)
+
+The subject is **Human Performance & Limitations** (code `HPL`), the
+fourth subject in Flying Knowledge, added the same content-only way IFR,
+POF and FAIR were. 346 questions across sixteen topics, all published.
+
+| # | Topic | File | Ids | Questions |
+|---|---|---|---|---|
+| 01 | Safety Culture and Error Models | `safety-culture-and-error-models.json` | `HPL-SAFE-0001`–`0022` | 22 |
+| 02 | Cardiovascular System | `cardiovascular-system.json` | `HPL-CARD-0001`–`0022` | 22 |
+| 03 | Oxygen and Respiration | `oxygen-and-respiration.json` | `HPL-OXY-0001`–`0024` | 24 |
+| 04 | Hearing and Balance | `hearing-and-balance.json` | `HPL-EAR-0001`–`0020` | 20 |
+| 05 | Vision | `vision.json` | `HPL-VIS-0001`–`0022` | 22 |
+| 06 | Flying and Health | `flying-and-health.json` | `HPL-HLTH-0001`–`0024` | 24 |
+| 07 | Stress | `stress.json` | `HPL-STRS-0001`–`0020` | 20 |
+| 08 | Information Processing and Human Error | `information-processing-and-human-error.json` | `HPL-INFO-0001`–`0024` | 24 |
+| 09 | Behaviour and Motivation | `behaviour-and-motivation.json` | `HPL-BEHV-0001`–`0020` | 20 |
+| 10 | Visual Illusions and Spatial Disorientation | `visual-illusions-and-spatial-disorientation.json` | `HPL-ILLUS-0001`–`0022` | 22 |
+| 11 | Sleep and Fatigue | `sleep-and-fatigue.json` | `HPL-SLEEP-0001`–`0024` | 24 |
+| 12 | Individual Differences and Leadership | `individual-differences-and-leadership.json` | `HPL-INDIV-0001`–`0020` | 20 |
+| 13 | Communication and Cooperation | `communication-and-cooperation.json` | `HPL-COMM-0001`–`0020` | 20 |
+| 14 | Man and Machine | `man-and-machine.json` | `HPL-MACH-0001`–`0020` | 20 |
+| 15 | Decision Making and Risk | `decision-making-and-risk.json` | `HPL-DEC-0001`–`0022` | 22 |
+| 16 | CRM and Incident Reporting | `crm-and-incident-reporting.json` | `HPL-CRM-0001`–`0020` | 20 |
+| | | | | **346** |
+
+### Authored, not transcribed — and why that boundary matters here specifically
+
+The owner pointed at a specific book for this subject: CAE Oxford Aviation
+Academy's *Human Performance and Limitations*, Book 8 of its ATPL Ground
+Training Series — a copyrighted, commercially sold ground-school text whose
+own copyright notice reserves reproduction, copying and adaptation "in
+whole or in part." That rules out transcribing from it, closely paraphrasing
+its prose or worked examples, or reproducing anything from its own
+"Specimen Questions" chapter. **Every question and the study guide here
+were authored by the assistant from general knowledge of the subject, not
+from the book's text — the same boundary POF already drew around the
+Principles of Flight book the owner pointed at there, and not a new
+decision made for this bank.**
+
+The sixteen topics above follow the book's own chapter order (Basic
+Concepts through Introduction to Crew Resource Management, renamed to
+read as topics rather than chapter titles, and skipping only its Specimen
+Questions, Glossary and Index). That is a safe thing to mirror and the F
+AIR bank's own case already draws the same line this bank needs: a
+syllabus's topic breakdown is not the same as the expression within it,
+and this particular breakdown — hypoxia and respiration, the ear and
+balance, stress, information processing and error, sleep and fatigue,
+decision making, CRM — is the standard EASA ATPL 040 "Human Performance &
+Limitations" syllabus taught in broadly the same shape by ground schools
+generally, not an arrangement unique to this one textbook.
+
+What is actually original, question by question: the stems, the four
+options each, the explanations, and every worked figure or example. The
+underlying facts drawn on — the stages of hypoxia, Time of Useful
+Consciousness falling sharply with altitude, Reason's Swiss Cheese model,
+the Skill-Rule-Knowledge model, the five hazardous attitudes, somatogyral
+and somatogravic illusions, the circadian low in the early hours of the
+morning — are standard physiology and human-factors concepts taught
+consistently across ICAO- and EASA-aligned training generally, the same
+category of "consistent across training worldwide" figure the IFR bank's
+own note already describes, not a fact unique to the one book the owner
+named. Where this guide states a number, it is stated as a typical or
+schematic figure rather than copied from any one table (the Time of Useful
+Consciousness diagram in the study guide is explicitly labelled
+schematic for exactly this reason), the same caution the POF bank's
+figures take.
+
+### What the student sees never names a source
+
+Exactly the same rule POF already follows, at the same owner's
+instruction: the guide and questions are phrased as plain statements about
+human performance — no book, school, regulator, question bank or syllabus
+abbreviation appears anywhere a student can read. The honest record stays
+here and in `CLAUDE.md` only.
+
+`public/hpl-study-guide.html` is this bank's study guide (see
+`lib/study-guide.ts`): sixteen numbered sections matching the sixteen
+topics, each with a key-idea callout, a table or card grid, and — for the
+five sections where a picture genuinely helps (the Swiss Cheese model, the
+Time of Useful Consciousness curve, the arousal–performance inverted-U,
+the G-force progression to G-LOC, and the circadian alertness curve) — one
+inline SVG diagram, explicitly captioned as schematic rather than
+measured data. Two small calculators (BMI, and a rough jet-lag recovery
+estimate) sit in the guide's own "quick tools" section, in the same spirit
+as POF's three calculators, scaled to what this subject's content
+actually supports. All diagrams use the page's own colour tokens, so they
+work in both themes, and the page has been checked at 375px for
+horizontal overflow.
+
+This should be reviewed by a qualified instructor before a student relies
+on it for a real exam — the same caution already given to the IFR and POF
+banks and the DA40's unsourced topics above. None of it has been checked
+against the CAE Oxford textbook, or against any other human-factors
+syllabus, question by question.
+
 ## The B737 bank
 
 The aircraft is the **Boeing 737-800**, the stretched Next Generation variant
