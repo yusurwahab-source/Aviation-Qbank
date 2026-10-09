@@ -872,3 +872,51 @@ The FAA's Dynamic Regulatory System refuses programmatic access, so **TCDS
 A16WE could not be read**. It is the natural second source for the span and the
 seating capacity and would settle the tail height; anyone with access should
 start there.
+
+## The A320 bank
+
+The aircraft is the **Airbus A320 family** (A319, A320, A321 — one type rating).
+It is a type rating aircraft, so it lives in `content/a320/` beside `b737/`;
+adding it touched no application code beyond the study guide's hand-kept set in
+`src/lib/study-guide.ts`.
+
+**Where it came from, honestly.** The owner supplied a third-party A319/A320/A321
+*Air Cond – Press – Vent* training PDF (132 pages of scanned images, copy
+protected, carrying a training-website's branding and Airbus's drawings) and asked
+for questions and its diagrams. Those drawings and that text are someone else's
+copyright, and the same boundary POF and HPL drew applies: **nothing was
+transcribed from that PDF, and none of its drawings were copied.** Every question,
+explanation and study-guide paragraph was written from general knowledge of the
+A320 family's systems, and the two diagrams in the guide are original, simplified
+schematics. The PDF was only used to confirm the chapter's scope. The bank has
+**not been checked against an FCOM or by a type rating instructor**; it should be
+before a student relies on it for an examination. A student-facing line in the
+guide says as much.
+
+271 questions, all published, in fourteen sections (one file each). The three
+sections the owner started from — Air Conditioning, Pressurization and
+Ventilation — are the fullest. Topic codes are `COND`, `PRESS`, `VENT`, `PNEU`,
+`ELEC`, `HYD`, `FUEL`, `FCTL`, `GEAR`, `FIRE`, `ENG`, `ICE`, `INST` and `AFS`.
+
+| File | Section | Questions |
+|---|---|---|
+| `air-conditioning.json` | Air Conditioning | 35 |
+| `pressurization.json` | Pressurization | 29 |
+| `ventilation.json` | Ventilation | 17 |
+| `pneumatic.json` | Pneumatic | 19 |
+| `electrical.json` | Electrical | 25 |
+| `hydraulics.json` | Hydraulics | 16 |
+| `fuel.json` | Fuel | 18 |
+| `flight-controls.json` | Flight Controls | 22 |
+| `landing-gear-and-brakes.json` | Landing Gear and Brakes | 17 |
+| `fire-protection.json` | Fire Protection | 13 |
+| `apu-and-engines.json` | APU and Engines | 18 |
+| `ice-and-rain-protection.json` | Ice and Rain Protection | 9 |
+| `instruments-and-warnings.json` | Instruments and Warnings | 19 |
+| `automatic-flight.json` | Automatic Flight | 14 |
+
+The correct answer is spread across A–D (70 / 63 / 70 / 68). Figures that vary by
+aircraft standard or operator (pack-flow percentages, ECAM thresholds, the
+reservoir and bleed pressures) are quoted as typical values and should be
+confirmed against the operator's FCOM. The study guide is
+`public/a320-study-guide.html`.

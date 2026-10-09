@@ -1,0 +1,640 @@
+[
+  {
+    "id": "A320-FCTL-0001",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Principles",
+    "question": "What is the fundamental principle of the A320 flight control system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cables and pulleys with hydraulic boost"
+      },
+      {
+        "id": "b",
+        "text": "Direct electrical servo control without computers"
+      },
+      {
+        "id": "c",
+        "text": "Fly-by-wire: pilot inputs go to computers, which command the control surface actuators"
+      },
+      {
+        "id": "d",
+        "text": "Hydraulic pushrods from the sidestick"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The sidestick sends electrical signals to the flight control computers, which apply the control laws and drive the hydraulic actuators.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0002",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Computers",
+    "question": "Which computers control the flight control surfaces?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Two ELACs, three SECs and two FACs"
+      },
+      {
+        "id": "b",
+        "text": "Two FMGCs and two FACs"
+      },
+      {
+        "id": "c",
+        "text": "Three ELACs and two SECs"
+      },
+      {
+        "id": "d",
+        "text": "Two FADECs and three SFCCs"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The ELACs and SECs give the control laws for pitch and roll. The FACs give rudder control, and flight envelope computation.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0003",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Computers",
+    "question": "What do the ELAC computers mainly control?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The slats and flaps"
+      },
+      {
+        "id": "b",
+        "text": "The rudder only"
+      },
+      {
+        "id": "c",
+        "text": "The spoilers only"
+      },
+      {
+        "id": "d",
+        "text": "Pitch (elevators and horizontal stabiliser) and roll (ailerons), in normal law"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Each ELAC has a control function of the elevators, the ailerons and the stabiliser. ELAC 2 acts as the master for the pitch control until it fails, with ELAC 1 as the back-up.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0004",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Computers",
+    "question": "What do the SEC computers mainly control?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The rudder only"
+      },
+      {
+        "id": "b",
+        "text": "The spoilers and speedbrakes, and also act as a back-up for the elevators and the stabiliser"
+      },
+      {
+        "id": "c",
+        "text": "The flaps and slats"
+      },
+      {
+        "id": "d",
+        "text": "The ailerons only"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The SECs control the spoilers for roll and the speedbrakes, and also provide back-up control for elevators and the stabiliser.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0005",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Computers",
+    "question": "What do the FAC computers control?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The elevators"
+      },
+      {
+        "id": "b",
+        "text": "The rudder (yaw damping, turn coordination, rudder trim and travel limiting) and the flight envelope computation"
+      },
+      {
+        "id": "c",
+        "text": "The spoilers"
+      },
+      {
+        "id": "d",
+        "text": "The nosewheel steering"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The FACs also provide characteristic speeds, such as VLS and VFE, which are displayed on the PFD.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0006",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "What are the three flight control laws?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Normal, emergency and manual"
+      },
+      {
+        "id": "b",
+        "text": "Auto, semi and manual"
+      },
+      {
+        "id": "c",
+        "text": "Primary, secondary and mechanical"
+      },
+      {
+        "id": "d",
+        "text": "Normal law, alternate law and direct law"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Normal law provides all protections. Alternate law has fewer protections. Direct law makes the surface deflection proportional to the stick movement.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0007",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "In normal law, what does a sidestick pitch input command?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A load factor (g demand), not a surface deflection"
+      },
+      {
+        "id": "b",
+        "text": "A fixed elevator deflection"
+      },
+      {
+        "id": "c",
+        "text": "A pitch rate only"
+      },
+      {
+        "id": "d",
+        "text": "An airspeed"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Releasing the stick commands 1 g (corrected for pitch attitude), which is why the aircraft holds its flight path.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0008",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "In normal law, what does a sidestick roll input command?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A bank angle"
+      },
+      {
+        "id": "b",
+        "text": "A fixed aileron deflection"
+      },
+      {
+        "id": "c",
+        "text": "A roll rate"
+      },
+      {
+        "id": "d",
+        "text": "A heading"
+      }
+    ],
+    "correct": "c",
+    "explanation": "A given input gives a given roll rate. If the sidestick is released, the aircraft holds the bank angle (up to 33°) with the stick neutral.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0009",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "What is the load factor limit in normal law, in the clean configuration?",
+    "options": [
+      {
+        "id": "a",
+        "text": "+3.5 g to –1.5 g"
+      },
+      {
+        "id": "b",
+        "text": "+2 g to 0 g"
+      },
+      {
+        "id": "c",
+        "text": "+4 g to –2 g"
+      },
+      {
+        "id": "d",
+        "text": "+2.5 g to –1 g"
+      }
+    ],
+    "correct": "d",
+    "explanation": "With flaps extended, the limit is +2 g to 0 g. This protection means the structure cannot be overstressed by pilot inputs.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0010",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "Which of the following is a normal law protection?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Low fuel"
+      },
+      {
+        "id": "b",
+        "text": "High angle of attack, load factor, pitch attitude, bank angle and high speed"
+      },
+      {
+        "id": "c",
+        "text": "Engine overspeed"
+      },
+      {
+        "id": "d",
+        "text": "Flap overload only"
+      }
+    ],
+    "correct": "b",
+    "explanation": "These protections allow the pilot to command the maximum authority without exceeding the structure's limits or stalling.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0011",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "What happens to the sidestick commands in the high angle of attack protection?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The aircraft stalls"
+      },
+      {
+        "id": "b",
+        "text": "The autopilot disengages"
+      },
+      {
+        "id": "c",
+        "text": "The angle of attack is limited to αmax, even if the pilot pulls the stick fully back"
+      },
+      {
+        "id": "d",
+        "text": "The flaps retract"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The aircraft cannot be stalled in normal law. The pilot can hold the full back stick and fly at αmax.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0012",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Protections",
+    "question": "What is alpha floor?",
+    "options": [
+      {
+        "id": "a",
+        "text": "An automatic application of TOGA thrust when the angle of attack exceeds a threshold"
+      },
+      {
+        "id": "b",
+        "text": "A minimum fuel level"
+      },
+      {
+        "id": "c",
+        "text": "A flap speed limitation"
+      },
+      {
+        "id": "d",
+        "text": "A bank angle limit"
+      }
+    ],
+    "correct": "a",
+    "explanation": "It is triggered by the angle of attack protection, independently of the autothrust mode, and it is shown as A.FLOOR on the FMA.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0013",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "Which law is used with the aircraft on the ground?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ground mode, with a direct relationship between the sidestick and elevators"
+      },
+      {
+        "id": "b",
+        "text": "Normal law with all protections"
+      },
+      {
+        "id": "c",
+        "text": "Alternate law"
+      },
+      {
+        "id": "d",
+        "text": "Abnormal attitude law"
+      }
+    ],
+    "correct": "a",
+    "explanation": "On the ground, the control is direct, with the surface deflection proportional to the sidestick. In flight the laws take over after take-off.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0014",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Laws",
+    "question": "What happens to the trim in normal law in flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The pilot must trim after every speed change"
+      },
+      {
+        "id": "b",
+        "text": "Trim is disabled"
+      },
+      {
+        "id": "c",
+        "text": "The aircraft is trimmed automatically (auto trim), so the pilot does not have to apply manual trim"
+      },
+      {
+        "id": "d",
+        "text": "Trim is applied only with the autopilot"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Auto trim keeps the aircraft's flight path stable, so the pilot flies with a neutral stick. The manual trim wheel remains for back-up.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0015",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Failures",
+    "question": "How is the aircraft's pitch controlled if all the computers fail?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By the autopilot"
+      },
+      {
+        "id": "b",
+        "text": "Mechanically, using the pitch trim wheel on the pedestal and the rudder pedals"
+      },
+      {
+        "id": "c",
+        "text": "By the throttle"
+      },
+      {
+        "id": "d",
+        "text": "By the flaps"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The mechanical back-up controls the horizontal stabiliser and the rudder. It is the last resort and is only intended for a short duration.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0016",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Spoilers",
+    "question": "How many spoilers per wing does the A320 have?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Two"
+      },
+      {
+        "id": "b",
+        "text": "Three"
+      },
+      {
+        "id": "c",
+        "text": "Eight"
+      },
+      {
+        "id": "d",
+        "text": "Five"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The spoilers are used as roll spoilers, speedbrakes and ground spoilers. Spoiler 1 is not used for speedbrakes.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0017",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Spoilers",
+    "question": "Which function do the ground spoilers serve?",
+    "options": [
+      {
+        "id": "a",
+        "text": "They increase lift on take-off"
+      },
+      {
+        "id": "b",
+        "text": "They control the pitch"
+      },
+      {
+        "id": "c",
+        "text": "They extend on landing to dump lift and increase the weight on the wheels, improving braking"
+      },
+      {
+        "id": "d",
+        "text": "They reduce the thrust"
+      }
+    ],
+    "correct": "c",
+    "explanation": "On the ground, spoiler extension reduces lift and puts the weight on the wheels, so brakes work better. They arm for landing and for rejected take-off.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0018",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "High lift",
+    "question": "What is the purpose of the slats and flaps?",
+    "options": [
+      {
+        "id": "a",
+        "text": "They increase lift at low speed, allowing a lower take-off and landing speed"
+      },
+      {
+        "id": "b",
+        "text": "They reduce drag at high speed"
+      },
+      {
+        "id": "c",
+        "text": "They control roll"
+      },
+      {
+        "id": "d",
+        "text": "They control yaw"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Leading edge slats and trailing edge flaps change the wing's camber and area to give more lift and delay the stall.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0019",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "High lift",
+    "question": "How many flap lever positions are there on the A320?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Three: 0, 1 and FULL"
+      },
+      {
+        "id": "b",
+        "text": "Four: 0, 1, 2 and 3"
+      },
+      {
+        "id": "c",
+        "text": "Six: 0, 1, 2, 3, 4 and FULL"
+      },
+      {
+        "id": "d",
+        "text": "Five: 0, 1, 2, 3 and FULL"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Position 1 is a slats-only setting in some conditions. Each position gives a combination of slats and flaps angles.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0020",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "High lift",
+    "question": "Which computers control the slats and flaps?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The ELACs"
+      },
+      {
+        "id": "b",
+        "text": "The slat flap control computers (SFCCs)"
+      },
+      {
+        "id": "c",
+        "text": "The FMGCs"
+      },
+      {
+        "id": "d",
+        "text": "The SECs"
+      }
+    ],
+    "correct": "b",
+    "explanation": "There are two SFCCs. Each controls both slats and flaps and monitors them.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0021",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "High lift",
+    "question": "What is the function of the wing tip brakes on the flaps and slats?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To dissipate heat"
+      },
+      {
+        "id": "b",
+        "text": "To lock the surfaces in the event of a failure, such as asymmetry or runaway"
+      },
+      {
+        "id": "c",
+        "text": "To control the speed of the slats"
+      },
+      {
+        "id": "d",
+        "text": "To provide the position indication only"
+      }
+    ],
+    "correct": "b",
+    "explanation": "If the surface positions are mismatched between the left and right, the brakes stop the system and the surfaces remain locked in position.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FCTL-0022",
+    "aircraft": "A320",
+    "topic": "Flight Controls",
+    "subtopic": "Rudder",
+    "question": "What does the rudder pedal input do in normal law?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It controls the nosewheel only"
+      },
+      {
+        "id": "b",
+        "text": "It controls the ailerons"
+      },
+      {
+        "id": "c",
+        "text": "It controls the flaps"
+      },
+      {
+        "id": "d",
+        "text": "It commands the rudder, with the FACs adding yaw damping and turn coordination"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The rudder is also controlled by the FACs for yaw damping, so in normal flight the pilot does not need to use the pedals for turn coordination.",
+    "status": "published",
+    "version": 1
+  }
+]

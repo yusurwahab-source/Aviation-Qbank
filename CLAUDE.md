@@ -88,8 +88,8 @@ the checkout link and the webhook.)
 
 The platform supports several aircraft, each with its own question bank, and
 each sits in one of two genuinely separate content trees — type rating or
-class rating — rather than one table with a "kind" column. Four aircraft
-exist today: the B737, a type rating, and the DA40, C152 and DA42 (a light
+class rating — rather than one table with a "kind" column. Five aircraft
+exist today: the B737 and the A320 family, type ratings, and the DA40, C152 and DA42 (a light
 twin, sitting under Class Rating with the other light aircraft precisely
 because the class/type split is about aircraft size, not engine count — see
 "there is no 'single engine' or 'multi engine' split" above), all three
@@ -1805,7 +1805,7 @@ over the internals.
 
 ```
 content/                      Question files. The source of truth.
-  <code>/                     One folder per type rating aircraft (b737/ today)
+  <code>/                     One folder per type rating aircraft (b737/, a320/ today)
   classes/<code>/             One folder per class rating aircraft (da40/ today)
   flying-knowledge/<code>/    One folder per Flying Knowledge subject (pof/, hpl/ today)
 drizzle/                      Generated SQL migrations. Committed.
@@ -2261,6 +2261,14 @@ published. See the note on the HPL bank in `content/README.md`, and
   record of where the topic structure came from. It should be reviewed by
   a qualified instructor before a student relies on it for a real exam.
   See the note on the HPL bank in `content/README.md`.
+- **The A320 bank (type rating, 271 questions) was authored by the assistant
+  from general knowledge, not transcribed from the third-party A319/A320/A321
+  training PDF the owner supplied, and not checked against an FCOM.** That PDF is
+  copyright-protected scanned material with another site's branding and Airbus
+  drawings, so neither its text nor its drawings were reproduced; the two
+  diagrams in `public/a320-study-guide.html` are original. It needs review by a
+  type rating instructor before a student relies on it. See "The A320 bank" in
+  `content/README.md`.
 - **Twenty-six B737 questions turn on a figure nobody has confirmed twice.** The
   bank's wrong options were rewritten so a question cannot be answered by
   elimination alone, and that pass deliberately left every uncorroborated number

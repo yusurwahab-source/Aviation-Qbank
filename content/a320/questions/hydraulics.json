@@ -1,0 +1,466 @@
+[
+  {
+    "id": "A320-HYD-0001",
+    "aircraft": "A320",
+    "topic": "Hydraulics",
+    "subtopic": "Architecture",
+    "question": "How many independent hydraulic systems does the A320 family have?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Two: Left and Right"
+      },
+      {
+        "id": "b",
+        "text": "Four: one per engine and two electric"
+      },
+      {
+        "id": "c",
+        "text": "Three: Green, Blue and Yellow"
+      },
+      {
+        "id": "d",
+        "text": "One, with a back-up reservoir"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Having three independent systems gives redundancy for flight controls, landing gear and brakes. Each has its own reservoir and pumps.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-HYD-0002",
+    "aircraft": "A320",
+    "topic": "Hydraulics",
+    "subtopic": "Architecture",
+    "question": "What is the normal operating pressure of the hydraulic systems?",
+    "options": [
+      {
+        "id": "a",
+        "text": "3 000 psi"
+      },
+      {
+        "id": "b",
+        "text": "1 500 psi"
+      },
+      {
+        "id": "c",
+        "text": "5 000 psi"
+      },
+      {
+        "id": "d",
+        "text": "500 psi"
+      }
+    ],
+    "correct": "a",
+    "explanation": "All three systems run at 3 000 psi. Each has a pressure transducer which feeds the ECAM.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-HYD-0003",
+    "aircraft": "A320",
+    "topic": "Hydraulics",
+    "subtopic": "Architecture",
+    "question": "What type of fluid is used in the hydraulic systems?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Mineral oil"
+      },
+      {
+        "id": "b",
+        "text": "Fuel"
+      },
+      {
+        "id": "c",
+        "text": "Water-glycol"
+      },
+      {
+        "id": "d",
+        "text": "A phosphate ester fluid (Skydrol type), which is fire-resistant"
+      }
+    ],
+    "correct": "d",
+    "explanation": "It is fire resistant but aggressive to some paints and skin, so it needs to be handled carefully.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-HYD-0004",
+    "aircraft": "A320",
+    "topic": "Hydraulics",
+    "subtopic": "Pumps",
+    "question": "Which pump powers the Green hydraulic system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "An electric pump"
+      },
+      {
+        "id": "b",
+        "text": "An engine-driven pump (EDP) on engine 1"
+      },
+      {
+        "id": "c",
+        "text": "The RAT"
+      },
+      {
+        "id": "d",
+        "text": "An engine-driven pump on engine 2"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The Green system relies on engine 1's pump alone. Yellow has an EDP on engine 2 plus an electric pump.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-HYD-0005",
+    "aircraft": "A320",
+    "topic": "Hydraulics",
+    "subtopic": "Pumps",
+    "question": "Which pump powers the Yellow hydraulic system in normal flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "An electric pump only"
+      },
+      {
+        "id": "b",
+        "text": "An engine-driven pump (EDP) on engine 2"
+      },
+      {
+        "id": "c",
+        "text": "The RAT"
+      },
+      {
+        "id": "d",
+        "text": "An engine-driven pump on engine 1"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The Yellow system also has an electric pump, used on the ground (for cargo doors and parking) and as back-up. There is a hand pump too.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-HYD-0006",
+    "aircraft": "A320",
+    "topic": "Hydraulics",
+    "subtopic": "Pumps",
+    "question": "Which pump powers the Blue hydraulic system normally?",
+    "options": [
+      {
+        "id": "a",
+        "text": "An engine-driven pump on engine 1"
+      },
+      {
+        "id": "b",
+        "text": "An engine-driven pump on engine 2"
+      },
+      {
+        "id": "c",
+        "text": "The PTU"
+      },
+      {
+        "id": "d",
+        "text": "An electric pump"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The Blue system has no engine-driven pump. The RAT can drive the Blue system in an emergency.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-HYD-0007",
+    "aircraft": "A320",
+    "topic": "Hydraulics",
+    "subtopic": "PTU",
+    "question": "What is the function of the power transfer unit (PTU)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To transfer hydraulic power between the Green and Yellow systems without transferring fluid"
+      },
+      {
+        "id": "b",
+        "text": "To transfer fluid from Blue to Green"
+      },
+      {
+        "id": "c",
+        "text": "To pressurise the reservoirs"
+      },
+      {
+        "id": "d",
+        "text": "To supply the RAT"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The PTU has a hydraulic motor in one system driving a pump in the other, so a system with low pressure can be powered by the other, without any fluid crossing.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-HYD-0008",
+    "aircraft": "A320",
+    "topic": "Hydraulics",
+    "subtopic": "PTU",
+    "question": "Between which systems does the PTU operate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Green and Blue"
+      },
+      {
+        "id": "b",
+        "text": "Blue and Yellow"
+      },
+      {
+        "id": "c",
+        "text": "Green and Yellow"
+      },
+      {
+        "id": "d",
+        "text": "All three"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The Blue system is isolated from the PTU, so a Blue failure can never contaminate the other two.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-HYD-0009",
+    "aircraft": "A320",
+    "topic": "Hydraulics",
+    "subtopic": "PTU",
+    "question": "When does the PTU start working automatically?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When the Blue pressure falls"
+      },
+      {
+        "id": "b",
+        "text": "When the gear is retracted"
+      },
+      {
+        "id": "c",
+        "text": "When the flaps are extended"
+      },
+      {
+        "id": "d",
+        "text": "When the pressure difference between the Green and Yellow systems is more than about 500 psi"
+      }
+    ],
+    "correct": "d",
+    "explanation": "It works in both directions, depending on which system has lower pressure. It is inhibited in some ground conditions.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-HYD-0010",
+    "aircraft": "A320",
+    "topic": "Hydraulics",
+    "subtopic": "RAT",
+    "question": "What drives the RAT, and what does it supply?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The RAT drives the Green system"
+      },
+      {
+        "id": "b",
+        "text": "Ram air drives a hydraulic pump which pressurises the Blue system"
+      },
+      {
+        "id": "c",
+        "text": "The RAT drives only the electric generator without hydraulics"
+      },
+      {
+        "id": "d",
+        "text": "The RAT drives the APU"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The Blue system powers the emergency generator, so the RAT supplies both hydraulic power and electrical power in an emergency.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-HYD-0011",
+    "aircraft": "A320",
+    "topic": "Hydraulics",
+    "subtopic": "Protection",
+    "question": "What is the effect of pressing an engine's fire pushbutton on its engine-driven hydraulic pump?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The pump runs faster"
+      },
+      {
+        "id": "b",
+        "text": "The pump is transferred to the other engine"
+      },
+      {
+        "id": "c",
+        "text": "The hydraulic fire shut-off valve closes, so fluid stops flowing to the pump"
+      },
+      {
+        "id": "d",
+        "text": "Nothing, as fire protection only affects fuel"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The fire valve prevents hydraulic fluid from feeding a fire in the engine nacelle.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-HYD-0012",
+    "aircraft": "A320",
+    "topic": "Hydraulics",
+    "subtopic": "Architecture",
+    "question": "Why are the hydraulic reservoirs pressurised?",
+    "options": [
+      {
+        "id": "a",
+        "text": "With bleed air, to prevent pump cavitation and foaming, particularly at altitude"
+      },
+      {
+        "id": "b",
+        "text": "To raise the system pressure to 3 000 psi"
+      },
+      {
+        "id": "c",
+        "text": "To cool the fluid"
+      },
+      {
+        "id": "d",
+        "text": "To operate the PTU"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Pressurised reservoirs ensure a positive pump inlet pressure so the pumps do not cavitate as the air thins at altitude.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-HYD-0013",
+    "aircraft": "A320",
+    "topic": "Hydraulics",
+    "subtopic": "Indications",
+    "question": "What indicates a low reservoir fluid level in the ECAM hydraulic page?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The reservoir quantity indication and the LO LVL message"
+      },
+      {
+        "id": "b",
+        "text": "A red PTU indication"
+      },
+      {
+        "id": "c",
+        "text": "A master warning"
+      },
+      {
+        "id": "d",
+        "text": "A change in the colour of the gear indication"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The quantity is displayed in the reservoir symbol for each system, and a low-level message follows when it goes below the limit.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-HYD-0014",
+    "aircraft": "A320",
+    "topic": "Hydraulics",
+    "subtopic": "Services",
+    "question": "Which of the following is NOT powered by hydraulics?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The flaps and slats"
+      },
+      {
+        "id": "b",
+        "text": "The landing gear"
+      },
+      {
+        "id": "c",
+        "text": "The windshield wipers"
+      },
+      {
+        "id": "d",
+        "text": "The flight control surfaces"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Most services are hydraulic, but windshield wipers are electric motors.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-HYD-0015",
+    "aircraft": "A320",
+    "topic": "Hydraulics",
+    "subtopic": "Services",
+    "question": "Why is it possible to operate the cargo doors with the engines off?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The Green system is always pressurised on the ground"
+      },
+      {
+        "id": "b",
+        "text": "The Yellow electric pump, or the hand pump, can pressurise the Yellow system"
+      },
+      {
+        "id": "c",
+        "text": "The doors operate on electrical power"
+      },
+      {
+        "id": "d",
+        "text": "The Blue pump supplies the cargo doors"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The Yellow system has an electric pump for ground use, and also a hand pump so the cargo door can be operated without any electric power.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-HYD-0016",
+    "aircraft": "A320",
+    "topic": "Hydraulics",
+    "subtopic": "Failures",
+    "question": "What happens if the Green and Yellow systems both lose pressure in flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "All the flight controls are lost"
+      },
+      {
+        "id": "b",
+        "text": "The PTU takes over"
+      },
+      {
+        "id": "c",
+        "text": "The gear extends automatically"
+      },
+      {
+        "id": "d",
+        "text": "The Blue system and the RAT continue to power the essential flight controls"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The Blue system, with the RAT, powers the essential controls. This is why all three systems are independent.",
+    "status": "published",
+    "version": 1
+  }
+]

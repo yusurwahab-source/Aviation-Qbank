@@ -1,0 +1,727 @@
+[
+  {
+    "id": "A320-ELEC-0001",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Sources",
+    "question": "What are the normal sources of AC power on the A320 family in flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Two batteries through static inverters"
+      },
+      {
+        "id": "b",
+        "text": "The APU generator and a ram air turbine"
+      },
+      {
+        "id": "c",
+        "text": "Two engine-driven generators, each driven through an integrated drive generator (IDG)"
+      },
+      {
+        "id": "d",
+        "text": "Two alternators driven by the hydraulic systems"
+      }
+    ],
+    "correct": "c",
+    "explanation": "In flight each engine drives its own IDG. The IDG keeps the frequency constant regardless of engine speed, which is what AC users need.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0002",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Sources",
+    "question": "What does an IDG do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It combines a constant speed drive and an AC generator, so the frequency stays at 400 Hz whatever the engine speed"
+      },
+      {
+        "id": "b",
+        "text": "It converts AC to DC"
+      },
+      {
+        "id": "c",
+        "text": "It stores electrical energy"
+      },
+      {
+        "id": "d",
+        "text": "It supplies hydraulic pressure"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A generator's frequency follows its shaft speed. The constant-speed drive in the IDG holds the shaft speed steady, so the output frequency does not follow the engine.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0003",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Sources",
+    "question": "What is the rated output of each main AC generator (IDG) and of the APU generator?",
+    "options": [
+      {
+        "id": "a",
+        "text": "20 kVA each"
+      },
+      {
+        "id": "b",
+        "text": "5 kVA each"
+      },
+      {
+        "id": "c",
+        "text": "150 kVA each"
+      },
+      {
+        "id": "d",
+        "text": "90 kVA each"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The 90 kVA figure is the same for the IDGs and the APU generator. The emergency generator is far smaller, at about 5 kVA.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0004",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Sources",
+    "question": "What are the AC voltage and frequency of the main generators?",
+    "options": [
+      {
+        "id": "a",
+        "text": "28 V, 50 Hz"
+      },
+      {
+        "id": "b",
+        "text": "115/200 V, 400 Hz, three-phase"
+      },
+      {
+        "id": "c",
+        "text": "230 V, 60 Hz"
+      },
+      {
+        "id": "d",
+        "text": "115 V, 50 Hz single phase"
+      }
+    ],
+    "correct": "b",
+    "explanation": "These are the standard aircraft AC values. The DC buses run at 28 V.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0005",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Distribution",
+    "question": "Which generator has priority to supply the AC buses when the engine generators are running?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The APU generator"
+      },
+      {
+        "id": "b",
+        "text": "The engine generators, each supplying its own side"
+      },
+      {
+        "id": "c",
+        "text": "The external power"
+      },
+      {
+        "id": "d",
+        "text": "The emergency generator"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The engine generators take priority over the APU and external power in normal configuration. Each one feeds its own AC bus.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0006",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Distribution",
+    "question": "How is the AC bus tie operated in normal conditions?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Manually, by selecting each bus"
+      },
+      {
+        "id": "b",
+        "text": "It is permanently closed"
+      },
+      {
+        "id": "c",
+        "text": "It operates only on the ground"
+      },
+      {
+        "id": "d",
+        "text": "Automatically, so that a bus that loses its generator is supplied from the other source available"
+      }
+    ],
+    "correct": "d",
+    "explanation": "If one generator is lost, the bus tie contactor closes so the remaining generator or the APU supplies both AC buses, within the limits of the electrical load.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0007",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Distribution",
+    "question": "What are the two main AC buses called?",
+    "options": [
+      {
+        "id": "a",
+        "text": "AC BUS 1 and AC BUS 2"
+      },
+      {
+        "id": "b",
+        "text": "AC BUS A and AC BUS B"
+      },
+      {
+        "id": "c",
+        "text": "MAIN LEFT and MAIN RIGHT"
+      },
+      {
+        "id": "d",
+        "text": "NORMAL and ESSENTIAL"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AC BUS 1 is normally supplied from generator 1 and AC BUS 2 from generator 2. Each of them feeds a transformer rectifier, and a part of the aircraft's loads.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0008",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Distribution",
+    "question": "What is the AC ESS BUS, and how is it normally supplied?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It supplies the galleys and is fed from the APU"
+      },
+      {
+        "id": "b",
+        "text": "It supplies the cargo area and is fed from the batteries"
+      },
+      {
+        "id": "c",
+        "text": "It supplies the essential AC users and is normally fed from AC BUS 1"
+      },
+      {
+        "id": "d",
+        "text": "It is fed only from the emergency generator"
+      }
+    ],
+    "correct": "c",
+    "explanation": "If AC BUS 1 is lost, the AC ESS BUS can be switched to AC BUS 2 with the AC ESS FEED pushbutton or automatically.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0009",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Distribution",
+    "question": "What is the purpose of the AC ESS SHED BUS?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It supplies only the galleys"
+      },
+      {
+        "id": "b",
+        "text": "It supplies the cargo area"
+      },
+      {
+        "id": "c",
+        "text": "It is a spare bus"
+      },
+      {
+        "id": "d",
+        "text": "It supplies less important essential loads, which are shed in emergency electrical configuration to save power"
+      }
+    ],
+    "correct": "d",
+    "explanation": "In the emergency configuration, the emergency generator has limited capacity, so some of the essential users are disconnected.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0010",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Distribution",
+    "question": "What are the transformer rectifiers (TRs) for?",
+    "options": [
+      {
+        "id": "a",
+        "text": "They convert 28 V DC into 115 V AC"
+      },
+      {
+        "id": "b",
+        "text": "They convert 115 V AC into 28 V DC"
+      },
+      {
+        "id": "c",
+        "text": "They keep the AC frequency constant"
+      },
+      {
+        "id": "d",
+        "text": "They charge the batteries only"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The A320 has TR 1, TR 2 and an ESS TR. They feed the DC buses and charge the batteries.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0011",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Distribution",
+    "question": "How many transformer rectifiers does the A320 have?",
+    "options": [
+      {
+        "id": "a",
+        "text": "One"
+      },
+      {
+        "id": "b",
+        "text": "Two"
+      },
+      {
+        "id": "c",
+        "text": "Three: TR 1, TR 2 and ESS TR"
+      },
+      {
+        "id": "d",
+        "text": "Four"
+      }
+    ],
+    "correct": "c",
+    "explanation": "TR 1 and TR 2 supply DC BUS 1 and DC BUS 2 respectively; the ESS TR supplies the DC ESS BUS and is normally fed from AC ESS BUS.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0012",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Distribution",
+    "question": "Which buses are the main DC buses?",
+    "options": [
+      {
+        "id": "a",
+        "text": "DC BUS 1 and DC BUS 2, supplied by TR 1 and TR 2"
+      },
+      {
+        "id": "b",
+        "text": "DC ESS BUS and DC BAT BUS"
+      },
+      {
+        "id": "c",
+        "text": "AC BUS 1 and AC BUS 2"
+      },
+      {
+        "id": "d",
+        "text": "HOT BUS 1 and HOT BUS 2"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The DC ESS BUS and the DC BAT BUS are additional buses; the DC buses 1 and 2 are the main ones.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0013",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Batteries",
+    "question": "How many batteries does the A320 have, and what voltage?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Two, each 28 V"
+      },
+      {
+        "id": "b",
+        "text": "One, 28 V"
+      },
+      {
+        "id": "c",
+        "text": "Three, 12 V"
+      },
+      {
+        "id": "d",
+        "text": "Two, 115 V"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The batteries are connected to the DC BAT BUS through the battery charge limiters. They supply the aircraft before the generators come on and in an emergency.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0014",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Batteries",
+    "question": "What happens during a battery check on the ground?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The batteries are discharged completely"
+      },
+      {
+        "id": "b",
+        "text": "The batteries are connected to the AC buses"
+      },
+      {
+        "id": "c",
+        "text": "With the battery pushbuttons in AUTO, the battery voltage is checked on the ECAM, at least 25.5 V each"
+      },
+      {
+        "id": "d",
+        "text": "The generators are disconnected"
+      }
+    ],
+    "correct": "c",
+    "explanation": "This simple check is done before using the batteries: if the voltage is lower, the battery is not considered serviceable.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0015",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Emergency",
+    "question": "What is the emergency electrical source if both main AC generators fail in flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The APU generator, which always starts automatically"
+      },
+      {
+        "id": "b",
+        "text": "The emergency generator, driven by the Blue hydraulic system through the ram air turbine (RAT)"
+      },
+      {
+        "id": "c",
+        "text": "The two batteries alone"
+      },
+      {
+        "id": "d",
+        "text": "The ground power unit"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The RAT extends automatically and drives a hydraulic pump (Blue), which drives the emergency generator. The batteries cover the gap until it comes on line.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0016",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Emergency",
+    "question": "How is the RAT extended when both AC BUS 1 and AC BUS 2 are lost?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only manually"
+      },
+      {
+        "id": "b",
+        "text": "Only on the ground"
+      },
+      {
+        "id": "c",
+        "text": "By the APU start"
+      },
+      {
+        "id": "d",
+        "text": "Automatically (and manually with the guarded pushbutton on the overhead panel)"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Automatic deployment is triggered by the loss of both AC buses in flight. A manual back-up is also provided on the EMER ELEC PWR panel.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0017",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Emergency",
+    "question": "What is the emergency generator's rated power?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 90 kVA"
+      },
+      {
+        "id": "b",
+        "text": "About 40 kVA"
+      },
+      {
+        "id": "c",
+        "text": "About 5 kVA"
+      },
+      {
+        "id": "d",
+        "text": "About 150 kVA"
+      }
+    ],
+    "correct": "c",
+    "explanation": "It is deliberately small: it can supply only the essential loads, and that is why some are shed in emergency configuration.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0018",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Emergency",
+    "question": "What is the function of the static inverter?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It converts battery DC into AC to supply the AC ESS BUS during the transition to the emergency configuration"
+      },
+      {
+        "id": "b",
+        "text": "It charges the batteries"
+      },
+      {
+        "id": "c",
+        "text": "It converts AC to DC"
+      },
+      {
+        "id": "d",
+        "text": "It controls the generator frequency"
+      }
+    ],
+    "correct": "a",
+    "explanation": "While the RAT is extending and the emergency generator is coming on line, the batteries supply the AC ESS BUS through the static inverter.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0019",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Generators",
+    "question": "What does pressing the IDG pushbutton do (guarded)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It disconnects the IDG from the AC bus only"
+      },
+      {
+        "id": "b",
+        "text": "It starts the IDG"
+      },
+      {
+        "id": "c",
+        "text": "It resets the IDG after a fault"
+      },
+      {
+        "id": "d",
+        "text": "It disconnects the IDG from the engine, and it cannot be reconnected in flight"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The disconnection is mechanical, and it is used for an IDG oil overheat or low oil pressure. The reconnection can only be done on the ground, by maintenance.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0020",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Generators",
+    "question": "In which condition must the IDG disconnect pushbutton not be used?",
+    "options": [
+      {
+        "id": "a",
+        "text": "With the engine running at idle on the ground"
+      },
+      {
+        "id": "b",
+        "text": "With the engine stopped, as the disconnect mechanism could be damaged"
+      },
+      {
+        "id": "c",
+        "text": "In flight after an IDG oil overheat"
+      },
+      {
+        "id": "d",
+        "text": "When the IDG low oil pressure warning is displayed"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The disconnection is only effective with the engine turning. With the engine stopped, the mechanism could be damaged.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0021",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Generators",
+    "question": "What controls each generator's voltage regulation and protection?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The flight warning computer"
+      },
+      {
+        "id": "b",
+        "text": "The generator control unit (GCU)"
+      },
+      {
+        "id": "c",
+        "text": "The battery charge limiter"
+      },
+      {
+        "id": "d",
+        "text": "The bus power control unit alone"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The GCU regulates the voltage, and protects the generator and the network from overvoltage, undervoltage, overcurrent, etc. The BPCU controls the contactors.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0022",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Sources",
+    "question": "What is the external power voltage and frequency?",
+    "options": [
+      {
+        "id": "a",
+        "text": "28 V DC"
+      },
+      {
+        "id": "b",
+        "text": "230 V AC, 50 Hz"
+      },
+      {
+        "id": "c",
+        "text": "115 V AC, 60 Hz"
+      },
+      {
+        "id": "d",
+        "text": "115 V AC, 400 Hz"
+      }
+    ],
+    "correct": "d",
+    "explanation": "It is the same as the aircraft's own power: external power can be connected to both AC buses via the external power contactor.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0023",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Sources",
+    "question": "Which source has priority on the ground: external power or the APU generator?",
+    "options": [
+      {
+        "id": "a",
+        "text": "External power"
+      },
+      {
+        "id": "b",
+        "text": "The APU generator"
+      },
+      {
+        "id": "c",
+        "text": "They share the load"
+      },
+      {
+        "id": "d",
+        "text": "The batteries"
+      }
+    ],
+    "correct": "a",
+    "explanation": "If external power is available and its pushbutton is on, it takes over from the APU generator. The AVAIL light shows it is ready.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0024",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Distribution",
+    "question": "What happens if an engine generator fails in flight and the other still works?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The whole aircraft goes into emergency electrical configuration"
+      },
+      {
+        "id": "b",
+        "text": "The APU starts automatically"
+      },
+      {
+        "id": "c",
+        "text": "The bus tie connects both AC buses to the remaining generator, and some galley loads may be shed"
+      },
+      {
+        "id": "d",
+        "text": "The batteries supply the failed side"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The system is designed to continue normally on one generator. The remaining generator can be relieved by the APU generator when it is available.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-ELEC-0025",
+    "aircraft": "A320",
+    "topic": "Electrical",
+    "subtopic": "Distribution",
+    "question": "What does the GALLEY pushbutton control?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The fuel pumps in the galley"
+      },
+      {
+        "id": "b",
+        "text": "The cabin lighting only"
+      },
+      {
+        "id": "c",
+        "text": "The oxygen supply"
+      },
+      {
+        "id": "d",
+        "text": "The supply of power to the galley and commercial loads, which can be shed to reduce the electrical load"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Galley loads are large. In an abnormal electrical situation, they are the first to be disconnected.",
+    "status": "published",
+    "version": 1
+  }
+]

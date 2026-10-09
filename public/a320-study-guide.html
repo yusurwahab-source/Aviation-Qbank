@@ -1,0 +1,911 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Airbus A320 Family — Systems Study Guide</title>
+<meta name="description" content="A study guide for the Airbus A320 family systems — air conditioning, pressurization, ventilation and the other main systems — to read before the PilotQBank question bank." />
+<style>
+  :root{
+    --bg:#f6f8fb;
+    --surface:#ffffff;
+    --surface-2:#eef2f7;
+    --ink:#101826;
+    --ink-2:#3c4758;
+    --muted:#6b7686;
+    --line:#dfe6ef;
+    --brand:#0d6e7d;
+    --brand-ink:#ffffff;
+    --brand-light:#e3f4f6;
+    --warn-bg:#fdecec;
+    --warn-line:#e0413a;
+    --warn-ink:#7a1712;
+    --caution-bg:#fff6e0;
+    --caution-line:#c9821a;
+    --caution-ink:#6b4405;
+    --note-bg:#eaf1fb;
+    --note-line:#3f6fb0;
+    --note-ink:#1f3c63;
+    --white-arc:#e9edf3;
+    --green-arc:#1f9d55;
+    --yellow-arc:#e0b400;
+    --red-arc:#d9362a;
+    --lh:#3f6fb0;
+    --rh:#c9821a;
+    --radius:14px;
+    --radius-sm:8px;
+    --shadow:0 1px 2px rgba(16,24,38,.04), 0 6px 20px rgba(16,24,38,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0d1420;
+      --surface:#141d2c;
+      --surface-2:#1b263a;
+      --ink:#eef2f8;
+      --ink-2:#c3cddc;
+      --muted:#8b97ab;
+      --line:#26334a;
+      --brand:#37c3d6;
+      --brand-ink:#06232a;
+      --brand-light:#12323a;
+      --warn-bg:#3a1613;
+      --warn-line:#e4574d;
+      --warn-ink:#ffd6d1;
+      --caution-bg:#3a2c0d;
+      --caution-line:#e0a83a;
+      --caution-ink:#ffe6b0;
+      --note-bg:#122a44;
+      --note-line:#5b93d6;
+      --note-ink:#cfe2fb;
+      --white-arc:#324055;
+      --green-arc:#2bb56a;
+      --yellow-arc:#e0b400;
+      --red-arc:#e4574d;
+      --lh:#5b93d6;
+      --rh:#e0a83a;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1420; --surface:#141d2c; --surface-2:#1b263a; --ink:#eef2f8; --ink-2:#c3cddc;
+    --muted:#8b97ab; --line:#26334a; --brand:#37c3d6; --brand-ink:#06232a; --brand-light:#12323a;
+    --warn-bg:#3a1613; --warn-line:#e4574d; --warn-ink:#ffd6d1;
+    --caution-bg:#3a2c0d; --caution-line:#e0a83a; --caution-ink:#ffe6b0;
+    --note-bg:#122a44; --note-line:#5b93d6; --note-ink:#cfe2fb;
+    --white-arc:#324055; --green-arc:#2bb56a; --yellow-arc:#e0b400; --red-arc:#e4574d;
+    --lh:#5b93d6; --rh:#e0a83a;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:clip}
+  body{
+    margin:0;
+    overflow-x:clip;
+    max-width:100vw;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,"Segoe UI",system-ui,Roboto,sans-serif;
+    line-height:1.75;
+    font-size:17px;
+  }
+  a{color:var(--brand)}
+  code, .kbd{
+    direction:ltr;unicode-bidi:isolate;display:inline-block;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:6px;
+    padding:0 .35em;font-size:.92em;color:var(--ink);
+  }
+  header.top{
+    position:sticky;top:0;z-index:40;
+    background:linear-gradient(180deg, var(--surface) 85%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    max-width:1180px;margin:0 auto;padding:14px 16px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .brand-mark{display:flex;align-items:center;gap:10px;min-width:0}
+  .brand-mark .plane{
+    width:34px;height:34px;flex:0 0 auto;border-radius:9px;
+    background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+  }
+  .brand-mark .txt{min-width:0}
+  .brand-mark h1{font-size:15px;margin:0;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand-mark .sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .menu-btn{
+    display:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+    border-radius:10px;padding:9px 12px;font-size:14px;cursor:pointer;flex:0 0 auto;
+  }
+  .shell{max-width:1180px;margin:0 auto;display:flex;align-items:flex-start;gap:28px;padding:20px 16px 80px}
+  nav.toc{
+    position:sticky;top:78px;flex:0 0 264px;
+    max-height:calc(100vh - 96px);overflow-y:auto;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;box-shadow:var(--shadow);
+  }
+  nav.toc h2{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:2px 8px 10px}
+  nav.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+  nav.toc li{counter-increment:toc}
+  nav.toc a{
+    display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--ink-2);
+    padding:8px 8px;border-radius:9px;font-size:14px;
+  }
+  nav.toc a .n{
+    flex:0 0 auto;color:var(--brand);font-weight:700;font-size:12px;min-width:18px;
+  }
+  nav.toc a:hover{background:var(--surface-2);color:var(--ink)}
+  nav.toc a.active{background:var(--brand-light);color:var(--ink);font-weight:600}
+  nav.toc .count{margin-inline-start:auto;font-size:11px;color:var(--muted)}
+  main{flex:1 1 auto;min-width:0}
+  .hero{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 22px;margin-bottom:22px;box-shadow:var(--shadow);
+  }
+  .hero h1{margin:0 0 8px;font-size:26px}
+  .hero p{margin:0;color:var(--ink-2);font-size:15.5px}
+  .hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hero .tag{
+    font-size:12.5px;background:var(--brand-light);color:var(--brand);
+    border-radius:999px;padding:5px 12px;font-weight:600;
+  }
+  section.sec{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px 26px;margin-bottom:22px;box-shadow:var(--shadow);scroll-margin-top:76px;
+  }
+  section.sec > h2{
+    display:flex;align-items:center;gap:12px;font-size:21px;margin:0 0 6px;
+    padding-bottom:14px;border-bottom:1px solid var(--line);
+  }
+  section.sec > h2 .num{
+    flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;
+  }
+  section.sec > h2 .en{margin-inline-start:auto;font-size:12px;color:var(--muted);font-weight:600;
+    direction:ltr;background:var(--surface-2);padding:4px 10px;border-radius:999px}
+  .lead{color:var(--ink-2);font-size:16px;margin-top:14px}
+  h3.sub{font-size:16.5px;margin:26px 0 8px;color:var(--ink);border-inline-start:4px solid var(--brand);padding-inline-start:10px}
+  h4.sub2{font-size:15px;margin:18px 0 6px;color:var(--ink-2)}
+  p{margin:10px 0}
+  ul, ol{margin:10px 0;padding-inline-start:22px}
+  li{margin:5px 0}
+  strong{color:var(--ink)}
+  .table-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm)}
+  table{border-collapse:collapse;width:100%;min-width:420px;font-size:14.5px}
+  table caption{text-align:start;font-size:12.5px;color:var(--muted);padding:8px 12px 0}
+  thead th{
+    background:var(--surface-2);color:var(--ink);text-align:start;
+    padding:9px 12px;font-weight:700;white-space:nowrap;font-size:13.5px;
+  }
+  tbody td{padding:8px 12px;border-top:1px solid var(--line);color:var(--ink-2)}
+  tbody tr:nth-child(even){background:color-mix(in srgb, var(--surface-2) 45%, transparent)}
+  td.num, th.num{direction:ltr;text-align:center;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+  .callout{border-radius:var(--radius-sm);padding:12px 14px;margin:14px 0;border-inline-start:4px solid;font-size:14.5px}
+  .callout .label{display:block;font-weight:800;font-size:12px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:4px}
+  .callout.warning{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-ink)}
+  .callout.caution{background:var(--caution-bg);border-color:var(--caution-line);color:var(--caution-ink)}
+  .callout.note{background:var(--note-bg);border-color:var(--note-line);color:var(--note-ink)}
+  .diagram{
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;margin:18px 0;text-align:center;
+    max-width:100%;overflow-x:auto;box-sizing:border-box;
+  }
+  .diagram .cap{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .diagram svg{max-width:100%;height:auto;display:block;margin:0 auto}
+  .ref{
+    display:inline-block;direction:ltr;font-size:11.5px;color:var(--brand);
+    background:var(--brand-light);border-radius:6px;padding:1px 7px;margin-inline-start:4px;
+    font-weight:700;white-space:nowrap;
+  }
+  .related{
+    margin-top:22px;display:flex;align-items:center;gap:10px;
+    background:var(--brand-light);color:var(--brand);border-radius:999px;
+    padding:10px 16px;font-size:14px;font-weight:700;width:fit-content;
+  }
+  .related .dot{width:8px;height:8px;border-radius:50%;background:var(--brand)}
+  footer{max-width:1180px;margin:0 auto;padding:10px 16px 60px;color:var(--muted);font-size:13px;text-align:center}
+  #top-btn{
+    position:fixed;inset-inline-end:18px;bottom:18px;z-index:50;
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+    background:var(--brand);color:var(--brand-ink);font-size:18px;cursor:pointer;
+    box-shadow:var(--shadow);display:none;align-items:center;justify-content:center;
+  }
+  #top-btn.show{display:flex}
+  .lh-rh-legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:10px;font-size:13px}
+  .lh-rh-legend span{display:inline-flex;align-items:center;gap:6px}
+  .lh-rh-legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+  @media (max-width:880px){
+    .shell{flex-direction:column;padding:14px 12px 70px}
+    main{width:100%;min-width:0}
+    nav.toc{
+      position:fixed;inset:0 0 0 auto;top:0;width:82%;max-width:340px;height:100dvh;max-height:100dvh;
+      transform:translateX(100%);transition:transform .25s ease;border-radius:0;z-index:60;
+    }
+    nav.toc.open{transform:translateX(0)}
+    .toc-scrim{
+      position:fixed;inset:0;background:rgba(6,10,18,.5);z-index:55;display:none;
+    }
+    .toc-scrim.show{display:block}
+    .menu-btn{display:inline-flex;align-items:center;gap:6px}
+    section.sec > h2{font-size:18.5px}
+    .hero h1{font-size:22px}
+    body{font-size:16px}
+  }
+  .toc-close{display:none}
+  @media (max-width:880px){
+    .toc-close{
+      display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+      padding-bottom:10px;border-bottom:1px solid var(--line);
+    }
+    .toc-close button{border:none;background:var(--surface-2);border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer;color:var(--ink)}
+  }
+</style>
+
+<body>
+<header class="top"><div class="top-inner"><div class="brand-mark"><div class="plane">✈️</div><div class="txt"><h1>Airbus A320 Family — Systems Study Guide</h1><div class="sub">A319 · A320 · A321 · read this before the questions</div></div></div><button class="menu-btn" id="menuBtn">☰ Contents</button></div></header>
+<div class="toc-scrim" id="scrim"></div>
+<div class="shell">
+<nav class="toc" id="toc"><div class="toc-close"><span style="font-size:13px;color:var(--muted);font-weight:700">Contents</span><button id="closeToc">✕</button></div><h2>Systems</h2><ol>
+<li><a href="#air-conditioning"><span class="n">01</span> Air Conditioning <span class="count">35</span></a></li>
+<li><a href="#pressurization"><span class="n">02</span> Pressurization <span class="count">29</span></a></li>
+<li><a href="#ventilation"><span class="n">03</span> Ventilation <span class="count">17</span></a></li>
+<li><a href="#pneumatic"><span class="n">04</span> Pneumatic (Bleed Air) <span class="count">19</span></a></li>
+<li><a href="#electrical"><span class="n">05</span> Electrical <span class="count">25</span></a></li>
+<li><a href="#hydraulics"><span class="n">06</span> Hydraulics <span class="count">16</span></a></li>
+<li><a href="#fuel"><span class="n">07</span> Fuel <span class="count">18</span></a></li>
+<li><a href="#flight-controls"><span class="n">08</span> Flight Controls <span class="count">22</span></a></li>
+<li><a href="#landing-gear-and-brakes"><span class="n">09</span> Landing Gear and Brakes <span class="count">17</span></a></li>
+<li><a href="#fire-protection"><span class="n">10</span> Fire Protection <span class="count">13</span></a></li>
+<li><a href="#apu-and-engines"><span class="n">11</span> APU and Engines <span class="count">18</span></a></li>
+<li><a href="#ice-and-rain-protection"><span class="n">12</span> Ice and Rain Protection <span class="count">9</span></a></li>
+<li><a href="#instruments-and-warnings"><span class="n">13</span> Instruments and Warnings <span class="count">19</span></a></li>
+<li><a href="#automatic-flight"><span class="n">14</span> Automatic Flight <span class="count">14</span></a></li>
+</ol></nav>
+<main>
+<div class="hero"><h1>Know the system, not the question.</h1>
+<p>Every fact below is a statement of how the system works. Read a section, then sit its questions: each wrong option can be ruled out by understanding the system, not by recognising its shape. Start with Air Conditioning, Pressurization and Ventilation — the fullest part of this bank.</p>
+<div class="tags"><span class="tag">271 linked questions</span><span class="tag">14 systems</span><span class="tag">A319 / A320 / A321</span></div></div>
+<section class="sec" id="air-conditioning"><h2><span class="num">01</span> Air Conditioning <span class="en">35 questions</span></h2>
+<p class="lead">Two packs turn hot engine bleed air into cool, dry air; a mixer unit blends it with recirculated cabin air; trim air warms individual zones. Learn the chain in order — source, pack, mixer, zone — and every fault becomes a question of where in the chain the air stops.</p>
+<div class="diagram"><svg viewBox="0 0 640 260" role="img" aria-label="Simplified air conditioning flow: engine bleed to pack, to mixer unit, then to cockpit, forward and aft cabin zones, with trim air added to each zone">
+<style>.b{fill:none;stroke:currentColor;stroke-width:1.6}.t{font:12px sans-serif;fill:currentColor}.h{stroke:#d9362a;stroke-width:2.2;fill:none}.c{stroke:#3f6fb0;stroke-width:2.2;fill:none}</style>
+<rect class="b" x="10" y="20" width="110" height="46" rx="6"/><text class="t" x="20" y="48">Engine bleed</text>
+<rect class="b" x="10" y="130" width="110" height="46" rx="6"/><text class="t" x="20" y="158">Pack (cools)</text>
+<rect class="b" x="210" y="75" width="120" height="56" rx="6"/><text class="t" x="222" y="100">Mixer unit</text><text class="t" x="222" y="118" style="font-size:10px">pack + recirc air</text>
+<rect class="b" x="210" y="180" width="120" height="40" rx="6"/><text class="t" x="222" y="205">Recirc fans + filters</text>
+<rect class="b" x="440" y="10" width="110" height="38" rx="6"/><text class="t" x="450" y="34">Cockpit zone</text>
+<rect class="b" x="440" y="85" width="110" height="38" rx="6"/><text class="t" x="450" y="109">Forward cabin</text>
+<rect class="b" x="440" y="160" width="110" height="38" rx="6"/><text class="t" x="450" y="184">Aft cabin</text>
+<path class="h" d="M65 66 V130"/><path class="c" d="M120 153 H165 V103 H210"/><path class="c" d="M270 180 V131"/>
+<path class="c" d="M330 103 H385 V29 H440 M385 103 H440 M385 103 V179 H440"/>
+<path class="h" d="M120 43 H395 V55 M395 43 V120 M395 43 V196" stroke-dasharray="5 4"/>
+<text class="t" x="125" y="38" style="font-size:11px;fill:#d9362a">hot air to trim air valves</text>
+<text class="t" x="560" y="34" style="font-size:11px">trim valve</text><text class="t" x="560" y="109" style="font-size:11px">trim valve</text><text class="t" x="560" y="184" style="font-size:11px">trim valve</text>
+<text class="t" x="10" y="245" style="font-size:11px">Red = hot bleed air · Blue = cooled air. Original schematic, simplified for study.</text></svg><div class="cap">Air conditioning flow, simplified</div></div>
+<h3 class="sub">Packs</h3>
+<ul>
+<li><strong>How many air conditioning packs does the A320 family have, and what normally feeds each one?</strong> Two packs; pack 1 is fed from the left engine bleed and pack 2 from the right engine bleed. Each pack is supplied by the bleed system on its own side in the normal configuration. The cross bleed valve can link the two sides, which is how one engine bleed can feed both packs.</li>
+<li><strong>What is the job of the pack flow control valve?</strong> It regulates the amount of bleed air entering the pack and closes to isolate the pack when required. Flow control is the valve's job; temperature is controlled elsewhere (the bypass valve and the ram air flap). The valve is electrically controlled and pneumatically operated.</li>
+<li><strong>What are the three positions of the PACK FLOW selector, and what do they do?</strong> LO, NORM and HI, which change the pack flow relative to normal. The selector only changes flow, never temperature. LO gives less flow than normal (around 80%), HI more (around 120%).</li>
+<li><strong>Approximately what pack flow do the LO and HI positions give compared with NORM?</strong> About 80% for LO and about 120% for HI. NORM is the reference, LO is roughly four fifths of it and HI roughly one fifth more. LO is used for a lightly loaded cabin to save fuel, HI to cool a full one.</li>
+<li><strong>When is HI pack flow selected automatically, regardless of the selector?</strong> When a single pack is operating, and when the packs are supplied by the APU bleed. With one pack lost, the remaining pack must supply the whole cabin, so the flow is raised automatically. The same applies when the APU is the bleed source.</li>
+<li><strong>Which flow setting should be considered when the cabin is lightly loaded, to reduce bleed demand?</strong> LO. A lightly loaded cabin needs less fresh air, so LO saves bleed air and therefore fuel. HI is used when the cabin is full or hot, or when only one pack is available.</li>
+<li><strong>What happens to a pack's flow control valve when its engine start is selected?</strong> It closes automatically so that the start is not penalised by the bleed demand. During engine start, bleed air must go to the starter, so the pack valve closes and the pack goes off line. It reopens once the start is finished.</li>
+<li><strong>Which of these events closes a pack flow control valve automatically?</strong> Pressing the engine fire pushbutton on the same side. A fire pushbutton shuts the bleed and the pack valve on that side. Ditching and a pack overheat also close it. Flow selection and temperature changes do not.</li>
+<li><strong>What does the DITCHING pushbutton do to the air conditioning system?</strong> It closes the pack flow control valves and the outflow valve, together with other openings in the fuselage lower skin. Ditching preparation seals the fuselage as far as possible so the aircraft floats longer. The pack valves, outflow valve and other skin openings are closed.</li>
+<li><strong>How is the temperature of the air leaving a pack primarily controlled?</strong> By the pack controller, which acts on the bypass valve and the ram air flow through the heat exchangers. The pack controller works out the demand from the zone controller and mixes hot bleed air around the cooling process with the bypass valve while the ram air flap sets the cooling.</li>
+<li><strong>In the pack's air cycle machine, what cools the air most strongly?</strong> Expansion of the air through a turbine, after it has already been cooled in the heat exchangers. The compressor raises pressure and temperature, the heat exchangers (cooled by ram air) take heat out, and the expansion through the turbine then drops the temperature sharply.</li>
+<li><strong>Which component removes the water from the air leaving the pack's turbine?</strong> The water extractor (condenser). Cooling the air to a low temperature condenses moisture, which the water extractor separates before the air enters the distribution system. Without it the ducts would fill with water and ice.</li>
+<li><strong>What is the purpose of the anti-ice valve inside a pack?</strong> To stop ice forming in the water extractor by modulating warm air to keep the outlet above freezing. The cold air leaving the turbine can carry water at a temperature low enough to freeze in the extractor; the anti-ice valve limits how cold it can get.</li>
+<li><strong>What does the pack overheat protection do?</strong> It closes the pack flow control valve and turns the pack off, with the PACK pushbutton FAULT light. An overheat means the pack's own cooling cannot cope, so the supply must be cut. The crew can try to reset it later once the pack has cooled.</li>
+</ul>
+<h3 class="sub">Zones</h3>
+<ul>
+<li><strong>What are the three temperature zones on an A320 cabin?</strong> The cockpit, the forward cabin and the aft cabin. Each zone has its own temperature selector on the overhead panel and its own trim air valve. The cargo compartments are not temperature zones in the same sense.</li>
+<li><strong>What is the range of the cabin zone temperature selectors?</strong> From about 18 °C to about 30 °C, with the middle position around 24 °C. The selectors are not calibrated to a precise value but the range of 18–30 °C is the commonly quoted one, with the mid position around 24 °C.</li>
+<li><strong>Which unit computes the target temperature for each zone and for the pack outlets?</strong> The zone controller. The zone controller compares the selected and actual temperatures of each zone and sends the demands to the pack controllers and the trim air valves.</li>
+<li><strong>What is the principle used to set the pack outlet temperature when the three zones want different temperatures?</strong> The packs deliver air at the temperature the coolest-demanding zone needs, and trim air warms the others. Trim air can only add heat; nothing downstream of the pack can cool the air again. So the pack makes air for the coldest need and trim air raises it where needed.</li>
+<li><strong>What do the trim air valves add to the air going to a zone?</strong> Hot bleed air, taken from upstream of the packs. Hot air is tapped from the bleed duct, passes through the hot air pressure regulating valve, and each zone's trim air valve adds the amount needed to reach the target temperature.</li>
+<li><strong>What happens to the trim air valves when the HOT AIR pushbutton is released (OFF) or a hot air fault occurs?</strong> The hot air valve and the trim air valves close, and the zones receive only pack air. Without trim air the packs' temperature alone governs the zones, which is why the cabin may become too cold in some zones.</li>
+<li><strong>What is the general role of the secondary channel of the zone controller?</strong> To take over if the primary channel fails, with less accurate temperature regulation. The zone controller has two channels so that a single failure does not lose temperature control. If both fail, the pack controllers regulate on fixed default values.</li>
+</ul>
+<h3 class="sub">Distribution</h3>
+<ul>
+<li><strong>What is the function of the mixer unit?</strong> To mix air from the packs with recirculated cabin air and distribute it to the cockpit and cabin ducts. Recirculated air reduces the fresh air that must be taken from the engines and so saves fuel. The mixer unit takes pack air and recirculated air and feeds the zones.</li>
+<li><strong>What is the purpose of the recirculation (cabin) fans?</strong> To draw cabin air through filters back into the mixer unit, reducing the bleed air that is needed. Every kilogram of recirculated air is a kilogram that does not have to be taken from the engine, which is what makes recirculation economical.</li>
+<li><strong>What does the CAB FANS pushbutton control?</strong> The cabin recirculation fans. The pushbutton on the overhead panel switches the recirculation fans on or off. They are on in normal operation.</li>
+<li><strong>Why are recirculation fans switched off in some abnormal situations (such as smoke)?</strong> So that smoke or contamination is not drawn around and redistributed through the cabin. Switching them off means the cabin air is made up only from fresh pack air, which is easier to control during smoke procedures.</li>
+<li><strong>Where does the air for the cockpit zone come from?</strong> From the mixer unit through its own duct, with its own trim air valve. All three zones are fed from the mixer unit; the trim air valves are what make each zone's temperature different.</li>
+</ul>
+<h3 class="sub">Emergency</h3>
+<ul>
+<li><strong>What does the RAM AIR pushbutton do when pressed?</strong> It opens the emergency ram air inlet so outside air can enter the mixer unit. The ram air inlet is a last-resort source of ventilation when both packs are lost or the cabin is filled with smoke.</li>
+<li><strong>What condition is required for the emergency ram air to actually flow into the cabin?</strong> The differential pressure must be low (below about 1 psi), otherwise the cabin pressure keeps the ram air valve from admitting air. Ram air pressure is small. If the cabin is pressurised above that, outside air cannot enter, which is why the cabin must be depressurised (outflow valve open) first.</li>
+<li><strong>With the RAM AIR pushbutton on and a low differential pressure, what else helps air flow through the cabin?</strong> The outflow valve opens so the air can leave. Air must have a path out of the aircraft as well as in. With cabin pressure at ambient, the outflow valve can open further to let the air pass.</li>
+</ul>
+<h3 class="sub">Indications</h3>
+<ul>
+<li><strong>What does the ECAM COND page show for each zone?</strong> The selected target and the actual temperature, together with the duct temperature. The COND page lets the crew see how zone temperatures are tracking their selection, and whether a duct temperature is rising towards its limit.</li>
+<li><strong>Which ECAM page shows the pack outlet temperatures and the pack flows?</strong> The BLEED page, which carries the pack parameters beside the bleed data. The pack outlet temperature and flow sit on the BLEED page with the bleed pressures and temperatures. The COND page is about zone and duct temperatures.</li>
+<li><strong>What does an amber PACK pushbutton FAULT light indicate?</strong> A pack fault, such as overheat or flow valve disagreement, so the pack is lost or its control is degraded. FAULT is an automatic indication. The crew then follows the ECAM, which can include selecting the pack off and increasing the flow of the remaining one.</li>
+</ul>
+<h3 class="sub">Ground</h3>
+<ul>
+<li><strong>Which source supplies the air conditioning packs on the ground with no engines running and the APU not available?</strong> A ground low pressure conditioned-air connection feeds the mixer unit directly. A low-pressure ground connection delivers conditioned air to the mixer unit, bypassing the packs entirely.</li>
+</ul>
+<h3 class="sub">Operation</h3>
+<ul>
+<li><strong>Why must the packs be off during the take-off roll in some performance-limited cases?</strong> Because bleed air taken for the packs reduces engine thrust, and turning them off gives a higher take-off performance. Bleed extraction costs thrust. A performance-limited take-off may be calculated with packs off, in which case they are switched back on after take-off, once the bleed is no longer a problem.</li>
+<li><strong>During a normal flight, which bleed source normally feeds the packs after the engines have started?</strong> The engine bleeds. The engines are the normal source in flight. The APU bleed may be used on the ground and in some failure conditions.</li>
+</ul>
+<div class="related"><span class="dot"></span> 35 linked questions in the bank</div>
+</section>
+<section class="sec" id="pressurization"><h2><span class="num">02</span> Pressurization <span class="en">29 questions</span></h2>
+<p class="lead">The packs push air in, one outflow valve lets it out, and the cabin pressure controllers decide how far the valve is open. Two safety valves stand behind it. Cabin altitude, cabin rate and differential pressure are the three numbers to watch.</p>
+<div class="diagram"><svg viewBox="0 0 640 210" role="img" aria-label="Simplified pressurization: packs push air into the cabin, one outflow valve at the rear lets it out, two safety valves protect against over- and under-pressure">
+<style>.b{fill:none;stroke:currentColor;stroke-width:1.6}.t{font:12px sans-serif;fill:currentColor}.c{stroke:#3f6fb0;stroke-width:2.2;fill:none}</style>
+<rect class="b" x="60" y="60" width="440" height="90" rx="44"/><text class="t" x="230" y="110">Pressurised cabin</text>
+<rect class="b" x="5" y="15" width="85" height="34" rx="6"/><text class="t" x="14" y="37">Packs (in)</text>
+<path class="c" d="M48 49 V80 H80"/>
+<rect class="b" x="440" y="160" width="130" height="36" rx="6"/><text class="t" x="448" y="183">Outflow valve (out)</text>
+<path class="c" d="M470 150 V160"/>
+<rect class="b" x="300" y="14" width="150" height="34" rx="6"/><text class="t" x="308" y="36">2 safety valves</text>
+<path class="c" d="M370 48 V60"/>
+<text class="t" x="10" y="200" style="font-size:11px">CPC drives the outflow valve; the safety valves open only if control fails. Original schematic.</text></svg><div class="cap">Pressurization, simplified</div></div>
+<h3 class="sub">Principles</h3>
+<ul>
+<li><strong>Why is the cabin pressurised?</strong> So that occupants experience a much lower cabin altitude than the aircraft's real altitude. A pressurised cabin keeps the occupants at an altitude where oxygen is available in adequate quantity. The skin is in fact stressed by the pressure difference, which is why the differential pressure is limited.</li>
+<li><strong>What is meant by differential pressure (ΔP)?</strong> The cabin pressure minus the outside ambient pressure. ΔP is what loads the fuselage structure. The system controls cabin altitude and rate of change so that ΔP remains inside structural limits.</li>
+<li><strong>How is the aircraft pressurised in flight, in simple terms?</strong> Air supplied by the packs fills the cabin faster than the outflow valve lets it escape, so the cabin pressure rises above ambient. The air conditioning flow supplies a constant mass of air. The pressure of the cabin is set by how much the outflow valve restricts the exit.</li>
+<li><strong>Why does the cabin altitude in cruise stay well below the aircraft's flight level?</strong> The system maintains a cabin pressure above ambient, within the structural ΔP limit. At FL390 the cabin altitude is typically around 7 000–8 000 ft, which requires about 8 psi of ΔP.</li>
+</ul>
+<h3 class="sub">Controllers</h3>
+<ul>
+<li><strong>How many cabin pressure controllers (CPCs) are installed, and how do they operate?</strong> Two; one controls at a time and the other is in standby, and they swap roles after each flight. Only one CPC is active, and the roles alternate on each landing so both are exercised. If the active one fails, the standby takes over automatically.</li>
+<li><strong>What happens when the active cabin pressure controller fails?</strong> The other controller takes over automatically. The system is built to remain automatic after one failure. Only a failure of both controllers sends the crew to manual mode.</li>
+<li><strong>What controls the outflow valve in normal operation?</strong> One of the cabin pressure controllers, using the automatic motors. The CPC drives the outflow valve to follow the pressurisation schedule it computes from flight data.</li>
+<li><strong>Which data does the cabin pressure controller use to compute the pressurisation schedule in automatic mode?</strong> Landing elevation, destination QNH and cruise altitude from the FMGS, plus aircraft altitude and air/ground status. The system anticipates the descent: it needs to know where it is going (destination elevation and pressure) and how high it will cruise so that cabin altitude can follow a smooth schedule.</li>
+</ul>
+<h3 class="sub">Outflow valve</h3>
+<ul>
+<li><strong>How many outflow valves does the A320 have, and how are they driven?</strong> One outflow valve, driven by one of three electric motors: two automatic and one manual. The two automatic motors are used by the CPCs; the manual motor is used when the MODE SEL is set to MAN, via the MAN V/S CTL switch.</li>
+<li><strong>Where is the outflow valve located?</strong> On the lower rear fuselage, near the aft pressure bulkhead. It discharges cabin air overboard in the aft underside of the fuselage, which also gives a small thrust benefit as the air leaves.</li>
+</ul>
+<h3 class="sub">Controls</h3>
+<ul>
+<li><strong>What does the LDG ELEV selector do in AUTO?</strong> The landing elevation is taken automatically from the FMGS destination data. If the FMGS data are unavailable, the crew sets the landing elevation manually with the selector, so the CPC can still plan the descent.</li>
+<li><strong>What is the range of the manually selectable landing elevation on the LDG ELEV selector?</strong> From about –2 000 ft to about 14 000 ft. The range covers any airport a transport aircraft will use. The selected value is displayed on the PRESS page.</li>
+<li><strong>What does setting the MODE SEL to MAN do?</strong> It disables the automatic CPC control and gives the crew control of the outflow valve through the MAN V/S CTL switch. In manual mode the crew controls the vertical speed of the cabin altitude (up or down), and must manage the cabin altitude and ΔP by monitoring the ECAM.</li>
+<li><strong>With the MODE SEL in MAN, what does moving the MAN V/S CTL switch to UP do?</strong> It drives the outflow valve towards open, increasing cabin altitude. UP means up with the cabin altitude, which is the outflow valve opening and the cabin pressure falling. DN closes the valve so the cabin pressure rises.</li>
+</ul>
+<h3 class="sub">Operation</h3>
+<ul>
+<li><strong>Why is the outflow valve driven to open fully shortly after landing?</strong> So the cabin is fully depressurised and the doors can be opened safely. After touchdown the CPC drives the valve open and the cabin ΔP is brought to zero, which also matters for door safety.</li>
+<li><strong>What is pre-pressurisation, and when is it done?</strong> A small cabin pressure increase on the ground before take-off, so that rotation does not cause a pressure bump. On take-off the cabin altitude is first driven slightly below the airfield elevation, which avoids a sudden pressure change when the aircraft rotates and the thrust changes.</li>
+<li><strong>Which statement describes the cabin altitude during the climb in automatic mode?</strong> It increases gradually at a controlled rate, following a schedule that depends on the aircraft altitude. The CPC limits the cabin rate of climb so passengers are comfortable, and the cabin altitude in cruise is kept well below the aircraft altitude.</li>
+<li><strong>During the descent in automatic mode, what determines the cabin altitude the system aims for at landing?</strong> The landing field elevation, so that the cabin pressure equals the field pressure on touchdown. The CPC wants the cabin pressure to equal the outside pressure at touchdown, so the outflow valve can open and the doors can open without a pressure difference.</li>
+<li><strong>How does the DITCHING pushbutton affect the outflow valve?</strong> It closes the outflow valve. A closed outflow valve means the water cannot enter through the valve opening during a ditching.</li>
+</ul>
+<h3 class="sub">Safety</h3>
+<ul>
+<li><strong>What is the purpose of the two safety valves?</strong> To prevent excessive positive differential pressure and to provide a negative relief function, as a back-up to the outflow valve. The safety valves are not normally used for control. They open mechanically if the cabin ΔP gets too high or negative.</li>
+<li><strong>At what differential pressure do the safety valves open, approximately?</strong> About 8.6 psi. The normal maximum ΔP is about 8.06 psi; the safety valves lie just above it, to open only when the normal control has failed.</li>
+<li><strong>What is the approximate maximum normal differential pressure of the A320 family in automatic control?</strong> About 8 psi (8.06 psi). Cabin ΔP is a structural limit: the fuselage is designed to carry it, and the system keeps the cabin altitude as low as that limit allows at the maximum operating altitude.</li>
+<li><strong>What does the negative pressure relief protect against?</strong> A situation where the outside pressure is higher than the cabin pressure, for example in a rapid descent without enough outflow. A negative ΔP loads the structure in the opposite direction. The safety valves are arranged to open inward, so that the cabin pressure never falls too far below ambient.</li>
+</ul>
+<h3 class="sub">Warnings</h3>
+<ul>
+<li><strong>At approximately what cabin altitude is the CAB PR EXCESS CAB ALT warning triggered?</strong> About 9 550 ft. Above this altitude the ECAM tells the crew that the cabin altitude is excessive. A further rise to 14 000 ft causes the passenger oxygen masks to deploy.</li>
+<li><strong>At approximately what cabin altitude do the passenger oxygen masks drop automatically?</strong> About 14 000 ft. The masks present automatically at around 14 000 ft cabin altitude. The cockpit crew must use their own oxygen masks as soon as the warning appears.</li>
+</ul>
+<h3 class="sub">Indications</h3>
+<ul>
+<li><strong>What does the PRESS page of the ECAM show?</strong> Cabin altitude, cabin vertical speed, differential pressure, outflow valve position, safety valve position and the CPC in control. It is the page to watch for any pressurisation fault, and it is displayed automatically when an advisory or fault occurs in the system.</li>
+</ul>
+<h3 class="sub">Failures</h3>
+<ul>
+<li><strong>What happens when both CPCs have failed?</strong> A CAB PR SYS 1+2 FAULT message appears and the crew must control the outflow valve manually. The manual motor and the MAN V/S CTL switch remain available, so the crew can maintain a comfortable cabin altitude manually.</li>
+<li><strong>In manual pressurisation mode, who is responsible for avoiding exceeding the maximum cabin ΔP?</strong> The crew, by monitoring the cabin altitude, ΔP and V/S on the ECAM. The safety valves remain as a last resort, but should not be used for control. In manual mode the crew has to manage everything.</li>
+<li><strong>Which procedure follows a cabin altitude excess warning if the cabin cannot be controlled?</strong> Crew oxygen masks on, then an emergency descent to a safe altitude. Hypoxia is the first danger. The crew puts on their masks and begins the descent to an altitude where the cabin altitude no longer matters.</li>
+</ul>
+<div class="related"><span class="dot"></span> 29 linked questions in the bank</div>
+</section>
+<section class="sec" id="ventilation"><h2><span class="num">03</span> Ventilation <span class="en">17 questions</span></h2>
+<p class="lead">Avionics, cabin extraction and cargo each have their own ventilation. The avionics system is run by a computer that picks its configuration by itself, including a smoke configuration.</p>
+<h3 class="sub">Avionics</h3>
+<ul>
+<li><strong>What is the purpose of the avionics ventilation system?</strong> To cool the electronic equipment in the avionics bay and the cockpit panels, and to remove smoke from them. Avionics generate heat and are sensitive to temperature. The system circulates air through the avionics bay and cockpit instrument panels and extracts it overboard.</li>
+<li><strong>Which two fans are part of the avionics ventilation system?</strong> A blower fan and an extract fan. The blower fan pushes air into the system and the extract fan draws it out. A fault in either one is shown by a light on the overhead panel.</li>
+<li><strong>Which unit decides the configuration of the avionics ventilation system automatically?</strong> The avionics equipment ventilation computer (AEVC). The AEVC selects the valve positions and fan operation according to ground/flight status and skin temperature, and monitors for smoke.</li>
+<li><strong>Which configurations does the avionics ventilation system have?</strong> An open circuit, a closed circuit, an intermediate configuration and a smoke configuration. The configurations are selected automatically according to temperature and ground/flight conditions, and the smoke configuration overrides the others.</li>
+<li><strong>What happens to the avionics ventilation in the smoke configuration?</strong> Air is not recirculated and is extracted overboard, with fresh cabin air as the source. In the smoke configuration the system draws in conditioned air and extracts the smoke directly overboard, with no recirculation, so that smoke is cleared from the avionics bay.</li>
+<li><strong>What does the skin heat exchanger do in the closed circuit configuration?</strong> It cools the avionics ventilation air using the cold of the fuselage skin. In flight the outer skin is cold. In closed circuit the air passes alongside the skin and gives up its heat, with no air taken from or sent to the cabin.</li>
+<li><strong>Which light on the overhead panel shows a fault in the avionics ventilation blower fan?</strong> The BLOWER FAULT light. There are separate BLOWER and EXTRACT lights on the VENTILATION panel. Each one comes on, amber, when its fan has a fault or is overheating.</li>
+<li><strong>What is the source of air for the avionics ventilation system in the open circuit configuration?</strong> Air from the cabin, which is then extracted overboard. In open circuit the air is drawn in, passes through the equipment and goes directly overboard, with no recirculation. It is used when cooling needs are high on the ground.</li>
+<li><strong>In which situation is the avionics ventilation closed circuit configuration typically used?</strong> In flight, when the fuselage skin is cold enough to cool the air. The skin is cooled by the outside air in flight, so recirculating avionics air against it is efficient and uses no cabin air.</li>
+<li><strong>What does the ECAM show in the event of an avionics ventilation fault?</strong> A caution message with the affected fan or the system, such as BLOWER FAULT or EXTRACT FAULT. Faults of this kind are cautions: an amber message and the master caution, with the relevant light on the panel.</li>
+<li><strong>What does the abbreviation AEVC stand for?</strong> Avionics equipment ventilation computer. The AEVC runs the avionics ventilation system. Its name tells you what it does: it controls the ventilation of the avionics equipment.</li>
+</ul>
+<h3 class="sub">Cabin</h3>
+<ul>
+<li><strong>What is the effect of the CAB FANS pushbutton?</strong> It starts or stops the cabin recirculation fans. The pushbutton is on the air conditioning panel. The avionics fans are automatic, with only an override on the ventilation panel.</li>
+<li><strong>How is the air from the lavatories and galleys removed from the cabin?</strong> By an extraction fan, and the air is discharged overboard through the outflow valve area. The extraction system prevents odours spreading in the cabin and keeps the lavatory at a slightly lower pressure than the cabin.</li>
+<li><strong>What is the primary purpose of the cabin air filters upstream of the recirculation fans?</strong> To remove dust and contamination from the air before it is recirculated into the mixer unit. Clean recirculated air keeps the ducts and the mixer unit clean and improves cabin air quality.</li>
+</ul>
+<h3 class="sub">Cargo</h3>
+<ul>
+<li><strong>What is the effect on cargo compartment ventilation if the isolation valves are closed?</strong> The cargo compartment is separated from the cabin ventilation system, so its air is not shared. Isolation valves let the cargo compartment ventilation be isolated from the rest, for instance in a smoke procedure.</li>
+<li><strong>What happens to the ventilation of the forward cargo compartment during the cargo smoke procedure?</strong> Its ventilation is isolated, so smoke is not spread to the rest of the aircraft. The aim of the procedure is to contain the smoke and fire so that it does not spread; isolating the ventilation is the first of those steps.</li>
+<li><strong>Which pushbutton isolates the cargo compartment ventilation, and how is it indicated?</strong> The ISOL VALVES pushbuttons on the cargo ventilation panel, with an OFF light. Cargo ventilation is controlled from a dedicated panel, where each isolation valve and extract fan has its own switch.</li>
+</ul>
+<div class="related"><span class="dot"></span> 17 linked questions in the bank</div>
+</section>
+<section class="sec" id="pneumatic"><h2><span class="num">04</span> Pneumatic (Bleed Air) <span class="en">19 questions</span></h2>
+<p class="lead">Each engine bleeds air from two compressor stages, regulates it to a fixed pressure, and cools it in a pre-cooler. The APU and a ground cart are the other sources; the cross bleed valve joins the two sides.</p>
+<h3 class="sub">Sources</h3>
+<ul>
+<li><strong>What are the three sources of bleed air on the A320 family?</strong> The engines, the APU and a low pressure or high pressure ground connection. The engines are the normal source in flight, the APU on the ground (and in some abnormal cases in flight), and a ground cart can start the engines or supply the packs.</li>
+</ul>
+<h3 class="sub">Engine bleed</h3>
+<ul>
+<li><strong>From which part of the engine is bleed air taken?</strong> From two compressor stages, an intermediate stage and a high stage. The intermediate stage is used when it gives enough pressure, and the high pressure stage valve opens when it does not, mainly at low power and high altitude.</li>
+<li><strong>When does the high pressure (HP) bleed valve open?</strong> When the intermediate pressure is insufficient, for example at low engine power. The intermediate stage is preferred because it is cheaper in terms of engine efficiency. The HP stage is brought in only to keep enough pressure in the duct.</li>
+<li><strong>Which unit controls each engine's bleed system?</strong> The engine bleed monitoring computer (BMC). Each engine has its own BMC which regulates the pressure and temperature and monitors for leaks, overpressure and overheat.</li>
+<li><strong>What does the pressure regulating valve (PRV) of the engine bleed do?</strong> It regulates the bleed pressure to a constant value (about 45 psi) and acts as a shut-off valve. The PRV is a pneumatically operated, electrically controlled valve. It closes on a fire pushbutton, an overpressure, an overheat or when the engine is not running.</li>
+<li><strong>What cools the engine bleed air before it enters the aircraft's duct?</strong> A pre-cooler, which uses fan air as the cooling medium. The pre-cooler takes fan air to reduce the temperature of the bleed air to a controlled value (about 200 °C) before it flows towards the packs.</li>
+<li><strong>Which duct pressure is typical of the A320 bleed system during normal operation?</strong> About 40 to 45 psi. The bleed is regulated to this level, which is enough for the packs and the other users but low enough for the duct structure.</li>
+</ul>
+<h3 class="sub">Distribution</h3>
+<ul>
+<li><strong>What does the cross bleed valve do?</strong> It connects or isolates the left and right bleed ducts. With it open, one bleed source can supply both packs and the wing anti-ice on both sides.</li>
+<li><strong>In which position is the X BLEED selector for normal operation?</strong> AUTO. In AUTO the valve opens or closes automatically according to which sources are available and the APU bleed status. SHUT and OPEN are crew overrides.</li>
+<li><strong>What is the normal status of the cross bleed valve in AUTO with the APU bleed supplying the aircraft?</strong> Open. With the APU bleed supplying the system, the valve opens so both sides can be supplied from the single source.</li>
+<li><strong>What happens to the APU bleed valve when an engine bleed is switched on, in normal operation?</strong> The APU bleed valve closes, as the engine bleeds have priority over the APU. Engine bleed has priority over the APU. This stops the APU supplying the packs while the engines are available, saving APU fuel flow and load.</li>
+<li><strong>What is the effect of selecting the ENG BLEED pushbutton OFF?</strong> The bleed valve and the HP bleed valve close and the bleed is isolated from the system. OFF isolates the engine from the bleed system. It does not affect engine operation but removes the bleed supply on that side.</li>
+<li><strong>What is the effect of a closed cross bleed valve if one engine bleed is lost?</strong> The pack on the side with the lost bleed cannot be supplied by the other engine. Cross bleed lets one source feed both sides. If it is closed, the pack on the failed side is lost.</li>
+</ul>
+<h3 class="sub">Faults</h3>
+<ul>
+<li><strong>Which indication shows a bleed leak in the wing, pylon or fuselage ducts?</strong> A BLEED LEAK or BLEED DUCT LEAK message, based on leak detection loops. The leak detection loops sense hot air escaping from the ducts. The affected bleed is isolated automatically.</li>
+<li><strong>What happens to an engine bleed when an overheat is detected by the BMC?</strong> The bleed valve closes automatically and the BLEED FAULT light comes on. Closing the valve protects the ducts and wings from overheat. The crew then follows the ECAM actions.</li>
+<li><strong>What does the engine bleed FAULT light mean?</strong> An overpressure, overtemperature or a leak has caused the bleed to close, or the bleed valve is in the wrong position. A FAULT is an automatic message. OFF is shown when the pushbutton is released by the crew.</li>
+</ul>
+<h3 class="sub">Users</h3>
+<ul>
+<li><strong>Which of the following is supplied by the bleed air system besides the packs?</strong> Wing anti-ice, engine start, hydraulic reservoir pressurisation and the water tank pressurisation. Bleed air is used wherever an air supply is needed: anti-ice, the starter turbine, pressurising the hydraulic reservoirs and the potable water.</li>
+<li><strong>Which anti-ice system uses bleed air on the A320 family?</strong> Wing anti-ice (and engine anti-ice from its own engine's bleed). Wing and engine anti-ice are pneumatic. Windshield, probes and sensors use electric heating.</li>
+</ul>
+<h3 class="sub">Indications</h3>
+<ul>
+<li><strong>How does the ECAM BLEED page show the bleed status?</strong> With engine bleed temperature, pressure, valve positions, cross bleed valve and the pack flow. The page gives a diagram of the whole pneumatic system, so the crew can see the source of the air and whether the valves are open.</li>
+</ul>
+<div class="related"><span class="dot"></span> 19 linked questions in the bank</div>
+</section>
+<section class="sec" id="electrical"><h2><span class="num">05</span> Electrical <span class="en">25 questions</span></h2>
+<p class="lead">Two IDG-driven generators are the normal source, with the APU generator and external power as alternatives. Know which bus feeds what, in what order sources take over, and how the emergency generator and batteries carry the essential buses.</p>
+<h3 class="sub">Sources</h3>
+<ul>
+<li><strong>What are the normal sources of AC power on the A320 family in flight?</strong> Two engine-driven generators, each driven through an integrated drive generator (IDG). In flight each engine drives its own IDG. The IDG keeps the frequency constant regardless of engine speed, which is what AC users need.</li>
+<li><strong>What does an IDG do?</strong> It combines a constant speed drive and an AC generator, so the frequency stays at 400 Hz whatever the engine speed. A generator's frequency follows its shaft speed. The constant-speed drive in the IDG holds the shaft speed steady, so the output frequency does not follow the engine.</li>
+<li><strong>What is the rated output of each main AC generator (IDG) and of the APU generator?</strong> 90 kVA each. The 90 kVA figure is the same for the IDGs and the APU generator. The emergency generator is far smaller, at about 5 kVA.</li>
+<li><strong>What are the AC voltage and frequency of the main generators?</strong> 115/200 V, 400 Hz, three-phase. These are the standard aircraft AC values. The DC buses run at 28 V.</li>
+<li><strong>What is the external power voltage and frequency?</strong> 115 V AC, 400 Hz. It is the same as the aircraft's own power: external power can be connected to both AC buses via the external power contactor.</li>
+<li><strong>Which source has priority on the ground: external power or the APU generator?</strong> External power. If external power is available and its pushbutton is on, it takes over from the APU generator. The AVAIL light shows it is ready.</li>
+</ul>
+<h3 class="sub">Distribution</h3>
+<ul>
+<li><strong>Which generator has priority to supply the AC buses when the engine generators are running?</strong> The engine generators, each supplying its own side. The engine generators take priority over the APU and external power in normal configuration. Each one feeds its own AC bus.</li>
+<li><strong>How is the AC bus tie operated in normal conditions?</strong> Automatically, so that a bus that loses its generator is supplied from the other source available. If one generator is lost, the bus tie contactor closes so the remaining generator or the APU supplies both AC buses, within the limits of the electrical load.</li>
+<li><strong>What are the two main AC buses called?</strong> AC BUS 1 and AC BUS 2. AC BUS 1 is normally supplied from generator 1 and AC BUS 2 from generator 2. Each of them feeds a transformer rectifier, and a part of the aircraft's loads.</li>
+<li><strong>What is the AC ESS BUS, and how is it normally supplied?</strong> It supplies the essential AC users and is normally fed from AC BUS 1. If AC BUS 1 is lost, the AC ESS BUS can be switched to AC BUS 2 with the AC ESS FEED pushbutton or automatically.</li>
+<li><strong>What is the purpose of the AC ESS SHED BUS?</strong> It supplies less important essential loads, which are shed in emergency electrical configuration to save power. In the emergency configuration, the emergency generator has limited capacity, so some of the essential users are disconnected.</li>
+<li><strong>What are the transformer rectifiers (TRs) for?</strong> They convert 115 V AC into 28 V DC. The A320 has TR 1, TR 2 and an ESS TR. They feed the DC buses and charge the batteries.</li>
+<li><strong>How many transformer rectifiers does the A320 have?</strong> Three: TR 1, TR 2 and ESS TR. TR 1 and TR 2 supply DC BUS 1 and DC BUS 2 respectively; the ESS TR supplies the DC ESS BUS and is normally fed from AC ESS BUS.</li>
+<li><strong>Which buses are the main DC buses?</strong> DC BUS 1 and DC BUS 2, supplied by TR 1 and TR 2. The DC ESS BUS and the DC BAT BUS are additional buses; the DC buses 1 and 2 are the main ones.</li>
+<li><strong>What happens if an engine generator fails in flight and the other still works?</strong> The bus tie connects both AC buses to the remaining generator, and some galley loads may be shed. The system is designed to continue normally on one generator. The remaining generator can be relieved by the APU generator when it is available.</li>
+<li><strong>What does the GALLEY pushbutton control?</strong> The supply of power to the galley and commercial loads, which can be shed to reduce the electrical load. Galley loads are large. In an abnormal electrical situation, they are the first to be disconnected.</li>
+</ul>
+<h3 class="sub">Batteries</h3>
+<ul>
+<li><strong>How many batteries does the A320 have, and what voltage?</strong> Two, each 28 V. The batteries are connected to the DC BAT BUS through the battery charge limiters. They supply the aircraft before the generators come on and in an emergency.</li>
+<li><strong>What happens during a battery check on the ground?</strong> With the battery pushbuttons in AUTO, the battery voltage is checked on the ECAM, at least 25.5 V each. This simple check is done before using the batteries: if the voltage is lower, the battery is not considered serviceable.</li>
+</ul>
+<h3 class="sub">Emergency</h3>
+<ul>
+<li><strong>What is the emergency electrical source if both main AC generators fail in flight?</strong> The emergency generator, driven by the Blue hydraulic system through the ram air turbine (RAT). The RAT extends automatically and drives a hydraulic pump (Blue), which drives the emergency generator. The batteries cover the gap until it comes on line.</li>
+<li><strong>How is the RAT extended when both AC BUS 1 and AC BUS 2 are lost?</strong> Automatically (and manually with the guarded pushbutton on the overhead panel). Automatic deployment is triggered by the loss of both AC buses in flight. A manual back-up is also provided on the EMER ELEC PWR panel.</li>
+<li><strong>What is the emergency generator's rated power?</strong> About 5 kVA. It is deliberately small: it can supply only the essential loads, and that is why some are shed in emergency configuration.</li>
+<li><strong>What is the function of the static inverter?</strong> It converts battery DC into AC to supply the AC ESS BUS during the transition to the emergency configuration. While the RAT is extending and the emergency generator is coming on line, the batteries supply the AC ESS BUS through the static inverter.</li>
+</ul>
+<h3 class="sub">Generators</h3>
+<ul>
+<li><strong>What does pressing the IDG pushbutton do (guarded)?</strong> It disconnects the IDG from the engine, and it cannot be reconnected in flight. The disconnection is mechanical, and it is used for an IDG oil overheat or low oil pressure. The reconnection can only be done on the ground, by maintenance.</li>
+<li><strong>In which condition must the IDG disconnect pushbutton not be used?</strong> With the engine stopped, as the disconnect mechanism could be damaged. The disconnection is only effective with the engine turning. With the engine stopped, the mechanism could be damaged.</li>
+<li><strong>What controls each generator's voltage regulation and protection?</strong> The generator control unit (GCU). The GCU regulates the voltage, and protects the generator and the network from overvoltage, undervoltage, overcurrent, etc. The BPCU controls the contactors.</li>
+</ul>
+<div class="related"><span class="dot"></span> 25 linked questions in the bank</div>
+</section>
+<section class="sec" id="hydraulics"><h2><span class="num">06</span> Hydraulics <span class="en">16 questions</span></h2>
+<p class="lead">Green, Blue and Yellow, each at 3 000 psi and each independent. The PTU shares power between Green and Yellow without sharing fluid; the RAT drives Blue in an emergency.</p>
+<h3 class="sub">Architecture</h3>
+<ul>
+<li><strong>How many independent hydraulic systems does the A320 family have?</strong> Three: Green, Blue and Yellow. Having three independent systems gives redundancy for flight controls, landing gear and brakes. Each has its own reservoir and pumps.</li>
+<li><strong>What is the normal operating pressure of the hydraulic systems?</strong> 3 000 psi. All three systems run at 3 000 psi. Each has a pressure transducer which feeds the ECAM.</li>
+<li><strong>What type of fluid is used in the hydraulic systems?</strong> A phosphate ester fluid (Skydrol type), which is fire-resistant. It is fire resistant but aggressive to some paints and skin, so it needs to be handled carefully.</li>
+<li><strong>Why are the hydraulic reservoirs pressurised?</strong> With bleed air, to prevent pump cavitation and foaming, particularly at altitude. Pressurised reservoirs ensure a positive pump inlet pressure so the pumps do not cavitate as the air thins at altitude.</li>
+</ul>
+<h3 class="sub">Pumps</h3>
+<ul>
+<li><strong>Which pump powers the Green hydraulic system?</strong> An engine-driven pump (EDP) on engine 1. The Green system relies on engine 1's pump alone. Yellow has an EDP on engine 2 plus an electric pump.</li>
+<li><strong>Which pump powers the Yellow hydraulic system in normal flight?</strong> An engine-driven pump (EDP) on engine 2. The Yellow system also has an electric pump, used on the ground (for cargo doors and parking) and as back-up. There is a hand pump too.</li>
+<li><strong>Which pump powers the Blue hydraulic system normally?</strong> An electric pump. The Blue system has no engine-driven pump. The RAT can drive the Blue system in an emergency.</li>
+</ul>
+<h3 class="sub">PTU</h3>
+<ul>
+<li><strong>What is the function of the power transfer unit (PTU)?</strong> To transfer hydraulic power between the Green and Yellow systems without transferring fluid. The PTU has a hydraulic motor in one system driving a pump in the other, so a system with low pressure can be powered by the other, without any fluid crossing.</li>
+<li><strong>Between which systems does the PTU operate?</strong> Green and Yellow. The Blue system is isolated from the PTU, so a Blue failure can never contaminate the other two.</li>
+<li><strong>When does the PTU start working automatically?</strong> When the pressure difference between the Green and Yellow systems is more than about 500 psi. It works in both directions, depending on which system has lower pressure. It is inhibited in some ground conditions.</li>
+</ul>
+<h3 class="sub">RAT</h3>
+<ul>
+<li><strong>What drives the RAT, and what does it supply?</strong> Ram air drives a hydraulic pump which pressurises the Blue system. The Blue system powers the emergency generator, so the RAT supplies both hydraulic power and electrical power in an emergency.</li>
+</ul>
+<h3 class="sub">Protection</h3>
+<ul>
+<li><strong>What is the effect of pressing an engine's fire pushbutton on its engine-driven hydraulic pump?</strong> The hydraulic fire shut-off valve closes, so fluid stops flowing to the pump. The fire valve prevents hydraulic fluid from feeding a fire in the engine nacelle.</li>
+</ul>
+<h3 class="sub">Indications</h3>
+<ul>
+<li><strong>What indicates a low reservoir fluid level in the ECAM hydraulic page?</strong> The reservoir quantity indication and the LO LVL message. The quantity is displayed in the reservoir symbol for each system, and a low-level message follows when it goes below the limit.</li>
+</ul>
+<h3 class="sub">Services</h3>
+<ul>
+<li><strong>Which of the following is NOT powered by hydraulics?</strong> The windshield wipers. Most services are hydraulic, but windshield wipers are electric motors.</li>
+<li><strong>Why is it possible to operate the cargo doors with the engines off?</strong> The Yellow electric pump, or the hand pump, can pressurise the Yellow system. The Yellow system has an electric pump for ground use, and also a hand pump so the cargo door can be operated without any electric power.</li>
+</ul>
+<h3 class="sub">Failures</h3>
+<ul>
+<li><strong>What happens if the Green and Yellow systems both lose pressure in flight?</strong> The Blue system and the RAT continue to power the essential flight controls. The Blue system, with the RAT, powers the essential controls. This is why all three systems are independent.</li>
+</ul>
+<div class="related"><span class="dot"></span> 16 linked questions in the bank</div>
+</section>
+<section class="sec" id="fuel"><h2><span class="num">07</span> Fuel <span class="en">18 questions</span></h2>
+<p class="lead">Centre tank first, then the wing tanks. Two pumps per tank, a normally closed crossfeed valve, and gravity feed as the last resort. Balance matters because the wing tanks carry the wing's bending relief.</p>
+<h3 class="sub">Architecture</h3>
+<ul>
+<li><strong>Which tanks make up the basic A320 fuel system?</strong> A left wing tank, a right wing tank and a centre tank. The wing tanks each have an inner and an outer cell. The centre tank lies in the wing box between the wings. Additional centre tanks (ACTs) may be fitted as an option.</li>
+<li><strong>Where does the fuel tank venting of the A320 discharge?</strong> Through vent surge tanks at the wing tips, with NACA inlets and outlets. Surge tanks collect any fuel that is pushed out by thermal expansion and return it to the tanks, and let air in as fuel is used.</li>
+</ul>
+<h3 class="sub">Pumps</h3>
+<ul>
+<li><strong>How many fuel pumps are there in the centre tank and in each wing tank?</strong> Two in the centre tank and two in each wing tank. Having two pumps in each tank means one pump failure does not stop the supply. Each pump has its own pushbutton on the overhead panel.</li>
+<li><strong>What happens when a wing tank pump fails and the other pump in the same tank is working?</strong> The remaining pump supplies the engine, and the ECAM shows a low pressure message for the failed pump. One pump per tank is enough to supply the engine, so a single pump failure does not require action beyond following the ECAM.</li>
+</ul>
+<h3 class="sub">Fuel feed</h3>
+<ul>
+<li><strong>Which tank is used first in normal operation, and why?</strong> The centre tank, so the wing tanks stay full, giving wing bending relief. Fuel in the wings reduces the bending moment at the wing root, so it is kept as long as possible. The centre tank fuel is used first.</li>
+<li><strong>How is the centre tank fuel used before the wing tank fuel when all the pumps are operating?</strong> The centre tank pumps deliver at a higher pressure than the wing tank pumps, so they supply the engines first. The higher pressure of the centre tank pumps keeps the wing tank feed valves closed (no flow from the wing pump) while there is fuel in the centre tank.</li>
+<li><strong>How does the fuel get from the outer cells to the inner cells of the wing tanks?</strong> By gravity and by transfer valves that open when the inner cell reaches a low level. Outer cell fuel flows to the inner cell by a transfer valve. This keeps the fuel weight in the outer wing longer, helping the wing bending moment.</li>
+<li><strong>What does the crossfeed valve do?</strong> It lets one side's pumps feed both engines, or lets either engine be fed from the other side's tank. It is normally closed. It is opened in some failures, for instance when a wing tank pump fails or the fuel imbalance has to be corrected.</li>
+<li><strong>What is the normal position of the crossfeed valve?</strong> Closed, with each engine feeding from its own wing tank. Each engine is normally supplied by its own side. The crossfeed is used only to correct an imbalance or deal with a pump failure.</li>
+<li><strong>If both wing tank pumps on one side fail, how is the engine fed?</strong> By gravity feed from the wing tank (within altitude limits), or through the crossfeed from the other side. Each engine can draw fuel from its wing tank by gravity, with restrictions on altitude, but opening the crossfeed to use the other side's pumps is the preferred solution.</li>
+<li><strong>What is the effect of selecting a centre tank pump pushbutton OFF with fuel remaining in the tank?</strong> The centre tank fuel is not used, and the wing tank pumps take over feeding the engines. With the centre tank pumps off, the wing tank pumps supply the engines. The fuel in the centre tank would be unusable for the remainder of the flight, so it affects range and balance.</li>
+</ul>
+<h3 class="sub">APU</h3>
+<ul>
+<li><strong>Which fuel supplies the APU?</strong> The left side's fuel system, through the left fuel feed line. The APU takes fuel from the left side feed line, and the fuel pump of the APU is used if the tank pumps are not running.</li>
+</ul>
+<h3 class="sub">Indications</h3>
+<ul>
+<li><strong>What does the fuel quantity indication (FQI) system measure?</strong> The fuel quantity in each tank, using capacitance probes. Capacitance probes measure the quantity (and so the weight, with the density) in the tank. The result goes to the ECAM and the FOB display.</li>
+<li><strong>What is FOB?</strong> Fuel on board: the total quantity of fuel in the tanks. FOB is shown on the upper ECAM and compared with the FMS fuel prediction. It can be confirmed against the fuel used from the engines.</li>
+<li><strong>At what wing tank fuel quantity does the L(R) WING TK LO LVL warning appear on the A320?</strong> When the fuel quantity in a wing tank is below about 750 kg. The low level warning is based on the quantity in the inner cell. It is a warning because below that level the supply to the engine is limited.</li>
+</ul>
+<h3 class="sub">Operation</h3>
+<ul>
+<li><strong>Why can fuel imbalance between the wings matter?</strong> It affects the aircraft's lateral balance and control, and exceeding the limits is not allowed. Large imbalance puts the lateral centre of gravity away from the centreline, reducing the aileron margin. It is limited by the AFM.</li>
+<li><strong>How can a fuel imbalance be corrected in flight?</strong> By opening the crossfeed valve and switching off the pumps of the heavier side's tank, following the ECAM or procedure. Feeding both engines from the heavy side consumes its fuel, restoring balance. The crossfeed valve must be closed again afterwards.</li>
+</ul>
+<h3 class="sub">Protection</h3>
+<ul>
+<li><strong>What happens to the engine LP fuel valve when the engine fire pushbutton is pressed?</strong> It closes, cutting the fuel supply to that engine. Cutting the fuel supply, together with the other actions of the fire pushbutton, removes the fuel from the fire.</li>
+</ul>
+<div class="related"><span class="dot"></span> 18 linked questions in the bank</div>
+</section>
+<section class="sec" id="flight-controls"><h2><span class="num">08</span> Flight Controls <span class="en">22 questions</span></h2>
+<p class="lead">Fly-by-wire: the sidestick commands a load factor in pitch and a roll rate in roll, computers decide the surface movements. Normal, alternate and direct law differ in how many protections remain.</p>
+<h3 class="sub">Principles</h3>
+<ul>
+<li><strong>What is the fundamental principle of the A320 flight control system?</strong> Fly-by-wire: pilot inputs go to computers, which command the control surface actuators. The sidestick sends electrical signals to the flight control computers, which apply the control laws and drive the hydraulic actuators.</li>
+</ul>
+<h3 class="sub">Computers</h3>
+<ul>
+<li><strong>Which computers control the flight control surfaces?</strong> Two ELACs, three SECs and two FACs. The ELACs and SECs give the control laws for pitch and roll. The FACs give rudder control, and flight envelope computation.</li>
+<li><strong>What do the ELAC computers mainly control?</strong> Pitch (elevators and horizontal stabiliser) and roll (ailerons), in normal law. Each ELAC has a control function of the elevators, the ailerons and the stabiliser. ELAC 2 acts as the master for the pitch control until it fails, with ELAC 1 as the back-up.</li>
+<li><strong>What do the SEC computers mainly control?</strong> The spoilers and speedbrakes, and also act as a back-up for the elevators and the stabiliser. The SECs control the spoilers for roll and the speedbrakes, and also provide back-up control for elevators and the stabiliser.</li>
+<li><strong>What do the FAC computers control?</strong> The rudder (yaw damping, turn coordination, rudder trim and travel limiting) and the flight envelope computation. The FACs also provide characteristic speeds, such as VLS and VFE, which are displayed on the PFD.</li>
+</ul>
+<h3 class="sub">Laws</h3>
+<ul>
+<li><strong>What are the three flight control laws?</strong> Normal law, alternate law and direct law. Normal law provides all protections. Alternate law has fewer protections. Direct law makes the surface deflection proportional to the stick movement.</li>
+<li><strong>In normal law, what does a sidestick pitch input command?</strong> A load factor (g demand), not a surface deflection. Releasing the stick commands 1 g (corrected for pitch attitude), which is why the aircraft holds its flight path.</li>
+<li><strong>In normal law, what does a sidestick roll input command?</strong> A roll rate. A given input gives a given roll rate. If the sidestick is released, the aircraft holds the bank angle (up to 33°) with the stick neutral.</li>
+<li><strong>Which law is used with the aircraft on the ground?</strong> Ground mode, with a direct relationship between the sidestick and elevators. On the ground, the control is direct, with the surface deflection proportional to the sidestick. In flight the laws take over after take-off.</li>
+<li><strong>What happens to the trim in normal law in flight?</strong> The aircraft is trimmed automatically (auto trim), so the pilot does not have to apply manual trim. Auto trim keeps the aircraft's flight path stable, so the pilot flies with a neutral stick. The manual trim wheel remains for back-up.</li>
+</ul>
+<h3 class="sub">Protections</h3>
+<ul>
+<li><strong>What is the load factor limit in normal law, in the clean configuration?</strong> +2.5 g to –1 g. With flaps extended, the limit is +2 g to 0 g. This protection means the structure cannot be overstressed by pilot inputs.</li>
+<li><strong>Which of the following is a normal law protection?</strong> High angle of attack, load factor, pitch attitude, bank angle and high speed. These protections allow the pilot to command the maximum authority without exceeding the structure's limits or stalling.</li>
+<li><strong>What happens to the sidestick commands in the high angle of attack protection?</strong> The angle of attack is limited to αmax, even if the pilot pulls the stick fully back. The aircraft cannot be stalled in normal law. The pilot can hold the full back stick and fly at αmax.</li>
+<li><strong>What is alpha floor?</strong> An automatic application of TOGA thrust when the angle of attack exceeds a threshold. It is triggered by the angle of attack protection, independently of the autothrust mode, and it is shown as A.FLOOR on the FMA.</li>
+</ul>
+<h3 class="sub">Failures</h3>
+<ul>
+<li><strong>How is the aircraft's pitch controlled if all the computers fail?</strong> Mechanically, using the pitch trim wheel on the pedestal and the rudder pedals. The mechanical back-up controls the horizontal stabiliser and the rudder. It is the last resort and is only intended for a short duration.</li>
+</ul>
+<h3 class="sub">Spoilers</h3>
+<ul>
+<li><strong>How many spoilers per wing does the A320 have?</strong> Five. The spoilers are used as roll spoilers, speedbrakes and ground spoilers. Spoiler 1 is not used for speedbrakes.</li>
+<li><strong>Which function do the ground spoilers serve?</strong> They extend on landing to dump lift and increase the weight on the wheels, improving braking. On the ground, spoiler extension reduces lift and puts the weight on the wheels, so brakes work better. They arm for landing and for rejected take-off.</li>
+</ul>
+<h3 class="sub">High lift</h3>
+<ul>
+<li><strong>What is the purpose of the slats and flaps?</strong> They increase lift at low speed, allowing a lower take-off and landing speed. Leading edge slats and trailing edge flaps change the wing's camber and area to give more lift and delay the stall.</li>
+<li><strong>How many flap lever positions are there on the A320?</strong> Five: 0, 1, 2, 3 and FULL. Position 1 is a slats-only setting in some conditions. Each position gives a combination of slats and flaps angles.</li>
+<li><strong>Which computers control the slats and flaps?</strong> The slat flap control computers (SFCCs). There are two SFCCs. Each controls both slats and flaps and monitors them.</li>
+<li><strong>What is the function of the wing tip brakes on the flaps and slats?</strong> To lock the surfaces in the event of a failure, such as asymmetry or runaway. If the surface positions are mismatched between the left and right, the brakes stop the system and the surfaces remain locked in position.</li>
+</ul>
+<h3 class="sub">Rudder</h3>
+<ul>
+<li><strong>What does the rudder pedal input do in normal law?</strong> It commands the rudder, with the FACs adding yaw damping and turn coordination. The rudder is also controlled by the FACs for yaw damping, so in normal flight the pilot does not need to use the pedals for turn coordination.</li>
+</ul>
+<div class="related"><span class="dot"></span> 22 linked questions in the bank</div>
+</section>
+<section class="sec" id="landing-gear-and-brakes"><h2><span class="num">09</span> Landing Gear and Brakes <span class="en">17 questions</span></h2>
+<p class="lead">Green extends and retracts the gear; normal brakes are Green, alternate brakes and the parking brake are Yellow. The autobrake and anti-skid sit on top of the normal system.</p>
+<h3 class="sub">Gear</h3>
+<ul>
+<li><strong>What type of landing gear does the A320 have?</strong> A retractable tricycle gear: two main units and a nose unit. Each main gear has two wheels and brakes, and the nose gear has two steerable wheels without brakes.</li>
+<li><strong>Which hydraulic system normally extends and retracts the landing gear?</strong> Green. The gear is normally operated by the Green system. If it is not available, the gear can be extended by gravity.</li>
+<li><strong>Which units control the landing gear sequencing and indication?</strong> The two landing gear control and interface units (LGCIUs). The LGCIUs control the sequence of doors and gear, and send the position and ground/air signals to many other systems.</li>
+<li><strong>What do the LGCIUs do apart from controlling the gear?</strong> They provide the ground and flight status to many systems, such as the pressurisation and flight controls. Many systems need to know if the aircraft is on the ground or in flight, and the main gear compression signals come from the LGCIUs.</li>
+</ul>
+<h3 class="sub">Emergency</h3>
+<ul>
+<li><strong>How does the landing gear get extended if the Green system fails?</strong> By gravity, with the GRAVITY GEAR EXTENSION handcrank in the cockpit. Turning the crank mechanically releases the gear uplocks and doors so the gear drops and locks down by its own weight and the airstream.</li>
+</ul>
+<h3 class="sub">Indications</h3>
+<ul>
+<li><strong>How many green triangles will the landing gear indication show when the gear is down and locked?</strong> Three, one for each gear. A green triangle means that gear is down and locked. A red UNLK indication means it is in transit or unlocked.</li>
+<li><strong>What does a red UNLK indication on the landing gear panel mean?</strong> The gear is not locked in the position selected. It is a transit indication. If it remains after the normal transit time, it indicates a gear problem.</li>
+</ul>
+<h3 class="sub">Steering</h3>
+<ul>
+<li><strong>How is the nose wheel steered on the ground?</strong> By the tiller (up to ±75°) or by the rudder pedals (up to ±6°). The tiller gives a large steering angle at low speed. The pedals give a small angle, for use at higher speed on the runway.</li>
+<li><strong>Which hydraulic system powers the nosewheel steering?</strong> Yellow. The steering relies on the Yellow system. If it fails, the nose wheel is no longer steered and the pilot must use differential braking.</li>
+</ul>
+<h3 class="sub">Brakes</h3>
+<ul>
+<li><strong>What does the autobrake do?</strong> It applies a pre-set deceleration automatically after touchdown or when a rejected take-off is triggered. The autobrake can be set to LO, MED or MAX. It works on the normal (Green) braking system, not on alternate braking.</li>
+<li><strong>Which are the autobrake settings?</strong> LO, MED and MAX. MAX is used on take-off (RTO). LO and MED are for landing, according to runway length and conditions.</li>
+<li><strong>Which setting should the autobrake be armed in for take-off?</strong> MAX, so a rejected take-off will apply maximum braking. With MAX armed, the brakes will apply fully if the take-off is rejected above 72 kt.</li>
+<li><strong>What does the anti-skid system do?</strong> It prevents wheel locking and optimises the braking by modulating the brake pressure on each wheel. Anti-skid releases the brake pressure when a wheel starts to skid, giving the most braking force the runway can give.</li>
+<li><strong>What are the brake systems on the A320?</strong> Normal braking (Green), and alternate braking (Yellow, with accumulator), with the parking brake on the Yellow system. If the Green system is lost, the brakes are supplied by the Yellow, with anti-skid still available, or without anti-skid if the system is lost.</li>
+<li><strong>What is the brake accumulator for?</strong> To store hydraulic pressure for the parking brake and for some alternate braking. The accumulator on the Yellow system can supply the brakes when the Yellow pump is not working, and holds the parking brake.</li>
+<li><strong>Which brake temperature indication is displayed on the ECAM wheel page?</strong> The temperature of each brake, shown in degrees Celsius, with a colour change when it is too hot. A high brake temperature indication can delay a take-off, as hot brakes may cause a fire or tyre failure.</li>
+</ul>
+<h3 class="sub">Warnings</h3>
+<ul>
+<li><strong>What happens if the gear is not down and locked and the aircraft is in the landing configuration?</strong> A LDG GEAR NOT DOWN warning is given, with a red message and an aural alert. This warning is given at a low radio altitude with a landing flap setting if the gear is not locked down.</li>
+</ul>
+<div class="related"><span class="dot"></span> 17 linked questions in the bank</div>
+</section>
+<section class="sec" id="fire-protection"><h2><span class="num">10</span> Fire Protection <span class="en">13 questions</span></h2>
+<p class="lead">Engines and the APU have fire loops and agent bottles; cargo, lavatories and the avionics bay have smoke detection. The engine fire pushbutton isolates the engine; the agent is a separate action.</p>
+<h3 class="sub">Detection</h3>
+<ul>
+<li><strong>Which areas have fire detection on the A320?</strong> Each engine, the APU, the avionics bay, the lavatories and the cargo compartments (smoke). Engines and APU have fire detection; the cargo, lavatories and avionics bay have smoke detection.</li>
+<li><strong>How many detection loops does each engine have?</strong> Two, loop A and loop B. Two loops give redundancy. A fire warning needs both loops to detect it, or one loop if the other has failed.</li>
+<li><strong>What causes an engine fire warning?</strong> Detection by both loops A and B, or by one loop if the other has failed. Requiring both loops reduces false warnings. If a loop has failed, the remaining loop alone triggers the warning.</li>
+<li><strong>Which system warns of smoke in the avionics ventilation?</strong> The avionics smoke detector, with an ECAM message and the aural alert. The smoke detector in the avionics ventilation duct gives a warning and sets the AEVC to the smoke configuration.</li>
+<li><strong>Which warning is given for an engine fire in flight?</strong> A red ENG FIRE message with the master warning light and a continuous repetitive chime. An engine fire is a level 3 warning: red message, master warning and aural alert.</li>
+</ul>
+<h3 class="sub">Procedure</h3>
+<ul>
+<li><strong>What does the engine FIRE pushbutton do when pressed?</strong> It closes the fuel, hydraulic fire, bleed and pack valves on that side, cuts the generator, and arms the fire extinguisher squibs. Pushing the guarded pushbutton isolates the engine from systems that could feed the fire. The agent is discharged by a separate AGENT pushbutton.</li>
+<li><strong>After pushing the engine FIRE pushbutton and waiting, what is the next step in the fire procedure if the fire persists?</strong> Discharge AGENT 1, then, after a delay, AGENT 2 if the fire persists. The first agent is discharged first and, if the fire warning is still on after 30 seconds, the second is used.</li>
+<li><strong>Before the engine MASTER switch is set OFF in the engine fire procedure, where must the thrust lever be set?</strong> IDLE. Setting the lever to idle reduces the temperature and the engine load before shutting down.</li>
+</ul>
+<h3 class="sub">Extinguishing</h3>
+<ul>
+<li><strong>How many fire extinguisher bottles does each engine have?</strong> Two. Two bottles, each can be discharged individually through squibs, can be used on either engine.</li>
+<li><strong>How many extinguisher bottles are provided for the APU?</strong> One. The APU has a single bottle, discharged with the APU FIRE pushbutton agent switch.</li>
+</ul>
+<h3 class="sub">APU</h3>
+<ul>
+<li><strong>How does APU fire protection work on the ground?</strong> The APU shuts down automatically and the extinguisher can be discharged from the external panel or the cockpit. On the ground, a detected fire gives an automatic shut down. In flight the crew has to carry out the procedure.</li>
+</ul>
+<h3 class="sub">Cargo</h3>
+<ul>
+<li><strong>How is smoke detected in the cargo compartments?</strong> By smoke detectors, with warning on the ECAM and agent bottles available. Smoke detectors in each compartment give a warning, and the extinguisher bottle can be discharged with the cargo smoke panel pushbuttons.</li>
+<li><strong>What is the first action in the case of smoke in the forward cargo compartment?</strong> Close the cargo ventilation isolation valves and, as per the procedure, discharge the agent. Isolating the compartment stops smoke from circulating, and the agent is discharged to put the fire out.</li>
+</ul>
+<div class="related"><span class="dot"></span> 13 linked questions in the bank</div>
+</section>
+<section class="sec" id="apu-and-engines"><h2><span class="num">11</span> APU and Engines <span class="en">18 questions</span></h2>
+<p class="lead">A FADEC on each engine controls start, thrust and limits. Thrust levers sit in fixed detents and the autothrust works within them. The APU supplies power and air on the ground and as a back-up.</p>
+<h3 class="sub">APU</h3>
+<ul>
+<li><strong>What does the APU supply on the A320 family?</strong> Electrical power (a 90 kVA generator) and bleed air for the packs and engine start. The APU is a small gas turbine in the tail. It gives electrical power and bleed air when the engines are not running, and as a back-up in the air.</li>
+<li><strong>How is the APU started?</strong> The APU MASTER SW is turned ON, then the APU START pushbutton is pressed. The master switch powers the system and opens the flap and fuel valve, and the start pushbutton starts the sequence. AVAIL shows when it is ready.</li>
+<li><strong>What does the AVAIL light on the APU START pushbutton mean?</strong> The APU has reached a speed at which it can supply electrical and bleed power. At about 95% speed, the APU is considered available, and the starter cuts out. The APU generator can then be connected.</li>
+<li><strong>How does the APU get shut down?</strong> By switching the APU MASTER SW to OFF, after a cooling period during which the APU runs with no load. With the master switch off, the APU shuts down after a cooling run, if it had bleed load, to avoid thermal damage.</li>
+</ul>
+<h3 class="sub">Engines</h3>
+<ul>
+<li><strong>What type of engines power the A320 family?</strong> Two turbofans: CFM56 or IAE V2500, depending on the aircraft. Either engine type is available. The type rating covers both with differences training.</li>
+<li><strong>What is the FADEC?</strong> A full authority digital engine control, which controls the engine's fuel flow, starting and thrust. Each engine has its own FADEC with two channels. It replaces mechanical engine control, giving automatic limits and protection.</li>
+<li><strong>Which power supply is used by the FADEC when the engine is running above about 12% N2?</strong> A dedicated alternator driven by the engine, so the engine control is independent of the aircraft power. The FADEC is powered by its own alternator once the engine is running, and by the aircraft electrical system for starting and below that speed.</li>
+</ul>
+<h3 class="sub">Thrust</h3>
+<ul>
+<li><strong>What are the thrust lever detents on the A320?</strong> IDLE, CL (climb), FLX/MCT (flex or maximum continuous) and TOGA, plus reverse. The levers move through gates in sequence, and the detents define the thrust ratings. The autothrust operates up to the CL detent.</li>
+<li><strong>What is the flex take-off thrust?</strong> A reduced take-off thrust, calculated using an assumed temperature higher than the actual one. Flex thrust reduces engine wear and cost when the runway length and weight allow, and the assumed temperature is entered in the MCDU.</li>
+<li><strong>What does autothrust do when the thrust levers are in the CL detent?</strong> It controls the thrust automatically up to the climb thrust limit. With the levers at the CL detent, autothrust is active and the thrust can vary between idle and climb thrust, according to the mode.</li>
+<li><strong>What are the thrust reversers' effect on the engine and when are they used?</strong> They deflect fan air forward to decelerate the aircraft on landing, and they can only be selected on the ground. Reverse is a deceleration aid. It requires the thrust levers to be at idle and the weight on wheels.</li>
+</ul>
+<h3 class="sub">Start</h3>
+<ul>
+<li><strong>How are the engines normally started on the ground?</strong> By selecting the MODE selector to IGN/START, then the engine MASTER switch to ON, with FADEC controlling the sequence. The FADEC opens the start valve and, at the correct time, supplies fuel and ignition. It monitors for hot start, hung start and no light-off.</li>
+<li><strong>What does the FADEC do if a hot start occurs during an automatic ground start?</strong> It aborts the start automatically. Auto start protection stops the sequence if EGT is too high, to protect the engine.</li>
+<li><strong>What provides the air for the engine starter?</strong> Bleed air from the APU, the other engine or a ground source, through the starter air valve. The air starter turns the engine until it can run on its own. This is why the bleed system matters for engine starting.</li>
+<li><strong>What is the effect of the engine MASTER switch OFF in flight?</strong> It closes the fuel valves and shuts down the engine. The master switch controls the engine's fuel: LP and HP valves. It is used in the engine failure and fire procedures.</li>
+<li><strong>What causes a 'hung start'?</strong> The engine fails to accelerate to idle speed after light-off. In a hung start, the engine lights but acceleration stalls below idle, and the start has to be stopped.</li>
+</ul>
+<h3 class="sub">Indications</h3>
+<ul>
+<li><strong>Which indications are the primary engine parameters on the upper ECAM?</strong> N1 (or EPR on some engines), EGT, N2 and fuel flow. These give thrust, temperature, core speed and fuel use. Oil and vibration are on the engine page.</li>
+<li><strong>Which engine parameter shows the thrust directly on the CFM56 and V2500 on the A320?</strong> N1, the fan speed (as a percentage). N1 is used as the thrust setting parameter. EGT is a temperature limit and N2 is core speed.</li>
+</ul>
+<div class="related"><span class="dot"></span> 18 linked questions in the bank</div>
+</section>
+<section class="sec" id="ice-and-rain-protection"><h2><span class="num">12</span> Ice and Rain Protection <span class="en">9 questions</span></h2>
+<p class="lead">Bleed air heats the engine intakes and the outer slats; probes and windshields are heated electrically. Wing anti-ice is for flight; rain repellent goes on a wet windshield only.</p>
+<h3 class="sub">Wing and engine</h3>
+<ul>
+<li><strong>Which surfaces are protected by bleed air anti-icing on the A320?</strong> The three outer slats of each wing and the engine air intakes. Only the outer wing leading edges (slats 3, 4 and 5) are protected, and each engine's air intake is protected by its own engine bleed.</li>
+<li><strong>When must the wing anti-ice be used on the ground?</strong> Not on the ground, except for a brief test, as it could overheat the slats with no airflow. The wing anti-ice is only selected in flight, when icing conditions apply. A short test is permitted on the ground.</li>
+<li><strong>What does selecting the ENG ANTI ICE ON do to the engine?</strong> It opens the engine's anti-ice valve, which heats the air intake and also increases the idle thrust. Hot bleed air heats the air intake lip. The FADEC adjusts idle thrust so the engine is supplied with enough bleed pressure.</li>
+<li><strong>When should the engine anti-ice be turned on?</strong> When icing conditions exist or are expected, such as visible moisture with a low temperature. Icing conditions: SAT of 10 °C or below on the ground or in flight with visible moisture, or when the engine intake could be contaminated by ice.</li>
+</ul>
+<h3 class="sub">Probes</h3>
+<ul>
+<li><strong>How are the pitot tubes and static ports protected against ice?</strong> By electrical heating, automatically in AUTO when an engine is running. The probe heating is electrical, and in AUTO it is controlled by the computer, switching on when any engine is running or in flight.</li>
+<li><strong>Which probes and sensors have electrical heating?</strong> Pitot tubes, static ports, angle of attack and total air temperature sensors. All the air data sensors are heated so the data remain correct in icing conditions.</li>
+<li><strong>What is the purpose of the probe heat AUTO selection?</strong> To heat the probes whenever any engine is running or the aircraft is in flight. AUTO is the normal setting: the heating operates automatically in these conditions, and ON can be used to force it.</li>
+</ul>
+<h3 class="sub">Windshield</h3>
+<ul>
+<li><strong>How is the windshield protected against ice and fog?</strong> By electrical heating, controlled automatically. The cockpit windows are electrically heated: the heating prevents ice, fog and also contributes to bird strike resistance.</li>
+<li><strong>What does the rain repellent system do?</strong> It sprays a liquid onto the windshield to make water run off more easily. It is used with the wipers in heavy rain, but only on a wet windshield, never on a dry one, as that would smear it.</li>
+</ul>
+<div class="related"><span class="dot"></span> 9 linked questions in the bank</div>
+</section>
+<section class="sec" id="instruments-and-warnings"><h2><span class="num">13</span> Instruments and Warnings <span class="en">19 questions</span></h2>
+<p class="lead">Three ADIRUs supply air data and inertial data; displays and the ECAM present them. Learn the ECAM colour code and the difference between a warning and a caution.</p>
+<h3 class="sub">ADIRS</h3>
+<ul>
+<li><strong>What is the function of the ADIRS?</strong> To supply air data (speed, altitude) and inertial data (attitude, heading, position) to the aircraft systems. ADIRS combines air data reference and inertial reference. Its three units feed the displays, flight controls, FMGS and other systems.</li>
+<li><strong>How many air data inertial reference units does the A320 have?</strong> Three. Having three units allows the system to continue to work after a failure, and the crew can switch the source of the data with the ATT HDG and AIR DATA selectors.</li>
+<li><strong>What does each ADIRU contain?</strong> An air data reference (ADR) and an inertial reference (IR) part, which can be switched off independently. Each part has its own pushbutton for ADR and IR on the overhead panel, so the crew can isolate one without losing the other.</li>
+<li><strong>Approximately how long does the normal IRS alignment take?</strong> About 10 minutes. The alignment is carried out on the ground with the aircraft stationary. The ALIGN light flashes if movement is detected.</li>
+<li><strong>What must be entered into the MCDU for the IRS alignment?</strong> The present position (latitude and longitude), unless it is set automatically. The IRS needs an initial position to align. It can be entered at the INIT page, usually by entering the airport reference.</li>
+<li><strong>What does ATT HDG selector let the crew do when one IR fails?</strong> Select another IR as the source of attitude and heading data on the PFD and ND. The selector is on the switching panel. It lets the captain or the first officer use IR 3 in place of their own.</li>
+</ul>
+<h3 class="sub">Displays</h3>
+<ul>
+<li><strong>What are the primary flight displays called?</strong> PFD and ND, the primary flight display and the navigation display. The PFD gives attitude, speed, altitude and vertical speed, and the ND gives navigation information.</li>
+<li><strong>How many display management computers (DMCs) are there?</strong> Three. The DMCs supply the display units. The third can replace either of the other two if required.</li>
+<li><strong>Which display units are used for ECAM?</strong> The two central display units: the upper (E/WD, engine and warning display) and the lower (SD, system display). The E/WD shows engine parameters, fuel on board, flaps and warnings. The SD shows the system pages and status.</li>
+<li><strong>What does the standby horizon (ISIS) show?</strong> Attitude, with airspeed and altitude as a back-up. It is an independent standby instrument in the centre of the panel, with its own sensors.</li>
+<li><strong>Which of the following is displayed on the PFD speed scale as a magenta triangle?</strong> The managed speed target. In managed speed the target is magenta, and in selected speed it is blue.</li>
+<li><strong>What does VLS on the PFD speed scale mean?</strong> The lowest selectable speed, giving an adequate margin to the stall for the current configuration. VLS is calculated by the FAC. It appears as an amber strip at the bottom of the speed scale.</li>
+<li><strong>How is the aircraft's altitude information supplied to the PFD?</strong> From the ADRs, using the selected barometric setting. The ADR gives the pressure altitude, corrected for the QNH or QFE set on the EFIS control panel.</li>
+</ul>
+<h3 class="sub">ECAM</h3>
+<ul>
+<li><strong>What are the ECAM message colours and what do they indicate?</strong> Red: immediate action; amber: awareness and action; green: normal; white: titles and remarks; blue: actions to be carried out; magenta: special messages. Colours carry fixed meanings. A red message always requires immediate action by the crew.</li>
+<li><strong>Which type of failure triggers a master warning light and a continuous repetitive chime?</strong> A red warning, such as an engine fire (level 3). Warnings are level 3. They require immediate action. Cautions (level 2) are amber with a single chime.</li>
+<li><strong>What does an amber caution generate?</strong> A single chime, the master caution light and an ECAM message. Cautions are level 2: awareness is required, and the crew will follow the ECAM actions.</li>
+<li><strong>What does the ECAM STATUS page show?</strong> The operational status of the aircraft after a failure: inoperative systems, limitations and the approach procedures. After clearing the ECAM actions, the STATUS page is shown to summarise the consequences of the failures.</li>
+<li><strong>What does the CLR pushbutton on the ECAM control panel do?</strong> It clears the current message or page, once the action has been carried out. CLR is used to remove a warning after the action and move on to the next message.</li>
+<li><strong>What are the flight warning computers called, and how many are there?</strong> FWCs, two. The FWCs generate the warning and caution messages, and the aural alerts, from the aircraft systems' data.</li>
+</ul>
+<div class="related"><span class="dot"></span> 19 linked questions in the bank</div>
+</section>
+<section class="sec" id="automatic-flight"><h2><span class="num">14</span> Automatic Flight <span class="en">14 questions</span></h2>
+<p class="lead">The FCU sets targets, the FMGCs fly them. Push means managed, pull means selected. The FMA at the top of the PFD tells you what the aircraft is actually doing.</p>
+<h3 class="sub">FMGS</h3>
+<ul>
+<li><strong>What does the FMGS consist of?</strong> Two FMGCs, two MCDUs and a FCU, with the FADs and the autopilot and autothrust functions. The FMGS combines flight management and flight guidance. The two FMGCs are synchronised.</li>
+<li><strong>Which sources provide the aircraft's position to the FMGS?</strong> IRS, GPS and radio navigation aids, combined by the FMGC. The FMGC computes a position from these, and the accuracy is displayed in the MCDU.</li>
+<li><strong>What does the MCDU allow the crew to do?</strong> Enter and modify the flight plan, performance data and navigation settings of the FMGS. The two MCDUs are used for all the FMGS inputs, the flight plan, performance and radio navigation.</li>
+</ul>
+<h3 class="sub">FCU</h3>
+<ul>
+<li><strong>What is the function of the FCU?</strong> It is the interface for selecting speed, heading, altitude and vertical speed for the autopilot. The FCU is on the glareshield. The pilot sets targets there and selects managed or selected mode with the knobs.</li>
+<li><strong>What is the difference between managed and selected mode?</strong> Managed follows the FMGS flight plan and targets; selected follows the values set by the pilot on the FCU. The knobs are pushed to engage managed mode and pulled to engage selected mode.</li>
+<li><strong>How is selected mode engaged for altitude, speed or heading on the FCU?</strong> By pulling the knob. Push means managed, pull means selected. This applies to speed, heading and altitude (vertical speed) knobs.</li>
+</ul>
+<h3 class="sub">Autopilot</h3>
+<ul>
+<li><strong>How many autopilots does the A320 have, and how many can be engaged together?</strong> Two; both are engaged only in the approach and landing modes. Normally only one is engaged. Both are engaged for an autoland, giving redundancy.</li>
+<li><strong>What is the purpose of the flight director (FD)?</strong> To display guidance commands on the PFD for the pilot to follow, whether the autopilot is engaged or not. Flight director bars show the attitude to follow to meet the target. They can be followed manually.</li>
+<li><strong>How does the pilot disconnect the autopilot?</strong> By pressing the instinctive disconnect pushbutton on the sidestick. A press on the sidestick disconnect pushbutton gives a cavalry charge and the red flashing AP OFF message. A second press cancels the warning.</li>
+</ul>
+<h3 class="sub">Autothrust</h3>
+<ul>
+<li><strong>What does the autothrust (A/THR) system do?</strong> It controls engine thrust to hold a speed or thrust target, with the thrust levers fixed. A/THR is active in the ranges between idle and the thrust lever detent. The levers do not move with the thrust, as the A320 has fixed levers.</li>
+<li><strong>What happens to the thrust levers when the autothrust changes the thrust?</strong> They do not move, since the A320 thrust levers are not motorised. The thrust levers on the A320 stay in their detent: the pilot sets the detent to define the maximum thrust the A/THR can use.</li>
+</ul>
+<h3 class="sub">FMA</h3>
+<ul>
+<li><strong>Where are the active modes displayed?</strong> On the flight mode annunciator (FMA) at the top of the PFD. The FMA shows the autothrust, vertical, lateral, and approach capabilities and status of AP, FD and A/THR.</li>
+<li><strong>What does the FMA's first column show?</strong> The autothrust mode. The columns are autothrust, vertical, lateral, and then approach capability and AP/FD/ATHR status.</li>
+</ul>
+<h3 class="sub">Approach</h3>
+<ul>
+<li><strong>Which autoland approach capability category does the A320 achieve with two autopilots?</strong> CAT 3 (single or dual, depending on the aircraft's equipment). The FMA shows CAT 3 SINGLE or CAT 3 DUAL, according to the redundancy available.</li>
+</ul>
+<div class="related"><span class="dot"></span> 14 linked questions in the bank</div>
+</section>
+
+<footer><p>An unofficial study aid written for revision. It is not an aircraft manual: figures and procedures vary by operator and aircraft standard, so always confirm against your operator's FCOM and company documentation. Not reviewed by a type rating instructor.</p></footer>
+</main></div>
+<button id="top-btn" aria-label="Back to top">↑</button>
+<script>
+(function(){
+  var toc = document.getElementById('toc');
+  var scrim = document.getElementById('scrim');
+  var menuBtn = document.getElementById('menuBtn');
+  var closeToc = document.getElementById('closeToc');
+  function openToc(){ toc.classList.add('open'); scrim.classList.add('show'); }
+  function shutToc(){ toc.classList.remove('open'); scrim.classList.remove('show'); }
+  if (menuBtn) menuBtn.addEventListener('click', openToc);
+  if (closeToc) closeToc.addEventListener('click', shutToc);
+  if (scrim) scrim.addEventListener('click', shutToc);
+  var tocLinks = document.querySelectorAll('nav.toc a');
+  tocLinks.forEach(function(a){
+    a.addEventListener('click', function(){ shutToc(); });
+  });
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section.sec[id]'));
+  var linkFor = {};
+  tocLinks.forEach(function(a){
+    var id = a.getAttribute('href').slice(1);
+    linkFor[id] = a;
+  });
+  function onScroll(){
+    var y = window.scrollY + 110;
+    var current = sections[0];
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].offsetTop <= y) current = sections[i];
+    }
+    tocLinks.forEach(function(a){ a.classList.remove('active'); });
+    if (current && linkFor[current.id]) linkFor[current.id].classList.add('active');
+
+    var topBtn = document.getElementById('top-btn');
+    if (topBtn) topBtn.classList.toggle('show', window.scrollY > 500);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var topBtn = document.getElementById('top-btn');
+  if (topBtn) topBtn.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
+</body>
+</html>

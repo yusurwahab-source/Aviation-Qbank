@@ -1,0 +1,524 @@
+[
+  {
+    "id": "A320-FUEL-0001",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Architecture",
+    "question": "Which tanks make up the basic A320 fuel system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Two wing tanks and a tail trim tank"
+      },
+      {
+        "id": "b",
+        "text": "Two engine tanks and one wing box tank"
+      },
+      {
+        "id": "c",
+        "text": "A left wing tank, a right wing tank and a centre tank"
+      },
+      {
+        "id": "d",
+        "text": "Three wing tanks per side"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The wing tanks each have an inner and an outer cell. The centre tank lies in the wing box between the wings. Additional centre tanks (ACTs) may be fitted as an option.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0002",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Pumps",
+    "question": "How many fuel pumps are there in the centre tank and in each wing tank?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Two in the centre tank and two in each wing tank"
+      },
+      {
+        "id": "b",
+        "text": "One in each tank"
+      },
+      {
+        "id": "c",
+        "text": "Three in the centre tank and one in each wing tank"
+      },
+      {
+        "id": "d",
+        "text": "Two in the centre tank only"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Having two pumps in each tank means one pump failure does not stop the supply. Each pump has its own pushbutton on the overhead panel.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0003",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Fuel feed",
+    "question": "Which tank is used first in normal operation, and why?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The wing tanks, so the centre tank remains as a reserve"
+      },
+      {
+        "id": "b",
+        "text": "The outer cells, to keep the aircraft light at the wing tips"
+      },
+      {
+        "id": "c",
+        "text": "The trim tank"
+      },
+      {
+        "id": "d",
+        "text": "The centre tank, so the wing tanks stay full, giving wing bending relief"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Fuel in the wings reduces the bending moment at the wing root, so it is kept as long as possible. The centre tank fuel is used first.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0004",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Fuel feed",
+    "question": "How is the centre tank fuel used before the wing tank fuel when all the pumps are operating?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The crossfeed valve forces the centre tank to feed the engines"
+      },
+      {
+        "id": "b",
+        "text": "The centre tank pumps deliver at a higher pressure than the wing tank pumps, so they supply the engines first"
+      },
+      {
+        "id": "c",
+        "text": "The wing tank pumps switch off automatically"
+      },
+      {
+        "id": "d",
+        "text": "The centre tank fuel is pumped into the wings first"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The higher pressure of the centre tank pumps keeps the wing tank feed valves closed (no flow from the wing pump) while there is fuel in the centre tank.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0005",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Fuel feed",
+    "question": "How does the fuel get from the outer cells to the inner cells of the wing tanks?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By the centre tank pumps"
+      },
+      {
+        "id": "b",
+        "text": "By gravity and by transfer valves that open when the inner cell reaches a low level"
+      },
+      {
+        "id": "c",
+        "text": "By a transfer pump in each outer cell"
+      },
+      {
+        "id": "d",
+        "text": "By the pressure of the bleed air"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Outer cell fuel flows to the inner cell by a transfer valve. This keeps the fuel weight in the outer wing longer, helping the wing bending moment.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0006",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Fuel feed",
+    "question": "What does the crossfeed valve do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It transfers fuel from the centre tank to the wings"
+      },
+      {
+        "id": "b",
+        "text": "It lets the APU use the fuel from any tank"
+      },
+      {
+        "id": "c",
+        "text": "It isolates the engines from the tanks"
+      },
+      {
+        "id": "d",
+        "text": "It lets one side's pumps feed both engines, or lets either engine be fed from the other side's tank"
+      }
+    ],
+    "correct": "d",
+    "explanation": "It is normally closed. It is opened in some failures, for instance when a wing tank pump fails or the fuel imbalance has to be corrected.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0007",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Fuel feed",
+    "question": "What is the normal position of the crossfeed valve?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Closed, with each engine feeding from its own wing tank"
+      },
+      {
+        "id": "b",
+        "text": "Open"
+      },
+      {
+        "id": "c",
+        "text": "Open in flight, closed on the ground"
+      },
+      {
+        "id": "d",
+        "text": "Open on the ground, closed in flight"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Each engine is normally supplied by its own side. The crossfeed is used only to correct an imbalance or deal with a pump failure.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0008",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "APU",
+    "question": "Which fuel supplies the APU?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The centre tank only"
+      },
+      {
+        "id": "b",
+        "text": "The right wing tank only"
+      },
+      {
+        "id": "c",
+        "text": "The left side's fuel system, through the left fuel feed line"
+      },
+      {
+        "id": "d",
+        "text": "A dedicated APU tank"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The APU takes fuel from the left side feed line, and the fuel pump of the APU is used if the tank pumps are not running.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0009",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Pumps",
+    "question": "What happens when a wing tank pump fails and the other pump in the same tank is working?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The engine shuts down"
+      },
+      {
+        "id": "b",
+        "text": "The crossfeed valve opens automatically"
+      },
+      {
+        "id": "c",
+        "text": "The fuel is jettisoned"
+      },
+      {
+        "id": "d",
+        "text": "The remaining pump supplies the engine, and the ECAM shows a low pressure message for the failed pump"
+      }
+    ],
+    "correct": "d",
+    "explanation": "One pump per tank is enough to supply the engine, so a single pump failure does not require action beyond following the ECAM.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0010",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Fuel feed",
+    "question": "If both wing tank pumps on one side fail, how is the engine fed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The engine is fed by the centre tank pumps always"
+      },
+      {
+        "id": "b",
+        "text": "By gravity feed from the wing tank (within altitude limits), or through the crossfeed from the other side"
+      },
+      {
+        "id": "c",
+        "text": "The engine shuts down at once"
+      },
+      {
+        "id": "d",
+        "text": "From the APU fuel pump"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Each engine can draw fuel from its wing tank by gravity, with restrictions on altitude, but opening the crossfeed to use the other side's pumps is the preferred solution.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0011",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Indications",
+    "question": "What does the fuel quantity indication (FQI) system measure?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The fuel temperature only"
+      },
+      {
+        "id": "b",
+        "text": "The fuel flow only"
+      },
+      {
+        "id": "c",
+        "text": "The fuel quantity in each tank, using capacitance probes"
+      },
+      {
+        "id": "d",
+        "text": "The fuel density only"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Capacitance probes measure the quantity (and so the weight, with the density) in the tank. The result goes to the ECAM and the FOB display.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0012",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Indications",
+    "question": "What is FOB?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Fuel on board: the total quantity of fuel in the tanks"
+      },
+      {
+        "id": "b",
+        "text": "Fuel overboard"
+      },
+      {
+        "id": "c",
+        "text": "Fuel flow balance"
+      },
+      {
+        "id": "d",
+        "text": "Forward overhead box"
+      }
+    ],
+    "correct": "a",
+    "explanation": "FOB is shown on the upper ECAM and compared with the FMS fuel prediction. It can be confirmed against the fuel used from the engines.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0013",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Indications",
+    "question": "At what wing tank fuel quantity does the L(R) WING TK LO LVL warning appear on the A320?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When the fuel quantity in a wing tank is below about 750 kg"
+      },
+      {
+        "id": "b",
+        "text": "Below about 100 kg"
+      },
+      {
+        "id": "c",
+        "text": "Below about 3 000 kg"
+      },
+      {
+        "id": "d",
+        "text": "Below about 2 000 kg"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The low level warning is based on the quantity in the inner cell. It is a warning because below that level the supply to the engine is limited.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0014",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Operation",
+    "question": "Why can fuel imbalance between the wings matter?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It affects the engine thrust directly"
+      },
+      {
+        "id": "b",
+        "text": "It affects the packs"
+      },
+      {
+        "id": "c",
+        "text": "It affects the aircraft's lateral balance and control, and exceeding the limits is not allowed"
+      },
+      {
+        "id": "d",
+        "text": "It affects the cabin pressure"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Large imbalance puts the lateral centre of gravity away from the centreline, reducing the aileron margin. It is limited by the AFM.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0015",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Operation",
+    "question": "How can a fuel imbalance be corrected in flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By dumping fuel from the lighter side"
+      },
+      {
+        "id": "b",
+        "text": "By opening the crossfeed valve and switching off the pumps of the heavier side's tank, following the ECAM or procedure"
+      },
+      {
+        "id": "c",
+        "text": "By switching the centre tank pumps off"
+      },
+      {
+        "id": "d",
+        "text": "By closing the APU fuel valve"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Feeding both engines from the heavy side consumes its fuel, restoring balance. The crossfeed valve must be closed again afterwards.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0016",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Protection",
+    "question": "What happens to the engine LP fuel valve when the engine fire pushbutton is pressed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It opens fully"
+      },
+      {
+        "id": "b",
+        "text": "It remains unchanged"
+      },
+      {
+        "id": "c",
+        "text": "It transfers the supply to the other tank"
+      },
+      {
+        "id": "d",
+        "text": "It closes, cutting the fuel supply to that engine"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Cutting the fuel supply, together with the other actions of the fire pushbutton, removes the fuel from the fire.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0017",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Architecture",
+    "question": "Where does the fuel tank venting of the A320 discharge?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Through the engine exhaust"
+      },
+      {
+        "id": "b",
+        "text": "Into the cabin"
+      },
+      {
+        "id": "c",
+        "text": "Through vent surge tanks at the wing tips, with NACA inlets and outlets"
+      },
+      {
+        "id": "d",
+        "text": "Through the APU exhaust"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Surge tanks collect any fuel that is pushed out by thermal expansion and return it to the tanks, and let air in as fuel is used.",
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "A320-FUEL-0018",
+    "aircraft": "A320",
+    "topic": "Fuel",
+    "subtopic": "Fuel feed",
+    "question": "What is the effect of selecting a centre tank pump pushbutton OFF with fuel remaining in the tank?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The centre tank fuel is not used, and the wing tank pumps take over feeding the engines"
+      },
+      {
+        "id": "b",
+        "text": "The engines shut down"
+      },
+      {
+        "id": "c",
+        "text": "The crossfeed opens"
+      },
+      {
+        "id": "d",
+        "text": "The fuel is transferred to the wings"
+      }
+    ],
+    "correct": "a",
+    "explanation": "With the centre tank pumps off, the wing tank pumps supply the engines. The fuel in the centre tank would be unusable for the remainder of the flight, so it affects range and balance.",
+    "status": "published",
+    "version": 1
+  }
+]
