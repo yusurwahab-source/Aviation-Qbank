@@ -7,6 +7,8 @@ import {
 } from "@/db/flying-knowledge-queries";
 import { listAircraft, listTopics } from "@/db/queries";
 import { getSiteSettings } from "@/db/settings";
+import { buildAtplRows } from "@/lib/atpl-subjects";
+import { summariseSection, type SectionCounts } from "@/lib/section-counts";
 import { buildFlyingKnowledgeTestHref } from "@/lib/test-options";
 import { withoutHidden } from "@/lib/settings";
 import { appUrl } from "@/lib/email/send";
@@ -17,10 +19,7 @@ import { FinalCta } from "./_landing/final-cta";
 import type { HeroStats } from "./_landing/hero";
 import { Hero } from "./_landing/hero";
 import { HowItWorks } from "./_landing/how-it-works";
-import {
-  SectionsOverview,
-  type SectionCounts,
-} from "./_landing/sections-overview";
+import { PillarsOverview, type PillarsData } from "./_landing/pillars-overview";
 import { Trust } from "./_landing/trust";
 
 /**
@@ -29,7 +28,7 @@ import { Trust } from "./_landing/trust";
  * Everything that does not depend on the database — the hero copy, the
  * trust block, how it works, features, the FAQ, the final CTA — renders
  * unconditionally, so a database hiccup narrows the page rather than taking
- * it down. Only the section that shows real numbers (`SectionsOverview`)
+ * it down. Only the section that shows real numbers (`PillarsOverview`)
  * falls back to an honest notice instead of a made-up count.
  *
  * Statically rendered with an hourly revalidation, matching the brief: the
@@ -45,6 +44,9 @@ type LandingData = {
   typeRating: SectionCounts;
   classRating: SectionCounts;
   flyingKnowledge: SectionCounts;
+  atplRows: PillarsData["atplRows"];
+  typeCodes: string[];
+  classCodes: string[];
   /** Distinct-topic count summed across every aircraft, class rating and
    * Flying Knowledge subject — each one's own systems, not deduplicated
    * against another's, because a "Fuel System" quiz on one aircraft is a
@@ -89,9 +91,9 @@ async function loadLandingData(): Promise<LandingData> {
       ),
     ]);
 
-    const typeRating = summarise(fleet);
-    const classRating = summarise(classes);
-    const flyingKnowledge = summarise(subjects);
+    const typeRating = summariseSection(fleet);
+    const classRating = summariseSection(classes);
+    const flyingKnowledge = summariseSection(subjects);
     const totalSystems =
       fleetTopics.reduce((sum, topics) => sum + topics.length, 0) +
       classTopics.reduce((sum, topics) => sum + topics.length, 0) +
@@ -109,6 +111,9 @@ async function loadLandingData(): Promise<LandingData> {
       typeRating,
       classRating,
       flyingKnowledge,
+      atplRows: buildAtplRows(subjects),
+      typeCodes: fleet.filter(isReady).map((plane) => plane.code),
+      classCodes: classes.filter(isReady).map((ratingClass) => ratingClass.code),
       totalSystems,
     };
   } catch {
@@ -118,17 +123,17 @@ async function loadLandingData(): Promise<LandingData> {
       typeRating: empty,
       classRating: empty,
       flyingKnowledge: empty,
+      atplRows: [],
+      typeCodes: [],
+      classCodes: [],
       totalSystems: 0,
       tryHref: null,
     };
   }
 }
 
-function summarise(rows: { publishedQuestions: number }[]): SectionCounts {
-  return {
-    aircraftCount: rows.length,
-    questionCount: rows.reduce((sum, row) => sum + row.publishedQuestions, 0),
-  };
+function isReady(row: { status: string; publishedQuestions: number }): boolean {
+  return row.status === "active" && row.publishedQuestions > 0;
 }
 
 /**
@@ -180,6 +185,9 @@ export default async function LandingPage() {
       typeRating,
       classRating,
       flyingKnowledge,
+      atplRows,
+      typeCodes,
+      classCodes,
       totalSystems,
       tryHref,
     },
@@ -205,12 +213,9 @@ export default async function LandingPage() {
           page a student can actually start from: every other one explains
           the product, and this one hands them a section to pick. */}
       {sectionsOk ? (
-        <SectionsOverview
-          typeRating={typeRating}
-          classRating={classRating}
-          flyingKnowledge={flyingKnowledge}
-          hiddenSections={hiddenSections}
-          settings={{ sectionLabels }}
+        <PillarsOverview
+          data={{ typeRating, classRating, atplRows, typeCodes, classCodes }}
+          settings={{ hiddenSections, sectionLabels }}
         />
       ) : (
         <section id="whats-inside" className="scroll-mt-20">

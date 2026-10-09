@@ -28,12 +28,13 @@ export default function AboutPage() {
           before, that is a question worth rewriting, and we treat it as a bug.
         </p>
         <p>
-          {siteConfig.name} is a practice question bank built around three sections:{" "}
-          <strong className="text-foreground">Type Rating Systems Knowledge</strong> for large
-          aircraft, <strong className="text-foreground">Class Rating Systems Knowledge</strong>{" "}
-          for light aircraft, and <strong className="text-foreground">Flying Knowledge</strong>{" "}
-          — free in full — for the ground-school material every pilot keeps reviewing rather
-          than sits once and moves past. You choose a section, build a test from any
+          {siteConfig.name} is a practice question bank built around three parts:{" "}
+          <strong className="text-foreground">EASA ATPL Ground School</strong> — free in full —
+          for the theory subjects every pilot keeps reviewing,{" "}
+          <strong className="text-foreground">Aircraft Systems Knowledge</strong> for type rating
+          and class rating aircraft, and{" "}
+          <strong className="text-foreground">Pilot Sims &amp; Flight Trainers</strong> for the
+          procedures worth seeing rather than memorising. You choose a part, build a test from any
           combination of topics and any number of questions, and sit it one of two ways.
         </p>
         <p>

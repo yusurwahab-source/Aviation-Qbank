@@ -1,5 +1,5 @@
 import { HeroBackground } from "./hero-background";
-import { SectionLinks } from "./section-links";
+import { PillarLinks } from "./pillar-links";
 import { TryFreeButton } from "./try-free-button";
 
 export type HeroStats = {
@@ -20,10 +20,10 @@ const NUMBER_FORMAT = new Intl.NumberFormat("en-GB");
  * to make a first impression.
  *
  * There is no featured aircraft here any more, and no single "start
- * practising" button pointed at one. The product is three sections — Type
- * Rating Systems Knowledge, Class Rating Systems Knowledge, Flying
- * Knowledge — and the hero asks which one a visitor is here for, through
- * `SectionLinks`, rather than assuming.
+ * practising" button pointed at one. The product is three pillars — EASA
+ * ATPL Ground School, Aircraft Systems Knowledge, Pilot Sims & Flight
+ * Trainers — and the hero asks which one a visitor is here for, through
+ * `PillarLinks`, rather than assuming.
  */
 export function Hero({
   stats,
@@ -53,7 +53,7 @@ export function Hero({
           Or choose what you&rsquo;re studying for
         </p>
         <div className="mt-3">
-          <SectionLinks />
+          <PillarLinks />
         </div>
 
         {stats ? (

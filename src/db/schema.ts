@@ -151,7 +151,7 @@ export type ClassQuestionRow = typeof classQuestions.$inferSelect;
 export type ClassQuestionInsert = typeof classQuestions.$inferInsert;
 
 /**
- * Flying Knowledge subjects — IFR, Air Law, Meteorology, Navigation, and so
+ * Flying Knowledge subjects — Principles of Flight, Air Law, Meteorology, Navigation, and so
  * on — the third content tree, beside `aircraft` and `classRatings`. Nothing
  * here is tied to an aircraft, so a subject is the top-level entity the way
  * an aircraft or a class rating is: `flyingKnowledgeSubjects` sits beside
@@ -170,7 +170,7 @@ export type ClassQuestionInsert = typeof classQuestions.$inferInsert;
  * `preview_attempts` are never consulted for a Flying Knowledge code.
  */
 export const flyingKnowledgeSubjects = pgTable("flying_knowledge_subjects", {
-  /** Short code, e.g. IFR. Also the URL segment: /flying-knowledge/IFR. */
+  /** Short code, e.g. POF. Also the URL segment: /flying-knowledge/POF. */
   code: varchar("code", { length: 8 }).primaryKey(),
   name: varchar("name", { length: 120 }).notNull(),
   description: text("description").notNull(),
@@ -184,7 +184,7 @@ export const flyingKnowledgeSubjects = pgTable("flying_knowledge_subjects", {
 export const flyingKnowledgeQuestions = pgTable(
   "flying_knowledge_questions",
   {
-    /** Human-readable id straight from the content file, e.g. IFR-APPR-0001. */
+    /** Human-readable id straight from the content file, e.g. POF-AERO-0001. */
     id: varchar("id", { length: 40 }).primaryKey(),
     subjectCode: varchar("subject_code", { length: 8 })
       .notNull()

@@ -9,6 +9,9 @@ export type PilotSim = {
   description: string;
   /** The standalone page, served as-is from `public/`. */
   file: string;
+  /** Display only for now — nothing gates a "premium" sim yet; flipping a
+   * sim to premium needs an access check as well. */
+  tier: "free" | "premium";
 };
 
 export const PILOT_SIMS: readonly PilotSim[] = [
@@ -18,6 +21,7 @@ export const PILOT_SIMS: readonly PilotSim[] = [
     description:
       "Drag the aircraft around the fix and read the entry — direct, teardrop or parallel — off the heading, or take a test from an ATC clearance and set the inbound course on the HSI yourself.",
     file: "/pilot-sims/holding-trainer.html",
+    tier: "free",
   },
   {
     slug: "vor-ndb-trainer",
@@ -25,6 +29,7 @@ export const PILOT_SIMS: readonly PilotSim[] = [
     description:
       "Practice navigation using VOR and NDB signals. Interpret OBS settings, TO/FROM flags, and track courses using radio navigation aids.",
     file: "/pilot-sims/vor-ndb.html",
+    tier: "free",
   },
 ];
 

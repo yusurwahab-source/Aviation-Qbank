@@ -19,19 +19,22 @@ today, with no "single engine" or "multi engine" split between it and the
 section; a light aircraft sits directly under Class Rating. `/flying-knowledge`
 is **Flying Knowledge** — general theory that is not tied to any aircraft —
 air law, meteorology, navigation, the material a pilot keeps reviewing
-rather than sits once. It has four subjects now, **IFR**, **Principles of
-Flight (POF)**, **FI(A) Course Theory — F AIR (FAIR)** and **Human
-Performance & Limitations (HPL)**, each after the first added the same
-content-only way a second aircraft is (see the note on Flying Knowledge's
-own content tree below);
-more subjects are still to come, and the page title stays "Choose a
-subject" rather than naming just one. It is free
+rather than sits once. It has two subjects now, **Principles of Flight
+(POF)** and **Human Performance & Limitations (HPL)**; further
+subjects are added the same content-only way a second aircraft is (see the
+note on Flying Knowledge's own content tree below), and the page title
+stays "Choose a subject" rather than naming just one. (IFR and FI(A)
+Course Theory — F AIR were here earlier and were removed at the owner's
+request, content and import tooling both.) It is free
 in full, never behind the free-tier cap or a subscription — decided ahead
-of IFR's own content, and unchanged now that content exists: nothing in
+of any content, and unchanged now that content exists: nothing in
 `flying-knowledge/[code]/test/actions.ts` ever calls `db/subscriptions.ts`
 or `db/preview.ts`. The landing page's hero
 asks which of the three a visitor is here for rather than leading with one
 aircraft; see the note on the three sections in the conventions below.
+The landing page and header present the four sections as three pillars
+(ATPL Ground School, Aircraft Systems, Pilot Sims) — see the note on
+pillars below.
 
 Both picker pages — `/type-rating` and `/class-rating` — title themselves
 **"Choose an aircraft,"** not "Choose a type rating" or "Choose a class
@@ -271,7 +274,6 @@ is what updates them.
 | `npm run validate:content` | Checks every question file against the schema |
 | `npm run icons:generate` | Redraws the favicon, the app icons and the manifest icons from the logo mark. Outputs are committed; run it only when the mark or the brand colours change. |
 | `npm run gift:generate -- --count <n> --days <n> --plan <monthly\|quarterly> [--note "..."]` | Mints free-access gift codes and prints them. |
-| `npm run import:f-air [-- --dry-run]` | Regenerates `content/flying-knowledge/fair/` from `sources/f-air/`. `--dry-run` validates and prints counts per topic, writing nothing. Follow it with `db:seed`. |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | TypeScript, no emit |
 | `npm run test` | Unit tests (Vitest) |
@@ -439,20 +441,49 @@ horizontal overflow and for target sizes. `overflow-x: clip` on `html` is
 a safety net, not the fix — overflows get solved where they happen.
 
 **The landing page's job is to start a test, and the hero asks which
-section rather than assuming.** `Hero` has no featured aircraft. Its one
+pillar rather than assuming.** `Hero` has no featured aircraft. Its one
 primary action is `TryFreeButton` (`_landing/try-free-button.tsx`), a
 yellow "Try free questions" link straight into a ten-question Flying
 Knowledge test — chosen because that section is free in full, so there is
 no preview allowance to run out of — computed in `page.tsx` as `tryHref`
-and omitted when no active subject exists. Under it, `SectionLinks`
-(`_landing/section-links.tsx`) is three identical outlined buttons — Type
-Rating, Class Rating, Flying Knowledge, the short names from
-`sectionShortTitle` — for a visitor who already knows their section.
-`FinalCta` repeats only the try button and a sign-up link, not the three
-sections again. None of the three sections is ranked above the others: the
-product is three sections, not one section with two afterthoughts. The
-header's desktop navigation uses the same short names (the mobile sheet
-keeps the full ones), and its sign-up button reads "Start free".
+and omitted when no active subject exists. Under it, `PillarLinks`
+(`_landing/pillar-links.tsx`) is three identical outlined buttons — ATPL
+Ground School, Aircraft Systems, Pilot Sims, the short names from
+`pillarShortTitle` — for a visitor who already knows where they are going.
+`FinalCta` repeats only the try button and a sign-up link. None of the
+three pillars is ranked above the others. The header's desktop navigation
+uses the same short names (the mobile sheet keeps the full ones), and its
+sign-up button reads "Start free".
+
+**The product is presented as three pillars, over four sections.** A
+pillar (`lib/pillars.ts`, pure and tested) is only a grouping: **EASA ATPL
+Ground School** is the Flying Knowledge section (`/atpl-ground-school`;
+its default label in `lib/settings.ts` is now "EASA ATPL Ground School");
+**Aircraft Systems Knowledge** (`/aircraft-systems`, a thin chooser) groups
+`type-rating` and `class-rating`, which stay two separate trees, pickers and
+sets of tables; **Pilot Sims & Flight Trainers** is `pilot-sims`.
+`SectionKey`, `hiddenSections`, `hiddenItems` and `itemOverrides` are
+unchanged. A pillar is hidden only when every section behind it is. The
+header and the landing cards read pillars; everything else still reads
+sections. A label the owner saved in `site_settings` still beats the new
+default, so an old "Flying Knowledge" label stays until it is cleared at
+`/owner/settings`.
+
+**The ATPL Ground School page lists the fourteen EASA ATPL theory subjects
+from a static list (`lib/atpl-subjects.ts`), not from the database.** A
+subject with no questions has no content folder and no row (`db:seed` would
+delete one), so "coming soon" rows cannot be database rows. A row is live
+only when a Flying Knowledge subject is named by its `code` there (POF is
+080, HPL is 040) and is active with published questions; live rows link to
+`/flying-knowledge/<code>`, where tests still run, and carry a pulsing
+`LiveBadge`. `/flying-knowledge` itself redirects to the picker. Adding a
+subject to the ATPL list is a content folder plus its `code` in that list.
+
+**Pilot Sims is meant to become a paid product, and nothing gates it yet.**
+`PilotSim.tier` (`sims.ts`) is `"free"` for both sims and is display only:
+the landing card says "Premium soon" and shows each sim's tier. Making a sim
+premium needs an access check as well as the flag, and `/pricing` and the
+upgrade dialog still say, truthfully, that Pilot Sims is free.
 
 **The header's desktop navigation starts at `lg`, and the wordmark must not
 shrink.** The wordmark is an `<img>` in a flex row; with the default
@@ -466,20 +497,15 @@ menu button replaces the nav, because the full-size wordmark plus six links
 does not fit in `md`. The account menu shows an avatar only; the address is in
 its dropdown.
 
-Directly under the hero, `SectionsOverview` (`_landing/sections-overview.tsx`)
-replaces what used to be two separate things — a systems strip scrolling
-through one featured aircraft's sections, and a card further down headed
-"Built around the 737-800". Both were built around leading with a single
-aircraft, which is exactly what the three-section split removed. It is
-three cards now, one per section, each with a real count
-(`SectionCounts`, summed in `page.tsx`'s `loadLandingData` from both
-content trees, never read for one featured aircraft alone) or — for
-Flying Knowledge, which has no bank yet — a plain "Coming soon" badge
-rather than a made-up number. Every aircraft and every class rating joins
-one of these three cards; there is no separate "aircraft" section on this
-page any more, and there is no "single engine" / "multi engine" split
-inside the class rating card either, the same rule the route structure
-carries: a light aircraft sits directly under Class Rating.
+Directly under the hero, `PillarsOverview` (`_landing/pillars-overview.tsx`)
+is three cards of identical shape, one per pillar: a title, a line of
+description, a short list of what is inside, and one way in. ATPL lists its
+live subjects with a `LiveBadge` and counts the rest as coming soon;
+Aircraft Systems lists Type Rating and Class Rating with their real
+question counts and aircraft codes (`summariseSection`, from both trees,
+never one featured aircraft); Pilot Sims lists its simulators. There is no
+"single engine" / "multi engine" split anywhere: a light aircraft sits
+directly under Class Rating.
 
 The old systems strip is survived by one thing worth keeping if a
 horizontally-scrolling row of cards is ever built again: `.scroll-x`
@@ -1781,11 +1807,7 @@ over the internals.
 content/                      Question files. The source of truth.
   <code>/                     One folder per type rating aircraft (b737/ today)
   classes/<code>/             One folder per class rating aircraft (da40/ today)
-  flying-knowledge/<code>/    One folder per Flying Knowledge subject (ifr/, pof/, fair/, hpl/ today;
-                              fair/ is generated — see sources/)
-sources/
-  f-air/                      The owner's F AIR bank as supplied, plus corrections.json.
-                              The input to `import:f-air`; never read by the app.
+  flying-knowledge/<code>/    One folder per Flying Knowledge subject (pof/, hpl/ today)
 drizzle/                      Generated SQL migrations. Committed.
 public/                       Manifest icons, the service worker, and any
                               <code>-study-guide.html study guides (see the
@@ -1794,7 +1816,6 @@ scripts/
   validate-content.ts         Schema check. Runs before build and seed.
   migrate.ts                  Applies migrations.
   seed.ts                     Syncs content into the database.
-  import-f-air.ts             Converts sources/f-air/ into content/flying-knowledge/fair/.
   generate-icons.tsx          Rasterises the Q favicon (from public/favicon.svg) into the app and manifest icons. Run by hand, outputs committed.
 src/
   app/
@@ -1803,9 +1824,9 @@ src/
     layout.tsx                The shell: header, footer, metadata, viewport
     page.tsx                  The marketing landing page
     _landing/                 Its sections: hero (+ the drawn 737 backdrop) with
-                              SectionLinks, sections-overview (the three section
+                              PillarLinks, pillars-overview (the three pillar
                               cards), trust, how it works, features, FAQ, final CTA
-                              (reuses SectionLinks)
+                              (reuses PillarLinks)
     type-rating/               Type Rating Systems Knowledge picker ("Choose an aircraft")
     type-rating/[code]/        One aircraft's overview
     type-rating/[code]/test/   Test runner, grading action, result screen, shortcuts-overlay
@@ -1816,10 +1837,12 @@ src/
     class-rating/[code]/test/
     flying-knowledge/          The third section — the same picker/overview/test
                               shape as type-rating/ and class-rating/, reading the
-                              third content tree (IFR today). Free in full: no
+                              third content tree (POF today). Free in full: no
                               free-tier cap, no subscription gate
     flying-knowledge/[code]/
     flying-knowledge/[code]/test/
+    atpl-ground-school/         The EASA ATPL Ground School picker: fourteen subjects, live or coming soon
+    aircraft-systems/           A thin chooser in front of type-rating/ and class-rating/
     aircraft/, class/,
     aviation-knowledge/         Legacy redirects only — see "Old links still work" above
     (auth)/                   Sign up, log in, log out
@@ -1859,7 +1882,6 @@ src/
     load.ts                   Reads and validates /content (type rating)
     load-classes.ts           Reads and validates content/classes/ (class rating)
     load-flying-knowledge.ts  Reads and validates content/flying-knowledge/ (Flying Knowledge)
-    f-air-import.ts           The F AIR bank's conversion: validate, correct, map (pure, tested)
   db/
     schema.ts                 Drizzle tables
     queries.ts                Every read the app performs — type rating
@@ -2021,7 +2043,7 @@ from inside the website, an admin panel gets added then — the `status`,
 `aircraft`/`questions` and `classRatings`/`classQuestions`.**
 `flyingKnowledgeSubjects`/`flyingKnowledgeQuestions` (`src/db/schema.ts`) are
 the same shape `classRatings`/`classQuestions` already are, for the same
-reason: a subject (IFR, and whatever follows it) is a genuinely separate
+reason: a subject (POF today, and whatever follows it) is a genuinely separate
 content type, so it gets its own pair of tables rather than a "kind" column
 grafted onto either of the others. `content/flying-knowledge/<code>/` holds
 one `subject.json` manifest plus a `questions/` folder, validated by
@@ -2038,7 +2060,7 @@ fifteen question files, 501 questions at first, rebuilt to
 1,000 and then pruned to 569 — see the note on the POF bank in `content/README.md`) — with the only application-code change being the
 same one-line addition to `lib/study-guide.ts`'s hand-kept set that any
 aircraft's own study guide already needs (see the note on that file
-above), exactly the same way IFR itself first proved the rule. Human
+above), exactly the way a second aircraft proves the rule. Human
 Performance & Limitations (`HPL`) proves it a further time: `content/flying-knowledge/hpl/` alone, a `subject.json` and sixteen
 question files, 346 questions — see the note on the HPL bank in
 `content/README.md`.
@@ -2046,7 +2068,7 @@ question files, 346 questions — see the note on the HPL bank in
 The one thing that does not carry over from either of the other two trees:
 **Flying Knowledge is free in full, not metered by the free-tier cap or
 gated by a subscription**, decided ahead of any content existing and
-unchanged now that IFR, POF, FAIR and HPL are its four subjects with
+unchanged now that POF and HPL are its two subjects with
 content. Every other
 section's free allowance exists because the bank behind it is something a
 student sits through once toward one exam, and the cap is what pays for
@@ -2067,16 +2089,8 @@ ever written) — that protects the server from a scripted flood, the same
 "protect the machine, not the product" reasoning `MAX_ANSWERS` already gives
 elsewhere, and is never used to cap how much of the bank a visitor may see.
 
-**The IFR bank is general ICAO-style ground-school content, authored by the
-assistant at the owner's request rather than sourced from one AIP or
-syllabus — the same honesty this file already gives the DA40's unsourced
-topics, not a claim that it has been checked against a specific state's
-regulations.** See the note on the IFR bank in `content/README.md` for what
-that does and does not mean, and "Known gaps, honestly" below.
-
-**The POF bank (Principles of Flight, Flying Knowledge's second subject) is
-the same kind of content, held to the same honesty — but the honesty lives
-here, not on the page.** Authored by the assistant as general aerodynamics
+**The POF bank (Principles of Flight, Flying Knowledge's only subject) is
+authored content, and the honesty lives here, not on the page.** Authored by the assistant as general aerodynamics
 theory — not transcribed from the Principles of Flight book the owner
 pointed at, or from any other textbook or syllabus, and not checked against
 one. At the owner's instruction, nothing a student reads in this subject —
@@ -2089,27 +2103,8 @@ engineer's); each rebuilt section replaced its
 file with new ids and never reused a retired one. See the note on the POF bank in
 `content/README.md`, and "Known gaps, honestly" below.
 
-**The F AIR bank (`FAIR`, Flying Knowledge's third subject) is the first
-content here the assistant did not write, and the first that is generated
-rather than authored in place.** It is the owner's own 535-question bank
-for the FI(A) course at F AIR, Benešov (LKBE), kept exactly as supplied in
-`sources/f-air/`. `npm run import:f-air` turns it into
-`content/flying-knowledge/fair/`, and `db:seed` loads that like any other
-subject. So the rule "content is the source of truth" holds one step
-further back: the generated files are the database's source, and
-`sources/f-air/` is theirs. `src/content/f-air-import.ts` is pure and
-tested, including a test that the committed files are byte-for-byte what
-it produces. That test is what makes re-running the import safe. It was
-checked question by question before import. Eleven factual errors are
-fixed through `sources/f-air/corrections.json`, never by editing the
-source. Each correction names the exact text it replaces, so a re-exported
-source that differs stops the import instead of being overwritten. This
-bank does name its source on the page (F AIR, its QRH, LKBE), unlike POF,
-because the owner supplied it that way. See the note on the F AIR bank in
-`content/README.md`.
-
 **The HPL bank (`HPL`, Human Performance & Limitations, Flying Knowledge's
-fourth subject) is the same kind of content as POF, held to the same
+second subject) is the same kind of content as POF, held to the same
 honesty, for the same underlying reason.** The owner pointed at a specific
 book — CAE Oxford Aviation Academy's *Human Performance and Limitations*,
 Book 8 of its ATPL Ground Training Series — but that book is a
@@ -2238,28 +2233,19 @@ published. See the note on the HPL bank in `content/README.md`, and
   future translated edition of the product — it is reachable at its own
   URL exactly like the English one, but `studyGuideHref()` never returns
   it and nothing in the app links to it.
-- **The entire IFR bank (Flying Knowledge's first subject) was authored by
-  the assistant, not transcribed from any national AIP, syllabus or question
-  bank, and not checked against one.** It sticks to general ICAO-style
-  concepts and figures that are consistent across IFR training worldwide
-  (holding pattern shape and timing, DA/DH vs MDA/MDH, approach categories,
-  RVSM, RNAV) rather than a country-specific regulatory threshold, and
-  should be reviewed by a qualified instructor before a student relies on it
-  for a real rating or exam. See the note on the IFR bank in
-  `content/README.md`.
-- **The entire POF bank (Principles of Flight, Flying Knowledge's second
+- **The entire POF bank (Principles of Flight, Flying Knowledge's only
   subject) was authored by the assistant, not transcribed from the
   Principles of Flight book the owner pointed at, or from any other
   textbook, syllabus or question bank, and not checked against one.**
   It sticks to general aerodynamic relations and standard-atmosphere
   values, computed rather than copied, and should be reviewed by a
   qualified instructor before a student relies on it for a real exam.
-  Unlike the IFR bank, the study guide no longer says so on the page: the
+  The study guide does not say so on the page: the
   owner asked for every source mention to be removed from what a student
   reads, so this note and `content/README.md` are now the only place the
   caveat is recorded. See the note on the POF bank in `content/README.md`.
 - **The entire HPL bank (Human Performance & Limitations, Flying
-  Knowledge's fourth subject) was authored by the assistant, not
+  Knowledge's second subject) was authored by the assistant, not
   transcribed from the CAE Oxford Aviation Academy ATPL textbook the owner
   pointed at, or from any other textbook, syllabus or question bank, and
   not checked against one.** Its sixteen topics follow that book's own
@@ -2275,14 +2261,6 @@ published. See the note on the HPL bank in `content/README.md`, and
   record of where the topic structure came from. It should be reviewed by
   a qualified instructor before a student relies on it for a real exam.
   See the note on the HPL bank in `content/README.md`.
-- **The F AIR bank's local facts are the school's, and its distractors are
-  weak.** Czech airspace details, LKBE's procedures and F AIR's QRH figures
-  were not checked independently; they are kept as the owner supplied
-  them. Many wrong options can be ruled out by their shape rather than by
-  knowledge: the correct option is often the longest, and there are bare
-  `Nothing` and `Never` distractors and one "All of the above". That falls
-  short of the rule at the top of this file. They were not rewritten, at
-  the owner's instruction to keep the content as-is. See `content/README.md`.
 - **Twenty-six B737 questions turn on a figure nobody has confirmed twice.** The
   bank's wrong options were rewritten so a question cannot be answered by
   elimination alone, and that pass deliberately left every uncorroborated number

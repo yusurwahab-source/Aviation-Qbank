@@ -35,7 +35,7 @@ export default async function PricingPage() {
           <p className="mt-2 text-3xl font-semibold text-foreground">€0</p>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
             <li>{free} questions on each aircraft — the allowance is per aircraft, and a question you have already seen never costs more.</li>
-            <li>Flying Knowledge subjects and Pilot Sims, free in full.</li>
+            <li>EASA ATPL Ground School subjects and Pilot Sims, free in full.</li>
             <li>A short preview of any bank before you even make an account.</li>
           </ul>
           <Link

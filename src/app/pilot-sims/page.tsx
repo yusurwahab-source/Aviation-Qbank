@@ -32,7 +32,7 @@ export default function PilotSimsPage() {
               <Card className="h-full transition hover:border-brand hover:shadow-sm">
                 <div className="flex items-start justify-between gap-3">
                   <h2 className="text-lg font-semibold text-foreground">{sim.name}</h2>
-                  <Badge tone="brand">Simulator</Badge>
+                  <Badge tone="brand">{sim.tier === "premium" ? "Premium" : "Simulator"}</Badge>
                 </div>
                 <p className="mt-3 text-sm text-muted-foreground">{sim.description}</p>
               </Card>
