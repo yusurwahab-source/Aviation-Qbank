@@ -1,0 +1,2155 @@
+[
+  {
+    "id": "MET-METAR-0001",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Format and wind",
+    "question": "A METAR is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A coded forecast for an aerodrome covering the next 9 to 30 hours"
+      },
+      {
+        "id": "b",
+        "text": "A coded warning of hazardous en-route weather for an FIR"
+      },
+      {
+        "id": "c",
+        "text": "A coded forecast of upper winds and temperatures by flight level"
+      },
+      {
+        "id": "d",
+        "text": "A coded report of the observed weather at an aerodrome at a stated time"
+      }
+    ],
+    "correct": "d",
+    "explanation": "METARs report actual conditions. Forecasts for aerodromes are TAFs; warnings for an FIR are SIGMETs.",
+    "tags": [
+      "definition"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0002",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Format and wind",
+    "question": "METARs are usually issued:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Every 6 hours, at the main synoptic hours"
+      },
+      {
+        "id": "b",
+        "text": "Once a day, at the start of operations"
+      },
+      {
+        "id": "c",
+        "text": "Every 30 minutes, or hourly at some aerodromes"
+      },
+      {
+        "id": "d",
+        "text": "Only when the weather changes significantly"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Routine reports are issued half-hourly or hourly. A SPECI is issued between routine reports when conditions change significantly.",
+    "tags": [
+      "issue"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0003",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Format and wind",
+    "question": "In the METAR group \"121150Z\", the figures mean:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Valid from 12 to 11, 50 minutes"
+      },
+      {
+        "id": "b",
+        "text": "The 12th day of the month at 1150 UTC"
+      },
+      {
+        "id": "c",
+        "text": "12 November at 1150 local time, the time of issue"
+      },
+      {
+        "id": "d",
+        "text": "1211 UTC with a 50 kt wind"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The date–time group gives the day of the month and the time of observation in UTC (Z).",
+    "tags": [
+      "date-time"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0004",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Format and wind",
+    "question": "The wind in a METAR is given as:",
+    "options": [
+      {
+        "id": "a",
+        "text": "True direction to the nearest 10°, with the 10-minute mean speed"
+      },
+      {
+        "id": "b",
+        "text": "Magnetic direction, with the wind speed at 2000 ft"
+      },
+      {
+        "id": "c",
+        "text": "True direction to the nearest 5°, with the 2-minute mean speed"
+      },
+      {
+        "id": "d",
+        "text": "Magnetic direction to the nearest degree, with the peak gust"
+      }
+    ],
+    "correct": "a",
+    "explanation": "METAR winds are true and are 10-minute means. Winds passed by the tower for take-off and landing are magnetic.",
+    "tags": [
+      "wind"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0005",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Format and wind",
+    "question": "The METAR wind group \"24018G32KT\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "240° magnetic, 18 kt, varying by 32°"
+      },
+      {
+        "id": "b",
+        "text": "Wind from 240° at 32 kt, gusts of 18 kt"
+      },
+      {
+        "id": "c",
+        "text": "240° true, mean 18 kt, gusting to 32 kt"
+      },
+      {
+        "id": "d",
+        "text": "240° true, 18 kt, gusts expected in 32 minutes"
+      }
+    ],
+    "correct": "c",
+    "explanation": "G introduces the maximum gust. Gusts are only reported when they exceed the mean speed by 10 kt or more.",
+    "tags": [
+      "wind",
+      "gust"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0006",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Format and wind",
+    "question": "The METAR group \"31008KT 280V350\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The wind is variable from 280° to 350° at 31 kt"
+      },
+      {
+        "id": "b",
+        "text": "The wind is 310° at 8 kt, veering to 350° and then backing to 280° later"
+      },
+      {
+        "id": "c",
+        "text": "Two runways, 28 and 35, are in use"
+      },
+      {
+        "id": "d",
+        "text": "The wind is 310° at 8 kt, with the direction varying between 280° and 350°"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The variability group shows the extreme directions during the previous 10 minutes when the variation is significant.",
+    "tags": [
+      "wind",
+      "variable"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0007",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Format and wind",
+    "question": "Calm wind is coded in a METAR as:",
+    "options": [
+      {
+        "id": "a",
+        "text": "00000KT"
+      },
+      {
+        "id": "b",
+        "text": "VRB00KT"
+      },
+      {
+        "id": "c",
+        "text": "CALM"
+      },
+      {
+        "id": "d",
+        "text": "99999KT"
+      }
+    ],
+    "correct": "a",
+    "explanation": "All zeros indicate calm. VRB is used for a light wind of variable direction, for example VRB02KT.",
+    "tags": [
+      "wind",
+      "calm"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0008",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Visibility and RVR",
+    "question": "The visibility reported in the main visibility group of a METAR is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The lowest visibility in any direction, whatever part of the horizon or aerodrome it covers"
+      },
+      {
+        "id": "b",
+        "text": "The prevailing visibility, reached or exceeded over at least half the horizon or aerodrome"
+      },
+      {
+        "id": "c",
+        "text": "The visibility measured from the cockpit of a landing aircraft"
+      },
+      {
+        "id": "d",
+        "text": "The RVR measured on the main runway in use"
+      }
+    ],
+    "correct": "b",
+    "explanation": "If visibility in one direction is markedly lower (below 1500 m, or less than half the prevailing value), the minimum and its direction are added.",
+    "tags": [
+      "visibility"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0009",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Visibility and RVR",
+    "question": "In a METAR, a visibility of 10 km or more is coded as:",
+    "options": [
+      {
+        "id": "a",
+        "text": "0000"
+      },
+      {
+        "id": "b",
+        "text": "10KM"
+      },
+      {
+        "id": "c",
+        "text": "9999"
+      },
+      {
+        "id": "d",
+        "text": "P6SM"
+      }
+    ],
+    "correct": "c",
+    "explanation": "9999 means 10 km or more. 0000 means less than 50 m.",
+    "tags": [
+      "visibility",
+      "codes"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0010",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Visibility and RVR",
+    "question": "The METAR visibility group \"3000 1200NE\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Visibility varying between 1200 m and 3000 m in all directions"
+      },
+      {
+        "id": "b",
+        "text": "Visibility 3000 m, with an RVR of 1200 m on the north-east runway"
+      },
+      {
+        "id": "c",
+        "text": "Visibility 3000 m now, decreasing to 1200 m within the next hour"
+      },
+      {
+        "id": "d",
+        "text": "Prevailing 3000 m, with a minimum of 1200 m towards the north-east"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The minimum visibility and its direction are reported when they differ significantly from the prevailing value.",
+    "tags": [
+      "visibility",
+      "minimum"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0011",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Visibility and RVR",
+    "question": "RVR is included in a METAR when:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Visibility or RVR is less than 1500 m"
+      },
+      {
+        "id": "b",
+        "text": "Precipitation of any kind is falling"
+      },
+      {
+        "id": "c",
+        "text": "Visibility is less than 5000 m in any direction"
+      },
+      {
+        "id": "d",
+        "text": "The cloud base is lower than 1000 ft"
+      }
+    ],
+    "correct": "a",
+    "explanation": "RVR is the operational figure for low visibility and is reported whenever visibility or RVR falls below 1500 m.",
+    "tags": [
+      "rvr"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0012",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Visibility and RVR",
+    "question": "The METAR group \"R27/0650D\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Runway 27 is closed for the next 650 minutes"
+      },
+      {
+        "id": "b",
+        "text": "RVR on runway 27 is 650 m and has been decreasing"
+      },
+      {
+        "id": "c",
+        "text": "Visibility on runway 27 is 6500 m, decreasing"
+      },
+      {
+        "id": "d",
+        "text": "RVR on runway 27 is 65 m, with deep snow"
+      }
+    ],
+    "correct": "b",
+    "explanation": "U shows an upward tendency, D a downward tendency and N no distinct change over the previous 10 minutes.",
+    "tags": [
+      "rvr",
+      "trend"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0013",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Visibility and RVR",
+    "question": "In an RVR group, the letter P before the value (for example R09/P2000) means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The runway is only partly contaminated"
+      },
+      {
+        "id": "b",
+        "text": "The RVR is above the highest value the system can assess"
+      },
+      {
+        "id": "c",
+        "text": "The RVR is below the lowest value the system can assess"
+      },
+      {
+        "id": "d",
+        "text": "The RVR is a forecast rather than an observed value"
+      }
+    ],
+    "correct": "b",
+    "explanation": "P (plus) shows the value is above the upper limit of the measuring system; M (minus) shows it is below the lower limit.",
+    "tags": [
+      "rvr",
+      "codes"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0014",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Weather codes",
+    "question": "The METAR weather group \"+SHRA\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Heavy showers of rain"
+      },
+      {
+        "id": "b",
+        "text": "Rain showers in the vicinity"
+      },
+      {
+        "id": "c",
+        "text": "Moderate rain with shallow fog"
+      },
+      {
+        "id": "d",
+        "text": "Light showers of rain"
+      }
+    ],
+    "correct": "a",
+    "explanation": "+ means heavy, SH means showers and RA means rain. No sign would indicate moderate intensity.",
+    "tags": [
+      "weather",
+      "codes"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0015",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Weather codes",
+    "question": "The METAR weather group \"-DZ\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Drizzle in the vicinity"
+      },
+      {
+        "id": "b",
+        "text": "Light dust"
+      },
+      {
+        "id": "c",
+        "text": "Light drizzle"
+      },
+      {
+        "id": "d",
+        "text": "Heavy drizzle"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The minus sign indicates light intensity and DZ is drizzle.",
+    "tags": [
+      "weather",
+      "codes"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0016",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Weather codes",
+    "question": "In a METAR, \"VCSH\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Very cold showers falling at the aerodrome"
+      },
+      {
+        "id": "b",
+        "text": "Visibility reduced by showers at the aerodrome"
+      },
+      {
+        "id": "c",
+        "text": "Showers containing volcanic ash nearby"
+      },
+      {
+        "id": "d",
+        "text": "Showers in the vicinity, but not at the aerodrome"
+      }
+    ],
+    "correct": "d",
+    "explanation": "VC (vicinity) indicates the phenomenon is within about 8 km of the aerodrome but not at it.",
+    "tags": [
+      "weather",
+      "vicinity"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0017",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Weather codes",
+    "question": "In a METAR, \"BR\" stands for:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Mist"
+      },
+      {
+        "id": "b",
+        "text": "Breaking cloud"
+      },
+      {
+        "id": "c",
+        "text": "Blowing snow"
+      },
+      {
+        "id": "d",
+        "text": "Haze"
+      }
+    ],
+    "correct": "a",
+    "explanation": "BR (from the French \"brume\") is mist: visibility of 1000 to 5000 m due to water droplets.",
+    "tags": [
+      "weather",
+      "obscuration"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0018",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Weather codes",
+    "question": "In a METAR, \"HZ\" stands for:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Hazardous weather"
+      },
+      {
+        "id": "b",
+        "text": "Mist"
+      },
+      {
+        "id": "c",
+        "text": "Haze"
+      },
+      {
+        "id": "d",
+        "text": "Hail"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Haze is a reduction in visibility caused by dry particles such as dust or smoke.",
+    "tags": [
+      "weather",
+      "obscuration"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0019",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Weather codes",
+    "question": "In a METAR, \"FZFG\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Fog mixed with smoke from industry"
+      },
+      {
+        "id": "b",
+        "text": "Shallow fog, less than 2 m deep"
+      },
+      {
+        "id": "c",
+        "text": "Fog in patches lying across the aerodrome"
+      },
+      {
+        "id": "d",
+        "text": "Freezing fog, with supercooled droplets"
+      }
+    ],
+    "correct": "d",
+    "explanation": "FZ (freezing) indicates supercooled liquid water that will freeze on contact.",
+    "tags": [
+      "weather",
+      "freezing"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0020",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Weather codes",
+    "question": "In a METAR, \"BCFG\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Blowing fog"
+      },
+      {
+        "id": "b",
+        "text": "Fog patches"
+      },
+      {
+        "id": "c",
+        "text": "Fog in the vicinity"
+      },
+      {
+        "id": "d",
+        "text": "Freezing fog"
+      }
+    ],
+    "correct": "b",
+    "explanation": "BC is the descriptor for patches. MIFG is shallow fog and PRFG partial fog.",
+    "tags": [
+      "weather",
+      "fog"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0021",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Weather codes",
+    "question": "In a METAR, \"MIFG\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Moderate fog"
+      },
+      {
+        "id": "b",
+        "text": "Fog with mist"
+      },
+      {
+        "id": "c",
+        "text": "Fog patches"
+      },
+      {
+        "id": "d",
+        "text": "Shallow fog"
+      }
+    ],
+    "correct": "d",
+    "explanation": "MI (shallow) fog is a thin layer, often less than 2 m deep, which may leave the sky visible above.",
+    "tags": [
+      "weather",
+      "fog"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0022",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Weather codes",
+    "question": "In a METAR, \"GR\" and \"GS\" represent:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Gusts, and gale-force squalls"
+      },
+      {
+        "id": "b",
+        "text": "Graupel and glazed ice"
+      },
+      {
+        "id": "c",
+        "text": "Hail, and small hail or snow pellets"
+      },
+      {
+        "id": "d",
+        "text": "Ground fog, and ground snow lying on the runways"
+      }
+    ],
+    "correct": "c",
+    "explanation": "GR is hail (5 mm or more). GS is small hail (less than 5 mm) and/or snow pellets.",
+    "tags": [
+      "weather",
+      "hail"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0023",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Weather codes",
+    "question": "In a METAR, \"TSRA\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A thunderstorm with no precipitation"
+      },
+      {
+        "id": "b",
+        "text": "A thunderstorm with moderate rain"
+      },
+      {
+        "id": "c",
+        "text": "A tropical storm with rain"
+      },
+      {
+        "id": "d",
+        "text": "Thunder and rain in the vicinity"
+      }
+    ],
+    "correct": "b",
+    "explanation": "TS on its own means a thunderstorm without precipitation at the station; the precipitation type is added when it occurs.",
+    "tags": [
+      "weather",
+      "thunderstorm"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0024",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Weather codes",
+    "question": "A thunderstorm is reported in a METAR when:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Thunder has been heard within the last 10 minutes"
+      },
+      {
+        "id": "b",
+        "text": "Lightning has been seen at any distance within the last hour"
+      },
+      {
+        "id": "c",
+        "text": "Hail has fallen at any time that day"
+      },
+      {
+        "id": "d",
+        "text": "Cumulonimbus is forecast"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The present weather TS is used when thunder has been heard in the 10 minutes before the observation.",
+    "tags": [
+      "weather",
+      "thunderstorm"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0025",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Weather codes",
+    "question": "In a METAR, \"VA\" stands for:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Volcanic ash"
+      },
+      {
+        "id": "b",
+        "text": "Valley fog"
+      },
+      {
+        "id": "c",
+        "text": "Variable"
+      },
+      {
+        "id": "d",
+        "text": "Visibility above minimums"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Volcanic ash is reported as an obscuration because of its effect on visibility and its serious hazard to engines.",
+    "tags": [
+      "weather",
+      "volcanic-ash"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0026",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Weather codes",
+    "question": "In a METAR, \"SQ\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sandstorm"
+      },
+      {
+        "id": "b",
+        "text": "Small hail"
+      },
+      {
+        "id": "c",
+        "text": "Snow showers"
+      },
+      {
+        "id": "d",
+        "text": "Squall"
+      }
+    ],
+    "correct": "d",
+    "explanation": "SQ is a squall, a sudden increase in wind lasting a minute or more.",
+    "tags": [
+      "weather",
+      "squall"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0027",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Weather codes",
+    "question": "In a METAR, \"FC\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Freezing cloud with supercooled water"
+      },
+      {
+        "id": "b",
+        "text": "Fog and cloud combined at the surface"
+      },
+      {
+        "id": "c",
+        "text": "Funnel cloud (tornado or waterspout)"
+      },
+      {
+        "id": "d",
+        "text": "Forecast change expected within 2 hours"
+      }
+    ],
+    "correct": "c",
+    "explanation": "FC indicates a funnel cloud; +FC is a well-developed tornado or waterspout.",
+    "tags": [
+      "weather",
+      "funnel"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0028",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Weather codes",
+    "question": "In a METAR, \"SS\" and \"DS\" stand for:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sea spray and dry snow"
+      },
+      {
+        "id": "b",
+        "text": "Sandstorm and duststorm"
+      },
+      {
+        "id": "c",
+        "text": "Snow showers and drifting snow"
+      },
+      {
+        "id": "d",
+        "text": "Small hail and dust"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Both reduce visibility, often severely, in desert regions.",
+    "tags": [
+      "weather",
+      "sand"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0029",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Weather codes",
+    "question": "The METAR group \"BLSN\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Blowing snow, raised to 2 m or more"
+      },
+      {
+        "id": "b",
+        "text": "Heavy snowfall from nimbostratus"
+      },
+      {
+        "id": "c",
+        "text": "Drifting snow, kept below 2 m"
+      },
+      {
+        "id": "d",
+        "text": "Snow showers from cumulus"
+      }
+    ],
+    "correct": "a",
+    "explanation": "BL (blowing) means raised by the wind to eye level or higher. DR (drifting) is used below 2 m.",
+    "tags": [
+      "weather",
+      "snow"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0030",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Weather codes",
+    "question": "In a METAR, \"RERA\" at the end of the report indicates:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Rain is expected to start at the aerodrome within the next hour"
+      },
+      {
+        "id": "b",
+        "text": "Heavy rain is falling at the time of observation"
+      },
+      {
+        "id": "c",
+        "text": "Moderate or heavy rain has recently stopped or weakened"
+      },
+      {
+        "id": "d",
+        "text": "The runway surface is still wet from earlier rain"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The RE prefix marks recent weather of operational significance.",
+    "tags": [
+      "recent-weather"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0031",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Weather codes",
+    "question": "The METAR group \"WS R27\" indicates:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Warnings in force for runway 27"
+      },
+      {
+        "id": "b",
+        "text": "A wet surface on runway 27"
+      },
+      {
+        "id": "c",
+        "text": "The mean wind speed measured at the threshold of runway 27"
+      },
+      {
+        "id": "d",
+        "text": "Windshear has been reported on runway 27"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Windshear information may be added to a METAR for one runway or for all runways (WS ALL RWY).",
+    "tags": [
+      "windshear"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0032",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Cloud and CAVOK",
+    "question": "The METAR cloud group \"BKN012\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "5–7 oktas, base 120 ft above aerodrome level"
+      },
+      {
+        "id": "b",
+        "text": "5–7 oktas, base 1200 ft above aerodrome level"
+      },
+      {
+        "id": "c",
+        "text": "1–2 oktas, base 1200 ft above aerodrome level"
+      },
+      {
+        "id": "d",
+        "text": "5–7 oktas, base 12 000 ft above aerodrome level"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Cloud heights are in hundreds of feet above aerodrome level.",
+    "tags": [
+      "cloud"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0033",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Cloud and CAVOK",
+    "question": "The METAR cloud group \"SCT030CB\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cumulonimbus covering the whole sky at 3000 ft"
+      },
+      {
+        "id": "b",
+        "text": "3–4 oktas of cloud at 300 ft, with a ceiling"
+      },
+      {
+        "id": "c",
+        "text": "3–4 oktas of cumulonimbus with a base of 3000 ft"
+      },
+      {
+        "id": "d",
+        "text": "Scattered showers with a base of 3000 ft"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The only cloud types named in a METAR are CB and TCU.",
+    "tags": [
+      "cloud",
+      "cb"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0034",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Cloud and CAVOK",
+    "question": "In a METAR, which cloud types are identified by name?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only stratus and nimbostratus, as low cloud"
+      },
+      {
+        "id": "b",
+        "text": "Only cirrus, as high cloud"
+      },
+      {
+        "id": "c",
+        "text": "All ten main cloud types, each abbreviated"
+      },
+      {
+        "id": "d",
+        "text": "Only cumulonimbus (CB) and towering cumulus (TCU)"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Only the significant convective cloud types are named; other cloud is described only by amount and height.",
+    "tags": [
+      "cloud"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0035",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Cloud and CAVOK",
+    "question": "In a METAR, \"VV001\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sky obscured, with a vertical visibility of 100 ft"
+      },
+      {
+        "id": "b",
+        "text": "Variable visibility of about 1 km"
+      },
+      {
+        "id": "c",
+        "text": "Cloud at 100 ft covering 1 okta"
+      },
+      {
+        "id": "d",
+        "text": "Horizontal visibility of 100 m in thick freezing fog"
+      }
+    ],
+    "correct": "a",
+    "explanation": "When the sky is obscured, for example by fog, the vertical visibility replaces the cloud group.",
+    "tags": [
+      "cloud",
+      "vertical-visibility"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0036",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Cloud and CAVOK",
+    "question": "For CAVOK to be reported, the conditions include:",
+    "options": [
+      {
+        "id": "a",
+        "text": "No cloud below 1500 ft above the aerodrome and no precipitation, whatever the visibility"
+      },
+      {
+        "id": "b",
+        "text": "10 km or more, no cloud below 5000 ft or the highest MSA (if greater), no CB or TCU, no significant weather"
+      },
+      {
+        "id": "c",
+        "text": "10 km or more and no cloud of any kind at any level, although light precipitation is allowed"
+      },
+      {
+        "id": "d",
+        "text": "5 km or more, no cloud below 3000 ft or the highest MSA (if lower), and no thunderstorms at the aerodrome"
+      }
+    ],
+    "correct": "b",
+    "explanation": "CAVOK replaces the visibility, RVR, weather and cloud groups when all four conditions are met.",
+    "tags": [
+      "cavok"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0037",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Cloud and CAVOK",
+    "question": "Can CAVOK be reported when there is a layer of cloud at 8000 ft and the highest minimum sector altitude is 4500 ft, with visibility 20 km and no weather?",
+    "options": [
+      {
+        "id": "a",
+        "text": "No, because the visibility must be exactly 10 km"
+      },
+      {
+        "id": "b",
+        "text": "Yes, as all the CAVOK conditions are met"
+      },
+      {
+        "id": "c",
+        "text": "No, because there is cloud present"
+      },
+      {
+        "id": "d",
+        "text": "Only if the cloud is cumulonimbus"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Cloud above 5000 ft (and above the highest MSA) is allowed, provided it is not CB or TCU.",
+    "tags": [
+      "cavok"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0038",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Cloud and CAVOK",
+    "question": "The abbreviation \"NSC\" in a METAR means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "No special conditions, so that no SPECI will be issued before the next METAR"
+      },
+      {
+        "id": "b",
+        "text": "Night sky clear, used only for reports made between sunset and sunrise"
+      },
+      {
+        "id": "c",
+        "text": "No snow cover on any of the runways, so that no runway state group needs to be included"
+      },
+      {
+        "id": "d",
+        "text": "No cloud below 5000 ft or the highest MSA and no CB or TCU, where CAVOK does not apply"
+      }
+    ],
+    "correct": "d",
+    "explanation": "NSC is used when there is no cloud of operational significance but CAVOK is not appropriate, for example because the visibility is below 10 km.",
+    "tags": [
+      "cloud",
+      "nsc"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0039",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Temperature, pressure and trends",
+    "question": "The METAR group \"M04/M07\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Temperature −4°C, dew point −7°C"
+      },
+      {
+        "id": "b",
+        "text": "Temperature 4°C, dew point 7°C"
+      },
+      {
+        "id": "c",
+        "text": "Minimum temperature 4°C, maximum 7°C"
+      },
+      {
+        "id": "d",
+        "text": "Temperature −4°C, dew point +7°C"
+      }
+    ],
+    "correct": "a",
+    "explanation": "M stands for minus.",
+    "tags": [
+      "temperature"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0040",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Temperature, pressure and trends",
+    "question": "The METAR group \"Q0998\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Pressure altitude 998 ft"
+      },
+      {
+        "id": "b",
+        "text": "QFF 998 hPa"
+      },
+      {
+        "id": "c",
+        "text": "QNH 998 hPa"
+      },
+      {
+        "id": "d",
+        "text": "QFE 998 hPa"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The QNH is the only pressure given in a METAR, rounded down to a whole hectopascal, with a leading zero if below 1000.",
+    "tags": [
+      "pressure"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0041",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Temperature, pressure and trends",
+    "question": "If the actual QNH is 1012.8 hPa, the METAR will report:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Q10128"
+      },
+      {
+        "id": "b",
+        "text": "Q1012.8"
+      },
+      {
+        "id": "c",
+        "text": "Q1013"
+      },
+      {
+        "id": "d",
+        "text": "Q1012"
+      }
+    ],
+    "correct": "d",
+    "explanation": "QNH is always rounded down to the whole hectopascal below.",
+    "tags": [
+      "pressure"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0042",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Temperature, pressure and trends",
+    "question": "A TREND forecast attached to a METAR is valid for:",
+    "options": [
+      {
+        "id": "a",
+        "text": "9 hours"
+      },
+      {
+        "id": "b",
+        "text": "2 hours from the time of observation"
+      },
+      {
+        "id": "c",
+        "text": "1 hour from the time of issue of the METAR"
+      },
+      {
+        "id": "d",
+        "text": "24 hours"
+      }
+    ],
+    "correct": "b",
+    "explanation": "TRENDs give the expected changes in the next two hours using BECMG, TEMPO or NOSIG.",
+    "tags": [
+      "trend"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0043",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Temperature, pressure and trends",
+    "question": "\"NOSIG\" at the end of a METAR means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "No signal received from the instruments"
+      },
+      {
+        "id": "b",
+        "text": "No significant weather is occurring at the time of the observation"
+      },
+      {
+        "id": "c",
+        "text": "No significant change expected in the next 2 hours"
+      },
+      {
+        "id": "d",
+        "text": "The report was not signed by the observer"
+      }
+    ],
+    "correct": "c",
+    "explanation": "NOSIG is a TREND indicating the conditions are expected to stay much the same.",
+    "tags": [
+      "trend",
+      "nosig"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0044",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Temperature, pressure and trends",
+    "question": "In a METAR TREND, \"TEMPO FM1400 TL1530 3000 SHRA\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Temporarily, between 1400 and 1530 UTC, 3000 m in moderate showers"
+      },
+      {
+        "id": "b",
+        "text": "At 1400 UTC visibility 3000 m, and at 1530 UTC showers"
+      },
+      {
+        "id": "c",
+        "text": "Showers within 3000 m of the aerodrome from 1400 to 1530 local time"
+      },
+      {
+        "id": "d",
+        "text": "From 1400 UTC, a permanent change to 3000 m in showers"
+      }
+    ],
+    "correct": "a",
+    "explanation": "TEMPO means temporary fluctuations, each lasting less than an hour and together less than half the period.",
+    "tags": [
+      "trend",
+      "tempo"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0045",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Temperature, pressure and trends",
+    "question": "In a METAR TREND, \"BECMG AT1800 9999 NSW\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Visibility 9999 m, becoming worse from 1800 UTC"
+      },
+      {
+        "id": "b",
+        "text": "No snow on the runway from 1800 UTC"
+      },
+      {
+        "id": "c",
+        "text": "From 1800 UTC, the visibility improves temporarily to 10 km"
+      },
+      {
+        "id": "d",
+        "text": "At 1800 UTC, visibility 10 km or more and the weather ends"
+      }
+    ],
+    "correct": "d",
+    "explanation": "NSW means no significant weather. BECMG with AT gives the time by which the change will be complete.",
+    "tags": [
+      "trend",
+      "becmg"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0046",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Temperature, pressure and trends",
+    "question": "\"AUTO\" in a METAR indicates:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The report is a forecast, not an observation"
+      },
+      {
+        "id": "b",
+        "text": "The wind direction is varying automatically through 360°"
+      },
+      {
+        "id": "c",
+        "text": "Generated by an automatic station without human intervention"
+      },
+      {
+        "id": "d",
+        "text": "The aerodrome is closed to traffic"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Elements the automatic system cannot determine are replaced by slashes rather than omitted.",
+    "tags": [
+      "auto"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0047",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Temperature, pressure and trends",
+    "question": "In an AUTO METAR, \"////\" in place of the visibility means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The visibility could not be determined by the system"
+      },
+      {
+        "id": "b",
+        "text": "The visibility is less than 50 m in thick fog"
+      },
+      {
+        "id": "c",
+        "text": "The runway is closed"
+      },
+      {
+        "id": "d",
+        "text": "The visibility is 10 km or more"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Slashes replace each element that cannot be measured.",
+    "tags": [
+      "auto"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0048",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Temperature, pressure and trends",
+    "question": "A SPECI is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A report of volcanic ash only, issued by a volcanic ash advisory centre"
+      },
+      {
+        "id": "b",
+        "text": "A special report between routine METARs when conditions change significantly"
+      },
+      {
+        "id": "c",
+        "text": "A forecast of special weather phenomena for the whole flight information region"
+      },
+      {
+        "id": "d",
+        "text": "A report issued once a day summarising the weather of the previous 24 hours"
+      }
+    ],
+    "correct": "b",
+    "explanation": "It has the same format as a METAR with SPECI replacing METAR.",
+    "tags": [
+      "speci"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0049",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Runway state and decoding",
+    "question": "In a METAR runway state group, the code \"R88\" refers to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Runway 08 and 26"
+      },
+      {
+        "id": "b",
+        "text": "The runway with the lowest friction"
+      },
+      {
+        "id": "c",
+        "text": "A repeat of the previous report"
+      },
+      {
+        "id": "d",
+        "text": "All runways"
+      }
+    ],
+    "correct": "d",
+    "explanation": "R99 is a repetition of the last report because no new information has been received.",
+    "tags": [
+      "runway-state"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0050",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Runway state and decoding",
+    "question": "\"SNOCLO\" in a METAR means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Snow showers at the aerodrome have ended"
+      },
+      {
+        "id": "b",
+        "text": "Snow-bearing clouds are present over the aerodrome"
+      },
+      {
+        "id": "c",
+        "text": "The aerodrome is closed because of runway contamination"
+      },
+      {
+        "id": "d",
+        "text": "Snow clearance of the runways is complete"
+      }
+    ],
+    "correct": "c",
+    "explanation": "SNOCLO replaces the runway state group when the aerodrome is closed due to deposits on the runways.",
+    "tags": [
+      "runway-state"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0051",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Runway state and decoding",
+    "question": "Decode: METAR LFPG 041130Z 19014KT 160V230 6000 -RA BKN008 OVC020 11/10 Q1004 NOSIG. The ceiling is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "800 ft, the base of the broken layer"
+      },
+      {
+        "id": "b",
+        "text": "1100 ft"
+      },
+      {
+        "id": "c",
+        "text": "600 ft"
+      },
+      {
+        "id": "d",
+        "text": "2000 ft, the base of the overcast layer"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The ceiling is the lowest layer of 5 oktas or more (BKN or OVC), here BKN008.",
+    "tags": [
+      "decode",
+      "ceiling"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0052",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Runway state and decoding",
+    "question": "Decode: METAR EGLL 151020Z 05006KT 0300 R27R/0450N FG VV002 03/03 Q1028. Which statement is correct?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Mist, 3 km; RVR 27R 450 m, no change; cloud base 200 ft"
+      },
+      {
+        "id": "b",
+        "text": "Fog, 300 m; RVR 27R 450 m, no change; vertical visibility 200 ft"
+      },
+      {
+        "id": "c",
+        "text": "Freezing fog, 300 m; RVR 27R 450 m; cloud base 2000 ft"
+      },
+      {
+        "id": "d",
+        "text": "Fog, 300 ft; RVR 27R 4500 m, increasing; vertical visibility 2000 ft"
+      }
+    ],
+    "correct": "b",
+    "explanation": "FG with 300 m visibility; the RVR group shows 450 m with N (no distinct tendency); VV002 is a vertical visibility of 200 ft.",
+    "tags": [
+      "decode"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0053",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Runway state and decoding",
+    "question": "Decode: METAR LIRF 201450Z 27015G28KT 9999 VCTS FEW035CB SCT040 24/16 Q1012 RETSRA. Which is correct?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Thunderstorm with rain now at the aerodrome, visibility 9 km or more, wind 270/15 steady"
+      },
+      {
+        "id": "b",
+        "text": "No cumulonimbus present, wind variable, recent rain without thunder"
+      },
+      {
+        "id": "c",
+        "text": "Thunderstorm in the vicinity, recent thunderstorm with rain, wind 270/15 gusting 28"
+      },
+      {
+        "id": "d",
+        "text": "Volcanic ash in the vicinity, wind 270/15 gusting 28, no recent weather"
+      }
+    ],
+    "correct": "c",
+    "explanation": "VCTS means a thunderstorm within about 8 km but not at the aerodrome; RETSRA shows that a thunderstorm with rain affected the aerodrome recently.",
+    "tags": [
+      "decode"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0054",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Further decoding",
+    "question": "In a METAR, \"VRB04KT\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "A wind varying between calm and 4 kt"
+      },
+      {
+        "id": "b",
+        "text": "A light 4 kt wind whose direction is variable"
+      },
+      {
+        "id": "c",
+        "text": "Calm conditions, with gusts of 4 kt"
+      },
+      {
+        "id": "d",
+        "text": "A 4 kt wind veering steadily through the period"
+      }
+    ],
+    "correct": "b",
+    "explanation": "VRB is used when the direction cannot be given as a mean, usually because the wind is light.",
+    "tags": [
+      "wind",
+      "variable"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0055",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Further decoding",
+    "question": "In a METAR, \"0000\" in the visibility group means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Visibility 10 km or more"
+      },
+      {
+        "id": "b",
+        "text": "Visibility not observed"
+      },
+      {
+        "id": "c",
+        "text": "Visibility exactly 0 m because the aerodrome is closed"
+      },
+      {
+        "id": "d",
+        "text": "Visibility less than 50 m"
+      }
+    ],
+    "correct": "d",
+    "explanation": "0000 is the lowest code value, meaning below 50 m.",
+    "tags": [
+      "visibility",
+      "codes"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0056",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Further decoding",
+    "question": "In a METAR, \"-SN BLSN\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Light snow falling, with snow also blown to 2 m or more"
+      },
+      {
+        "id": "b",
+        "text": "Light snow falling, with snow drifting below 2 m only"
+      },
+      {
+        "id": "c",
+        "text": "Heavy snow falling in the vicinity of the aerodrome"
+      },
+      {
+        "id": "d",
+        "text": "Light sleet falling, with snow on the ground"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Several weather groups may be reported together. BL indicates snow raised by the wind to eye level or higher.",
+    "tags": [
+      "weather",
+      "snow"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0057",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Further decoding",
+    "question": "In a METAR, \"RASN\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Rain with snow lying on the ground"
+      },
+      {
+        "id": "b",
+        "text": "Snow in the vicinity of rain showers"
+      },
+      {
+        "id": "c",
+        "text": "Rain and snow mixed (sleet)"
+      },
+      {
+        "id": "d",
+        "text": "Rain followed by snow later"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Two precipitation types can be combined in one group, with the dominant type first.",
+    "tags": [
+      "weather",
+      "sleet"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0058",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Further decoding",
+    "question": "In a METAR, \"FZDZ\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Drizzle that has recently stopped"
+      },
+      {
+        "id": "b",
+        "text": "Freezing drizzle, which freezes on contact"
+      },
+      {
+        "id": "c",
+        "text": "Drizzle that has frozen into ice pellets"
+      },
+      {
+        "id": "d",
+        "text": "Drizzle together with fog at the aerodrome"
+      }
+    ],
+    "correct": "b",
+    "explanation": "FZ shows supercooled drops that will form clear ice on impact.",
+    "tags": [
+      "weather",
+      "freezing"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0059",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Further decoding",
+    "question": "In a METAR, \"PRFG\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Fog in the vicinity of the aerodrome, but not at the aerodrome itself"
+      },
+      {
+        "id": "b",
+        "text": "Fog patches randomly scattered over the aerodrome"
+      },
+      {
+        "id": "c",
+        "text": "Freezing fog with supercooled droplets"
+      },
+      {
+        "id": "d",
+        "text": "Partial fog covering a substantial part of the aerodrome"
+      }
+    ],
+    "correct": "d",
+    "explanation": "PR (partial) means part of the aerodrome is covered by fog while the rest is clear.",
+    "tags": [
+      "weather",
+      "fog"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0060",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Further decoding",
+    "question": "In a METAR, \"FU\" stands for:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Smoke"
+      },
+      {
+        "id": "b",
+        "text": "Freezing"
+      },
+      {
+        "id": "c",
+        "text": "Fog with ultraviolet"
+      },
+      {
+        "id": "d",
+        "text": "Funnel cloud"
+      }
+    ],
+    "correct": "a",
+    "explanation": "FU (from the French \"fumée\") is smoke.",
+    "tags": [
+      "weather",
+      "smoke"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0061",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Further decoding",
+    "question": "In a METAR, \"TCU\" means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Turbulence in cumulus"
+      },
+      {
+        "id": "b",
+        "text": "Towering cumulus"
+      },
+      {
+        "id": "c",
+        "text": "Thunderstorm in cumulus"
+      },
+      {
+        "id": "d",
+        "text": "Tropical cyclone"
+      }
+    ],
+    "correct": "b",
+    "explanation": "TCU is cumulus congestus, reported along with CB because of its operational significance.",
+    "tags": [
+      "cloud",
+      "tcu"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0062",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Further decoding",
+    "question": "Decode: \"METAR LEMD 271500Z 36004KT 320V040 CAVOK 34/06 Q1014 NOSIG\". Which statement is correct?",
+    "options": [
+      {
+        "id": "a",
+        "text": "360/40, visibility 3200 m, temperature 34°C, dew point 6°C, QNH 1014"
+      },
+      {
+        "id": "b",
+        "text": "Variable wind, CAVOK, temperature 6°C, dew point 34°C, QNH 1014"
+      },
+      {
+        "id": "c",
+        "text": "360/04 varying 320–040, CAVOK, temperature 34°C, dew point 6°C, QNH 1014"
+      },
+      {
+        "id": "d",
+        "text": "Calm, cloud at 4000 ft, temperature 34°C, dew point 6°C, QNH 1014"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The large dew-point spread shows very dry air; CAVOK means no cloud below 5000 ft or MSA and visibility 10 km or more.",
+    "tags": [
+      "decode"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0063",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Further decoding",
+    "question": "Decode: \"METAR EHAM 090825Z 22024G38KT 4500 SHRA BKN014CB OVC025 08/06 Q0987 TEMPO 1500 +TSRA\". The TREND indicates:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Thunderstorms with heavy rain already occurring at the time of observation"
+      },
+      {
+        "id": "b",
+        "text": "A 15% chance of thunderstorms with heavy rain in the next 2 hours"
+      },
+      {
+        "id": "c",
+        "text": "A permanent change to 1500 m from the time of observation at 0825"
+      },
+      {
+        "id": "d",
+        "text": "Temporary spells within 2 hours of 1500 m in thunderstorms with heavy rain"
+      }
+    ],
+    "correct": "d",
+    "explanation": "TEMPO in a METAR TREND means temporary fluctuations expected within the next two hours.",
+    "tags": [
+      "decode",
+      "trend"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0064",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Further decoding",
+    "question": "Decode: \"METAR UUEE 120600Z 00000KT 0150 R24/0300V0500 FZFG VV001 M08/M09 Q1031\". Which statement is correct?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Calm, 150 m in freezing fog, RVR 24 varying 300–500 m, vertical visibility 100 ft"
+      },
+      {
+        "id": "b",
+        "text": "Calm, 150 m in snow, temperature −8°C, cloud base 1000 ft"
+      },
+      {
+        "id": "c",
+        "text": "Wind 240° at 30 kt, 150 m in freezing fog, vertical visibility 100 ft"
+      },
+      {
+        "id": "d",
+        "text": "Calm, 1500 m in mist, RVR on runway 24 of 300 m, cloud base 100 ft"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Variable RVR is shown as a range with V between the two values.",
+    "tags": [
+      "decode"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0065",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Further decoding",
+    "question": "In a METAR, a cloud group \"FEW008///\" from an automatic station indicates:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Few clouds at 8000 ft, of three different types not identified"
+      },
+      {
+        "id": "b",
+        "text": "Sky obscured, vertical visibility 800 ft"
+      },
+      {
+        "id": "c",
+        "text": "Cloud amount not measured, base 800 ft"
+      },
+      {
+        "id": "d",
+        "text": "Few clouds at 800 ft, type not determined by the system"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Automatic systems cannot always identify CB or TCU, so the type is replaced by slashes.",
+    "tags": [
+      "auto",
+      "cloud"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MET-METAR-0066",
+    "subjectCode": "MET",
+    "topic": "METARs",
+    "subtopic": "Further decoding",
+    "question": "An automatic METAR reports \"NCD\". This means:",
+    "options": [
+      {
+        "id": "a",
+        "text": "No change detected since the last report"
+      },
+      {
+        "id": "b",
+        "text": "Nil cloud data, as the sensor has failed"
+      },
+      {
+        "id": "c",
+        "text": "No cloud detected by the automatic system"
+      },
+      {
+        "id": "d",
+        "text": "No ceiling, but CB present nearby"
+      }
+    ],
+    "correct": "c",
+    "explanation": "NCD is used by automatic systems when no cloud is detected; it does not exclude cloud the sensor cannot see.",
+    "tags": [
+      "auto",
+      "cloud"
+    ],
+    "status": "published",
+    "version": 1
+  }
+]

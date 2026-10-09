@@ -16,10 +16,12 @@ describe("buildAtplRows", () => {
       { code: "POF", status: "active", publishedQuestions: 569 },
       { code: "HPL", status: "active", publishedQuestions: 346 },
       { code: "COM", status: "active", publishedQuestions: 300 },
+      { code: "MET", status: "active", publishedQuestions: 1400 },
     ]);
     const live = rows.filter((row) => row.live);
     expect(live.map((row) => [row.number, row.live?.code])).toEqual([
       ["040", "HPL"],
+      ["050", "MET"],
       ["080", "POF"],
       ["090", "COM"],
     ]);
@@ -41,6 +43,6 @@ describe("buildAtplRows", () => {
   it("ignores banks that are not an ATPL subject", () => {
     const rows = buildAtplRows([{ code: "XYZ", status: "active", publishedQuestions: 99 }]);
     expect(rows.every((row) => row.live === null)).toBe(true);
-    expect(ATPL_SUBJECTS.filter((s) => s.code)).toHaveLength(3);
+    expect(ATPL_SUBJECTS.filter((s) => s.code)).toHaveLength(4);
   });
 });
