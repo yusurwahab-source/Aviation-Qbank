@@ -37,8 +37,10 @@ Rating Systems Knowledge** — light aircraft, each its own folder one level
 down. A light aircraft sits directly here with no sub-category between it
 and the section: there is no "single engine" or "multi engine" split, only
 the aircraft. `content/flying-knowledge/` holds **Flying Knowledge** —
-general theory not tied to any aircraft, each subject (Principles of Flight today, and whatever
-follows it) its own folder one level down, free in full by decision — see
+general theory not tied to any aircraft, each subject (Principles of Flight,
+Human Performance & Limitations, Meteorology and Aircraft General Knowledge —
+Electrics today, and whatever follows them) its own folder one level down,
+free in full by decision — see
 the note on the three sections in `CLAUDE.md`.
 
 Adding a second type rating, a second class rating, or a second Flying
@@ -518,8 +520,8 @@ syllabus, question by question.
 ## The ELEC bank (Flying Knowledge)
 
 The subject is **Aircraft General Knowledge — Electrics** (code `ELEC`),
-the third subject in Flying Knowledge, added the same content-only way POF
-and HPL were. 370 questions across sixteen topics, all published. On the
+the fourth subject in Flying Knowledge, added the same content-only way POF,
+HPL and MET were. 370 questions across sixteen topics, all published. On the
 EASA ATPL Ground School picker it is the subject behind row 021, which in
 the syllabus also covers airframe, systems, powerplant and emergency
 equipment; only the electrics part exists so far.
@@ -606,6 +608,100 @@ verified against the worked examples in the questions.
 
 This bank should be reviewed by a qualified instructor before a student
 relies on it for a real exam, the same caution given to POF and HPL.
+
+## The MET bank (Flying Knowledge)
+
+The subject is **Meteorology** (code `MET`), the third subject in Flying
+Knowledge, added the same content-only way POF and HPL were. 1,400
+questions across twenty-nine topics, all published.
+
+| # | Topic | File | Ids | Questions |
+|---|---|---|---|---|
+| 01 | The Atmosphere | `the-atmosphere.json` | `MET-ATMO-0001`–`0061` | 61 |
+| 02 | Pressure | `pressure.json` | `MET-PRES-0001`–`0044` | 44 |
+| 03 | Density | `density.json` | `MET-DENS-0001`–`0030` | 30 |
+| 04 | Pressure Systems | `pressure-systems.json` | `MET-PSYS-0001`–`0047` | 47 |
+| 05 | Temperature | `temperature.json` | `MET-TEMP-0001`–`0050` | 50 |
+| 06 | Humidity | `humidity.json` | `MET-HUM-0001`–`0043` | 43 |
+| 07 | Adiabatics and Stability | `adiabatics-and-stability.json` | `MET-STAB-0001`–`0057` | 57 |
+| 08 | Turbulence | `turbulence.json` | `MET-TURB-0001`–`0055` | 55 |
+| 09 | Altimetry | `altimetry.json` | `MET-ALT-0001`–`0063` | 63 |
+| 10 | Winds | `winds.json` | `MET-WIND-0001`–`0071` | 71 |
+| 11 | Upper Winds | `upper-winds.json` | `MET-UPWND-0001`–`0053` | 53 |
+| 12 | Clouds | `clouds.json` | `MET-CLOUD-0001`–`0051` | 51 |
+| 13 | Cloud Formation and Precipitation | `cloud-formation-and-precipitation.json` | `MET-PRECIP-0001`–`0048` | 48 |
+| 14 | Thunderstorms | `thunderstorms.json` | `MET-TSTM-0001`–`0059` | 59 |
+| 15 | Visibility | `visibility.json` | `MET-VIS-0001`–`0055` | 55 |
+| 16 | Icing | `icing.json` | `MET-ICE-0001`–`0056` | 56 |
+| 17 | Air Masses and Fronts | `air-masses-and-fronts.json` | `MET-AIRM-0001`–`0057` | 57 |
+| 18 | Occlusions | `occlusions.json` | `MET-OCCL-0001`–`0035` | 35 |
+| 19 | Other Depressions | `other-depressions.json` | `MET-DEPR-0001`–`0048` | 48 |
+| 20 | Global Climatology | `global-climatology.json` | `MET-GLOB-0001`–`0056` | 56 |
+| 21 | Local Winds and Weather | `local-winds-and-weather.json` | `MET-LOCW-0001`–`0034` | 34 |
+| 22 | Area Climatology | `area-climatology.json` | `MET-AREA-0001`–`0043` | 43 |
+| 23 | Route Climatology | `route-climatology.json` | `MET-ROUTE-0001`–`0040` | 40 |
+| 24 | Satellite Observations | `satellite-observations.json` | `MET-SAT-0001`–`0027` | 27 |
+| 25 | METARs | `metars.json` | `MET-METAR-0001`–`0066` | 66 |
+| 26 | TAFs | `tafs.json` | `MET-TAF-0001`–`0043` | 43 |
+| 27 | World Area Forecast System | `world-area-forecast-system.json` | `MET-WAFS-0001`–`0040` | 40 |
+| 28 | Warning Messages | `warning-messages.json` | `MET-WARN-0001`–`0038` | 38 |
+| 29 | Met Information in Flight | `met-information-in-flight.json` | `MET-INFLT-0001`–`0030` | 30 |
+| | | | | **1,400** |
+
+### Authored, not transcribed
+
+The owner supplied a copy of a book they had bought for this subject: CAE
+Oxford Aviation Academy's *Meteorology*, Book 9 of its ATPL Ground Training
+Series. It is a copyrighted, commercially sold ground-school text, and the
+owner's own instruction matched the boundary POF and HPL already drew: use
+it for the information only, not for its content or the way it is written.
+**Every stem, option, explanation and worked figure here, and the whole
+study guide, were written by the assistant.** None of it was transcribed or
+closely paraphrased, the book's worked examples were not reused, and its
+specimen-question chapters were not read for authoring at all.
+
+What was taken from the book is what any meteorology syllabus is made of:
+the topic order (twenty-nine chapters, renamed as topics and skipping its
+revision questions, specimen papers, glossary and index), and the standard
+facts and figures meteorology is taught with everywhere: the ISA values,
+the adiabatic lapse rates, Buys Ballot's law, the 27 ft per hPa and
+4 ft per °C per 1000 ft rules of thumb, the cloud and fog types, the jet
+stream families, the named local winds, and the ICAO report and forecast
+codes (METAR, TAF, SIGMET and SIGWX). Every METAR, TAF and SIGMET example
+is invented, and every calculation was worked again independently rather
+than copied, which caught and fixed a handful of arithmetic slips during
+authoring (the Föhn and FL200 altimetry answers among them).
+
+Because a bank this size is easy to answer by spotting the longest option,
+the distractors were rewritten in three passes until the correct option is
+the strictly longest in about a third of questions (chance with four
+options is a quarter), down from about seventy per cent in the first
+draft. Correct positions are balanced across a–d.
+
+### What the student sees never names a source
+
+The same rule as POF and HPL: the guide and the questions are plain
+statements about the weather. No book, school, regulator, question bank or
+syllabus is named anywhere a student can read. The honest record stays
+here and in `CLAUDE.md` only.
+
+`public/met-study-guide.html` is this bank's study guide (see
+`lib/study-guide.ts`). It has twenty-nine sections matching the
+twenty-nine topics, each with a key-idea callout and a table, card grid or
+worked example, plus a cheat sheet of the figures worth knowing by heart
+and four calculators: ISA and ISA deviation, pressure and density
+altitude, cumulus base from the spread, and the cold-temperature altimeter
+correction. Five inline SVG diagrams (the ISA profile, the Föhn effect, a
+microburst on the approach, a frontal cross-section and a wind barb) use
+the page's colour tokens, so they work in both themes. The page has been
+checked at 375px for horizontal overflow.
+
+This should be reviewed by a qualified instructor before a student relies
+on it for a real exam, the same caution given to POF and HPL. It has not
+been checked question by question against the book or any other
+meteorology syllabus. The climatology chapters (global, area and route)
+describe typical seasonal patterns and are the most simplified part of
+the bank.
 
 ## The B737 bank
 

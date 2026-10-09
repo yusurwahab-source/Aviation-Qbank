@@ -1,0 +1,1282 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Meteorology — Pilot's Guide</title>
+<meta name="description" content="Meteorology explained for pilots: the standard atmosphere, pressure and altimetry, stability and cloud, winds and jet streams, thunderstorms, icing, fog, fronts and depressions, world climate, and how to read METARs, TAFs, SIGWX charts and SIGMETs — with tables, diagrams and quick tools." />
+<style>
+  :root{
+    --bg:#f6f8fb;
+    --surface:#ffffff;
+    --surface-2:#eef2f7;
+    --ink:#101826;
+    --ink-2:#3c4758;
+    --muted:#6b7686;
+    --line:#dfe6ef;
+    --brand:#0d6e7d;
+    --brand-ink:#ffffff;
+    --brand-light:#e3f4f6;
+    --warn-bg:#fdecec;
+    --warn-line:#e0413a;
+    --warn-ink:#7a1712;
+    --caution-bg:#fff6e0;
+    --caution-line:#c9821a;
+    --caution-ink:#6b4405;
+    --note-bg:#eaf1fb;
+    --note-line:#3f6fb0;
+    --note-ink:#1f3c63;
+    --green-arc:#1f9d55;
+    --yellow-arc:#e0b400;
+    --red-arc:#d9362a;
+    --radius:14px;
+    --radius-sm:8px;
+    --shadow:0 1px 2px rgba(16,24,38,.04), 0 6px 20px rgba(16,24,38,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0d1420;
+      --surface:#141d2c;
+      --surface-2:#1b263a;
+      --ink:#eef2f8;
+      --ink-2:#c3cddc;
+      --muted:#8b97ab;
+      --line:#26334a;
+      --brand:#37c3d6;
+      --brand-ink:#06232a;
+      --brand-light:#12323a;
+      --warn-bg:#3a1613;
+      --warn-line:#e4574d;
+      --warn-ink:#ffd6d1;
+      --caution-bg:#3a2c0d;
+      --caution-line:#e0a83a;
+      --caution-ink:#ffe6b0;
+      --note-bg:#122a44;
+      --note-line:#5b93d6;
+      --note-ink:#cfe2fb;
+      --green-arc:#2bb56a;
+      --yellow-arc:#e0b400;
+      --red-arc:#e4574d;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1420; --surface:#141d2c; --surface-2:#1b263a; --ink:#eef2f8; --ink-2:#c3cddc;
+    --muted:#8b97ab; --line:#26334a; --brand:#37c3d6; --brand-ink:#06232a; --brand-light:#12323a;
+    --warn-bg:#3a1613; --warn-line:#e4574d; --warn-ink:#ffd6d1;
+    --caution-bg:#3a2c0d; --caution-line:#e0a83a; --caution-ink:#ffe6b0;
+    --note-bg:#122a44; --note-line:#5b93d6; --note-ink:#cfe2fb;
+    --green-arc:#2bb56a; --yellow-arc:#e0b400; --red-arc:#e4574d;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:clip;scroll-padding-top:80px}
+  body{
+    margin:0;
+    overflow-x:clip;
+    max-width:100vw;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,"Segoe UI",system-ui,Roboto,sans-serif;
+    line-height:1.75;
+    font-size:17px;
+  }
+  a{color:var(--brand)}
+  header.top{
+    position:sticky;top:0;z-index:40;
+    background:linear-gradient(180deg, var(--surface) 85%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    max-width:1180px;margin:0 auto;padding:14px 16px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .brand-mark{display:flex;align-items:center;gap:10px;min-width:0}
+  .brand-mark .plane{
+    width:34px;height:34px;flex:0 0 auto;border-radius:9px;
+    background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+  }
+  .brand-mark .txt{min-width:0}
+  .brand-mark h1{font-size:15px;margin:0;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand-mark .sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .menu-btn{
+    display:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+    border-radius:10px;padding:9px 12px;font-size:14px;cursor:pointer;flex:0 0 auto;
+  }
+  .shell{max-width:1180px;margin:0 auto;display:flex;align-items:flex-start;gap:28px;padding:20px 16px 80px}
+  nav.toc{
+    position:sticky;top:78px;flex:0 0 280px;
+    max-height:calc(100vh - 96px);overflow-y:auto;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;box-shadow:var(--shadow);
+  }
+  nav.toc h2{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:2px 8px 10px}
+  nav.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+  nav.toc li{counter-increment:toc}
+  nav.toc a{
+    display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--ink-2);
+    padding:7px 8px;border-radius:9px;font-size:13.5px;
+  }
+  nav.toc a .n{flex:0 0 auto;color:var(--brand);font-weight:700;font-size:15px;min-width:22px}
+  nav.toc a:hover{background:var(--surface-2);color:var(--ink)}
+  nav.toc a.active{background:var(--brand-light);color:var(--ink);font-weight:600}
+  nav.toc .count{margin-inline-start:auto;font-size:11px;color:var(--muted)}
+  main{flex:1 1 auto;min-width:0}
+  .hero{
+    background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 16%,var(--surface)),var(--surface) 60%);
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 22px;margin-bottom:22px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .hero .cloud{position:absolute;inset-inline-end:-10px;top:-6px;font-size:84px;opacity:.16;pointer-events:none;user-select:none}
+  .hero h1{margin:0 0 8px;font-size:26px}
+  .hero p{margin:0;color:var(--ink-2);font-size:15.5px}
+  .hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hero .tag{
+    font-size:12.5px;background:color-mix(in srgb,var(--brand) 16%,var(--surface));color:var(--brand);
+    border-radius:999px;padding:5px 12px;font-weight:600;
+  }
+  section.sec{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px 26px;margin-bottom:22px;box-shadow:var(--shadow);scroll-margin-top:76px;
+    border-top:5px solid var(--accent, var(--brand));
+  }
+  section.sec > h2{
+    display:flex;align-items:center;gap:12px;font-size:21px;margin:0 0 6px;
+    padding-bottom:14px;border-bottom:1px solid var(--line);
+  }
+  section.sec > h2 .num{
+    flex:0 0 auto;width:40px;height:40px;border-radius:12px;background:var(--accent,var(--brand));color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800;
+  }
+  section.sec > h2 .en{margin-inline-start:auto;font-size:12px;color:var(--ink-2);font-weight:600;
+    direction:ltr;background:color-mix(in srgb,var(--accent,var(--brand)) 14%,var(--surface));padding:4px 10px;border-radius:999px}
+  .lead{color:var(--ink-2);font-size:16px;margin-top:14px}
+  h3.sub{font-size:16.5px;margin:26px 0 8px;color:var(--ink);border-inline-start:4px solid var(--accent,var(--brand));padding-inline-start:10px}
+  p{margin:10px 0}
+  ul, ol{margin:10px 0;padding-inline-start:22px}
+  li{margin:5px 0}
+  strong{color:var(--ink)}
+  .table-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm)}
+  table{border-collapse:collapse;width:100%;min-width:420px;font-size:14.5px}
+  thead th{
+    background:var(--surface-2);color:var(--ink);text-align:start;
+    padding:9px 12px;font-weight:700;white-space:nowrap;font-size:13.5px;
+  }
+  tbody td{padding:8px 12px;border-top:1px solid var(--line);color:var(--ink-2)}
+  tbody tr:nth-child(even){background:color-mix(in srgb, var(--surface-2) 45%, transparent)}
+  td.num, th.num{direction:ltr;text-align:center;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+  .callout{border-radius:var(--radius-sm);padding:12px 14px;margin:14px 0;border-inline-start:4px solid;font-size:14.5px}
+  .callout .label{display:block;font-weight:800;font-size:12px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:4px}
+  .callout.warning{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-ink)}
+  .callout.caution{background:var(--caution-bg);border-color:var(--caution-line);color:var(--caution-ink)}
+  .callout.note{background:var(--note-bg);border-color:var(--note-line);color:var(--note-ink)}
+  .diagram{
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;margin:18px 0;text-align:center;
+    max-width:100%;overflow-x:auto;box-sizing:border-box;
+  }
+  .diagram .cap{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .diagram svg{max-width:100%;height:auto;display:block;margin:0 auto;min-width:420px}
+  footer{max-width:1180px;margin:0 auto;padding:10px 16px 60px;color:var(--muted);font-size:13px;text-align:center}
+  #top-btn{
+    position:fixed;inset-inline-end:18px;bottom:18px;z-index:50;
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+    background:var(--accent,var(--brand));color:#fff;font-size:18px;cursor:pointer;
+    box-shadow:var(--shadow);display:none;align-items:center;justify-content:center;
+  }
+  #top-btn.show{display:flex}
+  .glance{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+  .glance span{font-size:13px;background:color-mix(in srgb,var(--accent,var(--brand)) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--accent,var(--brand)) 35%,var(--line));border-radius:999px;padding:4px 12px;color:var(--ink-2)}
+  .keyidea{margin:16px 0;padding:14px 16px;border-radius:var(--radius);background:linear-gradient(135deg,color-mix(in srgb,var(--accent,var(--brand)) 16%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--accent,var(--brand)) 40%,var(--line))}
+  .keyidea .label{display:block;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent,var(--brand));margin-bottom:4px}
+  .keyidea p{margin:4px 0}
+  .tip,.memory{margin:14px 0;padding:12px 14px;border-radius:var(--radius-sm);font-size:14.5px;border-inline-start:4px solid}
+  .tip{background:color-mix(in srgb,var(--green-arc) 12%,var(--surface));border-color:var(--green-arc);color:var(--ink)}
+  .memory{background:color-mix(in srgb,#8b5cf6 12%,var(--surface));border-color:#8b5cf6;color:var(--ink)}
+  .tip .label,.memory .label{display:block;font-weight:800;font-size:12px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+  .tip .label{color:var(--green-arc)} .memory .label{color:#8b5cf6}
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
+  .fcard{background:var(--surface-2);border:1px solid var(--line);border-top:3px solid var(--accent,var(--brand));border-radius:var(--radius-sm);padding:12px 14px}
+  .fcard .f{font-weight:700;color:var(--ink);font-size:15px}
+  .fcard .d{font-size:13.5px;color:var(--ink-2);margin-top:4px}
+  details.example{margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface);overflow:hidden}
+  details.example summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:14.5px;background:color-mix(in srgb,var(--accent,var(--brand)) 10%,var(--surface-2));list-style:none}
+  details.example summary::-webkit-details-marker{display:none}
+  details.example summary::before{content:"▸ ";color:var(--accent,var(--brand))}
+  details.example[open] summary::before{content:"▾ "}
+  details.example .body{padding:6px 16px 14px}
+  .steps{counter-reset:st;list-style:none;padding:0;margin:12px 0}
+  .steps li{counter-increment:st;position:relative;padding-inline-start:40px;margin:10px 0;min-height:28px}
+  .steps li::before{content:counter(st);position:absolute;inset-inline-start:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--accent,var(--brand));color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:14px 0}
+  .compare .card{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px}
+  .compare .card h4{margin:0 0 6px;font-size:15px}
+  .compare .card.good{border-top:3px solid var(--green-arc)} .compare .card.bad{border-top:3px solid var(--red-arc)} .compare .card.mid{border-top:3px solid var(--yellow-arc)} .compare .card.acc{border-top:3px solid var(--accent,var(--brand))}
+  .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .tool{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+  .tool h3{margin:0 0 8px;font-size:15.5px}
+  .tool label{display:block;font-size:12.5px;color:var(--muted);margin-top:8px}
+  .tool input, .tool select{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:16px}
+  .tool .out{margin-top:10px;padding:10px;border-radius:8px;background:color-mix(in srgb,var(--brand) 12%,var(--surface));font-size:14px}
+  .tool .out b{color:var(--brand)}
+  .cheat table{min-width:340px}
+  @media (max-width:880px){
+    .shell{flex-direction:column;padding:14px 12px 70px}
+    main{width:100%;min-width:0}
+    nav.toc{
+      position:fixed;inset:0 0 0 auto;top:0;width:82%;max-width:340px;height:100dvh;max-height:100dvh;
+      transform:translateX(100%);transition:transform .25s ease;border-radius:0;z-index:60;
+    }
+    nav.toc.open{transform:translateX(0)}
+    .toc-scrim{position:fixed;inset:0;background:rgba(6,10,18,.5);z-index:55;display:none}
+    .toc-scrim.show{display:block}
+    .menu-btn{display:inline-flex;align-items:center;gap:6px}
+    section.sec > h2{font-size:18.5px}
+    .hero h1{font-size:22px}
+    body{font-size:16px}
+  }
+  .toc-close{display:none}
+  @media (max-width:880px){
+    .toc-close{
+      display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+      padding-bottom:10px;border-bottom:1px solid var(--line);
+    }
+    .toc-close button{border:none;background:var(--surface-2);border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer;color:var(--ink)}
+  }
+  @media (max-width:520px){.fgrid,.compare{grid-template-columns:1fr}}
+  .fgrid > *,.compare > *,.tools > *{min-width:0}
+
+  .sec .diagram svg text{fill:var(--ink);font:600 12px -apple-system,"Segoe UI",system-ui,sans-serif}
+  .sec .diagram svg text.m{fill:var(--muted);font-weight:500;font-size:11px}
+  .sec .diagram svg .ax{stroke:var(--ink-2);stroke-width:1.5}
+  .sec .diagram svg .grid{stroke:var(--line);stroke-width:1}
+  .sec .diagram svg .curve{stroke:var(--accent,var(--brand));stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sec .diagram svg .fill{fill:color-mix(in srgb,var(--accent,var(--brand)) 18%,transparent)}
+  .sec .diagram svg .dot{fill:var(--accent,var(--brand))}
+  .sec .diagram svg .gn{stroke:var(--green-arc)} .sec .diagram svg .rd{stroke:var(--red-arc)} .sec .diagram svg .yl{stroke:var(--yellow-arc)}
+
+  section#tools{--accent:#0d6e7d}
+  section#atmo{--accent:#5aa2f0}
+  section#pres{--accent:#38bdf8}
+  section#dens{--accent:#2dd4bf}
+  section#psys{--accent:#6ea8ff}
+  section#temp{--accent:#ff9a3d}
+  section#hum{--accent:#34d9a5}
+  section#stab{--accent:#a08cff}
+  section#turb{--accent:#f472b6}
+  section#alt{--accent:#f5b13d}
+  section#wind{--accent:#3ddc84}
+  section#upw{--accent:#8b84ff}
+  section#cloud{--accent:#94a3b8}
+  section#precip{--accent:#60a5fa}
+  section#tstm{--accent:#e0575a}
+  section#vis{--accent:#a3a3a3}
+  section#ice{--accent:#67e8f9}
+  section#airm{--accent:#ff8a3d}
+  section#occl{--accent:#c084fc}
+  section#depr{--accent:#ff6b62}
+  section#glob{--accent:#9be04a}
+  section#locw{--accent:#fbbf24}
+  section#area{--accent:#fb923c}
+  section#route{--accent:#22d3ee}
+  section#sat{--accent:#818cf8}
+  section#metar{--accent:#5aa2f0}
+  section#taf{--accent:#2dd4bf}
+  section#wafs{--accent:#a78bfa}
+  section#warn{--accent:#ff6b62}
+  section#inflt{--accent:#34d9a5}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) section.sec > h2 .num,
+    :root:not([data-theme="light"]) .steps li::before{color:#06121a}
+  }
+  :root[data-theme="dark"] section.sec > h2 .num,
+  :root[data-theme="dark"] .steps li::before{color:#06121a}
+  .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;white-space:nowrap}
+  pre.code{display:block;white-space:pre-wrap;word-break:break-word;padding:10px 12px;line-height:1.55;margin:12px 0}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand-mark">
+      <div class="plane">✈</div>
+      <div class="txt">
+        <h1>Meteorology — Pilot's Guide</h1>
+        <div class="sub">The air you fly through · Flying Knowledge</div>
+      </div>
+    </div>
+    <button class="menu-btn" id="menuBtn">☰ Contents</button>
+  </div>
+</header>
+
+<div class="toc-scrim" id="scrim"></div>
+
+<div class="shell">
+  <nav class="toc" id="toc">
+    <div class="toc-close"><span style="font-size:13px;color:var(--muted);font-weight:700">Contents</span><button id="closeToc">✕</button></div>
+    <h2>Sections</h2>
+    <ol>
+      <li><a href="#tools"><span class="n">🧰</span> Quick tools &amp; cheat sheet</a></li>
+      <li><a href="#atmo"><span class="n">🌍</span> The Atmosphere <span class="count">61</span></a></li>
+      <li><a href="#pres"><span class="n">🔽</span> Pressure <span class="count">44</span></a></li>
+      <li><a href="#dens"><span class="n">⚖️</span> Density <span class="count">30</span></a></li>
+      <li><a href="#psys"><span class="n">🌀</span> Pressure Systems <span class="count">47</span></a></li>
+      <li><a href="#temp"><span class="n">🌡️</span> Temperature <span class="count">50</span></a></li>
+      <li><a href="#hum"><span class="n">💧</span> Humidity <span class="count">43</span></a></li>
+      <li><a href="#stab"><span class="n">📈</span> Adiabatics &amp; Stability <span class="count">57</span></a></li>
+      <li><a href="#turb"><span class="n">🌪️</span> Turbulence &amp; Windshear <span class="count">55</span></a></li>
+      <li><a href="#alt"><span class="n">📏</span> Altimetry <span class="count">63</span></a></li>
+      <li><a href="#wind"><span class="n">🧭</span> Winds <span class="count">71</span></a></li>
+      <li><a href="#upw"><span class="n">🛫</span> Upper Winds &amp; Jet Streams <span class="count">53</span></a></li>
+      <li><a href="#cloud"><span class="n">☁️</span> Clouds <span class="count">51</span></a></li>
+      <li><a href="#precip"><span class="n">🌧️</span> Cloud Formation &amp; Precipitation <span class="count">48</span></a></li>
+      <li><a href="#tstm"><span class="n">⛈️</span> Thunderstorms <span class="count">59</span></a></li>
+      <li><a href="#vis"><span class="n">🌫️</span> Visibility &amp; Fog <span class="count">55</span></a></li>
+      <li><a href="#ice"><span class="n">🧊</span> Icing <span class="count">56</span></a></li>
+      <li><a href="#airm"><span class="n">🧊🔥</span> Air Masses &amp; Fronts <span class="count">57</span></a></li>
+      <li><a href="#occl"><span class="n">🔗</span> Occlusions <span class="count">35</span></a></li>
+      <li><a href="#depr"><span class="n">🌀</span> Other Depressions <span class="count">48</span></a></li>
+      <li><a href="#glob"><span class="n">🗺️</span> Global Climatology <span class="count">56</span></a></li>
+      <li><a href="#locw"><span class="n">🏔️</span> Local Winds &amp; Weather <span class="count">34</span></a></li>
+      <li><a href="#area"><span class="n">🌍</span> Area Climatology <span class="count">43</span></a></li>
+      <li><a href="#route"><span class="n">✈️</span> Route Climatology <span class="count">40</span></a></li>
+      <li><a href="#sat"><span class="n">🛰️</span> Satellite Observations <span class="count">27</span></a></li>
+      <li><a href="#metar"><span class="n">📟</span> METARs <span class="count">66</span></a></li>
+      <li><a href="#taf"><span class="n">🗓️</span> TAFs <span class="count">43</span></a></li>
+      <li><a href="#wafs"><span class="n">🗺️</span> World Area Forecast System <span class="count">40</span></a></li>
+      <li><a href="#warn"><span class="n">⚠️</span> Warning Messages <span class="count">38</span></a></li>
+      <li><a href="#inflt"><span class="n">📻</span> Met Information in Flight <span class="count">30</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <span class="cloud">⛅</span>
+      <h1>🌦️ Meteorology</h1>
+      <p>
+        Weather is the one part of every flight nobody can fix on the ground.
+        This guide works from the physics up — pressure, temperature and
+        moisture — to the clouds, winds, storms and fog they produce, and
+        then to the codes and charts you will read before and during every
+        flight. Each section gives the mechanism first and the practical
+        rule second, so that you can work an answer out rather than recall it.
+      </p>
+      <div class="tags">
+        <span class="tag">29 sections</span>
+        <span class="tag">1,400 linked questions</span>
+        <span class="tag">🧮 Quick tools</span>
+        <span class="tag">📊 Diagrams</span>
+        <span class="tag">Aircraft-independent</span>
+      </div>
+    </div>
+
+    <section class="sec" id="tools">
+      <h2><span class="num">🧰</span> Quick tools &amp; cheat sheet <span class="en">play with the numbers</span></h2>
+      <p class="lead">Four calculators for the sums that come up again and again — ISA, pressure and density altitude, cloud base, and the cold-temperature altimeter correction — and a one-screen reference of the figures worth knowing by heart.</p>
+
+      <div class="tools">
+        <div class="tool">
+          <h3>🌡️ ISA at a level</h3>
+          <label>Altitude (ft)</label><input type="number" inputmode="decimal" id="iAlt" value="10000" min="0" max="65000">
+          <label>Actual temperature (°C)</label><input type="number" inputmode="decimal" id="iT" value="-2">
+          <div class="out" id="iOut"></div>
+        </div>
+        <div class="tool">
+          <h3>📏 Pressure &amp; density altitude</h3>
+          <label>Aerodrome elevation (ft)</label><input type="number" inputmode="decimal" id="pElev" value="1200">
+          <label>QNH (hPa)</label><input type="number" inputmode="decimal" id="pQnh" value="1003">
+          <label>Outside air temperature (°C)</label><input type="number" inputmode="decimal" id="pOat" value="28">
+          <div class="out" id="pOut"></div>
+        </div>
+        <div class="tool">
+          <h3>☁️ Cumulus base from the spread</h3>
+          <label>Surface temperature (°C)</label><input type="number" inputmode="decimal" id="cT" value="22">
+          <label>Surface dew point (°C)</label><input type="number" inputmode="decimal" id="cTd" value="14">
+          <label>Aerodrome elevation (ft)</label><input type="number" inputmode="decimal" id="cElev" value="0">
+          <div class="out" id="cOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🥶 Cold-temperature correction</h3>
+          <label>Indicated height above the setting datum (ft)</label><input type="number" inputmode="decimal" id="tH" value="3000">
+          <label>ISA deviation along the column (°C)</label><input type="number" inputmode="decimal" id="tDev" value="-20">
+          <div class="out" id="tOut"></div>
+        </div>
+      </div>
+
+      <h3 class="sub">📋 Cheat sheet — figures worth knowing by heart</h3>
+      <div class="table-wrap cheat">
+        <table>
+          <thead><tr><th>Item</th><th>Value / rule</th></tr></thead>
+          <tbody>
+            <tr><td>🌍 ISA at mean sea level</td><td>+15°C, 1013.25 hPa, density 1.225 kg/m³</td></tr>
+            <tr><td>📉 ISA lapse rate</td><td>1.98°C per 1000 ft (6.5°C per km) up to 11 km / 36 090 ft, then −56.5°C constant</td></tr>
+            <tr><td>📏 Height per hectopascal</td><td>About 27–30 ft per hPa near the surface (27 ft is the usual planning figure); about 50 ft at 500 hPa</td></tr>
+            <tr><td>🌀 Lapse rates in a rising parcel</td><td>DALR 3°C/1000 ft · SALR about 1.8°C/1000 ft on average (less in warm air, nearer the DALR high up) · dew point 0.5°C/1000 ft</td></tr>
+            <tr><td>☁️ Cumulus base</td><td>(Temperature − dew point) × 400 ft</td></tr>
+            <tr><td>⚖️ Density altitude</td><td>Pressure altitude + 120 ft for every °C above ISA</td></tr>
+            <tr><td>🥶 Temperature error</td><td>4 ft per 1000 ft for each °C off ISA — "cold air, altimeter over-reads"</td></tr>
+            <tr><td>🧭 Buys Ballot (N hemisphere)</td><td>Back to the wind, low pressure on the left</td></tr>
+            <tr><td>⬇️ "High to low, look out below"</td><td>Flying towards lower pressure or colder air, you are lower than indicated</td></tr>
+            <tr><td>🪁 Surface wind vs gradient wind</td><td>N hemisphere, over land: backed ~30°, about half the speed · over sea: backed ~10°, about 70% (veered in the S hemisphere)</td></tr>
+            <tr><td>🧊 Icing</td><td>Supercooled water between 0°C and about −20°C is the main risk; clear ice from large drops near 0°C</td></tr>
+            <tr><td>⛈️ Storm avoidance</td><td>Radar echo: 5 nm below FL200 (10 nm if growing), 20 nm above FL300 · visually 10 nm and 5000 ft · never under the anvil</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tip"><span class="label">✈️ How to use this guide</span> Each section stands on its own. When you get a question wrong, jump straight to its section and read the key idea, rather than starting at the top.</div>
+    </section>
+
+    <section class="sec" id="atmo">
+      <h2><span class="num">🌍</span> The Atmosphere <span class="en">61 questions</span></h2>
+      <p class="lead">A thin shell of mixed gases, held down by gravity and heated mostly from below. Nearly all the weather lives in its lowest layer.</p>
+      <div class="glance"><span>🎯 What the air is made of</span><span>🎯 The layers and their boundaries</span><span>🎯 Tropopause height by latitude</span><span>🎯 ISA and ISA deviation</span></div>
+
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The proportions stay the same; the amount does not.</strong> Nitrogen (~78%), oxygen (~21%) and argon (just under 1%) stay in the same ratio all the way through the troposphere, because the air keeps being stirred. What falls with height is the total pressure, and with it the partial pressure of oxygen. Water vapour is the small, variable ingredient that matters most for weather, because it changes state and carries latent heat.</p></div>
+
+      <div class="diagram">
+        <svg viewBox="0 0 640 230" role="img" aria-label="Temperature profile through the troposphere and stratosphere">
+          <line class="ax" x1="70" y1="200" x2="600" y2="200"/><line class="ax" x1="70" y1="200" x2="70" y2="20"/>
+          <line class="grid" x1="70" y1="110" x2="600" y2="110" stroke-dasharray="4 4"/>
+          <line class="grid" x1="70" y1="60" x2="600" y2="60" stroke-dasharray="4 4"/>
+          <polyline class="curve" points="470,200 210,110 210,60 300,25"/>
+          <text x="10" y="114">11 km</text><text x="10" y="64">20 km</text><text x="20" y="204">0</text>
+          <text x="490" y="190" class="m">+15°C at MSL</text>
+          <text x="220" y="104" class="m">tropopause −56.5°C</text>
+          <text x="390" y="140">Troposphere: −1.98°C / 1000 ft</text>
+          <text x="230" y="88">Isothermal layer</text>
+          <text x="315" y="40">Stratosphere: warming (ozone)</text>
+          <text x="560" y="218" class="m">temperature →</text>
+        </svg>
+        <div class="cap">The ISA temperature profile. In the real atmosphere the tropopause is higher and colder over the Equator and lower and warmer over the poles.</div>
+      </div>
+
+      <div class="table-wrap"><table>
+        <thead><tr><th>Layer</th><th>Temperature with height</th><th>Worth remembering</th></tr></thead>
+        <tbody>
+          <tr><td>Troposphere</td><td>Normally falls</td><td>About ¾ of the mass of the atmosphere, almost all the water vapour and weather</td></tr>
+          <tr><td>Tropopause</td><td>Stops falling</td><td>~16–18 km and −75 to −80°C at the Equator; ~11 km in mid-latitudes; ~8 km at the poles. Higher in summer. Breaks near 40° and 60°, where the jet streams sit</td></tr>
+          <tr><td>Stratosphere</td><td>Constant, then rising</td><td>Ozone absorbs ultraviolet; very stable and dry, so very little weather. Ends at the stratopause, ~50 km</td></tr>
+          <tr><td>Mesosphere / thermosphere</td><td>Falls, then rises</td><td>Above anything an aeroplane reaches</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3 class="sub">The International Standard Atmosphere</h3>
+      <p>ISA is an agreed, imaginary atmosphere used to calibrate altimeters and to compare aircraft performance. At MSL it is <strong>+15°C, 1013.25 hPa and 1.225 kg/m³</strong>. Temperature falls 1.98°C per 1000 ft (call it 2°C) to <strong>−56.5°C at 36 090 ft</strong>, stays constant to 20 km, then rises slowly. Useful pressure levels: 850 hPa ≈ 5000 ft, 700 hPa ≈ 10 000 ft, 500 hPa ≈ 18 000 ft, 300 hPa ≈ FL300, 200 hPa ≈ FL390.</p>
+      <details class="example"><summary>Worked example — ISA deviation</summary><div class="body">
+        <p>At FL180 the outside air temperature is −27°C. ISA at FL180 is 15 − (2 × 18) = −21°C. The air is 6°C colder than standard, so the deviation is <strong>ISA −6</strong>. Above 36 000 ft, compare with −56.5°C rather than continuing the lapse rate.</p></div></details>
+      <div class="callout note"><span class="label">📐 Height per hectopascal</span><code class="code">H (ft) = 96 T / P</code>, with T in kelvin and P in hPa. At MSL in ISA that gives about 27 ft per hPa; at 300 hPa it is about 70 ft. The thinner the air, the more height for each hectopascal, and a warm column gives more height per hPa than a cold one.</div>
+      <div class="tip"><span class="label">✈️ Pilot tip</span> Above about 50 000 ft, ozone and cosmic radiation become operational issues. During a strong solar flare, the practical answer is to plan a lower level.</div>
+    </section>
+
+    <section class="sec" id="pres">
+      <h2><span class="num">🔽</span> Pressure <span class="en">44 questions</span></h2>
+      <p class="lead">Pressure is the weight of the air column above you. Everything about altimeter settings follows from how it is measured and then corrected to a reference level.</p>
+      <div class="glance"><span>🎯 Units: hPa, mb, inHg, mmHg</span><span>🎯 Warm and cold columns</span><span>🎯 QFE, QNH, QFF</span><span>🎯 Diurnal variation</span></div>
+
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Pressure falls more slowly with height in warm air.</strong> A warm column is "taller", so at any given height above the surface the pressure in it is higher than in a cold column that started with the same surface pressure. That one fact drives the thermal wind, the jet stream and the cold-temperature altimeter error.</p></div>
+
+      <div class="table-wrap"><table>
+        <thead><tr><th>Setting</th><th>What it is</th><th>Altimeter on the ground reads</th></tr></thead>
+        <tbody>
+          <tr><td><strong>QFE</strong></td><td>Actual pressure at aerodrome level</td><td>Zero (height above the aerodrome)</td></tr>
+          <tr><td><strong>QNH</strong></td><td>QFE reduced to MSL <em>using ISA</em>; reported rounded <em>down</em> to a whole hPa</td><td>Aerodrome elevation</td></tr>
+          <tr><td><strong>QFF</strong></td><td>QFE reduced to MSL <em>using the actual temperature</em>; used to draw isobars on charts</td><td>— (not an altimeter setting)</td></tr>
+          <tr><td><strong>1013</strong></td><td>Standard setting</td><td>Pressure altitude, used for flight levels</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="callout caution"><span class="label">⚖️ QNH or QFF — which is bigger?</span> They differ only in the temperature assumed for the imaginary column between the aerodrome and MSL. <strong>Above MSL and warmer than ISA:</strong> the real column is less dense, so QFF &lt; QNH. <strong>Above MSL and colder than ISA:</strong> QFF &gt; QNH. Below MSL, both answers flip. At an aerodrome exactly at MSL, all three are equal.</div>
+
+      <ul>
+        <li>1013.25 hPa = 1013.25 mb = 29.92 inHg = 760 mmHg = 101 325 Pa.</li>
+        <li>Surface pressure normally ranges from about 950 to 1050 hPa. The lowest values occur in the eyes of tropical cyclones, the highest in Siberian winter highs.</li>
+        <li>The diurnal "pressure wave" has two highs (~1000 and 2200 local) and two lows. It is about 1 hPa in temperate latitudes and up to 3 hPa in the tropics, where it can hide a weather-related change.</li>
+        <li>A steady fall (a "falling glass") of several hPa in three hours means an approaching or deepening low.</li>
+      </ul>
+      <details class="example"><summary>Worked example — QFE to QNH</summary><div class="body"><p>Elevation 900 ft, QFE 985 hPa, 30 ft per hPa: 900 ÷ 30 = 30 hPa, so QNH ≈ <strong>1015 hPa</strong>. Going the other way, subtract.</p></div></details>
+    </section>
+
+    <section class="sec" id="dens">
+      <h2><span class="num">⚖️</span> Density <span class="en">30 questions</span></h2>
+      <p class="lead">Wings and engines respond to air density, not to altitude. Pressure raises density, while heat and moisture lower it.</p>
+      <div class="glance"><span>🎯 Density vs pressure and temperature</span><span>🎯 Humid air is lighter</span><span>🎯 Density altitude</span><span>🎯 "Hot and high"</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>ρ ∝ P / T.</strong> Density rises with pressure and falls with absolute temperature. Water vapour (molecular mass 18) is lighter than nitrogen and oxygen, so moist air is less dense than dry air at the same pressure and temperature. As a rule of thumb, density changes by <strong>1% for every 3°C or every 10 hPa</strong>.</p></div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">📉 With height</div><div class="d">Falls, because the fall in pressure outweighs the fall in temperature. About 74% of the sea-level value at 10 000 ft, 50% at 20 000 ft and 25% at 40 000 ft.</div></div>
+        <div class="fcard"><div class="f">🧭 With latitude</div><div class="d">At the surface, higher towards the poles (colder air). The two are about equal near 26 000 ft. Higher up, polar air is <em>less</em> dense. The biggest difference is near 50 000 ft.</div></div>
+        <div class="fcard"><div class="f">🛫 Performance</div><div class="d">Low density means a longer take-off run, a lower maximum mass and a higher TAS for the same IAS. Denver, Nairobi and Sana'a are classic examples, and so are hot, humid Singapore and Bahrain.</div></div>
+        <div class="fcard"><div class="f">📐 Density altitude</div><div class="d">The ISA altitude with the same density as the actual air. It is higher than elevation whenever the air is warmer than ISA.</div></div>
+      </div>
+      <div class="tip"><span class="label">✈️ Pilot tip</span> High, hot and humid is the worst combination. A cold, high-pressure winter morning gives better-than-book performance.</div>
+    </section>
+
+    <section class="sec" id="psys">
+      <h2><span class="num">🌀</span> Pressure Systems <span class="en">47 questions</span></h2>
+      <p class="lead">Lows, highs, troughs, ridges and cols. Each has its own vertical motion, and that vertical motion decides the weather.</p>
+      <div class="glance"><span>🎯 Buys Ballot's law</span><span>🎯 Convergence and divergence</span><span>🎯 Typical weather of each</span><span>🎯 Drift and altimeter</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Low: air converges at the surface and rises, which gives cloud and rain. High: air sinks and diverges at the surface, which gives fine weather under an inversion.</strong> In the Northern Hemisphere, stand with your back to the wind and the low is on your left (on your right in the Southern Hemisphere). Around a low the wind blows anticlockwise and slightly inwards; around a high, clockwise and slightly outwards.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>System</th><th>Chart shape</th><th>Typical weather</th></tr></thead>
+        <tbody>
+          <tr><td>Depression</td><td>Closed isobars, lowest at the centre</td><td>Extensive cloud and rain; strong winds where isobars are tight; good visibility outside rain. Polar front lows move west to east and last about 10–14 days</td></tr>
+          <tr><td>Trough</td><td>V-shaped isobars out from a low</td><td>A line of enhanced cloud and showers, often a front</td></tr>
+          <tr><td>Anticyclone</td><td>Closed, widely spaced isobars, highest at the centre</td><td>Summer: clear, light winds, haze. Winter: low stratus or fog trapped under the subsidence inversion. Slow-moving, sometimes blocking for weeks</td></tr>
+          <tr><td>Ridge</td><td>Rounded isobars out from a high</td><td>A short fair spell between two lows, often lasting less than a day</td></tr>
+          <tr><td>Col</td><td>Flat pressure between two highs and two lows</td><td>Light, variable winds. Fog in autumn and winter; thunderstorms over land in summer</td></tr>
+        </tbody>
+      </table></div>
+      <ul>
+        <li><strong>Deepening</strong> means the central pressure of a low is falling; <strong>filling</strong> means it is rising. A high whose pressure is falling is <strong>weakening</strong>.</li>
+        <li>Cold highs sit over the poles and winter continents. Warm highs, such as the Azores high, come from sinking air in the subtropical part of the Hadley–Ferrel–Polar three-cell circulation.</li>
+        <li>Thermal lows form over hot land in summer, and over relatively warm sea in cold polar air in winter.</li>
+      </ul>
+      <div class="callout warning"><span class="label">⬇️ Drift tells you about pressure</span> In the Northern Hemisphere, drifting right means the wind is from the left, so low pressure lies ahead and to the right and you are flying towards it. On a fixed subscale setting the altimeter will over-read, so you are lower than you think.</div>
+    </section>
+
+    <section class="sec" id="temp">
+      <h2><span class="num">🌡️</span> Temperature <span class="en">50 questions</span></h2>
+      <p class="lead">The sun heats the ground, and the ground heats the air. That indirect route explains lapse rates, inversions and the daily temperature curve.</p>
+      <div class="glance"><span>🎯 Radiation, conduction, convection</span><span>🎯 Lapse rates and inversions</span><span>🎯 Diurnal range</span><span>🎯 Land vs sea</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The atmosphere is heated from below.</strong> Short-wave solar radiation passes through the air largely unabsorbed and warms the surface. The surface re-radiates long-wave energy, which water vapour and CO₂ absorb. Heat then moves upwards by conduction, convection, turbulence and the release of latent heat. Air itself conducts heat poorly.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Environmental lapse rate (ELR)</td><td>The actual fall of temperature with height at a place and time. On average about 2°C per 1000 ft, but it varies</td></tr>
+          <tr><td>Inversion</td><td>Temperature <em>rising</em> with height. Very stable; traps haze, fog and pollution. Formed by night radiation, subsidence, fronts or warm air flowing over a cold surface</td></tr>
+          <tr><td>Isothermal layer</td><td>Temperature constant with height, as in the lower stratosphere</td></tr>
+        </tbody>
+      </table></div>
+      <h3 class="sub">What makes the daily range big or small</h3>
+      <div class="compare">
+        <div class="card good"><h4>Large range</h4><p>Clear skies, light winds, dry air, inland, over bare rock or sand, in the tropics or deserts. Maximum about 1500 local time; minimum about half an hour after sunrise.</p></div>
+        <div class="card"><h4>Small range</h4><p>Cloud cover (it blocks heating by day and traps heat at night), strong wind (mixing), high humidity, and over the sea. The sea's daily range is tiny, under about 1°C, because water has a high specific heat and mixes and absorbs heat through depth.</p></div>
+      </div>
+      <ul>
+        <li>Thermometers are kept in a ventilated screen about 1.2 m above short grass, out of direct sun.</li>
+        <li>Snow reflects most sunlight, while dark soil and forest absorb it. Wet ground warms more slowly than dry.</li>
+        <li>Kelvin = °C + 273. To convert, °F = °C × 9/5 + 32.</li>
+      </ul>
+    </section>
+
+    <section class="sec" id="hum">
+      <h2><span class="num">💧</span> Humidity <span class="en">43 questions</span></h2>
+      <p class="lead">Water vapour is invisible fuel. Every change of state takes in or gives out latent heat, and that heat powers clouds and storms.</p>
+      <div class="glance"><span>🎯 Latent heat directions</span><span>🎯 Relative humidity vs dew point</span><span>🎯 Saturation over ice</span><span>🎯 Daily cycle of RH</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Warm air can hold more water vapour.</strong> The saturation vapour content roughly doubles for every 10°C rise. Relative humidity is the ratio of what the air holds to what it could hold at that temperature, so <strong>RH rises as air cools even though no water is added</strong>. The dew point is the temperature at which the air would become saturated if cooled at constant pressure; the smaller the spread between temperature and dew point, the closer the air is to cloud or fog.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Change of state</th><th>Name</th><th>Latent heat</th></tr></thead>
+        <tbody>
+          <tr><td>Liquid → vapour</td><td>Evaporation</td><td>Absorbed (cools the surroundings)</td></tr>
+          <tr><td>Vapour → liquid</td><td>Condensation</td><td>Released (warms the air, which drives cloud growth)</td></tr>
+          <tr><td>Solid → liquid / liquid → solid</td><td>Melting / freezing</td><td>Absorbed / released</td></tr>
+          <tr><td>Vapour ↔ solid directly</td><td>Sublimation / deposition</td><td>Absorbed / released (the largest amounts)</td></tr>
+        </tbody>
+      </table></div>
+      <ul>
+        <li>Air saturated with respect to water is supersaturated with respect to ice, so ice crystals grow at the expense of supercooled droplets. This is the start of most precipitation.</li>
+        <li>Humidity is measured with a wet- and dry-bulb psychrometer. The wet bulb is cooled by evaporation, and the bigger the difference between the two readings, the drier the air.</li>
+        <li>Over a day, absolute humidity changes little, but RH is highest around dawn (coldest) and lowest in mid-afternoon.</li>
+        <li>Humidity mixing ratio is the grams of vapour per kilogram of dry air. It stays constant in a rising parcel until saturation.</li>
+      </ul>
+    </section>
+
+    <section class="sec" id="stab">
+      <h2><span class="num">📈</span> Adiabatics &amp; Stability <span class="en">57 questions</span></h2>
+      <p class="lead">Lift a parcel of air and compare its temperature with the air around it. Whether it keeps rising or sinks back decides whether you get towering cumulus or flat, layered cloud.</p>
+      <div class="glance"><span>🎯 DALR and SALR</span><span>🎯 Absolute and conditional instability</span><span>🎯 Föhn sums</span><span>🎯 How stability changes</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>A rising parcel cools by expansion with no heat exchange (adiabatically)</strong>: 3°C per 1000 ft while dry (DALR), and less once saturated (SALR), because condensation releases latent heat: about 1.8°C per 1000 ft on average in temperate latitudes, nearer 1.5°C in warm, moist low-level air. The SALR is smallest in warm air and nears the DALR high up and at high latitudes, where there is little moisture to condense. Compare the parcel with the environmental lapse rate (ELR):</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>ELR compared with the adiabatic rates</th><th>Stability</th><th>Typical result</th></tr></thead>
+        <tbody>
+          <tr><td>ELR &lt; SALR (including inversions and isothermal layers)</td><td>Absolutely stable</td><td>Layer cloud, poor visibility in haze, smooth air</td></tr>
+          <tr><td>SALR &lt; ELR &lt; DALR</td><td>Conditionally unstable: stable if dry, unstable once saturated</td><td>Cumulus that can grow tall once condensation starts</td></tr>
+          <tr><td>ELR &gt; DALR</td><td>Absolutely unstable (usually only near a heated surface)</td><td>Thermals, gusts, showers, good visibility outside them</td></tr>
+          <tr><td>ELR = DALR or SALR</td><td>Neutral (dry or saturated)</td><td>The parcel stays where it is put</td></tr>
+        </tbody>
+      </table></div>
+      <div class="diagram">
+        <svg viewBox="0 0 640 240" role="img" aria-label="Föhn effect across a mountain range">
+          <polygon class="fill" points="140,210 320,50 500,210"/>
+          <line class="ax" x1="20" y1="210" x2="620" y2="210"/>
+          <path class="curve" d="M40 200 C 120 190, 200 120, 300 60" />
+          <path class="curve" d="M340 60 C 420 110, 500 190, 600 200" style="stroke:var(--red-arc)"/>
+          <line class="grid" x1="40" y1="130" x2="600" y2="130" stroke-dasharray="5 4"/>
+          <text x="30" y="125" class="m">condensation level</text>
+          <text x="36" y="228">windward: cools 3°C/1000 ft, then the SALR in cloud, rain falls</text>
+          <text x="400" y="45">lee: dry, warms 3°C/1000 ft all the way</text>
+          <text x="280" y="40">summit</text>
+        </svg>
+        <div class="cap">Föhn: moisture lost as rain on the windward side means the descending air warms at the dry rate for longer than it cooled. It arrives warmer and drier than it started.</div>
+      </div>
+      <details class="example"><summary>Worked example — Föhn temperature</summary><div class="body">
+        <p>Air at +20°C, dew point +12°C, at sea level crosses a 10 000 ft ridge and descends to sea level. Cloud base = (20 − 12) × 400 = 3200 ft. To the base it cools at 3°C/1000 ft: 20 − 9.6 = 10.4°C. From 3200 to 10 000 ft (6800 ft) it cools at an SALR of, say, 1.5°C/1000 ft: 10.4 − 10.2 = 0.2°C at the summit. It then descends 10 000 ft dry, warming by 30°C, to <strong>about +30°C</strong> on the lee side, 10°C warmer than it started.</p></div></details>
+      <h3 class="sub">What changes stability</h3>
+      <div class="compare">
+        <div class="card"><h4>Becomes more unstable</h4><p>Heating from below (a sunny afternoon, cold air over warm sea), cooling aloft, adding moisture low down, or lifting a whole layer that is moist at the bottom and dry at the top.</p></div>
+        <div class="card good"><h4>Becomes more stable</h4><p>Cooling from below (clear nights, warm air over cold sea), warming aloft, subsidence under a high, which builds an inversion.</p></div>
+      </div>
+    </section>
+
+    <section class="sec" id="turb">
+      <h2><span class="num">🌪️</span> Turbulence &amp; Windshear <span class="en">55 questions</span></h2>
+      <p class="lead">Bumps come from three places: the friction layer near the ground, in and around cloud, and in clear air near jet streams and mountains. Windshear close to the ground is the one that can actually put an aircraft on the ground.</p>
+      <div class="glance"><span>🎯 Thermal vs mechanical</span><span>🎯 Mountain waves and rotors</span><span>🎯 CAT near jets</span><span>🎯 Microburst sequence</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Windshear is any change of wind velocity over a short distance</strong>, vertical currents included. Vertical shear is quoted in knots per 100 ft, horizontal shear in knots per 1000 ft. Turbulence is what an aircraft feels when it flies through shear that changes on the scale of its own size.</p></div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">☀️ Thermal turbulence</div><div class="d">Convection over land heated by the sun. Worst around 1500 local on clear days; almost absent over the open sea.</div></div>
+        <div class="fcard"><div class="f">🏢 Mechanical turbulence</div><div class="d">Wind over rough ground, hills, buildings and hangars near a threshold. Grows with wind speed and roughness. The friction layer is about 2000–3000 ft deep by day and shallower at night.</div></div>
+        <div class="fcard"><div class="f">🏔️ Mountain waves</div><div class="d">Need a strong wind within about 30° of perpendicular to the ridge, increasing with height, and a stable layer near ridge top. Lenticular clouds sit on the wave crests; the rotor under the first crest is the worst place to be. Waves can exist in dry air with no cloud at all.</div></div>
+        <div class="fcard"><div class="f">🌬️ Clear air turbulence</div><div class="d">Strongest on the cold (polar) side of a jet, just below the core, where shear is greatest. Worse in sharply curved troughs, in developing or fast-moving jets, and over mountains.</div></div>
+      </div>
+      <h3 class="sub">Reporting intensity</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Intensity</th><th>What it feels like</th></tr></thead>
+        <tbody>
+          <tr><td>Light</td><td>Slight, erratic changes in attitude or altitude; seat belts felt slightly</td></tr>
+          <tr><td>Moderate</td><td>Changes in attitude or altitude, but always under control; about 0.5–1.0 g changes at the CG; unsecured objects move</td></tr>
+          <tr><td>Severe</td><td>Large, abrupt changes; aircraft may be momentarily out of control; occupants forced against the belts</td></tr>
+          <tr><td>Chop</td><td>Rapid, rhythmic bumps with little change of altitude or attitude</td></tr>
+        </tbody>
+      </table></div>
+      <p>"Occasional" means less than a third of the time, "intermittent" between a third and two thirds, and "continuous" more than two thirds.</p>
+      <div class="diagram">
+        <svg viewBox="0 0 640 220" role="img" aria-label="Microburst on the approach path">
+          <line class="ax" x1="20" y1="200" x2="620" y2="200"/>
+          <path d="M300 30 L300 150" class="ax rd" style="stroke-width:4" marker-end="url(#a-met)"/>
+          <path d="M300 160 C 260 190, 200 195, 120 195" class="curve" style="stroke:var(--red-arc)" marker-end="url(#a-met)"/>
+          <path d="M300 160 C 340 190, 400 195, 480 195" class="curve" style="stroke:var(--red-arc)" marker-end="url(#a-met)"/>
+          <path d="M40 70 L560 190" class="curve" stroke-dasharray="7 5"/>
+          <text x="40" y="60">approach path →</text>
+          <text x="30" y="150">① headwind: IAS up, goes high</text>
+          <text x="310" y="90">② downdraught</text>
+          <text x="400" y="120">③ tailwind: IAS falls, sinks</text>
+        </svg>
+        <div class="cap">A microburst lasts only a few minutes. The initial headwind tempts a crew to reduce power just before the downdraught and tailwind arrive, which is the dangerous part.</div>
+      </div>
+      <div class="tip"><span class="label">✈️ Pilot tip</span> In mountain waves, cross the ridge at right angles, at turbulence penetration speed, with plenty of height. A useful guide is clearance at least equal to the ridge's height above the surrounding terrain. At high altitude, reduce to penetration speed and consider descending to widen the buffet margin.</div>
+    </section>
+
+    <section class="sec" id="alt">
+      <h2><span class="num">📏</span> Altimetry <span class="en">63 questions</span></h2>
+      <p class="lead">An altimeter is a barometer with a scale in feet, calibrated for an atmosphere that never quite exists. Every error comes from the real air not matching ISA.</p>
+      <div class="glance"><span>🎯 High to low, look out below</span><span>🎯 Transition altitude and level</span><span>🎯 27 ft per hPa sums</span><span>🎯 Cold-temperature error</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Flying towards lower pressure or colder air at a constant indicated altitude, the aircraft descends.</strong> Both errors make the altimeter over-read, so true altitude is below indicated altitude. That is why regional QNH is the <em>lowest</em> forecast value, why settings are rounded <em>down</em>, and why minimum altitudes are increased in very cold weather.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td>Altitude</td><td>Vertical distance above MSL (QNH set)</td></tr>
+          <tr><td>Height</td><td>Vertical distance above a specified datum, such as the aerodrome (QFE set)</td></tr>
+          <tr><td>Elevation</td><td>Height above MSL of a point on, or fixed to, the ground</td></tr>
+          <tr><td>Flight level</td><td>A surface of constant pressure referenced to 1013.25 hPa, in hundreds of feet</td></tr>
+          <tr><td>Transition altitude</td><td>At or below it, vertical position is an altitude on QNH</td></tr>
+          <tr><td>Transition level</td><td>The lowest usable flight level above the transition altitude</td></tr>
+          <tr><td>Transition layer</td><td>The airspace between the two</td></tr>
+        </tbody>
+      </table></div>
+      <details class="example"><summary>Worked example — wrong setting</summary><div class="body">
+        <p>Aerodrome elevation 300 ft, 1020 hPa set but the actual QNH is 1005 hPa. The setting is 15 hPa too high, and each hPa is worth 27 ft, so the altimeter reads 15 × 27 = 405 ft too high: <strong>705 ft</strong>. Setting a higher number on the subscale always makes the altimeter read higher.</p></div></details>
+      <details class="example"><summary>Worked example — temperature error</summary><div class="body">
+        <p>Indicating 3000 ft on QFE with the air below at ISA −20. The correction is 4 ft × 20 × 3 = 240 ft, so true height ≈ <strong>2760 ft</strong>. The error is proportional to the ISA deviation and to the height above the setting datum. It is zero on the ground at the datum and largest at the start of an approach.</p></div></details>
+      <div class="callout caution"><span class="label">🧮 Safe flight levels</span> To find the lowest usable flight level for a safety altitude, correct the safety altitude to pressure altitude using the <em>lowest</em> forecast QNH (QNH below 1013 means add 27 ft per hPa), then allow for temperature below ISA, and round <em>up</em> to the next available level.</div>
+      <ul>
+        <li>Pressure altitude = elevation + (1013 − QNH) × 27 ft.</li>
+        <li>Density altitude ≈ pressure altitude + 120 ft per °C above ISA.</li>
+        <li>Two aircraft at the same flight level stay separated even in different temperatures: they both fly the same pressure surface, whatever their true altitudes.</li>
+      </ul>
+    </section>
+
+    <section class="sec" id="wind">
+      <h2><span class="num">🧭</span> Winds <span class="en">71 questions</span></h2>
+      <p class="lead">Air starts to move from high to low pressure; the Earth's rotation turns it until it blows along the isobars; friction near the ground turns it back towards the low.</p>
+      <div class="glance"><span>🎯 Pressure gradient + Coriolis</span><span>🎯 Geostrophic and gradient wind</span><span>🎯 Surface wind rules</span><span>🎯 Sea, land, katabatic, anabatic</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Above the friction layer the wind is geostrophic</strong>: the pressure gradient force (towards low) is balanced by the Coriolis force (to the right of the motion in the north, to the left in the south). The wind then blows parallel to straight isobars. Coriolis = 2Ωρ V sin(latitude): zero at the Equator, greatest at the poles, and negligible within about 15° of the Equator. So <strong>the same isobar spacing gives a stronger wind at low latitude</strong> and in thinner air.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Wind</th><th>Balance</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>Geostrophic</td><td>PGF = Coriolis</td><td>Straight, parallel isobars; above the friction layer; not near the Equator</td></tr>
+          <tr><td>Gradient</td><td>PGF, Coriolis and centrifugal</td><td>Curved isobars. For the same spacing it is <strong>slower around a low</strong> and <strong>faster around a high</strong> than the geostrophic value</td></tr>
+          <tr><td>Antitriptic</td><td>PGF and friction</td><td>Very low latitudes, where Coriolis is negligible</td></tr>
+          <tr><td>Surface wind</td><td>Friction reduces speed, so Coriolis weakens</td><td>Backed and slower in the north (veered in the south), blowing across the isobars towards low pressure</td></tr>
+        </tbody>
+      </table></div>
+      <h3 class="sub">Diurnal variation over land</h3>
+      <div class="compare">
+        <div class="card"><h4>By day</h4><p>Convection mixes faster air down from above, so the surface wind <strong>veers and strengthens</strong>, reaching a maximum near 1500 local. The 1500 ft wind becomes lighter and backed.</p></div>
+        <div class="card good"><h4>By night</h4><p>A surface inversion decouples the layers. The surface wind <strong>backs and drops</strong> (helping fog form), while the wind just above the inversion veers and strengthens towards the gradient wind, which gives shear at the inversion.</p></div>
+      </div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">🏖️ Sea breeze</div><div class="d">Land heats faster than sea on sunny days with a slack gradient. About 10 kt, reaching 8–15 nm inland; veers through the day (north). A line of cumulus marks its front, and it can carry sea fog inland.</div></div>
+        <div class="fcard"><div class="f">🌙 Land breeze</div><div class="d">The reverse at night: about 5 kt offshore, within about 5 nm of the coast.</div></div>
+        <div class="fcard"><div class="f">⛷️ Katabatic</div><div class="d">Cold, dense air sliding down slopes on clear nights, strongest over snow. Brings frost, fog and inversions to valley floors.</div></div>
+        <div class="fcard"><div class="f">🌄 Anabatic</div><div class="d">A light wind (~5 kt) up a sun-heated slope, usually weaker than a katabatic wind because gravity works against it.</div></div>
+      </div>
+      <ul>
+        <li>Wind direction is always where the wind blows <em>from</em>: true in reports and forecasts, magnetic from ATC for take-off and landing.</li>
+        <li>A <strong>veer</strong> is a clockwise change in direction and a <strong>back</strong> is anticlockwise, in both hemispheres.</li>
+        <li>A gust is reported when it is 10 kt or more above the mean. A squall lasts a minute or more. Gale: a mean above 33 kt or gusts above 42 kt; hurricane force: above 63 kt.</li>
+        <li>Surface wind is measured at 10 m. 10 m/s ≈ 20 kt.</li>
+      </ul>
+    </section>
+
+    <section class="sec" id="upw">
+      <h2><span class="num">🛫</span> Upper Winds &amp; Jet Streams <span class="en">53 questions</span></h2>
+      <p class="lead">Upper winds follow temperature. Because the poles are colder than the tropics, the winds aloft are mostly westerly, and where the temperature contrast is sharpest they form jet streams.</p>
+      <div class="glance"><span>🎯 Contour charts</span><span>🎯 Thermal wind</span><span>🎯 Jet types and locations</span><span>🎯 CAT and crossing a jet</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The thermal wind</strong> is the vector difference between the winds at two levels. It blows parallel to the mean isotherms (thickness lines) of the layer between them, with <strong>cold air on the left</strong> in the north. Stand with your back to the upper wind and low pressure, low temperature and low contour heights are all on your left. A wind that <strong>veers with height means warm advection</strong>; one that backs with height means cold advection.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Chart</th><th>≈ Flight level</th></tr></thead>
+        <tbody><tr><td>850 · 700 · 500 hPa</td><td>FL050 · FL100 · FL180</td></tr><tr><td>400 · 300 · 250 hPa</td><td>FL240 · FL300 · FL340</td></tr><tr><td>200 · 150 hPa</td><td>FL390 · FL450</td></tr></tbody>
+      </table></div>
+      <p>A contour chart shows the height of one pressure surface. Contours (isohypses) behave like isobars, so the wind blows along them and is stronger where they are close together. Isotachs join points of equal wind speed. High 1000–500 hPa thickness means a warm column.</p>
+      <h3 class="sub">Jet streams</h3>
+      <p>A jet stream is a narrow, fast current, at least 60 kt, typically about 2000 nm long, 200 nm wide and 2 nm deep. Its core lies just below the tropopause, near a break in it. Speeds above 300 kt have been measured.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Jet</th><th>Where and when</th></tr></thead>
+        <tbody>
+          <tr><td>Polar front jet</td><td>Over the polar front depressions, parallel to their fronts in the warm air above the frontal surfaces (~300 hPa). Variable in position; stronger and further south in winter</td></tr>
+          <tr><td>Subtropical jet</td><td>Poleward side of the subtropical highs, ~200 hPa, about 25–40°N in winter and 40–45°N in summer; steadier</td></tr>
+          <tr><td>Tropical easterly jet</td><td>Northern summer, ~10–20°N, from the South China Sea across India to Africa, ~150 hPa; easterly because the heated Asian landmass reverses the temperature gradient</td></tr>
+          <tr><td>Polar night jet</td><td>Winter, high in the stratosphere (~50 hPa), in high latitudes</td></tr>
+          <tr><td>Arctic jet</td><td>Winter, between Arctic and polar air, ~400 hPa</td></tr>
+          <tr><td>Somali (Findlater) jet</td><td>A low-level jet off East Africa in the summer monsoon</td></tr>
+        </tbody>
+      </table></div>
+      <div class="tip"><span class="label">✈️ Pilot tip</span> In the Northern Hemisphere, looking downstream along a westerly jet, the cold air is on the left. Rapid temperature change, changing drift and growing wind speed say you are near the core. If the jet is turbulent, change level or move laterally away from the core, especially out of the cold side below it, rather than staying in it.</div>
+    </section>
+
+    <section class="sec" id="cloud">
+      <h2><span class="num">☁️</span> Clouds <span class="en">51 questions</span></h2>
+      <p class="lead">Ten cloud types in three families and three height bands. Learn what each looks like and what it does to an aeroplane.</p>
+      <div class="glance"><span>🎯 Oktas and ceiling</span><span>🎯 Low, medium, high bands</span><span>🎯 Which cloud gives what</span><span>🎯 Warning clouds</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The shape of a cloud is a picture of the stability that made it.</strong> Flat, layered (stratiform) cloud means stable air lifted gently. Heaped (cumuliform) cloud means unstable air rising in convection. Fibrous (cirriform) cloud is ice, high up. "Nimbo-" or "-nimbus" means the cloud is producing precipitation.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Band (temperate)</th><th>Clouds</th><th>What to expect</th></tr></thead>
+        <tbody>
+          <tr><td>High: ~16 500 ft to the tropopause</td><td>Cirrus (Ci), cirrostratus (Cs, the halo cloud), cirrocumulus (Cc)</td><td>Ice crystals; no precipitation reaches the ground. Ci thickening into Cs often heralds a warm front</td></tr>
+          <tr><td>Medium: ~6500–23 000 ft</td><td>Altostratus (As, a "ground-glass" sun), altocumulus (Ac)</td><td>Icing possible. Ac lenticularis = mountain waves; Ac castellanus = mid-level instability, often before thunder</td></tr>
+          <tr><td>Low: surface–6500 ft</td><td>Stratus (St), stratocumulus (Sc), nimbostratus (Ns)</td><td>St: hill fog and drizzle. Ns: thick, continuous rain or snow with icing</td></tr>
+          <tr><td>Through all levels</td><td>Large cumulus (Cu congestus / TCU) and cumulonimbus (Cb)</td><td>Severe turbulence and icing, hail, lightning, heavy showers, squalls</td></tr>
+        </tbody>
+      </table></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Code</th><th>FEW</th><th>SCT</th><th>BKN</th><th>OVC</th></tr></thead>
+        <tbody><tr><td>Oktas (eighths)</td><td>1–2</td><td>3–4</td><td>5–7</td><td>8</td></tr></tbody>
+      </table></div>
+      <p>The <strong>ceiling</strong> is the height above aerodrome level of the lowest BKN or OVC layer. Report bases are above aerodrome level, so a base of 1200 ft at an aerodrome 600 ft high is 1800 ft AMSL. Cloud bases are measured by laser ceilometer; tops are estimated from soundings and pilot reports.</p>
+      <ul>
+        <li>Cumulus grows from <em>humilis → mediocris → congestus</em> to cumulonimbus, first <em>calvus</em> (smooth top) and then <em>capillatus</em> (fibrous anvil top).</li>
+        <li>The anvil forms where the rising air meets the stable tropopause. Mamma under the anvil means strong sinking air and turbulence.</li>
+        <li>Fair-weather cumulus: bumpy below the base, usually smooth above the tops. Cumulus bases rise as the day warms.</li>
+        <li>Contrails form when exhaust water vapour condenses and freezes in cold, humid air aloft.</li>
+      </ul>
+    </section>
+
+    <section class="sec" id="precip">
+      <h2><span class="num">🌧️</span> Cloud Formation &amp; Precipitation <span class="en">48 questions</span></h2>
+      <p class="lead">Cloud needs air cooled to its dew point, almost always by lifting. Precipitation needs the tiny cloud droplets to grow a million times bigger.</p>
+      <div class="glance"><span>🎯 Five ways to lift air</span><span>🎯 Bergeron vs coalescence</span><span>🎯 Showers vs continuous</span><span>🎯 Freezing rain</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Air is lifted in five ways</strong>: turbulence (mixing up to the top of the friction layer, giving St or Sc under an inversion), orographic uplift, convection, frontal ascent, and convergence in lows and troughs. Stable air lifted gives layer cloud; unstable air lifted gives heap cloud.</p></div>
+      <div class="compare">
+        <div class="card"><h4>Bergeron (ice crystal) process</h4><p>Cloud that reaches below about 0°C has supercooled droplets and ice crystals together. The air is saturated over water but supersaturated over ice, so crystals grow at the droplets' expense until they fall. This is the main mechanism in mid-latitudes.</p></div>
+        <div class="card"><h4>Coalescence</h4><p>Cloud that stays warmer than 0°C, as in the tropics and summer. It needs a range of droplet sizes, so that big drops fall faster, collide with small ones and grow.</p></div>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Type</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td>Drizzle</td><td>Droplets of about 0.2–0.5 mm, from stratus. Reduces visibility more than light rain does</td></tr>
+          <tr><td>Rain</td><td>Drops of about 0.5–5.5 mm</td></tr>
+          <tr><td>Snow</td><td>Gives the poorest visibility of all precipitation. Flakes are largest near 0°C</td></tr>
+          <tr><td>Hail</td><td>5 mm or more; formed in Cb by repeated lifting through supercooled water</td></tr>
+          <tr><td>Graupel / ice pellets</td><td>Soft white pellets from wintry showers / clear frozen raindrops under 5 mm</td></tr>
+          <tr><td>Freezing rain</td><td>Rain from a warm layer aloft falls into sub-zero air, supercools and freezes on impact</td></tr>
+          <tr><td>Virga</td><td>Trails of precipitation that evaporate before reaching the ground</td></tr>
+        </tbody>
+      </table></div>
+      <p><strong>Showers</strong> come from heap cloud and are short. <strong>Continuous</strong> precipitation comes from layer cloud (classically nimbostratus) without a break for at least an hour. <strong>Intermittent</strong> precipitation comes from layer cloud and stops and starts without the sky clearing.</p>
+    </section>
+
+    <section class="sec" id="tstm">
+      <h2><span class="num">⛈️</span> Thunderstorms <span class="en">59 questions</span></h2>
+      <p class="lead">The most violent weather a pilot routinely meets, packed into one cloud: every hazard in this guide at once.</p>
+      <div class="glance"><span>🎯 Three ingredients</span><span>🎯 Air-mass vs frontal</span><span>🎯 Three stages</span><span>🎯 Avoidance distances</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>A thunderstorm needs three things: a deep layer of unstable air reaching well above the freezing level (about 10 000 ft deep or more), plenty of moisture, and a trigger</strong>: surface heating, high ground, a front or convergence. Subsidence in an anticyclone suppresses them.</p></div>
+      <ol class="steps">
+        <li><strong>Cumulus (initial) stage:</strong> updraughts throughout the cell, and no precipitation reaching the ground yet.</li>
+        <li><strong>Mature stage:</strong> precipitation starts to fall from the base and drags down cold downdraughts beside updraughts of several thousand fpm. The gust front can be felt 15 nm or more ahead. The anvil spreads at the tropopause.</li>
+        <li><strong>Dissipating stage:</strong> mainly downdraughts throughout the cell, and the precipitation dies away.</li>
+      </ol>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Type</th><th>Character</th></tr></thead>
+        <tbody>
+          <tr><td>Air-mass (heat)</td><td>Isolated, over land on summer afternoons, often in cols or slack lows</td></tr>
+          <tr><td>Frontal</td><td>Mostly at cold fronts and occlusions; can be embedded in layer cloud and hidden</td></tr>
+          <tr><td>Squall line</td><td>A line ahead of an active cold front; fast-moving</td></tr>
+          <tr><td>Orographic</td><td>Moist unstable air forced up high ground</td></tr>
+          <tr><td>Supercell</td><td>A single, long-lived rotating cell with deep instability and strong shear; large hail and tornadoes. Moves to the right of the 500 hPa wind</td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout warning"><span class="label">⚠️ Hazards and avoidance</span> Turbulence in, around, above and below the cloud; hail up to about 45 000 ft and under the anvil miles from the core; severe icing between about 0°C and −45°C; lightning (most strikes within about 5000 ft of the freezing level); microbursts and windshear; compass errors and static. On radar: avoid echoes by 5 nm below FL200 (10 nm if growing) and by 20 nm above FL300. Visually, keep at least 10 nm laterally and 5000 ft vertically from a tall, growing or anvilled storm.</div>
+      <div class="tip"><span class="label">✈️ Pilot tip</span> Weather radar sees water, not ice. A dry, frozen top or hail shaft can look weaker than it is, so treat a weak echo high in the storm as worse than it looks. Lightning detectors map electrical discharges instead.</div>
+    </section>
+
+    <section class="sec" id="vis">
+      <h2><span class="num">🌫️</span> Visibility &amp; Fog <span class="en">55 questions</span></h2>
+      <p class="lead">Fog closes more aerodromes than any other weather. Knowing which kind you face tells you when it will form and when it will clear.</p>
+      <div class="glance"><span>🎯 Mist, fog, haze</span><span>🎯 Radiation vs advection</span><span>🎯 How fog clears</span><span>🎯 RVR</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Fog is visibility below 1000 m in water droplets</strong>; mist is 1000 m or more (usually up to 5000 m); haze is the same reduction from dry particles. Poor visibility belongs to stable air, inversions and light winds, which is why highs and cols are the foggy pressure systems.</p></div>
+      <div class="compare">
+        <div class="card"><h4>Radiation fog</h4><p>Clear night, moist air, light wind of about 2–8 kt (calm gives dew or frost; above 10–15 kt gives low stratus instead). Over land only, in autumn and winter, first in valleys, thickening until just after sunrise. Cleared by the sun heating from below or by stronger wind. In a winter high it can persist all day.</p></div>
+        <div class="card"><h4>Advection fog</h4><p>Warm, moist air moving over a colder surface. It can form with moderate wind, at any time of day, and over the sea. Over land in north-west Europe it is a winter feature; over the sea, late spring and early summer. It clears with a change of air mass, or turns to stratus above about 15 kt.</p></div>
+      </div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">⛰️ Hill fog</div><div class="d">Low cloud with its base below the hilltops.</div></div>
+        <div class="fcard"><div class="f">♨️ Steaming fog</div><div class="d">Very cold air over much warmer water: Arctic sea smoke near Greenland, Iceland and in fjords.</div></div>
+        <div class="fcard"><div class="f">🌧️ Frontal fog</div><div class="d">Rain saturating the air under a front until the base reaches the ground; a belt up to about 200 nm wide.</div></div>
+        <div class="fcard"><div class="f">🥶 Freezing fog / ice fog</div><div class="d">Supercooled droplets that rime surfaces / ice crystals in extreme cold.</div></div>
+      </div>
+      <h3 class="sub">Runway visual range</h3>
+      <p>RVR is how far a pilot on the centreline can see the runway markings or lights. It is measured by transmissometer or forward-scatter meter at the touchdown zone, mid-point and stop end. It is reported when visibility or RVR falls below 1500 m, or with shallow fog. It is usually <strong>greater</strong> than the meteorological visibility because bright lights can be seen further away. RVR is observed, <strong>never forecast</strong>.</p>
+      <div class="tip"><span class="label">✈️ Pilot tip</span> Above a haze or fog layer, the horizontal view can be excellent while the slant view down to the runway is poor, and haze is worst looking into the sun. Near a city, the visibility is better on the upwind side.</div>
+    </section>
+
+    <section class="sec" id="ice">
+      <h2><span class="num">🧊</span> Icing <span class="en">56 questions</span></h2>
+      <p class="lead">Water can stay liquid well below 0°C, down to about −40°C. When those supercooled drops hit an aircraft, they freeze on it.</p>
+      <div class="glance"><span>🎯 Supercooled water</span><span>🎯 Clear, rime, mixed, hoar frost</span><span>🎯 Freezing rain</span><span>🎯 Engine icing</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Airframe icing needs supercooled liquid droplets and an airframe at or below 0°C.</strong> The bigger the drops and the closer the temperature is to 0°C, the more of each drop runs back before freezing, and the worse the ice. Below about −20°C, most cloud is ice crystals, which do not stick.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Type</th><th>How it forms</th><th>Character</th></tr></thead>
+        <tbody>
+          <tr><td>Clear (glaze)</td><td>Large drops; part freezes at once and the rest flows back. Cu, Cb and Ns, 0 to about −20°C; freezing rain</td><td>Dense, heavy, sticks hard, distorts the aerofoil; the most dangerous</td></tr>
+          <tr><td>Rime</td><td>Small drops freeze instantly, trapping air. Layer cloud and the colder parts of heap cloud</td><td>White, opaque, light, little runback, mainly on leading edges</td></tr>
+          <tr><td>Mixed</td><td>Large and small drops together, usually 0 to −20°C</td><td>Rough and heavy</td></tr>
+          <tr><td>Hoar frost</td><td>Vapour deposits directly on a cold-soaked skin, for example after a fast descent into warm, moist air</td><td>White crystals; adds drag and obscures windscreens; clears in warmer air</td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout warning"><span class="label">🌧️ Freezing rain</span> Rain falls from a warm layer aloft into sub-zero air below, typically in a shallow layer ahead of a warm front or occlusion in winter. It builds clear ice very fast; even short encounters can be hazardous, and ice protection may not cope. Leave at once, for example by turning back or climbing into the warm layer.</div>
+      <ul>
+        <li>Ice reduces lift (by around 30%) and increases drag (by around 40%), raises the stall speed, adds weight, and blocks pitot-static instruments.</li>
+        <li>In a cumulus the worst icing is in the lower part of the cloud, just above the freezing level. The thinnest parts (tailplane edges, struts, probes) collect ice first.</li>
+        <li><strong>Carburettor icing</strong> needs no sub-zero air: fuel evaporation and venturi expansion can produce it from about −10°C to +25°C or more in moist air.</li>
+        <li><strong>Turbine intake icing</strong> comes from snow or supercooled water, worst at high RPM and low speed. Cold-soaked fuel can frost the wings on the ground.</li>
+        <li>On the ground the aircraft must be free of frost, ice and snow. Holdover time is how long the de/anti-icing fluid will keep protecting.</li>
+      </ul>
+    </section>
+
+    <section class="sec" id="airm">
+      <h2><span class="num">🧊🔥</span> Air Masses &amp; Fronts <span class="en">57 questions</span></h2>
+      <p class="lead">An air mass takes on the character of the surface it sat over. When it moves, that character changes from below, and where two air masses meet, a front forms.</p>
+      <div class="glance"><span>🎯 Air mass codes</span><span>🎯 The five European air masses</span><span>🎯 Warm and cold front sequence</span><span>🎯 Slopes and speeds</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Warmed from below, an air mass becomes unstable; cooled from below, it becomes stable.</strong> Air moving over a warmer surface gets heap cloud, showers and good visibility. Air moving over a colder surface gets stratus, drizzle, fog and poor visibility. The letters in an air mass code are its moisture (m maritime / c continental), its source (A Arctic, P polar, T tropical), and sometimes whether it is colder (k) or warmer (w) than the surface beneath it.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Air mass over NW Europe</th><th>Typical weather</th></tr></thead>
+        <tbody>
+          <tr><td>Arctic maritime (mA)</td><td>Very unstable after a long sea track: large Cu, heavy snow showers in winter</td></tr>
+          <tr><td>Polar maritime (mP)</td><td>From the north-west: Cu and Cb, showers, bumpy flying, good visibility. Clear nights inland bring radiation fog</td></tr>
+          <tr><td>Returning polar maritime (mPw)</td><td>Has been south and back; arrives from the south-west, warmer and moister below, with more layer cloud</td></tr>
+          <tr><td>Polar continental (cP)</td><td>Winter, from Siberia: very cold and dry. After a North Sea crossing, snow showers on east coasts</td></tr>
+          <tr><td>Tropical maritime (mT)</td><td>South-westerly: low St and Sc, drizzle, poor visibility, advection fog</td></tr>
+          <tr><td>Tropical continental (cT)</td><td>Summer, from North Africa: hot, dry, cloudless, dust haze</td></tr>
+        </tbody>
+      </table></div>
+      <div class="diagram">
+        <svg viewBox="0 0 640 230" role="img" aria-label="Cross-section through a warm sector depression">
+          <line class="ax" x1="10" y1="200" x2="630" y2="200"/>
+          <path d="M150 200 L60 40" class="curve" style="stroke:var(--note-line)"/>
+          <path d="M260 200 L620 60" class="curve" style="stroke:var(--red-arc)"/>
+          <text x="20" y="215">← west</text><text x="580" y="215">east →</text>
+          <text x="15" y="120">cold air</text><text x="170" y="120">warm sector</text><text x="470" y="170">cold air</text>
+          <text x="80" y="60" class="m">cold front ~1:50–1:80</text>
+          <text x="380" y="95" class="m">warm front ~1:150</text>
+          <text x="150" y="150" class="m">Cb, showers, squalls</text>
+          <text x="400" y="190" class="m">Ns → As → Cs → Ci ahead</text>
+          <text x="185" y="180" class="m">St, drizzle</text>
+        </svg>
+        <div class="cap">A depression moving east. The observer to the east sees, in order, the warm-front clouds lowering and thickening, the warm sector, and then the cold front.</div>
+      </div>
+      <div class="compare">
+        <div class="card"><h4>Warm front passes</h4><p>Ahead of it: pressure falls steadily and continuous rain becomes heavier under Ns. As it passes: the wind veers, temperature and dew point rise, and the pressure fall slows. Then the warm sector: St, drizzle and poor visibility, especially in winter. A warm front moves at about ⅔ of the geostrophic wind component at right angles to it.</p></div>
+        <div class="card"><h4>Cold front passes</h4><p>A sharp veer, squalls, heavy showers, a sudden drop in temperature and dew point, and pressure starting to rise. Behind it: Cu and Cb, showers, and very good visibility between them. It moves at about the full perpendicular geostrophic component. Its weather is more intense but narrower than a warm front's, and more intense in winter.</p></div>
+      </div>
+      <ul>
+        <li>The Polar Front separates polar and tropical air. In the North Atlantic it runs roughly from Florida to SW Britain in winter, and from Newfoundland to NW Britain in summer.</li>
+        <li>Depressions come in families, the next one forming on the trailing cold front. They move parallel to the warm-sector isobars.</li>
+        <li>The jet lies parallel to the fronts in the warm air: about 400 nm ahead of the surface warm front and about 200 nm behind the surface cold front.</li>
+        <li>At 10 000 ft with a 1:150 slope, the warm front surface is 1 500 000 ft (about 250 nm) ahead of its surface position.</li>
+      </ul>
+    </section>
+
+    <section class="sec" id="occl">
+      <h2><span class="num">🔗</span> Occlusions <span class="en">35 questions</span></h2>
+      <p class="lead">The cold front moves faster than the warm front and eventually catches it, lifting the warm sector off the ground.</p>
+      <div class="glance"><span>🎯 Warm or cold occlusion?</span><span>🎯 Where the rain falls</span><span>🎯 Embedded Cb</span><span>🎯 Triple point and trowal</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The colder of the two cold air masses stays at the surface.</strong> If the air <em>ahead</em> is colder, the cold front rides up over it and you get a <strong>warm occlusion</strong>. This is the typical winter case over Western Europe, when continental air ahead is very cold. If the air <em>behind</em> is colder, it undercuts and you get a <strong>cold occlusion</strong>, which is more common in summer. A station that is colder ahead of the occlusion than behind it is under a warm occlusion.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th></th><th>Warm occlusion</th><th>Cold occlusion</th></tr></thead>
+        <tbody>
+          <tr><td>Chart line continues</td><td>Along the warm front</td><td>Along the cold front</td></tr>
+          <tr><td>Most precipitation</td><td>Ahead of the surface occlusion</td><td>Behind the surface occlusion</td></tr>
+          <tr><td>Special risk</td><td>Rain ice in very cold air below</td><td>Convective weather as in a cold front</td></tr>
+        </tbody>
+      </table></div>
+      <p>The meeting point of the warm, cold and occluded fronts is the <strong>triple point</strong> (point of occlusion), a favourite place for a new secondary low, especially where mountains hold the fronts back. The lifted warm air forms a <strong>trowal</strong> (trough of warm air aloft). An occluding low slows down and curves to the left in the Northern Hemisphere; it deepens for about four days and can take ten days or more to fill. On a chart, an occlusion is drawn with triangles and semicircles on the same side of the line.</p>
+      <div class="callout warning"><span class="label">⚠️ Main hazard</span> Embedded cumulonimbus: the cold front's convective cloud is pushed into the warm front's layer cloud, so the storms are hidden in stratiform cloud, with icing and turbulence. A slow-moving occlusion near the depression centre gives the most persistent weather.</div>
+    </section>
+
+    <section class="sec" id="depr">
+      <h2><span class="num">🌀</span> Other Depressions <span class="en">48 questions</span></h2>
+      <p class="lead">Not every low is a polar front low. Mountains, heating, cold pools and warm tropical seas all make lows of their own.</p>
+      <div class="glance"><span>🎯 Lee lows</span><span>🎯 Thermal and polar lows</span><span>🎯 Cold air pools</span><span>🎯 Tropical revolving storms</span></div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">⛰️ Orographic (lee) low</div><div class="d">Air flows round the ends of a range, leaving a shortage of air in its lee. The Gulf of Genoa is the classic case as a cold front reaches the Alps. Dry air gives Föhn; moist, unstable air gives Cb and squalls.</div></div>
+        <div class="fcard"><div class="f">☀️ Thermal low</div><div class="d">Heating expands the column, so air flows out aloft and surface pressure falls. Weakens with height, possibly to a high aloft. In summer over land it brings storms; in winter it forms over warm inland seas (Mediterranean, Black, Caspian).</div></div>
+        <div class="fcard"><div class="f">❄️ Polar low</div><div class="d">Arctic air over a much warmer sea in winter: Cb and heavy snow showers. Not a frontal low.</div></div>
+        <div class="fcard"><div class="f">🥶 Cold air pool</div><div class="d">Cold air aloft, seen on thickness or contour charts but not on a surface chart. Over summer land it brings showers and thunderstorms.</div></div>
+        <div class="fcard"><div class="f">➕ Secondary low</div><div class="d">A smaller low within a bigger circulation. It may grow into the next main low, or hold up a cold front and make its timing hard to forecast.</div></div>
+        <div class="fcard"><div class="f">🌪️ Tornado</div><div class="d">Up to a few hundred metres across, with violent winds and a sudden pressure drop. A hook echo on radar. US peak in the late afternoon; European ones are smaller.</div></div>
+      </div>
+      <h3 class="sub">Tropical revolving storms</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Requirement / fact</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Sea temperature</td><td>At least about 26°C, through a deep layer</td></tr>
+          <tr><td>Latitude</td><td>About 5–25°; none within ~5° of the Equator (too little Coriolis), and almost none in the South Atlantic (sea too cool)</td></tr>
+          <tr><td>Other needs</td><td>Little vertical windshear; energy from latent heat</td></tr>
+          <tr><td>Classification</td><td>Tropical depression &lt; 34 kt · tropical storm (named) 34–63 kt · hurricane / typhoon / cyclone 64 kt or more</td></tr>
+          <tr><td>Structure</td><td>Calm, nearly clear eye of sinking air; strongest winds and rain in the eye wall</td></tr>
+          <tr><td>Track (north)</td><td>West in the trades, then recurving north and north-east; decays over land or cold sea</td></tr>
+          <tr><td>Seasons</td><td>N Atlantic June–November (peak Aug–Oct); S Indian Ocean / Australia December–April</td></tr>
+        </tbody>
+      </table></div>
+      <div class="tip"><span class="label">✈️ Pilot tip</span> Near a tropical revolving storm in the Northern Hemisphere, turn until you have port drift: the wind is then from the right and you are heading away from the centre. In the Southern Hemisphere, turn until you have starboard drift.</div>
+    </section>
+
+    <section class="sec" id="glob">
+      <h2><span class="num">🗺️</span> Global Climatology <span class="en">56 questions</span></h2>
+      <p class="lead">The big picture: belts of pressure and wind that move north and south with the sun, and the monsoons that reverse with the seasons.</p>
+      <div class="glance"><span>🎯 Pressure and wind belts</span><span>🎯 The ITCZ</span><span>🎯 Monsoons</span><span>🎯 January vs July</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>From the Equator outwards in each hemisphere:</strong> the equatorial trough (ITCZ and the doldrums) → north-east / south-east trade winds → subtropical highs at about 30–35° (the "Horse Latitudes") → the westerlies at about 40–60° → the temperate lows → the polar easterlies → the polar high. The whole pattern follows the sun, much more over land than over the oceans.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Feature</th><th>January (northern winter)</th><th>July (northern summer)</th></tr></thead>
+        <tbody>
+          <tr><td>Asia</td><td>Intense Siberian high; very cold because it is far from the sea, with long nights and snow cover</td><td>Huge thermal low near Pakistan (the Baluchistan low)</td></tr>
+          <tr><td>Oceans</td><td>Deep Icelandic and Aleutian lows; Azores high further south</td><td>Lows weaker; Azores and Pacific highs stronger and further north</td></tr>
+          <tr><td>India</td><td>NE monsoon: dry, offshore</td><td>SW monsoon: SE trades cross the Equator and veer towards the Asian low, giving heavy rain. Upper winds become easterly (tropical easterly jet)</td></tr>
+          <tr><td>ITCZ</td><td>Furthest south; reaches about Darwin</td><td>Furthest north, deep into Asia and West Africa</td></tr>
+        </tbody>
+      </table></div>
+      <ul>
+        <li>A <strong>monsoon</strong> is a seasonal wind reversal caused by a winter high or a summer low over a continent.</li>
+        <li>Trade-wind weather is fine on the poleward and eastern sides of the oceans and more showery to the west and near the Equator.</li>
+        <li>Climate zones: warm, wet equatorial; arid subtropical; cool, wet temperate; cold, dry polar. North-west Europe is Köppen class C.</li>
+        <li>In the Southern Hemisphere, polar front lows centre near 50°S all year. Near the South Pole, the surface winds are strong easterlies.</li>
+      </ul>
+    </section>
+
+    <section class="sec" id="locw">
+      <h2><span class="num">🏔️</span> Local Winds &amp; Weather <span class="en">34 questions</span></h2>
+      <p class="lead">Named winds are a shorthand. Each name stands for a pressure pattern, a direction and a hazard.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Wind</th><th>Where / type</th><th>Character</th></tr></thead>
+        <tbody>
+          <tr><td>Föhn / Chinook</td><td>Alps / east of the Rockies</td><td>Warm, dry downslope wind; the Chinook can clear snow within hours</td></tr>
+          <tr><td>Mistral</td><td>Rhône valley to the Gulf of Lions</td><td>Cold northerly, funnelled; winter and spring, with high pressure to the north and a Genoa low</td></tr>
+          <tr><td>Bora</td><td>Adriatic coast</td><td>Cold, katabatic north-easterly that sets in suddenly with violent gusts</td></tr>
+          <tr><td>Gregale</td><td>S Italy and Malta</td><td>Strong north-easterly, usually in winter</td></tr>
+          <tr><td>Sirocco · Ghibli · Khamsin</td><td>North Africa</td><td>Hot, dusty southerlies ahead of lows moving east; the Khamsin is mostly a spring wind. The Sirocco crossing to southern Europe becomes moist, with low cloud and fog</td></tr>
+          <tr><td>Etesians (Meltemi)</td><td>Aegean</td><td>Steady, dry summer northerlies with clear skies</td></tr>
+          <tr><td>Levanter</td><td>Strait of Gibraltar</td><td>Easterly; a banner cloud off the Rock and turbulence near the airfield</td></tr>
+          <tr><td>Harmattan</td><td>West Africa (e.g. Kano), Nov–Apr</td><td>Dry, dusty north-easterly from the Sahara; improves towards the Gulf of Guinea</td></tr>
+          <tr><td>Haboob</td><td>Sudan</td><td>Duststorm driven by thunderstorm outflow</td></tr>
+          <tr><td>Sumatras</td><td>Straits of Malacca, SW monsoon</td><td>Night-time thunderstorm squall lines</td></tr>
+          <tr><td>Southerly Buster</td><td>Sydney</td><td>A squally southerly change with a sharp temperature drop behind a summer cold front</td></tr>
+        </tbody>
+      </table></div>
+      <div class="tip"><span class="label">✈️ Pilot tip</span> Fjords and mountain valleys funnel strong winds into sudden low-level turbulence and windshear. The Bora and the Mistral are both at their worst in winter, when cold continental air pours towards a Mediterranean low.</div>
+    </section>
+
+    <section class="sec" id="area">
+      <h2><span class="num">🌍</span> Area Climatology <span class="en">43 questions</span></h2>
+      <p class="lead">What to expect, season by season, over the regions this material concentrates on: Europe and the North Atlantic, the Mediterranean, North-west Africa, Arabia and the Gulf.</p>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">🌊 North Atlantic</div><div class="d">Grand Banks advection fog in late spring and early summer, as warm air crosses the cold current. Winter depressions track towards NW Europe.</div></div>
+        <div class="fcard"><div class="f">🏔️ Europe</div><div class="d">Cold fronts are held up by the Alps, with frontal and orographic cloud on the north side. Persistent winter radiation fog in the Po valley.</div></div>
+        <div class="fcard"><div class="f">☀️ Mediterranean</div><div class="d">Summer: little cloud under the Azores high. Winter: lee lows near Genoa, in the northern Adriatic, south of the Atlas and near Cyprus.</div></div>
+        <div class="fcard"><div class="f">🏜️ NW Africa</div><div class="d">South of about 20°N, the ITCZ brings the wet season and a SW monsoon in spring. In winter, polar-front cold fronts bring rain to northern Morocco.</div></div>
+        <div class="fcard"><div class="f">🛢️ Arabia &amp; Gulf</div><div class="d">Winter: Mediterranean lows and cold fronts with showers, storms and dust, and a NW Shamal. Summer inland: almost rainless and sometimes above 50°C.</div></div>
+      </div>
+    </section>
+
+    <section class="sec" id="route">
+      <h2><span class="num">✈️</span> Route Climatology <span class="en">40 questions</span></h2>
+      <p class="lead">Seasonal weather along some classic long-haul routes: across South and South-east Asia, the Western Pacific, Australia and East Africa.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Region</th><th>Key points</th></tr></thead>
+        <tbody>
+          <tr><td>Bay of Bengal &amp; Malaysia</td><td>SW monsoon (summer): storms on windward coasts. NE monsoon (January): heavy orographic Cu and Cb on the east coast of West Malaysia. The ITCZ crosses Singapore northbound around March and southbound around Nov–Dec. Cyclones mainly early and late in the summer</td></tr>
+          <tr><td>Western Pacific</td><td>Typhoons form at about 10–15°N, drift west at 10–15 kt and often recurve north. Crachin (Jan–Apr): fog, stratus and drizzle on the South China coast. Summer sea fog east of northern Japan over the cold Oyashio current</td></tr>
+          <tr><td>Australia &amp; NZ</td><td>The ITCZ reaches just south of Darwin in January. Dust haze in the SE trades in the southern winter. Subtropical jet near 25°S in winter. Southerly Busters at Sydney</td></tr>
+          <tr><td>East &amp; Southern Africa</td><td>Khartoum's wet month is July, when the ITCZ is just north. The Guti brings stratus to the high veld. Johannesburg in summer: early low cloud, then afternoon storms. North of the ITCZ in July the wind is northerly, an extension of the Etesians</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section class="sec" id="sat">
+      <h2><span class="num">🛰️</span> Satellite Observations <span class="en">27 questions</span></h2>
+      <p class="lead">Two kinds of orbit and three kinds of picture. Knowing which one you are looking at tells you what the brightness means.</p>
+      <div class="compare">
+        <div class="card"><h4>Geostationary</h4><p>Over the Equator at about 36 000 km, one orbit in 24 h. A continuous view of about a third of the globe (Meteosat at 0°: about 70°W–70°E), good for time-lapse. Distorted towards the poles.</p></div>
+        <div class="card"><h4>Polar orbiting</h4><p>About 850 km up, about 100 minutes per orbit, scanning a strip. Sharper detail and polar coverage, but each place is seen only about twice a day.</p></div>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Image</th><th>Shows</th><th>Watch for</th></tr></thead>
+        <tbody>
+          <tr><td>Visible</td><td>Reflected sunlight; daytime only</td><td>Sea dark; thick cloud bright</td></tr>
+          <tr><td>Infrared</td><td>Temperature of the top surface, day and night; cold = white</td><td>Fog and low stratus hard to see (warm tops); thin cirrus shows well</td></tr>
+          <tr><td>Water vapour</td><td>Moisture in the middle and upper troposphere</td><td>Upper flow and jets, even in clear air</td></tr>
+        </tbody>
+      </table></div>
+      <p>Bright on both visible and IR means thick, high-topped cloud such as Cb. Bright on visible but grey on IR means low cloud or fog. Patterns to recognise: frontal bands and comma clouds round depressions, open cells behind cold fronts (cold air over warm sea), lee-wave lines downwind of mountains, and spiral bands round the eye of a tropical revolving storm. A satellite cannot show CAT directly, only hints such as jet-stream cirrus.</p>
+    </section>
+
+    <section class="sec" id="metar">
+      <h2><span class="num">📟</span> METARs <span class="en">66 questions</span></h2>
+      <p class="lead">A METAR is an observation, not a forecast: what the weather was at one aerodrome at one moment, in a fixed order of groups.</p>
+      <div class="glance"><span>🎯 Group order</span><span>🎯 Visibility and RVR</span><span>🎯 Weather codes</span><span>🎯 CAVOK, NSC, TREND</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Read it left to right; the order never changes:</strong> type · station · day and time (UTC) · wind · visibility · RVR · present weather · cloud · temperature/dew point · QNH · supplementary (recent weather, windshear, runway state) · TREND. METARs are issued every 30 minutes (hourly at some aerodromes), and a <strong>SPECI</strong> is issued in between when conditions change significantly.</p></div>
+      <pre class="code">METAR EGXX 141050Z 24018G32KT 200V280 4000 1200NE R27/0650D +SHRA BKN012 SCT030CB 08/06 Q0998 RERA WS R27 TEMPO 2000 TSRA</pre>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Group</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><span class="code">141050Z</span></td><td>14th day, 1050 UTC</td></tr>
+          <tr><td><span class="code">24018G32KT 200V280</span></td><td>240° <em>true</em>, 10-minute mean 18 kt, gusting 32 kt; direction varying 200°–280°. Calm is <span class="code">00000KT</span>; <span class="code">VRB04KT</span> is light and variable</td></tr>
+          <tr><td><span class="code">4000 1200NE</span></td><td>Prevailing visibility 4000 m (reached or exceeded over at least half the area), minimum 1200 m to the north-east. <span class="code">9999</span> = 10 km or more; <span class="code">0000</span> = less than 50 m</td></tr>
+          <tr><td><span class="code">R27/0650D</span></td><td>RVR runway 27, 650 m, decreasing (U up, N no change). Reported when visibility or RVR is below 1500 m. <span class="code">P2000</span> = above the maximum the system can assess</td></tr>
+          <tr><td><span class="code">+SHRA</span></td><td>Heavy showers of rain (− light, no sign moderate, + heavy; VC in the vicinity)</td></tr>
+          <tr><td><span class="code">BKN012 SCT030CB</span></td><td>5–7 oktas at 1200 ft, 3–4 oktas of Cb at 3000 ft, above aerodrome level. Only CB and TCU are named. <span class="code">VV001</span> = sky obscured, vertical visibility 100 ft</td></tr>
+          <tr><td><span class="code">08/06 Q0998</span></td><td>Temperature 8°C, dew point 6°C (M = minus); QNH 998 hPa, rounded down</td></tr>
+          <tr><td><span class="code">RERA · WS R27</span></td><td>Recent moderate or heavy rain; windshear reported on runway 27</td></tr>
+          <tr><td><span class="code">TEMPO …</span> / <span class="code">NOSIG</span></td><td>TREND: a forecast for the 2 hours after the observation; NOSIG = no significant change expected</td></tr>
+        </tbody>
+      </table></div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">🌫️ Obscurations</div><div class="d">BR mist · FG fog · FZFG freezing fog · MIFG shallow · BCFG patches · PRFG partial · HZ haze · FU smoke · VA volcanic ash · DU / SA dust / sand</div></div>
+        <div class="fcard"><div class="f">🌧️ Precipitation</div><div class="d">DZ drizzle · RA rain · SN snow · RASN rain and snow · GR hail · GS small hail / snow pellets · FZDZ / FZRA freezing drizzle / rain</div></div>
+        <div class="fcard"><div class="f">⛈️ Other</div><div class="d">TS thunderstorm (thunder heard within 10 minutes) · SQ squall · FC funnel cloud · SS / DS sand / dust storm · BLSN blowing snow (2 m or more) · DRSN drifting snow (below 2 m)</div></div>
+        <div class="fcard"><div class="f">🤖 Automatic</div><div class="d">AUTO = no human input · //// = not determined · NCD = no cloud detected · FEW008/// = cloud type not determined</div></div>
+      </div>
+      <div class="callout note"><span class="label">☀️ CAVOK and NSC</span> <strong>CAVOK</strong> replaces visibility, weather and cloud when <em>all</em> of these hold: visibility 10 km or more; no cloud below 5000 ft or the highest MSA (whichever is greater); no CB or TCU; no significant weather. A layer at 8000 ft does not prevent CAVOK. <strong>NSC</strong> means no significant cloud (none below 5000 ft or MSA, no CB/TCU) when CAVOK cannot be used, for example because the visibility is too low. A runway state group with <span class="code">R88</span> means all runways; <span class="code">SNOCLO</span> means the aerodrome is closed by contamination.</div>
+    </section>
+
+    <section class="sec" id="taf">
+      <h2><span class="num">🗓️</span> TAFs <span class="en">43 questions</span></h2>
+      <p class="lead">A TAF is the forecast for one aerodrome over 9 to 30 hours, and the document you plan your destination and alternates against.</p>
+      <div class="glance"><span>🎯 Validity groups</span><span>🎯 FM, BECMG, TEMPO, PROB</span><span>🎯 What a TAF leaves out</span><span>🎯 Reading a time slice</span></div>
+      <pre class="code">TAF EGXX 050500Z 0506/0612 22012KT 9999 SCT030
+     BECMG 0512/0514 25020G35KT 5000 RA BKN012
+     TEMPO 0514/0518 2000 +RA
+     PROB30 TEMPO 0600/0606 0300 FG</pre>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Change group</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><span class="code">FM051430</span></td><td>From 1430 UTC on the 5th, a rapid change to a complete new set of conditions. It always gives a full forecast</td></tr>
+          <tr><td><span class="code">BECMG 0512/0514</span></td><td>A lasting change at some time in the period. Only the elements given change; the others stay as before. During the period, conditions could be either the old or the new</td></tr>
+          <tr><td><span class="code">TEMPO 0514/0518</span></td><td>Temporary fluctuations, each less than an hour and together less than half the period</td></tr>
+          <tr><td><span class="code">PROB30 / PROB40</span></td><td>30% or 40% probability (the only two used). With no PROB group, the probability is 50% or more</td></tr>
+          <tr><td><span class="code">TX18/1415Z TN06/1505Z</span></td><td>Maximum 18°C at 1500 UTC on the 14th, minimum 6°C at 0500 UTC on the 15th</td></tr>
+          <tr><td><span class="code">NSW · NSC · AMD · CNL</span></td><td>No significant weather (the weather ends) · no significant cloud · amended · cancelled</td></tr>
+        </tbody>
+      </table></div>
+      <details class="example"><summary>Worked example — reading the TAF above</summary><div class="body">
+        <p>At 1300 UTC on the 5th the BECMG change is in progress, so the wind could be anywhere between 220/12 and 250/20G35. Plan for the worse. At 1600 UTC: 5000 m in rain with BKN012, and temporary spells of 2000 m in heavy rain. Early on the 6th there is a 30% chance of temporary fog with 300 m.</p></div></details>
+      <ul>
+        <li><span class="code">0506/0612</span> means valid from 0600 UTC on the 5th to 1200 UTC on the 6th. 9-hour TAFs are issued every 3 hours; longer ones every 6 hours.</li>
+        <li>A TAF gives prevailing visibility only (no minimum by direction), names only CB, and never forecasts RVR or QNH.</li>
+        <li>Cloud heights are above aerodrome level, in hundreds of feet.</li>
+      </ul>
+    </section>
+
+    <section class="sec" id="wafs">
+      <h2><span class="num">🗺️</span> World Area Forecast System <span class="en">40 questions</span></h2>
+      <p class="lead">Two centres, London and Washington, produce the global upper wind, temperature and significant weather forecasts that every flight plan uses.</p>
+      <div class="glance"><span>🎯 Fixed-time charts</span><span>🎯 SIGWX symbols</span><span>🎯 Wind barbs</span><span>🎯 Averaging route winds</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>WAFS charts are fixed-time charts</strong>: each is valid only at its stated time. They are issued every 6 hours, about a day ahead. For a flight from 1000 to 1400, use the 1200 chart and interpolate at the ends. High-level SIGWX covers FL250–FL630; medium-level covers FL100–FL250 (or up to FL450 in some regions).</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>SIGWX symbol</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Scalloped line</td><td>An area of significant weather (CB, icing, turbulence). Cb implies thunderstorms, moderate or severe turbulence, icing and hail</td></tr>
+          <tr><td>Heavy dashed line, numbered</td><td>An area of clear air turbulence, explained in the legend</td></tr>
+          <tr><td>ISOL · OCNL · FRQ · EMBD</td><td>Isolated · well separated · little or no separation · hidden in other cloud</td></tr>
+          <tr><td>XXX as a base or top</td><td>Extends beyond the vertical limits of the chart</td></tr>
+          <tr><td>Thick line with arrowheads</td><td>Jet stream: barbs for speed, core flight level, and the depth of the 80 kt layer (e.g. FL250/370). A double bar marks a change of 20 kt or 3000 ft</td></tr>
+          <tr><td>Number in a box</td><td>Tropopause height (flight level)</td></tr>
+          <tr><td>Fronts, volcano, cyclone symbols</td><td>Surface fronts with movement; an eruption (check SIGMETs and NOTAMs); a tropical revolving storm with its name</td></tr>
+        </tbody>
+      </table></div>
+      <div class="diagram">
+        <svg viewBox="0 0 640 120" role="img" aria-label="Wind barb for 65 knots">
+          <line class="ax" x1="80" y1="70" x2="330" y2="70" style="stroke-width:3"/>
+          <polygon points="80,70 110,70 80,25" style="fill:var(--accent)"/>
+          <line class="ax" x1="120" y1="70" x2="100" y2="28" style="stroke-width:3"/>
+          <line class="ax" x1="140" y1="70" x2="130" y2="49" style="stroke-width:3"/>
+          <circle class="dot" cx="330" cy="70" r="5"/>
+          <text x="360" y="58">pennant 50 · feather 10 · half 5</text>
+          <text x="360" y="80">= 65 kt; the barbs are at the upwind end</text>
+        </svg>
+        <div class="cap">Wind barbs on upper charts. The shaft points the way the wind is blowing <em>towards</em>; the feathers sit at the end it comes from. Temperatures are negative unless marked +.</div>
+      </div>
+      <div class="tip"><span class="label">✈️ Pilot tip</span> To find a route wind, sample the chart at regular intervals and average direction and speed. Polar stereographic charts need care because north changes direction across the chart as the meridians converge.</div>
+    </section>
+
+    <section class="sec" id="warn">
+      <h2><span class="num">⚠️</span> Warning Messages <span class="en">38 questions</span></h2>
+      <p class="lead">Warnings come in layers: at the aerodrome, on the approach, en route for everyone, en route for low-level flights, and special ones for ash and cyclones.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Message</th><th>Covers</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Aerodrome warning</td><td>Hazards to parked aircraft and ground operations: gales, thunderstorms, hail, snow, frost, freezing precipitation, fog</td><td>Some aerodromes also warn of a marked inversion (a rise of 10°C or more in the first 1000 ft)</td></tr>
+          <tr><td>Windshear warning</td><td>Approach and departure paths, up to about 1600 ft above the aerodrome</td><td>Based on observations, forecasts and pilot reports</td></tr>
+          <tr><td><strong>SIGMET</strong></td><td>Specified hazardous weather en route in an FIR: TS (OBSC, EMBD, FRQ, SQL), severe turbulence and severe icing not linked to convective cloud, severe mountain waves, heavy dust or sandstorm, volcanic ash, tropical cyclones</td><td>Issued by the meteorological watch office. Valid up to 4 h (6 h for VA and TC, with an outlook). Cancelled by a new SIGMET with CNL. INTSF / WKN / NC = intensifying / weakening / no change; STNR = stationary</td></tr>
+          <tr><td>AIRMET</td><td>Lesser hazards for low-level flights, such as moderate icing or turbulence</td><td>—</td></tr>
+          <tr><td>GAMET</td><td>An area forecast for low-level flights in abbreviated plain language</td><td>—</td></tr>
+          <tr><td>VA / TC advisories</td><td>Volcanic Ash Advisory Centres; Tropical Cyclone Advisory Centres</td><td>Ash positions at +6, +12, +18 h. Cyclone position, movement, pressure, winds and a forecast "cone" that widens with uncertainty</td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout warning"><span class="label">🌋 Volcanic ash</span> Ash melts in the combustion section and fuses onto the turbine, so engines can flame out. It also abrades windscreens and leading edges and blocks pitot tubes. It barely shows on weather radar and is hard to see at night. Colour code: GREEN normal · YELLOW elevated unrest · ORANGE heightened unrest or eruption with little ash · RED eruption with significant ash, or imminent.</div>
+    </section>
+
+    <section class="sec" id="inflt">
+      <h2><span class="num">📻</span> Met Information in Flight <span class="en">30 questions</span></h2>
+      <p class="lead">Once airborne, the weather picture is kept current by broadcasts, data link and the reports pilots themselves send back.</p>
+      <div class="compare">
+        <div class="card"><h4>VOLMET</h4><p>Weather for a <em>group</em> of aerodromes in plain language: METARs with TREND, sometimes TAFs and SIGMETs. Regional services on VHF; long-range ones on HF at fixed times each hour (Shannon matters for the North Atlantic). Updated about every half hour. Useful for destination and alternates, though you may have to wait for the aerodrome you need.</p></div>
+        <div class="card good"><h4>ATIS</h4><p>A continuous broadcast for <em>one</em> aerodrome: runway, wind (magnetic), visibility, weather, cloud, temperature, dew point, QNH, transition level and warnings. Each update gets a new letter, which you quote on first contact. Sometimes on a VOR voice channel, or separate for arrivals and departures. Even with the ATIS acknowledged, ATC still passes the QNH.</p></div>
+      </div>
+      <ul>
+        <li>A <strong>special air-report</strong> is required for severe turbulence or icing, severe mountain waves, thunderstorms, volcanic ash and similar hazards. Give position, level, time, intensity and type. Automated reports by data link give routine wind and temperature data.</li>
+        <li>Data link gives D-ATIS and METAR/TAF on request, independent of broadcast schedules.</li>
+        <li>Checking METARs from aerodromes upwind of the destination shows what is on its way.</li>
+      </ul>
+      <div class="tip"><span class="label">✈️ Pilot tip</span> A destination METAR well below minima with NOSIG means no improvement is expected within two hours, so plan the diversion now rather than holding in hope.</div>
+    </section>
+
+    <div style="text-align:center;color:var(--muted);font-size:13px;padding:6px 0 0">This guide explains general meteorology for study purposes. Always use current official reports and forecasts for flight planning.</div>
+  </main>
+</div>
+
+<button id="top-btn" aria-label="Back to top">↑</button>
+<footer>Meteorology study guide · part of Flying Knowledge</footer>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="a-met" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--red-arc)"/></marker>
+  </defs>
+</svg>
+
+<script>
+(function(){
+  var toc = document.getElementById('toc');
+  var scrim = document.getElementById('scrim');
+  var menuBtn = document.getElementById('menuBtn');
+  var closeToc = document.getElementById('closeToc');
+  function openToc(){ toc.classList.add('open'); scrim.classList.add('show'); }
+  function shutToc(){ toc.classList.remove('open'); scrim.classList.remove('show'); }
+  if (menuBtn) menuBtn.addEventListener('click', openToc);
+  if (closeToc) closeToc.addEventListener('click', shutToc);
+  if (scrim) scrim.addEventListener('click', shutToc);
+  var tocLinks = document.querySelectorAll('nav.toc a');
+  tocLinks.forEach(function(a){ a.addEventListener('click', function(){ shutToc(); }); });
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section.sec[id]'));
+  var linkFor = {};
+  tocLinks.forEach(function(a){ linkFor[a.getAttribute('href').slice(1)] = a; });
+  function onScroll(){
+    var y = window.scrollY + 110, current = sections[0];
+    for (var i = 0; i < sections.length; i++){ if (sections[i].offsetTop <= y) current = sections[i]; }
+    tocLinks.forEach(function(a){ a.classList.remove('active'); });
+    if (current && linkFor[current.id]) linkFor[current.id].classList.add('active');
+    var topBtn = document.getElementById('top-btn');
+    if (topBtn) topBtn.classList.toggle('show', window.scrollY > 500);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  var topBtn = document.getElementById('top-btn');
+  if (topBtn) topBtn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  /* ---- tools ---- */
+  function num(id){ var v = parseFloat(document.getElementById(id).value); return isFinite(v) ? v : NaN; }
+  function put(id, html){ document.getElementById(id).innerHTML = html; }
+  function f(x, d){ return x.toFixed(d); }
+  function sgn(x, d){ return (x >= 0 ? '+' : '−') + Math.abs(x).toFixed(d); }
+  function isaAt(ft){ return ft <= 36090 ? 15 - 1.98 * ft / 1000 : -56.5; }
+
+  function isa(){
+    var h = num('iAlt'), t = num('iT');
+    if (!isFinite(h) || h < 0) { put('iOut', 'Enter an altitude of zero or more.'); return; }
+    var s = isaAt(h);
+    var html = 'ISA temperature <b>' + sgn(s, 1) + '°C</b>';
+    if (isFinite(t)) html += '<br>Deviation <b>ISA ' + sgn(t - s, 1) + '</b>';
+    if (h > 36090) html += '<br><span style="font-size:12px">Above 36 090 ft the ISA stays at −56.5°C.</span>';
+    put('iOut', html);
+  }
+  function palt(){
+    var e = num('pElev'), q = num('pQnh'), t = num('pOat');
+    if (!isFinite(e) || !(q > 0)) { put('pOut', 'Enter an elevation and a QNH.'); return; }
+    var pa = e + (1013 - q) * 27;
+    var html = 'Pressure altitude <b>' + Math.round(pa) + ' ft</b>';
+    if (isFinite(t)) {
+      var dev = t - isaAt(Math.max(pa, 0));
+      html += '<br>ISA ' + sgn(dev, 1) + ' → density altitude <b>' + Math.round(pa + 120 * dev) + ' ft</b>';
+    }
+    html += '<br><span style="font-size:12px">27 ft per hPa and 120 ft per °C: rules of thumb, not performance data.</span>';
+    put('pOut', html);
+  }
+  function cbase(){
+    var t = num('cT'), d = num('cTd'), e = num('cElev');
+    if (!isFinite(t) || !isFinite(d)) { put('cOut', 'Enter a temperature and a dew point.'); return; }
+    if (d > t) { put('cOut', 'The dew point cannot be above the temperature.'); return; }
+    var agl = (t - d) * 400;
+    var html = 'Cumulus base about <b>' + Math.round(agl) + ' ft</b> above the surface';
+    if (isFinite(e) && e !== 0) html += '<br>≈ ' + Math.round(agl + e) + ' ft AMSL';
+    if (agl === 0) html += '<br><span style="font-size:12px">Saturated at the surface: fog or very low cloud.</span>';
+    put('cOut', html);
+  }
+  function tcorr(){
+    var h = num('tH'), dev = num('tDev');
+    if (!isFinite(h) || !isFinite(dev)) { put('tOut', 'Enter a height and an ISA deviation.'); return; }
+    var err = 4 * dev * h / 1000;
+    put('tOut', 'True height ≈ <b>' + Math.round(h + err) + ' ft</b> (' + sgn(err, 0) + ' ft)<br><span style="font-size:12px">' +
+      (dev < 0 ? 'Colder than ISA: the altimeter over-reads. You are lower than indicated.' : dev > 0 ? 'Warmer than ISA: you are higher than indicated.' : 'At ISA there is no temperature error.') + '</span>');
+  }
+  [['iAlt',isa],['iT',isa],['pElev',palt],['pQnh',palt],['pOat',palt],['cT',cbase],['cTd',cbase],['cElev',cbase],['tH',tcorr],['tDev',tcorr]].forEach(function(p){
+    var el = document.getElementById(p[0]); if (el) el.addEventListener('input', p[1]);
+  });
+  isa(); palt(); cbase(); tcorr();
+})();
+</script>
+</body>
+</html>

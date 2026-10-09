@@ -22,7 +22,7 @@ export const ATPL_SUBJECTS: readonly AtplSubject[] = [
   { number: "032", name: "Performance" },
   { number: "033", name: "Flight Planning & Monitoring" },
   { number: "040", name: "Human Performance & Limitations", code: "HPL" },
-  { number: "050", name: "Meteorology" },
+  { number: "050", name: "Meteorology", code: "MET" },
   { number: "061", name: "General Navigation" },
   { number: "062", name: "Radio Navigation" },
   { number: "070", name: "Operational Procedures" },
