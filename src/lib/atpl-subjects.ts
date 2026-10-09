@@ -27,8 +27,7 @@ export const ATPL_SUBJECTS: readonly AtplSubject[] = [
   { number: "062", name: "Radio Navigation" },
   { number: "070", name: "Operational Procedures" },
   { number: "080", name: "Principles of Flight", code: "POF" },
-  { number: "090", name: "Communications (VFR)" },
-  { number: "091", name: "Communications (IFR)" },
+  { number: "090", name: "Communications", code: "COM" },
 ];
 
 export type AtplRow = {
