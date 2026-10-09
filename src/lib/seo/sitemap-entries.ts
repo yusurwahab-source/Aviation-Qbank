@@ -21,7 +21,7 @@ const STATIC_PAGES = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
   { path: "/type-rating", changeFrequency: "weekly", priority: 0.9 },
   { path: "/class-rating", changeFrequency: "weekly", priority: 0.9 },
-  { path: "/flying-knowledge", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/atpl-ground-school", changeFrequency: "weekly", priority: 0.9 },
   { path: "/pilot-sims", changeFrequency: "monthly", priority: 0.7 },
   {
     path: "/pilot-sims/holding-pattern-entry-trainer",
@@ -84,10 +84,14 @@ export function buildSitemapEntries(
   },
   hiddenSections: readonly string[] = [],
 ): MetadataRoute.Sitemap {
-  const isHidden = (path: string) =>
-    hiddenSections.some(
+  // The ATPL picker is the Flying Knowledge section's front door, so hiding
+  // that section hides it too.
+  const isHidden = (rawPath: string) => {
+    const path = rawPath.replace(/^\/atpl-ground-school/, "/flying-knowledge");
+    return hiddenSections.some(
       (key) => path === `/${key}` || path.startsWith(`/${key}/`),
     );
+  };
   const origin = baseUrl.replace(/\/+$/, "");
 
   const staticEntries: MetadataRoute.Sitemap = STATIC_PAGES.filter(

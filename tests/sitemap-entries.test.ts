@@ -23,7 +23,7 @@ describe("buildSitemapEntries", () => {
     expect(urls).toContain("https://example.com/");
     expect(urls).toContain("https://example.com/type-rating");
     expect(urls).toContain("https://example.com/class-rating");
-    expect(urls).toContain("https://example.com/flying-knowledge");
+    expect(urls).toContain("https://example.com/atpl-ground-school");
   });
 
   it("includes Pilot Sims and its simulators", () => {
@@ -86,5 +86,14 @@ describe("buildSitemapEntries with hidden sections", () => {
     expect(urls.some((url) => url.includes("/pilot-sims"))).toBe(false);
     expect(urls).toContain("https://example.com/class-rating/DA40");
     expect(urls).toContain("https://example.com/flying-knowledge/POF");
+  });
+
+  it("drops the ATPL picker and its subjects when Flying Knowledge is hidden", () => {
+    const urls = buildSitemapEntries("https://example.com", sections, ["flying-knowledge"]).map(
+      (entry) => entry.url,
+    );
+
+    expect(urls.some((url) => url.includes("/atpl-ground-school"))).toBe(false);
+    expect(urls.some((url) => url.includes("/flying-knowledge"))).toBe(false);
   });
 });
