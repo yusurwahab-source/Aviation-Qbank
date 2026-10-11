@@ -5,6 +5,7 @@ import {
   canAnswerQuestion,
   daysRemaining,
   hasActiveSubscription,
+  hasFullAccess,
   mapStripeSubscriptionStatus,
   remainingFreeQuestions,
 } from "@/lib/billing/access-policy";
@@ -127,5 +128,26 @@ describe("daysRemaining", () => {
   it("is zero once the period has ended", () => {
     expect(daysRemaining(new Date("2025-12-31T12:00:00Z"), now)).toBe(0);
     expect(daysRemaining(now, now)).toBe(0);
+  });
+});
+
+describe("hasFullAccess", () => {
+  const now = new Date("2026-01-01T12:00:00Z");
+  const paid = { status: "active" as const, currentPeriodEnd: new Date("2026-02-01T12:00:00Z") };
+
+  it("is exactly an active subscription when free mode is off", () => {
+    expect(hasFullAccess(null, now, false)).toBe(false);
+    expect(hasFullAccess({ status: "canceled", currentPeriodEnd: paid.currentPeriodEnd }, now, false)).toBe(false);
+    expect(hasFullAccess(paid, now, false)).toBe(true);
+  });
+
+  it("is true for every account in free mode, with or without a subscription", () => {
+    expect(hasFullAccess(null, now, true)).toBe(true);
+    expect(hasFullAccess({ status: "expired", currentPeriodEnd: null }, now, true)).toBe(true);
+    expect(hasFullAccess(paid, now, true)).toBe(true);
+  });
+
+  it("never changes what hasActiveSubscription reports, so the owner screens stay truthful", () => {
+    expect(hasActiveSubscription(null, now)).toBe(false);
   });
 });

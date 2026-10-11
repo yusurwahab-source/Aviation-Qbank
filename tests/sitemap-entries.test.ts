@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 
+import { FREE_MODE } from "@/config/free-mode";
 import { buildSitemapEntries } from "@/lib/seo/sitemap-entries";
 
 const sections = {
@@ -106,5 +107,10 @@ describe("buildSitemapEntries with hidden sections", () => {
     expect(has([])).toBe(true);
     expect(has(["type-rating"])).toBe(true);
     expect(has(["type-rating", "class-rating"])).toBe(false);
+  });
+
+  it("lists /pricing only when the site is not in free mode", () => {
+    const urls = buildSitemapEntries("https://example.com", sections).map((entry) => entry.url);
+    expect(urls.includes("https://example.com/pricing")).toBe(!FREE_MODE);
   });
 });

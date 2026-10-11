@@ -8,6 +8,7 @@ import {
   looksLikeSecretKey,
   parseCheckoutPlan,
 } from "@/lib/billing/stripe";
+import { FREE_MODE } from "@/config/free-mode";
 import { getCurrentUser } from "@/lib/auth/session";
 import { appUrl } from "@/lib/email/send";
 import { envValue } from "@/lib/env";
@@ -40,6 +41,10 @@ export async function startCheckout(
   _previous: CheckoutState,
   formData: FormData,
 ): Promise<CheckoutState> {
+  // A server action is its own entry point: with the page hidden, a hand-made
+  // POST must not be able to start a real Stripe checkout either.
+  if (FREE_MODE) return { error: "Subscriptions are not available right now." };
+
   const user = await getCurrentUser();
   if (!user) redirect("/login");
 

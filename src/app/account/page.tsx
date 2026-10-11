@@ -6,6 +6,7 @@ import { Card, PageHeading } from "@/components/ui";
 import { getSubscription } from "@/db/subscriptions";
 import { isOptedOut } from "@/db/unsubscribe";
 import { getCurrentUser } from "@/lib/auth/session";
+import { FREE_MODE } from "@/config/free-mode";
 import { daysRemaining, hasActiveSubscription } from "@/lib/billing/access-policy";
 
 import { ChangePasswordForm } from "./change-password-form";
@@ -51,18 +52,22 @@ export default async function AccountPage() {
         <Card>
           <h2 className="text-lg font-semibold text-foreground">Access</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            {active
-              ? `Full access${
-                  daysLeft !== null ? ` — ${daysLeft} ${daysLeft === 1 ? "day" : "days"} left` : ""
-                }.`
-              : "Free plan. Subscribe for unlimited questions on every aircraft."}
+            {FREE_MODE
+              ? "Full access to every aircraft and subject."
+              : active
+                ? `Full access${
+                    daysLeft !== null ? ` — ${daysLeft} ${daysLeft === 1 ? "day" : "days"} left` : ""
+                  }.`
+                : "Free plan. Subscribe for unlimited questions on every aircraft."}
           </p>
-          <Link
-            href="/upgrade"
-            className="tap-target mt-4 inline-flex items-center rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink"
-          >
-            {active ? "Manage access" : "See plans"}
-          </Link>
+          {FREE_MODE ? null : (
+            <Link
+              href="/upgrade"
+              className="tap-target mt-4 inline-flex items-center rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink"
+            >
+              {active ? "Manage access" : "See plans"}
+            </Link>
+          )}
         </Card>
 
         <Card>

@@ -17,7 +17,7 @@ import { getFlaggedQuestionIds } from "@/db/flags";
 import { countPreviewQuestionsAnswered } from "@/db/preview";
 import { getQuestionIdsToRetry, getTopicPerformance } from "@/db/reports";
 import { countQuestionsAnswered, getSubscription } from "@/db/subscriptions";
-import { hasActiveSubscription, remainingFreeQuestions } from "@/lib/billing/access-policy";
+import { hasFullAccess, remainingFreeQuestions } from "@/lib/billing/access-policy";
 import { getSiteSettings, overrideItem } from "@/db/settings";
 import { getPreviewVisitorId } from "@/lib/auth/preview-visitor";
 import { getCurrentUser } from "@/lib/auth/session";
@@ -70,7 +70,7 @@ export default async function ClassRatingPage({ params }: PageProps) {
         ]);
       incompleteSession = resumable;
 
-      if (!hasActiveSubscription(subscription)) {
+      if (!hasFullAccess(subscription)) {
         const [distinctAnswered, settings] = await Promise.all([
           countQuestionsAnswered(user.id, classCode),
           getSiteSettings(),

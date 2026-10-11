@@ -1,7 +1,9 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 import { Card, PageHeading } from "@/components/ui";
+import { FREE_MODE } from "@/config/free-mode";
 import { siteConfig } from "@/config/site";
 import { subscriptionBenefits, UPGRADE_PROMPT_PRICE } from "@/config/pricing";
 import { getSiteSettings } from "@/db/settings";
@@ -18,6 +20,9 @@ export const metadata: Metadata = {
  * at once (see `UpgradePromptDialog`); this is the same information at rest.
  */
 export default async function PricingPage() {
+  // Hidden while the site is free — see `config/free-mode.ts`.
+  if (FREE_MODE) notFound();
+
   const [settings, user] = await Promise.all([getSiteSettings(), getCurrentUser().catch(() => null)]);
   const free = settings.freeQuestionsPerAircraft;
 

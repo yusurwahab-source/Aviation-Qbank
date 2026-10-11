@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { Badge, Card, EmptyState, PageHeading } from "@/components/ui";
 import { siteConfig } from "@/config/site";
+import { FREE_MODE } from "@/config/free-mode";
 import { getSubscription } from "@/db/subscriptions";
 import { listAircraft, type AircraftSummary } from "@/db/queries";
 import { hasActiveSubscription } from "@/lib/billing/access-policy";
@@ -26,6 +27,7 @@ export const dynamic = "force-dynamic";
  * lookup — it just means the banner is skipped for this render.
  */
 async function shouldOfferUpgrade(): Promise<boolean> {
+  if (FREE_MODE) return false;
   try {
     const user = await getCurrentUser();
     if (!user) return false;

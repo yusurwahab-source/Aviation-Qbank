@@ -2,7 +2,8 @@ import { UpgradePromptDialog } from "@/components/upgrade-prompt-dialog";
 import { getSiteSettings } from "@/db/settings";
 import { getSubscription } from "@/db/subscriptions";
 import { getCurrentUser } from "@/lib/auth/session";
-import { hasActiveSubscription } from "@/lib/billing/access-policy";
+import { FREE_MODE } from "@/config/free-mode";
+import { hasFullAccess } from "@/lib/billing/access-policy";
 
 /**
  * Decides whether the upgrade dialog may ever appear: for anyone who does
@@ -14,12 +15,15 @@ import { hasActiveSubscription } from "@/lib/billing/access-policy";
  * page down, so a database failure just means no prompt.
  */
 export async function UpgradePrompt() {
+  // Free mode: nobody needs upgrading, so the dialog is absent from the page.
+  if (FREE_MODE) return null;
+
   let state: { freeQuestions: number; signedIn: boolean } | null = null;
 
   try {
     const [user, settings] = await Promise.all([getCurrentUser(), getSiteSettings()]);
     const subscription = user ? await getSubscription(user.id) : null;
-    if (!subscription || !hasActiveSubscription(subscription)) {
+    if (!subscription || !hasFullAccess(subscription)) {
       state = { freeQuestions: settings.freeQuestionsPerAircraft, signedIn: user !== null };
     }
   } catch {

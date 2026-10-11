@@ -20,7 +20,7 @@ import {
 import { getQuestionIdsToRetry } from "@/db/reports";
 import { countPreviewQuestionsAnswered } from "@/db/preview";
 import { countQuestionsAnswered, getSubscription } from "@/db/subscriptions";
-import { hasActiveSubscription, remainingFreeQuestions } from "@/lib/billing/access-policy";
+import { hasFullAccess, remainingFreeQuestions } from "@/lib/billing/access-policy";
 import { getSiteSettings, overrideItem } from "@/db/settings";
 import { getPreviewVisitorId } from "@/lib/auth/preview-visitor";
 import { getCurrentUser } from "@/lib/auth/session";
@@ -248,7 +248,7 @@ export default async function TestPage({ params, searchParams }: PageProps) {
         // tier exists to meter.
         if (user) {
           const subscription = await getSubscription(user.id);
-          if (!hasActiveSubscription(subscription)) {
+          if (!hasFullAccess(subscription)) {
             const [distinctAnswered, settings] = await Promise.all([
               countQuestionsAnswered(user.id, aircraftCode),
               getSiteSettings(),
