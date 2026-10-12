@@ -278,8 +278,8 @@ describeWithDb("progress reports", () => {
 
       const a320 = planes.find((p) => p.code === "A320");
       expect(a320).toMatchObject({ answered: 1, correct: 0, percentage: 0 });
-      // No A320 content is loaded, so it falls back to the code as the name.
-      expect(a320?.name).toBe("A320");
+      // The A320 bank is loaded now, so the display name comes from its manifest.
+      expect(a320?.name).toBe("Airbus A320 family");
     });
   });
 
