@@ -8,11 +8,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Its load factor exceeds the limit load factor"
+        "text": "Its angle of attack exceeds the critical value, at any speed, attitude or load factor"
       },
       {
         "id": "b",
-        "text": "Its pitch attitude exceeds about 15°"
+        "text": "Its load factor exceeds the limit load factor"
       },
       {
         "id": "c",
@@ -20,12 +20,15 @@
       },
       {
         "id": "d",
-        "text": "Its angle of attack exceeds the critical value, at any speed, attitude or load factor"
+        "text": "Its pitch attitude exceeds about 15°"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "The stall is flow separation at the critical α, where CL reaches CLmax. Stall speed is only the speed at which that α is reached for a given n, W, configuration and density.",
-    "tags": ["stall", "angle-of-attack"],
+    "tags": [
+      "stall",
+      "angle-of-attack"
+    ],
     "status": "published",
     "version": 1
   },
@@ -38,7 +41,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Decreases with altitude"
+        "text": "Is independent of weight, altitude and load factor"
       },
       {
         "id": "b",
@@ -46,16 +49,19 @@
       },
       {
         "id": "c",
-        "text": "Is independent of weight, altitude and load factor"
+        "text": "Increases with weight"
       },
       {
         "id": "d",
-        "text": "Increases with weight"
+        "text": "Decreases with altitude"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "CLmax and α_crit are properties of the geometry and Reynolds number. Weight, n and density change only the speed at which that α is reached.",
-    "tags": ["critical-angle", "stall"],
+    "tags": [
+      "critical-angle",
+      "stall"
+    ],
     "status": "published",
     "version": 1
   },
@@ -68,7 +74,7 @@
     "options": [
       {
         "id": "a",
-        "text": "16°"
+        "text": "11°"
       },
       {
         "id": "b",
@@ -76,16 +82,20 @@
       },
       {
         "id": "c",
-        "text": "11°"
+        "text": "21°"
       },
       {
         "id": "d",
-        "text": "21°"
+        "text": "16°"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "θ = γ + α = −5 + 16 = 11°. In a 10° climb the same stall would occur at 26° attitude. Attitude is not a stall criterion.",
-    "tags": ["pitch-attitude", "angle-of-attack", "calculation"],
+    "tags": [
+      "pitch-attitude",
+      "angle-of-attack",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -98,24 +108,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Lower than the stalling angle (hysteresis)"
-      },
-      {
-        "id": "b",
         "text": "Zero"
       },
       {
+        "id": "b",
+        "text": "Exactly the stalling angle"
+      },
+      {
         "id": "c",
-        "text": "Higher than the stalling angle"
+        "text": "Lower than the stalling angle (hysteresis)"
       },
       {
         "id": "d",
-        "text": "Exactly the stalling angle"
+        "text": "Higher than the stalling angle"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Separated flow reattaches only when the adverse gradient is well relieved, so the CL–α curve on decreasing α lies below the increasing branch. Recovery needs a definite reduction of α.",
-    "tags": ["hysteresis", "recovery"],
+    "tags": [
+      "hysteresis",
+      "recovery"
+    ],
     "status": "published",
     "version": 1
   },
@@ -128,24 +141,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Turbulent separated wake striking the wing and tail surfaces"
-      },
-      {
-        "id": "b",
         "text": "Engine vibration"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Propeller slipstream only"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Shock waves on the upper surface at low speed"
+      },
+      {
+        "id": "d",
+        "text": "Turbulent separated wake striking the wing and tail surfaces"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Unsteady separated flow produces fluctuating pressures on the wing aft of separation and on the tailplane in its path — the aerodynamic warning of the stall.",
-    "tags": ["buffet", "separation"],
+    "tags": [
+      "buffet",
+      "separation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -158,24 +174,27 @@
     "options": [
       {
         "id": "a",
-        "text": "54 kt"
+        "text": "28 kt"
       },
       {
         "id": "b",
-        "text": "38 kt"
+        "text": "54 kt"
       },
       {
         "id": "c",
-        "text": "28 kt"
+        "text": "38 kt"
       },
       {
         "id": "d",
         "text": "76 kt"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "VS = √(2W/(ρS·CLmax)) = √(24,000/31.36) = 27.7 m/s = 54 kt. 38 kt omits the 2; 28 is the m/s value read as knots.",
-    "tags": ["stall-speed", "calculation"],
+    "tags": [
+      "stall-speed",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -192,11 +211,11 @@
       },
       {
         "id": "b",
-        "text": "+20 %"
+        "text": "+44 %"
       },
       {
         "id": "c",
-        "text": "+44 %"
+        "text": "+20 %"
       },
       {
         "id": "d",
@@ -205,7 +224,11 @@
     ],
     "correct": "d",
     "explanation": "VS ∝ √W: √1.2 = 1.095.",
-    "tags": ["stall-speed", "weight", "proportionality"],
+    "tags": [
+      "stall-speed",
+      "weight",
+      "proportionality"
+    ],
     "status": "published",
     "version": 1
   },
@@ -218,24 +241,28 @@
     "options": [
       {
         "id": "a",
-        "text": "95 kt"
-      },
-      {
-        "id": "b",
         "text": "90 kt"
       },
       {
+        "id": "b",
+        "text": "81 kt"
+      },
+      {
         "id": "c",
-        "text": "100 kt"
+        "text": "95 kt"
       },
       {
         "id": "d",
-        "text": "81 kt"
+        "text": "100 kt"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "VS ∝ √W: 100 × √0.81 = 90 kt. Reference speeds based on VS fall with it.",
-    "tags": ["stall-speed", "weight", "calculation"],
+    "tags": [
+      "stall-speed",
+      "weight",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -252,20 +279,24 @@
       },
       {
         "id": "b",
-        "text": "0.563"
+        "text": "0.750"
       },
       {
         "id": "c",
-        "text": "0.933"
+        "text": "0.563"
       },
       {
         "id": "d",
-        "text": "0.750"
+        "text": "0.933"
       }
     ],
     "correct": "a",
     "explanation": "VS ∝ √(W/S): √0.75 = 0.866.",
-    "tags": ["wing-loading", "stall-speed", "calculation"],
+    "tags": [
+      "wing-loading",
+      "stall-speed",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -278,11 +309,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Density does not affect lift"
+        "text": "IAS is always equal to TAS"
       },
       {
         "id": "b",
-        "text": "IAS is always equal to TAS"
+        "text": "TAS at the stall is independent of altitude"
       },
       {
         "id": "c",
@@ -290,12 +321,16 @@
       },
       {
         "id": "d",
-        "text": "TAS at the stall is independent of altitude"
+        "text": "Density does not affect lift"
       }
     ],
     "correct": "c",
     "explanation": "L = CLmax·½ρ₀V_E²·S → V_E,S = √(2W/(ρ₀S·CLmax)), no σ. The TAS at stall rises as 1/√σ.",
-    "tags": ["stall-speed", "ias", "altitude"],
+    "tags": [
+      "stall-speed",
+      "ias",
+      "altitude"
+    ],
     "status": "published",
     "version": 1
   },
@@ -308,7 +343,7 @@
     "options": [
       {
         "id": "a",
-        "text": "321 kt"
+        "text": "196 kt"
       },
       {
         "id": "b",
@@ -316,16 +351,20 @@
       },
       {
         "id": "c",
-        "text": "196 kt"
+        "text": "321 kt"
       },
       {
         "id": "d",
         "text": "120 kt"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "V_T = V_E/√σ = 120/0.612 = 196 kt. 321 kt divides by σ.",
-    "tags": ["stall-speed", "tas", "calculation"],
+    "tags": [
+      "stall-speed",
+      "tas",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -338,24 +377,28 @@
     "options": [
       {
         "id": "a",
-        "text": "11 % lower"
-      },
-      {
-        "id": "b",
-        "text": "Unchanged"
-      },
-      {
-        "id": "c",
         "text": "12 % higher"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "20 % higher"
+      },
+      {
+        "id": "c",
+        "text": "11 % lower"
+      },
+      {
+        "id": "d",
+        "text": "Unchanged"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "V_T,S = V_E,S/√σ = 1/√0.8 = 1.118. Higher lift-off TAS lengthens the take-off run.",
-    "tags": ["density-altitude", "stall-speed", "calculation"],
+    "tags": [
+      "density-altitude",
+      "stall-speed",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -372,7 +415,7 @@
       },
       {
         "id": "b",
-        "text": "0 %"
+        "text": "8 %"
       },
       {
         "id": "c",
@@ -380,12 +423,16 @@
       },
       {
         "id": "d",
-        "text": "8 %"
+        "text": "0 %"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "VS ∝ CLmax^−½: √(1.4/1.2) = 1.080. Compressibility-induced loss of CLmax raises the low-speed buffet speed with altitude, narrowing the margin to high-speed buffet.",
-    "tags": ["mach-effect", "clmax", "calculation"],
+    "tags": [
+      "mach-effect",
+      "clmax",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -398,24 +445,28 @@
     "options": [
       {
         "id": "a",
-        "text": "141 kt"
+        "text": "100 kt"
       },
       {
         "id": "b",
-        "text": "107 kt"
+        "text": "141 kt"
       },
       {
         "id": "c",
-        "text": "119 kt"
+        "text": "107 kt"
       },
       {
         "id": "d",
-        "text": "100 kt"
+        "text": "119 kt"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "n = 1/cos45° = 1.414; VS·√n = 100 × 1.189 = 119 kt.",
-    "tags": ["load-factor", "stall-speed", "calculation"],
+    "tags": [
+      "load-factor",
+      "stall-speed",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -432,20 +483,24 @@
       },
       {
         "id": "b",
-        "text": "107.5 kt"
+        "text": "115.5 kt"
       },
       {
         "id": "c",
-        "text": "115.5 kt"
+        "text": "107.5 kt"
       },
       {
         "id": "d",
         "text": "86.6 kt"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "n = 1.155; √n = 1.075 → 107.5 kt.",
-    "tags": ["load-factor", "stall-speed", "calculation"],
+    "tags": [
+      "load-factor",
+      "stall-speed",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -458,7 +513,7 @@
     "options": [
       {
         "id": "a",
-        "text": "141 kt"
+        "text": "110 kt"
       },
       {
         "id": "b",
@@ -470,12 +525,16 @@
       },
       {
         "id": "d",
-        "text": "110 kt"
+        "text": "141 kt"
       }
     ],
     "correct": "b",
     "explanation": "VS ∝ √(W·n) = 100 × √1.21 × √2 = 100 × 1.1 × 1.414 = 156 kt.",
-    "tags": ["load-factor", "weight", "calculation"],
+    "tags": [
+      "load-factor",
+      "weight",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -492,20 +551,23 @@
       },
       {
         "id": "b",
-        "text": "1.22"
+        "text": "2.25"
       },
       {
         "id": "c",
-        "text": "2.25"
+        "text": "1.22"
       },
       {
         "id": "d",
         "text": "1.50"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "n_stall = (V/VS)² = 1.5² = 2.25. Pulling harder produces an accelerated stall at 150 kt.",
-    "tags": ["accelerated-stall", "calculation"],
+    "tags": [
+      "accelerated-stall",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -518,24 +580,27 @@
     "options": [
       {
         "id": "a",
-        "text": "158 kt"
-      },
-      {
-        "id": "b",
         "text": "250 kt"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "141 kt"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "125 kt"
+      },
+      {
+        "id": "d",
+        "text": "158 kt"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "V = VS·√n = 100 × √2.5 = 158 kt — the manoeuvring speed concept: below it, full control deflection stalls the wing before n_limit.",
-    "tags": ["manoeuvring-speed", "calculation"],
+    "tags": [
+      "manoeuvring-speed",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -548,7 +613,7 @@
     "options": [
       {
         "id": "a",
-        "text": "1.20 and 34°"
+        "text": "1.44 and 64°"
       },
       {
         "id": "b",
@@ -556,16 +621,20 @@
       },
       {
         "id": "c",
-        "text": "1.44 and 64°"
+        "text": "1.44 and 46°"
       },
       {
         "id": "d",
-        "text": "1.44 and 46°"
+        "text": "1.20 and 34°"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "n_max = 1.2² = 1.44; φ = arccos(1/1.44) = 46.0°.",
-    "tags": ["load-factor", "bank-angle", "calculation"],
+    "tags": [
+      "load-factor",
+      "bank-angle",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -578,24 +647,28 @@
     "options": [
       {
         "id": "a",
-        "text": "About 20 %"
-      },
-      {
-        "id": "b",
         "text": "Negative: the wing is already stalled"
       },
       {
+        "id": "b",
+        "text": "About 1 %"
+      },
+      {
         "id": "c",
-        "text": "About 10 %"
+        "text": "About 20 %"
       },
       {
         "id": "d",
-        "text": "About 1 %"
+        "text": "About 10 %"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "VS,turn = 1.189 VS. 1.2/1.189 = 1.009. The load factor of 1.41 nearly consumes the 1.44 available.",
-    "tags": ["load-factor", "stall-margin", "calculation"],
+    "tags": [
+      "load-factor",
+      "stall-margin",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -608,7 +681,7 @@
     "options": [
       {
         "id": "a",
-        "text": "0.25 VS"
+        "text": "1.41 VS"
       },
       {
         "id": "b",
@@ -616,16 +689,20 @@
       },
       {
         "id": "c",
-        "text": "1.41 VS"
+        "text": "0.50 VS"
       },
       {
         "id": "d",
-        "text": "0.50 VS"
+        "text": "0.25 VS"
       }
     ],
     "correct": "b",
     "explanation": "VS·√n = VS·√0.5 = 0.707 VS. Lower load factor, lower speed at which CLmax is reached.",
-    "tags": ["load-factor", "stall-speed", "calculation"],
+    "tags": [
+      "load-factor",
+      "stall-speed",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -642,7 +719,7 @@
       },
       {
         "id": "b",
-        "text": "About 10 % lower"
+        "text": "About 0.8 % higher"
       },
       {
         "id": "c",
@@ -650,12 +727,16 @@
       },
       {
         "id": "d",
-        "text": "About 0.8 % higher"
+        "text": "About 10 % lower"
       }
     ],
     "correct": "c",
     "explanation": "L = W·cosγ → VS ∝ √cosγ = √0.985 = 0.992.",
-    "tags": ["climb", "stall-speed", "calculation"],
+    "tags": [
+      "climb",
+      "stall-speed",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -668,15 +749,15 @@
     "options": [
       {
         "id": "a",
-        "text": "0.89"
+        "text": "1.26"
       },
       {
         "id": "b",
-        "text": "0.63"
+        "text": "0.89"
       },
       {
         "id": "c",
-        "text": "1.26"
+        "text": "0.63"
       },
       {
         "id": "d",
@@ -685,7 +766,11 @@
     ],
     "correct": "d",
     "explanation": "VS ∝ CLmax^−½: √(1.5/2.4) = 0.791. 0.63 is the CLmax ratio itself.",
-    "tags": ["flaps", "stall-speed", "calculation"],
+    "tags": [
+      "flaps",
+      "stall-speed",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -698,7 +783,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Both unchanged"
+        "text": "CLmax rises; stalling angle rises"
       },
       {
         "id": "b",
@@ -706,7 +791,7 @@
       },
       {
         "id": "c",
-        "text": "CLmax rises; stalling angle rises"
+        "text": "Both unchanged"
       },
       {
         "id": "d",
@@ -715,7 +800,10 @@
     ],
     "correct": "b",
     "explanation": "Increased camber shifts the lift curve left (α₀ more negative) and raises CLmax, but the steeper upper-surface recovery separates at a lower α.",
-    "tags": ["flaps", "critical-angle"],
+    "tags": [
+      "flaps",
+      "critical-angle"
+    ],
     "status": "published",
     "version": 1
   },
@@ -728,11 +816,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Both rise"
+        "text": "Both fall"
       },
       {
         "id": "b",
-        "text": "Both fall"
+        "text": "Both rise"
       },
       {
         "id": "c",
@@ -743,9 +831,12 @@
         "text": "CLmax rises; stalling angle falls"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "The slat reduces the main-element suction peak and energises the boundary layer; the lift curve extends to a higher α with a higher CLmax.",
-    "tags": ["slats", "critical-angle"],
+    "tags": [
+      "slats",
+      "critical-angle"
+    ],
     "status": "published",
     "version": 1
   },
@@ -758,24 +849,28 @@
     "options": [
       {
         "id": "a",
-        "text": "A stall: speed becomes 0.95 of the clean stall speed"
-      },
-      {
-        "id": "b",
         "text": "A margin of 4 % remains"
       },
       {
+        "id": "b",
+        "text": "A margin of 20 % remains"
+      },
+      {
         "id": "c",
-        "text": "No effect, since speed is unchanged"
+        "text": "A stall: speed becomes 0.95 of the clean stall speed"
       },
       {
         "id": "d",
-        "text": "A margin of 20 % remains"
+        "text": "No effect, since speed is unchanged"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "VS,clean = VS,flap/0.791. V/VS,clean = 1.2 × 0.791 = 0.949 — below the clean stall speed.",
-    "tags": ["flap-retraction", "stall-margin", "calculation"],
+    "tags": [
+      "flap-retraction",
+      "stall-margin",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -788,24 +883,28 @@
     "options": [
       {
         "id": "a",
-        "text": "n_max ≈ 1.69"
-      },
-      {
-        "id": "b",
         "text": "n_max < 1.0"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "n_max ≈ 1.30"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "n_max ≈ 1.06"
+      },
+      {
+        "id": "d",
+        "text": "n_max ≈ 1.69"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "V/VS,clean = 1.3 × 0.791 = 1.028; n_max = 1.028² = 1.056. A small pull or bank stalls the wing.",
-    "tags": ["flap-retraction", "load-factor", "calculation"],
+    "tags": [
+      "flap-retraction",
+      "load-factor",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -818,7 +917,7 @@
     "options": [
       {
         "id": "a",
-        "text": "×0.85"
+        "text": "×0.93"
       },
       {
         "id": "b",
@@ -826,7 +925,7 @@
       },
       {
         "id": "c",
-        "text": "×0.93"
+        "text": "×0.85"
       },
       {
         "id": "d",
@@ -835,7 +934,12 @@
     ],
     "correct": "b",
     "explanation": "√1.1 × √(1.5/2.1) = 1.049 × 0.845 = 0.886.",
-    "tags": ["stall-speed", "weight", "flaps", "calculation"],
+    "tags": [
+      "stall-speed",
+      "weight",
+      "flaps",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -856,16 +960,19 @@
       },
       {
         "id": "c",
-        "text": "Wing area decreases"
+        "text": "Critical angle decreases"
       },
       {
         "id": "d",
-        "text": "Critical angle decreases"
+        "text": "Wing area decreases"
       }
     ],
     "correct": "a",
     "explanation": "L_wing = W + P. A forward CG increases the nose-down moment arm, increasing P. VS ∝ √(W + P).",
-    "tags": ["cg-position", "stall-speed"],
+    "tags": [
+      "cg-position",
+      "stall-speed"
+    ],
     "status": "published",
     "version": 1
   },
@@ -895,7 +1002,10 @@
     ],
     "correct": "d",
     "explanation": "Less download lowers VS, but the smaller static margin makes α easier to increase and harder to reduce; stall recovery and spin recovery deteriorate.",
-    "tags": ["cg-position", "stall-recovery"],
+    "tags": [
+      "cg-position",
+      "stall-recovery"
+    ],
     "status": "published",
     "version": 1
   },
@@ -912,20 +1022,23 @@
       },
       {
         "id": "b",
-        "text": "Identical behaviour"
-      },
-      {
-        "id": "c",
         "text": "Lower stall speed, higher nose attitude, and a stronger wing-drop tendency"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Lower stall speed and no wing drop"
+      },
+      {
+        "id": "d",
+        "text": "Identical behaviour"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "The thrust component and slipstream-energised inboard wing lower VS; asymmetric slipstream and torque make one wing stall first, giving a more abrupt roll-off.",
-    "tags": ["power-on-stall", "wing-drop"],
+    "tags": [
+      "power-on-stall",
+      "wing-drop"
+    ],
     "status": "published",
     "version": 1
   },
@@ -938,24 +1051,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Roll wings level with aileron"
-      },
-      {
-        "id": "b",
-        "text": "Extend flaps"
-      },
-      {
-        "id": "c",
         "text": "Apply full power while holding attitude"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "Reduce the angle of attack"
+      },
+      {
+        "id": "c",
+        "text": "Extend flaps"
+      },
+      {
+        "id": "d",
+        "text": "Roll wings level with aileron"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Only reducing α below α_crit restores attached flow. Power, wings level and flap management follow; altitude loss is accepted.",
-    "tags": ["stall-recovery"],
+    "tags": [
+      "stall-recovery"
+    ],
     "status": "published",
     "version": 1
   },
@@ -972,20 +1087,23 @@
       },
       {
         "id": "b",
-        "text": "Ailerons are reversed at all speeds"
+        "text": "The down-going aileron raises the local angle of attack on the already stalling wing"
       },
       {
         "id": "c",
-        "text": "The down-going aileron raises the local angle of attack on the already stalling wing"
+        "text": "Ailerons are reversed at all speeds"
       },
       {
         "id": "d",
         "text": "It reduces induced drag"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Down-aileron increases local camber and effective α; on a wing at or beyond α_crit, this deepens separation and increases drag, yawing and rolling further toward the low wing.",
-    "tags": ["wing-drop", "aileron"],
+    "tags": [
+      "wing-drop",
+      "aileron"
+    ],
     "status": "published",
     "version": 1
   },
@@ -998,24 +1116,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Reducing α, then using rudder to prevent further yaw"
-      },
-      {
-        "id": "b",
         "text": "Adding flaps"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Increasing α to regain lift"
+      },
+      {
+        "id": "c",
+        "text": "Reducing α, then using rudder to prevent further yaw"
       },
       {
         "id": "d",
         "text": "Full opposite aileron at constant α"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Unstalling both wings removes the lift asymmetry; rudder counters the yaw that would otherwise develop into autorotation.",
-    "tags": ["wing-drop", "stall-recovery"],
+    "tags": [
+      "wing-drop",
+      "stall-recovery"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1032,20 +1153,23 @@
       },
       {
         "id": "b",
-        "text": "The stagnation point moves down and aft across it"
+        "text": "Airspeed falls below a set value"
       },
       {
         "id": "c",
-        "text": "The static pressure at the trailing edge falls"
+        "text": "The stagnation point moves down and aft across it"
       },
       {
         "id": "d",
-        "text": "Airspeed falls below a set value"
+        "text": "The static pressure at the trailing edge falls"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "The flow at the vane position changes direction as the stagnation point passes; the switch closes at a set α independent of weight, n or altitude.",
-    "tags": ["stall-warning", "stagnation-point"],
+    "tags": [
+      "stall-warning",
+      "stagnation-point"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1058,24 +1182,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Does not require configuration input"
-      },
-      {
-        "id": "b",
-        "text": "Triggers at a fixed IAS"
-      },
-      {
-        "id": "c",
         "text": "Triggers at the correct margin regardless of weight, bank angle and load factor"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "Is affected by weight, but not by bank angle"
+      },
+      {
+        "id": "c",
+        "text": "Triggers at a fixed IAS"
+      },
+      {
+        "id": "d",
+        "text": "Does not require configuration input"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "The stall is an α event. A warning at fixed α_crit − Δα protects in turns and at any weight; a fixed-speed warning does not. Flap and slat position still change the thresholds.",
-    "tags": ["stall-warning", "angle-of-attack"],
+    "tags": [
+      "stall-warning",
+      "angle-of-attack"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1088,7 +1215,7 @@
     "options": [
       {
         "id": "a",
-        "text": "0.91"
+        "text": "0.95"
       },
       {
         "id": "b",
@@ -1100,12 +1227,15 @@
       },
       {
         "id": "d",
-        "text": "0.95"
+        "text": "0.91"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "(VS/V)² = 1/1.1025 = 0.907.",
-    "tags": ["stall-warning", "calculation"],
+    "tags": [
+      "stall-warning",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1118,24 +1248,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Have straight wings with root-first stall"
-      },
-      {
-        "id": "b",
         "text": "Have unacceptable post-stall characteristics such as pitch-up or deep stall"
       },
       {
+        "id": "b",
+        "text": "Have straight wings with root-first stall"
+      },
+      {
         "id": "c",
-        "text": "Have natural buffet warning"
+        "text": "Have a canard"
       },
       {
         "id": "d",
-        "text": "Have a canard"
+        "text": "Have natural buffet warning"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "The pusher applies a nose-down elevator input at an α near the stall, preventing entry into a region from which recovery may be impossible.",
-    "tags": ["stick-pusher", "deep-stall"],
+    "tags": [
+      "stick-pusher",
+      "deep-stall"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1148,7 +1281,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Root stall causes pitch-up"
+        "text": "Tip stall causes nose-down pitch on swept and straight wings alike"
       },
       {
         "id": "b",
@@ -1156,7 +1289,7 @@
       },
       {
         "id": "c",
-        "text": "Tip stall causes nose-down pitch on swept and straight wings alike"
+        "text": "Root stall causes pitch-up"
       },
       {
         "id": "d",
@@ -1165,7 +1298,10 @@
     ],
     "correct": "b",
     "explanation": "Separation at the root keeps the outboard flow and ailerons working, and the wake buffets the tail. Tip separation removes roll damping and control.",
-    "tags": ["stall-progression", "handling"],
+    "tags": [
+      "stall-progression",
+      "handling"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1195,7 +1331,10 @@
     ],
     "correct": "d",
     "explanation": "The sharp edge produces a local suction-peak break at high α, separating inboard flow first and giving buffet warning while the tips remain attached.",
-    "tags": ["stall-strip", "stall-progression"],
+    "tags": [
+      "stall-strip",
+      "stall-progression"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1208,24 +1347,27 @@
     "options": [
       {
         "id": "a",
-        "text": "The CG moves aft"
-      },
-      {
-        "id": "b",
         "text": "Loss of outboard lift moves the centre of lift forward, as the tips lie aft of the root"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Thrust increases"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "The tailplane stalls first"
+      },
+      {
+        "id": "d",
+        "text": "The CG moves aft"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Sweep places the tips behind the CG. Losing their lift moves the wing's centre of pressure forward → nose-up moment → higher α → further tip stall: a divergent tendency.",
-    "tags": ["sweepback", "pitch-up"],
+    "tags": [
+      "sweepback",
+      "pitch-up"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1238,24 +1380,27 @@
     "options": [
       {
         "id": "a",
-        "text": "The inner (lower) wing, rolling the aircraft into the turn"
-      },
-      {
-        "id": "b",
-        "text": "Both simultaneously"
-      },
-      {
-        "id": "c",
         "text": "Neither, since skidding delays the stall"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "The outer (upper) wing"
+      },
+      {
+        "id": "c",
+        "text": "The inner (lower) wing, rolling the aircraft into the turn"
+      },
+      {
+        "id": "d",
+        "text": "Both simultaneously"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "The skid yaws the outer wing forward (higher speed, more lift) and the inner wing back (lower speed). The resulting overbanking is typically held with opposite aileron, which lowers the inner aileron and raises that wing's local α. The inner wing stalls first; roll and yaw combine toward the turn — a spin entry.",
-    "tags": ["skid", "spin-entry"],
+    "tags": [
+      "skid",
+      "spin-entry"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1276,16 +1421,19 @@
       },
       {
         "id": "c",
-        "text": "12°"
+        "text": "18°"
       },
       {
         "id": "d",
-        "text": "18°"
+        "text": "12°"
       }
     ],
     "correct": "a",
     "explanation": "Geometric twist reduces tip incidence by 2°: 16 − 2 = 14°.",
-    "tags": ["washout", "calculation"],
+    "tags": [
+      "washout",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1302,20 +1450,23 @@
       },
       {
         "id": "b",
-        "text": "At high α the tailplane lies in the separated wake of the wing and engines, losing nose-down authority"
-      },
-      {
-        "id": "c",
         "text": "The tail produces lift upward at all times"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "The tail is in the propwash"
+      },
+      {
+        "id": "d",
+        "text": "At high α the tailplane lies in the separated wake of the wing and engines, losing nose-down authority"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Above the stall the wing wake rises relative to the aircraft and blankets a high tail. The pitching-moment curve may become stable again at a post-stall α, trapping the aircraft there.",
-    "tags": ["deep-stall", "t-tail"],
+    "tags": [
+      "deep-stall",
+      "t-tail"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1328,24 +1479,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Neither can stall"
-      },
-      {
-        "id": "b",
         "text": "The foreplane stalls first, pitching the nose down before the main wing stalls"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "The main wing stalls first"
+      },
+      {
+        "id": "c",
+        "text": "Neither can stall"
       },
       {
         "id": "d",
         "text": "Both stall simultaneously"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "The foreplane carries a higher CL; its stall reduces nose-up moment, limiting α below the wing's stall.",
-    "tags": ["canard", "stall-protection"],
+    "tags": [
+      "canard",
+      "stall-protection"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1358,24 +1512,27 @@
     "options": [
       {
         "id": "a",
-        "text": "A spiral dive with increasing speed"
-      },
-      {
-        "id": "b",
-        "text": "A steep turn at low speed"
-      },
-      {
-        "id": "c",
         "text": "A rolling manoeuvre below the stall"
       },
       {
-        "id": "d",
+        "id": "b",
+        "text": "A spiral dive with increasing speed"
+      },
+      {
+        "id": "c",
         "text": "Autorotation of a stalled aircraft, descending in a helical path at high angle of attack"
+      },
+      {
+        "id": "d",
+        "text": "A steep turn at low speed"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Both wings are stalled, the rotation is self-sustaining, airspeed is roughly constant and low, and α is well above α_crit.",
-    "tags": ["spin", "autorotation"],
+    "tags": [
+      "spin",
+      "autorotation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1388,11 +1545,11 @@
     "options": [
       {
         "id": "a",
-        "text": "The down-going wing has more lift"
+        "text": "The rudder creates the rolling moment"
       },
       {
         "id": "b",
-        "text": "The rudder creates the rolling moment"
+        "text": "The down-going wing has more lift"
       },
       {
         "id": "c",
@@ -1405,7 +1562,10 @@
     ],
     "correct": "c",
     "explanation": "Roll rate adds α to the descending wing and subtracts it from the rising wing. On the negative slope of the post-stall CL–α curve the higher-α wing produces less lift (propelling roll) and more drag (propelling yaw).",
-    "tags": ["autorotation", "spin"],
+    "tags": [
+      "autorotation",
+      "spin"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1426,16 +1586,19 @@
       },
       {
         "id": "c",
-        "text": "Increasing airspeed and load factor at an unstalled angle of attack"
+        "text": "Constant low airspeed and stalled wings"
       },
       {
         "id": "d",
-        "text": "Constant low airspeed and stalled wings"
+        "text": "Increasing airspeed and load factor at an unstalled angle of attack"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "In a spiral dive the wing is not stalled; speed and g rise rapidly. Recovery: power off, roll wings level, then ease out of the dive.",
-    "tags": ["spiral-dive", "spin"],
+    "tags": [
+      "spiral-dive",
+      "spin"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1448,7 +1611,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Full power and back elevator"
+        "text": "Power idle, ailerons neutral, full rudder opposite the rotation, then elevator forward"
       },
       {
         "id": "b",
@@ -1456,16 +1619,18 @@
       },
       {
         "id": "c",
-        "text": "Flaps down"
+        "text": "Full power and back elevator"
       },
       {
         "id": "d",
-        "text": "Power idle, ailerons neutral, full rudder opposite the rotation, then elevator forward"
+        "text": "Flaps down"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Opposite rudder stops the yaw; forward elevator reduces α below the stall; neutral ailerons avoid adverse effects. Then level the wings and pull out.",
-    "tags": ["spin-recovery"],
+    "tags": [
+      "spin-recovery"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1482,11 +1647,11 @@
       },
       {
         "id": "b",
-        "text": "A spiral dive instead of a spin"
+        "text": "No spin tendency"
       },
       {
         "id": "c",
-        "text": "No spin tendency"
+        "text": "A spiral dive instead of a spin"
       },
       {
         "id": "d",
@@ -1495,7 +1660,10 @@
     ],
     "correct": "a",
     "explanation": "A shorter tail moment arm reduces nose-down authority; inertia effects flatten the spin attitude and α increases, reducing rudder and elevator effectiveness.",
-    "tags": ["spin", "cg-position"],
+    "tags": [
+      "spin",
+      "cg-position"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1508,24 +1676,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Forward CG"
+        "text": "Blanketing of the fin and rudder by the wake of the horizontal tail"
       },
       {
         "id": "b",
-        "text": "Low angle of attack"
-      },
-      {
-        "id": "c",
         "text": "High dynamic pressure"
       },
       {
+        "id": "c",
+        "text": "Forward CG"
+      },
+      {
         "id": "d",
-        "text": "Blanketing of the fin and rudder by the wake of the horizontal tail"
+        "text": "Low angle of attack"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "At high α and rotation, the separated wake of the tailplane can shield the lower rudder — the reason for tail geometry designed to keep part of the rudder in clean flow.",
-    "tags": ["spin", "rudder"],
+    "tags": [
+      "spin",
+      "rudder"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1538,24 +1709,28 @@
     "options": [
       {
         "id": "a",
-        "text": "33 %"
+        "text": "25 %"
       },
       {
         "id": "b",
-        "text": "15.5 %"
+        "text": "33 %"
       },
       {
         "id": "c",
-        "text": "12.5 %"
+        "text": "15.5 %"
       },
       {
         "id": "d",
-        "text": "25 %"
+        "text": "12.5 %"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "VS ∝ CLmax^−½: 1/√0.75 = 1.155. The stalling angle also falls.",
-    "tags": ["icing", "stall-speed", "calculation"],
+    "tags": [
+      "icing",
+      "stall-speed",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1568,24 +1743,27 @@
     "options": [
       {
         "id": "a",
-        "text": "It reduces CLmax and α_crit so that the wing may stall near normal rotation attitude and speed"
-      },
-      {
-        "id": "b",
         "text": "It increases thrust required only"
       },
       {
+        "id": "b",
+        "text": "It reduces CLmax and α_crit so that the wing may stall near normal rotation attitude and speed"
+      },
+      {
         "id": "c",
-        "text": "It adds significant weight only"
+        "text": "It affects only the tailplane"
       },
       {
         "id": "d",
-        "text": "It affects only the tailplane"
+        "text": "It adds significant weight only"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Roughness at the leading edge triggers early separation. Take-off speeds and rotation technique assume a clean wing; lift-off at planned α can exceed the reduced α_crit.",
-    "tags": ["frost", "take-off"],
+    "tags": [
+      "frost",
+      "take-off"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1598,24 +1776,28 @@
     "options": [
       {
         "id": "a",
-        "text": "Flaps reduce downwash"
+        "text": "Increased downwash raises the tailplane's negative angle of attack"
       },
       {
         "id": "b",
-        "text": "Flaps increase tail area"
+        "text": "Flaps reduce downwash"
       },
       {
         "id": "c",
-        "text": "Increased downwash raises the tailplane's negative angle of attack"
+        "text": "Flaps increase tail area"
       },
       {
         "id": "d",
         "text": "Flaps move the CG aft"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Flaps increase wing downwash and the nose-down pitching moment; the tail must produce more download at a larger negative α, and an iced leading edge stalls at a smaller angle.",
-    "tags": ["tailplane-stall", "icing", "flaps"],
+    "tags": [
+      "tailplane-stall",
+      "icing",
+      "flaps"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1628,24 +1810,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Retracting flaps to the previous setting and applying back pressure (nose-up)"
+        "text": "Reducing power and pushing forward"
       },
       {
         "id": "b",
-        "text": "Pushing forward to reduce wing α"
+        "text": "Retracting flaps to the previous setting and applying back pressure (nose-up)"
       },
       {
         "id": "c",
-        "text": "Extending more flap"
+        "text": "Pushing forward to reduce wing α"
       },
       {
         "id": "d",
-        "text": "Reducing power and pushing forward"
+        "text": "Extending more flap"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "The tail's negative α must be reduced: less downwash (flaps up) and elevator nose-up. Pushing forward — the wing-stall reflex — increases the tail's negative α.",
-    "tags": ["tailplane-stall", "recovery"],
+    "tags": [
+      "tailplane-stall",
+      "recovery"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1658,24 +1843,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Surface water film and droplet impacts roughen the surface, lowering CLmax"
+        "text": "Rain removes the boundary layer"
       },
       {
         "id": "b",
-        "text": "Rain reduces weight"
+        "text": "Surface water film and droplet impacts roughen the surface, lowering CLmax"
       },
       {
         "id": "c",
-        "text": "Rain removes the boundary layer"
+        "text": "Rain reduces weight"
       },
       {
         "id": "d",
         "text": "Rain increases air density significantly"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "The effect is similar to distributed roughness: earlier transition and separation, lower CLmax and α_crit, higher drag.",
-    "tags": ["rain", "clmax"],
+    "tags": [
+      "rain",
+      "clmax"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1692,11 +1880,11 @@
       },
       {
         "id": "b",
-        "text": "Zero"
+        "text": "Higher, because induced drag is lower"
       },
       {
         "id": "c",
-        "text": "Higher, because induced drag is lower"
+        "text": "Zero"
       },
       {
         "id": "d",
@@ -1705,7 +1893,10 @@
     ],
     "correct": "d",
     "explanation": "At a given geometric α, α_eff = α − α_i is larger near the ground. The section reaches its critical effective α at a smaller geometric α.",
-    "tags": ["ground-effect", "critical-angle"],
+    "tags": [
+      "ground-effect",
+      "critical-angle"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1722,20 +1913,23 @@
       },
       {
         "id": "b",
-        "text": "Increased induced drag and decreased lift, requiring more α or speed"
+        "text": "Increased lift"
       },
       {
         "id": "c",
-        "text": "Increased lift"
+        "text": "Increased induced drag and decreased lift, requiring more α or speed"
       },
       {
         "id": "d",
         "text": "No change"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Downwash returns to its free-air value; α_eff falls and D_i rises. An aircraft lifted off below proper speed can settle back or stall.",
-    "tags": ["ground-effect", "take-off"],
+    "tags": [
+      "ground-effect",
+      "take-off"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1748,24 +1942,27 @@
     "options": [
       {
         "id": "a",
-        "text": "n = 1/cosφ reaches (V/VS)²"
-      },
-      {
-        "id": "b",
         "text": "Bank reaches 60°"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Speed falls below VS"
+      },
+      {
+        "id": "c",
+        "text": "n = 1/cosφ reaches (V/VS)²"
       },
       {
         "id": "d",
         "text": "Altitude is lost"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "At constant V, CL demand ∝ n. The stall occurs where n·W = CLmax·q·S, i.e. n = (V/VS)².",
-    "tags": ["load-factor", "turning-flight"],
+    "tags": [
+      "load-factor",
+      "turning-flight"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1778,11 +1975,11 @@
     "options": [
       {
         "id": "a",
-        "text": "The tail stalls first"
+        "text": "The CG moves forward"
       },
       {
         "id": "b",
-        "text": "The centre of pressure moves aft and the tail sees less downwash"
+        "text": "The tail stalls first"
       },
       {
         "id": "c",
@@ -1790,12 +1987,15 @@
       },
       {
         "id": "d",
-        "text": "The CG moves forward"
+        "text": "The centre of pressure moves aft and the tail sees less downwash"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Both effects increase the nose-down moment. This natural nose-down tendency aids recovery — the opposite of swept-wing pitch-up.",
-    "tags": ["stall", "pitching-moment"],
+    "tags": [
+      "stall",
+      "pitching-moment"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1808,24 +2008,28 @@
     "options": [
       {
         "id": "a",
-        "text": "121 kt"
-      },
-      {
-        "id": "b",
         "text": "105 kt"
       },
       {
+        "id": "b",
+        "text": "130 kt"
+      },
+      {
         "id": "c",
-        "text": "117 kt"
+        "text": "121 kt"
       },
       {
         "id": "d",
-        "text": "130 kt"
+        "text": "117 kt"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "VS = 100√0.81 = 90 kt; 1.3 × 90 = 117 kt.",
-    "tags": ["approach-speed", "weight", "calculation"],
+    "tags": [
+      "approach-speed",
+      "weight",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1838,24 +2042,27 @@
     "options": [
       {
         "id": "a",
-        "text": "The stall speed falls with altitude"
+        "text": "The stall EAS rises as CLmax falls with Mach number, while the high-speed limit falls in EAS terms"
       },
       {
         "id": "b",
-        "text": "Air density increases"
+        "text": "The stall speed falls with altitude"
       },
       {
         "id": "c",
-        "text": "The critical Mach number rises with altitude"
+        "text": "Air density increases"
       },
       {
         "id": "d",
-        "text": "The stall EAS rises as CLmax falls with Mach number, while the high-speed limit falls in EAS terms"
+        "text": "The critical Mach number rises with altitude"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "At constant W, higher altitude requires higher CL; the associated Mach number lowers CLmax. Meanwhile a fixed buffet Mach corresponds to a lower EAS. The margin narrows to the 'coffin corner'.",
-    "tags": ["coffin-corner", "buffet"],
+    "tags": [
+      "coffin-corner",
+      "buffet"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1868,11 +2075,11 @@
     "options": [
       {
         "id": "a",
-        "text": "A 30° bank turn"
+        "text": "Any bank angle"
       },
       {
         "id": "b",
-        "text": "Any bank angle"
+        "text": "A 40° bank level turn before low-speed buffet"
       },
       {
         "id": "c",
@@ -1880,12 +2087,15 @@
       },
       {
         "id": "d",
-        "text": "A 40° bank level turn before low-speed buffet"
+        "text": "A 30° bank turn"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "n = 1.3 → φ = arccos(1/1.3) = 39.7°. Cruise altitude is often limited to preserve at least this manoeuvre margin.",
-    "tags": ["buffet-margin", "calculation"],
+    "tags": [
+      "buffet-margin",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1898,24 +2108,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Maximum power while maintaining pitch attitude"
-      },
-      {
-        "id": "b",
-        "text": "Full back elevator to avoid altitude loss"
-      },
-      {
-        "id": "c",
         "text": "Flap retraction first"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "An immediate reduction of α, accepting altitude loss, while applying maximum available power"
+      },
+      {
+        "id": "c",
+        "text": "Maximum power while maintaining pitch attitude"
+      },
+      {
+        "id": "d",
+        "text": "Full back elevator to avoid altitude loss"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Holding attitude while adding power keeps α at or above α_crit. Unstalling must come first; power reduces the altitude lost thereafter.",
-    "tags": ["stall-recovery"],
+    "tags": [
+      "stall-recovery"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1928,7 +2140,7 @@
     "options": [
       {
         "id": "a",
-        "text": "No stall; the margin is 0.25 g"
+        "text": "A structural failure before the stall"
       },
       {
         "id": "b",
@@ -1936,16 +2148,19 @@
       },
       {
         "id": "c",
-        "text": "A stall only if bank is applied"
+        "text": "No stall; the margin is 0.25 g"
       },
       {
         "id": "d",
-        "text": "A structural failure before the stall"
+        "text": "A stall only if bank is applied"
       }
     ],
     "correct": "b",
     "explanation": "n_max = 1.5² = 2.25 < 2.5. The wing reaches CLmax before the demanded load factor.",
-    "tags": ["accelerated-stall", "calculation"],
+    "tags": [
+      "accelerated-stall",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1958,24 +2173,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Be asymmetric, with a wing drop toward the dead engine side"
-      },
-      {
-        "id": "b",
         "text": "Occur at a lower speed on the dead-engine side only, with no roll"
       },
       {
+        "id": "b",
+        "text": "Be asymmetric, with a wing drop toward the dead engine side"
+      },
+      {
         "id": "c",
-        "text": "Be symmetric"
+        "text": "Occur only at negative α"
       },
       {
         "id": "d",
-        "text": "Occur only at negative α"
+        "text": "Be symmetric"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Slipstream energises the wing behind the live engine (higher local CLmax), while the other wing stalls earlier; yaw from asymmetric thrust adds a skid, rolling toward the dead engine.",
-    "tags": ["asymmetric-power", "wing-drop"],
+    "tags": [
+      "asymmetric-power",
+      "wing-drop"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1996,16 +2214,19 @@
       },
       {
         "id": "c",
-        "text": "Shock formation"
+        "text": "Root stall"
       },
       {
         "id": "d",
-        "text": "Root stall"
+        "text": "Shock formation"
       }
     ],
     "correct": "b",
     "explanation": "The fence blocks spanwise flow of low-energy air toward the tips, keeping outboard flow attached to a higher α.",
-    "tags": ["fence", "tip-stall"],
+    "tags": [
+      "fence",
+      "tip-stall"
+    ],
     "status": "published",
     "version": 1
   },
@@ -2018,7 +2239,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Ice increases CLmax"
+        "text": "Warning systems are disabled in icing"
       },
       {
         "id": "b",
@@ -2026,7 +2247,7 @@
       },
       {
         "id": "c",
-        "text": "Warning systems are disabled in icing"
+        "text": "Ice increases CLmax"
       },
       {
         "id": "d",
@@ -2035,7 +2256,10 @@
     ],
     "correct": "d",
     "explanation": "The trigger α is set for a clean wing. When contamination lowers α_crit, the wing separates first. Some systems apply lower thresholds when ice protection is selected.",
-    "tags": ["icing", "stall-warning"],
+    "tags": [
+      "icing",
+      "stall-warning"
+    ],
     "status": "published",
     "version": 1
   },
@@ -2048,24 +2272,27 @@
     "options": [
       {
         "id": "a",
-        "text": "An immediate recovery with no risk"
-      },
-      {
-        "id": "b",
         "text": "A secondary stall, if α again exceeds α_crit before speed has increased sufficiently"
       },
       {
+        "id": "b",
+        "text": "A spin only if flaps are down"
+      },
+      {
         "id": "c",
-        "text": "A reduction of VS"
+        "text": "An immediate recovery with no risk"
       },
       {
         "id": "d",
-        "text": "A spin only if flaps are down"
+        "text": "A reduction of VS"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "n_max = (V/VS)² at the recovery speed. Pulling more g than that re-stalls the wing.",
-    "tags": ["secondary-stall", "recovery"],
+    "tags": [
+      "secondary-stall",
+      "recovery"
+    ],
     "status": "published",
     "version": 1
   },
@@ -2078,11 +2305,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Buffet occurs well before the stall"
+        "text": "The aircraft has a stick shaker"
       },
       {
         "id": "b",
-        "text": "The wing stalls root-first"
+        "text": "Buffet occurs well before the stall"
       },
       {
         "id": "c",
@@ -2090,12 +2317,14 @@
       },
       {
         "id": "d",
-        "text": "The aircraft has a stick shaker"
+        "text": "The wing stalls root-first"
       }
     ],
     "correct": "c",
     "explanation": "Certification requires clear, distinctive warning with sufficient margin; if buffet is absent or too late, a shaker or horn provides it.",
-    "tags": ["stall-warning"],
+    "tags": [
+      "stall-warning"
+    ],
     "status": "published",
     "version": 1
   }

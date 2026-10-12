@@ -8,7 +8,7 @@
     "options": [
       {
         "id": "a",
-        "text": "CD = 0.031; L/D = 16.1"
+        "text": "CD = 0.020; L/D = 25.0"
       },
       {
         "id": "b",
@@ -16,16 +16,20 @@
       },
       {
         "id": "c",
-        "text": "CD = 0.020; L/D = 25.0"
+        "text": "CD = 0.031; L/D = 32.2"
       },
       {
         "id": "d",
-        "text": "CD = 0.031; L/D = 32.2"
+        "text": "CD = 0.031; L/D = 16.1"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "CD = 0.020 + 0.0442 × 0.5² = 0.0311; L/D = 0.5/0.0311 = 16.1. 0.042 uses CL instead of CL²; 0.020 ignores induced drag.",
-    "tags": ["drag-polar", "lift-drag-ratio", "calculation"],
+    "tags": [
+      "drag-polar",
+      "lift-drag-ratio",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -38,24 +42,28 @@
     "options": [
       {
         "id": "a",
-        "text": "1.165"
-      },
-      {
-        "id": "b",
         "text": "0.452"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "0.388"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "0.673"
+      },
+      {
+        "id": "d",
+        "text": "1.165"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Minimum D at fixed W is maximum CL/CD: d(CD/CL)/dCL = 0 → CD0 = k·CL². CL_md = √(CD0/k) = √(0.020/0.0442) = 0.673. 1.165 = √3·CL_md (minimum power); 0.388 = CL_md/√3 (maximum √CL/CD).",
-    "tags": ["minimum-drag", "lift-coefficient", "calculation"],
+    "tags": [
+      "minimum-drag",
+      "lift-coefficient",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -68,24 +76,28 @@
     "options": [
       {
         "id": "a",
-        "text": "22.6"
-      },
-      {
-        "id": "b",
-        "text": "8.4"
-      },
-      {
-        "id": "c",
         "text": "16.8"
       },
       {
-        "id": "d",
+        "id": "b",
+        "text": "22.6"
+      },
+      {
+        "id": "c",
         "text": "33.6"
+      },
+      {
+        "id": "d",
+        "text": "8.4"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "(L/D)max = 1/(2√(k·CD0)) = ½√(πeA/CD0) = 1/(2 × 0.0297) = 16.8. 33.6 omits the factor ½; 22.6 is πeA.",
-    "tags": ["lift-drag-ratio", "minimum-drag", "calculation"],
+    "tags": [
+      "lift-drag-ratio",
+      "minimum-drag",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -98,24 +110,28 @@
     "options": [
       {
         "id": "a",
-        "text": "Equal"
-      },
-      {
-        "id": "b",
         "text": "Three times larger"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "One third"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Zero"
+      },
+      {
+        "id": "d",
+        "text": "Equal"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "D = D0 + Di with D0 ∝ V² and Di ∝ 1/V². dD/dV = 0 where D0 = Di. At V_mp, Di = 3·D0; at 1.32 V_md, Di = D0/3.",
-    "tags": ["minimum-drag", "induced-drag", "parasite-drag"],
+    "tags": [
+      "minimum-drag",
+      "induced-drag",
+      "parasite-drag"
+    ],
     "status": "published",
     "version": 1
   },
@@ -128,24 +144,27 @@
     "options": [
       {
         "id": "a",
-        "text": "35.7 kN"
-      },
-      {
-        "id": "b",
         "text": "71.4 kN"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "17.8 kN"
+      },
+      {
+        "id": "c",
+        "text": "35.7 kN"
       },
       {
         "id": "d",
         "text": "600 kN"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "D_min = W/(L/D)max = 600/16.8 = 35.7 kN, half parasite and half induced. D_min depends on weight and (L/D)max only, not on altitude.",
-    "tags": ["minimum-drag", "calculation"],
+    "tags": [
+      "minimum-drag",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -162,20 +181,23 @@
       },
       {
         "id": "b",
-        "text": "124 kt"
-      },
-      {
-        "id": "c",
         "text": "214 kt"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "282 kt"
+      },
+      {
+        "id": "d",
+        "text": "124 kt"
       }
     ],
     "correct": "a",
     "explanation": "Minimum power P = D·V requires maximum CL^1.5/CD: CL_mp = √(3·CD0/k) = √3·CL_md. V_mp = V_md/3^¼ = 0.760 × 214 = 163 kt.",
-    "tags": ["minimum-power-speed", "calculation"],
+    "tags": [
+      "minimum-power-speed",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -192,20 +214,23 @@
       },
       {
         "id": "b",
-        "text": "303 kt"
-      },
-      {
-        "id": "c",
         "text": "214 kt"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "282 kt"
+      },
+      {
+        "id": "d",
+        "text": "303 kt"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Jet range per unit fuel ∝ V/D (thrust-specific fuel consumption ≈ constant), maximised at maximum √CL/CD: CL = CL_md/√3, V = 3^¼·V_md = 1.316 × 214 = 282 kt.",
-    "tags": ["jet-range", "calculation"],
+    "tags": [
+      "jet-range",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -218,15 +243,15 @@
     "options": [
       {
         "id": "a",
-        "text": "CL is 3 times larger, and L/D is 0.577 of maximum"
-      },
-      {
-        "id": "b",
         "text": "CL is equal, induced drag equals parasite drag, and L/D is maximum"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "CL is √3 times smaller, induced drag is one third of parasite drag, and L/D is maximum"
+      },
+      {
+        "id": "c",
+        "text": "CL is 3 times larger, and L/D is 0.577 of maximum, since the drag at that speed is the lowest the aircraft can achieve with any given lift and power"
       },
       {
         "id": "d",
@@ -235,7 +260,10 @@
     ],
     "correct": "d",
     "explanation": "CL^1.5/CD maximum: CD0 = k·CL²/3, so CDi = 3·CD0 and CL = √(3CD0/k). CD = 4·CD0 against 2·CD0 at V_md, CL larger by √3: L/D ratio = √3·2/4 = 0.866.",
-    "tags": ["minimum-power-speed", "drag-polar"],
+    "tags": [
+      "minimum-power-speed",
+      "drag-polar"
+    ],
     "status": "published",
     "version": 1
   },
@@ -256,16 +284,19 @@
       },
       {
         "id": "c",
-        "text": "+20 %"
+        "text": "+44 %"
       },
       {
         "id": "d",
-        "text": "+44 %"
+        "text": "+20 %"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "D0 = CD0·½ρV²·S ∝ V²: 1.2² = 1.44.",
-    "tags": ["parasite-drag", "proportionality"],
+    "tags": [
+      "parasite-drag",
+      "proportionality"
+    ],
     "status": "published",
     "version": 1
   },
@@ -278,24 +309,27 @@
     "options": [
       {
         "id": "a",
-        "text": "0.579"
+        "text": "0.833"
       },
       {
         "id": "b",
-        "text": "1.44"
+        "text": "0.579"
       },
       {
         "id": "c",
-        "text": "0.694"
+        "text": "1.44"
       },
       {
         "id": "d",
-        "text": "0.833"
+        "text": "0.694"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Di = k·CL²·q·S with CL ∝ 1/V² and q ∝ V²: Di ∝ 1/V² → 1/1.44 = 0.694.",
-    "tags": ["induced-drag", "proportionality"],
+    "tags": [
+      "induced-drag",
+      "proportionality"
+    ],
     "status": "published",
     "version": 1
   },
@@ -316,16 +350,20 @@
       },
       {
         "id": "c",
-        "text": "Range at V_mp; endurance at V_md"
+        "text": "Range at V_md; endurance at V_mp"
       },
       {
         "id": "d",
-        "text": "Range at V_md; endurance at V_mp"
+        "text": "Range at V_mp; endurance at V_md"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Fuel flow ∝ power = D·V. Endurance maximum at minimum power (V_mp). Range per unit fuel ∝ V/P = 1/D → maximum at minimum drag (V_md).",
-    "tags": ["propeller-aircraft", "range", "endurance"],
+    "tags": [
+      "propeller-aircraft",
+      "range",
+      "endurance"
+    ],
     "status": "published",
     "version": 1
   },
@@ -338,24 +376,28 @@
     "options": [
       {
         "id": "a",
-        "text": "Endurance at 1.32 V_md; range at V_md"
+        "text": "Endurance at V_mp; range at V_md"
       },
       {
         "id": "b",
-        "text": "Both at V_md"
-      },
-      {
-        "id": "c",
         "text": "Endurance at V_md; range at 1.32 V_md"
       },
       {
+        "id": "c",
+        "text": "Endurance at V_mp; range at V_md, since the jet burns the least fuel per hour at the speed of minimum power and so flies longest at that speed in every case"
+      },
+      {
         "id": "d",
-        "text": "Endurance at V_mp; range at V_md"
+        "text": "Endurance at 1.32 V_md; range at V_md"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Fuel flow ∝ thrust = D: endurance maximum at minimum drag (V_md). Range per unit fuel ∝ V/D: maximum at the tangent from the origin to the drag curve, 3^¼·V_md = 1.32 V_md.",
-    "tags": ["jet-aircraft", "range", "endurance"],
+    "tags": [
+      "jet-aircraft",
+      "range",
+      "endurance"
+    ],
     "status": "published",
     "version": 1
   },
@@ -368,24 +410,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Unchanged in both cases"
-      },
-      {
-        "id": "b",
         "text": "Lower, and in a tailwind higher"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Higher, and in a tailwind lower"
+      },
+      {
+        "id": "c",
+        "text": "Unchanged in both cases"
       },
       {
         "id": "d",
         "text": "Higher in both cases"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Ground distance per unit fuel ∝ (V − V_w)/fuel flow. The tangent to the fuel-flow curve is drawn from a point displaced by the wind speed along the speed axis: right for a headwind (higher speed), left for a tailwind (lower speed).",
-    "tags": ["wind", "range"],
+    "tags": [
+      "wind",
+      "range"
+    ],
     "status": "published",
     "version": 1
   },
@@ -402,20 +447,24 @@
       },
       {
         "id": "b",
-        "text": "Decreases in proportion to √W"
+        "text": "Decreases in proportion to W"
       },
       {
         "id": "c",
-        "text": "Remains constant"
+        "text": "Decreases in proportion to √W"
       },
       {
         "id": "d",
-        "text": "Decreases in proportion to W"
+        "text": "Remains constant"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "At the fixed optimum CL, V ∝ √(W/ρ). Constant CL at constant speed requires W/σ constant — a cruise-climb as weight falls.",
-    "tags": ["weight", "range", "cruise-climb"],
+    "tags": [
+      "weight",
+      "range",
+      "cruise-climb"
+    ],
     "status": "published",
     "version": 1
   },
@@ -432,20 +481,23 @@
       },
       {
         "id": "b",
-        "text": "Reduced induced drag and increased lift, so the aircraft tends to float"
-      },
-      {
-        "id": "c",
         "text": "Increased induced drag and a sink"
       },
       {
+        "id": "c",
+        "text": "No change until wheel contact, since ground effect only alters the flow at the instant of touchdown and so the aircraft's lift and drag stay the same during the whole flare"
+      },
+      {
         "id": "d",
-        "text": "No change until wheel contact"
+        "text": "Reduced induced drag and increased lift, so the aircraft tends to float"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Lower downwash raises α_eff at the same attitude and reduces Di. Excess speed dissipates more slowly. Reduced downwash at the tailplane reduces the tail download, pitching nose-down.",
-    "tags": ["ground-effect", "landing-flare"],
+    "tags": [
+      "ground-effect",
+      "landing-flare"
+    ],
     "status": "published",
     "version": 1
   },
@@ -458,24 +510,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Reduces tail download, wing lift and trim drag"
+        "text": "Increases wing lift required, since the tail download is then reduced and the wing must generate more lift to hold the same weight in level flight at every speed"
       },
       {
         "id": "b",
-        "text": "Increases wing lift required"
+        "text": "Increases tail download and trim drag"
       },
       {
         "id": "c",
-        "text": "Has no effect on drag"
+        "text": "Increases wing lift required"
       },
       {
         "id": "d",
-        "text": "Increases tail download and trim drag"
+        "text": "Reduces tail download, wing lift and trim drag"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "An aft CG shortens the moment arm of the wing lift about the CG, so less tail download balances the pitching moment. Wing lift = W + P falls, reducing induced drag and fuel flow; longitudinal stability margin also falls.",
-    "tags": ["trim-drag", "cg-position"],
+    "tags": [
+      "trim-drag",
+      "cg-position"
+    ],
     "status": "published",
     "version": 1
   },
@@ -488,24 +543,27 @@
     "options": [
       {
         "id": "a",
-        "text": "An increase, since drag falls as speed falls"
+        "text": "A return to the original speed, since the drag falls as the speed falls and the thrust therefore brings the aircraft back to where it was at once"
       },
       {
         "id": "b",
-        "text": "An oscillation of constant amplitude"
+        "text": "An increase, since drag falls as speed falls"
       },
       {
         "id": "c",
-        "text": "A return to the original speed"
+        "text": "A further decrease, since drag rises as speed falls (speed-unstable)"
       },
       {
         "id": "d",
-        "text": "A further decrease, since drag rises as speed falls (speed-unstable)"
+        "text": "An oscillation of constant amplitude"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Below V_md, dD/dV < 0: lower speed → higher drag → deceleration continues. Above V_md, dD/dV > 0 and speed is stable. Region of reversed command: holding altitude at lower speed needs more thrust.",
-    "tags": ["speed-stability", "drag-curve"],
+    "tags": [
+      "speed-stability",
+      "drag-curve"
+    ],
     "status": "published",
     "version": 1
   },
@@ -518,24 +576,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Continues to decelerate"
+        "text": "Climbs at constant speed, since the extra thrust over drag at the lower speed produces a climb that holds the speed at the reduced value in every case"
       },
       {
         "id": "b",
-        "text": "Accelerates beyond the original speed indefinitely"
+        "text": "Returns toward the original speed, because drag falls below thrust"
       },
       {
         "id": "c",
-        "text": "Returns toward the original speed, because drag falls below thrust"
+        "text": "Accelerates beyond the original speed indefinitely"
       },
       {
         "id": "d",
         "text": "Climbs at constant speed"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Above V_md, lower speed means lower drag; T > D accelerates the aircraft back to equilibrium.",
-    "tags": ["speed-stability"],
+    "tags": [
+      "speed-stability"
+    ],
     "status": "published",
     "version": 1
   },
@@ -548,24 +608,27 @@
     "options": [
       {
         "id": "a",
-        "text": "1.32 V_md"
-      },
-      {
-        "id": "b",
         "text": "V_md"
       },
       {
+        "id": "b",
+        "text": "1.32 V_md"
+      },
+      {
         "id": "c",
-        "text": "The maximum level speed"
+        "text": "V_mp"
       },
       {
         "id": "d",
-        "text": "V_mp"
+        "text": "The maximum level speed"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "sinγ = (T − D)/W is maximum where D is minimum when T is constant: V_x = V_md.",
-    "tags": ["climb-angle", "jet-aircraft"],
+    "tags": [
+      "climb-angle",
+      "jet-aircraft"
+    ],
     "status": "published",
     "version": 1
   },
@@ -578,7 +641,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Lower"
+        "text": "At 1.32 V_md"
       },
       {
         "id": "b",
@@ -586,16 +649,19 @@
       },
       {
         "id": "c",
-        "text": "Equal"
+        "text": "Lower"
       },
       {
         "id": "d",
-        "text": "At 1.32 V_md"
+        "text": "Equal"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Excess thrust T − D: D is flat near V_md while propeller thrust rises as speed falls, so the maximum of T − D shifts below V_md.",
-    "tags": ["climb-angle", "propeller-aircraft"],
+    "tags": [
+      "climb-angle",
+      "propeller-aircraft"
+    ],
     "status": "published",
     "version": 1
   },
@@ -608,24 +674,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Equal"
+        "text": "Always 1.32 V_md exactly"
       },
       {
         "id": "b",
-        "text": "Higher, because excess power (T − D)·V keeps rising above V_md"
+        "text": "Equal, because the speed for the best rate of climb is always the same as the minimum-drag speed for a jet at every altitude and every weight"
       },
       {
         "id": "c",
-        "text": "Always 1.32 V_md exactly"
+        "text": "Higher, because excess power (T − D)·V keeps rising above V_md"
       },
       {
         "id": "d",
         "text": "Lower, at V_mp"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Rate of climb = (T·V − D·V)/W. With T constant, T·V increases linearly with V, so the maximum of excess power lies above V_md.",
-    "tags": ["rate-of-climb", "jet-aircraft"],
+    "tags": [
+      "rate-of-climb",
+      "jet-aircraft"
+    ],
     "status": "published",
     "version": 1
   },
@@ -638,24 +707,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Rate of climb falls to a fixed small value"
+        "text": "Maximum excess power is zero and only one speed allows level flight"
       },
       {
         "id": "b",
-        "text": "The engine thrust becomes zero"
-      },
-      {
-        "id": "c",
         "text": "Indicated airspeed equals the stall speed at any weight"
       },
       {
+        "id": "c",
+        "text": "The engine thrust becomes zero, which is the point at which the aircraft can no longer climb at all and so the ceiling is defined by the loss of power"
+      },
+      {
         "id": "d",
-        "text": "Maximum excess power is zero and only one speed allows level flight"
+        "text": "Rate of climb falls to a fixed small value"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "With altitude the power-available curve falls and the power-required curve rises and moves right. At the absolute ceiling they touch: zero rate of climb, a single speed, and no margin.",
-    "tags": ["ceiling", "excess-power"],
+    "tags": [
+      "ceiling",
+      "excess-power"
+    ],
     "status": "published",
     "version": 1
   },
@@ -668,7 +740,7 @@
     "options": [
       {
         "id": "a",
-        "text": "16.8 nm"
+        "text": "27.6 nm"
       },
       {
         "id": "b",
@@ -676,16 +748,19 @@
       },
       {
         "id": "c",
-        "text": "27.6 nm"
+        "text": "16.8 nm"
       },
       {
         "id": "d",
         "text": "13.8 nm"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Distance = h·(L/D)max = 10,000 × 16.8 = 168,000 ft = 27.6 nm, at V_md.",
-    "tags": ["glide", "calculation"],
+    "tags": [
+      "glide",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -698,24 +773,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Higher"
+        "text": "Equal"
       },
       {
         "id": "b",
-        "text": "Lower"
+        "text": "V_mp, since the glider is most efficient at the minimum-power speed in every wind and the headwind has no effect on the speed for the greatest distance"
       },
       {
         "id": "c",
-        "text": "V_mp"
+        "text": "Higher"
       },
       {
         "id": "d",
-        "text": "Equal"
+        "text": "Lower"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Ground glide ratio = (V − V_w)/sink rate. The tangent from a point V_w to the right along the speed axis on the sink-rate polar touches at a higher speed.",
-    "tags": ["glide", "wind"],
+    "tags": [
+      "glide",
+      "wind"
+    ],
     "status": "published",
     "version": 1
   },
@@ -728,24 +806,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Induced drag of the wing falls to zero"
-      },
-      {
-        "id": "b",
-        "text": "Dynamic pressure increases"
-      },
-      {
-        "id": "c",
         "text": "The fuselage presents a larger area to the flow and generates side force with its own induced and separation drag"
       },
       {
-        "id": "d",
+        "id": "b",
+        "text": "Induced drag of the wing falls to zero"
+      },
+      {
+        "id": "c",
         "text": "Skin friction coefficient doubles"
+      },
+      {
+        "id": "d",
+        "text": "Dynamic pressure increases, since the sideslip raises the airflow past the fuselage and so the dynamic pressure on the whole aircraft grows at every speed"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "In sideslip the fuselage and fin act as lifting surfaces at incidence to the flow, producing side force and associated drag; separation from the fuselage adds pressure drag.",
-    "tags": ["sideslip", "drag"],
+    "tags": [
+      "sideslip",
+      "drag"
+    ],
     "status": "published",
     "version": 1
   },
@@ -758,11 +839,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Rise above the flight path"
+        "text": "Rotate upward outboard and downward inboard of the tips, and descend behind the aircraft"
       },
       {
         "id": "b",
-        "text": "Rotate upward outboard and downward inboard of the tips, and descend behind the aircraft"
+        "text": "Remain at flight level, since the vortices are held in place by the wing and so stay at the height at which they were formed for as long as the aircraft flies"
       },
       {
         "id": "c",
@@ -770,12 +851,15 @@
       },
       {
         "id": "d",
-        "text": "Remain at flight level"
+        "text": "Rise above the flight path"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Higher pressure below the wing flows round the tips to the lower pressure above: rotation is up outboard, down inboard. The vortex pair induces a downward velocity on itself and descends.",
-    "tags": ["wingtip-vortices", "downwash"],
+    "tags": [
+      "wingtip-vortices",
+      "downwash"
+    ],
     "status": "published",
     "version": 1
   },
@@ -788,7 +872,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Angle of attack, section and planform shape, Reynolds number and Mach number"
+        "text": "Airspeed and density only"
       },
       {
         "id": "b",
@@ -796,16 +880,19 @@
       },
       {
         "id": "c",
-        "text": "Weight only"
+        "text": "Angle of attack, section and planform shape, Reynolds number and Mach number"
       },
       {
         "id": "d",
-        "text": "Airspeed and density only"
+        "text": "Weight and wing loading only, because the lift equation uses weight as the sole input"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "ρ, V and S enter explicitly. CL absorbs geometry and angle of attack, with secondary Re and M effects (compressibility raises the lift slope until shock-induced separation).",
-    "tags": ["lift-equation", "lift-coefficient"],
+    "tags": [
+      "lift-equation",
+      "lift-coefficient"
+    ],
     "status": "published",
     "version": 1
   },
@@ -818,7 +905,7 @@
     "options": [
       {
         "id": "a",
-        "text": "0.200 nm/kg; 0.179 nm/kg"
+        "text": "0.200 nm/kg; 0.221 nm/kg"
       },
       {
         "id": "b",
@@ -826,16 +913,20 @@
       },
       {
         "id": "c",
-        "text": "0.200 nm/kg; 0.221 nm/kg"
+        "text": "0.200 nm/kg; 0.179 nm/kg"
       },
       {
         "id": "d",
         "text": "5.0 nm/kg; 5.6 nm/kg"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "SAR = V_T/fuel flow = 480/2,400 = 0.200 nm/kg. SGR = (V_T − V_w)/fuel flow = 430/2,400 = 0.179 nm/kg. Inverting gives kg/nm (5.0 and 5.6).",
-    "tags": ["specific-range", "wind", "calculation"],
+    "tags": [
+      "specific-range",
+      "wind",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   }

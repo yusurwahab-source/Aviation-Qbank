@@ -8,24 +8,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Raise the critical Mach number"
-      },
-      {
-        "id": "b",
         "text": "Raise CLmax so the aircraft can fly, take off and land at lower speeds"
       },
       {
+        "id": "b",
+        "text": "Reduce induced drag at high speed"
+      },
+      {
         "id": "c",
-        "text": "Increase maximum L/D in cruise"
+        "text": "Reduce induced drag at high speed, which is the main reason high-lift devices are fitted to every airliner and is achieved by deflecting them at cruise altitude"
       },
       {
         "id": "d",
-        "text": "Reduce induced drag at high speed"
+        "text": "Raise the critical Mach number"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "VS ∝ CLmax^−½. A higher CLmax lowers stall, lift-off and approach speeds, shortening ground distances; the price is drag and pitching moment.",
-    "tags": ["high-lift", "clmax"],
+    "tags": [
+      "high-lift",
+      "clmax"
+    ],
     "status": "published",
     "version": 1
   },
@@ -38,24 +41,28 @@
     "options": [
       {
         "id": "a",
-        "text": "0.79"
-      },
-      {
-        "id": "b",
-        "text": "1.60"
-      },
-      {
-        "id": "c",
         "text": "0.63"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "0.40"
+      },
+      {
+        "id": "c",
+        "text": "1.60"
+      },
+      {
+        "id": "d",
+        "text": "0.79"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "V ∝ CLmax^−½ = 0.791; kinetic energy ∝ V² → 0.625. Braking distance at a given deceleration scales the same way.",
-    "tags": ["landing", "kinetic-energy", "calculation"],
+    "tags": [
+      "landing",
+      "kinetic-energy",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -68,7 +75,7 @@
     "options": [
       {
         "id": "a",
-        "text": "×0.79"
+        "text": "×0.89"
       },
       {
         "id": "b",
@@ -76,16 +83,20 @@
       },
       {
         "id": "c",
-        "text": "×0.89"
+        "text": "×0.94"
       },
       {
         "id": "d",
-        "text": "×0.94"
+        "text": "×0.79"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "√(1.5/1.9) = 0.889. The CLmax ratio itself (0.79) applies to V², not V.",
-    "tags": ["stall-speed", "flaps", "calculation"],
+    "tags": [
+      "stall-speed",
+      "flaps",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -98,11 +109,11 @@
     "options": [
       {
         "id": "a",
-        "text": "×1.15"
+        "text": "×0.87"
       },
       {
         "id": "b",
-        "text": "×0.87"
+        "text": "×1.15"
       },
       {
         "id": "c",
@@ -113,9 +124,13 @@
         "text": "×0.75"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "√(1.5/2.0) = 0.866.",
-    "tags": ["slats", "stall-speed", "calculation"],
+    "tags": [
+      "slats",
+      "stall-speed",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -132,20 +147,23 @@
       },
       {
         "id": "b",
-        "text": "It reduces camber"
+        "text": "It moves the CP forward"
       },
       {
         "id": "c",
-        "text": "Air through the slot re-energises the flap's boundary layer, delaying separation on it"
+        "text": "It moves the CP forward, which raises the nose-up moment on the flap and so allows a greater deflection before the flow separates over its upper surface"
       },
       {
         "id": "d",
-        "text": "It moves the CP forward"
+        "text": "Air through the slot re-energises the flap's boundary layer, delaying separation on it"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "A plain flap separates at modest deflections because its boundary layer is inherited from the main wing. The slot starts a fresh, energised layer on the flap.",
-    "tags": ["slotted-flap", "boundary-layer"],
+    "tags": [
+      "slotted-flap",
+      "boundary-layer"
+    ],
     "status": "published",
     "version": 1
   },
@@ -162,20 +180,22 @@
       },
       {
         "id": "b",
-        "text": "Allow very large total deflection with attached flow on each element"
+        "text": "Reduce weight, since a multi-slotted flap is lighter than a single flap of the same area and so the structure can carry a larger deflection without any added load"
       },
       {
         "id": "c",
-        "text": "Reduce weight"
+        "text": "Reduce drag in cruise"
       },
       {
         "id": "d",
-        "text": "Reduce drag in cruise"
+        "text": "Allow very large total deflection with attached flow on each element"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Each slot restarts the boundary layer, so turning is shared among elements; combined with Fowler motion this maximises CLmax for landing.",
-    "tags": ["multi-slotted-flap"],
+    "tags": [
+      "multi-slotted-flap"
+    ],
     "status": "published",
     "version": 1
   },
@@ -192,11 +212,11 @@
       },
       {
         "id": "b",
-        "text": "No change from clean"
+        "text": "The same CLmax as flaps alone"
       },
       {
         "id": "c",
-        "text": "The same CLmax as flaps alone"
+        "text": "The same CLmax as flaps alone, because the slats and flaps interfere with each other's flow and so their combined effect is cancelled at the highest angles of attack"
       },
       {
         "id": "d",
@@ -205,7 +225,11 @@
     ],
     "correct": "a",
     "explanation": "Flaps add camber (shift); slats protect the leading edge against the higher suction the cambered wing generates (extension).",
-    "tags": ["flaps", "slats", "lift-curve"],
+    "tags": [
+      "flaps",
+      "slats",
+      "lift-curve"
+    ],
     "status": "published",
     "version": 1
   },
@@ -218,24 +242,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Unchanged"
+        "text": "8° higher"
       },
       {
         "id": "b",
-        "text": "22° higher"
-      },
-      {
-        "id": "c",
         "text": "8° lower"
       },
       {
+        "id": "c",
+        "text": "22° higher"
+      },
+      {
         "id": "d",
-        "text": "8° higher"
+        "text": "Unchanged"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "θ = γ + α. The higher usable α is the price of slat-only lift gain — hence slats are combined with trailing-edge flaps to limit attitude.",
-    "tags": ["slats", "pitch-attitude"],
+    "tags": [
+      "slats",
+      "pitch-attitude"
+    ],
     "status": "published",
     "version": 1
   },
@@ -248,24 +275,27 @@
     "options": [
       {
         "id": "a",
-        "text": "It reduces the angle of attack of the main wing"
-      },
-      {
-        "id": "b",
-        "text": "It adds weight at the leading edge"
-      },
-      {
-        "id": "c",
         "text": "Airflow through the slot reduces the suction peak on the main wing and feeds high-energy air into its boundary layer"
       },
       {
+        "id": "b",
+        "text": "It reduces the angle of attack of the main wing"
+      },
+      {
+        "id": "c",
+        "text": "It adds weight at the leading edge"
+      },
+      {
         "id": "d",
-        "text": "It increases wing thickness"
+        "text": "It adds weight at the leading edge, which moves the centre of gravity forward and so raises the stall speed of the whole aircraft in every configuration"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "The slat carries part of the leading-edge suction; the slot jet reduces the main element's adverse gradient and energises its layer, delaying separation.",
-    "tags": ["slats", "slot-effect"],
+    "tags": [
+      "slats",
+      "slot-effect"
+    ],
     "status": "published",
     "version": 1
   },
@@ -278,24 +308,27 @@
     "options": [
       {
         "id": "a",
-        "text": "A trailing-edge flap sliding aft"
+        "text": "A spoiler on the upper surface"
       },
       {
         "id": "b",
-        "text": "A panel hinged from the lower leading edge that swings forward, typically used inboard on swept wings"
+        "text": "A fixed slot near the tip, which is a permanent opening that channels air over the outer wing and so is used on every swept wing in place of a Krueger flap"
       },
       {
         "id": "c",
-        "text": "A fixed slot near the tip"
+        "text": "A trailing-edge flap sliding aft"
       },
       {
         "id": "d",
-        "text": "A spoiler on the upper surface"
+        "text": "A panel hinged from the lower leading edge that swings forward, typically used inboard on swept wings"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "It increases leading-edge camber and radius. Inboard Kruegers with outboard slats help ensure an inboard-first stall on swept wings.",
-    "tags": ["krueger-flap", "sweep"],
+    "tags": [
+      "krueger-flap",
+      "sweep"
+    ],
     "status": "published",
     "version": 1
   },
@@ -308,11 +341,11 @@
     "options": [
       {
         "id": "a",
-        "text": "At high speed"
+        "text": "Aerodynamically, when leading-edge suction at high α pulls them forward"
       },
       {
         "id": "b",
-        "text": "Aerodynamically, when leading-edge suction at high α pulls them forward"
+        "text": "When the flaps retract"
       },
       {
         "id": "c",
@@ -320,12 +353,14 @@
       },
       {
         "id": "d",
-        "text": "When the flaps retract"
+        "text": "Only by pilot selection, since the slats are linked directly to the flap lever and so cannot respond to the airflow on the wing at any angle of attack"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "At high α the suction near the leading edge overcomes the retraction force; at low α the stagnation pressure pushes them closed.",
-    "tags": ["automatic-slats"],
+    "tags": [
+      "automatic-slats"
+    ],
     "status": "published",
     "version": 1
   },
@@ -338,24 +373,27 @@
     "options": [
       {
         "id": "a",
-        "text": "A nose-down pitch only"
+        "text": "No roll, because the wing with the slat keeps its lift and the wing without it loses lift at the same moment, so the two forces balance exactly"
       },
       {
         "id": "b",
-        "text": "A roll toward the slat side"
+        "text": "A nose-down pitch only"
       },
       {
         "id": "c",
-        "text": "A roll toward the side without the slat, whose wing stalls first"
+        "text": "A roll toward the slat side"
       },
       {
         "id": "d",
-        "text": "No roll"
+        "text": "A roll toward the side without the slat, whose wing stalls first"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "The unslatted wing reaches its lower stalling α first and loses lift, rolling the aircraft toward it.",
-    "tags": ["slat-asymmetry", "roll"],
+    "tags": [
+      "slat-asymmetry",
+      "roll"
+    ],
     "status": "published",
     "version": 1
   },
@@ -368,11 +406,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Stronger outboard stall protection ensures the root stalls first, avoiding pitch-up"
+        "text": "Kruegers increase tip lift, which is why they are placed at the outboard end of the wing where the local lift is greatest and the stall is most likely to begin"
       },
       {
         "id": "b",
-        "text": "Inboard slats would increase drag in cruise"
+        "text": "Stronger outboard stall protection ensures the root stalls first, avoiding pitch-up"
       },
       {
         "id": "c",
@@ -380,12 +418,16 @@
       },
       {
         "id": "d",
-        "text": "Slats are heavier inboard"
+        "text": "Inboard slats would increase drag in cruise"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Slats raise the stalling angle more than Kruegers; placing the more effective device at the tips makes the inboard section stall first.",
-    "tags": ["slats", "krueger-flap", "pitch-up"],
+    "tags": [
+      "slats",
+      "krueger-flap",
+      "pitch-up"
+    ],
     "status": "published",
     "version": 1
   },
@@ -406,16 +448,19 @@
       },
       {
         "id": "c",
-        "text": "(L/D)max rises, so the glide becomes shallower"
+        "text": "(L/D)max falls, so the glide becomes steeper"
       },
       {
         "id": "d",
-        "text": "(L/D)max falls, so the glide becomes steeper"
+        "text": "(L/D)max rises, so the glide becomes shallower"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Flaps raise CD0 and usually k. tan γ = 1/(L/D): steeper descent at a given speed — useful for obstacle clearance on approach.",
-    "tags": ["glide-angle", "drag"],
+    "tags": [
+      "glide-angle",
+      "drag"
+    ],
     "status": "published",
     "version": 1
   },
@@ -445,7 +490,10 @@
     ],
     "correct": "a",
     "explanation": "γ = arctan(1/(L/D)): arctan(1/12) = 4.76°; arctan(1/7) = 8.13°.",
-    "tags": ["glide-angle", "calculation"],
+    "tags": [
+      "glide-angle",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -458,24 +506,28 @@
     "options": [
       {
         "id": "a",
-        "text": "18.6 kN against 43.6 kN"
-      },
-      {
-        "id": "b",
         "text": "43.6 kN against 18.6 kN"
       },
       {
+        "id": "b",
+        "text": "75 kN against 50 kN"
+      },
+      {
         "id": "c",
-        "text": "31.4 kN in both cases"
+        "text": "18.6 kN against 43.6 kN"
       },
       {
         "id": "d",
-        "text": "75 kN against 50 kN"
+        "text": "31.4 kN in both cases"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "T = D − W·sinγ. W·sin3° = 31.4 kN. L/D 8: D = 75 kN → T = 43.6 kN. L/D 12: D = 50 kN → T = 18.6 kN. Higher drag keeps engines at a responsive thrust setting.",
-    "tags": ["approach", "thrust", "calculation"],
+    "tags": [
+      "approach",
+      "thrust",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -488,24 +540,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Lift is concentrated over the flapped inboard span, departing from elliptical loading"
+        "text": "Flaps reduce lift, since a deflected flap lowers the local circulation over the inner span and so the total lift produced by a given wing area falls"
       },
       {
         "id": "b",
-        "text": "Flaps reduce the aspect ratio geometrically"
-      },
-      {
-        "id": "c",
         "text": "Flaps reduce lift"
       },
       {
+        "id": "c",
+        "text": "Lift is concentrated over the flapped inboard span, departing from elliptical loading"
+      },
+      {
         "id": "d",
-        "text": "Flaps move the CG"
+        "text": "Flaps reduce the aspect ratio geometrically"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Part-span flaps create a spanwise lift discontinuity, raising k (lower e); trailing vortices shed at the flap ends.",
-    "tags": ["induced-drag", "flaps"],
+    "tags": [
+      "induced-drag",
+      "flaps"
+    ],
     "status": "published",
     "version": 1
   },
@@ -518,24 +573,27 @@
     "options": [
       {
         "id": "a",
-        "text": "420 ft/min"
+        "text": "740 ft/min"
       },
       {
         "id": "b",
-        "text": "1,480 ft/min"
-      },
-      {
-        "id": "c",
         "text": "140 ft/min"
       },
       {
+        "id": "c",
+        "text": "1,480 ft/min"
+      },
+      {
         "id": "d",
-        "text": "740 ft/min"
+        "text": "420 ft/min"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "V·sinγ = 140 × 101.3 ft/min per kt × 0.0523 = 742 ft/min (≈ groundspeed × 5 in still air).",
-    "tags": ["rate-of-descent", "calculation"],
+    "tags": [
+      "rate-of-descent",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -548,15 +606,15 @@
     "options": [
       {
         "id": "a",
-        "text": "Identical ratios"
-      },
-      {
-        "id": "b",
         "text": "Mainly drag; large deflections add mainly lift"
       },
       {
+        "id": "b",
+        "text": "No lift increase, since the flap deflection is too small to change the pressure distribution over the wing in any measurable way at any angle of attack"
+      },
+      {
         "id": "c",
-        "text": "No lift increase"
+        "text": "Identical ratios"
       },
       {
         "id": "d",
@@ -565,7 +623,10 @@
     ],
     "correct": "d",
     "explanation": "Initial degrees of flap add camber efficiently; beyond moderate angles the lift increment per degree falls while form drag rises steeply — hence take-off flap is small and landing flap is large.",
-    "tags": ["flap-setting", "drag"],
+    "tags": [
+      "flap-setting",
+      "drag"
+    ],
     "status": "published",
     "version": 1
   },
@@ -578,24 +639,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Forward, giving a nose-up moment"
+        "text": "To the leading edge, because the increased camber pulls the pressure centre forward and so the wing's own pitching moment becomes more negative as the flap is lowered"
       },
       {
         "id": "b",
-        "text": "Not at all"
+        "text": "To the leading edge"
       },
       {
         "id": "c",
-        "text": "Aft, giving a nose-down moment from the wing"
+        "text": "Forward, giving a nose-up moment"
       },
       {
         "id": "d",
-        "text": "To the leading edge"
+        "text": "Aft, giving a nose-down moment from the wing"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Aft camber loads the rear of the section, making C_M,ac more negative.",
-    "tags": ["centre-of-pressure", "flaps"],
+    "tags": [
+      "centre-of-pressure",
+      "flaps"
+    ],
     "status": "published",
     "version": 1
   },
@@ -608,11 +672,11 @@
     "options": [
       {
         "id": "a",
-        "text": "A nose-down contribution through the tail"
+        "text": "A more negative tail angle of attack, producing a nose-up contribution"
       },
       {
         "id": "b",
-        "text": "A more negative tail angle of attack, producing a nose-up contribution"
+        "text": "A nose-down contribution through the tail"
       },
       {
         "id": "c",
@@ -620,12 +684,16 @@
       },
       {
         "id": "d",
-        "text": "No change"
+        "text": "A less negative tail angle of attack, since the downwash is reduced by the flap and the tail therefore sees a more favourable local flow at every flap setting"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "More downwash reduces the tail's α, increasing its download and the nose-up moment. The net pitch change is the balance of this against the wing's nose-down moment.",
-    "tags": ["downwash", "tailplane", "flaps"],
+    "tags": [
+      "downwash",
+      "tailplane",
+      "flaps"
+    ],
     "status": "published",
     "version": 1
   },
@@ -638,24 +706,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Increase in speed"
+        "text": "Loss of lift"
       },
       {
         "id": "b",
-        "text": "No change"
+        "text": "Loss of lift, because the flap lowers the local flow over the wing and so the aircraft sinks away from the glide path at once, before any change in speed"
       },
       {
         "id": "c",
-        "text": "Increase in lift (balloon), until speed decays and the aircraft is retrimmed"
+        "text": "Increase in speed"
       },
       {
         "id": "d",
-        "text": "Loss of lift"
+        "text": "Increase in lift (balloon), until speed decays and the aircraft is retrimmed"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "At fixed attitude and α, CL jumps; the aircraft climbs momentarily while added drag reduces speed.",
-    "tags": ["ballooning", "flaps"],
+    "tags": [
+      "ballooning",
+      "flaps"
+    ],
     "status": "published",
     "version": 1
   },
@@ -668,11 +739,11 @@
     "options": [
       {
         "id": "a",
-        "text": "A loss of lift and sink, requiring higher α or speed"
+        "text": "A pitch-up only, since retracting the flap moves the centre of pressure forward and so the nose rises at once, without any change in lift or speed"
       },
       {
         "id": "b",
-        "text": "No change"
+        "text": "A gain in lift"
       },
       {
         "id": "c",
@@ -680,12 +751,15 @@
       },
       {
         "id": "d",
-        "text": "A gain in lift"
+        "text": "A loss of lift and sink, requiring higher α or speed"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "CL at the given α falls; unless α is increased (within the clean stall margin) or speed has increased, the aircraft sinks.",
-    "tags": ["flap-retraction", "sink"],
+    "tags": [
+      "flap-retraction",
+      "sink"
+    ],
     "status": "published",
     "version": 1
   },
@@ -698,24 +772,28 @@
     "options": [
       {
         "id": "a",
-        "text": "1.15"
-      },
-      {
-        "id": "b",
-        "text": "1.33"
-      },
-      {
-        "id": "c",
         "text": "2.37"
       },
       {
-        "id": "d",
+        "id": "b",
+        "text": "1.15"
+      },
+      {
+        "id": "c",
         "text": "1.78"
+      },
+      {
+        "id": "d",
+        "text": "1.33"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "(200/150)² = 1.78. VFE limits protect the flap structure and mechanism from this growth.",
-    "tags": ["vfe", "flap-load", "calculation"],
+    "tags": [
+      "vfe",
+      "flap-load",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -728,24 +806,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Extends the flap at high speed"
+        "text": "Extends the flap at high speed, which keeps the flap in its deployed position regardless of how fast the aircraft is flying at the time of the event"
       },
       {
         "id": "b",
-        "text": "Reduces flap drag at low speed"
-      },
-      {
-        "id": "c",
         "text": "Retracts the flap automatically when airspeed exceeds its limit for that setting"
       },
       {
+        "id": "c",
+        "text": "Extends the flap at high speed"
+      },
+      {
         "id": "d",
-        "text": "Locks the flap at any speed"
+        "text": "Reduces flap drag at low speed"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "It prevents structural overload from over-speed with flap extended by moving to a lesser setting until speed falls.",
-    "tags": ["flap-load-relief"],
+    "tags": [
+      "flap-load-relief"
+    ],
     "status": "published",
     "version": 1
   },
@@ -758,11 +838,11 @@
     "options": [
       {
         "id": "a",
-        "text": "No roll"
+        "text": "No roll, because the extended flap produces drag on its own side only and the resulting yawing moment is then balanced by the rudder without any lateral input"
       },
       {
         "id": "b",
-        "text": "A roll toward the side with more flap"
+        "text": "A roll toward the side with less flap, requiring large lateral control"
       },
       {
         "id": "c",
@@ -770,12 +850,15 @@
       },
       {
         "id": "d",
-        "text": "A roll toward the side with less flap, requiring large lateral control"
+        "text": "A roll toward the side with more flap"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "The fully flapped wing has more lift and rolls up. Most systems detect asymmetry and stop flap movement.",
-    "tags": ["flap-asymmetry", "roll"],
+    "tags": [
+      "flap-asymmetry",
+      "roll"
+    ],
     "status": "published",
     "version": 1
   },
@@ -788,11 +871,11 @@
     "options": [
       {
         "id": "a",
-        "text": "It reduces drag while keeping CLmax margin at the current speed"
+        "text": "Full retraction improves CLmax"
       },
       {
         "id": "b",
-        "text": "It moves the CG forward"
+        "text": "It moves the CG forward, since the aircraft is lightened by the flap retraction and this moves the balance point of the aircraft forward in every case"
       },
       {
         "id": "c",
@@ -800,12 +883,15 @@
       },
       {
         "id": "d",
-        "text": "Full retraction improves CLmax"
+        "text": "It reduces drag while keeping CLmax margin at the current speed"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Retracting fully at approach speed would put the aircraft near or below the clean stall speed (e.g. 1.2 VS,flap = 0.95 VS,clean for CLmax 2.4 → 1.5).",
-    "tags": ["go-around", "flap-retraction"],
+    "tags": [
+      "go-around",
+      "flap-retraction"
+    ],
     "status": "published",
     "version": 1
   },
@@ -818,24 +904,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Each configuration has a different stalling angle of attack"
-      },
-      {
-        "id": "b",
-        "text": "Flaps change the weight"
-      },
-      {
-        "id": "c",
         "text": "Stall speed is independent of configuration"
       },
       {
+        "id": "b",
+        "text": "Slats remove the stall, since the leading-edge device prevents the wing from ever reaching its stalling angle in any configuration and so the warning is not needed"
+      },
+      {
+        "id": "c",
+        "text": "Flaps change the weight"
+      },
+      {
         "id": "d",
-        "text": "Slats remove the stall"
+        "text": "Each configuration has a different stalling angle of attack"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Flaps lower α_stall; slats raise it. An α-based warning uses a configuration-dependent threshold.",
-    "tags": ["stall-warning", "configuration"],
+    "tags": [
+      "stall-warning",
+      "configuration"
+    ],
     "status": "published",
     "version": 1
   },
@@ -848,7 +937,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Landing does not need CLmax"
+        "text": "Large flaps increase lift-off speed"
       },
       {
         "id": "b",
@@ -856,16 +945,20 @@
       },
       {
         "id": "c",
-        "text": "Large flaps cannot be extended on the ground"
+        "text": "Landing does not need CLmax, because the landing speed is set by the runway length alone and so the stall margin is not a factor in choosing the flap setting"
       },
       {
         "id": "d",
-        "text": "Large flaps increase lift-off speed"
+        "text": "Large flaps cannot be extended on the ground"
       }
     ],
     "correct": "b",
     "explanation": "Take-off needs low V_LOF and a good climb gradient ((T − D)/W). Landing benefits from both high CLmax and high drag for a steep, slow approach.",
-    "tags": ["take-off", "landing", "flap-setting"],
+    "tags": [
+      "take-off",
+      "landing",
+      "flap-setting"
+    ],
     "status": "published",
     "version": 1
   },
@@ -878,24 +971,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Lowers V_LOF and reduces climb gradient"
-      },
-      {
-        "id": "b",
         "text": "Shortens the runway required and improves climb"
       },
       {
+        "id": "b",
+        "text": "Lowers V_LOF and reduces climb gradient"
+      },
+      {
         "id": "c",
-        "text": "Raises lift-off speed and runway length but improves the climb gradient"
+        "text": "Has no effect, since the aircraft's climb performance is set by the engine power alone and the flap setting does not change the gradient in any situation"
       },
       {
         "id": "d",
-        "text": "Has no effect"
+        "text": "Raises lift-off speed and runway length but improves the climb gradient"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Less flap → lower CLmax → higher V_LOF → longer run; less drag → higher (T − D)/W. The optimum depends on whether runway or obstacle limits.",
-    "tags": ["take-off", "flap-selection"],
+    "tags": [
+      "take-off",
+      "flap-selection"
+    ],
     "status": "published",
     "version": 1
   },
@@ -908,11 +1004,11 @@
     "options": [
       {
         "id": "a",
-        "text": "×0.77"
+        "text": "×0.88"
       },
       {
         "id": "b",
-        "text": "×0.66"
+        "text": "×0.77"
       },
       {
         "id": "c",
@@ -920,12 +1016,16 @@
       },
       {
         "id": "d",
-        "text": "×0.88"
+        "text": "×0.66"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "(140/160)² = 0.766.",
-    "tags": ["landing", "kinetic-energy", "calculation"],
+    "tags": [
+      "landing",
+      "kinetic-energy",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -938,24 +1038,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Lower approach and touchdown speed (kinetic energy ∝ V²) and higher drag"
+        "text": "It increases tyre friction directly"
       },
       {
         "id": "b",
-        "text": "It increases the landing weight"
+        "text": "Lower approach and touchdown speed (kinetic energy ∝ V²) and higher drag"
       },
       {
         "id": "c",
-        "text": "It reduces the stall angle"
+        "text": "It increases the landing weight"
       },
       {
         "id": "d",
-        "text": "It increases tyre friction directly"
+        "text": "It reduces the stall angle, which lowers the approach speed for the same weight and so the aircraft is able to touch down at a much smaller pitch angle"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Lower V_ref cuts energy by the square of the speed ratio; aerodynamic drag contributes to deceleration in the flare and early roll.",
-    "tags": ["landing-distance", "flaps"],
+    "tags": [
+      "landing-distance",
+      "flaps"
+    ],
     "status": "published",
     "version": 1
   },
@@ -968,24 +1071,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Is increased"
+        "text": "Is unchanged, because the flap alters only the speed at which the stall occurs and leaves the angle of attack at stall exactly as it was in clean flight"
       },
       {
         "id": "b",
-        "text": "Is unchanged"
+        "text": "Is reduced, because the stalling angle is lower"
       },
       {
         "id": "c",
-        "text": "Is reduced, because the stalling angle is lower"
+        "text": "Is unchanged"
       },
       {
         "id": "d",
         "text": "Becomes infinite"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Flaps lower α_stall. Speed margin is preserved by scheduling speeds on the flap stall speed, but α margin shrinks.",
-    "tags": ["stall-margin", "flaps"],
+    "tags": [
+      "stall-margin",
+      "flaps"
+    ],
     "status": "published",
     "version": 1
   },
@@ -998,7 +1104,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Increasing wing area"
+        "text": "Reducing the stall speed of the root"
       },
       {
         "id": "b",
@@ -1010,12 +1116,15 @@
       },
       {
         "id": "d",
-        "text": "Reducing the stall speed of the root"
+        "text": "Reducing the stall speed of the root, which moves the stall inboard and so makes the outboard wing less likely to stall at any angle of attack in the approach"
       }
     ],
     "correct": "c",
     "explanation": "Streamwise vortices transfer momentum toward the wall, delaying separation over the control surface.",
-    "tags": ["vortex-generators", "aileron"],
+    "tags": [
+      "vortex-generators",
+      "aileron"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1028,24 +1137,27 @@
     "options": [
       {
         "id": "a",
-        "text": "12 %"
-      },
-      {
-        "id": "b",
         "text": "6 %"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "23 %"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "30 %"
+      },
+      {
+        "id": "d",
+        "text": "12 %"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "V ∝ CLmax^−½: 1/√1.3 = 0.877.",
-    "tags": ["approach-speed", "calculation"],
+    "tags": [
+      "approach-speed",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1058,11 +1170,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Increase drag and reduce CLmax, raising the stall speed"
+        "text": "Increase CLmax"
       },
       {
         "id": "b",
-        "text": "Reduce drag"
+        "text": "Increase drag and reduce CLmax, raising the stall speed"
       },
       {
         "id": "c",
@@ -1070,12 +1182,15 @@
       },
       {
         "id": "d",
-        "text": "Increase CLmax"
+        "text": "Have no effect on stall speed, since the spoilers only change the drag and leave the lift and the stalling angle of the wing exactly as they were in clean flight"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Spoilers spoil upper-surface lift over part of the span and add form drag; the reduced CLmax means a higher VS while deployed.",
-    "tags": ["spoilers", "stall-speed"],
+    "tags": [
+      "spoilers",
+      "stall-speed"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1088,24 +1203,27 @@
     "options": [
       {
         "id": "a",
-        "text": "They increase lift"
-      },
-      {
-        "id": "b",
         "text": "They reverse thrust"
       },
       {
+        "id": "b",
+        "text": "They reduce tyre friction, which lowers the braking effort the wheels can achieve and so is the main reason ground spoilers are fitted to transport aircraft"
+      },
+      {
         "id": "c",
-        "text": "They reduce tyre friction"
+        "text": "They dump lift, transferring weight onto the wheels, and add drag"
       },
       {
         "id": "d",
-        "text": "They dump lift, transferring weight onto the wheels, and add drag"
+        "text": "They reduce tyre friction"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Braking force = μ·(W − L). Reducing L raises the wheel load and the available friction force.",
-    "tags": ["ground-spoilers", "braking"],
+    "tags": [
+      "ground-spoilers",
+      "braking"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1118,24 +1236,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Only the engine thrust"
-      },
-      {
-        "id": "b",
-        "text": "Only the flap area"
-      },
-      {
-        "id": "c",
         "text": "Only the CG position"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "The balance between wing C_M,ac change and the change in tailplane downwash"
+      },
+      {
+        "id": "c",
+        "text": "Only the flap area, since a larger flap always produces the same pitch change on every aircraft of a given size regardless of its tail or wing design"
+      },
+      {
+        "id": "d",
+        "text": "Only the engine thrust"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Aft camber adds nose-down wing moment; increased downwash reduces tail α (nose-up). Tail height and position decide which dominates.",
-    "tags": ["pitch-change", "flaps"],
+    "tags": [
+      "pitch-change",
+      "flaps"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1148,24 +1269,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Loss of engine thrust"
+        "text": "A reduction in drag"
       },
       {
         "id": "b",
-        "text": "A stall"
+        "text": "A reduction in drag, since the extended flap at high speed streams back and smooths the airflow over the wing and so the aircraft flies more efficiently"
       },
       {
         "id": "c",
-        "text": "Structural overload of the flap and its mechanism"
+        "text": "Loss of engine thrust"
       },
       {
         "id": "d",
-        "text": "A reduction in drag"
+        "text": "Structural overload of the flap and its mechanism"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Air loads grow with q; VFE is set by the flap structure, not by aerodynamic performance.",
-    "tags": ["vfe"],
+    "tags": [
+      "vfe"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1182,20 +1305,23 @@
       },
       {
         "id": "b",
-        "text": "The flap reduces drag"
+        "text": "The weight is lower, because the aircraft has burned off fuel during the approach and so its lighter weight allows a lower pitch attitude at touchdown"
       },
       {
         "id": "c",
-        "text": "The required CL is reached at a lower angle of attack"
+        "text": "The flap reduces drag"
       },
       {
         "id": "d",
-        "text": "The weight is lower"
+        "text": "The required CL is reached at a lower angle of attack"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Camber reduces the α for a given CL; for the same flight path and speed margin, attitude is lower (better view, tail clearance).",
-    "tags": ["pitch-attitude", "landing"],
+    "tags": [
+      "pitch-attitude",
+      "landing"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1208,24 +1334,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Add drag with no benefit, and are limited by a maximum extension speed"
+        "text": "Increase critical Mach number, since the extended slat thins the wing's leading edge and so raises the speed at which the local flow first becomes supersonic"
       },
       {
         "id": "b",
-        "text": "Increase critical Mach number"
+        "text": "Add drag with no benefit, and are limited by a maximum extension speed"
       },
       {
         "id": "c",
-        "text": "Reduce drag"
+        "text": "Increase critical Mach number"
       },
       {
         "id": "d",
         "text": "Increase maximum speed"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Slats help only at high α; at low α they add parasite drag and structural load, so they are retracted in cruise.",
-    "tags": ["slats", "cruise"],
+    "tags": [
+      "slats",
+      "cruise"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1238,7 +1367,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Improve cruise L/D"
+        "text": "Reduce wing loading in cruise"
       },
       {
         "id": "b",
@@ -1246,16 +1375,19 @@
       },
       {
         "id": "c",
-        "text": "Reduce wing loading in cruise"
+        "text": "Are always lighter and add no drag"
       },
       {
         "id": "d",
-        "text": "Are always lighter and add no drag"
+        "text": "Reduce wing loading in cruise, since the devices are retracted at cruise and so the wing carries a lighter load per unit area at all altitudes flown"
       }
     ],
     "correct": "b",
     "explanation": "A larger wing would carry its wetted area and weight into cruise, where CL is low; retractable devices provide lift only when needed.",
-    "tags": ["high-lift", "design-trade-off"],
+    "tags": [
+      "high-lift",
+      "design-trade-off"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1272,7 +1404,7 @@
       },
       {
         "id": "b",
-        "text": "Lower and shifted to higher speed"
+        "text": "Higher and shifted to lower speed"
       },
       {
         "id": "c",
@@ -1280,12 +1412,15 @@
       },
       {
         "id": "d",
-        "text": "Higher and shifted to lower speed"
+        "text": "Lower and shifted to higher speed"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "CD0 rises (curve up); V_md ∝ (k/CD0)^¼ falls (left). Minimum drag speed and stall speed both decrease.",
-    "tags": ["drag-curve", "flaps"],
+    "tags": [
+      "drag-curve",
+      "flaps"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1302,20 +1437,23 @@
       },
       {
         "id": "b",
-        "text": "Increases the stall margin in speed terms but reduces it in angle-of-attack terms"
-      },
-      {
-        "id": "c",
         "text": "Reduces the stall speed and raises the stalling angle"
       },
       {
+        "id": "c",
+        "text": "Increases the stall margin in speed terms but reduces it in angle-of-attack terms"
+      },
+      {
         "id": "d",
-        "text": "Reduces both margins"
+        "text": "Reduces both margins, since flap extension lowers the stall speed and the stalling angle by the same proportion in any turn at a constant bank angle"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "VS falls (larger speed margin) while α_stall falls. The load factor is unchanged by flap; CL demand is reached at a lower α.",
-    "tags": ["stall-margin", "turning-flight"],
+    "tags": [
+      "stall-margin",
+      "turning-flight"
+    ],
     "status": "published",
     "version": 1
   }

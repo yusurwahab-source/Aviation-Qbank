@@ -8,24 +8,28 @@
     "options": [
       {
         "id": "a",
-        "text": "A decrease of about 5 %"
-      },
-      {
-        "id": "b",
         "text": "A decrease of 50 %, since the Celsius temperature doubles from 15 °C to 30 °C"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "No change, since the pressure is constant"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "An increase of about 5 %"
+      },
+      {
+        "id": "d",
+        "text": "A decrease of about 5 %"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "ρ = p/(RT). At constant p, ρ ∝ 1/T with T absolute: ρ₂/ρ₁ = 288/303 = 0.950, a 5.0 % reduction. Celsius values have no proportional meaning in the equation of state.",
-    "tags": ["equation-of-state", "density", "calculation"],
+    "tags": [
+      "equation-of-state",
+      "density",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -38,7 +42,7 @@
     "options": [
       {
         "id": "a",
-        "text": "−44.4 °C"
+        "text": "−5.0 °C"
       },
       {
         "id": "b",
@@ -46,7 +50,7 @@
       },
       {
         "id": "c",
-        "text": "−5.0 °C"
+        "text": "−44.4 °C"
       },
       {
         "id": "d",
@@ -55,7 +59,11 @@
     ],
     "correct": "b",
     "explanation": "Tropospheric lapse rate 1.98 °C per 1,000 ft: T = 15 − 1.98 × 20 = −24.6 °C (248.6 K). −44.4 °C is the 30,000 ft value; −5.0 °C results from a 1 °C/1,000 ft lapse.",
-    "tags": ["standard-atmosphere", "lapse-rate", "calculation"],
+    "tags": [
+      "standard-atmosphere",
+      "lapse-rate",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -68,11 +76,11 @@
     "options": [
       {
         "id": "a",
-        "text": "About 10 % higher"
+        "text": "About 3.9 % higher"
       },
       {
         "id": "b",
-        "text": "About 3.9 % lower"
+        "text": "About 10 % higher"
       },
       {
         "id": "c",
@@ -80,12 +88,16 @@
       },
       {
         "id": "d",
-        "text": "About 3.9 % higher"
+        "text": "About 3.9 % lower"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Standard T at 10,000 ft = −4.8 °C = 268.4 K; actual T = 258.4 K. At equal p, ρ ∝ 1/T: 268.4/258.4 = 1.039 → +3.9 %. The deviation acts through absolute temperature, so 10 K on 268 K is under 4 %.",
-    "tags": ["density", "temperature-deviation", "calculation"],
+    "tags": [
+      "density",
+      "temperature-deviation",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -98,24 +110,28 @@
     "options": [
       {
         "id": "a",
-        "text": "0.863"
-      },
-      {
-        "id": "b",
         "text": "0.533"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "0.460"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "0.397"
+      },
+      {
+        "id": "d",
+        "text": "0.863"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "From p = ρRT: σ = δ/θ = 0.460/0.863 = 0.533. Density falls more slowly than pressure in the troposphere because the temperature falls as well. 0.397 is δ × θ.",
-    "tags": ["density-ratio", "equation-of-state", "calculation"],
+    "tags": [
+      "density-ratio",
+      "equation-of-state",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -132,7 +148,7 @@
       },
       {
         "id": "b",
-        "text": "Air density"
+        "text": "The local speed of sound"
       },
       {
         "id": "c",
@@ -140,12 +156,16 @@
       },
       {
         "id": "d",
-        "text": "The local speed of sound"
+        "text": "Air density"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Between 36,089 ft and 65,617 ft the standard atmosphere is isothermal at 216.65 K. a = √(γRT) depends on T only, so a is constant at ≈ 574 kt. Pressure and density both keep decreasing exponentially, and V_T = V_E/√σ keeps rising.",
-    "tags": ["isothermal-layer", "speed-of-sound", "tropopause"],
+    "tags": [
+      "isothermal-layer",
+      "speed-of-sound",
+      "tropopause"
+    ],
     "status": "published",
     "version": 1
   },
@@ -158,7 +178,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Lower density, so a lower density altitude"
+        "text": "Lower density, so a higher density altitude"
       },
       {
         "id": "b",
@@ -170,12 +190,15 @@
       },
       {
         "id": "d",
-        "text": "Lower density, so a higher density altitude"
+        "text": "Lower density, so a lower density altitude"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Water vapour (molar mass 18) displaces dry air (molar mass ≈ 29). At constant p and T the mixture's gas constant rises, so ρ = p/(RT) falls. Lower density corresponds to a higher density altitude: lower thrust, lower lift at a given TAS, longer take-off distance.",
-    "tags": ["humidity", "density-altitude"],
+    "tags": [
+      "humidity",
+      "density-altitude"
+    ],
     "status": "published",
     "version": 1
   },
@@ -192,7 +215,7 @@
       },
       {
         "id": "b",
-        "text": "7,300 ft"
+        "text": "5,000 ft"
       },
       {
         "id": "c",
@@ -200,12 +223,15 @@
       },
       {
         "id": "d",
-        "text": "5,000 ft"
+        "text": "7,300 ft"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Standard T at 5,000 ft = 15 − 9.9 = 5.1 °C; deviation = +19.9 °C. Density altitude ≈ PA + 120 ft/°C × deviation = 5,000 + 2,390 ≈ 7,400 ft; the exact density solution gives ≈ 7,260 ft. 9,800 ft results from 240 ft/°C.",
-    "tags": ["density-altitude", "calculation"],
+    "tags": [
+      "density-altitude",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -218,24 +244,27 @@
     "options": [
       {
         "id": "a",
-        "text": "661 kt"
+        "text": "612 kt"
       },
       {
         "id": "b",
-        "text": "574 kt"
+        "text": "661 kt"
       },
       {
         "id": "c",
-        "text": "612 kt"
+        "text": "574 kt"
       },
       {
         "id": "d",
         "text": "520 kt"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "a = 38.97√T kt with T in kelvin: 38.97 × √216.65 = 38.97 × 14.72 = 574 kt. 661 kt is the sea-level value at 288.15 K. The speed of sound is independent of pressure.",
-    "tags": ["speed-of-sound", "calculation"],
+    "tags": [
+      "speed-of-sound",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -248,7 +277,7 @@
     "options": [
       {
         "id": "a",
-        "text": "σ is smaller than δ, because density falls faster than pressure"
+        "text": "σ (≈ 0.374) exceeds δ (≈ 0.297), because σ = δ/θ and θ < 1"
       },
       {
         "id": "b",
@@ -256,16 +285,19 @@
       },
       {
         "id": "c",
-        "text": "σ (≈ 0.374) exceeds δ (≈ 0.297), because σ = δ/θ and θ < 1"
+        "text": "σ is smaller than δ, because density falls faster than pressure"
       },
       {
         "id": "d",
         "text": "σ equals δ², since density depends on pressure squared"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "θ at FL300 = 228.7/288.15 = 0.794. σ = δ/θ = 0.297/0.794 = 0.374. The colder air is denser than the pressure ratio alone implies, so density falls more slowly than pressure throughout the troposphere.",
-    "tags": ["density-ratio", "pressure-ratio"],
+    "tags": [
+      "density-ratio",
+      "pressure-ratio"
+    ],
     "status": "published",
     "version": 1
   },
@@ -278,7 +310,7 @@
     "options": [
       {
         "id": "a",
-        "text": "1.62 kPa"
+        "text": "6.13 kPa"
       },
       {
         "id": "b",
@@ -286,16 +318,19 @@
       },
       {
         "id": "c",
-        "text": "31.5 Pa"
+        "text": "1.62 kPa"
       },
       {
         "id": "d",
-        "text": "6.13 kPa"
+        "text": "31.5 Pa"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "100 kt = 51.44 m/s; q = ½ρV² = 0.6125 × 2,646 = 1,621 Pa. 6.13 kPa results from entering 100 in m/s units; 3.24 kPa omits ½.",
-    "tags": ["dynamic-pressure", "calculation"],
+    "tags": [
+      "dynamic-pressure",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -308,24 +343,27 @@
     "options": [
       {
         "id": "a",
-        "text": "1.18"
+        "text": "1.40"
       },
       {
         "id": "b",
-        "text": "2.74"
-      },
-      {
-        "id": "c",
         "text": "1.96"
       },
       {
+        "id": "c",
+        "text": "2.74"
+      },
+      {
         "id": "d",
-        "text": "1.40"
+        "text": "1.18"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "q ∝ V²: 1.4² = 1.96. Aerodynamic forces at constant coefficients scale identically; power required scales with V³ (2.74).",
-    "tags": ["dynamic-pressure", "proportionality"],
+    "tags": [
+      "dynamic-pressure",
+      "proportionality"
+    ],
     "status": "published",
     "version": 1
   },
@@ -338,24 +376,28 @@
     "options": [
       {
         "id": "a",
-        "text": "141 kt"
+        "text": "71 kt"
       },
       {
         "id": "b",
-        "text": "51 kt"
-      },
-      {
-        "id": "c",
         "text": "100 kt"
       },
       {
+        "id": "c",
+        "text": "51 kt"
+      },
+      {
         "id": "d",
-        "text": "71 kt"
+        "text": "141 kt"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "p_t − p = ½ρV² → V = √(2 × 1,620/1.225) = 51.4 m/s = 100 kt. Dropping the factor 2 gives 71 kt; 51 is the m/s value misread as knots.",
-    "tags": ["pitot-static", "bernoulli", "calculation"],
+    "tags": [
+      "pitot-static",
+      "bernoulli",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -372,7 +414,7 @@
       },
       {
         "id": "b",
-        "text": "342 kt"
+        "text": "133 kt"
       },
       {
         "id": "c",
@@ -380,12 +422,16 @@
       },
       {
         "id": "d",
-        "text": "133 kt"
+        "text": "342 kt"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "V_T = V_E/√σ = 250/0.730 = 342 kt. Dividing by σ instead of √σ gives 469 kt.",
-    "tags": ["tas", "eas", "calculation"],
+    "tags": [
+      "tas",
+      "eas",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -398,24 +444,27 @@
     "options": [
       {
         "id": "a",
-        "text": "0.92"
-      },
-      {
-        "id": "b",
         "text": "0.78"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "0.76"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "0.68"
+      },
+      {
+        "id": "d",
+        "text": "0.92"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "a = 38.97√228.7 = 589 kt; M = 450/589 = 0.76. 0.68 uses the sea-level speed of sound (661 kt); 0.78 uses the isothermal-layer value (574 kt).",
-    "tags": ["mach-number", "calculation"],
+    "tags": [
+      "mach-number",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -428,24 +477,28 @@
     "options": [
       {
         "id": "a",
-        "text": "q and TAS unchanged; CL increases by 88 %"
-      },
-      {
-        "id": "b",
-        "text": "q falls by 47 %; CL and TAS unchanged"
-      },
-      {
-        "id": "c",
         "text": "q unchanged; CL falls; TAS increases by 88 %"
       },
       {
-        "id": "d",
+        "id": "b",
+        "text": "q and TAS unchanged; CL increases by 88 %"
+      },
+      {
+        "id": "c",
         "text": "q and CL unchanged; TAS increases by about 37 %"
+      },
+      {
+        "id": "d",
+        "text": "q falls by 47 %; CL and TAS unchanged, because the density ratio alone sets the dynamic pressure at constant equivalent airspeed and so q falls with it"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "q = ½ρ₀V_E², so constant EAS is constant q. With L = W, CL = W/(qS) is constant, and so is α. V_T = V_E/√σ = V_E/0.730 → +37 %.",
-    "tags": ["eas", "dynamic-pressure", "climb"],
+    "tags": [
+      "eas",
+      "dynamic-pressure",
+      "climb"
+    ],
     "status": "published",
     "version": 1
   },
@@ -462,7 +515,7 @@
       },
       {
         "id": "b",
-        "text": "TAS and CAS both decrease"
+        "text": "TAS remains constant and CAS increases"
       },
       {
         "id": "c",
@@ -470,12 +523,16 @@
       },
       {
         "id": "d",
-        "text": "TAS remains constant and CAS increases"
+        "text": "TAS and CAS both decrease"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Both levels lie in the isothermal layer (216.65 K), so a is constant and V_T = M·a is constant. Density increases in the descent, so EAS = V_T√σ increases, and CAS with it.",
-    "tags": ["mach-number", "cas", "isothermal-layer"],
+    "tags": [
+      "mach-number",
+      "cas",
+      "isothermal-layer"
+    ],
     "status": "published",
     "version": 1
   },
@@ -492,7 +549,7 @@
       },
       {
         "id": "b",
-        "text": "Higher than TAS at the same instant"
+        "text": "Higher, because compressed air in the pitot over-reads"
       },
       {
         "id": "c",
@@ -500,12 +557,16 @@
       },
       {
         "id": "d",
-        "text": "Higher, because compressed air in the pitot over-reads"
+        "text": "Higher than TAS at the same instant, because compressed air in the pitot tube always over-reads the true speed of the aircraft through the air mass"
       }
     ],
     "correct": "a",
     "explanation": "CAS is calibrated with the sea-level compressible relation. At altitude and high speed, compression of the ram air raises measured impact pressure above ½ρV², so CAS over-states EAS; EAS = CAS − ΔVc. The chain is IAS → CAS → EAS → TAS, with EAS < TAS above sea level.",
-    "tags": ["eas", "cas", "compressibility"],
+    "tags": [
+      "eas",
+      "cas",
+      "compressibility"
+    ],
     "status": "published",
     "version": 1
   },
@@ -518,24 +579,28 @@
     "options": [
       {
         "id": "a",
-        "text": "12.2 kPa at 20,000 ft, since TAS is higher"
+        "text": "6.48 kPa at every altitude"
       },
       {
         "id": "b",
-        "text": "6.48 kPa at sea level, falling in proportion to σ with altitude"
-      },
-      {
-        "id": "c",
         "text": "3.45 kPa at 20,000 ft, since ρ is 0.533 ρ₀"
       },
       {
+        "id": "c",
+        "text": "12.2 kPa at 20,000 ft, since TAS is higher"
+      },
+      {
         "id": "d",
-        "text": "6.48 kPa at every altitude"
+        "text": "6.48 kPa at sea level, falling in proportion to σ with altitude"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "EAS is defined by q = ½ρ₀V_E². 200 kt = 102.9 m/s: q = 0.6125 × 10,586 = 6,484 Pa, independent of altitude. The higher TAS at altitude exactly offsets the lower density.",
-    "tags": ["eas", "dynamic-pressure", "calculation"],
+    "tags": [
+      "eas",
+      "dynamic-pressure",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -548,24 +613,27 @@
     "options": [
       {
         "id": "a",
-        "text": "118 kt"
-      },
-      {
-        "id": "b",
         "text": "169 kt"
       },
       {
+        "id": "b",
+        "text": "133 kt"
+      },
+      {
         "id": "c",
-        "text": "191 kt"
+        "text": "118 kt"
       },
       {
         "id": "d",
-        "text": "133 kt"
+        "text": "191 kt"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "At low speed EAS ≈ CAS. V_T = 150/√0.786 = 150/0.887 = 169 kt. 191 kt divides by σ; 133 kt multiplies by √σ.",
-    "tags": ["tas", "calculation"],
+    "tags": [
+      "tas",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -582,20 +650,24 @@
       },
       {
         "id": "b",
-        "text": "0.83 to 0.85"
-      },
-      {
-        "id": "c",
         "text": "0.83 to 0.81"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "0.83 to 0.83, since Mach number depends only on pressure altitude"
+      },
+      {
+        "id": "d",
+        "text": "0.83 to 0.85"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Standard T at FL350 = 218.8 K: a = 38.97√218.8 = 576 kt, M = 0.833. At 233.8 K: a = 596 kt, M = 0.806. Warmer air raises a ∝ √T, reducing M for the same TAS.",
-    "tags": ["mach-number", "temperature-deviation", "calculation"],
+    "tags": [
+      "mach-number",
+      "temperature-deviation",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -608,7 +680,7 @@
     "options": [
       {
         "id": "a",
-        "text": "+9.5 %"
+        "text": "+4.7 %"
       },
       {
         "id": "b",
@@ -620,12 +692,16 @@
       },
       {
         "id": "d",
-        "text": "+4.7 %"
+        "text": "+9.5 %"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "V_E = √(2W/(ρ₀·S·CL)) ∝ √W: √1.2 = 1.095. Every speed tied to a fixed CL (stall, best L/D, minimum drag) scales with √W.",
-    "tags": ["lift-equation", "weight", "proportionality"],
+    "tags": [
+      "lift-equation",
+      "weight",
+      "proportionality"
+    ],
     "status": "published",
     "version": 1
   },
@@ -638,24 +714,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Higher, because the air is less dense"
-      },
-      {
-        "id": "b",
-        "text": "The same"
-      },
-      {
-        "id": "c",
         "text": "Lower, because TAS is higher"
       },
       {
-        "id": "d",
+        "id": "b",
+        "text": "Higher, because the air is less dense"
+      },
+      {
+        "id": "c",
         "text": "Higher, in proportion to 1/σ"
+      },
+      {
+        "id": "d",
+        "text": "The same"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Equal EAS gives equal q = ½ρ₀V_E². With L = W and S fixed, CL = W/(qS) is identical, so α is identical. Density changes are fully absorbed into the higher TAS.",
-    "tags": ["eas", "angle-of-attack"],
+    "tags": [
+      "eas",
+      "angle-of-attack"
+    ],
     "status": "published",
     "version": 1
   },
@@ -668,24 +747,28 @@
     "options": [
       {
         "id": "a",
-        "text": "Doubled"
-      },
-      {
-        "id": "b",
-        "text": "Unchanged"
-      },
-      {
-        "id": "c",
         "text": "Halved"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "Increased by a factor of 1.41"
+      },
+      {
+        "id": "c",
+        "text": "Doubled"
+      },
+      {
+        "id": "d",
+        "text": "Unchanged"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "q = ½ρV_T². At constant TAS, q ∝ σ = 0.5. CL = W/(qS) ∝ 1/σ → ×2.",
-    "tags": ["lift-coefficient", "density", "proportionality"],
+    "tags": [
+      "lift-coefficient",
+      "density",
+      "proportionality"
+    ],
     "status": "published",
     "version": 1
   },
@@ -698,11 +781,11 @@
     "options": [
       {
         "id": "a",
-        "text": "−44 %"
+        "text": "−8.3 %"
       },
       {
         "id": "b",
-        "text": "−30.6 %"
+        "text": "−44 %"
       },
       {
         "id": "c",
@@ -710,12 +793,16 @@
       },
       {
         "id": "d",
-        "text": "−8.3 %"
+        "text": "−30.6 %"
       }
     ],
     "correct": "c",
     "explanation": "V_S = √(2W/(ρ₀·S·CLmax)) ∝ 1/√S: 1/√1.44 = 1/1.2 = 0.833. The wing loading falls by 30.6 %; the stall speed by its square root.",
-    "tags": ["stall-speed", "wing-loading", "calculation"],
+    "tags": [
+      "stall-speed",
+      "wing-loading",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -728,7 +815,7 @@
     "options": [
       {
         "id": "a",
-        "text": "11.4"
+        "text": "22.9"
       },
       {
         "id": "b",
@@ -736,16 +823,20 @@
       },
       {
         "id": "c",
-        "text": "22.9"
+        "text": "0.087"
       },
       {
         "id": "d",
-        "text": "0.087"
+        "text": "11.4"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Steady glide: L = W cosγ, D = W sinγ → tanγ = D/L. L/D = 1/tan5° = 1/0.0875 = 11.4. Glide ratio (distance/height) equals L/D.",
-    "tags": ["glide", "lift-drag-ratio", "calculation"],
+    "tags": [
+      "glide",
+      "lift-drag-ratio",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -758,24 +849,28 @@
     "options": [
       {
         "id": "a",
-        "text": "Glide speed increases by 21 %; sink rate is unchanged"
+        "text": "Still-air range decreases by 21 %"
       },
       {
         "id": "b",
-        "text": "Glide angle and still-air range are unchanged; glide speed and sink rate both increase by 10 %"
+        "text": "Glide angle steepens by 21 %, because the heavier aircraft must descend on a steeper path to keep its speed constant and so loses height more quickly over the ground"
       },
       {
         "id": "c",
-        "text": "Glide angle steepens by 21 %"
+        "text": "Glide speed increases by 21 %; sink rate is unchanged"
       },
       {
         "id": "d",
-        "text": "Still-air range decreases by 21 %"
+        "text": "Glide angle and still-air range are unchanged; glide speed and sink rate both increase by 10 %"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "At fixed α, CL and CD are fixed, so tanγ = CD/CL is unchanged. V ∝ √W → ×1.1; sink rate = V·sinγ → ×1.1. The heavier aircraft covers the same distance in less time.",
-    "tags": ["glide", "weight", "proportionality"],
+    "tags": [
+      "glide",
+      "weight",
+      "proportionality"
+    ],
     "status": "published",
     "version": 1
   },
@@ -788,24 +883,28 @@
     "options": [
       {
         "id": "a",
-        "text": "84.3°"
-      },
-      {
-        "id": "b",
-        "text": "5.7°"
-      },
-      {
-        "id": "c",
         "text": "10.0°"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "0.1°"
+      },
+      {
+        "id": "c",
+        "text": "84.3°"
+      },
+      {
+        "id": "d",
+        "text": "5.7°"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Along the path: T − D − W sinγ = 0 → sinγ = (T − D)/W = 5,000/50,000 = 0.10 → γ = 5.74°. The angle is set by excess thrust per unit weight.",
-    "tags": ["climb-gradient", "excess-thrust", "calculation"],
+    "tags": [
+      "climb-gradient",
+      "excess-thrust",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -818,15 +917,15 @@
     "options": [
       {
         "id": "a",
-        "text": "800 ft/min"
-      },
-      {
-        "id": "b",
         "text": "480 ft/min"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "15,750 ft/min"
+      },
+      {
+        "id": "c",
+        "text": "800 ft/min"
       },
       {
         "id": "d",
@@ -835,7 +934,11 @@
     ],
     "correct": "d",
     "explanation": "ROC = V·sinγ = V(T − D)/W = 80 × 0.10 = 8 m/s = 8 × 196.85 = 1,575 ft/min. Equivalently ROC = excess power / weight = (T − D)V/W.",
-    "tags": ["rate-of-climb", "excess-power", "calculation"],
+    "tags": [
+      "rate-of-climb",
+      "excess-power",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -848,24 +951,28 @@
     "options": [
       {
         "id": "a",
-        "text": "100 kt"
+        "text": "200 kt"
       },
       {
         "id": "b",
-        "text": "141 kt"
+        "text": "100 kt"
       },
       {
         "id": "c",
-        "text": "119 kt"
+        "text": "141 kt"
       },
       {
         "id": "d",
-        "text": "200 kt"
+        "text": "119 kt"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "n = 1/cos60° = 2. V_S,turn = V_S√n = 100 × 1.414 = 141 kt. Stall speed scales with √n, not n.",
-    "tags": ["turning-flight", "stall-speed", "load-factor"],
+    "tags": [
+      "turning-flight",
+      "stall-speed",
+      "load-factor"
+    ],
     "status": "published",
     "version": 1
   },
@@ -878,24 +985,28 @@
     "options": [
       {
         "id": "a",
-        "text": "48.2°"
-      },
-      {
-        "id": "b",
-        "text": "41.8°"
-      },
-      {
-        "id": "c",
         "text": "33.7°"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "60.0°"
+      },
+      {
+        "id": "c",
+        "text": "48.2°"
+      },
+      {
+        "id": "d",
+        "text": "41.8°"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "n = 1/cosφ → cosφ = 1/1.5 = 0.667 → φ = 48.2°. arcsin(0.667) = 41.8° and arctan(0.667) = 33.7° are wrong trigonometric functions.",
-    "tags": ["load-factor", "bank-angle", "calculation"],
+    "tags": [
+      "load-factor",
+      "bank-angle",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -908,7 +1019,7 @@
     "options": [
       {
         "id": "a",
-        "text": "2,100 m"
+        "text": "1,050 m"
       },
       {
         "id": "b",
@@ -916,16 +1027,19 @@
       },
       {
         "id": "c",
-        "text": "1,050 m"
+        "text": "350 m"
       },
       {
         "id": "d",
-        "text": "350 m"
+        "text": "2,100 m"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "r = V²/(g·tanφ). 150 kt = 77.2 m/s: r = 5,955/(9.81 × 0.577) = 1,051 m. 1,210 m uses sin30°; 350 m uses tan60°.",
-    "tags": ["turn-radius", "calculation"],
+    "tags": [
+      "turn-radius",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -955,7 +1069,11 @@
     ],
     "correct": "b",
     "explanation": "ω = g·tanφ/V → tanφ = ωV/g = 0.05236 × 61.7/9.81 = 0.329 → φ = 18.2°. The approximation φ ≈ V/10 + 7 (kt) gives 19°.",
-    "tags": ["rate-of-turn", "bank-angle", "calculation"],
+    "tags": [
+      "rate-of-turn",
+      "bank-angle",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -968,24 +1086,28 @@
     "options": [
       {
         "id": "a",
-        "text": "Radius ×4; rate ×2"
+        "text": "Radius ×4; rate ×½"
       },
       {
         "id": "b",
-        "text": "Radius ×2; rate unchanged"
+        "text": "Radius ×4; rate ×2"
       },
       {
         "id": "c",
-        "text": "Radius ×2; rate ×½"
+        "text": "Radius ×2; rate unchanged"
       },
       {
         "id": "d",
-        "text": "Radius ×4; rate ×½"
+        "text": "Radius ×2; rate ×½"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "r = V²/(g·tanφ) ∝ V² → ×4. ω = V/r = g·tanφ/V ∝ 1/V → ×½. Bank angle alone fixes n; speed then sets radius and rate.",
-    "tags": ["turn-radius", "rate-of-turn", "proportionality"],
+    "tags": [
+      "turn-radius",
+      "rate-of-turn",
+      "proportionality"
+    ],
     "status": "published",
     "version": 1
   },
@@ -998,7 +1120,7 @@
     "options": [
       {
         "id": "a",
-        "text": "CL ×1.41; induced drag ×2"
+        "text": "CL unchanged; induced drag ×1.41"
       },
       {
         "id": "b",
@@ -1010,12 +1132,16 @@
       },
       {
         "id": "d",
-        "text": "CL unchanged; induced drag ×1.41"
+        "text": "CL ×1.41; induced drag ×2"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "n = 1/cos45° = 1.414, and at constant q, CL ∝ n. D_i = q·S·CL²/(πeA) ∝ CL² ∝ n² = 2. Profile drag is unchanged at constant q (to first order).",
-    "tags": ["induced-drag", "load-factor", "turning-flight"],
+    "tags": [
+      "induced-drag",
+      "load-factor",
+      "turning-flight"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1028,24 +1154,28 @@
     "options": [
       {
         "id": "a",
-        "text": "1.30"
-      },
-      {
-        "id": "b",
-        "text": "1.69"
-      },
-      {
-        "id": "c",
         "text": "2.20"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "1.14"
+      },
+      {
+        "id": "c",
+        "text": "1.30"
+      },
+      {
+        "id": "d",
+        "text": "1.69"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "At CLmax, L = n·W = ½ρV²S·CLmax, and at V_S, W = ½ρV_S²S·CLmax. Dividing: n_max = (V/V_S)² = 1.3² = 1.69.",
-    "tags": ["load-factor", "stall-margin", "calculation"],
+    "tags": [
+      "load-factor",
+      "stall-margin",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1058,24 +1188,28 @@
     "options": [
       {
         "id": "a",
-        "text": "45°"
+        "text": "60°"
       },
       {
         "id": "b",
-        "text": "40°"
-      },
-      {
-        "id": "c",
         "text": "54°"
       },
       {
+        "id": "c",
+        "text": "40°"
+      },
+      {
         "id": "d",
-        "text": "60°"
+        "text": "45°"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "n_max = 1.69 → φ = arccos(1/1.69) = arccos(0.592) = 53.7°. 40° is arccos(1/1.3), the error of using V/V_S instead of (V/V_S)².",
-    "tags": ["bank-angle", "stall-margin", "calculation"],
+    "tags": [
+      "bank-angle",
+      "stall-margin",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1088,15 +1222,15 @@
     "options": [
       {
         "id": "a",
-        "text": "12,400 ft"
-      },
-      {
-        "id": "b",
         "text": "5,200 ft"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "10,000 ft"
+      },
+      {
+        "id": "c",
+        "text": "12,400 ft"
       },
       {
         "id": "d",
@@ -1105,7 +1239,10 @@
     ],
     "correct": "d",
     "explanation": "Density altitude ≈ PA + 120 ft/°C × deviation = 10,000 − 2,400 = 7,600 ft. Cold air is denser, so density altitude is below pressure altitude.",
-    "tags": ["density-altitude", "calculation"],
+    "tags": [
+      "density-altitude",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1118,24 +1255,28 @@
     "options": [
       {
         "id": "a",
-        "text": "16"
+        "text": "2"
       },
       {
         "id": "b",
-        "text": "4"
+        "text": "16"
       },
       {
         "id": "c",
-        "text": "8"
+        "text": "4"
       },
       {
         "id": "d",
-        "text": "2"
+        "text": "8"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "P = D·V ∝ V²·V = V³ → 2³ = 8. Drag itself rises by 4.",
-    "tags": ["power", "drag", "proportionality"],
+    "tags": [
+      "power",
+      "drag",
+      "proportionality"
+    ],
     "status": "published",
     "version": 1
   }

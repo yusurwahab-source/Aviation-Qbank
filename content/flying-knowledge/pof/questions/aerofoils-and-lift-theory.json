@@ -8,7 +8,7 @@
     "options": [
       {
         "id": "a",
-        "text": "A shallower lift-curve slope and a higher stalling angle"
+        "text": "A steeper slope and a higher CLmax"
       },
       {
         "id": "b",
@@ -16,16 +16,20 @@
       },
       {
         "id": "c",
-        "text": "The same slope and stalling angle"
+        "text": "A shallower lift-curve slope and a higher stalling angle"
       },
       {
         "id": "d",
-        "text": "A steeper slope and a higher CLmax"
+        "text": "The same slope and stalling angle, since the wing's planform is what sets the lift-curve slope and the section alone decides the stalling angle"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Lower A → larger α_i per unit CL, so a = a₀/(1 + a₀/(πA)) is smaller. The wing reaches the section's stalling α_eff only at a higher geometric α. CLmax is similar or slightly lower.",
-    "tags": ["aspect-ratio", "stall-angle", "lift-curve-slope"],
+    "tags": [
+      "aspect-ratio",
+      "stall-angle",
+      "lift-curve-slope"
+    ],
     "status": "published",
     "version": 1
   },
@@ -38,7 +42,7 @@
     "options": [
       {
         "id": "a",
-        "text": "At mid-semi-span"
+        "text": "At the root"
       },
       {
         "id": "b",
@@ -46,16 +50,19 @@
       },
       {
         "id": "c",
-        "text": "At the root"
+        "text": "At mid-semi-span"
       },
       {
         "id": "d",
         "text": "Simultaneously across the span"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Downwash is strongest near the tips of a rectangular wing, so local α_eff and cl are highest at the root. The root reaches clmax first; separation at the root gives buffet on the tail and preserves aileron effectiveness.",
-    "tags": ["stall-progression", "rectangular-wing"],
+    "tags": [
+      "stall-progression",
+      "rectangular-wing"
+    ],
     "status": "published",
     "version": 1
   },
@@ -68,7 +75,7 @@
     "options": [
       {
         "id": "a",
-        "text": "A root-stall tendency, because the root chord is largest"
+        "text": "No tendency, since taper affects only drag and the section lift is therefore identical from the root out to the tip along the full span of the wing"
       },
       {
         "id": "b",
@@ -76,7 +83,7 @@
       },
       {
         "id": "c",
-        "text": "Uniform spanwise stall"
+        "text": "A root-stall tendency, because the root chord is largest"
       },
       {
         "id": "d",
@@ -85,7 +92,10 @@
     ],
     "correct": "d",
     "explanation": "Decreasing chord with nearly elliptical load requires higher local cl outboard: cl ∝ loading/chord. Tip sections also operate at lower Re, reducing local clmax. Stall begins outboard, with roll-off and loss of aileron effectiveness.",
-    "tags": ["taper", "tip-stall"],
+    "tags": [
+      "taper",
+      "tip-stall"
+    ],
     "status": "published",
     "version": 1
   },
@@ -98,15 +108,15 @@
     "options": [
       {
         "id": "a",
-        "text": "Increasing camber toward the tip"
+        "text": "Adding dihedral, which tilts the wing and so changes the incidence of every section along the span by an equal amount at all points of the wing"
       },
       {
         "id": "b",
-        "text": "Increasing geometric incidence toward the tip"
+        "text": "Increasing camber toward the tip"
       },
       {
         "id": "c",
-        "text": "Adding dihedral"
+        "text": "Increasing geometric incidence toward the tip"
       },
       {
         "id": "d",
@@ -115,7 +125,10 @@
     ],
     "correct": "d",
     "explanation": "A less-cambered tip produces less lift at the same geometric incidence (smaller α − α₀), which has the same effect as a geometric twist of α₀,root − α₀,tip.",
-    "tags": ["aerodynamic-washout", "camber"],
+    "tags": [
+      "aerodynamic-washout",
+      "camber"
+    ],
     "status": "published",
     "version": 1
   },
@@ -128,7 +141,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Sweep reduces local cl at the tips"
+        "text": "Sweep moves the aerodynamic centre forward"
       },
       {
         "id": "b",
@@ -136,16 +149,20 @@
       },
       {
         "id": "c",
-        "text": "Sweep moves the aerodynamic centre forward"
+        "text": "Tips operate at higher Reynolds number"
       },
       {
         "id": "d",
-        "text": "Tips operate at higher Reynolds number"
+        "text": "Tips operate at higher Reynolds number, which makes the tip boundary layer thicker and so causes it to separate sooner than the root in every case"
       }
     ],
     "correct": "b",
     "explanation": "The spanwise pressure gradient drives low-energy boundary-layer air outboard, thickening it at the tips. The swept geometry loads the outer panels. Tip stall moves the centre of lift forward and produces pitch-up.",
-    "tags": ["sweepback", "tip-stall", "spanwise-flow"],
+    "tags": [
+      "sweepback",
+      "tip-stall",
+      "spanwise-flow"
+    ],
     "status": "published",
     "version": 1
   },
@@ -158,24 +175,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Reduced downwash and induced drag, and an increased lift-curve slope"
-      },
-      {
-        "id": "b",
         "text": "Increased downwash and induced drag"
       },
       {
+        "id": "b",
+        "text": "No change in lift or drag, because the ground only alters the flow over the tail and has no measurable influence on the wing itself at any height"
+      },
+      {
         "id": "c",
-        "text": "Reduced lift and increased induced drag"
+        "text": "Reduced downwash and induced drag, and an increased lift-curve slope"
       },
       {
         "id": "d",
-        "text": "No change in lift or drag"
+        "text": "Reduced lift and increased induced drag"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "The ground constrains the vertical velocity of the trailing vortex system (image vortices), reducing downwash. α_eff rises toward α, raising CL for a given α and lowering CD,i. The reduced downwash at the tail also reduces the tail download, producing nose-down pitch.",
-    "tags": ["ground-effect", "downwash"],
+    "tags": [
+      "ground-effect",
+      "downwash"
+    ],
     "status": "published",
     "version": 1
   }

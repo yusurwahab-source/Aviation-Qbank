@@ -8,24 +8,27 @@
     "options": [
       {
         "id": "a",
-        "text": "A yawing moment that turns the nose into the relative wind (Cn_β > 0)"
+        "text": "A yawing moment away from the relative wind"
       },
       {
         "id": "b",
-        "text": "No yawing moment"
+        "text": "No yawing moment, since a sideslip creates no change in the fin's force in any case"
       },
       {
         "id": "c",
-        "text": "A rolling moment only"
+        "text": "A yawing moment that turns the nose into the relative wind (Cn_β > 0)"
       },
       {
         "id": "d",
-        "text": "A yawing moment away from the relative wind"
+        "text": "A rolling moment only"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "The fin, aft of the CG, generates side force from β that yaws the nose toward the oncoming flow, reducing β.",
-    "tags": ["directional-stability", "cn-beta"],
+    "tags": [
+      "directional-stability",
+      "cn-beta"
+    ],
     "status": "published",
     "version": 1
   },
@@ -42,20 +45,23 @@
       },
       {
         "id": "b",
-        "text": "Destabilisingly, since its side area ahead of the CG produces a yawing moment away from the wind"
-      },
-      {
-        "id": "c",
         "text": "Stabilisingly"
       },
       {
+        "id": "c",
+        "text": "Not at all, because the fuselage is fully symmetrical and produces no side force in any sideslip condition"
+      },
+      {
         "id": "d",
-        "text": "Not at all"
+        "text": "Destabilisingly, since its side area ahead of the CG produces a yawing moment away from the wind"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "The forward fuselage in sideslip acts like a lifting body ahead of the CG, turning the nose further away.",
-    "tags": ["fuselage", "directional-stability"],
+    "tags": [
+      "fuselage",
+      "directional-stability"
+    ],
     "status": "published",
     "version": 1
   },
@@ -68,24 +74,27 @@
     "options": [
       {
         "id": "a",
-        "text": "It adds weight aft"
-      },
-      {
-        "id": "b",
         "text": "It moves the CG aft"
       },
       {
+        "id": "b",
+        "text": "It adds weight aft, which increases the aircraft's stability in every flight condition"
+      },
+      {
         "id": "c",
-        "text": "It reduces fin area"
+        "text": "It creates a vortex that delays fin stall, keeping the fin's side force rising"
       },
       {
         "id": "d",
-        "text": "It creates a vortex that delays fin stall, keeping the fin's side force rising"
+        "text": "It reduces fin area"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "The low-aspect-ratio dorsal extension behaves like a strake, maintaining attached flow over the fin at high β.",
-    "tags": ["dorsal-fin", "fin-stall"],
+    "tags": [
+      "dorsal-fin",
+      "fin-stall"
+    ],
     "status": "published",
     "version": 1
   },
@@ -110,12 +119,15 @@
       },
       {
         "id": "d",
-        "text": "Nil"
+        "text": "Nil, since sweep only affects the lift of the wing and never the yawing moment, whatever the angle of sideslip"
       }
     ],
     "correct": "c",
     "explanation": "In sideslip the advancing swept wing has a smaller effective sweep, more lift and induced drag, yawing the nose back into the wind.",
-    "tags": ["sweepback", "directional-stability"],
+    "tags": [
+      "sweepback",
+      "directional-stability"
+    ],
     "status": "published",
     "version": 1
   },
@@ -128,24 +140,27 @@
     "options": [
       {
         "id": "a",
-        "text": "The CG moves forward"
+        "text": "The CG moves forward, which pushes the centre of pressure ahead of the fin and so weakens directional stability"
       },
       {
         "id": "b",
-        "text": "The fin is immersed in the fuselage and wing wake"
+        "text": "Sideslip becomes impossible"
       },
       {
         "id": "c",
-        "text": "Sideslip becomes impossible"
+        "text": "The fin is immersed in the fuselage and wing wake"
       },
       {
         "id": "d",
         "text": "Dynamic pressure increases"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Separated flow from the forebody and wing reduces the fin's effective dynamic pressure and lift slope.",
-    "tags": ["high-alpha", "fin"],
+    "tags": [
+      "high-alpha",
+      "fin"
+    ],
     "status": "published",
     "version": 1
   },
@@ -162,11 +177,11 @@
       },
       {
         "id": "b",
-        "text": "The CG moves aft"
+        "text": "The fin area increases"
       },
       {
         "id": "c",
-        "text": "The fin area increases"
+        "text": "The CG moves aft, since supersonic flight moves the centre of gravity behind the fin's own centre of pressure"
       },
       {
         "id": "d",
@@ -175,7 +190,10 @@
     ],
     "correct": "d",
     "explanation": "Supersonic lift slope ≈ 4/√(M² − 1) falls with M, so larger fins or ventral fins are needed.",
-    "tags": ["supersonic", "fin"],
+    "tags": [
+      "supersonic",
+      "fin"
+    ],
     "status": "published",
     "version": 1
   },
@@ -192,7 +210,7 @@
       },
       {
         "id": "b",
-        "text": "No rolling moment"
+        "text": "A rolling moment that raises the lower wing (Cl_β < 0)"
       },
       {
         "id": "c",
@@ -200,12 +218,15 @@
       },
       {
         "id": "d",
-        "text": "A rolling moment that raises the lower wing (Cl_β < 0)"
+        "text": "No rolling moment, since the wings produce equal lift at any angle of sideslip"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "The aircraft sideslips toward the low wing; the dihedral effect rolls it back toward wings level.",
-    "tags": ["lateral-stability", "dihedral-effect"],
+    "tags": [
+      "lateral-stability",
+      "dihedral-effect"
+    ],
     "status": "published",
     "version": 1
   },
@@ -218,7 +239,7 @@
     "options": [
       {
         "id": "a",
-        "text": "The CG moves toward the upper wing"
+        "text": "The fin produces lift upward"
       },
       {
         "id": "b",
@@ -226,16 +247,19 @@
       },
       {
         "id": "c",
-        "text": "The fin produces lift upward"
+        "text": "The CG moves toward the upper wing"
       },
       {
         "id": "d",
-        "text": "The lower wing is heavier"
+        "text": "The lower wing is heavier, which lowers its centre of gravity and so raises the stability of the aircraft"
       }
     ],
     "correct": "b",
     "explanation": "The sideslip velocity component has a normal component on each dihedral panel: up on the leading wing, down on the trailing wing.",
-    "tags": ["dihedral", "angle-of-attack"],
+    "tags": [
+      "dihedral",
+      "angle-of-attack"
+    ],
     "status": "published",
     "version": 1
   },
@@ -248,24 +272,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Crossflow around the fuselage raises α at the root of the forward wing and lowers it at the trailing wing"
-      },
-      {
-        "id": "b",
-        "text": "The CG is lower"
-      },
-      {
-        "id": "c",
         "text": "Its weight is higher"
       },
       {
-        "id": "d",
+        "id": "b",
+        "text": "Crossflow around the fuselage raises α at the root of the forward wing and lowers it at the trailing wing"
+      },
+      {
+        "id": "c",
         "text": "Sweep is increased"
+      },
+      {
+        "id": "d",
+        "text": "The CG is lower, which is the main reason a high wing gives lateral stability, because the weight pulls the aircraft back to level"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Flow deflected over the top of the fuselage in sideslip is upward at the windward root of a high wing, adding an effective dihedral of a few degrees. A low wing experiences the opposite.",
-    "tags": ["high-wing", "dihedral-effect"],
+    "tags": [
+      "high-wing",
+      "dihedral-effect"
+    ],
     "status": "published",
     "version": 1
   },
@@ -278,7 +305,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Less dihedral"
+        "text": "More geometric dihedral, since its fuselage interference reduces the dihedral effect"
       },
       {
         "id": "b",
@@ -286,16 +313,19 @@
       },
       {
         "id": "c",
-        "text": "Anhedral"
+        "text": "Less dihedral"
       },
       {
         "id": "d",
-        "text": "More geometric dihedral, since its fuselage interference reduces the dihedral effect"
+        "text": "Anhedral, which is the only geometric change that reduces the need for dihedral on any low wing"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Fuselage crossflow reduces the leading wing's α at a low wing; designers add dihedral to compensate.",
-    "tags": ["low-wing", "dihedral"],
+    "tags": [
+      "low-wing",
+      "dihedral"
+    ],
     "status": "published",
     "version": 1
   },
@@ -308,7 +338,7 @@
     "options": [
       {
         "id": "a",
-        "text": "It reduces span"
+        "text": "It lowers the CG"
       },
       {
         "id": "b",
@@ -316,16 +346,19 @@
       },
       {
         "id": "c",
-        "text": "It moves the fin"
+        "text": "It reduces span, which lowers the wing's moment of inertia and so improves lateral damping at all speeds"
       },
       {
         "id": "d",
-        "text": "It lowers the CG"
+        "text": "It moves the fin"
       }
     ],
     "correct": "b",
     "explanation": "Lift ∝ cos²Λ_eff; sideslip reduces Λ on the leading wing and increases it on the trailing wing, rolling away from the sideslip.",
-    "tags": ["sweepback", "dihedral-effect"],
+    "tags": [
+      "sweepback",
+      "dihedral-effect"
+    ],
     "status": "published",
     "version": 1
   },
@@ -342,20 +375,23 @@
       },
       {
         "id": "b",
-        "text": "Anhedral increases lift"
-      },
-      {
-        "id": "c",
         "text": "It improves directional stability"
       },
       {
+        "id": "c",
+        "text": "Anhedral increases lift"
+      },
+      {
         "id": "d",
-        "text": "It reduces weight"
+        "text": "It reduces weight, since anhedral is lighter to build and so the wing needs less structure to carry the load"
       }
     ],
     "correct": "a",
     "explanation": "Anhedral reduces Cl_β to a balanced level relative to Cn_β.",
-    "tags": ["anhedral", "dutch-roll"],
+    "tags": [
+      "anhedral",
+      "dutch-roll"
+    ],
     "status": "published",
     "version": 1
   },
@@ -368,24 +404,27 @@
     "options": [
       {
         "id": "a",
-        "text": "It has a rudder"
-      },
-      {
-        "id": "b",
-        "text": "It is swept"
-      },
-      {
-        "id": "c",
         "text": "The fin's centre of pressure lies above the roll axis"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "It is aft of the CG"
+      },
+      {
+        "id": "c",
+        "text": "It is swept, which moves the fin's centre of pressure outboard and so produces a roll in every sideslip"
+      },
+      {
+        "id": "d",
+        "text": "It has a rudder"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Side force × height above the CG gives a rolling moment in the stabilising sense — part of the total dihedral effect.",
-    "tags": ["fin", "dihedral-effect"],
+    "tags": [
+      "fin",
+      "dihedral-effect"
+    ],
     "status": "published",
     "version": 1
   },
@@ -402,20 +441,23 @@
       },
       {
         "id": "b",
-        "text": "It has no effect"
-      },
-      {
-        "id": "c",
         "text": "It reduces it, because lift is concentrated near the root where the dihedral arm is small"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "It reverses it only in climbs"
+      },
+      {
+        "id": "d",
+        "text": "It has no effect"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Rolling moments from sideslip act through the spanwise arm; inboard loading shortens it.",
-    "tags": ["flaps", "dihedral-effect"],
+    "tags": [
+      "flaps",
+      "dihedral-effect"
+    ],
     "status": "published",
     "version": 1
   },
@@ -428,11 +470,11 @@
     "options": [
       {
         "id": "a",
-        "text": "A pure yaw oscillation"
+        "text": "A coupled oscillation in yaw and roll, with the wingtips tracing ellipses"
       },
       {
         "id": "b",
-        "text": "A pitch oscillation"
+        "text": "A pure yaw oscillation"
       },
       {
         "id": "c",
@@ -440,12 +482,14 @@
       },
       {
         "id": "d",
-        "text": "A coupled oscillation in yaw and roll, with the wingtips tracing ellipses"
+        "text": "A pitch oscillation"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Yaw produces sideslip; dihedral effect rolls the aircraft; the resulting sideslip and yaw reverse, and the cycle repeats out of phase.",
-    "tags": ["dutch-roll"],
+    "tags": [
+      "dutch-roll"
+    ],
     "status": "published",
     "version": 1
   },
@@ -458,24 +502,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Directional stability is strong relative to lateral stability"
-      },
-      {
-        "id": "b",
         "text": "Both are zero"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Lateral stability (dihedral effect) is strong relative to directional stability"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Pitch damping is high"
+      },
+      {
+        "id": "d",
+        "text": "Directional stability is strong relative to lateral stability"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "A large Cl_β/Cn_β ratio amplifies the roll response to each yaw swing. Swept wings at high CL and high altitude are most prone.",
-    "tags": ["dutch-roll", "stability-balance"],
+    "tags": [
+      "dutch-roll",
+      "stability-balance"
+    ],
     "status": "published",
     "version": 1
   },
@@ -488,24 +535,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Aerodynamic damping ∝ ρ·V ∝ √σ, while the restoring moments ∝ q are unchanged"
+        "text": "TAS decreases"
       },
       {
         "id": "b",
-        "text": "Stability increases"
-      },
-      {
-        "id": "c",
         "text": "The fin stalls"
       },
       {
+        "id": "c",
+        "text": "Aerodynamic damping ∝ ρ·V ∝ √σ, while the restoring moments ∝ q are unchanged"
+      },
+      {
         "id": "d",
-        "text": "TAS decreases"
+        "text": "Stability increases"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "At σ = 0.374, damping falls to 0.61 of its sea-level value relative to stiffness — yaw dampers are often required aloft.",
-    "tags": ["dutch-roll", "altitude"],
+    "tags": [
+      "dutch-roll",
+      "altitude"
+    ],
     "status": "published",
     "version": 1
   },
@@ -535,7 +585,10 @@
     ],
     "correct": "c",
     "explanation": "Out-of-phase rudder inputs easily reinforce the oscillation; aileron opposing the roll damps it. Lower altitude and moderate speed improve natural damping.",
-    "tags": ["dutch-roll", "recovery"],
+    "tags": [
+      "dutch-roll",
+      "recovery"
+    ],
     "status": "published",
     "version": 1
   },
@@ -552,7 +605,7 @@
       },
       {
         "id": "b",
-        "text": "Increases Dutch roll tendency"
+        "text": "Increases directional stability and yaw damping, reducing Dutch roll tendency but promoting spiral instability"
       },
       {
         "id": "c",
@@ -560,12 +613,16 @@
       },
       {
         "id": "d",
-        "text": "Increases directional stability and yaw damping, reducing Dutch roll tendency but promoting spiral instability"
+        "text": "Increases Dutch roll tendency"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Cn_β and Cn_r both rise; relative to Cl_β the directional side dominates, which slows spiral recovery.",
-    "tags": ["fin-area", "dutch-roll", "spiral-stability"],
+    "tags": [
+      "fin-area",
+      "dutch-roll",
+      "spiral-stability"
+    ],
     "status": "published",
     "version": 1
   },
@@ -582,20 +639,22 @@
       },
       {
         "id": "b",
-        "text": "Directional stability is strong relative to lateral stability"
+        "text": "The aircraft has no fin"
       },
       {
         "id": "c",
-        "text": "The aircraft has no fin"
+        "text": "Directional stability is strong relative to lateral stability"
       },
       {
         "id": "d",
         "text": "Pitch stability is low"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "In a slight bank the aircraft sideslips; a strong fin yaws it into the turn faster than dihedral effect can level it; the outer wing speeds up and bank increases.",
-    "tags": ["spiral-stability"],
+    "tags": [
+      "spiral-stability"
+    ],
     "status": "published",
     "version": 1
   },
@@ -608,7 +667,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Return to wings level"
+        "text": "Pitch up"
       },
       {
         "id": "b",
@@ -616,16 +675,18 @@
       },
       {
         "id": "c",
-        "text": "Pitch up"
+        "text": "Oscillate in roll and yaw"
       },
       {
         "id": "d",
-        "text": "Oscillate in roll and yaw"
+        "text": "Return to wings level"
       }
     ],
     "correct": "b",
     "explanation": "The divergence is slow (time to double of tens of seconds) and easily corrected, but dangerous if unnoticed in cloud.",
-    "tags": ["spiral-divergence"],
+    "tags": [
+      "spiral-divergence"
+    ],
     "status": "published",
     "version": 1
   },
@@ -638,7 +699,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Spiral mode affects pitch only"
+        "text": "Dutch roll never occurs with a fin"
       },
       {
         "id": "b",
@@ -650,12 +711,16 @@
       },
       {
         "id": "d",
-        "text": "Dutch roll never occurs with a fin"
+        "text": "Spiral mode affects pitch only"
       }
     ],
     "correct": "b",
     "explanation": "The two modes pull in opposite directions through Cl_β/Cn_β; the compromise favours good Dutch roll damping.",
-    "tags": ["spiral-stability", "dutch-roll", "design"],
+    "tags": [
+      "spiral-stability",
+      "dutch-roll",
+      "design"
+    ],
     "status": "published",
     "version": 1
   },
@@ -672,7 +737,7 @@
       },
       {
         "id": "b",
-        "text": "No lateral modes"
+        "text": "Directional divergence"
       },
       {
         "id": "c",
@@ -680,12 +745,15 @@
       },
       {
         "id": "d",
-        "text": "Directional divergence"
+        "text": "No lateral modes"
       }
     ],
     "correct": "a",
     "explanation": "It levels the wings quickly (spiral stable) but amplifies roll in response to yaw (Dutch roll).",
-    "tags": ["dihedral-effect", "spiral-stability"],
+    "tags": [
+      "dihedral-effect",
+      "spiral-stability"
+    ],
     "status": "published",
     "version": 1
   },
@@ -698,7 +766,7 @@
     "options": [
       {
         "id": "a",
-        "text": "The lift vector tilts, and the unbalanced horizontal component moves the aircraft sideways"
+        "text": "The fin pushes it"
       },
       {
         "id": "b",
@@ -706,16 +774,19 @@
       },
       {
         "id": "c",
-        "text": "The fin pushes it"
+        "text": "The lift vector tilts, and the unbalanced horizontal component moves the aircraft sideways"
       },
       {
         "id": "d",
         "text": "Yaw damping reverses"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Until a coordinated turn develops, the horizontal lift component accelerates the aircraft toward the low wing: sideslip, which triggers dihedral effect and weathercock yaw.",
-    "tags": ["sideslip", "bank"],
+    "tags": [
+      "sideslip",
+      "bank"
+    ],
     "status": "published",
     "version": 1
   },
@@ -728,11 +799,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Yaw reduces lift symmetrically"
+        "text": "Yaw produces sideslip, and the dihedral effect converts it into roll"
       },
       {
         "id": "b",
-        "text": "Yaw produces sideslip, and the dihedral effect converts it into roll"
+        "text": "The fin produces lift upward"
       },
       {
         "id": "c",
@@ -740,12 +811,15 @@
       },
       {
         "id": "d",
-        "text": "The fin produces lift upward"
+        "text": "Yaw reduces lift symmetrically"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Secondary effect of rudder: yaw → sideslip → roll via Cl_β, and the advancing wing's extra speed adds to it.",
-    "tags": ["rudder", "secondary-effect"],
+    "tags": [
+      "rudder",
+      "secondary-effect"
+    ],
     "status": "published",
     "version": 1
   },
@@ -758,24 +832,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Trims the aircraft in pitch"
-      },
-      {
-        "id": "b",
-        "text": "Prevents spiral divergence only"
-      },
-      {
-        "id": "c",
         "text": "Holds a fixed rudder position"
       },
       {
-        "id": "d",
+        "id": "b",
+        "text": "Trims the aircraft in pitch"
+      },
+      {
+        "id": "c",
         "text": "Senses yaw rate and applies rudder to oppose it, damping Dutch roll"
+      },
+      {
+        "id": "d",
+        "text": "Prevents spiral divergence only"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "It adds artificial Cn_r, especially valuable at high altitude where natural damping is weak.",
-    "tags": ["yaw-damper"],
+    "tags": [
+      "yaw-damper"
+    ],
     "status": "published",
     "version": 1
   },
@@ -792,20 +868,23 @@
       },
       {
         "id": "b",
-        "text": "It damps oscillations but does not oppose the steady yaw rate of a coordinated turn"
-      },
-      {
-        "id": "c",
         "text": "It opposes all yaw rates"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "It increases Dutch roll"
+      },
+      {
+        "id": "d",
+        "text": "It damps oscillations but does not oppose the steady yaw rate of a coordinated turn"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Steady yaw rate in a turn is intended; the filter removes the steady component and acts only on oscillatory yaw.",
-    "tags": ["yaw-damper", "washout-filter"],
+    "tags": [
+      "yaw-damper",
+      "washout-filter"
+    ],
     "status": "published",
     "version": 1
   },
@@ -818,24 +897,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Lower altitudes and moderate speeds where natural Dutch roll damping is adequate"
-      },
-      {
-        "id": "b",
         "text": "Higher altitudes"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Maximum Mach"
+      },
+      {
+        "id": "c",
+        "text": "Lower altitudes and moderate speeds where natural Dutch roll damping is adequate"
       },
       {
         "id": "d",
         "text": "Any condition"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Natural damping ∝ √σ at constant EAS; descending restores it.",
-    "tags": ["yaw-damper", "limitations"],
+    "tags": [
+      "yaw-damper",
+      "limitations"
+    ],
     "status": "published",
     "version": 1
   },
@@ -848,7 +930,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Too much bank"
+        "text": "Too little rudder"
       },
       {
         "id": "b",
@@ -856,16 +938,19 @@
       },
       {
         "id": "c",
-        "text": "Too much rudder for the bank angle; the nose is yawed toward the inside"
+        "text": "Too much bank"
       },
       {
         "id": "d",
-        "text": "Too little rudder"
+        "text": "Too much rudder for the bank angle; the nose is yawed toward the inside"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "The tail is thrown outward; correct by reducing rudder in the direction of turn (step on the ball).",
-    "tags": ["skid", "coordination"],
+    "tags": [
+      "skid",
+      "coordination"
+    ],
     "status": "published",
     "version": 1
   },
@@ -878,7 +963,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Too much rudder"
+        "text": "A coordinated turn"
       },
       {
         "id": "b",
@@ -886,7 +971,7 @@
       },
       {
         "id": "c",
-        "text": "A coordinated turn"
+        "text": "Too much rudder"
       },
       {
         "id": "d",
@@ -895,7 +980,10 @@
     ],
     "correct": "b",
     "explanation": "The aircraft sideslips toward the low wing; add rudder toward the turn.",
-    "tags": ["slip", "coordination"],
+    "tags": [
+      "slip",
+      "coordination"
+    ],
     "status": "published",
     "version": 1
   },
@@ -908,7 +996,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Slight opposite aileron to hold bank"
+        "text": "Full rudder toward the turn"
       },
       {
         "id": "b",
@@ -920,12 +1008,15 @@
       },
       {
         "id": "d",
-        "text": "Full rudder toward the turn"
+        "text": "Slight opposite aileron to hold bank"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The outer wing's higher speed produces more lift; at low speed and in steep turns this exceeds lateral stability, requiring aileron against the turn.",
-    "tags": ["overbanking", "aileron"],
+    "tags": [
+      "overbanking",
+      "aileron"
+    ],
     "status": "published",
     "version": 1
   },
@@ -955,7 +1046,10 @@
     ],
     "correct": "c",
     "explanation": "Dihedral effect tries to roll away from the slip; weathercocking tries to yaw into it. Both must be held.",
-    "tags": ["sideslip", "crossed-controls"],
+    "tags": [
+      "sideslip",
+      "crossed-controls"
+    ],
     "status": "published",
     "version": 1
   },
@@ -968,24 +1062,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Available rudder authority or aileron authority to oppose dihedral effect"
-      },
-      {
-        "id": "b",
-        "text": "Engine thrust"
-      },
-      {
-        "id": "c",
         "text": "Pitch trim"
       },
       {
-        "id": "d",
+        "id": "b",
+        "text": "Available rudder authority or aileron authority to oppose dihedral effect"
+      },
+      {
+        "id": "c",
         "text": "Stall speed only"
+      },
+      {
+        "id": "d",
+        "text": "Engine thrust"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Either control may reach full deflection first; strong dihedral effect makes aileron the limit.",
-    "tags": ["crosswind", "control-authority"],
+    "tags": [
+      "crosswind",
+      "control-authority"
+    ],
     "status": "published",
     "version": 1
   },
@@ -998,24 +1095,27 @@
     "options": [
       {
         "id": "a",
-        "text": "It works only in turns"
+        "text": "It depends on thrust"
       },
       {
         "id": "b",
-        "text": "It needs a pitch input"
-      },
-      {
-        "id": "c",
         "text": "It acts only through the sideslip that a bank produces, which also brings in directional effects"
       },
       {
+        "id": "c",
+        "text": "It works only in turns"
+      },
+      {
         "id": "d",
-        "text": "It depends on thrust"
+        "text": "It needs a pitch input"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Rolling moment from Cl_β requires β; the aircraft's response combines roll and yaw in the spiral and Dutch roll modes.",
-    "tags": ["lateral-stability", "coupling"],
+    "tags": [
+      "lateral-stability",
+      "coupling"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1028,11 +1128,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Improve roll damping only"
+        "text": "Increase lift"
       },
       {
         "id": "b",
-        "text": "Maintain directional stability at high angles of attack or high Mach, where the upper fin loses effectiveness"
+        "text": "Improve roll damping only"
       },
       {
         "id": "c",
@@ -1040,12 +1140,14 @@
       },
       {
         "id": "d",
-        "text": "Increase lift"
+        "text": "Maintain directional stability at high angles of attack or high Mach, where the upper fin loses effectiveness"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Below the fuselage they remain in clean flow when the upper fin is blanketed at high α.",
-    "tags": ["ventral-fin"],
+    "tags": [
+      "ventral-fin"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1058,7 +1160,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Roll damping is high"
+        "text": "Cn_β < 0 — sideslip produces a yawing moment that increases it"
       },
       {
         "id": "b",
@@ -1070,12 +1172,14 @@
       },
       {
         "id": "d",
-        "text": "Cn_β < 0 — sideslip produces a yawing moment that increases it"
+        "text": "Roll damping is high"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Static directional instability; the aircraft yaws away from the relative wind.",
-    "tags": ["directional-divergence"],
+    "tags": [
+      "directional-divergence"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1088,7 +1192,7 @@
     "options": [
       {
         "id": "a",
-        "text": "A destabilising contribution to lateral stability (Cl_β more positive)"
+        "text": "A stabilising contribution"
       },
       {
         "id": "b",
@@ -1096,16 +1200,18 @@
       },
       {
         "id": "c",
-        "text": "A stabilising contribution"
+        "text": "A destabilising contribution to lateral stability (Cl_β more positive)"
       },
       {
         "id": "d",
         "text": "No effect"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "The forward wing loses α in sideslip; used deliberately where other contributions (high wing, sweep) are excessive.",
-    "tags": ["anhedral"],
+    "tags": [
+      "anhedral"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1118,24 +1224,27 @@
     "options": [
       {
         "id": "a",
-        "text": "A few seconds and moderate to light damping"
+        "text": "Fractions of a second and zero damping"
       },
       {
         "id": "b",
-        "text": "Identical to the phugoid"
-      },
-      {
-        "id": "c",
         "text": "Minutes and heavy damping"
       },
       {
+        "id": "c",
+        "text": "Identical to the phugoid"
+      },
+      {
         "id": "d",
-        "text": "Fractions of a second and zero damping"
+        "text": "A few seconds and moderate to light damping"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The mode frequency comes from Cn_β stiffness about the yaw inertia; damping from Cn_r, reduced by adverse cross terms.",
-    "tags": ["dutch-roll", "period"],
+    "tags": [
+      "dutch-roll",
+      "period"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1148,24 +1257,28 @@
     "options": [
       {
         "id": "a",
-        "text": "Higher CL increases sweep dihedral effect while aerodynamic damping falls"
-      },
-      {
-        "id": "b",
         "text": "Fin area grows"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Lower CL reduces dihedral effect"
+      },
+      {
+        "id": "c",
+        "text": "Higher CL increases sweep dihedral effect while aerodynamic damping falls"
       },
       {
         "id": "d",
         "text": "Density increases"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Both factors push the Cl_β/Cn_β ratio and damping in the unfavourable direction.",
-    "tags": ["dutch-roll", "altitude", "sweep"],
+    "tags": [
+      "dutch-roll",
+      "altitude",
+      "sweep"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1178,15 +1291,15 @@
     "options": [
       {
         "id": "a",
-        "text": "A slow divergence"
+        "text": "An oscillation in yaw"
       },
       {
         "id": "b",
-        "text": "The phugoid"
+        "text": "A slow divergence"
       },
       {
         "id": "c",
-        "text": "An oscillation in yaw"
+        "text": "The phugoid"
       },
       {
         "id": "d",
@@ -1195,7 +1308,9 @@
     ],
     "correct": "d",
     "explanation": "Strong roll damping gives a first-order response with a short time constant.",
-    "tags": ["roll-subsidence"],
+    "tags": [
+      "roll-subsidence"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1212,20 +1327,23 @@
       },
       {
         "id": "b",
-        "text": "Engine weight"
-      },
-      {
-        "id": "c",
         "text": "The spiralling slipstream striking the fin on one side"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Thrust line only"
+      },
+      {
+        "id": "d",
+        "text": "Engine weight"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "The rotating wake meets the fin at an angle, producing a side force and yaw that varies with power and speed.",
-    "tags": ["slipstream", "directional-trim"],
+    "tags": [
+      "slipstream",
+      "directional-trim"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1255,7 +1373,10 @@
     ],
     "correct": "c",
     "explanation": "More side area ahead of the CG is destabilising; the fin term V_V must increase.",
-    "tags": ["fuselage", "fin-area"],
+    "tags": [
+      "fuselage",
+      "fin-area"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1268,24 +1389,27 @@
     "options": [
       {
         "id": "a",
-        "text": "No control input"
+        "text": "Rudder only with zero sideslip"
       },
       {
         "id": "b",
-        "text": "Aileron only"
+        "text": "No control input"
       },
       {
         "id": "c",
-        "text": "Rudder against the yaw and a sideslip toward the dead engine, with aileron against the dihedral roll"
+        "text": "Aileron only"
       },
       {
         "id": "d",
-        "text": "Rudder only with zero sideslip"
+        "text": "Rudder against the yaw and a sideslip toward the dead engine, with aileron against the dihedral roll"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "With no bank, the fin side force must be balanced by a sideslip-generated body side force; a small bank toward the live engine removes most of the sideslip.",
-    "tags": ["engine-failure", "sideslip"],
+    "tags": [
+      "engine-failure",
+      "sideslip"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1298,24 +1422,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Reducing roll damping"
+        "text": "Moving the CG aft"
       },
       {
         "id": "b",
-        "text": "Increasing dihedral effect or reducing fin area"
-      },
-      {
-        "id": "c",
         "text": "Increasing fin area and reducing dihedral"
       },
       {
+        "id": "c",
+        "text": "Increasing dihedral effect or reducing fin area"
+      },
+      {
         "id": "d",
-        "text": "Moving the CG aft"
+        "text": "Reducing roll damping"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Raising Cl_β relative to Cn_β favours wings-levelling over turning into the sideslip.",
-    "tags": ["spiral-stability", "design"],
+    "tags": [
+      "spiral-stability",
+      "design"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1332,20 +1459,23 @@
       },
       {
         "id": "b",
-        "text": "Adding dihedral"
-      },
-      {
-        "id": "c",
         "text": "Increasing sweep only"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Reducing fin area"
+      },
+      {
+        "id": "d",
+        "text": "Adding dihedral"
       }
     ],
     "correct": "a",
     "explanation": "Lower Cl_β/Cn_β and higher Cn_r both help; hence anhedral on high swept wings and yaw dampers.",
-    "tags": ["dutch-roll", "design"],
+    "tags": [
+      "dutch-roll",
+      "design"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1366,16 +1496,19 @@
       },
       {
         "id": "c",
-        "text": "No lateral stability"
+        "text": "Greater lateral stability"
       },
       {
         "id": "d",
-        "text": "Greater lateral stability"
+        "text": "No lateral stability"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Fuselage interference adds effective dihedral to a high wing and subtracts it from a low wing.",
-    "tags": ["high-wing", "lateral-stability"],
+    "tags": [
+      "high-wing",
+      "lateral-stability"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1392,11 +1525,11 @@
       },
       {
         "id": "b",
-        "text": "A pitch-down"
+        "text": "An immediate roll away"
       },
       {
         "id": "c",
-        "text": "An immediate roll away"
+        "text": "A pitch-down"
       },
       {
         "id": "d",
@@ -1405,7 +1538,10 @@
     ],
     "correct": "a",
     "explanation": "The aircraft's inertia keeps its flight path while the nose yaws; β creates side force and, through Cl_β, roll.",
-    "tags": ["rudder", "sideslip"],
+    "tags": [
+      "rudder",
+      "sideslip"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1418,7 +1554,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Adds pitch trim only"
+        "text": "Removes the rudder"
       },
       {
         "id": "b",
@@ -1426,16 +1562,19 @@
       },
       {
         "id": "c",
-        "text": "Removes the rudder"
+        "text": "Adds rudder automatically to cancel sideslip during rolling"
       },
       {
         "id": "d",
-        "text": "Adds rudder automatically to cancel sideslip during rolling"
+        "text": "Adds pitch trim only"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Feedback of lateral acceleration or β drives the rudder to keep the ball centred.",
-    "tags": ["turn-coordination", "fly-by-wire"],
+    "tags": [
+      "turn-coordination",
+      "fly-by-wire"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1448,7 +1587,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Improved stability"
+        "text": "Pitch-up"
       },
       {
         "id": "b",
@@ -1460,12 +1599,15 @@
       },
       {
         "id": "d",
-        "text": "Pitch-up"
+        "text": "Improved stability"
       }
     ],
     "correct": "c",
     "explanation": "Beyond fin stall the restoring moment collapses; on reversible controls, hinge moments can drive the rudder to its stop. Dorsal fins help.",
-    "tags": ["rudder-lock", "fin-stall"],
+    "tags": [
+      "rudder-lock",
+      "fin-stall"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1482,20 +1624,23 @@
       },
       {
         "id": "b",
-        "text": "Removing dihedral effect"
+        "text": "Only reducing drag"
       },
       {
         "id": "c",
-        "text": "Reducing directional stability only"
+        "text": "Removing dihedral effect"
       },
       {
         "id": "d",
-        "text": "Only reducing drag"
+        "text": "Reducing directional stability only"
       }
     ],
     "correct": "a",
     "explanation": "In sideslip winglets produce side forces acting above the CG, generating a stabilising rolling moment.",
-    "tags": ["winglets", "dihedral-effect"],
+    "tags": [
+      "winglets",
+      "dihedral-effect"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1508,24 +1653,26 @@
     "options": [
       {
         "id": "a",
-        "text": "A pitch mode"
-      },
-      {
-        "id": "b",
-        "text": "Non-oscillatory: a slow convergence or divergence in bank and heading"
-      },
-      {
-        "id": "c",
         "text": "The Dutch roll"
       },
       {
-        "id": "d",
+        "id": "b",
+        "text": "A pitch mode"
+      },
+      {
+        "id": "c",
         "text": "Oscillatory with a period of seconds"
+      },
+      {
+        "id": "d",
+        "text": "Non-oscillatory: a slow convergence or divergence in bank and heading"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "It is a first-order mode; its time constant depends on the balance of Cl_β, Cn_β and damping.",
-    "tags": ["spiral-mode"],
+    "tags": [
+      "spiral-mode"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1538,11 +1685,11 @@
     "options": [
       {
         "id": "a",
-        "text": "The resultant of gravity and centripetal acceleration lies along the aircraft's vertical axis"
+        "text": "Yaw rate is zero"
       },
       {
         "id": "b",
-        "text": "Yaw rate is zero"
+        "text": "The resultant of gravity and centripetal acceleration lies along the aircraft's vertical axis"
       },
       {
         "id": "c",
@@ -1553,9 +1700,12 @@
         "text": "Bank angle is zero"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Coordination aligns the apparent gravity vector with the aircraft's normal axis: zero lateral acceleration.",
-    "tags": ["coordinated-turn", "slip-ball"],
+    "tags": [
+      "coordinated-turn",
+      "slip-ball"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1572,20 +1722,23 @@
       },
       {
         "id": "b",
-        "text": "Into the turn"
+        "text": "Away from the turn (adverse yaw), from ailerons and roll-rate effects"
       },
       {
         "id": "c",
-        "text": "Away from the turn (adverse yaw), from ailerons and roll-rate effects"
+        "text": "Into the turn"
       },
       {
         "id": "d",
         "text": "Zero"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Both aileron drag difference and roll-rate lift tilt give adverse yaw; rudder coordination is needed.",
-    "tags": ["adverse-yaw", "roll-entry"],
+    "tags": [
+      "adverse-yaw",
+      "roll-entry"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1602,20 +1755,23 @@
       },
       {
         "id": "b",
-        "text": "Propeller normal force ahead of the CG and slipstream effects on the fin act destabilisingly"
-      },
-      {
-        "id": "c",
         "text": "Density increases"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Fin area grows"
+      },
+      {
+        "id": "d",
+        "text": "Propeller normal force ahead of the CG and slipstream effects on the fin act destabilisingly"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "A propeller disc at yaw produces side force ahead of the CG; asymmetric slipstream alters fin flow.",
-    "tags": ["propeller-effects", "directional-stability"],
+    "tags": [
+      "propeller-effects",
+      "directional-stability"
+    ],
     "status": "published",
     "version": 1
   }

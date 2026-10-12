@@ -8,7 +8,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Unsteady shock-induced separation, with the shock oscillating and the separated wake striking the structure"
+        "text": "Turbulence only, since the buffet is caused by the random gusts of rough air that strike the structure at high speed and not by any change in the wing's flow"
       },
       {
         "id": "b",
@@ -16,16 +16,18 @@
       },
       {
         "id": "c",
-        "text": "Engine surge"
+        "text": "Low-speed stall"
       },
       {
         "id": "d",
-        "text": "Low-speed stall"
+        "text": "Unsteady shock-induced separation, with the shock oscillating and the separated wake striking the structure"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The oscillating shock and wake produce fluctuating loads on wing and tail — a warning and a limitation.",
-    "tags": ["high-speed-buffet"],
+    "tags": [
+      "high-speed-buffet"
+    ],
     "status": "published",
     "version": 1
   },
@@ -38,24 +40,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Stall at low speed"
+        "text": "Loss of lift (fall in CL at constant α) due to shock-induced separation"
       },
       {
         "id": "b",
-        "text": "Engine flame-out"
-      },
-      {
-        "id": "c",
         "text": "Stall of the tail only"
       },
       {
+        "id": "c",
+        "text": "Stall of the tail only, since shock-induced separation at high speed is confined to the horizontal tail and leaves the wing's lift unchanged at every angle of attack"
+      },
+      {
         "id": "d",
-        "text": "Loss of lift (fall in CL at constant α) due to shock-induced separation"
+        "text": "Stall at low speed"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Beyond drag divergence, CL at fixed α stops rising and falls as separation spreads.",
-    "tags": ["shock-stall"],
+    "tags": [
+      "shock-stall"
+    ],
     "status": "published",
     "version": 1
   },
@@ -68,24 +72,26 @@
     "options": [
       {
         "id": "a",
-        "text": "A yaw at high speed"
+        "text": "A nose-up tendency at low speed"
       },
       {
         "id": "b",
-        "text": "A roll oscillation"
-      },
-      {
-        "id": "c",
         "text": "A nose-down pitching tendency with increasing Mach number in the transonic range"
       },
       {
+        "id": "c",
+        "text": "A yaw at high speed, since the swept wing's shock pattern pushes the nose sideways and this is what is usually meant by tuck under at any Mach number"
+      },
+      {
         "id": "d",
-        "text": "A nose-up tendency at low speed"
+        "text": "A yaw at high speed"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "The wing centre of pressure moves aft with shock movement, and changes in downwash at the tail reduce its download; the aircraft becomes speed-unstable.",
-    "tags": ["mach-tuck"],
+    "tags": [
+      "mach-tuck"
+    ],
     "status": "published",
     "version": 1
   },
@@ -102,7 +108,7 @@
       },
       {
         "id": "b",
-        "text": "Pitch-up"
+        "text": "Roll only"
       },
       {
         "id": "c",
@@ -110,12 +116,15 @@
       },
       {
         "id": "d",
-        "text": "Roll only"
+        "text": "Roll only, since shock-induced separation from the inboard wing acts equally on both sides and so produces a rolling tendency rather than any change in pitch"
       }
     ],
     "correct": "a",
     "explanation": "Root separation removes forward lift on a swept wing and reduces tail downwash, both nose-down.",
-    "tags": ["mach-tuck", "sweep"],
+    "tags": [
+      "mach-tuck",
+      "sweep"
+    ],
     "status": "published",
     "version": 1
   },
@@ -128,7 +137,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Roll only"
+        "text": "Roll only, since shock-induced separation at the tips makes the outboard wing drop and so the roll is the only effect that is produced at any speed"
       },
       {
         "id": "b",
@@ -136,16 +145,19 @@
       },
       {
         "id": "c",
-        "text": "Nose-down tuck"
+        "text": "No effect"
       },
       {
         "id": "d",
-        "text": "No effect"
+        "text": "Nose-down tuck"
       }
     ],
     "correct": "b",
     "explanation": "Tip-first separation moves the lift forward — the high-speed analogue of low-speed pitch-up.",
-    "tags": ["pitch-up", "sweep"],
+    "tags": [
+      "pitch-up",
+      "sweep"
+    ],
     "status": "published",
     "version": 1
   },
@@ -158,15 +170,15 @@
     "options": [
       {
         "id": "a",
-        "text": "Moving the CG forward"
+        "text": "Extending spoilers"
       },
       {
         "id": "b",
-        "text": "Reducing thrust"
+        "text": "Moving the CG forward"
       },
       {
         "id": "c",
-        "text": "Extending spoilers"
+        "text": "Moving the CG forward, since a forward centre of gravity increases the stability of the aircraft and so removes the tendency to tuck at high Mach numbers"
       },
       {
         "id": "d",
@@ -175,7 +187,9 @@
     ],
     "correct": "d",
     "explanation": "They restore a positive stick-force gradient with Mach.",
-    "tags": ["mach-trim"],
+    "tags": [
+      "mach-trim"
+    ],
     "status": "published",
     "version": 1
   },
@@ -188,24 +202,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Moves the CG"
+        "text": "Has no effect"
       },
       {
         "id": "b",
-        "text": "Increases longitudinal stability and the trim download required"
-      },
-      {
-        "id": "c",
         "text": "Reduces stability"
       },
       {
+        "id": "c",
+        "text": "Increases longitudinal stability and the trim download required"
+      },
+      {
         "id": "d",
-        "text": "Has no effect"
+        "text": "Has no effect, since the aerodynamic centre stays at its subsonic position throughout the transonic range and so the stability of the aircraft is unchanged at all speeds"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Larger static margin at supersonic speed demands more elevator/stabiliser for trim and manoeuvre; fuel transfer aft can compensate.",
-    "tags": ["aerodynamic-centre", "supersonic"],
+    "tags": [
+      "aerodynamic-centre",
+      "supersonic"
+    ],
     "status": "published",
     "version": 1
   },
@@ -218,24 +235,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Increased roll damping"
-      },
-      {
-        "id": "b",
         "text": "Transonic wing drop — an uncommanded roll"
       },
       {
+        "id": "b",
+        "text": "Increased roll damping"
+      },
+      {
         "id": "c",
-        "text": "Pitch-up only"
+        "text": "Pitch-up only, since an asymmetric shock pattern on the two wings produces a nose-up moment in the same way on both sides at every Mach number"
       },
       {
         "id": "d",
-        "text": "Yaw damping"
+        "text": "Pitch-up only"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "One wing reaches separation before the other; lift asymmetry rolls the aircraft.",
-    "tags": ["wing-drop", "transonic"],
+    "tags": [
+      "wing-drop",
+      "transonic"
+    ],
     "status": "published",
     "version": 1
   },
@@ -248,24 +268,27 @@
     "options": [
       {
         "id": "a",
-        "text": "It remains effective when shocks reduce the effectiveness of a trailing-edge elevator"
+        "text": "It reduces wave drag to zero"
       },
       {
         "id": "b",
-        "text": "It is lighter"
+        "text": "It remains effective when shocks reduce the effectiveness of a trailing-edge elevator"
       },
       {
         "id": "c",
-        "text": "It needs no actuator"
+        "text": "It is lighter, which is why all-moving tailplanes are chosen for fast aircraft, since the reduced structure mass lowers the wing loading at every speed"
       },
       {
         "id": "d",
-        "text": "It reduces wave drag to zero"
+        "text": "It needs no actuator"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Changing the incidence of the whole surface changes its pressure distribution regardless of shock position.",
-    "tags": ["stabilator", "transonic"],
+    "tags": [
+      "stabilator",
+      "transonic"
+    ],
     "status": "published",
     "version": 1
   },
@@ -278,7 +301,7 @@
     "options": [
       {
         "id": "a",
-        "text": "They produce adverse yaw"
+        "text": "They increase lift, which is the main reason spoilers are preferred to ailerons, since the extra lift on the wing keeps the aircraft from sinking at high speed"
       },
       {
         "id": "b",
@@ -290,12 +313,15 @@
       },
       {
         "id": "d",
-        "text": "They increase lift"
+        "text": "They produce adverse yaw"
       }
     ],
     "correct": "b",
     "explanation": "Spoilers act by destroying lift over part of the span; they avoid aileron reversal and transonic ineffectiveness.",
-    "tags": ["spoilers", "high-speed-roll"],
+    "tags": [
+      "spoilers",
+      "high-speed-roll"
+    ],
     "status": "published",
     "version": 1
   },
@@ -312,20 +338,23 @@
       },
       {
         "id": "b",
-        "text": "6,320 N/m²"
-      },
-      {
-        "id": "c",
         "text": "4,860 N/m²"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "3,740 N/m²"
+      },
+      {
+        "id": "d",
+        "text": "6,320 N/m²"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "W/S = 0.7·p·M²·CL = 0.7 × 19,680 × 0.706 × 0.5 = 4,860 N/m².",
-    "tags": ["buffet-boundary", "calculation"],
+    "tags": [
+      "buffet-boundary",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -342,11 +371,11 @@
       },
       {
         "id": "b",
-        "text": "2,880 N/m²"
+        "text": "4,860 N/m²"
       },
       {
         "id": "c",
-        "text": "4,860 N/m²"
+        "text": "2,880 N/m²"
       },
       {
         "id": "d",
@@ -355,7 +384,10 @@
     ],
     "correct": "d",
     "explanation": "Divide by 1.3: 4,860/1.3 = 3,738 N/m².",
-    "tags": ["buffet-margin", "calculation"],
+    "tags": [
+      "buffet-margin",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -368,24 +400,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Descend 30 % faster"
+        "text": "Pull 1.3 g (e.g. a 40° bank turn or a gust) before reaching buffet"
       },
       {
         "id": "b",
-        "text": "Accept 30 % more fuel"
+        "text": "Descend 30 % faster"
       },
       {
         "id": "c",
-        "text": "Pull 1.3 g (e.g. a 40° bank turn or a gust) before reaching buffet"
+        "text": "Accept 30 % more fuel"
       },
       {
         "id": "d",
         "text": "Fly 30 % faster"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "n = 1.3 ↔ φ = arccos(1/1.3) = 39.7° in a level turn.",
-    "tags": ["buffet-margin"],
+    "tags": [
+      "buffet-margin"
+    ],
     "status": "published",
     "version": 1
   },
@@ -398,24 +432,27 @@
     "options": [
       {
         "id": "a",
-        "text": "The speed of sound increases"
+        "text": "Lower static pressure requires a higher CL, closer to the buffet CL"
       },
       {
         "id": "b",
-        "text": "Weight decreases"
+        "text": "q increases, since a higher altitude always raises the dynamic pressure on the wing at a fixed Mach number and so the lift produced is greater"
       },
       {
         "id": "c",
-        "text": "q increases"
+        "text": "Weight decreases"
       },
       {
         "id": "d",
-        "text": "Lower static pressure requires a higher CL, closer to the buffet CL"
+        "text": "The speed of sound increases"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "CL ∝ 1/p at fixed W and M.",
-    "tags": ["buffet-margin", "altitude"],
+    "tags": [
+      "buffet-margin",
+      "altitude"
+    ],
     "status": "published",
     "version": 1
   },
@@ -428,24 +465,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Falls to lower CL as Mach number increases beyond drag divergence"
-      },
-      {
-        "id": "b",
-        "text": "Is independent of Mach"
-      },
-      {
-        "id": "c",
         "text": "Applies only at low speed"
       },
       {
-        "id": "d",
+        "id": "b",
+        "text": "Applies only at low speed, since the high-speed buffet boundary is only relevant to aircraft that fly below the speed of sound in every flight condition"
+      },
+      {
+        "id": "c",
         "text": "Rises with Mach number without limit"
+      },
+      {
+        "id": "d",
+        "text": "Falls to lower CL as Mach number increases beyond drag divergence"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "At higher M, shock-induced separation begins at lower α, so the permissible CL falls.",
-    "tags": ["buffet-boundary"],
+    "tags": [
+      "buffet-boundary"
+    ],
     "status": "published",
     "version": 1
   },
@@ -458,24 +497,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Slightly improving it, since less tail download reduces the wing CL required"
+        "text": "Only affecting low-speed buffet"
       },
       {
         "id": "b",
-        "text": "Worsening it"
+        "text": "Slightly improving it, since less tail download reduces the wing CL required"
       },
       {
         "id": "c",
-        "text": "No effect"
+        "text": "Worsening it"
       },
       {
         "id": "d",
-        "text": "Only affecting low-speed buffet"
+        "text": "No effect, since the centre of gravity does not change the lift that the wing must produce at any speed and so the buffet boundary remains the same"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Wing lift = W + tail download. An aft CG reduces the download and the wing CL at a given weight.",
-    "tags": ["cg-position", "buffet-margin"],
+    "tags": [
+      "cg-position",
+      "buffet-margin"
+    ],
     "status": "published",
     "version": 1
   },
@@ -488,24 +530,26 @@
     "options": [
       {
         "id": "a",
-        "text": "The pressure signature of the aircraft's shock system (N-wave) sweeping over the observer"
+        "text": "Expansion waves only, since the air is pushed away from the aircraft at supersonic speed and the observer hears only the expansion of the air behind it"
       },
       {
         "id": "b",
-        "text": "Only when crossing M = 1"
+        "text": "Expansion waves only"
       },
       {
         "id": "c",
-        "text": "Engine noise"
+        "text": "Only when crossing M = 1"
       },
       {
         "id": "d",
-        "text": "Expansion waves only"
+        "text": "The pressure signature of the aircraft's shock system (N-wave) sweeping over the observer"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "It is continuous while supersonic, not a one-off event at M 1.",
-    "tags": ["sonic-boom"],
+    "tags": [
+      "sonic-boom"
+    ],
     "status": "published",
     "version": 1
   },
@@ -518,11 +562,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Skin friction falls"
+        "text": "Sweep increases, which moves the shock pattern forward on the wing and so raises the angle at which the buffet begins at every Mach number"
       },
       {
         "id": "b",
-        "text": "Density rises"
+        "text": "Shocks form earlier and at a lower α as M rises"
       },
       {
         "id": "c",
@@ -530,12 +574,15 @@
       },
       {
         "id": "d",
-        "text": "Shocks form earlier and at a lower α as M rises"
+        "text": "Skin friction falls"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Buffet charts show the onset CL falling from about the low-speed stall value through the transonic range.",
-    "tags": ["buffet-onset", "mach-effect"],
+    "tags": [
+      "buffet-onset",
+      "mach-effect"
+    ],
     "status": "published",
     "version": 1
   },
@@ -548,7 +595,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Roll"
+        "text": "Pitch up and slow, since the nose rises as the speed increases and the aircraft is then pulled back toward the trim speed by its own stability"
       },
       {
         "id": "b",
@@ -565,7 +612,10 @@
     ],
     "correct": "d",
     "explanation": "Stick-force reversal with speed: the aircraft is speed-unstable in this regime.",
-    "tags": ["mach-tuck", "speed-stability"],
+    "tags": [
+      "mach-tuck",
+      "speed-stability"
+    ],
     "status": "published",
     "version": 1
   },
@@ -578,24 +628,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Lower q"
+        "text": "Ground effect"
       },
       {
         "id": "b",
-        "text": "Shock-induced separation over the aileron and aeroelastic twist"
-      },
-      {
-        "id": "c",
         "text": "Higher CLmax"
       },
       {
+        "id": "c",
+        "text": "Shock-induced separation over the aileron and aeroelastic twist"
+      },
+      {
         "id": "d",
-        "text": "Ground effect"
+        "text": "Ground effect, which lowers the aileron's effectiveness at all speeds because the ground changes the flow over the wing and the roll control surfaces"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Both effects add; outboard ailerons may be locked out in favour of spoilers and inboard surfaces.",
-    "tags": ["ailerons", "transonic"],
+    "tags": [
+      "ailerons",
+      "transonic"
+    ],
     "status": "published",
     "version": 1
   },
@@ -608,24 +661,27 @@
     "options": [
       {
         "id": "a",
-        "text": "The stick shaker"
+        "text": "The stick shaker, which warns the pilot of the approach to buffet and so prevents the aircraft from reaching the buffet boundary at maximum operating Mach"
       },
       {
         "id": "b",
-        "text": "Mach trim alone"
-      },
-      {
-        "id": "c",
         "text": "A certification margin between MMO and the Mach at which buffet occurs at 1 g"
       },
       {
+        "id": "c",
+        "text": "The stick shaker"
+      },
+      {
         "id": "d",
-        "text": "The yaw damper"
+        "text": "Mach trim alone"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Demonstrated margins (MD beyond MMO) ensure buffet is not reached in normal operation.",
-    "tags": ["mmo", "high-speed-buffet"],
+    "tags": [
+      "mmo",
+      "high-speed-buffet"
+    ],
     "status": "published",
     "version": 1
   },
@@ -638,24 +694,26 @@
     "options": [
       {
         "id": "a",
-        "text": "High-speed buffet results from shock-induced separation; low-speed buffet from high-α separation near stall"
+        "text": "Low-speed buffet needs shocks"
       },
       {
         "id": "b",
-        "text": "High-speed buffet occurs only in turns"
+        "text": "Both are identical, since high-speed and low-speed buffet are caused by the same separation at the wing root and differ only in the speed at which they occur"
       },
       {
         "id": "c",
-        "text": "Both are identical"
+        "text": "High-speed buffet occurs only in turns"
       },
       {
         "id": "d",
-        "text": "Low-speed buffet needs shocks"
+        "text": "High-speed buffet results from shock-induced separation; low-speed buffet from high-α separation near stall"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Both are separation-induced and set a CL limit; one is Mach-driven, the other α-driven.",
-    "tags": ["buffet"],
+    "tags": [
+      "buffet"
+    ],
     "status": "published",
     "version": 1
   },
@@ -668,24 +726,27 @@
     "options": [
       {
         "id": "a",
-        "text": "q is lower"
+        "text": "Shocks on the tailplane reduce the elevator's influence on the tail's pressure distribution"
       },
       {
         "id": "b",
-        "text": "Hinge moments vanish"
-      },
-      {
-        "id": "c",
         "text": "The CG moves aft"
       },
       {
+        "id": "c",
+        "text": "Hinge moments vanish"
+      },
+      {
         "id": "d",
-        "text": "Shocks on the tailplane reduce the elevator's influence on the tail's pressure distribution"
+        "text": "q is lower, since the airspeed is reduced near MMO for safety and so the dynamic pressure on the tailplane falls by a large amount at this speed"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Hence trimmable stabilisers and Mach trim carry the trim load at high Mach.",
-    "tags": ["elevator", "transonic"],
+    "tags": [
+      "elevator",
+      "transonic"
+    ],
     "status": "published",
     "version": 1
   },
@@ -698,24 +759,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Weight increases"
+        "text": "The CG moves aft"
       },
       {
         "id": "b",
-        "text": "Weight decreases"
-      },
-      {
-        "id": "c",
         "text": "The temperature falls"
       },
       {
+        "id": "c",
+        "text": "Weight decreases"
+      },
+      {
         "id": "d",
-        "text": "The CG moves aft"
+        "text": "Weight increases"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Higher W requires higher CL at any altitude; the altitude giving the required margin is lower.",
-    "tags": ["buffet-margin", "weight"],
+    "tags": [
+      "buffet-margin",
+      "weight"
+    ],
     "status": "published",
     "version": 1
   }
