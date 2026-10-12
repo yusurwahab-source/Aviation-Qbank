@@ -51,7 +51,7 @@ describeDb("logbooks", () => {
   }
 
   async function scan(userId: string, logbookId: string) {
-    const reservation = await reserveExtraction({ userId, logbookId, model: "claude-sonnet-5-5" });
+    const reservation = await reserveExtraction({ userId, logbookId, model: "claude-sonnet-5-5", freeMode: false });
     if (reservation.ok) await finishExtraction(reservation.extractionId, done);
     return reservation;
   }
@@ -77,7 +77,7 @@ describeDb("logbooks", () => {
   it("does not count a failed extraction against the allowance", async () => {
     const userId = await makeUser();
     const logbookId = await createLogbook(userId, "Test");
-    const reservation = await reserveExtraction({ userId, logbookId, model: "m" });
+    const reservation = await reserveExtraction({ userId, logbookId, model: "m", freeMode: false });
     if (!reservation.ok) throw new Error("expected a reservation");
     await finishExtraction(reservation.extractionId, { ...done, status: "failed" });
     expect((await getLogbookAccess(userId)).freeSpreadsUsed).toBe(0);
@@ -96,8 +96,8 @@ describeDb("logbooks", () => {
     const logbookId = await createLogbook(userId, "Race");
     await scan(userId, logbookId);
     const results = await Promise.all([
-      reserveExtraction({ userId, logbookId, model: "m" }),
-      reserveExtraction({ userId, logbookId, model: "m" }),
+      reserveExtraction({ userId, logbookId, model: "m", freeMode: false }),
+      reserveExtraction({ userId, logbookId, model: "m", freeMode: false }),
     ]);
     expect(results.filter((r) => r.ok)).toHaveLength(1);
   });
@@ -122,7 +122,7 @@ describeDb("logbooks", () => {
     expect(await unlockLogbook(userId, logbookId)).toMatchObject({ ok: true, alreadyUnlocked: true });
     expect((await getLogbookAccess(userId)).availableUnlocks).toBe(0);
 
-    expect(await getSpreadsRemaining(userId, logbookId)).toBe(SPREADS_PER_UNLOCK);
+    expect(await getSpreadsRemaining(userId, logbookId, false)).toBe(SPREADS_PER_UNLOCK);
     for (let i = 0; i < SPREADS_PER_UNLOCK; i += 1) {
       expect(await scan(userId, logbookId)).toMatchObject({ ok: true, chargedTo: "unlock" });
     }

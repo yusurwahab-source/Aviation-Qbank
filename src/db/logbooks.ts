@@ -163,7 +163,11 @@ async function unlockSpreadsUsed(
 }
 
 /** How many more spreads this logbook can take right now. */
-export async function getSpreadsRemaining(userId: string, logbookId: string): Promise<number> {
+export async function getSpreadsRemaining(
+  userId: string,
+  logbookId: string,
+  freeMode: boolean = FREE_MODE,
+): Promise<number> {
   const db = getDb();
   const logbook = await getLogbook(userId, logbookId);
   if (!logbook) return 0;
@@ -172,7 +176,7 @@ export async function getSpreadsRemaining(userId: string, logbookId: string): Pr
     freeSpreadsUsed: access.freeSpreadsUsed,
     logbookUnlocked: logbook.unlockedAt !== null,
     logbookUnlockSpreadsUsed: await unlockSpreadsUsed(db, logbookId),
-    freeMode: FREE_MODE,
+    freeMode,
   });
 }
 
@@ -190,6 +194,8 @@ export async function reserveExtraction(input: {
   userId: string;
   logbookId: string;
   model: string;
+  /** Defaults to the site's free-mode switch; tests pass `false` for the paid meter. */
+  freeMode?: boolean;
 }): Promise<Reservation> {
   return getDb().transaction(async (tx) => {
     await tx.execute(sql`select pg_advisory_xact_lock(hashtext(${`logbook:${input.userId}`}))`);
@@ -206,7 +212,7 @@ export async function reserveExtraction(input: {
       freeSpreadsUsed: access.freeSpreadsUsed,
       logbookUnlocked: logbook.unlockedAt !== null,
       logbookUnlockSpreadsUsed: await unlockSpreadsUsed(tx, input.logbookId),
-      freeMode: FREE_MODE,
+      freeMode: input.freeMode ?? FREE_MODE,
     });
     if (!decision.allowed) return { ok: false, reason: decision.reason };
 
