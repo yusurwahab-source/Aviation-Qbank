@@ -38,9 +38,10 @@ export default function TermsPage() {
           produces a report that describes nobody.
         </p>
         <p>
-          <strong className="text-foreground">Subscriptions.</strong> Billing runs through
-          Stripe. A subscription renews until it is cancelled, and it can be cancelled from
-          the receipt Stripe emails when you subscribe.
+          <strong className="text-foreground">Paid plans.</strong> Every part of PilotQBank is
+          free to use at the moment, and nothing is charged. If paid plans return, their terms,
+          including how a subscription renews and how it is cancelled, will be published here
+          before anyone is asked to pay.
         </p>
       </ComingSoon>
     </>

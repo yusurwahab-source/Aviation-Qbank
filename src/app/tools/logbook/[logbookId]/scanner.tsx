@@ -366,7 +366,7 @@ export function LogbookScanner(props: {
             </div>
             <p className="mt-3 text-xs text-muted-foreground">
               JPEG, PNG or HEIC, up to 10 MB each. {remaining} {remaining === 1 ? "spread" : "spreads"} left on this
-              logbook{unlocked ? " (unlocked)" : ""}.
+              logbook.
             </p>
           </div>
 

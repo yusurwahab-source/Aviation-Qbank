@@ -38,9 +38,10 @@ export default function PrivacyPage() {
           application that shows one student another student&rsquo;s history.
         </p>
         <p>
-          <strong className="text-foreground">Payments.</strong> Card details never reach this
-          server. Checkout happens on a page Stripe hosts and is responsible for; what comes
-          back here is whether a subscription is active and when its period ends.
+          <strong className="text-foreground">Payments.</strong> Nothing is charged while the site
+          is free. If paid plans return, card details will never reach this server: checkout
+          happens on a page Stripe hosts and is responsible for, and what comes back here is only
+          whether a subscription is active and when its period ends.
         </p>
         <p>
           <strong className="text-foreground">Logbook Scanner.</strong> Photos of your logbook
