@@ -616,3 +616,12 @@ export function settingsToRows(
     },
   ];
 }
+
+/**
+ * The same settings with nothing hidden. The owner sees every section, class
+ * rating and subject as normal; everyone else gets the settings unchanged
+ * (`getVisibleSiteSettings` in `lib/settings-visibility.ts` chooses).
+ */
+export function unhidden(settings: SiteSettings): SiteSettings {
+  return { ...settings, hiddenSections: [], hiddenItems: [] };
+}

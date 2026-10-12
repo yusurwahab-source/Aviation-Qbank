@@ -18,11 +18,12 @@ import { countPreviewQuestionsAnswered } from "@/db/preview";
 import { getQuestionIdsToRetry, getTopicPerformance } from "@/db/reports";
 import { countQuestionsAnswered, getSubscription } from "@/db/subscriptions";
 import { hasFullAccess, remainingFreeQuestions } from "@/lib/billing/access-policy";
-import { getSiteSettings, overrideItem } from "@/db/settings";
+import { overrideItem } from "@/db/settings";
 import { getPreviewVisitorId } from "@/lib/auth/preview-visitor";
 import { getCurrentUser } from "@/lib/auth/session";
 import { studyGuideHref } from "@/lib/study-guide";
 import { PRESET_COUNT_CEILING } from "@/lib/test-options";
+import { getVisibleSiteSettings } from "@/lib/settings-visibility";
 
 export const dynamic = "force-dynamic";
 
@@ -81,7 +82,7 @@ export default async function AircraftPage({ params }: PageProps) {
       if (!hasFullAccess(subscription)) {
         const [distinctAnswered, settings] = await Promise.all([
           countQuestionsAnswered(user.id, aircraftCode),
-          getSiteSettings(),
+          getVisibleSiteSettings(),
         ]);
         remainingFree = remainingFreeQuestions(distinctAnswered, settings.freeQuestionsPerAircraft);
       }
@@ -104,7 +105,7 @@ export default async function AircraftPage({ params }: PageProps) {
       // means nothing has been previewed, which is the honest starting
       // point. `answerQuestion` mints one when the first question is spent.
       allowanceKind = "preview";
-      const [visitorId, settings] = await Promise.all([getPreviewVisitorId(), getSiteSettings()]);
+      const [visitorId, settings] = await Promise.all([getPreviewVisitorId(), getVisibleSiteSettings()]);
       const previewed = visitorId
         ? await countPreviewQuestionsAnswered(visitorId, aircraftCode)
         : 0;

@@ -1,4 +1,4 @@
-import { getSiteSettings, overrideItem } from "@/db/settings";
+import { overrideItem } from "@/db/settings";
 import { sectionTitle } from "@/lib/settings";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -20,6 +20,7 @@ import { getQuestionIdsToRetry, getTopicPerformance } from "@/db/reports";
 import { getCurrentUser } from "@/lib/auth/session";
 import { studyGuideHref } from "@/lib/study-guide";
 import { buildFlyingKnowledgeResumeHref, PRESET_COUNT_CEILING } from "@/lib/test-options";
+import { getVisibleSiteSettings } from "@/lib/settings-visibility";
 
 export const dynamic = "force-dynamic";
 
@@ -91,7 +92,7 @@ export default async function FlyingKnowledgeSubjectPage({ params }: PageProps) 
 
   return (
     <>
-      <PageHeading eyebrow={subject.code} title={subject.name} subtitle={sectionTitle(await getSiteSettings(), "flying-knowledge")} />
+      <PageHeading eyebrow={subject.code} title={subject.name} subtitle={sectionTitle(await getVisibleSiteSettings(), "flying-knowledge")} />
 
       <Card>
         <p className="text-sm text-muted-foreground">{subject.description}</p>

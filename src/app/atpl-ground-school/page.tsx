@@ -9,12 +9,13 @@ import {
   listFlyingKnowledgeSubjects,
   type FlyingKnowledgeSubjectSummary,
 } from "@/db/flying-knowledge-queries";
-import { getSiteSettings } from "@/db/settings";
+import {  } from "@/db/settings";
 import { isOwner } from "@/lib/auth/owner";
 import { getCurrentUser } from "@/lib/auth/session";
 import { buildAtplRows, type AtplRow } from "@/lib/atpl-subjects";
 import { envValue } from "@/lib/env";
 import { isItemHidden, withoutHidden } from "@/lib/settings";
+import { getVisibleSiteSettings } from "@/lib/settings-visibility";
 
 export const metadata: Metadata = {
   title: "EASA ATPL Ground School",
@@ -44,7 +45,7 @@ export default async function AtplGroundSchoolPage() {
     } catch {
       owner = false;
     }
-    const settings = await getSiteSettings();
+    const settings = await getVisibleSiteSettings();
     const subjects: FlyingKnowledgeSubjectSummary[] = await listFlyingKnowledgeSubjects();
     for (const subject of subjects) {
       if (isItemHidden(settings, "flying-knowledge", subject.code)) hiddenCodes.add(subject.code);

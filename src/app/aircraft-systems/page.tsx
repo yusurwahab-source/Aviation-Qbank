@@ -6,9 +6,10 @@ import { Badge, Card, PageHeading } from "@/components/ui";
 import { siteConfig } from "@/config/site";
 import { listClassRatings } from "@/db/class-queries";
 import { listAircraft } from "@/db/queries";
-import { getSiteSettings } from "@/db/settings";
+import {  } from "@/db/settings";
 import { summariseSection, type SectionCounts } from "@/lib/section-counts";
 import { isSectionHidden, withoutHidden } from "@/lib/settings";
+import { getVisibleSiteSettings } from "@/lib/settings-visibility";
 
 export const metadata: Metadata = {
   title: "Aircraft Systems Knowledge",
@@ -37,7 +38,7 @@ export default async function AircraftSystemsPage() {
   let paths: Path[];
 
   try {
-    const settings = await getSiteSettings();
+    const settings = await getVisibleSiteSettings();
     const [fleet, classes] = await Promise.all([
       listAircraft().then((rows) =>
         withoutHidden(settings, "type-rating", rows),

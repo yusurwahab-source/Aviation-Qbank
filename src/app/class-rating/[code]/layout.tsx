@@ -1,10 +1,11 @@
 import { notFound } from "next/navigation";
 
-import { getSiteSettings } from "@/db/settings";
+import {  } from "@/db/settings";
 import { getCurrentUser } from "@/lib/auth/session";
 import { isOwner } from "@/lib/auth/owner";
 import { envValue } from "@/lib/env";
 import { isItemHidden } from "@/lib/settings";
+import { getVisibleSiteSettings } from "@/lib/settings-visibility";
 
 export default async function ItemLayout({
   children,
@@ -15,7 +16,7 @@ export default async function ItemLayout({
 }) {
   const { code } = await params;
 
-  if (isItemHidden(await getSiteSettings(), "class-rating", code)) {
+  if (isItemHidden(await getVisibleSiteSettings(), "class-rating", code)) {
     // The owner may preview an item that is still hidden from students.
     let owner = false;
     try {

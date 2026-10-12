@@ -8,7 +8,7 @@ import { UserMenu } from "@/components/user-menu";
 import { getCurrentUser } from "@/lib/auth/session";
 import { isOwner } from "@/lib/auth/owner";
 import { FREE_MODE } from "@/config/free-mode";
-import { getSiteSettings } from "@/db/settings";
+import {  } from "@/db/settings";
 import { envValue } from "@/lib/env";
 import {
   isPillarHidden,
@@ -16,6 +16,7 @@ import {
   pillarShortTitle,
   pillarTitle,
 } from "@/lib/pillars";
+import { getVisibleSiteSettings } from "@/lib/settings-visibility";
 
 /**
  * The application shell's header.
@@ -64,7 +65,7 @@ export async function SiteHeader() {
   // The owner gets one extra link. Everyone else never learns the area
   // exists — the pages themselves 404 for them regardless, so this is
   // about not advertising a door rather than about locking it.
-  const settings = await getSiteSettings();
+  const settings = await getVisibleSiteSettings();
   const visible = (links: NavItem[]) =>
     links
       .filter((link) => !(FREE_MODE && PRICING_PATHS.has(link.href)))

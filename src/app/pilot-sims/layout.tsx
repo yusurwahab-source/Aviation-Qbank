@@ -1,10 +1,11 @@
 import { notFound } from "next/navigation";
 
-import { getSiteSettings } from "@/db/settings";
+import {  } from "@/db/settings";
 import { isSectionHidden } from "@/lib/settings";
+import { getVisibleSiteSettings } from "@/lib/settings-visibility";
 
 export default async function SectionLayout({ children }: { children: React.ReactNode }) {
-  if (isSectionHidden(await getSiteSettings(), "pilot-sims")) notFound();
+  if (isSectionHidden(await getVisibleSiteSettings(), "pilot-sims")) notFound();
 
   return children;
 }
