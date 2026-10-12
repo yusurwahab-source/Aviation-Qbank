@@ -6,7 +6,7 @@ import {
   listFlyingKnowledgeTopics,
 } from "@/db/flying-knowledge-queries";
 import { listAircraft, listTopics } from "@/db/queries";
-import { getSiteSettings } from "@/db/settings";
+import {  } from "@/db/settings";
 import { buildAtplRows } from "@/lib/atpl-subjects";
 import { summariseSection, type SectionCounts } from "@/lib/section-counts";
 import { buildFlyingKnowledgeTestHref } from "@/lib/test-options";
@@ -21,6 +21,7 @@ import { Hero } from "./_landing/hero";
 import { HowItWorks } from "./_landing/how-it-works";
 import { PillarsOverview, type PillarsData } from "./_landing/pillars-overview";
 import { Trust } from "./_landing/trust";
+import { getVisibleSiteSettings } from "@/lib/settings-visibility";
 
 /**
  * The marketing landing page.
@@ -68,7 +69,7 @@ type LandingData = {
  */
 async function loadLandingData(): Promise<LandingData> {
   try {
-    const settings = await getSiteSettings();
+    const settings = await getVisibleSiteSettings();
     const [fleet, classes, subjects] = await Promise.all([
       listAircraft().then((rows) =>
         withoutHidden(settings, "type-rating", rows),
@@ -192,7 +193,7 @@ export default async function LandingPage() {
       tryHref,
     },
     { featuredAircraftCode, hiddenSections, sectionLabels },
-  ] = await Promise.all([loadLandingData(), getSiteSettings()]);
+  ] = await Promise.all([loadLandingData(), getVisibleSiteSettings()]);
 
   const heroStats: HeroStats | null = sectionsOk
     ? {

@@ -1,12 +1,13 @@
 import Link from "next/link";
 
-import { getSiteSettings } from "@/db/settings";
+import {  } from "@/db/settings";
 import {
   isPillarHidden,
   PILLAR_HREFS,
   PILLAR_KEYS,
   pillarShortTitle,
 } from "@/lib/pillars";
+import { getVisibleSiteSettings } from "@/lib/settings-visibility";
 
 /**
  * The three ways into the product, as a row of equal-weight buttons.
@@ -18,7 +19,7 @@ import {
  * destination page's own heading.
  */
 export async function PillarLinks({ className = "" }: { className?: string }) {
-  const settings = await getSiteSettings();
+  const settings = await getVisibleSiteSettings();
 
   return (
     <div

@@ -9,8 +9,9 @@ import { FREE_MODE } from "@/config/free-mode";
 import { getSubscription } from "@/db/subscriptions";
 import { listClassRatings, type ClassRatingSummary } from "@/db/class-queries";
 import { hasActiveSubscription } from "@/lib/billing/access-policy";
-import { getSiteSettings } from "@/db/settings";
+import {  } from "@/db/settings";
 import { getCurrentUser } from "@/lib/auth/session";
+import { getVisibleSiteSettings } from "@/lib/settings-visibility";
 
 export const metadata: Metadata = {
   title: "Choose an aircraft — Class Rating Systems Knowledge",
@@ -42,22 +43,22 @@ export default async function ClassRatingPickerPage() {
   let classes: ClassRatingSummary[];
 
   try {
-    classes = withItemOverrides(await getSiteSettings(), "class-rating", withoutHidden(await getSiteSettings(), "class-rating", await listClassRatings()));
+    classes = withItemOverrides(await getVisibleSiteSettings(), "class-rating", withoutHidden(await getVisibleSiteSettings(), "class-rating", await listClassRatings()));
   } catch (error) {
     return (
       <>
-        <PageHeading eyebrow={sectionTitle(await getSiteSettings(), "class-rating")} title="Choose an aircraft" />
+        <PageHeading eyebrow={sectionTitle(await getVisibleSiteSettings(), "class-rating")} title="Choose an aircraft" />
         <DatabaseUnavailable detail={(error as Error).message} />
       </>
     );
   }
 
-  const [offerUpgrade, settings] = await Promise.all([shouldOfferUpgrade(), getSiteSettings()]);
+  const [offerUpgrade, settings] = await Promise.all([shouldOfferUpgrade(), getVisibleSiteSettings()]);
 
   return (
     <>
       <PageHeading
-        eyebrow={sectionTitle(await getSiteSettings(), "class-rating")}
+        eyebrow={sectionTitle(await getVisibleSiteSettings(), "class-rating")}
         title="Choose an aircraft"
         subtitle="Pick an aircraft to start a practice test. Each class has its own question bank."
       />
