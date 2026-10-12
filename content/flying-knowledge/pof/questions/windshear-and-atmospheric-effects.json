@@ -12,20 +12,23 @@
       },
       {
         "id": "b",
-        "text": "A change in wind speed and/or direction over a short distance, horizontally or vertically"
+        "text": "A temperature inversion only"
       },
       {
         "id": "c",
-        "text": "A temperature inversion only"
+        "text": "A change in wind speed and/or direction over a short distance, horizontally or vertically"
       },
       {
         "id": "d",
         "text": "A steady crosswind"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "It includes horizontal shear (along the path) and vertical currents (updrafts, downdrafts).",
-    "tags": ["windshear", "definition"],
+    "tags": [
+      "windshear",
+      "definition"
+    ],
     "status": "published",
     "version": 1
   },
@@ -38,24 +41,28 @@
     "options": [
       {
         "id": "a",
-        "text": "Is unchanged"
-      },
-      {
-        "id": "b",
         "text": "Increases by about 15 kt, because inertia keeps groundspeed momentarily constant"
       },
       {
+        "id": "b",
+        "text": "Increases by 30 kt"
+      },
+      {
         "id": "c",
-        "text": "Decreases by 15 kt"
+        "text": "Is unchanged"
       },
       {
         "id": "d",
-        "text": "Increases by 30 kt"
+        "text": "Decreases by 15 kt"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Airspeed = groundspeed + headwind component; the aircraft's inertia prevents an instant groundspeed change.",
-    "tags": ["windshear", "airspeed", "inertia"],
+    "tags": [
+      "windshear",
+      "airspeed",
+      "inertia"
+    ],
     "status": "published",
     "version": 1
   },
@@ -68,24 +75,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Headwind increases"
+        "text": "An updraft occurs"
       },
       {
         "id": "b",
-        "text": "Headwind decreases or tailwind increases, reducing airspeed"
+        "text": "Headwind increases"
       },
       {
         "id": "c",
-        "text": "Temperature falls"
+        "text": "Headwind decreases or tailwind increases, reducing airspeed"
       },
       {
         "id": "d",
-        "text": "An updraft occurs"
+        "text": "Temperature falls"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "The aircraft loses airspeed (and lift) and tends to sink below its path.",
-    "tags": ["performance-decreasing-shear"],
+    "tags": [
+      "performance-decreasing-shear"
+    ],
     "status": "published",
     "version": 1
   },
@@ -98,7 +107,7 @@
     "options": [
       {
         "id": "a",
-        "text": "A fall in IAS"
+        "text": "A rise in IAS and a tendency to go above the glide path"
       },
       {
         "id": "b",
@@ -106,16 +115,19 @@
       },
       {
         "id": "c",
-        "text": "A rise in IAS and a tendency to go above the glide path"
+        "text": "No change"
       },
       {
         "id": "d",
-        "text": "No change"
+        "text": "A fall in IAS"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "The extra airspeed raises lift; the pilot reduces power — dangerous if a performance-decreasing phase follows.",
-    "tags": ["performance-increasing-shear", "approach"],
+    "tags": [
+      "performance-increasing-shear",
+      "approach"
+    ],
     "status": "published",
     "version": 1
   },
@@ -128,24 +140,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Sink and decelerate further until the phugoid/pilot action restores equilibrium"
-      },
-      {
-        "id": "b",
         "text": "Accelerate"
       },
       {
+        "id": "b",
+        "text": "Sink and decelerate further until the phugoid/pilot action restores equilibrium"
+      },
+      {
         "id": "c",
-        "text": "Immediately recover"
+        "text": "Climb"
       },
       {
         "id": "d",
-        "text": "Climb"
+        "text": "Immediately recover"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Reduced lift causes descent; in a stable aircraft the nose drops to regain speed, costing height.",
-    "tags": ["windshear", "response"],
+    "tags": [
+      "windshear",
+      "response"
+    ],
     "status": "published",
     "version": 1
   },
@@ -162,7 +177,7 @@
       },
       {
         "id": "b",
-        "text": "They are lighter"
+        "text": "They fly slower"
       },
       {
         "id": "c",
@@ -170,12 +185,15 @@
       },
       {
         "id": "d",
-        "text": "They fly slower"
+        "text": "They are lighter"
       }
     ],
     "correct": "c",
     "explanation": "Groundspeed adapts slowly, and turbofans need several seconds to reach go-around thrust from approach idle.",
-    "tags": ["inertia", "spool-up"],
+    "tags": [
+      "inertia",
+      "spool-up"
+    ],
     "status": "published",
     "version": 1
   },
@@ -188,7 +206,7 @@
     "options": [
       {
         "id": "a",
-        "text": "A tornado"
+        "text": "A large-scale frontal wind"
       },
       {
         "id": "b",
@@ -196,7 +214,7 @@
       },
       {
         "id": "c",
-        "text": "A large-scale frontal wind"
+        "text": "A tornado"
       },
       {
         "id": "d",
@@ -205,7 +223,9 @@
     ],
     "correct": "b",
     "explanation": "Downdraft and outflow typically last minutes; wind changes across it can exceed 40 kt.",
-    "tags": ["microburst"],
+    "tags": [
+      "microburst"
+    ],
     "status": "published",
     "version": 1
   },
@@ -218,24 +238,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Tailwind, then headwind"
-      },
-      {
-        "id": "b",
         "text": "Only a headwind"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Increasing headwind (IAS up, above path), then downdraft, then tailwind (IAS down, below path)"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Only a downdraft"
+      },
+      {
+        "id": "d",
+        "text": "Tailwind, then headwind"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "The outflow ahead gives a headwind; the core gives a downdraft; the far side gives a tailwind — often after the pilot has reduced power.",
-    "tags": ["microburst", "approach"],
+    "tags": [
+      "microburst",
+      "approach"
+    ],
     "status": "published",
     "version": 1
   },
@@ -248,11 +271,11 @@
     "options": [
       {
         "id": "a",
-        "text": "The period before entry"
+        "text": "The tailwind and downdraft phase after the initial headwind has led the pilot to reduce power"
       },
       {
         "id": "b",
-        "text": "The initial headwind"
+        "text": "The period before entry"
       },
       {
         "id": "c",
@@ -260,12 +283,15 @@
       },
       {
         "id": "d",
-        "text": "The tailwind and downdraft phase after the initial headwind has led the pilot to reduce power"
+        "text": "The initial headwind"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Energy loss combines with low thrust and low height.",
-    "tags": ["microburst", "hazard"],
+    "tags": [
+      "microburst",
+      "hazard"
+    ],
     "status": "published",
     "version": 1
   },
@@ -282,7 +308,7 @@
       },
       {
         "id": "b",
-        "text": "Horizontal extent (over about 4 km) and duration"
+        "text": "Being an updraft"
       },
       {
         "id": "c",
@@ -290,12 +316,14 @@
       },
       {
         "id": "d",
-        "text": "Being an updraft"
+        "text": "Horizontal extent (over about 4 km) and duration"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Both are downbursts; the micro/macro distinction is scale.",
-    "tags": ["downburst"],
+    "tags": [
+      "downburst"
+    ],
     "status": "published",
     "version": 1
   },
@@ -308,24 +336,28 @@
     "options": [
       {
         "id": "a",
-        "text": "14°"
+        "text": "0.4°"
       },
       {
         "id": "b",
-        "text": "4.1°"
+        "text": "14°"
       },
       {
         "id": "c",
-        "text": "7.1°"
+        "text": "4.1°"
       },
       {
         "id": "d",
-        "text": "0.4°"
+        "text": "7.1°"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "arctan(5/70) = 4.1° (gradient 7.1 %) just to hold height relative to the ground.",
-    "tags": ["downdraft", "climb-gradient", "calculation"],
+    "tags": [
+      "downdraft",
+      "climb-gradient",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -338,7 +370,7 @@
     "options": [
       {
         "id": "a",
-        "text": "13°"
+        "text": "7.6°"
       },
       {
         "id": "b",
@@ -346,16 +378,20 @@
       },
       {
         "id": "c",
-        "text": "0.13°"
+        "text": "13°"
       },
       {
         "id": "d",
-        "text": "7.6°"
+        "text": "0.13°"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Δα ≈ w/V = 0.133 rad = 7.6°. The pilot must raise the nose substantially to keep lift.",
-    "tags": ["downdraft", "angle-of-attack", "calculation"],
+    "tags": [
+      "downdraft",
+      "angle-of-attack",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -368,7 +404,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Reduce thrust and dive for speed"
+        "text": "Retract flaps immediately"
       },
       {
         "id": "b",
@@ -376,7 +412,7 @@
       },
       {
         "id": "c",
-        "text": "Retract flaps immediately"
+        "text": "Reduce thrust and dive for speed"
       },
       {
         "id": "d",
@@ -385,7 +421,9 @@
     ],
     "correct": "b",
     "explanation": "Trading speed for height and using full thrust minimises height loss; changing configuration in the shear reduces lift or adds drag at the wrong moment.",
-    "tags": ["windshear-recovery"],
+    "tags": [
+      "windshear-recovery"
+    ],
     "status": "published",
     "version": 1
   },
@@ -398,7 +436,7 @@
     "options": [
       {
         "id": "a",
-        "text": "It is required only on the ground"
+        "text": "Flap retraction reduces CLmax and gear transit may add drag, while height margin is critical"
       },
       {
         "id": "b",
@@ -406,16 +444,19 @@
       },
       {
         "id": "c",
-        "text": "Flap retraction reduces CLmax and gear transit may add drag, while height margin is critical"
+        "text": "It increases lift"
       },
       {
         "id": "d",
-        "text": "It increases lift"
+        "text": "It is required only on the ground"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Configuration changes are made after the aircraft is clear of the shear with positive climb.",
-    "tags": ["windshear-recovery", "configuration"],
+    "tags": [
+      "windshear-recovery",
+      "configuration"
+    ],
     "status": "published",
     "version": 1
   },
@@ -428,24 +469,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Height is more valuable than speed margin near the ground, and the maximum usable lift is needed"
+        "text": "It increases thrust"
       },
       {
         "id": "b",
-        "text": "It reduces drag"
-      },
-      {
-        "id": "c",
         "text": "It prevents shear"
       },
       {
+        "id": "c",
+        "text": "It reduces drag"
+      },
+      {
         "id": "d",
-        "text": "It increases thrust"
+        "text": "Height is more valuable than speed margin near the ground, and the maximum usable lift is needed"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Intermittent shaker indicates operation at the edge of the usable α; pitch is reduced only to stop it.",
-    "tags": ["windshear-recovery", "angle-of-attack"],
+    "tags": [
+      "windshear-recovery",
+      "angle-of-attack"
+    ],
     "status": "published",
     "version": 1
   },
@@ -458,24 +502,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Temperature only"
-      },
-      {
-        "id": "b",
         "text": "Icing"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Doppler velocity divergence in precipitation ahead of the aircraft"
+      },
+      {
+        "id": "c",
+        "text": "Temperature only"
       },
       {
         "id": "d",
         "text": "Only turbulence behind"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Outflow produces opposite radial velocities across the microburst; the system warns before entry. Reactive systems use the aircraft's own energy state.",
-    "tags": ["predictive-windshear"],
+    "tags": [
+      "predictive-windshear"
+    ],
     "status": "published",
     "version": 1
   },
@@ -488,24 +534,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Thunderstorms, fronts, low-level jets, temperature inversions, sea breezes and terrain"
+        "text": "Only clear skies"
       },
       {
         "id": "b",
-        "text": "High-altitude cruise only"
-      },
-      {
-        "id": "c",
         "text": "Stable air only"
       },
       {
+        "id": "c",
+        "text": "Thunderstorms, fronts, low-level jets, temperature inversions, sea breezes and terrain"
+      },
+      {
         "id": "d",
-        "text": "Only clear skies"
+        "text": "High-altitude cruise only"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Any boundary between air masses with different motion can produce shear.",
-    "tags": ["windshear-sources"],
+    "tags": [
+      "windshear-sources"
+    ],
     "status": "published",
     "version": 1
   },
@@ -518,24 +566,27 @@
     "options": [
       {
         "id": "a",
-        "text": "It produces updrafts"
+        "text": "It removes wind"
       },
       {
         "id": "b",
-        "text": "It lowers density"
-      },
-      {
-        "id": "c",
         "text": "Calm air below the inversion lies under strong wind above it"
       },
       {
+        "id": "c",
+        "text": "It produces updrafts"
+      },
+      {
         "id": "d",
-        "text": "It removes wind"
+        "text": "It lowers density"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Crossing the inversion on climb or descent brings a sudden wind change.",
-    "tags": ["inversion", "windshear"],
+    "tags": [
+      "inversion",
+      "windshear"
+    ],
     "status": "published",
     "version": 1
   },
@@ -548,24 +599,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Produces sudden wind shift, gusts and shear, sometimes tens of kilometres from the cell"
-      },
-      {
-        "id": "b",
         "text": "Is harmless"
       },
       {
+        "id": "b",
+        "text": "Is always visible as rain"
+      },
+      {
         "id": "c",
-        "text": "Occurs only behind the storm"
+        "text": "Produces sudden wind shift, gusts and shear, sometimes tens of kilometres from the cell"
       },
       {
         "id": "d",
-        "text": "Is always visible as rain"
+        "text": "Occurs only behind the storm"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Cold outflow spreads ahead of the storm as a density current.",
-    "tags": ["gust-front"],
+    "tags": [
+      "gust-front"
+    ],
     "status": "published",
     "version": 1
   },
@@ -578,11 +631,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Increases with height above the surface"
+        "text": "Reverses at 100 ft"
       },
       {
         "id": "b",
-        "text": "Reverses at 100 ft"
+        "text": "Is constant"
       },
       {
         "id": "c",
@@ -590,12 +643,14 @@
       },
       {
         "id": "d",
-        "text": "Is constant"
+        "text": "Increases with height above the surface"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Surface friction slows the air near the ground; the gradient is steeper over rough terrain.",
-    "tags": ["wind-gradient"],
+    "tags": [
+      "wind-gradient"
+    ],
     "status": "published",
     "version": 1
   },
@@ -612,7 +667,7 @@
       },
       {
         "id": "b",
-        "text": "An IAS gain"
+        "text": "A progressive IAS loss requiring additional thrust"
       },
       {
         "id": "c",
@@ -620,12 +675,15 @@
       },
       {
         "id": "d",
-        "text": "A progressive IAS loss requiring additional thrust"
+        "text": "An IAS gain"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Each decrement of headwind reduces airspeed by the same amount; the pilot adds power or accepts sinking below the path.",
-    "tags": ["wind-gradient", "approach"],
+    "tags": [
+      "wind-gradient",
+      "approach"
+    ],
     "status": "published",
     "version": 1
   },
@@ -638,24 +696,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Has no effect"
+        "text": "Increases IAS and climb performance temporarily"
       },
       {
         "id": "b",
-        "text": "Reduces IAS"
-      },
-      {
-        "id": "c",
         "text": "Increases groundspeed"
       },
       {
+        "id": "c",
+        "text": "Reduces IAS"
+      },
+      {
         "id": "d",
-        "text": "Increases IAS and climb performance temporarily"
+        "text": "Has no effect"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Performance-increasing shear: airspeed gain can be converted into height.",
-    "tags": ["wind-gradient", "take-off"],
+    "tags": [
+      "wind-gradient",
+      "take-off"
+    ],
     "status": "published",
     "version": 1
   },
@@ -668,24 +729,27 @@
     "options": [
       {
         "id": "a",
-        "text": "They only occur above FL400"
-      },
-      {
-        "id": "b",
-        "text": "They are visible as cumulonimbus"
-      },
-      {
-        "id": "c",
         "text": "Strong vertical currents and severe turbulence occur downwind of ridges, possibly in clear air"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "They reduce wind speed"
+      },
+      {
+        "id": "c",
+        "text": "They only occur above FL400"
+      },
+      {
+        "id": "d",
+        "text": "They are visible as cumulonimbus"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Downdrafts in lee waves can exceed an aircraft's climb capability; rotors under wave crests produce violent turbulence.",
-    "tags": ["mountain-wave", "rotor"],
+    "tags": [
+      "mountain-wave",
+      "rotor"
+    ],
     "status": "published",
     "version": 1
   },
@@ -698,11 +762,11 @@
     "options": [
       {
         "id": "a",
-        "text": "At the surface"
+        "text": "Near jet streams, in regions of strong vertical and horizontal wind shear"
       },
       {
         "id": "b",
-        "text": "Near jet streams, in regions of strong vertical and horizontal wind shear"
+        "text": "At the surface"
       },
       {
         "id": "c",
@@ -713,9 +777,12 @@
         "text": "In fog"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Kelvin–Helmholtz instability in shear layers generates turbulence without cloud.",
-    "tags": ["cat", "jet-stream"],
+    "tags": [
+      "cat",
+      "jet-stream"
+    ],
     "status": "published",
     "version": 1
   },
@@ -745,7 +812,10 @@
     ],
     "correct": "c",
     "explanation": "Crosswind = 30 sin 40° = 19.3 kt; headwind = 30 cos 40° = 23.0 kt.",
-    "tags": ["crosswind", "calculation"],
+    "tags": [
+      "crosswind",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -758,7 +828,7 @@
     "options": [
       {
         "id": "a",
-        "text": "86 %"
+        "text": "100 %"
       },
       {
         "id": "b",
@@ -766,16 +836,20 @@
       },
       {
         "id": "c",
-        "text": "100 %"
+        "text": "57 %"
       },
       {
         "id": "d",
-        "text": "57 %"
+        "text": "86 %"
       }
     ],
     "correct": "b",
     "explanation": "Distance ∝ groundspeed²: (120/140)² = 0.735.",
-    "tags": ["take-off-distance", "headwind", "calculation"],
+    "tags": [
+      "take-off-distance",
+      "headwind",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -788,24 +862,28 @@
     "options": [
       {
         "id": "a",
-        "text": "30 %"
+        "text": "7 %"
       },
       {
         "id": "b",
-        "text": "15 %"
-      },
-      {
-        "id": "c",
         "text": "0 %"
       },
       {
+        "id": "c",
+        "text": "15 %"
+      },
+      {
         "id": "d",
-        "text": "7 %"
+        "text": "30 %"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "(150/140)² = 1.148. Tailwinds penalise distance more than equal headwinds help.",
-    "tags": ["take-off-distance", "tailwind", "calculation"],
+    "tags": [
+      "take-off-distance",
+      "tailwind",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -818,7 +896,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Wind changes weight"
+        "text": "Climb gradient through the air depends on (T − D)/W; wind changes only the ground geometry"
       },
       {
         "id": "b",
@@ -826,16 +904,19 @@
       },
       {
         "id": "c",
-        "text": "Climb gradient through the air depends on (T − D)/W; wind changes only the ground geometry"
+        "text": "Wind changes lift"
       },
       {
         "id": "d",
-        "text": "Wind changes lift"
+        "text": "Wind changes weight"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Relative to the ground, a headwind steepens the flight path; a tailwind flattens it — important for obstacle clearance.",
-    "tags": ["climb-gradient", "wind"],
+    "tags": [
+      "climb-gradient",
+      "wind"
+    ],
     "status": "published",
     "version": 1
   },
@@ -848,24 +929,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Low density increases lift"
+        "text": "Pressure increases thrust"
       },
       {
         "id": "b",
-        "text": "Temperature raises CLmax"
-      },
-      {
-        "id": "c",
         "text": "Low density reduces engine thrust/power and raises TAS for a given IAS"
       },
       {
+        "id": "c",
+        "text": "Temperature raises CLmax"
+      },
+      {
         "id": "d",
-        "text": "Pressure increases thrust"
+        "text": "Low density increases lift"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Density altitude sets both the aerodynamic and the engine side of performance.",
-    "tags": ["density-altitude", "performance"],
+    "tags": [
+      "density-altitude",
+      "performance"
+    ],
     "status": "published",
     "version": 1
   },
@@ -878,24 +962,28 @@
     "options": [
       {
         "id": "a",
-        "text": "640 ft/min"
-      },
-      {
-        "id": "b",
-        "text": "360 ft/min"
-      },
-      {
-        "id": "c",
         "text": "1,200 ft/min"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "500 ft/min"
+      },
+      {
+        "id": "c",
+        "text": "640 ft/min"
+      },
+      {
+        "id": "d",
+        "text": "360 ft/min"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "ROD = GS × 101.3 × tan 3° = 637 ft/min (≈ GS × 5).",
-    "tags": ["rate-of-descent", "glide-path", "calculation"],
+    "tags": [
+      "rate-of-descent",
+      "glide-path",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -908,7 +996,7 @@
     "options": [
       {
         "id": "a",
-        "text": "800 ft/min"
+        "text": "1,000 ft/min"
       },
       {
         "id": "b",
@@ -916,16 +1004,20 @@
       },
       {
         "id": "c",
-        "text": "1,000 ft/min"
+        "text": "640 ft/min"
       },
       {
         "id": "d",
-        "text": "640 ft/min"
+        "text": "800 ft/min"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Groundspeed 120 → 150 kt: 150 × 101.3 × 0.0524 = 796 ft/min. A shear on short final changes the required descent rate as well as IAS.",
-    "tags": ["glide-path", "windshear", "calculation"],
+    "tags": [
+      "glide-path",
+      "windshear",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -938,24 +1030,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Improve fuel economy"
-      },
-      {
-        "id": "b",
-        "text": "Reduce drag"
-      },
-      {
-        "id": "c",
         "text": "Increase landing distance deliberately"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "Maintain a margin above the stall during gust-induced airspeed decreases"
+      },
+      {
+        "id": "c",
+        "text": "Reduce drag"
+      },
+      {
+        "id": "d",
+        "text": "Improve fuel economy"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Gusts momentarily lower IAS; the additive preserves α margin.",
-    "tags": ["gust-additive", "approach"],
+    "tags": [
+      "gust-additive",
+      "approach"
+    ],
     "status": "published",
     "version": 1
   },
@@ -968,7 +1063,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Icing"
+        "text": "Stable air"
       },
       {
         "id": "b",
@@ -976,16 +1071,19 @@
       },
       {
         "id": "c",
-        "text": "Stable air"
+        "text": "The initial headwind phase of a microburst"
       },
       {
         "id": "d",
-        "text": "The initial headwind phase of a microburst"
+        "text": "Icing"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Reducing thrust in response is dangerous if a tailwind and downdraft follow.",
-    "tags": ["microburst", "recognition"],
+    "tags": [
+      "microburst",
+      "recognition"
+    ],
     "status": "published",
     "version": 1
   },
@@ -998,7 +1096,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Instrument errors only"
+        "text": "Pressure altitude"
       },
       {
         "id": "b",
@@ -1006,16 +1104,19 @@
       },
       {
         "id": "c",
-        "text": "The Coriolis force at the surface only"
+        "text": "Instrument errors only"
       },
       {
         "id": "d",
-        "text": "Pressure altitude"
+        "text": "The Coriolis force at the surface only"
       }
     ],
     "correct": "b",
     "explanation": "Approaches can meet significant shear between the reported surface wind and the wind aloft.",
-    "tags": ["surface-wind", "wind-gradient"],
+    "tags": [
+      "surface-wind",
+      "wind-gradient"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1028,7 +1129,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Rise above the path"
+        "text": "Dissipate instantly"
       },
       {
         "id": "b",
@@ -1036,7 +1137,7 @@
       },
       {
         "id": "c",
-        "text": "Dissipate instantly"
+        "text": "Rise above the path"
       },
       {
         "id": "d",
@@ -1045,7 +1146,9 @@
     ],
     "correct": "d",
     "explanation": "The vortex pair induces downward motion on itself; in ground effect each vortex travels laterally.",
-    "tags": ["wake-turbulence"],
+    "tags": [
+      "wake-turbulence"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1058,24 +1161,27 @@
     "options": [
       {
         "id": "a",
-        "text": "It can hold the upwind vortex stationary over the runway"
-      },
-      {
-        "id": "b",
-        "text": "It lifts vortices"
-      },
-      {
-        "id": "c",
         "text": "It doubles vortex strength"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "It dissipates both vortices"
+      },
+      {
+        "id": "c",
+        "text": "It lifts vortices"
+      },
+      {
+        "id": "d",
+        "text": "It can hold the upwind vortex stationary over the runway"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The vortex's own outward drift is cancelled by the crosswind.",
-    "tags": ["wake-turbulence", "crosswind"],
+    "tags": [
+      "wake-turbulence",
+      "crosswind"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1092,20 +1198,23 @@
       },
       {
         "id": "b",
-        "text": "Light, dirty and fast"
-      },
-      {
-        "id": "c",
         "text": "Light and slow"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Heavy and fast with flaps"
+      },
+      {
+        "id": "d",
+        "text": "Light, dirty and fast"
       }
     ],
     "correct": "a",
     "explanation": "Γ ∝ W/(ρ·V·b); flap and gear extension modify the vortex structure.",
-    "tags": ["wake-turbulence", "circulation"],
+    "tags": [
+      "wake-turbulence",
+      "circulation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1126,16 +1235,18 @@
       },
       {
         "id": "c",
-        "text": "Land before its touchdown point"
+        "text": "Stay at or above the leader's flight path and land beyond its touchdown point"
       },
       {
         "id": "d",
-        "text": "Stay at or above the leader's flight path and land beyond its touchdown point"
+        "text": "Land before its touchdown point"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Vortices sink and cease at touchdown.",
-    "tags": ["wake-avoidance"],
+    "tags": [
+      "wake-avoidance"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1148,11 +1259,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Pitch-up only"
+        "text": "Speed increase"
       },
       {
         "id": "b",
-        "text": "Speed increase"
+        "text": "Pitch-up only"
       },
       {
         "id": "c",
@@ -1165,7 +1276,9 @@
     ],
     "correct": "d",
     "explanation": "The vortex's rotational flow creates opposite α changes on the two wings.",
-    "tags": ["wake-encounter"],
+    "tags": [
+      "wake-encounter"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1178,24 +1291,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Roughening the surface water film, reducing CLmax and increasing drag, plus momentum loss from accelerating the drops"
+        "text": "Increasing lift"
       },
       {
         "id": "b",
-        "text": "Improving engine thrust"
-      },
-      {
-        "id": "c",
         "text": "Reducing weight"
       },
       {
+        "id": "c",
+        "text": "Roughening the surface water film, reducing CLmax and increasing drag, plus momentum loss from accelerating the drops"
+      },
+      {
         "id": "d",
-        "text": "Increasing lift"
+        "text": "Improving engine thrust"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Combined with microburst downdrafts, heavy rain adds to the energy deficit.",
-    "tags": ["heavy-rain"],
+    "tags": [
+      "heavy-rain"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1208,24 +1323,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Reduced weight"
+        "text": "Only engine effects"
       },
       {
         "id": "b",
-        "text": "Reduced CLmax and stall angle, increased drag and weight, and reduced control effectiveness"
+        "text": "Reduced weight"
       },
       {
         "id": "c",
-        "text": "Only engine effects"
+        "text": "Reduced CLmax and stall angle, increased drag and weight, and reduced control effectiveness"
       },
       {
         "id": "d",
         "text": "Increased CLmax"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Leading-edge roughness and shape changes dominate the aerodynamic losses.",
-    "tags": ["icing", "performance"],
+    "tags": [
+      "icing",
+      "performance"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1238,11 +1356,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Supercooled drops spread before freezing, forming clear ice aft of the protected areas"
+        "text": "It is warm"
       },
       {
         "id": "b",
-        "text": "It is warm"
+        "text": "It forms only rime"
       },
       {
         "id": "c",
@@ -1250,12 +1368,15 @@
       },
       {
         "id": "d",
-        "text": "It forms only rime"
+        "text": "Supercooled drops spread before freezing, forming clear ice aft of the protected areas"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Large drops impinge far back on the wing, beyond de-icing boots.",
-    "tags": ["freezing-rain", "icing"],
+    "tags": [
+      "freezing-rain",
+      "icing"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1268,24 +1389,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Temperature per height"
-      },
-      {
-        "id": "b",
         "text": "Speed per kilometre only"
       },
       {
+        "id": "b",
+        "text": "Temperature per height"
+      },
+      {
         "id": "c",
-        "text": "Change of wind speed per unit height (e.g. kt per 100 ft)"
+        "text": "Pressure per time"
       },
       {
         "id": "d",
-        "text": "Pressure per time"
+        "text": "Change of wind speed per unit height (e.g. kt per 100 ft)"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "It indicates how rapidly airspeed changes during climb or descent through the layer.",
-    "tags": ["windshear-intensity"],
+    "tags": [
+      "windshear-intensity"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1306,16 +1429,19 @@
       },
       {
         "id": "c",
-        "text": "A climb"
+        "text": "Loss of height, with airspeed eventually restored at the expense of the flight path"
       },
       {
         "id": "d",
-        "text": "Loss of height, with airspeed eventually restored at the expense of the flight path"
+        "text": "A climb"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "The aircraft trades potential energy to recover kinetic energy.",
-    "tags": ["energy", "response"],
+    "tags": [
+      "energy",
+      "response"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1332,11 +1458,11 @@
       },
       {
         "id": "b",
-        "text": "Reducing α"
+        "text": "Reducing lift"
       },
       {
         "id": "c",
-        "text": "Reducing lift"
+        "text": "Reducing α"
       },
       {
         "id": "d",
@@ -1345,7 +1471,10 @@
     ],
     "correct": "d",
     "explanation": "d(h_e)/dt = V·(T − D)/W: the larger T − D, the smaller the energy deficit.",
-    "tags": ["windshear-recovery", "thrust"],
+    "tags": [
+      "windshear-recovery",
+      "thrust"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1358,24 +1487,26 @@
     "options": [
       {
         "id": "a",
-        "text": "They form only at night"
-      },
-      {
-        "id": "b",
-        "text": "They are high-altitude jets"
-      },
-      {
-        "id": "c",
         "text": "Onshore cool air meets the offshore or synoptic flow in a narrow convergence zone"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "They are always calm"
+      },
+      {
+        "id": "c",
+        "text": "They form only at night"
+      },
+      {
+        "id": "d",
+        "text": "They are high-altitude jets"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "Wind direction can reverse across a short distance near coastal aerodromes.",
-    "tags": ["sea-breeze"],
+    "tags": [
+      "sea-breeze"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1388,7 +1519,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Only in cumulonimbus"
+        "text": "Only at the surface"
       },
       {
         "id": "b",
@@ -1396,16 +1527,18 @@
       },
       {
         "id": "c",
-        "text": "Only at the surface"
+        "text": "Never"
       },
       {
         "id": "d",
-        "text": "Never"
+        "text": "Only in cumulonimbus"
       }
     ],
     "correct": "b",
     "explanation": "The frontal surface may lie a few thousand feet above the aerodrome ahead of the surface front.",
-    "tags": ["frontal-shear"],
+    "tags": [
+      "frontal-shear"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1418,24 +1551,27 @@
     "options": [
       {
         "id": "a",
-        "text": "It increases lift"
-      },
-      {
-        "id": "b",
         "text": "It reduces TAS"
       },
       {
+        "id": "b",
+        "text": "It increases lift"
+      },
+      {
         "id": "c",
-        "text": "Touchdown groundspeed is higher, and distance ∝ groundspeed²"
+        "text": "It reduces weight"
       },
       {
         "id": "d",
-        "text": "It reduces weight"
+        "text": "Touchdown groundspeed is higher, and distance ∝ groundspeed²"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "10 kt tailwind at 130 kt TAS: (140/130)² = 1.16 — 16 % longer ground roll.",
-    "tags": ["landing-distance", "tailwind"],
+    "tags": [
+      "landing-distance",
+      "tailwind"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1452,7 +1588,7 @@
       },
       {
         "id": "b",
-        "text": "Only at night"
+        "text": "At cruise altitude"
       },
       {
         "id": "c",
@@ -1460,12 +1596,15 @@
       },
       {
         "id": "d",
-        "text": "At cruise altitude"
+        "text": "Only at night"
       }
     ],
     "correct": "a",
     "explanation": "The outflow ring expands after touchdown of the downdraft and weakens with time.",
-    "tags": ["microburst", "outflow"],
+    "tags": [
+      "microburst",
+      "outflow"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1482,20 +1621,23 @@
       },
       {
         "id": "b",
-        "text": "Reduces the angle of attack"
+        "text": "Reduces lift"
       },
       {
         "id": "c",
-        "text": "Has no effect"
+        "text": "Reduces the angle of attack"
       },
       {
         "id": "d",
-        "text": "Reduces lift"
+        "text": "Has no effect"
       }
     ],
     "correct": "a",
     "explanation": "Δα = w/V positive; in turbulence the same mechanism gives gust load factors.",
-    "tags": ["updraft", "angle-of-attack"],
+    "tags": [
+      "updraft",
+      "angle-of-attack"
+    ],
     "status": "published",
     "version": 1
   }

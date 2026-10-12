@@ -6,14 +6,28 @@
     "subtopic": "Communications model",
     "question": "A simple model of communication describes a message passing from a sender to a receiver through several stages. Which of these stages, if degraded, is specifically described as \"noise\"?",
     "options": [
-      { "id": "a", "text": "Anything in the channel that distorts or interferes with the message between sender and receiver, whether literal background noise or another form of interference" },
-      { "id": "b", "text": "The sender's original intended meaning" },
-      { "id": "c", "text": "The receiver's acknowledgement that the message was understood" },
-      { "id": "d", "text": "A stage that only exists in written, not spoken, communication" }
+      {
+        "id": "a",
+        "text": "A stage that only exists in written, not spoken, communication"
+      },
+      {
+        "id": "b",
+        "text": "Anything in the channel that distorts or interferes with the message between sender and receiver, whether literal background noise or another form of interference"
+      },
+      {
+        "id": "c",
+        "text": "The receiver's acknowledgement that the message was understood"
+      },
+      {
+        "id": "d",
+        "text": "The sender's original intended meaning, which is always lost in transit so that the receiver can only ever guess at what was originally intended by the speaker during the exchange"
+      }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "In the communications model, \"noise\" is a general term for anything that corrupts the message on its way from sender to receiver — literal background noise, poor radio quality, distraction, or even ambiguous phrasing all count as noise in this sense.",
-    "tags": ["communications-model"],
+    "tags": [
+      "communications-model"
+    ],
     "status": "published",
     "version": 1
   },
@@ -24,14 +38,29 @@
     "subtopic": "Communications model",
     "question": "Feedback, in the communications model, refers to:",
     "options": [
-      { "id": "a", "text": "A response from the receiver that lets the sender confirm the message was received and understood correctly" },
-      { "id": "b", "text": "The original message content itself" },
-      { "id": "c", "text": "Background interference in the communication channel" },
-      { "id": "d", "text": "A feature that only exists in face-to-face communication, never by radio" }
+      {
+        "id": "a",
+        "text": "A response from the receiver that lets the sender confirm the message was received and understood correctly"
+      },
+      {
+        "id": "b",
+        "text": "A feature that only exists in face-to-face communication, never by radio"
+      },
+      {
+        "id": "c",
+        "text": "The original message content itself, which the receiver is expected to repeat back word for word before the sender is allowed to continue speaking"
+      },
+      {
+        "id": "d",
+        "text": "Background interference in the communication channel"
+      }
     ],
     "correct": "a",
     "explanation": "Feedback closes the communication loop, giving the sender a way to verify the message landed as intended — a readback on the radio is exactly this kind of feedback, which is why it is specifically required for safety-critical ATC instructions.",
-    "tags": ["communications-model", "feedback"],
+    "tags": [
+      "communications-model",
+      "feedback"
+    ],
     "status": "published",
     "version": 1
   },
@@ -42,14 +71,28 @@
     "subtopic": "Types of questions",
     "question": "An \"open\" question (such as \"What do you see on the weather radar?\") is generally more useful than a \"closed\" question (such as \"Is the weather radar clear?\") when:",
     "options": [
-      { "id": "a", "text": "The goal is to gather as much relevant information as possible rather than to simply confirm a specific fact" },
-      { "id": "b", "text": "A quick yes/no confirmation is all that is needed" },
-      { "id": "c", "text": "Closed questions always produce more useful information than open ones" },
-      { "id": "d", "text": "There is no practical difference between the two types of question" }
+      {
+        "id": "a",
+        "text": "Closed questions always produce more useful information than open ones"
+      },
+      {
+        "id": "b",
+        "text": "The goal is to gather as much relevant information as possible rather than to simply confirm a specific fact"
+      },
+      {
+        "id": "c",
+        "text": "A quick yes/no confirmation is all that is needed, since a closed question avoids the risk of the receiver giving a long, unnecessary answer"
+      },
+      {
+        "id": "d",
+        "text": "There is no practical difference between the two types of question"
+      }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Open questions invite the other person to share what they actually see or think, which tends to surface more information; closed questions are faster but can limit the answer to a narrow confirmation that misses something the open form would have revealed.",
-    "tags": ["types-of-questions"],
+    "tags": [
+      "types-of-questions"
+    ],
     "status": "published",
     "version": 1
   },
@@ -60,14 +103,28 @@
     "subtopic": "Standard phraseology",
     "question": "Standardized aviation phraseology (fixed wording for common instructions and reports) exists mainly to:",
     "options": [
-      { "id": "a", "text": "Reduce ambiguity and make messages predictable and quickly recognisable, especially between speakers of different native languages" },
-      { "id": "b", "text": "Make radio communication sound more formal, with no safety benefit" },
-      { "id": "c", "text": "Replace the need for a readback of any instruction" },
-      { "id": "d", "text": "Only matter for written communication, never spoken" }
+      {
+        "id": "a",
+        "text": "Only matter for written communication, never spoken"
+      },
+      {
+        "id": "b",
+        "text": "Replace the need for a readback of any instruction, since a standard phrase already tells the receiver exactly what to do without repeating it"
+      },
+      {
+        "id": "c",
+        "text": "Reduce ambiguity and make messages predictable and quickly recognisable, especially between speakers of different native languages"
+      },
+      {
+        "id": "d",
+        "text": "Make radio communication sound more formal, with no safety benefit"
+      }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Fixed, predictable phrasing is faster to process and far less open to misinterpretation than casual, improvised wording — particularly valuable given how many pilots and controllers worldwide are communicating in a language that is not their first.",
-    "tags": ["standard-phraseology"],
+    "tags": [
+      "standard-phraseology"
+    ],
     "status": "published",
     "version": 1
   },
@@ -78,14 +135,28 @@
     "subtopic": "Good communications",
     "question": "A hallmark of good, safety-critical communication (such as a radio call or a crew briefing) is that it is:",
     "options": [
-      { "id": "a", "text": "Clear, concise, and confirmed by the receiver rather than simply assumed to have been understood" },
-      { "id": "b", "text": "As long and detailed as possible, regardless of how much time is available" },
-      { "id": "c", "text": "One-directional, with no expectation of any acknowledgement" },
-      { "id": "d", "text": "Deliberately vague, to allow flexibility in interpretation" }
+      {
+        "id": "a",
+        "text": "As long and detailed as possible, regardless of how much time is available"
+      },
+      {
+        "id": "b",
+        "text": "Clear, concise, and confirmed by the receiver rather than simply assumed to have been understood"
+      },
+      {
+        "id": "c",
+        "text": "Deliberately vague, to allow the receiver flexibility in interpretation, since a message that is too precise can be wrong for the situation at hand"
+      },
+      {
+        "id": "d",
+        "text": "One-directional, with no expectation of any acknowledgement"
+      }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Clarity and brevity reduce the chance of the message being garbled or misheard, and confirming it was received as intended (a readback, a repeated instruction) closes the loop rather than simply hoping it landed correctly.",
-    "tags": ["good-communications"],
+    "tags": [
+      "good-communications"
+    ],
     "status": "published",
     "version": 1
   },
@@ -96,14 +167,28 @@
     "subtopic": "Cockpit communication",
     "question": "The \"sterile cockpit\" rule, restricting non-essential conversation below a certain altitude (commonly 10,000 ft), exists mainly to:",
     "options": [
-      { "id": "a", "text": "Protect crew attention for the highest-workload phases of flight (takeoff, climb, descent, approach and landing) by removing avoidable distraction" },
-      { "id": "b", "text": "Prevent any communication at all between the crew members during the entire flight" },
-      { "id": "c", "text": "Apply equally at every phase of flight, including a long, stable cruise" },
-      { "id": "d", "text": "Only apply to communication with passengers, never between crew members" }
+      {
+        "id": "a",
+        "text": "Protect crew attention for the highest-workload phases of flight (takeoff, climb, descent, approach and landing) by removing avoidable distraction"
+      },
+      {
+        "id": "b",
+        "text": "Prevent any communication at all between the crew members during the entire flight"
+      },
+      {
+        "id": "c",
+        "text": "Only apply to communication with passengers, never between crew members, because cockpit conversation between the pilots is considered safe at every phase of flight"
+      },
+      {
+        "id": "d",
+        "text": "Only apply to communication with passengers, never between crew members"
+      }
     ],
     "correct": "a",
     "explanation": "The phases this rule targets are precisely the ones with the highest workload and least margin for distraction, so removing casual, non-essential conversation during them protects the attention that task actually needs.",
-    "tags": ["sterile-cockpit"],
+    "tags": [
+      "sterile-cockpit"
+    ],
     "status": "published",
     "version": 1
   },
@@ -114,14 +199,28 @@
     "subtopic": "Briefings",
     "question": "A thorough pre-flight or pre-approach briefing supports good crew performance mainly by:",
     "options": [
-      { "id": "a", "text": "Establishing a shared mental model of the plan in advance, so any later deviation is more likely to be noticed by either crew member" },
-      { "id": "b", "text": "Guaranteeing that nothing unplanned can happen during the flight" },
-      { "id": "c", "text": "Being useful only for the person delivering the briefing" },
-      { "id": "d", "text": "Replacing the need for ongoing communication during the flight itself" }
+      {
+        "id": "a",
+        "text": "Being useful only for the person delivering the briefing, since the other crew member is expected to listen without contributing anything of their own"
+      },
+      {
+        "id": "b",
+        "text": "Guaranteeing that nothing unplanned can happen during the flight"
+      },
+      {
+        "id": "c",
+        "text": "Replacing the need for ongoing communication during the flight itself"
+      },
+      {
+        "id": "d",
+        "text": "Establishing a shared mental model of the plan in advance, so any later deviation is more likely to be noticed by either crew member"
+      }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "A clear briefing gives both crew members the same expectation of how events should unfold, which is exactly what makes a departure from the plan — whatever its cause — stand out and get raised sooner, rather than being absorbed silently by only one person's private assumptions.",
-    "tags": ["briefings"],
+    "tags": [
+      "briefings"
+    ],
     "status": "published",
     "version": 1
   },
@@ -132,14 +231,28 @@
     "subtopic": "Metacommunication",
     "question": "\"Metacommunication\" refers to:",
     "options": [
-      { "id": "a", "text": "Information conveyed alongside the literal words themselves, such as tone of voice, pacing, or body language" },
-      { "id": "b", "text": "Only the literal dictionary meaning of the words spoken" },
-      { "id": "c", "text": "Communication that occurs exclusively in writing" },
-      { "id": "d", "text": "A term that applies only to radio communication, never to face-to-face conversation" }
+      {
+        "id": "a",
+        "text": "A term that applies only to radio communication, never to face-to-face conversation"
+      },
+      {
+        "id": "b",
+        "text": "Information conveyed alongside the literal words themselves, such as tone of voice, pacing, or body language"
+      },
+      {
+        "id": "c",
+        "text": "Communication that occurs exclusively in writing, such as a message on a company system, with no spoken words or tone involved at all"
+      },
+      {
+        "id": "d",
+        "text": "Only the literal dictionary meaning of the words spoken"
+      }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Metacommunication is the layer of meaning carried alongside the words — an urgent tone, a hesitant pause, a raised eyebrow — which can change how a message is actually understood even when the literal words stay the same.",
-    "tags": ["metacommunication"],
+    "tags": [
+      "metacommunication"
+    ],
     "status": "published",
     "version": 1
   },
@@ -150,14 +263,29 @@
     "subtopic": "Metacommunication",
     "question": "A crew member who says \"I think we might want to check the fuel again\" in a flat, hesitant tone, while actually being genuinely concerned, illustrates a risk because:",
     "options": [
-      { "id": "a", "text": "The literal words understate the urgency the speaker actually feels, and a listener relying on the words alone may miss how serious the concern really is" },
-      { "id": "b", "text": "Tone of voice never affects how a message is interpreted" },
-      { "id": "c", "text": "This phrasing is always understood as extremely urgent by any listener" },
-      { "id": "d", "text": "It is impossible for words and tone to disagree with each other" }
+      {
+        "id": "a",
+        "text": "Tone of voice never affects how a message is interpreted, so the listener should react only to the exact words spoken aloud, and ignore how they were said completely"
+      },
+      {
+        "id": "b",
+        "text": "This phrasing is always understood as extremely urgent by any listener"
+      },
+      {
+        "id": "c",
+        "text": "It is impossible for words and tone to disagree with each other"
+      },
+      {
+        "id": "d",
+        "text": "The literal words understate the urgency the speaker actually feels, and a listener relying on the words alone may miss how serious the concern really is"
+      }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Hedged, tentative phrasing can understate a genuine concern, and if the listener attends only to the literal words rather than the underlying urgency, a real safety concern can be missed or dismissed as a minor, casual remark.",
-    "tags": ["metacommunication", "assertiveness"],
+    "tags": [
+      "metacommunication",
+      "assertiveness"
+    ],
     "status": "published",
     "version": 1
   },
@@ -168,14 +296,28 @@
     "subtopic": "Barriers to crew cooperation",
     "question": "Which of the following is a recognised barrier to effective crew cooperation and teamwork?",
     "options": [
-      { "id": "a", "text": "Significant differences in language, culture or personal style that are not actively managed" },
-      { "id": "b", "text": "Both crew members having an identical, well-matched working style" },
-      { "id": "c", "text": "A clear, well-rehearsed briefing given before the flight" },
-      { "id": "d", "text": "Standardized phraseology used consistently throughout the flight" }
+      {
+        "id": "a",
+        "text": "Standardized phraseology used consistently throughout the flight"
+      },
+      {
+        "id": "b",
+        "text": "Significant differences in language, culture or personal style that are not actively managed"
+      },
+      {
+        "id": "c",
+        "text": "Both crew members having an identical, well-matched working style"
+      },
+      {
+        "id": "d",
+        "text": "A clear, well-rehearsed briefing given before the flight, which gives both crew members a shared picture of what to expect from the rest of the trip"
+      }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Real differences in language, cultural background or working style can create friction or misunderstanding if they are not actively recognised and managed, whereas the other options listed are all things that actively support, rather than hinder, good teamwork.",
-    "tags": ["barriers-to-cooperation"],
+    "tags": [
+      "barriers-to-cooperation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -186,14 +328,29 @@
     "subtopic": "Barriers to crew cooperation",
     "question": "Fatigue and high workload act as barriers to good crew cooperation mainly because they:",
     "options": [
-      { "id": "a", "text": "Reduce the mental capacity available for clear communication, making crew members more likely to shorten, skip or misinterpret an exchange" },
-      { "id": "b", "text": "Have no effect on communication quality at any level" },
-      { "id": "c", "text": "Always improve the clarity and frequency of crew communication" },
-      { "id": "d", "text": "Only affect a crew member's physical actions, never their communication" }
+      {
+        "id": "a",
+        "text": "Only affect a crew member's physical actions, never their communication"
+      },
+      {
+        "id": "b",
+        "text": "Have no effect on communication quality at any level, since communication is governed only by procedure and never by the state of the person speaking"
+      },
+      {
+        "id": "c",
+        "text": "Always improve the clarity and frequency of crew communication"
+      },
+      {
+        "id": "d",
+        "text": "Reduce the mental capacity available for clear communication, making crew members more likely to shorten, skip or misinterpret an exchange"
+      }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Communication, like other cognitive tasks, suffers under fatigue and overload — messages get clipped, assumptions go unstated, and the normal checks that catch misunderstanding are more likely to be skipped under pressure.",
-    "tags": ["barriers-to-cooperation", "fatigue"],
+    "tags": [
+      "barriers-to-cooperation",
+      "fatigue"
+    ],
     "status": "published",
     "version": 1
   },
@@ -204,14 +361,28 @@
     "subtopic": "Good teamwork",
     "question": "A recognised feature of a well-functioning crew team is that members:",
     "options": [
-      { "id": "a", "text": "Monitor and support each other, raising concerns and offering help proactively rather than waiting to be asked" },
-      { "id": "b", "text": "Work in complete isolation, never commenting on each other's actions" },
-      { "id": "c", "text": "Only communicate when something has already gone wrong" },
-      { "id": "d", "text": "Avoid cross-checking each other's work to respect each other's competence" }
+      {
+        "id": "a",
+        "text": "Avoid cross-checking each other's work to respect each other's competence"
+      },
+      {
+        "id": "b",
+        "text": "Work in complete isolation, never commenting on each other's actions"
+      },
+      {
+        "id": "c",
+        "text": "Monitor and support each other, raising concerns and offering help proactively rather than waiting to be asked"
+      },
+      {
+        "id": "d",
+        "text": "Work in complete isolation, never commenting on each other's actions, so that each person is fully responsible for their own part of the task"
+      }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Good teamwork is proactive rather than purely reactive: team members watch for developing problems and offer input before being specifically asked, which is what lets a team catch something one person alone would have missed.",
-    "tags": ["good-teamwork"],
+    "tags": [
+      "good-teamwork"
+    ],
     "status": "published",
     "version": 1
   },
@@ -222,14 +393,28 @@
     "subtopic": "Synchronization",
     "question": "\"Synchronization\" between crew members, in the sense of coordinated joint action, refers to:",
     "options": [
-      { "id": "a", "text": "Timing and coordinating actions between crew members so that each person's contribution fits smoothly with the other's at the right moment" },
-      { "id": "b", "text": "Both crew members performing the identical action at the identical time, regardless of role" },
-      { "id": "c", "text": "A concept that applies only to automated systems, never to people" },
-      { "id": "d", "text": "Something that is irrelevant to safety and only affects comfort" }
+      {
+        "id": "a",
+        "text": "A concept that applies only to automated systems, never to people"
+      },
+      {
+        "id": "b",
+        "text": "A concept that applies only to automated systems, never to people, because human crew members are assumed to act independently of one another at all times"
+      },
+      {
+        "id": "c",
+        "text": "Both crew members performing the identical action at the identical time, regardless of role"
+      },
+      {
+        "id": "d",
+        "text": "Timing and coordinating actions between crew members so that each person's contribution fits smoothly with the other's at the right moment"
+      }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Synchronization is about timing complementary actions correctly — one pilot calling a checklist item while the other sets a switch, for example — rather than both people doing the same thing at once, which is what lets divided roles actually work together as one coordinated task.",
-    "tags": ["synchronization"],
+    "tags": [
+      "synchronization"
+    ],
     "status": "published",
     "version": 1
   },
@@ -240,14 +425,28 @@
     "subtopic": "Synergy",
     "question": "\"Synergy\" in a well-coordinated crew is the idea that:",
     "options": [
-      { "id": "a", "text": "The combined output of a well-functioning crew working together can exceed what either member could achieve alone" },
-      { "id": "b", "text": "Two people working together always perform exactly twice as well as one person alone, with no exception" },
-      { "id": "c", "text": "Adding a second crew member always slows a task down" },
-      { "id": "d", "text": "Synergy is a purely theoretical idea with no bearing on real crew performance" }
+      {
+        "id": "a",
+        "text": "Synergy is a purely theoretical idea with no bearing on real crew performance"
+      },
+      {
+        "id": "b",
+        "text": "Adding a second crew member always slows a task down, because two people must always agree on every step before anything can be done"
+      },
+      {
+        "id": "c",
+        "text": "Two people working together always perform exactly twice as well as one person alone, with no exception"
+      },
+      {
+        "id": "d",
+        "text": "The combined output of a well-functioning crew working together can exceed what either member could achieve alone"
+      }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The value of a genuinely coordinated crew is not just dividing the same workload between two people, but that combined monitoring, cross-checking and complementary skills can catch and solve problems that either pilot working alone would have missed.",
-    "tags": ["synergy"],
+    "tags": [
+      "synergy"
+    ],
     "status": "published",
     "version": 1
   },
@@ -258,14 +457,29 @@
     "subtopic": "Miscommunication",
     "question": "A \"readback error\", where a pilot repeats back an ATC instruction incorrectly without the controller catching the mistake (a \"hearback\" failure), illustrates that:",
     "options": [
-      { "id": "a", "text": "Both halves of the feedback loop — the readback and the controller's verification of it — need to function correctly for the exchange to actually be safe" },
-      { "id": "b", "text": "A readback alone, with no verification by the controller, is always sufficient to guarantee correct communication" },
-      { "id": "c", "text": "Readback errors are purely a pilot problem, with no role for the controller" },
-      { "id": "d", "text": "This kind of error cannot occur once standard phraseology is used" }
+      {
+        "id": "a",
+        "text": "This kind of error cannot occur once standard phraseology is used, since the fixed wording removes any chance that either speaker mishears or misreads the other in the moment"
+      },
+      {
+        "id": "b",
+        "text": "A readback alone, with no verification by the controller, is always sufficient to guarantee correct communication"
+      },
+      {
+        "id": "c",
+        "text": "Both halves of the feedback loop — the readback and the controller's verification of it — need to function correctly for the exchange to actually be safe"
+      },
+      {
+        "id": "d",
+        "text": "Readback errors are purely a pilot problem, with no role for the controller"
+      }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "A readback only works as a safety check if the original speaker actually listens critically to it and catches a mismatch — a readback that is spoken but not properly verified (a hearback failure) can let an error pass through the very mechanism meant to catch it.",
-    "tags": ["miscommunication", "readback-hearback"],
+    "tags": [
+      "miscommunication",
+      "readback-hearback"
+    ],
     "status": "published",
     "version": 1
   },
@@ -276,14 +490,29 @@
     "subtopic": "Miscommunication",
     "question": "Two aircraft with similar-sounding callsigns on the same frequency create a recognised risk of:",
     "options": [
-      { "id": "a", "text": "One aircraft acting on an instruction that was actually intended for the other" },
-      { "id": "b", "text": "No practical risk, since pilots always distinguish callsigns perfectly" },
-      { "id": "c", "text": "A risk that only affects written flight plans, never radio communication" },
-      { "id": "d", "text": "A problem that is entirely solved simply by speaking more loudly" }
+      {
+        "id": "a",
+        "text": "A problem that is entirely solved simply by speaking more loudly, since a louder transmission always reaches the intended aircraft and no other"
+      },
+      {
+        "id": "b",
+        "text": "No practical risk, since pilots always distinguish callsigns perfectly"
+      },
+      {
+        "id": "c",
+        "text": "One aircraft acting on an instruction that was actually intended for the other"
+      },
+      {
+        "id": "d",
+        "text": "A risk that only affects written flight plans, never radio communication"
+      }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Confusable callsigns are a well-documented hazard: under workload or with poor radio quality, a pilot can mistake an instruction meant for a similarly-named aircraft as their own, which is why controllers are trained to watch for and manage this specific risk.",
-    "tags": ["miscommunication", "callsign-confusion"],
+    "tags": [
+      "miscommunication",
+      "callsign-confusion"
+    ],
     "status": "published",
     "version": 1
   },
@@ -294,14 +523,29 @@
     "subtopic": "Miscommunication",
     "question": "Expectation bias in radio communication refers to the tendency to:",
     "options": [
-      { "id": "a", "text": "Hear what one expects to hear, rather than what was actually said, especially when the expected message is very routine or anticipated" },
-      { "id": "b", "text": "Always hear a message with perfect accuracy regardless of expectation" },
-      { "id": "c", "text": "Only apply to written, not spoken, communication" },
-      { "id": "d", "text": "Apply only to communication in a language other than the listener's native one" }
+      {
+        "id": "a",
+        "text": "Apply only to communication in a language other than the listener's native one"
+      },
+      {
+        "id": "b",
+        "text": "Only apply to written, not spoken, communication, since expectation affects only what people read on a screen and never what they hear over the radio"
+      },
+      {
+        "id": "c",
+        "text": "Hear what one expects to hear, rather than what was actually said, especially when the expected message is very routine or anticipated"
+      },
+      {
+        "id": "d",
+        "text": "Always hear a message with perfect accuracy regardless of expectation"
+      }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "This mirrors the same expectation-driven bias seen in perception generally: if a pilot strongly expects a routine clearance, they can mishear an actual deviation from it as the expected, routine version, which is part of why an accurate, attentive readback matters even for seemingly predictable instructions.",
-    "tags": ["miscommunication", "expectation-bias"],
+    "tags": [
+      "miscommunication",
+      "expectation-bias"
+    ],
     "status": "published",
     "version": 1
   },
@@ -312,14 +556,28 @@
     "subtopic": "Professional languages",
     "question": "The existence of a specific, trained \"aviation English\" (or equivalent standard aviation phraseology) alongside pilots' and controllers' everyday native language is significant because:",
     "options": [
-      { "id": "a", "text": "It gives speakers of different native languages a common, limited, highly standardized vocabulary that reduces the chance of misunderstanding in a safety-critical exchange" },
-      { "id": "b", "text": "It is used purely for tradition, with no practical communication benefit" },
-      { "id": "c", "text": "It replaces the need for any further language training at all" },
-      { "id": "d", "text": "It is only relevant to written documentation, never to spoken radio calls" }
+      {
+        "id": "a",
+        "text": "It gives speakers of different native languages a common, limited, highly standardized vocabulary that reduces the chance of misunderstanding in a safety-critical exchange"
+      },
+      {
+        "id": "b",
+        "text": "It is used purely for tradition, with no practical communication benefit"
+      },
+      {
+        "id": "c",
+        "text": "It is only relevant to written documentation, never to spoken radio calls"
+      },
+      {
+        "id": "d",
+        "text": "It replaces the need for any further language training at all, because once standard phraseology is learned no speaker ever needs to study the language again, whatever their role"
+      }
     ],
     "correct": "a",
     "explanation": "Standardized aviation phraseology is deliberately narrow and consistent so that pilots and controllers whose native languages differ can still communicate safety-critical information reliably, using a shared, limited vocabulary rather than relying on open-ended natural language.",
-    "tags": ["professional-languages"],
+    "tags": [
+      "professional-languages"
+    ],
     "status": "published",
     "version": 1
   },
@@ -330,14 +588,28 @@
     "subtopic": "Types of questions",
     "question": "Asking a crew member to confirm an action with a specific, closed question (\"Gear down and three greens, confirmed?\") rather than a vague open one is appropriate when:",
     "options": [
-      { "id": "a", "text": "A precise, binary confirmation of a specific, known item is what is actually needed, rather than an open-ended exploration of the situation" },
-      { "id": "b", "text": "Closed questions are never appropriate in a safety-critical context" },
-      { "id": "c", "text": "The goal is to gather broad, exploratory information about an unfamiliar situation" },
-      { "id": "d", "text": "Open and closed questions are functionally identical in every context" }
+      {
+        "id": "a",
+        "text": "Closed questions are never appropriate in a safety-critical context, because any question with a yes or no answer risks a false sense of confirmation"
+      },
+      {
+        "id": "b",
+        "text": "A precise, binary confirmation of a specific, known item is what is actually needed, rather than an open-ended exploration of the situation"
+      },
+      {
+        "id": "c",
+        "text": "Open and closed questions are functionally identical in every context"
+      },
+      {
+        "id": "d",
+        "text": "The goal is to gather broad, exploratory information about an unfamiliar situation"
+      }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "The choice between an open and a closed question depends on the goal: a closed question is the right tool for a quick, specific confirmation, while an open question is better suited to drawing out broader information when the situation is less defined.",
-    "tags": ["types-of-questions"],
+    "tags": [
+      "types-of-questions"
+    ],
     "status": "published",
     "version": 1
   },
@@ -348,14 +620,28 @@
     "subtopic": "Communications to achieve coordination",
     "question": "In a well-run multi-crew cockpit, verbalising an intended action before carrying it out (\"I'm reducing power now\") rather than simply doing it silently is valuable mainly because it:",
     "options": [
-      { "id": "a", "text": "Gives the other crew member advance notice, letting them anticipate, cross-check or object before the action is taken rather than only after" },
-      { "id": "b", "text": "Slows down every action with no corresponding safety benefit" },
-      { "id": "c", "text": "Is only useful once an action has already been completed" },
-      { "id": "d", "text": "Removes the need for the other crew member to monitor anything at all" }
+      {
+        "id": "a",
+        "text": "Gives the other crew member advance notice, letting them anticipate, cross-check or object before the action is taken rather than only after"
+      },
+      {
+        "id": "b",
+        "text": "Is only useful once an action has already been completed, since saying it in advance just adds a delay before the action can actually take place"
+      },
+      {
+        "id": "c",
+        "text": "Removes the need for the other crew member to monitor anything at all"
+      },
+      {
+        "id": "d",
+        "text": "Slows down every action with no corresponding safety benefit"
+      }
     ],
     "correct": "a",
     "explanation": "Announcing an intended action ahead of carrying it out turns a silent, individual act into a shared, monitorable one — giving the other crew member a real chance to flag a problem with it before it happens, rather than discovering it only afterward.",
-    "tags": ["communications-coordination"],
+    "tags": [
+      "communications-coordination"
+    ],
     "status": "published",
     "version": 1
   }

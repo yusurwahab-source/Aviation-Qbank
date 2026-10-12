@@ -8,24 +8,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Removing the boundary layer by suction"
-      },
-      {
-        "id": "b",
         "text": "Shedding streamwise vortices that mix high-energy outer air into the near-wall layer"
       },
       {
+        "id": "b",
+        "text": "Removing the boundary layer by suction"
+      },
+      {
         "id": "c",
-        "text": "Reducing the angle of attack locally"
+        "text": "Reducing the angle of attack locally, which lowers the lift on the wing surface in front of the generators and so keeps the flow attached to the upper surface"
       },
       {
         "id": "d",
-        "text": "Making the flow laminar"
+        "text": "Reducing the angle of attack locally"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Each vane acts as a small low-aspect-ratio wing; its tip vortex transfers momentum toward the wall, raising near-wall velocity. Cost: a small parasite-drag increment.",
-    "tags": ["vortex-generators", "separation"],
+    "tags": [
+      "vortex-generators",
+      "separation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -38,24 +41,28 @@
     "options": [
       {
         "id": "a",
-        "text": "It lowers the Reynolds number"
+        "text": "High-pressure air from below passes through the slot and re-energises the upper boundary layer"
       },
       {
         "id": "b",
-        "text": "It reduces the angle of attack"
+        "text": "It lowers the Reynolds number"
       },
       {
         "id": "c",
-        "text": "It blocks spanwise flow only"
+        "text": "It blocks spanwise flow only, which stops the boundary layer from moving toward the tip and so prevents the separation that would otherwise develop near the wing root"
       },
       {
         "id": "d",
-        "text": "High-pressure air from below passes through the slot and re-energises the upper boundary layer"
+        "text": "It reduces the angle of attack"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "The slat/slot gap jet adds momentum at the start of the upper-surface recovery and reduces the suction peak on the main element, so the boundary layer tolerates a higher α.",
-    "tags": ["slot", "high-lift", "separation"],
+    "tags": [
+      "slot",
+      "high-lift",
+      "separation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -76,7 +83,7 @@
       },
       {
         "id": "c",
-        "text": "No change below 10 knots"
+        "text": "No change below 10 knots, because at low speed the boundary layer is so thick that surface roughness has no measurable effect on the way the wing separates"
       },
       {
         "id": "d",
@@ -85,7 +92,11 @@
     ],
     "correct": "a",
     "explanation": "Roughness at the suction peak thickens the layer and depletes its momentum ahead of the steepest adverse gradient; separation occurs at lower α. Stall can occur before an α-based warning.",
-    "tags": ["contamination", "frost", "clmax"],
+    "tags": [
+      "contamination",
+      "frost",
+      "clmax"
+    ],
     "status": "published",
     "version": 1
   },
@@ -98,11 +109,11 @@
     "options": [
       {
         "id": "a",
-        "text": "The warning depends on airspeed only"
+        "text": "Contamination has no effect on α at stall"
       },
       {
         "id": "b",
-        "text": "Contamination has no effect on α at stall"
+        "text": "Contamination lowers the stalling angle, possibly below the warning threshold"
       },
       {
         "id": "c",
@@ -110,12 +121,15 @@
       },
       {
         "id": "d",
-        "text": "Contamination lowers the stalling angle, possibly below the warning threshold"
+        "text": "The warning depends on airspeed only, so it responds to the speed reading rather than to the actual angle of attack at which the wing is about to stall"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "The warning α is set for the clean wing. With a reduced stall α, the wing may stall before or at the same α the warning activates.",
-    "tags": ["contamination", "stall-warning"],
+    "tags": [
+      "contamination",
+      "stall-warning"
+    ],
     "status": "published",
     "version": 1
   },
@@ -128,24 +142,28 @@
     "options": [
       {
         "id": "a",
-        "text": "Reduce wing area"
+        "text": "Increase spanwise flow"
       },
       {
         "id": "b",
-        "text": "Obstruct or break up spanwise boundary-layer flow toward the tips"
-      },
-      {
-        "id": "c",
         "text": "Replace the ailerons"
       },
       {
+        "id": "c",
+        "text": "Replace the ailerons, since fences and vortilons are fitted in place of the roll controls on any swept wing to take over the job of lateral control"
+      },
+      {
         "id": "d",
-        "text": "Increase spanwise flow"
+        "text": "Obstruct or break up spanwise boundary-layer flow toward the tips"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "A fence blocks outboard drift; a vortilon sheds a vortex at high α that performs the same function. Both delay tip separation and pitch-up.",
-    "tags": ["fence", "vortilon", "sweep"],
+    "tags": [
+      "fence",
+      "vortilon",
+      "sweep"
+    ],
     "status": "published",
     "version": 1
   },
@@ -158,24 +176,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Increases CLmax by adding mass"
+        "text": "Roughens the surface film and thickens the boundary layer, reducing CLmax and raising drag"
       },
       {
         "id": "b",
-        "text": "Has no aerodynamic effect"
+        "text": "Increases CLmax by adding mass"
       },
       {
         "id": "c",
-        "text": "Reduces drag through lubrication"
+        "text": "Has no aerodynamic effect, since the water is shed from the surface within seconds of contact and so never alters the flow over the wing at any point"
       },
       {
         "id": "d",
-        "text": "Roughens the surface film and thickens the boundary layer, reducing CLmax and raising drag"
+        "text": "Reduces drag through lubrication"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Water film and droplet impact act as roughness, promoting early transition and thickening the layer; momentum is also lost accelerating the droplets.",
-    "tags": ["rain", "contamination"],
+    "tags": [
+      "rain",
+      "contamination"
+    ],
     "status": "published",
     "version": 1
   }

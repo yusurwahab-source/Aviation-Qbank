@@ -8,11 +8,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Lift divided by weight (L/W)"
+        "text": "Weight divided by lift"
       },
       {
         "id": "b",
-        "text": "Weight divided by lift"
+        "text": "Speed divided by stall speed"
       },
       {
         "id": "c",
@@ -20,12 +20,15 @@
       },
       {
         "id": "d",
-        "text": "Speed divided by stall speed"
+        "text": "Lift divided by weight (L/W)"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "n expresses the aerodynamic force the structure carries in multiples of weight; in level flight n = 1.",
-    "tags": ["load-factor", "definitions"],
+    "tags": [
+      "load-factor",
+      "definitions"
+    ],
     "status": "published",
     "version": 1
   },
@@ -42,20 +45,24 @@
       },
       {
         "id": "b",
-        "text": "3.02"
+        "text": "2.02"
       },
       {
         "id": "c",
-        "text": "2.02"
+        "text": "3.02"
       },
       {
         "id": "d",
         "text": "10.2"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "n = 1 + V²/(g·R) = 1 + 10,000/9,810 = 2.02.",
-    "tags": ["pull-up", "load-factor", "calculation"],
+    "tags": [
+      "pull-up",
+      "load-factor",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -68,7 +75,7 @@
     "options": [
       {
         "id": "a",
-        "text": "920 m"
+        "text": "2,290 m"
       },
       {
         "id": "b",
@@ -76,16 +83,19 @@
       },
       {
         "id": "c",
-        "text": "610 m"
+        "text": "920 m"
       },
       {
         "id": "d",
-        "text": "2,290 m"
+        "text": "610 m"
       }
     ],
     "correct": "b",
     "explanation": "R = V²/(g(n − 1)) = 22,500/(9.81 × 1.5) = 1,529 m.",
-    "tags": ["pull-out", "calculation"],
+    "tags": [
+      "pull-out",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -98,24 +108,28 @@
     "options": [
       {
         "id": "a",
-        "text": "3.0"
+        "text": "2.0"
       },
       {
         "id": "b",
-        "text": "2.5"
-      },
-      {
-        "id": "c",
         "text": "1.5"
       },
       {
+        "id": "c",
+        "text": "3.0"
+      },
+      {
         "id": "d",
-        "text": "2.0"
+        "text": "2.5"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Turn n = 1/cos 60° = 2.0, plus 0.5 from the gust.",
-    "tags": ["load-factor", "gust", "calculation"],
+    "tags": [
+      "load-factor",
+      "gust",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -128,24 +142,26 @@
     "options": [
       {
         "id": "a",
-        "text": "The structure is designed for both upward and downward net aerodynamic loads, with the negative limit usually smaller"
+        "text": "Negative g cannot occur in normal operation, so the negative limit is set only for the rare case of a stall at the top of a loop"
       },
       {
         "id": "b",
-        "text": "Negative g cannot occur"
-      },
-      {
-        "id": "c",
         "text": "Only positive loads occur"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "The limits are identical"
+      },
+      {
+        "id": "d",
+        "text": "The structure is designed for both upward and downward net aerodynamic loads, with the negative limit usually smaller"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Negative manoeuvres and gusts load the wing downward; structural design and fuel/oil systems set a lower negative limit.",
-    "tags": ["load-factor-limits"],
+    "tags": [
+      "load-factor-limits"
+    ],
     "status": "published",
     "version": 1
   },
@@ -158,24 +174,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Flaps remove negative loads"
-      },
-      {
-        "id": "b",
-        "text": "Flaps increase the stall speed"
-      },
-      {
-        "id": "c",
         "text": "Flap structures and the loads they transmit are sized for low-speed conditions only"
       },
       {
+        "id": "b",
+        "text": "Flaps remove negative loads"
+      },
+      {
+        "id": "c",
+        "text": "Flaps reduce the aircraft's weight by lowering the wing's share of the structure in flight"
+      },
+      {
         "id": "d",
-        "text": "Flaps reduce weight"
+        "text": "Flaps increase the stall speed"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "The flapped configuration is used only at low q; its structural envelope is smaller.",
-    "tags": ["flap-limits", "load-factor-limits"],
+    "tags": [
+      "flap-limits",
+      "load-factor-limits"
+    ],
     "status": "published",
     "version": 1
   },
@@ -188,11 +207,11 @@
     "options": [
       {
         "id": "a",
-        "text": "1.5 times the ultimate load"
+        "text": "The maximum load expected in service, which the structure must carry without permanent deformation"
       },
       {
         "id": "b",
-        "text": "The load in level flight"
+        "text": "1.5 times the ultimate load"
       },
       {
         "id": "c",
@@ -200,12 +219,14 @@
       },
       {
         "id": "d",
-        "text": "The maximum load expected in service, which the structure must carry without permanent deformation"
+        "text": "The load in level flight at the design weight, which is the same figure quoted in the flight manual for every aircraft type"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "Ultimate load = limit × 1.5 (factor of safety); the structure must withstand it without failure for a short time.",
-    "tags": ["limit-load"],
+    "tags": [
+      "limit-load"
+    ],
     "status": "published",
     "version": 1
   },
@@ -218,7 +239,7 @@
     "options": [
       {
         "id": "a",
-        "text": "2.5"
+        "text": "5.0"
       },
       {
         "id": "b",
@@ -226,7 +247,7 @@
       },
       {
         "id": "c",
-        "text": "5.0"
+        "text": "2.5"
       },
       {
         "id": "d",
@@ -235,7 +256,10 @@
     ],
     "correct": "b",
     "explanation": "Factor of safety 1.5: 2.5 × 1.5 = 3.75.",
-    "tags": ["ultimate-load", "calculation"],
+    "tags": [
+      "ultimate-load",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -248,24 +272,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Always causes failure"
+        "text": "Has no consequence for the structure, provided the load is removed promptly after the event occurs"
       },
       {
         "id": "b",
-        "text": "Has no consequence"
+        "text": "Is normal operation"
       },
       {
         "id": "c",
-        "text": "May cause permanent deformation and requires inspection, but should not cause failure"
+        "text": "Always causes failure"
       },
       {
         "id": "d",
-        "text": "Is normal operation"
+        "text": "May cause permanent deformation and requires inspection, but should not cause failure"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "The margin between limit and ultimate protects against uncertainties, not for routine use.",
-    "tags": ["overload", "inspection"],
+    "tags": [
+      "overload",
+      "inspection"
+    ],
     "status": "published",
     "version": 1
   },
@@ -278,11 +305,11 @@
     "options": [
       {
         "id": "a",
-        "text": "The structural limit"
+        "text": "The gust limit at the higher speeds, where gusts are strongest"
       },
       {
         "id": "b",
-        "text": "The flutter limit"
+        "text": "The structural limit"
       },
       {
         "id": "c",
@@ -290,12 +317,15 @@
       },
       {
         "id": "d",
-        "text": "The gust limit"
+        "text": "The flutter limit"
       }
     ],
     "correct": "c",
     "explanation": "At speeds below VA the wing stalls before reaching limit load.",
-    "tags": ["v-n-diagram", "stall-boundary"],
+    "tags": [
+      "v-n-diagram",
+      "stall-boundary"
+    ],
     "status": "published",
     "version": 1
   },
@@ -308,7 +338,7 @@
     "options": [
       {
         "id": "a",
-        "text": "The aircraft is at VMO"
+        "text": "Maximum gust intensity is designed for"
       },
       {
         "id": "b",
@@ -316,16 +346,18 @@
       },
       {
         "id": "c",
-        "text": "Maximum gust intensity is designed for"
+        "text": "The aircraft is at VMO"
       },
       {
         "id": "d",
-        "text": "Flaps can be extended"
+        "text": "Flaps can be extended safely above this speed, as the flap limit is always the same as VA"
       }
     ],
     "correct": "b",
     "explanation": "At or below VA a full nose-up input stalls the wing before limit load — for single, symmetric inputs.",
-    "tags": ["manoeuvring-speed"],
+    "tags": [
+      "manoeuvring-speed"
+    ],
     "status": "published",
     "version": 1
   },
@@ -338,11 +370,11 @@
     "options": [
       {
         "id": "a",
-        "text": "125 kt"
+        "text": "141 kt"
       },
       {
         "id": "b",
-        "text": "250 kt"
+        "text": "125 kt"
       },
       {
         "id": "c",
@@ -350,12 +382,15 @@
       },
       {
         "id": "d",
-        "text": "141 kt"
+        "text": "250 kt"
       }
     ],
     "correct": "c",
     "explanation": "100 × √2.5 = 158 kt. For n_limit 3.8 it would be 195 kt.",
-    "tags": ["manoeuvring-speed", "calculation"],
+    "tags": [
+      "manoeuvring-speed",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -372,20 +407,24 @@
       },
       {
         "id": "b",
-        "text": "122 kt"
-      },
-      {
-        "id": "c",
         "text": "150 kt"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "167 kt"
+      },
+      {
+        "id": "d",
+        "text": "122 kt"
       }
     ],
     "correct": "a",
     "explanation": "VS ∝ √W → VA ∝ √W: 150 × 0.9 = 135 kt. A lighter aircraft reaches limit load at a lower speed before stalling.",
-    "tags": ["manoeuvring-speed", "weight", "calculation"],
+    "tags": [
+      "manoeuvring-speed",
+      "weight",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -398,24 +437,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Equals VS"
+        "text": "Equals VS at the design weight, which is the stall speed in the landing configuration"
       },
       {
         "id": "b",
-        "text": "Is the flap limit speed"
-      },
-      {
-        "id": "c",
         "text": "Equals VA"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Exceeds the design cruise speed VC by a margin for upsets"
+      },
+      {
+        "id": "d",
+        "text": "Is the flap limit speed"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "VD is demonstrated in flight test; VMO/MMO or VNE are set below it.",
-    "tags": ["dive-speed", "v-n-diagram"],
+    "tags": [
+      "dive-speed",
+      "v-n-diagram"
+    ],
     "status": "published",
     "version": 1
   },
@@ -432,20 +474,23 @@
       },
       {
         "id": "b",
-        "text": "Cannot cause yaw loads"
+        "text": "Can still overstress the structure, since VA protects only against a single, symmetric pitch input"
       },
       {
         "id": "c",
-        "text": "Are always safe"
+        "text": "Cannot cause yaw loads"
       },
       {
         "id": "d",
-        "text": "Can still overstress the structure, since VA protects only against a single, symmetric pitch input"
+        "text": "Are always safe, provided the aircraft is below the design flap speed and the input is made steadily by the pilot at the time"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Rolling pull-outs, rudder reversals and combined inputs produce loads outside the symmetric V–n envelope.",
-    "tags": ["manoeuvring-speed", "limitations"],
+    "tags": [
+      "manoeuvring-speed",
+      "limitations"
+    ],
     "status": "published",
     "version": 1
   },
@@ -458,11 +503,11 @@
     "options": [
       {
         "id": "a",
-        "text": "The symmetric limit"
+        "text": "The ultimate value"
       },
       {
         "id": "b",
-        "text": "The ultimate value"
+        "text": "The symmetric limit"
       },
       {
         "id": "c",
@@ -470,12 +515,14 @@
       },
       {
         "id": "d",
-        "text": "Zero"
+        "text": "Zero, which means the aircraft must not roll with any load applied to the wings at all"
       }
     ],
     "correct": "c",
     "explanation": "Rolling adds asymmetric wing loads; the up-going wing carries more lift, so a lower n is allowed.",
-    "tags": ["rolling-pull-out"],
+    "tags": [
+      "rolling-pull-out"
+    ],
     "status": "published",
     "version": 1
   },
@@ -488,24 +535,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Equal VS"
-      },
-      {
-        "id": "b",
         "text": "Balance stall margin against gust-induced structural loads"
       },
       {
+        "id": "b",
+        "text": "Minimise fuel burn"
+      },
+      {
         "id": "c",
-        "text": "Be as high as possible"
+        "text": "Equal VS, so that the aircraft is always held at the stall speed during turbulence penetration"
       },
       {
         "id": "d",
-        "text": "Minimise fuel burn"
+        "text": "Be as high as possible"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Too slow: gusts may stall the wing. Too fast: gust loads rise with V_E.",
-    "tags": ["turbulence-penetration"],
+    "tags": [
+      "turbulence-penetration"
+    ],
     "status": "published",
     "version": 1
   },
@@ -518,11 +567,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Hold attitude and wings level at the penetration speed, accepting altitude and airspeed excursions"
+        "text": "Hold altitude precisely with large elevator inputs"
       },
       {
         "id": "b",
-        "text": "Extend flaps"
+        "text": "Hold attitude and wings level at the penetration speed, accepting altitude and airspeed excursions"
       },
       {
         "id": "c",
@@ -530,12 +579,15 @@
       },
       {
         "id": "d",
-        "text": "Hold altitude precisely with large elevator inputs"
+        "text": "Extend flaps to increase the lift available and so damp the gust response quickly, which keeps the attitude steady throughout"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Chasing altitude or airspeed adds manoeuvre loads to gust loads.",
-    "tags": ["turbulence", "technique"],
+    "tags": [
+      "turbulence",
+      "technique"
+    ],
     "status": "published",
     "version": 1
   },
@@ -548,24 +600,27 @@
     "options": [
       {
         "id": "a",
-        "text": "A strong gust at VB produces the stall before exceeding the structural limit"
+        "text": "Landing gear can be lowered"
       },
       {
         "id": "b",
-        "text": "The aircraft can fly at VMO in turbulence"
+        "text": "Flaps can be extended at this speed, since the gust is then absorbed by the flap structure"
       },
       {
         "id": "c",
-        "text": "Flaps can be extended"
+        "text": "A strong gust at VB produces the stall before exceeding the structural limit"
       },
       {
         "id": "d",
-        "text": "Landing gear can be lowered"
+        "text": "The aircraft can fly at VMO in turbulence"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "It is the gust analogue of VA on the gust envelope.",
-    "tags": ["vb", "gust"],
+    "tags": [
+      "vb",
+      "gust"
+    ],
     "status": "published",
     "version": 1
   },
@@ -586,16 +641,19 @@
       },
       {
         "id": "c",
-        "text": "Mach buffet"
+        "text": "Flutter of the control surfaces at the lower speed"
       },
       {
         "id": "d",
-        "text": "Flutter"
+        "text": "Mach buffet"
       }
     ],
     "correct": "a",
     "explanation": "Δα = U/V grows at low speed while the stall margin falls.",
-    "tags": ["turbulence", "stall"],
+    "tags": [
+      "turbulence",
+      "stall"
+    ],
     "status": "published",
     "version": 1
   },
@@ -608,24 +666,26 @@
     "options": [
       {
         "id": "a",
-        "text": "The stall speed"
+        "text": "The flap speed, which is always set above the design maneuvering speed on every aircraft"
       },
       {
         "id": "b",
-        "text": "The flap speed"
+        "text": "The stall speed"
       },
       {
         "id": "c",
-        "text": "The normal operating limit"
+        "text": "The never-exceed speed, set below VD by a margin"
       },
       {
         "id": "d",
-        "text": "The never-exceed speed, set below VD by a margin"
+        "text": "The normal operating limit"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Beyond VNE flutter, control reversal or structural failure risks rise.",
-    "tags": ["vne"],
+    "tags": [
+      "vne"
+    ],
     "status": "published",
     "version": 1
   },
@@ -638,24 +698,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Normal operating range; above it (caution range) fly only in smooth air"
-      },
-      {
-        "id": "b",
-        "text": "Stall range"
-      },
-      {
-        "id": "c",
         "text": "Take-off range"
       },
       {
+        "id": "b",
+        "text": "Normal operating range; above it (caution range) fly only in smooth air"
+      },
+      {
+        "id": "c",
+        "text": "Flap range, the band of speeds in which the flaps may be extended in smooth or rough air"
+      },
+      {
         "id": "d",
-        "text": "Flap range"
+        "text": "Stall range"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Between VNO and VNE, gust loads could exceed limit loads.",
-    "tags": ["vno"],
+    "tags": [
+      "vno"
+    ],
     "status": "published",
     "version": 1
   },
@@ -668,24 +730,27 @@
     "options": [
       {
         "id": "a",
-        "text": "VLO limits operating the gear; VLE limits flying with it extended"
-      },
-      {
-        "id": "b",
         "text": "They are identical"
       },
       {
+        "id": "b",
+        "text": "VLO is for extension only at high altitude"
+      },
+      {
         "id": "c",
-        "text": "VLE is for flaps"
+        "text": "VLO limits operating the gear; VLE limits flying with it extended"
       },
       {
         "id": "d",
-        "text": "VLO is for extension only at high altitude"
+        "text": "VLE is for the flaps only, and VLO is the speed at which the gear may be retracted safely"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Doors and actuators are loaded most during transit; the extended gear may tolerate a higher speed.",
-    "tags": ["vlo", "vle"],
+    "tags": [
+      "vlo",
+      "vle"
+    ],
     "status": "published",
     "version": 1
   },
@@ -698,24 +763,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Tyre limits"
-      },
-      {
-        "id": "b",
-        "text": "Engine limits"
-      },
-      {
-        "id": "c",
         "text": "Structural loads/flutter (VMO) and compressibility effects (MMO)"
       },
       {
+        "id": "b",
+        "text": "Stall only, since the maximum speeds are chosen to keep the wing clear of the stall at all times"
+      },
+      {
+        "id": "c",
+        "text": "Tyre limits"
+      },
+      {
         "id": "d",
-        "text": "Stall only"
+        "text": "Engine limits"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "The lower of the two applies at any altitude, switching at the crossover altitude.",
-    "tags": ["vmo", "mmo"],
+    "tags": [
+      "vmo",
+      "mmo"
+    ],
     "status": "published",
     "version": 1
   },
@@ -736,16 +804,18 @@
       },
       {
         "id": "c",
-        "text": "Flap extension"
+        "text": "IAS in cruise, which is the speed used to set the power for the long-range profile"
       },
       {
         "id": "d",
-        "text": "IAS in cruise"
+        "text": "Flap extension"
       }
     ],
     "correct": "a",
     "explanation": "Tyre structural limits depend on rotational speed, so tailwind, high elevation and temperature raise the ground speed at a given IAS.",
-    "tags": ["tyre-speed"],
+    "tags": [
+      "tyre-speed"
+    ],
     "status": "published",
     "version": 1
   },
@@ -762,20 +832,22 @@
       },
       {
         "id": "b",
-        "text": "Against stall"
+        "text": "The flap structure and mechanism from excessive air loads"
       },
       {
         "id": "c",
-        "text": "Against flutter of the wing"
+        "text": "Against stall, since the flap limiting speed is chosen to keep the wing above its stalling angle"
       },
       {
         "id": "d",
-        "text": "The flap structure and mechanism from excessive air loads"
+        "text": "Against flutter of the wing"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Flap loads ∝ q.",
-    "tags": ["vfe"],
+    "tags": [
+      "vfe"
+    ],
     "status": "published",
     "version": 1
   },
@@ -788,24 +860,27 @@
     "options": [
       {
         "id": "a",
-        "text": "It sets the stall speed"
-      },
-      {
-        "id": "b",
-        "text": "Fuel is heavy"
-      },
-      {
-        "id": "c",
         "text": "It limits landing loads"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "Mass in the fuselage is not relieved by wing fuel, so root bending moment is highest with empty wing tanks"
+      },
+      {
+        "id": "c",
+        "text": "It sets the stall speed"
+      },
+      {
+        "id": "d",
+        "text": "Fuel is heavy, so the aircraft must carry no more than its empty weight plus crew at any stage of the flight after take-off"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Above MZFM, additional load must be fuel in the wings, which does not increase root bending.",
-    "tags": ["mzfm", "bending-relief"],
+    "tags": [
+      "mzfm",
+      "bending-relief"
+    ],
     "status": "published",
     "version": 1
   },
@@ -818,24 +893,27 @@
     "options": [
       {
         "id": "a",
-        "text": "It reduces drag"
+        "text": "It improves stability"
       },
       {
         "id": "b",
-        "text": "It moves the CG forward"
-      },
-      {
-        "id": "c",
         "text": "It keeps bending relief as long as possible and reduces root bending in flight"
       },
       {
+        "id": "c",
+        "text": "It moves the CG forward"
+      },
+      {
         "id": "d",
-        "text": "It improves stability"
+        "text": "It reduces drag on the wing, since less fuel weight is carried at the tip during the cruise"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Outboard fuel has the largest relief arm.",
-    "tags": ["fuel-sequence", "bending-relief"],
+    "tags": [
+      "fuel-sequence",
+      "bending-relief"
+    ],
     "status": "published",
     "version": 1
   },
@@ -852,20 +930,23 @@
       },
       {
         "id": "b",
-        "text": "Wing bending in cruise"
-      },
-      {
-        "id": "c",
         "text": "Landing-gear and structural loads at touchdown (sink rate)"
       },
       {
+        "id": "c",
+        "text": "Cruise altitude, since the landing mass is set by the performance at the highest level flown"
+      },
+      {
         "id": "d",
-        "text": "Cruise altitude"
+        "text": "Wing bending in cruise"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Touchdown energy ∝ m·v_sink²; structure is certified for a design sink rate at MLM.",
-    "tags": ["mlm", "landing-loads"],
+    "tags": [
+      "mlm",
+      "landing-loads"
+    ],
     "status": "published",
     "version": 1
   },
@@ -878,24 +959,27 @@
     "options": [
       {
         "id": "a",
-        "text": "They reduce drag"
+        "text": "They add lift at the wing root, which reduces the upward load on the fuselage in every flight"
       },
       {
         "id": "b",
-        "text": "They add lift"
+        "text": "They move the CG aft"
       },
       {
         "id": "c",
-        "text": "Their weight acts downward at a spanwise arm, opposing lift's upward moment"
+        "text": "They reduce drag"
       },
       {
         "id": "d",
-        "text": "They move the CG aft"
+        "text": "Their weight acts downward at a spanwise arm, opposing lift's upward moment"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "They also damp flutter modes when positioned ahead of the elastic axis.",
-    "tags": ["engine-position", "bending-relief"],
+    "tags": [
+      "engine-position",
+      "bending-relief"
+    ],
     "status": "published",
     "version": 1
   },
@@ -908,7 +992,7 @@
     "options": [
       {
         "id": "a",
-        "text": "No action"
+        "text": "No action, provided the landing is within the normal operating envelope of the aircraft"
       },
       {
         "id": "b",
@@ -916,16 +1000,19 @@
       },
       {
         "id": "c",
-        "text": "A fuel check"
+        "text": "A structural inspection before further flight"
       },
       {
         "id": "d",
-        "text": "A structural inspection before further flight"
+        "text": "A fuel check"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Gear and wing attachment loads may have exceeded limit.",
-    "tags": ["hard-landing", "inspection"],
+    "tags": [
+      "hard-landing",
+      "inspection"
+    ],
     "status": "published",
     "version": 1
   },
@@ -938,24 +1025,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Flap loads"
-      },
-      {
-        "id": "b",
         "text": "Side loads if the aircraft touches down with drift"
       },
       {
+        "id": "b",
+        "text": "Flap loads transmitted through the wing at the moment of the touchdown on the runway"
+      },
+      {
         "id": "c",
-        "text": "Vertical loads only"
+        "text": "Engine thrust"
       },
       {
         "id": "d",
-        "text": "Engine thrust"
+        "text": "Vertical loads only"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Decrab or wing-down techniques minimise lateral load on touchdown.",
-    "tags": ["crosswind", "gear-loads"],
+    "tags": [
+      "crosswind",
+      "gear-loads"
+    ],
     "status": "published",
     "version": 1
   },
@@ -968,24 +1058,26 @@
     "options": [
       {
         "id": "a",
-        "text": "The longitudinal axis"
+        "text": "The flight path, which is the direction the aircraft actually travels over the ground"
       },
       {
         "id": "b",
-        "text": "The earth vertical"
+        "text": "The aircraft's normal axis"
       },
       {
         "id": "c",
-        "text": "The flight path"
+        "text": "The longitudinal axis"
       },
       {
         "id": "d",
-        "text": "The aircraft's normal axis"
+        "text": "The earth vertical"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Accelerometer reading n = normal force/weight.",
-    "tags": ["g-meter"],
+    "tags": [
+      "g-meter"
+    ],
     "status": "published",
     "version": 1
   },
@@ -998,24 +1090,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Zero lift"
-      },
-      {
-        "id": "b",
         "text": "The net aerodynamic force equals weight but acts in the opposite sense relative to the aircraft (e.g. inverted level flight)"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Double weight"
+      },
+      {
+        "id": "c",
+        "text": "Zero lift, since a negative load factor is only possible when the aircraft is at rest on the ground and no air is flowing over the wings at all"
       },
       {
         "id": "d",
         "text": "Free fall"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "In inverted level flight the wing produces lift 'downward' relative to the aircraft to support weight.",
-    "tags": ["negative-g"],
+    "tags": [
+      "negative-g"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1040,12 +1134,14 @@
       },
       {
         "id": "d",
-        "text": "Stall"
+        "text": "Stall, because the aircraft loses lift as the push-over unloads the wing completely at once"
       }
     ],
     "correct": "c",
     "explanation": "n = 0; fuel and oil systems may be affected.",
-    "tags": ["zero-g"],
+    "tags": [
+      "zero-g"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1058,24 +1154,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Smaller load factor increments, but the absolute structural load is similar"
+        "text": "Larger Δn, since the heavier aircraft responds more to each gust and so its load factor rises more"
       },
       {
         "id": "b",
-        "text": "Larger Δn"
-      },
-      {
-        "id": "c",
         "text": "No gust loads"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "Identical Δn"
+      },
+      {
+        "id": "d",
+        "text": "Smaller load factor increments, but the absolute structural load is similar"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Δn ∝ 1/(W/S), while ΔL = Δn·W is roughly independent of W.",
-    "tags": ["gust-load", "weight"],
+    "tags": [
+      "gust-load",
+      "weight"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1092,11 +1191,11 @@
       },
       {
         "id": "b",
-        "text": "Parking"
+        "text": "High-altitude smooth cruise"
       },
       {
         "id": "c",
-        "text": "High-altitude smooth cruise"
+        "text": "Parking, since the aircraft is then stationary and the wing carries the full weight throughout"
       },
       {
         "id": "d",
@@ -1105,7 +1204,9 @@
     ],
     "correct": "a",
     "explanation": "Damage accumulates roughly with the number and amplitude of cycles.",
-    "tags": ["fatigue"],
+    "tags": [
+      "fatigue"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1118,24 +1219,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Structural strength, or by performance (runway, climb, obstacle)"
+        "text": "Only cabin size, which sets the maximum take-off mass for every aircraft type in service"
       },
       {
         "id": "b",
-        "text": "Only landing gear"
+        "text": "Only tyre speed"
       },
       {
         "id": "c",
-        "text": "Only cabin size"
+        "text": "Only landing gear"
       },
       {
         "id": "d",
-        "text": "Only tyre speed"
+        "text": "Structural strength, or by performance (runway, climb, obstacle)"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "The lower of structural and performance-limited masses applies.",
-    "tags": ["mtom"],
+    "tags": [
+      "mtom"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1152,20 +1255,23 @@
       },
       {
         "id": "b",
-        "text": "Exceed the limit load factor before the wing stalls"
+        "text": "Never overstress, since the wing stalls first at every speed and so the limit load is never reached"
       },
       {
         "id": "c",
-        "text": "Reduce load factor"
+        "text": "Exceed the limit load factor before the wing stalls"
       },
       {
         "id": "d",
-        "text": "Never overstress"
+        "text": "Reduce load factor"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Above VA the stall load factor (V/VS)² exceeds n_limit.",
-    "tags": ["v-n-diagram", "overstress"],
+    "tags": [
+      "v-n-diagram",
+      "overstress"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1182,20 +1288,23 @@
       },
       {
         "id": "b",
-        "text": "A short period (typically about 3 seconds)"
+        "text": "Never, since the ultimate load is not needed to be held for any time at all in service"
       },
       {
         "id": "c",
-        "text": "Indefinitely"
+        "text": "A short period (typically about 3 seconds)"
       },
       {
         "id": "d",
-        "text": "Never"
+        "text": "Indefinitely"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Static test demonstrates strength at ultimate; permanent deformation is acceptable at that load.",
-    "tags": ["ultimate-load", "static-test"],
+    "tags": [
+      "ultimate-load",
+      "static-test"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1208,7 +1317,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Reduce noise"
+        "text": "Reduce noise in the cabin, which is the only reason the differential pressure is limited"
       },
       {
         "id": "b",
@@ -1216,16 +1325,19 @@
       },
       {
         "id": "c",
-        "text": "Improve engine performance"
+        "text": "Increase range"
       },
       {
         "id": "d",
-        "text": "Increase range"
+        "text": "Improve engine performance"
       }
     ],
     "correct": "b",
     "explanation": "Hoop stress rises linearly with Δp; higher cabin altitude reduces it.",
-    "tags": ["pressurisation", "limits"],
+    "tags": [
+      "pressurisation",
+      "limits"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1238,15 +1350,15 @@
     "options": [
       {
         "id": "a",
-        "text": "It maximises range"
+        "text": "It minimises drag at the penetration speed, so the aircraft uses the least fuel in turbulence"
       },
       {
         "id": "b",
-        "text": "It minimises drag"
+        "text": "It is the flap speed"
       },
       {
         "id": "c",
-        "text": "It is the flap speed"
+        "text": "It maximises range"
       },
       {
         "id": "d",
@@ -1255,7 +1367,9 @@
     ],
     "correct": "d",
     "explanation": "Stall margin requires (V/VS)² ≥ 1 + Δn_gust; structure requires Δn_gust(V) ≤ n_limit − 1.",
-    "tags": ["turbulence-penetration"],
+    "tags": [
+      "turbulence-penetration"
+    ],
     "status": "published",
     "version": 1
   }

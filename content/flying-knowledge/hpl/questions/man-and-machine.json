@@ -6,14 +6,28 @@
     "subtopic": "The conceptual model",
     "question": "A pilot's \"mental model\" of an aircraft system (such as the autopilot) refers to:",
     "options": [
-      { "id": "a", "text": "Their internal understanding of how the system works and what it will do in a given situation" },
-      { "id": "b", "text": "The system's own physical wiring diagram" },
-      { "id": "c", "text": "A model that must be identical for every pilot regardless of training" },
-      { "id": "d", "text": "A concept that only applies to fully manual, non-automated systems" }
+      {
+        "id": "a",
+        "text": "The system's own physical wiring diagram, which shows the exact route of every cable and connector inside the unit but says nothing about how a pilot understands its behaviour"
+      },
+      {
+        "id": "b",
+        "text": "A concept that only applies to fully manual, non-automated systems"
+      },
+      {
+        "id": "c",
+        "text": "Their internal understanding of how the system works and what it will do in a given situation"
+      },
+      {
+        "id": "d",
+        "text": "A model that must be identical for every pilot regardless of training"
+      }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "A mental model is the pilot's own internal, working understanding of a system's behaviour, built up through training and experience. Good design helps that model match the system's actual behaviour closely; poor design lets them drift apart.",
-    "tags": ["mental-model"],
+    "tags": [
+      "mental-model"
+    ],
     "status": "published",
     "version": 1
   },
@@ -24,14 +38,29 @@
     "subtopic": "The conceptual model",
     "question": "When a pilot's mental model of a system no longer matches how the system is actually behaving, the most likely consequence is:",
     "options": [
-      { "id": "a", "text": "The pilot may act on an incorrect expectation of what the system will do next, risking a surprised or mismanaged response" },
-      { "id": "b", "text": "No practical effect, since the system will always behave as designed regardless of the pilot's understanding" },
-      { "id": "c", "text": "The system automatically corrects the pilot's mental model" },
-      { "id": "d", "text": "This situation can never actually occur in a well-designed aircraft" }
+      {
+        "id": "a",
+        "text": "No practical effect, since the system will always behave as designed regardless of the pilot's understanding"
+      },
+      {
+        "id": "b",
+        "text": "This situation can never actually occur in a well-designed aircraft"
+      },
+      {
+        "id": "c",
+        "text": "The system automatically corrects the pilot's mental model, so the mismatch is resolved by the aircraft without any action or awareness on the part of the crew at all"
+      },
+      {
+        "id": "d",
+        "text": "The pilot may act on an incorrect expectation of what the system will do next, risking a surprised or mismanaged response"
+      }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Acting on a mismatched mental model means a pilot's actions and expectations are based on a system state that is not actually true — a recognised root cause of automation surprises, where the aircraft does something the crew did not expect because their model of its behaviour had quietly fallen out of step.",
-    "tags": ["mental-model", "automation-surprise"],
+    "tags": [
+      "mental-model",
+      "automation-surprise"
+    ],
     "status": "published",
     "version": 1
   },
@@ -42,14 +71,28 @@
     "subtopic": "Hardware and controls",
     "question": "Shape-coding of certain cockpit controls (for example, giving the throttle, propeller and mixture levers distinctly different shapes) is a design feature intended to:",
     "options": [
-      { "id": "a", "text": "Allow a pilot to identify and operate the correct control reliably by touch alone, without needing to look directly at it" },
-      { "id": "b", "text": "Make the controls purely decorative, with no functional benefit" },
-      { "id": "c", "text": "Make every control feel identical so none can be confused by shape" },
-      { "id": "d", "text": "Apply only to digital displays, never to physical levers" }
+      {
+        "id": "a",
+        "text": "Make every control feel identical so none can be confused by shape"
+      },
+      {
+        "id": "b",
+        "text": "Allow a pilot to identify and operate the correct control reliably by touch alone, without needing to look directly at it"
+      },
+      {
+        "id": "c",
+        "text": "Make the controls purely decorative, with no functional benefit"
+      },
+      {
+        "id": "d",
+        "text": "Apply only to digital displays, never to physical levers, since a lever's shape cannot be felt in the dark and so its function is always identified by reading its label"
+      }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Distinct shapes let a pilot find and confirm the right control by feel, which matters most exactly when visual attention needs to stay outside or on another instrument — a classic human-factors design solution to reduce the risk of operating the wrong control.",
-    "tags": ["shape-coding"],
+    "tags": [
+      "shape-coding"
+    ],
     "status": "published",
     "version": 1
   },
@@ -60,14 +103,28 @@
     "subtopic": "Design-induced error",
     "question": "A \"population stereotype\" in control design refers to:",
     "options": [
-      { "id": "a", "text": "A widely shared, learned expectation of how a control should move to produce a given effect (for example, moving a lever up to increase something)" },
-      { "id": "b", "text": "A control design that is used by only one specific individual" },
-      { "id": "c", "text": "A term with no relevance to cockpit design" },
-      { "id": "d", "text": "A rule that applies identically in every country with no cultural variation" }
+      {
+        "id": "a",
+        "text": "A rule that applies identically in every country with no cultural variation"
+      },
+      {
+        "id": "b",
+        "text": "A term with no relevance to cockpit design, because stereotypes are only ever formed by passengers and never by the people who actually operate the aircraft's controls"
+      },
+      {
+        "id": "c",
+        "text": "A control design that is used by only one specific individual"
+      },
+      {
+        "id": "d",
+        "text": "A widely shared, learned expectation of how a control should move to produce a given effect (for example, moving a lever up to increase something)"
+      }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "People develop strong, shared expectations from everyday experience — such as \"up means more\" or \"clockwise means increase\" — and a control that violates this expectation is more likely to be operated the wrong way under pressure, even by a well-trained person.",
-    "tags": ["population-stereotype"],
+    "tags": [
+      "population-stereotype"
+    ],
     "status": "published",
     "version": 1
   },
@@ -78,14 +135,28 @@
     "subtopic": "Design-induced error",
     "question": "A switch that moves opposite to the population stereotype expectation for its function (for example, moving down to turn something on) is a known risk factor mainly because it:",
     "options": [
-      { "id": "a", "text": "Invites an instinctive, incorrect operation under time pressure, when a person is more likely to rely on habit than on careful, deliberate checking" },
-      { "id": "b", "text": "Has no measurable effect on error rates" },
-      { "id": "c", "text": "Is always safer than a conventionally oriented switch" },
-      { "id": "d", "text": "Only matters during initial training, never afterward" }
+      {
+        "id": "a",
+        "text": "Has no measurable effect on error rates, since switch orientation is only a matter of taste and never changes how a person reaches for or operates the control under pressure"
+      },
+      {
+        "id": "b",
+        "text": "Only matters during initial training, never afterward"
+      },
+      {
+        "id": "c",
+        "text": "Is always safer than a conventionally oriented switch"
+      },
+      {
+        "id": "d",
+        "text": "Invites an instinctive, incorrect operation under time pressure, when a person is more likely to rely on habit than on careful, deliberate checking"
+      }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Under stress or time pressure, people lean more heavily on learned habit, which is exactly when a control that defies the expected convention is most likely to be operated the wrong way — a textbook example of a design that quietly sets a trap for error.",
-    "tags": ["design-induced-error"],
+    "tags": [
+      "design-induced-error"
+    ],
     "status": "published",
     "version": 1
   },
@@ -96,14 +167,28 @@
     "subtopic": "Design-induced error",
     "question": "Two visually identical switches placed close together, controlling two very different functions, are a recognised design hazard because they:",
     "options": [
-      { "id": "a", "text": "Make it easy to operate the wrong switch by mistake, especially under workload or when working by feel rather than by careful visual check" },
-      { "id": "b", "text": "Always guarantee that the correct switch will be used" },
-      { "id": "c", "text": "Have no bearing on the likelihood of an error" },
-      { "id": "d", "text": "Are only a concern in digital, not physical, cockpit layouts" }
+      {
+        "id": "a",
+        "text": "Have no bearing on the likelihood of an error, because a person always reads the label on a switch before operating it and so cannot select the wrong one by mistake"
+      },
+      {
+        "id": "b",
+        "text": "Are only a concern in digital, not physical, cockpit layouts"
+      },
+      {
+        "id": "c",
+        "text": "Make it easy to operate the wrong switch by mistake, especially under workload or when working by feel rather than by careful visual check"
+      },
+      {
+        "id": "d",
+        "text": "Always guarantee that the correct switch will be used"
+      }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Proximity and similarity between controls with very different consequences is a classic design-induced error risk, and is exactly the kind of flaw that good human-factors design (separation, shape, colour, guarding) is meant to eliminate at the design stage, rather than relying on the pilot never making a slip.",
-    "tags": ["design-induced-error"],
+    "tags": [
+      "design-induced-error"
+    ],
     "status": "published",
     "version": 1
   },
@@ -114,14 +199,29 @@
     "subtopic": "Hardware - displays",
     "question": "Grouping related instruments together on the flight deck in a standardized layout (rather than scattering them arbitrarily) primarily helps by:",
     "options": [
-      { "id": "a", "text": "Reducing the time and effort needed to scan and cross-check related information" },
-      { "id": "b", "text": "Making the panel look more visually interesting, with no functional benefit" },
-      { "id": "c", "text": "Eliminating the need for any pilot training on instrument location" },
-      { "id": "d", "text": "Only mattering in aircraft with fewer than three instruments" }
+      {
+        "id": "a",
+        "text": "Making the panel look more visually interesting, with no functional benefit"
+      },
+      {
+        "id": "b",
+        "text": "Eliminating the need for any pilot training on instrument location"
+      },
+      {
+        "id": "c",
+        "text": "Only mattering in aircraft with fewer than three instruments, because larger panels are always so cluttered that a standard arrangement can make no real difference to the pilot"
+      },
+      {
+        "id": "d",
+        "text": "Reducing the time and effort needed to scan and cross-check related information"
+      }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "A logical, standardized grouping of related instruments supports an efficient scan pattern, letting a pilot cross-check related readings quickly — one reason primary flight instruments follow a broadly standardized basic layout across many aircraft types.",
-    "tags": ["displays", "instrument-layout"],
+    "tags": [
+      "displays",
+      "instrument-layout"
+    ],
     "status": "published",
     "version": 1
   },
@@ -132,14 +232,28 @@
     "subtopic": "Colour displays",
     "question": "Colour coding on modern electronic flight displays (such as red for a warning, amber for a caution) is valuable mainly because it:",
     "options": [
-      { "id": "a", "text": "Lets a pilot quickly judge the urgency of information at a glance, without needing to read and interpret text first" },
-      { "id": "b", "text": "Is used purely for visual appeal, with no functional meaning" },
-      { "id": "c", "text": "Means text labelling is no longer necessary on any display" },
-      { "id": "d", "text": "Has no bearing on how quickly information is processed" }
+      {
+        "id": "a",
+        "text": "Means text labelling is no longer necessary on any display"
+      },
+      {
+        "id": "b",
+        "text": "Lets a pilot quickly judge the urgency of information at a glance, without needing to read and interpret text first"
+      },
+      {
+        "id": "c",
+        "text": "Has no bearing on how quickly information is processed, since the brain reads a colour as slowly as it reads a word and so gains nothing from the use of colour at all"
+      },
+      {
+        "id": "d",
+        "text": "Is used purely for visual appeal, with no functional meaning"
+      }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "A consistent colour convention lets urgency be assessed almost instantly, before the specific text is even read — which is exactly why consistent colour meaning across displays (and not using the same colour for different meanings on different systems) matters so much for safety.",
-    "tags": ["colour-displays"],
+    "tags": [
+      "colour-displays"
+    ],
     "status": "published",
     "version": 1
   },
@@ -150,14 +264,29 @@
     "subtopic": "Automation",
     "question": "\"Clumsy automation\" is a term used to describe automation that:",
     "options": [
-      { "id": "a", "text": "Reduces workload during already-low-workload phases of flight but adds extra tasks or complexity exactly when workload is already high" },
-      { "id": "b", "text": "Reduces workload evenly and consistently across every phase of flight" },
-      { "id": "c", "text": "Has no effect on pilot workload at any phase" },
-      { "id": "d", "text": "Only exists in theory, with no real-world examples" }
+      {
+        "id": "a",
+        "text": "Only exists in theory, with no real-world examples"
+      },
+      {
+        "id": "b",
+        "text": "Reduces workload evenly and consistently across every phase of flight"
+      },
+      {
+        "id": "c",
+        "text": "Reduces workload during already-low-workload phases of flight but adds extra tasks or complexity exactly when workload is already high"
+      },
+      {
+        "id": "d",
+        "text": "Only exists in theory, with no real-world examples, because every system that has been built to date has shown the same even spread of workload across all phases of flight"
+      }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Clumsy automation gives its biggest benefit when it is least needed (a quiet cruise) and asks for the most attention — reprogramming, mode selection, interpreting its behaviour — exactly when the crew can least afford the distraction, such as during a busy approach.",
-    "tags": ["automation", "clumsy-automation"],
+    "tags": [
+      "automation",
+      "clumsy-automation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -168,14 +297,29 @@
     "subtopic": "Automation",
     "question": "Automation complacency, as applied to highly reliable flight deck systems, describes the risk that:",
     "options": [
-      { "id": "a", "text": "A long history of correct automated behaviour reduces active monitoring, even though the system can still fail, be misconfigured, or behave unexpectedly" },
-      { "id": "b", "text": "Pilots monitor automated systems more closely the more reliable those systems become" },
-      { "id": "c", "text": "This risk applies only to unreliable, poorly engineered automation" },
-      { "id": "d", "text": "Automation complacency has been fully eliminated by modern aircraft design" }
+      {
+        "id": "a",
+        "text": "A long history of correct automated behaviour reduces active monitoring, even though the system can still fail, be misconfigured, or behave unexpectedly"
+      },
+      {
+        "id": "b",
+        "text": "Pilots monitor automated systems more closely the more reliable those systems become"
+      },
+      {
+        "id": "c",
+        "text": "Automation complacency has been fully eliminated by modern aircraft design"
+      },
+      {
+        "id": "d",
+        "text": "This risk applies only to unreliable, poorly engineered automation, since a reliable system is always monitored just as closely by crews as a system that is known to fail"
+      }
     ],
     "correct": "a",
     "explanation": "The same complacency dynamic noted elsewhere in this subject applies directly to man-machine interaction: trust built from reliable past performance can erode the active cross-checking a crew would otherwise apply, leaving the system's rarer failures or an input error harder to catch.",
-    "tags": ["automation", "complacency"],
+    "tags": [
+      "automation",
+      "complacency"
+    ],
     "status": "published",
     "version": 1
   },
@@ -186,14 +330,28 @@
     "subtopic": "Mode confusion",
     "question": "\"Mode confusion\" in a complex automated system (such as a flight management or autopilot system with several operating modes) refers to:",
     "options": [
-      { "id": "a", "text": "The crew losing track of which mode the system is actually in, so the system's behaviour no longer matches what they expect it to be doing" },
-      { "id": "b", "text": "The system itself being physically unable to change mode" },
-      { "id": "c", "text": "A condition that only arises in manually flown aircraft with no automation at all" },
-      { "id": "d", "text": "A problem that cannot occur once a pilot is fully trained" }
+      {
+        "id": "a",
+        "text": "A problem that cannot occur once a pilot is fully trained"
+      },
+      {
+        "id": "b",
+        "text": "The system itself being physically unable to change mode, because a fully certified automated system is designed so that every one of its modes is locked to a single function"
+      },
+      {
+        "id": "c",
+        "text": "The crew losing track of which mode the system is actually in, so the system's behaviour no longer matches what they expect it to be doing"
+      },
+      {
+        "id": "d",
+        "text": "A condition that only arises in manually flown aircraft with no automation at all"
+      }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Mode confusion is a direct consequence of a mismatched mental model: the automation has changed (or stayed in) a mode the crew did not track, so its subsequent behaviour appears puzzling or unexpected, even though the system itself is working exactly as designed for the mode it is actually in.",
-    "tags": ["mode-confusion"],
+    "tags": [
+      "mode-confusion"
+    ],
     "status": "published",
     "version": 1
   },
@@ -204,14 +362,28 @@
     "subtopic": "Active and latent failures",
     "question": "In a man-machine system, a \"latent\" design flaw (for example, two controls that are easily confused) differs from an \"active\" failure in that the latent flaw:",
     "options": [
-      { "id": "a", "text": "Exists in the system from the time it was designed or built, waiting for the right combination of circumstances to produce an actual error" },
-      { "id": "b", "text": "Only comes into existence at the exact moment an error occurs" },
-      { "id": "c", "text": "Can never contribute to an actual incident" },
-      { "id": "d", "text": "Is always immediately obvious to every user of the system" }
+      {
+        "id": "a",
+        "text": "Only comes into existence at the exact moment an error occurs"
+      },
+      {
+        "id": "b",
+        "text": "Can never contribute to an actual incident, since a design flaw only matters when a person uses the system and so cannot play any part in a real accident or serious event"
+      },
+      {
+        "id": "c",
+        "text": "Is always immediately obvious to every user of the system"
+      },
+      {
+        "id": "d",
+        "text": "Exists in the system from the time it was designed or built, waiting for the right combination of circumstances to produce an actual error"
+      }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "This mirrors the organizational version of the same idea introduced elsewhere in this subject: a latent design weakness can sit unnoticed for a long time, only producing an active failure when workload, distraction or an unusual situation finally exposes it.",
-    "tags": ["active-and-latent-failures"],
+    "tags": [
+      "active-and-latent-failures"
+    ],
     "status": "published",
     "version": 1
   },
@@ -222,14 +394,28 @@
     "subtopic": "System tolerance",
     "question": "A system with high \"error tolerance\" is one that:",
     "options": [
-      { "id": "a", "text": "Allows a person's mistake to be caught and corrected before it leads to a serious outcome, for example through a clear warning or an easy undo" },
-      { "id": "b", "text": "Is designed so that any human error immediately leads to a serious outcome" },
-      { "id": "c", "text": "Removes the need for any training on how to use it correctly" },
-      { "id": "d", "text": "Has no bearing on the consequences of a human error" }
+      {
+        "id": "a",
+        "text": "Allows a person's mistake to be caught and corrected before it leads to a serious outcome, for example through a clear warning or an easy undo"
+      },
+      {
+        "id": "b",
+        "text": "Is designed so that any human error immediately leads to a serious outcome"
+      },
+      {
+        "id": "c",
+        "text": "Has no bearing on the consequences of a human error, since every error produces the same result whatever the design of the system and whatever safeguards it contains"
+      },
+      {
+        "id": "d",
+        "text": "Removes the need for any training on how to use it correctly"
+      }
     ],
     "correct": "a",
     "explanation": "Good design does not just try to prevent every error outright — it also builds in tolerance, so that when an error does occur (as it eventually will), there is a chance to notice and correct it before it escalates into something serious.",
-    "tags": ["system-tolerance"],
+    "tags": [
+      "system-tolerance"
+    ],
     "status": "published",
     "version": 1
   },
@@ -240,14 +426,28 @@
     "subtopic": "System tolerance",
     "question": "A confirmation prompt before an aircraft system executes an irreversible or highly consequential action is an example of:",
     "options": [
-      { "id": "a", "text": "Building error tolerance into the system, giving a person a chance to catch a mistaken input before it takes effect" },
-      { "id": "b", "text": "A feature with no safety purpose, added purely for user convenience" },
-      { "id": "c", "text": "A design choice that always slows down every system action equally, with no distinction by consequence" },
-      { "id": "d", "text": "Something that eliminates the possibility of ever making that particular error" }
+      {
+        "id": "a",
+        "text": "A feature with no safety purpose, added purely for user convenience, since a prompt that the crew learns to accept without reading adds nothing to the protection of the aircraft"
+      },
+      {
+        "id": "b",
+        "text": "Something that eliminates the possibility of ever making that particular error"
+      },
+      {
+        "id": "c",
+        "text": "Building error tolerance into the system, giving a person a chance to catch a mistaken input before it takes effect"
+      },
+      {
+        "id": "d",
+        "text": "A design choice that always slows down every system action equally, with no distinction by consequence"
+      }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "A confirmation step does not stop someone from making the initial error, but it opens a window to catch and reverse it before the consequential action actually happens — exactly the kind of tolerance that limits how far a single slip can travel.",
-    "tags": ["system-tolerance"],
+    "tags": [
+      "system-tolerance"
+    ],
     "status": "published",
     "version": 1
   },
@@ -258,14 +458,28 @@
     "subtopic": "Software",
     "question": "A poorly designed software interface (for example, a flight management system requiring many obscure keystrokes to enter a common instruction) primarily increases risk by:",
     "options": [
-      { "id": "a", "text": "Raising the mental workload and time needed to complete a routine task, leaving less capacity for everything else happening at the same time" },
-      { "id": "b", "text": "Having no measurable effect on workload, only on aesthetics" },
-      { "id": "c", "text": "Always being safer than a simpler interface regardless of complexity" },
-      { "id": "d", "text": "Being relevant only to maintenance staff, never to flight crew" }
+      {
+        "id": "a",
+        "text": "Being relevant only to maintenance staff, never to flight crew"
+      },
+      {
+        "id": "b",
+        "text": "Having no measurable effect on workload, only on aesthetics, since the time a crew member spends on a routine input is always the same whatever the interface looks like"
+      },
+      {
+        "id": "c",
+        "text": "Raising the mental workload and time needed to complete a routine task, leaving less capacity for everything else happening at the same time"
+      },
+      {
+        "id": "d",
+        "text": "Always being safer than a simpler interface regardless of complexity"
+      }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "A clumsy or overly complex interface demands more conscious attention and time for a routine task, crowding out the spare capacity a pilot needs for monitoring everything else — software usability is a human-factors concern, not just a convenience issue.",
-    "tags": ["software"],
+    "tags": [
+      "software"
+    ],
     "status": "published",
     "version": 1
   },
@@ -276,14 +490,28 @@
     "subtopic": "Hardware - design of flight decks",
     "question": "Placing the most frequently used and most safety-critical controls within easy reach of a seated pilot, rather than requiring an awkward stretch, reflects the design principle of:",
     "options": [
-      { "id": "a", "text": "Designing the workspace around realistic human reach and posture, rather than expecting the person to adapt to an inconvenient layout" },
-      { "id": "b", "text": "Prioritizing visual aesthetics over function" },
-      { "id": "c", "text": "A principle that applies only to aircraft designed after a certain era" },
-      { "id": "d", "text": "A concern that has nothing to do with human factors" }
+      {
+        "id": "a",
+        "text": "A concern that has nothing to do with human factors"
+      },
+      {
+        "id": "b",
+        "text": "A principle that applies only to aircraft designed after a certain era"
+      },
+      {
+        "id": "c",
+        "text": "Prioritizing visual aesthetics over function, since a cockpit that looks good to the designer is always the right layout for the pilot who has to reach every control in it"
+      },
+      {
+        "id": "d",
+        "text": "Designing the workspace around realistic human reach and posture, rather than expecting the person to adapt to an inconvenient layout"
+      }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Ergonomic design fits the workspace to realistic human proportions, posture and reach, rather than assuming people will simply adapt to whatever layout is convenient to manufacture — a basic principle behind good cockpit design generally.",
-    "tags": ["ergonomics"],
+    "tags": [
+      "ergonomics"
+    ],
     "status": "published",
     "version": 1
   },
@@ -294,14 +522,28 @@
     "subtopic": "Automation",
     "question": "Automation is generally most beneficial to flight safety when it is used to:",
     "options": [
-      { "id": "a", "text": "Take over repetitive, well-defined tasks, freeing the crew's attention for monitoring, judgement and handling the unexpected" },
-      { "id": "b", "text": "Remove the crew from any monitoring role whatsoever" },
-      { "id": "c", "text": "Replace crew judgement entirely in every circumstance" },
-      { "id": "d", "text": "Perform tasks with no need for the crew to understand what it is doing" }
+      {
+        "id": "a",
+        "text": "Perform tasks with no need for the crew to understand what it is doing"
+      },
+      {
+        "id": "b",
+        "text": "Take over repetitive, well-defined tasks, freeing the crew's attention for monitoring, judgement and handling the unexpected"
+      },
+      {
+        "id": "c",
+        "text": "Remove the crew from any monitoring role whatsoever, so that the aircraft is watched only by its own systems and the pilots need not look at the displays at all in flight"
+      },
+      {
+        "id": "d",
+        "text": "Replace crew judgement entirely in every circumstance"
+      }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "The strongest case for automation is relieving people of repetitive, well-understood workload so their attention is available for the things automation is not good at — judgement, adapting to the unexpected, and catching a problem the automation itself cannot recognise.",
-    "tags": ["automation"],
+    "tags": [
+      "automation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -312,14 +554,29 @@
     "subtopic": "Intelligent flight decks",
     "question": "A key human-factors concern with increasingly \"intelligent\" or autonomous flight deck systems is that:",
     "options": [
-      { "id": "a", "text": "A crew's skills and understanding of the underlying task can gradually erode if the automation handles nearly everything under normal conditions" },
-      { "id": "b", "text": "Crew skill is guaranteed to improve automatically as automation increases" },
-      { "id": "c", "text": "There is no connection between automation level and underlying skill retention" },
-      { "id": "d", "text": "This concern applies only to brand-new pilots, never to experienced ones" }
+      {
+        "id": "a",
+        "text": "Crew skill is guaranteed to improve automatically as automation increases, because each system a crew member learns to use adds a layer of understanding to every other task"
+      },
+      {
+        "id": "b",
+        "text": "Crew skill is guaranteed to improve automatically as automation increases"
+      },
+      {
+        "id": "c",
+        "text": "A crew's skills and understanding of the underlying task can gradually erode if the automation handles nearly everything under normal conditions"
+      },
+      {
+        "id": "d",
+        "text": "There is no connection between automation level and underlying skill retention"
+      }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "If a system reliably manages nearly every normal situation, the crew's own hands-on practice at the underlying task can fade — a real concern, because the rare moment that automation cannot handle is precisely when that underlying skill is most needed.",
-    "tags": ["intelligent-flight-decks", "skill-retention"],
+    "tags": [
+      "intelligent-flight-decks",
+      "skill-retention"
+    ],
     "status": "published",
     "version": 1
   },
@@ -330,14 +587,28 @@
     "subtopic": "System active and latent failures",
     "question": "A warning system that produces frequent false or low-value alerts risks safety mainly because it can lead crews to:",
     "options": [
-      { "id": "a", "text": "Start disregarding or downplaying alerts generally, including the rare occasion when the warning is genuinely serious" },
-      { "id": "b", "text": "Respond more quickly and attentively to every future alert" },
-      { "id": "c", "text": "Have no change at all in how alerts are treated" },
-      { "id": "d", "text": "Only affect how maintenance staff, not flight crew, respond to warnings" }
+      {
+        "id": "a",
+        "text": "Have no change at all in how alerts are treated, since a crew reads every warning with the same care whatever the number of false alarms that have come before it"
+      },
+      {
+        "id": "b",
+        "text": "Only affect how maintenance staff, not flight crew, respond to warnings"
+      },
+      {
+        "id": "c",
+        "text": "Respond more quickly and attentively to every future alert"
+      },
+      {
+        "id": "d",
+        "text": "Start disregarding or downplaying alerts generally, including the rare occasion when the warning is genuinely serious"
+      }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "A warning system that cries wolf too often trains its users, quite reasonably, to treat its output with less urgency over time — which becomes dangerous the moment a genuinely serious alert arrives and is met with the same reduced attention as all the false ones before it.",
-    "tags": ["warning-systems"],
+    "tags": [
+      "warning-systems"
+    ],
     "status": "published",
     "version": 1
   },
@@ -348,14 +619,29 @@
     "subtopic": "Hardware - engine instruments",
     "question": "Standardizing the appearance and layout of engine instruments across the fleet an airline operates (rather than letting each aircraft type differ arbitrarily) is valuable mainly because it:",
     "options": [
-      { "id": "a", "text": "Reduces the risk of a pilot misreading an instrument by applying habits learned on a different type with a different layout" },
-      { "id": "b", "text": "Has no bearing on pilot performance when transitioning between aircraft types" },
-      { "id": "c", "text": "Is relevant only to aircraft manufacturers, never to the airlines that operate mixed fleets" },
-      { "id": "d", "text": "Matters only for brand-new pilots who have never flown before" }
+      {
+        "id": "a",
+        "text": "Matters only for brand-new pilots who have never flown before, since a pilot with several years of experience already knows every instrument layout the airline operates"
+      },
+      {
+        "id": "b",
+        "text": "Has no bearing on pilot performance when transitioning between aircraft types"
+      },
+      {
+        "id": "c",
+        "text": "Reduces the risk of a pilot misreading an instrument by applying habits learned on a different type with a different layout"
+      },
+      {
+        "id": "d",
+        "text": "Is relevant only to aircraft manufacturers, never to the airlines that operate mixed fleets"
+      }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "A pilot's trained habits and expectations carry over between aircraft; a consistent layout across types reduces the chance that a habit learned on one aircraft leads to a misreading or a wrong assumption on another that happens to be laid out differently.",
-    "tags": ["engine-instruments", "standardization"],
+    "tags": [
+      "engine-instruments",
+      "standardization"
+    ],
     "status": "published",
     "version": 1
   }

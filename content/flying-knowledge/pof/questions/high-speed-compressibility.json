@@ -8,24 +8,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Pressure and density independently"
+        "text": "Pressure only, since the speed of sound is set by the density of the air and the pressure acts on the sound wave only through the density it causes"
       },
       {
         "id": "b",
-        "text": "Pressure only"
+        "text": "Absolute temperature only (a = √(γRT))"
       },
       {
         "id": "c",
-        "text": "Density only"
+        "text": "Pressure only"
       },
       {
         "id": "d",
-        "text": "Absolute temperature only (a = √(γRT))"
+        "text": "Pressure and density independently"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "p/ρ = RT, so pressure and density enter only through their ratio. At constant temperature a is unchanged at any altitude.",
-    "tags": ["speed-of-sound"],
+    "tags": [
+      "speed-of-sound"
+    ],
     "status": "published",
     "version": 1
   },
@@ -38,7 +40,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Hypersonic above 2"
+        "text": "Transonic 0.3–0.7, since the flow around the aircraft becomes transonic as soon as any part of the airframe is moving faster than the speed of sound at all"
       },
       {
         "id": "b",
@@ -46,16 +48,18 @@
       },
       {
         "id": "c",
-        "text": "Transonic 0.3–0.7"
+        "text": "Subsonic below 1.0 only, supersonic above"
       },
       {
         "id": "d",
-        "text": "Subsonic below 1.0 only, supersonic above"
+        "text": "Hypersonic above 2"
       }
     ],
     "correct": "b",
     "explanation": "Transonic flow contains both subsonic and supersonic regions; its bounds depend on the body, not on M = 1 exactly.",
-    "tags": ["mach-regimes"],
+    "tags": [
+      "mach-regimes"
+    ],
     "status": "published",
     "version": 1
   },
@@ -68,24 +72,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Pressure is constant"
+        "text": "Stagnation density exceeds free-stream density by under 5 %"
       },
       {
         "id": "b",
-        "text": "Air is incompressible below 0.3"
-      },
-      {
-        "id": "c",
         "text": "The speed of sound is infinite"
       },
       {
+        "id": "c",
+        "text": "Air is incompressible below 0.3"
+      },
+      {
         "id": "d",
-        "text": "Stagnation density exceeds free-stream density by under 5 %"
+        "text": "Air is incompressible below 0.3, since the density of the air stays exactly constant at every speed below Mach 0.3 for all practical purposes in flight"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "ρ_t/ρ = (1 + 0.2M²)^2.5 = 1.046 at M 0.3.",
-    "tags": ["compressibility", "calculation"],
+    "tags": [
+      "compressibility",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -98,24 +105,26 @@
     "options": [
       {
         "id": "a",
-        "text": "The free-stream Mach number at which local flow first reaches M = 1 somewhere on the body"
+        "text": "The Mach number at which drag rises sharply"
       },
       {
         "id": "b",
-        "text": "M = 1"
+        "text": "M = 1, which is the point at which the whole aircraft becomes supersonic and so the critical Mach number is defined as the speed of sound itself"
       },
       {
         "id": "c",
-        "text": "The maximum operating Mach number"
+        "text": "The free-stream Mach number at which local flow first reaches M = 1 somewhere on the body"
       },
       {
         "id": "d",
-        "text": "The Mach number at which drag rises sharply"
+        "text": "The maximum operating Mach number"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Local acceleration over the upper surface reaches sonic speed below free-stream M = 1; supersonic pockets and shocks form above it.",
-    "tags": ["critical-mach"],
+    "tags": [
+      "critical-mach"
+    ],
     "status": "published",
     "version": 1
   },
@@ -128,24 +137,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Higher angle of attack"
-      },
-      {
-        "id": "b",
         "text": "Thinner sections, less camber, lower CL and sweepback"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Thicker sections and more camber"
+      },
+      {
+        "id": "c",
+        "text": "Blunter leading edges only, since a blunt nose raises the speed at which the flow accelerates to sonic speed on the upper surface of every wing"
       },
       {
         "id": "d",
         "text": "Blunter leading edges only"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "All reduce the peak local velocity (or its normal component); lower super-velocity reaches sonic at higher free-stream M.",
-    "tags": ["critical-mach", "design"],
+    "tags": [
+      "critical-mach",
+      "design"
+    ],
     "status": "published",
     "version": 1
   },
@@ -158,11 +170,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Unchanged"
+        "text": "Equal to 1, because the critical Mach number of any wing is set by its design alone and always reaches the speed of sound at the aircraft's maximum altitude"
       },
       {
         "id": "b",
-        "text": "Higher"
+        "text": "Equal to 1"
       },
       {
         "id": "c",
@@ -170,12 +182,15 @@
       },
       {
         "id": "d",
-        "text": "Equal to 1"
+        "text": "Unchanged"
       }
     ],
     "correct": "c",
     "explanation": "M_crit falls with CL; heavy aircraft at high altitude reach shock formation at a lower Mach number.",
-    "tags": ["critical-mach", "lift-coefficient"],
+    "tags": [
+      "critical-mach",
+      "lift-coefficient"
+    ],
     "status": "published",
     "version": 1
   },
@@ -188,7 +203,7 @@
     "options": [
       {
         "id": "a",
-        "text": "A small supersonic region terminated by a weak shock exists, with little drag rise"
+        "text": "No shock exists"
       },
       {
         "id": "b",
@@ -196,16 +211,19 @@
       },
       {
         "id": "c",
-        "text": "No shock exists"
+        "text": "A small supersonic region terminated by a weak shock exists, with little drag rise"
       },
       {
         "id": "d",
-        "text": "Drag falls"
+        "text": "Drag falls, since the local supersonic flow reduces the pressure drag on the wing and so the total drag decreases as the Mach number rises above the critical value"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "The shock is initially weak and near the suction peak; drag rises steeply only when it strengthens and moves aft, triggering separation (drag divergence Mach).",
-    "tags": ["transonic", "drag-divergence"],
+    "tags": [
+      "transonic",
+      "drag-divergence"
+    ],
     "status": "published",
     "version": 1
   },
@@ -230,12 +248,14 @@
       },
       {
         "id": "d",
-        "text": "Always M = 1"
+        "text": "Always M = 1, because drag divergence is the same speed as the speed of sound for every aircraft and so no aircraft can fly faster without a sharp rise in drag"
       }
     ],
     "correct": "c",
     "explanation": "It lies somewhat above M_crit; supercritical sections widen the gap.",
-    "tags": ["drag-divergence"],
+    "tags": [
+      "drag-divergence"
+    ],
     "status": "published",
     "version": 1
   },
@@ -252,20 +272,23 @@
       },
       {
         "id": "b",
-        "text": "It increases span"
+        "text": "It removes induced drag, since the swept wing has no tip vortex and so the lift produced by the wing causes no induced drag at any Mach number"
       },
       {
         "id": "c",
-        "text": "It thins the wing"
+        "text": "It removes induced drag"
       },
       {
         "id": "d",
-        "text": "It removes induced drag"
+        "text": "It thins the wing"
       }
     ],
     "correct": "a",
     "explanation": "Simple sweep theory: the spanwise component does not accelerate over the section.",
-    "tags": ["sweep", "critical-mach"],
+    "tags": [
+      "sweep",
+      "critical-mach"
+    ],
     "status": "published",
     "version": 1
   },
@@ -278,7 +301,7 @@
     "options": [
       {
         "id": "a",
-        "text": "0.70"
+        "text": "1.04"
       },
       {
         "id": "b",
@@ -290,12 +313,16 @@
       },
       {
         "id": "d",
-        "text": "1.04"
+        "text": "0.70"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "M_n = 0.85 × cos 35° = 0.85 × 0.819 = 0.696.",
-    "tags": ["sweep", "normal-mach", "calculation"],
+    "tags": [
+      "sweep",
+      "normal-mach",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -308,24 +335,28 @@
     "options": [
       {
         "id": "a",
-        "text": "0.99"
+        "text": "0.70"
       },
       {
         "id": "b",
-        "text": "0.61"
-      },
-      {
-        "id": "c",
         "text": "0.81 (in practice somewhat less)"
       },
       {
+        "id": "c",
+        "text": "0.61"
+      },
+      {
         "id": "d",
-        "text": "0.70"
+        "text": "0.99"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "M_crit/cos Λ = 0.70/0.866 = 0.81. Root and tip effects and finite span reduce the real gain.",
-    "tags": ["sweep", "critical-mach", "calculation"],
+    "tags": [
+      "sweep",
+      "critical-mach",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -338,11 +369,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Higher lift slope"
+        "text": "Lower critical Mach number"
       },
       {
         "id": "b",
-        "text": "Lower lift slope and CLmax, tip stall and pitch-up, spanwise flow and higher structural weight"
+        "text": "Improved low-speed handling, since the swept wing produces more lift at low speed and so the stall speed is lowered in every configuration of the aircraft"
       },
       {
         "id": "c",
@@ -350,12 +381,15 @@
       },
       {
         "id": "d",
-        "text": "Lower critical Mach number"
+        "text": "Lower lift slope and CLmax, tip stall and pitch-up, spanwise flow and higher structural weight"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Lift ∝ cos Λ effect, tip-loaded flow and longer, more twisted structure are the costs of higher M_crit.",
-    "tags": ["sweep", "trade-offs"],
+    "tags": [
+      "sweep",
+      "trade-offs"
+    ],
     "status": "published",
     "version": 1
   },
@@ -368,11 +402,11 @@
     "options": [
       {
         "id": "a",
-        "text": "sin Λ"
+        "text": "cos² Λ"
       },
       {
         "id": "b",
-        "text": "cos² Λ"
+        "text": "sin Λ"
       },
       {
         "id": "c",
@@ -385,7 +419,10 @@
     ],
     "correct": "c",
     "explanation": "Only the normal velocity component contributes; at 35° the slope falls to 0.82 of the straight-wing value.",
-    "tags": ["sweep", "lift-curve-slope"],
+    "tags": [
+      "sweep",
+      "lift-curve-slope"
+    ],
     "status": "published",
     "version": 1
   },
@@ -402,20 +439,22 @@
       },
       {
         "id": "b",
-        "text": "A sharp leading edge"
-      },
-      {
-        "id": "c",
         "text": "A thicker upper-surface bump"
       },
       {
+        "id": "c",
+        "text": "A sharp leading edge"
+      },
+      {
         "id": "d",
-        "text": "Forward camber only"
+        "text": "Forward camber only, since a forward-curved upper surface lowers the local supersonic region and so holds drag divergence to a higher Mach number than a flat wing"
       }
     ],
     "correct": "a",
     "explanation": "Flatter upper-surface curvature limits local Mach number ahead of a weak shock; aft loading recovers lift. It allows thicker wings at the same cruise Mach.",
-    "tags": ["supercritical-aerofoil"],
+    "tags": [
+      "supercritical-aerofoil"
+    ],
     "status": "published",
     "version": 1
   },
@@ -428,15 +467,15 @@
     "options": [
       {
         "id": "a",
-        "text": "The wing is unswept"
-      },
-      {
-        "id": "b",
         "text": "The fuselage is cylindrical throughout"
       },
       {
+        "id": "b",
+        "text": "The wing is unswept"
+      },
+      {
         "id": "c",
-        "text": "The wing is thick"
+        "text": "The wing is unswept, since a straight wing always generates the least wave drag at every speed and so no shaping of the fuselage is needed to reduce it"
       },
       {
         "id": "d",
@@ -445,7 +484,10 @@
     ],
     "correct": "d",
     "explanation": "Abrupt area growth at the wing junction causes strong shocks; waisting the fuselage or adding fairings smooths the distribution.",
-    "tags": ["area-rule", "wave-drag"],
+    "tags": [
+      "area-rule",
+      "wave-drag"
+    ],
     "status": "published",
     "version": 1
   },
@@ -458,24 +500,27 @@
     "options": [
       {
         "id": "a",
-        "text": "They reduce weight"
-      },
-      {
-        "id": "b",
         "text": "They raise the critical and drag-divergence Mach numbers"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "They increase fuel volume"
       },
       {
+        "id": "c",
+        "text": "They reduce weight, which is the main reason thin wings are chosen, since less structure is needed to carry the lift at the high speeds these aircraft fly"
+      },
+      {
         "id": "d",
-        "text": "They raise CLmax"
+        "text": "They reduce weight"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Lower thickness reduces super-velocity; the cost is lower CLmax and less structural depth.",
-    "tags": ["thickness", "critical-mach"],
+    "tags": [
+      "thickness",
+      "critical-mach"
+    ],
     "status": "published",
     "version": 1
   },
@@ -488,7 +533,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Increases (≈ 0.54 at 10,000 ft, 0.65 at 20,000 ft, 0.79 at 30,000 ft)"
+        "text": "Increases until the tropopause, then decreases"
       },
       {
         "id": "b",
@@ -496,16 +541,20 @@
       },
       {
         "id": "c",
-        "text": "Increases until the tropopause, then decreases"
+        "text": "Remains constant, since the Mach number is set by the constant calibrated airspeed alone and the change in temperature has no effect on the speed of sound"
       },
       {
         "id": "d",
-        "text": "Decreases"
+        "text": "Increases (≈ 0.54 at 10,000 ft, 0.65 at 20,000 ft, 0.79 at 30,000 ft)"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Constant impact pressure over falling static pressure raises q_c/p and hence M; falling temperature reduces a as well.",
-    "tags": ["constant-cas-climb", "mach", "calculation"],
+    "tags": [
+      "constant-cas-climb",
+      "mach",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -518,24 +567,27 @@
     "options": [
       {
         "id": "a",
-        "text": "36,100 ft"
-      },
-      {
-        "id": "b",
         "text": "25,000 ft"
       },
       {
+        "id": "b",
+        "text": "36,100 ft"
+      },
+      {
         "id": "c",
-        "text": "30,600 ft"
+        "text": "20,000 ft"
       },
       {
         "id": "d",
-        "text": "20,000 ft"
+        "text": "30,600 ft"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Solving M(CAS 300, altitude) = 0.80 in the standard atmosphere gives ≈ 30,600 ft; above it the Mach limit governs.",
-    "tags": ["crossover-altitude", "calculation"],
+    "tags": [
+      "crossover-altitude",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -565,7 +617,11 @@
     ],
     "correct": "c",
     "explanation": "T ≈ 227.5 K → a = 38.97√227.5 = 588 kt; TAS = 0.80 × 588 = 470 kt.",
-    "tags": ["tas", "crossover-altitude", "calculation"],
+    "tags": [
+      "tas",
+      "crossover-altitude",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -582,7 +638,7 @@
       },
       {
         "id": "b",
-        "text": "IAS is unavailable"
+        "text": "The airspeed indicator fails, since above the crossover altitude the pitot system stops giving a usable reading and the speed limit must be expressed as a Mach number"
       },
       {
         "id": "c",
@@ -590,12 +646,15 @@
       },
       {
         "id": "d",
-        "text": "Density increases"
+        "text": "IAS is unavailable"
       }
     ],
     "correct": "a",
     "explanation": "At high altitude a given CAS corresponds to a high Mach number; shock effects are Mach-driven.",
-    "tags": ["mmo", "vmo"],
+    "tags": [
+      "mmo",
+      "vmo"
+    ],
     "status": "published",
     "version": 1
   },
@@ -608,24 +667,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Decreases"
+        "text": "Increases, while TAS decreases"
       },
       {
         "id": "b",
-        "text": "Increases throughout, and TAS increases in the troposphere as temperature rises"
-      },
-      {
-        "id": "c",
         "text": "Stays constant"
       },
       {
+        "id": "c",
+        "text": "Decreases, since the aircraft is slowing down in the descent and so the calibrated speed must fall in order to keep the Mach number constant at all altitudes"
+      },
+      {
         "id": "d",
-        "text": "Increases, while TAS decreases"
+        "text": "Increases throughout, and TAS increases in the troposphere as temperature rises"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Higher static pressure at the same M increases q_c; rising temperature raises a and TAS.",
-    "tags": ["constant-mach-descent"],
+    "tags": [
+      "constant-mach-descent"
+    ],
     "status": "published",
     "version": 1
   },
@@ -638,24 +699,28 @@
     "options": [
       {
         "id": "a",
-        "text": "0.71"
-      },
-      {
-        "id": "b",
         "text": "0.82"
       },
       {
+        "id": "b",
+        "text": "0.60"
+      },
+      {
         "id": "c",
-        "text": "0.93"
+        "text": "0.71"
       },
       {
         "id": "d",
-        "text": "0.60"
+        "text": "0.93"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "M = √((W/S)/(0.7·p·CL)) = √(5,000/7,507) = 0.816. A 1.3 g margin requires M 0.93 — the coffin-corner squeeze.",
-    "tags": ["coffin-corner", "buffet", "calculation"],
+    "tags": [
+      "coffin-corner",
+      "buffet",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -668,11 +733,11 @@
     "options": [
       {
         "id": "a",
-        "text": "0.87"
+        "text": "0.93"
       },
       {
         "id": "b",
-        "text": "0.93"
+        "text": "1.07"
       },
       {
         "id": "c",
@@ -680,12 +745,15 @@
       },
       {
         "id": "d",
-        "text": "1.07"
+        "text": "0.87"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "√(1.3 × 5,000/7,507) = 0.93. If MMO or high-speed buffet is below this, the altitude is too high for that weight.",
-    "tags": ["buffet-margin", "calculation"],
+    "tags": [
+      "buffet-margin",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -698,11 +766,11 @@
     "options": [
       {
         "id": "a",
-        "text": "The tropopause is reached"
+        "text": "The tropopause is reached, which marks the altitude at which the aircraft must level off because the lower air can no longer support any further climb at all"
       },
       {
         "id": "b",
-        "text": "Low-speed (stall/buffet) and high-speed (Mach buffet) limits converge"
+        "text": "The tropopause is reached"
       },
       {
         "id": "c",
@@ -710,12 +778,14 @@
       },
       {
         "id": "d",
-        "text": "CAS equals TAS"
+        "text": "Low-speed (stall/buffet) and high-speed (Mach buffet) limits converge"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Low-speed buffet Mach rises with altitude (higher CL); high-speed buffet Mach is roughly constant or falls. The margin vanishes where they meet.",
-    "tags": ["coffin-corner"],
+    "tags": [
+      "coffin-corner"
+    ],
     "status": "published",
     "version": 1
   },
@@ -728,11 +798,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Raising MMO"
+        "text": "Having no effect, since the weight of the aircraft changes only the wing loading and the buffet boundary is set by the altitude alone at any speed"
       },
       {
         "id": "b",
-        "text": "Lowering the low-speed buffet Mach"
+        "text": "Raising the low-speed buffet Mach and lowering the available margin"
       },
       {
         "id": "c",
@@ -740,12 +810,15 @@
       },
       {
         "id": "d",
-        "text": "Raising the low-speed buffet Mach and lowering the available margin"
+        "text": "Lowering the low-speed buffet Mach"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "CL required ∝ W; low-speed buffet occurs at a higher M. The buffet-limited ceiling falls with weight.",
-    "tags": ["buffet-margin", "weight"],
+    "tags": [
+      "buffet-margin",
+      "weight"
+    ],
     "status": "published",
     "version": 1
   },
@@ -758,15 +831,15 @@
     "options": [
       {
         "id": "a",
-        "text": "Temperature and static pressure"
+        "text": "Density and TAS, since the Mach meter senses the air density directly through the static port and divides the true speed by the density of the air at altitude"
       },
       {
         "id": "b",
-        "text": "TAS and outside air temperature"
+        "text": "Temperature and static pressure"
       },
       {
         "id": "c",
-        "text": "Density and TAS"
+        "text": "TAS and outside air temperature"
       },
       {
         "id": "d",
@@ -775,7 +848,9 @@
     ],
     "correct": "d",
     "explanation": "M = f(q_c/p) through the isentropic relation; no temperature input is needed.",
-    "tags": ["machmeter"],
+    "tags": [
+      "machmeter"
+    ],
     "status": "published",
     "version": 1
   },
@@ -788,24 +863,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Increases"
-      },
-      {
-        "id": "b",
-        "text": "Decreases, because the speed of sound is higher"
-      },
-      {
-        "id": "c",
         "text": "Becomes unreliable"
       },
       {
-        "id": "d",
+        "id": "b",
+        "text": "Is unchanged, since the speed of sound and the true airspeed both change by the same amount in warmer air and so the ratio between them is constant at every altitude"
+      },
+      {
+        "id": "c",
         "text": "Is unchanged"
+      },
+      {
+        "id": "d",
+        "text": "Decreases, because the speed of sound is higher"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "M = TAS/a and a ∝ √T.",
-    "tags": ["mach", "temperature"],
+    "tags": [
+      "mach",
+      "temperature"
+    ],
     "status": "published",
     "version": 1
   },
@@ -818,24 +896,28 @@
     "options": [
       {
         "id": "a",
-        "text": "Unchanged, since M depends only on q_c and p"
+        "text": "Decreased, since a warmer atmosphere carries the pressure lower and so the aircraft's Mach number falls as the calibrated speed holds constant in every case"
       },
       {
         "id": "b",
-        "text": "Doubled"
+        "text": "Decreased"
       },
       {
         "id": "c",
-        "text": "Decreased"
+        "text": "Unchanged, since M depends only on q_c and p"
       },
       {
         "id": "d",
         "text": "Increased"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "CAS fixes q_c; altitude fixes p. TAS rises with √T and so does a, in the same ratio.",
-    "tags": ["mach", "cas", "temperature"],
+    "tags": [
+      "mach",
+      "cas",
+      "temperature"
+    ],
     "status": "published",
     "version": 1
   },
@@ -848,24 +930,27 @@
     "options": [
       {
         "id": "a",
-        "text": "231 K (+14 K)"
-      },
-      {
-        "id": "b",
         "text": "217 K"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "260 K (+43 K)"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "245 K (+28 K)"
+      },
+      {
+        "id": "d",
+        "text": "231 K (+14 K)"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "T_t = T(1 + 0.2M²) = 217 × 1.128 = 244.8 K.",
-    "tags": ["total-temperature", "calculation"],
+    "tags": [
+      "total-temperature",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -878,11 +963,11 @@
     "options": [
       {
         "id": "a",
-        "text": "272 K"
+        "text": "196 K"
       },
       {
         "id": "b",
-        "text": "217 K"
+        "text": "272 K"
       },
       {
         "id": "c",
@@ -890,12 +975,16 @@
       },
       {
         "id": "d",
-        "text": "196 K"
+        "text": "217 K"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "SAT = TAT/(1 + 0.2M²) = 245/1.128 = 217 K.",
-    "tags": ["sat", "tat", "calculation"],
+    "tags": [
+      "sat",
+      "tat",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -908,24 +997,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Take-off"
+        "text": "Take-off, since the skin is heated by the friction of the high-speed air over the wing during the ground roll and so this is where the skin is hottest"
       },
       {
         "id": "b",
-        "text": "High altitude only at low speed"
+        "text": "Low subsonic speeds"
       },
       {
         "id": "c",
-        "text": "Supersonic speeds, where stagnation temperature rises steeply with M²"
+        "text": "High altitude only at low speed"
       },
       {
         "id": "d",
-        "text": "Low subsonic speeds"
+        "text": "Supersonic speeds, where stagnation temperature rises steeply with M²"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "At M 2 and 217 K, T_t = 217 × 1.8 = 391 K, affecting material strength.",
-    "tags": ["kinetic-heating"],
+    "tags": [
+      "kinetic-heating"
+    ],
     "status": "published",
     "version": 1
   },
@@ -938,24 +1029,27 @@
     "options": [
       {
         "id": "a",
-        "text": "×√2"
+        "text": "×4"
       },
       {
         "id": "b",
-        "text": "No change"
-      },
-      {
-        "id": "c",
         "text": "×2"
       },
       {
+        "id": "c",
+        "text": "×√2"
+      },
+      {
         "id": "d",
-        "text": "×4"
+        "text": "No change"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "M = V/a; a depends on temperature only.",
-    "tags": ["mach", "proportionality"],
+    "tags": [
+      "mach",
+      "proportionality"
+    ],
     "status": "published",
     "version": 1
   },
@@ -968,24 +1062,27 @@
     "options": [
       {
         "id": "a",
-        "text": "M 0.72"
+        "text": "M 0.78"
       },
       {
         "id": "b",
-        "text": "M 0.68"
+        "text": "M 0.72"
       },
       {
         "id": "c",
-        "text": "M 0.78"
+        "text": "M 0.68"
       },
       {
         "id": "d",
         "text": "M 0.84"
       }
     ],
-    "correct": "c",
+    "correct": "a",
     "explanation": "a = 573.6 kt at 216.65 K; 450/573.6 = 0.785.",
-    "tags": ["mach", "calculation"],
+    "tags": [
+      "mach",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -998,24 +1095,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Structural overload from q alone"
-      },
-      {
-        "id": "b",
-        "text": "Stall"
-      },
-      {
-        "id": "c",
         "text": "Engine surge"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "Shock-induced buffet, control problems (e.g. Mach tuck) and drag rise"
+      },
+      {
+        "id": "c",
+        "text": "Stall, because the speed limit set by MMO keeps the aircraft clear of the low-speed buffet boundary and so the stall margin is always preserved at the maximum speed"
+      },
+      {
+        "id": "d",
+        "text": "Structural overload from q alone"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "VMO protects against q-related loads and flutter; MMO against compressibility effects.",
-    "tags": ["mmo"],
+    "tags": [
+      "mmo"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1028,24 +1127,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Leaves drag coefficient unchanged"
+        "text": "Reduces drag, since the higher Mach number thins the boundary layer and so the skin friction falls by enough to outweigh any wave drag at this speed"
       },
       {
         "id": "b",
-        "text": "Reduces drag"
+        "text": "Leaves drag coefficient unchanged"
       },
       {
         "id": "c",
-        "text": "Reduces lift"
+        "text": "Increases drag disproportionately as drag divergence is approached"
       },
       {
         "id": "d",
-        "text": "Increases drag disproportionately as drag divergence is approached"
+        "text": "Reduces drag"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Wave drag and shock-induced separation add to the q-based drag rise.",
-    "tags": ["drag-divergence"],
+    "tags": [
+      "drag-divergence"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1058,24 +1159,26 @@
     "options": [
       {
         "id": "a",
-        "text": "The speed of sound changes"
+        "text": "Engines lose all thrust, since the intake airflow is disturbed by the shocks and the powerplant stops producing thrust for the whole duration of the transonic range"
       },
       {
         "id": "b",
-        "text": "Mixed subsonic and supersonic regions and moving shocks cause large, non-linear changes in lift, drag and moments"
+        "text": "Air becomes incompressible"
       },
       {
         "id": "c",
-        "text": "Engines lose all thrust"
+        "text": "The speed of sound changes"
       },
       {
         "id": "d",
-        "text": "Air becomes incompressible"
+        "text": "Mixed subsonic and supersonic regions and moving shocks cause large, non-linear changes in lift, drag and moments"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Local shock positions shift with small changes in M or α, producing buffet, trim changes and control effectiveness loss.",
-    "tags": ["transonic"],
+    "tags": [
+      "transonic"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1088,24 +1191,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Lower wing weight"
+        "text": "A thinner section only"
       },
       {
         "id": "b",
-        "text": "A higher CLmax"
+        "text": "A higher CLmax, because the swept wing is always thicker at the root and so the same wing can carry a much greater lift coefficient at all speeds of flight"
       },
       {
         "id": "c",
-        "text": "A thicker section, improving structure and fuel volume"
+        "text": "Lower wing weight"
       },
       {
         "id": "d",
-        "text": "A thinner section only"
+        "text": "A thicker section, improving structure and fuel volume"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "M_n = M·cos Λ; the section only needs to meet M_crit at the normal component.",
-    "tags": ["sweep", "thickness"],
+    "tags": [
+      "sweep",
+      "thickness"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1118,15 +1224,15 @@
     "options": [
       {
         "id": "a",
-        "text": "Remains constant"
+        "text": "First increases then decreases"
       },
       {
         "id": "b",
-        "text": "Increases"
+        "text": "Remains constant"
       },
       {
         "id": "c",
-        "text": "First increases then decreases"
+        "text": "Increases"
       },
       {
         "id": "d",
@@ -1135,7 +1241,10 @@
     ],
     "correct": "d",
     "explanation": "At constant M the impact pressure falls with static pressure, so CAS/IAS falls.",
-    "tags": ["constant-mach-climb", "ias"],
+    "tags": [
+      "constant-mach-climb",
+      "ias"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1148,24 +1257,27 @@
     "options": [
       {
         "id": "a",
-        "text": "25 K"
-      },
-      {
-        "id": "b",
         "text": "50 K"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "12.5 K"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "5 K"
+      },
+      {
+        "id": "d",
+        "text": "25 K"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "ΔT = 0.2M²·T = 0.2 × 0.25 × 250 = 12.5 K.",
-    "tags": ["ram-rise", "calculation"],
+    "tags": [
+      "ram-rise",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1178,24 +1290,26 @@
     "options": [
       {
         "id": "a",
-        "text": "The maximum altitude or bank at a given weight and Mach number while keeping a load-factor margin to buffet"
+        "text": "Fuel flow, since the buffet chart is read from the engine fuel gauge and so gives the rate at which fuel must be burned to hold the required altitude"
       },
       {
         "id": "b",
-        "text": "Landing distance"
-      },
-      {
-        "id": "c",
         "text": "Fuel flow"
       },
       {
+        "id": "c",
+        "text": "The maximum altitude or bank at a given weight and Mach number while keeping a load-factor margin to buffet"
+      },
+      {
         "id": "d",
-        "text": "V1"
+        "text": "Landing distance"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "They plot buffet CL against M; with W, p and n the margin can be read directly.",
-    "tags": ["buffet-boundary"],
+    "tags": [
+      "buffet-boundary"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1208,24 +1322,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Exceed MMO as altitude increases"
+        "text": "Reduce Mach, since holding a fixed indicated speed as altitude rises means the aircraft slows down in true terms and so the Mach number falls in every case"
       },
       {
         "id": "b",
-        "text": "Keep Mach constant"
+        "text": "Exceed MMO as altitude increases"
       },
       {
         "id": "c",
-        "text": "Reduce TAS"
+        "text": "Keep Mach constant"
       },
       {
         "id": "d",
         "text": "Reduce Mach"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "At constant CAS, M continues to rise with altitude.",
-    "tags": ["crossover-altitude", "mmo"],
+    "tags": [
+      "crossover-altitude",
+      "mmo"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1238,11 +1355,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Radiation"
+        "text": "Friction with the skin"
       },
       {
         "id": "b",
-        "text": "Friction with the skin"
+        "text": "Radiation, since the probe is heated by the sun's rays as it faces the airflow and so reads higher than the outside air temperature in every flight condition"
       },
       {
         "id": "c",
@@ -1255,7 +1372,10 @@
     ],
     "correct": "d",
     "explanation": "Recovery factor r gives TAT = SAT(1 + 0.2rM²).",
-    "tags": ["tat", "sat"],
+    "tags": [
+      "tat",
+      "sat"
+    ],
     "status": "published",
     "version": 1
   }

@@ -8,24 +8,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Increases the blade angle of attack"
+        "text": "Decreases the blade angle of attack"
       },
       {
         "id": "b",
-        "text": "Makes it negative"
-      },
-      {
-        "id": "c",
         "text": "Leaves it unchanged"
       },
       {
+        "id": "c",
+        "text": "Makes it negative"
+      },
+      {
         "id": "d",
-        "text": "Decreases the blade angle of attack"
+        "text": "Increases the blade angle of attack"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Lower V → smaller φ → larger α = β − φ.",
-    "tags": ["fixed-pitch", "angle-of-attack"],
+    "tags": [
+      "fixed-pitch",
+      "angle-of-attack"
+    ],
     "status": "published",
     "version": 1
   },
@@ -38,24 +41,26 @@
     "options": [
       {
         "id": "a",
-        "text": "The distance a blade element would advance in one revolution moving along its chord line: 2πr·tan β"
+        "text": "The blade chord, measured along the line of the blade from the hub out to the tip of each blade at its widest point"
       },
       {
         "id": "b",
-        "text": "The blade angle in degrees"
+        "text": "The distance a blade element would advance in one revolution moving along its chord line: 2πr·tan β"
       },
       {
         "id": "c",
-        "text": "The blade chord"
+        "text": "The actual advance per revolution"
       },
       {
         "id": "d",
-        "text": "The actual advance per revolution"
+        "text": "The blade angle in degrees"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Effective pitch (actual advance, V/n) is less than geometric pitch; the difference is slip.",
-    "tags": ["geometric-pitch"],
+    "tags": [
+      "geometric-pitch"
+    ],
     "status": "published",
     "version": 1
   },
@@ -68,7 +73,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Engine rpm minus propeller rpm"
+        "text": "Tip speed minus TAS, which gives the speed of the blade through the air at the tip only"
       },
       {
         "id": "b",
@@ -76,16 +81,18 @@
       },
       {
         "id": "c",
-        "text": "Tip speed minus TAS"
+        "text": "Geometric pitch minus effective pitch (actual advance per revolution)"
       },
       {
         "id": "d",
-        "text": "Geometric pitch minus effective pitch (actual advance per revolution)"
+        "text": "Engine rpm minus propeller rpm"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Slip reflects the blade's angle of attack; zero slip means zero α and zero thrust.",
-    "tags": ["slip"],
+    "tags": [
+      "slip"
+    ],
     "status": "published",
     "version": 1
   },
@@ -102,20 +109,23 @@
       },
       {
         "id": "b",
-        "text": "0.80"
-      },
-      {
-        "id": "c",
         "text": "0.60"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "1.25"
+      },
+      {
+        "id": "d",
+        "text": "0.80"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "3,000 × 60 = 180 kW thrust power; 180/225 = 0.80.",
-    "tags": ["propeller-efficiency", "calculation"],
+    "tags": [
+      "propeller-efficiency",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -128,11 +138,11 @@
     "options": [
       {
         "id": "a",
-        "text": "1.33"
+        "text": "0.38"
       },
       {
         "id": "b",
-        "text": "0.38"
+        "text": "1.33"
       },
       {
         "id": "c",
@@ -145,7 +155,10 @@
     ],
     "correct": "c",
     "explanation": "60/(40 × 2) = 0.75.",
-    "tags": ["advance-ratio", "calculation"],
+    "tags": [
+      "advance-ratio",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -158,24 +171,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Peaks at one J and falls on either side"
-      },
-      {
-        "id": "b",
         "text": "Is maximum at J = 0"
       },
       {
+        "id": "b",
+        "text": "Peaks at one J and falls on either side"
+      },
+      {
         "id": "c",
-        "text": "Is constant"
+        "text": "Rises continuously with J"
       },
       {
         "id": "d",
-        "text": "Rises continuously with J"
+        "text": "Is constant across the whole range of advance ratios for any fixed-pitch design"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "At low J the blades work at high α (drag losses); at high J α falls toward zero thrust. Only one J (one speed at a given rpm) is optimum.",
-    "tags": ["propeller-efficiency", "advance-ratio"],
+    "tags": [
+      "propeller-efficiency",
+      "advance-ratio"
+    ],
     "status": "published",
     "version": 1
   },
@@ -188,24 +204,27 @@
     "options": [
       {
         "id": "a",
-        "text": "About 0.8"
-      },
-      {
-        "id": "b",
         "text": "Negative"
       },
       {
+        "id": "b",
+        "text": "Maximum, since the blades are then meeting the air at their most efficient angle"
+      },
+      {
         "id": "c",
-        "text": "Maximum"
+        "text": "Zero, although thrust is at or near its maximum"
       },
       {
         "id": "d",
-        "text": "Zero, although thrust is at or near its maximum"
+        "text": "About 0.8"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "η = T·V/P = 0 at V = 0: no thrust power is produced, even though thrust is large.",
-    "tags": ["static-thrust", "efficiency"],
+    "tags": [
+      "static-thrust",
+      "efficiency"
+    ],
     "status": "published",
     "version": 1
   },
@@ -218,11 +237,11 @@
     "options": [
       {
         "id": "a",
-        "text": "0.50"
+        "text": "1.10"
       },
       {
         "id": "b",
-        "text": "1.10"
+        "text": "0.80–0.88"
       },
       {
         "id": "c",
@@ -230,12 +249,14 @@
       },
       {
         "id": "d",
-        "text": "0.80–0.88"
+        "text": "0.50"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "Profile drag, tip losses, swirl in the slipstream and, at high speed, compressibility keep η below the ideal value.",
-    "tags": ["propeller-efficiency"],
+    "tags": [
+      "propeller-efficiency"
+    ],
     "status": "published",
     "version": 1
   },
@@ -248,11 +269,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Gives better cruise efficiency but lower take-off rpm and static thrust"
+        "text": "Is identical, since the blade angle is the only variable that changes the propeller's output"
       },
       {
         "id": "b",
-        "text": "Allows higher rpm at take-off"
+        "text": "Gives better cruise efficiency but lower take-off rpm and static thrust"
       },
       {
         "id": "c",
@@ -260,12 +281,15 @@
       },
       {
         "id": "d",
-        "text": "Is identical"
+        "text": "Allows higher rpm at take-off"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Coarse blades at low V operate at high α (near stall) and absorb power at lower rpm, reducing engine power and thrust.",
-    "tags": ["fixed-pitch", "coarse-pitch"],
+    "tags": [
+      "fixed-pitch",
+      "coarse-pitch"
+    ],
     "status": "published",
     "version": 1
   },
@@ -278,24 +302,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Thrust to increase"
-      },
-      {
-        "id": "b",
         "text": "Rpm to increase (risk of overspeed), as blade α and torque fall"
       },
       {
+        "id": "b",
+        "text": "Rpm to decrease, as the blades stall at the higher airspeed and the propeller slows down"
+      },
+      {
         "id": "c",
-        "text": "Rpm to remain constant"
+        "text": "Thrust to increase"
       },
       {
         "id": "d",
-        "text": "Rpm to decrease"
+        "text": "Rpm to remain constant"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Lower α reduces absorbed torque; the engine accelerates the propeller.",
-    "tags": ["fixed-pitch", "overspeed"],
+    "tags": [
+      "fixed-pitch",
+      "overspeed"
+    ],
     "status": "published",
     "version": 1
   },
@@ -308,24 +335,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Is ideal for cruise"
+        "text": "Produces maximum efficiency"
       },
       {
         "id": "b",
-        "text": "Operates near stall"
+        "text": "Is ideal for cruise, since the low blade angle gives the best efficiency at every speed"
       },
       {
         "id": "c",
-        "text": "Operates at low α and high rpm, risking engine overspeed and poor efficiency"
+        "text": "Operates near stall"
       },
       {
         "id": "d",
-        "text": "Produces maximum efficiency"
+        "text": "Operates at low α and high rpm, risking engine overspeed and poor efficiency"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "It is optimised for low speed; at high V the helix angle approaches the blade angle.",
-    "tags": ["fixed-pitch", "fine-pitch"],
+    "tags": [
+      "fixed-pitch",
+      "fine-pitch"
+    ],
     "status": "published",
     "version": 1
   },
@@ -338,24 +368,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Varying throttle"
+        "text": "Varying mixture, which changes the fuel flow and so holds the engine speed constant"
       },
       {
         "id": "b",
-        "text": "A governor adjusting blade angle to vary absorbed torque"
+        "text": "Varying engine timing"
       },
       {
         "id": "c",
-        "text": "Varying mixture"
+        "text": "Varying throttle"
       },
       {
         "id": "d",
-        "text": "Varying engine timing"
+        "text": "A governor adjusting blade angle to vary absorbed torque"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Flyweights sense rpm; oil pressure (or springs/counterweights) change blade angle.",
-    "tags": ["constant-speed", "governor"],
+    "tags": [
+      "constant-speed",
+      "governor"
+    ],
     "status": "published",
     "version": 1
   },
@@ -368,7 +401,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Increase the blade angle (coarser) to keep α and torque roughly constant"
+        "text": "Feather the propeller, since this is the normal response to any increase in airspeed"
       },
       {
         "id": "b",
@@ -376,16 +409,19 @@
       },
       {
         "id": "c",
-        "text": "Feather the propeller"
+        "text": "Increase the blade angle (coarser) to keep α and torque roughly constant"
       },
       {
         "id": "d",
         "text": "Decrease the blade angle"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "Higher V increases φ; β increases to maintain α = β − φ and absorbed torque.",
-    "tags": ["constant-speed", "blade-angle"],
+    "tags": [
+      "constant-speed",
+      "blade-angle"
+    ],
     "status": "published",
     "version": 1
   },
@@ -402,20 +438,23 @@
       },
       {
         "id": "b",
-        "text": "A coarser blade angle to absorb the extra power at the same rpm"
+        "text": "Higher rpm, because the throttle opening raises the engine speed at which the blades stop"
       },
       {
         "id": "c",
-        "text": "Higher rpm"
+        "text": "No change in blade angle"
       },
       {
         "id": "d",
-        "text": "No change in blade angle"
+        "text": "A coarser blade angle to absorb the extra power at the same rpm"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "More engine torque would accelerate the propeller; the governor increases β to absorb it.",
-    "tags": ["constant-speed", "throttle"],
+    "tags": [
+      "constant-speed",
+      "throttle"
+    ],
     "status": "published",
     "version": 1
   },
@@ -428,24 +467,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Feathers automatically"
+        "text": "Maintains full rpm indefinitely"
       },
       {
         "id": "b",
-        "text": "Goes coarse"
-      },
-      {
-        "id": "c",
         "text": "Moves to the fine-pitch stop; rpm then falls as power is insufficient"
       },
       {
+        "id": "c",
+        "text": "Goes coarse, which lets the propeller windmill and keeps the engine turning at a steady rate"
+      },
+      {
         "id": "d",
-        "text": "Maintains full rpm indefinitely"
+        "text": "Feathers automatically"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "The governor fines the blades to hold rpm until the fine stop is reached; then rpm decays and the windmilling propeller may produce drag.",
-    "tags": ["constant-speed", "fine-stop"],
+    "tags": [
+      "constant-speed",
+      "fine-stop"
+    ],
     "status": "published",
     "version": 1
   },
@@ -458,7 +500,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Feathered"
+        "text": "Reverse, which lets the engine develop full power at low forward speed in the take-off roll"
       },
       {
         "id": "b",
@@ -466,16 +508,19 @@
       },
       {
         "id": "c",
-        "text": "Reverse"
+        "text": "Fine pitch / maximum rpm, allowing the engine to develop full power at low forward speed"
       },
       {
         "id": "d",
-        "text": "Fine pitch / maximum rpm, allowing the engine to develop full power at low forward speed"
+        "text": "Feathered"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Low blade angle at low V keeps blades unstalled and lets the engine reach rated rpm.",
-    "tags": ["take-off", "fine-pitch"],
+    "tags": [
+      "take-off",
+      "fine-pitch"
+    ],
     "status": "published",
     "version": 1
   },
@@ -488,24 +533,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Simplicity"
-      },
-      {
-        "id": "b",
         "text": "Lower weight"
       },
       {
+        "id": "b",
+        "text": "Near-optimum blade angle of attack (and efficiency) over a wide speed range"
+      },
+      {
         "id": "c",
-        "text": "No need for a governor"
+        "text": "Simplicity, since a fixed-pitch propeller has fewer moving parts and needs no governor at all"
       },
       {
         "id": "d",
-        "text": "Near-optimum blade angle of attack (and efficiency) over a wide speed range"
+        "text": "No need for a governor"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "It avoids the single-optimum limitation of a fixed blade angle.",
-    "tags": ["constant-speed", "efficiency"],
+    "tags": [
+      "constant-speed",
+      "efficiency"
+    ],
     "status": "published",
     "version": 1
   },
@@ -518,11 +566,11 @@
     "options": [
       {
         "id": "a",
-        "text": "To feather"
+        "text": "Toward coarse pitch (low rpm)"
       },
       {
         "id": "b",
-        "text": "Toward fine pitch (high rpm), driven by centrifugal twisting moment and springs"
+        "text": "To feather, since the springs and the oil pressure both move the blades to the feathered position"
       },
       {
         "id": "c",
@@ -530,12 +578,15 @@
       },
       {
         "id": "d",
-        "text": "Toward coarse pitch (low rpm)"
+        "text": "Toward fine pitch (high rpm), driven by centrifugal twisting moment and springs"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "With oil only able to coarsen the blades, losing it leaves the fine-pitch forces unopposed. Twin-engine designs reverse the arrangement: oil fines the blades and counterweights/springs drive them coarse or to feather on failure.",
-    "tags": ["constant-speed", "failure-mode"],
+    "tags": [
+      "constant-speed",
+      "failure-mode"
+    ],
     "status": "published",
     "version": 1
   },
@@ -548,15 +599,15 @@
     "options": [
       {
         "id": "a",
-        "text": "At 0° blade angle"
-      },
-      {
-        "id": "b",
         "text": "At negative angle"
       },
       {
+        "id": "b",
+        "text": "At maximum rpm, so that the propeller is driven by the airflow at full speed and keeps the engine turning in the cruise"
+      },
+      {
         "id": "c",
-        "text": "At maximum rpm"
+        "text": "At 0° blade angle"
       },
       {
         "id": "d",
@@ -565,7 +616,9 @@
     ],
     "correct": "d",
     "explanation": "Feathering removes windmilling drag after engine failure, improving single-engine performance and control.",
-    "tags": ["feathering"],
+    "tags": [
+      "feathering"
+    ],
     "status": "published",
     "version": 1
   },
@@ -578,24 +631,27 @@
     "options": [
       {
         "id": "a",
-        "text": "No drag"
+        "text": "Lift, since a windmilling propeller is driven by the airflow and so produces an upward force on the engine nacelle"
       },
       {
         "id": "b",
-        "text": "Positive thrust"
+        "text": "Drag (negative thrust), being driven by the airflow at negative α"
       },
       {
         "id": "c",
-        "text": "Lift"
+        "text": "Positive thrust"
       },
       {
         "id": "d",
-        "text": "Drag (negative thrust), being driven by the airflow at negative α"
+        "text": "No drag"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "The relative flow strikes the blade's front face; the propeller extracts energy from the air to turn the engine.",
-    "tags": ["windmilling", "drag"],
+    "tags": [
+      "windmilling",
+      "drag"
+    ],
     "status": "published",
     "version": 1
   },
@@ -612,11 +668,11 @@
       },
       {
         "id": "b",
-        "text": "Equal"
+        "text": "Smaller"
       },
       {
         "id": "c",
-        "text": "Smaller"
+        "text": "Equal"
       },
       {
         "id": "d",
@@ -625,7 +681,10 @@
     ],
     "correct": "a",
     "explanation": "The disc of a windmilling fine-pitch propeller behaves like a large drag plate; feathering can reduce the drag several-fold.",
-    "tags": ["windmilling", "feathering"],
+    "tags": [
+      "windmilling",
+      "feathering"
+    ],
     "status": "published",
     "version": 1
   },
@@ -638,11 +697,11 @@
     "options": [
       {
         "id": "a",
-        "text": "To feather"
+        "text": "To feather, since reverse pitch is the same setting as the feathered position of the blades"
       },
       {
         "id": "b",
-        "text": "On the ground after landing to produce reverse thrust for deceleration"
+        "text": "For take-off"
       },
       {
         "id": "c",
@@ -650,12 +709,14 @@
       },
       {
         "id": "d",
-        "text": "For take-off"
+        "text": "On the ground after landing to produce reverse thrust for deceleration"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "A negative blade angle directs the slipstream forward.",
-    "tags": ["reverse-pitch"],
+    "tags": [
+      "reverse-pitch"
+    ],
     "status": "published",
     "version": 1
   },
@@ -668,11 +729,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Feathered state"
+        "text": "Direct pilot control of blade angle (ground operations, reverse) rather than governed constant-speed operation"
       },
       {
         "id": "b",
-        "text": "Direct pilot control of blade angle (ground operations, reverse) rather than governed constant-speed operation"
+        "text": "Feathered state"
       },
       {
         "id": "c",
@@ -680,12 +741,15 @@
       },
       {
         "id": "d",
-        "text": "Maximum cruise"
+        "text": "Maximum cruise, since the beta range is the setting used to hold the propeller at its most efficient speed in flight"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Power lever positions below flight idle select blade angle directly.",
-    "tags": ["beta-range", "turboprop"],
+    "tags": [
+      "beta-range",
+      "turboprop"
+    ],
     "status": "published",
     "version": 1
   },
@@ -702,20 +766,23 @@
       },
       {
         "id": "b",
-        "text": "It increases thrust"
-      },
-      {
-        "id": "c",
         "text": "The large drag and loss of lift over the wing behind the propeller can cause loss of control"
       },
       {
+        "id": "c",
+        "text": "It increases thrust"
+      },
+      {
         "id": "d",
-        "text": "It has no effect"
+        "text": "It has no effect on the aircraft, since the propeller only produces thrust and no drag in any condition"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Very low blade angles at flight speeds produce huge drag and disturbed flow; systems lock these ranges out in flight.",
-    "tags": ["beta-range", "safety"],
+    "tags": [
+      "beta-range",
+      "safety"
+    ],
     "status": "published",
     "version": 1
   },
@@ -728,7 +795,7 @@
     "options": [
       {
         "id": "a",
-        "text": "They reduce thrust only at low speed"
+        "text": "They increase efficiency"
       },
       {
         "id": "b",
@@ -736,16 +803,19 @@
       },
       {
         "id": "c",
-        "text": "They increase efficiency"
+        "text": "They reduce noise in the cabin, since the tip speed lowers the level of sound heard by the crew"
       },
       {
         "id": "d",
-        "text": "They reduce noise"
+        "text": "They reduce thrust only at low speed"
       }
     ],
     "correct": "b",
     "explanation": "Compressibility losses rise steeply above tip M ≈ 0.85–0.9.",
-    "tags": ["tip-mach", "compressibility"],
+    "tags": [
+      "tip-mach",
+      "compressibility"
+    ],
     "status": "published",
     "version": 1
   },
@@ -758,24 +828,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Turbine shaft speeds would give supersonic propeller tips"
+        "text": "They reduce weight of the engine, which is the main reason the gearbox is fitted to any turboprop"
       },
       {
         "id": "b",
-        "text": "They increase engine power"
+        "text": "Turbine shaft speeds would give supersonic propeller tips"
       },
       {
         "id": "c",
-        "text": "They reduce weight"
+        "text": "They increase engine power"
       },
       {
         "id": "d",
         "text": "They reduce torque"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Propeller rpm must be limited to keep the helical tip Mach number acceptable.",
-    "tags": ["reduction-gearbox"],
+    "tags": [
+      "reduction-gearbox"
+    ],
     "status": "published",
     "version": 1
   },
@@ -788,24 +860,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Air density increases"
-      },
-      {
-        "id": "b",
         "text": "Helical tip Mach number rises toward sonic"
       },
       {
+        "id": "b",
+        "text": "Air density increases"
+      },
+      {
         "id": "c",
-        "text": "Thrust rises"
+        "text": "Blade angle becomes too fine"
       },
       {
         "id": "d",
-        "text": "Blade angle becomes too fine"
+        "text": "Thrust rises, so the propeller must turn faster and the tips reach sonic speed at the same time"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "This limits conventional propeller aircraft to about M 0.6–0.7.",
-    "tags": ["tip-mach", "high-speed"],
+    "tags": [
+      "tip-mach",
+      "high-speed"
+    ],
     "status": "published",
     "version": 1
   },
@@ -818,24 +893,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Rolls the aircraft to the left (anticlockwise)"
+        "text": "Rolls it to the right"
       },
       {
         "id": "b",
-        "text": "Yaws it right"
+        "text": "Rolls the aircraft to the left (anticlockwise)"
       },
       {
         "id": "c",
-        "text": "Pitches it up"
+        "text": "Yaws it right, since the torque reaction acts about the vertical axis of the aircraft in every case"
       },
       {
         "id": "d",
-        "text": "Rolls it to the right"
+        "text": "Pitches it up"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Newton's third law: the airframe reacts opposite to propeller rotation.",
-    "tags": ["torque-reaction"],
+    "tags": [
+      "torque-reaction"
+    ],
     "status": "published",
     "version": 1
   },
@@ -848,7 +925,7 @@
     "options": [
       {
         "id": "a",
-        "text": "It loads the left main wheel more, increasing its rolling friction"
+        "text": "Thrust is asymmetric, because the propeller's slipstream pushes harder on the left side of the fuselage"
       },
       {
         "id": "b",
@@ -860,12 +937,15 @@
       },
       {
         "id": "d",
-        "text": "Thrust is asymmetric"
+        "text": "It loads the left main wheel more, increasing its rolling friction"
       }
     ],
-    "correct": "a",
+    "correct": "d",
     "explanation": "Rolling moment transfers weight to the left wheel; increased drag on that side yaws the nose left.",
-    "tags": ["torque-reaction", "take-off"],
+    "tags": [
+      "torque-reaction",
+      "take-off"
+    ],
     "status": "published",
     "version": 1
   },
@@ -882,7 +962,7 @@
       },
       {
         "id": "b",
-        "text": "Only in reverse pitch"
+        "text": "Symmetrically on both sides, so no side force reaches the fin"
       },
       {
         "id": "c",
@@ -890,12 +970,14 @@
       },
       {
         "id": "d",
-        "text": "Symmetrically"
+        "text": "Only in reverse pitch"
       }
     ],
     "correct": "a",
     "explanation": "The slipstream rotates with the propeller and meets the fin from the left below it.",
-    "tags": ["spiral-slipstream"],
+    "tags": [
+      "spiral-slipstream"
+    ],
     "status": "published",
     "version": 1
   },
@@ -916,16 +998,18 @@
       },
       {
         "id": "c",
-        "text": "Produces no yaw"
+        "text": "Gives more thrust from the ascending blade, yawing right"
       },
       {
         "id": "d",
-        "text": "Gives more thrust from the ascending blade, yawing right"
+        "text": "Produces no yaw at any angle of attack, since both blades share equal thrust"
       }
     ],
     "correct": "a",
     "explanation": "Inclined disc: the descending blade meets the air at higher α and speed.",
-    "tags": ["p-factor"],
+    "tags": [
+      "p-factor"
+    ],
     "status": "published",
     "version": 1
   },
@@ -942,20 +1026,22 @@
       },
       {
         "id": "b",
-        "text": "90° against rotation"
+        "text": "180° later, opposite to the direction of rotation"
       },
       {
         "id": "c",
-        "text": "90° later in the direction of rotation"
+        "text": "90° against rotation"
       },
       {
         "id": "d",
-        "text": "180° later"
+        "text": "90° later in the direction of rotation"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "The angular momentum vector turns toward the applied torque vector.",
-    "tags": ["gyroscopic-precession"],
+    "tags": [
+      "gyroscopic-precession"
+    ],
     "status": "published",
     "version": 1
   },
@@ -972,20 +1058,23 @@
       },
       {
         "id": "b",
-        "text": "No effect"
-      },
-      {
-        "id": "c",
         "text": "A yaw to the left"
       },
       {
-        "id": "d",
+        "id": "c",
         "text": "A yaw to the right"
+      },
+      {
+        "id": "d",
+        "text": "No effect"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Pitching nose-down tilts the disc; the resulting precession moment yaws the nose left for this rotation direction.",
-    "tags": ["gyroscopic-precession", "tailwheel"],
+    "tags": [
+      "gyroscopic-precession",
+      "tailwheel"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1002,20 +1091,23 @@
       },
       {
         "id": "b",
-        "text": "The critical-engine asymmetry and cancel net torque and P-factor effects"
+        "text": "All drag from the propellers, which adds to the total drag of the twin at all speeds"
       },
       {
         "id": "c",
-        "text": "All drag"
+        "text": "The need for rudder"
       },
       {
         "id": "d",
-        "text": "The need for rudder"
+        "text": "The critical-engine asymmetry and cancel net torque and P-factor effects"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "Each side's effects mirror the other; engine failure on either side gives the same yawing moment.",
-    "tags": ["counter-rotating", "critical-engine"],
+    "tags": [
+      "counter-rotating",
+      "critical-engine"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1028,24 +1120,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Remove the need for a gearbox"
+        "text": "Reduce thrust, since the second propeller always takes thrust away from the first"
       },
       {
         "id": "b",
-        "text": "Increase torque"
-      },
-      {
-        "id": "c",
         "text": "Recover slipstream swirl energy and cancel torque"
       },
       {
+        "id": "c",
+        "text": "Increase torque"
+      },
+      {
         "id": "d",
-        "text": "Reduce thrust"
+        "text": "Remove the need for a gearbox"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "The rear propeller removes the swirl left by the front one, improving efficiency.",
-    "tags": ["contra-rotating"],
+    "tags": [
+      "contra-rotating"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1058,11 +1152,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Pitch it down"
+        "text": "Cancel each other"
       },
       {
         "id": "b",
-        "text": "Yaw it right"
+        "text": "Yaw it right, requiring left rudder, because the torque acts in the opposite sense"
       },
       {
         "id": "c",
@@ -1070,12 +1164,15 @@
       },
       {
         "id": "d",
-        "text": "Cancel each other"
+        "text": "Pitch it down"
       }
     ],
     "correct": "c",
     "explanation": "Torque (via wheel friction), slipstream, asymmetric blade effect and, when pitching down, precession all act to the left.",
-    "tags": ["propeller-effects", "rudder"],
+    "tags": [
+      "propeller-effects",
+      "rudder"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1088,24 +1185,28 @@
     "options": [
       {
         "id": "a",
-        "text": "4,000 N at both"
-      },
-      {
-        "id": "b",
         "text": "3,200 N at both"
       },
       {
+        "id": "b",
+        "text": "4,000 N at both"
+      },
+      {
         "id": "c",
-        "text": "1,600 N and 3,200 N"
+        "text": "3,200 N and 1,600 N"
       },
       {
         "id": "d",
-        "text": "3,200 N and 1,600 N"
+        "text": "1,600 N and 3,200 N"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "T = η·P/V: 160,000/50 = 3,200 N; 160,000/100 = 1,600 N. Propeller thrust falls with speed at constant power.",
-    "tags": ["thrust", "power", "calculation"],
+    "tags": [
+      "thrust",
+      "power",
+      "calculation"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1118,24 +1219,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Zero at cruise"
+        "text": "Proportional to speed"
       },
       {
         "id": "b",
-        "text": "Constant with speed (η·P), so thrust available falls with speed"
+        "text": "Zero at cruise, since the propeller stops delivering power once the aircraft levels off"
       },
       {
         "id": "c",
-        "text": "Proportional to speed squared"
+        "text": "Constant with speed (η·P), so thrust available falls with speed"
       },
       {
         "id": "d",
-        "text": "Proportional to speed"
+        "text": "Proportional to speed squared"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Unlike a jet (roughly constant thrust), a propeller converts roughly constant engine power.",
-    "tags": ["power-available"],
+    "tags": [
+      "power-available"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1148,7 +1251,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Drag is minimum there"
+        "text": "Thrust is maximum there"
       },
       {
         "id": "b",
@@ -1156,16 +1259,19 @@
       },
       {
         "id": "c",
-        "text": "Efficiency is zero there"
+        "text": "Drag is minimum there, so the aircraft reaches its best climb rate with the least drag and the most thrust at the same speed"
       },
       {
         "id": "d",
-        "text": "Thrust is maximum there"
+        "text": "Efficiency is zero there"
       }
     ],
     "correct": "b",
     "explanation": "ROC = (P_a − P_r)/W; with P_a flat, the maximum is where P_r is least.",
-    "tags": ["rate-of-climb", "propeller-aircraft"],
+    "tags": [
+      "rate-of-climb",
+      "propeller-aircraft"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1178,24 +1284,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Pressure squared"
-      },
-      {
-        "id": "b",
         "text": "Temperature"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Air density"
+      },
+      {
+        "id": "c",
+        "text": "Pressure squared"
       },
       {
         "id": "d",
         "text": "Speed"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "Mass flow of air per cycle falls with ρ; turbocharging restores sea-level manifold pressure to a critical altitude.",
-    "tags": ["piston-power", "altitude"],
+    "tags": [
+      "piston-power",
+      "altitude"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1208,11 +1317,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Fine pitch and maximum rpm"
+        "text": "Reverse pitch, which gives maximum thrust"
       },
       {
         "id": "b",
-        "text": "Reverse pitch"
+        "text": "Fine pitch and maximum rpm"
       },
       {
         "id": "c",
@@ -1223,9 +1332,12 @@
         "text": "Coarse pitch and low rpm"
       }
     ],
-    "correct": "a",
+    "correct": "b",
     "explanation": "Fine blades at low V avoid stall and allow full engine power.",
-    "tags": ["static-thrust", "fine-pitch"],
+    "tags": [
+      "static-thrust",
+      "fine-pitch"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1238,24 +1350,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Has no effect"
-      },
-      {
-        "id": "b",
-        "text": "Improves ideal efficiency but raises tip speed and needs more ground clearance"
-      },
-      {
-        "id": "c",
         "text": "Reduces tip speed"
       },
       {
-        "id": "d",
+        "id": "b",
         "text": "Reduces efficiency"
+      },
+      {
+        "id": "c",
+        "text": "Has no effect on the ideal efficiency, since a larger disc only changes the noise and nothing else"
+      },
+      {
+        "id": "d",
+        "text": "Improves ideal efficiency but raises tip speed and needs more ground clearance"
       }
     ],
-    "correct": "b",
+    "correct": "d",
     "explanation": "A larger disc accelerates more air more gently; tip Mach and clearance limit diameter.",
-    "tags": ["diameter", "efficiency"],
+    "tags": [
+      "diameter",
+      "efficiency"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1268,7 +1383,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Reducing lift"
+        "text": "Having no effect"
       },
       {
         "id": "b",
@@ -1276,16 +1391,19 @@
       },
       {
         "id": "c",
-        "text": "Having no effect"
+        "text": "Increasing local dynamic pressure, raising lift behind the propeller and tail effectiveness at high power"
       },
       {
         "id": "d",
-        "text": "Increasing local dynamic pressure, raising lift behind the propeller and tail effectiveness at high power"
+        "text": "Reducing lift over the wing root and tail at all power settings, since the slipstream always removes dynamic pressure from both"
       }
     ],
-    "correct": "d",
+    "correct": "c",
     "explanation": "Power-on stall speeds are lower and elevator/rudder authority improves at high power and low speed.",
-    "tags": ["slipstream", "control-effectiveness"],
+    "tags": [
+      "slipstream",
+      "control-effectiveness"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1302,20 +1420,23 @@
       },
       {
         "id": "b",
-        "text": "Increased weight"
+        "text": "The thrust component supporting weight and the slipstream raising local q over the wing"
       },
       {
         "id": "c",
-        "text": "Lower CLmax"
+        "text": "Increased weight"
       },
       {
         "id": "d",
-        "text": "The thrust component supporting weight and the slipstream raising local q over the wing"
+        "text": "Lower CLmax, because the slipstream reduces the local lift coefficient over the wing root at every power setting"
       }
     ],
-    "correct": "d",
+    "correct": "b",
     "explanation": "L + T sin α = W and higher local dynamic pressure behind the disc.",
-    "tags": ["power-on-stall", "slipstream"],
+    "tags": [
+      "power-on-stall",
+      "slipstream"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1332,20 +1453,23 @@
       },
       {
         "id": "b",
-        "text": "Finer"
+        "text": "Coarser"
       },
       {
         "id": "c",
-        "text": "Coarser"
+        "text": "Finer"
       },
       {
         "id": "d",
         "text": "Feathered"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Lower V gives lower φ; the governor reduces β to keep α suitable.",
-    "tags": ["climb", "blade-angle"],
+    "tags": [
+      "climb",
+      "blade-angle"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1358,24 +1482,26 @@
     "options": [
       {
         "id": "a",
-        "text": "Torque × rpm"
-      },
-      {
-        "id": "b",
         "text": "Shaft power × rpm"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "Thrust × true airspeed"
       },
       {
+        "id": "c",
+        "text": "Thrust × rpm, which gives the power delivered at the shaft"
+      },
+      {
         "id": "d",
-        "text": "Thrust × rpm"
+        "text": "Torque × rpm"
       }
     ],
-    "correct": "c",
+    "correct": "b",
     "explanation": "P_thrust = T·V; efficiency relates it to shaft power.",
-    "tags": ["thrust-power"],
+    "tags": [
+      "thrust-power"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1396,16 +1522,19 @@
       },
       {
         "id": "c",
-        "text": "To zero"
+        "text": "Finer, so that the blades absorb less torque and the engine speed is held steady"
       },
       {
         "id": "d",
-        "text": "Finer"
+        "text": "To zero"
       }
     ],
     "correct": "a",
     "explanation": "Increasing α and torque decelerates the propeller.",
-    "tags": ["governor", "overspeed"],
+    "tags": [
+      "governor",
+      "overspeed"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1418,7 +1547,7 @@
     "options": [
       {
         "id": "a",
-        "text": "Unfeather in cruise"
+        "text": "Reverse the live propeller"
       },
       {
         "id": "b",
@@ -1426,16 +1555,18 @@
       },
       {
         "id": "c",
-        "text": "Feather the failed engine's propeller automatically when torque drops below a threshold during take-off"
+        "text": "Unfeather in cruise, so that the failed engine's propeller is restored to service whenever the aircraft levels off after take-off"
       },
       {
         "id": "d",
-        "text": "Reverse the live propeller"
+        "text": "Feather the failed engine's propeller automatically when torque drops below a threshold during take-off"
       }
     ],
-    "correct": "c",
+    "correct": "d",
     "explanation": "Rapid feathering removes windmilling drag during the critical take-off phase.",
-    "tags": ["auto-feather"],
+    "tags": [
+      "auto-feather"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1448,11 +1579,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Increases fuel flow"
+        "text": "Reverses pitch, which means the blades are driven to the reverse stop when the torque is negative in flight"
       },
       {
         "id": "b",
-        "text": "Reverses pitch"
+        "text": "Increases fuel flow"
       },
       {
         "id": "c",
@@ -1465,7 +1596,9 @@
     ],
     "correct": "d",
     "explanation": "It limits windmilling drag after power loss before full feathering.",
-    "tags": ["negative-torque-sensing"],
+    "tags": [
+      "negative-torque-sensing"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1478,24 +1611,26 @@
     "options": [
       {
         "id": "a",
-        "text": "The propeller is feathered"
-      },
-      {
-        "id": "b",
         "text": "Pitch or yaw rates are high and propeller rpm and inertia are large"
       },
       {
-        "id": "c",
+        "id": "b",
         "text": "The aircraft flies straight"
+      },
+      {
+        "id": "c",
+        "text": "The propeller is feathered, which removes the gyroscopic effect from every manoeuvre flown afterward"
       },
       {
         "id": "d",
         "text": "Speed is high but rates zero"
       }
     ],
-    "correct": "b",
+    "correct": "a",
     "explanation": "Precession moment = I·ω_prop·Ω (Ω = aircraft rotation rate).",
-    "tags": ["gyroscopic-precession"],
+    "tags": [
+      "gyroscopic-precession"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1508,24 +1643,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Eliminates P-factor"
+        "text": "Works in the disturbed wake of the airframe and gives less slipstream over the wing and tail"
       },
       {
         "id": "b",
-        "text": "Removes torque reaction"
-      },
-      {
-        "id": "c",
         "text": "Improves slipstream over the tail"
       },
       {
+        "id": "c",
+        "text": "Removes torque reaction"
+      },
+      {
         "id": "d",
-        "text": "Works in the disturbed wake of the airframe and gives less slipstream over the wing and tail"
+        "text": "Eliminates P-factor, since the disturbed wake of the airframe cancels the asymmetric blade effect entirely"
       }
     ],
-    "correct": "d",
+    "correct": "a",
     "explanation": "The inflow is non-uniform; propeller effects on tail authority are smaller.",
-    "tags": ["pusher", "tractor"],
+    "tags": [
+      "pusher",
+      "tractor"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1538,24 +1676,27 @@
     "options": [
       {
         "id": "a",
-        "text": "Increases blade angle and often improves efficiency (lower tip speed)"
+        "text": "Decreases blade angle"
       },
       {
         "id": "b",
-        "text": "Reduces power"
+        "text": "Reduces power, which lets the blades run at a lower speed and so the propeller produces less thrust"
       },
       {
         "id": "c",
-        "text": "Decreases blade angle"
+        "text": "Increases blade angle and often improves efficiency (lower tip speed)"
       },
       {
         "id": "d",
         "text": "Feathers the propeller"
       }
     ],
-    "correct": "a",
+    "correct": "c",
     "explanation": "The governor holds the new rpm with coarser blades; manifold pressure increases to keep power.",
-    "tags": ["constant-speed", "rpm"],
+    "tags": [
+      "constant-speed",
+      "rpm"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1568,11 +1709,11 @@
     "options": [
       {
         "id": "a",
-        "text": "Torque via wheels"
+        "text": "Weight, because the steep climb puts the aircraft's full weight on the propeller"
       },
       {
         "id": "b",
-        "text": "Weight"
+        "text": "Torque via wheels"
       },
       {
         "id": "c",
@@ -1585,7 +1726,10 @@
     ],
     "correct": "c",
     "explanation": "Airborne, wheel friction is absent; high α increases P-factor and high power strengthens the slipstream.",
-    "tags": ["p-factor", "slipstream"],
+    "tags": [
+      "p-factor",
+      "slipstream"
+    ],
     "status": "published",
     "version": 1
   },
@@ -1602,20 +1746,23 @@
       },
       {
         "id": "b",
-        "text": "Maximum range (at constant η and specific fuel consumption)"
+        "text": "Maximum speed, since the minimum-drag speed is the highest speed the aircraft can attain in cruise"
       },
       {
         "id": "c",
-        "text": "Maximum speed"
+        "text": "Maximum range (at constant η and specific fuel consumption)"
       },
       {
         "id": "d",
         "text": "Maximum endurance"
       }
     ],
-    "correct": "b",
+    "correct": "c",
     "explanation": "Fuel flow ∝ power = D·V, so distance per unit fuel ∝ 1/D.",
-    "tags": ["range", "propeller-aircraft"],
+    "tags": [
+      "range",
+      "propeller-aircraft"
+    ],
     "status": "published",
     "version": 1
   }
