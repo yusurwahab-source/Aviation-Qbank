@@ -15,7 +15,7 @@ export function LogbookPrivacyNotice() {
           You can delete everything at any time.
         </li>
         <li>
-          We keep a count of how many spreads you have scanned — no content — so the free allowance works.
+          We keep a count of how many spreads you have scanned — no content — so the per-logbook limit works.
         </li>
       </ul>
       <p className="mt-2">

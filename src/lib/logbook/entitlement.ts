@@ -24,11 +24,24 @@ export type ExtractionDecision =
   | { allowed: true; chargeTo: "free" | "unlock" }
   | { allowed: false; reason: "free_exhausted" | "logbook_full" };
 
+/**
+ * Free mode (`config/free-mode.ts`): no spreads are sold or metered per
+ * account, and every logbook takes up to `SPREADS_PER_UNLOCK` spreads. They
+ * are still recorded as `unlock` spreads so the per-logbook cap and the
+ * owner's cost figures keep working unchanged. The caller passes the flag;
+ * the default is off, so these pure rules keep their paid meaning.
+ */
 export function decideExtraction(input: {
   freeSpreadsUsed: number;
   logbookUnlocked: boolean;
   logbookUnlockSpreadsUsed: number;
+  freeMode?: boolean;
 }): ExtractionDecision {
+  if (input.freeMode) {
+    return input.logbookUnlockSpreadsUsed < SPREADS_PER_UNLOCK
+      ? { allowed: true, chargeTo: "unlock" }
+      : { allowed: false, reason: "logbook_full" };
+  }
   if (input.freeSpreadsUsed < FREE_SPREADS_PER_ACCOUNT) return { allowed: true, chargeTo: "free" };
   if (!input.logbookUnlocked) return { allowed: false, reason: "free_exhausted" };
   if (input.logbookUnlockSpreadsUsed < SPREADS_PER_UNLOCK) return { allowed: true, chargeTo: "unlock" };
@@ -40,7 +53,9 @@ export function spreadsRemaining(input: {
   freeSpreadsUsed: number;
   logbookUnlocked: boolean;
   logbookUnlockSpreadsUsed: number;
+  freeMode?: boolean;
 }): number {
+  if (input.freeMode) return Math.max(0, SPREADS_PER_UNLOCK - input.logbookUnlockSpreadsUsed);
   const free = Math.max(0, FREE_SPREADS_PER_ACCOUNT - input.freeSpreadsUsed);
   const unlock = input.logbookUnlocked ? Math.max(0, SPREADS_PER_UNLOCK - input.logbookUnlockSpreadsUsed) : 0;
   return free + unlock;

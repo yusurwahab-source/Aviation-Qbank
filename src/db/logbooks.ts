@@ -2,6 +2,7 @@ import "server-only";
 
 import { and, count, desc, eq, gt, isNotNull, isNull, or, sql } from "drizzle-orm";
 
+import { FREE_MODE } from "@/config/free-mode";
 import { getDb } from "@/db";
 import { logbookCredits, logbookExtractions, logbooks, subscriptions } from "@/db/schema";
 import { hasActiveSubscription } from "@/lib/billing/access-policy";
@@ -171,6 +172,7 @@ export async function getSpreadsRemaining(userId: string, logbookId: string): Pr
     freeSpreadsUsed: access.freeSpreadsUsed,
     logbookUnlocked: logbook.unlockedAt !== null,
     logbookUnlockSpreadsUsed: await unlockSpreadsUsed(db, logbookId),
+    freeMode: FREE_MODE,
   });
 }
 
@@ -204,6 +206,7 @@ export async function reserveExtraction(input: {
       freeSpreadsUsed: access.freeSpreadsUsed,
       logbookUnlocked: logbook.unlockedAt !== null,
       logbookUnlockSpreadsUsed: await unlockSpreadsUsed(tx, input.logbookId),
+      freeMode: FREE_MODE,
     });
     if (!decision.allowed) return { ok: false, reason: decision.reason };
 

@@ -6,6 +6,7 @@ import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { PageHeading } from "@/components/ui";
 import { getLogbook, getLogbookAccess, getSpreadsRemaining } from "@/db/logbooks";
 import { getCurrentUser } from "@/lib/auth/session";
+import { FREE_MODE } from "@/config/free-mode";
 import { logbookPurchasesEnabled, logbookScannerConfigured } from "@/lib/logbook/config";
 import { LOGBOOK_UNLOCK_PRICE_EUR_CENTS, formatEuro } from "@/lib/logbook/entitlement";
 import { parseSavedLogbook } from "@/lib/logbook/saved";
@@ -54,7 +55,7 @@ export default async function LogbookPage({ params }: { params: Promise<{ logboo
         initialName={loaded.logbook.name}
         initialSpreads={saved?.spreads ?? []}
         initialSavedAt={loaded.logbook.savedAt?.toISOString() ?? null}
-        unlocked={loaded.logbook.unlockedAt !== null}
+        unlocked={FREE_MODE || loaded.logbook.unlockedAt !== null}
         spreadsRemaining={loaded.remaining}
         availableUnlocks={loaded.access.availableUnlocks}
         configured={logbookScannerConfigured()}

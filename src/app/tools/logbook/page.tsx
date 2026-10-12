@@ -4,6 +4,7 @@ import Link from "next/link";
 import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { Badge, Card, PageHeading } from "@/components/ui";
 import { getLogbookAccess, listLogbooks } from "@/db/logbooks";
+import { FREE_MODE } from "@/config/free-mode";
 import { getCurrentUser } from "@/lib/auth/session";
 import { logbookPurchasesEnabled, logbookScannerConfigured } from "@/lib/logbook/config";
 import {
@@ -89,8 +90,10 @@ export default async function LogbookScannerPage({
         <Card className="mb-6">
           <h2 className="font-semibold text-foreground">Sign in to start</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Your first {FREE_SPREADS_PER_ACCOUNT} spreads are free, with the full error report. A logbook of up to{" "}
-            {SPREADS_PER_UNLOCK} spreads is a one-time unlock — and included once with a PilotQBank subscription.
+            {FREE_MODE
+              ? `Scan your logbook page by page, up to ${SPREADS_PER_UNLOCK} spreads per logbook, with the full error report. It is free to use.`
+              : <>Your first {FREE_SPREADS_PER_ACCOUNT} spreads are free, with the full error report. A logbook of up to{" "}
+            {SPREADS_PER_UNLOCK} spreads is a one-time unlock — and included once with a PilotQBank subscription.</>}
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             <Link
@@ -152,7 +155,7 @@ export default async function LogbookScannerPage({
                       >
                         <span className="min-w-0 truncate font-medium text-foreground">{logbook.name}</span>
                         <span className="flex shrink-0 items-center gap-2 text-xs text-muted-foreground">
-                          {logbook.unlockedAt ? <Badge tone="brand">Unlocked</Badge> : null}
+                          {logbook.unlockedAt && !FREE_MODE ? <Badge tone="brand">Unlocked</Badge> : null}
                           {logbook.savedAt ? `Saved ${dateFormat.format(logbook.savedAt)}` : "Not saved"}
                         </span>
                       </Link>
@@ -172,6 +175,16 @@ export default async function LogbookScannerPage({
           </div>
 
           <div className="space-y-6">
+            {FREE_MODE ? (
+              <Card>
+                <h2 className="font-semibold text-foreground">Free to use</h2>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Scan as many logbooks as you need, up to {SPREADS_PER_UNLOCK} spreads each, with the full error
+                  report.
+                </p>
+              </Card>
+            ) : null}
+            {FREE_MODE ? null : (
             <Card>
               <h2 className="font-semibold text-foreground">Your allowance</h2>
               <dl className="mt-3 space-y-2 text-sm">
@@ -199,6 +212,7 @@ export default async function LogbookScannerPage({
                 Redeem a license code →
               </Link>
             </Card>
+            )}
 
             <LogbookPrivacyNotice />
           </div>
