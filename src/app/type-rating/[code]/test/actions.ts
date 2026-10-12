@@ -28,7 +28,7 @@ import { getCurrentUser } from "@/lib/auth/session";
 import { describeWait } from "@/lib/auth/rate-limit-policy";
 import {
   canAnswerQuestion,
-  hasActiveSubscription,
+  hasFullAccess,
   remainingFreeQuestions,
 } from "@/lib/billing/access-policy";
 import { gradeTest, withholdAnswerKey, type TestResult } from "@/lib/grading";
@@ -174,7 +174,7 @@ async function entitledAnswerKeyIds(
 
     if (user) {
       const subscription = await getSubscription(user.id);
-      if (hasActiveSubscription(subscription)) return all();
+      if (hasFullAccess(subscription)) return all();
 
       const [alreadyAnswered, distinctAnswered, settings] = await Promise.all([
         answeredQuestionIdsAmong(user.id, questionIds),
@@ -472,7 +472,7 @@ export async function answerQuestion(
     // this entirely, and a non-subscriber may always revisit a question
     // already counted before, which is what makes retrying free.
     const subscription = await getSubscription(user.id);
-    if (!hasActiveSubscription(subscription)) {
+    if (!hasFullAccess(subscription)) {
       const [alreadyAnswered, distinctAnswered, settings] = await Promise.all([
         hasAnsweredQuestionBefore(user.id, questionId),
         countQuestionsAnswered(user.id, aircraftCode),

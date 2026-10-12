@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { LogoWordmark } from "@/components/logo";
+import { FREE_MODE } from "@/config/free-mode";
 import { siteConfig } from "@/config/site";
 
 /**
@@ -10,7 +11,7 @@ import { siteConfig } from "@/config/site";
  * footer full of dead links is worse than a footer with fewer links in it.
  */
 
-const LINKS = [
+const ALL_LINKS = [
   { href: "/about", label: "About" },
   { href: "/pricing", label: "Pricing" },
   { href: "/faq", label: "FAQ" },
@@ -18,6 +19,9 @@ const LINKS = [
   { href: "/privacy", label: "Privacy" },
   { href: "/contact", label: "Contact" },
 ];
+
+// The pricing page is hidden while the site is free (`config/free-mode.ts`).
+const LINKS = ALL_LINKS.filter((link) => !(FREE_MODE && link.href === "/pricing"));
 
 export function SiteFooter() {
   return (

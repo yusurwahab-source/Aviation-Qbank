@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import { Card, PageHeading } from "@/components/ui";
+import { FREE_MODE } from "@/config/free-mode";
 import { getSubscription } from "@/db/subscriptions";
 import {
   CHECKOUT_PLANS,
@@ -43,6 +44,9 @@ export default async function UpgradePage({
 }: {
   searchParams: Promise<{ success?: string | string[]; redeemed?: string | string[] }>;
 }) {
+  // Hidden while the site is free — see `config/free-mode.ts`.
+  if (FREE_MODE) notFound();
+
   const user = await getCurrentUser();
   if (!user) redirect("/login");
 

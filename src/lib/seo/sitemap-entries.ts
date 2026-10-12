@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 
+import { FREE_MODE } from "@/config/free-mode";
+
 /**
  * The shape every content-tree summary already has — `AircraftSummary`,
  * `ClassRatingSummary` and `FlyingKnowledgeSubjectSummary` all satisfy this
@@ -88,6 +90,8 @@ export function buildSitemapEntries(
   // The ATPL picker is the Flying Knowledge section's front door, so hiding
   // that section hides it too.
   const isHidden = (rawPath: string) => {
+    // Free mode hides the pricing page entirely, so Google is not sent to it.
+    if (FREE_MODE && rawPath === "/pricing") return true;
     // Aircraft Systems fronts both aircraft trees; it goes only when both do.
     if (rawPath === "/aircraft-systems") {
       return hiddenSections.includes("type-rating") && hiddenSections.includes("class-rating");

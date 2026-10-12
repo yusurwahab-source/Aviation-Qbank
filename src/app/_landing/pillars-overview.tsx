@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { LiveBadge } from "@/components/live-badge";
+import { FREE_MODE } from "@/config/free-mode";
 import { Badge, Card } from "@/components/ui";
 import { PILOT_SIMS } from "@/app/pilot-sims/sims";
 import type { AtplRow } from "@/lib/atpl-subjects";
@@ -100,13 +101,13 @@ export function PillarsOverview({
       <PillarCard
         href={PILLAR_HREFS["pilot-sims"]}
         title={pillarTitle(settings, "pilot-sims")}
-        badge={<Badge tone="brand">Premium soon</Badge>}
+        badge={FREE_MODE ? undefined : <Badge tone="brand">Premium soon</Badge>}
         description={SIMS_DESCRIPTION}
         cta="Open a trainer"
         rows={PILOT_SIMS.map((sim) => ({
           key: sim.slug,
           label: sim.name,
-          meta: <Badge>{sim.tier === "premium" ? "Premium" : "Free now"}</Badge>,
+          meta: FREE_MODE ? null : <Badge>{sim.tier === "premium" ? "Premium" : "Free now"}</Badge>,
         }))}
       />
     ),

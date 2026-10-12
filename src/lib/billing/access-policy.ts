@@ -7,6 +7,8 @@
  * across a query and an action.
  */
 
+import { FREE_MODE } from "@/config/free-mode";
+
 /**
  * How many distinct questions a signed-in user may answer on one aircraft
  * before a subscription is required. Per aircraft, not a total across the
@@ -71,6 +73,23 @@ export function hasActiveSubscription(
   if (subscription === null) return false;
   if (subscription.status !== "active") return false;
   return subscription.currentPeriodEnd !== null && subscription.currentPeriodEnd > now;
+}
+
+/**
+ * Whether a signed-in account may answer without the free-tier cap.
+ *
+ * Everything that decides what a *student* may see or answer asks this, never
+ * `hasActiveSubscription` directly. In free mode (`config/free-mode.ts`) every
+ * signed-in account has full access; otherwise it is exactly an active
+ * subscription. The owner screens and the logbook meter keep using
+ * `hasActiveSubscription`, because they report what was actually paid for.
+ */
+export function hasFullAccess(
+  subscription: SubscriptionState | null,
+  now: Date = new Date(),
+  freeMode: boolean = FREE_MODE,
+): boolean {
+  return freeMode || hasActiveSubscription(subscription, now);
 }
 
 /** How many free questions are left on this aircraft, never negative. */

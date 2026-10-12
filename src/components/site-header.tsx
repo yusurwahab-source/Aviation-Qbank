@@ -7,6 +7,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { UserMenu } from "@/components/user-menu";
 import { getCurrentUser } from "@/lib/auth/session";
 import { isOwner } from "@/lib/auth/owner";
+import { FREE_MODE } from "@/config/free-mode";
 import { getSiteSettings } from "@/db/settings";
 import { envValue } from "@/lib/env";
 import {
@@ -31,6 +32,9 @@ import {
  */
 
 type NavItem = { href: string; label: string; shortLabel?: string };
+
+/** Links that are hidden while the site is free (see `config/free-mode.ts`). */
+const PRICING_PATHS = new Set(["/pricing", "/upgrade"]);
 
 const SIGNED_OUT_LINKS: NavItem[] = [
   { href: "/atpl-ground-school", label: "EASA ATPL Ground School" },
@@ -62,7 +66,9 @@ export async function SiteHeader() {
   // about not advertising a door rather than about locking it.
   const settings = await getSiteSettings();
   const visible = (links: NavItem[]) =>
-    links.flatMap((link) => {
+    links
+      .filter((link) => !(FREE_MODE && PRICING_PATHS.has(link.href)))
+      .flatMap((link) => {
       const pillar = pillarForHref(link.href);
       if (!pillar) return [link];
       if (isPillarHidden(settings, pillar)) return [];
