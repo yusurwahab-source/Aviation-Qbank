@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محاكي الاتجاه - Heading Sim</title>
+    <title>Heading Indicator Trainer</title>
     <style>
         /* نفس المتغيرات الموجودة في مشروعك */
         :root {
@@ -81,7 +81,7 @@
 <body>
 
     <div class="sim-container">
-        <h2>مؤشر الاتجاه (Heading Indicator)</h2>
+        <h2>Heading Indicator</h2>
         
         <!-- شاشة الرسم -->
         <canvas id="compassCanvas" width="300" height="300"></canvas>
@@ -90,8 +90,8 @@
         <div class="readout" id="headingText">000°</div>
         
         <!-- أزرار التحكم -->
-        <div class="label">تحكم في اتجاه الطائرة</div>
-        <input type="range" id="headingSlider" min="0" max="359" value="0">
+        <label class="label" for="headingSlider">Aircraft heading</label>
+        <input type="range" id="headingSlider" min="0" max="359" value="0" aria-label="Aircraft heading">
     </div>
 
     <script>

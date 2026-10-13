@@ -31,15 +31,16 @@ export const PILOT_SIMS: readonly PilotSim[] = [
     file: "/pilot-sims/vor-ndb.html",
     tier: "free",
   },
+  {
+    slug: "heading-indicator",
+    name: "Heading Indicator Trainer",
+    description:
+      "Practice reading aircraft heading on a directional gyro. Turn the heading selector and watch the compass card move beneath the fixed aircraft symbol.",
+    file: "/pilot-sims/heading-indicator.html",
+    tier: "free",
+  },
 ];
 
 export function findPilotSim(slug: string): PilotSim | undefined {
   return PILOT_SIMS.find((sim) => sim.slug === slug);
 }
-{
-  slug: ".html",
-  name: ".html",
-  description: "وصف قصير يظهر في بطاقة القائمة.",
-  file: "/pilot-sims/my-simulator.html",
-  tier: "free",
-},

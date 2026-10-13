@@ -36,6 +36,11 @@ const STATIC_PAGES = [
     changeFrequency: "monthly",
     priority: 0.6,
   },
+  {
+    path: "/pilot-sims/heading-indicator",
+    changeFrequency: "monthly",
+    priority: 0.6,
+  },
   { path: "/tools/logbook", changeFrequency: "monthly", priority: 0.6 },
   { path: "/pricing", changeFrequency: "monthly", priority: 0.6 },
   { path: "/about", changeFrequency: "monthly", priority: 0.5 },
