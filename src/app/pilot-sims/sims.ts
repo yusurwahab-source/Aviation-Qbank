@@ -31,6 +31,14 @@ export const PILOT_SIMS: readonly PilotSim[] = [
     file: "/pilot-sims/vor-ndb.html",
     tier: "free",
   },
+  {
+    slug: "heading-indicator-trainer",
+    name: "Heading Indicator Trainer",
+    description:
+      "Set an aircraft heading and see how the compass rose moves beneath the fixed aircraft symbol.",
+    file: "/pilot-sims/heading-indicator.html",
+    tier: "free",
+  },
 ];
 
 export function findPilotSim(slug: string): PilotSim | undefined {

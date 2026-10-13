@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Heading Indicator Trainer</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: system-ui, sans-serif;
+        background: #060a10;
+        color: #eaf2fb;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        display: grid;
+        min-height: 100vh;
+        place-items: center;
+        margin: 0;
+        padding: 1rem;
+      }
+
+      main {
+        width: min(100%, 25rem);
+        padding: clamp(1rem, 5vw, 1.875rem);
+        border: 1px solid #1c2c3f;
+        border-radius: 1.25rem;
+        background: #0d141e;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0;
+        color: #4fd6ff;
+        font-size: 1.25rem;
+      }
+
+      canvas {
+        display: block;
+        width: min(100%, 18.75rem);
+        height: auto;
+        margin: 1.25rem auto;
+        border: 3px solid #4fd6ff;
+        border-radius: 50%;
+        background: #000;
+      }
+
+      output {
+        display: block;
+        color: #35e08a;
+        font-family: ui-monospace, monospace;
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+
+      label {
+        display: block;
+        margin-top: 1rem;
+        color: #a7b8ca;
+        text-align: left;
+      }
+
+      input {
+        width: 100%;
+        min-height: 2.75rem;
+        accent-color: #4fd6ff;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Heading Indicator</h1>
+      <canvas id="compass" width="300" height="300" role="img" aria-label="Heading indicator compass rose"></canvas>
+      <output id="heading" aria-live="polite">000°</output>
+      <label for="heading-slider">Set aircraft heading</label>
+      <input id="heading-slider" type="range" min="0" max="359" value="0">
+    </main>
+    <script>
+      const canvas = document.getElementById("compass");
+      const context = canvas.getContext("2d");
+      const slider = document.getElementById("heading-slider");
+      const readout = document.getElementById("heading");
+      const center = canvas.width / 2;
+      const radius = 130;
+      const directions = { 0: "N", 90: "E", 180: "S", 270: "W" };
+
+      function drawCompass(heading) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.beginPath();
+        context.arc(center, center, radius, 0, 2 * Math.PI);
+        context.fillStyle = "#0d141e";
+        context.fill();
+
+        context.save();
+        context.translate(center, center);
+        context.rotate((-heading * Math.PI) / 180);
+
+        for (let bearing = 0; bearing < 360; bearing += 30) {
+          const angle = ((bearing - 90) * Math.PI) / 180;
+          const major = bearing % 90 === 0;
+          context.beginPath();
+          context.moveTo(Math.cos(angle) * (radius - 15), Math.sin(angle) * (radius - 15));
+          context.lineTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
+          context.strokeStyle = major ? "#4fd6ff" : "#3d5169";
+          context.lineWidth = major ? 3 : 1;
+          context.stroke();
+
+          if (major) {
+            context.fillStyle = bearing === 0 ? "#ff4d5e" : "#eaf2fb";
+            context.font = "bold 16px system-ui, sans-serif";
+            context.textAlign = "center";
+            context.textBaseline = "middle";
+            context.fillText(
+              directions[bearing],
+              Math.cos(angle) * (radius - 35),
+              Math.sin(angle) * (radius - 35),
+            );
+          }
+        }
+        context.restore();
+
+        context.beginPath();
+        context.moveTo(center, center - 40);
+        context.lineTo(center - 10, center + 15);
+        context.lineTo(center + 10, center + 15);
+        context.closePath();
+        context.fillStyle = "#ffb020";
+        context.fill();
+        context.beginPath();
+        context.moveTo(center, center - 20);
+        context.lineTo(center, center - 40);
+        context.strokeStyle = "#ffb020";
+        context.lineWidth = 3;
+        context.stroke();
+      }
+
+      function update() {
+        const heading = Number(slider.value);
+        readout.textContent = `${String(heading).padStart(3, "0")}°`;
+        drawCompass(heading);
+      }
+
+      slider.addEventListener("input", update);
+      update();
+    </script>
+  </body>
+</html>
