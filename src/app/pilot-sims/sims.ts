@@ -38,7 +38,7 @@ export function findPilotSim(slug: string): PilotSim | undefined {
 }
 {
   slug: ".html",
-  name: "اسم المحاكي",
+  name: ".html",
   description: "وصف قصير يظهر في بطاقة القائمة.",
   file: "/pilot-sims/my-simulator.html",
   tier: "free",
