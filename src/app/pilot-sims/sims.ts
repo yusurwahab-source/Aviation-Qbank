@@ -44,10 +44,3 @@ export const PILOT_SIMS: readonly PilotSim[] = [
 export function findPilotSim(slug: string): PilotSim | undefined {
   return PILOT_SIMS.find((sim) => sim.slug === slug);
 }
-{
-  slug: ".html",
-  name: ".html",
-  description: "وصف قصير يظهر في بطاقة القائمة.",
-  file: "/pilot-sims/my-simulator.html",
-  tier: "free",
-},
