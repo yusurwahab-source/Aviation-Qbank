@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاكي الاتجاه - Heading Sim</title>
+    <style>
+        /* نفس المتغيرات الموجودة في مشروعك */
+        :root {
+            --bg: #060a10;
+            --panel: #0d141e;
+            --cyan: #4fd6ff;
+            --amber: #ffb020;
+            --green: #35e08a;
+            --font-num: 'JetBrains Mono', monospace;
+            --font-ui: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: #eaf2fb;
+            font-family: var(--font-ui);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .sim-container {
+            background-color: var(--panel);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            text-align: center;
+            border: 1px solid #1c2c3f;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h2 {
+            color: var(--cyan);
+            margin-top: 0;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        canvas {
+            background-color: #000;
+            border-radius: 50%;
+            border: 3px solid var(--cyan);
+            box-shadow: 0 0 20px rgba(79, 214, 255, 0.2);
+            margin: 20px auto;
+            display: block;
+        }
+
+        .readout {
+            font-family: var(--font-num);
+            font-size: 2.5rem;
+            color: var(--green);
+            font-weight: bold;
+            margin: 10px 0;
+            text-shadow: 0 0 10px rgba(53, 224, 138, 0.5);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin-top: 15px;
+            accent-color: var(--cyan);
+            cursor: pointer;
+        }
+
+        .label {
+            font-size: 0.9rem;
+            color: #6f89a3;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sim-container">
+        <h2>مؤشر الاتجاه (Heading Indicator)</h2>
+        
+        <!-- شاشة الرسم -->
+        <canvas id="compassCanvas" width="300" height="300"></canvas>
+        
+        <!-- القراءة الرقمية -->
+        <div class="readout" id="headingText">000°</div>
+        
+        <!-- أزرار التحكم -->
+        <div class="label">تحكم في اتجاه الطائرة</div>
+        <input type="range" id="headingSlider" min="0" max="359" value="0">
+    </div>
+
+    <script>
+        const canvas = document.getElementById('compassCanvas');
+        const ctx = canvas.getContext('2d');
+        const headingSlider = document.getElementById('headingSlider');
+        const headingText = document.getElementById('headingText');
+
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const radius = 130;
+
+        // دالة لرسم البوصلة
+        function drawCompass(heading) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // رسم الخلفية الداخلية
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            ctx.fillStyle = '#0d141e';
+            ctx.fill();
+
+            ctx.save();
+            ctx.translate(centerX, centerY);
+            
+            // تدوير البوصلة بناءً على الاتجاه (عكس عقارب الساعة)
+            ctx.rotate(-heading * Math.PI / 180);
+
+            // رسم علامات الاتجاهات (كل 30 درجة)
+            for (let i = 0; i < 360; i += 30) {
+                const angle = (i - 90) * Math.PI / 180;
+                const x1 = Math.cos(angle) * (radius - 15);
+                const y1 = Math.sin(angle) * (radius - 15);
+                const x2 = Math.cos(angle) * radius;
+                const y2 = Math.sin(angle) * radius;
+
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.strokeStyle = (i % 90 === 0) ? '#4fd6ff' : '#3d5169';
+                ctx.lineWidth = (i % 90 === 0) ? 3 : 1;
+                ctx.stroke();
+
+                // كتابة الحروف (N, E, S, W)
+                if (i % 90 === 0) {
+                    const textX = Math.cos(angle) * (radius - 35);
+                    const textY = Math.sin(angle) * (radius - 35);
+                    const labels = { 0: 'N', 90: 'E', 180: 'S', 270: 'W' };
+                    
+                    ctx.fillStyle = (i === 0) ? '#ff4d5e' : '#eaf2fb'; // الشمال باللون الأحمر
+                    ctx.font = 'bold 16px Inter';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(labels[i], textX, textY);
+                }
+            }
+            ctx.restore();
+
+            // رسم مؤشر الطائرة الثابت في المنتصف
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY - 15);
+            ctx.lineTo(centerX - 10, centerY + 15);
+            ctx.lineTo(centerX + 10, centerY + 15);
+            ctx.closePath();
+            ctx.fillStyle = '#ffb020';
+            ctx.fill();
+
+            // رسم الخط الأمامي للطائرة
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY - 20);
+            ctx.lineTo(centerX, centerY - 40);
+            ctx.strokeStyle = '#ffb020';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+        }
+
+        // دالة تحديث القراءة والرسم
+        function updateSim() {
+            const heading = parseInt(headingSlider.value);
+            
+            // تحديث النص الرقمي (إضافة أصفار في البداية)
+            headingText.textContent = heading.toString().padStart(3, '0') + '°';
+            
+            // إعادة رسم البوصلة
+            drawCompass(heading);
+        }
+
+        // الاستماع لحركة الشريط
+        headingSlider.addEventListener('input', updateSim);
+
+        // التشغيل الأولي
+        updateSim();
+    </script>
+</body>
+</html>
