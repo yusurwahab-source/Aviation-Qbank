@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Radio Navigation: Properties of Radio Waves — Pilot's Guide</title>
+<meta name="description" content="Properties of radio waves for pilots: electromagnetic radiation, polarization, period, frequency, wavelength, frequency bands and phase comparison." />
+<style>
+  :root{
+    --bg:#f6f8fb;
+    --surface:#ffffff;
+    --surface-2:#eef2f7;
+    --ink:#101826;
+    --ink-2:#3c4758;
+    --muted:#6b7686;
+    --line:#dfe6ef;
+    --brand:#0d6e7d;
+    --brand-ink:#ffffff;
+    --brand-light:#e3f4f6;
+    --warn-bg:#fdecec;
+    --warn-line:#e0413a;
+    --warn-ink:#7a1712;
+    --caution-bg:#fff6e0;
+    --caution-line:#c9821a;
+    --caution-ink:#6b4405;
+    --note-bg:#eaf1fb;
+    --note-line:#3f6fb0;
+    --note-ink:#1f3c63;
+    --green-arc:#1f9d55;
+    --yellow-arc:#e0b400;
+    --red-arc:#d9362a;
+    --radius:14px;
+    --radius-sm:8px;
+    --shadow:0 1px 2px rgba(16,24,38,.04), 0 6px 20px rgba(16,24,38,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0d1420;
+      --surface:#141d2c;
+      --surface-2:#1b263a;
+      --ink:#eef2f8;
+      --ink-2:#c3cddc;
+      --muted:#8b97ab;
+      --line:#26334a;
+      --brand:#37c3d6;
+      --brand-ink:#06232a;
+      --brand-light:#12323a;
+      --warn-bg:#3a1613;
+      --warn-line:#e4574d;
+      --warn-ink:#ffd6d1;
+      --caution-bg:#3a2c0d;
+      --caution-line:#e0a83a;
+      --caution-ink:#ffe6b0;
+      --note-bg:#122a44;
+      --note-line:#5b93d6;
+      --note-ink:#cfe2fb;
+      --green-arc:#2bb56a;
+      --yellow-arc:#e0b400;
+      --red-arc:#e4574d;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1420; --surface:#141d2c; --surface-2:#1b263a; --ink:#eef2f8; --ink-2:#c3cddc;
+    --muted:#8b97ab; --line:#26334a; --brand:#37c3d6; --brand-ink:#06232a; --brand-light:#12323a;
+    --warn-bg:#3a1613; --warn-line:#e4574d; --warn-ink:#ffd6d1;
+    --caution-bg:#3a2c0d; --caution-line:#e0a83a; --caution-ink:#ffe6b0;
+    --note-bg:#122a44; --note-line:#5b93d6; --note-ink:#cfe2fb;
+    --green-arc:#2bb56a; --yellow-arc:#e0b400; --red-arc:#e4574d;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:clip;scroll-padding-top:80px}
+  body{
+    margin:0;
+    overflow-x:clip;
+    max-width:100vw;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,"Segoe UI",system-ui,Roboto,sans-serif;
+    line-height:1.75;
+    font-size:17px;
+  }
+  a{color:var(--brand)}
+  header.top{
+    position:sticky;top:0;z-index:40;
+    background:linear-gradient(180deg, var(--surface) 85%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    max-width:1180px;margin:0 auto;padding:14px 16px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .brand-mark{display:flex;align-items:center;gap:10px;min-width:0}
+  .brand-mark .plane{
+    width:34px;height:34px;flex:0 0 auto;border-radius:9px;
+    background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+  }
+  .brand-mark .txt{min-width:0}
+  .brand-mark h1{font-size:15px;margin:0;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand-mark .sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .menu-btn{
+    display:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+    border-radius:10px;padding:9px 12px;font-size:14px;cursor:pointer;flex:0 0 auto;
+  }
+  .shell{max-width:1180px;margin:0 auto;display:flex;align-items:flex-start;gap:28px;padding:20px 16px 80px}
+  nav.toc{
+    position:sticky;top:78px;flex:0 0 280px;
+    max-height:calc(100vh - 96px);overflow-y:auto;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;box-shadow:var(--shadow);
+  }
+  nav.toc h2{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:2px 8px 10px}
+  nav.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+  nav.toc li{counter-increment:toc}
+  nav.toc a{
+    display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--ink-2);
+    padding:7px 8px;border-radius:9px;font-size:13.5px;
+  }
+  nav.toc a .n{flex:0 0 auto;color:var(--brand);font-weight:700;font-size:15px;min-width:22px}
+  nav.toc a:hover{background:var(--surface-2);color:var(--ink)}
+  nav.toc a.active{background:var(--brand-light);color:var(--ink);font-weight:600}
+  nav.toc .count{margin-inline-start:auto;font-size:11px;color:var(--muted)}
+  main{flex:1 1 auto;min-width:0}
+  .hero{
+    background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 16%,var(--surface)),var(--surface) 60%);
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 22px;margin-bottom:22px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .hero .cloud{position:absolute;inset-inline-end:-10px;top:-6px;font-size:84px;opacity:.16;pointer-events:none;user-select:none}
+  .hero h1{margin:0 0 8px;font-size:26px}
+  .hero p{margin:0;color:var(--ink-2);font-size:15.5px}
+  .hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hero .tag{
+    font-size:12.5px;background:color-mix(in srgb,var(--brand) 16%,var(--surface));color:var(--brand);
+    border-radius:999px;padding:5px 12px;font-weight:600;
+  }
+  section.sec{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px 26px;margin-bottom:22px;box-shadow:var(--shadow);scroll-margin-top:76px;
+    border-top:5px solid var(--accent, var(--brand));
+  }
+  section.sec > h2{
+    display:flex;align-items:center;gap:12px;font-size:21px;margin:0 0 6px;
+    padding-bottom:14px;border-bottom:1px solid var(--line);
+  }
+  section.sec > h2 .num{
+    flex:0 0 auto;width:40px;height:40px;border-radius:12px;background:var(--accent,var(--brand));color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800;
+  }
+  section.sec > h2 .en{margin-inline-start:auto;font-size:12px;color:var(--ink-2);font-weight:600;
+    direction:ltr;background:color-mix(in srgb,var(--accent,var(--brand)) 14%,var(--surface));padding:4px 10px;border-radius:999px}
+  .lead{color:var(--ink-2);font-size:16px;margin-top:14px}
+  h3.sub{font-size:16.5px;margin:26px 0 8px;color:var(--ink);border-inline-start:4px solid var(--accent,var(--brand));padding-inline-start:10px}
+  p{margin:10px 0}
+  ul, ol{margin:10px 0;padding-inline-start:22px}
+  li{margin:5px 0}
+  strong{color:var(--ink)}
+  .table-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm)}
+  table{border-collapse:collapse;width:100%;min-width:420px;font-size:14.5px}
+  thead th{
+    background:var(--surface-2);color:var(--ink);text-align:start;
+    padding:9px 12px;font-weight:700;white-space:nowrap;font-size:13.5px;
+  }
+  tbody td{padding:8px 12px;border-top:1px solid var(--line);color:var(--ink-2)}
+  tbody tr:nth-child(even){background:color-mix(in srgb, var(--surface-2) 45%, transparent)}
+  td.num, th.num{direction:ltr;text-align:center;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+  .callout{border-radius:var(--radius-sm);padding:12px 14px;margin:14px 0;border-inline-start:4px solid;font-size:14.5px}
+  .callout .label{display:block;font-weight:800;font-size:12px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:4px}
+  .callout.warning{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-ink)}
+  .callout.caution{background:var(--caution-bg);border-color:var(--caution-line);color:var(--caution-ink)}
+  .callout.note{background:var(--note-bg);border-color:var(--note-line);color:var(--note-ink)}
+  .diagram{
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;margin:18px 0;text-align:center;
+    max-width:100%;overflow-x:auto;box-sizing:border-box;
+  }
+  .diagram .cap{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .diagram svg{max-width:100%;height:auto;display:block;margin:0 auto;min-width:420px}
+  footer{max-width:1180px;margin:0 auto;padding:10px 16px 60px;color:var(--muted);font-size:13px;text-align:center}
+  #top-btn{
+    position:fixed;inset-inline-end:18px;bottom:18px;z-index:50;
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+    background:var(--accent,var(--brand));color:#fff;font-size:18px;cursor:pointer;
+    box-shadow:var(--shadow);display:none;align-items:center;justify-content:center;
+  }
+  #top-btn.show{display:flex}
+  .glance{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+  .glance span{font-size:13px;background:color-mix(in srgb,var(--accent,var(--brand)) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--accent,var(--brand)) 35%,var(--line));border-radius:999px;padding:4px 12px;color:var(--ink-2)}
+  .keyidea{margin:16px 0;padding:14px 16px;border-radius:var(--radius);background:linear-gradient(135deg,color-mix(in srgb,var(--accent,var(--brand)) 16%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--accent,var(--brand)) 40%,var(--line))}
+  .keyidea .label{display:block;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent,var(--brand));margin-bottom:4px}
+  .keyidea p{margin:4px 0}
+  .tip,.memory{margin:14px 0;padding:12px 14px;border-radius:var(--radius-sm);font-size:14.5px;border-inline-start:4px solid}
+  .tip{background:color-mix(in srgb,var(--green-arc) 12%,var(--surface));border-color:var(--green-arc);color:var(--ink)}
+  .memory{background:color-mix(in srgb,#8b5cf6 12%,var(--surface));border-color:#8b5cf6;color:var(--ink)}
+  .tip .label,.memory .label{display:block;font-weight:800;font-size:12px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+  .tip .label{color:var(--green-arc)} .memory .label{color:#8b5cf6}
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
+  .fcard{background:var(--surface-2);border:1px solid var(--line);border-top:3px solid var(--accent,var(--brand));border-radius:var(--radius-sm);padding:12px 14px}
+  .fcard .f{font-weight:700;color:var(--ink);font-size:15px}
+  .fcard .d{font-size:13.5px;color:var(--ink-2);margin-top:4px}
+  details.example{margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface);overflow:hidden}
+  details.example summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:14.5px;background:color-mix(in srgb,var(--accent,var(--brand)) 10%,var(--surface-2));list-style:none}
+  details.example summary::-webkit-details-marker{display:none}
+  details.example summary::before{content:"▸ ";color:var(--accent,var(--brand))}
+  details.example[open] summary::before{content:"▾ "}
+  details.example .body{padding:6px 16px 14px}
+  .steps{counter-reset:st;list-style:none;padding:0;margin:12px 0}
+  .steps li{counter-increment:st;position:relative;padding-inline-start:40px;margin:10px 0;min-height:28px}
+  .steps li::before{content:counter(st);position:absolute;inset-inline-start:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--accent,var(--brand));color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:14px 0}
+  .compare .card{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px}
+  .compare .card h4{margin:0 0 6px;font-size:15px}
+  .compare .card.good{border-top:3px solid var(--green-arc)} .compare .card.bad{border-top:3px solid var(--red-arc)} .compare .card.mid{border-top:3px solid var(--yellow-arc)} .compare .card.acc{border-top:3px solid var(--accent,var(--brand))}
+  .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .tool{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+  .tool h3{margin:0 0 8px;font-size:15.5px}
+  .tool label{display:block;font-size:12.5px;color:var(--muted);margin-top:8px}
+  .tool input, .tool select{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:16px}
+  .tool .out{margin-top:10px;padding:10px;border-radius:8px;background:color-mix(in srgb,var(--brand) 12%,var(--surface));font-size:14px}
+  .tool .out b{color:var(--brand)}
+  .cheat table{min-width:340px}
+  @media (max-width:880px){
+    .shell{flex-direction:column;padding:14px 12px 70px}
+    main{width:100%;min-width:0}
+    nav.toc{
+      position:fixed;inset:0 0 0 auto;top:0;width:82%;max-width:340px;height:100dvh;max-height:100dvh;
+      transform:translateX(100%);transition:transform .25s ease;border-radius:0;z-index:60;
+    }
+    nav.toc.open{transform:translateX(0)}
+    .toc-scrim{position:fixed;inset:0;background:rgba(6,10,18,.5);z-index:55;display:none}
+    .toc-scrim.show{display:block}
+    .menu-btn{display:inline-flex;align-items:center;gap:6px}
+    section.sec > h2{font-size:18.5px}
+    .hero h1{font-size:22px}
+    body{font-size:16px}
+  }
+  .toc-close{display:none}
+  @media (max-width:880px){
+    .toc-close{
+      display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+      padding-bottom:10px;border-bottom:1px solid var(--line);
+    }
+    .toc-close button{border:none;background:var(--surface-2);border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer;color:var(--ink)}
+  }
+  @media (max-width:520px){.fgrid,.compare{grid-template-columns:1fr}}
+  .fgrid > *,.compare > *,.tools > *{min-width:0}
+
+  .sec .diagram svg text{fill:var(--ink);font:600 12px -apple-system,"Segoe UI",system-ui,sans-serif}
+  .sec .diagram svg text.m{fill:var(--muted);font-weight:500;font-size:11px}
+  .sec .diagram svg .ax{stroke:var(--ink-2);stroke-width:1.5}
+  .sec .diagram svg .grid{stroke:var(--line);stroke-width:1}
+  .sec .diagram svg .curve{stroke:var(--accent,var(--brand));stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sec .diagram svg .fill{fill:color-mix(in srgb,var(--accent,var(--brand)) 18%,transparent)}
+  .sec .diagram svg .dot{fill:var(--accent,var(--brand))}
+  .sec .diagram svg .gn{stroke:var(--green-arc)} .sec .diagram svg .rd{stroke:var(--red-arc)} .sec .diagram svg .yl{stroke:var(--yellow-arc)}
+
+  section#tools{--accent:#0d6e7d}
+  section#safe{--accent:#5aa2f0}
+  section#card{--accent:#e0575a}
+  section#oxy{--accent:#38bdf8}
+  section#ear{--accent:#a08cff}
+  section#vis{--accent:#2dd4bf}
+  section#hlth{--accent:#ff9a3d}
+  section#strs{--accent:#f5b13d}
+  section#info{--accent:#6ea8ff}
+  section#behv{--accent:#9be04a}
+  section#illus{--accent:#f472b6}
+  section#sleep{--accent:#8b84ff}
+  section#indiv{--accent:#34d9a5}
+  section#comm{--accent:#3ddc84}
+  section#mach{--accent:#ff6b62}
+  section#dec{--accent:#a78bfa}
+  section#crm{--accent:#ff8a3d}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) section.sec > h2 .num,
+    :root:not([data-theme="light"]) .steps li::before{color:#06121a}
+  }
+  :root[data-theme="dark"] section.sec > h2 .num,
+  :root[data-theme="dark"] .steps li::before{color:#06121a}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand-mark">
+      <div class="plane">✈</div>
+      <div class="txt">
+        <h1>Radio Navigation — Properties of Radio Waves</h1>
+        <div class="sub">Chapter 1 · EASA ATPL Ground School</div>
+      </div>
+    </div>
+    <button class="menu-btn" id="menuBtn">☰ Contents</button>
+  </div>
+</header>
+
+<div class="toc-scrim" id="scrim"></div>
+
+<div class="shell">
+  <nav class="toc" id="toc">
+    <div class="toc-close"><span style="font-size:13px;color:var(--muted);font-weight:700">Contents</span><button id="closeToc">✕</button></div>
+    <h2>Sections</h2>
+    <ol><li><a href="#wave"><span class="n">📡</span> Nature of Radio Waves <span class="count">6</span></a></li><li><a href="#polr"><span class="n">🧭</span> Polarization <span class="count">10</span></a></li><li><a href="#freq"><span class="n">⏱️</span> Period and Frequency <span class="count">8</span></a></li><li><a href="#spwl"><span class="n">📏</span> Speed and Wavelength <span class="count">14</span></a></li><li><a href="#band"><span class="n">📶</span> Frequency Bands <span class="count">27</span></a></li><li><a href="#phas"><span class="n">🔄</span> Phase Comparison <span class="count">8</span></a></li></ol>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <span class="cloud">📡</span>
+      <h1>📡 Properties of Radio Waves</h1>
+      <p>The physics every radio aid rests on: what a radio wave is, how it is polarized, how frequency and wavelength convert, which band each aid uses, and how phase is compared.</p>
+      <div class="tags"><span class="tag">6 sections</span><span class="tag">72 linked questions</span><span class="tag">Aircraft-independent</span></div>
+    </div>
+
+    <section class="sec" id="wave">
+      <h2><span class="num">📡</span> Nature of Radio Waves <span class="en">6 questions</span></h2>
+      <p class="lead">What a radio wave physically is.</p>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>High-frequency alternating current makes a wire radiate.</strong> Direct current gives a steady magnetic field around the wire. As the frequency rises, the field has not finished collapsing when the reversed field starts to build, and energy leaves the wire as electromagnetic radiation. The electric (E) and magnetic (H) fields are at right angles to each other. Speed: 300,000,000 m/s, about 162,000 NM per second.</p></div>
+      
+    </section>
+
+    <section class="sec" id="polr">
+      <h2><span class="num">🧭</span> Polarization <span class="en">10 questions</span></h2>
+      <p class="lead">Which way the electric field points.</p>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Polarization is the plane of the electric field.</strong> A vertical aerial emits a vertically polarized wave and a horizontal aerial a horizontally polarized one. For maximum signal the receiving aerial must lie in the same plane. Circular polarization (e.g. from a helical antenna) rotates the field at the wave frequency: a dipole's orientation then no longer matters, and radar can remove precipitation clutter because reflection from water droplets reverses the circularity.</p></div>
+      
+    </section>
+
+    <section class="sec" id="freq">
+      <h2><span class="num">⏱️</span> Period and Frequency <span class="en">8 questions</span></h2>
+      <p class="lead">Time for one cycle, and its reciprocal.</p>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>f = 1/τ.</strong> Period is the time for one cycle (microseconds). 1 kHz = 10³ Hz, 1 MHz = 10⁶ Hz, 1 GHz = 10⁹ Hz. Example: τ = 0.125 µs gives f = 1/(0.125×10⁻⁶) = 8 MHz.</p></div>
+      
+    </section>
+
+    <section class="sec" id="spwl">
+      <h2><span class="num">📏</span> Speed and Wavelength <span class="en">14 questions</span></h2>
+      <p class="lead">Turning frequency into distance.</p>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>λ = c/f = c × τ.</strong> With c = 300×10⁶ m/s: f (MHz) = 300 / λ (m) and λ (m) = 300 / f (MHz). Examples: 121.5 MHz → 2.47 m; 375 kHz = 0.375 MHz → 800 m; 3.2 cm = 0.032 m → 9375 MHz = 9.375 GHz. Always convert units first.</p></div>
+      
+    </section>
+
+    <section class="sec" id="band">
+      <h2><span class="num">📶</span> Frequency Bands <span class="en">27 questions</span></h2>
+      <p class="lead">Where each navigation aid lives.</p>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Each decade is a band.</strong> Work out the frequency, then place it.</p></div>
+      <div class="table-wrap"><table>
+<thead><tr><th>Band</th><th>Range</th><th>Civil aviation use</th></tr></thead><tbody>
+<tr><td>VLF</td><td>3 – 30 kHz</td><td>Nil</td></tr>
+<tr><td>LF</td><td>30 – 300 kHz</td><td>NDB/ADF</td></tr>
+<tr><td>MF</td><td>300 – 3000 kHz</td><td>NDB/ADF, long-range communications</td></tr>
+<tr><td>HF</td><td>3 – 30 MHz</td><td>Long-range communications</td></tr>
+<tr><td>VHF</td><td>30 – 300 MHz</td><td>Short-range communications, VDF, VOR, ILS localizer, marker beacons</td></tr>
+<tr><td>UHF</td><td>300 – 3000 MHz</td><td>ILS glide path, DME, SSR, satellite communications, GNSS, long-range radar</td></tr>
+<tr><td>SHF</td><td>3 – 30 GHz</td><td>RADALT, AWR, MLS, short-range radar</td></tr>
+<tr><td>EHF</td><td>30 – 300 GHz</td><td>Nil</td></tr></tbody></table></div>
+    </section>
+
+    <section class="sec" id="phas">
+      <h2><span class="num">🔄</span> Phase Comparison <span class="en">8 questions</span></h2>
+      <p class="lead">The principle behind VOR-type systems.</p>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Same frequency, one reference.</strong> Compare a variable wave with a reference wave of the same frequency. Phase difference = reference − variable; if negative, add 360°. Example: 110° − 315° = −205° → 155°.</p></div>
+      
+    </section>
+
+  </main>
+</div>
+<script>
+(function(){
+  var toc=document.getElementById('toc'),scrim=document.getElementById('scrim');
+  function set(o){toc.classList.toggle('open',o);scrim.classList.toggle('show',o);}
+  document.getElementById('menuBtn').addEventListener('click',function(){set(true);});
+  document.getElementById('closeToc').addEventListener('click',function(){set(false);});
+  scrim.addEventListener('click',function(){set(false);});
+})();
+</script>
+</body>
+</html>
