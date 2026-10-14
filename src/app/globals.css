@@ -315,6 +315,24 @@ html {
    * they happen. `clip` rather than `hidden` because `hidden` on the root
    * would silently break `position: sticky` further down the page. */
   overflow-x: clip;
+  /* iPadOS Safari otherwise rescales text on rotation. */
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Two quick taps on a control (choosing an option, then Next) are read by
+ * iPad Safari as a double-tap zoom, which swallows the second tap and makes
+ * the page feel unresponsive. `manipulation` keeps pan and pinch zoom but
+ * drops double-tap zoom, and the delay that goes with it. */
+a,
+button,
+input,
+select,
+textarea,
+label,
+summary,
+[role="button"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {

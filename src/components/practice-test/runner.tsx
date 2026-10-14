@@ -551,6 +551,15 @@ export function TestRunner({
   const touchStart = useRef<{ x: number; y: number } | null>(null);
 
   function onTouchStart(event: React.TouchEvent) {
+    // From `lg` up the Previous/Next buttons are on screen, and a tablet
+    // held landscape is mostly tapped and scrolled, not swiped. A stray
+    // horizontal drag there (selecting text, a pencil stroke) must not
+    // change the question. Text fields never swipe either.
+    const target = event.target as HTMLElement;
+    if (window.innerWidth >= 1024 || target.closest("textarea, input")) {
+      touchStart.current = null;
+      return;
+    }
     const touch = event.touches[0];
     touchStart.current = { x: touch.clientX, y: touch.clientY };
   }
@@ -1058,7 +1067,7 @@ export function TestRunner({
             tabIndex={-1}
             aria-label="Cancel"
             onClick={() => setConfirmFinish(false)}
-            className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+            className="absolute inset-0 bg-background/80"
           />
           <div
             role="alertdialog"
