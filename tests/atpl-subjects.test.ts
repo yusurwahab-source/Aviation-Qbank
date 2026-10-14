@@ -43,6 +43,6 @@ describe("buildAtplRows", () => {
   it("ignores banks that are not an ATPL subject", () => {
     const rows = buildAtplRows([{ code: "XYZ", status: "active", publishedQuestions: 99 }]);
     expect(rows.every((row) => row.live === null)).toBe(true);
-    expect(ATPL_SUBJECTS.filter((s) => s.code)).toHaveLength(4);
+    expect(ATPL_SUBJECTS.filter((s) => s.code)).toHaveLength(5);
   });
 });
