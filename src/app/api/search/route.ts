@@ -2,14 +2,16 @@ import { checkAiSearchAllowed, recordAiSearchRequest } from "@/db/login-attempts
 import { getClientIp } from "@/lib/auth/client-ip";
 import { describeWait } from "@/lib/auth/rate-limit-policy";
 import { envValue } from "@/lib/env";
-import { NextResponse } from "next/server";
 import {
   AI_SEARCH_SYSTEM_INSTRUCTION,
   extractGeminiText,
   parseAiSearchQuery,
 } from "@/lib/ai-search";
+import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
+
+const GEMINI_MODEL = "gemini-2.5-flash";
 
 function fail(status: number, error: string): NextResponse {
   return NextResponse.json({ ok: false, error }, { status });
@@ -29,7 +31,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   if (!query) return fail(400, "Enter a question of 1,000 characters or fewer.");
 
   const apiKey = envValue("GEMINI_API_KEY");
-  if (!apiKey) return fail(503, "The AI search tool is not configured on this server yet.");
+  if (!apiKey) return fail(500, "GEMINI_API_KEY is missing from the server environment.");
 
   let ip: string;
   try {
@@ -43,12 +45,12 @@ export async function POST(request: Request): Promise<NextResponse> {
     return fail(503, "AI search is temporarily unavailable. Please try again later.");
   }
 
-  const endpoint = new URL(
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent",
-  );
-  endpoint.searchParams.set("key", apiKey);
-
   try {
+    const endpoint = new URL(
+      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,
+    );
+    endpoint.searchParams.set("key", apiKey);
+
     const response = await fetch(endpoint, {
       method: "POST",
       headers: { "content-type": "application/json" },
@@ -61,18 +63,27 @@ export async function POST(request: Request): Promise<NextResponse> {
     });
 
     if (!response.ok) {
-      console.error("Gemini AI search request failed", response.status);
-      return fail(502, "The AI assistant could not answer right now. Please try again.");
+      console.error("Gemini AI search request failed with status", response.status);
+      return fail(
+        500,
+        `Gemini API request failed with HTTP ${response.status}. Check the server API key and model configuration.`,
+      );
     }
 
     const answer = extractGeminiText(await response.json());
-    if (!answer) return fail(502, "The AI assistant returned no answer. Please try again.");
+    if (!answer) {
+      console.error("Gemini AI search returned no text");
+      return fail(500, "Gemini returned no text. Please try again.");
+    }
     return NextResponse.json({ ok: true, answer });
   } catch (error) {
     if (error instanceof Error && error.name === "TimeoutError") {
       return fail(504, "The AI assistant took too long to respond. Please try again.");
     }
-    console.error("Gemini AI search request failed");
-    return fail(502, "The AI assistant could not answer right now. Please try again.");
+    console.error(
+      "Gemini AI search request failed",
+      error instanceof Error ? error.name : "Unknown error",
+    );
+    return fail(500, "The Gemini API could not be reached. Please check the server configuration and try again.");
   }
 }
