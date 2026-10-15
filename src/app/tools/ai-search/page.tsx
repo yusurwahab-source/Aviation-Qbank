@@ -16,15 +16,15 @@ export default function AiSearchPage() {
       <PageHeading
         eyebrow="Tools"
         title="AI Aviation Search"
-        subtitle="Ask an aviation question and get a concise AI-generated study response."
+        subtitle="Ask an aviation question and get a concise answer grounded in PilotQBank's local content."
       />
       <div className="space-y-4">
         <AiSearchForm />
         <Card padding="p-4">
           <p className="text-sm text-muted-foreground">
-            This assistant does not search or retrieve official FCOM, FCTM, or AFM documents. Treat its
-            responses as general study guidance, not approved operational procedures; verify aircraft-specific
-            information in your current manuals and with your instructor.
+            Answers are limited to matching local question-bank and documentation content; this is not a
+            complete or approved FCOM, FCTM, or AFM database. Verify aircraft-specific information in your
+            current approved manuals and with your instructor.
           </p>
         </Card>
       </div>

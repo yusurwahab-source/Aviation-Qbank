@@ -2,6 +2,7 @@ import { checkAiSearchAllowed, recordAiSearchRequest } from "@/db/login-attempts
 import { getClientIp } from "@/lib/auth/client-ip";
 import { describeWait } from "@/lib/auth/rate-limit-policy";
 import { envValue } from "@/lib/env";
+import { getAiSearchKnowledgeContext } from "@/lib/ai-search-knowledge";
 import {
   AI_SEARCH_SYSTEM_INSTRUCTION,
   extractGeminiTextChunk,
@@ -10,6 +11,7 @@ import {
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 const GEMINI_MODEL = "gemini-flash-latest";
 
@@ -66,6 +68,14 @@ export async function POST(request: Request): Promise<NextResponse> {
     return fail(503, "AI search is temporarily unavailable. Please try again later.");
   }
 
+  let knowledgeContext: string;
+  try {
+    knowledgeContext = await getAiSearchKnowledgeContext(query);
+  } catch (error) {
+    console.error("Could not read the local aviation knowledge base", error);
+    return fail(503, "The local aviation knowledge base could not be read. Please try again later.");
+  }
+
   try {
     const endpoint = new URL(
       `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:streamGenerateContent`,
@@ -78,7 +88,18 @@ export async function POST(request: Request): Promise<NextResponse> {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: AI_SEARCH_SYSTEM_INSTRUCTION }] },
-        contents: [{ role: "user", parts: [{ text: query }] }],
+        contents: [{
+          role: "user",
+          parts: [{
+            text: [
+              "Knowledge Base Context:",
+              knowledgeContext || "(No matching information was found in the local aviation knowledge base.)",
+              "",
+              "Student question:",
+              query,
+            ].join("\n"),
+          }],
+        }],
         generationConfig: { maxOutputTokens: 512, temperature: 0.3 },
       }),
       signal: AbortSignal.any([request.signal, AbortSignal.timeout(25_000)]),
