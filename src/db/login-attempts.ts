@@ -74,6 +74,11 @@ export function previewIpKey(ip: string): string {
   return `preview-ip:${ip}`;
 }
 
+/** AI search requests use their own bucket so practice previews do not spend it. */
+export function aiSearchIpKey(ip: string): string {
+  return `ai-search-ip:${ip}`;
+}
+
 /** Logbook Scanner uploads: their own prefix, counted per request. */
 export function logbookUserKey(userId: string): string {
   return `logbook-user:${userId}`;
@@ -292,6 +297,21 @@ export async function checkPreviewAllowed(ip: string): Promise<RateLimitDecision
 /** Records one signed-out answer against the address that asked for it. */
 export async function recordPreviewRequest(ip: string): Promise<void> {
   await getDb().insert(loginAttempts).values({ key: previewIpKey(ip) });
+}
+
+/** Whether this address may send another AI search request right now. */
+export async function checkAiSearchAllowed(ip: string): Promise<RateLimitDecision> {
+  const now = new Date();
+  const key = aiSearchIpKey(ip);
+  const since = new Date(now.getTime() - RATE_LIMIT_RULES.aiSearchPerIp.windowMs);
+  const counts = await countRecentFailures([{ key, since }]);
+  const forIp = counts.get(key) ?? { failures: 0, oldest: null };
+  return decide(RATE_LIMIT_RULES.aiSearchPerIp, forIp.failures, forIp.oldest, now);
+}
+
+/** Records one AI search request, including requests the model later rejects. */
+export async function recordAiSearchRequest(ip: string): Promise<void> {
+  await getDb().insert(loginAttempts).values({ key: aiSearchIpKey(ip) });
 }
 
 /** Whether this account may upload another logbook photo right now.

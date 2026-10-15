@@ -94,6 +94,11 @@ describe("the rules the application actually uses", () => {
   it("leave room for an honest person mistyping a password", () => {
     expect(RATE_LIMIT_RULES.perEmail.maxFailures).toBeGreaterThanOrEqual(3);
   });
+
+  it("limits AI search requests to bound model spend", () => {
+    expect(RATE_LIMIT_RULES.aiSearchPerIp.maxFailures).toBe(10);
+    expect(RATE_LIMIT_RULES.aiSearchPerIp.windowMs).toBe(15 * MINUTE);
+  });
 });
 
 describe("describeWait", () => {
