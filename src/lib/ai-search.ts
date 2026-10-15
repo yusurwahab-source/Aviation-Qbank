@@ -16,6 +16,11 @@ export function parseAiSearchQuery(value: unknown): string | null {
 }
 
 export function extractGeminiText(value: unknown): string | null {
+  const text = extractGeminiTextChunk(value);
+  return text?.trim() || null;
+}
+
+export function extractGeminiTextChunk(value: unknown): string | null {
   if (typeof value !== "object" || value === null || !("candidates" in value)) return null;
   const candidates = value.candidates;
   if (!Array.isArray(candidates) || candidates.length === 0) return null;
@@ -32,6 +37,5 @@ export function extractGeminiText(value: unknown): string | null {
         : [],
     )
     .join("")
-    .trim();
   return text || null;
 }
