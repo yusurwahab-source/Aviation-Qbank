@@ -20,26 +20,58 @@ import { buildSitemapEntries } from "@/lib/seo/sitemap-entries";
  * same trade every other page here makes and gives a plain static file
  * instead of a per-crawler database round trip.
  */
+import { loadContent } from "@/content/load";
+import { loadClassContent } from "@/content/load-classes";
+import { loadFlyingKnowledgeContent } from "@/content/load-flying-knowledge";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [aircraft, classRatings, flyingKnowledgeSubjects, settings] =
-    await Promise.all([
+  let aircraft: { code: string; status: "active" | "coming_soon" }[] = [];
+  let classRatings: { code: string; status: "active" | "coming_soon" }[] = [];
+  let flyingKnowledgeSubjects: { code: string; status: "active" | "coming_soon" }[] = [];
+  let hiddenSections: string[] = [];
+
+  try {
+    const [dbAircraft, dbClasses, dbSubjects, settings] = await Promise.all([
       listAircraft(),
       listClassRatings(),
       listFlyingKnowledgeSubjects(),
       getSiteSettings(),
     ]);
+    aircraft = withoutHidden(settings, "type-rating", dbAircraft);
+    classRatings = withoutHidden(settings, "class-rating", dbClasses);
+    flyingKnowledgeSubjects = withoutHidden(settings, "flying-knowledge", dbSubjects);
+    hiddenSections = [...settings.hiddenSections];
+  } catch {
+    // Fall back to on-disk content manifests if the database is not reached during build
+    try {
+      const { aircraft: diskAircraft } = loadContent();
+      const { classes: diskClasses } = loadClassContent();
+      const { subjects: diskSubjects } = loadFlyingKnowledgeContent();
+
+      aircraft = diskAircraft.map((a) => ({
+        code: a.manifest.code,
+        status: a.manifest.status,
+      }));
+      classRatings = diskClasses.map((c) => ({
+        code: c.manifest.code,
+        status: c.manifest.status,
+      }));
+      flyingKnowledgeSubjects = diskSubjects.map((s) => ({
+        code: s.manifest.code,
+        status: s.manifest.status,
+      }));
+    } catch {
+      // Keep empty if content also fails
+    }
+  }
 
   return buildSitemapEntries(
     canonicalUrl(),
     {
-      aircraft: withoutHidden(settings, "type-rating", aircraft),
-      classRatings: withoutHidden(settings, "class-rating", classRatings),
-      flyingKnowledgeSubjects: withoutHidden(
-        settings,
-        "flying-knowledge",
-        flyingKnowledgeSubjects,
-      ),
+      aircraft,
+      classRatings,
+      flyingKnowledgeSubjects,
     },
-    settings.hiddenSections,
+    hiddenSections,
   );
 }
