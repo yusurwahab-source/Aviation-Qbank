@@ -1,6 +1,7 @@
 import { checkAiSearchAllowed, recordAiSearchRequest } from "@/db/login-attempts";
 import { getClientIp } from "@/lib/auth/client-ip";
 import { describeWait } from "@/lib/auth/rate-limit-policy";
+import { fetchGeminiWithRetries } from "@/lib/ai-search-retry";
 import { envValue } from "@/lib/env";
 import { getAiSearchKnowledgeContext } from "@/lib/ai-search-knowledge";
 import {
@@ -12,6 +13,7 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
+export const maxDuration = 60;
 
 const GEMINI_MODEL = "gemini-flash-latest";
 
@@ -80,80 +82,59 @@ export async function POST(request: Request): Promise<NextResponse> {
     const endpoint = new URL(
       `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:streamGenerateContent`,
     );
-    endpoint.searchParams.set("key", apiKey);
     endpoint.searchParams.set("alt", "sse");
 
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        systemInstruction: { parts: [{ text: AI_SEARCH_SYSTEM_INSTRUCTION }] },
-        contents: [{
-          role: "user",
-          parts: [{
-            text: [
-              "Knowledge Base Context:",
-              knowledgeContext || "(No matching information was found in the local aviation knowledge base.)",
-              "",
-              "Student question:",
-              query,
-            ].join("\n"),
-          }],
-        }],
-        generationConfig: { maxOutputTokens: 512, temperature: 0.3 },
-      }),
-      signal: AbortSignal.any([request.signal, AbortSignal.timeout(25_000)]),
-    });
-
-    if (!response.ok) {
-      const payload: unknown = await response.json().catch(() => null);
-      const detail = upstreamErrorMessage(payload);
-      const message = detail
-        ? `Gemini API request failed with HTTP ${response.status}: ${detail}`
-        : `Gemini API request failed with HTTP ${response.status}.`;
-      console.error("Gemini AI search request failed with status", response.status);
-      return fail(502, redactApiKey(message, apiKey));
-    }
-
-    if (!response.body) {
-      console.error("Gemini AI search returned an empty stream");
-      return fail(502, "Gemini did not return a response. Please try again.");
-    }
-
-    const upstreamReader = response.body.getReader();
+    const streamAbort = new AbortController();
+    const requestSignal = AbortSignal.any([
+      request.signal,
+      streamAbort.signal,
+      AbortSignal.timeout(55_000),
+    ]);
     const decoder = new TextDecoder();
     const encoder = new TextEncoder();
-    let buffer = "";
     let cancelled = false;
+    let closed = false;
+    let upstreamReader: ReadableStreamDefaultReader<Uint8Array> | undefined;
 
     const stream = new ReadableStream<Uint8Array>({
       start(controller) {
         const send = (data: unknown, event?: string) => {
-          if (cancelled) return;
+          if (cancelled || closed) return;
           if (event) controller.enqueue(encoder.encode(`event: ${event}\n`));
           controller.enqueue(encoder.encode(`data: ${JSON.stringify(data)}\n\n`));
         };
 
-        const parseEvent = (event: string) => {
-          const data = event
-            .split(/\r?\n/)
-            .filter((line) => line.startsWith("data:"))
-            .map((line) => line.slice(5).trimStart())
-            .join("\n");
-          if (!data || data === "[DONE]") return;
+        const close = () => {
+          if (cancelled || closed) return;
+          closed = true;
+          controller.close();
+        };
 
-          try {
+        const sendError = (message: string) => {
+          send({ error: message }, "error");
+          close();
+        };
+
+        const readUpstream = async (response: Response) => {
+          if (!response.body) throw new Error("Gemini did not return a response stream.");
+          upstreamReader = response.body.getReader();
+          let buffer = "";
+
+          const parseEvent = (event: string) => {
+            const data = event
+              .split(/\r?\n/)
+              .filter((line) => line.startsWith("data:"))
+              .map((line) => line.slice(5).trimStart())
+              .join("\n");
+            if (!data || data === "[DONE]") return;
+
             const payload: unknown = JSON.parse(data);
             const text = extractGeminiTextChunk(payload);
             if (text) send({ text });
-          } catch {
-            throw new Error("Gemini returned an invalid streaming response.");
-          }
-        };
+          };
 
-        void (async () => {
           try {
-            while (true) {
+            while (!cancelled) {
               const { done, value } = await upstreamReader.read();
               buffer += decoder.decode(value, { stream: !done });
 
@@ -168,25 +149,72 @@ export async function POST(request: Request): Promise<NextResponse> {
               if (done) {
                 if (buffer.trim()) parseEvent(buffer);
                 send({ done: true });
-                if (!cancelled) controller.close();
+                close();
                 return;
               }
             }
-          } catch (error) {
-            if (cancelled) return;
-            const message =
-              error instanceof Error ? redactApiKey(error.message, apiKey) : "Unknown error";
-            console.error("Gemini AI search stream failed", message);
-            send({ error: "The AI response was interrupted. Please try again." }, "error");
-            controller.close();
           } finally {
             upstreamReader.releaseLock();
+            upstreamReader = undefined;
+          }
+        };
+
+        void (async () => {
+          try {
+            const response = await fetchGeminiWithRetries(
+              () => fetch(endpoint, {
+                method: "POST",
+                headers: {
+                  "content-type": "application/json",
+                  "x-goog-api-key": apiKey,
+                },
+                body: JSON.stringify({
+                  systemInstruction: { parts: [{ text: AI_SEARCH_SYSTEM_INSTRUCTION }] },
+                  contents: [{
+                    role: "user",
+                    parts: [{
+                      text: [
+                        "Knowledge Base Context:",
+                        knowledgeContext || "(No matching information was found in the local aviation knowledge base.)",
+                        "",
+                        "Student question:",
+                        query,
+                      ].join("\n"),
+                    }],
+                  }],
+                  generationConfig: { maxOutputTokens: 512, temperature: 0.3 },
+                }),
+                signal: requestSignal,
+              }),
+              { signal: requestSignal },
+            );
+
+            if (!response.ok) {
+              const payload: unknown = await response.json().catch(() => null);
+              const detail = upstreamErrorMessage(payload);
+              const message = detail
+                ? `Gemini API request failed with HTTP ${response.status}: ${detail}`
+                : `Gemini API request failed with HTTP ${response.status}.`;
+              console.error("Gemini AI search request failed with status", response.status);
+              sendError(redactApiKey(message, apiKey));
+              return;
+            }
+
+            await readUpstream(response);
+          } catch (error) {
+            if (cancelled) return;
+            const message = error instanceof Error && error.name === "TimeoutError"
+              ? "The AI assistant took too long to respond. Please try again."
+              : "The AI response was interrupted. Please try again.";
+            console.error("Gemini AI search stream failed", message);
+            sendError(redactApiKey(message, apiKey));
           }
         })();
       },
       cancel() {
         cancelled = true;
-        void upstreamReader.cancel();
+        streamAbort.abort();
+        if (upstreamReader) void upstreamReader.cancel();
       },
     });
 
@@ -198,9 +226,6 @@ export async function POST(request: Request): Promise<NextResponse> {
       },
     });
   } catch (error) {
-    if (error instanceof Error && error.name === "TimeoutError") {
-      return fail(504, "The AI assistant took too long to respond. Please try again.");
-    }
     const message =
       error instanceof Error ? redactApiKey(error.message, apiKey) : "Unknown error";
     console.error("Gemini AI search request failed", message);
