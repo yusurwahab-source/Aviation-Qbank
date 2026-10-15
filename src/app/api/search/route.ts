@@ -11,10 +11,31 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-const GEMINI_MODEL = "gemini-2.5-flash";
+const GEMINI_MODEL = "gemini-flash-latest";
 
 function fail(status: number, error: string): NextResponse {
   return NextResponse.json({ ok: false, error }, { status });
+}
+
+function redactApiKey(message: string, apiKey: string): string {
+  return message.replaceAll(apiKey, "[redacted]").slice(0, 500);
+}
+
+function upstreamErrorMessage(payload: unknown): string | null {
+  if (
+    typeof payload !== "object" ||
+    payload === null ||
+    !("error" in payload) ||
+    typeof payload.error !== "object" ||
+    payload.error === null ||
+    !("message" in payload.error) ||
+    typeof payload.error.message !== "string"
+  ) {
+    return null;
+  }
+
+  const message = payload.error.message.trim();
+  return message || null;
 }
 
 export async function POST(request: Request): Promise<NextResponse> {
@@ -63,11 +84,13 @@ export async function POST(request: Request): Promise<NextResponse> {
     });
 
     if (!response.ok) {
+      const payload: unknown = await response.json().catch(() => null);
+      const detail = upstreamErrorMessage(payload);
+      const message = detail
+        ? `Gemini API request failed with HTTP ${response.status}: ${detail}`
+        : `Gemini API request failed with HTTP ${response.status}.`;
       console.error("Gemini AI search request failed with status", response.status);
-      return fail(
-        500,
-        `Gemini API request failed with HTTP ${response.status}. Check the server API key and model configuration.`,
-      );
+      return fail(502, redactApiKey(message, apiKey));
     }
 
     const answer = extractGeminiText(await response.json());
@@ -80,10 +103,9 @@ export async function POST(request: Request): Promise<NextResponse> {
     if (error instanceof Error && error.name === "TimeoutError") {
       return fail(504, "The AI assistant took too long to respond. Please try again.");
     }
-    console.error(
-      "Gemini AI search request failed",
-      error instanceof Error ? error.name : "Unknown error",
-    );
-    return fail(500, "The Gemini API could not be reached. Please check the server configuration and try again.");
+    const message =
+      error instanceof Error ? redactApiKey(error.message, apiKey) : "Unknown error";
+    console.error("Gemini AI search request failed", message);
+    return fail(502, `The Gemini API request could not be completed: ${message}`);
   }
 }
