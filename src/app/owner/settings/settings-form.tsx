@@ -4,7 +4,6 @@ import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
 import {
-  DEFAULT_SECTION_DESCRIPTIONS,
   MAX_ANNOUNCEMENT_LENGTH,
   MAX_DESCRIPTION_LENGTH,
   MAX_LABEL_LENGTH,
