@@ -8,7 +8,6 @@ import { getClientIp } from "@/lib/auth/client-ip";
 import { describeWait } from "@/lib/auth/rate-limit-policy";
 import {
   AI_SEARCH_SYSTEM_INSTRUCTION,
-  MAX_AI_SEARCH_CONTEXT_LENGTH,
   MAX_AI_SEARCH_QUERY_LENGTH,
   parseAiSearchQuery,
 } from "@/lib/ai-search";

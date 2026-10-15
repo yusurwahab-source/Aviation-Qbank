@@ -35,7 +35,7 @@ export function AiSearchForm() {
     if (!query || isLoading) return;
 
     setInput("");
-    void sendMessage({ text: query }, { body: { pilotContext } });
+    void sendMessage({ text: query }, { body: { pilotContext } }).catch(() => undefined);
   }
 
   return (
