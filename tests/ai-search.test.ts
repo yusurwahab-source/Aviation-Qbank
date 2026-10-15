@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   AI_SEARCH_SYSTEM_INSTRUCTION,
   extractGeminiText,
+  extractGeminiTextChunk,
   MAX_AI_SEARCH_QUERY_LENGTH,
   parseAiSearchQuery,
 } from "@/lib/ai-search";
@@ -37,6 +38,14 @@ describe("extractGeminiText", () => {
     expect(extractGeminiText({})).toBeNull();
     expect(extractGeminiText({ candidates: [] })).toBeNull();
     expect(extractGeminiText({ candidates: [{ content: { parts: [{ text: " " }] } }] })).toBeNull();
+  });
+
+  it("preserves whitespace in streamed text chunks", () => {
+    expect(
+      extractGeminiTextChunk({
+        candidates: [{ content: { parts: [{ text: " " }] } }],
+      }),
+    ).toBe(" ");
   });
 });
 
