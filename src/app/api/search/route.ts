@@ -2,6 +2,7 @@ import { checkAiSearchAllowed, recordAiSearchRequest } from "@/db/login-attempts
 import { getClientIp } from "@/lib/auth/client-ip";
 import { describeWait } from "@/lib/auth/rate-limit-policy";
 import { envValue } from "@/lib/env";
+import { NextResponse } from "next/server";
 import {
   AI_SEARCH_SYSTEM_INSTRUCTION,
   extractGeminiText,
@@ -10,11 +11,11 @@ import {
 
 export const dynamic = "force-dynamic";
 
-function fail(status: number, error: string): Response {
-  return Response.json({ ok: false, error }, { status });
+function fail(status: number, error: string): NextResponse {
+  return NextResponse.json({ ok: false, error }, { status });
 }
 
-export async function POST(request: Request): Promise<Response> {
+export async function POST(request: Request): Promise<NextResponse> {
   let body: unknown;
   try {
     body = await request.json();
@@ -66,7 +67,7 @@ export async function POST(request: Request): Promise<Response> {
 
     const answer = extractGeminiText(await response.json());
     if (!answer) return fail(502, "The AI assistant returned no answer. Please try again.");
-    return Response.json({ ok: true, answer });
+    return NextResponse.json({ ok: true, answer });
   } catch (error) {
     if (error instanceof Error && error.name === "TimeoutError") {
       return fail(504, "The AI assistant took too long to respond. Please try again.");
