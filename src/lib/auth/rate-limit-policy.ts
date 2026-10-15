@@ -126,8 +126,8 @@ export const RATE_LIMIT_RULES = {
    */
   logbookPerUser: { maxFailures: 60, windowMs: 60 * MINUTE } satisfies RateLimitRule,
 
-  /** AI search requests, per source address, to bound model spend. */
-  aiSearchPerIp: { maxFailures: 10, windowMs: 15 * MINUTE } satisfies RateLimitRule,
+  /** AI search requests, per account (or source address when signed out). */
+  aiSearchPerIdentity: { maxFailures: 3, windowMs: MINUTE } satisfies RateLimitRule,
 } as const;
 
 /**

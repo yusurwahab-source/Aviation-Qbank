@@ -95,9 +95,9 @@ describe("the rules the application actually uses", () => {
     expect(RATE_LIMIT_RULES.perEmail.maxFailures).toBeGreaterThanOrEqual(3);
   });
 
-  it("limits AI search requests to bound model spend", () => {
-    expect(RATE_LIMIT_RULES.aiSearchPerIp.maxFailures).toBe(10);
-    expect(RATE_LIMIT_RULES.aiSearchPerIp.windowMs).toBe(15 * MINUTE);
+  it("limits AI search requests to three per identity per minute", () => {
+    expect(RATE_LIMIT_RULES.aiSearchPerIdentity.maxFailures).toBe(3);
+    expect(RATE_LIMIT_RULES.aiSearchPerIdentity.windowMs).toBe(MINUTE);
   });
 });
 
