@@ -5,6 +5,7 @@ import {
   buildAiSearchKnowledgeContext,
   extractGeminiText,
   extractGeminiTextChunk,
+  isIgnoredKnowledgeDirectory,
   MAX_AI_SEARCH_CONTEXT_LENGTH,
   MAX_AI_SEARCH_QUERY_LENGTH,
   parseKnowledgeFile,
@@ -58,6 +59,13 @@ it("does not tell Gemini to imply access to manuals it cannot retrieve", () => {
 });
 
 describe("local AI search context", () => {
+  it("ignores system directories during knowledge-base scans", () => {
+    expect(isIgnoredKnowledgeDirectory("node_modules")).toBe(true);
+    expect(isIgnoredKnowledgeDirectory(".next")).toBe(true);
+    expect(isIgnoredKnowledgeDirectory(".git")).toBe(true);
+    expect(isIgnoredKnowledgeDirectory("b737")).toBe(false);
+  });
+
   it("converts local JSON records and excludes drafts", () => {
     expect(parseKnowledgeFile("content/questions.json", JSON.stringify([
       { id: "DA40-FUEL-1", status: "published", explanation: "Fuel returns to the tank." },

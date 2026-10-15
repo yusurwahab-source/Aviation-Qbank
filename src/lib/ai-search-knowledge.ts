@@ -5,6 +5,7 @@ import path from "node:path";
 
 import {
   buildAiSearchKnowledgeContext,
+  isIgnoredKnowledgeDirectory,
   parseKnowledgeFile,
   type AiSearchKnowledgeDocument,
 } from "@/lib/ai-search";
@@ -19,7 +20,7 @@ async function listKnowledgeFiles(directory: string): Promise<string[]> {
   const entries = await readdir(directory, { withFileTypes: true });
   const nested = await Promise.all(
     entries
-      .filter((entry) => entry.isDirectory())
+      .filter((entry) => entry.isDirectory() && !isIgnoredKnowledgeDirectory(entry.name))
       .map((entry) => listKnowledgeFiles(path.join(directory, entry.name))),
   );
 

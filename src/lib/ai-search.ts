@@ -18,6 +18,12 @@ const ignoredSearchTerms = new Set([
   "this", "was", "what", "when", "where", "which", "with", "would", "you",
 ]);
 
+const ignoredKnowledgeDirectories = new Set([".git", ".next", "node_modules"]);
+
+export function isIgnoredKnowledgeDirectory(name: string): boolean {
+  return ignoredKnowledgeDirectories.has(name);
+}
+
 function searchTerms(value: string): string[] {
   return [...new Set(
     (value.toLocaleLowerCase("en").match(/[\p{L}\p{N}]+/gu) ?? [])
