@@ -11,7 +11,7 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-const GEMINI_MODEL = "gemini-2.5-flash";
+const GEMINI_MODEL = "gemini-flash-latest";
 
 function fail(status: number, error: string): NextResponse {
   return NextResponse.json({ ok: false, error }, { status });
