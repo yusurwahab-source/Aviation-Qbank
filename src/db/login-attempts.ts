@@ -1,6 +1,6 @@
 import "server-only";
 
-import { and, count, eq, gte, lt, min, or } from "drizzle-orm";
+import { and, count, eq, gte, lt, min, or, sql } from "drizzle-orm";
 
 import { getDb } from "@/db";
 import { loginAttempts } from "@/db/schema";
@@ -74,9 +74,9 @@ export function previewIpKey(ip: string): string {
   return `preview-ip:${ip}`;
 }
 
-/** AI search requests use their own bucket so practice previews do not spend it. */
-export function aiSearchIpKey(ip: string): string {
-  return `ai-search-ip:${ip}`;
+/** AI search requests use a per-account bucket, or an IP bucket when signed out. */
+export function aiSearchIdentityKey(userId: string | null, ip: string): string {
+  return userId ? `ai-search-user:${userId}` : `ai-search-ip:${ip}`;
 }
 
 /** Logbook Scanner uploads: their own prefix, counted per request. */
@@ -299,19 +299,41 @@ export async function recordPreviewRequest(ip: string): Promise<void> {
   await getDb().insert(loginAttempts).values({ key: previewIpKey(ip) });
 }
 
-/** Whether this address may send another AI search request right now. */
-export async function checkAiSearchAllowed(ip: string): Promise<RateLimitDecision> {
+/**
+ * Atomically checks and records one AI search request. The transaction-scoped
+ * advisory lock prevents concurrent requests from exceeding the allowance.
+ */
+export async function consumeAiSearchRequest(
+  userId: string | null,
+  ip: string,
+): Promise<RateLimitDecision> {
   const now = new Date();
-  const key = aiSearchIpKey(ip);
-  const since = new Date(now.getTime() - RATE_LIMIT_RULES.aiSearchPerIp.windowMs);
-  const counts = await countRecentFailures([{ key, since }]);
-  const forIp = counts.get(key) ?? { failures: 0, oldest: null };
-  return decide(RATE_LIMIT_RULES.aiSearchPerIp, forIp.failures, forIp.oldest, now);
-}
+  const key = aiSearchIdentityKey(userId, ip);
+  const since = new Date(now.getTime() - RATE_LIMIT_RULES.aiSearchPerIdentity.windowMs);
 
-/** Records one AI search request, including requests the model later rejects. */
-export async function recordAiSearchRequest(ip: string): Promise<void> {
-  await getDb().insert(loginAttempts).values({ key: aiSearchIpKey(ip) });
+  return getDb().transaction(async (tx) => {
+    await tx.execute(sql`select pg_advisory_xact_lock(hashtextextended(${key}, 0))`);
+
+    const [row] = await tx
+      .select({
+        failures: count(),
+        oldest: min(loginAttempts.attemptedAt),
+      })
+      .from(loginAttempts)
+      .where(and(eq(loginAttempts.key, key), gte(loginAttempts.attemptedAt, since)));
+    const decision = decide(
+      RATE_LIMIT_RULES.aiSearchPerIdentity,
+      Number(row?.failures ?? 0),
+      row?.oldest ? new Date(row.oldest) : null,
+      now,
+    );
+
+    if (decision.allowed) {
+      await tx.insert(loginAttempts).values({ key });
+    }
+
+    return decision;
+  });
 }
 
 /** Whether this account may upload another logbook photo right now.
