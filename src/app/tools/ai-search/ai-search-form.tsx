@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import ReactMarkdown from "react-markdown";
 
 import { Card } from "@/components/ui";
 import { MAX_AI_SEARCH_QUERY_LENGTH } from "@/lib/ai-search";
@@ -84,8 +85,12 @@ export function AiSearchForm() {
       }
 
       if (!receivedText) setError("Gemini did not return text. Please try again.");
-    } catch {
-      setError("The AI response was interrupted. Please try again.");
+    } catch (caught) {
+      setError(
+        caught instanceof Error && caught.message
+          ? caught.message
+          : "The AI response was interrupted. Please try again.",
+      );
     } finally {
       setSearching(false);
     }
@@ -103,6 +108,7 @@ export function AiSearchForm() {
           type="search"
           maxLength={MAX_AI_SEARCH_QUERY_LENGTH}
           required
+          disabled={searching}
           placeholder="Ask an aviation question…"
           className="tap-target min-w-0 flex-1 rounded-lg border border-border bg-surface px-3 text-base text-foreground placeholder:text-muted-foreground focus:border-brand focus:outline-none"
         />
@@ -124,7 +130,11 @@ export function AiSearchForm() {
       >
         {searching ? <p>Generating aviation guidance…</p> : null}
         {error ? <p role="alert" className="text-danger">{error}</p> : null}
-        {answer ? <p className="whitespace-pre-wrap">{answer}</p> : null}
+        {answer ? (
+          <div className="space-y-3 leading-6 [&_a]:text-brand [&_a]:underline [&_blockquote]:border-l-2 [&_blockquote]:border-border [&_blockquote]:pl-3 [&_code]:rounded [&_code]:bg-surface [&_code]:px-1 [&_h1]:text-xl [&_h1]:font-semibold [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:font-semibold [&_li]:ml-5 [&_ol]:list-decimal [&_p]:whitespace-pre-wrap [&_ul]:list-disc">
+            <ReactMarkdown>{answer}</ReactMarkdown>
+          </div>
+        ) : null}
         {!searching && !error && !answer ? (
           <p className="text-muted-foreground">Your answer will appear here.</p>
         ) : null}
