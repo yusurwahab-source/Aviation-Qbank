@@ -1,99 +1,41 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { DefaultChatTransport } from "ai";
+import { useChat } from "@ai-sdk/react";
+import { useMemo, useState, type FormEvent } from "react";
 import ReactMarkdown from "react-markdown";
 
 import { Card } from "@/components/ui";
 import { MAX_AI_SEARCH_QUERY_LENGTH } from "@/lib/ai-search";
 
+const RATE_LIMIT_MESSAGE = "You reached the limit of 3 requests per minute. Please wait.";
+const MAX_PILOT_CONTEXT_LENGTH = 5_000;
+
 export function AiSearchForm() {
-  const [answer, setAnswer] = useState("");
-  const [error, setError] = useState("");
-  const [searching, setSearching] = useState(false);
+  const [input, setInput] = useState("");
+  const [pilotContext, setPilotContext] = useState("");
+  const transport = useMemo(
+    () =>
+      new DefaultChatTransport({
+        api: "/api/chat",
+        fetch: async (input, init) => {
+          const response = await fetch(input, init);
+          if (response.status === 429) window.alert(RATE_LIMIT_MESSAGE);
+          return response;
+        },
+      }),
+    [],
+  );
+  const { messages, sendMessage, status, error } = useChat({ transport });
+  const isLoading = status === "submitted" || status === "streaming";
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const query = String(form.get("query") ?? "").trim();
-    if (!query) return;
+    const query = input.trim();
+    if (!query || isLoading) return;
 
-    setSearching(true);
-    setAnswer("");
-    setError("");
-
-    try {
-      const response = await fetch("/api/search", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ query }),
-      });
-      if (!response.ok) {
-        const result: unknown = await response.json().catch(() => null);
-        setError(
-          typeof result === "object" && result !== null && "error" in result && typeof result.error === "string"
-            ? result.error
-            : "The search could not be completed. Please try again.",
-        );
-        return;
-      }
-
-      if (!response.body) throw new Error("The response did not include a stream.");
-
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let buffer = "";
-      let receivedText = false;
-
-      const readEvent = (event: string) => {
-        const lines = event.split(/\r?\n/);
-        const eventName = lines.find((line) => line.startsWith("event:"))?.slice(6).trim();
-        const data = lines
-          .filter((line) => line.startsWith("data:"))
-          .map((line) => line.slice(5).trimStart())
-          .join("\n");
-        if (!data) return;
-
-        const payload: unknown = JSON.parse(data);
-        if (typeof payload !== "object" || payload === null) return;
-        if (eventName === "error" && "error" in payload && typeof payload.error === "string") {
-          throw new Error(payload.error);
-        }
-        if ("text" in payload && typeof payload.text === "string") {
-          receivedText = true;
-          setAnswer((current) => current + payload.text);
-        }
-      };
-
-      try {
-        while (true) {
-          const { done, value } = await reader.read();
-          buffer += decoder.decode(value, { stream: !done });
-          let boundary = buffer.search(/\r?\n\r?\n/);
-          while (boundary !== -1) {
-            const separator = buffer.slice(boundary).match(/^\r?\n\r?\n/)?.[0] ?? "\n\n";
-            readEvent(buffer.slice(0, boundary));
-            buffer = buffer.slice(boundary + separator.length);
-            boundary = buffer.search(/\r?\n\r?\n/);
-          }
-          if (done) {
-            if (buffer.trim()) readEvent(buffer);
-            break;
-          }
-        }
-      } finally {
-        reader.releaseLock();
-      }
-
-      if (!receivedText) setError("Gemini did not return text. Please try again.");
-    } catch (caught) {
-      setError(
-        caught instanceof Error && caught.message
-          ? caught.message
-          : "The AI response was interrupted. Please try again.",
-      );
-    } finally {
-      setSearching(false);
-    }
+    setInput("");
+    void sendMessage({ text: query }, { body: { pilotContext } });
   }
 
   return (
@@ -108,34 +50,65 @@ export function AiSearchForm() {
           type="search"
           maxLength={MAX_AI_SEARCH_QUERY_LENGTH}
           required
-          disabled={searching}
+          value={input}
+          onChange={(event) => setInput(event.target.value)}
+          disabled={isLoading}
           placeholder="Ask an aviation question…"
           className="tap-target min-w-0 flex-1 rounded-lg border border-border bg-surface px-3 text-base text-foreground placeholder:text-muted-foreground focus:border-brand focus:outline-none"
         />
         <button
           id="ai-search-btn"
           type="submit"
-          disabled={searching}
+          disabled={isLoading}
           className="tap-target shrink-0 rounded-lg bg-brand px-5 text-sm font-semibold text-on-solid hover:bg-brand-strong disabled:cursor-wait disabled:opacity-60"
         >
-          {searching ? "Searching…" : "Ask"}
+          {isLoading ? "Searching…" : "Ask"}
         </button>
       </form>
+
+      <details className="mt-3">
+        <summary className="tap-target cursor-pointer text-sm font-medium text-muted-foreground">
+          Add optional pilot context
+        </summary>
+        <label htmlFor="ai-search-context" className="mt-2 block text-sm text-muted-foreground">
+          The assistant also searches PilotQBank&apos;s local aviation content.
+        </label>
+        <textarea
+          id="ai-search-context"
+          value={pilotContext}
+          maxLength={MAX_PILOT_CONTEXT_LENGTH}
+          onChange={(event) => setPilotContext(event.target.value)}
+          disabled={isLoading}
+          rows={3}
+          className="mt-2 w-full rounded-lg border border-border bg-surface p-3 text-sm text-foreground focus:border-brand focus:outline-none disabled:opacity-60"
+        />
+      </details>
 
       <div
         id="ai-response-box"
         aria-live="polite"
-        aria-busy={searching}
-        className="mt-4 rounded-lg bg-surface-elevated p-4 text-sm text-foreground"
+        aria-busy={isLoading}
+        className="mt-4 space-y-4 rounded-lg bg-surface-elevated p-4 text-sm text-foreground"
       >
-        {searching ? <p>Generating aviation guidance…</p> : null}
-        {error ? <p role="alert" className="text-danger">{error}</p> : null}
-        {answer ? (
-          <div className="space-y-3 leading-6 [&_a]:text-brand [&_a]:underline [&_blockquote]:border-l-2 [&_blockquote]:border-border [&_blockquote]:pl-3 [&_code]:rounded [&_code]:bg-surface [&_code]:px-1 [&_h1]:text-xl [&_h1]:font-semibold [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:font-semibold [&_li]:ml-5 [&_ol]:list-decimal [&_p]:whitespace-pre-wrap [&_ul]:list-disc">
-            <ReactMarkdown>{answer}</ReactMarkdown>
-          </div>
-        ) : null}
-        {!searching && !error && !answer ? (
+        {isLoading ? <p>Generating aviation guidance…</p> : null}
+        {error ? <p role="alert" className="text-danger">{error.message}</p> : null}
+        {messages.map((message) => {
+          const text = message.parts
+            .filter((part) => part.type === "text")
+            .map((part) => part.text)
+            .join("");
+          if (!text) return null;
+
+          return (
+            <div key={message.id} className="space-y-1">
+              <p className="font-semibold">{message.role === "user" ? "You" : "PilotQBank AI"}</p>
+              <div className="space-y-3 leading-6 [&_a]:text-brand [&_a]:underline [&_blockquote]:border-l-2 [&_blockquote]:border-border [&_blockquote]:pl-3 [&_code]:rounded [&_code]:bg-surface [&_code]:px-1 [&_h1]:text-xl [&_h1]:font-semibold [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:font-semibold [&_li]:ml-5 [&_ol]:list-decimal [&_p]:whitespace-pre-wrap [&_ul]:list-disc">
+                <ReactMarkdown>{text}</ReactMarkdown>
+              </div>
+            </div>
+          );
+        })}
+        {!isLoading && !error && messages.length === 0 ? (
           <p className="text-muted-foreground">Your answer will appear here.</p>
         ) : null}
       </div>
