@@ -32,7 +32,6 @@ export async function POST(request: Request): Promise<NextResponse> {
 
   const apiKey = envValue("GEMINI_API_KEY");
   if (!apiKey) return fail(500, "GEMINI_API_KEY is missing from the server environment.");
-  const model = envValue("GEMINI_MODEL") ?? GEMINI_MODEL;
 
   let ip: string;
   try {
@@ -48,7 +47,7 @@ export async function POST(request: Request): Promise<NextResponse> {
 
   try {
     const endpoint = new URL(
-      `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,
+      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,
     );
     endpoint.searchParams.set("key", apiKey);
 
