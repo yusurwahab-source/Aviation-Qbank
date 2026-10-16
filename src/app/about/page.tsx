@@ -18,7 +18,7 @@ export default function AboutPage() {
         subtitle={siteConfig.tagline}
       />
 
-      <ComingSoon note="A fuller about page — who is behind this, and how question banks are reviewed — is still to be written.">
+      <ComingSoon>
         <p>
           <strong className="text-foreground">The goal is understanding the aircraft, not
           memorising questions.</strong> A question bank you have simply memorised is worthless
