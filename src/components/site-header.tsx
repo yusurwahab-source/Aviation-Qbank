@@ -51,6 +51,7 @@ const SIGNED_IN_LINKS: NavItem[] = [
   { href: "/pilot-sims", label: "Pilot Sims" },
   { href: "/progress", label: "Progress" },
   { href: "/upgrade", label: "Upgrade" },
+  { href: "/about", label: "About" },
 ];
 
 export async function SiteHeader() {
