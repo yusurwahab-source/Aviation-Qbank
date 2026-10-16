@@ -1,0 +1,362 @@
+[
+  {
+    "id": "RNAV-DME-0001",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Principles",
+    "question": "How does DME determine the distance shown to the pilot?",
+    "options": [
+      { "id": "a", "text": "By measuring the time between an interrogation and its reply" },
+      { "id": "b", "text": "By measuring the angle between two VOR radials" },
+      { "id": "c", "text": "By comparing aircraft heading with the station identifier" },
+      { "id": "d", "text": "By measuring the strength of the received signal only" }
+    ],
+    "correct": "a",
+    "explanation": "DME measures the round-trip time of its radio signal exchange, accounts for the fixed transponder delay, and converts the result to distance.",
+    "tags": ["DME", "principles"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-DME-0002",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Principles",
+    "question": "What does a DME distance indication represent?",
+    "options": [
+      { "id": "a", "text": "Slant range between aircraft and ground station" },
+      { "id": "b", "text": "Horizontal distance over the ground in every situation" },
+      { "id": "c", "text": "Distance along the aircraft's planned route" },
+      { "id": "d", "text": "Distance from the aircraft to the nearest runway threshold" }
+    ],
+    "correct": "a",
+    "explanation": "DME measures the direct line-of-sight distance between the aircraft and the station, known as slant range.",
+    "tags": ["DME", "slant-range"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-DME-0003",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Slant Range",
+    "question": "When is the difference between DME slant range and horizontal ground distance most noticeable?",
+    "options": [
+      { "id": "a", "text": "When the aircraft is close to the station and high above it" },
+      { "id": "b", "text": "When the aircraft is far from the station at low altitude" },
+      { "id": "c", "text": "When the aircraft is on the same level as the station" },
+      { "id": "d", "text": "Only when the DME identifier is not received" }
+    ],
+    "correct": "a",
+    "explanation": "At short horizontal ranges, aircraft altitude forms a significant part of the direct slant-range distance. The difference becomes proportionally smaller farther away.",
+    "tags": ["DME", "slant-range", "limitations"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-DME-0004",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Slant Range",
+    "question": "An aircraft is directly above a DME station at 6,000 ft. Ignoring small effects, what distance will the DME show?",
+    "options": [
+      { "id": "a", "text": "About 1 NM" },
+      { "id": "b", "text": "About 6 NM" },
+      { "id": "c", "text": "About 10 NM" },
+      { "id": "d", "text": "Zero NM" }
+    ],
+    "correct": "a",
+    "explanation": "At station passage the slant range is approximately the aircraft's height above the station: 6,000 ft is about 0.99 NM.",
+    "tags": ["DME", "slant-range", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-DME-0005",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Indications",
+    "question": "Which information does DME provide directly?",
+    "options": [
+      { "id": "a", "text": "Distance to the tuned DME station" },
+      { "id": "b", "text": "Bearing to the station" },
+      { "id": "c", "text": "The aircraft's magnetic heading" },
+      { "id": "d", "text": "The selected VOR radial" }
+    ],
+    "correct": "a",
+    "explanation": "DME provides distance information. It does not provide bearing; bearing normally comes from a separate navigation source.",
+    "tags": ["DME", "indications"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-DME-0006",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Indications",
+    "question": "A DME display shows 12 NM. What should the pilot not infer from that number alone?",
+    "options": [
+      { "id": "a", "text": "The direction of the station from the aircraft" },
+      { "id": "b", "text": "That the slant range is 12 NM" },
+      { "id": "c", "text": "That the equipment is displaying a distance" },
+      { "id": "d", "text": "That the reading is referenced to a DME station" }
+    ],
+    "correct": "a",
+    "explanation": "DME gives range but no azimuth. A separate bearing source is needed to determine the station's direction.",
+    "tags": ["DME", "indications", "limitations"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-DME-0007",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Ground Speed",
+    "question": "Under which condition is DME-derived ground speed most representative of speed toward or away from the station?",
+    "options": [
+      { "id": "a", "text": "The aircraft is tracking directly toward or away from the station at steady speed" },
+      { "id": "b", "text": "The aircraft is flying a circle around the station" },
+      { "id": "c", "text": "The aircraft is changing heading continuously" },
+      { "id": "d", "text": "The aircraft is crossing the station's radial at right angles" }
+    ],
+    "correct": "a",
+    "explanation": "DME ground speed is calculated from the rate of change of range. It best represents along-track speed when the aircraft is tracking directly toward or away from the station.",
+    "tags": ["DME", "ground-speed"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-DME-0008",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Ground Speed",
+    "question": "Why can DME-derived ground speed be misleading while the aircraft is turning?",
+    "options": [
+      { "id": "a", "text": "The aircraft's range is changing due to geometry as well as forward progress" },
+      { "id": "b", "text": "DME measures indicated airspeed during a turn" },
+      { "id": "c", "text": "The station stops replying whenever an aircraft banks" },
+      { "id": "d", "text": "The DME display changes from nautical miles to degrees" }
+    ],
+    "correct": "a",
+    "explanation": "DME ground speed is inferred from changing range. During a turn, the aircraft's changing direction relative to the station means range rate may not equal the aircraft's actual ground speed.",
+    "tags": ["DME", "ground-speed", "limitations"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-DME-0009",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Time to Station",
+    "question": "A DME shows 30 NM and a reliable groundspeed directly toward the station of 150 kt. Approximately how long remains to the station?",
+    "options": [
+      { "id": "a", "text": "12 minutes" },
+      { "id": "b", "text": "5 minutes" },
+      { "id": "c", "text": "20 minutes" },
+      { "id": "d", "text": "30 minutes" }
+    ],
+    "correct": "a",
+    "explanation": "Time equals distance divided by groundspeed: 30 NM ÷ 150 NM per hour = 0.2 hour, or 12 minutes.",
+    "tags": ["DME", "time-to-station", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-DME-0010",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Time to Station",
+    "question": "When is a DME time-to-station calculation meaningful?",
+    "options": [
+      { "id": "a", "text": "When range is decreasing and the aircraft is tracking toward the station" },
+      { "id": "b", "text": "Whenever the DME is powered, regardless of flight path" },
+      { "id": "c", "text": "Only when the aircraft is tracking away from the station" },
+      { "id": "d", "text": "When the DME distance is being used as an altitude" }
+    ],
+    "correct": "a",
+    "explanation": "A time-to-station estimate requires a closing range and a representative groundspeed toward the station.",
+    "tags": ["DME", "time-to-station"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-DME-0011",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Frequency Pairing",
+    "question": "Why are DME channels often paired with VOR or ILS frequencies?",
+    "options": [
+      { "id": "a", "text": "To let the navigation receiver select the associated DME station conveniently" },
+      { "id": "b", "text": "To make DME provide the same lateral guidance as a localizer" },
+      { "id": "c", "text": "To convert the DME distance into a magnetic radial" },
+      { "id": "d", "text": "To ensure that the DME station transmits a runway heading" }
+    ],
+    "correct": "a",
+    "explanation": "Frequency pairing simplifies tuning: selecting the associated VOR or ILS channel can also select the corresponding DME channel where the equipment supports it.",
+    "tags": ["DME", "frequency-pairing"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-DME-0012",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Station Identification",
+    "question": "A DME distance is displayed, but the associated station cannot be identified. What should the pilot do?",
+    "options": [
+      { "id": "a", "text": "Verify the station and source before relying on the distance" },
+      { "id": "b", "text": "Assume the reading belongs to the nearest charted station" },
+      { "id": "c", "text": "Interpret the number as a VOR radial" },
+      { "id": "d", "text": "Use the reading as ground speed instead" }
+    ],
+    "correct": "a",
+    "explanation": "Identification confirms which station is supplying the information. A displayed value should not be used without establishing its source.",
+    "tags": ["DME", "identification", "navigation-integrity"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-DME-0013",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Navigation",
+    "question": "A DME reading is increasing while the aircraft is turning. What can be concluded from the reading alone?",
+    "options": [
+      { "id": "a", "text": "The slant range to the station is increasing" },
+      { "id": "b", "text": "The aircraft is necessarily flying directly away from the station" },
+      { "id": "c", "text": "The aircraft is on the station's outbound radial" },
+      { "id": "d", "text": "The aircraft has passed the station at zero range" }
+    ],
+    "correct": "a",
+    "explanation": "An increasing DME value means range is increasing, but during a turn it does not by itself define the aircraft's track or bearing from the station.",
+    "tags": ["DME", "range", "navigation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-DME-0014",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Limitations",
+    "question": "Why might a DME not provide a usable reading at a particular location?",
+    "options": [
+      { "id": "a", "text": "The aircraft may be outside coverage or the signal path may be obstructed" },
+      { "id": "b", "text": "The aircraft is not pointing directly at the station" },
+      { "id": "c", "text": "The aircraft is below the station's magnetic variation" },
+      { "id": "d", "text": "The aircraft has not selected a VOR radial" }
+    ],
+    "correct": "a",
+    "explanation": "DME requires a usable radio path and operation within the station's service coverage. Terrain, altitude, distance, or equipment status can affect reception.",
+    "tags": ["DME", "coverage", "limitations"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-DME-0015",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Calculations",
+    "question": "A DME shows 18 NM while the aircraft is 12,000 ft above the station. What is the approximate horizontal distance?",
+    "options": [
+      { "id": "a", "text": "17.9 NM" },
+      { "id": "b", "text": "15.8 NM" },
+      { "id": "c", "text": "12 NM" },
+      { "id": "d", "text": "6 NM" }
+    ],
+    "correct": "a",
+    "explanation": "Convert 12,000 ft to about 1.98 NM, then use the right triangle: horizontal range ≈ √(18² − 1.98²) ≈ 17.9 NM. The slant-range correction is small, so 18 NM is the closest listed value.",
+    "tags": ["DME", "slant-range", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-DME-0016",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Station Passage",
+    "question": "When an aircraft passes directly over a DME station at altitude, what happens to the displayed distance?",
+    "options": [
+      { "id": "a", "text": "It reaches a small minimum set mainly by the aircraft's height above the station" },
+      { "id": "b", "text": "It must read exactly zero" },
+      { "id": "c", "text": "It immediately changes to the aircraft's groundspeed" },
+      { "id": "d", "text": "It becomes the reciprocal of the aircraft's altitude" }
+    ],
+    "correct": "a",
+    "explanation": "DME measures slant range, so at overhead passage the distance remains approximately equal to the aircraft's height above the station expressed in nautical miles.",
+    "tags": ["DME", "station-passage", "slant-range"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-DME-0017",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Ground Speed",
+    "question": "A DME groundspeed indication is based on:",
+    "options": [
+      { "id": "a", "text": "The rate at which measured range changes" },
+      { "id": "b", "text": "The aircraft's indicated airspeed and heading" },
+      { "id": "c", "text": "The VOR course selected on the OBS" },
+      { "id": "d", "text": "The strength of the station identifier" }
+    ],
+    "correct": "a",
+    "explanation": "DME equipment can derive groundspeed from the rate of change of the measured distance to the station.",
+    "tags": ["DME", "ground-speed"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-DME-0018",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Calculations",
+    "question": "A DME distance decreases from 24 NM to 18 NM in 3 minutes while tracking directly toward the station. What is the approximate groundspeed?",
+    "options": [
+      { "id": "a", "text": "120 kt" },
+      { "id": "b", "text": "60 kt" },
+      { "id": "c", "text": "180 kt" },
+      { "id": "d", "text": "240 kt" }
+    ],
+    "correct": "a",
+    "explanation": "The range closes by 6 NM in 3 minutes. At that rate, 6 × 20 = 120 NM per hour, or 120 kt.",
+    "tags": ["DME", "ground-speed", "calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-DME-0019",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Navigation",
+    "question": "A DME is co-located with a VOR. What is the benefit of using both indications together?",
+    "options": [
+      { "id": "a", "text": "The VOR provides direction and the DME provides range" },
+      { "id": "b", "text": "The VOR provides altitude and the DME provides heading" },
+      { "id": "c", "text": "The VOR removes slant range and the DME supplies wind direction" },
+      { "id": "d", "text": "The DME provides a localizer course while the VOR provides glide path" }
+    ],
+    "correct": "a",
+    "explanation": "VOR azimuth and DME range provide complementary information that can define the aircraft's position relative to the station.",
+    "tags": ["DME", "VOR", "position-fixing"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-DME-0020",
+    "subjectCode": "RNAV",
+    "topic": "Distance Measuring Equipment",
+    "subtopic": "Navigation Integrity",
+    "question": "Which statement about a DME distance should guide its use in navigation?",
+    "options": [
+      { "id": "a", "text": "Confirm the station and account for slant range and flight geometry" },
+      { "id": "b", "text": "Treat every displayed value as horizontal distance along track" },
+      { "id": "c", "text": "Use the distance as a bearing whenever the CDI is unavailable" },
+      { "id": "d", "text": "Assume a paired frequency proves the station is identified" }
+    ],
+    "correct": "a",
+    "explanation": "DME gives slant range to a station, not route distance or bearing. Correct interpretation requires knowing the source and the aircraft's geometry relative to it.",
+    "tags": ["DME", "navigation-integrity"],
+    "status": "published",
+    "version": 1
+  }
+]
