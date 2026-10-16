@@ -625,6 +625,88 @@ meteorology syllabus. The climatology chapters (global, area and route)
 describe typical seasonal patterns and are the most simplified part of
 the bank.
 
+## The RNAV bank (Flying Knowledge)
+
+The subject is **Radio Navigation** (code `RNAV`, ATPL 062), added the same
+content-only way as POF, HPL and MET. 911 questions across eighteen
+topics, all published.
+
+### Rebuilt in October 2026
+
+An earlier RNAV bank of 382 questions covered chapters 1–7 only. An audit
+found that 287 of its explanations began "The text states…" (naming the
+source to the student), 88 stems were lifted word for word from the book —
+including its own end-of-chapter questions — 55 % of the answers were
+option b (67/210/82/23), two options were "none/all of the above", and
+the files were misnamed (`chapter-6-ADF.json` held VDF, `chapter-7-.json`
+had no name). It was retired in full and rewritten with new ids (no old id
+reused), and chapters 8–18 were written for the first time.
+
+### Source, and what was not used
+
+The owner bought and supplied CAE Oxford Aviation Academy's *Radio
+Navigation*, Book 11 of its ATPL Ground Training Series, with the
+instruction to learn from it and quote facts, but not to copy its text.
+The eighteen topics follow its chapter order (the standard ATPL 062
+syllabus). Every question, explanation, calculation and the study guide
+were written by the assistant from the facts; the book's own questions and
+revision chapter were not used. Where the book is dated or inconsistent
+the bank follows current, standard values instead and avoids the point:
+it does not state an SSR transponder delay, uses L1/L2 only for GPS
+(no "L3"), does not repeat the book's 2-dot/5-dot HSI mix-up (a 2-dot VOR
+scale is 5° per dot), treats Galileo and BeiDou as operating systems, and
+does not claim that SBAS cannot support Category I-like minima.
+Regulators are not named in student-facing text ("the international
+standard", not "ICAO").
+
+### Order and format
+
+Topic names carry their chapter number (`01 Properties of Radio Waves` …
+`18 Global Navigation Satellite Systems (GNSS)`), because the app lists
+topics alphabetically; the number keeps them in the book's sequence.
+Inside each file the questions run in chapter order, grouped by
+`subtopic`. Explanations are two to four sentences: why the answer is
+right, the extra detail behind it, and the usual mistake.
+
+| # | Topic | File | Ids | Questions |
+|---|---|---|---|---|
+| 01 | Properties of Radio Waves | `01-properties-of-radio-waves.json` | `RNAV-PRW-0001`–`0062` | 62 |
+| 02 | Radio Propagation Theory | `02-radio-propagation-theory.json` | `RNAV-PRG-0001`–`0079` | 79 |
+| 03 | Modulation | `03-modulation.json` | `RNAV-MDN-0001`–`0031` | 31 |
+| 04 | Antennae | `04-antennae.json` | `RNAV-ANTN-0001`–`0034` | 34 |
+| 05 | Doppler Radar Systems | `05-doppler-radar-systems.json` | `RNAV-DOPP-0001`–`0025` | 25 |
+| 06 | VHF Direction Finder (VDF) | `06-vhf-direction-finder-vdf.json` | `RNAV-VDFN-0001`–`0031` | 31 |
+| 07 | Automatic Direction Finder (ADF) | `07-automatic-direction-finder-adf.json` | `RNAV-ADFN-0001`–`0072` | 72 |
+| 08 | VHF Omni-directional Range (VOR) | `08-vhf-omni-directional-range-vor.json` | `RNAV-VOR-0001`–`0071` | 71 |
+| 09 | Instrument Landing System (ILS) | `09-instrument-landing-system-ils.json` | `RNAV-ILS-0001`–`0081` | 81 |
+| 10 | Microwave Landing System (MLS) | `10-microwave-landing-system-mls.json` | `RNAV-MLS-0001`–`0025` | 25 |
+| 11 | Radar Principles | `11-radar-principles.json` | `RNAV-RDR-0001`–`0050` | 50 |
+| 12 | Ground Radar | `12-ground-radar.json` | `RNAV-GRDR-0001`–`0020` | 20 |
+| 13 | Airborne Weather Radar | `13-airborne-weather-radar.json` | `RNAV-AWR-0001`–`0059` | 59 |
+| 14 | Secondary Surveillance Radar (SSR) | `14-secondary-surveillance-radar-ssr.json` | `RNAV-SSR-0001`–`0048` | 48 |
+| 15 | Distance Measuring Equipment (DME) | `15-distance-measuring-equipment-dme.json` | `RNAV-DME-0001`–`0048` | 48 |
+| 16 | Area Navigation Systems (RNAV) | `16-area-navigation-systems-rnav.json` | `RNAV-ARNV-0001`–`0055` | 55 |
+| 17 | Electronic Flight Information System (EFIS) | `17-electronic-flight-information-system-efis.json` | `RNAV-EFIS-0001`–`0046` | 46 |
+| 18 | Global Navigation Satellite Systems (GNSS) | `18-global-navigation-satellite-systems-gnss.json` | `RNAV-GNSS-0001`–`0074` | 74 |
+
+### Answer-shape checks
+
+Correct letters a/b/c/d are within 24–25 % each. The correct option is
+the single longest in 24 % of questions and the single shortest in 9 %
+(MET, the reference bank: 33 % and 4 %). No duplicate stems. Every worked
+figure (line of sight, radar timing, PRF, DME delay, glide path height and
+rate of descent, slant range, bearings) was computed, not recalled.
+
+`public/rnav-study-guide.html` is the study guide: eighteen chapter
+sections in the same order, each with a key-idea callout, tables, cards
+and worked examples, seven inline SVG diagrams, a cheat sheet and six
+calculators (frequency/wavelength and band, line-of-sight range, radar
+timing, glide path height and ROD, DME slant range, RBI bearings). Checked
+at 1280px and 375px with no horizontal overflow and no script errors.
+
+It should be reviewed by a qualified instructor before a student relies on
+it for a real exam, the same caution as the other subjects.
+
 ## The B737 bank
 
 The aircraft is the **Boeing 737-800**, the stretched Next Generation variant

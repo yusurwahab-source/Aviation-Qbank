@@ -2068,7 +2068,10 @@ question files, 346 questions — see the note on the HPL bank in
 alone, a `subject.json` and twenty-nine question files, 1,400 questions,
 plus its study guide and the same one-line additions to `lib/study-guide.ts`
 and to `lib/atpl-subjects.ts` (code `MET` against 050) — see the note on
-the MET bank in `content/README.md`.
+the MET bank in `content/README.md`. Radio Navigation (`RNAV`, 062) is the fourth:
+`content/flying-knowledge/rnav/`, eighteen chapter files, 911 questions,
+and `public/rnav-study-guide.html` — see the note on the RNAV bank in
+`content/README.md`.
 
 The one thing that does not carry over from either of the other two trees:
 **Flying Knowledge is free in full, not metered by the free-tier cap or
@@ -2293,6 +2296,14 @@ length no longer gives the answer away. See the note on the MET bank in
   question against the book or any other syllabus, and should be reviewed
   by a qualified instructor before a student relies on it for a real exam.
   See the note on the MET bank in `content/README.md`.
+- **The RNAV bank (Radio Navigation, 911 questions in eighteen chapters)
+  was authored by the assistant from the CAE Oxford Aviation Academy ATPL
+  Radio Navigation textbook the owner bought and supplied, for its facts
+  only — not its wording or its questions.** It replaced an earlier
+  382-question bank that named the source and copied stems; see the note
+  on the RNAV bank in `content/README.md`. Topics carry chapter numbers so
+  they list in order. Nothing a student reads names a book, school,
+  regulator or syllabus. It should be reviewed by a qualified instructor.
 - **The A320 bank (type rating, 751 questions, by FCOM chapter) is checked
   against open sources, not against an FCOM.** Its facts come from the public
   FlyByWire A32NX documentation (an A320neo simulation's docs); nothing was
