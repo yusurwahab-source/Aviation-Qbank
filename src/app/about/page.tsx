@@ -13,57 +13,49 @@ export default function AboutPage() {
     <>
       <PageHeading
         eyebrow="About"
-        title={`What ${siteConfig.name} is`}
-        subtitle={siteConfig.tagline}
+        title="About PilotQBank"
+        subtitle="A study platform for the European aviation community"
       />
 
       <Card>
         <div className="space-y-5 text-sm leading-relaxed text-muted-foreground">
           <section className="space-y-2">
-            <h2 className="text-base font-semibold text-foreground">Why PilotQBank exists</h2>
+            <h2 className="text-base font-semibold text-foreground">Why we built this</h2>
             <p>
-              The goal is understanding the aircraft, not memorising questions. A student should
-              be able to rule out each wrong option by understanding the system, even when an
-              exam asks about it in a different way. If a question can only be answered by
-              remembering that exact question, it needs to be rewritten.
+              PilotQBank is built for students working through the demands and costs of aviation
+              training. Our goal is to provide an approachable study platform for the journey from
+              ATPL theory through aircraft systems and type rating preparation.
             </p>
           </section>
 
           <section className="space-y-2">
-            <h2 className="text-base font-semibold text-foreground">What you can practise</h2>
+            <h2 className="text-base font-semibold text-foreground">Understand, don’t memorize</h2>
             <p>
-              {siteConfig.name} brings together three areas:{" "}
-              <strong className="text-foreground">EASA ATPL Ground School</strong> for general
-              theory subjects, free in full;{" "}
-              <strong className="text-foreground">Aircraft Systems Knowledge</strong> for type
-              rating and class rating aircraft; and{" "}
-              <strong className="text-foreground">Pilot Sims &amp; Flight Trainers</strong> for
-              interactive practice. In the question-bank sections, choose the topics and number
-              of questions for your test.
+              Question banks can change, but sound knowledge stays with you in the cockpit and
+              during interviews. We focus on clear explanations that help you understand why an
+              answer is right and rule out alternatives through knowledge of the subject—not
+              recognition of a question you have seen before.
             </p>
           </section>
 
           <section className="space-y-2">
-            <h2 className="text-base font-semibold text-foreground">How tests work</h2>
+            <h2 className="text-base font-semibold text-foreground">A community project</h2>
             <p>
-              In <strong className="text-foreground">Study</strong> mode, each answer is marked
-              immediately and the explanation is shown; there is no time limit.{" "}
-              <strong className="text-foreground">Exam</strong> mode saves the review until the
-              end and allows one minute per question.
-            </p>
-            <p>
-              You can practise without an account. When signed in, your answers are saved as you
-              give them, so you can review your progress and resume an unfinished test.
+              PilotQBank is an ongoing project, and we welcome feedback and corrections from
+              students and aviation professionals. Questions are reviewed and updated over time;
+              source references are included where available, and coverage and verification vary
+              between subjects and aircraft.
             </p>
           </section>
 
           <section className="space-y-2">
-            <h2 className="text-base font-semibold text-foreground">A note about the content</h2>
+            <h2 className="text-base font-semibold text-foreground">Important disclaimer</h2>
             <p>
-              Question files are validated before publication, and source references are included
-              where available. Coverage and verification vary by subject and aircraft, so use
-              this as practice material—not as a substitute for approved aircraft manuals,
-              training, or official exam material.
+              PilotQBank is a supplementary revision and learning resource only. It does not
+              replace your approved training organization’s syllabus, instructor guidance, or
+              official aircraft documentation, including the FCOM or AFM. Always verify
+              aircraft-specific information against the documentation applicable to your
+              aircraft and operator.
             </p>
           </section>
         </div>
