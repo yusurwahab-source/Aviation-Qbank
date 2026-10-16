@@ -1,0 +1,2376 @@
+[
+  {
+    "id": "RNAV-VOR-0001",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Introduction",
+    "question": "To which north is VOR bearing information normally referenced?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Magnetic north at the aircraft"
+      },
+      {
+        "id": "b",
+        "text": "Magnetic north at the VOR"
+      },
+      {
+        "id": "c",
+        "text": "True north at the VOR"
+      },
+      {
+        "id": "d",
+        "text": "Grid north on the chart"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A VOR is normally aligned so that its 000° radial points to magnetic north at the beacon itself. That is why variation at the station, not at the aircraft, is used when a VOR bearing is plotted.",
+    "tags": [
+      "vor",
+      "magnetic north"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0002",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Introduction",
+    "question": "Why can VOR be used equally well by day and by night?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is VHF, so it has no sky wave and little static"
+      },
+      {
+        "id": "b",
+        "text": "It uses a lower frequency at night to avoid interference"
+      },
+      {
+        "id": "c",
+        "text": "It uses horizontal polarization, which the ionosphere ignores"
+      },
+      {
+        "id": "d",
+        "text": "Its ground monitor switches power up at night"
+      }
+    ],
+    "correct": "a",
+    "explanation": "VHF signals are not returned by the ionosphere and suffer little static, so VOR has none of the night effect that troubles ADF.",
+    "tags": [
+      "vor",
+      "advantages"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0003",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Introduction",
+    "question": "What frequency band does VOR use?",
+    "options": [
+      {
+        "id": "a",
+        "text": "962 to 1 213 MHz"
+      },
+      {
+        "id": "b",
+        "text": "118.0 to 136.975 MHz"
+      },
+      {
+        "id": "c",
+        "text": "108.0 to 111.95 MHz"
+      },
+      {
+        "id": "d",
+        "text": "108.0 to 117.95 MHz"
+      }
+    ],
+    "correct": "d",
+    "explanation": "VOR uses 108–117.95 MHz in the VHF band. The 108–112 MHz part is shared with the ILS localizer; 118–137 MHz is voice communication; 962–1 213 MHz is DME.",
+    "tags": [
+      "vor",
+      "frequency"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0004",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Introduction",
+    "question": "What type of fix does a VOR co-located with a DME provide?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A bearing and bearing (theta-theta) fix"
+      },
+      {
+        "id": "b",
+        "text": "A hyperbolic position fix"
+      },
+      {
+        "id": "c",
+        "text": "A range and bearing (rho-theta) fix"
+      },
+      {
+        "id": "d",
+        "text": "A range and range (rho-rho) fix"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The VOR gives the radial (theta) and the DME the distance (rho), so one station gives an instantaneous position.",
+    "tags": [
+      "vor",
+      "dme",
+      "rho-theta"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0005",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Introduction",
+    "question": "Which of these is a use of VOR?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Measuring the aircraft's height above terrain"
+      },
+      {
+        "id": "b",
+        "text": "Measuring distance to the station"
+      },
+      {
+        "id": "c",
+        "text": "Giving glide path guidance to the threshold"
+      },
+      {
+        "id": "d",
+        "text": "Defining the centre lines of airways"
+      }
+    ],
+    "correct": "d",
+    "explanation": "VORs mark the start, end and centre line of airway sections, serve as let-down aids and holding points, and give en route position lines.",
+    "tags": [
+      "vor",
+      "uses"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0006",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Principle of Operation",
+    "question": "How does a VOR receiver find the aircraft's bearing from the station?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By measuring the time for a pulse to travel from the station"
+      },
+      {
+        "id": "b",
+        "text": "By comparing the phase of two 30 Hz signals"
+      },
+      {
+        "id": "c",
+        "text": "By comparing the strength of two overlapping lobes"
+      },
+      {
+        "id": "d",
+        "text": "By finding the null of a rotating loop aerial"
+      }
+    ],
+    "correct": "b",
+    "explanation": "VOR works by phase comparison. A reference 30 Hz signal and a variable 30 Hz signal are compared; their phase difference equals the aircraft's magnetic bearing from the station.",
+    "tags": [
+      "vor",
+      "principle",
+      "phase"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0007",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Principle of Operation",
+    "question": "In a conventional VOR, how is the reference 30 Hz signal transmitted?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Amplitude modulated, the same phase in all directions"
+      },
+      {
+        "id": "b",
+        "text": "Frequency modulated, varying in phase with bearing"
+      },
+      {
+        "id": "c",
+        "text": "Frequency modulated, the same phase in all directions"
+      },
+      {
+        "id": "d",
+        "text": "Amplitude modulated, varying in phase with bearing"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The reference signal is a 30 Hz FM signal (carried on a subcarrier) whose phase is the same whatever the receiver's bearing. The directional signal is 30 Hz AM.",
+    "tags": [
+      "vor",
+      "reference signal"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0008",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Principle of Operation",
+    "question": "In a conventional VOR, how is the variable (directional) 30 Hz signal produced?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A pattern rotating 30 times a second gives 30 Hz AM"
+      },
+      {
+        "id": "b",
+        "text": "By a pattern rotating once per second, giving 1 Hz AM"
+      },
+      {
+        "id": "c",
+        "text": "By frequency modulating the carrier 30 times per second"
+      },
+      {
+        "id": "d",
+        "text": "By switching between two cardioids 120 times per second"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A limaçon-shaped pattern rotates at 30 revolutions per second, so a receiver sees the signal strength rise and fall 30 times a second — a 30 Hz AM signal whose phase depends on bearing.",
+    "tags": [
+      "vor",
+      "variable signal",
+      "limacon"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0009",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Principle of Operation",
+    "question": "What shape is the rotating directional pattern of a conventional VOR?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A limaçon"
+      },
+      {
+        "id": "b",
+        "text": "A pencil beam"
+      },
+      {
+        "id": "c",
+        "text": "A figure-of-eight"
+      },
+      {
+        "id": "d",
+        "text": "A cardioid with no null"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Combining a rotating figure-of-eight with the omnidirectional reference pattern produces a limaçon. Early VORs rotated the aerial mechanically; modern ones do it electronically.",
+    "tags": [
+      "vor",
+      "limacon"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0010",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Principle of Operation",
+    "question": "Where are the reference and variable signals of a VOR in phase?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Due true north of the VOR"
+      },
+      {
+        "id": "b",
+        "text": "Due magnetic south of the VOR"
+      },
+      {
+        "id": "c",
+        "text": "Directly overhead the VOR"
+      },
+      {
+        "id": "d",
+        "text": "Due magnetic north of the VOR"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The two 30 Hz signals are synchronised to be in phase on the 000° (magnetic) radial. Anywhere else the phase difference equals the magnetic bearing from the beacon.",
+    "tags": [
+      "vor",
+      "phase",
+      "north"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0011",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Principle of Operation",
+    "question": "Why are the two 30 Hz VOR signals put on by different types of modulation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To allow the VOR to be used with ADF equipment"
+      },
+      {
+        "id": "b",
+        "text": "To double the range of the VOR"
+      },
+      {
+        "id": "c",
+        "text": "To stop them interacting and merging in the receiver"
+      },
+      {
+        "id": "d",
+        "text": "To give a 180° ambiguity that the receiver resolves"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Using FM for one and AM for the other keeps the two 30 Hz signals separate, so the receiver can compare their phases.",
+    "tags": [
+      "vor",
+      "modulation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0012",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Principle of Operation",
+    "question": "An aircraft's VOR receiver measures a phase difference of 227°. On which radial is the aircraft?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The 047° radial"
+      },
+      {
+        "id": "b",
+        "text": "The 227° radial"
+      },
+      {
+        "id": "c",
+        "text": "The 317° radial"
+      },
+      {
+        "id": "d",
+        "text": "The 133° radial"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The phase difference equals the magnetic bearing from the station, so the aircraft is on the 227° radial. Its QDM to the station is 047°.",
+    "tags": [
+      "vor",
+      "radial",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0013",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Principle of Operation",
+    "question": "Is VOR bearing information available while the station is transmitting its identification?",
+    "options": [
+      {
+        "id": "a",
+        "text": "No, bearings are removed during the ident"
+      },
+      {
+        "id": "b",
+        "text": "Yes, bearing information is continuous"
+      },
+      {
+        "id": "c",
+        "text": "Only if the ident is sent in voice"
+      },
+      {
+        "id": "d",
+        "text": "Only on the 40 channels below 112 MHz"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The bearing signals are transmitted continuously and are not interrupted by the Morse or voice identification.",
+    "tags": [
+      "vor",
+      "identification"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0014",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Terminology",
+    "question": "What is a VOR radial?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A magnetic bearing from the VOR"
+      },
+      {
+        "id": "b",
+        "text": "A relative bearing of the VOR"
+      },
+      {
+        "id": "c",
+        "text": "A magnetic bearing to the VOR"
+      },
+      {
+        "id": "d",
+        "text": "A true bearing from the VOR"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A radial is a magnetic bearing FROM the beacon — a QDR. The 090° radial runs east from the station.",
+    "tags": [
+      "vor",
+      "radial"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0015",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Terminology",
+    "question": "An aircraft is on the 135° radial of a VOR. What is its QDM?",
+    "options": [
+      {
+        "id": "a",
+        "text": "225°"
+      },
+      {
+        "id": "b",
+        "text": "135°"
+      },
+      {
+        "id": "c",
+        "text": "315°"
+      },
+      {
+        "id": "d",
+        "text": "045°"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The QDM is the reciprocal of the radial: 135° + 180° = 315°. Flying 315°M (in still air) leads to the station.",
+    "tags": [
+      "vor",
+      "qdm",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0016",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Terminology",
+    "question": "An aircraft is on the 240° radial. Variation at the VOR is 10°W and at the aircraft 8°W. What true bearing from the VOR should be plotted?",
+    "options": [
+      {
+        "id": "a",
+        "text": "248°"
+      },
+      {
+        "id": "b",
+        "text": "250°"
+      },
+      {
+        "id": "c",
+        "text": "232°"
+      },
+      {
+        "id": "d",
+        "text": "230°"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Radials are referenced to magnetic north at the VOR, so the VOR's variation is used: true = magnetic − west variation = 240° − 10° = 230°. Using the aircraft's variation (232°) is the classic mistake.",
+    "tags": [
+      "vor",
+      "variation",
+      "plotting"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0017",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Frequencies and Identification",
+    "question": "How many VOR channels are available in total?",
+    "options": [
+      {
+        "id": "a",
+        "text": "120"
+      },
+      {
+        "id": "b",
+        "text": "160"
+      },
+      {
+        "id": "c",
+        "text": "200"
+      },
+      {
+        "id": "d",
+        "text": "40"
+      }
+    ],
+    "correct": "b",
+    "explanation": "There are 40 channels between 108 and 112 MHz (shared with ILS) and 120 channels between 112 and 117.95 MHz, giving 160.",
+    "tags": [
+      "vor",
+      "channels"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0018",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Frequencies and Identification",
+    "question": "Between 108 and 112 MHz, which frequencies are used by VORs?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Odd first decimals, and odd decimals plus 0.05"
+      },
+      {
+        "id": "b",
+        "text": "Only whole and half megahertz"
+      },
+      {
+        "id": "c",
+        "text": "Every 0.05 MHz without exception"
+      },
+      {
+        "id": "d",
+        "text": "Even first decimals, and even decimals plus 0.05"
+      }
+    ],
+    "correct": "d",
+    "explanation": "In 108–112 MHz the ILS localizers take odd decimals (108.1, 108.15, 108.3…) and VORs take even ones (108.0, 108.05, 108.2, 108.25…).",
+    "tags": [
+      "vor",
+      "frequency",
+      "channels"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0019",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Frequencies and Identification",
+    "question": "Which frequency could be a VOR rather than an ILS localizer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "108.45 MHz"
+      },
+      {
+        "id": "b",
+        "text": "109.35 MHz"
+      },
+      {
+        "id": "c",
+        "text": "108.10 MHz"
+      },
+      {
+        "id": "d",
+        "text": "110.70 MHz"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Below 112 MHz VORs use even first decimals (with or without the extra 0.05). 108.45 has an even first decimal (4); 108.10, 109.35 and 110.70 have odd first decimals and belong to localizers.",
+    "tags": [
+      "vor",
+      "frequency",
+      "ils"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0020",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Frequencies and Identification",
+    "question": "What is the channel spacing of VORs between 112 and 117.95 MHz?",
+    "options": [
+      {
+        "id": "a",
+        "text": "0.1 MHz"
+      },
+      {
+        "id": "b",
+        "text": "0.2 MHz"
+      },
+      {
+        "id": "c",
+        "text": "0.05 MHz"
+      },
+      {
+        "id": "d",
+        "text": "0.025 MHz"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Above 112 MHz the band is VOR only, with a channel every 50 kHz — 120 channels.",
+    "tags": [
+      "vor",
+      "channels"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0021",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Frequencies and Identification",
+    "question": "What is the emission designator of VOR?",
+    "options": [
+      {
+        "id": "a",
+        "text": "P0N"
+      },
+      {
+        "id": "b",
+        "text": "A3E"
+      },
+      {
+        "id": "c",
+        "text": "A9W"
+      },
+      {
+        "id": "d",
+        "text": "A8W"
+      }
+    ],
+    "correct": "c",
+    "explanation": "A9W: amplitude modulated double sideband (A), composite system (9), combination of telemetry, telephony and telegraphy (W).",
+    "tags": [
+      "vor",
+      "emission"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0022",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Frequencies and Identification",
+    "question": "How do UK VORs normally identify themselves?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A continuous tone with no Morse"
+      },
+      {
+        "id": "b",
+        "text": "Three-letter Morse at least every 10 seconds"
+      },
+      {
+        "id": "c",
+        "text": "Voice only, every minute"
+      },
+      {
+        "id": "d",
+        "text": "Two-letter Morse every 30 seconds"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The ident is 3-letter Morse, about 7 groups per minute and at least every 10 seconds. A voice ident may follow, and the voice channel can carry ATIS at the same time as the bearings.",
+    "tags": [
+      "vor",
+      "identification"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0023",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Frequencies and Identification",
+    "question": "How does a test VOR (VOT) identify itself?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A continuous tone or a series of dots"
+      },
+      {
+        "id": "b",
+        "text": "Three-letter Morse every 10 seconds"
+      },
+      {
+        "id": "c",
+        "text": "A voice message giving its frequency"
+      },
+      {
+        "id": "d",
+        "text": "The letters TST in Morse"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A VOT sends a continuous tone or a series of dots. A normal VOR sending TST is on test and must not be used.",
+    "tags": [
+      "vor",
+      "vot"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0024",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Frequencies and Identification",
+    "question": "How is ATIS sometimes provided through a VOR?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By interrupting the ident every 30 seconds"
+      },
+      {
+        "id": "b",
+        "text": "By replacing the bearing signal with speech"
+      },
+      {
+        "id": "c",
+        "text": "On the DME frequency paired with the VOR"
+      },
+      {
+        "id": "d",
+        "text": "On the VOR's voice channel, alongside the bearing information"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The voice channel can carry ATIS by amplitude modulation at the same time as the bearing signals.",
+    "tags": [
+      "vor",
+      "atis"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0025",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Monitoring",
+    "question": "When will a VOR's automatic monitor remove the ident and navigation signals (or switch off the beacon)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "If the bearing changes by more than 5°"
+      },
+      {
+        "id": "b",
+        "text": "If the bearing changes by more than 1°"
+      },
+      {
+        "id": "c",
+        "text": "If the signal strength falls by more than 5%"
+      },
+      {
+        "id": "d",
+        "text": "If the ident fails for more than 1 minute"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The monitor acts on a bearing change over 1°, a fall of more than 15% in signal strength (either 30 Hz modulation or the carrier), or failure of the monitor itself.",
+    "tags": [
+      "vor",
+      "monitoring"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0026",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Monitoring",
+    "question": "What reduction in signal strength triggers a VOR's monitor?",
+    "options": [
+      {
+        "id": "a",
+        "text": "More than 15%"
+      },
+      {
+        "id": "b",
+        "text": "More than 25%"
+      },
+      {
+        "id": "c",
+        "text": "More than 5%"
+      },
+      {
+        "id": "d",
+        "text": "More than 50%"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A reduction greater than 15% in either 30 Hz modulation, or the RF carrier, causes the monitor to warn and remove the signals.",
+    "tags": [
+      "vor",
+      "monitoring"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0027",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Monitoring",
+    "question": "What should a pilot assume if a VOR's bearings are present but no identification is heard?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is serviceable; the ident is optional"
+      },
+      {
+        "id": "b",
+        "text": "It is serviceable but out of its DOC"
+      },
+      {
+        "id": "c",
+        "text": "It is a test VOR for checking equipment"
+      },
+      {
+        "id": "d",
+        "text": "It may be changing transmitters; do not use it"
+      }
+    ],
+    "correct": "d",
+    "explanation": "During a changeover to the standby transmitter no ident is sent and the bearings may be wrong until it stabilises. Never use a VOR without its ident.",
+    "tags": [
+      "vor",
+      "monitoring",
+      "identification"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0028",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Monitoring",
+    "question": "A VOR is identifying \"TST\". What does this mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is a test VOR for checking aircraft receivers"
+      },
+      {
+        "id": "b",
+        "text": "It is a broadcast VOR transmitting weather"
+      },
+      {
+        "id": "c",
+        "text": "It is on test; its bearings must not be used"
+      },
+      {
+        "id": "d",
+        "text": "It is a terminal VOR with reduced power"
+      }
+    ],
+    "correct": "c",
+    "explanation": "TST means the beacon is undergoing testing or maintenance. Its information should not be used for navigation.",
+    "tags": [
+      "vor",
+      "tst"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0029",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Types of VOR",
+    "question": "What is a TVOR?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A low-power terminal VOR at major airfields"
+      },
+      {
+        "id": "b",
+        "text": "A VOR broadcasting weather between idents"
+      },
+      {
+        "id": "c",
+        "text": "A VOR co-located with TACAN"
+      },
+      {
+        "id": "d",
+        "text": "A VOR used only to test aircraft receivers"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A terminal VOR transmits at low power (about 50 W) and serves the airfield area. A VORTAC is VOR with TACAN; a VOT is for testing; a BVOR broadcasts weather.",
+    "tags": [
+      "vor",
+      "types",
+      "tvor"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0030",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Types of VOR",
+    "question": "What is the main advantage of a Doppler VOR (DVOR)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It gives distance as well as bearing"
+      },
+      {
+        "id": "b",
+        "text": "It works on a lower frequency band"
+      },
+      {
+        "id": "c",
+        "text": "It needs a special airborne receiver"
+      },
+      {
+        "id": "d",
+        "text": "It is much less sensitive to site error"
+      }
+    ],
+    "correct": "d",
+    "explanation": "DVOR is a second-generation VOR. It uses the same frequencies and airborne receivers, but its transmissions are far less affected by site error, so its bearings are more accurate.",
+    "tags": [
+      "vor",
+      "dvor"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0031",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Types of VOR",
+    "question": "In a Doppler VOR, how are the reference and variable signals modulated?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Both AM"
+      },
+      {
+        "id": "b",
+        "text": "Reference FM, variable AM"
+      },
+      {
+        "id": "c",
+        "text": "Reference AM, variable FM"
+      },
+      {
+        "id": "d",
+        "text": "Both FM"
+      }
+    ],
+    "correct": "c",
+    "explanation": "A DVOR reverses the conventional VOR's modulation: reference AM, variable FM.",
+    "tags": [
+      "vor",
+      "dvor"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0032",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Types of VOR",
+    "question": "Why does the simulated rotation of a Doppler VOR run anti-clockwise?",
+    "options": [
+      {
+        "id": "a",
+        "text": "So that it rotates against the earth's rotation"
+      },
+      {
+        "id": "b",
+        "text": "So standard receivers still read the correct radial"
+      },
+      {
+        "id": "c",
+        "text": "So that it can be told apart from a conventional VOR"
+      },
+      {
+        "id": "d",
+        "text": "So that it gives twice the accuracy of a conventional VOR"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Swapping AM and FM would reverse the phase relationship; rotating the pattern anti-clockwise restores it, so the same receiver works with CVOR and DVOR.",
+    "tags": [
+      "vor",
+      "dvor"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0033",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Types of VOR",
+    "question": "What is a VOT used for?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Checking the VOR receiver before IFR flight"
+      },
+      {
+        "id": "b",
+        "text": "Broadcasting ATIS between identifications"
+      },
+      {
+        "id": "c",
+        "text": "Navigating on a published approach procedure"
+      },
+      {
+        "id": "d",
+        "text": "Providing a back-up to the ILS glide path"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A VOT radiates a single 360° radial in all directions. With the station not to be used for navigation, it lets pilots check receiver accuracy on the ground.",
+    "tags": [
+      "vor",
+      "vot"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0034",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Types of VOR",
+    "question": "During a VOT check, what error means the aircraft's VOR equipment needs servicing?",
+    "options": [
+      {
+        "id": "a",
+        "text": "More than ±10°"
+      },
+      {
+        "id": "b",
+        "text": "More than ±1°"
+      },
+      {
+        "id": "c",
+        "text": "More than ±4°"
+      },
+      {
+        "id": "d",
+        "text": "More than ±2°"
+      }
+    ],
+    "correct": "c",
+    "explanation": "A reading more than 4° from 360° (FROM) or 180° (TO) means the receiver needs attention.",
+    "tags": [
+      "vor",
+      "vot",
+      "tolerance"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0035",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Types of VOR",
+    "question": "What is a BVOR?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A VOR co-located with a TACAN"
+      },
+      {
+        "id": "b",
+        "text": "A VOR broadcasting weather and airfield information between idents"
+      },
+      {
+        "id": "c",
+        "text": "A VOR used only for testing receivers"
+      },
+      {
+        "id": "d",
+        "text": "A back-up VOR used when the main one fails"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A broadcast VOR carries weather and airfield information between beacon identifications.",
+    "tags": [
+      "vor",
+      "types"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0036",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Types of VOR",
+    "question": "What is a VORTAC?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A VOR with a test function"
+      },
+      {
+        "id": "b",
+        "text": "A VOR used for terminal approaches"
+      },
+      {
+        "id": "c",
+        "text": "A Doppler VOR with a DME"
+      },
+      {
+        "id": "d",
+        "text": "A co-located VOR and TACAN"
+      }
+    ],
+    "correct": "d",
+    "explanation": "VORTAC combines a VOR with a military TACAN; civil aircraft use its DME element for range.",
+    "tags": [
+      "vor",
+      "vortac"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0037",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Range and DOC",
+    "question": "What range does an en route VOR with a 200 W transmitter typically have?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 200 NM"
+      },
+      {
+        "id": "b",
+        "text": "About 500 NM"
+      },
+      {
+        "id": "c",
+        "text": "About 50 NM"
+      },
+      {
+        "id": "d",
+        "text": "About 25 NM"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A 200 W en route VOR has a range of about 200 NM, subject to line of sight. A terminal VOR typically transmits only 50 W.",
+    "tags": [
+      "vor",
+      "range"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0038",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Range and DOC",
+    "question": "An aircraft at FL 160 is approaching a VOR whose aerial is at 900 ft. What is the maximum theoretical reception range?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 160 NM"
+      },
+      {
+        "id": "b",
+        "text": "About 192 NM"
+      },
+      {
+        "id": "c",
+        "text": "About 1 920 NM"
+      },
+      {
+        "id": "d",
+        "text": "About 156 NM"
+      }
+    ],
+    "correct": "b",
+    "explanation": "1.23 × (√16 000 + √900) = 1.23 × (126.5 + 30) = 1.23 × 156.5 ≈ 192 NM. Omitting the station height gives 156 NM.",
+    "tags": [
+      "vor",
+      "line of sight",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0039",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Range and DOC",
+    "question": "What is VOR scalloping?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The cone of no signal directly over the station"
+      },
+      {
+        "id": "b",
+        "text": "Interference from a distant VOR transmitting on the same frequency"
+      },
+      {
+        "id": "c",
+        "text": "Errors caused by sky waves at night"
+      },
+      {
+        "id": "d",
+        "text": "Bends in a radial caused by reflections"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Reflections from terrain and structures make the received radial bend, so the CDI needle drifts or swings from side to side. Known errors are published, e.g. \"errors up to 5.5° in sector 315°–345° to 40 NM\".",
+    "tags": [
+      "vor",
+      "scalloping"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0040",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Range and DOC",
+    "question": "Why would co-frequency VORs ideally be separated by twice their line-of-sight range?",
+    "options": [
+      {
+        "id": "a",
+        "text": "So that their radials never cross"
+      },
+      {
+        "id": "b",
+        "text": "So that the DME can tell them apart"
+      },
+      {
+        "id": "c",
+        "text": "So that an aircraft cannot receive both at once"
+      },
+      {
+        "id": "d",
+        "text": "So that their cones of silence never overlap"
+      }
+    ],
+    "correct": "c",
+    "explanation": "An aircraft at height can receive each beacon out to its line-of-sight range, so two beacons on the same frequency must be at least twice that far apart to avoid interference. With extra margins this becomes about 500 NM for planning.",
+    "tags": [
+      "vor",
+      "doc",
+      "interference"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0041",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Range and DOC",
+    "question": "For an aircraft at 25 000 ft and VORs at sea level, what minimum co-frequency separation would avoid interference?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 250 NM"
+      },
+      {
+        "id": "b",
+        "text": "About 195 NM"
+      },
+      {
+        "id": "c",
+        "text": "About 389 NM"
+      },
+      {
+        "id": "d",
+        "text": "About 500 NM"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Range = 1.23 × √25 000 ≈ 194.5 NM, and twice that is about 389 NM. Planning adds roughly 100 NM more, giving about 500 NM.",
+    "tags": [
+      "vor",
+      "doc",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0042",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Range and DOC",
+    "question": "A VOR has a DOC of 80/30. What does this mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "No co-frequency interference within 30 NM up to 8 000 ft"
+      },
+      {
+        "id": "b",
+        "text": "Accurate bearings within 80 NM above 3 000 ft only"
+      },
+      {
+        "id": "c",
+        "text": "Usable range 80 NM by day and 30 NM by night"
+      },
+      {
+        "id": "d",
+        "text": "No co-frequency interference within 80 NM up to 30 000 ft"
+      }
+    ],
+    "correct": "d",
+    "explanation": "DOC is range/altitude: within 80 NM and up to 30 000 ft the aircraft should not suffer co-frequency interference. It can vary by sector and is valid day and night.",
+    "tags": [
+      "vor",
+      "doc"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0043",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Range and DOC",
+    "question": "Under what conditions may co-frequency interference occur within a VOR's DOC?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Thunderstorm static"
+      },
+      {
+        "id": "b",
+        "text": "Super-refraction"
+      },
+      {
+        "id": "c",
+        "text": "Sub-refraction"
+      },
+      {
+        "id": "d",
+        "text": "Heavy rain"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Super-refraction bends VHF waves further than normal, so a distant VOR on the same frequency may be received inside the protected coverage.",
+    "tags": [
+      "vor",
+      "doc",
+      "super-refraction"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0044",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Accuracy",
+    "question": "To what accuracy is a VOR's ground site error monitored?",
+    "options": [
+      {
+        "id": "a",
+        "text": "±1°"
+      },
+      {
+        "id": "b",
+        "text": "±0.5°"
+      },
+      {
+        "id": "c",
+        "text": "±3°"
+      },
+      {
+        "id": "d",
+        "text": "±5°"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Site error from terrain, buildings, trees and even long grass near the transmitter is monitored to ±1°.",
+    "tags": [
+      "vor",
+      "accuracy",
+      "site error"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0045",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Accuracy",
+    "question": "What is the maximum airborne equipment error permitted for VOR?",
+    "options": [
+      {
+        "id": "a",
+        "text": "±5°"
+      },
+      {
+        "id": "b",
+        "text": "±1°"
+      },
+      {
+        "id": "c",
+        "text": "±10°"
+      },
+      {
+        "id": "d",
+        "text": "±3°"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Converting the measured phase difference into a bearing introduces up to ±3° in the aircraft equipment.",
+    "tags": [
+      "vor",
+      "accuracy",
+      "airborne"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0046",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Accuracy",
+    "question": "What total VOR bearing error is usually assumed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "±10°"
+      },
+      {
+        "id": "b",
+        "text": "±1°"
+      },
+      {
+        "id": "c",
+        "text": "±5°"
+      },
+      {
+        "id": "d",
+        "text": "±3°"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Site, propagation and airborne errors are aggregated to about ±5°. Pilotage error must be added, especially near the station where radials converge.",
+    "tags": [
+      "vor",
+      "accuracy"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0047",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Accuracy",
+    "question": "Why does flying accurately on a radial become harder close to a VOR?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Radials converge, so a degree is less distance"
+      },
+      {
+        "id": "b",
+        "text": "The VOR signal weakens close to the station because of the cone"
+      },
+      {
+        "id": "c",
+        "text": "Scalloping is always worst close to the station"
+      },
+      {
+        "id": "d",
+        "text": "The aircraft is inside the station's DOC"
+      }
+    ],
+    "correct": "a",
+    "explanation": "1° of radial is about 1 NM wide at 60 NM but only about 0.1 NM at 6 NM, so the needle becomes very sensitive close in.",
+    "tags": [
+      "vor",
+      "pilotage"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0048",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Accuracy",
+    "question": "What happens to the VOR indications as the aircraft passes through the cone of ambiguity overhead?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The VOR indicates the 360° radial until the aircraft is clear of the cone"
+      },
+      {
+        "id": "b",
+        "text": "Needle swings, OFF may flicker, TO/FROM changes"
+      },
+      {
+        "id": "c",
+        "text": "The needle freezes and the last radial is held"
+      },
+      {
+        "id": "d",
+        "text": "The indications are unaffected; only DME is lost"
+      }
+    ],
+    "correct": "b",
+    "explanation": "There is no planned radiation directly above the beacon, so the indications become unreliable until the aircraft has passed through and readings settle.",
+    "tags": [
+      "vor",
+      "cone of ambiguity"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0049",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Accuracy",
+    "question": "Up to what minimum elevation angle must VOR coverage extend?",
+    "options": [
+      {
+        "id": "a",
+        "text": "40°"
+      },
+      {
+        "id": "b",
+        "text": "80°"
+      },
+      {
+        "id": "c",
+        "text": "60°"
+      },
+      {
+        "id": "d",
+        "text": "20°"
+      }
+    ],
+    "correct": "a",
+    "explanation": "VOR must provide usable signals up to at least 40° above the horizon. Modern beacons usually manage 60–80°.",
+    "tags": [
+      "vor",
+      "coverage"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0050",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Airborne Equipment",
+    "question": "Where is the VOR aerial usually fitted on a high-speed aircraft?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A loop aerial under the fuselage"
+      },
+      {
+        "id": "b",
+        "text": "A parabolic dish in the nose"
+      },
+      {
+        "id": "c",
+        "text": "A whip aerial on top of the cockpit roof, ahead of the wing"
+      },
+      {
+        "id": "d",
+        "text": "Blade or flush aerials on the fin"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Slow aircraft use a whip aerial on the fuselage; fast aircraft use blade or flush-mounted aerials on each side of the fin.",
+    "tags": [
+      "vor",
+      "aerial"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0051",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Course Deviation Indicator",
+    "question": "On a 5-dot VOR CDI, how many degrees does each dot represent?",
+    "options": [
+      {
+        "id": "a",
+        "text": "1°"
+      },
+      {
+        "id": "b",
+        "text": "5°"
+      },
+      {
+        "id": "c",
+        "text": "2°"
+      },
+      {
+        "id": "d",
+        "text": "0.5°"
+      }
+    ],
+    "correct": "c",
+    "explanation": "On a 5-dot scale (the circle counts as the first dot) each dot is 2° and full-scale deflection is 10°.",
+    "tags": [
+      "vor",
+      "cdi"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0052",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Course Deviation Indicator",
+    "question": "What does full-scale deflection of a VOR CDI represent?",
+    "options": [
+      {
+        "id": "a",
+        "text": "5° or more off the selected radial"
+      },
+      {
+        "id": "b",
+        "text": "10° or more off the selected radial"
+      },
+      {
+        "id": "c",
+        "text": "20° or more off the selected radial"
+      },
+      {
+        "id": "d",
+        "text": "2.5° or more off the selected radial"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Full deflection on a VOR display always represents 10° or more. Whether the scale has 5 dots (2° each) or 2 dots (5° each), the total is 10°.",
+    "tags": [
+      "vor",
+      "cdi"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0053",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Course Deviation Indicator",
+    "question": "A 5-dot CDI shows the bar 3 dots left of centre. How far is the aircraft from the selected course?",
+    "options": [
+      {
+        "id": "a",
+        "text": "1.5°"
+      },
+      {
+        "id": "b",
+        "text": "6°"
+      },
+      {
+        "id": "c",
+        "text": "3°"
+      },
+      {
+        "id": "d",
+        "text": "15°"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Each dot is 2°, so 3 dots = 6°.",
+    "tags": [
+      "vor",
+      "cdi",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0054",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Course Deviation Indicator",
+    "question": "On a 2-dot VOR display, how many degrees does each dot represent?",
+    "options": [
+      {
+        "id": "a",
+        "text": "5°"
+      },
+      {
+        "id": "b",
+        "text": "2.5°"
+      },
+      {
+        "id": "c",
+        "text": "10°"
+      },
+      {
+        "id": "d",
+        "text": "2°"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Full scale is still 10°, spread over 2 dots, so each dot is 5°.",
+    "tags": [
+      "vor",
+      "hsi"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0055",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Course Deviation Indicator",
+    "question": "Does the aircraft's heading affect the indication on a basic VOR CDI?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes; but only when inbound to the station"
+      },
+      {
+        "id": "b",
+        "text": "Yes; the bar always shows the turn needed"
+      },
+      {
+        "id": "c",
+        "text": "No; but the TO/FROM flag depends on heading"
+      },
+      {
+        "id": "d",
+        "text": "No; it depends only on position and the course set"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The CDI shows the angle between the selected course and the radial the aircraft is on, and the TO/FROM is decided the same way. Heading plays no part.",
+    "tags": [
+      "vor",
+      "cdi",
+      "heading"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0056",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Course Deviation Indicator",
+    "question": "A pilot flying outbound from a VOR has selected the inbound course, so the CDI shows TO. What is the problem?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The CDI will show the correct sense but the wrong radial"
+      },
+      {
+        "id": "b",
+        "text": "None; TO or FROM makes no difference to the sense"
+      },
+      {
+        "id": "c",
+        "text": "The CDI sense is reversed: a fly-left needs a right turn"
+      },
+      {
+        "id": "d",
+        "text": "The CDI will show OFF throughout the flight"
+      }
+    ],
+    "correct": "c",
+    "explanation": "To keep the deviation bar sensing correctly, select inbound tracks with TO showing and outbound tracks with FROM showing, with heading roughly the same as the selected course.",
+    "tags": [
+      "vor",
+      "cdi",
+      "reverse sensing"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0057",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Course Deviation Indicator",
+    "question": "An aircraft is on the 090° radial and the pilot sets 090° on the OBS. What will the CDI show?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Needle full left with TO"
+      },
+      {
+        "id": "b",
+        "text": "Needle centred with OFF"
+      },
+      {
+        "id": "c",
+        "text": "Needle centred with TO"
+      },
+      {
+        "id": "d",
+        "text": "Needle centred with FROM"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The aircraft is on the selected radial, so the needle is central. The course is within 90° of the radial the aircraft is on, so FROM is shown.",
+    "tags": [
+      "vor",
+      "cdi",
+      "to/from"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0058",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Course Deviation Indicator",
+    "question": "An aircraft is on the 090° radial and the pilot sets 270° on the OBS. What will the CDI show?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Needle centred with FROM"
+      },
+      {
+        "id": "b",
+        "text": "Needle centred with TO"
+      },
+      {
+        "id": "c",
+        "text": "Needle full left with TO"
+      },
+      {
+        "id": "d",
+        "text": "Needle full right with FROM"
+      }
+    ],
+    "correct": "b",
+    "explanation": "270° is the QDM to the station from the 090° radial, so the aircraft is on the selected line, inbound: needle central, TO.",
+    "tags": [
+      "vor",
+      "cdi",
+      "to/from"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0059",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Course Deviation Indicator",
+    "question": "The OBS is set to 360°. The aircraft is on the 090° radial. What TO/FROM indication will be shown?",
+    "options": [
+      {
+        "id": "a",
+        "text": "TO, with the needle centred"
+      },
+      {
+        "id": "b",
+        "text": "FROM"
+      },
+      {
+        "id": "c",
+        "text": "Neither; it is ambiguous or OFF"
+      },
+      {
+        "id": "d",
+        "text": "TO"
+      }
+    ],
+    "correct": "c",
+    "explanation": "090° is 90° from the selected 360°, on the boundary between the TO and FROM sectors, so the indication is ambiguous (the sectors are about 20° wide in practice).",
+    "tags": [
+      "vor",
+      "cdi",
+      "to/from"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0060",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Course Deviation Indicator",
+    "question": "When a combined VOR/ILS indicator is used for VOR, what does the glide path needle show?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is inoperative, centred and flagged OFF"
+      },
+      {
+        "id": "b",
+        "text": "It shows the aircraft's distance from the VOR"
+      },
+      {
+        "id": "c",
+        "text": "It shows the TO/FROM information"
+      },
+      {
+        "id": "d",
+        "text": "It shows the selected course error"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The glide path pointer has no meaning on VOR, so it is centred and flagged. On ILS, the OBS has no effect and the TO/FROM is meaningless.",
+    "tags": [
+      "vor",
+      "ils",
+      "indicator"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0061",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Course Deviation Indicator",
+    "question": "Which conditions bring up the OFF flag on a VOR indicator?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Being on a radial outside the DOC by day"
+      },
+      {
+        "id": "b",
+        "text": "Faulty signals, out of range, or inadequate power"
+      },
+      {
+        "id": "c",
+        "text": "Flying faster than 250 kt near the station"
+      },
+      {
+        "id": "d",
+        "text": "Being exactly on the selected radial"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The OFF flag shows that the indication cannot be trusted: a faulty VOR transmission, being out of range, or an inadequate airborne power supply.",
+    "tags": [
+      "vor",
+      "off flag"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0062",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Course Deviation Indicator",
+    "question": "An aircraft is on the 200° radial with 020° set on the OBS. What does the CDI show?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Needle centred, TO"
+      },
+      {
+        "id": "b",
+        "text": "OFF flag only"
+      },
+      {
+        "id": "c",
+        "text": "Needle centred, FROM"
+      },
+      {
+        "id": "d",
+        "text": "Needle full-scale, TO"
+      }
+    ],
+    "correct": "a",
+    "explanation": "020° is the QDM from the 200° radial, so the aircraft is on the selected line and the course leads to the station: centred, TO.",
+    "tags": [
+      "vor",
+      "cdi",
+      "to/from"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0063",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Course Deviation Indicator",
+    "question": "An aircraft is on the 095° radial with 090° set on the OBS. What does the CDI show?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Full-scale deviation, FROM"
+      },
+      {
+        "id": "b",
+        "text": "5° deviation (2.5 dots), TO"
+      },
+      {
+        "id": "c",
+        "text": "Centred, FROM"
+      },
+      {
+        "id": "d",
+        "text": "5° deviation (2.5 dots), FROM"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The aircraft is 5° from the selected radial; at 2° per dot that is 2.5 dots. The course is within 90° of the aircraft's radial, so FROM.",
+    "tags": [
+      "vor",
+      "cdi",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0064",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Radio Magnetic Indicator",
+    "question": "With an RMI tuned to a VOR, what does the tail of the needle show?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The QDM to the VOR"
+      },
+      {
+        "id": "b",
+        "text": "The aircraft's magnetic heading"
+      },
+      {
+        "id": "c",
+        "text": "The radial the aircraft is on"
+      },
+      {
+        "id": "d",
+        "text": "The relative bearing of the VOR"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The needle head shows the QDM to the station and the tail shows its reciprocal — the radial (QDR).",
+    "tags": [
+      "vor",
+      "rmi"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0065",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Radio Magnetic Indicator",
+    "question": "Before VOR information is shown on an RMI, what is done to it?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The aircraft's heading is added to give a true bearing"
+      },
+      {
+        "id": "b",
+        "text": "Heading is subtracted to give a relative bearing"
+      },
+      {
+        "id": "c",
+        "text": "Nothing; the RMI uses the raw phase difference"
+      },
+      {
+        "id": "d",
+        "text": "The variation is applied to give a true bearing"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A differential synchro subtracts the magnetic heading from the VOR QDM to drive the needle. The compass card then adds the heading back, so the needle head reads the QDM.",
+    "tags": [
+      "vor",
+      "rmi"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0066",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Radio Magnetic Indicator",
+    "question": "An aircraft heading 040°M measures a VOR phase difference of 270°. Where will the RMI needle point?",
+    "options": [
+      {
+        "id": "a",
+        "text": "270° on the card, 230° right of the nose"
+      },
+      {
+        "id": "b",
+        "text": "090° on the card, 050° left of the nose"
+      },
+      {
+        "id": "c",
+        "text": "090° on the card, 050° right of the nose"
+      },
+      {
+        "id": "d",
+        "text": "310° on the card, 270° right of the nose"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Phase difference 270° = 270° radial, so QDM = 090°. Relative bearing = 090° − 040° = 050°, and the needle points to 090° on the card.",
+    "tags": [
+      "vor",
+      "rmi",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0067",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Radio Magnetic Indicator",
+    "question": "If an RMI's heading input is in error, what happens to the VOR radial shown on it?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The RMI shows OFF until the heading is corrected"
+      },
+      {
+        "id": "b",
+        "text": "The radial is wrong by the amount of the heading error"
+      },
+      {
+        "id": "c",
+        "text": "Both radial and relative bearing are correct"
+      },
+      {
+        "id": "d",
+        "text": "Radial correct; relative bearing wrong"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The VOR measures the radial independently of heading. A heading error shifts the card and needle together, so the needle still reads the right radial against the card, while the relative position to the nose is wrong.",
+    "tags": [
+      "vor",
+      "rmi",
+      "heading error"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0068",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Radio Magnetic Indicator",
+    "question": "Which is an advantage of an RMI over a CDI?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Two bearings and heading on one instrument"
+      },
+      {
+        "id": "b",
+        "text": "It needs no magnetic heading input"
+      },
+      {
+        "id": "c",
+        "text": "It is lighter and cheaper than a CDI"
+      },
+      {
+        "id": "d",
+        "text": "It shows the selected course error in dots"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The RMI shows QDM, radial and heading together, gives a plan view useful in holds, shows rate of crossing radials, and a two-needle RMI shows two beacons at once (VOR or ADF). It is heavier, bulkier and more expensive than a CDI.",
+    "tags": [
+      "vor",
+      "rmi",
+      "advantages"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0069",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Radio Magnetic Indicator",
+    "question": "Which is a disadvantage of the RMI compared with a CDI?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It cannot show ADF bearings"
+      },
+      {
+        "id": "b",
+        "text": "It reverses sense when flying outbound"
+      },
+      {
+        "id": "c",
+        "text": "It shows only relative bearings"
+      },
+      {
+        "id": "d",
+        "text": "It is heavier, bulkier and more expensive"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The RMI needs a remote-reading compass and its own power supplies, making it heavier, larger and costlier. In larger aircraft its advantages outweigh this.",
+    "tags": [
+      "vor",
+      "rmi"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0070",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "Radio Magnetic Indicator",
+    "question": "Which navaids can be shown on a two-needle RMI?",
+    "options": [
+      {
+        "id": "a",
+        "text": "VOR only"
+      },
+      {
+        "id": "b",
+        "text": "ADF only"
+      },
+      {
+        "id": "c",
+        "text": "Both VOR and ADF"
+      },
+      {
+        "id": "d",
+        "text": "ILS and DME"
+      }
+    ],
+    "correct": "c",
+    "explanation": "RMI needles can be switched to VOR or ADF, so two beacons — of either type — can be displayed together.",
+    "tags": [
+      "vor",
+      "rmi",
+      "adf"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-VOR-0071",
+    "subjectCode": "RNAV",
+    "topic": "08 VHF Omni-directional Range (VOR)",
+    "subtopic": "HSI",
+    "question": "How does an HSI differ from a basic CDI for VOR navigation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It needs no course to be selected by the pilot"
+      },
+      {
+        "id": "b",
+        "text": "It shows course and deviation on a heading card"
+      },
+      {
+        "id": "c",
+        "text": "It ignores the TO/FROM information entirely on all approaches"
+      },
+      {
+        "id": "d",
+        "text": "It shows only the QDM to the station"
+      }
+    ],
+    "correct": "b",
+    "explanation": "An HSI combines heading with course deviation: the selected course arrow rotates with the heading card, giving a plan view of the aircraft relative to the course.",
+    "tags": [
+      "vor",
+      "hsi"
+    ],
+    "status": "published",
+    "version": 1
+  }
+]

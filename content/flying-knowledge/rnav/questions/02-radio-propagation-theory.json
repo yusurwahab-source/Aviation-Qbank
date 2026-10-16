@@ -1,0 +1,2609 @@
+[
+  {
+    "id": "RNAV-PRG-0001",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation and Attenuation",
+    "question": "In radio work, what does the word \"propagation\" describe?",
+    "options": [
+      {
+        "id": "a",
+        "text": "How a radio wave travels through the atmosphere"
+      },
+      {
+        "id": "b",
+        "text": "The way an aerial converts electrical current into a radio wave"
+      },
+      {
+        "id": "c",
+        "text": "The way information is added to a carrier wave before transmission"
+      },
+      {
+        "id": "d",
+        "text": "The way a receiver separates the wanted signal from the noise"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Propagation is the path a radio wave takes through the atmosphere. Each frequency band favours particular paths, and that decides both what the band can be used for and its limitations (range, night effects, line of sight).",
+    "tags": [
+      "propagation",
+      "definition"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0002",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation and Attenuation",
+    "question": "What is attenuation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The reversal of rotation of a circularly polarized wave on reflection"
+      },
+      {
+        "id": "b",
+        "text": "The cancellation of two signals arriving in anti-phase"
+      },
+      {
+        "id": "c",
+        "text": "The loss of signal strength with distance from the transmitter"
+      },
+      {
+        "id": "d",
+        "text": "The bending of a radio wave as it passes from land to sea"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Attenuation is the weakening of a signal with distance. It has two parts: absorption by the medium the wave passes through, and the spreading of energy described by the inverse square law.",
+    "tags": [
+      "attenuation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0003",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation and Attenuation",
+    "question": "How does atmospheric absorption of radio energy change with frequency (ignoring the ionosphere)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It decreases as frequency increases, so SHF signals are hardly absorbed at all"
+      },
+      {
+        "id": "b",
+        "text": "It increases with frequency, becoming large above about 1 GHz"
+      },
+      {
+        "id": "c",
+        "text": "It is the same at all frequencies; only range affects it"
+      },
+      {
+        "id": "d",
+        "text": "It is greatest in the LF band and negligible above VHF"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Air molecules, water vapour, droplets, dust, vegetation and the earth's surface absorb and scatter radio energy, and the effect grows with frequency. Above about 1 GHz it becomes a major factor — one reason weather radar returns are weakened by heavy rain.",
+    "tags": [
+      "attenuation",
+      "absorption"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0004",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation and Attenuation",
+    "question": "According to the inverse square law, how does the power available at a receiver change with range?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is proportional to 1 / range"
+      },
+      {
+        "id": "b",
+        "text": "It is proportional to range²"
+      },
+      {
+        "id": "c",
+        "text": "It is proportional to 1 / √range"
+      },
+      {
+        "id": "d",
+        "text": "It is proportional to 1 / range²"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Radiated energy spreads over the surface of an expanding sphere, whose area grows with the square of the radius. At twice the range the same energy covers four times the area, so the power density is a quarter.",
+    "tags": [
+      "inverse square law"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0005",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation and Attenuation",
+    "question": "The field strength 10 NM from a transmitter is 8 units. Ignoring absorption, what will it be at 20 NM?",
+    "options": [
+      {
+        "id": "a",
+        "text": "16 units"
+      },
+      {
+        "id": "b",
+        "text": "1 unit"
+      },
+      {
+        "id": "c",
+        "text": "2 units"
+      },
+      {
+        "id": "d",
+        "text": "4 units"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Doubling the range spreads the energy over four times the area, so power density falls to a quarter: 8 / 4 = 2 units. Halving it (4 units) is the common mistake of using a simple inverse law.",
+    "tags": [
+      "inverse square law",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0006",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation and Attenuation",
+    "question": "A transmitter's range is to be doubled by increasing its power alone. By what factor must the power be increased?",
+    "options": [
+      {
+        "id": "a",
+        "text": "4"
+      },
+      {
+        "id": "b",
+        "text": "2"
+      },
+      {
+        "id": "c",
+        "text": "√2"
+      },
+      {
+        "id": "d",
+        "text": "8"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Range is proportional to the square root of power (power ∝ range²). Doubling the range therefore needs 2² = 4 times the power; tripling it would need 9 times.",
+    "tags": [
+      "inverse square law",
+      "power",
+      "range"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0007",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation and Attenuation",
+    "question": "A transmitter's power is increased from 1 kW to 9 kW. Other things being equal, by what factor does its range change?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It increases by about 1.7"
+      },
+      {
+        "id": "b",
+        "text": "It triples"
+      },
+      {
+        "id": "c",
+        "text": "It increases nine times"
+      },
+      {
+        "id": "d",
+        "text": "It doubles"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Range ∝ √power, so √(9/1) = 3. Nine times the power gives three times the range.",
+    "tags": [
+      "inverse square law",
+      "power",
+      "range"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0008",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Interference and Fading",
+    "question": "At which frequencies is static interference from the atmosphere most troublesome?",
+    "options": [
+      {
+        "id": "a",
+        "text": "VHF and UHF, because they are line of sight"
+      },
+      {
+        "id": "b",
+        "text": "SHF, because rain absorbs the signal"
+      },
+      {
+        "id": "c",
+        "text": "All frequencies equally"
+      },
+      {
+        "id": "d",
+        "text": "The lower frequencies, such as LF and MF"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Atmospheric static from weather, human and geological activity is strongest at low frequencies and generally negligible at VHF and above. Signals that pass through the ionosphere, though, pick up noise at any frequency.",
+    "tags": [
+      "static",
+      "interference"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0009",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Interference and Fading",
+    "question": "What does the signal-to-noise ratio describe?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The power of the transmitter compared with the power received"
+      },
+      {
+        "id": "b",
+        "text": "The proportion of the signal lost to absorption"
+      },
+      {
+        "id": "c",
+        "text": "How strong the wanted signal is compared with the noise"
+      },
+      {
+        "id": "d",
+        "text": "The ratio of surface wave to sky wave at a given range"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The higher the signal-to-noise (S/N) ratio, the clearer the communication and the more accurate a navigation aid. Noise comes from the atmosphere and from the equipment's own circuits, and the aim is always to keep it as low as possible.",
+    "tags": [
+      "signal to noise"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0010",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Interference and Fading",
+    "question": "A received signal fades and strengthens alternately. What is the most likely cause?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The inverse square law as the aircraft changes range"
+      },
+      {
+        "id": "b",
+        "text": "The same signal arriving by two paths, in and out of phase"
+      },
+      {
+        "id": "c",
+        "text": "The transmitter switching power between its two outputs"
+      },
+      {
+        "id": "d",
+        "text": "The aerial changing polarization at the wave's frequency"
+      }
+    ],
+    "correct": "b",
+    "explanation": "When the same transmission arrives by two routes (for example direct and reflected, or surface and sky wave), the two can reinforce or cancel. As their phase relationship changes the signal fades and recovers; in anti-phase they can cancel completely.",
+    "tags": [
+      "fading",
+      "multipath"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0011",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Range Factors",
+    "question": "Which of these would increase the useful range of a radio transmission without changing the transmitter's power?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Raising the frequency of an LF surface-wave transmission"
+      },
+      {
+        "id": "b",
+        "text": "Using a horizontally polarized aerial for an LF surface wave"
+      },
+      {
+        "id": "c",
+        "text": "Lowering the receiving aerial closer to the ground at VHF"
+      },
+      {
+        "id": "d",
+        "text": "Concentrating the output into a narrow beam"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Directivity puts the same power into a smaller area, so the range increases (or less power is needed for a given range) — but only in the direction of the beam. The other changes all reduce range.",
+    "tags": [
+      "range",
+      "directivity"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0012",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Range Factors",
+    "question": "How can the receiver itself be made to give a longer useful range?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By reducing its internal noise so it can use weaker signals"
+      },
+      {
+        "id": "b",
+        "text": "By increasing its output volume to the headset"
+      },
+      {
+        "id": "c",
+        "text": "By changing it from vertical to horizontal polarization"
+      },
+      {
+        "id": "d",
+        "text": "By widening its bandwidth so it accepts more frequencies"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A more sensitive receiver with less internal noise can process weaker signals, so the usable range increases. It is effective but expensive to achieve.",
+    "tags": [
+      "range",
+      "receiver sensitivity"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0013",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation Paths",
+    "question": "Which propagation paths are classed as non-ionospheric?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sky wave and satellite"
+      },
+      {
+        "id": "b",
+        "text": "Surface wave and space wave"
+      },
+      {
+        "id": "c",
+        "text": "Surface wave and sky wave"
+      },
+      {
+        "id": "d",
+        "text": "Sky wave and space wave"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Non-ionospheric propagation is not affected by the ionosphere: the surface (ground) wave and the space wave. Sky wave and satellite signals are ionospheric, because they are affected by passing through or being refracted by the ionosphere.",
+    "tags": [
+      "propagation paths"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0014",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation Paths",
+    "question": "Over what frequency range does a usable surface wave exist?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 2 MHz to 30 MHz, which is the whole of the HF band only"
+      },
+      {
+        "id": "b",
+        "text": "About 30 kHz to 300 kHz only, the LF band"
+      },
+      {
+        "id": "c",
+        "text": "About 20 kHz to 50 MHz, used only up to about 2 MHz"
+      },
+      {
+        "id": "d",
+        "text": "Above about 50 MHz, at VHF and higher"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Surface wave exists from the top of VLF to the bottom of VHF (about 20 kHz–50 MHz), but its range shrinks quickly as frequency rises, so in practice it is the main path only for LF and lower MF (about 30 kHz–2 MHz).",
+    "tags": [
+      "surface wave"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0015",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation Paths",
+    "question": "Why does a surface wave follow the curvature of the earth?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The earth's magnetic field holds the wave close to the surface"
+      },
+      {
+        "id": "b",
+        "text": "It is reflected repeatedly between the ground and the ionosphere"
+      },
+      {
+        "id": "c",
+        "text": "It is refracted downwards by the falling temperature of the atmosphere"
+      },
+      {
+        "id": "d",
+        "text": "The part touching the surface is slowed, so the wave bends round"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The lower part of the wavefront is retarded by contact with the surface, so the wave bends (diffracts) round the earth. Repeated ground-ionosphere reflection describes multi-hop sky wave, not surface wave.",
+    "tags": [
+      "surface wave",
+      "diffraction"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0016",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation Paths",
+    "question": "How does surface wave range change as the frequency increases?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It decreases, as surface losses rise with frequency"
+      },
+      {
+        "id": "b",
+        "text": "It increases, because higher frequencies carry more energy"
+      },
+      {
+        "id": "c",
+        "text": "It increases over land but decreases over the sea"
+      },
+      {
+        "id": "d",
+        "text": "It stays the same; only power affects surface wave range"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Surface attenuation grows with frequency, so the surface wave range falls. By the top of HF there is effectively no surface wave at all.",
+    "tags": [
+      "surface wave",
+      "frequency"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0017",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation Paths",
+    "question": "Why does a surface wave reach further over the sea than over land?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Air over the sea is more humid and refracts the wave downwards"
+      },
+      {
+        "id": "b",
+        "text": "Sea water conducts well, so surface losses are lower"
+      },
+      {
+        "id": "c",
+        "text": "The sea is flat, so there are no hills to block the wave"
+      },
+      {
+        "id": "d",
+        "text": "The sea reflects the wave up to the ionosphere and back"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Surface losses depend on the conductivity of the surface. Sea water conducts well and absorbs less energy than land, so the surface wave travels further over water.",
+    "tags": [
+      "surface wave",
+      "sea",
+      "land"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0018",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation Paths",
+    "question": "Which polarization is normally used for LF and MF surface-wave transmissions, and why?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Circular, because the aerial orientation at the receiver is then unimportant"
+      },
+      {
+        "id": "b",
+        "text": "Horizontal, because the surface wave then follows the ground more easily"
+      },
+      {
+        "id": "c",
+        "text": "Horizontal, because the ionosphere does not reflect it at night"
+      },
+      {
+        "id": "d",
+        "text": "Vertical, because a horizontal surface wave dies out quickly"
+      }
+    ],
+    "correct": "d",
+    "explanation": "A horizontally polarized wave is short-circuited by the ground and dies out within a short range, so surface-wave systems such as NDBs use vertical polarization.",
+    "tags": [
+      "surface wave",
+      "polarization"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0019",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation Paths",
+    "question": "For a transmission around 300 kHz, which rule of thumb gives the surface wave range over the sea?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Range (NM) ≈ 3 × √power (watts)"
+      },
+      {
+        "id": "b",
+        "text": "Range (NM) ≈ 1.23 × √power (watts)"
+      },
+      {
+        "id": "c",
+        "text": "Range (NM) ≈ 3 × power (watts)"
+      },
+      {
+        "id": "d",
+        "text": "Range (NM) ≈ 2 × √power (watts)"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Over the sea the approximation is 3√P and over land 2√P, with P in watts. The 1.23 factor belongs to the VHF line-of-sight formula, which uses heights, not power.",
+    "tags": [
+      "surface wave",
+      "range",
+      "formula"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0020",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation Paths",
+    "question": "A 300 kHz transmitter radiates 2 500 W. What is its approximate surface wave range over land?",
+    "options": [
+      {
+        "id": "a",
+        "text": "5 000 NM"
+      },
+      {
+        "id": "b",
+        "text": "150 NM"
+      },
+      {
+        "id": "c",
+        "text": "100 NM"
+      },
+      {
+        "id": "d",
+        "text": "50 NM"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Over land, range ≈ 2 × √P = 2 × √2 500 = 2 × 50 = 100 NM. Over the sea it would be 3 × 50 = 150 NM.",
+    "tags": [
+      "surface wave",
+      "range",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0021",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation Paths",
+    "question": "A 300 kHz transmitter radiates 10 kW. What is its approximate surface wave range over the sea?",
+    "options": [
+      {
+        "id": "a",
+        "text": "100 NM"
+      },
+      {
+        "id": "b",
+        "text": "300 NM"
+      },
+      {
+        "id": "c",
+        "text": "200 NM"
+      },
+      {
+        "id": "d",
+        "text": "30 NM"
+      }
+    ],
+    "correct": "b",
+    "explanation": "√10 000 = 100, and over the sea range ≈ 3 × 100 = 300 NM. Over land the same transmitter would reach about 200 NM.",
+    "tags": [
+      "surface wave",
+      "range",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0022",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation Paths",
+    "question": "What happens to a surface wave as it crosses a coastline from land to sea?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is reflected back over the land at the coastline"
+      },
+      {
+        "id": "b",
+        "text": "It slows down over the sea and bends away from the coast"
+      },
+      {
+        "id": "c",
+        "text": "It continues in a straight line, with only its strength changing"
+      },
+      {
+        "id": "d",
+        "text": "It speeds up over the sea and bends towards the coast"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The part of the wavefront that reaches the sea first travels faster, so the wave bends away from the normal — towards the coastline. This coastal refraction causes bearing errors in ADF when the signal crosses a coast at a shallow angle.",
+    "tags": [
+      "coastal refraction",
+      "surface wave"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0023",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Space Wave",
+    "question": "What two components make up the space wave?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A surface wave and a sky wave"
+      },
+      {
+        "id": "b",
+        "text": "A refracted wave and a ducted wave"
+      },
+      {
+        "id": "c",
+        "text": "A direct wave and a ground-reflected wave"
+      },
+      {
+        "id": "d",
+        "text": "A direct wave and an ionospheric wave"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The space wave is the line-of-sight path: the direct wave from transmitter to receiver, plus a wave reflected from the surface between them.",
+    "tags": [
+      "space wave"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0024",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Space Wave",
+    "question": "From about which frequency is the space wave the only practical propagation path?",
+    "options": [
+      {
+        "id": "a",
+        "text": "VHF and above (above about 30–50 MHz)"
+      },
+      {
+        "id": "b",
+        "text": "HF and above (above about 3 MHz)"
+      },
+      {
+        "id": "c",
+        "text": "MF and above (above about 300 kHz)"
+      },
+      {
+        "id": "d",
+        "text": "SHF and above (above about 3 GHz)"
+      }
+    ],
+    "correct": "a",
+    "explanation": "At VHF and above, radio waves behave more like light: there is no useful surface wave and no normal sky wave, so the only path is line of sight. That is why VHF and UHF ranges depend on height.",
+    "tags": [
+      "space wave",
+      "vhf"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0025",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Space Wave",
+    "question": "Why is the VHF radio horizon slightly further than the visual (geometric) horizon?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The VHF wave diffracts round the earth like an LF surface wave"
+      },
+      {
+        "id": "b",
+        "text": "The ionosphere returns part of the VHF signal to the ground"
+      },
+      {
+        "id": "c",
+        "text": "VHF waves are reflected from the top of the cloud layer"
+      },
+      {
+        "id": "d",
+        "text": "The atmosphere bends the waves slightly towards the surface"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Normal atmospheric refraction bends the waves a little downwards, extending the range beyond the geometric horizon. The effect reduces as frequency increases.",
+    "tags": [
+      "space wave",
+      "refraction"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0026",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Space Wave",
+    "question": "Which formula gives the maximum theoretical line-of-sight range for VHF and above?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Range (NM) = 1.23 × √(transmitter height ft + receiver height ft)"
+      },
+      {
+        "id": "b",
+        "text": "Range (NM) = 12.3 × (√transmitter height ft + √receiver height ft)"
+      },
+      {
+        "id": "c",
+        "text": "Range (NM) = 1.23 × (√transmitter height ft + √receiver height ft)"
+      },
+      {
+        "id": "d",
+        "text": "Range (NM) = 3 × √(transmitter power in watts)"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Each aerial has its own horizon, so the square roots of the two heights (in feet) are added separately, then multiplied by 1.23. Adding the heights before taking the root is a common error and gives far too short a range.",
+    "tags": [
+      "line of sight",
+      "formula"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0027",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Space Wave",
+    "question": "An aircraft at 10 000 ft is working a VHF station whose aerial is at 400 ft. What is the maximum theoretical range?",
+    "options": [
+      {
+        "id": "a",
+        "text": "123 NM"
+      },
+      {
+        "id": "b",
+        "text": "148 NM"
+      },
+      {
+        "id": "c",
+        "text": "125 NM"
+      },
+      {
+        "id": "d",
+        "text": "1 476 NM"
+      }
+    ],
+    "correct": "b",
+    "explanation": "1.23 × (√10 000 + √400) = 1.23 × (100 + 20) = 1.23 × 120 = 147.6 NM. Ignoring the station's height gives 123 NM.",
+    "tags": [
+      "line of sight",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0028",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Space Wave",
+    "question": "An aircraft at FL 250 is working a VHF station at sea level. What is the maximum theoretical range?",
+    "options": [
+      {
+        "id": "a",
+        "text": "194 NM"
+      },
+      {
+        "id": "b",
+        "text": "158 NM"
+      },
+      {
+        "id": "c",
+        "text": "250 NM"
+      },
+      {
+        "id": "d",
+        "text": "615 NM"
+      }
+    ],
+    "correct": "a",
+    "explanation": "√25 000 ≈ 158.1, and 1.23 × 158.1 ≈ 194 NM. The station adds nothing because its height is zero.",
+    "tags": [
+      "line of sight",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0029",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Space Wave",
+    "question": "An aircraft at 3 600 ft receives a VHF station whose aerial is at 900 ft. What is the maximum theoretical range?",
+    "options": [
+      {
+        "id": "a",
+        "text": "90 NM"
+      },
+      {
+        "id": "b",
+        "text": "83 NM"
+      },
+      {
+        "id": "c",
+        "text": "111 NM"
+      },
+      {
+        "id": "d",
+        "text": "74 NM"
+      }
+    ],
+    "correct": "c",
+    "explanation": "1.23 × (√3 600 + √900) = 1.23 × (60 + 30) = 1.23 × 90 ≈ 111 NM. Adding the heights first, 1.23 × √4 500 ≈ 83 NM, is the classic mistake.",
+    "tags": [
+      "line of sight",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0030",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Space Wave",
+    "question": "An aircraft is 20 NM beyond the line-of-sight range of a VHF transmitter. What will increasing the transmitter's power do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Nothing; below the radio horizon no signal is received"
+      },
+      {
+        "id": "b",
+        "text": "Extend the range by the inverse square law in proportion to the power"
+      },
+      {
+        "id": "c",
+        "text": "Allow reception by surface wave instead of space wave"
+      },
+      {
+        "id": "d",
+        "text": "Allow reception by sky wave, which needs more power than space wave"
+      }
+    ],
+    "correct": "a",
+    "explanation": "At VHF and above, reception depends on line of sight. If the aircraft is below the radio horizon it receives nothing, however powerful the transmitter. Climbing (or raising the aerial) is what extends the range.",
+    "tags": [
+      "line of sight",
+      "power"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0031",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Space Wave",
+    "question": "A VHF station 150 NM away has its aerial at 100 ft. What is the lowest height at which an aircraft can expect to receive it?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 14 900 ft"
+      },
+      {
+        "id": "b",
+        "text": "About 12 500 ft"
+      },
+      {
+        "id": "c",
+        "text": "About 30 400 ft"
+      },
+      {
+        "id": "d",
+        "text": "About 9 900 ft"
+      }
+    ],
+    "correct": "b",
+    "explanation": "150 / 1.23 ≈ 122 = √h + √100, so √h ≈ 112 and h ≈ 12 500 ft. Forgetting to subtract the station's own 10 gives about 14 900 ft; multiplying by 1.23 instead of dividing gives about 30 400 ft.",
+    "tags": [
+      "line of sight",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0032",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "The Ionosphere",
+    "question": "Between approximately what heights does the ionosphere lie?",
+    "options": [
+      {
+        "id": "a",
+        "text": "From the tropopause up to about 400 km"
+      },
+      {
+        "id": "b",
+        "text": "From about 60 km up to about 125 km only"
+      },
+      {
+        "id": "c",
+        "text": "From about 10 km, just above the tropopause, up to about 60 km"
+      },
+      {
+        "id": "d",
+        "text": "From about 60 km up to about 1 500 km"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The ionosphere begins at about 60 km, where the pressure is only about 0.22 hPa, and extends to the notional edge of the atmosphere. Low pressure means the gas atoms are widely spaced.",
+    "tags": [
+      "ionosphere"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0033",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "The Ionosphere",
+    "question": "What causes ionization in the upper atmosphere?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Radio transmissions from the ground passing through the gas"
+      },
+      {
+        "id": "b",
+        "text": "Ultraviolet and shorter solar radiation freeing electrons from atoms"
+      },
+      {
+        "id": "c",
+        "text": "Friction between the fast-moving upper winds and the thin gas molecules there"
+      },
+      {
+        "id": "d",
+        "text": "Lightning discharges in thunderstorms below the ionosphere"
+      }
+    ],
+    "correct": "b",
+    "explanation": "High-energy solar radiation (ultraviolet and shorter) gives atoms enough energy to lose electrons, leaving free negative electrons and positive ions. It is these charged particles that refract radio waves.",
+    "tags": [
+      "ionosphere",
+      "ionization"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0034",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "The Ionosphere",
+    "question": "At about what local time is ionization at its greatest, and when is it at its least?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Greatest about 1400 local; least just before sunrise"
+      },
+      {
+        "id": "b",
+        "text": "Greatest at midnight; least at midday"
+      },
+      {
+        "id": "c",
+        "text": "Greatest just before sunset; least at about 2200 local time"
+      },
+      {
+        "id": "d",
+        "text": "Greatest at sunrise; least at sunset"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Electrons constantly recombine with ions, so ionization peaks a little after the sun is highest (about 1400 local) and is lowest just before dawn, after a whole night of recombination with no sunlight.",
+    "tags": [
+      "ionosphere",
+      "diurnal"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0035",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "The Ionosphere",
+    "question": "How does ionization intensity vary with season and latitude?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Higher in summer, but the same at all latitudes"
+      },
+      {
+        "id": "b",
+        "text": "The same all year, but higher at the poles"
+      },
+      {
+        "id": "c",
+        "text": "Higher in summer, and higher at low latitudes"
+      },
+      {
+        "id": "d",
+        "text": "Higher in winter than in summer, and higher at the high latitudes"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Ionization follows the intensity of solar radiation, which is greater in summer and nearer the equator.",
+    "tags": [
+      "ionosphere",
+      "season",
+      "latitude"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0036",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "The Ionosphere",
+    "question": "Why can solar flares cause severe disruption to radio systems?",
+    "options": [
+      {
+        "id": "a",
+        "text": "They remove the ionosphere entirely for several days"
+      },
+      {
+        "id": "b",
+        "text": "They change the speed of radio waves in the lower atmosphere"
+      },
+      {
+        "id": "c",
+        "text": "They reverse the polarization of all signals passing through the ionosphere"
+      },
+      {
+        "id": "d",
+        "text": "They cause unpredictable, exceptionally high levels of ionization"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Intense solar flare radiation can raise ionization far above normal, disrupting communications and navigation — space-based systems especially. Satellites are sometimes shut down during intense flares to protect them.",
+    "tags": [
+      "ionosphere",
+      "solar flares"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0037",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "The Ionosphere",
+    "question": "Why does the ionosphere form into separate layers rather than a smooth increase in ionization with height?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The layers are formed by the jet streams at different levels"
+      },
+      {
+        "id": "b",
+        "text": "The sun's radiation arrives in bands of different strength"
+      },
+      {
+        "id": "c",
+        "text": "Each layer is made by a different type of solar flare in the sun's corona"
+      },
+      {
+        "id": "d",
+        "text": "With no mixing up there, gravity and magnetism sort the gases into layers"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Ionization generally increases with height, but at those heights there is no weather to mix the air. Gravity and terrestrial magnetism sort the gases, so the ionized particles collect in distinct layers, most intense at their centres.",
+    "tags": [
+      "ionosphere",
+      "layers"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0038",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "The Ionosphere",
+    "question": "At what average height is the D-layer, and when is it present?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 125 km, present throughout the 24 hours"
+      },
+      {
+        "id": "b",
+        "text": "About 75 km, forming at sunset and disappearing at sunrise"
+      },
+      {
+        "id": "c",
+        "text": "About 75 km, forming at sunrise and disappearing at sunset"
+      },
+      {
+        "id": "d",
+        "text": "About 225 km, splitting in two at sunrise"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The D-layer is the lowest and most diffuse layer, at about 75 km. For practical purposes it exists only by day.",
+    "tags": [
+      "ionosphere",
+      "d-layer"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0039",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "The Ionosphere",
+    "question": "Which ionospheric layer is present throughout the 24 hours at an average height of about 125 km?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The E-layer"
+      },
+      {
+        "id": "b",
+        "text": "The D-layer"
+      },
+      {
+        "id": "c",
+        "text": "The F2-layer"
+      },
+      {
+        "id": "d",
+        "text": "The F1-layer"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The E-layer is always present. It descends at sunrise and rises again after sunset.",
+    "tags": [
+      "ionosphere",
+      "e-layer"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0040",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "The Ionosphere",
+    "question": "What happens to the F-layer at sunrise?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It descends to about 75 km"
+      },
+      {
+        "id": "b",
+        "text": "It splits into F1 and F2 layers"
+      },
+      {
+        "id": "c",
+        "text": "It disappears until sunset, like the D-layer"
+      },
+      {
+        "id": "d",
+        "text": "It merges with the E-layer"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The F-layer, at about 225 km on average, splits into F1 and F2 at sunrise and rejoins at sunset. F1 descends at sunrise and rises after sunset; F2's height depends on the season, rising above 400 km in summer and falling in winter.",
+    "tags": [
+      "ionosphere",
+      "f-layer"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0041",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "The Ionosphere",
+    "question": "Why are radio systems that use the ionosphere particularly unreliable around dawn and dusk?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The ionosphere is changing state and is electrically turbulent"
+      },
+      {
+        "id": "b",
+        "text": "The layers all reach their greatest height at those times"
+      },
+      {
+        "id": "c",
+        "text": "The sun's radiation is at its strongest at those times"
+      },
+      {
+        "id": "d",
+        "text": "The D-layer is at its densest and absorbs all signals"
+      }
+    ],
+    "correct": "a",
+    "explanation": "By day and by night the ionosphere is relatively stable, but during the transitions at dawn and dusk it is in a disturbed state, causing interference and erratic performance for sky-wave systems such as HF and ADF.",
+    "tags": [
+      "ionosphere",
+      "dawn",
+      "dusk"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0042",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "The Ionosphere",
+    "question": "What is the atmospheric pressure at the base of the ionosphere (about 60 km)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 22 hPa"
+      },
+      {
+        "id": "b",
+        "text": "About 220 hPa"
+      },
+      {
+        "id": "c",
+        "text": "About 2.2 hPa"
+      },
+      {
+        "id": "d",
+        "text": "About 0.22 hPa"
+      }
+    ],
+    "correct": "d",
+    "explanation": "At 60 km the pressure is only about 0.22 hPa, so gas atoms are widely spaced and electrons freed by solar radiation take time to recombine.",
+    "tags": [
+      "ionosphere"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0043",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "The Ionosphere",
+    "question": "Ionization is generally increasing through the morning. Why might it fall for a short time before midday?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Radio transmissions use up the ions"
+      },
+      {
+        "id": "b",
+        "text": "Solar radiation fluctuates, so ionization does too"
+      },
+      {
+        "id": "c",
+        "text": "The D-layer moves above the E-layer in the morning"
+      },
+      {
+        "id": "d",
+        "text": "The earth's magnetic field reverses briefly"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The overall pattern is a rise to just after midday and a fall to dawn, but the sun's high-energy output varies, so ionization fluctuates up and down within that trend.",
+    "tags": [
+      "ionosphere",
+      "fluctuation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0044",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "The Ionosphere",
+    "question": "What happens to the F2-layer in summer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It disappears completely"
+      },
+      {
+        "id": "b",
+        "text": "It descends below the E-layer"
+      },
+      {
+        "id": "c",
+        "text": "It rises, sometimes above 400 km"
+      },
+      {
+        "id": "d",
+        "text": "It merges with the D-layer"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The F2-layer's height depends on season: in summer it rises, possibly above 400 km, and in winter it descends.",
+    "tags": [
+      "ionosphere",
+      "f2-layer"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0045",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Sky Wave",
+    "question": "What happens to a radio wave that enters an ionized layer at an angle?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It passes straight through without any change of direction"
+      },
+      {
+        "id": "b",
+        "text": "It is reflected straight back at the same angle from the bottom of the layer"
+      },
+      {
+        "id": "c",
+        "text": "It is refracted towards the normal as it enters, and away from it as it leaves"
+      },
+      {
+        "id": "d",
+        "text": "It bends away from the normal entering, and back towards it leaving"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Ion density increases towards the centre of a layer, so a wave entering at an angle bends away from the normal and then back as it exits. A wave crossing at right angles is slowed but keeps its straight path.",
+    "tags": [
+      "sky wave",
+      "refraction"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0046",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Sky Wave",
+    "question": "When does a sky wave return to the earth?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Whenever the wave is above 50 MHz"
+      },
+      {
+        "id": "b",
+        "text": "When it passes through the centre of the layer and then out of the top of it"
+      },
+      {
+        "id": "c",
+        "text": "When it bends to horizontal before reaching the layer's centre"
+      },
+      {
+        "id": "d",
+        "text": "When it enters the layer exactly at right angles"
+      }
+    ],
+    "correct": "c",
+    "explanation": "If the wave has bent to the horizontal before it reaches the most intensely ionized centre, it keeps bending and comes back down: total internal refraction, producing a sky wave.",
+    "tags": [
+      "sky wave",
+      "refraction"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0047",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Sky Wave",
+    "question": "What is the critical angle in sky-wave propagation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The angle between the direct and the reflected wave of a space wave"
+      },
+      {
+        "id": "b",
+        "text": "The angle from the vertical giving the first returning sky wave"
+      },
+      {
+        "id": "c",
+        "text": "The angle from the horizontal at which the surface wave disappears"
+      },
+      {
+        "id": "d",
+        "text": "The angle at which the wave enters the D-layer by day"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Starting vertically and lowering the transmission angle, the first angle (measured from the vertical) at which the wave is refracted back to earth is the critical angle. Waves at smaller angles pass through the layer.",
+    "tags": [
+      "sky wave",
+      "critical angle"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0048",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Sky Wave",
+    "question": "What is the skip distance?",
+    "options": [
+      {
+        "id": "a",
+        "text": "From the transmitter to where the first sky wave returns"
+      },
+      {
+        "id": "b",
+        "text": "The distance between two successive hops of a multi-hop sky wave"
+      },
+      {
+        "id": "c",
+        "text": "The distance from the end of the surface wave to the first returning sky wave"
+      },
+      {
+        "id": "d",
+        "text": "The maximum range of the surface wave over land"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Skip distance is measured from the transmitter to the first returning sky wave. It is not the same as dead space.",
+    "tags": [
+      "sky wave",
+      "skip distance"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0049",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Sky Wave",
+    "question": "What is dead space?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The area inside the skip distance, including the surface wave coverage"
+      },
+      {
+        "id": "b",
+        "text": "The area directly above a transmitter where no signal is received"
+      },
+      {
+        "id": "c",
+        "text": "The area beyond the maximum range of the sky wave"
+      },
+      {
+        "id": "d",
+        "text": "The gap between the end of surface wave and the first sky wave"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Between where the surface wave has died out and where the first sky wave returns, no signal is received: that gap is dead space. It is smaller than the skip distance because part of the skip distance is covered by the surface wave.",
+    "tags": [
+      "sky wave",
+      "dead space"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0050",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Sky Wave",
+    "question": "Up to about what frequency are radio waves normally refracted at the E-layer, and which layer refracts higher HF frequencies?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Up to about 50 MHz at the F-layers; above that at the E-layer"
+      },
+      {
+        "id": "b",
+        "text": "Up to about 2 MHz at the E-layer; about 2–50 MHz at the F-layers"
+      },
+      {
+        "id": "c",
+        "text": "Up to about 30 MHz at the E-layer; above 30 MHz at the D-layer"
+      },
+      {
+        "id": "d",
+        "text": "Up to about 300 kHz at the D-layer; above that at the E-layer"
+      }
+    ],
+    "correct": "b",
+    "explanation": "As a generalization, LF/MF sky waves (up to 2 MHz) come from the E-layer and HF (2–50 MHz) from the higher F-layers. Above 50 MHz there is no sky wave except in abnormal solar conditions.",
+    "tags": [
+      "sky wave",
+      "layers",
+      "frequency"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0051",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Sky Wave",
+    "question": "Why do VHF navigation aids such as VOR not suffer from sky-wave interference?",
+    "options": [
+      {
+        "id": "a",
+        "text": "VHF transmitters are too low-powered to reach the ionosphere"
+      },
+      {
+        "id": "b",
+        "text": "VOR uses horizontal polarization, which the ionosphere cannot refract"
+      },
+      {
+        "id": "c",
+        "text": "Above about 50 MHz the ionosphere does not normally return them"
+      },
+      {
+        "id": "d",
+        "text": "VHF signals are fully absorbed by the D-layer by day and night"
+      }
+    ],
+    "correct": "c",
+    "explanation": "VHF waves normally pass through the ionosphere into space. Only during intense sunspot or solar flare activity might a sky wave occur above 50 MHz.",
+    "tags": [
+      "sky wave",
+      "vhf"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0052",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Sky Wave",
+    "question": "For a fixed frequency, what happens to the critical angle, skip distance and dead space when ionization increases?",
+    "options": [
+      {
+        "id": "a",
+        "text": "They all decrease"
+      },
+      {
+        "id": "b",
+        "text": "The critical angle increases but the skip distance decreases"
+      },
+      {
+        "id": "c",
+        "text": "They are not affected; only frequency changes them"
+      },
+      {
+        "id": "d",
+        "text": "They all increase"
+      }
+    ],
+    "correct": "a",
+    "explanation": "More ionization means more refraction, so the wave is returned at a smaller angle from the vertical and comes down closer to the transmitter. Less ionization (for example at night) does the opposite.",
+    "tags": [
+      "sky wave",
+      "ionization"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0053",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Sky Wave",
+    "question": "For a fixed level of ionization, what happens to skip distance and dead space when the frequency is increased?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Skip distance decreases but dead space increases"
+      },
+      {
+        "id": "b",
+        "text": "Both increase"
+      },
+      {
+        "id": "c",
+        "text": "Skip distance increases but dead space decreases"
+      },
+      {
+        "id": "d",
+        "text": "Both decrease"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Higher frequency is refracted less, so the critical angle and skip distance increase. At the same time the surface wave range shrinks, so dead space grows from both ends.",
+    "tags": [
+      "sky wave",
+      "frequency"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0054",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Sky Wave",
+    "question": "How does the height of the refracting layer affect the skip distance?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A higher layer gives a longer skip distance only for frequencies below 2 MHz"
+      },
+      {
+        "id": "b",
+        "text": "A higher layer gives a shorter skip distance, because the wave returns more steeply"
+      },
+      {
+        "id": "c",
+        "text": "The height of the layer does not affect the skip distance, only the critical angle does"
+      },
+      {
+        "id": "d",
+        "text": "A higher layer gives a longer skip distance and greater range"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The same angle of return from a higher layer brings the wave down further away, so skip distance increases with layer height.",
+    "tags": [
+      "sky wave",
+      "layer height"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0055",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Sky Wave",
+    "question": "Why are LF and MF sky waves present at night but not by day?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By night ionization is higher, so the waves are refracted more"
+      },
+      {
+        "id": "b",
+        "text": "By day they pass through all the layers; at night the F-layer reflects them"
+      },
+      {
+        "id": "c",
+        "text": "The D-layer absorbs them by day; at night the E-layer returns them"
+      },
+      {
+        "id": "d",
+        "text": "By day the E-layer is too high; at night it descends enough to refract them"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Below about 2 MHz the daytime D-layer absorbs the energy. After sunset the D-layer vanishes and E-layer sky waves appear at fairly short ranges, where they interfere with surface-wave reception — the cause of ADF night effect.",
+    "tags": [
+      "sky wave",
+      "lf",
+      "mf"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0056",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Sky Wave",
+    "question": "Under what condition is the maximum single-hop sky-wave range achieved?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When the path is tangential to the earth at both ends"
+      },
+      {
+        "id": "b",
+        "text": "When the frequency is at its lowest usable value"
+      },
+      {
+        "id": "c",
+        "text": "When the wave leaves the transmitter at the critical angle"
+      },
+      {
+        "id": "d",
+        "text": "When the wave is transmitted vertically upwards from the aerial"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The longest single hop occurs when the path just grazes the earth's surface at both ends.",
+    "tags": [
+      "sky wave",
+      "range"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0057",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Sky Wave",
+    "question": "What are the approximate maximum single-hop sky-wave ranges from the E-layer and the F-layer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 1 350 NM from both, because range depends only on frequency"
+      },
+      {
+        "id": "b",
+        "text": "About 1 350 NM from the E-layer and 2 200 NM from the F-layer"
+      },
+      {
+        "id": "c",
+        "text": "About 2 200 NM from the E-layer and 1 350 NM from the F-layer"
+      },
+      {
+        "id": "d",
+        "text": "About 135 NM from the E-layer and 220 NM from the F-layer"
+      }
+    ],
+    "correct": "b",
+    "explanation": "For average heights of 125 km (E) and 225 km (F), geometry gives about 1 350 NM and 2 200 NM. These change with the layers' heights.",
+    "tags": [
+      "sky wave",
+      "range"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0058",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Sky Wave",
+    "question": "What is multi-hop sky wave?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A surface wave that is reinforced by sky waves along its path"
+      },
+      {
+        "id": "b",
+        "text": "A sky wave refracted in turn by the D, E and F layers on one hop"
+      },
+      {
+        "id": "c",
+        "text": "Two sky waves of different frequency travelling together"
+      },
+      {
+        "id": "d",
+        "text": "A sky wave reflected by the ground and returned again by the ionosphere"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The returning sky wave reflects off the surface back to the ionosphere and returns again. Repeated hops can carry a signal up to half the earth's circumference.",
+    "tags": [
+      "sky wave",
+      "multi-hop"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0059",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Sky Wave",
+    "question": "A sky wave meets an ionized layer exactly at right angles. What happens?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is slowed but continues in a straight line"
+      },
+      {
+        "id": "b",
+        "text": "It is refracted back to earth at once"
+      },
+      {
+        "id": "c",
+        "text": "It is absorbed completely"
+      },
+      {
+        "id": "d",
+        "text": "It is reflected straight back to the transmitter"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Refraction needs the wave to cross the change in ion density at an angle. Square on, the wave is only retarded and goes straight through.",
+    "tags": [
+      "sky wave",
+      "refraction"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0060",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Sky Wave",
+    "question": "Why is the MUF the ideal frequency for a given range?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is not affected by changes in ionization"
+      },
+      {
+        "id": "b",
+        "text": "It gives the strongest surface wave at that range"
+      },
+      {
+        "id": "c",
+        "text": "Its short ionospheric path gives least attenuation and noise"
+      },
+      {
+        "id": "d",
+        "text": "It is the lowest frequency that reaches that range"
+      }
+    ],
+    "correct": "c",
+    "explanation": "At the MUF the first returning sky wave lands at the receiver after the shortest path through the ionosphere, so it suffers least attenuation and static. The risk is losing the signal if ionization falls — hence the OWF.",
+    "tags": [
+      "hf",
+      "muf"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0061",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "HF Communications",
+    "question": "Why is HF sky wave still used for long-range air-ground communication over oceans and remote land?",
+    "options": [
+      {
+        "id": "a",
+        "text": "HF is free of static interference at all ranges"
+      },
+      {
+        "id": "b",
+        "text": "VHF is not permitted for air-ground communication over the oceans"
+      },
+      {
+        "id": "c",
+        "text": "HF surface waves reach 3 000 NM over the sea"
+      },
+      {
+        "id": "d",
+        "text": "Low-frequency surface-wave systems would be heavy, noisy and slow"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Reaching 2 000–3 000 NM by surface wave would need very low frequencies, with heavy equipment, high static and low data rates. HF sky wave is the practical answer until satellite communication becomes the norm.",
+    "tags": [
+      "hf",
+      "communication"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0062",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "HF Communications",
+    "question": "What is the maximum usable frequency (MUF) for a given range?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The highest frequency the aircraft's HF radio can tune"
+      },
+      {
+        "id": "b",
+        "text": "The frequency whose first returning sky wave lands at that range"
+      },
+      {
+        "id": "c",
+        "text": "The frequency at which the D-layer stops absorbing"
+      },
+      {
+        "id": "d",
+        "text": "The frequency that gives the strongest surface wave at that range"
+      }
+    ],
+    "correct": "b",
+    "explanation": "At the MUF the skip distance equals the required range. Its path through the ionosphere is the shortest, so it suffers least attenuation and noise — but any drop in ionization would lengthen the skip distance and lose the signal.",
+    "tags": [
+      "hf",
+      "muf"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0063",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "HF Communications",
+    "question": "What is the optimum working frequency (OWF) for HF communication?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 0.85 × MUF"
+      },
+      {
+        "id": "b",
+        "text": "About 1.15 × MUF"
+      },
+      {
+        "id": "c",
+        "text": "Exactly equal to the MUF"
+      },
+      {
+        "id": "d",
+        "text": "About 0.5 × MUF"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Using the MUF itself is risky because a fall in ionization would put the receiver in the dead space. Experience has settled on about 85% of the MUF as the best compromise.",
+    "tags": [
+      "hf",
+      "owf"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0064",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "HF Communications",
+    "question": "The MUF for a route is 20 MHz. What is the optimum working frequency?",
+    "options": [
+      {
+        "id": "a",
+        "text": "15 MHz"
+      },
+      {
+        "id": "b",
+        "text": "23 MHz"
+      },
+      {
+        "id": "c",
+        "text": "17 MHz"
+      },
+      {
+        "id": "d",
+        "text": "10 MHz"
+      }
+    ],
+    "correct": "c",
+    "explanation": "OWF ≈ 0.85 × MUF = 0.85 × 20 = 17 MHz. 10 MHz would be roughly the night-time figure.",
+    "tags": [
+      "hf",
+      "owf",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0065",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "HF Communications",
+    "question": "As a rule of thumb, how does the HF frequency needed at night compare with that needed by day for the same range?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 0.85 of the daytime frequency"
+      },
+      {
+        "id": "b",
+        "text": "About twice the daytime frequency"
+      },
+      {
+        "id": "c",
+        "text": "About half the daytime frequency"
+      },
+      {
+        "id": "d",
+        "text": "About the same as the daytime frequency"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Ionization is lower at night, so less refraction is available and a lower frequency must be used to return the wave at the same range — roughly half the daytime value.",
+    "tags": [
+      "hf",
+      "night"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0066",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "HF Communications",
+    "question": "For HF communication by day, how does the required frequency change as the required range increases?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The same frequency serves all ranges"
+      },
+      {
+        "id": "b",
+        "text": "Longer ranges need higher frequencies"
+      },
+      {
+        "id": "c",
+        "text": "Range does not matter, only time of day"
+      },
+      {
+        "id": "d",
+        "text": "Longer ranges need lower frequencies"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Skip distance increases with frequency, so a longer range calls for a higher frequency and a shorter range for a lower one.",
+    "tags": [
+      "hf",
+      "range"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0067",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "HF Communications",
+    "question": "An aircraft in mid-ocean at sunrise is talking to a station to the east (in daylight) on 10 MHz. What frequency should it expect to use with a station to the west (still in darkness) at a similar range?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 5 MHz"
+      },
+      {
+        "id": "b",
+        "text": "About 10 MHz"
+      },
+      {
+        "id": "c",
+        "text": "About 8.5 MHz"
+      },
+      {
+        "id": "d",
+        "text": "About 20 MHz"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The wave is refracted about halfway between aircraft and station. Towards the east that point is in daylight; towards the west it is still night, where lower ionization needs a frequency of roughly half — about 5 MHz.",
+    "tags": [
+      "hf",
+      "night",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0068",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation Summary",
+    "question": "What is the main propagation path used in the LF band?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sky wave"
+      },
+      {
+        "id": "b",
+        "text": "Duct propagation"
+      },
+      {
+        "id": "c",
+        "text": "Space wave"
+      },
+      {
+        "id": "d",
+        "text": "Surface wave"
+      }
+    ],
+    "correct": "d",
+    "explanation": "LF uses the surface wave. Sky wave is present at night but is not normally used — it is a source of interference.",
+    "tags": [
+      "propagation summary",
+      "lf"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0069",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation Summary",
+    "question": "What is the main propagation path used in the HF band?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Surface wave"
+      },
+      {
+        "id": "b",
+        "text": "Space wave"
+      },
+      {
+        "id": "c",
+        "text": "Sky wave"
+      },
+      {
+        "id": "d",
+        "text": "Satellite"
+      }
+    ],
+    "correct": "c",
+    "explanation": "HF is used for long range by sky wave. Its surface wave exists but is short and not normally relied on.",
+    "tags": [
+      "propagation summary",
+      "hf"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0070",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation Summary",
+    "question": "What is the only propagation path for UHF?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Surface and sky wave together"
+      },
+      {
+        "id": "b",
+        "text": "Space wave"
+      },
+      {
+        "id": "c",
+        "text": "Sky wave"
+      },
+      {
+        "id": "d",
+        "text": "Surface wave"
+      }
+    ],
+    "correct": "b",
+    "explanation": "VHF, UHF, SHF and EHF all use the space wave (line of sight) only, apart from satellite paths through the ionosphere.",
+    "tags": [
+      "propagation summary",
+      "uhf"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0071",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation Summary",
+    "question": "What is the main propagation path used in the MF band?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Space wave"
+      },
+      {
+        "id": "b",
+        "text": "Sky wave"
+      },
+      {
+        "id": "c",
+        "text": "Ducted wave"
+      },
+      {
+        "id": "d",
+        "text": "Surface wave"
+      }
+    ],
+    "correct": "d",
+    "explanation": "MF, like LF, is used mainly by surface wave. Sky wave exists (especially at night) but is not normally used and causes interference.",
+    "tags": [
+      "propagation summary",
+      "mf"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0072",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation Summary",
+    "question": "Which propagation path does VHF use?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Space wave"
+      },
+      {
+        "id": "b",
+        "text": "Surface wave"
+      },
+      {
+        "id": "c",
+        "text": "Sky wave"
+      },
+      {
+        "id": "d",
+        "text": "Surface and sky wave"
+      }
+    ],
+    "correct": "a",
+    "explanation": "VHF and all higher bands use the space wave (line of sight) only.",
+    "tags": [
+      "propagation summary",
+      "vhf"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0073",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Propagation Summary",
+    "question": "At which frequencies can a sky wave occur above 50 MHz?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Never, under any conditions"
+      },
+      {
+        "id": "b",
+        "text": "At all VHF frequencies, every night"
+      },
+      {
+        "id": "c",
+        "text": "Only in abnormal conditions, such as intense solar activity"
+      },
+      {
+        "id": "d",
+        "text": "Only on frequencies used for VOR"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Normally nothing above 50 MHz is returned by the ionosphere, but intense sunspot or solar flare activity can occasionally produce VHF sky waves.",
+    "tags": [
+      "sky wave",
+      "vhf"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0074",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Super- and Sub-refraction",
+    "question": "Above which frequency is super-refraction significant?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 30 MHz (VHF and above)"
+      },
+      {
+        "id": "b",
+        "text": "About 3 GHz (SHF and above)"
+      },
+      {
+        "id": "c",
+        "text": "About 300 kHz (MF and above)"
+      },
+      {
+        "id": "d",
+        "text": "About 3 MHz (HF and above)"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Super-refraction affects line-of-sight frequencies — VHF and higher — by bending them more than usual towards the earth.",
+    "tags": [
+      "super-refraction"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0075",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Super- and Sub-refraction",
+    "question": "By how much can super-refraction increase the normal line-of-sight range?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By as much as 100%"
+      },
+      {
+        "id": "b",
+        "text": "By as much as 5%"
+      },
+      {
+        "id": "c",
+        "text": "By as much as 20%"
+      },
+      {
+        "id": "d",
+        "text": "By as much as 40%"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Extra downward bending can add up to about 40% to the usual line-of-sight range. Sub-refraction, by contrast, can reduce it by up to about 20%.",
+    "tags": [
+      "super-refraction",
+      "range"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0076",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Super- and Sub-refraction",
+    "question": "Which conditions favour super-refraction?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Humidity rising with height, temperature falling faster than standard, and low pressure"
+      },
+      {
+        "id": "b",
+        "text": "Humidity falling with height, temperature falling slower than standard, and high pressure"
+      },
+      {
+        "id": "c",
+        "text": "Cold air flowing over a warm sea in a deep depression"
+      },
+      {
+        "id": "d",
+        "text": "Strong turbulence mixing the lower atmosphere"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Super-refraction is linked to fine weather and anticyclones: relative humidity decreasing with height, a lapse rate less than standard (or an inversion), and warm air over a cooler surface.",
+    "tags": [
+      "super-refraction",
+      "conditions"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0077",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Super- and Sub-refraction",
+    "question": "What can a low-level inversion with warm, dry air above cool, moist air produce at VHF and above?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sky waves from the E-layer at night"
+      },
+      {
+        "id": "b",
+        "text": "A complete loss of signal at all ranges"
+      },
+      {
+        "id": "c",
+        "text": "A reduction of line-of-sight range by about 20%"
+      },
+      {
+        "id": "d",
+        "text": "A duct that traps the waves, giving very long ranges"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The sharp change in refractive index can trap waves in a low-level duct, carrying them far beyond normal range. This is the cause of foreign TV and radio interference in fine weather.",
+    "tags": [
+      "duct propagation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0078",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Super- and Sub-refraction",
+    "question": "Where is duct propagation most common?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Along cold fronts in mid-latitude depressions"
+      },
+      {
+        "id": "b",
+        "text": "In the tropics in the middle of thunderstorms"
+      },
+      {
+        "id": "c",
+        "text": "Where warm deserts border the sea, e.g. the Mediterranean"
+      },
+      {
+        "id": "d",
+        "text": "Over the polar ice caps in the depth of the winter months"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Warm dry air from the land over cool sea gives the classic ducting set-up. It also occurs in temperate winters under high pressure, where subsiding air warms adiabatically above cool, moist surface air.",
+    "tags": [
+      "duct propagation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-PRG-0079",
+    "subjectCode": "RNAV",
+    "topic": "02 Radio Propagation Theory",
+    "subtopic": "Super- and Sub-refraction",
+    "question": "Which conditions favour sub-refraction?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Humidity rising with height, a steep lapse rate, low pressure"
+      },
+      {
+        "id": "b",
+        "text": "Humidity falling with height, a temperature inversion and high pressure"
+      },
+      {
+        "id": "c",
+        "text": "A low-level duct of warm, dry air above cool, moist air"
+      },
+      {
+        "id": "d",
+        "text": "Warm air flowing over a cooler surface in fine weather"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Sub-refraction is rarer. It comes with poor weather and depressions, cold air over a warm surface, humidity increasing with height and a steeper-than-standard lapse rate, and cuts line-of-sight range by up to about 20%.",
+    "tags": [
+      "sub-refraction"
+    ],
+    "status": "published",
+    "version": 1
+  }
+]
