@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
-import { ComingSoon } from "@/components/coming-soon";
-import { PageHeading } from "@/components/ui";
+import { Card, PageHeading } from "@/components/ui";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -18,44 +17,57 @@ export default function AboutPage() {
         subtitle={siteConfig.tagline}
       />
 
-      <ComingSoon>
-        <p>
-          <strong className="text-foreground">The goal is understanding the aircraft, not
-          memorising questions.</strong> A question bank you have simply memorised is worthless
-          the moment the real exam phrases the same fact differently — so every wrong option
-          here has to be ruled out by knowing the system, not recognised by its shape or its
-          length. If you can only get a question right by having seen that exact question
-          before, that is a question worth rewriting, and we treat it as a bug.
-        </p>
-        <p>
-          {siteConfig.name} is a practice question bank built around three parts:{" "}
-          <strong className="text-foreground">EASA ATPL Ground School</strong> — free in full —
-          for the theory subjects every pilot keeps reviewing,{" "}
-          <strong className="text-foreground">Aircraft Systems Knowledge</strong> for type rating
-          and class rating aircraft, and{" "}
-          <strong className="text-foreground">Pilot Sims &amp; Flight Trainers</strong> for the
-          procedures worth seeing rather than memorising. You choose a part, build a test from any
-          combination of topics and any number of questions, and sit it one of two ways.
-        </p>
-        <p>
-          <strong className="text-foreground">Study</strong> marks each answer as you give it
-          and shows the correct option with an explanation underneath. There is no clock.{" "}
-          <strong className="text-foreground">Exam</strong> holds everything back until the
-          end and gives you one minute a question, which is the closest this can get to sitting
-          the real thing.
-        </p>
-        <p>
-          Every answer a signed-in student gives is recorded as it is given, not only at the
-          end — so an abandoned test still counts towards your progress, and refreshing
-          mid-test picks up where you were rather than starting again.
-        </p>
-        <p>
-          Questions live as files in the repository, one folder per aircraft, and are checked
-          against a schema before they can reach anybody. Where a question comes from a
-          published source it carries a reference; where the source has not been confirmed
-          twice, that is recorded rather than glossed over.
-        </p>
-      </ComingSoon>
+      <Card>
+        <div className="space-y-5 text-sm leading-relaxed text-muted-foreground">
+          <section className="space-y-2">
+            <h2 className="text-base font-semibold text-foreground">Why PilotQBank exists</h2>
+            <p>
+              The goal is understanding the aircraft, not memorising questions. A student should
+              be able to rule out each wrong option by understanding the system, even when an
+              exam asks about it in a different way. If a question can only be answered by
+              remembering that exact question, it needs to be rewritten.
+            </p>
+          </section>
+
+          <section className="space-y-2">
+            <h2 className="text-base font-semibold text-foreground">What you can practise</h2>
+            <p>
+              {siteConfig.name} brings together three areas:{" "}
+              <strong className="text-foreground">EASA ATPL Ground School</strong> for general
+              theory subjects, free in full;{" "}
+              <strong className="text-foreground">Aircraft Systems Knowledge</strong> for type
+              rating and class rating aircraft; and{" "}
+              <strong className="text-foreground">Pilot Sims &amp; Flight Trainers</strong> for
+              interactive practice. In the question-bank sections, choose the topics and number
+              of questions for your test.
+            </p>
+          </section>
+
+          <section className="space-y-2">
+            <h2 className="text-base font-semibold text-foreground">How tests work</h2>
+            <p>
+              In <strong className="text-foreground">Study</strong> mode, each answer is marked
+              immediately and the explanation is shown; there is no time limit.{" "}
+              <strong className="text-foreground">Exam</strong> mode saves the review until the
+              end and allows one minute per question.
+            </p>
+            <p>
+              You can practise without an account. When signed in, your answers are saved as you
+              give them, so you can review your progress and resume an unfinished test.
+            </p>
+          </section>
+
+          <section className="space-y-2">
+            <h2 className="text-base font-semibold text-foreground">A note about the content</h2>
+            <p>
+              Question files are validated before publication, and source references are included
+              where available. Coverage and verification vary by subject and aircraft, so use
+              this as practice material—not as a substitute for approved aircraft manuals,
+              training, or official exam material.
+            </p>
+          </section>
+        </div>
+      </Card>
     </>
   );
 }
