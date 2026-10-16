@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Radio Navigation: Properties of Radio Waves — Pilot's Guide</title>
-<meta name="description" content="Properties of radio waves for pilots: electromagnetic radiation, polarization, period, frequency, wavelength, frequency bands and phase comparison." />
+<title>Radio Navigation — Pilot's Guide</title>
+<meta name="description" content="Radio Navigation explained for pilots in 18 chapters: radio waves and propagation, NDB/ADF, VOR, ILS, MLS, radar, SSR, DME, area navigation, EFIS and GNSS — with diagrams, worked examples and quick calculators." />
 <style>
   :root{
     --bg:#f6f8fb;
@@ -26,6 +26,7 @@
     --note-bg:#eaf1fb;
     --note-line:#3f6fb0;
     --note-ink:#1f3c63;
+    --white-arc:#e9edf3;
     --green-arc:#1f9d55;
     --yellow-arc:#e0b400;
     --red-arc:#d9362a;
@@ -54,6 +55,7 @@
       --note-bg:#122a44;
       --note-line:#5b93d6;
       --note-ink:#cfe2fb;
+      --white-arc:#324055;
       --green-arc:#2bb56a;
       --yellow-arc:#e0b400;
       --red-arc:#e4574d;
@@ -66,11 +68,11 @@
     --warn-bg:#3a1613; --warn-line:#e4574d; --warn-ink:#ffd6d1;
     --caution-bg:#3a2c0d; --caution-line:#e0a83a; --caution-ink:#ffe6b0;
     --note-bg:#122a44; --note-line:#5b93d6; --note-ink:#cfe2fb;
-    --green-arc:#2bb56a; --yellow-arc:#e0b400; --red-arc:#e4574d;
+    --white-arc:#324055; --green-arc:#2bb56a; --yellow-arc:#e0b400; --red-arc:#e4574d;
     --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
   }
   *{box-sizing:border-box}
-  html{scroll-behavior:smooth;overflow-x:clip;scroll-padding-top:80px}
+  html{scroll-behavior:smooth;overflow-x:clip}
   body{
     margin:0;
     overflow-x:clip;
@@ -82,6 +84,11 @@
     font-size:17px;
   }
   a{color:var(--brand)}
+  code, .kbd{
+    direction:ltr;unicode-bidi:isolate;display:inline-block;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:6px;
+    padding:0 .35em;font-size:.92em;color:var(--ink);
+  }
   header.top{
     position:sticky;top:0;z-index:40;
     background:linear-gradient(180deg, var(--surface) 85%, transparent);
@@ -119,47 +126,46 @@
     display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--ink-2);
     padding:7px 8px;border-radius:9px;font-size:13.5px;
   }
-  nav.toc a .n{flex:0 0 auto;color:var(--brand);font-weight:700;font-size:15px;min-width:22px}
+  nav.toc a .n{flex:0 0 auto;color:var(--brand);font-weight:700;font-size:12px;min-width:18px}
   nav.toc a:hover{background:var(--surface-2);color:var(--ink)}
   nav.toc a.active{background:var(--brand-light);color:var(--ink);font-weight:600}
   nav.toc .count{margin-inline-start:auto;font-size:11px;color:var(--muted)}
   main{flex:1 1 auto;min-width:0}
   .hero{
-    background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 16%,var(--surface)),var(--surface) 60%);
-    border:1px solid var(--line);border-radius:var(--radius);
-    padding:26px 22px;margin-bottom:22px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 22px;margin-bottom:22px;box-shadow:var(--shadow);
   }
-  .hero .cloud{position:absolute;inset-inline-end:-10px;top:-6px;font-size:84px;opacity:.16;pointer-events:none;user-select:none}
   .hero h1{margin:0 0 8px;font-size:26px}
   .hero p{margin:0;color:var(--ink-2);font-size:15.5px}
   .hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
   .hero .tag{
-    font-size:12.5px;background:color-mix(in srgb,var(--brand) 16%,var(--surface));color:var(--brand);
+    font-size:12.5px;background:var(--brand-light);color:var(--brand);
     border-radius:999px;padding:5px 12px;font-weight:600;
   }
   section.sec{
     background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
     padding:22px 20px 26px;margin-bottom:22px;box-shadow:var(--shadow);scroll-margin-top:76px;
-    border-top:5px solid var(--accent, var(--brand));
   }
   section.sec > h2{
     display:flex;align-items:center;gap:12px;font-size:21px;margin:0 0 6px;
     padding-bottom:14px;border-bottom:1px solid var(--line);
   }
   section.sec > h2 .num{
-    flex:0 0 auto;width:40px;height:40px;border-radius:12px;background:var(--accent,var(--brand));color:#fff;
-    display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800;
+    flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;
   }
-  section.sec > h2 .en{margin-inline-start:auto;font-size:12px;color:var(--ink-2);font-weight:600;
-    direction:ltr;background:color-mix(in srgb,var(--accent,var(--brand)) 14%,var(--surface));padding:4px 10px;border-radius:999px}
+  section.sec > h2 .en{margin-inline-start:auto;font-size:12px;color:var(--muted);font-weight:600;
+    direction:ltr;background:var(--surface-2);padding:4px 10px;border-radius:999px}
   .lead{color:var(--ink-2);font-size:16px;margin-top:14px}
-  h3.sub{font-size:16.5px;margin:26px 0 8px;color:var(--ink);border-inline-start:4px solid var(--accent,var(--brand));padding-inline-start:10px}
+  h3.sub{font-size:16.5px;margin:26px 0 8px;color:var(--ink);border-inline-start:4px solid var(--brand);padding-inline-start:10px}
+  h4.sub2{font-size:15px;margin:18px 0 6px;color:var(--ink-2)}
   p{margin:10px 0}
   ul, ol{margin:10px 0;padding-inline-start:22px}
   li{margin:5px 0}
   strong{color:var(--ink)}
   .table-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm)}
   table{border-collapse:collapse;width:100%;min-width:420px;font-size:14.5px}
+  table caption{text-align:start;font-size:12.5px;color:var(--muted);padding:8px 12px 0}
   thead th{
     background:var(--surface-2);color:var(--ink);text-align:start;
     padding:9px 12px;font-weight:700;white-space:nowrap;font-size:13.5px;
@@ -172,56 +178,39 @@
   .callout.warning{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-ink)}
   .callout.caution{background:var(--caution-bg);border-color:var(--caution-line);color:var(--caution-ink)}
   .callout.note{background:var(--note-bg);border-color:var(--note-line);color:var(--note-ink)}
+  .eq{
+    direction:ltr;font-family:"Cambria Math","STIX Two Math","Latin Modern Math",Georgia,serif;font-size:16.5px;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);
+    padding:10px 14px;margin:12px 0;text-align:center;white-space:nowrap;color:var(--ink);
+    max-width:100%;overflow-x:auto;contain:paint;box-sizing:border-box;
+  }
+  .eq sub,.eq sup{font-size:.72em}
   .diagram{
     background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
     padding:14px;margin:18px 0;text-align:center;
     max-width:100%;overflow-x:auto;box-sizing:border-box;
   }
   .diagram .cap{font-size:12.5px;color:var(--muted);margin-top:10px}
-  .diagram svg{max-width:100%;height:auto;display:block;margin:0 auto;min-width:420px}
+  .diagram svg{max-width:100%;height:auto;display:block;margin:0 auto}
+  .ref{
+    display:inline-block;direction:ltr;font-size:11.5px;color:var(--brand);
+    background:var(--brand-light);border-radius:6px;padding:1px 7px;margin-inline-start:4px;
+    font-weight:700;white-space:nowrap;
+  }
+  .related{
+    margin-top:22px;display:flex;align-items:center;gap:10px;
+    background:var(--brand-light);color:var(--brand);border-radius:999px;
+    padding:10px 16px;font-size:14px;font-weight:700;width:fit-content;
+  }
+  .related .dot{width:8px;height:8px;border-radius:50%;background:var(--brand)}
   footer{max-width:1180px;margin:0 auto;padding:10px 16px 60px;color:var(--muted);font-size:13px;text-align:center}
   #top-btn{
     position:fixed;inset-inline-end:18px;bottom:18px;z-index:50;
     width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
-    background:var(--accent,var(--brand));color:#fff;font-size:18px;cursor:pointer;
+    background:var(--brand);color:var(--brand-ink);font-size:18px;cursor:pointer;
     box-shadow:var(--shadow);display:none;align-items:center;justify-content:center;
   }
   #top-btn.show{display:flex}
-  .glance{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
-  .glance span{font-size:13px;background:color-mix(in srgb,var(--accent,var(--brand)) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--accent,var(--brand)) 35%,var(--line));border-radius:999px;padding:4px 12px;color:var(--ink-2)}
-  .keyidea{margin:16px 0;padding:14px 16px;border-radius:var(--radius);background:linear-gradient(135deg,color-mix(in srgb,var(--accent,var(--brand)) 16%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--accent,var(--brand)) 40%,var(--line))}
-  .keyidea .label{display:block;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent,var(--brand));margin-bottom:4px}
-  .keyidea p{margin:4px 0}
-  .tip,.memory{margin:14px 0;padding:12px 14px;border-radius:var(--radius-sm);font-size:14.5px;border-inline-start:4px solid}
-  .tip{background:color-mix(in srgb,var(--green-arc) 12%,var(--surface));border-color:var(--green-arc);color:var(--ink)}
-  .memory{background:color-mix(in srgb,#8b5cf6 12%,var(--surface));border-color:#8b5cf6;color:var(--ink)}
-  .tip .label,.memory .label{display:block;font-weight:800;font-size:12px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
-  .tip .label{color:var(--green-arc)} .memory .label{color:#8b5cf6}
-  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
-  .fcard{background:var(--surface-2);border:1px solid var(--line);border-top:3px solid var(--accent,var(--brand));border-radius:var(--radius-sm);padding:12px 14px}
-  .fcard .f{font-weight:700;color:var(--ink);font-size:15px}
-  .fcard .d{font-size:13.5px;color:var(--ink-2);margin-top:4px}
-  details.example{margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface);overflow:hidden}
-  details.example summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:14.5px;background:color-mix(in srgb,var(--accent,var(--brand)) 10%,var(--surface-2));list-style:none}
-  details.example summary::-webkit-details-marker{display:none}
-  details.example summary::before{content:"▸ ";color:var(--accent,var(--brand))}
-  details.example[open] summary::before{content:"▾ "}
-  details.example .body{padding:6px 16px 14px}
-  .steps{counter-reset:st;list-style:none;padding:0;margin:12px 0}
-  .steps li{counter-increment:st;position:relative;padding-inline-start:40px;margin:10px 0;min-height:28px}
-  .steps li::before{content:counter(st);position:absolute;inset-inline-start:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--accent,var(--brand));color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
-  .compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:14px 0}
-  .compare .card{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px}
-  .compare .card h4{margin:0 0 6px;font-size:15px}
-  .compare .card.good{border-top:3px solid var(--green-arc)} .compare .card.bad{border-top:3px solid var(--red-arc)} .compare .card.mid{border-top:3px solid var(--yellow-arc)} .compare .card.acc{border-top:3px solid var(--accent,var(--brand))}
-  .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
-  .tool{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
-  .tool h3{margin:0 0 8px;font-size:15.5px}
-  .tool label{display:block;font-size:12.5px;color:var(--muted);margin-top:8px}
-  .tool input, .tool select{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:16px}
-  .tool .out{margin-top:10px;padding:10px;border-radius:8px;background:color-mix(in srgb,var(--brand) 12%,var(--surface));font-size:14px}
-  .tool .out b{color:var(--brand)}
-  .cheat table{min-width:340px}
   @media (max-width:880px){
     .shell{flex-direction:column;padding:14px 12px 70px}
     main{width:100%;min-width:0}
@@ -245,52 +234,108 @@
     }
     .toc-close button{border:none;background:var(--surface-2);border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer;color:var(--ink)}
   }
-  @media (max-width:520px){.fgrid,.compare{grid-template-columns:1fr}}
-  .fgrid > *,.compare > *,.tools > *{min-width:0}
 
+  
+  /* ---------- PilotQBank study-guide additions ---------- */
+  :root{ --accent:var(--brand); }
+  html{scroll-padding-top:80px}
+  section.sec{border-top:5px solid var(--accent)}
+  section.sec > h2 .num{background:var(--accent);color:#fff;font-size:19px;width:40px;height:40px;border-radius:12px}
+  section.sec > h2 .en{background:color-mix(in srgb,var(--accent) 14%,var(--surface));color:var(--ink-2)}
+  h3.sub{border-inline-start-color:var(--accent)}
+  nav.toc a .n{font-size:15px;min-width:22px}
+  .hero{background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 16%,var(--surface)),var(--surface) 60%);position:relative;overflow:hidden}
+  .hero .cloud{position:absolute;inset-inline-end:-10px;top:-6px;font-size:84px;opacity:.16;pointer-events:none;user-select:none}
+  .hero .tag{background:color-mix(in srgb,var(--brand) 16%,var(--surface))}
+  .glance{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+  .glance span{font-size:13px;background:color-mix(in srgb,var(--accent) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));border-radius:999px;padding:4px 12px;color:var(--ink-2)}
+  .keyidea{margin:16px 0;padding:14px 16px;border-radius:var(--radius);background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 16%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--accent) 40%,var(--line))}
+  .keyidea .label{display:block;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+  .keyidea p{margin:4px 0}
+  .tip,.memory{margin:14px 0;padding:12px 14px;border-radius:var(--radius-sm);font-size:14.5px;border-inline-start:4px solid}
+  .tip{background:color-mix(in srgb,var(--green-arc) 12%,var(--surface));border-color:var(--green-arc);color:var(--ink)}
+  .memory{background:color-mix(in srgb,#8b5cf6 12%,var(--surface));border-color:#8b5cf6;color:var(--ink)}
+  .tip .label,.memory .label{display:block;font-weight:800;font-size:12px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+  .tip .label{color:var(--green-arc)} .memory .label{color:#8b5cf6}
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
+  .fcard{background:var(--surface-2);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:var(--radius-sm);padding:12px 14px}
+  .fcard .f{direction:ltr;font-family:"Cambria Math","STIX Two Math",Georgia,serif;font-size:18px;color:var(--ink);overflow-x:auto;white-space:nowrap}
+  .fcard .d{font-size:13.5px;color:var(--ink-2);margin-top:4px}
+  details.example{margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface);overflow:hidden}
+  details.example summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:14.5px;background:color-mix(in srgb,var(--accent) 10%,var(--surface-2));list-style:none}
+  details.example summary::-webkit-details-marker{display:none}
+  details.example summary::before{content:"▸ ";color:var(--accent)}
+  details.example[open] summary::before{content:"▾ "}
+  details.example .body{padding:6px 16px 14px}
+  .steps{counter-reset:st;list-style:none;padding:0;margin:12px 0}
+  .steps li{counter-increment:st;position:relative;padding-inline-start:40px;margin:10px 0;min-height:28px}
+  .steps li::before{content:counter(st);position:absolute;inset-inline-start:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:14px 0}
+  .compare .card{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px}
+  .compare .card h4{margin:0 0 6px;font-size:15px}
+  .compare .card.good{border-top:3px solid var(--green-arc)} .compare .card.bad{border-top:3px solid var(--red-arc)} .compare .card.mid{border-top:3px solid var(--yellow-arc)} .compare .card.acc{border-top:3px solid var(--accent)}
+  .bar{display:block;height:10px;border-radius:6px;background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 55%,#fff));min-width:4px}
+  td.barcell{min-width:130px}
+  .pill{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 9px;background:color-mix(in srgb,var(--accent) 16%,var(--surface));color:var(--ink)}
+  .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .tool{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+  .tool h3{margin:0 0 8px;font-size:15.5px}
+  .tool label{display:block;font-size:12.5px;color:var(--muted);margin-top:8px}
+  .tool input{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:16px}
+  .tool .out{margin-top:10px;padding:10px;border-radius:8px;background:color-mix(in srgb,var(--brand) 12%,var(--surface));font-size:14px;direction:ltr}
+  .tool .out b{color:var(--brand)}
+  .cheat table{min-width:340px}
   .sec .diagram svg text{fill:var(--ink);font:600 12px -apple-system,"Segoe UI",system-ui,sans-serif}
   .sec .diagram svg text.m{fill:var(--muted);font-weight:500;font-size:11px}
-  .sec .diagram svg .ax{stroke:var(--ink-2);stroke-width:1.5}
-  .sec .diagram svg .grid{stroke:var(--line);stroke-width:1}
-  .sec .diagram svg .curve{stroke:var(--accent,var(--brand));stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
-  .sec .diagram svg .fill{fill:color-mix(in srgb,var(--accent,var(--brand)) 18%,transparent)}
-  .sec .diagram svg .dot{fill:var(--accent,var(--brand))}
-  .sec .diagram svg .gn{stroke:var(--green-arc)} .sec .diagram svg .rd{stroke:var(--red-arc)} .sec .diagram svg .yl{stroke:var(--yellow-arc)}
+  .sec .diagram svg text.big{font-size:14px}
+  .sec .diagram svg .ln{stroke:var(--ink-2);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sec .diagram svg .thin{stroke:var(--muted);stroke-width:1;fill:none;stroke-dasharray:4 4}
+  .sec .diagram svg .ac{stroke:var(--accent);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sec .diagram svg .af{fill:color-mix(in srgb,var(--accent) 22%,transparent);stroke:var(--accent);stroke-width:2}
+  .sec .diagram svg .gn{stroke:var(--green-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .rd{stroke:var(--red-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .yl{stroke:var(--yellow-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .gf{fill:color-mix(in srgb,var(--green-arc) 25%,transparent)}
+  .sec .diagram svg .rf{fill:color-mix(in srgb,var(--red-arc) 25%,transparent)}
+  .sec .diagram svg .yf{fill:color-mix(in srgb,var(--yellow-arc) 30%,transparent)}
+  .sec .diagram svg .bx{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
+  .sec .diagram svg .wing{fill:var(--surface);stroke:var(--ink-2);stroke-width:2}
+  .sec .diagram svg .dot{fill:var(--accent)}
+  @media (max-width:520px){.fgrid,.compare{grid-template-columns:1fr}}
+  .fgrid > *,.compare > *,.tools > *{min-width:0}
+  .fcard .f{max-width:100%}
 
-  section#tools{--accent:#0d6e7d}
-  section#safe{--accent:#5aa2f0}
-  section#card{--accent:#e0575a}
-  section#oxy{--accent:#38bdf8}
-  section#ear{--accent:#a08cff}
-  section#vis{--accent:#2dd4bf}
-  section#hlth{--accent:#ff9a3d}
-  section#strs{--accent:#f5b13d}
-  section#info{--accent:#6ea8ff}
-  section#behv{--accent:#9be04a}
-  section#illus{--accent:#f472b6}
-  section#sleep{--accent:#8b84ff}
-  section#indiv{--accent:#34d9a5}
-  section#comm{--accent:#3ddc84}
-  section#mach{--accent:#ff6b62}
-  section#dec{--accent:#a78bfa}
-  section#crm{--accent:#ff8a3d}
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]) section.sec > h2 .num,
-    :root:not([data-theme="light"]) .steps li::before{color:#06121a}
-  }
-  :root[data-theme="dark"] section.sec > h2 .num,
-  :root[data-theme="dark"] .steps li::before{color:#06121a}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) {}
+    :root:not([data-theme="light"]) section#tools{--accent:#37c3d6}:root:not([data-theme="light"]) section.sec > h2 .num,:root:not([data-theme="light"]) .steps li::before{color:#06121a}}
+  :root[data-theme="dark"] section#tools{--accent:#37c3d6}:root[data-theme="dark"] section.sec > h2 .num,:root[data-theme="dark"] .steps li::before{color:#06121a}
+  .diagram svg{min-width:520px}
+
+  .part{display:flex;align-items:center;gap:10px;margin:34px 0 4px;padding:8px 14px;border-radius:var(--radius-sm);background:color-mix(in srgb,var(--accent) 14%,var(--surface-2));border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));font-size:15px;font-weight:800;color:var(--ink)}
+  .part + h3.sub{margin-top:16px}
+  nav.toc a .chn{flex:0 0 auto;min-width:18px;color:var(--brand);font-weight:800;font-size:12px}
+  section.sec > h2 .en{font-weight:700}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) section#ch1{--accent:#37c3d6}:root:not([data-theme="light"]) section#ch2{--accent:#5aa2f0}:root:not([data-theme="light"]) section#ch3{--accent:#a08cff}:root:not([data-theme="light"]) section#ch4{--accent:#38bdf8}:root:not([data-theme="light"]) section#ch5{--accent:#2dd4bf}:root:not([data-theme="light"]) section#ch6{--accent:#f5b13d}:root:not([data-theme="light"]) section#ch7{--accent:#ff7a52}:root:not([data-theme="light"]) section#ch8{--accent:#ff9a3d}:root:not([data-theme="light"]) section#ch9{--accent:#9be04a}:root:not([data-theme="light"]) section#ch10{--accent:#8b84ff}:root:not([data-theme="light"]) section#ch11{--accent:#3ddc84}:root:not([data-theme="light"]) section#ch12{--accent:#f472b6}:root:not([data-theme="light"]) section#ch13{--accent:#ff6b6b}:root:not([data-theme="light"]) section#ch14{--accent:#6ea8ff}:root:not([data-theme="light"]) section#ch15{--accent:#34d9a5}:root:not([data-theme="light"]) section#ch16{--accent:#f0b44a}:root:not([data-theme="light"]) section#ch17{--accent:#b49bff}:root:not([data-theme="light"]) section#ch18{--accent:#4fd1f0}}
+  :root[data-theme="dark"] section#ch1{--accent:#37c3d6}:root[data-theme="dark"] section#ch2{--accent:#5aa2f0}:root[data-theme="dark"] section#ch3{--accent:#a08cff}:root[data-theme="dark"] section#ch4{--accent:#38bdf8}:root[data-theme="dark"] section#ch5{--accent:#2dd4bf}:root[data-theme="dark"] section#ch6{--accent:#f5b13d}:root[data-theme="dark"] section#ch7{--accent:#ff7a52}:root[data-theme="dark"] section#ch8{--accent:#ff9a3d}:root[data-theme="dark"] section#ch9{--accent:#9be04a}:root[data-theme="dark"] section#ch10{--accent:#8b84ff}:root[data-theme="dark"] section#ch11{--accent:#3ddc84}:root[data-theme="dark"] section#ch12{--accent:#f472b6}:root[data-theme="dark"] section#ch13{--accent:#ff6b6b}:root[data-theme="dark"] section#ch14{--accent:#6ea8ff}:root[data-theme="dark"] section#ch15{--accent:#34d9a5}:root[data-theme="dark"] section#ch16{--accent:#f0b44a}:root[data-theme="dark"] section#ch17{--accent:#b49bff}:root[data-theme="dark"] section#ch18{--accent:#4fd1f0}
 </style>
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--ink-2)"/></marker>
+    <marker id="a-ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--accent)"/></marker>
+    <marker id="a-rd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--red-arc)"/></marker>
+    <marker id="a-gn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--green-arc)"/></marker>
+  </defs>
+</svg>
+
 <header class="top">
   <div class="top-inner">
     <div class="brand-mark">
-      <div class="plane">✈</div>
+      <div class="plane">📡</div>
       <div class="txt">
-        <h1>Radio Navigation — Properties of Radio Waves</h1>
-        <div class="sub">Chapter 1 · EASA ATPL Ground School</div>
+        <h1>Radio Navigation — Pilot's Guide</h1>
+        <div class="sub">How radio aids work and how to use them · ATPL Ground School</div>
       </div>
     </div>
     <button class="menu-btn" id="menuBtn">☰ Contents</button>
@@ -302,85 +347,1059 @@
 <div class="shell">
   <nav class="toc" id="toc">
     <div class="toc-close"><span style="font-size:13px;color:var(--muted);font-weight:700">Contents</span><button id="closeToc">✕</button></div>
-    <h2>Sections</h2>
-    <ol><li><a href="#wave"><span class="n">📡</span> Nature of Radio Waves <span class="count">6</span></a></li><li><a href="#polr"><span class="n">🧭</span> Polarization <span class="count">10</span></a></li><li><a href="#freq"><span class="n">⏱️</span> Period and Frequency <span class="count">8</span></a></li><li><a href="#spwl"><span class="n">📏</span> Speed and Wavelength <span class="count">14</span></a></li><li><a href="#band"><span class="n">📶</span> Frequency Bands <span class="count">27</span></a></li><li><a href="#phas"><span class="n">🔄</span> Phase Comparison <span class="count">8</span></a></li></ol>
+    <h2>Chapters</h2>
+    <ol>
+      <li><a href="#tools"><span class="n">🧰</span> Quick tools &amp; cheat sheet</a></li>
+      <li><a href="#ch1"><span class="n">〰️</span> <b class="chn">1</b> Properties of Radio Waves</a></li>
+      <li><a href="#ch2"><span class="n">🌐</span> <b class="chn">2</b> Radio Propagation Theory</a></li>
+      <li><a href="#ch3"><span class="n">📻</span> <b class="chn">3</b> Modulation</a></li>
+      <li><a href="#ch4"><span class="n">📡</span> <b class="chn">4</b> Antennae</a></li>
+      <li><a href="#ch5"><span class="n">🔁</span> <b class="chn">5</b> Doppler Radar Systems</a></li>
+      <li><a href="#ch6"><span class="n">🗣️</span> <b class="chn">6</b> VHF Direction Finder (VDF)</a></li>
+      <li><a href="#ch7"><span class="n">🧭</span> <b class="chn">7</b> Automatic Direction Finder (ADF)</a></li>
+      <li><a href="#ch8"><span class="n">🎯</span> <b class="chn">8</b> VHF Omni-directional Range (VOR)</a></li>
+      <li><a href="#ch9"><span class="n">🛬</span> <b class="chn">9</b> Instrument Landing System (ILS)</a></li>
+      <li><a href="#ch10"><span class="n">📐</span> <b class="chn">10</b> Microwave Landing System (MLS)</a></li>
+      <li><a href="#ch11"><span class="n">⏱️</span> <b class="chn">11</b> Radar Principles</a></li>
+      <li><a href="#ch12"><span class="n">🗼</span> <b class="chn">12</b> Ground Radar</a></li>
+      <li><a href="#ch13"><span class="n">⛈️</span> <b class="chn">13</b> Airborne Weather Radar</a></li>
+      <li><a href="#ch14"><span class="n">🔢</span> <b class="chn">14</b> Secondary Surveillance Radar (SSR)</a></li>
+      <li><a href="#ch15"><span class="n">📏</span> <b class="chn">15</b> Distance Measuring Equipment (DME)</a></li>
+      <li><a href="#ch16"><span class="n">🗺️</span> <b class="chn">16</b> Area Navigation Systems (RNAV)</a></li>
+      <li><a href="#ch17"><span class="n">🖥️</span> <b class="chn">17</b> Electronic Flight Information System (EFIS)</a></li>
+      <li><a href="#ch18"><span class="n">🛰️</span> <b class="chn">18</b> Global Navigation Satellite Systems (GNSS)</a></li>
+    </ol>
   </nav>
 
   <main>
     <div class="hero">
       <span class="cloud">📡</span>
-      <h1>📡 Properties of Radio Waves</h1>
-      <p>The physics every radio aid rests on: what a radio wave is, how it is polarized, how frequency and wavelength convert, which band each aid uses, and how phase is compared.</p>
-      <div class="tags"><span class="tag">6 sections</span><span class="tag">72 linked questions</span><span class="tag">Aircraft-independent</span></div>
+      <h1>📡 Radio Navigation</h1>
+      <p>
+        From the physics of a radio wave to the satellites overhead — every aid
+        a pilot tunes, follows or monitors, in the order you meet them. Each
+        chapter starts with the one idea that matters most, then the numbers,
+        the cockpit picture and the traps, with worked examples you can open.
+      </p>
+      <div class="tags">
+        <span class="tag">18 chapters</span>
+        <span class="tag">911 linked questions</span>
+        <span class="tag">🧮 Calculators</span>
+        <span class="tag">📊 Diagrams</span>
+        <span class="tag">Aircraft-independent</span>
+      </div>
     </div>
 
-    <section class="sec" id="wave">
-      <h2><span class="num">📡</span> Nature of Radio Waves <span class="en">6 questions</span></h2>
-      <p class="lead">What a radio wave physically is.</p>
-      <div class="keyidea"><span class="label">💡 Key idea</span>
-        <p><strong>High-frequency alternating current makes a wire radiate.</strong> Direct current gives a steady magnetic field around the wire. As the frequency rises, the field has not finished collapsing when the reversed field starts to build, and energy leaves the wire as electromagnetic radiation. The electric (E) and magnetic (H) fields are at right angles to each other. Speed: 300,000,000 m/s, about 162,000 NM per second.</p></div>
-      
+    <section class="sec" id="tools" style="--accent:#0d6e7d">
+      <h2><span class="num">🧰</span> Quick tools &amp; cheat sheet <span class="en">play with the numbers</span></h2>
+      <p class="lead">Six small calculators for the sums radio navigation asks you to do again and again, and a one-screen list of the numbers worth knowing by heart.</p>
+
+      <div class="tools">
+        <div class="tool">
+          <h3>📻 Frequency ⇄ wavelength</h3>
+          <label>Frequency (MHz)</label><input type="number" inputmode="decimal" id="fF" value="121.5" min="0">
+          <div class="out" id="fOut"></div>
+        </div>
+        <div class="tool">
+          <h3>📡 Line-of-sight range</h3>
+          <label>Aircraft height (ft)</label><input type="number" inputmode="decimal" id="lA" value="10000" min="0">
+          <label>Station aerial height (ft)</label><input type="number" inputmode="decimal" id="lS" value="400" min="0">
+          <div class="out" id="lOut"></div>
+        </div>
+        <div class="tool">
+          <h3>⏱️ Radar timing</h3>
+          <label>Echo time (µs)</label><input type="number" inputmode="decimal" id="rT" value="500" min="0">
+          <label>PRF (pulses per second)</label><input type="number" inputmode="decimal" id="rP" value="400" min="1">
+          <label>Pulse width (µs)</label><input type="number" inputmode="decimal" id="rW" value="1" min="0">
+          <div class="out" id="rOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🛬 Glide path check</h3>
+          <label>Glide path angle (°)</label><input type="number" inputmode="decimal" id="gA" value="3" min="0.5" max="10">
+          <label>Distance to touchdown (NM)</label><input type="number" inputmode="decimal" id="gD" value="4" min="0">
+          <label>Ground speed (kt)</label><input type="number" inputmode="decimal" id="gS" value="150" min="1">
+          <div class="out" id="gOut"></div>
+        </div>
+        <div class="tool">
+          <h3>📏 DME slant range</h3>
+          <label>DME reading (NM)</label><input type="number" inputmode="decimal" id="dR" value="10" min="0">
+          <label>Height above the station (ft)</label><input type="number" inputmode="decimal" id="dH" value="36000" min="0">
+          <div class="out" id="dOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🧭 Bearings from the RBI</h3>
+          <label>Magnetic heading (°)</label><input type="number" inputmode="decimal" id="bH" value="300" min="0" max="360">
+          <label>Relative bearing of the beacon (°)</label><input type="number" inputmode="decimal" id="bR" value="136" min="0" max="360">
+          <div class="out" id="bOut"></div>
+        </div>
+      </div>
+
+      <h3 class="sub">📋 Cheat sheet — numbers worth knowing</h3>
+      <div class="table-wrap cheat">
+        <table>
+          <thead><tr><th>Idea</th><th class="num">Number / rule</th></tr></thead>
+          <tbody>
+            <tr><td>⚡ Speed of radio waves</td><td class="num">300 000 km/s · 162 000 NM/s</td></tr>
+            <tr><td>📻 Wavelength and frequency</td><td class="num">λ (m) = 300 ÷ f (MHz)</td></tr>
+            <tr><td>📡 VHF/UHF range (line of sight)</td><td class="num">1.23 × (√h₁ + √h₂) NM, heights in ft</td></tr>
+            <tr><td>🌊 LF/MF surface wave range</td><td class="num">sea 3√P · land 2√P (P in W)</td></tr>
+            <tr><td>⏱️ Radar mile (1 NM out and back)</td><td class="num">12.36 µs</td></tr>
+            <tr><td>🔁 Maximum radar range from PRF</td><td class="num">≈ 81 000 ÷ PRF NM</td></tr>
+            <tr><td>📏 Minimum radar range</td><td class="num">150 m per µs of pulse width</td></tr>
+            <tr><td>🔊 Range vs power</td><td class="num">one-way × 4 · radar × 16 to double range</td></tr>
+            <tr><td>🛬 3° glide path</td><td class="num">≈ 300 ft per NM · ROD ≈ 5 × GS</td></tr>
+            <tr><td>🎯 CDI full scale</td><td class="num">VOR 10° · LOC 2.5° · GP 0.7°</td></tr>
+            <tr><td>📶 DME/N accuracy</td><td class="num">±0.25 NM ±1.25 % of range</td></tr>
+            <tr><td>🛰️ GPS</td><td class="num">24 SVs · 20 200 km · 12 h · 55° · L1 1 575.42 MHz</td></tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
-    <section class="sec" id="polr">
-      <h2><span class="num">🧭</span> Polarization <span class="en">10 questions</span></h2>
-      <p class="lead">Which way the electric field points.</p>
+    <section class="sec" id="ch1" style="--accent:#0d6e7d">
+      <h2><span class="num">1</span> Properties of Radio Waves <span class="en">Chapter 1</span></h2>
+      <p class="lead">Every radio aid is built on three numbers — speed, frequency and wavelength — and on one idea: comparing two signals.</p>
+      <div class="glance"><span>🎯 What a radio wave is</span><span>🎯 Polarization</span><span>🎯 f, τ and λ</span><span>🎯 The eight bands</span><span>🎯 Phase difference</span></div>
       <div class="keyidea"><span class="label">💡 Key idea</span>
-        <p><strong>Polarization is the plane of the electric field.</strong> A vertical aerial emits a vertically polarized wave and a horizontal aerial a horizontally polarized one. For maximum signal the receiving aerial must lie in the same plane. Circular polarization (e.g. from a helical antenna) rotates the field at the wave frequency: a dipole's orientation then no longer matters, and radar can remove precipitation clutter because reflection from water droplets reverses the circularity.</p></div>
-      
-    </section>
+        <p><strong>Radio waves travel at the speed of light, so frequency and wavelength are two ways of saying the same thing:</strong> λ = c / f. Get comfortable with that one formula and half the chapter is done.</p></div>
 
-    <section class="sec" id="freq">
-      <h2><span class="num">⏱️</span> Period and Frequency <span class="en">8 questions</span></h2>
-      <p class="lead">Time for one cycle, and its reciprocal.</p>
-      <div class="keyidea"><span class="label">💡 Key idea</span>
-        <p><strong>f = 1/τ.</strong> Period is the time for one cycle (microseconds). 1 kHz = 10³ Hz, 1 MHz = 10⁶ Hz, 1 GHz = 10⁹ Hz. Example: τ = 0.125 µs gives f = 1/(0.125×10⁻⁶) = 8 MHz.</p></div>
-      
-    </section>
+      <h3 class="sub">From a wire to a wave</h3>
+      <p>A steady (DC) current makes a magnetic field round a wire, at right angles to the current — and nothing more. Make the current <strong>alternate</strong> fast enough and the field has no time to collapse before the next reversal, so energy is pushed out into space: <strong>electromagnetic radiation</strong>.</p>
+      <ul>
+        <li>⚡ The wave has an <strong>electric (E) field</strong> parallel to the aerial and a <strong>magnetic (H) field</strong> at right angles to it — the two are perpendicular.</li>
+        <li>🌍 Long before radio, ocean crossings were navigated by <strong>astro-navigation</strong>. Today satellites have taken navigation back into space, but ground aids are kept as a <strong>back-up to GNSS</strong>.</li>
+        <li>📡 Radar (1930s) let ATC identify and separate aircraft, allowing much busier skies.</li>
+      </ul>
 
-    <section class="sec" id="spwl">
-      <h2><span class="num">📏</span> Speed and Wavelength <span class="en">14 questions</span></h2>
-      <p class="lead">Turning frequency into distance.</p>
-      <div class="keyidea"><span class="label">💡 Key idea</span>
-        <p><strong>λ = c/f = c × τ.</strong> With c = 300×10⁶ m/s: f (MHz) = 300 / λ (m) and λ (m) = 300 / f (MHz). Examples: 121.5 MHz → 2.47 m; 375 kHz = 0.375 MHz → 800 m; 3.2 cm = 0.032 m → 9375 MHz = 9.375 GHz. Always convert units first.</p></div>
-      
-    </section>
+      <h3 class="sub">Polarization</h3>
+      <div class="compare">
+        <div class="card acc"><h4>↕️ Linear</h4><p>Polarization is the plane of the <strong>electric field</strong>, set by the aerial: a vertical aerial gives vertical polarization. The receiving aerial must lie in the <strong>same plane</strong> for the best signal.</p></div>
+        <div class="card acc"><h4>🌀 Circular</h4><p>Made, for example, by a <strong>helical</strong> aerial. The field rotates once per cycle, right- or left-handed. A dipole receives it in any attitude, and radars use it to <strong>reject rain</strong>: droplets reverse the rotation.</p></div>
+      </div>
 
-    <section class="sec" id="band">
-      <h2><span class="num">📶</span> Frequency Bands <span class="en">27 questions</span></h2>
-      <p class="lead">Where each navigation aid lives.</p>
-      <div class="keyidea"><span class="label">💡 Key idea</span>
-        <p><strong>Each decade is a band.</strong> Work out the frequency, then place it.</p></div>
+      <h3 class="sub">Period, frequency and wavelength</h3>
+      <div class="diagram">
+        <svg viewBox="0 0 640 170" role="img" aria-label="A sine wave showing one wavelength and amplitude">
+          <line class="thin" x1="20" y1="85" x2="620" y2="85"/>
+          <path class="ac" d="M20 85 C 70 5, 120 5, 170 85 S 270 165, 320 85 S 420 5, 470 85 S 570 165, 620 85"/>
+          <line class="ln" x1="20" y1="150" x2="320" y2="150" marker-start="url(#a-ink)" marker-end="url(#a-ink)"/>
+          <text x="170" y="166" text-anchor="middle">one wavelength λ (distance) · one period τ (time)</text>
+          <line class="ln" x1="95" y1="85" x2="95" y2="30" marker-end="url(#a-ink)"/>
+          <text class="m" x="102" y="52">amplitude</text>
+          <text class="m" x="470" y="160" text-anchor="middle">f = cycles per second (Hz)</text>
+        </svg>
+        <div class="cap">Frequency counts cycles per second; wavelength measures the distance one cycle covers.</div>
+      </div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">f = 1 / τ</div><div class="d">τ = 0.25 µs → f = 4 MHz.</div></div>
+        <div class="fcard"><div class="f">λ (m) = 300 / f (MHz)</div><div class="d">Frequency must be in MHz. 150 MHz → 2 m; 400 kHz = 0.4 MHz → 750 m.</div></div>
+        <div class="fcard"><div class="f">f (MHz) = 300 / λ (m)</div><div class="d">Wavelength must be in metres. 3 cm = 0.03 m → 10 000 MHz = 10 GHz.</div></div>
+      </div>
+      <div class="warning callout"><span class="label">⚠️ The unit trap</span> Almost every wrong answer in this chapter comes from a unit slip: kHz entered as MHz, or centimetres as metres. Convert first, then divide.</div>
+
+      <h3 class="sub">The eight frequency bands</h3>
       <div class="table-wrap"><table>
-<thead><tr><th>Band</th><th>Range</th><th>Civil aviation use</th></tr></thead><tbody>
-<tr><td>VLF</td><td>3 – 30 kHz</td><td>Nil</td></tr>
-<tr><td>LF</td><td>30 – 300 kHz</td><td>NDB/ADF</td></tr>
-<tr><td>MF</td><td>300 – 3000 kHz</td><td>NDB/ADF, long-range communications</td></tr>
-<tr><td>HF</td><td>3 – 30 MHz</td><td>Long-range communications</td></tr>
-<tr><td>VHF</td><td>30 – 300 MHz</td><td>Short-range communications, VDF, VOR, ILS localizer, marker beacons</td></tr>
-<tr><td>UHF</td><td>300 – 3000 MHz</td><td>ILS glide path, DME, SSR, satellite communications, GNSS, long-range radar</td></tr>
-<tr><td>SHF</td><td>3 – 30 GHz</td><td>RADALT, AWR, MLS, short-range radar</td></tr>
-<tr><td>EHF</td><td>30 – 300 GHz</td><td>Nil</td></tr></tbody></table></div>
+        <thead><tr><th>Band</th><th class="num">Frequency</th><th class="num">Wavelength</th><th>Used for</th></tr></thead>
+        <tbody>
+          <tr><td>VLF</td><td class="num">3–30 kHz</td><td class="num">100–10 km</td><td>Nothing in civil aviation</td></tr>
+          <tr><td>LF</td><td class="num">30–300 kHz</td><td class="num">10–1 km</td><td>NDB / ADF</td></tr>
+          <tr><td>MF</td><td class="num">300–3 000 kHz</td><td class="num">1 000–100 m</td><td>NDB / ADF, long-range communication</td></tr>
+          <tr><td>HF</td><td class="num">3–30 MHz</td><td class="num">100–10 m</td><td>Long-range communication</td></tr>
+          <tr><td>VHF</td><td class="num">30–300 MHz</td><td class="num">10–1 m</td><td>Voice, VDF, VOR, ILS localizer, markers</td></tr>
+          <tr><td>UHF</td><td class="num">300–3 000 MHz</td><td class="num">100–10 cm</td><td>ILS glide path, DME, SSR, satcom, GNSS, long-range radar</td></tr>
+          <tr><td>SHF</td><td class="num">3–30 GHz</td><td class="num">10–1 cm</td><td>Radio altimeter, weather radar, MLS, short-range radar</td></tr>
+          <tr><td>EHF</td><td class="num">30–300 GHz</td><td class="num">10–1 mm</td><td>Nothing in civil aviation</td></tr>
+        </tbody></table></div>
+      <div class="tip"><span class="label">✈️ Memory hook</span> Each band is ten times the one below: the edges always go <strong>3 – 30 – 300 – 3 000</strong>. Wavelengths do the same thing backwards.</div>
+
+      <h3 class="sub">Phase comparison</h3>
+      <p>VOR and several other aids find direction by comparing the <strong>phase</strong> of two signals. Rules: both must have the <strong>same frequency</strong>; one is the <strong>reference</strong>, the other the <strong>variable</strong>; and the answer is always positive.</p>
+      <div class="fgrid"><div class="fcard"><div class="f">Δφ = reference − variable (+360° if negative)</div><div class="d">080° − 200° = −120° → <strong>240°</strong>. 300° − 045° = <strong>255°</strong>.</div></div></div>
+      <div class="related"><span class="dot"></span> Practise: 01 Properties of Radio Waves</div>
     </section>
 
-    <section class="sec" id="phas">
-      <h2><span class="num">🔄</span> Phase Comparison <span class="en">8 questions</span></h2>
-      <p class="lead">The principle behind VOR-type systems.</p>
+    <section class="sec" id="ch2" style="--accent:#2f7fd1">
+      <h2><span class="num">2</span> Radio Propagation Theory <span class="en">Chapter 2</span></h2>
+      <p class="lead">How a signal gets from the aerial to you decides its range, its reliability by night, and what it can be used for.</p>
+      <div class="glance"><span>🎯 Attenuation &amp; inverse square</span><span>🎯 Surface, space and sky wave</span><span>🎯 The ionosphere's layers</span><span>🎯 Skip distance &amp; dead space</span><span>🎯 HF frequency choice</span><span>🎯 Super- and sub-refraction</span></div>
       <div class="keyidea"><span class="label">💡 Key idea</span>
-        <p><strong>Same frequency, one reference.</strong> Compare a variable wave with a reference wave of the same frequency. Phase difference = reference − variable; if negative, add 360°. Example: 110° − 315° = −205° → 155°.</p></div>
-      
+        <p><strong>Low frequencies hug the ground, middle frequencies bounce off the ionosphere, high frequencies go in straight lines.</strong> LF/MF = surface wave, HF = sky wave, VHF and above = line of sight.</p></div>
+
+      <h3 class="sub">Losing signal on the way</h3>
+      <ul>
+        <li>📉 <strong>Attenuation</strong> = absorption (air, water, ground, vegetation — worse with frequency, large above ~1 GHz) + spreading.</li>
+        <li>🔆 <strong>Inverse square law</strong>: power ∝ 1 / range². Twice the range, a quarter of the power; to <strong>double range, ×4 power</strong>.</li>
+        <li>⚡ <strong>Static</strong> is worst at low frequencies and negligible at VHF+. The <strong>signal-to-noise ratio</strong> measures how clean a signal is.</li>
+        <li>〰️ <strong>Fading</strong>: the same signal by two paths, moving in and out of phase.</li>
+        <li>🎯 Range also grows with <strong>receiver sensitivity</strong> (less internal noise) and <strong>directivity</strong> (a beam).</li>
+      </ul>
+
+      <h3 class="sub">The paths a wave can take</h3>
+      <div class="diagram">
+        <svg viewBox="0 0 660 230" role="img" aria-label="Surface wave, sky wave, skip distance and dead space">
+          <path class="ln" d="M10 200 Q 330 150 650 200"/>
+          <line class="thin" x1="10" y1="50" x2="650" y2="50"/>
+          <text class="m" x="600" y="44">ionosphere</text>
+          <rect class="bx" x="40" y="170" width="8" height="22"/>
+          <text x="44" y="218" text-anchor="middle">TX</text>
+          <path class="gn" d="M48 182 Q 120 168 200 166"/>
+          <text class="m" x="120" y="160">surface wave</text>
+          <path class="ac" d="M48 175 L 300 52 L 540 186" marker-end="url(#a-ac)"/>
+          <text x="420" y="110">first returning sky wave</text>
+          <path class="thin" d="M48 175 L 170 50"/>
+          <text class="m" x="98" y="88">passes through</text>
+          <line class="rd" x1="200" y1="196" x2="540" y2="196"/>
+          <text x="370" y="190" text-anchor="middle">dead space</text>
+          <line class="ln" x1="44" y1="222" x2="540" y2="222" marker-start="url(#a-ink)" marker-end="url(#a-ink)"/>
+          <text class="m" x="300" y="216">skip distance</text>
+        </svg>
+        <div class="cap">Skip distance runs from the transmitter to the first sky wave; dead space is the silent gap after the surface wave dies.</div>
+      </div>
+      <div class="compare">
+        <div class="card acc"><h4>🌊 Surface wave</h4><p>~20 kHz–50 MHz, useful to ~2 MHz. Bends round the earth by <strong>diffraction</strong>. Longer range at <strong>lower frequency</strong>, over <strong>sea</strong> (good conductor) and with <strong>vertical polarization</strong>. Rule of thumb at 300 kHz: <strong>3√P sea, 2√P land</strong>. Crossing a coast it speeds up over water and bends towards the coast — <em>coastal refraction</em>.</p></div>
+        <div class="card acc"><h4>📶 Space wave</h4><p>Direct + ground-reflected wave. The <strong>only</strong> path at VHF and above. Range = <strong>1.23 (√h₁ + √h₂)</strong>, heights in feet. Below the radio horizon, no amount of power helps.</p></div>
+        <div class="card acc"><h4>🌌 Sky wave</h4><p>Refracted back by the ionosphere. Up to ~2 MHz from the E-layer, 2–50 MHz from the F-layers. Nothing above 50 MHz except in abnormal solar conditions.</p></div>
+      </div>
+      <details class="example"><summary>🧮 Worked example — line of sight</summary><div class="body">
+        <p>Aircraft at 10 000 ft, station aerial at 400 ft: 1.23 × (100 + 20) = <strong>148 NM</strong>.</p>
+        <p>Station 150 NM away with its aerial at 100 ft — how high must you be? 150 ÷ 1.23 = 122; 122 − 10 = 112; 112² ≈ <strong>12 500 ft</strong>.</p>
+        <p>Common slip: adding the two heights under one square root gives a range far too short.</p></div></details>
+
+      <h3 class="sub">The ionosphere</h3>
+      <p>From about <strong>60 km</strong> up, ultraviolet and shorter solar radiation knocks electrons off atoms. Ionization peaks about <strong>1400 local</strong>, is lowest <strong>just before sunrise</strong>, and is greater in <strong>summer</strong> and at <strong>low latitudes</strong>. Solar flares can push it to disruptive levels.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Layer</th><th class="num">Average height</th><th>Behaviour</th></tr></thead>
+        <tbody>
+          <tr><td>D</td><td class="num">75 km</td><td>Forms at sunrise, gone at sunset. Absorbs LF/MF by day.</td></tr>
+          <tr><td>E</td><td class="num">125 km</td><td>Always there. Lower by day, higher at night. Max single hop ≈ 1 350 NM.</td></tr>
+          <tr><td>F (F1, F2)</td><td class="num">225 km</td><td>Splits into F1 and F2 at sunrise. F2 rises above 400 km in summer. Max single hop ≈ 2 200 NM.</td></tr>
+        </tbody></table></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Change</th><th>Critical angle</th><th>Skip distance</th><th>Dead space</th></tr></thead>
+        <tbody>
+          <tr><td>⬆️ More ionization (day)</td><td>smaller</td><td>shorter</td><td>smaller</td></tr>
+          <tr><td>⬆️ Higher frequency</td><td>larger</td><td>longer</td><td>larger (surface wave shrinks too)</td></tr>
+          <tr><td>⬆️ Higher layer</td><td>—</td><td>longer</td><td>—</td></tr>
+        </tbody></table></div>
+      <div class="caution callout"><span class="label">🌅 Dawn and dusk</span> The ionosphere is in transition and "electrically turbulent": HF and ADF are least reliable then. At night the D-layer vanishes, so LF/MF sky waves appear at short range — the root of ADF night effect.</div>
+
+      <h3 class="sub">HF communication</h3>
+      <ul>
+        <li>📍 <strong>MUF</strong>: the frequency whose first sky wave lands exactly at the receiver — least loss, but a drop in ionization loses the signal.</li>
+        <li>✅ <strong>OWF ≈ 0.85 × MUF</strong>. MUF 20 MHz → OWF 17 MHz.</li>
+        <li>🌙 Night needs roughly <strong>half</strong> the daytime frequency; longer range needs a <strong>higher</strong> frequency.</li>
+        <li>🌐 Mid-ocean at dawn: towards the daylight side use the higher frequency, towards the dark side about half of it.</li>
+      </ul>
+
+      <h3 class="sub">Super- and sub-refraction (VHF and above)</h3>
+      <div class="compare">
+        <div class="card good"><h4>⬇️ Super-refraction (+ up to 40 %)</h4><p>Humidity falling with height, temperature falling slower than standard (inversion), high pressure, warm air over a cool surface. Extreme case: a <strong>duct</strong> — very long ranges, common where deserts meet the sea.</p></div>
+        <div class="card bad"><h4>⬆️ Sub-refraction (− up to 20 %)</h4><p>Humidity rising with height, steep lapse rate, low pressure, cold air over a warm surface. Rarer.</p></div>
+      </div>
+      <div class="related"><span class="dot"></span> Practise: 02 Radio Propagation Theory</div>
+    </section>
+
+    <section class="sec" id="ch3" style="--accent:#7a5cf0">
+      <h2><span class="num">3</span> Modulation <span class="en">Chapter 3</span></h2>
+      <p class="lead">A plain carrier tells you nothing. Modulation is how speech, Morse, data and bearing information ride on it.</p>
+      <div class="glance"><span>🎯 Keyed, AM, FM, phase, pulse</span><span>🎯 Sidebands and bandwidth</span><span>🎯 Why SSB on HF</span><span>🎯 Emission designators</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Whatever you change on the carrier — on/off, amplitude, frequency or phase — names the type of modulation.</strong></p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Type</th><th>What the information changes</th><th>Aviation use</th></tr></thead>
+        <tbody>
+          <tr><td>🔘 Keyed</td><td>Carrier switched on and off (Morse — telegraphy)</td><td>Some NDB idents (A1A)</td></tr>
+          <tr><td>📶 AM</td><td>Carrier amplitude</td><td>VHF voice (A3E), HF voice as SSB (J3E)</td></tr>
+          <tr><td>〰️ FM</td><td>Carrier frequency: audio <em>amplitude</em> sets deviation, audio <em>frequency</em> sets rate</td><td>Not for aviation voice (too wide)</td></tr>
+          <tr><td>🔄 Phase</td><td>Carrier phase — digital PSK: 0° = 0, 180° = 1</td><td>GPS (BPSK), MLS (DPSK)</td></tr>
+          <tr><td>⏱️ Pulse</td><td>Short bursts of carrier</td><td>Radar, DME, SSR, data</td></tr>
+        </tbody></table></div>
+
+      <h3 class="sub">Sidebands</h3>
+      <p>Mixing (<strong>heterodyning</strong>) a carrier with audio leaves the carrier unchanged and adds <strong>sum and difference</strong> frequencies — the upper and lower sidebands. Bandwidth = <strong>2 × highest audio frequency</strong>. Both sidebands carry all the information, and only about <strong>one third</strong> of the power carries any.</p>
+      <details class="example"><summary>🧮 Worked example — bandwidth</summary><div class="body">
+        <p>1 000 kHz carrier, audio up to 3 kHz: occupies <strong>997–1 003 kHz</strong>, bandwidth <strong>6 kHz</strong>.</p></div></details>
+      <div class="compare">
+        <div class="card acc"><h4>✂️ Single sideband (SSB)</h4><p>Remove the <strong>carrier and one sideband</strong>. Benefits: twice the channels, better signal-to-noise (less ionospheric distortion and static), less power and lighter equipment. That is why HF voice is SSB.</p></div>
+        <div class="card acc"><h4>📻 Why not FM?</h4><p>FM broadcasting needs about 150 kHz (AM about 9 kHz). Even narrow-band FM (~8 kHz) is wider than the 6 kHz aeronautical VHF channel or the 3 kHz HF channel.</p></div>
+      </div>
+
+      <h3 class="sub">Emission designators</h3>
+      <p>Three symbols: <strong>1</strong> type of modulation of the main carrier, <strong>2</strong> nature of the modulating signal, <strong>3</strong> type of information.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Aid</th><th class="num">Designator</th><th>Aid</th><th class="num">Designator</th></tr></thead>
+        <tbody>
+          <tr><td>NDB / ADF</td><td class="num">N0NA1A · N0NA2A</td><td>VOR</td><td class="num">A9W</td></tr>
+          <tr><td>VHF voice</td><td class="num">A3E</td><td>ILS</td><td class="num">A8W</td></tr>
+          <tr><td>HF voice</td><td class="num">J3E</td><td>Marker beacons</td><td class="num">A2A</td></tr>
+          <tr><td>DME</td><td class="num">P0N</td><td>MLS</td><td class="num">N0XG1D</td></tr>
+        </tbody></table></div>
+      <div class="tip"><span class="label">✈️ Decode A3E</span> A = AM double sideband · 3 = one analogue channel · E = telephony. J = single sideband, suppressed carrier.</div>
+      <div class="related"><span class="dot"></span> Practise: 03 Modulation</div>
+    </section>
+
+    <section class="sec" id="ch4" style="--accent:#1e9bd7">
+      <h2><span class="num">4</span> Antennae <span class="en">Chapter 4</span></h2>
+      <p class="lead">The aerial shapes where energy goes. Get its length and shape right and the whole system works better.</p>
+      <div class="glance"><span>🎯 Dipole and Marconi</span><span>🎯 Feeders and waveguides</span><span>🎯 Polar diagrams</span><span>🎯 Directivity &amp; side lobes</span><span>🎯 Loop, dish, flat plate</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>An aerial works best at a half or quarter of the wavelength</strong> — cut slightly short because waves travel more slowly in a conductor.</p></div>
+      <div class="compare">
+        <div class="card acc"><h4>Half-wave dipole</h4><p>Fed at the centre; radiates at right angles to its length, nothing off the ends. 3-D pattern: a <strong>torus</strong>. 100 MHz → λ 3 m → <strong>1.5 m</strong>.</p></div>
+        <div class="card acc"><h4>Quarter-wave (Marconi)</h4><p>Stands insulated on a metal surface that acts as the other half. Short and low-drag — the aircraft's blade aerials. 150 MHz → <strong>50 cm</strong>.</p></div>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Frequency</th><th>Feeder</th></tr></thead>
+        <tbody>
+          <tr><td>LF / MF</td><td>Simple wire</td></tr>
+          <tr><td>HF / VHF</td><td>Twin-wire feeder</td></tr>
+          <tr><td>UHF</td><td>Coaxial cable</td></tr>
+          <tr><td>Upper UHF, SHF, EHF</td><td>Waveguide — hollow rectangular tube, about <strong>½ λ</strong> wide</td></tr>
+        </tbody></table></div>
+
+      <h3 class="sub">Polar diagrams and directivity</h3>
+      <div class="diagram">
+        <svg viewBox="0 0 640 200" role="img" aria-label="Polar diagrams of a dipole with reflector, a loop and a sense aerial cardioid">
+          <circle class="dot" cx="110" cy="100" r="4"/>
+          <path class="af" d="M110 100 C 150 40, 230 60, 240 100 C 230 140, 150 160, 110 100 Z"/>
+          <line class="ln" x1="95" y1="70" x2="95" y2="130"/>
+          <text class="m" x="60" y="60">reflector</text>
+          <text x="150" y="185" text-anchor="middle">Reflector: beam forward</text>
+          <path class="af" d="M330 100 C 300 40, 360 40, 330 100 C 300 160, 360 160, 330 100 Z" transform="rotate(90 330 100)"/>
+          <text class="m" x="330" y="40" text-anchor="middle">null</text>
+          <text class="m" x="330" y="168" text-anchor="middle">null</text>
+          <text x="330" y="185" text-anchor="middle">Loop: figure of eight</text>
+          <path class="af" d="M520 100 m -55 0 a 55 55 0 1 0 110 0 a 55 55 0 1 0 -110 0" style="fill:none;stroke:var(--muted);stroke-dasharray:4 4"/>
+          <path class="af" d="M520 100 C 600 40, 600 160, 520 100 C 500 70, 470 60, 450 100 C 470 140, 500 130, 520 100 Z"/>
+          <text x="520" y="185" text-anchor="middle">Loop + sense = cardioid</text>
+        </svg>
+        <div class="cap">A polar diagram joins points of equal signal strength. A beam gains range in one direction — at the cost of side lobes.</div>
+      </div>
+      <ul>
+        <li>🔁 <strong>Reflector</strong>: about <strong>5 % longer</strong>, <strong>¼ λ behind</strong>. <strong>Directors</strong>: shorter, in front. Together: the TV aerial.</li>
+        <li>👻 Price of directivity: <strong>side lobes</strong> (TV ghosting; real problems in SSR, ILS and radar).</li>
+        <li>🛬 ILS localizer: <strong>16 or 24</strong> elements in a line, ½ λ apart, making two narrow lobes.</li>
+        <li>🧭 ADF loop: zero output when square to the wave; figure-of-eight with <strong>two nulls</strong> (180° ambiguity).</li>
+      </ul>
+
+      <h3 class="sub">Radar aerials</h3>
+      <div class="compare">
+        <div class="card mid"><h4>Parabolic dish</h4><p>Waveguide horn at the <strong>focus</strong>; reflected rays leave parallel and in phase (a plane wavefront). The beam still diverges, and uneven reflection spills energy into <strong>side lobes</strong>.</p></div>
+        <div class="card good"><h4>Flat plate (slotted, phased array)</h4><p>Many slots fed from behind. <strong>Narrower beam, smaller side lobes, less power, narrower pulse, better resolution.</strong> Standard on modern weather radar.</p></div>
+      </div>
+      <div class="related"><span class="dot"></span> Practise: 04 Antennae</div>
+    </section>
+
+    <section class="sec" id="ch5" style="--accent:#14a39a">
+      <h2><span class="num">5</span> Doppler Radar Systems <span class="en">Chapter 5</span></h2>
+      <p class="lead">Relative motion changes the frequency you receive. Measure that change and you know the speed.</p>
+      <div class="glance"><span>🎯 Doppler shift</span><span>🎯 Janus array</span><span>🎯 Ground speed and drift</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Closing → frequency rises. Opening → frequency falls.</strong> The shift is proportional to relative speed, not distance. With no relative motion there is no shift.</p></div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">Δf ≈ 2V / λ (echo)</div><div class="d">The shift happens out and back, hence the 2. 150 m/s on 3 cm → <strong>10 kHz</strong>.</div></div>
+      </div>
+      <div class="diagram">
+        <svg viewBox="0 0 640 170" role="img" aria-label="Four-beam Janus array from an aircraft">
+          <path class="wing" d="M290 40 L350 40 L370 50 L350 60 L290 60 L270 50 Z"/>
+          <line class="gn" x1="320" y1="60" x2="200" y2="150" marker-end="url(#a-gn)"/>
+          <line class="gn" x1="320" y1="60" x2="250" y2="150" marker-end="url(#a-gn)"/>
+          <line class="rd" x1="320" y1="60" x2="390" y2="150" marker-end="url(#a-rd)"/>
+          <line class="rd" x1="320" y1="60" x2="440" y2="150" marker-end="url(#a-rd)"/>
+          <text x="150" y="130">forward beams ↑ f</text>
+          <text x="450" y="130">aft beams ↓ f</text>
+          <line class="thin" x1="60" y1="155" x2="580" y2="155"/>
+          <text class="m" x="320" y="25" text-anchor="middle">direction of flight ←</text>
+        </svg>
+        <div class="cap">Forward and aft shifts give ground speed; a difference between left and right beams gives drift.</div>
+      </div>
+      <ul>
+        <li>🛩️ Airborne Doppler uses one <strong>slotted waveguide</strong> array, beams pointing down: a <strong>Janus</strong> array of 3 or 4 beams (named after the god who faced both ways).</li>
+        <li>➡️ No drift: equal and opposite shifts fore and aft. <strong>Drift</strong>: port and starboard shifts differ.</li>
+        <li>🧭 Doppler gives ground speed and drift; <strong>heading</strong> is needed for position (dead reckoning).</li>
+        <li>🌊 Weak points: poor heading input and lost returns over a <strong>calm sea</strong> — today Doppler is blended with IRS, VOR/DME or GPS.</li>
+        <li>📡 The principle is also used in radar, Doppler VOR and some VDF.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 05 Doppler Radar Systems</div>
+    </section>
+
+    <section class="sec" id="ch6" style="--accent:#e09a1f">
+      <h2><span class="num">6</span> VHF Direction Finder (VDF) <span class="en">Chapter 6</span></h2>
+      <p class="lead">The simplest bearing service of all: you talk, the ground station finds where your voice comes from.</p>
+      <div class="glance"><span>🎯 QDM, QDR, QTE, QUJ</span><span>🎯 Bearing classes</span><span>🎯 Range and errors</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>All the direction-finding kit is on the ground.</strong> The aircraft needs only its VHF radio (118–137 MHz, A3E). Auto-triangulation is offered only on <strong>121.5 MHz</strong>.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Code</th><th>Meaning</th><th>Reference</th></tr></thead>
+        <tbody>
+          <tr><td><strong>QDM</strong></td><td>Heading to steer to the station (no wind)</td><td>Magnetic, TO</td></tr>
+          <tr><td><strong>QDR</strong></td><td>Bearing of the aircraft from the station (radial)</td><td>Magnetic, FROM</td></tr>
+          <tr><td><strong>QUJ</strong></td><td>Track to the station</td><td>True, TO</td></tr>
+          <tr><td><strong>QTE</strong></td><td>Bearing of the aircraft from the station</td><td>True, FROM</td></tr>
+        </tbody></table></div>
+      <details class="example"><summary>🧮 Worked example — converting codes</summary><div class="body">
+        <p>QTE 120°, variation 5°W: QDR = 120 + 5 = <strong>125°</strong>, QDM = <strong>305°</strong>, QUJ = <strong>300°</strong>.</p>
+        <p>QTE 353°, variation 8°E: QDR = 353 − 8 = <strong>345°</strong>, QDM = <strong>165°</strong>.</p>
+        <p>"Variation west, magnetic best; variation east, magnetic least."</p></div></details>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Class</th><th class="num">Accuracy</th></tr></thead>
+        <tbody>
+          <tr><td>A</td><td class="num">±2°</td></tr>
+          <tr><td>B (normally the best offered)</td><td class="num">±5°</td></tr>
+          <tr><td>C</td><td class="num">±10°</td></tr>
+          <tr><td>D</td><td class="num">worse than C</td></tr>
+          <tr><td>Doppler VDF</td><td class="num">±0.5°</td></tr>
+        </tbody></table></div>
+      <ul>
+        <li>📡 Range = line of sight (1.23 formula), limited by terrain and power; ducting can extend it.</li>
+        <li>🏢 Errors: site and propagation error (reflections), <strong>aircraft attitude</strong> (vertical polarization — fly straight and level), poor accuracy <strong>overhead</strong>, two aircraft transmitting together.</li>
+        <li>✅ Uses: track checks, position lines, homing and VDF let-downs. Stations are listed in the AD section of the AIP.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 06 VHF Direction Finder (VDF)</div>
+    </section>
+
+    <section class="sec" id="ch7" style="--accent:#d1542b">
+      <h2><span class="num">7</span> Automatic Direction Finder (ADF) <span class="en">Chapter 7</span></h2>
+      <p class="lead">The oldest aid still in daily use: an LF/MF beacon on the ground and a needle that points at it — most of the time.</p>
+      <div class="glance"><span>🎯 Loop, sense, cardioid</span><span>🎯 NDB frequencies and types</span><span>🎯 BFO use</span><span>🎯 RBI and RMI sums</span><span>🎯 Tracking and drift</span><span>🎯 Eight errors</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The ADF measures relative bearing.</strong> Add the heading to get the magnetic bearing to the beacon: <strong>QDM = MH + RB</strong> (minus 360° if needed). The QDR is its reciprocal.</p></div>
+
+      <h3 class="sub">How the needle finds the beacon</h3>
+      <ol class="steps">
+        <li>The <strong>loop</strong> gives a figure-of-eight with two sharp nulls — but which one is the beacon?</li>
+        <li>A <strong>sense aerial</strong> (circular pattern) is added: the result is a <strong>cardioid</strong> with one, rather blunt, null that picks the right loop null.</li>
+        <li>To meet <strong>±5°</strong>, the sense polarity is switched about <strong>120 times a second</strong> between left and right cardioids, sharpening the null.</li>
+        <li>In practice the loop is <strong>fixed</strong> (crossed elements) and a <strong>goniometer</strong> with a search coil does the turning.</li>
+      </ol>
+
+      <h3 class="sub">The beacon</h3>
+      <ul>
+        <li>📻 NDBs: <strong>190–1 750 kHz</strong> (LF/MF), mostly <strong>250–450 kHz</strong>, vertically polarized, surface wave.</li>
+        <li>📍 <strong>Locator (L)</strong>: low power, 10–25 NM, at approaches/with ILS markers. <strong>En route NDB</strong>: 50 NM or more.</li>
+        <li>🔕 A <strong>cone of silence</strong> sits overhead, wider with height.</li>
+        <li>🧩 Aircraft kit: loop aerial, sense aerial, control unit, receiver, display (RBI or RMI).</li>
+      </ul>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Emission</th><th>Ident</th><th>BFO for tuning</th><th>BFO for ident &amp; monitoring</th></tr></thead>
+        <tbody>
+          <tr><td>N0NA1A</td><td>Keyed (interrupted) carrier</td><td>ON</td><td>ON</td></tr>
+          <tr><td>N0NA2A</td><td>Amplitude-modulated tone</td><td>ON</td><td>OFF</td></tr>
+        </tbody></table></div>
+      <div class="tip"><span class="label">✈️ Why a BFO?</span> An unmodulated carrier is silent on a normal receiver. The beat frequency oscillator mixes in an offset to make an audible tone (say 400 or 1 020 Hz).</div>
+
+      <h3 class="sub">RBI and RMI sums</h3>
+      <div class="compare">
+        <div class="card acc"><h4>RBI</h4><p>000 fixed to the nose → needle reads <strong>relative bearing</strong>. Heading 300°, RB 136° → QDM 076°.</p></div>
+        <div class="card acc"><h4>RMI</h4><p>Card driven by magnetic heading → needle head reads <strong>QDM</strong>, tail reads <strong>QDR</strong>. ADF bearings use the <strong>aircraft's</strong> variation when plotted.</p></div>
+      </div>
+
+      <h3 class="sub">Homing, tracking and drift</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Situation</th><th>Heading</th><th>Relative bearing held</th></tr></thead>
+        <tbody>
+          <tr><td>Inbound 080°, 20° starboard drift</td><td>060°</td><td>020°</td></tr>
+          <tr><td>Inbound 080°, 28° port drift</td><td>108°</td><td>332°</td></tr>
+          <tr><td>Outbound 100°, 23° starboard drift</td><td>077°</td><td>203°</td></tr>
+          <tr><td>Outbound 090°, 20° port drift</td><td>110°</td><td>160°</td></tr>
+        </tbody></table></div>
+      <ul>
+        <li>➰ <strong>Homing</strong> with RB 000° in a crosswind gives a <strong>curved</strong> track ending into wind.</li>
+        <li>🔍 Inbound, steady heading: RB <strong>increasing</strong> = <strong>port drift</strong>. Turn 30° right to regain; back on track at RB 330°; then allow, say, 10° → hold RB 350°.</li>
+        <li>🔍 Outbound, steady heading from overhead: RB 190° = 10° starboard drift; 170° = 10° port drift. Regain with a 30° turn until RB 210° or 150°.</li>
+        <li>🔁 Holds ("stacks") over a beacon are separated by at least <strong>1 000 ft</strong>.</li>
+      </ul>
+
+      <h3 class="sub">Errors — know all eight</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Error</th><th>Cause</th><th>Signs / cure</th></tr></thead>
+        <tbody>
+          <tr><td>🌧️ Precipitation static</td><td>Rain, ice crystals hitting the airframe</td><td>Wandering needle, hiss</td></tr>
+          <tr><td>⛈️ Thunderstorms</td><td>Lightning is a strong LF/MF source</td><td>Needle swings to the Cb</td></tr>
+          <tr><td>🌙 Night effect</td><td>Sky wave mixes with surface wave once the D-layer goes; currents in the loop's horizontal members</td><td>Fading, hunting needle; from about 70–100 NM; worst at dawn/dusk</td></tr>
+          <tr><td>📻 Station interference</td><td>Crowded LF/MF band, worse at night</td><td>Always identify the NDB</td></tr>
+          <tr><td>⛰️ Mountain effect</td><td>Reflection and diffraction</td><td>Fly higher</td></tr>
+          <tr><td>🏖️ Coastal refraction</td><td>Wave speeds up over the sea and bends towards the coast</td><td>Fix appears closer to the coast. Use coastal NDBs, cross at 90°, fly higher</td></tr>
+          <tr><td>✈️ Quadrantal error</td><td>Airframe bends signals towards the fore-aft axis</td><td>Greatest at RB 045/135/225/315; corrected by the maker</td></tr>
+          <tr><td>↪️ Dip (bank) error</td><td>Bank puts currents in the loop's horizontal members</td><td>Only when not wings level</td></tr>
+        </tbody></table></div>
+      <div class="warning callout"><span class="label">⚠️ No failure flag</span> Most ADF indicators have no failure warning. On an NDB approach, monitor the ident continuously and cross-check other aids. At night: identify, avoid the hour around sunrise/sunset, stay inside the (daytime) DOC — based on a 3:1 signal-to-noise ratio.</div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">Range ≈ 3√P (sea) · 2√P (land)</div><div class="d">400 W → 60 NM over water. 30 NM over land → 225 W. Doubling range needs 4 × power.</div></div>
+        <div class="fcard"><div class="f">Accuracy ±5°</div><div class="d">Within the DOC, by day only, excluding compass error. Lower frequency and N0NA1A give more range; precipitation reduces it.</div></div>
+      </div>
+      <div class="related"><span class="dot"></span> Practise: 07 Automatic Direction Finder (ADF)</div>
+    </section>
+
+    <section class="sec" id="ch8" style="--accent:#e47a22">
+      <h2><span class="num">8</span> VHF Omni-directional Range (VOR) <span class="en">Chapter 8</span></h2>
+      <p class="lead">The workhorse of airways: a magnetic radial from every beacon, free of static and night effect.</p>
+      <div class="glance"><span>🎯 Phase comparison</span><span>🎯 Frequencies and idents</span><span>🎯 DOC and range</span><span>🎯 Accuracy ±5°</span><span>🎯 CDI, RMI, HSI</span><span>🎯 TO/FROM logic</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The phase difference between the 30 Hz reference and the 30 Hz variable signal is the radial</strong> — the aircraft's magnetic bearing <em>from</em> the station, referenced to magnetic north <em>at the VOR</em>.</p></div>
+      <div class="compare">
+        <div class="card acc"><h4>Conventional VOR</h4><p>Reference: <strong>30 Hz FM</strong>, same phase everywhere. Variable: <strong>30 Hz AM</strong> from a limaçon rotating 30 times a second. In phase on magnetic north.</p></div>
+        <div class="card acc"><h4>Doppler VOR</h4><p>Reference <strong>AM</strong>, variable <strong>FM</strong>, simulated rotation <strong>anti-clockwise</strong> so ordinary receivers still read correctly. Far less <strong>site error</strong>.</p></div>
+      </div>
+      <div class="diagram">
+        <svg viewBox="0 0 640 230" role="img" aria-label="VOR radials with phase differences at the cardinal points">
+          <circle class="ln" cx="320" cy="115" r="80"/>
+          <circle class="dot" cx="320" cy="115" r="5"/>
+          <line class="thin" x1="320" y1="20" x2="320" y2="210"/>
+          <line class="thin" x1="220" y1="115" x2="420" y2="115"/>
+          <text x="320" y="16" text-anchor="middle">N · phase 000° · 360 radial</text>
+          <text x="430" y="119">E · 090°</text>
+          <text x="320" y="226" text-anchor="middle">S · 180°</text>
+          <text x="210" y="119" text-anchor="end">W · 270°</text>
+          <line class="ac" x1="320" y1="115" x2="388" y2="60" marker-end="url(#a-ac)"/>
+          <text class="m" x="395" y="56">radial = bearing FROM</text>
+        </svg>
+        <div class="cap">Phase difference measured at the aircraft = radial. 227° measured → on the 227° radial, QDM 047°.</div>
+      </div>
+      <h3 class="sub">Frequencies, identity and monitoring</h3>
+      <ul>
+        <li>📻 <strong>108–117.95 MHz</strong>: 40 channels below 112 MHz shared with ILS (VOR on <strong>even</strong> decimals: 108.0, 108.05, 108.2…), 120 above 112 MHz every 50 kHz — <strong>160</strong> in all. Emission <strong>A9W</strong>.</li>
+        <li>🔤 3-letter Morse at least every <strong>10 s</strong>; voice ident and ATIS can share the voice channel. Bearings continue during the ident.</li>
+        <li>🛑 Monitor removes ident/nav (or switches off) for: bearing shift <strong>&gt;1°</strong>, signal drop <strong>&gt;15 %</strong>, monitor failure. No ident = do not use; <strong>TST</strong> = on test.</li>
+      </ul>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Type</th><th>What it is</th></tr></thead>
+        <tbody>
+          <tr><td>CVOR</td><td>Conventional, airways and en route</td></tr>
+          <tr><td>BVOR</td><td>Broadcasts weather between idents</td></tr>
+          <tr><td>DVOR</td><td>Doppler — beats site error</td></tr>
+          <tr><td>TVOR</td><td>Terminal, low power (~50 W)</td></tr>
+          <tr><td>VOT</td><td>Test transmitter: one 360° radial everywhere. Error over <strong>±4°</strong> → service the set</td></tr>
+          <tr><td>VORTAC</td><td>VOR with TACAN</td></tr>
+        </tbody></table></div>
+
+      <h3 class="sub">Range, DOC and accuracy</h3>
+      <ul>
+        <li>📡 200 W en route VOR ≈ <strong>200 NM</strong>, but line of sight decides. Terrain causes screening and <strong>scalloping</strong>.</li>
+        <li>🛡️ <strong>DOC 50/25</strong> = no co-frequency interference within 50 NM up to 25 000 ft, day and night (except super-refraction). Co-channel beacons would ideally be 2 × line-of-sight apart (≈ 389 NM at 25 000 ft) — about 500 NM for planning.</li>
+        <li>🎯 Site error ±1°, airborne ±3°, <strong>total ±5°</strong>, plus pilotage near the station where radials converge.</li>
+        <li>🌀 <strong>Cone of ambiguity</strong> overhead: needle swings, OFF may flicker, TO/FROM flips. Coverage at least 40° elevation (60–80° in practice).</li>
+      </ul>
+      <details class="example"><summary>🧮 Worked example — plotting a radial</summary><div class="body">
+        <p>Aircraft on the 240° radial; variation 10°W at the VOR, 8°W at the aircraft. Use the <strong>VOR's</strong> variation: true bearing from the VOR = <strong>230°</strong>.</p></div></details>
+
+      <h3 class="sub">The cockpit displays</h3>
+      <div class="compare">
+        <div class="card acc"><h4>CDI (OBS)</h4><p><strong>5 dots, 2° each, 10° full scale.</strong> Shows angle from the selected course; <strong>heading has no effect</strong>. FROM when the radial you are on is within 90° of the course; TO when more than 90°.</p></div>
+        <div class="card acc"><h4>RMI</h4><p>Head = QDM, tail = radial. Heading is subtracted (differential synchro) then added back by the card, so a heading error moves only the relative picture. Two needles, VOR or ADF. Heavier and costlier.</p></div>
+        <div class="card acc"><h4>HSI</h4><p>Course arrow on a heading card: a plan view. A 2-dot scale is <strong>5° per dot</strong>, still 10° full scale.</p></div>
+      </div>
+      <div class="warning callout"><span class="label">⚠️ Reverse sensing</span> Inbound: set the inbound course and see TO. Outbound: set the outbound course and see FROM. Fly the course you set (± drift) and the bar always points to the course.</div>
+      <div class="related"><span class="dot"></span> Practise: 08 VHF Omni-directional Range (VOR)</div>
+    </section>
+
+    <section class="sec" id="ch9" style="--accent:#5fae2a">
+      <h2><span class="num">9</span> Instrument Landing System (ILS) <span class="en">Chapter 9</span></h2>
+      <p class="lead">Two beams — one left-right, one up-down — and a few checkpoints along the way: the most accurate approach aid in everyday use.</p>
+      <div class="glance"><span>🎯 LOC, GP, markers</span><span>🎯 Frequency pairing</span><span>🎯 90/150 Hz</span><span>🎯 Coverage</span><span>🎯 Categories</span><span>🎯 Height &amp; ROD sums</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>On centre line and glide path the 90 Hz and 150 Hz modulations are equal: DDM = 0.</strong> Whichever tone dominates tells the receiver which way to steer.</p></div>
+
+      <h3 class="sub">The parts</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Component</th><th>Band / frequency</th><th>Where</th></tr></thead>
+        <tbody>
+          <tr><td>Localizer</td><td>VHF 108–111.975 MHz (odd decimals), 40 ch.</td><td>~300 m beyond the upwind end</td></tr>
+          <tr><td>Glide path</td><td>UHF 329.15–335 MHz, paired automatically</td><td>~300 m in from threshold, beside the runway</td></tr>
+          <tr><td>Markers</td><td>75 MHz, vertical fan beams</td><td>On the approach</td></tr>
+          <tr><td>Locator / DME</td><td>NDB at the OM; DME zero at threshold</td><td>Optional</td></tr>
+        </tbody></table></div>
+      <ul>
+        <li>🔗 Pairing: one selection, fewer mistakes, <strong>one ident</strong> — 2 or 3 letters, usually starting with <strong>I</strong>.</li>
+        <li>🚫 Ident removed or continuous tone = maintenance/test: <strong>do not use</strong>. GP unserviceable: ident stays, ATC warns "localizer only".</li>
+        <li>📏 Paired DME protected within the localizer area up to 25 000 ft.</li>
+      </ul>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Marker</th><th>Light</th><th>Code / tone</th><th class="num">Distance</th></tr></thead>
+        <tbody>
+          <tr><td>Outer</td><td>🔵 Blue</td><td>2 dashes/s · 400 Hz</td><td class="num">3.5–6 NM</td></tr>
+          <tr><td>Middle</td><td>🟠 Amber</td><td>dot-dash · 1 300 Hz</td><td class="num">1 050 m ± 150</td></tr>
+          <tr><td>Inner</td><td>⚪ White</td><td>6 dots/s · 3 000 Hz</td><td class="num">75–450 m</td></tr>
+        </tbody></table></div>
+
+      <h3 class="sub">How the beams work</h3>
+      <div class="diagram">
+        <svg viewBox="0 0 660 230" role="img" aria-label="Localizer lobes in plan and glide path lobes in elevation">
+          <rect class="bx" x="20" y="60" width="200" height="16"/>
+          <text class="m" x="120" y="52" text-anchor="middle">runway (plan view)</text>
+          <path class="yf" d="M220 68 L 330 20 L 330 68 Z"/>
+          <path class="af" d="M220 68 L 330 116 L 330 68 Z"/>
+          <text x="340" y="38">90 Hz (left, seen inbound)</text>
+          <text x="340" y="108">150 Hz (right)</text>
+          <line class="thin" x1="220" y1="68" x2="480" y2="68"/>
+          <text class="m" x="490" y="72">centre line: DDM 0</text>
+          <line class="ln" x1="20" y1="210" x2="640" y2="210"/>
+          <path class="yf" d="M120 210 L 600 120 L 600 150 Z"/>
+          <path class="af" d="M120 210 L 600 150 L 600 190 Z"/>
+          <line class="ac" x1="120" y1="210" x2="600" y2="150"/>
+          <text x="470" y="140">90 Hz above → fly down</text>
+          <text x="470" y="200">150 Hz below → fly up</text>
+          <text class="m" x="130" y="226">glide path (elevation)</text>
+        </svg>
+        <div class="cap">The same idea twice: two overlapping lobes on one carrier, told apart by their 90 and 150 Hz tones.</div>
+      </div>
+      <ul>
+        <li>↔️ Excess 150 Hz = right of centre → <strong>fly left</strong>. Excess 90 Hz → fly right.</li>
+        <li>📐 Glide path 2°–4°, normally <strong>3°</strong>. Passes ~50 ft over the threshold (ILS reference datum).</li>
+        <li>👻 <strong>False glide slopes</strong> exist above the real one (first at about 2× the angle, 6°). Intercept from below and check height against range.</li>
+        <li>↩️ <strong>Back course</strong>: CDI reversed, glide path wrong, no markers — not used in the UK. An HSI reads correctly if the front-course QDM is set.</li>
+        <li>👁️ PAPIs use a mean eye height, so they can differ slightly from the ILS near the ground.</li>
+      </ul>
+
+      <h3 class="sub">Coverage and monitoring</h3>
+      <div class="compare">
+        <div class="card acc"><h4>Localizer</h4><p>25 NM within ±10° · 17 NM 10°–35° · 10 NM beyond ±35° (if provided). May be cut to 18 NM / 10 NM where other aids cover.</p></div>
+        <div class="card acc"><h4>Glide path</h4><p>10 NM within ±8° · from <strong>0.45θ to 1.75θ</strong> (1.35°–5.25° for 3°); lower edge may be 0.3θ.</p></div>
+        <div class="card mid"><h4>Monitor acts on</h4><p>LOC shift &gt; 35 ft (Cat I), 25 ft (II), 20 ft (III) · GP change &gt; 0.075θ · power drop &gt; 50 %. Then: stop radiating, remove ident, or downgrade.</p></div>
+      </div>
+
+      <h3 class="sub">Reading the needles</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Needle</th><th class="num">Full scale</th><th class="num">Per dot (5-dot)</th></tr></thead>
+        <tbody>
+          <tr><td>Localizer</td><td class="num">2.5°</td><td class="num">0.5°</td></tr>
+          <tr><td>Glide path</td><td class="num">0.7°</td><td class="num">≈ 0.14°</td></tr>
+        </tbody></table></div>
+      <div class="warning callout"><span class="label">⚠️ Go around</span> Half-scale fly-up (2.5 dots, about 0.35° low) is the safe limit; beyond half-scale on either needle, go around at once.</div>
+
+      <h3 class="sub">Categories</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Category</th><th class="num">DH</th><th class="num">RVR</th></tr></thead>
+        <tbody>
+          <tr><td>I</td><td class="num">≥ 200 ft</td><td class="num">≥ 550 m</td></tr>
+          <tr><td>II</td><td class="num">100 – &lt;200 ft</td><td class="num">≥ 300 m</td></tr>
+          <tr><td>IIIA</td><td class="num">&lt; 100 ft or none</td><td class="num">≥ 200 m</td></tr>
+          <tr><td>IIIB</td><td class="num">&lt; 50 ft or none</td><td class="num">75 – &lt;200 m</td></tr>
+          <tr><td>IIIC</td><td class="num">none</td><td class="num">none</td></tr>
+        </tbody></table></div>
+      <p>Facility categories: Cat I guidance to 200 ft, Cat II to 50 ft, Cat III to and along the runway. Protecting the signal: the <strong>critical area</strong> is kept clear for every ILS operation; the <strong>sensitive area</strong> is controlled in low visibility; <strong>CAT II/III holds</strong> sit further back. Rain and snow attenuate; FM broadcasts just below 108 MHz can interfere.</p>
+
+      <h3 class="sub">Height and rate of descent</h3>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">Height ≈ angle × NM × 100 ft</div><div class="d">3° at 5 NM → 1 500 ft (exact ≈ 1 590 ft). 3.5° at 4 NM → 1 400 ft.</div></div>
+        <div class="fcard"><div class="f">ROD (3°) ≈ 5 × GS</div><div class="d">140 kt → 700 ft/min. Other angles: scale by angle ÷ 3 (2.5°, 120 kt → 500 ft/min).</div></div>
+      </div>
+      <div class="related"><span class="dot"></span> Practise: 09 Instrument Landing System (ILS)</div>
+    </section>
+
+    <section class="sec" id="ch10" style="--accent:#7b6cf6">
+      <h2><span class="num">10</span> Microwave Landing System (MLS) <span class="en">Chapter 10</span></h2>
+      <p class="lead">Designed to fix what ILS cannot do: few channels, one fixed path, and a fussy site.</p>
+      <div class="glance"><span>🎯 ILS drawbacks</span><span>🎯 MLS numbers</span><span>🎯 Time-referenced scanning beam</span></div>
+      <div class="compare">
+        <div class="card bad"><h4>ILS limits</h4><p>Only 40 channels · fixed narrow beams, one long queue · nothing special for slow aircraft, helicopters or STOL · needs big flat cleared sites · beams bent by vehicles and buildings.</p></div>
+        <div class="card good"><h4>MLS answers</h4><p><strong>200 channels</strong> · SHF <strong>5 031–5 091 MHz</strong> · azimuth ±<strong>40°</strong> · glide slope <strong>0.9°–20°</strong> · range 20–30 NM (20 NM UK) · back azimuth ±20° for go-around · built-in <strong>DME</strong> (DME/P ±100 ft for Cat II/III) · ident <strong>M + two letters</strong> · aim: Cat III.</p></div>
+      </div>
+      <div class="keyidea"><span class="label">💡 Key idea — TRSB</span>
+        <p>A narrow beam sweeps <strong>"to"</strong> and then <strong>"fro"</strong> at a constant rate. The <strong>time between the two passes</strong> tells the aircraft its angle. Elevation works the same way, up and down. All functions share one frequency by <strong>time division multiplexing</strong>.</p></div>
+      <ul>
+        <li>🎛️ The pilot can fly the centre line or select an offset azimuth and any glide slope; curved and segmented approaches need DME/P.</li>
+        <li>📨 Data words: station ident, system and runway condition, weather. (A flare function was standardised but will not be implemented.)</li>
+        <li>🖥️ The display looks like ILS but deviation is from the <em>selected</em> path; multi-mode receivers handle ILS, MLS and GNSS.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 10 Microwave Landing System (MLS)</div>
+    </section>
+
+    <section class="sec" id="ch11" style="--accent:#22b37a">
+      <h2><span class="num">11</span> Radar Principles <span class="en">Chapter 11</span></h2>
+      <p class="lead">Send a pulse, time the echo, note where the aerial was pointing. Everything else is detail — but the detail is examined.</p>
+      <div class="glance"><span>🎯 Primary vs secondary</span><span>🎯 PRF and PRI</span><span>🎯 Max and min range</span><span>🎯 Resolution</span><span>🎯 MTI</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Echo for range, searchlight for bearing.</strong> One radar mile (out and back) takes <strong>12.36 µs</strong>.</p></div>
+      <div class="compare">
+        <div class="card acc"><h4>Primary</h4><p>Passive echo on one frequency. Weak (double journey), needs high power; no identity.</p></div>
+        <div class="card acc"><h4>Secondary</h4><p>Interrogator and transponder on different frequencies: SSR (transponder in the aircraft), DME (on the ground).</p></div>
+      </div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">Range (NM) = t (µs) ÷ 12.36</div><div class="d">500 µs → 40.5 NM (75 km). Forgetting to halve doubles the answer.</div></div>
+        <div class="fcard"><div class="f">PRI = 1 ÷ PRF</div><div class="d">500 pps → 2 000 µs. Max range ≈ PRI ÷ 12.36: 400 pps → 202 NM.</div></div>
+        <div class="fcard"><div class="f">Min range = 150 m × pulse width (µs)</div><div class="d">2 µs → 300 m. To see 450 m, pulse ≤ 3 µs. Fly-back (dead) time trims practical range.</div></div>
+        <div class="fcard"><div class="f">Power ∝ range⁴</div><div class="d">Double the range → 16 × the power.</div></div>
+      </div>
+      <h3 class="sub">Why radar uses VHF and higher</h3>
+      <p>No static or ionospheric effects, narrow beams, short pulses, and small objects reflect short waves well. But rain attenuates short waves: negligible above <strong>10 cm</strong>, tropical rain only 10–4 cm, significant below <strong>4 cm</strong>. So: surveillance radar 10/23/50 cm; weather radar and PAR 3 cm; surface movement radar 1.75–2 cm.</p>
+      <h3 class="sub">Resolution and processing</h3>
+      <ul>
+        <li>📏 <strong>Range resolution</strong> = half the pulse length (1 µs → 150 m).</li>
+        <li>↔️ <strong>Azimuth resolution</strong> = beamwidth: 2° at 90 NM → 3 NM wide (1-in-60). Narrow beams need big aerials.</li>
+        <li>⚙️ Rotation speed, pulse width, PRF, focusing and power must be <strong>harmonised</strong>.</li>
+        <li>🚶 <strong>MTI</strong> removes stationary echoes; <strong>jittered PRF</strong> removes second-trace echoes from beyond maximum range.</li>
+        <li>🔇 Side-lobe suppression stops side-lobe echoes being shown as main-beam targets.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 11 Radar Principles</div>
+    </section>
+
+    <section class="sec" id="ch12" style="--accent:#e2569b">
+      <h2><span class="num">12</span> Ground Radar <span class="en">Chapter 12</span></h2>
+      <p class="lead">One principle, tuned four ways — from 300 NM airway coverage to the taxiway outside the tower.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Radar</th><th class="num">Range</th><th class="num">Wavelength</th><th class="num">Pulse</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Area surveillance</td><td class="num">200–300 NM</td><td class="num">10–50 cm</td><td class="num">2–4 µs</td><td>PRF 300–400 pps, 5–6 rpm</td></tr>
+          <tr><td>Terminal area</td><td class="num">≤ 75 NM</td><td class="num">10/23/50 cm</td><td class="num">1–3 µs</td><td>3 NM separation within 40 NM, below FL 245 (UK, where approved)</td></tr>
+          <tr><td>Aerodrome approach</td><td class="num">≤ 25 NM</td><td class="num">3 or 10 cm</td><td class="num">0.5–1 µs</td><td>Approach control, vectors to ILS, SRA</td></tr>
+          <tr><td>Surface movement (ASMI)</td><td class="num">2.5–6 NM</td><td class="num">≈ 2 cm (15–17 GHz)</td><td class="num">0.03 µs</td><td>Beam 0.2–1°, 60 rpm, PRF 4 000–20 000</td></tr>
+        </tbody></table></div>
+      <div class="tip"><span class="label">✈️ Spot the radar</span> 60 rpm, a fraction-of-a-degree beam and a PRF of 10 000 can only be a surface movement radar. Its theoretical range: 100 µs ÷ 12.36 ≈ 8 NM.</div>
+      <p>Long-range radars use long pulses (more energy on target) and a low PRF (time for echoes to come back). A surface movement radar would like an even shorter wavelength, but at EHF rain would wipe it out, so SHF is the compromise. Processing can remove fixed features to leave aircraft and vehicles clearly visible.</p>
+      <div class="related"><span class="dot"></span> Practise: 12 Ground Radar</div>
+    </section>
+
+    <section class="sec" id="ch13" style="--accent:#e5484d">
+      <h2><span class="num">13</span> Airborne Weather Radar <span class="en">Chapter 13</span></h2>
+      <p class="lead">Not a turbulence detector — a rain detector you interpret to stay out of turbulence.</p>
+      <div class="glance"><span>🎯 9 375 MHz and why</span><span>🎯 Colours and gradients</span><span>🎯 Tilt</span><span>🎯 MAP, MAN, WEA, CONT</span><span>🎯 Cloud height</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Turbulence lives where the rainfall gradient is steepest</strong> — where the colours crowd together — and in hooks, fingers, U-shapes and scalloped edges. Clear air turbulence gives no echo at all.</p></div>
+      <div class="compare">
+        <div class="card acc"><h4>The set</h4><p>Transmitter/receiver, antenna stabilised in pitch and roll, indicator, control unit. Shows range and <strong>relative</strong> bearing; ground ranges are <strong>slant</strong> ranges.</p></div>
+        <div class="card acc"><h4>The frequency</h4><p><strong>9 375 MHz</strong> (λ 3.2 cm) matches large drops and wet hail. Higher: clutter from small drops. Lower: weak returns. 10 cm+ shows little weather. Water or ice on the radome absorbs energy.</p></div>
+        <div class="card acc"><h4>The beams</h4><p><strong>Pencil</strong> (3–5°): weather and mapping beyond ~60 NM. <strong>Cosecant² fan</strong> (85° × 3.5°): mapping ~15–70 NM, power tapered with range for an even picture.</p></div>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Colour</th><th class="num">Rainfall</th></tr></thead>
+        <tbody>
+          <tr><td>⬛ Black</td><td class="num">&lt; 0.7 mm/h</td></tr>
+          <tr><td>🟩 Green</td><td class="num">0.7–4 mm/h</td></tr>
+          <tr><td>🟨 Yellow</td><td class="num">4–12 mm/h</td></tr>
+          <tr><td>🟥 Red</td><td class="num">&gt; 12 mm/h</td></tr>
+          <tr><td>🟪 Magenta</td><td class="num">turbulence / most intense</td></tr>
+        </tbody></table></div>
+      <h3 class="sub">Controls</h3>
+      <ul>
+        <li>🔌 <strong>STBY</strong> on the ground until people and buildings are clear — radiation harms people and reflections damage the set. Pre-flight: max up-tilt, quick look, back to standby.</li>
+        <li>🎚️ <strong>Tilt</strong> ±15°. More up-tilt for <strong>longer range</strong> or <strong>lower altitude</strong>; less for shorter range or higher altitude. Too much up-tilt can miss a storm.</li>
+        <li>🗺️ <strong>MAP</strong>: fan beam, manual gain. <strong>MAN</strong>: pencil beam, manual gain, 70–150 NM. <strong>WEA</strong>: pencil beam, <strong>swept gain</strong> (STC/AGC) to about 25 NM so near and far clouds compare fairly. <strong>CONT</strong>: strongest cores blanked — a thin bright rim round a dark hole means danger.</li>
+        <li>⏸️ <strong>HOLD</strong> freezes the picture: hold heading, release after 2–3 minutes, see how the storm moved. <strong>TGT</strong> alert: contouring cloud 60–160 NM ahead within ±15°.</li>
+        <li>🟢 A lopsided picture = stabilisation failure. The dish's "height ring" is energy echoed from the ground below.</li>
+      </ul>
+      <h3 class="sub">Mapping and storm height</h3>
+      <p>Calm sea, sand and flat ground return little; coasts, cities and bridges are bright; snow masks features; hill shadow can look like lakes. Heavy rain can hide what lies behind it (shadow area).</p>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">Height above aircraft ≈ (tilt − ½ beam) × NM × 100</div><div class="d">4° beam, returns vanish at +3° tilt at 50 NM → (3 − 2) × 50 × 100 = <strong>5 000 ft</strong>.</div></div>
+        <div class="fcard"><div class="f">Ground range = √(slant² − height²)</div><div class="d">36 000 ft ≈ 5.9 NM; slant 10 NM → about 8 NM.</div></div>
+      </div>
+      <div class="related"><span class="dot"></span> Practise: 13 Airborne Weather Radar</div>
+    </section>
+
+    <section class="sec" id="ch14" style="--accent:#4f8cf7">
+      <h2><span class="num">14</span> Secondary Surveillance Radar (SSR) <span class="en">Chapter 14</span></h2>
+      <p class="lead">The aircraft answers back: identity, altitude and — with Mode S — much more.</p>
+      <div class="glance"><span>🎯 1 030 / 1 090 MHz</span><span>🎯 Modes A and C</span><span>🎯 4 096 codes</span><span>🎯 Special codes</span><span>🎯 Garble and fruit</span><span>🎯 Mode S levels</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Ground asks on 1 030 MHz, aircraft answers on 1 090 MHz.</strong> One-way trips need little power, give clutter-free replies and carry identity.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Item</th><th class="num">Value</th></tr></thead>
+        <tbody>
+          <tr><td>P1–P2 spacing</td><td class="num">2 µs (always)</td></tr>
+          <tr><td>P1–P3: Mode A / Mode C</td><td class="num">8 µs / 21 µs</td></tr>
+          <tr><td>Reply framing pulses</td><td class="num">20.3 µs apart, 12 information pulses</td></tr>
+          <tr><td>Codes</td><td class="num">2¹² = 4 096 (0000–7777, no 8 or 9)</td></tr>
+          <tr><td>IDENT (SPI pulse)</td><td class="num">about 20 s</td></tr>
+          <tr><td>Mode C</td><td class="num">1013 hPa datum, 100 ft steps, to 128 000 ft</td></tr>
+        </tbody></table></div>
+      <ul>
+        <li>📟 Mode C ignores the altimeter subscale. FL 70 shows 070 and changes to 071 at <strong>7 050 ft</strong>.</li>
+        <li>✅ Verification: ATC compares with your reported level (to the nearest 100 ft). Tolerance <strong>±300 ft</strong> internationally, <strong>±200 ft</strong> in the UK; outside it, switch Mode C off or squawk 0000.</li>
+        <li>📝 Change or switch off codes only when told; read back; select Mode C with Mode A.</li>
+      </ul>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Code</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><strong>7700</strong></td><td>Emergency (a discrete code already in use may be kept)</td></tr>
+          <tr><td><strong>7600</strong></td><td>Radio failure</td></tr>
+          <tr><td><strong>7500</strong></td><td>Unlawful interference</td></tr>
+          <tr><td><strong>7000</strong></td><td>UK conspicuity, with Mode C</td></tr>
+          <tr><td><strong>0000</strong></td><td>Transponder malfunction</td></tr>
+        </tbody></table></div>
+      <div class="compare">
+        <div class="card bad"><h4>Garbling</h4><p>Overlapping replies from aircraft close together on nearly the same bearing, within about <strong>1.7 NM</strong> in range (20.3 µs ÷ 12.36).</p></div>
+        <div class="card bad"><h4>Fruiting</h4><p>Replies triggered by <strong>another</strong> interrogator, received by this one.</p></div>
+      </div>
+      <h3 class="sub">Mode S — selective addressing</h3>
+      <ul>
+        <li>🔢 <strong>24-bit address</strong>: over 16.7 million, fixed for the aircraft's life.</li>
+        <li>📶 Altitude in <strong>25 ft</strong> steps (controllers still see 100 ft). Data link cuts R/T and code checks.</li>
+        <li>📨 Interrogations: All Call, Broadcast (no reply), Selective, Intermode. Extra <strong>P4</strong>: long = A/C/S all-call, short = A/C-only.</li>
+        <li>✅ Benefits: no synchronous garble, fewer over-interrogation and reflection problems, no code shortage, better STCA.</li>
+        <li>💬 Comm-A ground→air, Comm-B air→ground, Comm-C extended uplink, Comm-D extended downlink.</li>
+        <li>🏷️ Levels: 1 basic (no data link) · <strong>2 minimum for international flight</strong> · 3 adds extended uplink · 4 adds extended downlink.</li>
+        <li>📋 Basic DAPs: flight ID, capability, 25 ft altitude, flight status. Enhanced: heading, speeds, roll angle, track angle rate, vertical rate, true track and ground speed.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 14 Secondary Surveillance Radar (SSR)</div>
+    </section>
+
+    <section class="sec" id="ch15" style="--accent:#20b8a0">
+      <h2><span class="num">15</span> Distance Measuring Equipment (DME) <span class="en">Chapter 15</span></h2>
+      <p class="lead">Secondary radar turned round: the aircraft asks, the ground beacon answers, and the delay is the distance.</p>
+      <div class="glance"><span>🎯 962–1 213 MHz, ±63 MHz</span><span>🎯 Jitter and pulse pairs</span><span>🎯 Search and saturation</span><span>🎯 Pairing and idents</span><span>🎯 Slant range</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Slant range = (round-trip time − 50 µs) ÷ 12.36.</strong> The beacon always waits 50 µs before replying 63 MHz away from the interrogation.</p></div>
+      <div class="diagram">
+        <svg viewBox="0 0 640 190" role="img" aria-label="Slant range, height and ground range triangle">
+          <line class="ln" x1="80" y1="160" x2="520" y2="160"/>
+          <rect class="bx" x="74" y="148" width="12" height="12"/>
+          <text x="80" y="182" text-anchor="middle">DME</text>
+          <path class="wing" d="M505 40 L540 40 L548 46 L540 52 L505 52 Z"/>
+          <line class="ac" x1="86" y1="154" x2="510" y2="50" marker-end="url(#a-ac)"/>
+          <line class="thin" x1="520" y1="52" x2="520" y2="160"/>
+          <text x="280" y="88">slant range (what DME shows)</text>
+          <text x="300" y="178" text-anchor="middle">ground range</text>
+          <text x="528" y="110">height</text>
+        </svg>
+        <div class="cap">Ground range = √(slant² − height²). Overhead the DME reads your height in NM; the error matters within about 3 × height.</div>
+      </div>
+      <ul>
+        <li>📻 UHF <strong>962–1 213 MHz</strong>, 1 MHz spacing, <strong>252 channels</strong> (1–126 X and Y). Emission P0N. Civil pilots tune the paired VOR/ILS frequency; military TACAN users select a channel and get bearing too.</li>
+        <li>〰️ Pulses 3.5 µs, in <strong>pairs</strong> (X 12 µs, Y 36 µs) so stray single pulses are ignored. Each aircraft <strong>jitters</strong> its PRF and only accepts replies matching its own pattern.</li>
+        <li>🔍 Search at <strong>150 pps</strong> for 15 000 pairs, then 60 pps; tracking at about <strong>27 pps</strong>. A sweep takes 4–5 s on modern sets.</li>
+        <li>📛 Beacon sends a constant <strong>2 700 pps</strong>; saturated at about <strong>100 aircraft</strong>, it lowers gain so the furthest drop out.</li>
+        <li>🔤 Ident every 30 s, higher tone than the VOR; no range during it, but a <strong>10 s memory</strong> holds the reading (also bridges bank shielding).</li>
+      </ul>
+      <div class="table-wrap"><table>
+        <thead><tr><th>VOR and DME</th><th>Siting</th><th>Ident</th></tr></thead>
+        <tbody>
+          <tr><td>Associated</td><td>Co-located, ≤ 30 m in TMAs or ≤ 600 m elsewhere</td><td>Same call sign; VOR 3 times, DME once per 30 s</td></tr>
+          <tr><td>Not associated, same location</td><td>Further apart, serving one place</td><td>DME's last letter is <strong>Z</strong></td></tr>
+          <tr><td>Separated</td><td>&gt; 6 NM apart</td><td>Totally different</td></tr>
+        </tbody></table></div>
+      <details class="example"><summary>🧮 Worked examples — DME</summary><div class="body">
+        <p>2 520 µs measured → (2 520 − 50) ÷ 12.36 ≈ <strong>200 NM</strong>.</p>
+        <p>ILS DME 1 500 m from the threshold: 5 µs each way → delay <strong>40 µs</strong> so it reads zero at the threshold.</p>
+        <p>FL 300 (≈ 5 NM), DME 13 NM → ground range <strong>12 NM</strong>.</p>
+        <p>Accuracy at 40 NM: 0.25 + 0.5 = <strong>±0.75 NM</strong>.</p></div></details>
+      <div class="caution callout"><span class="label">⚠️ Ground speed</span> DME ground speed comes from the rate of change of slant range: it under-reads close in and high up, and reads zero on a DME arc. It is valid only flying straight to or from the station.</div>
+      <div class="related"><span class="dot"></span> Practise: 15 Distance Measuring Equipment (DME)</div>
+    </section>
+
+    <section class="sec" id="ch16" style="--accent:#d08a1d">
+      <h2><span class="num">16</span> Area Navigation Systems (RNAV) <span class="en">Chapter 16</span></h2>
+      <p class="lead">Stop flying from beacon to beacon. Fly any track you like, with the computer doing the geometry.</p>
+      <div class="glance"><span>🎯 B-RNAV and P-RNAV</span><span>🎯 2D, 3D, 4D</span><span>🎯 Phantom stations</span><span>🎯 FMS and CDU</span><span>🎯 Kalman filtering</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The IRS is accurate in the short term, radio fixes in the long term.</strong> The FMC blends them by <strong>Kalman filtering</strong>, leaning on the IRS early and on DME/DME or GNSS as the flight goes on.</p></div>
+      <div class="compare">
+        <div class="card acc"><h4>Accuracy</h4><p><strong>B-RNAV ±5 NM</strong>, <strong>P-RNAV ±1 NM</strong>, both 95 % of the time. P-RNAV is for terminal airspace.</p></div>
+        <div class="card acc"><h4>Levels</h4><p><strong>2D</strong> horizontal · <strong>3D</strong> + vertical guidance · <strong>4D</strong> + time.</p></div>
+        <div class="card acc"><h4>Benefits</h4><p>Shorter routes (time, fuel), more capacity (parallel and bypass routes), reduced separation.</p></div>
+      </div>
+      <h3 class="sub">Simple 2D RNAV</h3>
+      <p>Navigation computer + CDU + CDI/HSI. Each waypoint is a <strong>radial and distance</strong> from a VOR/DME, and the display treats it as a "<strong>phantom station</strong>". Deviation is shown in <strong>NM</strong>. Check every waypoint is inside the DOC of its VOR/DME (and the next one's), mind slant range near the station, and type carefully — the computer cannot spot your mistakes. A station near the track gives good along-track accuracy; one abeam the track gives good across-track accuracy.</p>
+      <h3 class="sub">The FMS</h3>
+      <ul>
+        <li>🧠 FMC + AFDS + autothrottle + 2 IRS → 4D navigation (lat, long, altitude, time) and economy performance.</li>
+        <li>🗂️ <strong>Performance database</strong>: aircraft data, cost index. <strong>Navigation database</strong>: aerodromes, navaids, airways, SIDs, STARs, approaches, company routes — updated every <strong>28 days</strong> (current + next held).</li>
+        <li>✋ Crew-only: thrust initiation, take-off, altitude selection, ILS tuning, configuration, landing rollout. IRS-only position is flagged as downgraded.</li>
+        <li>🌐 Must use <strong>WGS-84</strong>; execute changes only after crew action; offsets, holds, direct-to, uncertainty estimate, failure warning.</li>
+      </ul>
+      <h3 class="sub">Talking to the CDU</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Entry</th><th>Format</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Lat/long</td><td>7 or 15 characters, leading zeros</td><td class="num">N05W010 · N0926.3W00504.7</td></tr>
+          <tr><td>Aerodrome, navaid, airway</td><td>up to 5 characters</td><td class="num">EGLL · DHD · A23</td></tr>
+          <tr><td>SID / STAR</td><td>up to 7 characters</td><td class="num">TURN05</td></tr>
+          <tr><td>Place bearing/distance</td><td>ident + 3/5-digit bearing / distance</td><td class="num">TRN250/76 → TRN01</td></tr>
+          <tr><td>Bearing/bearing</td><td>two places and bearings</td><td class="num">GOW167.0/TRN090.5 → GOW01</td></tr>
+        </tbody></table></div>
+      <p>Type in the scratchpad, insert with a line select key. Boxes = must enter; dashes = optional. ACTIVATE lights <strong>EXEC</strong>, which must be pressed. CLB speed restriction defaults to <strong>250/10 000</strong>, descent to <strong>240/10 000</strong>; "A" after an altitude means at or above; V/B is the path angle needed for the next constraint.</p>
+      <h3 class="sub">Several IRSs, two FMCs</h3>
+      <ul>
+        <li>⚖️ Two IRSs that disagree cannot say which is wrong — an external reference decides.</li>
+        <li>🔺 Three IRSs: check for gross errors, average, then Kalman-filter with external fixes.</li>
+        <li>🧊 Above <strong>84°</strong> latitude each FMC decouples to a single IRS: change of longitude depends on sec(latitude), which explodes near the pole.</li>
+        <li>🖥️ Dual mode cross-checks positions before the EFIS; both FMCs failed → IRS straight to the EFIS, no performance functions.</li>
+        <li>📉 IRS drifts about <strong>1 NM/h</strong>; DME error stays ±0.25 NM ±1.25 % (1.5 NM at 100 NM). After a few hours DME/DME wins.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 16 Area Navigation Systems (RNAV)</div>
+    </section>
+
+    <section class="sec" id="ch17" style="--accent:#9b6cf0">
+      <h2><span class="num">17</span> Electronic Flight Information System (EFIS) <span class="en">Chapter 17</span></h2>
+      <p class="lead">The navigation display ties every sensor into one picture — if you can read its colours and symbols.</p>
+      <div class="glance"><span>🎯 Inputs and symbol generators</span><span>🎯 Four modes</span><span>🎯 Colour code</span><span>🎯 Key symbols</span></div>
+      <div class="compare">
+        <div class="card acc"><h4>Inputs</h4><p>IRS, FMC, VOR/DME/ILS/ADF, TCAS, weather radar → <strong>symbol generators</strong> (the heart of EFIS) → left and right displays.</p></div>
+        <div class="card acc"><h4>Modes</h4><p>Full-rose VOR/ILS, expanded VOR/ILS, <strong>MAP</strong>, <strong>PLAN</strong>. Weather and TCAS only in <strong>expanded</strong> and <strong>MAP</strong>. PLAN is <strong>true-north up</strong>; the rest are heading-up.</p></div>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Colour</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>🟥 Red</td><td>Warnings, limits</td></tr>
+          <tr><td>🟧 Amber</td><td>Cautions, abnormal sources</td></tr>
+          <tr><td>🟩 Green</td><td>Engaged modes, selected data</td></tr>
+          <tr><td>⬜ White</td><td>Fixed references, current data, armed modes</td></tr>
+          <tr><td>🟪 Magenta</td><td>"Fly to / keep centred": active route, selected heading, ILS deviation pointer</td></tr>
+          <tr><td>🟦 Cyan</td><td>Sky, inactive route, non-active navaids/airports</td></tr>
+          <tr><td>🟫 Brown</td><td>Earth</td></tr>
+        </tbody></table></div>
+      <p>Precipitation: black 0–1, green 1–4, amber 4–12, red 12–50, magenta above 50 mm/h; turbulence white or magenta.</p>
+      <h3 class="sub">Symbols worth knowing</h3>
+      <ul>
+        <li>🛣️ Active route <strong>solid magenta</strong> · modification <strong>short white dashes</strong> · inactive route <strong>long cyan dashes</strong>. Active waypoint magenta.</li>
+        <li>➰ <strong>Trend vector</strong>: path in 30/60/90 s (three segments above 20 NM range).</li>
+        <li>📐 Vertical deviation ±400 ft (MAP, descent only). T/C, T/D, E/D, S/C in green. Green <strong>altitude range arc</strong> = where the MCP altitude will be reached.</li>
+        <li>🧭 Expanded ILS: glide slope hidden if track is &gt; 90° from the localizer course. Full-rose ILS doubles the localizer scale; full-rose VOR shows TO/FROM as a pointer. 2-dot VOR scale = 5° per dot.</li>
+        <li>📍 Position difference display: each IRS relative to the FMC position. Track-line range marks are half the selected range. Runway centre lines extend 14.2 NM.</li>
+        <li>🗺️ NAV AID off: tuned navaids green; on: database navaids cyan (high-altitude only at 80 NM+). ARPT off: origin and destination only. Off-route waypoints at 10–40 NM only. Holding pattern: fixed size above 80 NM, to scale within 3 min of the fix.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 17 Electronic Flight Information System (EFIS)</div>
+    </section>
+
+    <section class="sec" id="ch18" style="--accent:#2fb4d8">
+      <h2><span class="num">18</span> Global Navigation Satellite Systems (GNSS) <span class="en">Chapter 18</span></h2>
+      <p class="lead">Four satellites, four unknowns, and a position good to a few metres — as long as you know how far to trust it.</p>
+      <div class="glance"><span>🎯 GPS segments and orbits</span><span>🎯 Codes and frequencies</span><span>🎯 Why four satellites</span><span>🎯 Error budget</span><span>🎯 DOP</span><span>🎯 RAIM, GBAS, SBAS</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Each satellite gives a pseudo-range — a range still carrying the receiver's clock error.</strong> Four of them solve X, Y, Z and time together: a 3-D position plus accurate time.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th></th><th>GPS (USA)</th><th>GLONASS (Russia)</th><th>Galileo (EU)</th></tr></thead>
+        <tbody>
+          <tr><td>Satellites / planes</td><td>24 / 6</td><td>24 / 3</td><td>30 / 3</td></tr>
+          <tr><td>Height</td><td>≈ 20 200 km</td><td>≈ 19 100 km</td><td>≈ 23 200 km</td></tr>
+          <tr><td>Inclination</td><td>55°</td><td>65°</td><td>56°</td></tr>
+          <tr><td>Period</td><td>≈ 12 h</td><td>11 h 15 min</td><td>≈ 14 h</td></tr>
+          <tr><td>Earth model</td><td>WGS-84</td><td>PZ-90</td><td>ETRS-89</td></tr>
+          <tr><td>Satellite identity</td><td>own code, common frequency</td><td>same code, own frequency</td><td>—</td></tr>
+        </tbody></table></div>
+      <h3 class="sub">GPS in three segments</h3>
+      <ul>
+        <li>🛰️ <strong>Space</strong>: 5–8 satellites in view above the <strong>5° mask angle</strong>; atomic clocks (~1 ns). L1 <strong>1 575.42 MHz</strong> (C/A 1.023 MHz repeating each ms; P 10.23 MHz repeating each 7 days; nav message 50 bps). L2 1 227.6 MHz (P code). Civil users: C/A code (SPS). P becomes encrypted Y code with anti-spoofing.</li>
+        <li>🏢 <strong>Control</strong>: master and back-up stations plus monitors; position and clock checked at least every 12 h. Clock errors are broadcast, not reset.</li>
+        <li>📱 <strong>User</strong>: multi-channel all-in-view receivers preferred in aviation.</li>
+        <li>🗓️ GPS time counts from 6 January 1980 in 1 024-week epochs; it is not adjusted for leap seconds.</li>
+      </ul>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">Frame 30 s · almanac 12.5 min</div><div class="d">5 subframes × 6 s. Lost almanac → at least 15 min to first fix; normally about 30 s.</div></div>
+        <div class="fcard"><div class="f">1 ms clock error ≈ 162 NM</div><div class="d">Why the receiver solves for its own clock with a fourth satellite (or altitude aiding).</div></div>
+      </div>
+      <h3 class="sub">Error budget</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Source</th><th class="num">Up to</th><th>Reduced by</th></tr></thead>
+        <tbody>
+          <tr><td>Ionospheric delay (largest)</td><td class="num">5 m</td><td>Two frequencies (delay ∝ 1/f²), model in message</td></tr>
+          <tr><td>Ephemeris</td><td class="num">2.5 m</td><td>12-hourly updates</td></tr>
+          <tr><td>Satellite clock</td><td class="num">1.5 m</td><td>Broadcast correction</td></tr>
+          <tr><td>Multipath</td><td class="num">0.6 m</td><td>Aerial siting — top of fuselage near the CG</td></tr>
+          <tr><td>Receiver noise</td><td class="num">0.3 m</td><td>—</td></tr>
+          <tr><td>Troposphere</td><td class="num">1 ns ≈ 0.3 m</td><td>Models, two frequencies</td></tr>
+        </tbody></table></div>
+      <ul>
+        <li>📐 <strong>DOP</strong>: HDOP horizontal, VDOP vertical, PDOP both, TDOP time, GDOP all. Best geometry: one satellite overhead, three low and 120° apart.</li>
+        <li>🎯 Specified SPS accuracy (95 %): <strong>13 m</strong> horizontal, <strong>22 m</strong> vertical, 40 ns. Selective Availability (clock dithering, ~100 m) ended on 1 May 2000.</li>
+        <li>🌊 The WGS-84 ellipsoid and mean sea level differ by tens of metres — raw GNSS height is not for vertical guidance near the ground.</li>
+      </ul>
+      <h3 class="sub">Integrity and augmentation</h3>
+      <div class="compare">
+        <div class="card acc"><h4>ABAS — RAIM</h4><p>In the receiver. <strong>5</strong> satellites to detect a fault, <strong>6</strong> to exclude it and keep monitoring.</p></div>
+        <div class="card acc"><h4>GBAS (local)</h4><p>Surveyed site at the airport sends corrections by <strong>VHF data link</strong>; pseudolite for range. Removes ephemeris and clock errors, almost all atmospheric error nearby — not receiver noise or multipath. Potential to Cat III.</p></div>
+        <div class="card acc"><h4>SBAS (wide area)</h4><p>Reference stations → master station → <strong>geostationary</strong> satellites (35 800 km, 24 h). EGNOS, WAAS, MSAS, GAGAN.</p></div>
+      </div>
+      <div class="related"><span class="dot"></span> Practise: 18 Global Navigation Satellite Systems (GNSS)</div>
     </section>
 
   </main>
 </div>
+
+<footer>
+  Radio Navigation — Pilot's Guide · general theory, independent of any aircraft.
+  Always follow your aircraft's approved manuals, published procedures and your instructor's briefing. 📡
+</footer>
+
+<button id="top-btn" aria-label="Back to top">↑</button>
+
 <script>
 (function(){
-  var toc=document.getElementById('toc'),scrim=document.getElementById('scrim');
-  function set(o){toc.classList.toggle('open',o);scrim.classList.toggle('show',o);}
-  document.getElementById('menuBtn').addEventListener('click',function(){set(true);});
-  document.getElementById('closeToc').addEventListener('click',function(){set(false);});
-  scrim.addEventListener('click',function(){set(false);});
+  var toc = document.getElementById('toc');
+  var scrim = document.getElementById('scrim');
+  var menuBtn = document.getElementById('menuBtn');
+  var closeToc = document.getElementById('closeToc');
+  function openToc(){ toc.classList.add('open'); scrim.classList.add('show'); }
+  function shutToc(){ toc.classList.remove('open'); scrim.classList.remove('show'); }
+  if (menuBtn) menuBtn.addEventListener('click', openToc);
+  if (closeToc) closeToc.addEventListener('click', shutToc);
+  if (scrim) scrim.addEventListener('click', shutToc);
+  var tocLinks = document.querySelectorAll('nav.toc a');
+  tocLinks.forEach(function(a){ a.addEventListener('click', function(){ shutToc(); }); });
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section.sec[id]'));
+  var linkFor = {};
+  tocLinks.forEach(function(a){ linkFor[a.getAttribute('href').slice(1)] = a; });
+  function onScroll(){
+    var y = window.scrollY + 110, current = sections[0];
+    for (var i = 0; i < sections.length; i++){ if (sections[i].offsetTop <= y) current = sections[i]; }
+    tocLinks.forEach(function(a){ a.classList.remove('active'); });
+    if (current && linkFor[current.id]) linkFor[current.id].classList.add('active');
+    var topBtn = document.getElementById('top-btn');
+    if (topBtn) topBtn.classList.toggle('show', window.scrollY > 500);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  var topBtn = document.getElementById('top-btn');
+  if (topBtn) topBtn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  /* ---- calculators ---- */
+  function num(id){ var v = parseFloat(document.getElementById(id).value); return isFinite(v) ? v : NaN; }
+  function put(id, html){ document.getElementById(id).innerHTML = html; }
+  function f(x, d){ return x.toFixed(d); }
+  function band(mhz){
+    var b = [[0.003,'VLF'],[0.03,'LF'],[0.3,'MF'],[3,'HF'],[30,'VHF'],[300,'UHF'],[3000,'SHF'],[30000,'EHF'],[300000,'—']];
+    for (var i = b.length - 1; i >= 0; i--){ if (mhz >= b[i][0]) return b[i][1]; }
+    return 'below the radio spectrum';
+  }
+  function lambdaText(m){ return m >= 1000 ? f(m/1000,2) + ' km' : (m >= 1 ? f(m,2) + ' m' : (m >= 0.01 ? f(m*100,2) + ' cm' : f(m*1000,2) + ' mm')); }
+
+  function freq(){
+    var mhz = num('fF');
+    if (!(mhz > 0)) { put('fOut', 'Enter a frequency above zero.'); return; }
+    var lam = 300 / mhz;
+    put('fOut', 'Wavelength <b>' + lambdaText(lam) + '</b> · band <b>' + band(mhz) + '</b><br>Quarter-wave aerial ≈ ' + lambdaText(lam/4) + ' · half-wave ≈ ' + lambdaText(lam/2));
+  }
+  function los(){
+    var a = num('lA'), s = num('lS');
+    if (!(a >= 0) || !(s >= 0)) { put('lOut', 'Enter both heights in feet.'); return; }
+    var r = 1.23 * (Math.sqrt(a) + Math.sqrt(s));
+    put('lOut', 'Maximum theoretical range <b>' + f(r,0) + ' NM</b><br>Aircraft horizon ' + f(1.23*Math.sqrt(a),0) + ' NM + station horizon ' + f(1.23*Math.sqrt(s),0) + ' NM');
+  }
+  function radar(){
+    var t = num('rT'), p = num('rP'), w = num('rW');
+    if (!(t >= 0) || !(p > 0) || !(w >= 0)) { put('rOut', 'Enter echo time, PRF and pulse width.'); return; }
+    var pri = 1e6 / p;
+    put('rOut', 'Target range <b>' + f(t/12.36,1) + ' NM</b> (' + f(t*0.15,1) + ' km)<br>PRI ' + f(pri,0) + ' µs → max range <b>' + f(pri/12.36,0) + ' NM</b><br>Minimum range <b>' + f(w*150,0) + ' m</b> · range resolution ' + f(w*150,0) + ' m');
+  }
+  function gp(){
+    var a = num('gA'), d = num('gD'), s = num('gS');
+    if (!(a > 0) || !(d >= 0) || !(s > 0)) { put('gOut', 'Enter angle, distance and ground speed.'); return; }
+    var rule = a * d * 100, exact = d * 6076 * Math.tan(a*Math.PI/180);
+    var rod = a * s * 100 / 60, rodx = s * 6076 / 60 * Math.tan(a*Math.PI/180);
+    put('gOut', 'Height ≈ <b>' + f(rule,0) + ' ft</b> (exact ' + f(exact,0) + ' ft)<br>Rate of descent ≈ <b>' + f(rod,0) + ' ft/min</b> (exact ' + f(rodx,0) + ')');
+  }
+  function dme(){
+    var r = num('dR'), h = num('dH');
+    if (!(r >= 0) || !(h >= 0)) { put('dOut', 'Enter the DME reading and the height.'); return; }
+    var hn = h / 6076;
+    if (hn > r) { put('dOut', 'The height (' + f(hn,1) + ' NM) is more than the DME reading — check the numbers.'); return; }
+    var g = Math.sqrt(r*r - hn*hn);
+    put('dOut', 'Height ' + f(hn,1) + ' NM → ground range <b>' + f(g,1) + ' NM</b><br>DME/N tolerance ±' + f(0.25 + 0.0125*r,2) + ' NM' + (r < 3*hn ? '<br>⚠️ Within 3 × height: slant error is significant' : ''));
+  }
+  function brg(){
+    var h = num('bH'), r = num('bR');
+    if (!(h >= 0) || !(r >= 0)) { put('bOut', 'Enter heading and relative bearing.'); return; }
+    var qdm = (h + r) % 360, qdr = (qdm + 180) % 360;
+    function p3(x){ x = Math.round(x) % 360; return ('00' + x).slice(-3); }
+    put('bOut', 'QDM (to the beacon) <b>' + p3(qdm) + '°</b><br>QDR (you are on) <b>' + p3(qdr) + '°</b>');
+  }
+  [['fF',freq],['lA',los],['lS',los],['rT',radar],['rP',radar],['rW',radar],['gA',gp],['gD',gp],['gS',gp],['dR',dme],['dH',dme],['bH',brg],['bR',brg]].forEach(function(p){
+    var el = document.getElementById(p[0]); if (el) el.addEventListener('input', p[1]);
+  });
+  freq(); los(); radar(); gp(); dme(); brg();
 })();
+
 </script>
 </body>
 </html>
