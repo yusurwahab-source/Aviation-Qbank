@@ -1,0 +1,362 @@
+[
+  {
+    "id": "RNAV-ADF-0001",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Principles",
+    "question": "What does an NDB transmit?",
+    "options": [
+      { "id": "a", "text": "A signal radiated in all directions" },
+      { "id": "b", "text": "A narrow beam aligned with the runway" },
+      { "id": "c", "text": "A signal that identifies only the aircraft's heading" },
+      { "id": "d", "text": "A rotating beam that indicates magnetic track" }
+    ],
+    "correct": "a",
+    "explanation": "A non-directional beacon radiates its signal in all directions; the airborne ADF equipment determines the direction from which the signal is received.",
+    "tags": ["NDB", "ADF", "principles"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-ADF-0002",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Principles",
+    "question": "What information does a basic ADF bearing pointer provide?",
+    "options": [
+      { "id": "a", "text": "The aircraft's heading relative to true north" },
+      { "id": "b", "text": "The direction of the NDB relative to the aircraft's nose" },
+      { "id": "c", "text": "The aircraft's distance from the NDB" },
+      { "id": "d", "text": "The aircraft's drift angle from its planned track" }
+    ],
+    "correct": "b",
+    "explanation": "A basic relative-bearing indicator shows the angle from the aircraft's nose to the station. It does not provide distance.",
+    "tags": ["ADF", "relative-bearing"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-ADF-0003",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Relative Bearings",
+    "question": "Relative bearing is measured clockwise from which reference?",
+    "options": [
+      { "id": "a", "text": "Magnetic north" },
+      { "id": "b", "text": "The aircraft's ground track" },
+      { "id": "c", "text": "The aircraft's nose" },
+      { "id": "d", "text": "The station's magnetic bearing" }
+    ],
+    "correct": "c",
+    "explanation": "Relative bearing is the clockwise angle from the aircraft's longitudinal axis (nose) to the direction of the station.",
+    "tags": ["ADF", "relative-bearing"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-ADF-0004",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Relative Bearings",
+    "question": "An aircraft heading is 300° magnetic and the ADF relative bearing is 080°. What is the magnetic bearing to the station?",
+    "options": [
+      { "id": "a", "text": "020°" },
+      { "id": "b", "text": "080°" },
+      { "id": "c", "text": "220°" },
+      { "id": "d", "text": "380°" }
+    ],
+    "correct": "a",
+    "explanation": "Add the magnetic heading and relative bearing, then subtract 360° if needed: 300° + 080° = 380°, or 020° magnetic.",
+    "tags": ["ADF", "bearing-calculation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-ADF-0005",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Indications",
+    "question": "On a fixed-card ADF indicator, what does the pointer's head indicate?",
+    "options": [
+      { "id": "a", "text": "The relative bearing to the station" },
+      { "id": "b", "text": "The magnetic bearing from the station" },
+      { "id": "c", "text": "The aircraft's magnetic heading" },
+      { "id": "d", "text": "The distance to the station" }
+    ],
+    "correct": "a",
+    "explanation": "With a fixed card referenced to the aircraft nose, the pointer head indicates the relative bearing to the NDB.",
+    "tags": ["ADF", "indications"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-ADF-0006",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Indications",
+    "question": "What bearing is normally read at the head of an ADF needle on an RMI?",
+    "options": [
+      { "id": "a", "text": "Magnetic bearing to the station" },
+      { "id": "b", "text": "Relative bearing from the aircraft's nose" },
+      { "id": "c", "text": "Magnetic bearing from the station" },
+      { "id": "d", "text": "True bearing from the aircraft" }
+    ],
+    "correct": "a",
+    "explanation": "An RMI card is stabilized to magnetic heading, so the needle head indicates the magnetic bearing to the tuned station.",
+    "tags": ["ADF", "RMI", "indications"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-ADF-0007",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Aerials",
+    "question": "What is the purpose of the sense aerial in an ADF installation?",
+    "options": [
+      { "id": "a", "text": "To resolve the 180° ambiguity of a loop aerial" },
+      { "id": "b", "text": "To measure the aircraft's distance from the beacon" },
+      { "id": "c", "text": "To determine the beacon's elevation" },
+      { "id": "d", "text": "To cancel all night-effect errors" }
+    ],
+    "correct": "a",
+    "explanation": "A loop aerial alone has two possible null directions. The sense aerial resolves the ambiguity and identifies the direction toward the station.",
+    "tags": ["ADF", "aerials"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-ADF-0008",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Aerials",
+    "question": "Why is a loop aerial useful in an ADF system?",
+    "options": [
+      { "id": "a", "text": "It has a directional response that helps determine signal direction" },
+      { "id": "b", "text": "It transmits the NDB identification code" },
+      { "id": "c", "text": "It removes the need for a receiver" },
+      { "id": "d", "text": "It measures slant range to the beacon" }
+    ],
+    "correct": "a",
+    "explanation": "The loop aerial's directional reception pattern provides the directional information used by the ADF.",
+    "tags": ["ADF", "loop-aerial"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-ADF-0009",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Identification",
+    "question": "How is an NDB commonly identified by the pilot?",
+    "options": [
+      { "id": "a", "text": "By listening to its transmitted Morse identifier" },
+      { "id": "b", "text": "By reading its runway designation" },
+      { "id": "c", "text": "By comparing its DME distance with GPS altitude" },
+      { "id": "d", "text": "By checking the aircraft transponder code" }
+    ],
+    "correct": "a",
+    "explanation": "NDBs transmit an identification signal, commonly in Morse code, which the pilot should verify before relying on the aid.",
+    "tags": ["NDB", "identification"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-ADF-0010",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Identification",
+    "question": "The expected NDB identifier cannot be heard. What is the safest action?",
+    "options": [
+      { "id": "a", "text": "Treat the aid as unverified and do not use it for navigation" },
+      { "id": "b", "text": "Assume the nearest beacon is tuned correctly" },
+      { "id": "c", "text": "Use the ADF pointer as a distance indication" },
+      { "id": "d", "text": "Increase bank angle until the pointer stabilizes" }
+    ],
+    "correct": "a",
+    "explanation": "Without confirming the station's identity and serviceability, the pilot cannot be sure the indication belongs to the intended aid.",
+    "tags": ["NDB", "identification", "navigation-integrity"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-ADF-0011",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Propagation Errors",
+    "question": "What causes night effect on an ADF indication?",
+    "options": [
+      { "id": "a", "text": "Interference between ground-wave and sky-wave signals" },
+      { "id": "b", "text": "The station changing its magnetic variation at sunset" },
+      { "id": "c", "text": "The aircraft's magnetic compass turning with the Earth" },
+      { "id": "d", "text": "DME replies arriving before the NDB signal" }
+    ],
+    "correct": "a",
+    "explanation": "At night, ionospheric sky-wave energy can be received along with the ground wave. Their interaction can make the ADF bearing fluctuate.",
+    "tags": ["ADF", "night-effect", "propagation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-ADF-0012",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Propagation Errors",
+    "question": "An ADF needle fluctuates near a thunderstorm. Which effect is a likely cause?",
+    "options": [
+      { "id": "a", "text": "Electrical interference from lightning" },
+      { "id": "b", "text": "A change in the VOR reference phase" },
+      { "id": "c", "text": "DME slant-range error" },
+      { "id": "d", "text": "Glide-slope false-lobe capture" }
+    ],
+    "correct": "a",
+    "explanation": "Lightning and associated atmospheric electrical activity can produce strong interference in the frequency range used by ADF equipment.",
+    "tags": ["ADF", "interference", "thunderstorms"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-ADF-0013",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Propagation Errors",
+    "question": "Why can an ADF bearing be inaccurate when the signal crosses a coastline?",
+    "options": [
+      { "id": "a", "text": "The wave may be refracted at the land-sea boundary" },
+      { "id": "b", "text": "The NDB automatically changes its frequency over water" },
+      { "id": "c", "text": "The aircraft's DME measures horizontal distance only" },
+      { "id": "d", "text": "The localizer signal bends toward the coastline" }
+    ],
+    "correct": "a",
+    "explanation": "Different propagation characteristics over land and sea can refract the signal at the coast, producing a bearing error.",
+    "tags": ["ADF", "coastal-refraction", "errors"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-ADF-0014",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Aircraft Errors",
+    "question": "What is a common cause of quadrantal error in an ADF bearing?",
+    "options": [
+      { "id": "a", "text": "Re-radiation and distortion by the aircraft structure" },
+      { "id": "b", "text": "The station's DME antenna being too high" },
+      { "id": "c", "text": "A mismatch between the selected VOR course and heading" },
+      { "id": "d", "text": "The aircraft flying below the NDB antenna" }
+    ],
+    "correct": "a",
+    "explanation": "The airframe can distort or re-radiate the incoming signal, causing direction-dependent ADF errors known as quadrantal error.",
+    "tags": ["ADF", "quadrantal-error"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-ADF-0015",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Aircraft Errors",
+    "question": "Why can an ADF bearing change during a steep turn?",
+    "options": [
+      { "id": "a", "text": "Banking can alter the aerial's orientation and introduce indication error" },
+      { "id": "b", "text": "An NDB transmits a different identifier during turns" },
+      { "id": "c", "text": "The station's magnetic bearing changes with bank angle" },
+      { "id": "d", "text": "DME automatically switches to slant range during turns" }
+    ],
+    "correct": "a",
+    "explanation": "Banking changes the orientation of the aircraft and its aerials relative to the signal, which can affect the ADF indication.",
+    "tags": ["ADF", "bank-error"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-ADF-0016",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Navigation",
+    "question": "An ADF needle points to the station while the aircraft is drifting in crosswind. What does the needle alone establish?",
+    "options": [
+      { "id": "a", "text": "The direction to the station, not the aircraft's ground track" },
+      { "id": "b", "text": "That the aircraft is tracking directly to the station" },
+      { "id": "c", "text": "The aircraft's distance from the station" },
+      { "id": "d", "text": "That the aircraft is on the planned route" }
+    ],
+    "correct": "a",
+    "explanation": "The ADF gives a bearing to the station. Wind can make the aircraft's track differ from that bearing unless the pilot corrects for drift.",
+    "tags": ["ADF", "wind-correction", "navigation"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-ADF-0017",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Navigation",
+    "question": "Which instrument does not, by itself, provide distance to an NDB?",
+    "options": [
+      { "id": "a", "text": "ADF" },
+      { "id": "b", "text": "DME" },
+      { "id": "c", "text": "A GNSS receiver" },
+      { "id": "d", "text": "A radar distance readout" }
+    ],
+    "correct": "a",
+    "explanation": "An ADF provides directional information. It does not measure range to the NDB.",
+    "tags": ["ADF", "distance"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-ADF-0018",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Navigation",
+    "question": "A relative-bearing indicator shows 000°. Where is the station?",
+    "options": [
+      { "id": "a", "text": "Directly ahead of the aircraft" },
+      { "id": "b", "text": "Directly behind the aircraft" },
+      { "id": "c", "text": "Directly to the right" },
+      { "id": "d", "text": "Directly to the left" }
+    ],
+    "correct": "a",
+    "explanation": "A relative bearing of 000° means the station lies on the aircraft's nose direction.",
+    "tags": ["ADF", "relative-bearing"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-ADF-0019",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Navigation",
+    "question": "A relative-bearing indicator shows 180°. Where is the station?",
+    "options": [
+      { "id": "a", "text": "Directly behind the aircraft" },
+      { "id": "b", "text": "Directly ahead of the aircraft" },
+      { "id": "c", "text": "Directly to the right" },
+      { "id": "d", "text": "Directly to the left" }
+    ],
+    "correct": "a",
+    "explanation": "A relative bearing of 180° places the station directly behind the aircraft.",
+    "tags": ["ADF", "relative-bearing"],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "RNAV-ADF-0020",
+    "subjectCode": "RNAV",
+    "topic": "NDB and ADF",
+    "subtopic": "Limitations",
+    "question": "Which statement best describes an ADF bearing in poor reception conditions?",
+    "options": [
+      { "id": "a", "text": "It may be unreliable and should be cross-checked with other information" },
+      { "id": "b", "text": "It remains exact because the NDB signal is omnidirectional" },
+      { "id": "c", "text": "It becomes a direct measurement of ground speed" },
+      { "id": "d", "text": "It automatically changes from magnetic to true bearing" }
+    ],
+    "correct": "a",
+    "explanation": "ADF indications are susceptible to propagation and aircraft-related errors, so pilots should identify the aid and cross-check questionable indications.",
+    "tags": ["ADF", "limitations", "cross-check"],
+    "status": "published",
+    "version": 1
+  }
+]

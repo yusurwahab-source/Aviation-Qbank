@@ -609,6 +609,29 @@ meteorology syllabus. The climatology chapters (global, area and route)
 describe typical seasonal patterns and are the most simplified part of
 the bank.
 
+## The RNAV bank (Flying Knowledge)
+
+The subject is **Radio Navigation** (code `RNAV`). Its seven chapters are
+kept as seven ordered JSON question files under
+`content/flying-knowledge/rnav/questions/`:
+
+| Chapter | File | Subject | Questions |
+|---|---|---|---:|
+| 1 | `chapter-1-properties-of-radio-waves.json` | Properties of Radio Waves | 72 |
+| 2 | `chapter-2-radio-propagation-theory.json` | Radio Propagation Theory | 103 |
+| 3 | `chapter-3-modulation.json` | Modulation | 24 |
+| 4 | `chapter-4-ndb-adf.json` | NDB and ADF | 20 |
+| 5 | `chapter-5-vor.json` | VHF Omnidirectional Range | 20 |
+| 6 | `chapter-6-dme.json` | Distance Measuring Equipment | 20 |
+| 7 | `chapter-7-ils.json` | Instrument Landing System | 20 |
+| | | **Total** | **279** |
+
+The chapter files 4–7 were authored as original questions from general
+radio-navigation principles; they were not transcribed from a textbook or
+question bank, and have not been checked question by question against a
+syllabus. A qualified instructor should review them before students rely on
+them for an exam.
+
 ## The B737 bank
 
 The aircraft is the **Boeing 737-800**, the stretched Next Generation variant
