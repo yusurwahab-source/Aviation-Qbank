@@ -409,15 +409,31 @@ on it for a real exam — the same caution given to the
 DA40's unsourced topics above.
 
 `public/pof-study-guide.html` is this bank's study guide (see
-`lib/study-guide.ts`): fifteen numbered sections matching the fifteen
-topics, each giving its governing equations, tables of computed values and
-one or two inline SVG graphs. Every graph is drawn from the equation it
-illustrates (for example the drag and power curves, the critical-Mach
-construction, the normal-shock relations and the V–n diagram), except the
-lateral–directional balance chart, which is labelled as a schematic, and
-the microburst profile, which is labelled as a model. All graphs use the
-page's colour tokens, so they work in both themes, and the page has been
-checked at 375px for horizontal overflow.
+`lib/study-guide.ts`). It is arranged as **fifteen chapters in the order of
+the Principles of Flight book the owner pointed at**, from the contents list
+the owner supplied: 1 Overview and Definitions, 2 The Atmosphere, 3 Basic
+Aerodynamic Theory, 4 Subsonic Airflow, 5 Lift, 6 Drag, 7 Stalling, 8 High
+Lift Devices, 9 Airframe Contamination, 10 Stability and Control, 11
+Controls, 12 Flight Mechanics, 13 High Speed Flight, 14 Limitations, 15
+Propellers. Only the chapter titles are used, and the page never names the
+book. The chapters are **not** the same fifteen groups as the question
+topics above. The mapping is ours, because only the titles were supplied:
+the question topics that feed each chapter are listed at the foot of the
+chapter, and the unavoidable judgement calls are these — windshear, wake
+turbulence and microbursts sit in Chapter 14 (Limitations), wind arithmetic,
+asymmetric flight (Vmc), climb, glide, range and turns in Chapter 12,
+spoilers and trim in Chapter 11, Mach trim in Chapter 13, and frost, ice and
+rain in Chapter 9. If the book places any of these elsewhere, moving a block
+is an edit to the guide only. The question topics, ids and stored attempts
+are untouched.
+
+The guide has a one-screen cheat sheet, three small calculators (turn and
+stall speed, crosswind, density altitude), worked examples that open on
+demand, and 24 inline SVG diagrams in both themes. The graphs are drawn from
+the equations they illustrate (for example the drag curve, the lift curve and
+the V–n diagram); the buffet band, the Mach regimes, the crossover altitude
+and the microburst profile are labelled or drawn as schematics. It has been
+checked at 375px for horizontal overflow and in the dark theme.
 
 ## The HPL bank (Flying Knowledge)
 
