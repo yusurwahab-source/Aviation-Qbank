@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { siteConfig } from "@/config/site";
+import { renderEmail } from "@/lib/email/layout";
 import type { EmailMessage } from "@/lib/email/send";
 
 import { AUDIENCES } from "./audience";
@@ -62,12 +63,24 @@ export function composeBroadcastEmail(input: {
     `Unsubscribe from these messages: ${unsubscribeUrl}`,
   ].join("\n");
 
-  const html = [
-    ...paragraphs(body).map((paragraph) => `<p>${linkify(escapeHtml(paragraph)).replace(/\n/g, "<br>")}</p>`),
-    '<hr style="border:none;border-top:1px solid #ccc;margin:24px 0">',
-    `<p style="font-size:12px;color:#666">You are receiving this because you have an account on ${escapeHtml(siteConfig.name)}. `,
-    `<a href="${escapeHtml(unsubscribeUrl)}">Unsubscribe from these messages</a>.</p>`,
-  ].join("\n");
+  const bodyHtml = paragraphs(body)
+    .map(
+      (paragraph) =>
+        `<p style="margin:0 0 16px;font-size:16px;line-height:1.6;color:#212529">${linkify(escapeHtml(paragraph)).replace(/\n/g, "<br>")}</p>`,
+    )
+    .join("\n");
+
+  const { html } = renderEmail({
+    preheader: subject,
+    heading: subject,
+    paragraphs: [],
+    bodyHtml,
+    signOff: false,
+    footerNote: {
+      text: footerText,
+      html: `You are receiving this because you have an account on ${escapeHtml(siteConfig.name)}. <a href="${escapeHtml(unsubscribeUrl)}" style="color:#5C6670">Unsubscribe from these messages</a>.`,
+    },
+  });
 
   return {
     to,

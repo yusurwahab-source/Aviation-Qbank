@@ -1153,6 +1153,16 @@ instead — a feature that looked finished and delivered nothing. Both are
 now read through `readEnv`, like Stripe's keys. The value is
 `PilotQBank <no-reply@pilotqbank.com>`, on the domain verified in Resend.
 
+**Every email goes out in one frame, `src/lib/email/layout.ts`.** A navy header
+with the logo mark (`public/icon-192.png`, served from `siteConfig.url`, so it
+only shows once deployed), a greeting, one yellow button, an optional quiet
+note, the "Safe flying, The PilotQBank team" sign-off, and a footer with the
+tagline and a link to `/contact`. Reset, verification, password-changed and
+owner broadcasts all use it; the plain-text version is built from the same
+spec and carries every link in full. Its colours are hex written by hand —
+an email cannot read `globals.css` — so change them with the palette. The
+contact form's message to the owner is deliberately unframed.
+
 **The contact form (`/contact`) sends one email to `OWNER_EMAIL` and stores
 nothing.** `lib/contact.ts` is the pure half (schema, and the message it
 becomes, tested); `app/contact/actions.ts` wires it to the rate limiter
@@ -1928,6 +1938,7 @@ src/
   lib/
     email/
       send.ts                 sendEmail: Resend, or the server log
+      layout.ts               The shared email frame (pure, tested)
       reset-email.ts          The reset message (pure, tested)
     billing/
       access-policy.ts        Free-tier and subscription rules (pure, tested)

@@ -1,6 +1,7 @@
 import { siteConfig } from "@/config/site";
 import { RESET_TOKEN_LIFETIME_MS } from "@/lib/auth/reset-policy";
 
+import { renderEmail } from "./layout";
 import type { EmailMessage } from "./send";
 
 /**
@@ -21,27 +22,18 @@ export function resetEmail(to: string, link: string): EmailMessage {
   const expiry =
     LIFETIME_MINUTES === 60 ? "one hour" : `${LIFETIME_MINUTES} minutes`;
 
-  const text = [
-    `Somebody asked to reset the password for your ${siteConfig.name} account.`,
-    "",
-    "If it was you, open this link to choose a new one:",
-    "",
-    link,
-    "",
-    `The link works once, and stops working after ${expiry}.`,
-    "",
-    "If it was not you, you can ignore this email. Your password has not been",
-    "changed, and nobody can change it without this link.",
-  ].join("\n");
-
-  const html = [
-    `<p>Somebody asked to reset the password for your ${siteConfig.name} account.</p>`,
-    "<p>If it was you, choose a new one here:</p>",
-    `<p><a href="${escapeHtml(link)}">Set a new password</a></p>`,
-    `<p>The link works once, and stops working after ${expiry}.</p>`,
-    "<p>If it was not you, you can ignore this email. Your password has not been changed, ",
-    "and nobody can change it without this link.</p>",
-  ].join("\n");
+  const { text, html } = renderEmail({
+    preheader: "Choose a new password for your account.",
+    heading: "Reset your password",
+    greeting: "Hello,",
+    paragraphs: [
+      `Welcome back to ${siteConfig.name}. Somebody asked to reset the password for your account.`,
+      "If it was you, press the button below to choose a new one.",
+    ],
+    button: { label: "Set a new password", url: link },
+    afterButton: [`The link works once, and stops working after ${expiry}.`],
+    note: "If it was not you, you can ignore this email. Your password has not been changed, and nobody can change it without this link.",
+  });
 
   return {
     to,
@@ -49,18 +41,4 @@ export function resetEmail(to: string, link: string): EmailMessage {
     text,
     html,
   };
-}
-
-/**
- * The link is built from our own base URL and a random token, so there is
- * nothing hostile in it today. Escaped anyway: an unescaped value in an
- * attribute is the kind of thing that stops being safe the moment somebody
- * changes where the URL comes from.
- */
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
 }
