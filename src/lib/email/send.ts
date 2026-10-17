@@ -1,5 +1,7 @@
 import "server-only";
 
+import { envValue } from "@/lib/env";
+
 /**
  * Sending email.
  *
@@ -61,7 +63,7 @@ export function appUrl(): string {
 
 /** Whether a real provider is configured, for the setup notice on screen. */
 export function emailIsConfigured(): boolean {
-  return Boolean(process.env.RESEND_API_KEY?.trim() && process.env.EMAIL_FROM?.trim());
+  return envValue("RESEND_API_KEY") !== null && envValue("EMAIL_FROM") !== null;
 }
 
 /**
@@ -73,7 +75,10 @@ export function emailIsConfigured(): boolean {
  * for the operator, and reported in the return value.
  */
 export async function sendEmail(message: EmailMessage): Promise<EmailOutcome> {
-  if (!emailIsConfigured()) {
+  const apiKey = envValue("RESEND_API_KEY");
+  const from = envValue("EMAIL_FROM");
+
+  if (!apiKey || !from) {
     // Deliberately the full message. The link is the point.
     console.info(
       [
@@ -94,11 +99,11 @@ export async function sendEmail(message: EmailMessage): Promise<EmailOutcome> {
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.RESEND_API_KEY!.trim()}`,
+        Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: process.env.EMAIL_FROM!.trim(),
+        from,
         to: [message.to],
         subject: message.subject,
         text: message.text,
