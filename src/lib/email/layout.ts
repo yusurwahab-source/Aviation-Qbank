@@ -53,6 +53,8 @@ export type EmailLayoutSpec = {
   afterButton?: string[];
   /** A smaller, quieter line — "if this was not you…". */
   note?: string;
+  /** Facts about the event, shown as a small table: account, time, expiry. */
+  details?: Array<{ label: string; value: string }>;
   /**
    * Replaces `paragraphs` in the HTML version only, for content that is
    * already escaped (the owner's broadcast text). Never put user input here
@@ -80,6 +82,10 @@ function renderText(spec: EmailLayoutSpec): string {
   for (const paragraph of spec.paragraphs) lines.push(paragraph, "");
   if (spec.button) lines.push(`${spec.button.label}:`, spec.button.url, "");
   for (const paragraph of spec.afterButton ?? []) lines.push(paragraph, "");
+  if (spec.details?.length) {
+    for (const { label, value } of spec.details) lines.push(`${label}: ${value}`);
+    lines.push("");
+  }
   if (spec.note) lines.push(spec.note, "");
   if (spec.signOff !== false) lines.push(...EMAIL_SIGN_OFF, "");
   lines.push("—", siteConfig.tagline, `${siteConfig.url}  ·  Contact us: ${siteConfig.url}/contact`);
@@ -102,6 +108,15 @@ function renderHtml(spec: EmailLayoutSpec): string {
     : "";
 
   const after = (spec.afterButton ?? []).map(p).join("\n");
+
+  const details = spec.details?.length
+    ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 24px;border:1px solid ${COLOR.rule};border-radius:8px;border-collapse:separate">${spec.details
+        .map(
+          ({ label, value }, index) =>
+            `<tr><td style="padding:10px 14px;font-size:13px;color:${COLOR.muted};white-space:nowrap;${index > 0 ? `border-top:1px solid ${COLOR.rule};` : ""}">${escapeHtml(label)}</td><td style="padding:10px 14px;font-size:14px;color:${COLOR.ink};font-weight:600;${index > 0 ? `border-top:1px solid ${COLOR.rule};` : ""}">${escapeHtml(value)}</td></tr>`,
+        )
+        .join("")}</table>`
+    : "";
 
   const note = spec.note
     ? `<p style="margin:0 0 24px;padding:14px 16px;background:${COLOR.page};border-radius:8px;font-size:14px;line-height:1.5;color:${COLOR.muted}">${escapeHtml(spec.note)}</p>`
@@ -142,6 +157,7 @@ ${spec.greeting ? p(spec.greeting) : ""}
 ${body}
 ${button}
 ${after}
+${details}
 ${note}
 ${signOff}
 </td></tr>
@@ -156,4 +172,11 @@ ${footerNote}
 </table>
 </body>
 </html>`;
+}
+
+/** "17 Oct 2026, 23:32 UTC" — unambiguous across time zones, which a security notice has to be. */
+export function formatEmailTime(at: Date): string {
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const two = (n: number) => String(n).padStart(2, "0");
+  return `${at.getUTCDate()} ${months[at.getUTCMonth()]} ${at.getUTCFullYear()}, ${two(at.getUTCHours())}:${two(at.getUTCMinutes())} UTC`;
 }
