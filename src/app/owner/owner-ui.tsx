@@ -18,6 +18,7 @@ export const OWNER_LINKS = [
   { href: "/owner/subscribers", label: "Subscribers" },
   { href: "/owner/gift-codes", label: "Gift codes" },
   { href: "/owner/logbook", label: "Logbook Scanner" },
+  { href: "/owner/mail", label: "Mail" },
   { href: "/owner/messages", label: "Messages" },
   { href: "/owner/reports", label: "Reports" },
   { href: "/owner/interest", label: "Aircraft requests" },
@@ -257,6 +258,13 @@ export function describeError(error: unknown): string {
     .filter((line) => line !== null);
 
   return [`${error.name}: ${error.message}`, ...extras].join("\n");
+}
+
+export function formatDateTime(date: Date | string | null | undefined): string {
+  if (!date) return "—";
+  const value = date instanceof Date ? date : new Date(date);
+  if (Number.isNaN(value.getTime())) return "—";
+  return value.toLocaleString(undefined, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
 }
 
 /**

@@ -33,6 +33,8 @@ export type EmailMessage = {
   headers?: Record<string, string>;
   /** Where a reply should go, e.g. the visitor who used the contact form. */
   replyTo?: string;
+  /** Overrides `EMAIL_FROM`, e.g. the support address on mail the owner writes. */
+  from?: string;
 };
 
 export type EmailOutcome = {
@@ -102,7 +104,7 @@ export async function sendEmail(message: EmailMessage): Promise<EmailOutcome> {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: envValue("EMAIL_FROM"),
+        from: message.from ?? envValue("EMAIL_FROM"),
         to: [message.to],
         subject: message.subject,
         text: message.text,

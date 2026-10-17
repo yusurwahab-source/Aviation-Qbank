@@ -1,10 +1,11 @@
 "use server";
 
 import { checkContactAllowed, recordContactRequest } from "@/db/login-attempts";
+import { insertInbound } from "@/db/mailbox";
 import { getClientIp } from "@/lib/auth/client-ip";
 import { describeWait } from "@/lib/auth/rate-limit-policy";
 import { getCurrentUser } from "@/lib/auth/session";
-import { contactEmail, contactSchema } from "@/lib/contact";
+import { contactEmail, contactSchema, topicLabel } from "@/lib/contact";
 import { sendEmail } from "@/lib/email/send";
 import { envValue } from "@/lib/env";
 
@@ -85,6 +86,24 @@ export async function sendContactMessage(
   }
 
   const user = await getCurrentUser().catch(() => null);
+
+  // Kept in the owner's mailbox first, so the message is never lost to a
+  // failed notification and can be answered from /owner/mail. Best effort: the
+  // email below is still the way it reaches the owner if the database is down.
+  await insertInbound({
+    source: "contact",
+    fromAddress: input.email.toLowerCase(),
+    fromName: input.name,
+    toAddress: owner,
+    subject: `${topicLabel(input.topic)} — ${input.name}`.slice(0, 300),
+    textBody: [input.message, input.questionId ? `\nQuestion id: ${input.questionId}` : "", user ? `\nSigned in as: ${user.email}` : ""]
+      .join("")
+      .trim(),
+    replyTo: input.email.toLowerCase(),
+    providerId: null,
+    inReplyToId: null,
+  }).catch((error) => console.error("Could not keep a contact message in the mailbox:", error));
+
   const outcome = await sendEmail(contactEmail(owner, input, { signedInAs: user?.email }));
 
   // Without a provider `sendEmail` only prints to the server log. That is the
