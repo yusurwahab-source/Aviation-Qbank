@@ -707,6 +707,82 @@ at 1280px and 375px with no horizontal overflow and no script errors.
 It should be reviewed by a qualified instructor before a student relies on
 it for a real exam, the same caution as the other subjects.
 
+## The Air Law bank (Flying Knowledge)
+
+The subject is **Air Law** (code `LAW`, ATPL 010), added the same
+content-only way as POF, HPL, MET and RNAV, and listed in the ATPL Ground
+School section. 1,740 questions across twenty-six topics, all published.
+
+### Source, and what was not used
+
+The owner bought and supplied CAE Oxford Aviation Academy's *Air Law*
+book from its ATPL ground training series, with the instruction to use it
+as the information source. The twenty-six topics follow its chapter order
+(chapter 0 is its definitions chapter). Every chapter was first inventoried
+fact by fact (1,680 facts), then every question, explanation and the study
+guide were written by the assistant from those facts — one fact per
+question, at least one question per fact. The book's own questions,
+specimen material and wording were not used, and the reader's watermark on
+the supplied copy appears nowhere. Student-facing text names no book,
+school, regulator or syllabus ("the Organization", "European rules").
+
+Where the book is dated or wrong, the bank uses current values or leaves
+the point out:
+
+- Council of 36 members (book: 33); 19 Annexes.
+- Montreal 1999 liability limits given "as adopted"; they have since been
+  raised.
+- CAT II RVR not less than 300 m; CAT IIIA at least 175 m; CAT IIIB
+  50–175 m.
+- Unlawful interference without contact: offset by 500 ft or 1000 ft
+  according to the vertical separation in use.
+- Communication failure in IMC: 7 minutes in a radar area, 20 minutes
+  without radar.
+- Pre-flight altimeter tolerance ±60 ft (test range 0–30 000 ft) and
+  ±80 ft (0–40 000 ft).
+- SNOWTAM in the runway-condition (RWYCC 6–0) format, valid 8 hours.
+- Aerodrome code letter by wing span only; pavement strength described as
+  aircraft vs pavement classification (now ACR/PCR, formerly ACN/PCN).
+- Age 60–64: commercial air transport only in multi-pilot operations.
+- Superseded EU investigation directives are described as "European
+  rules", not by number.
+- Left out as UK-specific, superseded or doubtful: red L, St George's cross
+  and QDM boards, windsock speed figures, UK AIC colours, a 50-second
+  land-after rule, "disregard an RA if the traffic is visual", OIS
+  dimensions, stop-bar RVR figures, pre-2018 width tables, "COP every
+  60 NM", hourly reports outside controlled airspace, a 2-day transit
+  rule, NAT track spacing and an old list of RNP values.
+
+### Order and format
+
+Topic names carry their chapter number, as in RNAV. Inside each file the
+questions run in chapter order, grouped by `subtopic`. Explanations are
+two to four sentences.
+
+| # | Topic | File | Ids | Questions |
+|---|---|---|---|---|
+{table}
+
+### Answer-shape checks
+
+Correct letters a/b/c/d are 25/25/24/25 %. The correct option is the
+single longest in 13 % of questions and the single shortest in 8 %. No
+duplicate stems; near-duplicate stems were reworded so that each tests a
+different angle. Every fact in the inventory is covered by at least one
+question.
+
+`public/law-study-guide.html` is the study guide: twenty-six chapter
+sections in the same order, each with a key-idea callout, chips, tables,
+comparison cards and worked examples, a cheat sheet and four quick tools
+(runway designator, aerodrome reference code, Mach number technique,
+semicircular cruising levels). Checked at 1366px and 375px, light and dark,
+with no horizontal overflow and no script errors.
+
+Air law changes more often than any other subject. It should be reviewed by
+a qualified instructor against the current regulations before a student
+relies on it for a real exam — especially licensing (chapter 4), the
+rules of the air (chapter 5) and the dated points above.
+
 ## The B737 bank
 
 The aircraft is the **Boeing 737-800**, the stretched Next Generation variant
