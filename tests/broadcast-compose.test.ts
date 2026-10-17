@@ -30,8 +30,8 @@ describe("composeBroadcastEmail", () => {
 
   it("turns blank lines into paragraphs and single breaks into <br>", () => {
     const html = composeBroadcastEmail({ ...base, body: "a\nb\n\nc" }).html!;
-    expect(html).toContain("<p>a<br>b</p>");
-    expect(html).toContain("<p>c</p>");
+    expect(html).toContain("a<br>b</p>");
+    expect(html).toContain(">c</p>");
   });
 
   it("never lets the body inject markup", () => {

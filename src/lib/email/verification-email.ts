@@ -1,6 +1,7 @@
 import { siteConfig } from "@/config/site";
 import { VERIFICATION_TOKEN_LIFETIME_MS } from "@/lib/auth/verification-policy";
 
+import { renderEmail } from "./layout";
 import type { EmailMessage } from "./send";
 
 /**
@@ -16,34 +17,20 @@ const LIFETIME_HOURS = Math.round(VERIFICATION_TOKEN_LIFETIME_MS / 3_600_000);
 export function verificationEmail(to: string, link: string): EmailMessage {
   const expiry = LIFETIME_HOURS === 24 ? "24 hours" : `${LIFETIME_HOURS} hours`;
 
-  const text = [
-    `Confirm this email address for your ${siteConfig.name} account.`,
-    "",
-    "Open this link and press the confirm button:",
-    "",
-    link,
-    "",
-    `The link works once, and stops working after ${expiry}.`,
-    "",
-    "If you did not create an account, you can ignore this email. Nothing happens",
-    "unless the link is opened.",
-  ].join("\n");
-
-  const html = [
-    `<p>Confirm this email address for your ${siteConfig.name} account.</p>`,
-    `<p><a href="${escapeHtml(link)}">Confirm my email</a></p>`,
-    `<p>The link works once, and stops working after ${expiry}.</p>`,
-    "<p>If you did not create an account, you can ignore this email. Nothing happens ",
-    "unless the link is opened.</p>",
-  ].join("\n");
+  const { text, html } = renderEmail({
+    preheader: "One tap to confirm your email address.",
+    heading: `Welcome to ${siteConfig.name}`,
+    greeting: "Welcome aboard,",
+    paragraphs: [
+      `Thanks for creating your ${siteConfig.name} account. Your practice questions are ready whenever you are.`,
+      "Please confirm this email address. It lets you subscribe later and keeps your account recoverable.",
+    ],
+    button: { label: "Confirm my email", url: link },
+    afterButton: [
+      `The link works once, and stops working after ${expiry}. After opening it, press the confirm button on the page.`,
+    ],
+    note: "If you did not create an account, you can ignore this email. Nothing happens unless the link is opened.",
+  });
 
   return { to, subject: `Confirm your ${siteConfig.name} email`, text, html };
-}
-
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
 }
