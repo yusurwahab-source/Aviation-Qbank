@@ -1,0 +1,1185 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Air Law — Pilot's Guide</title>
+<meta name="description" content="Air Law explained for pilots in 26 chapters: international agreements, licensing, rules of the air, instrument procedures, airspace, air traffic services and separation, aeronautical information, aerodromes, facilitation, search and rescue, security and accident investigation — with comparisons, tables and worked examples." />
+<style>
+  :root{
+    --bg:#f6f8fb;
+    --surface:#ffffff;
+    --surface-2:#eef2f7;
+    --ink:#101826;
+    --ink-2:#3c4758;
+    --muted:#6b7686;
+    --line:#dfe6ef;
+    --brand:#0d6e7d;
+    --brand-ink:#ffffff;
+    --brand-light:#e3f4f6;
+    --warn-bg:#fdecec;
+    --warn-line:#e0413a;
+    --warn-ink:#7a1712;
+    --caution-bg:#fff6e0;
+    --caution-line:#c9821a;
+    --caution-ink:#6b4405;
+    --note-bg:#eaf1fb;
+    --note-line:#3f6fb0;
+    --note-ink:#1f3c63;
+    --white-arc:#e9edf3;
+    --green-arc:#1f9d55;
+    --yellow-arc:#e0b400;
+    --red-arc:#d9362a;
+    --radius:14px;
+    --radius-sm:8px;
+    --shadow:0 1px 2px rgba(16,24,38,.04), 0 6px 20px rgba(16,24,38,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0d1420;
+      --surface:#141d2c;
+      --surface-2:#1b263a;
+      --ink:#eef2f8;
+      --ink-2:#c3cddc;
+      --muted:#8b97ab;
+      --line:#26334a;
+      --brand:#37c3d6;
+      --brand-ink:#06232a;
+      --brand-light:#12323a;
+      --warn-bg:#3a1613;
+      --warn-line:#e4574d;
+      --warn-ink:#ffd6d1;
+      --caution-bg:#3a2c0d;
+      --caution-line:#e0a83a;
+      --caution-ink:#ffe6b0;
+      --note-bg:#122a44;
+      --note-line:#5b93d6;
+      --note-ink:#cfe2fb;
+      --white-arc:#324055;
+      --green-arc:#2bb56a;
+      --yellow-arc:#e0b400;
+      --red-arc:#e4574d;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1420; --surface:#141d2c; --surface-2:#1b263a; --ink:#eef2f8; --ink-2:#c3cddc;
+    --muted:#8b97ab; --line:#26334a; --brand:#37c3d6; --brand-ink:#06232a; --brand-light:#12323a;
+    --warn-bg:#3a1613; --warn-line:#e4574d; --warn-ink:#ffd6d1;
+    --caution-bg:#3a2c0d; --caution-line:#e0a83a; --caution-ink:#ffe6b0;
+    --note-bg:#122a44; --note-line:#5b93d6; --note-ink:#cfe2fb;
+    --white-arc:#324055; --green-arc:#2bb56a; --yellow-arc:#e0b400; --red-arc:#e4574d;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:clip}
+  body{
+    margin:0;
+    overflow-x:clip;
+    max-width:100vw;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,"Segoe UI",system-ui,Roboto,sans-serif;
+    line-height:1.75;
+    font-size:17px;
+  }
+  a{color:var(--brand)}
+  code, .kbd{
+    direction:ltr;unicode-bidi:isolate;display:inline-block;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:6px;
+    padding:0 .35em;font-size:.92em;color:var(--ink);
+  }
+  header.top{
+    position:sticky;top:0;z-index:40;
+    background:linear-gradient(180deg, var(--surface) 85%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    max-width:1180px;margin:0 auto;padding:14px 16px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .brand-mark{display:flex;align-items:center;gap:10px;min-width:0}
+  .brand-mark .plane{
+    width:34px;height:34px;flex:0 0 auto;border-radius:9px;
+    background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+  }
+  .brand-mark .txt{min-width:0}
+  .brand-mark h1{font-size:15px;margin:0;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand-mark .sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .menu-btn{
+    display:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+    border-radius:10px;padding:9px 12px;font-size:14px;cursor:pointer;flex:0 0 auto;
+  }
+  .shell{max-width:1180px;margin:0 auto;display:flex;align-items:flex-start;gap:28px;padding:20px 16px 80px}
+  nav.toc{
+    position:sticky;top:78px;flex:0 0 280px;
+    max-height:calc(100vh - 96px);overflow-y:auto;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;box-shadow:var(--shadow);
+  }
+  nav.toc h2{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:2px 8px 10px}
+  nav.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+  nav.toc li{counter-increment:toc}
+  nav.toc a{
+    display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--ink-2);
+    padding:7px 8px;border-radius:9px;font-size:13.5px;
+  }
+  nav.toc a .n{flex:0 0 auto;color:var(--brand);font-weight:700;font-size:12px;min-width:18px}
+  nav.toc a:hover{background:var(--surface-2);color:var(--ink)}
+  nav.toc a.active{background:var(--brand-light);color:var(--ink);font-weight:600}
+  nav.toc .count{margin-inline-start:auto;font-size:11px;color:var(--muted)}
+  main{flex:1 1 auto;min-width:0}
+  .hero{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 22px;margin-bottom:22px;box-shadow:var(--shadow);
+  }
+  .hero h1{margin:0 0 8px;font-size:26px}
+  .hero p{margin:0;color:var(--ink-2);font-size:15.5px}
+  .hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hero .tag{
+    font-size:12.5px;background:var(--brand-light);color:var(--brand);
+    border-radius:999px;padding:5px 12px;font-weight:600;
+  }
+  section.sec{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px 26px;margin-bottom:22px;box-shadow:var(--shadow);scroll-margin-top:76px;
+  }
+  section.sec > h2{
+    display:flex;align-items:center;gap:12px;font-size:21px;margin:0 0 6px;
+    padding-bottom:14px;border-bottom:1px solid var(--line);
+  }
+  section.sec > h2 .num{
+    flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;
+  }
+  section.sec > h2 .en{margin-inline-start:auto;font-size:12px;color:var(--muted);font-weight:600;
+    direction:ltr;background:var(--surface-2);padding:4px 10px;border-radius:999px}
+  .lead{color:var(--ink-2);font-size:16px;margin-top:14px}
+  h3.sub{font-size:16.5px;margin:26px 0 8px;color:var(--ink);border-inline-start:4px solid var(--brand);padding-inline-start:10px}
+  h4.sub2{font-size:15px;margin:18px 0 6px;color:var(--ink-2)}
+  p{margin:10px 0}
+  ul, ol{margin:10px 0;padding-inline-start:22px}
+  li{margin:5px 0}
+  strong{color:var(--ink)}
+  .table-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm)}
+  table{border-collapse:collapse;width:100%;min-width:420px;font-size:14.5px}
+  table caption{text-align:start;font-size:12.5px;color:var(--muted);padding:8px 12px 0}
+  thead th{
+    background:var(--surface-2);color:var(--ink);text-align:start;
+    padding:9px 12px;font-weight:700;white-space:nowrap;font-size:13.5px;
+  }
+  tbody td{padding:8px 12px;border-top:1px solid var(--line);color:var(--ink-2)}
+  tbody tr:nth-child(even){background:color-mix(in srgb, var(--surface-2) 45%, transparent)}
+  td.num, th.num{direction:ltr;text-align:center;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+  .callout{border-radius:var(--radius-sm);padding:12px 14px;margin:14px 0;border-inline-start:4px solid;font-size:14.5px}
+  .callout .label{display:block;font-weight:800;font-size:12px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:4px}
+  .callout.warning{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-ink)}
+  .callout.caution{background:var(--caution-bg);border-color:var(--caution-line);color:var(--caution-ink)}
+  .callout.note{background:var(--note-bg);border-color:var(--note-line);color:var(--note-ink)}
+  .eq{
+    direction:ltr;font-family:"Cambria Math","STIX Two Math","Latin Modern Math",Georgia,serif;font-size:16.5px;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);
+    padding:10px 14px;margin:12px 0;text-align:center;white-space:nowrap;color:var(--ink);
+    max-width:100%;overflow-x:auto;contain:paint;box-sizing:border-box;
+  }
+  .eq sub,.eq sup{font-size:.72em}
+  .diagram{
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;margin:18px 0;text-align:center;
+    max-width:100%;overflow-x:auto;box-sizing:border-box;
+  }
+  .diagram .cap{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .diagram svg{max-width:100%;height:auto;display:block;margin:0 auto}
+  .ref{
+    display:inline-block;direction:ltr;font-size:11.5px;color:var(--brand);
+    background:var(--brand-light);border-radius:6px;padding:1px 7px;margin-inline-start:4px;
+    font-weight:700;white-space:nowrap;
+  }
+  .related{
+    margin-top:22px;display:flex;align-items:center;gap:10px;
+    background:var(--brand-light);color:var(--brand);border-radius:999px;
+    padding:10px 16px;font-size:14px;font-weight:700;width:fit-content;
+  }
+  .related .dot{width:8px;height:8px;border-radius:50%;background:var(--brand)}
+  footer{max-width:1180px;margin:0 auto;padding:10px 16px 60px;color:var(--muted);font-size:13px;text-align:center}
+  #top-btn{
+    position:fixed;inset-inline-end:18px;bottom:18px;z-index:50;
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+    background:var(--brand);color:var(--brand-ink);font-size:18px;cursor:pointer;
+    box-shadow:var(--shadow);display:none;align-items:center;justify-content:center;
+  }
+  #top-btn.show{display:flex}
+  @media (max-width:880px){
+    .shell{flex-direction:column;padding:14px 12px 70px}
+    main{width:100%;min-width:0}
+    nav.toc{
+      position:fixed;inset:0 0 0 auto;top:0;width:82%;max-width:340px;height:100dvh;max-height:100dvh;
+      transform:translateX(100%);transition:transform .25s ease;border-radius:0;z-index:60;
+    }
+    nav.toc.open{transform:translateX(0)}
+    .toc-scrim{position:fixed;inset:0;background:rgba(6,10,18,.5);z-index:55;display:none}
+    .toc-scrim.show{display:block}
+    .menu-btn{display:inline-flex;align-items:center;gap:6px}
+    section.sec > h2{font-size:18.5px}
+    .hero h1{font-size:22px}
+    body{font-size:16px}
+  }
+  .toc-close{display:none}
+  @media (max-width:880px){
+    .toc-close{
+      display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+      padding-bottom:10px;border-bottom:1px solid var(--line);
+    }
+    .toc-close button{border:none;background:var(--surface-2);border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer;color:var(--ink)}
+  }
+
+  
+  /* ---------- PilotQBank study-guide additions ---------- */
+  :root{ --accent:var(--brand); }
+  html{scroll-padding-top:80px}
+  section.sec{border-top:5px solid var(--accent)}
+  section.sec > h2 .num{background:var(--accent);color:#fff;font-size:19px;width:40px;height:40px;border-radius:12px}
+  section.sec > h2 .en{background:color-mix(in srgb,var(--accent) 14%,var(--surface));color:var(--ink-2)}
+  h3.sub{border-inline-start-color:var(--accent)}
+  nav.toc a .n{font-size:15px;min-width:22px}
+  .hero{background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 16%,var(--surface)),var(--surface) 60%);position:relative;overflow:hidden}
+  .hero .cloud{position:absolute;inset-inline-end:-10px;top:-6px;font-size:84px;opacity:.16;pointer-events:none;user-select:none}
+  .hero .tag{background:color-mix(in srgb,var(--brand) 16%,var(--surface))}
+  .glance{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+  .glance span{font-size:13px;background:color-mix(in srgb,var(--accent) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));border-radius:999px;padding:4px 12px;color:var(--ink-2)}
+  .keyidea{margin:16px 0;padding:14px 16px;border-radius:var(--radius);background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 16%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--accent) 40%,var(--line))}
+  .keyidea .label{display:block;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+  .keyidea p{margin:4px 0}
+  .tip,.memory{margin:14px 0;padding:12px 14px;border-radius:var(--radius-sm);font-size:14.5px;border-inline-start:4px solid}
+  .tip{background:color-mix(in srgb,var(--green-arc) 12%,var(--surface));border-color:var(--green-arc);color:var(--ink)}
+  .memory{background:color-mix(in srgb,#8b5cf6 12%,var(--surface));border-color:#8b5cf6;color:var(--ink)}
+  .tip .label,.memory .label{display:block;font-weight:800;font-size:12px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+  .tip .label{color:var(--green-arc)} .memory .label{color:#8b5cf6}
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
+  .fcard{background:var(--surface-2);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:var(--radius-sm);padding:12px 14px}
+  .fcard .f{direction:ltr;font-family:"Cambria Math","STIX Two Math",Georgia,serif;font-size:18px;color:var(--ink);overflow-x:auto;white-space:nowrap}
+  .fcard .d{font-size:13.5px;color:var(--ink-2);margin-top:4px}
+  details.example{margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface);overflow:hidden}
+  details.example summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:14.5px;background:color-mix(in srgb,var(--accent) 10%,var(--surface-2));list-style:none}
+  details.example summary::-webkit-details-marker{display:none}
+  details.example summary::before{content:"▸ ";color:var(--accent)}
+  details.example[open] summary::before{content:"▾ "}
+  details.example .body{padding:6px 16px 14px}
+  .steps{counter-reset:st;list-style:none;padding:0;margin:12px 0}
+  .steps li{counter-increment:st;position:relative;padding-inline-start:40px;margin:10px 0;min-height:28px}
+  .steps li::before{content:counter(st);position:absolute;inset-inline-start:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:14px 0}
+  .compare .card{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px}
+  .compare .card h4{margin:0 0 6px;font-size:15px}
+  .compare .card.good{border-top:3px solid var(--green-arc)} .compare .card.bad{border-top:3px solid var(--red-arc)} .compare .card.mid{border-top:3px solid var(--yellow-arc)} .compare .card.acc{border-top:3px solid var(--accent)}
+  .bar{display:block;height:10px;border-radius:6px;background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 55%,#fff));min-width:4px}
+  td.barcell{min-width:130px}
+  .pill{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 9px;background:color-mix(in srgb,var(--accent) 16%,var(--surface));color:var(--ink)}
+  .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .tool{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+  .tool h3{margin:0 0 8px;font-size:15.5px}
+  .tool label{display:block;font-size:12.5px;color:var(--muted);margin-top:8px}
+  .tool input{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:16px}
+  .tool .out{margin-top:10px;padding:10px;border-radius:8px;background:color-mix(in srgb,var(--brand) 12%,var(--surface));font-size:14px;direction:ltr}
+  .tool .out b{color:var(--brand)}
+  .cheat table{min-width:340px}
+  .sec .diagram svg text{fill:var(--ink);font:600 12px -apple-system,"Segoe UI",system-ui,sans-serif}
+  .sec .diagram svg text.m{fill:var(--muted);font-weight:500;font-size:11px}
+  .sec .diagram svg text.big{font-size:14px}
+  .sec .diagram svg .ln{stroke:var(--ink-2);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sec .diagram svg .thin{stroke:var(--muted);stroke-width:1;fill:none;stroke-dasharray:4 4}
+  .sec .diagram svg .ac{stroke:var(--accent);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sec .diagram svg .af{fill:color-mix(in srgb,var(--accent) 22%,transparent);stroke:var(--accent);stroke-width:2}
+  .sec .diagram svg .gn{stroke:var(--green-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .rd{stroke:var(--red-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .yl{stroke:var(--yellow-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .gf{fill:color-mix(in srgb,var(--green-arc) 25%,transparent)}
+  .sec .diagram svg .rf{fill:color-mix(in srgb,var(--red-arc) 25%,transparent)}
+  .sec .diagram svg .yf{fill:color-mix(in srgb,var(--yellow-arc) 30%,transparent)}
+  .sec .diagram svg .bx{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
+  .sec .diagram svg .wing{fill:var(--surface);stroke:var(--ink-2);stroke-width:2}
+  .sec .diagram svg .dot{fill:var(--accent)}
+  @media (max-width:520px){.fgrid,.compare{grid-template-columns:1fr}}
+  .fgrid > *,.compare > *,.tools > *{min-width:0}
+  .fcard .f{max-width:100%}
+
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) {}
+  .diagram svg{min-width:520px}
+
+  .part{display:flex;align-items:center;gap:10px;margin:34px 0 4px;padding:8px 14px;border-radius:var(--radius-sm);background:color-mix(in srgb,var(--accent) 14%,var(--surface-2));border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));font-size:15px;font-weight:800;color:var(--ink)}
+  .part + h3.sub{margin-top:16px}
+  nav.toc a .chn{flex:0 0 auto;min-width:18px;color:var(--brand);font-weight:800;font-size:12px}
+  section.sec > h2 .en{font-weight:700}
+
+  section.sec{--accent:var(--acc,var(--brand))}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) section.sec{--accent:color-mix(in srgb,var(--acc,var(--brand)) 62%,#ffffff)}:root:not([data-theme="light"]) section.sec > h2 .num,:root:not([data-theme="light"]) .steps li::before{color:#06121a}}
+  :root[data-theme="dark"] section.sec{--accent:color-mix(in srgb,var(--acc,var(--brand)) 62%,#ffffff)}
+  :root[data-theme="dark"] section.sec > h2 .num,:root[data-theme="dark"] .steps li::before{color:#06121a}
+  .diagram svg[aria-label="PAPI indications"]{min-width:0;max-width:420px}
+  td.num{white-space:normal}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--ink-2)"/></marker>
+    <marker id="a-ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--accent)"/></marker>
+    <marker id="a-rd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--red-arc)"/></marker>
+    <marker id="a-gn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--green-arc)"/></marker>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand-mark">
+      <div class="plane">⚖️</div>
+      <div class="txt">
+        <h1>Air Law — Pilot's Guide</h1>
+        <div class="sub">The rules of international flying · Airline pilot theory</div>
+      </div>
+    </div>
+    <button class="menu-btn" id="menuBtn">☰ Contents</button>
+  </div>
+</header>
+
+<div class="toc-scrim" id="scrim"></div>
+
+<div class="shell">
+  <nav class="toc" id="toc">
+    <div class="toc-close"><span style="font-size:13px;color:var(--muted);font-weight:700">Contents</span><button id="closeToc">✕</button></div>
+    <h2>Chapters</h2>
+    <ol>
+      <li><a href="#tools"><span class="n">🧰</span> Quick tools &amp; cheat sheet</a></li>
+      <li><a href="#ch0"><span class="n">📖</span> <b class="chn">0</b> Definitions and Abbreviations</a></li>
+      <li><a href="#ch1"><span class="n">🌍</span> <b class="chn">1</b> International Agreements and Organizations</a></li>
+      <li><a href="#ch2"><span class="n">🛠️</span> <b class="chn">2</b> Airworthiness of Aircraft</a></li>
+      <li><a href="#ch3"><span class="n">🔤</span> <b class="chn">3</b> Aircraft Nationality and Registration Marks</a></li>
+      <li><a href="#ch4"><span class="n">🪪</span> <b class="chn">4</b> Flight Crew Licensing and Medical Requirements</a></li>
+      <li><a href="#ch5"><span class="n">✈️</span> <b class="chn">5</b> Rules of the Air</a></li>
+      <li><a href="#ch6"><span class="n">🛫</span> <b class="chn">6</b> Instrument Procedures — Departures</a></li>
+      <li><a href="#ch7"><span class="n">🛬</span> <b class="chn">7</b> Approach Procedures</a></li>
+      <li><a href="#ch8"><span class="n">🔄</span> <b class="chn">8</b> Circling Approach</a></li>
+      <li><a href="#ch9"><span class="n">⏳</span> <b class="chn">9</b> Holding Procedures</a></li>
+      <li><a href="#ch10"><span class="n">🎚️</span> <b class="chn">10</b> Altimeter Setting Procedure</a></li>
+      <li><a href="#ch11"><span class="n">🛣️</span> <b class="chn">11</b> Parallel or Near-parallel Runway Operations</a></li>
+      <li><a href="#ch12"><span class="n">📟</span> <b class="chn">12</b> SSR and ACAS</a></li>
+      <li><a href="#ch13"><span class="n">🗺️</span> <b class="chn">13</b> Airspace</a></li>
+      <li><a href="#ch14"><span class="n">🗼</span> <b class="chn">14</b> Air Traffic Services</a></li>
+      <li><a href="#ch15"><span class="n">📏</span> <b class="chn">15</b> Separation</a></li>
+      <li><a href="#ch16"><span class="n">🎧</span> <b class="chn">16</b> Control of Aircraft</a></li>
+      <li><a href="#ch17"><span class="n">📰</span> <b class="chn">17</b> Aeronautical Information Service</a></li>
+      <li><a href="#ch18"><span class="n">🏗️</span> <b class="chn">18</b> Aerodromes — Physical Characteristics</a></li>
+      <li><a href="#ch19"><span class="n">🎨</span> <b class="chn">19</b> Aerodromes — Visual Aids, Markings and Signs</a></li>
+      <li><a href="#ch20"><span class="n">💡</span> <b class="chn">20</b> Aerodrome Lighting</a></li>
+      <li><a href="#ch21"><span class="n">🚒</span> <b class="chn">21</b> Obstacle Marking and Aerodrome Services</a></li>
+      <li><a href="#ch22"><span class="n">🛂</span> <b class="chn">22</b> Facilitation</a></li>
+      <li><a href="#ch23"><span class="n">🆘</span> <b class="chn">23</b> Search and Rescue</a></li>
+      <li><a href="#ch24"><span class="n">🔐</span> <b class="chn">24</b> Security</a></li>
+      <li><a href="#ch25"><span class="n">🔎</span> <b class="chn">25</b> Aircraft Accident and Incident Investigation</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <span class="cloud">⚖️</span>
+      <h1>⚖️ Air Law</h1>
+      <p>
+        The rules that hold international flying together — from the treaty
+        that created them to the light at the end of the runway. Each chapter
+        opens with the one idea to hold on to, then the numbers, the
+        comparisons that cause most mistakes, and worked examples you can open.
+      </p>
+      <div class="tags">
+        <span class="tag">26 chapters</span>
+        <span class="tag">1740 linked questions</span>
+        <span class="tag">🧮 Quick tools</span>
+        <span class="tag">📋 Cheat sheet</span>
+        <span class="tag">Aircraft-independent</span>
+      </div>
+      <div class="tip"><span class="label">✈️ How to use this guide</span> Each chapter stands on its own and carries the same number as its practice topic. When you get a question wrong, jump to that chapter, read the key idea and the comparison cards, then go back and practise. Air law is mostly numbers and definitions: the cheat sheet below collects the ones that come up most.</div>
+    </div>
+
+    <section class="sec" id="tools" style="--acc:#2f5fb3">
+      <h2><span class="num">🧰</span> Quick tools &amp; cheat sheet <span class="en">play with the numbers</span></h2>
+      <p class="lead">Four small helpers for the look-ups air law asks for again and again, and a one-screen list of the numbers worth knowing by heart.</p>
+
+      <div class="tools">
+        <div class="tool">
+          <h3>🛬 Runway designator</h3>
+          <label>Magnetic bearing of the runway, seen from the approach (°)</label><input type="number" inputmode="decimal" id="rwB" value="047" min="1" max="360">
+          <div class="out" id="rwOut"></div>
+        </div>
+        <div class="tool">
+          <h3>📐 Aerodrome reference code</h3>
+          <label>Reference field length (m)</label><input type="number" inputmode="decimal" id="acL" value="2200" min="0">
+          <label>Wing span (m)</label><input type="number" inputmode="decimal" id="acW" value="36" min="0">
+          <div class="out" id="acOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🌀 Mach number technique</h3>
+          <label>Leading aircraft Mach</label><input type="number" inputmode="decimal" id="mnL" value="0.84" step="0.01" min="0">
+          <label>Following aircraft Mach</label><input type="number" inputmode="decimal" id="mnF" value="0.80" step="0.01" min="0">
+          <div class="out" id="mnOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🧭 Semicircular cruising level</h3>
+          <label>Magnetic track (°)</label><input type="number" inputmode="decimal" id="slT" value="095" min="0" max="360">
+          <label>Flight rules (IFR or VFR)</label><input type="text" id="slR" value="IFR">
+          <div class="out" id="slOut"></div>
+        </div>
+      </div>
+
+      <h3 class="sub">📋 Cheat sheet — numbers worth knowing</h3>
+      <div class="table-wrap cheat">
+        <table>
+          <thead><tr><th>Idea</th><th class="num">Number / rule</th></tr></thead>
+          <tbody>
+            <tr><td>🌍 Annexes to the Convention</td><td class="num">19 · Council 36 members</td></tr>
+            <tr><td>🚨 SSR emergency codes</td><td class="num">7500 hijack · 7600 radio · 7700 emergency</td></tr>
+            <tr><td>⏳ Emergency phases</td><td class="num">INCERFA 30 min · ALERFA 5 min after landing clearance</td></tr>
+            <tr><td>☁️ VMC in class C–E (at/above FL100)</td><td class="num">8 km · 1500 m horizontal · 1000 ft vertical</td></tr>
+            <tr><td>☁️ VMC in class C–E (below FL100)</td><td class="num">5 km · 1500 m horizontal · 1000 ft vertical</td></tr>
+            <tr><td>🛫 Special VFR (in a CTR)</td><td class="num">ground visibility ≥ 1500 m</td></tr>
+            <tr><td>📏 Vertical separation</td><td class="num">1000 ft · 2000 ft above FL410 in RVSM</td></tr>
+            <tr><td>📡 Radar separation</td><td class="num">5 NM · 3 NM · 2.5 NM on final</td></tr>
+            <tr><td>🌪️ Wake categories (MTOM)</td><td class="num">H ≥ 136 t · L ≤ 7 t</td></tr>
+            <tr><td>🔁 Holding speeds (normal)</td><td class="num">230 kt · 240 kt · 265 kt · M0.83</td></tr>
+            <tr><td>📅 AIRAC cycle</td><td class="num">28 days · issue ≥ 42 days ahead</td></tr>
+            <tr><td>🩺 Class 1 medical validity</td><td class="num">12 months · 6 months at 60+ (single-pilot CAT) or 40+</td></tr>
+            <tr><td>🚒 RFF response time</td><td class="num">≤ 3 min to each runway end</td></tr>
+            <tr><td>🔎 Serious injury</td><td class="num">&gt; 48 h in hospital within 7 days</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sec" id="ch0" style="--acc:#2f5fb3">
+      <h2><span class="num">0</span> Definitions and Abbreviations <span class="en">Chapter 0</span></h2>
+      <p class="lead">Air law is written in a precise vocabulary. Most wrong answers come from two definitions that sound alike, so learn them in pairs.</p>
+      <div class="glance"><span>🎯 Altitude, height, elevation</span><span>🎯 Flight level</span><span>🎯 Movement vs manoeuvring area</span><span>🎯 Control area vs zone</span><span>🎯 DA/H vs MDA/H</span><span>🎯 Common abbreviations</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Every vertical word has a datum.</strong> Altitude is measured from mean sea level, height from a specified datum, elevation is the altitude of a point on the ground, and a flight level is a surface of constant pressure related to 1013.25 hPa.</p></div>
+
+      <h3 class="sub">Vertical words</h3>
+      <div class="compare">
+        <div class="card acc"><h4>Altitude</h4><p>Vertical distance of a level, point or object from <strong>mean sea level</strong>. Read on QNH.</p></div>
+        <div class="card mid"><h4>Height</h4><p>Vertical distance from a <strong>specified datum</strong>, such as the aerodrome. Read on QFE.</p></div>
+        <div class="card good"><h4>Elevation</h4><p>Vertical distance of a point <strong>on or fixed to the surface</strong> from mean sea level.</p></div>
+        <div class="card bad"><h4>Flight level</h4><p>Surface of constant atmospheric pressure related to <strong>1013.25 hPa</strong>, separated by set pressure intervals.</p></div>
+      </div>
+
+      <h3 class="sub">Areas on the ground and in the air</h3>
+      <div class="compare">
+        <div class="card acc"><h4>Manoeuvring area</h4><p>Take-off, landing and taxiing — <strong>excluding aprons</strong>.</p></div>
+        <div class="card good"><h4>Movement area</h4><p>Manoeuvring area <strong>plus aprons</strong>.</p></div>
+        <div class="card mid"><h4>Control zone (CTR)</h4><p>Controlled airspace from <strong>the surface</strong> to a specified upper limit.</p></div>
+        <div class="card bad"><h4>Control area (CTA)</h4><p>Controlled airspace from <strong>a specified limit above the earth</strong> upwards.</p></div>
+      </div>
+
+      <h3 class="sub">Approach minima</h3>
+      <ul>
+        <li>🛬 <strong>DA/H</strong> — precision or vertically guided approach: start the missed approach if the required visual reference is not established.</li>
+        <li>📉 <strong>MDA/H</strong> — non-precision or circling approach: do not descend below it without the required visual reference.</li>
+        <li>⛰️ <strong>OCA/H</strong> — the lowest altitude/height used to meet obstacle clearance criteria; it is a design figure, not an operating minimum.</li>
+      </ul>
+      <div class="memory"><span class="label">🧠 Memory hook</span> "Decision" means you decide at a point and go around; "Minimum descent" means you may level off and keep looking until the missed approach point.</div>
+      <div class="related"><span class="dot"></span> Practise: 00 Definitions and Abbreviations</div>
+    </section>
+
+    <section class="sec" id="ch1" style="--acc:#3a7bd5">
+      <h2><span class="num">1</span> International Agreements and Organizations <span class="en">Chapter 1</span></h2>
+      <p class="lead">One treaty, signed in 1944, created the international system: sovereignty over airspace, the freedoms of the air, and an organization to write common standards.</p>
+      <div class="glance"><span>🎯 The 1944 Convention</span><span>🎯 Sovereignty</span><span>🎯 Freedoms of the air</span><span>🎯 SARPs and Annexes</span><span>🎯 Liability and crime conventions</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Every State has complete and exclusive sovereignty over the airspace above its territory.</strong> Everything else — freedoms, standards, documents — is an agreement to share that airspace on known terms.</p></div>
+
+      <h3 class="sub">The organization</h3>
+      <ul>
+        <li>🏛️ The Assembly (all Contracting States) meets at least once every three years; the <strong>Council has 36 members</strong> and is the permanent governing body.</li>
+        <li>📘 Standards are things States <strong>shall</strong> do; recommended practices are desirable. A State that cannot comply with a Standard must notify its difference, which is published in its AIP (GEN 1.7).</li>
+        <li>📚 There are <strong>19 Annexes</strong> — for example Annex 1 licensing, Annex 2 rules of the air, Annex 6 operations, Annex 11 ATS, Annex 13 investigation, Annex 14 aerodromes, Annex 17 security.</li>
+      </ul>
+
+      <h3 class="sub">Freedoms of the air</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th class="num">Freedom</th><th>What it allows</th></tr></thead>
+          <tbody>
+            <tr><td class="num">1st</td><td>Fly across another State without landing</td></tr>
+            <tr><td class="num">2nd</td><td>Land for non-traffic purposes (fuel, repairs)</td></tr>
+            <tr><td class="num">3rd</td><td>Put down traffic from your own State in another</td></tr>
+            <tr><td class="num">4th</td><td>Take on traffic in another State for your own State</td></tr>
+            <tr><td class="num">5th</td><td>Carry traffic between two other States on a service to or from your own</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tip"><span class="label">✅ Exam tip</span> The first two are the "technical" freedoms; three to five are "commercial". Cabotage — carrying traffic between two points inside another State — is not a freedom granted by the multilateral agreements.</div>
+
+      <h3 class="sub">Other conventions to recognise</h3>
+      <div class="compare">
+        <div class="card acc"><h4>Tokyo 1963</h4><p>Offences and acts committed <strong>on board</strong>; powers of the commander.</p></div>
+        <div class="card bad"><h4>The Hague 1970</h4><p>Unlawful <strong>seizure</strong> of aircraft.</p></div>
+        <div class="card mid"><h4>Montreal 1971</h4><p>Unlawful acts against the <strong>safety</strong> of civil aviation (sabotage).</p></div>
+        <div class="card good"><h4>Warsaw 1929 / Montreal 1999</h4><p>Carrier <strong>liability</strong> to passengers and for baggage and cargo.</p></div>
+      </div>
+      <div class="related"><span class="dot"></span> Practise: 01 International Agreements and Organizations</div>
+    </section>
+
+    <section class="sec" id="ch2" style="--acc:#1f9d8a">
+      <h2><span class="num">2</span> Airworthiness of Aircraft <span class="en">Chapter 2</span></h2>
+      <p class="lead">An aircraft may only fly when it is shown to meet its design standard and is kept in that condition.</p>
+      <div class="glance"><span>🎯 Type certificate</span><span>🎯 Certificate of airworthiness</span><span>🎯 Who does what</span><span>🎯 Annex 8 and Annex 6</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The State of Design certifies the type; the State of Registry certifies the individual aircraft</strong> by issuing the certificate of airworthiness and deciding on its continuing airworthiness.</p></div>
+      <div class="compare">
+        <div class="card acc"><h4>State of Design</h4><p>Issues the <strong>type certificate</strong> after testing; runs the structural integrity and corrosion programme for aeroplanes over 5700 kg.</p></div>
+        <div class="card good"><h4>State of Registry</h4><p>Issues the <strong>certificate of airworthiness</strong>, decides continuing airworthiness, judges damage and approves repairs, and tells the State of Design when it first registers a type.</p></div>
+      </div>
+      <ul>
+        <li>📘 Annex 8 deals with airworthiness from the engineering side and Annex 6 with operational safety; Annex 8 Part III covers aeroplanes over 5700 kg with at least two engines used for international carriage.</li>
+        <li>🔁 A certificate of airworthiness stays valid subject to periodic inspection at intervals set by the State.</li>
+        <li>📕 Every aircraft has a flight manual with its approved limitations; if limiting speeds are given as Mach numbers, a Machmeter must be fitted.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 02 Airworthiness of Aircraft</div>
+    </section>
+
+    <section class="sec" id="ch3" style="--acc:#1f9d8a">
+      <h2><span class="num">3</span> Aircraft Nationality and Registration Marks <span class="en">Chapter 3</span></h2>
+      <p class="lead">An aircraft carries the nationality of the State in which it is registered, shown by marks painted on the airframe.</p>
+      <div class="glance"><span>🎯 Nationality mark first</span><span>🎯 When to use a hyphen</span><span>🎯 Common marks</span><span>🎯 Marks to avoid</span><span>🎯 Size and position</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Nationality mark first, then the registration mark</strong> — with a hyphen when the registration mark starts with the same kind of character (letter or number) that ends the nationality mark, as in G-ABCD.</p></div>
+      <ul>
+        <li>📻 The nationality mark comes from the radio call-sign series given to the State by the ITU; an international operating agency may use a common mark instead.</li>
+        <li>🚫 Combinations such as SOS, PAN, XXX, TTT, Q-code groups and five-letter signal-code groups are never used, as they could be mistaken for distress, urgency or safety signals.</li>
+        <li>📏 On heavier-than-air aircraft the marks go on the lower surface of the wing (at least 50 cm high) and on the fuselage or the upper half of the vertical tail (at least 30 cm high).</li>
+        <li>📜 The certificate of registration is carried on board at all times. Annex 7 contains Standards only, with no Recommended Practices.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 03 Aircraft Nationality and Registration Marks</div>
+    </section>
+
+    <section class="sec" id="ch4" style="--acc:#7a5cf0">
+      <h2><span class="num">4</span> Flight Crew Licensing and Medical Requirements <span class="en">Chapter 4</span></h2>
+      <p class="lead">A licence proves what you may do; a rating says on what and in which conditions; a medical certificate says you are fit to do it now.</p>
+      <div class="glance"><span>🎯 Licence privileges</span><span>🎯 Experience minima</span><span>🎯 Type and class ratings</span><span>🎯 Instrument rating</span><span>🎯 Medical classes and validity</span><span>🎯 Age limits</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Never exercise a privilege you are not current for.</strong> A licence is only usable with a valid rating and a valid medical certificate, and with any decrease in medical fitness you stop flying and seek advice.</p></div>
+
+      <h3 class="sub">Experience for the airline transport pilot licence (aeroplanes)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Requirement</th><th class="num">Minimum</th></tr></thead>
+          <tbody>
+            <tr><td>Total flight time in aeroplanes</td><td class="num">1500 h (500 h multi-pilot)</td></tr>
+            <tr><td>Pilot in command</td><td class="num">250 h PIC, or 500 h PIC under supervision, or 70 h PIC + the rest under supervision</td></tr>
+            <tr><td>Cross-country</td><td class="num">200 h (100 h as PIC or under supervision)</td></tr>
+            <tr><td>Instrument time</td><td class="num">75 h (≤ 30 h on the ground)</td></tr>
+            <tr><td>Night</td><td class="num">100 h</td></tr>
+            <tr><td>Minimum age</td><td class="num">21</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sub">Medical certificates</h3>
+      <div class="compare">
+        <div class="card acc"><h4>Class 1 — professional</h4><p>Valid <strong>12 months</strong>; <strong>6 months</strong> from age 40 in single-pilot commercial passenger operations, and from age 60.</p></div>
+        <div class="card good"><h4>Class 2 — private</h4><p>Valid 60 months until 40, 24 months from 40 to 50, then 12 months.</p></div>
+      </div>
+      <div class="callout caution"><span class="label">Age 60–64</span> A pilot aged 60 to 64 may act as a pilot in commercial air transport only in multi-pilot operations, and the other pilot must be younger than 60. From 65, no commercial air transport flying.</div>
+      <div class="related"><span class="dot"></span> Practise: 04 Flight Crew Licensing and Medical Requirements</div>
+    </section>
+
+    <section class="sec" id="ch5" style="--acc:#d1542b">
+      <h2><span class="num">5</span> Rules of the Air <span class="en">Chapter 5</span></h2>
+      <p class="lead">The rules of the air apply over the high seas without exception and over a State's territory as far as its own rules allow. They decide who gives way, what you must see, and what to do when the radio fails.</p>
+      <div class="glance"><span>🎯 Right of way</span><span>🎯 VMC minima</span><span>🎯 Special VFR</span><span>🎯 Flight plans</span><span>🎯 Radio failure</span><span>🎯 Light signals and marshalling</span><span>🎯 Interception</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The less manoeuvrable aircraft has right of way.</strong> Powered heavier-than-air aircraft give way to airships, gliders and balloons; airships to gliders and balloons; gliders to balloons. Aircraft towing or carrying a load are treated as less manoeuvrable.</p></div>
+
+      <h3 class="sub">Right of way between powered aircraft</h3>
+      <ul>
+        <li>↔️ <strong>Head-on</strong>: both alter heading to the right.</li>
+        <li>➡️ <strong>Converging</strong>: the aircraft that has the other on its right gives way.</li>
+        <li>⏩ <strong>Overtaking</strong>: the overtaking aircraft keeps out of the way by turning right; overtaking is within 70° of the other's tail.</li>
+        <li>🛬 <strong>Landing</strong>: an aircraft landing or on final has right of way; the lower of two landing aircraft has priority, but must not cut in.</li>
+      </ul>
+
+      <h3 class="sub">VMC minima (simplified)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Where</th><th class="num">Visibility</th><th class="num">Distance from cloud</th></tr></thead>
+          <tbody>
+            <tr><td>At and above FL100 (classes A–G)</td><td class="num">8 km</td><td class="num">1500 m H · 1000 ft V</td></tr>
+            <tr><td>Below FL100, above 3000 ft AMSL or 1000 ft above terrain</td><td class="num">5 km</td><td class="num">1500 m H · 1000 ft V</td></tr>
+            <tr><td>Class F/G at or below 3000 ft AMSL or 1000 ft above terrain</td><td class="num">5 km</td><td class="num">Clear of cloud, surface in sight</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout note"><span class="label">Note</span> Class A is closed to VFR. Special VFR is a clearance to fly VFR inside a control zone in conditions below VMC.</div>
+
+      <h3 class="sub">Radio failure in IMC (procedural summary)</h3>
+      <ol class="steps">
+        <li>Squawk <strong>7600</strong> and keep listening; transmit blind.</li>
+        <li>Keep the last assigned speed and level, or the minimum flight altitude if higher, for <strong>20 minutes</strong> after failing to report at a compulsory point (7 minutes in a radar environment, from the later of the last level, the squawk or the missed report).</li>
+        <li>Then adjust level and speed to the filed flight plan and proceed to the holding fix for the destination.</li>
+        <li>Begin descent at, or as close as possible to, the expected approach time — or the ETA if none was given — and land within 30 minutes if possible.</li>
+      </ol>
+
+      <h3 class="sub">Light signals from the tower</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Signal</th><th>Aircraft in flight</th><th>Aircraft on the ground</th></tr></thead>
+          <tbody>
+            <tr><td>Steady green</td><td>Cleared to land</td><td>Cleared for take-off</td></tr>
+            <tr><td>Steady red</td><td>Give way, continue circling</td><td>Stop</td></tr>
+            <tr><td>Green flashes</td><td>Return for landing</td><td>Cleared to taxi</td></tr>
+            <tr><td>Red flashes</td><td>Aerodrome unsafe, do not land</td><td>Taxi clear of the landing area</td></tr>
+            <tr><td>White flashes</td><td>Land here when cleared</td><td>Return to the starting point</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <details class="example"><summary>Worked example — who gives way?</summary><div class="body">
+        <p>You are flying a twin-engine aeroplane. A glider is converging from your left at the same level.</p>
+        <p>The "aircraft on the right" rule only applies between aircraft of the same category. A glider is less manoeuvrable than a powered aeroplane, so <strong>you give way</strong>, even though the glider is on your left.</p>
+      </div></details>
+      <div class="related"><span class="dot"></span> Practise: 05 Rules of the Air</div>
+    </section>
+
+    <section class="sec" id="ch6" style="--acc:#e09a1f">
+      <h2><span class="num">6</span> Instrument Procedures — Departures <span class="en">Chapter 6</span></h2>
+      <p class="lead">A departure procedure keeps you clear of obstacles from the end of the runway until you reach a safe en-route altitude.</p>
+      <div class="glance"><span>🎯 Straight and turning departures</span><span>🎯 Procedure design gradient</span><span>🎯 Obstacle clearance</span><span>🎯 Omnidirectional departures</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The standard climb gradient is 3.3%,</strong> made of a 2.5% obstacle surface plus a 0.8% margin. If an obstacle needs more, the chart publishes a higher gradient and you must be able to fly it.</p></div>
+      <ul>
+        <li>📏 The minimum obstacle clearance is zero at the departure end of the runway (DER) and grows by 0.8% of the distance flown; straight flight is assumed until 120 m (394 ft) above the DER.</li>
+        <li>↩️ A straight departure has its initial track within 15° of the runway direction; turns are flown at defined speeds and bank angles.</li>
+        <li>🧭 Where no published track exists, an omnidirectional departure uses sectors with their own climb requirements.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 06 Instrument Procedures - Departures</div>
+    </section>
+
+    <section class="sec" id="ch7" style="--acc:#e47a22">
+      <h2><span class="num">7</span> Approach Procedures <span class="en">Chapter 7</span></h2>
+      <p class="lead">An instrument approach has up to five segments, each with its own job and its own obstacle clearance.</p>
+      <div class="glance"><span>🎯 Five segments</span><span>🎯 Aircraft categories</span><span>🎯 Precision vs non-precision</span><span>🎯 Missed approach</span><span>🎯 MSA</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Arrival → initial → intermediate → final → missed approach.</strong> Obstacle clearance shrinks as you descend: 300 m (984 ft) in the initial segment, reducing to 150 m through the intermediate, and less again on final.</p></div>
+      <h3 class="sub">Aircraft categories by Vat</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th class="num">Category</th><th class="num">Vat (kt)</th></tr></thead>
+          <tbody>
+            <tr><td class="num">A</td><td class="num">below 91</td></tr>
+            <tr><td class="num">B</td><td class="num">91–120</td></tr>
+            <tr><td class="num">C</td><td class="num">121–140</td></tr>
+            <tr><td class="num">D</td><td class="num">141–165</td></tr>
+            <tr><td class="num">E</td><td class="num">166–210</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li>🛡️ The minimum sector altitude gives at least 300 m (984 ft) obstacle clearance within 25 NM of the navigation aid, IAF or IF.</li>
+        <li>🔁 The missed approach climb gradient is normally 2.5%.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 07 Approach Procedures</div>
+    </section>
+
+    <section class="sec" id="ch8" style="--acc:#e47a22">
+      <h2><span class="num">8</span> Circling Approach <span class="en">Chapter 8</span></h2>
+      <p class="lead">Circling is the visual part of an instrument approach used to land on a runway not aligned with the final approach track.</p>
+      <div class="glance"><span>🎯 Visual manoeuvring area</span><span>🎯 Lowest OCH by category</span><span>🎯 Losing visual reference</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Keep the runway in sight.</strong> If visual reference is lost while circling, climb towards the landing runway and into the published missed approach.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th class="num">Category</th><th class="num">Lowest circling OCH</th></tr></thead>
+          <tbody>
+            <tr><td class="num">A</td><td class="num">120 m (394 ft)</td></tr>
+            <tr><td class="num">B</td><td class="num">150 m (492 ft)</td></tr>
+            <tr><td class="num">C</td><td class="num">180 m (591 ft)</td></tr>
+            <tr><td class="num">D</td><td class="num">210 m (689 ft)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="related"><span class="dot"></span> Practise: 08 Circling Approach</div>
+    </section>
+
+    <section class="sec" id="ch9" style="--acc:#14a39a">
+      <h2><span class="num">9</span> Holding Procedures <span class="en">Chapter 9</span></h2>
+      <p class="lead">A hold is a predetermined racetrack used to keep an aircraft in a defined piece of airspace while it waits.</p>
+      <div class="glance"><span>🎯 Entry sectors</span><span>🎯 Holding speeds</span><span>🎯 Timing</span><span>🎯 Turn direction</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Standard holds turn right, with 1-minute outbound legs up to 14 000 ft and 1½ minutes above.</strong> Joining uses three sectors — parallel, offset (teardrop) and direct — with a 5° flexibility at the boundaries.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Level</th><th class="num">Maximum speed (normal)</th></tr></thead>
+          <tbody>
+            <tr><td>Up to 14 000 ft</td><td class="num">230 kt</td></tr>
+            <tr><td>Above 14 000 to 20 000 ft</td><td class="num">240 kt</td></tr>
+            <tr><td>Above 20 000 to 34 000 ft</td><td class="num">265 kt</td></tr>
+            <tr><td>Above 34 000 ft</td><td class="num">M0.83</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="related"><span class="dot"></span> Practise: 09 Holding Procedures</div>
+    </section>
+
+    <section class="sec" id="ch10" style="--acc:#3a7bd5">
+      <h2><span class="num">10</span> Altimeter Setting Procedure <span class="en">Chapter 10</span></h2>
+      <p class="lead">Below the transition altitude you fly altitudes on QNH; above the transition level you fly flight levels on 1013.25 hPa.</p>
+      <div class="glance"><span>🎯 Transition altitude, layer, level</span><span>🎯 When to change setting</span><span>🎯 Pre-flight altimeter check</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Climbing: change to standard when passing the transition altitude. Descending: change to QNH when passing the transition level.</strong> The transition layer between them is crossed in climb or descent, never cruised in.</p></div>
+      <ul>
+        <li>🔢 The transition level is the lowest flight level available above the transition altitude.</li>
+        <li>🧪 Pre-flight check on QNH: the altimeter should read the elevation of the check location within ±60 ft for a test range of 0–30 000 ft, or ±80 ft for 0–40 000 ft.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 10 Altimeter Setting Procedure</div>
+    </section>
+
+    <section class="sec" id="ch11" style="--acc:#2f7fd1">
+      <h2><span class="num">11</span> Parallel or Near-parallel Runway Operations <span class="en">Chapter 11</span></h2>
+      <p class="lead">Two runways side by side can double capacity — but only with radar, ILS on both, and enough space between them.</p>
+      <div class="glance"><span>🎯 Modes 1 to 4</span><span>🎯 NOZ and NTZ</span><span>🎯 Runway spacing</span><span>🎯 Intercept rules</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Independent approaches need the most room (1035 m), dependent approaches 915 m, and departures or segregated operations 760 m.</strong></p></div>
+      <div class="compare">
+        <div class="card acc"><h4>Mode 1 — independent approaches</h4><p>No radar separation between adjacent localizers; NTZ at least 610 m wide, monitored by dedicated controllers.</p></div>
+        <div class="card mid"><h4>Mode 2 — dependent approaches</h4><p>Radar separation applied — 2 NM diagonally between adjacent localizers.</p></div>
+        <div class="card good"><h4>Mode 3 — independent departures</h4><p>Tracks diverge by at least 15° immediately after take-off.</p></div>
+        <div class="card bad"><h4>Mode 4 — segregated</h4><p>One runway for approaches only, the other for departures only.</p></div>
+      </div>
+      <div class="related"><span class="dot"></span> Practise: 11 Parallel or Near-parallel Runway Operations</div>
+    </section>
+
+    <section class="sec" id="ch12" style="--acc:#7a5cf0">
+      <h2><span class="num">12</span> SSR and ACAS <span class="en">Chapter 12</span></h2>
+      <p class="lead">The transponder tells ATC who and where you are; ACAS uses the same signals to warn you about other aircraft.</p>
+      <div class="glance"><span>🎯 Special codes</span><span>🎯 Mode C checks</span><span>🎯 TA vs RA</span><span>🎯 ±300 ft criteria</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Follow an RA immediately, even against an ATC instruction, then tell ATC.</strong> Never manoeuvre on a traffic advisory alone.</p></div>
+      <div class="compare">
+        <div class="card good"><h4>Traffic advisory (TA)</h4><p>Look for the traffic. No manoeuvre.</p></div>
+        <div class="card bad"><h4>Resolution advisory (RA)</h4><p>Follow it promptly; report "TCAS RA"; return to the clearance when clear of conflict.</p></div>
+      </div>
+      <ul>
+        <li>🔢 4096 Mode A codes (octal, 0000–7777). 2000 when no code has been assigned; 7000 for conspicuity.</li>
+        <li>📏 Mode C is verified when within ±300 ft of the level the pilot reports.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 12 SSR and ACAS</div>
+    </section>
+
+    <section class="sec" id="ch13" style="--acc:#2f7fd1">
+      <h2><span class="num">13</span> Airspace <span class="en">Chapter 13</span></h2>
+      <p class="lead">All airspace lies inside a flight information region; the controlled parts of it are divided into seven classes that decide who is separated from whom.</p>
+      <div class="glance"><span>🎯 FIR and UIR</span><span>🎯 CTA vs CTR limits</span><span>🎯 Classes A to G</span><span>🎯 250 kt below FL100</span><span>🎯 Route designators</span><span>🎯 RNP</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Classes A–E are controlled, F and G are not.</strong> Moving down the alphabet, separation is given to fewer combinations of flights until, in class G, only flight information is offered.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th class="num">Class</th><th>Flights</th><th>Separation</th></tr></thead>
+          <tbody>
+            <tr><td class="num">A</td><td>IFR only</td><td>All flights</td></tr>
+            <tr><td class="num">B</td><td>IFR and VFR</td><td>All flights</td></tr>
+            <tr><td class="num">C</td><td>IFR and VFR</td><td>IFR from IFR and VFR; VFR gets traffic information on VFR</td></tr>
+            <tr><td class="num">D</td><td>IFR and VFR</td><td>IFR from IFR; everyone else gets traffic information</td></tr>
+            <tr><td class="num">E</td><td>IFR and VFR</td><td>IFR from IFR; VFR needs no clearance</td></tr>
+            <tr><td class="num">F</td><td>IFR and VFR</td><td>Advisory service to participating IFR</td></tr>
+            <tr><td class="num">G</td><td>IFR and VFR</td><td>None — flight information only</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="compare">
+        <div class="card mid"><h4>Control zone</h4><p>From <strong>the surface</strong>, at least <strong>5 NM</strong> from the aerodrome in the approach directions.</p></div>
+        <div class="card acc"><h4>Control area</h4><p>Lower limit at least <strong>200 m (700 ft)</strong> above ground or water.</p></div>
+      </div>
+      <ul>
+        <li>🚦 250 kt IAS below FL100 applies to VFR in class C and to all flights in classes D, E, F and G.</li>
+        <li>🛣️ Route letters: A, B, G, R regional non-RNAV; L, M, N, P regional RNAV; H, J, V, W non-regional non-RNAV; Q, T, Y, Z non-regional RNAV. Prefix U = upper; suffix F = advisory route, G = flight information route.</li>
+        <li>🎯 RNP 4 means staying within 4 NM of the intended position for at least 95% of the flight time.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 13 Airspace</div>
+    </section>
+
+    <section class="sec" id="ch14" style="--acc:#0d6e7d">
+      <h2><span class="num">14</span> Air Traffic Services <span class="en">Chapter 14</span></h2>
+      <p class="lead">Air traffic services come in three parts — control, flight information and alerting — and each has its own job.</p>
+      <div class="glance"><span>🎯 Objectives of ATS</span><span>🎯 Clearances and read-back</span><span>🎯 ATIS</span><span>🎯 FIS contents</span><span>🎯 INCERFA, ALERFA, DETRESFA</span><span>🎯 Speed control</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>A clearance only separates you from known traffic.</strong> It never relieves you of responsibility for the safety of the aircraft, terrain clearance or the rules of the air.</p></div>
+
+      <h3 class="sub">Read-back items</h3>
+      <p>Route clearances; clearances to enter, land on, take off from, hold short of, cross or backtrack on a runway; runway in use; altimeter settings; SSR codes; level, heading and speed instructions; transition levels.</p>
+
+      <h3 class="sub">Emergency phases</h3>
+      <div class="compare">
+        <div class="card mid"><h4>INCERFA — uncertainty</h4><p>No contact for <strong>30 min</strong> after it was due, or <strong>30 min</strong> overdue.</p></div>
+        <div class="card acc"><h4>ALERFA — alert</h4><p>Fails to land within <strong>5 min</strong> of the landing time after clearance, efficiency impaired, or unlawful interference.</p></div>
+        <div class="card bad"><h4>DETRESFA — distress</h4><p>Fuel considered exhausted, forced landing likely, or grave and imminent danger.</p></div>
+      </div>
+
+      <h3 class="sub">ATIS and speed control</h3>
+      <ul>
+        <li>📻 ATIS is never broadcast on an ILS voice channel, should not exceed 30 seconds, and is acknowledged by quoting its letter.</li>
+        <li>☁️ Cloud is included when the base is below 5000 ft or the highest MSA (whichever is higher), or when CB is present.</li>
+        <li>🐢 Speed changes: Mach 0.01 at or above FL250, 10 kt below; not more than ±20 kt on intermediate and final approach; none inside 4 NM from the threshold.</li>
+        <li>⏰ ATS clocks are kept within ±30 seconds of UTC.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 14 Air Traffic Services</div>
+    </section>
+
+    <section class="sec" id="ch15" style="--acc:#2f5fb3">
+      <h2><span class="num">15</span> Separation <span class="en">Chapter 15</span></h2>
+      <p class="lead">Separation is the minimum spacing ATC keeps between aircraft — vertical, lateral, longitudinal or by radar, plus extra for wake turbulence.</p>
+      <div class="glance"><span>🎯 Vertical minima</span><span>🎯 Same, crossing, reciprocal tracks</span><span>🎯 Time and DME minima</span><span>🎯 Mach number technique</span><span>🎯 Wake turbulence</span><span>🎯 Departures</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Never let one form of separation go before another is in place.</strong> The basic numbers are 1000 ft vertically, 15 minutes longitudinally, 5 NM by radar.</p></div>
+
+      <h3 class="sub">Track definitions</h3>
+      <div class="compare">
+        <div class="card good"><h4>Same track</h4><p>Difference less than 45° (or more than 315°).</p></div>
+        <div class="card mid"><h4>Crossing</h4><p>45°–135° or 225°–315°.</p></div>
+        <div class="card bad"><h4>Reciprocal</h4><p>More than 135° and less than 225°.</p></div>
+      </div>
+
+      <h3 class="sub">Time separation at the same level</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Situation</th><th class="num">Minimum</th></tr></thead>
+          <tbody>
+            <tr><td>Same or crossing track, basic</td><td class="num">15 min</td></tr>
+            <tr><td>With frequent navaid position and speed checks</td><td class="num">10 min</td></tr>
+            <tr><td>Same point, leader 20 kt or more faster</td><td class="num">5 min</td></tr>
+            <tr><td>Same point, leader 40 kt or more faster</td><td class="num">3 min</td></tr>
+            <tr><td>DME, same track</td><td class="num">20 NM · 10 NM if leader 20 kt faster</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sub">Wake turbulence</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Leader → follower</th><th class="num">Radar</th><th class="num">Time (arrivals)</th></tr></thead>
+          <tbody>
+            <tr><td>Heavy → Heavy</td><td class="num">4 NM</td><td class="num">—</td></tr>
+            <tr><td>Heavy → Medium</td><td class="num">5 NM</td><td class="num">2 min</td></tr>
+            <tr><td>Heavy → Light</td><td class="num">6 NM</td><td class="num">3 min</td></tr>
+            <tr><td>Medium → Light</td><td class="num">5 NM</td><td class="num">3 min</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Departures: 2 minutes for a lighter aircraft behind a heavier one; 3 minutes when taking off from an intermediate point behind a heavier aircraft using the full length.</p>
+      <details class="example"><summary>Worked example — Mach number technique</summary><div class="body">
+        <p>The leading aircraft flies M0.84 and the following one M0.80. The leader is faster by 0.04.</p>
+        <p>The rule starts at 10 minutes when the leader is equal or faster, and drops one minute for each 0.01 above 0.01 — 0.02 → 9, 0.03 → 8, <strong>0.04 → 7 minutes</strong>, down to 5 minutes at 0.06.</p>
+      </div></details>
+      <div class="related"><span class="dot"></span> Practise: 15 Separation</div>
+    </section>
+
+    <section class="sec" id="ch16" style="--acc:#14a39a">
+      <h2><span class="num">16</span> Control of Aircraft <span class="en">Chapter 16</span></h2>
+      <p class="lead">How each ATC unit actually controls traffic: procedural and radar control, radar approaches, aerodrome and approach control.</p>
+      <div class="glance"><span>🎯 Radar identification</span><span>🎯 Vectoring area</span><span>🎯 PAR vs SRA</span><span>🎯 Landing clearance</span><span>🎯 Significant wind changes</span><span>🎯 Fuel jettison</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>No radar service before identification,</strong> and the pilot is always told when it starts, what it is and when it ends.</p></div>
+      <div class="compare">
+        <div class="card acc"><h4>PAR — precision</h4><p>Azimuth and elevation to the DH; one aircraft per controller; gear check at about 3 NM; no landing clearance by 2 NM → go around.</p></div>
+        <div class="card mid"><h4>SRA — non-precision</h4><p>Advisory heights with range to the radar termination range: every 1 NM to 2 NM, every 0.5 NM to 1 NM.</p></div>
+      </div>
+      <ul>
+        <li>🧭 Identification: a turn of 30° or more, a code or IDENT, a position report, or a handover.</li>
+        <li>🌬️ Significant wind change on final: headwind 10 kt, tailwind 2 kt, crosswind 5 kt.</li>
+        <li>⛽ Fuel jettison: tell ATC; not below 6000 ft; clear of towns, preferably over water, away from thunderstorms.</li>
+        <li>🛫 Departure spacing: 5 minutes basic, 2 minutes if the leader is 40 kt faster on the same track, 1 minute if tracks diverge by 45° immediately.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 16 Control of Aircraft</div>
+    </section>
+
+    <section class="sec" id="ch17" style="--acc:#7a5cf0">
+      <h2><span class="num">17</span> Aeronautical Information Service <span class="en">Chapter 17</span></h2>
+      <p class="lead">Everything a crew needs to know about the ground and the airspace is published in one integrated package.</p>
+      <div class="glance"><span>🎯 AIP parts</span><span>🎯 AIRAC</span><span>🎯 Supplements</span><span>🎯 NOTAM</span><span>🎯 SNOWTAM and ASHTAM</span><span>🎯 AIC</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Match the publication to how long the information lasts:</strong> permanent → AIP; temporary and long or graphic → supplement; short-notice or short-term → NOTAM; advice and forecasts → AIC.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Key numbers</th></tr></thead>
+          <tbody>
+            <tr><td>AIP</td><td>GEN, ENR, AD; differences in GEN 1.7; P/R/D areas in ENR 5</td></tr>
+            <tr><td>AIRAC</td><td>Every 28 days; issued ≥ 42 days ahead (56 for major changes)</td></tr>
+            <tr><td>AIP supplement</td><td>3 months or longer; yellow paper; checklist monthly</td></tr>
+            <tr><td>NOTAM</td><td>≥ 24 h notice desirable; checklist at least monthly</td></tr>
+            <tr><td>SNOWTAM</td><td>Runway condition code 6 to 0 per third; valid 8 h</td></tr>
+            <tr><td>ASHTAM</td><td>Valid 24 h; red / orange / yellow / green alert colours</td></tr>
+            <tr><td>AIC</td><td>Numbered by calendar year; checklist yearly</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="memory"><span class="label">🧠 Memory hook</span> ASHTAM colours work like traffic lights with one extra step: <strong>red</strong> ash above FL250, <strong>orange</strong> ash below FL250, <strong>yellow</strong> restless volcano, <strong>green</strong> back to normal.</div>
+      <div class="related"><span class="dot"></span> Practise: 17 Aeronautical Information Service</div>
+    </section>
+
+    <section class="sec" id="ch18" style="--acc:#e09a1f">
+      <h2><span class="num">18</span> Aerodromes — Physical Characteristics <span class="en">Chapter 18</span></h2>
+      <p class="lead">An aerodrome is designed around the aeroplanes that use it, through the reference code and the declared distances.</p>
+      <div class="glance"><span>🎯 Reference code</span><span>🎯 Declared distances</span><span>🎯 Strip, RESA, clearway, stopway</span><span>🎯 Rapid exit taxiways</span><span>🎯 Holding positions</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>TODA adds the clearway; ASDA adds the stopway.</strong> Both start from the TORA, and the LDA is measured from the threshold.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th class="num">Code number</th><th>Reference field length</th><th class="num">Code letter</th><th>Wing span</th></tr></thead>
+          <tbody>
+            <tr><td class="num">1</td><td>&lt; 800 m</td><td class="num">A</td><td>&lt; 15 m</td></tr>
+            <tr><td class="num">2</td><td>800 – &lt; 1200 m</td><td class="num">B</td><td>15 – &lt; 24 m</td></tr>
+            <tr><td class="num">3</td><td>1200 – &lt; 1800 m</td><td class="num">C</td><td>24 – &lt; 36 m</td></tr>
+            <tr><td class="num">4</td><td>≥ 1800 m</td><td class="num">D / E / F</td><td>36 – &lt; 52 · 52 – &lt; 65 · 65 – &lt; 80 m</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li>🟩 Strip: at least 60 m beyond the runway end (30 m for code 1 non-instrument). RESA: at least 90 m, twice the runway width.</li>
+        <li>✈️ Clearway: no longer than half the TORA. Stopway: as wide as the runway.</li>
+        <li>🚖 Rapid exit taxiway: 93 km/h for code 3/4, angle 25°–45° (preferably 30°).</li>
+        <li>⛔ Runway-holding position for code 3/4: 75 m (non-precision), 90 m (precision); code F precision 107.5 m.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 18 Aerodromes - Physical Characteristics</div>
+    </section>
+
+    <section class="sec" id="ch19" style="--acc:#d1542b">
+      <h2><span class="num">19</span> Aerodromes — Visual Aids, Markings and Signs <span class="en">Chapter 19</span></h2>
+      <p class="lead">Paint and signs carry instructions you cannot afford to misread — and the colours tell you what kind of instruction it is.</p>
+      <div class="glance"><span>🎯 Runway designators</span><span>🎯 Threshold stripes</span><span>🎯 Aiming point and TDZ</span><span>🎯 Holding position patterns</span><span>🎯 Sign colours</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Red means mandatory.</strong> White on red is an instruction you must not pass without a clearance; black on yellow tells you where to go; yellow on black tells you where you are.</p></div>
+      <div class="compare">
+        <div class="card bad"><h4>Mandatory sign</h4><p>White on red — runway designation, CAT holding, NO ENTRY.</p></div>
+        <div class="card mid"><h4>Information sign</h4><p>Black on yellow — direction, destination, runway exit, vacated.</p></div>
+        <div class="card acc"><h4>Location sign</h4><p>Yellow on black, with a yellow border when it stands alone.</p></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Runway width</th><th class="num">18 m</th><th class="num">23 m</th><th class="num">30 m</th><th class="num">45 m</th><th class="num">60 m</th></tr></thead>
+          <tbody><tr><td>Threshold stripes</td><td class="num">4</td><td class="num">6</td><td class="num">8</td><td class="num">12</td><td class="num">16</td></tr></tbody>
+        </table>
+      </div>
+      <ul>
+        <li>⬜ Runway markings white, taxiway markings yellow.</li>
+        <li>🎯 Aiming point by LDA: 150 m (&lt; 800 m), 250 m, 300 m, 400 m (≥ 2400 m).</li>
+        <li>🪜 Pattern A (dashed lines on the runway side) is the holding position nearest the runway; Pattern B (ladder) is a further CAT II/III holding position.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 19 Aerodromes - Visual Aids, Markings and Signs</div>
+    </section>
+
+    <section class="sec" id="ch20" style="--acc:#e47a22">
+      <h2><span class="num">20</span> Aerodrome Lighting <span class="en">Chapter 20</span></h2>
+      <p class="lead">At night and in low visibility the lights do the work of the paint, with colours that tell you where on the runway you are.</p>
+      <div class="glance"><span>🎯 Approach lighting</span><span>🎯 PAPI</span><span>🎯 Runway light colours</span><span>🎯 Taxiway lights</span><span>🎯 Stop bars and guard lights</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Green starts the runway, red ends it, yellow warns that the end is near, blue edges a taxiway.</strong></p></div>
+      <div class="diagram">
+        <svg viewBox="0 0 350 120" role="img" aria-label="PAPI indications">
+          <text x="10" y="22">Too high</text><circle cx="140" cy="17" r="9" fill="#f5f5f5" stroke="#999"/><circle cx="165" cy="17" r="9" fill="#f5f5f5" stroke="#999"/><circle cx="190" cy="17" r="9" fill="#f5f5f5" stroke="#999"/><circle cx="215" cy="17" r="9" fill="#f5f5f5" stroke="#999"/>
+          <text x="10" y="62">On slope</text><circle cx="140" cy="57" r="9" fill="#d9362a"/><circle cx="165" cy="57" r="9" fill="#d9362a"/><circle cx="190" cy="57" r="9" fill="#f5f5f5" stroke="#999"/><circle cx="215" cy="57" r="9" fill="#f5f5f5" stroke="#999"/>
+          <text x="10" y="102">Too low</text><circle cx="140" cy="97" r="9" fill="#d9362a"/><circle cx="165" cy="97" r="9" fill="#d9362a"/><circle cx="190" cy="97" r="9" fill="#d9362a"/><circle cx="215" cy="97" r="9" fill="#d9362a"/>
+          <text class="m" x="260" y="22">4 white</text><text class="m" x="260" y="62">2 red · 2 white</text><text class="m" x="260" y="102">4 red</text>
+        </svg>
+        <div class="cap">PAPI: four units on the left of the runway. Three white is slightly high, three red is slightly low.</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Lights</th><th>Colour</th></tr></thead>
+          <tbody>
+            <tr><td>Threshold and wing bars</td><td>Green, towards the approach</td></tr>
+            <tr><td>Runway end</td><td>Red, towards the runway</td></tr>
+            <tr><td>Edge lights, caution zone</td><td>Yellow over the last 600 m or third</td></tr>
+            <tr><td>Centreline</td><td>White; red/white from 900 m to go; red for the last 300 m</td></tr>
+            <tr><td>Taxiway edge / centreline</td><td>Blue / green (green-yellow in ILS areas)</td></tr>
+            <tr><td>Runway guard lights</td><td>Flashing yellow</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Approach lighting is built in 300 m units: a simple system is at least 420 m long; CAT I and CAT II/III systems extend 900 m.</p>
+      <div class="related"><span class="dot"></span> Practise: 20 Aerodrome Lighting</div>
+    </section>
+
+    <section class="sec" id="ch21" style="--acc:#c0392b">
+      <h2><span class="num">21</span> Obstacle Marking and Aerodrome Services <span class="en">Chapter 21</span></h2>
+      <p class="lead">Obstacles are marked and lit so they can be seen; the rescue and fire-fighting service is sized to the aeroplanes that use the aerodrome.</p>
+      <div class="glance"><span>🎯 Obstacle light types</span><span>🎯 Vehicle colours</span><span>🎯 Closed markings</span><span>🎯 RFF category</span><span>🎯 Response time</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The RFF objective is to save lives,</strong> and the first vehicle must be able to apply foam at half the required rate within 3 minutes at the end of any runway.</p></div>
+      <div class="compare">
+        <div class="card bad"><h4>Low intensity</h4><p>Fixed red on fixed objects; flashing yellow on vehicles (flashing blue for emergency vehicles).</p></div>
+        <div class="card mid"><h4>Medium intensity</h4><p>Flashing red, 20–60 per minute; objects over 45 m.</p></div>
+        <div class="card acc"><h4>High intensity</h4><p>Flashing white, 40–60 per minute, day and night; objects over 150 m.</p></div>
+      </div>
+      <ul>
+        <li>❌ Closed markings: white crosses on runways, yellow on taxiways, at each end and every 300 m.</li>
+        <li>🚒 RFF category from aeroplane length and fuselage width; one category lower is allowed with fewer than 700 movements in the busiest three months.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 21 Obstacle Marking and Aerodrome Services</div>
+    </section>
+
+    <section class="sec" id="ch22" style="--acc:#1f9d8a">
+      <h2><span class="num">22</span> Facilitation <span class="en">Chapter 22</span></h2>
+      <p class="lead">Facilitation keeps border formalities from cancelling out the speed of air travel.</p>
+      <div class="glance"><span>🎯 Articles 22, 23 and 37</span><span>🎯 General declaration</span><span>🎯 Manifests</span><span>🎯 Crew member certificate</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>States may ask only for the documents Annex 9 lists,</strong> and should accept them electronically or hand-written as long as they are legible.</p></div>
+      <ul>
+        <li>📝 The general declaration carries a health section and may be signed by the commander or an authorized agent.</li>
+        <li>👥 Crew information is limited to the number of crew on board; no list of accompanied baggage may be required.</li>
+        <li>🪪 A crew member certificate is an identity card, issued free for the term of employment; it allows temporary admission without passport or visa when the crew member leaves on the same or next scheduled flight.</li>
+        <li>⏱️ For a non-scheduled flight landing for a non-traffic stop, a flight plan received 2 hours before arrival is adequate notice.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 22 Facilitation</div>
+    </section>
+
+    <section class="sec" id="ch23" style="--acc:#d1542b">
+      <h2><span class="num">23</span> Search and Rescue <span class="en">Chapter 23</span></h2>
+      <p class="lead">Search and rescue runs around the clock, region by region, coordinated by a rescue coordination centre.</p>
+      <div class="glance"><span>🎯 Emergency phases</span><span>🎯 SAR regions and RCCs</span><span>🎯 On-scene command</span><span>🎯 Ground-air signals</span><span>🎯 Supply colours</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The first aircraft on scene takes charge</strong> until the first search and rescue aircraft arrives — unless it cannot talk to the RCC or ATS, in which case it hands over to one that can.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Symbol</th><th>Meaning</th><th>Used by</th></tr></thead>
+          <tbody>
+            <tr><td class="num">V</td><td>Require assistance</td><td>Survivors</td></tr>
+            <tr><td class="num">X</td><td>Require medical assistance</td><td>Survivors</td></tr>
+            <tr><td class="num">N / Y</td><td>No / Yes</td><td>Survivors</td></tr>
+            <tr><td class="num">LLL</td><td>Operation completed</td><td>Search parties</td></tr>
+            <tr><td class="num">LL</td><td>All personnel found</td><td>Search parties</td></tr>
+            <tr><td class="num">XX</td><td>Unable to continue, returning</td><td>Search parties</td></tr>
+            <tr><td class="num">NN</td><td>Nothing found, will continue</td><td>Search parties</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Supplies: red medical, blue food and water, yellow blankets and clothing, black miscellaneous. Signals understood: rock the wings by day; flash the landing lights twice at night.</p>
+      <div class="related"><span class="dot"></span> Practise: 23 Search and Rescue</div>
+    </section>
+
+    <section class="sec" id="ch24" style="--acc:#7a5cf0">
+      <h2><span class="num">24</span> Security <span class="en">Chapter 24</span></h2>
+      <p class="lead">Security protects civil aviation against unlawful interference — before the flight through screening, and during it through crew procedures and ATC support.</p>
+      <div class="glance"><span>🎯 Definitions</span><span>🎯 National programme</span><span>🎯 Screening and baggage</span><span>🎯 Armed persons and deportees</span><span>🎯 ATC response</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The safety of passengers, crew, ground staff and the public comes first.</strong> A seized aircraft that has landed is kept on the ground unless letting it go is needed to protect life.</p></div>
+      <ul>
+        <li>🔐 Flight deck door lockable from inside only; a bomb search checklist is carried on board.</li>
+        <li>🧳 Baggage of a passenger not on board is not carried without extra screening; screened and unscreened passengers must not mix.</li>
+        <li>👮 The commander is told the number and seats of armed persons; deportees board first.</li>
+        <li>📡 Squawk 7500; ATC does not mention it unless the crew does, and transmits without expecting a reply.</li>
+        <li>🅿️ Isolated parking position at least 100 m from other stands and buildings.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 24 Security</div>
+    </section>
+
+    <section class="sec" id="ch25" style="--acc:#2f5fb3">
+      <h2><span class="num">25</span> Aircraft Accident and Incident Investigation <span class="en">Chapter 25</span></h2>
+      <p class="lead">An investigation exists for one reason: to stop the next accident. It is never about blame.</p>
+      <div class="glance"><span>🎯 Accident vs serious incident</span><span>🎯 Serious injury</span><span>🎯 Who investigates</span><span>🎯 Accredited representatives</span><span>🎯 Final report</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>An accident and a serious incident differ only in the result.</strong> The State of Occurrence investigates; over the high seas the State of Registry does.</p></div>
+      <div class="compare">
+        <div class="card bad"><h4>Accident</h4><p>Fatal or serious injury, substantial damage needing major repair, or the aircraft is missing.</p></div>
+        <div class="card mid"><h4>Serious incident</h4><p>An accident nearly happened — near collisions, engine fire, crew incapacitation, runway excursion.</p></div>
+        <div class="card good"><h4>Incident</h4><p>Anything else that affects or could affect safety.</p></div>
+      </div>
+      <ul>
+        <li>🏥 Serious injury: more than 48 hours in hospital starting within 7 days, most fractures, second- or third-degree burns, burns over 5% of the body.</li>
+        <li>📨 The Organization is notified for aircraft over 2250 kg and receives the final report for aircraft over 5700 kg.</li>
+        <li>🇪🇺 Under European rules a permanent independent body investigates, and reports should be public within 12 months.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 25 Aircraft Accident and Incident Investigation</div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  Air Law — Pilot's Guide · general principles, independent of any aircraft or operator.
+  Rules change: always check the current regulations, your State's AIP and your instructor's briefing. ⚖️
+</footer>
+
+<button id="top-btn" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  var toc = document.getElementById('toc');
+  var scrim = document.getElementById('scrim');
+  var menuBtn = document.getElementById('menuBtn');
+  var closeToc = document.getElementById('closeToc');
+  function openToc(){ toc.classList.add('open'); scrim.classList.add('show'); }
+  function shutToc(){ toc.classList.remove('open'); scrim.classList.remove('show'); }
+  if (menuBtn) menuBtn.addEventListener('click', openToc);
+  if (closeToc) closeToc.addEventListener('click', shutToc);
+  if (scrim) scrim.addEventListener('click', shutToc);
+  var tocLinks = document.querySelectorAll('nav.toc a');
+  tocLinks.forEach(function(a){ a.addEventListener('click', function(){ shutToc(); }); });
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section.sec[id]'));
+  var linkFor = {};
+  tocLinks.forEach(function(a){ linkFor[a.getAttribute('href').slice(1)] = a; });
+  function onScroll(){
+    var y = window.scrollY + 110, current = sections[0];
+    for (var i = 0; i < sections.length; i++){ if (sections[i].offsetTop <= y) current = sections[i]; }
+    tocLinks.forEach(function(a){ a.classList.remove('active'); });
+    if (current && linkFor[current.id]) linkFor[current.id].classList.add('active');
+    var topBtn = document.getElementById('top-btn');
+    if (topBtn) topBtn.classList.toggle('show', window.scrollY > 500);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  var topBtn = document.getElementById('top-btn');
+  if (topBtn) topBtn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  
+  /* ---- quick tools ---- */
+  function num(id){ var v = parseFloat(document.getElementById(id).value); return isFinite(v) ? v : NaN; }
+  function put(id, html){ document.getElementById(id).innerHTML = html; }
+  function rwy(){
+    var b = num('rwB');
+    if (!(b > 0 && b <= 360)) { put('rwOut', 'Enter a bearing from 1 to 360.'); return; }
+    var n = Math.round(b / 10); if (n === 0) n = 36;
+    var r = (n + 18) % 36; if (r === 0) r = 36;
+    function two(x){ return (x < 10 ? '0' : '') + x; }
+    put('rwOut', 'Designator <b>' + two(n) + '</b> · opposite end <b>' + two(r) + '</b>');
+  }
+  function code(){
+    var L = num('acL'), W = num('acW');
+    if (!(L >= 0) || !(W >= 0)) { put('acOut', 'Enter the field length and the wing span.'); return; }
+    var n = L < 800 ? 1 : L < 1200 ? 2 : L < 1800 ? 3 : 4;
+    var l = W < 15 ? 'A' : W < 24 ? 'B' : W < 36 ? 'C' : W < 52 ? 'D' : W < 65 ? 'E' : W < 80 ? 'F' : 'beyond F';
+    put('acOut', 'Reference code <b>' + n + l + '</b><br>Code number from field length · code letter from wing span');
+  }
+  function mach(){
+    var a = num('mnL'), f = num('mnF');
+    if (!(a > 0) || !(f > 0)) { put('mnOut', 'Enter both Mach numbers.'); return; }
+    var d = Math.round((a - f) * 100);
+    var t = d < 2 ? 10 : (d >= 6 ? 5 : 11 - d);
+    var note = d < 0 ? '<br>⚠️ The follower is faster — the gap will close, so more than 10 minutes is needed at the entry point.' : '';
+    put('mnOut', 'Leader faster by ' + (d/100).toFixed(2) + ' → separation <b>' + t + ' min</b>' + note);
+  }
+  function lvl(){
+    var t = num('slT'), r = (document.getElementById('slR').value || '').trim().toUpperCase();
+    if (!(t >= 0 && t <= 360)) { put('slOut', 'Enter a magnetic track from 0 to 360.'); return; }
+    var east = (t % 360) < 180;
+    var out;
+    if (r === 'VFR') out = east ? 'Odd thousands + 500: FL35, 55, 75 … up to FL275' : 'Even thousands + 500: FL45, 65, 85 … up to FL285';
+    else if (r === 'IFR') out = east ? 'Odd thousands: FL30, 50, 70 … 290, 310 … 410, then 450, 490' : 'Even thousands: FL40, 60, 80 … 300, 320 … 400, then 430, 470';
+    else { put('slOut', 'Type IFR or VFR.'); return; }
+    put('slOut', (east ? '<b>Eastbound</b> (000°–179°)' : '<b>Westbound</b> (180°–359°)') + '<br>' + out);
+  }
+  [['rwB',rwy],['acL',code],['acW',code],['mnL',mach],['mnF',mach],['slT',lvl],['slR',lvl]].forEach(function(p){
+    var el = document.getElementById(p[0]); if (el) el.addEventListener('input', p[1]);
+  });
+  rwy(); code(); mach(); lvl();
+})();
+</script>
+</body>
+</html>

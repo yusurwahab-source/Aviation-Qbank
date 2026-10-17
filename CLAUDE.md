@@ -475,7 +475,7 @@ from a static list (`lib/atpl-subjects.ts`), not from the database.** A
 subject with no questions has no content folder and no row (`db:seed` would
 delete one), so "coming soon" rows cannot be database rows. A row is live
 only when a Flying Knowledge subject is named by its `code` there (POF is
-080, HPL is 040, MET is 050) and is active with published questions; live rows link to
+080, HPL is 040, MET is 050, RNAV is 062, LAW is 010) and is active with published questions; live rows link to
 `/flying-knowledge/<code>`, where tests still run, and carry a pulsing
 `LiveBadge`. `/flying-knowledge` itself redirects to the picker. Adding a
 subject to the ATPL list is a content folder plus its `code` in that list.
@@ -1808,7 +1808,7 @@ over the internals.
 content/                      Question files. The source of truth.
   <code>/                     One folder per type rating aircraft (b737/, a320/ today)
   classes/<code>/             One folder per class rating aircraft (da40/ today)
-  flying-knowledge/<code>/    One folder per Flying Knowledge subject (pof/, hpl/, met/ today)
+  flying-knowledge/<code>/    One folder per Flying Knowledge subject (pof/, hpl/, met/, rnav/, law/ today)
 drizzle/                      Generated SQL migrations. Committed.
 public/                       Manifest icons, the service worker, and any
                               <code>-study-guide.html study guides (see the
@@ -2071,7 +2071,10 @@ and to `lib/atpl-subjects.ts` (code `MET` against 050) — see the note on
 the MET bank in `content/README.md`. Radio Navigation (`RNAV`, 062) is the fourth:
 `content/flying-knowledge/rnav/`, eighteen chapter files, 911 questions,
 and `public/rnav-study-guide.html` — see the note on the RNAV bank in
-`content/README.md`.
+`content/README.md` Air Law (`LAW`, 010) is the fifth:
+`content/flying-knowledge/law/`, twenty-six chapter files (00–25), 1,740
+questions, and `public/law-study-guide.html` — see the note on the Air Law
+bank in `content/README.md`.
 
 The one thing that does not carry over from either of the other two trees:
 **Flying Knowledge is free in full, not metered by the free-tier cap or
@@ -2394,6 +2397,12 @@ second. Both are now done — see the conventions above.)
   redirect.
 - **The progress chart plots the last 100 tests and no more.** Fine now; a date
   filter is the honest answer once anyone exceeds that.
+- **The Air Law bank has not been reviewed by an instructor, and air law
+  dates fast.** It was written from a supplied textbook, with dated figures
+  replaced by current ones where known (see the Air Law note in
+  `content/README.md`), but rules change between editions and between
+  States. Treat it as revision material until a qualified instructor has
+  checked it against the current regulations.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
