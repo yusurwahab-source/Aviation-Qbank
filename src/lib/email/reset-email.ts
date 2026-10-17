@@ -1,7 +1,7 @@
 import { siteConfig } from "@/config/site";
 import { RESET_TOKEN_LIFETIME_MS } from "@/lib/auth/reset-policy";
 
-import { renderEmail } from "./layout";
+import { formatEmailTime, renderEmail } from "./layout";
 import type { EmailMessage } from "./send";
 
 /**
@@ -18,7 +18,7 @@ import type { EmailMessage } from "./send";
 
 const LIFETIME_MINUTES = Math.round(RESET_TOKEN_LIFETIME_MS / 60000);
 
-export function resetEmail(to: string, link: string): EmailMessage {
+export function resetEmail(to: string, link: string, at: Date = new Date()): EmailMessage {
   const expiry =
     LIFETIME_MINUTES === 60 ? "one hour" : `${LIFETIME_MINUTES} minutes`;
 
@@ -28,11 +28,15 @@ export function resetEmail(to: string, link: string): EmailMessage {
     greeting: "Hello,",
     paragraphs: [
       `Welcome back to ${siteConfig.name}. Somebody asked to reset the password for your account.`,
-      "If it was you, press the button below to choose a new one.",
+      `If it was you, press the button below to choose a new one. For your security the link works once and stops working after ${expiry}.`,
     ],
     button: { label: "Set a new password", url: link },
-    afterButton: [`The link works once, and stops working after ${expiry}.`],
-    note: "If it was not you, you can ignore this email. Your password has not been changed, and nobody can change it without this link.",
+    details: [
+      { label: "Account", value: to },
+      { label: "Requested", value: formatEmailTime(at) },
+      { label: "Link valid for", value: `${expiry}, one use` },
+    ],
+    note: "Not you? Ignore this email. Your password has not been changed, and nobody can change it without this link. Never share this link with anyone, including people who say they work for us.",
   });
 
   return {
