@@ -1255,3 +1255,58 @@ export const logbookCredits = pgTable(
       .where(sql`${table.source} = 'subscription'`),
   ],
 );
+
+/**
+ * The owner's mailbox: mail that arrived for the site and mail the owner sent
+ * from `/owner/mail`.
+ *
+ * One table for both directions, because a conversation is read as one thing
+ * — the message that came in and the reply that went out — and a second table
+ * would only make "show me this thread" a join. `direction` says which way a
+ * row went; `source` says how it got here:
+ *
+ * - `resend`  — arrived through the mail provider's inbound webhook
+ * - `contact` — typed into the public contact form (so a message is kept even
+ *               before inbound mail is set up, and a failed notification
+ *               email never loses it)
+ * - `owner`   — composed and sent from `/owner/mail`
+ *
+ * Plain text only. An inbound message's HTML is never stored or rendered:
+ * the sender is a stranger, and an email is the oldest way there is to get
+ * hostile markup in front of somebody who is signed in as the owner.
+ *
+ * `providerId` is the provider's own id for the message and is unique, which
+ * is what makes a webhook the provider delivers twice a no-op.
+ *
+ * Read only by `db/mailbox.ts`, which takes no `userId` for the same reason
+ * `db/owner.ts` does; see the note there.
+ */
+export const mailboxMessages = pgTable(
+  "mailbox_messages",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    direction: varchar("direction", { length: 3 }).$type<"in" | "out">().notNull(),
+    source: varchar("source", { length: 8 }).$type<"resend" | "contact" | "owner">().notNull(),
+    fromAddress: varchar("from_address", { length: 254 }).notNull(),
+    fromName: varchar("from_name", { length: 120 }),
+    toAddress: varchar("to_address", { length: 254 }).notNull(),
+    subject: varchar("subject", { length: 300 }).notNull(),
+    textBody: text("text_body").notNull(),
+    /** Where a reply should go, when that is not the sender (the contact form). */
+    replyTo: varchar("reply_to", { length: 254 }),
+    providerId: varchar("provider_id", { length: 64 }),
+    /** The message this one answers, for an outgoing reply. No foreign key: a
+     * thread must survive the owner deleting one of its messages. */
+    inReplyToId: uuid("in_reply_to_id"),
+    status: varchar("status", { length: 8 }).$type<"received" | "sent" | "failed">().notNull(),
+    error: text("error"),
+    readAt: timestamp("read_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index("mailbox_messages_box_created_idx").on(table.direction, table.createdAt),
+    uniqueIndex("mailbox_messages_provider_id_unique").on(table.providerId),
+  ],
+);
+
+export type MailboxMessage = typeof mailboxMessages.$inferSelect;

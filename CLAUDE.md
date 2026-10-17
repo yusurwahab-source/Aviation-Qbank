@@ -1163,14 +1163,40 @@ spec and carries every link in full. Its colours are hex written by hand —
 an email cannot read `globals.css` — so change them with the palette. The
 contact form's message to the owner is deliberately unframed.
 
-**The contact form (`/contact`) sends one email to `OWNER_EMAIL` and stores
-nothing.** `lib/contact.ts` is the pure half (schema, and the message it
-becomes, tested); `app/contact/actions.ts` wires it to the rate limiter
-(`contactPerEmail`/`contactPerIp`, their own `contact-*` keys, counted
+**The contact form (`/contact`) mails `OWNER_EMAIL` and keeps the message in
+the owner's mailbox.** `lib/contact.ts` is the pure half (schema, and the
+message it becomes, tested); `app/contact/actions.ts` wires it to the rate
+limiter (`contactPerEmail`/`contactPerIp`, their own `contact-*` keys, counted
 before the send because what they protect is the inbox), a hidden honeypot
-field, and `sendEmail`. The visitor's address is only ever `reply_to`; the
-`from` stays the verified domain. In production a send that only reached the
-log is reported to the visitor as a failure rather than "sent".
+field, the mailbox row (`insertInbound`, best effort, so a message is never
+lost to a failed notification) and `sendEmail`. The visitor's address is only
+ever `reply_to`; the `from` stays the verified domain. In production a send
+that only reached the log is reported to the visitor as a failure rather than
+"sent".
+
+**`/owner/mail` is the owner's mailbox: an inbox, a sent list, a composer and
+a reply form.** One table, `mailbox_messages`, holds both directions
+(`direction` in/out; `source` resend/contact/owner), plain text only — an
+inbound message's HTML is never stored or rendered, because the sender is a
+stranger and the reader is signed in as the owner. Mail arrives two ways: the
+contact form (always) and the provider's inbound webhook,
+`/api/webhooks/resend`, which verifies the Svix signature
+(`lib/mail/svix.ts`, written out like the Stripe check, with a five-minute
+replay window) against `RESEND_WEBHOOK_SECRET` before it reads anything, then
+fetches the body by id with the same API key mail is sent with. `provider_id`
+is unique, so a webhook delivered twice stores once. If the body cannot be
+fetched the message is still stored, with a line saying so.
+
+Receiving needs two things this repository cannot do: receiving enabled for the
+domain at the provider, and its MX record added at the DNS host.
+`inboundIsConfigured()` (`lib/mail/config.ts`) is true only with both
+`RESEND_WEBHOOK_SECRET` and `SUPPORT_EMAIL` set; until then the owner's mail
+goes out from the normal sender with the owner's own address as `reply_to`, so
+nobody is told to write to an address nothing reads. Once configured, owner
+mail is sent from `SUPPORT_EMAIL` and replies come back to the inbox.
+`sendMail` is an `ownerAction` (`mail.send`); `db/mailbox.ts` takes no `userId`
+like `db/owner.ts`, and its two writers outside `/owner` — the webhook and
+the contact form — only ever add a row.
 
 **Every report query takes a `userId` and filters on it.** A report is somebody's
 private study history; a missing user filter would show it to the wrong person.
@@ -1549,8 +1575,8 @@ first, filterable by action. Nothing here needed a second role — the log
 records *who*, but "who" is still always the one `OWNER_EMAIL`; it exists
 for "what did I do and when", not for telling two owners apart.
 
-**`src/db/owner.ts`, `src/db/broadcasts.ts` and `src/db/logbook-owner.ts`
-are the only modules in the codebase whose queries take no `userId`, and
+**`src/db/owner.ts`, `src/db/broadcasts.ts`, `src/db/mailbox.ts` and
+`src/db/logbook-owner.ts` are the only modules in the codebase whose queries take no `userId`, and
 the first two the only ones that write to a row without one.**
 (`broadcasts.ts` reads every account to build a mailing list;
 `logbook-owner.ts` reads Logbook Scanner usage and cost, never content; the
@@ -1926,6 +1952,7 @@ src/
     question-reports.ts       Creating and listing "report a problem" rows; joins questions read-only
     audit-log.ts              Writing (from ownerAction only) and reading the owner action log
     broadcasts.ts             Audiences, the delivery queue and its counts. /owner only, like owner.ts.
+    mailbox.ts                The owner's inbox and sent mail. /owner only, plus two add-only writers (webhook, contact form).
     email-verification.ts     Issuing and spending email verification links
     unsubscribe.ts            Unsubscribe by token, and the account page's own switch
     insights.ts               Read-only analytics queries for /owner/insights
@@ -1940,6 +1967,8 @@ src/
       send.ts                 sendEmail: Resend, or the server log
       layout.ts               The shared email frame (pure, tested)
       reset-email.ts          The reset message (pure, tested)
+    mail/                     The mailbox's pure halves: Svix signature check, parsing a received
+                              message, composing the owner's outgoing mail, whether inbound is set up
     billing/
       access-policy.ts        Free-tier and subscription rules (pure, tested)
       stripe.ts                Checkout session request + Stripe API call (pure builder, tested)
