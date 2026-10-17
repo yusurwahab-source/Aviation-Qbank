@@ -1,5 +1,7 @@
 import "server-only";
 
+import { envValue } from "@/lib/env";
+
 /**
  * Sending email.
  *
@@ -29,6 +31,8 @@ export type EmailMessage = {
   html?: string;
   /** Extra headers, e.g. `List-Unsubscribe` on a broadcast. */
   headers?: Record<string, string>;
+  /** Where a reply should go, e.g. the visitor who used the contact form. */
+  replyTo?: string;
 };
 
 export type EmailOutcome = {
@@ -61,7 +65,7 @@ export function appUrl(): string {
 
 /** Whether a real provider is configured, for the setup notice on screen. */
 export function emailIsConfigured(): boolean {
-  return Boolean(process.env.RESEND_API_KEY?.trim() && process.env.EMAIL_FROM?.trim());
+  return Boolean(envValue("RESEND_API_KEY") && envValue("EMAIL_FROM"));
 }
 
 /**
@@ -94,16 +98,17 @@ export async function sendEmail(message: EmailMessage): Promise<EmailOutcome> {
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.RESEND_API_KEY!.trim()}`,
+        Authorization: `Bearer ${envValue("RESEND_API_KEY")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: process.env.EMAIL_FROM!.trim(),
+        from: envValue("EMAIL_FROM"),
         to: [message.to],
         subject: message.subject,
         text: message.text,
         ...(message.html ? { html: message.html } : {}),
         ...(message.headers ? { headers: message.headers } : {}),
+        ...(message.replyTo ? { reply_to: message.replyTo } : {}),
       }),
     });
 

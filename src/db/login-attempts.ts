@@ -74,6 +74,15 @@ export function previewIpKey(ip: string): string {
   return `preview-ip:${ip}`;
 }
 
+/** Contact form messages: their own keys, for the same reason. */
+export function contactIpKey(ip: string): string {
+  return `contact-ip:${ip}`;
+}
+
+export function contactEmailKey(email: string): string {
+  return `contact-email:${email}`;
+}
+
 /** AI search requests use a per-account bucket, or an IP bucket when signed out. */
 export function aiSearchIdentityKey(userId: string | null, ip: string): string {
   return userId ? `ai-search-user:${userId}` : `ai-search-ip:${ip}`;
@@ -173,6 +182,37 @@ export async function checkResetAllowed(ip: string, email: string): Promise<Rate
     decide(RATE_LIMIT_RULES.resetPerIp, forIp.failures, forIp.oldest, now),
     decide(RATE_LIMIT_RULES.resetPerEmail, forEmail.failures, forEmail.oldest, now),
   ]);
+}
+
+/** Whether a contact message may be sent from this address and source right now. */
+export async function checkContactAllowed(ip: string, email: string): Promise<RateLimitDecision> {
+  const now = new Date();
+  const windows: KeyWindow[] = [
+    {
+      key: contactIpKey(ip),
+      since: new Date(now.getTime() - RATE_LIMIT_RULES.contactPerIp.windowMs),
+    },
+    {
+      key: contactEmailKey(email),
+      since: new Date(now.getTime() - RATE_LIMIT_RULES.contactPerEmail.windowMs),
+    },
+  ];
+
+  const counts = await countRecentFailures(windows);
+  const forIp = counts.get(windows[0].key) ?? { failures: 0, oldest: null };
+  const forEmail = counts.get(windows[1].key) ?? { failures: 0, oldest: null };
+
+  return combine([
+    decide(RATE_LIMIT_RULES.contactPerIp, forIp.failures, forIp.oldest, now),
+    decide(RATE_LIMIT_RULES.contactPerEmail, forEmail.failures, forEmail.oldest, now),
+  ]);
+}
+
+/** Records one contact message against both keys. */
+export async function recordContactRequest(ip: string, email: string): Promise<void> {
+  await getDb()
+    .insert(loginAttempts)
+    .values([{ key: contactIpKey(ip) }, { key: contactEmailKey(email) }]);
 }
 
 /** Whether a verification email may be sent for this address right now. */

@@ -1144,6 +1144,24 @@ is what is happening. Changing provider is this one file. `sendEmail` never
 throws, because whether the mail went out must not change what the user is
 told.
 
+**`EMAIL_FROM` is a variable of its own, and without it nothing is sent.**
+`emailIsConfigured()` needs *both* `RESEND_API_KEY` and `EMAIL_FROM`; the
+sender address typed into the key's comment field in the Vercel dashboard
+(which is where it was first put) configures nothing, and every reset,
+verification and broadcast email was silently printed to the server log
+instead — a feature that looked finished and delivered nothing. Both are
+now read through `readEnv`, like Stripe's keys. The value is
+`PilotQBank <no-reply@pilotqbank.com>`, on the domain verified in Resend.
+
+**The contact form (`/contact`) sends one email to `OWNER_EMAIL` and stores
+nothing.** `lib/contact.ts` is the pure half (schema, and the message it
+becomes, tested); `app/contact/actions.ts` wires it to the rate limiter
+(`contactPerEmail`/`contactPerIp`, their own `contact-*` keys, counted
+before the send because what they protect is the inbox), a hidden honeypot
+field, and `sendEmail`. The visitor's address is only ever `reply_to`; the
+`from` stays the verified domain. In production a send that only reached the
+log is reported to the visitor as a failure rather than "sent".
+
 **Every report query takes a `userId` and filters on it.** A report is somebody's
 private study history; a missing user filter would show it to the wrong person.
 Tests assert this directly by giving two accounts different histories and

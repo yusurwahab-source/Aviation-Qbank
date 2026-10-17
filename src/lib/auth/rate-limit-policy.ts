@@ -126,6 +126,18 @@ export const RATE_LIMIT_RULES = {
    */
   logbookPerUser: { maxFailures: 60, windowMs: 60 * MINUTE } satisfies RateLimitRule,
 
+  /**
+   * Contact form messages, per sender address typed into the form. Counted
+   * per *request*, like reset mail: every accepted message is an email in
+   * the owner's inbox, so what this protects is that inbox. Its own key
+   * prefix, so using the form can never spend somebody's log-in or reset
+   * allowance.
+   */
+  contactPerEmail: { maxFailures: 3, windowMs: 60 * MINUTE } satisfies RateLimitRule,
+
+  /** Contact messages per source address — the broad brake against a script. */
+  contactPerIp: { maxFailures: 5, windowMs: 60 * MINUTE } satisfies RateLimitRule,
+
   /** AI search requests, per account (or source address when signed out). */
   aiSearchPerIdentity: { maxFailures: 3, windowMs: MINUTE } satisfies RateLimitRule,
 } as const;
