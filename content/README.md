@@ -761,7 +761,32 @@ two to four sentences.
 
 | # | Topic | File | Ids | Questions |
 |---|---|---|---|---|
-{table}
+| 00 | 00 Definitions and Abbreviations | `00-definitions-and-abbreviations.json` | LAW-DEF-0001–0184 | 184 |
+| 01 | 01 International Agreements and Organizations | `01-international-agreements-and-organizations.json` | LAW-ORG-0001–0138 | 138 |
+| 02 | 02 Airworthiness of Aircraft | `02-airworthiness-of-aircraft.json` | LAW-AIRW-0001–0019 | 19 |
+| 03 | 03 Aircraft Nationality and Registration Marks | `03-aircraft-nationality-and-registration-marks.json` | LAW-REG-0001–0024 | 24 |
+| 04 | 04 Flight Crew Licensing and Medical Requirements | `04-flight-crew-licensing-and-medical-requirements.json` | LAW-FCL-0001–0129 | 129 |
+| 05 | 05 Rules of the Air | `05-rules-of-the-air.json` | LAW-RULES-0001–0214 | 214 |
+| 06 | 06 Instrument Procedures - Departures | `06-instrument-procedures-departures.json` | LAW-DEP-0001–0045 | 45 |
+| 07 | 07 Approach Procedures | `07-approach-procedures.json` | LAW-APP-0001–0088 | 88 |
+| 08 | 08 Circling Approach | `08-circling-approach.json` | LAW-CIRC-0001–0012 | 12 |
+| 09 | 09 Holding Procedures | `09-holding-procedures.json` | LAW-HOLD-0001–0029 | 29 |
+| 10 | 10 Altimeter Setting Procedure | `10-altimeter-setting-procedure.json` | LAW-ALT-0001–0033 | 33 |
+| 11 | 11 Parallel or Near-parallel Runway Operations | `11-parallel-or-near-parallel-runway-operations.json` | LAW-PARA-0001–0028 | 28 |
+| 12 | 12 SSR and ACAS | `12-ssr-and-acas.json` | LAW-SSR-0001–0029 | 29 |
+| 13 | 13 Airspace | `13-airspace.json` | LAW-ASPC-0001–0050 | 50 |
+| 14 | 14 Air Traffic Services | `14-air-traffic-services.json` | LAW-ATS-0001–0071 | 71 |
+| 15 | 15 Separation | `15-separation.json` | LAW-SEP-0001–0103 | 103 |
+| 16 | 16 Control of Aircraft | `16-control-of-aircraft.json` | LAW-CTL-0001–0082 | 82 |
+| 17 | 17 Aeronautical Information Service | `17-aeronautical-information-service.json` | LAW-AIS-0001–0056 | 56 |
+| 18 | 18 Aerodromes - Physical Characteristics | `18-aerodromes-physical-characteristics.json` | LAW-ADP-0001–0077 | 77 |
+| 19 | 19 Aerodromes - Visual Aids, Markings and Signs | `19-aerodromes-visual-aids-markings-and-signs.json` | LAW-VIS-0001–0067 | 67 |
+| 20 | 20 Aerodrome Lighting | `20-aerodrome-lighting.json` | LAW-LGT-0001–0053 | 53 |
+| 21 | 21 Obstacle Marking and Aerodrome Services | `21-obstacle-marking-and-aerodrome-services.json` | LAW-OBS-0001–0050 | 50 |
+| 22 | 22 Facilitation | `22-facilitation.json` | LAW-FAL-0001–0028 | 28 |
+| 23 | 23 Search and Rescue | `23-search-and-rescue.json` | LAW-SAR-0001–0039 | 39 |
+| 24 | 24 Security | `24-security.json` | LAW-SEC-0001–0048 | 48 |
+| 25 | 25 Aircraft Accident and Incident Investigation | `25-aircraft-accident-and-incident-investigation.json` | LAW-AAI-0001–0044 | 44 |
 
 ### Answer-shape checks
 
@@ -782,6 +807,92 @@ Air law changes more often than any other subject. It should be reviewed by
 a qualified instructor against the current regulations before a student
 relies on it for a real exam — especially licensing (chapter 4), the
 rules of the air (chapter 5) and the dated points above.
+
+## The Electrics & Electronics bank (Flying Knowledge)
+
+The subject is **Electrics & Electronics** (code `AGK`), the electrics part
+of ATPL subject 021 (Airframe, Systems, Electrics, Powerplant & Emergency
+Equipment), added the same content-only way as the other subjects and listed
+against 021 on the ATPL Ground School page. 1,000 questions across sixteen
+topics, all published. The code `AGK` was chosen for the whole of 021 so
+that the airframe/systems and powerplant books can be added to the same
+subject later; the subject's display name can then be widened (the code
+cannot change once attempts exist).
+
+### Source, and what was not used
+
+The owner bought and supplied CAE Oxford Aviation Academy's *Electrics and
+Electronics* (Aircraft General Knowledge 2, Book 3 of its ATPL ground training
+series), with the instruction to build the subject the same way as Radio
+Navigation. Its sixteen teaching chapters were used in order (DC chapters
+1–9, AC chapters 11–17); chapter 10 (specimen questions), every end-of-chapter
+question set and the index were not used. Every question, explanation, worked
+figure and the study guide were written by the assistant from the book's
+facts, with new numbers in every worked example. Student-facing text names no
+book, school, regulator or syllabus.
+
+Topics are numbered 01–16 in sequence, so the AC chapters are one lower than
+in the book (book chapter 11 = topic 10, … book 17 = topic 16).
+
+Where the book is wrong, muddled or dated, the bank leaves the point out or
+states it correctly:
+
+- RMS is not "the value at the 45° point" (the book's shortcut); the bank
+  uses only RMS = 0.707 × peak and the heating definition.
+- The hydrogen atom is not described as having a neutron, and conductors and
+  insulators are not described by "electrovalent" and "covalent" bonds.
+- A three-phase motor that loses a phase is said to keep running with a hum
+  and fail to restart — not to run "at about half speed".
+- The book's NAND relay-circuit description contradicts its truth table; only
+  the truth table is used.
+- "System frequency becomes that of the alternator with the highest load"
+  and the VSCF aircraft-type examples are left out.
+- Maintenance figures given by the book — capacity test at least 80 % (every
+  3 months), spare fuses 10 % of each rating with a minimum of 3, essential
+  loads for 30 minutes — are kept as stated and should be checked against
+  the operator's and current rules by an instructor.
+
+### Order and format
+
+Inside each file the questions run in chapter order, grouped by `subtopic`.
+Explanations are two to four sentences; numeric questions say which slip
+gives which wrong option.
+
+| # | Topic | File | Ids | Questions |
+|---|---|---|---|---|
+| 01 | Electrics 01 DC Basic Principles | `01-dc-basic-principles.json` | AGK-BAS-0001–0087 | 87 |
+| 02 | Electrics 02 DC Switches | `02-dc-switches.json` | AGK-SWI-0001–0035 | 35 |
+| 03 | Electrics 03 Circuit Protection and Capacitors | `03-circuit-protection-and-capacitors.json` | AGK-CPC-0001–0082 | 82 |
+| 04 | Electrics 04 Batteries | `04-batteries.json` | AGK-BAT-0001–0083 | 83 |
+| 05 | Electrics 05 Magnetism | `05-magnetism.json` | AGK-MAG-0001–0046 | 46 |
+| 06 | Electrics 06 Generators and Alternators | `06-generators-and-alternators.json` | AGK-GEN-0001–0087 | 87 |
+| 07 | Electrics 07 DC Motors and Actuators | `07-dc-motors-and-actuators.json` | AGK-MOT-0001–0077 | 77 |
+| 08 | Electrics 08 Aircraft DC Power Systems | `08-aircraft-dc-power-systems.json` | AGK-DCS-0001–0084 | 84 |
+| 09 | Electrics 09 Bonding and Screening | `09-bonding-and-screening.json` | AGK-BND-0001–0022 | 22 |
+| 10 | Electrics 10 Introduction to AC | `10-introduction-to-ac.json` | AGK-ACI-0001–0098 | 98 |
+| 11 | Electrics 11 AC Alternators | `11-ac-alternators.json` | AGK-ALT-0001–0114 | 114 |
+| 12 | Electrics 12 AC Distribution Systems | `12-ac-distribution-systems.json` | AGK-DIS-0001–0030 | 30 |
+| 13 | Electrics 13 Transformers and Rectifiers | `13-transformers-and-rectifiers.json` | AGK-TRF-0001–0044 | 44 |
+| 14 | Electrics 14 AC Motors | `14-ac-motors.json` | AGK-ACM-0001–0039 | 39 |
+| 15 | Electrics 15 Semiconductors | `15-semiconductors.json` | AGK-SEM-0001–0036 | 36 |
+| 16 | Electrics 16 Logic Gates | `16-logic-gates.json` | AGK-LOG-0001–0036 | 36 |
+
+### Answer-shape checks
+
+Correct letters a/b/c/d are 250/250/253/247. The correct option is the
+single longest in 17 % of questions and the single shortest in 19 %. No
+duplicate stems, no "all/none of the above", no source names.
+
+`public/agk-study-guide.html` is the study guide: sixteen chapter sections in
+the same order, each with a key-idea callout, chips, tables, comparison cards,
+worked examples and inline diagrams, a cheat sheet and six calculators (Ohm's
+law and power; series and parallel; battery endurance and capacity test;
+poles, RPM and frequency with slip; reactance, impedance and power factor;
+transformer ratio with star line voltage and RMS peak). Checked at 1280px and
+375px, light and dark, with no horizontal overflow and no script errors.
+
+It has not been reviewed by a qualified instructor and should be before a
+student relies on it for a real exam.
 
 ## The B737 bank
 
