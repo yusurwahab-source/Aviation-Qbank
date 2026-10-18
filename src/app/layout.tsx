@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
+import { ContactWidget } from "@/components/contact-widget";
 import { ServiceWorker } from "@/components/service-worker";
 import { SiteAnnouncement } from "@/components/site-announcement";
 import { SiteFooter } from "@/components/site-footer";
@@ -90,6 +91,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         <SiteFooter />
         <UpgradePrompt />
+        <ContactWidget />
         <ServiceWorker />
       </body>
     </html>

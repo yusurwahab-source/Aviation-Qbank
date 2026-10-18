@@ -1174,6 +1174,15 @@ ever `reply_to`; the `from` stays the verified domain. In production a send
 that only reached the log is reported to the visitor as a failure rather than
 "sent".
 
+**Contact is in the main navigation, and a floating button offers WhatsApp.**
+`/contact` is a header link (desktop and the mobile sheet), signed in or out.
+`ContactWidget` (`components/contact-widget.tsx`, mounted in `layout.tsx`) is a
+round button fixed to the bottom-right corner that opens a small panel: a
+WhatsApp link and the contact form. The number lives in `siteConfig.whatsapp`
+and `lib/contact-links.ts` (pure, tested) turns it into a `wa.me` link. It is
+deliberately absent from `/contact`, `/owner`, the simulators and any `/test`
+route, where something else already owns the corner. It is not a chatbot.
+
 **`/owner/mail` is the owner's mailbox: an inbox, a sent list, a composer and
 a reply form.** One table, `mailbox_messages`, holds both directions
 (`direction` in/out; `source` resend/contact/owner), plain text only — an

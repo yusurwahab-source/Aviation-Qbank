@@ -43,6 +43,7 @@ const SIGNED_OUT_LINKS: NavItem[] = [
   { href: "/pilot-sims", label: "Pilot Sims" },
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 const SIGNED_IN_LINKS: NavItem[] = [
@@ -50,6 +51,7 @@ const SIGNED_IN_LINKS: NavItem[] = [
   { href: "/aircraft-systems", label: "Aircraft Systems Knowledge" },
   { href: "/pilot-sims", label: "Pilot Sims" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
   { href: "/progress", label: "Progress" },
   { href: "/upgrade", label: "Upgrade" },
 ];
