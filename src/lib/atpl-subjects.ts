@@ -16,7 +16,7 @@ export type AtplSubject = {
 
 export const ATPL_SUBJECTS: readonly AtplSubject[] = [
   { number: "010", name: "Air Law", code: "LAW" },
-  { number: "021", name: "Airframe, Systems, Electrics, Powerplant & Emergency Equipment" },
+  { number: "021", name: "Airframe, Systems, Electrics, Powerplant & Emergency Equipment", code: "AGK" },
   { number: "022", name: "Instrumentation" },
   { number: "031", name: "Mass & Balance" },
   { number: "032", name: "Performance" },
