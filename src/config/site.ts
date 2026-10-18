@@ -24,4 +24,10 @@ export const siteConfig = {
    * this is only the static fact of where the product lives.
    */
   url: "https://pilotqbank.com",
+  /**
+   * The WhatsApp number the contact widget opens. International format,
+   * digits only (what `wa.me` wants); `display` is how it is written for a
+   * person to read.
+   */
+  whatsapp: { number: "32485123299", display: "+32 485 12 32 99" },
 } as const;
