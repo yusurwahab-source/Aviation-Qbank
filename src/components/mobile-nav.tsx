@@ -146,20 +146,22 @@ export function MobileNav({ email, links }: { email: string | null; links: NavLi
                       <p className="truncate text-xs text-muted-foreground">
                         Signed in as <span className="text-foreground">{email}</span>
                       </p>
-                      <Link
-                        href="/account"
-                        className="tap-target mt-2 flex w-full items-center justify-center rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink"
-                      >
-                        Account
-                      </Link>
-                      <form action={logOut} className="mt-2">
-                        <button
-                          type="submit"
-                          className="tap-target w-full rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink"
+                      <div className="mt-2 flex gap-2">
+                        <Link
+                          href="/account"
+                          className="tap-target flex flex-1 items-center justify-center rounded-lg px-4 text-sm font-medium text-muted-foreground transition hover:text-brand-ink"
                         >
-                          Sign out
-                        </button>
-                      </form>
+                          Account
+                        </Link>
+                        <form action={logOut} className="flex-1">
+                          <button
+                            type="submit"
+                            className="tap-target w-full rounded-lg px-4 text-sm font-medium text-muted-foreground transition hover:text-brand-ink"
+                          >
+                            Sign out
+                          </button>
+                        </form>
+                      </div>
                     </>
                   ) : (
                     <div className="flex flex-col gap-2">
