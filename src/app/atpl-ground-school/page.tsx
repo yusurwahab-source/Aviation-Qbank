@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import { DatabaseUnavailable } from "@/components/database-unavailable";
+import { AtplNotifyForm } from "@/components/atpl-notify-form";
 import { LiveBadge } from "@/components/live-badge";
 import { Badge, Card, PageHeading } from "@/components/ui";
 import { siteConfig } from "@/config/site";
@@ -60,7 +61,9 @@ export default async function AtplGroundSchoolPage() {
     );
   }
 
-  const liveCount = rows.filter((row) => row.live).length;
+  const liveRows = rows.filter((row) => row.live);
+  const soonRows = rows.filter((row) => !row.live);
+  const liveCount = liveRows.length;
 
   return (
     <>
@@ -71,12 +74,33 @@ export default async function AtplGroundSchoolPage() {
       />
 
       <ul className="flex flex-col gap-3">
-        {rows.map((row) => (
+        {liveRows.map((row) => (
           <li key={row.number}>
             <SubjectRow row={row} hiddenFromStudents={row.live ? hiddenCodes.has(row.live.code) : false} />
           </li>
         ))}
       </ul>
+
+      {soonRows.length > 0 ? (
+        <details className="mt-6 rounded-xl border border-border bg-surface p-4">
+          <summary className="tap-target flex cursor-pointer items-center text-base font-semibold text-foreground">
+            Coming soon ({soonRows.length})
+          </summary>
+          <ul className="mt-3 flex flex-col gap-3">
+            {soonRows.map((row) => (
+              <li key={row.number}>
+                <SubjectRow row={row} hiddenFromStudents={false} />
+              </li>
+            ))}
+          </ul>
+          <div className="mt-4">
+            <p className="mb-2 text-sm text-muted-foreground">
+              Want to know when the next subject goes live?
+            </p>
+            <AtplNotifyForm subjects={soonRows.map((row) => row.name)} />
+          </div>
+        </details>
+      ) : null}
 
       <p className="mt-6 flex flex-wrap gap-4">
         <Link
