@@ -50,9 +50,9 @@ const SIGNED_IN_LINKS: NavItem[] = [
   { href: "/atpl-ground-school", label: "EASA ATPL Ground School" },
   { href: "/aircraft-systems", label: "Aircraft Systems Knowledge" },
   { href: "/pilot-sims", label: "Pilot Sims" },
+  { href: "/progress", label: "Progress" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
-  { href: "/progress", label: "Progress" },
   { href: "/upgrade", label: "Upgrade" },
 ];
 
