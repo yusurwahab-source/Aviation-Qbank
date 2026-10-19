@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Communications — Pilot's Guide</title>
+<meta name="description" content="Radiotelephony explained for airline pilots in 7 chapters: definitions, general operating procedures, standard phraseology, weather information, failures and emergencies, instrument flight communications and VHF propagation — with tables, tools and worked examples." />
+<style>
+  :root{
+    --bg:#f6f8fb;
+    --surface:#ffffff;
+    --surface-2:#eef2f7;
+    --ink:#101826;
+    --ink-2:#3c4758;
+    --muted:#6b7686;
+    --line:#dfe6ef;
+    --brand:#0d6e7d;
+    --brand-ink:#ffffff;
+    --brand-light:#e3f4f6;
+    --warn-bg:#fdecec;
+    --warn-line:#e0413a;
+    --warn-ink:#7a1712;
+    --caution-bg:#fff6e0;
+    --caution-line:#c9821a;
+    --caution-ink:#6b4405;
+    --note-bg:#eaf1fb;
+    --note-line:#3f6fb0;
+    --note-ink:#1f3c63;
+    --white-arc:#e9edf3;
+    --green-arc:#1f9d55;
+    --yellow-arc:#e0b400;
+    --red-arc:#d9362a;
+    --radius:14px;
+    --radius-sm:8px;
+    --shadow:0 1px 2px rgba(16,24,38,.04), 0 6px 20px rgba(16,24,38,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0d1420;
+      --surface:#141d2c;
+      --surface-2:#1b263a;
+      --ink:#eef2f8;
+      --ink-2:#c3cddc;
+      --muted:#8b97ab;
+      --line:#26334a;
+      --brand:#37c3d6;
+      --brand-ink:#06232a;
+      --brand-light:#12323a;
+      --warn-bg:#3a1613;
+      --warn-line:#e4574d;
+      --warn-ink:#ffd6d1;
+      --caution-bg:#3a2c0d;
+      --caution-line:#e0a83a;
+      --caution-ink:#ffe6b0;
+      --note-bg:#122a44;
+      --note-line:#5b93d6;
+      --note-ink:#cfe2fb;
+      --white-arc:#324055;
+      --green-arc:#2bb56a;
+      --yellow-arc:#e0b400;
+      --red-arc:#e4574d;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1420; --surface:#141d2c; --surface-2:#1b263a; --ink:#eef2f8; --ink-2:#c3cddc;
+    --muted:#8b97ab; --line:#26334a; --brand:#37c3d6; --brand-ink:#06232a; --brand-light:#12323a;
+    --warn-bg:#3a1613; --warn-line:#e4574d; --warn-ink:#ffd6d1;
+    --caution-bg:#3a2c0d; --caution-line:#e0a83a; --caution-ink:#ffe6b0;
+    --note-bg:#122a44; --note-line:#5b93d6; --note-ink:#cfe2fb;
+    --white-arc:#324055; --green-arc:#2bb56a; --yellow-arc:#e0b400; --red-arc:#e4574d;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:clip}
+  body{
+    margin:0;
+    overflow-x:clip;
+    max-width:100vw;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,"Segoe UI",system-ui,Roboto,sans-serif;
+    line-height:1.75;
+    font-size:17px;
+  }
+  a{color:var(--brand)}
+  code, .kbd{
+    direction:ltr;unicode-bidi:isolate;display:inline-block;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:6px;
+    padding:0 .35em;font-size:.92em;color:var(--ink);
+  }
+  header.top{
+    position:sticky;top:0;z-index:40;
+    background:linear-gradient(180deg, var(--surface) 85%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    max-width:1180px;margin:0 auto;padding:14px 16px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .brand-mark{display:flex;align-items:center;gap:10px;min-width:0}
+  .brand-mark .plane{
+    width:34px;height:34px;flex:0 0 auto;border-radius:9px;
+    background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+  }
+  .brand-mark .txt{min-width:0}
+  .brand-mark h1{font-size:15px;margin:0;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand-mark .sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .menu-btn{
+    display:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+    border-radius:10px;padding:9px 12px;font-size:14px;cursor:pointer;flex:0 0 auto;
+  }
+  .shell{max-width:1180px;margin:0 auto;display:flex;align-items:flex-start;gap:28px;padding:20px 16px 80px}
+  nav.toc{
+    position:sticky;top:78px;flex:0 0 280px;
+    max-height:calc(100vh - 96px);overflow-y:auto;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;box-shadow:var(--shadow);
+  }
+  nav.toc h2{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:2px 8px 10px}
+  nav.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+  nav.toc li{counter-increment:toc}
+  nav.toc a{
+    display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--ink-2);
+    padding:7px 8px;border-radius:9px;font-size:13.5px;
+  }
+  nav.toc a .n{flex:0 0 auto;color:var(--brand);font-weight:700;font-size:12px;min-width:18px}
+  nav.toc a:hover{background:var(--surface-2);color:var(--ink)}
+  nav.toc a.active{background:var(--brand-light);color:var(--ink);font-weight:600}
+  nav.toc .count{margin-inline-start:auto;font-size:11px;color:var(--muted)}
+  main{flex:1 1 auto;min-width:0}
+  .hero{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 22px;margin-bottom:22px;box-shadow:var(--shadow);
+  }
+  .hero h1{margin:0 0 8px;font-size:26px}
+  .hero p{margin:0;color:var(--ink-2);font-size:15.5px}
+  .hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hero .tag{
+    font-size:12.5px;background:var(--brand-light);color:var(--brand);
+    border-radius:999px;padding:5px 12px;font-weight:600;
+  }
+  section.sec{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px 26px;margin-bottom:22px;box-shadow:var(--shadow);scroll-margin-top:76px;
+  }
+  section.sec > h2{
+    display:flex;align-items:center;gap:12px;font-size:21px;margin:0 0 6px;
+    padding-bottom:14px;border-bottom:1px solid var(--line);
+  }
+  section.sec > h2 .num{
+    flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;
+  }
+  section.sec > h2 .en{margin-inline-start:auto;font-size:12px;color:var(--muted);font-weight:600;
+    direction:ltr;background:var(--surface-2);padding:4px 10px;border-radius:999px}
+  .lead{color:var(--ink-2);font-size:16px;margin-top:14px}
+  h3.sub{font-size:16.5px;margin:26px 0 8px;color:var(--ink);border-inline-start:4px solid var(--brand);padding-inline-start:10px}
+  h4.sub2{font-size:15px;margin:18px 0 6px;color:var(--ink-2)}
+  p{margin:10px 0}
+  ul, ol{margin:10px 0;padding-inline-start:22px}
+  li{margin:5px 0}
+  strong{color:var(--ink)}
+  .table-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm)}
+  table{border-collapse:collapse;width:100%;min-width:420px;font-size:14.5px}
+  table caption{text-align:start;font-size:12.5px;color:var(--muted);padding:8px 12px 0}
+  thead th{
+    background:var(--surface-2);color:var(--ink);text-align:start;
+    padding:9px 12px;font-weight:700;white-space:nowrap;font-size:13.5px;
+  }
+  tbody td{padding:8px 12px;border-top:1px solid var(--line);color:var(--ink-2)}
+  tbody tr:nth-child(even){background:color-mix(in srgb, var(--surface-2) 45%, transparent)}
+  td.num, th.num{direction:ltr;text-align:center;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+  .callout{border-radius:var(--radius-sm);padding:12px 14px;margin:14px 0;border-inline-start:4px solid;font-size:14.5px}
+  .callout .label{display:block;font-weight:800;font-size:12px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:4px}
+  .callout.warning{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-ink)}
+  .callout.caution{background:var(--caution-bg);border-color:var(--caution-line);color:var(--caution-ink)}
+  .callout.note{background:var(--note-bg);border-color:var(--note-line);color:var(--note-ink)}
+  .eq{
+    direction:ltr;font-family:"Cambria Math","STIX Two Math","Latin Modern Math",Georgia,serif;font-size:16.5px;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);
+    padding:10px 14px;margin:12px 0;text-align:center;white-space:nowrap;color:var(--ink);
+    max-width:100%;overflow-x:auto;contain:paint;box-sizing:border-box;
+  }
+  .eq sub,.eq sup{font-size:.72em}
+  .diagram{
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;margin:18px 0;text-align:center;
+    max-width:100%;overflow-x:auto;box-sizing:border-box;
+  }
+  .diagram .cap{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .diagram svg{max-width:100%;height:auto;display:block;margin:0 auto}
+  .ref{
+    display:inline-block;direction:ltr;font-size:11.5px;color:var(--brand);
+    background:var(--brand-light);border-radius:6px;padding:1px 7px;margin-inline-start:4px;
+    font-weight:700;white-space:nowrap;
+  }
+  .related{
+    margin-top:22px;display:flex;align-items:center;gap:10px;
+    background:var(--brand-light);color:var(--brand);border-radius:999px;
+    padding:10px 16px;font-size:14px;font-weight:700;width:fit-content;
+  }
+  .related .dot{width:8px;height:8px;border-radius:50%;background:var(--brand)}
+  footer{max-width:1180px;margin:0 auto;padding:10px 16px 60px;color:var(--muted);font-size:13px;text-align:center}
+  #top-btn{
+    position:fixed;inset-inline-end:18px;bottom:18px;z-index:50;
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+    background:var(--brand);color:var(--brand-ink);font-size:18px;cursor:pointer;
+    box-shadow:var(--shadow);display:none;align-items:center;justify-content:center;
+  }
+  #top-btn.show{display:flex}
+  @media (max-width:880px){
+    .shell{flex-direction:column;padding:14px 12px 70px}
+    main{width:100%;min-width:0}
+    nav.toc{
+      position:fixed;inset:0 0 0 auto;top:0;width:82%;max-width:340px;height:100dvh;max-height:100dvh;
+      transform:translateX(100%);transition:transform .25s ease;border-radius:0;z-index:60;
+    }
+    nav.toc.open{transform:translateX(0)}
+    .toc-scrim{position:fixed;inset:0;background:rgba(6,10,18,.5);z-index:55;display:none}
+    .toc-scrim.show{display:block}
+    .menu-btn{display:inline-flex;align-items:center;gap:6px}
+    section.sec > h2{font-size:18.5px}
+    .hero h1{font-size:22px}
+    body{font-size:16px}
+  }
+  .toc-close{display:none}
+  @media (max-width:880px){
+    .toc-close{
+      display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+      padding-bottom:10px;border-bottom:1px solid var(--line);
+    }
+    .toc-close button{border:none;background:var(--surface-2);border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer;color:var(--ink)}
+  }
+
+  
+  /* ---------- PilotQBank study-guide additions ---------- */
+  :root{ --accent:var(--brand); }
+  html{scroll-padding-top:80px}
+  section.sec{border-top:5px solid var(--accent)}
+  section.sec > h2 .num{background:var(--accent);color:#fff;font-size:19px;width:40px;height:40px;border-radius:12px}
+  section.sec > h2 .en{background:color-mix(in srgb,var(--accent) 14%,var(--surface));color:var(--ink-2)}
+  h3.sub{border-inline-start-color:var(--accent)}
+  nav.toc a .n{font-size:15px;min-width:22px}
+  .hero{background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 16%,var(--surface)),var(--surface) 60%);position:relative;overflow:hidden}
+  .hero .cloud{position:absolute;inset-inline-end:-10px;top:-6px;font-size:84px;opacity:.16;pointer-events:none;user-select:none}
+  .hero .tag{background:color-mix(in srgb,var(--brand) 16%,var(--surface))}
+  .glance{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+  .glance span{font-size:13px;background:color-mix(in srgb,var(--accent) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));border-radius:999px;padding:4px 12px;color:var(--ink-2)}
+  .keyidea{margin:16px 0;padding:14px 16px;border-radius:var(--radius);background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 16%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--accent) 40%,var(--line))}
+  .keyidea .label{display:block;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+  .keyidea p{margin:4px 0}
+  .tip,.memory{margin:14px 0;padding:12px 14px;border-radius:var(--radius-sm);font-size:14.5px;border-inline-start:4px solid}
+  .tip{background:color-mix(in srgb,var(--green-arc) 12%,var(--surface));border-color:var(--green-arc);color:var(--ink)}
+  .memory{background:color-mix(in srgb,#8b5cf6 12%,var(--surface));border-color:#8b5cf6;color:var(--ink)}
+  .tip .label,.memory .label{display:block;font-weight:800;font-size:12px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+  .tip .label{color:var(--green-arc)} .memory .label{color:#8b5cf6}
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
+  .fcard{background:var(--surface-2);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:var(--radius-sm);padding:12px 14px}
+  .fcard .f{direction:ltr;font-family:"Cambria Math","STIX Two Math",Georgia,serif;font-size:18px;color:var(--ink);overflow-x:auto;white-space:nowrap}
+  .fcard .d{font-size:13.5px;color:var(--ink-2);margin-top:4px}
+  details.example{margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface);overflow:hidden}
+  details.example summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:14.5px;background:color-mix(in srgb,var(--accent) 10%,var(--surface-2));list-style:none}
+  details.example summary::-webkit-details-marker{display:none}
+  details.example summary::before{content:"▸ ";color:var(--accent)}
+  details.example[open] summary::before{content:"▾ "}
+  details.example .body{padding:6px 16px 14px}
+  .steps{counter-reset:st;list-style:none;padding:0;margin:12px 0}
+  .steps li{counter-increment:st;position:relative;padding-inline-start:40px;margin:10px 0;min-height:28px}
+  .steps li::before{content:counter(st);position:absolute;inset-inline-start:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:14px 0}
+  .compare .card{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px}
+  .compare .card h4{margin:0 0 6px;font-size:15px}
+  .compare .card.good{border-top:3px solid var(--green-arc)} .compare .card.bad{border-top:3px solid var(--red-arc)} .compare .card.mid{border-top:3px solid var(--yellow-arc)} .compare .card.acc{border-top:3px solid var(--accent)}
+  .bar{display:block;height:10px;border-radius:6px;background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 55%,#fff));min-width:4px}
+  td.barcell{min-width:130px}
+  .pill{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 9px;background:color-mix(in srgb,var(--accent) 16%,var(--surface));color:var(--ink)}
+  .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .tool{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+  .tool h3{margin:0 0 8px;font-size:15.5px}
+  .tool label{display:block;font-size:12.5px;color:var(--muted);margin-top:8px}
+  .tool input{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:16px}
+  .tool .out{margin-top:10px;padding:10px;border-radius:8px;background:color-mix(in srgb,var(--brand) 12%,var(--surface));font-size:14px;direction:ltr}
+  .tool .out b{color:var(--brand)}
+  .cheat table{min-width:340px}
+  .sec .diagram svg text{fill:var(--ink);font:600 12px -apple-system,"Segoe UI",system-ui,sans-serif}
+  .sec .diagram svg text.m{fill:var(--muted);font-weight:500;font-size:11px}
+  .sec .diagram svg text.big{font-size:14px}
+  .sec .diagram svg .ln{stroke:var(--ink-2);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sec .diagram svg .thin{stroke:var(--muted);stroke-width:1;fill:none;stroke-dasharray:4 4}
+  .sec .diagram svg .ac{stroke:var(--accent);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sec .diagram svg .af{fill:color-mix(in srgb,var(--accent) 22%,transparent);stroke:var(--accent);stroke-width:2}
+  .sec .diagram svg .gn{stroke:var(--green-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .rd{stroke:var(--red-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .yl{stroke:var(--yellow-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .gf{fill:color-mix(in srgb,var(--green-arc) 25%,transparent)}
+  .sec .diagram svg .rf{fill:color-mix(in srgb,var(--red-arc) 25%,transparent)}
+  .sec .diagram svg .yf{fill:color-mix(in srgb,var(--yellow-arc) 30%,transparent)}
+  .sec .diagram svg .bx{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
+  .sec .diagram svg .wing{fill:var(--surface);stroke:var(--ink-2);stroke-width:2}
+  .sec .diagram svg .dot{fill:var(--accent)}
+  @media (max-width:520px){.fgrid,.compare{grid-template-columns:1fr}}
+  .fgrid > *,.compare > *,.tools > *{min-width:0}
+  .fcard .f{max-width:100%}
+
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) {}
+  .diagram svg{min-width:520px}
+
+  .part{display:flex;align-items:center;gap:10px;margin:34px 0 4px;padding:8px 14px;border-radius:var(--radius-sm);background:color-mix(in srgb,var(--accent) 14%,var(--surface-2));border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));font-size:15px;font-weight:800;color:var(--ink)}
+  .part + h3.sub{margin-top:16px}
+  nav.toc a .chn{flex:0 0 auto;min-width:18px;color:var(--brand);font-weight:800;font-size:12px}
+  section.sec > h2 .en{font-weight:700}
+
+  section.sec{--accent:var(--acc,var(--brand))}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) section.sec{--accent:color-mix(in srgb,var(--acc,var(--brand)) 62%,#ffffff)}:root:not([data-theme="light"]) section.sec > h2 .num,:root:not([data-theme="light"]) .steps li::before{color:#06121a}}
+  :root[data-theme="dark"] section.sec{--accent:color-mix(in srgb,var(--acc,var(--brand)) 62%,#ffffff)}
+  :root[data-theme="dark"] section.sec > h2 .num,:root[data-theme="dark"] .steps li::before{color:#06121a}
+  .diagram svg[aria-label="PAPI indications"]{min-width:0;max-width:420px}
+  td.num{white-space:normal}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--ink-2)"/></marker>
+    <marker id="a-ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--accent)"/></marker>
+    <marker id="a-rd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--red-arc)"/></marker>
+    <marker id="a-gn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--green-arc)"/></marker>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand-mark">
+      <div class="plane">🎧</div>
+      <div class="txt">
+        <h1>Communications — Pilot's Guide</h1>
+        <div class="sub">Radiotelephony for airline pilots · Airline pilot theory</div>
+      </div>
+    </div>
+    <button class="menu-btn" id="menuBtn">☰ Contents</button>
+  </div>
+</header>
+
+<div class="toc-scrim" id="scrim"></div>
+
+<div class="shell">
+  <nav class="toc" id="toc">
+    <div class="toc-close"><span style="font-size:13px;color:var(--muted);font-weight:700">Contents</span><button id="closeToc">✕</button></div>
+    <h2>Chapters</h2>
+    <ol>
+      <li><a href="#tools"><span class="n">🧰</span> Quick tools &amp; cheat sheet</a></li>
+      <li><a href="#ch1"><span class="n">📖</span> <b class="chn">1</b> Definitions</a></li>
+      <li><a href="#ch2"><span class="n">🎧</span> <b class="chn">2</b> General Operating Procedures</a></li>
+      <li><a href="#ch3"><span class="n">💬</span> <b class="chn">3</b> Phraseology</a></li>
+      <li><a href="#ch4"><span class="n">⛅</span> <b class="chn">4</b> Weather Information</a></li>
+      <li><a href="#ch5"><span class="n">🆘</span> <b class="chn">5</b> Failures and Emergencies</a></li>
+      <li><a href="#ch6"><span class="n">🛫</span> <b class="chn">6</b> IFR Communications</a></li>
+      <li><a href="#ch7"><span class="n">📡</span> <b class="chn">7</b> VHF Propagation</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <span class="cloud">🎧</span>
+      <h1>🎧 Communications</h1>
+      <p>
+        The words, numbers and procedures that keep pilots and controllers talking about the same thing — and the physics of the radio wave that carries them. Each chapter opens with the one idea to hold on to, then the phrases, the comparisons that cause most mistakes, and worked examples you can open.
+      </p>
+      <div class="tags">
+        <span class="tag">7 chapters</span>
+        <span class="tag">634 linked questions</span>
+        <span class="tag">🧮 Quick tools</span>
+        <span class="tag">📋 Cheat sheet</span>
+        <span class="tag">Aircraft-independent</span>
+      </div>
+      <div class="tip"><span class="label">✈️ How to use this guide</span> Each chapter carries the same number as its practice topic. When you get a question wrong, jump to that chapter, read the key idea and the examples, then go back and practise. Radiotelephony is precise wording: the cheat sheet collects the codes and numbers that come up most.</div>
+    </div>
+
+    <section class="sec" id="tools" data-icon="🧰" style="--acc:#2f5fb3">
+      <h2><span class="num">🧰</span> Quick tools &amp; cheat sheet <span class="en">play with the numbers</span></h2>
+      <p class="lead">Five small helpers for what radiotelephony asks again and again — how far VHF reaches, how a frequency or a call sign is spoken — and a one-screen list of the essentials.</p>
+
+      <div class="tools">
+        <div class="tool">
+          <h3>📡 VHF range</h3>
+          <label>Aircraft altitude (ft)</label><input type="number" inputmode="decimal" id="vrA" value="10000" min="0">
+          <label>Ground aerial height (ft, 0 if not given)</label><input type="number" inputmode="decimal" id="vrG" value="400" min="0">
+          <div class="out" id="vrOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🗣️ Say a frequency</h3>
+          <label>Frequency (MHz)</label><input type="text" id="fqF" value="118.025">
+          <div class="out" id="fqOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🔤 Spell a call sign</h3>
+          <label>Registration or call sign</label><input type="text" id="csC" value="G-BODA">
+          <div class="out" id="csOut2"></div>
+        </div>
+        <div class="tool">
+          <h3>🧭 QDM ⇄ QDR</h3>
+          <label>Bearing given (°)</label><input type="number" inputmode="decimal" id="qdB" value="090" min="0" max="360">
+          <label>It is a QDM or a QDR</label><input type="text" id="qdT" value="QDM">
+          <div class="out" id="qdOut"></div>
+        </div>
+        <div class="tool">
+          <h3>〰️ Wavelength</h3>
+          <label>Frequency (MHz)</label><input type="number" inputmode="decimal" id="wlF" value="120" min="0">
+          <div class="out" id="wlOut"></div>
+        </div>
+      </div>
+
+      <h3 class="sub">📋 Cheat sheet — essentials</h3>
+      <div class="table-wrap cheat">
+        <table>
+          <thead><tr><th>Idea</th><th class="num">Number / rule</th></tr></thead>
+          <tbody>
+            <tr><td>🆘 Distress / urgency</td><td class="num">MAYDAY ×3 · PAN PAN ×3</td></tr>
+            <tr><td>🚨 Transponder</td><td class="num">7700 emergency · 7600 radio failure · 7500 unlawful interference</td></tr>
+            <tr><td>📻 Emergency frequency</td><td class="num">121.5 MHz</td></tr>
+            <tr><td>🔊 Readability</td><td class="num">1 unreadable … 5 perfectly readable</td></tr>
+            <tr><td>📶 Voice band</td><td class="num">118–136.975 MHz · AM · 8.33 / 25 kHz</td></tr>
+            <tr><td>📡 VHF range</td><td class="num">1.23 × (√h aerial + √h aircraft) NM</td></tr>
+            <tr><td>⏱️ Second call</td><td class="num">wait at least 10 s</td></tr>
+            <tr><td>🛬 Final / long final</td><td class="num">4 NM · beyond 4 NM (8 NM straight-in)</td></tr>
+            <tr><td>📵 IFR radio failure</td><td class="num">7 min (radar) · 20 min (no radar) · land within 30 min of ETA/EAT</td></tr>
+            <tr><td>☁️ CAVOK</td><td class="num">vis ≥ 10 km · no cloud below 5000 ft or MSA · no CB · no weather</td></tr>
+            <tr><td>🧭 DF bearing classes</td><td class="num">A ±2° · B ±5° · C ±10° · D worse</td></tr>
+            <tr><td>🕰️ Time</td><td class="num">UTC, 24-hour clock, digit by digit</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sec" id="ch1" data-icon="📖" style="--acc:#2f5fb3">
+      <h2><span class="num">1</span> Definitions <span class="en">Chapter 1</span></h2>
+      <p class="lead">Radio is a narrow, noisy channel. The alphabet, the way numbers are spoken and the exact meaning of each word are what make a message survive it.</p>
+      <div class="glance"><span>🎯 Phonetic alphabet</span><span>🎯 Numbers digit by digit</span><span>🎯 Six-digit frequencies</span><span>🎯 Frequency bands</span><span>🎯 Message priority</span><span>🎯 VHF range</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Every digit is spoken on its own.</strong> 10 is "wun zero", never "ten". Each digit then stands or falls on its own, and one misheard sound cannot change the whole number.</p></div>
+      <h3 class="sub">How numbers sound</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th class="num">Digit</th><th>Say</th><th class="num">Digit</th><th>Say</th></tr></thead>
+          <tbody>
+            <tr><td class="num">0</td><td>ZE-RO</td><td class="num">5</td><td>FIFE</td></tr>
+            <tr><td class="num">1</td><td>WUN</td><td class="num">6</td><td>SIX</td></tr>
+            <tr><td class="num">2</td><td>TOO</td><td class="num">7</td><td>SEV-en</td></tr>
+            <tr><td class="num">3</td><td>TREE</td><td class="num">8</td><td>AIT</td></tr>
+            <tr><td class="num">4</td><td>FOW-er</td><td class="num">9</td><td>NIN-er</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Decimal is "DAY-SEE-MAL"; hundred and thousand are used for round altitudes, heights and cloud ("wun tousand fife hundred").</p>
+      <h3 class="sub">Frequencies</h3>
+      <ul>
+        <li>📶 Channels were 25 kHz apart; in busy airspace they are split three ways to <strong>8.33 kHz</strong>.</li>
+        <li>🔢 All six digits are passed (132.835), unless the last two are both zero.</li>
+      </ul>
+      <h3 class="sub">Bands</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Band</th><th class="num">Range</th></tr></thead>
+          <tbody>
+            <tr><td>MF</td><td class="num">300–3000 kHz</td></tr>
+            <tr><td>HF</td><td class="num">3–30 MHz</td></tr>
+            <tr><td>VHF</td><td class="num">30–300 MHz</td></tr>
+            <tr><td>UHF</td><td class="num">300–3000 MHz</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3 class="sub">Message priority</h3>
+      <ol class="steps">
+        <li>Distress (MAYDAY)</li>
+        <li>Urgency (PAN PAN), including medical transports</li>
+        <li>Direction finding</li>
+        <li>Flight safety</li>
+        <li>Meteorological</li>
+        <li>Flight regularity</li>
+      </ol>
+      <h3 class="sub">Service hours</h3>
+      <p>H24 continuous · HJ sunrise to sunset · HN sunset to sunrise · HS scheduled hours · HO as needed · HX no fixed hours.</p>
+      <details class="example"><summary>Worked example — VHF range</summary><div class="body">
+        <p>An aircraft at 10 000 ft talks to an aerial 400 ft high. Range ≈ 1.23 × (√400 + √10 000) = 1.23 × (20 + 100) ≈ <strong>148 NM</strong>. Ignoring the aerial gives 123 NM.</p>
+      </div></details>
+      <div class="related"><span class="dot"></span> Practise: 01 Definitions</div>
+    </section>
+
+    <section class="sec" id="ch2" data-icon="🎧" style="--acc:#3a7bd5">
+      <h2><span class="num">2</span> General Operating Procedures <span class="en">Chapter 2</span></h2>
+      <p class="lead">Technique, call signs, standard words, read-back and the radar instructions every pilot hears.</p>
+      <div class="glance"><span>🎯 Speaking technique</span><span>🎯 Time</span><span>🎯 Standard words</span><span>🎯 Call sign types</span><span>🎯 Read-back</span><span>🎯 Conditional clearances</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Read back anything that, if misheard, could put the aircraft in the wrong place</strong> — clearances, levels, headings with the direction of turn, speeds, runways, frequencies and squawks — and end the read-back with your call sign.</p></div>
+      <h3 class="sub">Technique</h3>
+      <ul>
+        <li>🗣️ About 100 words per minute; slower when the other station must write it down.</li>
+        <li>⏳ Listen before transmitting; wait at least <strong>10 seconds</strong> before calling again.</li>
+        <li>🕰️ UTC, 24-hour clock: 0803 is "zero tree" or "zero ait zero tree".</li>
+      </ul>
+      <h3 class="sub">Words that mean exactly one thing</h3>
+      <div class="compare">
+        <div class="card acc"><h4>ROGER</h4><p>I have received all of your last transmission. Never an answer to a question.</p></div>
+        <div class="card good"><h4>WILCO</h4><p>I understand and will comply.</p></div>
+        <div class="card mid"><h4>AFFIRM / NEGATIVE</h4><p>Yes / no (or permission not granted).</p></div>
+        <div class="card bad"><h4>STANDBY</h4><p>Wait and I will call you. Not an approval or a refusal.</p></div>
+      </div>
+      <h3 class="sub">Call signs</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th class="num">Type</th><th>Full</th><th>Abbreviated</th></tr></thead>
+          <tbody>
+            <tr><td class="num">A</td><td>Registration: G-BODA, N57826</td><td>First character + at least last two: G-DA, N26</td></tr>
+            <tr><td class="num">B</td><td>Telephony designator + last four of registration</td><td>Designator + last two</td></tr>
+            <tr><td class="num">C</td><td>Telephony designator + flight number: Northwind 937</td><td>Not abbreviated</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Only the ground station may abbreviate first; the pilot follows.</p>
+      <h3 class="sub">Direction finding</h3>
+      <ul>
+        <li>🧭 <strong>QDM</strong>: magnetic heading to steer to the station (zero wind). <strong>QDR</strong>: magnetic bearing from it. They differ by 180°.</li>
+        <li>🎯 Bearing classes: A ±2°, B ±5°, C ±10°, D worse.</li>
+      </ul>
+      <h3 class="sub">Radar and conditional clearances</h3>
+      <ul>
+        <li>↩️ "Left heading 300" — the direction of turn is part of the read-back.</li>
+        <li>🔁 "Orbit right" means keep orbiting until told; "one orbit right" means one 360°.</li>
+        <li>⚡ "Avoiding action" means turn now: there is a risk of collision.</li>
+        <li>⏸️ Conditional clearance: call sign, condition, clearance, condition again — "behind the landing Airbus, line up and wait, behind".</li>
+      </ul>
+      <div class="memory"><span class="label">🧠 Memory hook</span> ROGER says "heard it", WILCO says "doing it". Never say both — WILCO already includes ROGER.</div>
+      <div class="related"><span class="dot"></span> Practise: 02 General Operating Procedures</div>
+    </section>
+
+    <section class="sec" id="ch3" data-icon="💬" style="--acc:#1f9d8a">
+      <h2><span class="num">3</span> Phraseology <span class="en">Chapter 3</span></h2>
+      <p class="lead">The standard words for each phase of a flight, from the start-up call to the vacated runway.</p>
+      <div class="glance"><span>🎯 Levels</span><span>🎯 Position reports</span><span>🎯 Taxi and take-off</span><span>🎯 Circuit calls</span><span>🎯 Approach clearances</span><span>🎯 ACAS reports</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>"Take-off" is said only when the aircraft is cleared to take off</strong> (or the clearance is cancelled). Everywhere else the word is "departure", so a stray "take-off" can never be mistaken for a clearance.</p></div>
+      <h3 class="sub">Levels</h3>
+      <ul>
+        <li>⬆️ "Climb to FL120", "descend to altitude 3000 feet".</li>
+        <li>🚀 "Expedite climb" — best practicable rate.</li>
+        <li>📍 "Cross KELBY at or above FL110" — any level from FL110 upwards.</li>
+        <li>🛰️ ACAS: report "TCAS RA" when manoeuvring, then "clear of conflict, returning to …".</li>
+      </ul>
+      <h3 class="sub">On the ground</h3>
+      <ul>
+        <li>🚜 Request start-up and push-back; read back the taxi route and every <strong>hold short</strong> instruction.</li>
+        <li>🛫 "Line up and wait", "cleared for take-off", "cancel take-off — I say again, cancel take-off".</li>
+        <li>🔁 "Go around" is read back; the pilot says "going around".</li>
+      </ul>
+      <h3 class="sub">Circuit calls</h3>
+      <div class="compare">
+        <div class="card acc"><h4>Downwind</h4><p>Abeam the upwind end of the runway.</p></div>
+        <div class="card mid"><h4>Final</h4><p>Within <strong>4 NM</strong> of touchdown.</p></div>
+        <div class="card good"><h4>Long final</h4><p>Turning final beyond 4 NM, or at 8 NM on a straight-in approach.</p></div>
+      </div>
+      <h3 class="sub">Weather and approach</h3>
+      <ul>
+        <li>💨 Wind: mean direction and speed, plus variations: "270 degrees 15 knots gusting 25".</li>
+        <li>🛬 "Cleared ILS approach runway 27"; "report established on the localiser".</li>
+        <li>7️⃣ Squawk 7000 is the general conspicuity code in many regions when no code is assigned.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 03 Phraseology</div>
+    </section>
+
+    <section class="sec" id="ch4" data-icon="⛅" style="--acc:#e09a1f">
+      <h2><span class="num">4</span> Weather Information <span class="en">Chapter 4</span></h2>
+      <p class="lead">Where weather comes from in flight — ATIS, VOLMET, reports from ATC — and how it is spoken.</p>
+      <div class="glance"><span>🎯 ATIS</span><span>🎯 VOLMET</span><span>🎯 Cloud amounts</span><span>🎯 Visibility units</span><span>🎯 CAVOK</span><span>🎯 Braking action</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>ATIS is for one aerodrome and has a letter; VOLMET is for several aerodromes and runs on a loop.</strong> Acknowledge the ATIS letter on first contact so ATC knows you have it.</p></div>
+      <h3 class="sub">Cloud amounts</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Term</th><th class="num">Oktas</th></tr></thead>
+          <tbody>
+            <tr><td>FEW</td><td class="num">1–2</td></tr>
+            <tr><td>SCATTERED</td><td class="num">3–4</td></tr>
+            <tr><td>BROKEN</td><td class="num">5–7</td></tr>
+            <tr><td>OVERCAST</td><td class="num">8</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li>👁️ Visibility in metres below 5 km, in kilometres from 5 km up.</li>
+        <li>☀️ CAVOK: visibility 10 km or more, no cloud below 5000 ft or the highest MSA (whichever is higher), no cumulonimbus, no significant weather.</li>
+        <li>🛞 Braking action may be passed as a measured coefficient (0.37 → "37") or a band from good to poor.</li>
+      </ul>
+      <details class="example"><summary>Worked example — is it CAVOK?</summary><div class="body">
+        <p>Visibility 15 km, scattered cloud at 6000 ft, highest MSA 6500 ft. The cloud is below the MSA, which is higher than 5000 ft, so it is <strong>not CAVOK</strong>.</p>
+      </div></details>
+      <div class="related"><span class="dot"></span> Practise: 04 Weather Information</div>
+    </section>
+
+    <section class="sec" id="ch5" data-icon="🆘" style="--acc:#c0392b">
+      <h2><span class="num">5</span> Failures and Emergencies <span class="en">Chapter 5</span></h2>
+      <p class="lead">Distress, urgency, radio failure and unlawful interference: what to say, where, and who keeps quiet.</p>
+      <div class="glance"><span>🎯 Distress and urgency</span><span>🎯 The distress message</span><span>🎯 Imposing silence</span><span>🎯 Medical transports</span><span>🎯 Radio failure</span><span>🎯 7500</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Distress is grave and imminent danger needing immediate help; urgency is a serious concern that does not.</strong> MAYDAY three times for one, PAN PAN three times for the other.</p></div>
+      <h3 class="sub">The distress message</h3>
+      <ol class="steps">
+        <li>MAYDAY MAYDAY MAYDAY</li>
+        <li>Station addressed (if time allows)</li>
+        <li>Call sign</li>
+        <li>Nature of the emergency</li>
+        <li>Intentions of the commander</li>
+        <li>Position, level and heading</li>
+        <li>Any other useful information</li>
+      </ol>
+      <ul>
+        <li>📻 Use the frequency in use first; 121.5 MHz if needed.</li>
+        <li>🤫 The station controlling the distress imposes silence: "Stop transmitting — MAYDAY". It ends with "distress traffic ended".</li>
+        <li>🚑 "PAN PAN MEDICAL" marks a protected medical transport.</li>
+        <li>📟 Squawk 7700 for an emergency, 7600 for radio failure, 7500 for unlawful interference.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 05 Failures and Emergencies</div>
+    </section>
+
+    <section class="sec" id="ch6" data-icon="🛫" style="--acc:#7a5cf0">
+      <h2><span class="num">6</span> IFR Communications <span class="en">Chapter 6</span></h2>
+      <p class="lead">Instrument flight brings position reports, weather reports from the aircraft, SELCAL and the radio failure procedure.</p>
+      <div class="glance"><span>🎯 HEAVY in the call sign</span><span>🎯 Level reports</span><span>🎯 Position report</span><span>🎯 Air-report sections</span><span>🎯 Radio failure</span><span>🎯 SELCAL</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>With radio failure, be predictable.</strong> Squawk 7600, hold the last speed and level for 7 minutes (radar) or 20 minutes (no radar), then fly the flight plan, start the approach at the expected time and land within 30 minutes.</p></div>
+      <ul>
+        <li>🐘 Heavy aircraft (136 000 kg or more) add "HEAVY" on first contact.</li>
+        <li>📏 Level is reported as a flight level on standard pressure, as an altitude on QNH.</li>
+        <li>🚫 "Unable" plus the reason when an instruction cannot be followed.</li>
+      </ul>
+      <h3 class="sub">Position report</h3>
+      <p>Call sign · position · time · level · next position and time · ensuing significant point. The last three may be left out when the controller allows.</p>
+      <h3 class="sub">Air-report sections</h3>
+      <div class="compare">
+        <div class="card acc"><h4>Section 1</h4><p>Position: call sign, position, time, level, next point.</p></div>
+        <div class="card mid"><h4>Section 2</h4><p>Operational: ETA, endurance.</p></div>
+        <div class="card good"><h4>Section 3</h4><p>Weather: temperature, wind, turbulence, icing, humidity.</p></div>
+      </div>
+      <p>SELCAL sends four audio tones, about 2 seconds long, so the crew need not listen to HF all the time.</p>
+      <div class="related"><span class="dot"></span> Practise: 06 IFR Communications</div>
+    </section>
+
+    <section class="sec" id="ch7" data-icon="📡" style="--acc:#14a39a">
+      <h2><span class="num">7</span> VHF Propagation <span class="en">Chapter 7</span></h2>
+      <p class="lead">Why VHF is line of sight, how far it reaches, and what spoils it.</p>
+      <div class="glance"><span>🎯 Speed and wavelength</span><span>🎯 The bands</span><span>🎯 118–136.975 MHz</span><span>🎯 AM and bandwidth</span><span>🎯 Line of sight</span><span>🎯 Ducting</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Above about 30 MHz the only useful path is the direct (space) wave.</strong> Range is set by height: 1.23 × (√h₁ + √h₂) NM, with heights in feet.</p></div>
+      <ul>
+        <li>⚡ Radio waves travel at about 300 000 km/s (about 162 000 NM per second).</li>
+        <li>〰️ Wavelength = 300 / frequency in MHz (metres): 120 MHz → 2.5 m.</li>
+        <li>📶 Voice 118–136.975 MHz, navigation 108–117.95 MHz, broadcast FM 88–107.95 MHz.</li>
+        <li>🎚️ VHF voice uses double-sideband AM (A3E); 5 kHz of audio needs 10 kHz of bandwidth.</li>
+        <li>🌫️ A temperature inversion can trap the wave in a duct and carry it far beyond normal range.</li>
+        <li>🔇 Two equal waves 180° out of phase cancel completely.</li>
+      </ul>
+      <details class="example"><summary>Worked example — aerial height</summary><div class="body">
+        <p>An aircraft at 2500 ft needs 100 NM. 100 / 1.23 = 81.3. The aircraft term is √2500 = 50, so √h₁ = 31.3 and the aerial must be about <strong>980 ft</strong> high.</p>
+      </div></details>
+      <div class="related"><span class="dot"></span> Practise: 07 VHF Propagation</div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  Communications — Pilot's Guide · general principles, independent of any aircraft or operator.
+  Phraseology varies by State: always check your AIP and your instructor's briefing. 🎧
+</footer>
+
+<button id="top-btn" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  var toc = document.getElementById('toc');
+  var scrim = document.getElementById('scrim');
+  var menuBtn = document.getElementById('menuBtn');
+  var closeToc = document.getElementById('closeToc');
+  function openToc(){ toc.classList.add('open'); scrim.classList.add('show'); }
+  function shutToc(){ toc.classList.remove('open'); scrim.classList.remove('show'); }
+  if (menuBtn) menuBtn.addEventListener('click', openToc);
+  if (closeToc) closeToc.addEventListener('click', shutToc);
+  if (scrim) scrim.addEventListener('click', shutToc);
+  var tocLinks = document.querySelectorAll('nav.toc a');
+  tocLinks.forEach(function(a){ a.addEventListener('click', function(){ shutToc(); }); });
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section.sec[id]'));
+  var linkFor = {};
+  tocLinks.forEach(function(a){ linkFor[a.getAttribute('href').slice(1)] = a; });
+  function onScroll(){
+    var y = window.scrollY + 110, current = sections[0];
+    for (var i = 0; i < sections.length; i++){ if (sections[i].offsetTop <= y) current = sections[i]; }
+    tocLinks.forEach(function(a){ a.classList.remove('active'); });
+    if (current && linkFor[current.id]) linkFor[current.id].classList.add('active');
+    var topBtn = document.getElementById('top-btn');
+    if (topBtn) topBtn.classList.toggle('show', window.scrollY > 500);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  var topBtn = document.getElementById('top-btn');
+  if (topBtn) topBtn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  
+  /* ---- quick tools ---- */
+  function num(id){ var v = parseFloat(document.getElementById(id).value); return isFinite(v) ? v : NaN; }
+  function put(id, html){ document.getElementById(id).innerHTML = html; }
+  var DIG = ['ZE-RO','WUN','TOO','TREE','FOW-er','FIFE','SIX','SEV-en','AIT','NIN-er'];
+  var ALPHA = {A:'Alfa',B:'Bravo',C:'Charlie',D:'Delta',E:'Echo',F:'Foxtrot',G:'Golf',H:'Hotel',I:'India',J:'Juliett',K:'Kilo',L:'Lima',M:'Mike',N:'November',O:'Oscar',P:'Papa',Q:'Quebec',R:'Romeo',S:'Sierra',T:'Tango',U:'Uniform',V:'Victor',W:'Whiskey',X:'X-ray',Y:'Yankee',Z:'Zulu'};
+  function range(){
+    var a = num('vrA'), g = num('vrG');
+    if (!(a >= 0) || !(g >= 0)) { put('vrOut', 'Enter both heights in feet.'); return; }
+    var r = 1.23 * (Math.sqrt(a) + Math.sqrt(g));
+    put('vrOut', '1.23 × (√' + g + ' + √' + a + ') = 1.23 × (' + Math.sqrt(g).toFixed(1) + ' + ' + Math.sqrt(a).toFixed(1) + ')<br>Range ≈ <b>' + Math.round(r) + ' NM</b>');
+  }
+  function freq(){
+    var f = (document.getElementById('fqF').value || '').trim();
+    var m = f.match(/^(\d{3})\.(\d{1,3})$/);
+    if (!m) { put('fqOut', 'Type a frequency such as 118.025 or 132.835.'); return; }
+    var dec = (m[2] + '000').slice(0, 3);
+    var v = parseFloat(m[1] + '.' + dec);
+    var note = (v < 118 || v > 136.99) ? '<br>⚠️ Outside the voice band 118–136.975 MHz.' : '';
+    var spoken = dec.slice(1) === '00' ? dec.slice(0, 1) : dec;
+    var words = m[1].split('').map(function(d){ return DIG[+d]; }).concat(['DAY-SEE-MAL']).concat(spoken.split('').map(function(d){ return DIG[+d]; }));
+    put('fqOut', '<b>' + words.join(' ') + '</b>' + (dec.slice(1) === '00' ? '<br>Last two digits are zero, so only the first after the decimal is said.' : '') + note);
+  }
+  function callsign(){
+    var c = (document.getElementById('csC').value || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+    if (!c) { put('csOut2', 'Type a registration such as G-BODA.'); return; }
+    var w = c.split('').map(function(ch){ return /\d/.test(ch) ? DIG[+ch] : ALPHA[ch]; });
+    var ab = c.length > 3 ? c[0] + '-' + c.slice(-2) : c;
+    put('csOut2', '<b>' + w.join(' ') + '</b><br>Abbreviated (once the ground station has done so): <b>' + ab + '</b>');
+  }
+  function qd(){
+    var b = num('qdB'), t = (document.getElementById('qdT').value || '').trim().toUpperCase();
+    if (!(b >= 0 && b <= 360)) { put('qdOut', 'Enter a bearing from 0 to 360.'); return; }
+    if (t !== 'QDM' && t !== 'QDR') { put('qdOut', 'Type QDM or QDR.'); return; }
+    var r = (b + 180) % 360; if (r === 0) r = 360;
+    var s = ('00' + Math.round(r)).slice(-3), o = ('00' + Math.round(b)).slice(-3);
+    if (t === 'QDM') put('qdOut', 'Steer <b>' + o + '°</b> to the station (zero wind)<br>You are on the <b>' + s + '°</b> radial: QDR ' + s);
+    else put('qdOut', 'You are on the <b>' + o + '°</b> radial<br>Steer <b>' + s + '°</b> to the station: QDM ' + s);
+  }
+  function wave(){
+    var f = num('wlF');
+    if (!(f > 0)) { put('wlOut', 'Enter a frequency in MHz.'); return; }
+    var l = 300 / f;
+    var band = f < 0.3 ? 'LF or below' : f < 3 ? 'MF' : f < 30 ? 'HF' : f < 300 ? 'VHF' : f < 3000 ? 'UHF' : 'SHF or above';
+    put('wlOut', 'λ = 300 / ' + f + ' = <b>' + (l >= 1 ? l.toFixed(2) + ' m' : (l * 100).toFixed(1) + ' cm') + '</b><br>Band: ' + band);
+  }
+  [['vrA',range],['vrG',range],['fqF',freq],['csC',callsign],['qdB',qd],['qdT',qd],['wlF',wave]].forEach(function(p){
+    var el = document.getElementById(p[0]); if (el) el.addEventListener('input', p[1]);
+  });
+  range(); freq(); callsign(); qd(); wave();
+
+})();
+</script>
+</body>
+</html>
