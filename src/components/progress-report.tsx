@@ -4,7 +4,7 @@ import { ProgressTopics } from "@/components/progress-topics";
 import { MIN_ANSWERED_FOR_WEAK, mergeTopics } from "@/lib/topic-tabs";
 import { ProgressChart } from "@/components/progress-chart";
 import { ALL_QUESTIONS, buildTestHref } from "@/lib/test-options";
-import { Badge, Card, EmptyState, ScoreBar } from "@/components/ui";
+import { Badge, Card, EmptyState } from "@/components/ui";
 import type {
   PractisedAircraft,
   ProgressSummary,
