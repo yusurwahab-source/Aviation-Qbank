@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
+import { BottomNav } from "@/components/bottom-nav";
 import { ContactWidget } from "@/components/contact-widget";
 import { ServiceWorker } from "@/components/service-worker";
 import { SiteAnnouncement } from "@/components/site-announcement";
@@ -10,6 +11,7 @@ import { ThemeScript } from "@/components/theme-toggle";
 import { UpgradePrompt } from "@/components/upgrade-prompt";
 import { VerifyEmailBanner } from "@/components/verify-email-banner";
 import { siteConfig } from "@/config/site";
+import { getCurrentUser } from "@/lib/auth/session";
 import { canonicalUrl } from "@/lib/canonical-url";
 
 import { fontDisplay, fontReading } from "./fonts";
@@ -62,7 +64,14 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
+  let signedIn = false;
+  try {
+    signedIn = (await getCurrentUser()) !== null;
+  } catch {
+    signedIn = false;
+  }
+
   return (
     // The theme script sets `data-theme` before React hydrates, which is a
     // difference React would otherwise complain about on the <html> element.
@@ -91,6 +100,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         <SiteFooter />
         <UpgradePrompt />
+        <BottomNav signedIn={signedIn} />
         <ContactWidget />
         <ServiceWorker />
       </body>

@@ -46,8 +46,7 @@ export function ContactWidget() {
   return (
     <div
       ref={rootRef}
-      className="fixed right-4 z-30 flex flex-col items-end gap-3"
-      style={{ bottom: "max(1rem, env(safe-area-inset-bottom))" }}
+      className="fixed bottom-[calc(4.75rem+env(safe-area-inset-bottom))] right-4 z-30 flex flex-col items-end gap-3 md:bottom-[max(1rem,env(safe-area-inset-bottom))]"
     >
       {open ? (
         <div
