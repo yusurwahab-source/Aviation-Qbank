@@ -4,22 +4,22 @@ const STEPS = [
   {
     title: "Create a free account",
     detail:
-      "Practising itself never requires one — but signing up means every answer is saved as you give it, so an abandoned test still counts and a refresh resumes rather than restarts.",
+      "Practising never requires one, but with an account every answer is saved as you give it, so a refresh resumes.",
   },
   {
     title: "Study system by system, with instant explanations",
     detail:
-      "Pick one system or several. In Study mode the correct answer and the reasoning appear the moment you answer each question, not at the end.",
+      "Pick one system or several. In Study mode the answer and the reasoning appear the moment you answer.",
   },
   {
     title: "Sit a timed mock exam",
     detail:
-      "Exam mode holds every answer back until Finish and gives you one minute a question — the same pressure as the real thing, with nothing shown until it hands itself in.",
+      "Exam mode holds every answer back until Finish and gives you one minute a question.",
   },
   {
     title: "Track mastery and close your gaps",
     detail:
-      "Your progress report breaks performance down by system and collects the questions you most recently got wrong, so you know exactly what to study next.",
+      "Your report breaks performance down by system and collects the questions you got wrong, so you know what to study next.",
   },
 ];
 

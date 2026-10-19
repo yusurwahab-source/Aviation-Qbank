@@ -5,7 +5,7 @@ import { notFound, redirect } from "next/navigation";
 import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { ProgressReport, type ProgressReportData } from "@/components/progress-report";
 import { PageHeading } from "@/components/ui";
-import { getAircraft } from "@/db/queries";
+import { getAircraft, listTopics } from "@/db/queries";
 import {
   getProgressOverTime,
   getQuestionsToRetry,
@@ -38,13 +38,14 @@ export default async function AircraftProgressPage({ params }: PageProps) {
     if (!plane) notFound();
     name = plane.name;
 
-    const [summary, topics, scores, retry] = await Promise.all([
+    const [summary, topics, scores, retry, topicList] = await Promise.all([
       getSummary(user.id, aircraftCode),
       getTopicPerformance(user.id, aircraftCode),
       getProgressOverTime(user.id, aircraftCode),
       getQuestionsToRetry(user.id, aircraftCode),
+      listTopics(aircraftCode),
     ]);
-    data = { summary, topics, scores, retry, aircraftCode };
+    data = { summary, topics, scores, retry, aircraftCode, allTopics: topicList.map((item) => item.topic) };
   } catch (error) {
     if ((error as { digest?: string }).digest?.startsWith("NEXT_")) throw error;
     return (

@@ -453,7 +453,7 @@ export function TestBuilder({
             return (
               <label
                 key={option.value}
-                className={`flex cursor-pointer gap-3 rounded-lg border p-4 transition ${
+                className={`flex cursor-pointer gap-3 rounded-lg border p-3 transition ${
                   active ? "border-brand bg-brand-soft" : "border-border bg-surface hover:border-brand"
                 }`}
               >
@@ -467,8 +467,8 @@ export function TestBuilder({
                 />
                 <span>
                   <span className="block text-sm font-medium text-foreground">{option.title}</span>
-                  <span className="mt-1 block text-sm text-muted-foreground">{option.detail}</span>
-                  <span className="mt-1.5 block text-sm font-medium text-muted-foreground">
+                  <span className="mt-1 block text-xs text-muted-foreground sm:text-sm">{option.detail}</span>
+                  <span className="mt-1 block text-xs font-medium text-muted-foreground sm:text-sm">
                     {option.clock}
                   </span>
                 </span>
@@ -478,29 +478,31 @@ export function TestBuilder({
         </div>
       </fieldset>
 
-      {size > 0 ? (
-        <Link
-          href={href}
-          className="inline-block rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
-        >
-          Start test · {size} {size === 1 ? "question" : "questions"}
-        </Link>
-      ) : remainingFree === 0 ? (
-        <Link
-          href={allowanceKind === "preview" ? "/signup" : "/upgrade"}
-          className="inline-block rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
-        >
-          {allowanceKind === "preview" ? "Sign up to keep going" : "Upgrade to keep going"}
-        </Link>
-      ) : (
-        <button
-          type="button"
-          disabled
-          className="inline-block cursor-not-allowed rounded-lg bg-surface-muted px-5 py-3 text-sm font-semibold text-muted-foreground"
-        >
-          Start test
-        </button>
-      )}
+      <div className="sticky bottom-[calc(4rem+env(safe-area-inset-bottom))] z-20 -mx-4 border-t border-border bg-surface-elevated/95 px-4 py-3 backdrop-blur md:bottom-0 sm:mx-0 sm:rounded-lg sm:border">
+        {size > 0 ? (
+          <Link
+            href={href}
+            className="tap-target flex w-full items-center justify-center rounded-lg bg-brand px-5 py-3 sm:w-auto sm:inline-flex text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
+          >
+            Start test · {size} {size === 1 ? "question" : "questions"}
+          </Link>
+        ) : remainingFree === 0 ? (
+          <Link
+            href={allowanceKind === "preview" ? "/signup" : "/upgrade"}
+            className="tap-target flex w-full items-center justify-center rounded-lg bg-brand px-5 py-3 sm:w-auto sm:inline-flex text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
+          >
+            {allowanceKind === "preview" ? "Sign up to keep going" : "Upgrade to keep going"}
+          </Link>
+        ) : (
+          <button
+            type="button"
+            disabled
+            className="tap-target flex w-full cursor-not-allowed items-center justify-center rounded-lg bg-surface-muted px-5 py-3 sm:w-auto sm:inline-flex text-sm font-semibold text-muted-foreground"
+          >
+            Start test
+          </button>
+        )}
+      </div>
     </div>
   );
 }
