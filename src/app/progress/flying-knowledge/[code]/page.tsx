@@ -5,7 +5,7 @@ import { notFound, redirect } from "next/navigation";
 import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { ProgressReport, type ProgressReportData } from "@/components/progress-report";
 import { PageHeading } from "@/components/ui";
-import { getFlyingKnowledgeSubject } from "@/db/flying-knowledge-queries";
+import { getFlyingKnowledgeSubject, listFlyingKnowledgeTopics } from "@/db/flying-knowledge-queries";
 import {
   getProgressOverTime,
   getQuestionsToRetry,
@@ -51,13 +51,14 @@ export default async function FlyingKnowledgeProgressPage({ params }: PageProps)
     if (!subject) notFound();
     name = subject.name;
 
-    const [summary, topics, scores, retry] = await Promise.all([
+    const [summary, topics, scores, retry, topicList] = await Promise.all([
       getSummary(user.id, subjectCode),
       getTopicPerformance(user.id, subjectCode),
       getProgressOverTime(user.id, subjectCode),
       getQuestionsToRetry(user.id, subjectCode),
+      listFlyingKnowledgeTopics(subjectCode),
     ]);
-    data = { summary, topics, scores, retry, aircraftCode: subjectCode };
+    data = { summary, topics, scores, retry, aircraftCode: subjectCode, allTopics: topicList.map((item) => item.topic) };
   } catch (error) {
     if ((error as { digest?: string }).digest?.startsWith("NEXT_")) throw error;
     return (

@@ -5,7 +5,7 @@ import { notFound, redirect } from "next/navigation";
 import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { ProgressReport, type ProgressReportData } from "@/components/progress-report";
 import { PageHeading } from "@/components/ui";
-import { getClassRating } from "@/db/class-queries";
+import { getClassRating, listClassTopics } from "@/db/class-queries";
 import {
   getProgressOverTime,
   getQuestionsToRetry,
@@ -52,13 +52,14 @@ export default async function ClassProgressPage({ params }: PageProps) {
     if (!ratingClass) notFound();
     name = ratingClass.name;
 
-    const [summary, topics, scores, retry] = await Promise.all([
+    const [summary, topics, scores, retry, topicList] = await Promise.all([
       getSummary(user.id, classCode),
       getTopicPerformance(user.id, classCode),
       getProgressOverTime(user.id, classCode),
       getQuestionsToRetry(user.id, classCode),
+      listClassTopics(classCode),
     ]);
-    data = { summary, topics, scores, retry, aircraftCode: classCode };
+    data = { summary, topics, scores, retry, aircraftCode: classCode, allTopics: topicList.map((item) => item.topic) };
   } catch (error) {
     if ((error as { digest?: string }).digest?.startsWith("NEXT_")) throw error;
     return (

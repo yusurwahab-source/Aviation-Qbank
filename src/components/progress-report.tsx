@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { ProgressTopics } from "@/components/progress-topics";
+import { MIN_ANSWERED_FOR_WEAK, mergeTopics } from "@/lib/topic-tabs";
 import { ProgressChart } from "@/components/progress-chart";
 import { ALL_QUESTIONS, buildTestHref } from "@/lib/test-options";
 import { Badge, Card, EmptyState, ScoreBar } from "@/components/ui";
@@ -27,10 +29,14 @@ export type ProgressReportData = {
   aircraft?: PractisedAircraft[];
   /** Set on the per-aircraft view, which enables the retry button. */
   aircraftCode?: string;
+  /** Every topic name in scope, so untouched ones show under All systems. */
+  allTopics?: string[];
 };
 
 export function ProgressReport({ data }: { data: ProgressReportData }) {
-  const { summary, topics, scores, retry, aircraft, aircraftCode } = data;
+  const { summary, topics, scores, retry, aircraft, aircraftCode, allTopics } = data;
+
+  const weakest = topics.filter((t) => t.answered >= MIN_ANSWERED_FOR_WEAK).sort((a, b) => a.percentage - b.percentage)[0];
 
   if (summary.answered === 0) {
     return (
@@ -47,7 +53,7 @@ export function ProgressReport({ data }: { data: ProgressReportData }) {
   return (
     <>
       <section aria-label="Overall figures">
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <Card>
             <p className="text-sm text-muted-foreground">Overall score</p>
             <p className="mt-1 text-4xl font-semibold tracking-tight text-foreground">
@@ -77,6 +83,23 @@ export function ProgressReport({ data }: { data: ProgressReportData }) {
                 : "Not practised yet"}
             </p>
           </Card>
+          <Card>
+            <p className="text-sm text-muted-foreground">Weakest subject</p>
+            {weakest ? (
+              <>
+                <p className="mt-1 text-lg font-semibold leading-snug text-foreground">
+                  {weakest.topic}
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  {weakest.percentage}% over {weakest.answered} answers
+                </p>
+              </>
+            ) : (
+              <p className="mt-1 text-sm text-muted-foreground">
+                Appears after {MIN_ANSWERED_FOR_WEAK} answers on a topic.
+              </p>
+            )}
+          </Card>
         </div>
       </section>
 
@@ -87,30 +110,7 @@ export function ProgressReport({ data }: { data: ProgressReportData }) {
         <p className="mt-1 text-sm text-muted-foreground">
           Weakest first. This is where the next study session should go.
         </p>
-        <ul className="mt-4 space-y-3">
-          {topics.map((topic) => (
-            <li key={topic.topic} className="rounded-lg border border-border bg-surface p-4">
-              <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-                <span className="font-medium text-foreground">{topic.topic}</span>
-                <span className="text-sm text-muted-foreground">
-                  {topic.correct}/{topic.answered} · {topic.percentage}%
-                </span>
-              </div>
-              <div className="mt-2">
-                <ScoreBar percentage={topic.percentage} tone="score" />
-              </div>
-              {/* The point of showing a weak topic is being able to act on it. */}
-              {aircraftCode ? (
-                <Link
-                  href={buildTestHref(aircraftCode, { topics: [topic.topic] })}
-                  className="link-standalone mt-3 text-sm font-medium text-brand-ink hover:underline"
-                >
-                  Practise {topic.topic} →
-                </Link>
-              ) : null}
-            </li>
-          ))}
-        </ul>
+        <ProgressTopics topics={mergeTopics(topics, allTopics)} aircraftCode={aircraftCode} />
       </section>
 
       <section className="mt-8">
