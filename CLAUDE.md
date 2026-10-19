@@ -475,7 +475,7 @@ from a static list (`lib/atpl-subjects.ts`), not from the database.** A
 subject with no questions has no content folder and no row (`db:seed` would
 delete one), so "coming soon" rows cannot be database rows. A row is live
 only when a Flying Knowledge subject is named by its `code` there (POF is
-080, HPL is 040, MET is 050, RNAV is 062, LAW is 010, AGK is 021) and is active with published questions; live rows link to
+080, HPL is 040, MET is 050, RNAV is 062, LAW is 010, AGK is 021, OPS is 070, COM is 090) and is active with published questions; live rows link to
 `/flying-knowledge/<code>`, where tests still run, and carry a pulsing
 `LiveBadge`. `/flying-knowledge` itself redirects to the picker. Adding a
 subject to the ATPL list is a content folder plus its `code` in that list.
@@ -1871,7 +1871,7 @@ over the internals.
 content/                      Question files. The source of truth.
   <code>/                     One folder per type rating aircraft (b737/, a320/ today)
   classes/<code>/             One folder per class rating aircraft (da40/ today)
-  flying-knowledge/<code>/    One folder per Flying Knowledge subject (pof/, hpl/, met/, rnav/, law/, agk/ today)
+  flying-knowledge/<code>/    One folder per Flying Knowledge subject (pof/, hpl/, met/, rnav/, law/, agk/, ops/, com/ today)
 drizzle/                      Generated SQL migrations. Committed.
 public/                       Manifest icons, the service worker, and any
                               <code>-study-guide.html study guides (see the
@@ -2146,7 +2146,14 @@ sixth: `content/flying-knowledge/agk/`, sixteen chapter files, 1,000
 questions, and `public/agk-study-guide.html`. `AGK` is the code for the
 whole of ATPL 021, so the airframe/systems and powerplant books can later be
 added to the same subject (topics prefixed "Electrics NN …" today) — see
-the note on the Electrics bank in `content/README.md`.
+the note on the Electrics bank in `content/README.md`. Operational Procedures
+(`OPS`, 070) is the seventh: `content/flying-knowledge/ops/`, nineteen
+chapter files, 986 questions, and `public/ops-study-guide.html`.
+Communications (`COM`, 090, a code reserved in `lib/atpl-subjects.ts` and
+`lib/study-guide.ts` before it had content) is the eighth:
+`content/flying-knowledge/com/`, seven chapter files, 634 questions, and
+`public/com-study-guide.html`. See the notes on both banks in
+`content/README.md`.
 
 The one thing that does not carry over from either of the other two trees:
 **Flying Knowledge is free in full, not metered by the free-tier cap or
@@ -2475,6 +2482,14 @@ second. Both are now done — see the conventions above.)
   `content/README.md`), but rules change between editions and between
   States. Treat it as revision material until a qualified instructor has
   checked it against the current regulations.
+- **The Operational Procedures bank (OPS, 986 questions) and the
+  Communications bank (COM, 634 questions) have not been reviewed by an
+  instructor.** Both were written from the owner's supplied textbooks for
+  their facts only, with dated points replaced by current values (see
+  `content/README.md`). The OPS all-weather tables — low visibility take-off,
+  take-off RVR by facilities, CAT II RVR by DH, circling minima — follow the
+  book and may differ from the 2022 revision of the all-weather rules; they
+  need checking against the current regulations.
 - **The Electrics & Electronics bank (AGK, 1,000 questions) has not been
   reviewed by an instructor.** It was written from the owner's supplied
   textbook for its facts only (the book's questions not used, its errors

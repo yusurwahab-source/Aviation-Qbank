@@ -894,6 +894,155 @@ transformer ratio with star line voltage and RMS peak). Checked at 1280px and
 It has not been reviewed by a qualified instructor and should be before a
 student relies on it for a real exam.
 
+## The Operational Procedures bank (Flying Knowledge)
+
+The subject is **Operational Procedures** (code `OPS`, ATPL 070), added the
+same content-only way as the other subjects and listed against 070 on the
+ATPL Ground School page. 986 questions across nineteen topics, all published.
+
+### Source, and what was not used
+
+The owner supplied CAE Oxford Aviation Academy's *Operational Procedures*
+(ATPL ground training series, Book 12, EASA revised first edition) and asked
+for it to be added to the ATPL Ground School. Its nineteen teaching chapters
+were used in order, for their facts only. The book's end-of-chapter questions,
+answers, revision and specimen material, and its wording, were not used.
+Every question, explanation, worked figure and the study guide were written by
+the assistant. Student-facing text names no book, school, regulator,
+regulation or syllabus ("the international standard", "current rules").
+
+Where the book is dated or wrong, the bank uses current values or leaves the
+point out:
+
+- North Atlantic: "MNPS airspace" is now the NAT high level airspace
+  (FL285–FL420). Contingency: turn at least 30° and offset 5 NM, then a
+  500 ft level change (book: 45° and 15 NM). Weather deviation: level change
+  of 300 ft beyond 5 NM (book: 10 NM). The SSR 2000 rule, polar track details
+  and the polar track structure (which no longer exists) were left out.
+- CVR: 25 hours for aeroplanes over 27 000 kg first certificated on or after
+  1 January 2021 added. ELT 406 MHz (the book prints "406 kHz").
+- Taxi clearance beyond a runway now needs an explicit crossing or hold-short
+  instruction (the book says crossing is implied).
+- Category III definitions use the current international figures (IIIA RVR
+  at least 175 m, IIIB 50 m to below 175 m); the book's operator-table values
+  (200 m, down to 75 m) are asked as operator minima, as is the Air Law bank.
+- SNOWTAM validity 8 hours in the current runway-condition format (book:
+  24 hours); runway condition codes 6–0 added. The braking-action coefficient
+  table is presented as the older table; the book's SNOWTAM item letters and
+  examples were not used.
+- A380 "super" wake category added; the book's "300 ft per second" vortex
+  figure left out.
+- The superseded European operating rules the book quotes are described as
+  "current rules" without a number. Left out as superseded: the aerial-work
+  six-person exemption, met-report exemptions, the 15-month flight time
+  record retention. Flight and duty values kept where the current scheme is
+  the same (190 h/28 days, 60 h/7 days, 100 h/28 days, 900 h/year, 13 h basic
+  FDP and sector reductions, 12/10 h rest with 8 h sleep, 2 h discretion).
+- Swell versus wind waves: the book calls swell tidal; the bank says swell
+  comes from distant weather.
+- Unlawful interference level offset asked only for the 1000 ft vertical
+  separation case (500 ft).
+
+**Instructor review needed:** the all-weather tables (low visibility take-off
+below 400 m, take-off RVR by facilities, CAT II RVR by DH, circling minima)
+follow the book. The 2022 revision of the all-weather rules changed some of
+them; they should be checked against the current regulations.
+
+### Order and format
+
+Topic names carry their chapter number. Inside each file the questions run in
+chapter order, grouped by `subtopic`. Explanations are two to four sentences.
+
+| # | Topic | File | Ids | Questions |
+|---|---|---|---|---|
+| 01 | 01 International Operating Standards | `01-international-operating-standards.json` | OPS-INT-0001–0040 | 40 |
+| 02 | 02 General Requirements | `02-general-requirements.json` | OPS-GEN-0001–0061 | 61 |
+| 03 | 03 Operator Certification and Supervision | `03-operator-certification-and-supervision.json` | OPS-CRT-0001–0048 | 48 |
+| 04 | 04 Operational Procedures | `04-operational-procedures.json` | OPS-PRC-0001–0116 | 116 |
+| 05 | 05 All Weather Operations | `05-all-weather-operations.json` | OPS-AWO-0001–0102 | 102 |
+| 06 | 06 Aeroplane Equipment and Instruments | `06-aeroplane-equipment-and-instruments.json` | OPS-EQP-0001–0111 | 111 |
+| 07 | 07 Crew, Logs and Records | `07-crew-logs-and-records.json` | OPS-CRW-0001–0095 | 95 |
+| 08 | 08 Long Range Flight and Polar Navigation | `08-long-range-flight-and-polar-navigation.json` | OPS-LRN-0001–0021 | 21 |
+| 09 | 09 North Atlantic High Level Airspace | `09-north-atlantic-high-level-airspace.json` | OPS-NAT-0001–0097 | 97 |
+| 10 | 10 Special Procedures and Hazards | `10-special-procedures-and-hazards.json` | OPS-SPH-0001–0063 | 63 |
+| 11 | 11 Fire and Smoke | `11-fire-and-smoke.json` | OPS-FIR-0001–0040 | 40 |
+| 12 | 12 Pressurisation Failure | `12-pressurisation-failure.json` | OPS-PRS-0001–0017 | 17 |
+| 13 | 13 Windshear and Microburst | `13-windshear-and-microburst.json` | OPS-WSH-0001–0022 | 22 |
+| 14 | 14 Wake Turbulence | `14-wake-turbulence.json` | OPS-WKT-0001–0022 | 22 |
+| 15 | 15 Security | `15-security.json` | OPS-SEC-0001–0019 | 19 |
+| 16 | 16 Emergency and Precautionary Landings | `16-emergency-and-precautionary-landings.json` | OPS-ELD-0001–0019 | 19 |
+| 17 | 17 Fuel Jettison | `17-fuel-jettison.json` | OPS-FJT-0001–0013 | 13 |
+| 18 | 18 Transport of Dangerous Goods by Air | `18-transport-of-dangerous-goods-by-air.json` | OPS-DGR-0001–0045 | 45 |
+| 19 | 19 Contaminated Runways | `19-contaminated-runways.json` | OPS-RWY-0001–0035 | 35 |
+
+### Answer-shape checks
+
+Correct letters a/b/c/d are 247/244/249/246. The correct option is the single
+longest in 17 % of questions and the single shortest in 8 %. No duplicate
+stems, no "all/none of the above", no source names.
+
+`public/ops-study-guide.html` is the study guide: nineteen chapter sections in
+the same order, each with a key-idea callout, chips, tables, comparison cards
+and worked examples, a cheat sheet and seven calculators (visibility to RVR;
+distance from land; cabin crew and equipment by seats; day of the year for the
+track message identifier; aquaplaning speed; approach category; minimum rest).
+Checked at 1280px and 375px with no horizontal overflow and no script errors.
+
+It has not been reviewed by a qualified instructor and should be before a
+student relies on it for a real exam.
+
+## The Communications bank (Flying Knowledge)
+
+The subject is **Communications** (code `COM`, ATPL 090), added the same
+content-only way and listed against 090 on the ATPL Ground School page (the
+code was already reserved there). 634 questions across seven topics, all
+published.
+
+### Source, and what was not used
+
+The owner supplied CAE Oxford Aviation Academy's *Communications* (ATPL
+ground training series, Book 14), which covers VFR and IFR radiotelephony.
+Its seven teaching chapters were used in order, for their facts only; the
+book's questions, answers, revision material and wording were not used.
+Every example exchange uses invented call signs and places (Kelby, Marston,
+Skyway, Northwind). Student-facing text names no book, school, regulator or
+syllabus.
+
+Corrections and choices:
+
+- All six digits of a VHF frequency are passed whatever the spacing, unless
+  the last two are zero (current rule); 8.33 kHz described as extended below
+  the upper airspace.
+- Braking action coefficient table presented as the older table.
+- A worked aerial-height example whose book answer did not follow from the
+  formula was recalculated (about 980 ft).
+
+### Order and format
+
+| # | Topic | File | Ids | Questions |
+|---|---|---|---|---|
+| 01 | 01 Definitions | `01-definitions.json` | COM-DEF-0001–0159 | 159 |
+| 02 | 02 General Operating Procedures | `02-general-operating-procedures.json` | COM-GOP-0001–0143 | 143 |
+| 03 | 03 Phraseology | `03-phraseology.json` | COM-PHR-0001–0154 | 154 |
+| 04 | 04 Weather Information | `04-weather-information.json` | COM-WXI-0001–0032 | 32 |
+| 05 | 05 Failures and Emergencies | `05-failures-and-emergencies.json` | COM-EMG-0001–0045 | 45 |
+| 06 | 06 IFR Communications | `06-ifr-communications.json` | COM-IFR-0001–0044 | 44 |
+| 07 | 07 VHF Propagation | `07-vhf-propagation.json` | COM-VHF-0001–0057 | 57 |
+
+### Answer-shape checks
+
+Correct letters a/b/c/d are 158/158/158/160. The correct option is the single
+longest in 16 % of questions and the single shortest in 12 %. No duplicate
+stems, no "all/none of the above", no source names.
+
+`public/com-study-guide.html` is the study guide: seven chapter sections, a
+cheat sheet and five tools (VHF range; how a frequency is spoken; phonetic
+spelling and abbreviation of a call sign; QDM and QDR; wavelength and band).
+Checked at 1280px and 375px with no horizontal overflow and no script errors.
+
+It has not been reviewed by a qualified instructor and should be before a
+student relies on it for a real exam.
+
 ## The B737 bank
 
 The aircraft is the **Boeing 737-800**, the stretched Next Generation variant

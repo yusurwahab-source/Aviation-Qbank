@@ -1,0 +1,1175 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Operational Procedures — Pilot's Guide</title>
+<meta name="description" content="Operational procedures explained for airline pilots in 19 chapters: operating standards, certification, flight procedures, all-weather operations, equipment, crew and records, long-range and North Atlantic flight, hazards, fire, depressurisation, windshear, wake turbulence, security, emergency landings, fuel jettison, dangerous goods and contaminated runways — with tables, tools and worked examples." />
+<style>
+  :root{
+    --bg:#f6f8fb;
+    --surface:#ffffff;
+    --surface-2:#eef2f7;
+    --ink:#101826;
+    --ink-2:#3c4758;
+    --muted:#6b7686;
+    --line:#dfe6ef;
+    --brand:#0d6e7d;
+    --brand-ink:#ffffff;
+    --brand-light:#e3f4f6;
+    --warn-bg:#fdecec;
+    --warn-line:#e0413a;
+    --warn-ink:#7a1712;
+    --caution-bg:#fff6e0;
+    --caution-line:#c9821a;
+    --caution-ink:#6b4405;
+    --note-bg:#eaf1fb;
+    --note-line:#3f6fb0;
+    --note-ink:#1f3c63;
+    --white-arc:#e9edf3;
+    --green-arc:#1f9d55;
+    --yellow-arc:#e0b400;
+    --red-arc:#d9362a;
+    --radius:14px;
+    --radius-sm:8px;
+    --shadow:0 1px 2px rgba(16,24,38,.04), 0 6px 20px rgba(16,24,38,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0d1420;
+      --surface:#141d2c;
+      --surface-2:#1b263a;
+      --ink:#eef2f8;
+      --ink-2:#c3cddc;
+      --muted:#8b97ab;
+      --line:#26334a;
+      --brand:#37c3d6;
+      --brand-ink:#06232a;
+      --brand-light:#12323a;
+      --warn-bg:#3a1613;
+      --warn-line:#e4574d;
+      --warn-ink:#ffd6d1;
+      --caution-bg:#3a2c0d;
+      --caution-line:#e0a83a;
+      --caution-ink:#ffe6b0;
+      --note-bg:#122a44;
+      --note-line:#5b93d6;
+      --note-ink:#cfe2fb;
+      --white-arc:#324055;
+      --green-arc:#2bb56a;
+      --yellow-arc:#e0b400;
+      --red-arc:#e4574d;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1420; --surface:#141d2c; --surface-2:#1b263a; --ink:#eef2f8; --ink-2:#c3cddc;
+    --muted:#8b97ab; --line:#26334a; --brand:#37c3d6; --brand-ink:#06232a; --brand-light:#12323a;
+    --warn-bg:#3a1613; --warn-line:#e4574d; --warn-ink:#ffd6d1;
+    --caution-bg:#3a2c0d; --caution-line:#e0a83a; --caution-ink:#ffe6b0;
+    --note-bg:#122a44; --note-line:#5b93d6; --note-ink:#cfe2fb;
+    --white-arc:#324055; --green-arc:#2bb56a; --yellow-arc:#e0b400; --red-arc:#e4574d;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:clip}
+  body{
+    margin:0;
+    overflow-x:clip;
+    max-width:100vw;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,"Segoe UI",system-ui,Roboto,sans-serif;
+    line-height:1.75;
+    font-size:17px;
+  }
+  a{color:var(--brand)}
+  code, .kbd{
+    direction:ltr;unicode-bidi:isolate;display:inline-block;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:6px;
+    padding:0 .35em;font-size:.92em;color:var(--ink);
+  }
+  header.top{
+    position:sticky;top:0;z-index:40;
+    background:linear-gradient(180deg, var(--surface) 85%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    max-width:1180px;margin:0 auto;padding:14px 16px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .brand-mark{display:flex;align-items:center;gap:10px;min-width:0}
+  .brand-mark .plane{
+    width:34px;height:34px;flex:0 0 auto;border-radius:9px;
+    background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+  }
+  .brand-mark .txt{min-width:0}
+  .brand-mark h1{font-size:15px;margin:0;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand-mark .sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .menu-btn{
+    display:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+    border-radius:10px;padding:9px 12px;font-size:14px;cursor:pointer;flex:0 0 auto;
+  }
+  .shell{max-width:1180px;margin:0 auto;display:flex;align-items:flex-start;gap:28px;padding:20px 16px 80px}
+  nav.toc{
+    position:sticky;top:78px;flex:0 0 280px;
+    max-height:calc(100vh - 96px);overflow-y:auto;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;box-shadow:var(--shadow);
+  }
+  nav.toc h2{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:2px 8px 10px}
+  nav.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+  nav.toc li{counter-increment:toc}
+  nav.toc a{
+    display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--ink-2);
+    padding:7px 8px;border-radius:9px;font-size:13.5px;
+  }
+  nav.toc a .n{flex:0 0 auto;color:var(--brand);font-weight:700;font-size:12px;min-width:18px}
+  nav.toc a:hover{background:var(--surface-2);color:var(--ink)}
+  nav.toc a.active{background:var(--brand-light);color:var(--ink);font-weight:600}
+  nav.toc .count{margin-inline-start:auto;font-size:11px;color:var(--muted)}
+  main{flex:1 1 auto;min-width:0}
+  .hero{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 22px;margin-bottom:22px;box-shadow:var(--shadow);
+  }
+  .hero h1{margin:0 0 8px;font-size:26px}
+  .hero p{margin:0;color:var(--ink-2);font-size:15.5px}
+  .hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hero .tag{
+    font-size:12.5px;background:var(--brand-light);color:var(--brand);
+    border-radius:999px;padding:5px 12px;font-weight:600;
+  }
+  section.sec{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px 26px;margin-bottom:22px;box-shadow:var(--shadow);scroll-margin-top:76px;
+  }
+  section.sec > h2{
+    display:flex;align-items:center;gap:12px;font-size:21px;margin:0 0 6px;
+    padding-bottom:14px;border-bottom:1px solid var(--line);
+  }
+  section.sec > h2 .num{
+    flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;
+  }
+  section.sec > h2 .en{margin-inline-start:auto;font-size:12px;color:var(--muted);font-weight:600;
+    direction:ltr;background:var(--surface-2);padding:4px 10px;border-radius:999px}
+  .lead{color:var(--ink-2);font-size:16px;margin-top:14px}
+  h3.sub{font-size:16.5px;margin:26px 0 8px;color:var(--ink);border-inline-start:4px solid var(--brand);padding-inline-start:10px}
+  h4.sub2{font-size:15px;margin:18px 0 6px;color:var(--ink-2)}
+  p{margin:10px 0}
+  ul, ol{margin:10px 0;padding-inline-start:22px}
+  li{margin:5px 0}
+  strong{color:var(--ink)}
+  .table-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm)}
+  table{border-collapse:collapse;width:100%;min-width:420px;font-size:14.5px}
+  table caption{text-align:start;font-size:12.5px;color:var(--muted);padding:8px 12px 0}
+  thead th{
+    background:var(--surface-2);color:var(--ink);text-align:start;
+    padding:9px 12px;font-weight:700;white-space:nowrap;font-size:13.5px;
+  }
+  tbody td{padding:8px 12px;border-top:1px solid var(--line);color:var(--ink-2)}
+  tbody tr:nth-child(even){background:color-mix(in srgb, var(--surface-2) 45%, transparent)}
+  td.num, th.num{direction:ltr;text-align:center;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+  .callout{border-radius:var(--radius-sm);padding:12px 14px;margin:14px 0;border-inline-start:4px solid;font-size:14.5px}
+  .callout .label{display:block;font-weight:800;font-size:12px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:4px}
+  .callout.warning{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-ink)}
+  .callout.caution{background:var(--caution-bg);border-color:var(--caution-line);color:var(--caution-ink)}
+  .callout.note{background:var(--note-bg);border-color:var(--note-line);color:var(--note-ink)}
+  .eq{
+    direction:ltr;font-family:"Cambria Math","STIX Two Math","Latin Modern Math",Georgia,serif;font-size:16.5px;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);
+    padding:10px 14px;margin:12px 0;text-align:center;white-space:nowrap;color:var(--ink);
+    max-width:100%;overflow-x:auto;contain:paint;box-sizing:border-box;
+  }
+  .eq sub,.eq sup{font-size:.72em}
+  .diagram{
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;margin:18px 0;text-align:center;
+    max-width:100%;overflow-x:auto;box-sizing:border-box;
+  }
+  .diagram .cap{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .diagram svg{max-width:100%;height:auto;display:block;margin:0 auto}
+  .ref{
+    display:inline-block;direction:ltr;font-size:11.5px;color:var(--brand);
+    background:var(--brand-light);border-radius:6px;padding:1px 7px;margin-inline-start:4px;
+    font-weight:700;white-space:nowrap;
+  }
+  .related{
+    margin-top:22px;display:flex;align-items:center;gap:10px;
+    background:var(--brand-light);color:var(--brand);border-radius:999px;
+    padding:10px 16px;font-size:14px;font-weight:700;width:fit-content;
+  }
+  .related .dot{width:8px;height:8px;border-radius:50%;background:var(--brand)}
+  footer{max-width:1180px;margin:0 auto;padding:10px 16px 60px;color:var(--muted);font-size:13px;text-align:center}
+  #top-btn{
+    position:fixed;inset-inline-end:18px;bottom:18px;z-index:50;
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+    background:var(--brand);color:var(--brand-ink);font-size:18px;cursor:pointer;
+    box-shadow:var(--shadow);display:none;align-items:center;justify-content:center;
+  }
+  #top-btn.show{display:flex}
+  @media (max-width:880px){
+    .shell{flex-direction:column;padding:14px 12px 70px}
+    main{width:100%;min-width:0}
+    nav.toc{
+      position:fixed;inset:0 0 0 auto;top:0;width:82%;max-width:340px;height:100dvh;max-height:100dvh;
+      transform:translateX(100%);transition:transform .25s ease;border-radius:0;z-index:60;
+    }
+    nav.toc.open{transform:translateX(0)}
+    .toc-scrim{position:fixed;inset:0;background:rgba(6,10,18,.5);z-index:55;display:none}
+    .toc-scrim.show{display:block}
+    .menu-btn{display:inline-flex;align-items:center;gap:6px}
+    section.sec > h2{font-size:18.5px}
+    .hero h1{font-size:22px}
+    body{font-size:16px}
+  }
+  .toc-close{display:none}
+  @media (max-width:880px){
+    .toc-close{
+      display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+      padding-bottom:10px;border-bottom:1px solid var(--line);
+    }
+    .toc-close button{border:none;background:var(--surface-2);border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer;color:var(--ink)}
+  }
+
+  
+  /* ---------- PilotQBank study-guide additions ---------- */
+  :root{ --accent:var(--brand); }
+  html{scroll-padding-top:80px}
+  section.sec{border-top:5px solid var(--accent)}
+  section.sec > h2 .num{background:var(--accent);color:#fff;font-size:19px;width:40px;height:40px;border-radius:12px}
+  section.sec > h2 .en{background:color-mix(in srgb,var(--accent) 14%,var(--surface));color:var(--ink-2)}
+  h3.sub{border-inline-start-color:var(--accent)}
+  nav.toc a .n{font-size:15px;min-width:22px}
+  .hero{background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 16%,var(--surface)),var(--surface) 60%);position:relative;overflow:hidden}
+  .hero .cloud{position:absolute;inset-inline-end:-10px;top:-6px;font-size:84px;opacity:.16;pointer-events:none;user-select:none}
+  .hero .tag{background:color-mix(in srgb,var(--brand) 16%,var(--surface))}
+  .glance{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+  .glance span{font-size:13px;background:color-mix(in srgb,var(--accent) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));border-radius:999px;padding:4px 12px;color:var(--ink-2)}
+  .keyidea{margin:16px 0;padding:14px 16px;border-radius:var(--radius);background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 16%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--accent) 40%,var(--line))}
+  .keyidea .label{display:block;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+  .keyidea p{margin:4px 0}
+  .tip,.memory{margin:14px 0;padding:12px 14px;border-radius:var(--radius-sm);font-size:14.5px;border-inline-start:4px solid}
+  .tip{background:color-mix(in srgb,var(--green-arc) 12%,var(--surface));border-color:var(--green-arc);color:var(--ink)}
+  .memory{background:color-mix(in srgb,#8b5cf6 12%,var(--surface));border-color:#8b5cf6;color:var(--ink)}
+  .tip .label,.memory .label{display:block;font-weight:800;font-size:12px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+  .tip .label{color:var(--green-arc)} .memory .label{color:#8b5cf6}
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
+  .fcard{background:var(--surface-2);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:var(--radius-sm);padding:12px 14px}
+  .fcard .f{direction:ltr;font-family:"Cambria Math","STIX Two Math",Georgia,serif;font-size:18px;color:var(--ink);overflow-x:auto;white-space:nowrap}
+  .fcard .d{font-size:13.5px;color:var(--ink-2);margin-top:4px}
+  details.example{margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface);overflow:hidden}
+  details.example summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:14.5px;background:color-mix(in srgb,var(--accent) 10%,var(--surface-2));list-style:none}
+  details.example summary::-webkit-details-marker{display:none}
+  details.example summary::before{content:"▸ ";color:var(--accent)}
+  details.example[open] summary::before{content:"▾ "}
+  details.example .body{padding:6px 16px 14px}
+  .steps{counter-reset:st;list-style:none;padding:0;margin:12px 0}
+  .steps li{counter-increment:st;position:relative;padding-inline-start:40px;margin:10px 0;min-height:28px}
+  .steps li::before{content:counter(st);position:absolute;inset-inline-start:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:14px 0}
+  .compare .card{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px}
+  .compare .card h4{margin:0 0 6px;font-size:15px}
+  .compare .card.good{border-top:3px solid var(--green-arc)} .compare .card.bad{border-top:3px solid var(--red-arc)} .compare .card.mid{border-top:3px solid var(--yellow-arc)} .compare .card.acc{border-top:3px solid var(--accent)}
+  .bar{display:block;height:10px;border-radius:6px;background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 55%,#fff));min-width:4px}
+  td.barcell{min-width:130px}
+  .pill{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 9px;background:color-mix(in srgb,var(--accent) 16%,var(--surface));color:var(--ink)}
+  .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .tool{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+  .tool h3{margin:0 0 8px;font-size:15.5px}
+  .tool label{display:block;font-size:12.5px;color:var(--muted);margin-top:8px}
+  .tool input{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:16px}
+  .tool .out{margin-top:10px;padding:10px;border-radius:8px;background:color-mix(in srgb,var(--brand) 12%,var(--surface));font-size:14px;direction:ltr}
+  .tool .out b{color:var(--brand)}
+  .cheat table{min-width:340px}
+  .sec .diagram svg text{fill:var(--ink);font:600 12px -apple-system,"Segoe UI",system-ui,sans-serif}
+  .sec .diagram svg text.m{fill:var(--muted);font-weight:500;font-size:11px}
+  .sec .diagram svg text.big{font-size:14px}
+  .sec .diagram svg .ln{stroke:var(--ink-2);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sec .diagram svg .thin{stroke:var(--muted);stroke-width:1;fill:none;stroke-dasharray:4 4}
+  .sec .diagram svg .ac{stroke:var(--accent);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sec .diagram svg .af{fill:color-mix(in srgb,var(--accent) 22%,transparent);stroke:var(--accent);stroke-width:2}
+  .sec .diagram svg .gn{stroke:var(--green-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .rd{stroke:var(--red-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .yl{stroke:var(--yellow-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .gf{fill:color-mix(in srgb,var(--green-arc) 25%,transparent)}
+  .sec .diagram svg .rf{fill:color-mix(in srgb,var(--red-arc) 25%,transparent)}
+  .sec .diagram svg .yf{fill:color-mix(in srgb,var(--yellow-arc) 30%,transparent)}
+  .sec .diagram svg .bx{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
+  .sec .diagram svg .wing{fill:var(--surface);stroke:var(--ink-2);stroke-width:2}
+  .sec .diagram svg .dot{fill:var(--accent)}
+  @media (max-width:520px){.fgrid,.compare{grid-template-columns:1fr}}
+  .fgrid > *,.compare > *,.tools > *{min-width:0}
+  .fcard .f{max-width:100%}
+
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) {}
+  .diagram svg{min-width:520px}
+
+  .part{display:flex;align-items:center;gap:10px;margin:34px 0 4px;padding:8px 14px;border-radius:var(--radius-sm);background:color-mix(in srgb,var(--accent) 14%,var(--surface-2));border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));font-size:15px;font-weight:800;color:var(--ink)}
+  .part + h3.sub{margin-top:16px}
+  nav.toc a .chn{flex:0 0 auto;min-width:18px;color:var(--brand);font-weight:800;font-size:12px}
+  section.sec > h2 .en{font-weight:700}
+
+  section.sec{--accent:var(--acc,var(--brand))}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) section.sec{--accent:color-mix(in srgb,var(--acc,var(--brand)) 62%,#ffffff)}:root:not([data-theme="light"]) section.sec > h2 .num,:root:not([data-theme="light"]) .steps li::before{color:#06121a}}
+  :root[data-theme="dark"] section.sec{--accent:color-mix(in srgb,var(--acc,var(--brand)) 62%,#ffffff)}
+  :root[data-theme="dark"] section.sec > h2 .num,:root[data-theme="dark"] .steps li::before{color:#06121a}
+  .diagram svg[aria-label="PAPI indications"]{min-width:0;max-width:420px}
+  td.num{white-space:normal}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--ink-2)"/></marker>
+    <marker id="a-ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--accent)"/></marker>
+    <marker id="a-rd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--red-arc)"/></marker>
+    <marker id="a-gn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--green-arc)"/></marker>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand-mark">
+      <div class="plane">🗂️</div>
+      <div class="txt">
+        <h1>Operational Procedures — Pilot's Guide</h1>
+        <div class="sub">How airline flights are run · Airline pilot theory</div>
+      </div>
+    </div>
+    <button class="menu-btn" id="menuBtn">☰ Contents</button>
+  </div>
+</header>
+
+<div class="toc-scrim" id="scrim"></div>
+
+<div class="shell">
+  <nav class="toc" id="toc">
+    <div class="toc-close"><span style="font-size:13px;color:var(--muted);font-weight:700">Contents</span><button id="closeToc">✕</button></div>
+    <h2>Chapters</h2>
+    <ol>
+      <li><a href="#tools"><span class="n">🧰</span> Quick tools &amp; cheat sheet</a></li>
+      <li><a href="#ch1"><span class="n">🌍</span> <b class="chn">1</b> International Operating Standards</a></li>
+      <li><a href="#ch2"><span class="n">📜</span> <b class="chn">2</b> General Requirements</a></li>
+      <li><a href="#ch3"><span class="n">🏛️</span> <b class="chn">3</b> Operator Certification and Supervision</a></li>
+      <li><a href="#ch4"><span class="n">🗂️</span> <b class="chn">4</b> Operational Procedures</a></li>
+      <li><a href="#ch5"><span class="n">🌫️</span> <b class="chn">5</b> All Weather Operations</a></li>
+      <li><a href="#ch6"><span class="n">🧯</span> <b class="chn">6</b> Aeroplane Equipment and Instruments</a></li>
+      <li><a href="#ch7"><span class="n">🧑‍✈️</span> <b class="chn">7</b> Crew, Logs and Records</a></li>
+      <li><a href="#ch8"><span class="n">🧭</span> <b class="chn">8</b> Long Range Flight and Polar Navigation</a></li>
+      <li><a href="#ch9"><span class="n">🌊</span> <b class="chn">9</b> North Atlantic High Level Airspace</a></li>
+      <li><a href="#ch10"><span class="n">⚠️</span> <b class="chn">10</b> Special Procedures and Hazards</a></li>
+      <li><a href="#ch11"><span class="n">🔥</span> <b class="chn">11</b> Fire and Smoke</a></li>
+      <li><a href="#ch12"><span class="n">🫁</span> <b class="chn">12</b> Pressurisation Failure</a></li>
+      <li><a href="#ch13"><span class="n">🌬️</span> <b class="chn">13</b> Windshear and Microburst</a></li>
+      <li><a href="#ch14"><span class="n">🌀</span> <b class="chn">14</b> Wake Turbulence</a></li>
+      <li><a href="#ch15"><span class="n">🔐</span> <b class="chn">15</b> Security</a></li>
+      <li><a href="#ch16"><span class="n">🛟</span> <b class="chn">16</b> Emergency and Precautionary Landings</a></li>
+      <li><a href="#ch17"><span class="n">⛽</span> <b class="chn">17</b> Fuel Jettison</a></li>
+      <li><a href="#ch18"><span class="n">☣️</span> <b class="chn">18</b> Transport of Dangerous Goods by Air</a></li>
+      <li><a href="#ch19"><span class="n">❄️</span> <b class="chn">19</b> Contaminated Runways</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <span class="cloud">🗂️</span>
+      <h1>🗂️ Operational Procedures</h1>
+      <p>
+        The rules and procedures behind every airline flight — from the certificate that lets an operator fly to the state of the runway at the far end. Each chapter opens with the one idea to hold on to, then the numbers, the comparisons that cause most mistakes, and worked examples you can open.
+      </p>
+      <div class="tags">
+        <span class="tag">19 chapters</span>
+        <span class="tag">986 linked questions</span>
+        <span class="tag">🧮 Quick tools</span>
+        <span class="tag">📋 Cheat sheet</span>
+        <span class="tag">Aircraft-independent</span>
+      </div>
+      <div class="tip"><span class="label">✈️ How to use this guide</span> Each chapter carries the same number as its practice topic. When you get a question wrong, jump to that chapter, read the key idea and the tables, then go back and practise. This subject is full of thresholds and limits: the cheat sheet collects the ones that come up most.</div>
+    </div>
+
+    <section class="sec" id="tools" data-icon="🧰" style="--acc:#2f5fb3">
+      <h2><span class="num">🧰</span> Quick tools &amp; cheat sheet <span class="en">play with the numbers</span></h2>
+      <p class="lead">Seven small helpers for the sums operational procedures asks for again and again, and a one-screen list of the numbers worth knowing by heart.</p>
+
+      <div class="tools">
+        <div class="tool">
+          <h3>👁️ Visibility to RVR</h3>
+          <label>Reported meteorological visibility (m)</label><input type="number" inputmode="decimal" id="rvV" value="600" min="0">
+          <label>Lighting: HI (high intensity), OTHER or NONE</label><input type="text" id="rvL" value="HI">
+          <label>DAY or NIGHT</label><input type="text" id="rvT" value="NIGHT">
+          <div class="out" id="rvOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🌊 Distance from land</h3>
+          <label>Cruising speed used for the rule (kt)</label><input type="number" inputmode="decimal" id="dsS" value="240" min="0">
+          <label>Time limit (min)</label><input type="number" inputmode="decimal" id="dsM" value="120" min="0">
+          <label>Distance cap (NM)</label><input type="number" inputmode="decimal" id="dsC" value="400" min="0">
+          <div class="out" id="dsOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🧑‍✈️ Cabin equipment by seats</h3>
+          <label>Passenger seats installed</label><input type="number" inputmode="decimal" id="csN" value="180" min="0">
+          <div class="out" id="csOut"></div>
+        </div>
+        <div class="tool">
+          <h3>📅 Day of the year (track message)</h3>
+          <label>Date (YYYY-MM-DD)</label><input type="text" id="jdD" value="2026-03-15">
+          <div class="out" id="jdOut"></div>
+        </div>
+        <div class="tool">
+          <h3>💧 Aquaplaning speed</h3>
+          <label>Tyre pressure</label><input type="number" inputmode="decimal" id="aqP" value="196" min="0">
+          <label>Units: PSI or BAR</label><input type="text" id="aqU" value="PSI">
+          <div class="out" id="aqOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🛬 Approach category</h3>
+          <label>Stall speed in landing configuration VS0 (kt)</label><input type="number" inputmode="decimal" id="vaS" value="100" min="0">
+          <label>1 g stall speed VS1g, if known (kt, 0 if not)</label><input type="number" inputmode="decimal" id="vaG" value="0" min="0">
+          <div class="out" id="vaOut"></div>
+        </div>
+        <div class="tool">
+          <h3>😴 Minimum rest</h3>
+          <label>Length of the preceding duty period (h)</label><input type="number" inputmode="decimal" id="rsF" value="11" step="0.25" min="0">
+          <label>HOME or AWAY</label><input type="text" id="rsW" value="HOME">
+          <div class="out" id="rsOut"></div>
+        </div>
+      </div>
+
+      <h3 class="sub">📋 Cheat sheet — numbers worth knowing</h3>
+      <div class="table-wrap cheat">
+        <table>
+          <thead><tr><th>Idea</th><th class="num">Number / rule</th></tr></thead>
+          <tbody>
+            <tr><td>🗓️ Accident or serious incident report</td><td class="num">within 72 h</td></tr>
+            <tr><td>📼 Recordings kept after an incident</td><td class="num">60 days</td></tr>
+            <tr><td>🍷 Alcohol before duty</td><td class="num">none within 8 h · max 0.2 promille</td></tr>
+            <tr><td>🌊 Ditching rule (&gt; 30 seats)</td><td class="num">120 min or 400 NM, lesser</td></tr>
+            <tr><td>🛬 Destination with no alternate</td><td class="num">≤ 6 h · 2 runways · ceiling 2000 ft or circling + 500 · vis 5 km</td></tr>
+            <tr><td>📉 Approach ban</td><td class="num">outer marker (precision) · 1000 ft (non-precision)</td></tr>
+            <tr><td>🌫️ Low visibility take-off</td><td class="num">RVR &lt; 400 m · lowest normal 150 m (Cat D 200 m)</td></tr>
+            <tr><td>🔻 CAT I / II / IIIA / IIIB RVR</td><td class="num">550 · 300 · 175 · 50 m (operator tables 200 · 75 m)</td></tr>
+            <tr><td>🔄 Circling minima A/B/C/D</td><td class="num">400/1500 · 500/1600 · 600/2400 · 700/3600</td></tr>
+            <tr><td>😷 Crew oxygen</td><td class="num">&gt; 13 000 ft always · 10–13 000 ft after 30 min</td></tr>
+            <tr><td>👥 Passenger oxygen</td><td class="num">100% &gt;15 000 · 30% 14–15 000 · 10% 10–14 000 after 30 min</td></tr>
+            <tr><td>🧑‍✈️ Cabin crew</td><td class="num">1 per 50 seats (or part) when &gt; 19 seats</td></tr>
+            <tr><td>⏱️ Duty limits</td><td class="num">60 h/7 d · 190 h/28 d · block 100 h/28 d · 900 h/year</td></tr>
+            <tr><td>🌍 NAT high level airspace</td><td class="num">FL285–FL420 · RVSM FL290–410</td></tr>
+            <tr><td>🌪️ Wake: light behind heavy</td><td class="num">6 NM · 2 min departure</td></tr>
+            <tr><td>⛽ Fuel jettison level</td><td class="num">≥ 6000 ft</td></tr>
+            <tr><td>☣️ Dangerous goods report</td><td class="num">first report within 72 h</td></tr>
+            <tr><td>❄️ Take-off depth limits</td><td class="num">water/slush 15 mm · dry snow 60 mm</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sec" id="ch1" data-icon="🌍" style="--acc:#2f5fb3">
+      <h2><span class="num">1</span> International Operating Standards <span class="en">Chapter 1</span></h2>
+      <p class="lead">One international standard sets the baseline for running an airline across borders: who holds operational control, which alternates exist, what flight time means and how safety is managed.</p>
+      <div class="glance"><span>🎯 Parts 1, 2 and 3</span><span>🎯 Operational control</span><span>🎯 Four kinds of alternate</span><span>🎯 Block-to-block time</span><span>🎯 Safety management</span><span>🎯 Navigation lights</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The operator holds operational control</strong> — the authority to start, continue, divert or end a flight. It can delegate that only to the pilot-in-command (or, with an approved supervision method, a flight dispatcher).</p></div>
+      <div class="compare">
+        <div class="card acc"><h4>Part 1</h4><p>Aeroplanes in <strong>international commercial air transport</strong>.</p></div>
+        <div class="card mid"><h4>Part 2</h4><p>Aeroplanes in <strong>general aviation</strong>.</p></div>
+        <div class="card good"><h4>Part 3</h4><p><strong>Helicopters</strong> in international commercial air transport.</p></div>
+      </div>
+      <h3 class="sub">Alternates</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Alternate</th><th>Used when</th></tr></thead>
+          <tbody>
+            <tr><td>Take-off alternate</td><td>The departure aerodrome cannot be used shortly after take-off</td></tr>
+            <tr><td>En route alternate</td><td>An abnormal or emergency condition arises en route</td></tr>
+            <tr><td>ETOPS en route alternate</td><td>An engine is shut down on an extended twin operation</td></tr>
+            <tr><td>Destination alternate</td><td>Landing at the destination becomes impossible or inadvisable</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3 class="sub">Safety management and lights</h3>
+      <ul>
+        <li>🛡️ The State sets a <strong>safety programme</strong>; each operator runs its own <strong>safety management system</strong>.</li>
+        <li>📊 Aeroplanes over <strong>27 000 kg</strong> need a flight data analysis programme.</li>
+        <li>⏱️ <strong>Flight time</strong> runs from first movement for take-off until the aeroplane finally comes to rest — block to block.</li>
+        <li>💡 Navigation lights: red left, green right (each 110°), white tail (140°). Seeing <strong>red on your right and green on your left</strong> means the other aircraft is heading towards you.</li>
+      </ul>
+      <div class="memory"><span class="label">🧠 Memory hook</span> "Red, right, returning": if the red light is on your right, it is coming back at you.</div>
+      <div class="related"><span class="dot"></span> Practise: 01 International Operating Standards</div>
+    </section>
+
+    <section class="sec" id="ch2" data-icon="📜" style="--acc:#3a7bd5">
+      <h2><span class="num">2</span> General Requirements <span class="en">Chapter 2</span></h2>
+      <p class="lead">The everyday rules of commercial operation: the commander's authority, fitness for duty, documents on board, what stays on the ground, and how leasing changes who the operator is.</p>
+      <div class="glance"><span>🎯 Commander's authority</span><span>🎯 Alcohol and fitness</span><span>🎯 Documents on board</span><span>🎯 Ditching distance</span><span>🎯 Wet and dry lease</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The commander is responsible for everyone on board from boarding until leaving</strong>, and for the aeroplane from first ready to taxi until it finally stops with the engines shut down.</p></div>
+      <h3 class="sub">Fitness for duty</h3>
+      <ul>
+        <li>🍷 No alcohol within <strong>8 hours</strong> of duty or standby; blood alcohol no more than <strong>0.2 promille</strong>.</li>
+        <li>🤿 Not on duty until a reasonable time after deep diving or blood donation.</li>
+        <li>🔇 The "sterile" period: take-off, initial climb, final approach and landing — essential duties only.</li>
+        <li>📼 Flight recorders are never switched off in flight; after an incident the CVR may be stopped to protect the recording.</li>
+      </ul>
+      <h3 class="sub">Documents</h3>
+      <div class="compare">
+        <div class="card acc"><h4>Originals</h4><p>Certificate of registration, certificate of airworthiness, noise certificate, radio licence.</p></div>
+        <div class="card good"><h4>Copies are enough</h4><p>The AOC and the third-party insurance certificate.</p></div>
+      </div>
+      <h3 class="sub">Leasing</h3>
+      <div class="compare">
+        <div class="card mid"><h4>Dry lease</h4><p>Aeroplane only. Flown under the <strong>lessee's</strong> AOC.</p></div>
+        <div class="card bad"><h4>Wet lease</h4><p>Aeroplane and crew. Flown under the <strong>lessor's</strong> AOC.</p></div>
+      </div>
+      <details class="example"><summary>Worked example — ditching distance</summary><div class="body">
+        <p>An aeroplane with more than 30 passenger seats cruises at 180 kt. The limit is 120 minutes at cruising speed or 400 NM, whichever is less.</p>
+        <p>120 min at 180 kt = 360 NM, which is less than 400 NM, so it may go <strong>360 NM</strong> from land suitable for an emergency landing unless it meets the ditching requirements.</p>
+      </div></details>
+      <p>After an incident, flight data and voice recordings are kept for <strong>60 days</strong> unless the authority asks for longer.</p>
+      <div class="related"><span class="dot"></span> Practise: 02 General Requirements</div>
+    </section>
+
+    <section class="sec" id="ch3" data-icon="🏛️" style="--acc:#1f9d8a">
+      <h2><span class="num">3</span> Operator Certification and Supervision <span class="en">Chapter 3</span></h2>
+      <p class="lead">Before carrying a paying passenger, an operator needs an air operator certificate, a set of named managers, a main base, and an operations manual in four parts.</p>
+      <div class="glance"><span>🎯 Who issues the AOC</span><span>🎯 Accountable manager</span><span>🎯 Nominated post holders</span><span>🎯 Special approvals</span><span>🎯 Operations manual A–D</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The AOC comes from the State of the operator's principal place of business</strong>, and lists the types of operation, aircraft, areas and every special approval (CAT II/III with minima, ETOPS, RVSM, RNAV, dangerous goods).</p></div>
+      <ul>
+        <li>👔 The <strong>accountable manager</strong> makes sure operations and maintenance can be financed and done to standard.</li>
+        <li>🧑‍💼 Four nominated posts: flight operations, maintenance system, crew training, ground operations.</li>
+        <li>🔁 Authority audits include the operator's internal audits and its financial records.</li>
+      </ul>
+      <h3 class="sub">The operations manual</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th class="num">Part</th><th>Contents</th></tr></thead>
+          <tbody>
+            <tr><td class="num">A</td><td>General: organisation, crew, flight time limits, procedures, dangerous goods, security</td></tr>
+            <tr><td class="num">B</td><td>Aeroplane: limitations, procedures, performance, mass and balance, MEL</td></tr>
+            <tr><td class="num">C</td><td>Routes and aerodromes, including operating minima</td></tr>
+            <tr><td class="num">D</td><td>Training</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3 class="sub">Terms worth knowing</h3>
+      <ul>
+        <li>🛬 <strong>Isolated destination</strong> (turbine): going on to the nearest alternate would need more than 2 hours of fuel.</li>
+        <li>📍 <strong>Equivalent position</strong>: a fix 3 to 5 NM from the threshold, standing in for an outer marker.</li>
+        <li>⛽ <strong>3% ERA</strong>: an en route alternate that lets contingency fuel drop to 3% of trip fuel.</li>
+      </ul>
+      <div class="memory"><span class="label">🧠 Memory hook</span> A–B–C–D: About the company, the aeroplane (Body), the routes (Charts), and the training (Development).</div>
+      <div class="related"><span class="dot"></span> Practise: 03 Operator Certification and Supervision</div>
+    </section>
+
+    <section class="sec" id="ch4" data-icon="🗂️" style="--acc:#7a5cf0">
+      <h2><span class="num">4</span> Operational Procedures <span class="en">Chapter 4</span></h2>
+      <p class="lead">How a flight is planned and flown: alternates and their minima, when an approach may be continued, how visibility becomes RVR, fuel, passengers and reporting.</p>
+      <div class="glance"><span>🎯 Take-off alternate distance</span><span>🎯 Planning minima</span><span>🎯 No-alternate rule</span><span>🎯 Approach ban</span><span>🎯 Visibility to RVR</span><span>🎯 Fuel components</span><span>🎯 Oxygen and reports</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Planning minima are deliberately higher than operating minima.</strong> A plan built on the higher figure leaves room for the weather to get worse before the flight arrives.</p></div>
+      <h3 class="sub">Take-off alternate distance</h3>
+      <div class="compare">
+        <div class="card acc"><h4>Twin</h4><p>Within <strong>1 hour</strong> at one-engine-inoperative cruise speed (or approved ETOPS time, max 2 h).</p></div>
+        <div class="card good"><h4>Three or four engines</h4><p>Within <strong>2 hours</strong> at one-engine-inoperative cruise speed.</p></div>
+      </div>
+      <h3 class="sub">Planning minima for alternates</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Approach available</th><th>Plan with</th></tr></thead>
+          <tbody>
+            <tr><td>CAT II or III</td><td>CAT I RVR</td></tr>
+            <tr><td>CAT I</td><td>Non-precision RVR, ceiling at or above MDH</td></tr>
+            <tr><td>Non-precision</td><td>Non-precision RVR + 1000 m, ceiling MDH + 200 ft</td></tr>
+            <tr><td>Circling</td><td>Circling minima</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>ETOPS en route alternates add <strong>200 ft and 800 m</strong> for a precision approach, <strong>400 ft and 1500 m</strong> for a non-precision or circling one.</p>
+      <h3 class="sub">When no destination alternate is needed</h3>
+      <ul>
+        <li>⏱️ Flight no longer than <strong>6 hours</strong>.</li>
+        <li>🛬 Two separate usable runways.</li>
+        <li>☁️ From 1 h before to 1 h after ETA: ceiling at least <strong>2000 ft or circling height + 500 ft</strong> (higher), visibility at least <strong>5 km</strong>.</li>
+      </ul>
+      <h3 class="sub">The approach ban</h3>
+      <div class="callout warning"><span class="label">⚠️ Below minima</span> An approach may be started whatever the reported RVR, but must not continue past the <strong>outer marker</strong> (precision) or below <strong>1000 ft</strong> (non-precision) if the RVR is below minima. Past that point, it may continue to DA/H or MDA/H.</div>
+      <p>The touchdown zone RVR always controls. Midpoint minimum 125 m (75 m with roll-out guidance); stop end 75 m.</p>
+      <h3 class="sub">Visibility to RVR</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Lighting</th><th class="num">Day</th><th class="num">Night</th></tr></thead>
+          <tbody>
+            <tr><td>High intensity approach and runway lights</td><td class="num">1.5</td><td class="num">2.0</td></tr>
+            <tr><td>Any other lighting</td><td class="num">1.0</td><td class="num">1.5</td></tr>
+            <tr><td>No lighting</td><td class="num">1.0</td><td class="num">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3 class="sub">Twins without ETOPS approval</h3>
+      <ul>
+        <li>✈️ Class A, 20 seats or more, or 45 360 kg or more: <strong>60 minutes</strong> one-engine-out.</li>
+        <li>✈️ Smaller Class A: 120 minutes (180 with approval for turbojets).</li>
+        <li>🛩️ Class B or C: <strong>120 minutes or 300 NM</strong>, whichever is less.</li>
+      </ul>
+      <h3 class="sub">Fuel, oxygen and reports</h3>
+      <ul>
+        <li>⛽ Taxi + trip + reserve; reserve = contingency + alternate + final reserve + additional (+ extra at the commander's choice).</li>
+        <li>🚫 No refuelling with wide-cut fuel or Avgas while passengers are on board or boarding.</li>
+        <li>😷 Crew on oxygen continuously above 13 000 ft cabin altitude, and above 10 000 ft after 30 minutes.</li>
+        <li>📝 Accident or serious incident report to the authority within <strong>72 hours</strong>; ACAS RA and bird strike reports too.</li>
+        <li>📏 RVSM: 1000 ft separation from FL290 to FL410.</li>
+      </ul>
+      <details class="example"><summary>Worked example — planning minima for a non-precision alternate</summary><div class="body">
+        <p>The alternate has a VOR approach with MDH 400 ft and RVR 1500 m. For planning, add 200 ft and 1000 m: <strong>ceiling 600 ft, visibility 2500 m</strong>.</p>
+      </div></details>
+      <div class="related"><span class="dot"></span> Practise: 04 Operational Procedures</div>
+    </section>
+
+    <section class="sec" id="ch5" data-icon="🌫️" style="--acc:#14a39a">
+      <h2><span class="num">5</span> All Weather Operations <span class="en">Chapter 5</span></h2>
+      <p class="lead">Approach categories, take-off minima, the precision categories and circling: the tables that decide whether you can go.</p>
+      <div class="glance"><span>🎯 Approach categories</span><span>🎯 Take-off RVR</span><span>🎯 System minima</span><span>🎯 CAT I, II, III</span><span>🎯 Circling</span><span>🎯 VFR minima</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The lower the minimum, the more of everything is needed</strong> — aircraft certification, crew training, ground equipment and low visibility procedures in force. Without all of them, the higher figure applies.</p></div>
+      <h3 class="sub">Approach categories (VAT)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th class="num">Cat</th><th class="num">VAT (kt)</th><th class="num">Circling MDH / vis</th></tr></thead>
+          <tbody>
+            <tr><td class="num">A</td><td class="num">&lt; 91</td><td class="num">400 ft / 1500 m</td></tr>
+            <tr><td class="num">B</td><td class="num">91–120</td><td class="num">500 ft / 1600 m</td></tr>
+            <tr><td class="num">C</td><td class="num">121–140</td><td class="num">600 ft / 2400 m</td></tr>
+            <tr><td class="num">D</td><td class="num">141–165</td><td class="num">700 ft / 3600 m</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>VAT = VS0 × 1.3 or VS1g × 1.23 at maximum landing mass; if both are known, the higher result is used.</p>
+      <h3 class="sub">Take-off minima</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Facilities</th><th class="num">RVR</th></tr></thead>
+          <tbody>
+            <tr><td>Nil (day only)</td><td class="num">500 m</td></tr>
+            <tr><td>Edge lighting and/or centre line marking</td><td class="num">250 m (Cat D 300 m)</td></tr>
+            <tr><td>Edge and centre line lighting</td><td class="num">200 m (Cat D 250 m)</td></tr>
+            <tr><td>+ multiple RVR information</td><td class="num">150 m (Cat D 200 m)</td></tr>
+            <tr><td>With approval and extra conditions</td><td class="num">125 m (Cat D 150 m)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>A <strong>low visibility take-off</strong> is one with RVR below 400 m.</p>
+      <h3 class="sub">System minima (non-precision)</h3>
+      <ul>
+        <li>📡 Localiser 250 ft · VOR/DME 250 ft · VOR 300 ft · NDB/DME 300 ft · NDB 350 ft · VDF 350 ft · RNAV/LNAV 300 ft.</li>
+        <li>📉 A non-precision approach: MDH not below 250 ft, RVR not below 750 m. APV: 250 ft and 600 m.</li>
+      </ul>
+      <h3 class="sub">Precision categories</h3>
+      <div class="compare">
+        <div class="card acc"><h4>CAT I</h4><p>DH ≥ 200 ft, RVR ≥ <strong>550 m</strong> (single pilot 800 m unless coupled).</p></div>
+        <div class="card mid"><h4>CAT II</h4><p>DH 100–199 ft, RVR ≥ <strong>300 m</strong>.</p></div>
+        <div class="card good"><h4>CAT IIIA</h4><p>DH &lt; 100 ft, RVR ≥ <strong>175 m</strong> (operator tables often 200 m).</p></div>
+        <div class="card bad"><h4>CAT IIIB</h4><p>DH &lt; 50 ft or none, RVR <strong>50–175 m</strong> (operator tables down to 75 m).</p></div>
+      </div>
+      <div class="callout note"><span class="label">📝 Keep in mind</span> The detailed low-visibility tables here follow an older edition of the rules. Recent revisions changed some figures, so check your current operations manual before relying on one.</div>
+      <h3 class="sub">VFR minima</h3>
+      <ul>
+        <li>☁️ Above 3000 ft AMSL or 1000 ft above terrain: 1500 m horizontally and 1000 ft vertically from cloud; visibility 8 km at or above FL100, 5 km below.</li>
+        <li>🌁 Special VFR: do not start below 3 km visibility; do not continue below 1.5 km.</li>
+        <li>👁️ No visual approach with RVR below 800 m.</li>
+      </ul>
+      <details class="example"><summary>Worked example — which category?</summary><div class="body">
+        <p>VS0 is 100 kt. VAT = 100 × 1.3 = 130 kt, which lies between 121 and 140 kt: <strong>Category C</strong>. Circling minima are 600 ft and 2400 m.</p>
+      </div></details>
+      <div class="related"><span class="dot"></span> Practise: 05 All Weather Operations</div>
+    </section>
+
+    <section class="sec" id="ch6" data-icon="🧯" style="--acc:#e09a1f">
+      <h2><span class="num">6</span> Aeroplane Equipment and Instruments <span class="en">Chapter 6</span></h2>
+      <p class="lead">What must be fitted and carried, and the mass and seat thresholds that trigger each item. Most rules switch on at 5700 kg, 9 seats or 19 seats.</p>
+      <div class="glance"><span>🎯 First aid kits</span><span>🎯 Recorders</span><span>🎯 Flights over water</span><span>🎯 ELT frequencies</span><span>🎯 Supplemental oxygen</span><span>🎯 Megaphones and axes</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Learn the thresholds, not every item.</strong> More than 5700 kg or more than 9 seats brings in heated pitot, TAWS, standby horizon and weather radar; more than 19 seats brings in the flight deck door, cabin crew, PA and ACAS II (with 5700 kg).</p></div>
+      <h3 class="sub">Cabin equipment by seats</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Rule</th></tr></thead>
+          <tbody>
+            <tr><td>First aid kits</td><td>0–99: 1 · 100–199: 2 · 200–299: 3 · 300+: 4</td></tr>
+            <tr><td>Megaphones</td><td>61–99: 1 · 100+: 2</td></tr>
+            <tr><td>Crash axe / crowbar</td><td>flight deck (&gt; 5700 kg or &gt; 9 seats) · extra one in rear galley above 200 seats</td></tr>
+            <tr><td>Emergency medical kit</td><td>more than 30 seats and more than 60 min from a qualified medical facility</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3 class="sub">Flight recorders</h3>
+      <ul>
+        <li>🎙️ CVR: 2 hours (over 5700 kg, certificated from 1 April 1998); 30 minutes for older ones; <strong>25 hours</strong> for aeroplanes over 27 000 kg certificated from 1 January 2021.</li>
+        <li>📊 FDR: last 25 hours (10 hours allowed at 5700 kg or less).</li>
+      </ul>
+      <h3 class="sub">Over water</h3>
+      <ul>
+        <li>🚣 Rafts and survival ELTs beyond <strong>120 min or 400 NM</strong> (can continue after engine failure) or <strong>30 min or 100 NM</strong> (all others), whichever is less.</li>
+        <li>📡 ELTs transmit on <strong>121.5 MHz</strong> (homing) and <strong>406 MHz</strong> (satellite).</li>
+      </ul>
+      <h3 class="sub">Supplemental oxygen (pressurised)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Who</th><th>Cabin altitude and duration</th></tr></thead>
+          <tbody>
+            <tr><td>Flight crew on duty</td><td>All time above 13 000 ft; 10–13 000 ft after 30 min; minimum 30 min (2 h if certificated above 25 000 ft)</td></tr>
+            <tr><td>100% of passengers</td><td>All time above 15 000 ft, never less than 10 min</td></tr>
+            <tr><td>30% of passengers</td><td>14 000–15 000 ft</td></tr>
+            <tr><td>10% of passengers</td><td>10 000–14 000 ft after 30 min</td></tr>
+            <tr><td>First aid oxygen</td><td>2% of passengers (at least one) above 25 000 ft</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Unpressurised: crew above 10 000 ft always; 100% of passengers above 13 000 ft; 10% between 10 000 and 13 000 ft after 30 minutes. Crew PBE gives at least <strong>15 minutes</strong> of oxygen.</p>
+      <div class="memory"><span class="label">🧠 Memory hook</span> For oxygen, think "10–13–15": 10 000 ft starts the clock, 13 000 ft needs the crew on it, 15 000 ft needs everyone.</div>
+      <div class="related"><span class="dot"></span> Practise: 06 Aeroplane Equipment and Instruments</div>
+    </section>
+
+    <section class="sec" id="ch7" data-icon="🧑‍✈️" style="--acc:#e47a22">
+      <h2><span class="num">7</span> Crew, Logs and Records <span class="en">Chapter 7</span></h2>
+      <p class="lead">Who may fly, how often they are checked, how many cabin crew are needed, how long records are kept, and how far duty may stretch.</p>
+      <div class="glance"><span>🎯 Command experience</span><span>🎯 Recency</span><span>🎯 Check validity</span><span>🎯 Cabin crew numbers</span><span>🎯 Storage periods</span><span>🎯 Duty and rest</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Checks run to the end of a month, and the 3-month rule protects early renewal.</strong> Pass within the last 3 months of validity and the new period counts from the old expiry date, not from today.</p></div>
+      <h3 class="sub">Recency and checks</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Rule</th></tr></thead>
+          <tbody>
+            <tr><td>Take-offs and landings</td><td>3 in the last 90 days (extendable to 120 under supervision)</td></tr>
+            <tr><td>Operator proficiency check</td><td>6 months + rest of the month of issue</td></tr>
+            <tr><td>Line check</td><td>12 months</td></tr>
+            <tr><td>Emergency and safety equipment</td><td>12 months</td></tr>
+            <tr><td>Route and aerodrome competence</td><td>12 months + rest of the month</td></tr>
+            <tr><td>CRM topics</td><td>all covered within 3 years</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3 class="sub">Crew</h3>
+      <ul>
+        <li>🧑‍✈️ Two pilots for IFR or night in all turbojets and in turboprops with more than 9 seats.</li>
+        <li>💺 Cabin crew: one per <strong>50 seats or part of 50</strong>, when there are more than 19 seats.</li>
+        <li>🔁 A cruise relief pilot may act only in the cruise, not below FL200.</li>
+      </ul>
+      <h3 class="sub">How long records are kept</h3>
+      <div class="compare">
+        <div class="card acc"><h4>3 months</h4><p>Operational flight plan, journey log, mass and balance, NOTAMs, dangerous goods documents.</p></div>
+        <div class="card mid"><h4>36 months</h4><p>Aeroplane technical log, after the last entry.</p></div>
+        <div class="card good"><h4>3 years</h4><p>Pilot training and checking records.</p></div>
+        <div class="card bad"><h4>5 years</h4><p>Quality system records.</p></div>
+      </div>
+      <h3 class="sub">Duty and rest</h3>
+      <ul>
+        <li>⏱️ Duty: 60 h in 7 days, 190 h in 28 days. Block time: 100 h in 28 days, 900 h in a calendar year.</li>
+        <li>📉 Basic daily flight duty period 13 h, minus 30 min per sector from the third (6 sectors or more: 11 h).</li>
+        <li>🌙 WOCL: 02:00–05:59 home base time.</li>
+        <li>😴 Rest: at least the preceding duty, and never less than 12 h at home or 10 h away, including 8 h of sleep opportunity.</li>
+        <li>🧭 Commander's discretion: up to 2 h (3 h augmented), reported within 28 days.</li>
+      </ul>
+      <details class="example"><summary>Worked example — the 3-month rule</summary><div class="body">
+        <p>An OPC expires on 31 December. Passed in October (within the last 3 months), the new one runs 6 months from 31 December: <strong>30 June</strong>. Passed in August (too early), it runs 6 months plus the rest of August: <strong>28 February</strong>.</p>
+      </div></details>
+      <div class="related"><span class="dot"></span> Practise: 07 Crew, Logs and Records</div>
+    </section>
+
+    <section class="sec" id="ch8" data-icon="🧭" style="--acc:#14a39a">
+      <h2><span class="num">8</span> Long Range Flight and Polar Navigation <span class="en">Chapter 8</span></h2>
+      <p class="lead">Far from ground aids, the crew relies on its own systems. Knowing which one is wrong, and keeping it honest, is the whole game.</p>
+      <div class="glance"><span>🎯 Two versus three systems</span><span>🎯 Independent fix</span><span>🎯 Revised clearance</span><span>🎯 Polar problems</span><span>🎯 Minimum time route</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Three systems can vote; two can only disagree.</strong> With two, an independent fix — radar, a beacon, other aircraft's winds — is needed to decide which one has drifted.</p></div>
+      <ul>
+        <li>📍 Plot the present position about <strong>10 minutes</strong> after each waypoint.</li>
+        <li>🧲 Above about 65°N, steep dip and changing variation make magnetic references unreliable: grid navigation, inertial and satellite systems take over, and far-north VORs are aligned to <strong>true north</strong>.</li>
+        <li>📻 Polar flight also means HF communications, few alternates and large gyro corrections (earth rate, transport wander).</li>
+        <li>📝 If the aircraft cannot keep to its clearance, get a <strong>revised clearance first</strong>, using urgency or distress procedures if needed.</li>
+      </ul>
+      <div class="compare">
+        <div class="card acc"><h4>Shortest distance</h4><p>The minor arc of the great circle.</p></div>
+        <div class="card good"><h4>Minimum time route</h4><p>The quickest track within ATC limits, often longer because of the winds. Computer-generated.</p></div>
+      </div>
+      <div class="related"><span class="dot"></span> Practise: 08 Long Range Flight and Polar Navigation</div>
+    </section>
+
+    <section class="sec" id="ch9" data-icon="🌊" style="--acc:#2f7fd1">
+      <h2><span class="num">9</span> North Atlantic High Level Airspace <span class="en">Chapter 9</span></h2>
+      <p class="lead">The busiest oceanic airspace in the world, with few ground aids: tracks that change twice a day, strict navigation standards and contingency procedures everyone flies the same way.</p>
+      <div class="glance"><span>🎯 HLA levels</span><span>🎯 Boundaries</span><span>🎯 Organised tracks</span><span>🎯 Track message identifier</span><span>🎯 HF and 123.45</span><span>🎯 Contingencies</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The high level airspace runs from FL285 to FL420</strong> (formerly MNPS airspace), containing the RVSM levels FL290–410. Aircraft and crews need approval to enter it.</p></div>
+      <h3 class="sub">The organised track system</h3>
+      <div class="compare">
+        <div class="card acc"><h4>Westbound tracks</h4><p>Crossing 30°W <strong>1130–1900 UTC</strong>.</p></div>
+        <div class="card good"><h4>Eastbound tracks</h4><p>Crossing 30°W <strong>0100–0800 UTC</strong>.</p></div>
+      </div>
+      <ul>
+        <li>🗺️ Oceanic boundaries at 30°W (Shanwick/Gander), 40°W (Santa Maria/New York) and 45°N between them.</li>
+        <li>🗓️ The track message identifier is the day of the year: 15 March is <strong>074</strong> (075 in a leap year). Amendments add a letter: 074A.</li>
+        <li>📍 "59/10" means 59°N 010°W. Reports every 10° of longitude (20° above 70°N).</li>
+        <li>⚠️ About 80% of gross navigation errors follow a reroute — always cross-check the waypoints.</li>
+      </ul>
+      <h3 class="sub">Communications</h3>
+      <ul>
+        <li>📻 HF voice and datalink; long-range VHF within about 250 NM of land.</li>
+        <li>🗣️ Monitor <strong>121.5 MHz</strong>, and 123.45 MHz air-to-air.</li>
+        <li>🕰️ Oceanic clearance at least <strong>40 minutes</strong> before entry; revise the entry estimate if it changes by 3 minutes or more.</li>
+        <li>☀️ HF: "the higher the sun, the higher the frequency".</li>
+      </ul>
+      <h3 class="sub">Contingencies (current procedure)</h3>
+      <div class="callout caution"><span class="label">🔁 Unable to keep the clearance</span> Turn at least <strong>30°</strong> left or right to join a track <strong>5 NM</strong> off the cleared one, then climb or descend so the level differs by <strong>500 ft</strong> from normal levels. Broadcast on 121.5 MHz (or 123.45) and keep a good lookout.</div>
+      <ul>
+        <li>⛈️ Weather deviation: under 5 NM, stay level; beyond 5 NM, change level by 300 ft.</li>
+        <li>↘️ Strategic lateral offset: centre line or up to <strong>2 NM right</strong> only.</li>
+        <li>📏 Report a height deviation of more than 300 ft.</li>
+      </ul>
+      <div class="callout note"><span class="label">📝 Keep in mind</span> Older procedures used a 45° turn and a 15 NM offset. The current figures are 30° and 5 NM.</div>
+      <div class="related"><span class="dot"></span> Practise: 09 North Atlantic High Level Airspace</div>
+    </section>
+
+    <section class="sec" id="ch10" data-icon="⚠️" style="--acc:#d1542b">
+      <h2><span class="num">10</span> Special Procedures and Hazards <span class="en">Chapter 10</span></h2>
+      <p class="lead">Ice on the airframe, birds, and the noise a departing aeroplane makes: each has its own procedure.</p>
+      <div class="glance"><span>🎯 How ice forms</span><span>🎯 Frost</span><span>🎯 Effect of ice</span><span>🎯 NADP 1 and 2</span><span>🎯 Noise runway limits</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Ice needs liquid water and a surface below 0 °C.</strong> A thin deposit can cut lift by up to 30% and raise drag by up to 40%, so take-off starts only with clean surfaces.</p></div>
+      <h3 class="sub">Noise abatement departures</h3>
+      <div class="compare">
+        <div class="card acc"><h4>NADP 1 — close in</h4><p>Reduce power at or above 800 ft, climb at V2 + 10–20 kt with take-off flap to 3000 ft, then accelerate.</p></div>
+        <div class="card good"><h4>NADP 2 — distant</h4><p>From 800 ft, accelerate and retract flap, then climb at zero-flap speed + 10–20 kt to 3000 ft.</p></div>
+      </div>
+      <p>Never below <strong>800 ft</strong>. Turns not below 500 ft, bank limited to 15°.</p>
+      <h3 class="sub">When noise must not choose the runway</h3>
+      <ul>
+        <li>💨 Crosswind over 15 kt or tailwind over 5 kt (including gusts).</li>
+        <li>☁️ Ceiling below 500 ft, or visibility below 1900 m.</li>
+        <li>❄️ Runway not clear and dry, or windshear reported.</li>
+      </ul>
+      <p>On approach: landing configuration by the outer marker or 5 NM, and never above the glide path. A continuous descent final approach uses about 300 ft per NM.</p>
+      <div class="related"><span class="dot"></span> Practise: 10 Special Procedures and Hazards</div>
+    </section>
+
+    <section class="sec" id="ch11" data-icon="🔥" style="--acc:#c0392b">
+      <h2><span class="num">11</span> Fire and Smoke <span class="en">Chapter 11</span></h2>
+      <p class="lead">Engine fires, cabin fires, smoke and hot brakes: drills, extinguishers and the classes of cargo compartment.</p>
+      <div class="glance"><span>🎯 Engine fire drills</span><span>🎯 Hand-held extinguishers</span><span>🎯 Fire classes</span><span>🎯 Smoke</span><span>🎯 Cargo compartments</span><span>🎯 Hot brakes</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Human life comes first.</strong> On the ground, summon the fire service and be ready to evacuate; in the air, cut the fuel, fire the bottles and get on the ground.</p></div>
+      <ul>
+        <li>🔥 Turbojet drill: thrust lever closed, HP cock off, pull the fire switch (isolates fuel), fire one bottle, wait <strong>30 seconds</strong>, then the second. Turboprop adds feathering.</li>
+        <li>🧯 Flight deck: at least one Halon 1211 (or equivalent). No dry powder — poor visibility and residue.</li>
+        <li>🔢 Cabin extinguishers: 7–30 seats 1 · 31–60 2 · 61–200 3 · 201–300 4 · 301–400 5 · and so on.</li>
+        <li>🅰️ Class A fires: solids (paper, fabric). 🅱️ Class B: flammable liquids.</li>
+      </ul>
+      <h3 class="sub">Cargo compartments</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th class="num">Class</th><th>Feature</th></tr></thead>
+          <tbody>
+            <tr><td class="num">A</td><td>Fire easily seen and reached by a crew member</td></tr>
+            <tr><td class="num">B</td><td>Detection system, crew access in flight</td></tr>
+            <tr><td class="num">C</td><td>Detection, built-in extinguishing, no access</td></tr>
+            <tr><td class="num">D</td><td>No longer cleared for passenger aircraft</td></tr>
+            <tr><td class="num">E</td><td>Cargo aeroplanes only</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3 class="sub">Hot brakes</h3>
+      <ul>
+        <li>🛑 Rejected take-off at high mass is the classic cause; brakes peak up to <strong>30 minutes</strong> later.</li>
+        <li>💥 Tyres may ignite or burst; approach the wheel from the front or rear, never the side.</li>
+        <li>⏳ Wait the brake cooling time before the next take-off.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 11 Fire and Smoke</div>
+    </section>
+
+    <section class="sec" id="ch12" data-icon="🫁" style="--acc:#7a5cf0">
+      <h2><span class="num">12</span> Pressurisation Failure <span class="en">Chapter 12</span></h2>
+      <p class="lead">When the cabin loses pressure, the time of useful consciousness is short. Masks first, then down.</p>
+      <div class="glance"><span>🎯 Slow and rapid decompression</span><span>🎯 Cabin altitude warning</span><span>🎯 Emergency descent</span><span>🎯 Oxygen supply</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Oxygen masks on, then descend to 10 000 ft or the lowest safe level, whichever is higher.</strong> The cabin altitude warning sounds at about 10 000 ft.</p></div>
+      <div class="compare">
+        <div class="card acc"><h4>Slow decompression</h4><p>Gradual, may be noticed only by the warning or by symptoms of hypoxia.</p></div>
+        <div class="card bad"><h4>Rapid decompression</h4><p>Bang, mist, flying debris, cold, ear pain. Seconds count.</p></div>
+      </div>
+      <p>Crew oxygen: 2 hours if certificated above 25 000 ft (a 10-minute descent to 10 000 ft, then 110 minutes); 30 minutes otherwise. The 10-minute minimum for all passengers is a descent from maximum altitude to 15 000 ft.</p>
+      <div class="related"><span class="dot"></span> Practise: 12 Pressurisation Failure</div>
+    </section>
+
+    <section class="sec" id="ch13" data-icon="🌬️" style="--acc:#2f7fd1">
+      <h2><span class="num">13</span> Windshear and Microburst <span class="en">Chapter 13</span></h2>
+      <p class="lead">A sudden change in wind speed or direction near the ground can take away more performance than the aeroplane has.</p>
+      <div class="glance"><span>🎯 What windshear is</span><span>🎯 Microburst sequence</span><span>🎯 Recovery</span><span>🎯 Signs to watch</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>A microburst first gives a headwind, then a downdraught, then a tailwind.</strong> The early gain in airspeed is a trap — the loss that follows is bigger.</p></div>
+      <ul>
+        <li>🚀 Recovery: full power briskly, pitch up to about <strong>15°</strong> (or as the manual says), keep the configuration, follow the stick shaker limit.</li>
+        <li>⬇️ Below 1000 ft a downdraught is the bigger danger.</li>
+        <li>🌧️ Warning signs: virga, heavy rain from convective cloud, dust rings, reported airspeed changes.</li>
+        <li>🛑 If windshear is reported or forecast, delay the take-off or approach.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 13 Windshear and Microburst</div>
+    </section>
+
+    <section class="sec" id="ch14" data-icon="🌀" style="--acc:#14a39a">
+      <h2><span class="num">14</span> Wake Turbulence <span class="en">Chapter 14</span></h2>
+      <p class="lead">Every wing leaves two vortices behind it, strongest when the aeroplane is heavy, clean and slow.</p>
+      <div class="glance"><span>🎯 How vortices move</span><span>🎯 Categories</span><span>🎯 Approach spacing</span><span>🎯 Departure times</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Heavy, clean and slow makes the strongest wake.</strong> Vortices sink up to about 1000 ft, spread outwards at about 5 kt near the ground, and a light crosswind of about 5 kt can park one on the runway.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Category</th><th class="num">MTOM</th></tr></thead>
+          <tbody>
+            <tr><td>Super</td><td class="num">A380</td></tr>
+            <tr><td>Heavy</td><td class="num">≥ 136 000 kg</td></tr>
+            <tr><td>Medium</td><td class="num">7000–136 000 kg</td></tr>
+            <tr><td>Light</td><td class="num">≤ 7000 kg</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3 class="sub">Spacing</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Leader → follower</th><th class="num">Approach</th></tr></thead>
+          <tbody>
+            <tr><td>Heavy → heavy</td><td class="num">4 NM</td></tr>
+            <tr><td>Heavy → medium</td><td class="num">5 NM</td></tr>
+            <tr><td>Heavy → light</td><td class="num">6 NM</td></tr>
+            <tr><td>Medium → light</td><td class="num">5 NM</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Departures behind a heavy: <strong>2 minutes</strong> from the same point, <strong>3 minutes</strong> from an intermediate point. Parallel runways less than 760 m apart count as one.</p>
+      <div class="memory"><span class="label">🧠 Memory hook</span> Stay above and upwind: land beyond the heavy's touchdown point, take off before its rotation point.</div>
+      <div class="related"><span class="dot"></span> Practise: 14 Wake Turbulence</div>
+    </section>
+
+    <section class="sec" id="ch15" data-icon="🔐" style="--acc:#0d6e7d">
+      <h2><span class="num">15</span> Security <span class="en">Chapter 15</span></h2>
+      <p class="lead">Preventing and handling acts of unlawful interference, from screening on the ground to the locked flight deck door.</p>
+      <div class="glance"><span>🎯 Unlawful interference</span><span>🎯 Squawk 7500</span><span>🎯 Level offset</span><span>🎯 Flight deck door</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Squawk 7500</strong> (7700 if the situation warrants), tell ATC what you can, and, if you must leave the cleared route, fly at a level 500 ft off the normal IFR levels where 1000 ft separation applies.</p></div>
+      <ul>
+        <li>🚪 More than 60 seats or MTOM over 45 500 kg: a flight deck door lockable from either pilot seat, with a way to see who is outside.</li>
+        <li>🔍 Aircraft search checklist on board; crew trained in security procedures.</li>
+        <li>📝 Report acts of unlawful interference to the local authority and the operator's authority.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 15 Security</div>
+    </section>
+
+    <section class="sec" id="ch16" data-icon="🛟" style="--acc:#e09a1f">
+      <h2><span class="num">16</span> Emergency and Precautionary Landings <span class="en">Chapter 16</span></h2>
+      <p class="lead">Landing off a runway, on purpose. Planning, briefing and getting everybody out.</p>
+      <div class="glance"><span>🎯 Ditching</span><span>🎯 Swell and wind</span><span>🎯 Brace position</span><span>🎯 90-second evacuation</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Most ditchings are survivable</strong> — about 88% end with few if any injuries. The deaths come afterwards, mostly from drowning, so life jackets, rafts and a good brief matter most.</p></div>
+      <div class="compare">
+        <div class="card acc"><h4>Swell</h4><p>Long waves from distant weather. Land <strong>along</strong> the swell, on its back.</p></div>
+        <div class="card good"><h4>Wind waves</h4><p>Short waves from the local wind. Into wind when the swell is small.</p></div>
+      </div>
+      <ul>
+        <li>👥 More than 44 seats: evacuation demonstrated in under <strong>90 seconds</strong>.</li>
+        <li>🦺 Life jackets are inflated outside the aircraft, never inside.</li>
+        <li>📣 Brief passengers on the brace position, exits and life jackets as early as possible.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 16 Emergency and Precautionary Landings</div>
+    </section>
+
+    <section class="sec" id="ch17" data-icon="⛽" style="--acc:#d1542b">
+      <h2><span class="num">17</span> Fuel Jettison <span class="en">Chapter 17</span></h2>
+      <p class="lead">Dumping fuel to get down to landing mass quickly and safely.</p>
+      <div class="glance"><span>🎯 When a system is required</span><span>🎯 15 minutes</span><span>🎯 6000 ft</span><span>🎯 Telling ATC</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>A jettison system is required when the aeroplane could not otherwise get down to landing mass after a short flight</strong>, and it must dump enough in 15 minutes to meet the climb requirements.</p></div>
+      <ul>
+        <li>⬆️ Jettison at <strong>6000 ft or above</strong> so the fuel evaporates before reaching the ground.</li>
+        <li>📻 Tell ATC; keep clear of other traffic and of populated areas where possible.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 17 Fuel Jettison</div>
+    </section>
+
+    <section class="sec" id="ch18" data-icon="☣️" style="--acc:#c0392b">
+      <h2><span class="num">18</span> Transport of Dangerous Goods by Air <span class="en">Chapter 18</span></h2>
+      <p class="lead">Goods that could harm people, the aeroplane or property may fly only when the operator is approved and the goods are classified, packed, labelled and declared.</p>
+      <div class="glance"><span>🎯 Approval on the AOC</span><span>🎯 Accident versus incident</span><span>🎯 Shipper's duty</span><span>🎯 Notification to captain</span><span>🎯 72-hour report</span><span>🎯 Labels</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The shipper classifies, packs and declares; the operator accepts, loads and informs.</strong> The commander gets written information on what is on board and where.</p></div>
+      <ul>
+        <li>📄 Two copies of the transport document, in English (plus any other language required).</li>
+        <li>🔍 Inspect packages for leaks or damage before loading and on unloading; remove a leaking one and check the rest.</li>
+        <li>✈️ "Cargo Aircraft Only" goods never go on a passenger aircraft.</li>
+        <li>📣 In an emergency tell ATC that dangerous goods are on board; report incidents within <strong>72 hours</strong>, including undeclared goods found in baggage.</li>
+      </ul>
+      <h3 class="sub">Labels at a glance</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th class="num">Class</th><th>Hazard</th><th>Label</th></tr></thead>
+          <tbody>
+            <tr><td class="num">1</td><td>Explosives</td><td>Orange, exploding bomb</td></tr>
+            <tr><td class="num">2</td><td>Gases</td><td>Red flame (flammable) · green cylinder (non-flammable) · white skull (toxic)</td></tr>
+            <tr><td class="num">3</td><td>Flammable liquid</td><td>Red, flame</td></tr>
+            <tr><td class="num">4</td><td>Flammable solids</td><td>7 red stripes · white over red · blue (dangerous when wet)</td></tr>
+            <tr><td class="num">5</td><td>Oxidiser / organic peroxide</td><td>Yellow 5.1 · red over yellow 5.2</td></tr>
+            <tr><td class="num">6</td><td>Toxic / infectious</td><td>Skull and crossbones · three crescents</td></tr>
+            <tr><td class="num">7</td><td>Radioactive</td><td>Trefoil</td></tr>
+            <tr><td class="num">8</td><td>Corrosive</td><td>White over black, liquid on hand and metal</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Also: "Cargo Aircraft Only" is black on orange; magnetised material is blue on white.</p>
+      <div class="related"><span class="dot"></span> Practise: 18 Transport of Dangerous Goods by Air</div>
+    </section>
+
+    <section class="sec" id="ch19" data-icon="❄️" style="--acc:#2f5fb3">
+      <h2><span class="num">19</span> Contaminated Runways <span class="en">Chapter 19</span></h2>
+      <p class="lead">Water, slush, snow and ice change the braking, the drag and the distances. The words used to describe a runway carry exact meanings.</p>
+      <div class="glance"><span>🎯 Dry, damp, wet, contaminated</span><span>🎯 Depth limits</span><span>🎯 Aquaplaning speed</span><span>🎯 Braking action</span><span>🎯 Runway condition reports</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Contaminated means more than 25% of the surface covered</strong> by water or slush deeper than 3 mm, snow, or ice.</p></div>
+      <div class="compare">
+        <div class="card good"><h4>Dry</h4><p>Neither wet nor contaminated (includes well-kept grooved surfaces).</p></div>
+        <div class="card mid"><h4>Damp</h4><p>Not dry, but not shiny.</p></div>
+        <div class="card acc"><h4>Wet</h4><p>Reflective, without significant standing water.</p></div>
+        <div class="card bad"><h4>Contaminated</h4><p>Over 25% covered by a contaminant.</p></div>
+      </div>
+      <ul>
+        <li>🚫 No take-off with more than <strong>15 mm</strong> of water, slush or wet snow, or <strong>60 mm</strong> of dry snow.</li>
+        <li>💧 Aquaplaning: <strong>9 √P</strong> knots for a rotating tyre, <strong>7.7 √P</strong> for a non-rotating one (P in psi; 1 bar ≈ 14.5 psi).</li>
+        <li>📊 Runway condition is now reported for each third of the runway with a code from <strong>6 (dry) to 0</strong>.</li>
+        <li>🗓️ A snow report (SNOWTAM) in the current format is valid for at most <strong>8 hours</strong>.</li>
+      </ul>
+      <details class="example"><summary>Worked example — aquaplaning</summary><div class="body">
+        <p>Tyre pressure 196 psi. √196 = 14. Rotating tyre: 9 × 14 = <strong>126 kt</strong>. Non-rotating tyre at touchdown: 7.7 × 14 ≈ <strong>108 kt</strong>.</p>
+      </div></details>
+      <div class="related"><span class="dot"></span> Practise: 19 Contaminated Runways</div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  Operational Procedures — Pilot's Guide · general principles, independent of any aircraft or operator.
+  Rules change: always check the current regulations, your operations manual and your instructor's briefing. 🗂️
+</footer>
+
+<button id="top-btn" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  var toc = document.getElementById('toc');
+  var scrim = document.getElementById('scrim');
+  var menuBtn = document.getElementById('menuBtn');
+  var closeToc = document.getElementById('closeToc');
+  function openToc(){ toc.classList.add('open'); scrim.classList.add('show'); }
+  function shutToc(){ toc.classList.remove('open'); scrim.classList.remove('show'); }
+  if (menuBtn) menuBtn.addEventListener('click', openToc);
+  if (closeToc) closeToc.addEventListener('click', shutToc);
+  if (scrim) scrim.addEventListener('click', shutToc);
+  var tocLinks = document.querySelectorAll('nav.toc a');
+  tocLinks.forEach(function(a){ a.addEventListener('click', function(){ shutToc(); }); });
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section.sec[id]'));
+  var linkFor = {};
+  tocLinks.forEach(function(a){ linkFor[a.getAttribute('href').slice(1)] = a; });
+  function onScroll(){
+    var y = window.scrollY + 110, current = sections[0];
+    for (var i = 0; i < sections.length; i++){ if (sections[i].offsetTop <= y) current = sections[i]; }
+    tocLinks.forEach(function(a){ a.classList.remove('active'); });
+    if (current && linkFor[current.id]) linkFor[current.id].classList.add('active');
+    var topBtn = document.getElementById('top-btn');
+    if (topBtn) topBtn.classList.toggle('show', window.scrollY > 500);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  var topBtn = document.getElementById('top-btn');
+  if (topBtn) topBtn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  
+  /* ---- quick tools ---- */
+  function num(id){ var v = parseFloat(document.getElementById(id).value); return isFinite(v) ? v : NaN; }
+  function txt(id){ return (document.getElementById(id).value || '').trim().toUpperCase(); }
+  function put(id, html){ document.getElementById(id).innerHTML = html; }
+  function rvr(){
+    var v = num('rvV'), l = txt('rvL'), t = txt('rvT');
+    if (!(v >= 0)) { put('rvOut', 'Enter the visibility in metres.'); return; }
+    var night = t === 'NIGHT';
+    if (t !== 'DAY' && t !== 'NIGHT') { put('rvOut', 'Type DAY or NIGHT.'); return; }
+    var f;
+    if (l === 'HI') f = night ? 2.0 : 1.5;
+    else if (l === 'OTHER') f = night ? 1.5 : 1.0;
+    else if (l === 'NONE') f = night ? null : 1.0;
+    else { put('rvOut', 'Type HI, OTHER or NONE.'); return; }
+    if (f === null) { put('rvOut', 'With no lighting the conversion does not apply at night.'); return; }
+    put('rvOut', 'Factor <b>' + f.toFixed(1) + '</b> → RVR <b>' + Math.round(v * f) + ' m</b><br>Not used for take-off, CAT II/III, or when an RVR is reported.');
+  }
+  function dist(){
+    var s = num('dsS'), m = num('dsM'), c = num('dsC');
+    if (!(s > 0) || !(m > 0) || !(c > 0)) { put('dsOut', 'Enter speed, time and cap.'); return; }
+    var d = Math.round(s * m / 60);
+    var lim = Math.min(d, c);
+    put('dsOut', m + ' min at ' + s + ' kt = ' + d + ' NM<br>Limit = lesser of ' + d + ' and ' + c + ' → <b>' + lim + ' NM</b>');
+  }
+  function seats(){
+    var n = Math.floor(num('csN'));
+    if (!(n >= 0)) { put('csOut', 'Enter the number of seats.'); return; }
+    var cc = n > 19 ? Math.ceil(n / 50) : 0;
+    var fa = n < 100 ? 1 : n < 200 ? 2 : n < 300 ? 3 : 4;
+    var mg = n <= 60 ? 0 : n < 100 ? 1 : 2;
+    var ex = n < 7 ? 0 : n <= 30 ? 1 : n <= 60 ? 2 : n <= 200 ? 3 : n <= 300 ? 4 : n <= 400 ? 5 : n <= 500 ? 6 : n <= 600 ? 7 : 8;
+    put('csOut', 'Cabin crew <b>' + cc + '</b> · first aid kits <b>' + fa + '</b><br>Megaphones <b>' + mg + '</b> · hand extinguishers <b>' + ex + '</b>' + (n > 200 ? '<br>Extra crash axe in the rear galley' : ''));
+  }
+  function julian(){
+    var m = (document.getElementById('jdD').value || '').trim().match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+    if (!m) { put('jdOut', 'Type a date as YYYY-MM-DD.'); return; }
+    var y = +m[1], mo = +m[2], d = +m[3];
+    var dt = new Date(Date.UTC(y, mo - 1, d));
+    if (dt.getUTCMonth() !== mo - 1 || dt.getUTCDate() !== d) { put('jdOut', 'That date does not exist.'); return; }
+    var n = Math.round((dt - Date.UTC(y, 0, 1)) / 86400000) + 1;
+    var leap = (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0;
+    var s = ('00' + n).slice(-3);
+    put('jdOut', 'Day <b>' + s + '</b> of ' + y + (leap ? ' (leap year)' : '') + '<br>Track message identifier <b>TMI ' + s + '</b>, amendments ' + s + 'A, ' + s + 'B …');
+  }
+  function aqua(){
+    var p = num('aqP'), u = txt('aqU');
+    if (!(p > 0)) { put('aqOut', 'Enter the tyre pressure.'); return; }
+    if (u === 'BAR') p = p * 14.5; else if (u !== 'PSI') { put('aqOut', 'Type PSI or BAR.'); return; }
+    var r = Math.sqrt(p);
+    put('aqOut', (u === 'BAR' ? '≈ ' + Math.round(p) + ' psi · ' : '') + '√P = ' + r.toFixed(1) + '<br>Rotating tyre <b>' + Math.round(9 * r) + ' kt</b> · non-rotating <b>' + Math.round(7.7 * r) + ' kt</b>');
+  }
+  function vat(){
+    var s = num('vaS'), g = num('vaG');
+    if (!(s > 0) && !(g > 0)) { put('vaOut', 'Enter VS0, VS1g or both.'); return; }
+    var a = s > 0 ? s * 1.3 : 0, b = g > 0 ? g * 1.23 : 0;
+    var v = Math.max(a, b);
+    var c = v < 91 ? 'A' : v <= 120 ? 'B' : v <= 140 ? 'C' : v <= 165 ? 'D' : 'E';
+    put('vaOut', 'VAT <b>' + Math.round(v) + ' kt</b> → Category <b>' + c + '</b>' + (a && b ? '<br>Both known: the higher value is used.' : ''));
+  }
+  function rest(){
+    var f = num('rsF'), w = txt('rsW');
+    if (!(f >= 0)) { put('rsOut', 'Enter the duty length in hours.'); return; }
+    var base = w === 'HOME' ? 12 : w === 'AWAY' ? 10 : null;
+    if (base === null) { put('rsOut', 'Type HOME or AWAY.'); return; }
+    var r = Math.max(base, f);
+    put('rsOut', 'Minimum rest <b>' + r + ' h</b><br>The greater of ' + base + ' h and the preceding duty, with 8 h of sleep opportunity.');
+  }
+  [['rvV',rvr],['rvL',rvr],['rvT',rvr],['dsS',dist],['dsM',dist],['dsC',dist],['csN',seats],['jdD',julian],['aqP',aqua],['aqU',aqua],['vaS',vat],['vaG',vat],['rsF',rest],['rsW',rest]].forEach(function(p){
+    var el = document.getElementById(p[0]); if (el) el.addEventListener('input', p[1]);
+  });
+  rvr(); dist(); seats(); julian(); aqua(); vat(); rest();
+
+})();
+</script>
+</body>
+</html>
