@@ -70,6 +70,19 @@ export default function PilotSimsPage() {
             </Card>
           </Link>
         </li>
+        <li>
+          <Link href="/aviation-english" className="block h-full">
+            <Card className="h-full transition hover:border-brand hover:shadow-sm">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="text-lg font-semibold text-foreground">Aviation English (ICAO ELP)</h3>
+                <Badge tone="brand">Training</Badge>
+              </div>
+              <p className="mt-3 text-sm text-muted-foreground">
+                Lessons, read-back drills and a mock exam for ICAO Level 4+ English proficiency.
+              </p>
+            </Card>
+          </Link>
+        </li>
       </ul>
     </>
   );
