@@ -1,0 +1,1307 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Performance — Pilot's Guide</title>
+<meta name="description" content="Aeroplane performance explained for airline pilots in 18 chapters: definitions and performance classes, the general principles of take-off, climb, descent, cruise and landing, single- and multi-engine Class B take-off, climb, en route and landing, and Class A take-off, contaminated runways and reduced thrust, the take-off climb segments, en route drift down and landing — with diagrams, calculators and worked examples." />
+<style>
+  :root{
+    --bg:#f6f8fb;
+    --surface:#ffffff;
+    --surface-2:#eef2f7;
+    --ink:#101826;
+    --ink-2:#3c4758;
+    --muted:#6b7686;
+    --line:#dfe6ef;
+    --brand:#0d6e7d;
+    --brand-ink:#ffffff;
+    --brand-light:#e3f4f6;
+    --warn-bg:#fdecec;
+    --warn-line:#e0413a;
+    --warn-ink:#7a1712;
+    --caution-bg:#fff6e0;
+    --caution-line:#c9821a;
+    --caution-ink:#6b4405;
+    --note-bg:#eaf1fb;
+    --note-line:#3f6fb0;
+    --note-ink:#1f3c63;
+    --white-arc:#e9edf3;
+    --green-arc:#1f9d55;
+    --yellow-arc:#e0b400;
+    --red-arc:#d9362a;
+    --radius:14px;
+    --radius-sm:8px;
+    --shadow:0 1px 2px rgba(16,24,38,.04), 0 6px 20px rgba(16,24,38,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0d1420;
+      --surface:#141d2c;
+      --surface-2:#1b263a;
+      --ink:#eef2f8;
+      --ink-2:#c3cddc;
+      --muted:#8b97ab;
+      --line:#26334a;
+      --brand:#37c3d6;
+      --brand-ink:#06232a;
+      --brand-light:#12323a;
+      --warn-bg:#3a1613;
+      --warn-line:#e4574d;
+      --warn-ink:#ffd6d1;
+      --caution-bg:#3a2c0d;
+      --caution-line:#e0a83a;
+      --caution-ink:#ffe6b0;
+      --note-bg:#122a44;
+      --note-line:#5b93d6;
+      --note-ink:#cfe2fb;
+      --white-arc:#324055;
+      --green-arc:#2bb56a;
+      --yellow-arc:#e0b400;
+      --red-arc:#e4574d;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1420; --surface:#141d2c; --surface-2:#1b263a; --ink:#eef2f8; --ink-2:#c3cddc;
+    --muted:#8b97ab; --line:#26334a; --brand:#37c3d6; --brand-ink:#06232a; --brand-light:#12323a;
+    --warn-bg:#3a1613; --warn-line:#e4574d; --warn-ink:#ffd6d1;
+    --caution-bg:#3a2c0d; --caution-line:#e0a83a; --caution-ink:#ffe6b0;
+    --note-bg:#122a44; --note-line:#5b93d6; --note-ink:#cfe2fb;
+    --white-arc:#324055; --green-arc:#2bb56a; --yellow-arc:#e0b400; --red-arc:#e4574d;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:clip}
+  body{
+    margin:0;
+    overflow-x:clip;
+    max-width:100vw;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,"Segoe UI",system-ui,Roboto,sans-serif;
+    line-height:1.75;
+    font-size:17px;
+  }
+  a{color:var(--brand)}
+  code, .kbd{
+    direction:ltr;unicode-bidi:isolate;display:inline-block;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:6px;
+    padding:0 .35em;font-size:.92em;color:var(--ink);
+  }
+  header.top{
+    position:sticky;top:0;z-index:40;
+    background:linear-gradient(180deg, var(--surface) 85%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    max-width:1180px;margin:0 auto;padding:14px 16px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .brand-mark{display:flex;align-items:center;gap:10px;min-width:0}
+  .brand-mark .plane{
+    width:34px;height:34px;flex:0 0 auto;border-radius:9px;
+    background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+  }
+  .brand-mark .txt{min-width:0}
+  .brand-mark h1{font-size:15px;margin:0;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand-mark .sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .menu-btn{
+    display:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+    border-radius:10px;padding:9px 12px;font-size:14px;cursor:pointer;flex:0 0 auto;
+  }
+  .shell{max-width:1180px;margin:0 auto;display:flex;align-items:flex-start;gap:28px;padding:20px 16px 80px}
+  nav.toc{
+    position:sticky;top:78px;flex:0 0 280px;
+    max-height:calc(100vh - 96px);overflow-y:auto;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;box-shadow:var(--shadow);
+  }
+  nav.toc h2{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:2px 8px 10px}
+  nav.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+  nav.toc li{counter-increment:toc}
+  nav.toc a{
+    display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--ink-2);
+    padding:7px 8px;border-radius:9px;font-size:13.5px;
+  }
+  nav.toc a .n{flex:0 0 auto;color:var(--brand);font-weight:700;font-size:12px;min-width:18px}
+  nav.toc a:hover{background:var(--surface-2);color:var(--ink)}
+  nav.toc a.active{background:var(--brand-light);color:var(--ink);font-weight:600}
+  nav.toc .count{margin-inline-start:auto;font-size:11px;color:var(--muted)}
+  main{flex:1 1 auto;min-width:0}
+  .hero{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 22px;margin-bottom:22px;box-shadow:var(--shadow);
+  }
+  .hero h1{margin:0 0 8px;font-size:26px}
+  .hero p{margin:0;color:var(--ink-2);font-size:15.5px}
+  .hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hero .tag{
+    font-size:12.5px;background:var(--brand-light);color:var(--brand);
+    border-radius:999px;padding:5px 12px;font-weight:600;
+  }
+  section.sec{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px 26px;margin-bottom:22px;box-shadow:var(--shadow);scroll-margin-top:76px;
+  }
+  section.sec > h2{
+    display:flex;align-items:center;gap:12px;font-size:21px;margin:0 0 6px;
+    padding-bottom:14px;border-bottom:1px solid var(--line);
+  }
+  section.sec > h2 .num{
+    flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;
+  }
+  section.sec > h2 .en{margin-inline-start:auto;font-size:12px;color:var(--muted);font-weight:600;
+    direction:ltr;background:var(--surface-2);padding:4px 10px;border-radius:999px}
+  .lead{color:var(--ink-2);font-size:16px;margin-top:14px}
+  h3.sub{font-size:16.5px;margin:26px 0 8px;color:var(--ink);border-inline-start:4px solid var(--brand);padding-inline-start:10px}
+  h4.sub2{font-size:15px;margin:18px 0 6px;color:var(--ink-2)}
+  p{margin:10px 0}
+  ul, ol{margin:10px 0;padding-inline-start:22px}
+  li{margin:5px 0}
+  strong{color:var(--ink)}
+  .table-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm)}
+  table{border-collapse:collapse;width:100%;min-width:420px;font-size:14.5px}
+  table caption{text-align:start;font-size:12.5px;color:var(--muted);padding:8px 12px 0}
+  thead th{
+    background:var(--surface-2);color:var(--ink);text-align:start;
+    padding:9px 12px;font-weight:700;white-space:nowrap;font-size:13.5px;
+  }
+  tbody td{padding:8px 12px;border-top:1px solid var(--line);color:var(--ink-2)}
+  tbody tr:nth-child(even){background:color-mix(in srgb, var(--surface-2) 45%, transparent)}
+  td.num, th.num{direction:ltr;text-align:center;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+  .callout{border-radius:var(--radius-sm);padding:12px 14px;margin:14px 0;border-inline-start:4px solid;font-size:14.5px}
+  .callout .label{display:block;font-weight:800;font-size:12px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:4px}
+  .callout.warning{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-ink)}
+  .callout.caution{background:var(--caution-bg);border-color:var(--caution-line);color:var(--caution-ink)}
+  .callout.note{background:var(--note-bg);border-color:var(--note-line);color:var(--note-ink)}
+  .eq{
+    direction:ltr;font-family:"Cambria Math","STIX Two Math","Latin Modern Math",Georgia,serif;font-size:16.5px;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);
+    padding:10px 14px;margin:12px 0;text-align:center;white-space:nowrap;color:var(--ink);
+    max-width:100%;overflow-x:auto;contain:paint;box-sizing:border-box;
+  }
+  .eq sub,.eq sup{font-size:.72em}
+  .diagram{
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;margin:18px 0;text-align:center;
+    max-width:100%;overflow-x:auto;box-sizing:border-box;
+  }
+  .diagram .cap{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .diagram svg{max-width:100%;height:auto;display:block;margin:0 auto}
+  .ref{
+    display:inline-block;direction:ltr;font-size:11.5px;color:var(--brand);
+    background:var(--brand-light);border-radius:6px;padding:1px 7px;margin-inline-start:4px;
+    font-weight:700;white-space:nowrap;
+  }
+  .related{
+    margin-top:22px;display:flex;align-items:center;gap:10px;
+    background:var(--brand-light);color:var(--brand);border-radius:999px;
+    padding:10px 16px;font-size:14px;font-weight:700;width:fit-content;
+  }
+  .related .dot{width:8px;height:8px;border-radius:50%;background:var(--brand)}
+  footer{max-width:1180px;margin:0 auto;padding:10px 16px 60px;color:var(--muted);font-size:13px;text-align:center}
+  #top-btn{
+    position:fixed;inset-inline-end:18px;bottom:18px;z-index:50;
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+    background:var(--brand);color:var(--brand-ink);font-size:18px;cursor:pointer;
+    box-shadow:var(--shadow);display:none;align-items:center;justify-content:center;
+  }
+  #top-btn.show{display:flex}
+  @media (max-width:880px){
+    .shell{flex-direction:column;padding:14px 12px 70px}
+    main{width:100%;min-width:0}
+    nav.toc{
+      position:fixed;inset:0 0 0 auto;top:0;width:82%;max-width:340px;height:100dvh;max-height:100dvh;
+      transform:translateX(100%);transition:transform .25s ease;border-radius:0;z-index:60;
+    }
+    nav.toc.open{transform:translateX(0)}
+    .toc-scrim{position:fixed;inset:0;background:rgba(6,10,18,.5);z-index:55;display:none}
+    .toc-scrim.show{display:block}
+    .menu-btn{display:inline-flex;align-items:center;gap:6px}
+    section.sec > h2{font-size:18.5px}
+    .hero h1{font-size:22px}
+    body{font-size:16px}
+  }
+  .toc-close{display:none}
+  @media (max-width:880px){
+    .toc-close{
+      display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+      padding-bottom:10px;border-bottom:1px solid var(--line);
+    }
+    .toc-close button{border:none;background:var(--surface-2);border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer;color:var(--ink)}
+  }
+
+  
+  /* ---------- PilotQBank study-guide additions ---------- */
+  :root{ --accent:var(--brand); }
+  html{scroll-padding-top:80px}
+  section.sec{border-top:5px solid var(--accent)}
+  section.sec > h2 .num{background:var(--accent);color:#fff;font-size:19px;width:40px;height:40px;border-radius:12px}
+  section.sec > h2 .en{background:color-mix(in srgb,var(--accent) 14%,var(--surface));color:var(--ink-2)}
+  h3.sub{border-inline-start-color:var(--accent)}
+  nav.toc a .n{font-size:15px;min-width:22px}
+  .hero{background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 16%,var(--surface)),var(--surface) 60%);position:relative;overflow:hidden}
+  .hero .cloud{position:absolute;inset-inline-end:-10px;top:-6px;font-size:84px;opacity:.16;pointer-events:none;user-select:none}
+  .hero .tag{background:color-mix(in srgb,var(--brand) 16%,var(--surface))}
+  .glance{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+  .glance span{font-size:13px;background:color-mix(in srgb,var(--accent) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));border-radius:999px;padding:4px 12px;color:var(--ink-2)}
+  .keyidea{margin:16px 0;padding:14px 16px;border-radius:var(--radius);background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 16%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--accent) 40%,var(--line))}
+  .keyidea .label{display:block;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+  .keyidea p{margin:4px 0}
+  .tip,.memory{margin:14px 0;padding:12px 14px;border-radius:var(--radius-sm);font-size:14.5px;border-inline-start:4px solid}
+  .tip{background:color-mix(in srgb,var(--green-arc) 12%,var(--surface));border-color:var(--green-arc);color:var(--ink)}
+  .memory{background:color-mix(in srgb,#8b5cf6 12%,var(--surface));border-color:#8b5cf6;color:var(--ink)}
+  .tip .label,.memory .label{display:block;font-weight:800;font-size:12px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+  .tip .label{color:var(--green-arc)} .memory .label{color:#8b5cf6}
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
+  .fcard{background:var(--surface-2);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:var(--radius-sm);padding:12px 14px}
+  .fcard .f{direction:ltr;font-family:"Cambria Math","STIX Two Math",Georgia,serif;font-size:18px;color:var(--ink);overflow-x:auto;white-space:nowrap}
+  .fcard .d{font-size:13.5px;color:var(--ink-2);margin-top:4px}
+  details.example{margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface);overflow:hidden}
+  details.example summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:14.5px;background:color-mix(in srgb,var(--accent) 10%,var(--surface-2));list-style:none}
+  details.example summary::-webkit-details-marker{display:none}
+  details.example summary::before{content:"▸ ";color:var(--accent)}
+  details.example[open] summary::before{content:"▾ "}
+  details.example .body{padding:6px 16px 14px}
+  .steps{counter-reset:st;list-style:none;padding:0;margin:12px 0}
+  .steps li{counter-increment:st;position:relative;padding-inline-start:40px;margin:10px 0;min-height:28px}
+  .steps li::before{content:counter(st);position:absolute;inset-inline-start:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:14px 0}
+  .compare .card{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px}
+  .compare .card h4{margin:0 0 6px;font-size:15px}
+  .compare .card.good{border-top:3px solid var(--green-arc)} .compare .card.bad{border-top:3px solid var(--red-arc)} .compare .card.mid{border-top:3px solid var(--yellow-arc)} .compare .card.acc{border-top:3px solid var(--accent)}
+  .bar{display:block;height:10px;border-radius:6px;background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 55%,#fff));min-width:4px}
+  td.barcell{min-width:130px}
+  .pill{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 9px;background:color-mix(in srgb,var(--accent) 16%,var(--surface));color:var(--ink)}
+  .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .tool{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+  .tool h3{margin:0 0 8px;font-size:15.5px}
+  .tool label{display:block;font-size:12.5px;color:var(--muted);margin-top:8px}
+  .tool input{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:16px}
+  .tool .out{margin-top:10px;padding:10px;border-radius:8px;background:color-mix(in srgb,var(--brand) 12%,var(--surface));font-size:14px;direction:ltr}
+  .tool .out b{color:var(--brand)}
+  .cheat table{min-width:340px}
+  .sec .diagram svg text{fill:var(--ink);font:600 12px -apple-system,"Segoe UI",system-ui,sans-serif}
+  .sec .diagram svg text.m{fill:var(--muted);font-weight:500;font-size:11px}
+  .sec .diagram svg text.big{font-size:14px}
+  .sec .diagram svg .ln{stroke:var(--ink-2);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sec .diagram svg .thin{stroke:var(--muted);stroke-width:1;fill:none;stroke-dasharray:4 4}
+  .sec .diagram svg .ac{stroke:var(--accent);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sec .diagram svg .af{fill:color-mix(in srgb,var(--accent) 22%,transparent);stroke:var(--accent);stroke-width:2}
+  .sec .diagram svg .gn{stroke:var(--green-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .rd{stroke:var(--red-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .yl{stroke:var(--yellow-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .gf{fill:color-mix(in srgb,var(--green-arc) 25%,transparent)}
+  .sec .diagram svg .rf{fill:color-mix(in srgb,var(--red-arc) 25%,transparent)}
+  .sec .diagram svg .yf{fill:color-mix(in srgb,var(--yellow-arc) 30%,transparent)}
+  .sec .diagram svg .bx{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
+  .sec .diagram svg .wing{fill:var(--surface);stroke:var(--ink-2);stroke-width:2}
+  .sec .diagram svg .dot{fill:var(--accent)}
+  @media (max-width:520px){.fgrid,.compare{grid-template-columns:1fr}}
+  .fgrid > *,.compare > *,.tools > *{min-width:0}
+  .fcard .f{max-width:100%}
+
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) {}
+  .diagram svg{min-width:520px}
+
+  .part{display:flex;align-items:center;gap:10px;margin:34px 0 4px;padding:8px 14px;border-radius:var(--radius-sm);background:color-mix(in srgb,var(--accent) 14%,var(--surface-2));border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));font-size:15px;font-weight:800;color:var(--ink)}
+  .part + h3.sub{margin-top:16px}
+  nav.toc a .chn{flex:0 0 auto;min-width:18px;color:var(--brand);font-weight:800;font-size:12px}
+  section.sec > h2 .en{font-weight:700}
+
+  section.sec{--accent:var(--acc,var(--brand))}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) section.sec{--accent:color-mix(in srgb,var(--acc,var(--brand)) 62%,#ffffff)}:root:not([data-theme="light"]) section.sec > h2 .num,:root:not([data-theme="light"]) .steps li::before{color:#06121a}}
+  :root[data-theme="dark"] section.sec{--accent:color-mix(in srgb,var(--acc,var(--brand)) 62%,#ffffff)}
+  :root[data-theme="dark"] section.sec > h2 .num,:root[data-theme="dark"] .steps li::before{color:#06121a}
+  td.num{white-space:normal}
+  .diagram svg.small{min-width:0;max-width:460px}
+  .tool select{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:16px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--ink-2)"/></marker>
+    <marker id="a-ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--accent)"/></marker>
+    <marker id="a-rd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--red-arc)"/></marker>
+    <marker id="a-gn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--green-arc)"/></marker>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand-mark">
+      <div class="plane">📈</div>
+      <div class="txt">
+        <h1>Performance — Pilot's Guide</h1>
+        <div class="sub">What the aeroplane can do, and the margins the rules add · Airline pilot theory</div>
+      </div>
+    </div>
+    <button class="menu-btn" id="menuBtn">☰ Contents</button>
+  </div>
+</header>
+
+<div class="toc-scrim" id="scrim"></div>
+
+<div class="shell">
+  <nav class="toc" id="toc">
+    <div class="toc-close"><span style="font-size:13px;color:var(--muted);font-weight:700">Contents</span><button id="closeToc">✕</button></div>
+    <h2>Chapters</h2>
+    <ol>
+      <li><a href="#tools"><span class="n">🧰</span> Quick tools &amp; cheat sheet</a></li>
+      <li><a href="#ch1"><span class="n">📘</span> <b class="chn">1</b> Performance Introduction</a></li>
+      <li><a href="#ch2"><span class="n">🛫</span> <b class="chn">2</b> General Principles of Take-off</a></li>
+      <li><a href="#ch3"><span class="n">📈</span> <b class="chn">3</b> General Principles of Climb</a></li>
+      <li><a href="#ch4"><span class="n">📉</span> <b class="chn">4</b> General Principles of Descent</a></li>
+      <li><a href="#ch5"><span class="n">🛰️</span> <b class="chn">5</b> General Principles of Cruise</a></li>
+      <li><a href="#ch6"><span class="n">🛬</span> <b class="chn">6</b> General Principles of Landing</a></li>
+      <li><a href="#ch7"><span class="n">🛩️</span> <b class="chn">7</b> Single-engine Class B Take-off</a></li>
+      <li><a href="#ch8"><span class="n">⬆️</span> <b class="chn">8</b> Single-engine Class B Climb</a></li>
+      <li><a href="#ch9"><span class="n">🗺️</span> <b class="chn">9</b> Single-engine Class B En Route and Descent</a></li>
+      <li><a href="#ch10"><span class="n">🛬</span> <b class="chn">10</b> Single-engine Class B Landing</a></li>
+      <li><a href="#ch11"><span class="n">✈️</span> <b class="chn">11</b> Multi-engine Class B Take-off</a></li>
+      <li><a href="#ch12"><span class="n">🧭</span> <b class="chn">12</b> Multi-engine Class B En Route and Descent</a></li>
+      <li><a href="#ch13"><span class="n">🔁</span> <b class="chn">13</b> Multi-engine Class B Landing</a></li>
+      <li><a href="#ch14"><span class="n">🚀</span> <b class="chn">14</b> Class A Take-off</a></li>
+      <li><a href="#ch15"><span class="n">🧊</span> <b class="chn">15</b> Class A Additional Take-off Procedures</a></li>
+      <li><a href="#ch16"><span class="n">🪜</span> <b class="chn">16</b> Class A Take-off Climb</a></li>
+      <li><a href="#ch17"><span class="n">🌐</span> <b class="chn">17</b> Class A En Route</a></li>
+      <li><a href="#ch18"><span class="n">🎯</span> <b class="chn">18</b> Class A Landing</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <span class="cloud">📈</span>
+      <h1>📈 Performance</h1>
+      <p>
+        Performance is about one question asked again and again: <em>with this mass, on this runway, in this air, can the aeroplane do what is needed — and can it still do it if an engine fails?</em> The first six chapters explain the physics of take-off, climb, descent, cruise and landing. The rest apply the operating rules, first for small propeller aeroplanes (Class B), then for airliners (Class A).
+      </p>
+      <div class="tags">
+        <span class="tag">18 chapters</span>
+        <span class="tag">772 linked questions</span>
+        <span class="tag">🧮 10 calculators</span>
+        <span class="tag">📋 Cheat sheet</span>
+        <span class="tag">Aircraft-independent</span>
+      </div>
+      <div class="tip"><span class="label">✈️ How to use this guide</span> Each chapter carries the same number as its practice topic. Most mistakes in this subject come from mixing up the classes — a 1.25 factor that belongs to Class B, a 35 ft screen that belongs to Class A. The cheat sheet puts the two side by side.</div>
+    </div>
+
+    <section class="sec" id="tools" data-icon="🧰" style="--acc:#2f5fb3">
+      <h2><span class="num">🧰</span> Quick tools &amp; cheat sheet <span class="en">play with the numbers</span></h2>
+      <p class="lead">Ten small calculators for the sums performance asks for again and again, and a one-screen list of the factors and gradients worth knowing by heart.</p>
+
+      <div class="tools">
+        <div class="tool">
+          <h3>📐 Gradient and rate of climb</h3>
+          <label>TAS (kt)</label><input type="number" inputmode="decimal" id="grT" value="160" min="0">
+          <label>Gradient (%) — leave blank to find it</label><input type="text" id="grG" value="3">
+          <label>Rate of climb (ft/min) — used if gradient is blank</label><input type="text" id="grR" value="">
+          <div class="out" id="grOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🌬️ Wind and the ground gradient</h3>
+          <label>Air (still-air) gradient (%)</label><input type="number" inputmode="decimal" id="wgG" value="8" step="0.1">
+          <label>TAS (kt)</label><input type="number" inputmode="decimal" id="wgT" value="120" min="0">
+          <label>Reported wind component (kt, + head / − tail)</label><input type="number" inputmode="decimal" id="wgW" value="24">
+          <div class="out" id="wgOut"></div>
+        </div>
+        <div class="tool">
+          <h3>⛰️ Obstacle clearance</h3>
+          <label>Net gradient (%)</label><input type="number" inputmode="decimal" id="obG" value="3" step="0.1">
+          <label>Distance from reference zero (ft)</label><input type="number" inputmode="decimal" id="obD" value="10000" min="0">
+          <label>Height at reference zero (ft): 35, 50 or 15</label><input type="number" inputmode="decimal" id="obS" value="35" min="0">
+          <label>Obstacle height above the surface (ft)</label><input type="number" inputmode="decimal" id="obH" value="280" min="0">
+          <label>Required margin (ft): 35 Class A · 50 Class B or turn &gt; 15°</label><input type="number" inputmode="decimal" id="obM" value="35" min="0">
+          <div class="out" id="obOut"></div>
+        </div>
+        <div class="tool">
+          <h3>➖ Gross to net gradient</h3>
+          <label>Gross gradient (%)</label><input type="number" inputmode="decimal" id="ngG" value="3.2" step="0.1">
+          <label>Case</label><select id="ngC">
+            <option value="A2">Class A take-off · 2 engines (−0.8)</option>
+            <option value="A3">Class A take-off · 3 engines (−0.9)</option>
+            <option value="A4">Class A take-off · 4 engines (−1.0)</option>
+            <option value="E2">Class A en route · 2 engines (−1.1)</option>
+            <option value="E3">Class A en route · 3 engines (−1.4)</option>
+            <option value="E4">Class A en route · 4 engines (−1.6)</option>
+            <option value="BA">Class B take-off, all engines (× 0.77)</option>
+            <option value="BC">Class B en route climb (−0.5)</option>
+            <option value="BD">Class B en route descent (+0.5)</option>
+          </select>
+          <div class="out" id="ngOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🛫 Class B take-off distance</h3>
+          <label>Gross take-off distance from the chart (ft)</label><input type="number" inputmode="decimal" id="btD" value="2400" min="0">
+          <label>Surface</label><select id="btS"><option value="1">paved (dry or wet)</option><option value="1.2">dry grass</option><option value="1.3">wet grass</option></select>
+          <label>Upslope (%) — no credit for downslope</label><input type="number" inputmode="decimal" id="btU" value="2" min="0" step="0.5">
+          <label>TORA, ASDA, TODA (ft) — same value if no stopway/clearway</label><input type="text" id="btA" value="4000, 4000, 4000">
+          <div class="out" id="btOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🛬 Landing distance required</h3>
+          <label>Gross / dry landing distance from 50 ft</label><input type="number" inputmode="decimal" id="ldD" value="1500" min="0">
+          <label>Aeroplane</label><select id="ldC"><option value="B">Class B (70%)</option><option value="J">Class A turbojet (60%)</option><option value="P">Class A turboprop (70%)</option></select>
+          <label>Grass runway? (Class B: YES or NO)</label><input type="text" id="ldG" value="NO">
+          <label>Downslope (%) — Class B: +5% per 1%</label><input type="number" inputmode="decimal" id="ldS" value="0" min="0" step="0.5">
+          <label>Runway may be wet? (YES or NO)</label><input type="text" id="ldW" value="NO">
+          <div class="out" id="ldOut"></div>
+        </div>
+        <div class="tool">
+          <h3>💧 Hydroplaning speed</h3>
+          <label>Tyre pressure</label><input type="number" inputmode="decimal" id="hyP" value="196" min="0">
+          <label>Units: PSI or BAR</label><input type="text" id="hyU" value="PSI">
+          <div class="out" id="hyOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🪂 Glide or drift-down range</h3>
+          <label>Height to lose (ft)</label><input type="number" inputmode="decimal" id="glH" value="8000" min="0">
+          <label>Descent gradient (%) — or blank and use L/D</label><input type="text" id="glG" value="6">
+          <label>Lift/drag ratio</label><input type="text" id="glL" value="">
+          <div class="out" id="glOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🔊 Mach number</h3>
+          <label>TAS (kt)</label><input type="number" inputmode="decimal" id="mcT" value="480" min="0">
+          <label>Outside air temperature (°C)</label><input type="number" inputmode="decimal" id="mcO" value="-44.4">
+          <div class="out" id="mcOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🔄 Load factor in a turn</h3>
+          <label>Bank angle (°)</label><input type="number" inputmode="decimal" id="lfB" value="40" min="0" max="89">
+          <div class="out" id="lfOut"></div>
+        </div>
+      </div>
+
+      <h3 class="sub">📋 Cheat sheet — numbers worth knowing</h3>
+      <div class="table-wrap cheat">
+        <table>
+          <thead><tr><th>Idea</th><th class="num">Class B</th><th class="num">Class A</th></tr></thead>
+          <tbody>
+            <tr><td>🛫 Take-off screen</td><td class="num">50 ft</td><td class="num">35 ft (15 ft wet / contaminated, engine out)</td></tr>
+            <tr><td>📏 Field length factors</td><td class="num">TORA ×1.25 alone · or ×1.0 TORA, ×1.3 ASDA, ×1.15 TODA</td><td class="num">all-engines distances ×1.15</td></tr>
+            <tr><td>🌱 Take-off surface</td><td class="num">dry grass 1.2 · wet grass 1.3 · upslope +5% per 1%</td><td class="num">—</td></tr>
+            <tr><td>🌬️ Wind</td><td class="num" colspan="2">≤ 50% headwind · ≥ 150% tailwind (both classes, take-off and landing)</td></tr>
+            <tr><td>📈 Climb</td><td class="num">AEO 4% · OEI positive at 400 ft · 0.75% at 1 500 ft</td><td class="num">2nd segment 2.4 / 2.7 / 3.0% · final 1.2 / 1.5 / 1.7%</td></tr>
+            <tr><td>⛰️ Obstacle margin</td><td class="num">50 ft · net = gross × 0.77</td><td class="num">35 ft (50 ft if turn &gt; 15°) · net −0.8 / 0.9 / 1.0%</td></tr>
+            <tr><td>↔️ Lateral margin</td><td class="num" colspan="2">90 m + 0.125 D · (span &lt; 60 m: 60 m + ½ span + 0.125 D)</td></tr>
+            <tr><td>🌍 En route</td><td class="num">net ±0.5% · not above 300 ft/min ceiling</td><td class="num">net −1.1 / 1.4 / 1.6% · 1 000 ft or 2 000 ft clearance</td></tr>
+            <tr><td>🛬 Landing</td><td class="num">within 70% LDA (×1.43) · grass ×1.15 · wet ×1.15 · downslope +5% per 1%</td><td class="num">jet 60% (×1.67) · turboprop 70% (×1.43) · wet ×1.15</td></tr>
+            <tr><td>🎯 VREF</td><td class="num">≥ 1.3 VS0</td><td class="num">≥ 1.23 VSR0 and ≥ VMCL</td></tr>
+            <tr><td>🔁 Landing climb</td><td class="num">AEO 2.5% · OEI 0.75% at 1 500 ft</td><td class="num">AEO 3.2% · approach 2.1 / 2.4 / 2.7% · CAT II/III 2.5%</td></tr>
+            <tr><td>💧 Hydroplaning</td><td class="num" colspan="2">9 √P rotating · 7.7 √P non-rotating (P in psi)</td></tr>
+            <tr><td>📐 Rate of climb</td><td class="num" colspan="2">ROC (ft/min) ≈ gradient % × TAS (kt) × 1.013</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sec" id="ch1" data-icon="📘" style="--acc:#2f5fb3">
+      <h2><span class="num">1</span> Performance Introduction <span class="en">Chapter 1</span></h2>
+      <p class="lead">The vocabulary of the subject: ceilings and altitudes, the declared runway distances, runway surfaces, the V-speeds, gross and net performance, and the performance classes.</p>
+      <div class="glance"><span>🎯 Ceilings</span><span>🎯 TORA, TODA, ASDA, LDA</span><span>🎯 Dry, damp, wet, contaminated</span><span>🎯 V-speeds</span><span>🎯 Gross vs net</span><span>🎯 Classes A, B, C</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Net performance = gross performance made worse on purpose.</strong> Gross is the fleet average; net is set about five standard deviations lower, so the chance of not achieving it is less than one in a million. Obstacles are always cleared on <em>net</em> figures.</p></div>
+
+      <h3 class="sub">Declared distances</h3>
+      <div class="diagram">
+        <svg viewBox="0 0 580 200" role="img" aria-label="Declared distances">
+          <rect class="bx" x="40" y="80" width="360" height="30"/><text x="180" y="100">Runway</text>
+          <rect class="yf" x="400" y="80" width="60" height="30"/><text class="m" x="404" y="100">stopway</text>
+          <rect class="gf" x="400" y="62" width="130" height="66" style="opacity:.6"/><text class="m" x="470" y="58">clearway</text>
+          <line class="ac" x1="40" y1="140" x2="400" y2="140" marker-end="url(#a-ac)"/><text x="190" y="156">TORA</text>
+          <line class="ln" x1="40" y1="168" x2="460" y2="168" marker-end="url(#a-ink)"/><text x="220" y="184">ASDA = TORA + stopway</text>
+          <line class="gn" x1="40" y1="40" x2="530" y2="40" marker-end="url(#a-gn)"/><text x="200" y="32">TODA = TORA + clearway (≤ 1.5 × TORA)</text>
+        </svg>
+        <div class="cap">A clearway is an obstacle-free area (≥ 152 m wide, plane rising ≤ 1.25%); a stopway is a paved surface for stopping only (yellow chevrons). A field with ASDA = TODA is "balanced".</div>
+      </div>
+      <details class="example"><summary>Worked example — too much clearway</summary><div class="body">
+        <p>TORA 2 400 m with a 1 500 m clearway. Only half the TORA (1 200 m) can be counted, so TODA = 2 400 + 1 200 = <strong>3 600 m</strong>, not 3 900 m.</p>
+      </div></details>
+
+      <h3 class="sub">Runway surfaces</h3>
+      <div class="compare">
+        <div class="card good"><h4>Dry</h4><p>Neither wet nor contaminated; includes grooved or porous runways kept effectively dry.</p></div>
+        <div class="card mid"><h4>Damp / wet</h4><p>Damp: moisture but not shiny. Wet: reflective, but no significant standing water.</p></div>
+        <div class="card bad"><h4>Contaminated</h4><p>More than 25% of the area used covered by water over 3 mm deep, or slush or loose snow equivalent to more than 3 mm of water.</p></div>
+      </div>
+
+      <h3 class="sub">Ceilings and altitudes</h3>
+      <ul>
+        <li>⬆️ <strong>Absolute ceiling</strong>: rate of climb zero. <strong>Service ceiling</strong>: a small specified rate is still available.</li>
+        <li>🪦 <strong>Aerodynamic ceiling</strong>: low- and high-speed buffet meet at 1 g. The <strong>1.3 g ceiling</strong> keeps a 0.3 g margin.</li>
+        <li>📟 Chart altitude is <strong>pressure altitude</strong> (1013 hPa set). Density altitude has the same density as the actual air. Aerodrome elevation is the highest point of the landing area.</li>
+        <li>🌡️ ISA: 15°C, 1013.25 hPa, 1.225 kg/m³, lapse 1.98°C per 1 000 ft to −56.5°C.</li>
+      </ul>
+
+      <h3 class="sub">The speeds that come up most</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Speed</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td>VMCG</td><td>Ground control with the critical engine out — primary controls only, no nose-wheel steering</td></tr>
+            <tr><td>VMCA</td><td>Air control with critical engine out; ≤ 5° bank towards the live engine; not above 1.13 VSR</td></tr>
+            <tr><td>VMCL</td><td>Control on the approach with an engine failing</td></tr>
+            <tr><td>VEF</td><td>Engine failure speed assumed for calculations; never below VMCG</td></tr>
+            <tr><td>V1</td><td>Highest speed for the first action to stop · lowest speed to continue after a failure at VEF</td></tr>
+            <tr><td>VR · VLOF · VMU</td><td>Rotation · lift-off · minimum unstick</td></tr>
+            <tr><td>V2</td><td>Take-off safety speed (Class A), reached by 35 ft</td></tr>
+            <tr><td>VMBE</td><td>Maximum brake energy speed</td></tr>
+            <tr><td>VX · VY</td><td>Steepest gradient · greatest rate of climb</td></tr>
+            <tr><td>VMD · VMP</td><td>Minimum drag · minimum power (VMP is slower)</td></tr>
+            <tr><td>VSR · VS0 · VS1</td><td>Reference (1 g) stall · landing configuration · configuration in use</td></tr>
+            <tr><td>VREF · VFTO · VZF</td><td>Landing reference at 50 ft · final take-off · zero flap</td></tr>
+            <tr><td>VLO · VLE · VFE</td><td>Gear operating · gear extended · flap extended</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>IAS → (instrument and position error) CAS → (compressibility) EAS → (density) TAS. Mach = TAS ÷ local speed of sound.</p>
+
+      <h3 class="sub">Performance classes</h3>
+      <div class="compare">
+        <div class="card acc"><h4>Class A</h4><p>All multi-engine jets, and multi-engine turboprops with more than 9 seats or MTOM above 5 700 kg. Large aeroplane code.</p></div>
+        <div class="card good"><h4>Class B</h4><p>Propeller aeroplanes with 9 seats or less and MTOM 5 700 kg or less. Small aeroplane code.</p></div>
+        <div class="card mid"><h4>Class C</h4><p>Piston aeroplanes with more than 9 seats or MTOM above 5 700 kg.</p></div>
+      </div>
+      <p>Take-off thrust is limited to 5 minutes (10 minutes after an engine failure, if approved); maximum continuous thrust has no time limit. The en route phase is from 1 500 ft above departure to 1 000 ft (Class B) or 1 500 ft (Class A) above the destination. Gradient = height ÷ distance × 100: 600 ft in 10 000 ft = 6%.</p>
+      <div class="related"><span class="dot"></span> Practise: 01 Performance Introduction</div>
+    </section>
+
+    <section class="sec" id="ch2" data-icon="🛫" style="--acc:#2e86c1">
+      <h2><span class="num">2</span> General Principles of Take-off <span class="en">Chapter 2</span></h2>
+      <p class="lead">The take-off run is a race between thrust and drag to reach a speed. Anything that lowers the acceleration, or raises the speed that has to be reached, lengthens it.</p>
+      <div class="glance"><span>🎯 s = V² ÷ 2a</span><span>🎯 Thrust and drag in the run</span><span>🎯 Mass, density, wind</span><span>🎯 Slope and surface</span><span>🎯 Flap choice</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Distance = V² ÷ 2a</strong>, with a = (thrust − drag) ÷ mass. Distance grows with the <em>square</em> of the speed: 10% more speed means about 21% more distance.</p></div>
+      <h3 class="sub">Forces in the run</h3>
+      <ul>
+        <li>🔥 Jet net thrust falls slightly as speed rises (intake momentum drag); propeller thrust falls faster. A flat-rated engine holds a fixed maximum below its cut-off temperature to protect the compressor.</li>
+        <li>🛞 Wheel drag = μ × (W − L): it falls as lift builds and is zero at lift-off. Rotation raises induced drag, so total drag rises — and acceleration falls through the run.</li>
+      </ul>
+      <h3 class="sub">What lengthens the take-off</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Factor</th><th>Why</th><th class="num">Effect</th></tr></thead>
+          <tbody>
+            <tr><td>More mass</td><td>Less acceleration, more wheel drag, higher speeds</td><td class="num">longer</td></tr>
+            <tr><td>High, hot, humid</td><td>Less thrust; more TAS for the same IAS</td><td class="num">longer</td></tr>
+            <tr><td>Tailwind</td><td>More ground speed needed</td><td class="num">longer (use ≥ 150%)</td></tr>
+            <tr><td>Headwind</td><td>Less ground speed needed</td><td class="num">shorter (use ≤ 50%)</td></tr>
+            <tr><td>Upslope</td><td>W sin θ acts backwards</td><td class="num">longer</td></tr>
+            <tr><td>Slush, standing water</td><td>Displacement and spray drag</td><td class="num">longer</td></tr>
+            <tr><td>Ice or snow on the airframe</td><td>More weight and drag, less lift</td><td class="num">not allowed</td></tr>
+            <tr><td>More flap</td><td>Lower speeds but more drag</td><td class="num">shorter up to an optimum</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <details class="example"><summary>Worked example — factored winds</summary><div class="body">
+        <p>Reported tailwind 12 kt: plan with at least 1.5 × 12 = <strong>18 kt</strong>. Reported headwind 20 kt: plan with no more than <strong>10 kt</strong>. Most charts build these factors in, so you enter the reported wind.</p>
+      </div></details>
+      <div class="tip"><span class="label">✅ Flap trade-off</span> Less flap uses more runway but gives a better climb gradient, so the climb-limited mass rises. That is the choice when the runway is long but obstacles or the climb limit bite.</div>
+      <div class="related"><span class="dot"></span> Practise: 02 General Principles of Take-off</div>
+    </section>
+
+    <section class="sec" id="ch3" data-icon="📈" style="--acc:#1e8449">
+      <h2><span class="num">3</span> General Principles of Climb <span class="en">Chapter 3</span></h2>
+      <p class="lead">Angle of climb depends on excess <em>thrust</em>; rate of climb depends on excess <em>power</em>. Everything in this chapter follows from those two lines.</p>
+      <div class="glance"><span>🎯 Gradient = (T − D) ÷ W</span><span>🎯 Drag curve, VMD</span><span>🎯 VX and VY</span><span>🎯 Air vs ground gradient</span><span>🎯 Rate of climb</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Gradient % = (T − D) ÷ W × 100.</strong> <strong>Rate of climb = (power available − power required) ÷ W.</strong> Wind changes neither — only the gradient over the ground.</p></div>
+      <div class="diagram">
+        <svg viewBox="0 0 560 250" role="img" aria-label="Drag and power curves">
+          <line class="ln" x1="60" y1="220" x2="520" y2="220" marker-end="url(#a-ink)"/><line class="ln" x1="60" y1="220" x2="60" y2="20" marker-end="url(#a-ink)"/>
+          <text class="m" x="470" y="240">IAS</text><text class="m" x="68" y="24">drag / power</text>
+          <path class="ac" d="M90 40 Q200 230 300 150 T510 60"/>
+          <path class="thin" d="M90 60 Q160 200 250 210"/><text class="m" x="100" y="80">induced</text>
+          <path class="thin" d="M150 215 Q350 200 510 80"/><text class="m" x="440" y="140">parasite</text>
+          <line class="gn" x1="60" y1="120" x2="510" y2="120"/><text x="420" y="112">jet thrust ≈ constant</text>
+          <line class="thin" x1="238" y1="160" x2="238" y2="220"/><text x="214" y="236">VMD = VX (jet)</text>
+          <line class="ln" x1="238" y1="124" x2="238" y2="146" marker-start="url(#a-ink)" marker-end="url(#a-ink)"/>
+        </svg>
+        <div class="cap">Induced drag ∝ 1/IAS², parasite ∝ IAS². They are equal at VMD, where the gap between jet thrust and drag (the excess thrust) is largest. Below VMD lies the region of reverse command: flying slower needs more thrust.</div>
+      </div>
+      <div class="compare">
+        <div class="card acc"><h4>VX — best angle</h4><ul><li>Jet: VMD (thrust nearly constant)</li><li>Propeller: below VMD, near VMP at low altitude</li><li>Constant as an IAS with altitude</li></ul></div>
+        <div class="card good"><h4>VY — best rate</h4><ul><li>Jet: above VMD (power available rises with speed)</li><li>Propeller: above VMP</li><li>Falls as an IAS with altitude; meets VX at the absolute ceiling</li></ul></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Change</th><th>Angle / VX</th><th>Rate / VY</th></tr></thead>
+          <tbody>
+            <tr><td>More weight</td><td>Less angle, VX faster</td><td>Less rate, VY faster</td></tr>
+            <tr><td>Flaps or gear (parasite drag)</td><td>Less angle, VX slower</td><td>Less rate, VY slower</td></tr>
+            <tr><td>Higher, hotter (lower density)</td><td>Less angle, VX same IAS</td><td>Less rate, VY lower IAS</td></tr>
+            <tr><td>Headwind</td><td>Steeper ground gradient</td><td>No change</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <details class="example"><summary>Worked example — losing an engine</summary><div class="body">
+        <p>W = 400 000 N, L/D 10 so D = 40 000 N. Two engines give 100 000 N: (100 000 − 40 000) ÷ 400 000 × 100 = <strong>15%</strong>.</p>
+        <p>One engine: (50 000 − 40 000) ÷ 400 000 × 100 = <strong>2.5%</strong>. Half the thrust has cost five sixths of the gradient, because the drag is still there.</p>
+      </div></details>
+      <h3 class="sub">Air and ground gradients</h3>
+      <div class="eq">ground gradient = air gradient × TAS ÷ GS</div>
+      <p>Regulatory minimum gradients are <strong>air</strong> gradients. Wind is used only for obstacle clearance, factored 50% headwind / 150% tailwind. 8% at 120 kt TAS with a 24 kt reported headwind: use 12 kt, GS 108 kt → 8 × 120 ÷ 108 = <strong>8.9%</strong>.</p>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">ROC ≈ grad% × TAS × 1.013</div><div class="d">3% at 160 kt ≈ 490 ft/min.</div></div>
+        <div class="fcard"><div class="f">DA ≈ PA + 120 × ISA dev</div><div class="d">1 000 ft, ISA + 12 → about 2 440 ft.</div></div>
+      </div>
+      <p>Obstacle heights are measured from <strong>reference zero</strong>, below the screen: remember to add the screen height (35 ft or 50 ft) to the height gained.</p>
+      <div class="related"><span class="dot"></span> Practise: 03 General Principles of Climb</div>
+    </section>
+
+    <section class="sec" id="ch4" data-icon="📉" style="--acc:#7d3c98">
+      <h2><span class="num">4</span> General Principles of Descent <span class="en">Chapter 4</span></h2>
+      <p class="lead">The descent is the climb turned upside down: excess drag sets the angle, excess power required sets the rate.</p>
+      <div class="glance"><span>🎯 Gradient = (D − T) ÷ W</span><span>🎯 Best glide at VMD</span><span>🎯 Weight and the glide</span><span>🎯 Wind</span><span>🎯 Emergency descent</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Weight does not change the best glide angle</strong> — L/D max is the same at any weight. A heavier aeroplane glides just as far, but faster, so it gets there sooner.</p></div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">grad% = (D − T) ÷ W × 100</div><div class="d">45 − 15 over 600 → 5%.</div></div>
+        <div class="fcard"><div class="f">distance = height × L/D</div><div class="d">6 000 ft × 15 = 90 000 ft ≈ 14.8 NM.</div></div>
+        <div class="fcard"><div class="f">ROD = (PR − PA) ÷ W</div><div class="d">Least at VMP (maximum descent endurance).</div></div>
+      </div>
+      <div class="compare">
+        <div class="card good"><h4>Flattest glide (range)</h4><p>Zero thrust at <strong>VMD</strong> (L/D max). Raising the nose to "stretch" it slows below VMD and steepens the glide.</p></div>
+        <div class="card bad"><h4>Fastest way down</h4><p>Idle thrust, high speed (often VMO/MMO), speed brakes or gear — the depressurisation descent to about 10 000 ft.</p></div>
+      </div>
+      <ul>
+        <li>🌬️ A headwind shortens the range and steepens the ground angle; the time to descend is unchanged. Fly a little faster into wind, a little slower downwind.</li>
+        <li>🪶 Gear and flaps move VMD and VMP to lower speeds and steepen both the angle and the rate.</li>
+        <li>🧭 A normal top of descent can be up to about 200 miles out.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 04 General Principles of Descent</div>
+    </section>
+
+    <section class="sec" id="ch5" data-icon="🛰️" style="--acc:#117a65">
+      <h2><span class="num">5</span> General Principles of Cruise <span class="en">Chapter 5</span></h2>
+      <p class="lead">In the cruise the questions are how long (endurance) and how far (range) the fuel will last, at which speed and which altitude.</p>
+      <div class="glance"><span>🎯 Trim drag and CG</span><span>🎯 IAS, TAS, Mach</span><span>🎯 Endurance speeds</span><span>🎯 Range speeds</span><span>🎯 Payload–range</span><span>🎯 Optimum altitude, step climbs</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Endurance follows fuel flow; range follows TAS ÷ fuel flow.</strong> Jet fuel flow follows thrust (drag); propeller fuel flow follows power.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th></th><th class="num">Jet</th><th class="num">Propeller (incl. turboprop)</th></tr></thead>
+          <tbody>
+            <tr><td>Maximum endurance speed</td><td class="num">VMD</td><td class="num">VMP</td></tr>
+            <tr><td>Maximum range speed</td><td class="num">≈ 1.32 VMD</td><td class="num">VMD (L/D max)</td></tr>
+            <tr><td>Best endurance altitude</td><td class="num">at or above the tropopause</td><td class="num">turboprop ≈ 10 000 ft or less · piston near sea level</td></tr>
+            <tr><td>Best range altitude</td><td class="num">optimum altitude, rising as fuel burns</td><td class="num">just above full throttle height (piston)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">SE = 1 ÷ FF</div><div class="d">2 000 kg/h → 0.0005 h per kg.</div></div>
+        <div class="fcard"><div class="f">SAR = TAS ÷ FF</div><div class="d">450 kt at 2 500 kg/h → 0.18 NAM/kg. Ground range uses GS.</div></div>
+        <div class="fcard"><div class="f">FF₂ = FF₁ × W₂ ÷ W₁</div><div class="d">Same aeroplane, altitude and SFC.</div></div>
+      </div>
+      <div class="diagram">
+        <svg viewBox="0 0 560 230" role="img" aria-label="Payload range diagram">
+          <line class="ln" x1="60" y1="200" x2="520" y2="200" marker-end="url(#a-ink)"/><line class="ln" x1="60" y1="200" x2="60" y2="20" marker-end="url(#a-ink)"/>
+          <text class="m" x="480" y="220">range</text><text class="m" x="68" y="24">payload</text>
+          <path class="ac" d="M60 60 L260 60 L420 120 L490 200"/>
+          <circle class="dot" cx="60" cy="60" r="5"/><text x="68" y="48">max payload (MZFM)</text>
+          <circle class="dot" cx="260" cy="60" r="5"/><text x="268" y="52">MTOM reached</text>
+          <circle class="dot" cx="420" cy="120" r="5"/><text x="432" y="114">tanks full</text>
+          <circle class="dot" cx="490" cy="200" r="5"/><text x="380" y="192">ferry range</text>
+        </svg>
+        <div class="cap">From MTOM to full tanks, fuel is added only by taking payload off; after full tanks, range grows only by removing the rest of the payload.</div>
+      </div>
+      <h3 class="sub">Speeds and the CG</h3>
+      <ul>
+        <li>⚖️ A forward CG needs more tail down load: more drag and effective weight, less range. Burning forward or centre fuel first moves the CG aft.</li>
+        <li>🔊 Mach = TAS ÷ speed of sound (661 kt at sea level ISA, about 590 kt at 30 000 ft). Climbing at constant CAS, TAS and Mach rise; at constant Mach, TAS and CAS fall.</li>
+        <li>🚀 Long range cruise is about <strong>4% faster</strong> than maximum range cruise for about <strong>1%</strong> less specific range.</li>
+        <li>🪜 Step climbs: about 2 000 ft above optimum, then 4 000 ft up; cost ≈ 1% fuel versus ideal (≈ 10% if never stepping). Not worth it within about 200 NM of the top of descent.</li>
+        <li>🌬️ With a headwind fly a little faster; with a tailwind a little slower. A strong headwind can make a non-optimum level better.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 05 General Principles of Cruise</div>
+    </section>
+
+    <section class="sec" id="ch6" data-icon="🛬" style="--acc:#a04000">
+      <h2><span class="num">6</span> General Principles of Landing <span class="en">Chapter 6</span></h2>
+      <p class="lead">The landing distance runs from 50 ft over the threshold to a full stop. The rest of the chapter is about what slows the aeroplane down — and what stops the brakes working.</p>
+      <div class="glance"><span>🎯 50 ft screen, VREF</span><span>🎯 Spoilers, reverse, brakes</span><span>🎯 Slope, surface, wind</span><span>🎯 Hydroplaning</span><span>🎯 Windshear on approach</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Brakes need weight on the wheels.</strong> Spoilers dump the lift so the brakes bite early; below about 70% of the landing speed the brakes do most of the work.</p></div>
+      <div class="compare">
+        <div class="card acc"><h4>VREF, Class A</h4><p>Not less than 1.23 VSR0 and VMCL. VSR0 120 kt → about 148 kt.</p></div>
+        <div class="card good"><h4>VREF, other classes</h4><p>Not less than 1.3 VS0. VS0 60 kt → 78 kt.</p></div>
+      </div>
+      <ul>
+        <li>✈️ Airborne part from 50 ft to touchdown ≈ 1 000 ft; flying faster than VREF means the published distance will not be met.</li>
+        <li>🔁 Jet reverse needs weight on wheels and spin-up, takes time to deploy and is cancelled around 50 kt (re-ingestion). Propeller reverse is just a blade angle change — quicker and usable to a stop.</li>
+        <li>⛰️ Upslope shortens the landing; downslope lengthens it, about 5% per 1%: 1 500 m with a 2% downslope → 1 650 m.</li>
+        <li>🌱 Grass ≈ +15% for light aeroplanes; a wet runway can add up to 50% to the average dry distance. Dry μ 0.8–1.0, icy below 0.2.</li>
+        <li>🌬️ Wind factors as for take-off (50% / 150%); no crosswind factor — there is a demonstrated crosswind limit instead.</li>
+      </ul>
+      <h3 class="sub">Hydroplaning</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Type</th><th>When</th><th>Defence</th></tr></thead>
+          <tbody>
+            <tr><td>Dynamic</td><td>Standing water; tyre lifted at VP ≈ 9 √P (7.7 √P non-rotating)</td><td>Grooved tyres and runway, camber, macro-texture</td></tr>
+            <tr><td>Viscous</td><td>Thin film on a smooth surface, lower speeds</td><td>Micro-texture</td></tr>
+            <tr><td>Reverted rubber</td><td>Long locked-wheel skid makes steam</td><td>Anti-skid (no lock-up)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <details class="example"><summary>Worked example — tyre pressure 196 psi</summary><div class="body">
+        <p>√196 = 14. Rotating tyre 9 × 14 = <strong>126 kt</strong>; non-rotating 7.7 × 14 ≈ <strong>108 kt</strong>. So a tyre that spins down in water can keep hydroplaning to well below the speed at which it started.</p>
+      </div></details>
+      <div class="callout warning"><span class="label">Microburst on approach</span> The first sign is a headwind gain: airspeed up, aeroplane above the path. Then come the downdraught and tailwind. Go around at once with full power and high pitch (around 15°, up to stick shaker). Virga is a warning sign.</div>
+      <p>On a slippery runway: firm touchdown in the zone, fly the nose wheel down, and without anti-skid brake only below the dynamic hydroplaning speed.</p>
+      <div class="related"><span class="dot"></span> Practise: 06 General Principles of Landing</div>
+    </section>
+
+    <section class="sec" id="ch7" data-icon="🛩️" style="--acc:#2874a6">
+      <h2><span class="num">7</span> Single-engine Class B Take-off <span class="en">Chapter 7</span></h2>
+      <p class="lead">For a single-engine Class B aeroplane the only take-off requirement is the field length — but with factors for the runway set-up, the surface and the slope.</p>
+      <div class="glance"><span>🎯 Operating limits</span><span>🎯 1.25 factor</span><span>🎯 1.0 / 1.3 / 1.15</span><span>🎯 Grass and slope</span><span>🎯 Speeds</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>No stopway or clearway: TOD × 1.25 ≤ TORA.</strong> With them: TOD ≤ TORA, TOD × 1.3 ≤ ASDA and TOD × 1.15 ≤ TODA.</p></div>
+      <ul>
+        <li>🌙 In commercial air transport: not at night, not in IMC except special VFR, and only where safe forced landing surfaces exist along the route.</li>
+        <li>🏁 VR ≥ VS1; speed at 50 ft ≥ the greater of a safe speed and 1.2 VS1.</li>
+        <li>📋 The gross TOD accounts for mass, pressure altitude, temperature, surface, slope and factored wind.</li>
+      </ul>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Correction</th><th class="num">Factor</th></tr></thead>
+          <tbody>
+            <tr><td>Dry grass</td><td class="num">× 1.2</td></tr>
+            <tr><td>Wet grass</td><td class="num">× 1.3</td></tr>
+            <tr><td>Wet paved runway</td><td class="num">× 1.0</td></tr>
+            <tr><td>Upslope</td><td class="num">× 1.05 per 1%</td></tr>
+            <tr><td>Downslope</td><td class="num">no credit</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <details class="example"><summary>Worked example — dry grass and an upslope</summary><div class="body">
+        <p>Gross TOD 2 400 ft on dry grass with a 2% upslope: 2 400 × 1.2 × 1.10 = 3 168 ft.</p>
+        <p>No stopway or clearway: required TORA = 3 168 × 1.25 = <strong>3 960 ft</strong>.</p>
+      </div></details>
+      <details class="example"><summary>Worked example — which distance limits?</summary><div class="body">
+        <p>TORA 3 000, ASDA 3 600, TODA 3 300 ft. Maximum gross TOD: TORA 3 000; ASDA ÷ 1.3 = 2 769; TODA ÷ 1.15 = 2 870. The lowest, <strong>about 2 770 ft</strong>, is set by the ASDA.</p>
+      </div></details>
+      <p>Reading the chart: temperature and pressure altitude first (density), then mass, then wind (the slanted lines already apply the 50/150% factors), then the airborne carpet to 50 ft.</p>
+      <div class="related"><span class="dot"></span> Practise: 07 Single-engine Class B Take-off</div>
+    </section>
+
+    <section class="sec" id="ch8" data-icon="⬆️" style="--acc:#28b463">
+      <h2><span class="num">8</span> Single-engine Class B Climb <span class="en">Chapter 8</span></h2>
+      <p class="lead">A single has no operational climb gradient or obstacle clearance rule — the pilot keeps visual contact and avoids what can be seen. But the numbers are still worth knowing.</p>
+      <div class="glance"><span>🎯 No gradient rule</span><span>🎯 Time to climb</span><span>🎯 ROC to gradient</span><span>🎯 WAT limit</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Time to climb depends only on rate of climb</strong>, which wind does not change. Ground distance and obstacle clearance use the ground gradient, which it does.</p></div>
+      <ul>
+        <li>📊 The climb graph assumes full throttle, rich mixture, flaps and gear up, cowl flaps as required, at a stated IAS.</li>
+        <li>🌡️ The greatest mass for a required gradient depends on weight, altitude and temperature — the <strong>WAT</strong> (or MAT) limit.</li>
+        <li>🔄 Converting a rate of climb to a gradient needs TAS (or GS for a ground gradient), not IAS.</li>
+      </ul>
+      <details class="example"><summary>Worked example — three quick sums</summary><div class="body">
+        <ul>
+          <li>6 000 ft at 600 ft/min → <strong>10 min</strong>, whatever the wind.</li>
+          <li>500 ft/min at 100 kt TAS (≈ 10 130 ft/min) → 500 ÷ 10 130 × 100 ≈ <strong>4.9%</strong>.</li>
+          <li>Height after 2 NM at 5%: 12 160 × 0.05 = 608 ft + 50 ft screen ≈ <strong>660 ft</strong>.</li>
+        </ul>
+      </div></details>
+      <div class="related"><span class="dot"></span> Practise: 08 Single-engine Class B Climb</div>
+    </section>
+
+    <section class="sec" id="ch9" data-icon="🗺️" style="--acc:#b9770e">
+      <h2><span class="num">9</span> Single-engine Class B En Route and Descent <span class="en">Chapter 9</span></h2>
+      <p class="lead">If the only engine stops, the aeroplane must be able to glide to somewhere it can make a safe forced landing — at every point on the route.</p>
+      <div class="glance"><span>🎯 Net glide gradient</span><span>🎯 Glide circles</span><span>🎯 300 ft/min ceiling</span><span>🎯 Range and endurance graphs</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Net descent gradient = gross + 0.5%.</strong> The steeper assumed glide gives a shorter, safer range; the planned track must stay inside circles of that radius around forced landing areas.</p></div>
+      <div class="eq">distance (ft) = height ÷ gradient% × 100 &nbsp;·&nbsp; ÷ 6 080 for NM</div>
+      <details class="example"><summary>Worked example — gross 6%, height 8 000 ft</summary><div class="body">
+        <p>Net gradient 6.5%: 8 000 ÷ 6.5 × 100 = 123 077 ft ≈ <strong>20.2 NM</strong>. The gross 6% would give 21.9 NM — not allowed for planning.</p>
+      </div></details>
+      <ul>
+        <li>⬆️ Planning may not use height above the altitude where the rate of climb at maximum continuous power is <strong>300 ft/min</strong>. The aeroplane may fly higher; it just gets no credit.</li>
+        <li>⛽ Range and endurance graphs assume the manual's technique (correct leaning) and often show figures with and without the 45 min reserve: 7.0 h − 0.75 h = 6.25 h.</li>
+        <li>🧭 En route for Class B: from 1 500 ft above departure to 1 000 ft above destination.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 09 Single-engine Class B En Route and Descent</div>
+    </section>
+
+    <section class="sec" id="ch10" data-icon="🛬" style="--acc:#c0392b">
+      <h2><span class="num">10</span> Single-engine Class B Landing <span class="en">Chapter 10</span></h2>
+      <p class="lead">The landing must fit into 70% of the landing distance available, after corrections for grass, wet and slope — and the despatch rules decide which runway and wind to plan for.</p>
+      <div class="glance"><span>🎯 70% rule, ×1.43</span><span>🎯 Grass and wet ×1.15</span><span>🎯 Downslope +5%</span><span>🎯 Despatch rules</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Gross landing distance × corrections × 1.43 ≤ LDA.</strong> The landing graph already gives the gross figure at VREF = 1.3 VS0.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Correction</th><th class="num">Factor</th></tr></thead>
+          <tbody>
+            <tr><td>Grass (firm)</td><td class="num">× 1.15</td></tr>
+            <tr><td>Wet runway (unless the manual gives wet data)</td><td class="num">× 1.15</td></tr>
+            <tr><td>Downslope</td><td class="num">× 1.05 per 1%</td></tr>
+            <tr><td>Upslope</td><td class="num">no credit</td></tr>
+            <tr><td>Regulatory (70% of LDA)</td><td class="num">× 1.43</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <details class="example"><summary>Worked example — grass and a 1% downslope</summary><div class="body">
+        <p>Gross 1 200 ft: 1 200 × 1.15 × 1.05 ≈ 1 449 ft; × 1.43 ≈ <strong>2 070 ft</strong> LDA required.</p>
+      </div></details>
+      <h3 class="sub">Despatch rules</h3>
+      <ol class="steps">
+        <li>Plan to land on the most favourable runway in <strong>still air</strong>.</li>
+        <li>Plan to land on the runway most likely to be assigned in the <strong>forecast wind</strong>.</li>
+        <li>Use the <strong>lower</strong> of the two masses. If the forecast-wind case cannot be met, designate an alternate where everything can.</li>
+      </ol>
+      <p>Normally still air is the lower; the exception is a one-direction runway with a forecast tailwind. A pure crosswind gives the still-air mass.</p>
+      <div class="related"><span class="dot"></span> Practise: 10 Single-engine Class B Landing</div>
+    </section>
+
+    <section class="sec" id="ch11" data-icon="✈️" style="--acc:#1f618d">
+      <h2><span class="num">11</span> Multi-engine Class B Take-off <span class="en">Chapter 11</span></h2>
+      <p class="lead">A light twin has the single's field length rules, plus three climb gradients and an obstacle clearance requirement up to 1 500 ft.</p>
+      <div class="glance"><span>🎯 Three climb requirements</span><span>🎯 VR and safety speed</span><span>🎯 50 ft obstacle margin</span><span>🎯 × 0.77 net gradient</span><span>🎯 Lateral margins</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Net all-engines gradient = gross × 0.77</strong>, and the net flight path must clear obstacles by <strong>50 ft</strong> from 50 ft up to 1 500 ft.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Requirement</th><th>Configuration</th><th class="num">Gradient</th></tr></thead>
+          <tbody>
+            <tr><td>All engines</td><td>Take-off power and flap; gear down unless it retracts in ≤ 7 s; speed ≥ 1.1 VMC and 1.2 VS1</td><td class="num">4%</td></tr>
+            <tr><td>One engine out, 400 ft</td><td>Prop feathered, gear up, take-off flap, 50 ft speed</td><td class="num">measurably positive</td></tr>
+            <tr><td>One engine out, 1 500 ft</td><td>Live engine ≤ MCP, gear and flaps up, ≥ 1.2 VS1</td><td class="num">0.75%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">VR ≥ 1.05 VMC, 1.1 VS1</div><div class="d">VMC 70, VS1 65 → 73.5 kt.</div></div>
+        <div class="fcard"><div class="f">V50 ≥ 1.1 VMC, 1.2 VS1</div><div class="d">VMC 70, VS1 65 → 78 kt. VMC ≤ 1.2 VS1.</div></div>
+      </div>
+      <p>No accelerate-stop requirement (other than commuter category), though the manual may give the data.</p>
+      <h3 class="sub">Obstacle clearance</h3>
+      <ul>
+        <li>🛫 The path starts at 50 ft at the end of the TODR and ends at 1 500 ft. No bank before 50 ft, then at most 15°.</li>
+        <li>☁️ The engine is assumed to fail where visual reference is lost (for example the cloud base): all-engines net gradient up to there, one-engine gross gradient after.</li>
+        <li>↔️ Lateral margin 90 m + 0.125 D (span &lt; 60 m: 60 m + ½ span + 0.125 D). Ignore obstacles beyond 300 m (VMC) or 600 m with track changes up to 15°; 600 m / 900 m beyond 15°.</li>
+      </ul>
+      <details class="example"><summary>Worked example — clearing a 600 ft obstacle</summary><div class="body">
+        <p>Gross all-engines gradient 10% → net 7.7%. Obstacle 600 ft high, 8 000 ft from the end of the TODR.</p>
+        <p>Height = 8 000 × 0.077 + 50 = 616 + 50 = 666 ft → clearance <strong>66 ft</strong>, more than the 50 ft needed.</p>
+      </div></details>
+      <div class="related"><span class="dot"></span> Practise: 11 Multi-engine Class B Take-off</div>
+    </section>
+
+    <section class="sec" id="ch12" data-icon="🧭" style="--acc:#9a7d0a">
+      <h2><span class="num">12</span> Multi-engine Class B En Route and Descent <span class="en">Chapter 12</span></h2>
+      <p class="lead">After an engine failure a twin does not need a field — it must be able to reach an aerodrome. The plan uses net gradients and the drift down.</p>
+      <div class="glance"><span>🎯 Reach an aerodrome</span><span>🎯 Net ±0.5%</span><span>🎯 Drift down segments</span><span>🎯 Range circles</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>With one engine out and the other within MCP</strong>, the aeroplane must continue at or above the minimum safe altitudes to 1 000 ft above an aerodrome where it can land.</p></div>
+      <div class="compare">
+        <div class="card acc"><h4>Net climb</h4><p>Gross − 0.5%: 1.2% → 0.7%.</p></div>
+        <div class="card bad"><h4>Net descent</h4><p>Gross + 0.5%: 2.0% → 2.5%.</p></div>
+      </div>
+      <p><strong>Drift down:</strong> hold VMD; lower the nose so weight balances the excess drag; as the air thickens the live engine gives more thrust, the gradient flattens and the aeroplane levels off. The changing gradient is split into segments and the distances added, then the one-engine cruise range is added.</p>
+      <details class="example"><summary>Worked example — two segments</summary><div class="body">
+        <p>2 000 ft at 3% net, then 2 000 ft at 2% net: 66 667 + 100 000 = 166 667 ft ≈ <strong>27.4 NM</strong>.</p>
+      </div></details>
+      <p>The 300 ft/min rule applies here too, using the all-engines rate of climb at MCP.</p>
+      <div class="related"><span class="dot"></span> Practise: 12 Multi-engine Class B En Route and Descent</div>
+    </section>
+
+    <section class="sec" id="ch13" data-icon="🔁" style="--acc:#922b21">
+      <h2><span class="num">13</span> Multi-engine Class B Landing <span class="en">Chapter 13</span></h2>
+      <p class="lead">The twin lands under the single's distance rules, but must also be able to climb away if it cannot land.</p>
+      <div class="glance"><span>🎯 2.5% baulked landing</span><span>🎯 0.75% one engine</span><span>🎯 70% of LDA</span><span>🎯 VMCL</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Landing climb limit mass</strong> = the greatest mass that still gives 2.5% all engines in the landing configuration and 0.75% one engine out at 1 500 ft.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Case</th><th>Configuration</th><th class="num">Gradient</th></tr></thead>
+          <tbody>
+            <tr><td>All engines (baulked landing)</td><td>Power 8 s after levers to take-off, gear down, landing flap, VREF</td><td class="num">2.5%</td></tr>
+            <tr><td>One engine out</td><td>Feathered, live engine MCP, gear and flaps up, ≥ 1.2 VS1, at 1 500 ft</td><td class="num">0.75%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>These gradients apply to normal, utility and aerobatic aeroplanes over 2 722 kg. They are low because losing an engine costs about three quarters of the climb.</p>
+      <details class="example"><summary>Worked example — does it meet 2.5%?</summary><div class="body">
+        <p>250 ft/min at 100 kt (≈ 10 133 ft/min): 250 ÷ 10 133 × 100 ≈ 2.47% — just below, so the mass must be reduced.</p>
+      </div></details>
+      <p>Distance: within 70% of the LDA (× 1.43), with grass and wet factors of 1.15 each and +5% per 1% downslope. Despatch rules as for singles. The approach speed must also respect <strong>VMCL</strong>.</p>
+      <div class="related"><span class="dot"></span> Practise: 13 Multi-engine Class B Landing</div>
+    </section>
+
+    <section class="sec" id="ch14" data-icon="🚀" style="--acc:#1b4f72">
+      <h2><span class="num">14</span> Class A Take-off <span class="en">Chapter 14</span></h2>
+      <p class="lead">For an airliner an engine failure is planned for at every point of the take-off. V1 is the hinge: before it you stop, after it you go — and both must fit on the runway.</p>
+      <div class="glance"><span>🎯 TORR, TODR, ASDR</span><span>🎯 VMCG ≤ V1 ≤ VR, VMBE</span><span>🎯 Balanced field</span><span>🎯 VR, VLOF, V2</span><span>🎯 Tyre and brake limits</span><span>🎯 Regulated TOM</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>VMCG ≤ V1 ≤ VR, and V1 ≤ VMBE.</strong> The maximum take-off mass is the lowest of field length, climb, obstacle, tyre speed, brake energy, runway strength and structural limits.</p></div>
+      <h3 class="sub">The three distances</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Required</th><th>Greatest of</th></tr></thead>
+          <tbody>
+            <tr><td>TORR</td><td>All engines: (to VLOF + half of VLOF→35 ft) × 1.15 · one engine (dry): to the midpoint VLOF→35 ft · one engine (wet): to 15 ft</td></tr>
+            <tr><td>TODR</td><td>All engines to 35 ft × 1.15 · one engine to 35 ft (dry) · one engine to 15 ft (wet), V2 by 35 ft</td></tr>
+            <tr><td>ASDR</td><td>All engines to V1 then stop · engine failure at VEF then stop · on a wet runway also the dry case; the wet cases add 2 s at V1</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="diagram">
+        <svg viewBox="0 0 560 240" role="img" aria-label="Balanced field">
+          <line class="ln" x1="60" y1="210" x2="520" y2="210" marker-end="url(#a-ink)"/><line class="ln" x1="60" y1="210" x2="60" y2="20" marker-end="url(#a-ink)"/>
+          <text class="m" x="380" y="230">engine failure speed / V1</text><text class="m" x="68" y="24">distance required</text>
+          <path class="rd" d="M90 180 Q300 150 500 40"/><text x="420" y="40">ASDR</text>
+          <path class="gn" d="M90 40 Q300 150 500 180"/><text x="430" y="196">TODR</text>
+          <circle class="dot" cx="297" cy="130" r="6"/><line class="thin" x1="297" y1="130" x2="297" y2="210"/><line class="thin" x1="60" y1="130" x2="297" y2="130"/>
+          <text x="310" y="122">balanced V1 — least field length</text>
+        </svg>
+        <div class="cap">A later failure means a longer stop and a shorter go. Where the curves cross, TODR = ASDR and the field needed is least.</div>
+      </div>
+      <div class="compare">
+        <div class="card mid"><h4>VMCG-limited</h4><p>V1 raised to VMCG: field needed is the ASDR at VMCG.</p></div>
+        <div class="card bad"><h4>VMBE-limited</h4><p>V1 lowered to VMBE: field needed is the TODR at VMBE; if V1 &gt; VMBE, reduce mass.</p></div>
+        <div class="card acc"><h4>VR-limited</h4><p>V1 set equal to VR: field needed is the TODR at VR.</p></div>
+        <div class="card good"><h4>Spare runway</h4><p>V1 can lie anywhere from VGO to VSTOP.</p></div>
+      </div>
+      <h3 class="sub">The speeds</h3>
+      <ul>
+        <li>🦶 <strong>VMCG</strong>: rudder only (no ailerons near the ground). Highest in dense air — low altitude, low temperature.</li>
+        <li>⏱️ <strong>VEF</strong> is about one second before V1, the time to recognise the failure.</li>
+        <li>⬆️ V1 rises with mass, temperature, altitude, upslope and headwind; falls with more flap, downslope and tailwind.</li>
+        <li>🔄 <strong>VR</strong> ≥ V1, 1.05 VMCA, a speed giving V2 by 35 ft, and a safe VLOF over VMU. Early rotation by 5 kt must not increase the distance; reasonable variations ≤ 1%.</li>
+        <li>🛫 <strong>VLOF</strong> ≥ 110% VMU all engines, 105% one engine (geometry-limited: 108% / 104%).</li>
+        <li>🎯 <strong>V2</strong> ≥ V2MIN (1.13 VSR for twins and three-engine aeroplanes, 1.08 VSR for four-engine turboprops and jets with stall-reducing provision; and 1.1 VMCA), held to 400 ft.</li>
+        <li>🛞 Tyre speed limit applies at VLOF (ground speed) — a tailwind can make it bite. Brake energy ∝ ½MV² with true ground speed; a downslope or hot brakes reduce VMBE (cooling times are in the manual).</li>
+      </ul>
+      <details class="example"><summary>Worked example — the regulated take-off mass</summary><div class="body">
+        <p>Field limit 63 500, climb limit 61 200, obstacle limit 62 000, tyre 64 000, brake energy 63 000 kg; structural 62 800 kg.</p>
+        <p>Performance-limited = lowest = 61 200 kg (climb). It is below 62 800 kg, so the <strong>regulated TOM is 61 200 kg</strong>.</p>
+      </div></details>
+      <p>Class A charts usually give the maximum <em>mass</em> for the runway (Class B charts give a distance). The graph assumes TORA = TODA = ASDA; stopway or clearway is handled by V1 corrections. Speeds and % N1 come from tables; stabiliser trim from CG, mass and flap. Normal operation needs ACN ≤ PCN (newer systems: ACR ≤ PCR).</p>
+      <div class="related"><span class="dot"></span> Practise: 14 Class A Take-off</div>
+    </section>
+
+    <section class="sec" id="ch15" data-icon="🧊" style="--acc:#5b2c6f">
+      <h2><span class="num">15</span> Class A Additional Take-off Procedures <span class="en">Chapter 15</span></h2>
+      <p class="lead">Four procedures adjust the basic take-off: contaminated runways, the improved climb (increased V2), reduced or derated thrust, and an inoperative anti-skid.</p>
+      <div class="glance"><span>🎯 Contaminated runway corrections</span><span>🎯 Increased V2</span><span>🎯 Assumed temperature</span><span>🎯 Derate</span><span>🎯 Anti-skid inoperative</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Contamination reduces both the mass and V1</strong> — and if the adjusted V1 falls below VMCG, the take-off is not permitted.</p></div>
+      <h3 class="sub">Contaminated runways</h3>
+      <ol class="steps">
+        <li>Find the dry-runway limiting mass (field, climb or obstacle).</li>
+        <li>Apply the contaminant mass reduction and V1 reduction (deeper contaminant: bigger mass cut, smaller V1 cut).</li>
+        <li>If in the shaded area, also find the TORA-limited mass with V1 = VMCG; use the lower mass.</li>
+        <li>Check V1 ≥ VMCG. The take-off flight path starts at 15 ft.</li>
+      </ol>
+      <p>Contaminant drag rises with speed until the aquaplaning speed, then falls.</p>
+      <h3 class="sub">Improved climb (increased V2)</h3>
+      <p>When the climb limit is well below the field limit, use the spare runway to accelerate to a higher V2 — closer to VX, so the gradient and climb-limited mass rise. The gain comes from (field − climb) and (tyre − climb) charts, the lower one wins, and VMBE is checked last.</p>
+      <h3 class="sub">Reduced thrust</h3>
+      <div class="compare">
+        <div class="card good"><h4>Assumed temperature</h4><ul><li>Thrust set as if the air were hotter</li><li>Lowest of the maximum temperatures from each limit</li><li>Max 25% reduction; within the max/min assumed temperatures</li><li>Full thrust still available</li></ul></div>
+        <div class="card mid"><h4>Derate</h4><ul><li>A fixed lower rating with its own data</li><li>Lower VMCG/VMCA — can help a short, VMCG-limited runway</li><li>Do not add thrust near VMC</li></ul></div>
+      </div>
+      <div class="callout warning"><span class="label">Reduced thrust not permitted</span> Icy, very slippery or contaminated runways · anti-skid or reverse inoperative · with the increased V2 procedure · power management control off. Not recommended if windshear is possible.</div>
+      <h3 class="sub">Anti-skid inoperative</h3>
+      <p>The ASDR rises sharply. Reducing V1 shortens the stop but lengthens the go, so <strong>both V1 and the mass</strong> are reduced.</p>
+      <div class="related"><span class="dot"></span> Practise: 15 Class A Additional Take-off Procedures</div>
+    </section>
+
+    <section class="sec" id="ch16" data-icon="🪜" style="--acc:#0e6655">
+      <h2><span class="num">16</span> Class A Take-off Climb <span class="en">Chapter 16</span></h2>
+      <p class="lead">From 35 ft to 1 500 ft with an engine failed at VEF, the take-off flight path is flown in four segments. Each must meet a gradient; the net path must clear obstacles.</p>
+      <div class="glance"><span>🎯 Four segments</span><span>🎯 2nd segment 2.4%</span><span>🎯 35 ft obstacle margin</span><span>🎯 Net decrement</span><span>🎯 Bank in turns</span><span>🎯 Noise abatement</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The second segment is the hardest</strong> — gear up but still at V2 with take-off flap. Meet it and the others follow. Its WAT limit is the climb limit on the take-off.</p></div>
+      <div class="diagram">
+        <svg viewBox="0 0 580 230" role="img" aria-label="Take-off segments">
+          <line class="ln" x1="30" y1="200" x2="560" y2="200"/>
+          <path class="ac" d="M40 195 L110 180 L280 110 L390 104 L550 40"/>
+          <line class="thin" x1="110" y1="60" x2="110" y2="200"/><line class="thin" x1="280" y1="60" x2="280" y2="200"/><line class="thin" x1="390" y1="60" x2="390" y2="200"/>
+          <text x="48" y="172">1st</text><text x="180" y="130">2nd</text><text x="315" y="96">3rd</text><text x="450" y="58">4th</text>
+          <text class="m" x="30" y="216">35 ft · V2</text><text class="m" x="86" y="216">gear up</text><text class="m" x="258" y="216">≥ 400 ft</text><text class="m" x="350" y="216">flaps up · VFTO</text><text class="m" x="500" y="216">1 500 ft</text>
+        </svg>
+        <div class="cap">Segment 3 is level (or nearly) acceleration and flap retraction; thrust goes to MCT at its end. All must be done within the 10 min take-off thrust limit.</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Segment</th><th>From → to</th><th class="num">2 eng</th><th class="num">3 eng</th><th class="num">4 eng</th></tr></thead>
+          <tbody>
+            <tr><td>1st</td><td>35 ft at V2 → gear up</td><td class="num">positive</td><td class="num">0.3%</td><td class="num">0.5%</td></tr>
+            <tr><td>2nd</td><td>gear up → ≥ 400 ft, at V2, take-off flap</td><td class="num">2.4%</td><td class="num">2.7%</td><td class="num">3.0%</td></tr>
+            <tr><td>3rd</td><td>accelerate V2 → VZF → VFTO, flaps in</td><td class="num">≡ 1.2%</td><td class="num">≡ 1.5%</td><td class="num">≡ 1.7%</td></tr>
+            <tr><td>4th (final)</td><td>clean, VFTO, MCT → 1 500 ft</td><td class="num">1.2%</td><td class="num">1.5%</td><td class="num">1.7%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3 class="sub">Obstacle clearance</h3>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">net = gross − 0.8 / 0.9 / 1.0%</div><div class="d">2, 3, 4 engines.</div></div>
+        <div class="fcard"><div class="f">clearance ≥ 35 ft</div><div class="d">50 ft if any turn of more than 15°.</div></div>
+        <div class="fcard"><div class="f">lateral 90 m + 0.125 D</div><div class="d">Span &lt; 60 m: 60 m + ½ span + 0.125 D.</div></div>
+      </div>
+      <details class="example"><summary>Worked example — 280 ft obstacle at 10 000 ft</summary><div class="body">
+        <p>Net gradient 3%: height = 35 + 10 000 × 0.03 = 335 ft → clearance <strong>55 ft</strong>, more than 35 ft. Wind is applied (50/150%) because obstacles are fixed to the ground.</p>
+      </div></details>
+      <ul>
+        <li>↩️ No turns below 50 ft or half the wingspan. Bank ≤ 15° to 400 ft, ≤ 25° above (special approved procedures: 20° from 200–400 ft, 30° from 400–1 500 ft).</li>
+        <li>📉 Bank costs gradient: 20° → twice the decrement with V2 + 5 kt; 25° → three times with V2 + 10 kt.</li>
+        <li>🔀 A turn away from an obstacle can allow a heavier take-off if the lateral margin is met.</li>
+      </ul>
+      <h3 class="sub">Noise abatement</h3>
+      <div class="compare">
+        <div class="card acc"><h4>NADP 1 — close in</h4><p>At ≥ 800 ft reduce thrust; hold V2 + 10–20 kt with take-off flap to 3 000 ft; then accelerate and clean up.</p></div>
+        <div class="card good"><h4>NADP 2 — further out</h4><p>At ≥ 800 ft lower the nose, accelerate and retract flaps (thrust reduced with first retraction or when clean); VZF + 10–20 kt to 3 000 ft.</p></div>
+      </div>
+      <p>Neither starts below 800 ft; initial climb speed ≥ V2 + 10 kt.</p>
+      <div class="related"><span class="dot"></span> Practise: 16 Class A Take-off Climb</div>
+    </section>
+
+    <section class="sec" id="ch17" data-icon="🌐" style="--acc:#4a235a">
+      <h2><span class="num">17</span> Class A En Route <span class="en">Chapter 17</span></h2>
+      <p class="lead">The cruise of an airliner is shaped by speed schedules and cost, by how high it can go before the buffet margins close, and by what happens when an engine fails over high ground.</p>
+      <div class="glance"><span>🎯 Crossover altitude</span><span>🎯 Cost index</span><span>🎯 Buffet and coffin corner</span><span>🎯 Drift down</span><span>🎯 1 000 / 2 000 ft rules</span><span>🎯 60-minute rule</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Net en route gradient = gross − 1.1 / 1.4 / 1.6%.</strong> The net flight path must clear terrain by 1 000 ft (positive gradient all the way) or 2 000 ft (drifting down to an aerodrome).</p></div>
+      <h3 class="sub">Speeds and cost</h3>
+      <ul>
+        <li>🔀 Climb at constant IAS until the planned Mach is reached at the <strong>crossover altitude</strong>, then constant Mach. A higher IAS gives a lower crossover. Usually 250 kt below 10 000 ft.</li>
+        <li>💰 <strong>Cost index</strong> = cost of time ÷ cost of fuel. CI 0 → maximum range cruise; very high CI → towards VMO/MMO. ECON minimises total cost.</li>
+        <li>📏 Within 2 000 ft of optimum altitude keeps about 99% of the best range.</li>
+      </ul>
+      <h3 class="sub">How high?</h3>
+      <div class="diagram">
+        <svg viewBox="0 0 560 230" role="img" aria-label="Buffet boundary">
+          <line class="ln" x1="60" y1="210" x2="520" y2="210" marker-end="url(#a-ink)"/><line class="ln" x1="60" y1="210" x2="60" y2="20" marker-end="url(#a-ink)"/>
+          <text class="m" x="470" y="226">Mach</text><text class="m" x="68" y="24">altitude</text>
+          <path class="rd" d="M120 200 Q220 120 300 40"/><path class="rd" d="M480 200 Q400 120 300 40"/>
+          <circle class="dot" cx="300" cy="40" r="6"/><text x="312" y="40">aerodynamic ceiling (coffin corner)</text>
+          <line class="yl" x1="242" y1="90" x2="358" y2="90"/><text x="372" y="94">1.3 g ceiling</text>
+          <text x="66" y="150">low-speed buffet</text><text x="436" y="150">high-speed buffet</text>
+        </svg>
+        <div class="cap">The 1.3 g ceiling is typically 4 000–6 000 ft below the aerodynamic ceiling. Higher up, the low-speed buffet Mach rises and the high-speed buffet Mach falls. At 1.3 g the margin is a 40° bank (n = 1 ÷ cos 40° ≈ 1.31); bank is normally kept to 10–15°.</div>
+      </div>
+      <p>Thrust also limits: at the maximum altitude the thrust is at its maximum cruise value; hot air lowers it, sometimes almost to the optimum altitude.</p>
+      <h3 class="sub">Depressurisation</h3>
+      <p>Masks on, idle, speed brakes, high-speed descent to about 10 000 ft or the minimum safe altitude if higher; Mach first, then IAS below the crossover.</p>
+      <h3 class="sub">Engine failure and drift down</h3>
+      <ol class="steps">
+        <li>Hold level and slow to VMD (minimum excess drag), then lower the nose to keep VMD.</li>
+        <li>Thrust rises as the aeroplane descends; the <strong>gross</strong> level-off has no margin, so planning uses the <strong>net</strong> level-off altitude.</li>
+        <li>Heavier → descends further and longer. Fuel jettison is allowed if the aerodrome is still reached with the required reserves.</li>
+      </ol>
+      <div class="compare">
+        <div class="card acc"><h4>Option (a) — stay up</h4><p>Net path positive at least 1 000 ft above terrain within 5 NM either side of track.</p></div>
+        <div class="card mid"><h4>Option (b) — drift down</h4><p>Net path clears terrain in the corridor by 2 000 ft down to an aerodrome, and is positive at 1 500 ft above it.</p></div>
+      </div>
+      <details class="example"><summary>Worked example — high terrain</summary><div class="body">
+        <p>Highest terrain within 5 NM of track 12 400 ft. To stay up under option (a) the net path must level off at <strong>13 400 ft</strong> or above. Gross 0.5% for a twin gives a net −0.6%: still descending on the net path.</p>
+      </div></details>
+      <h3 class="sub">Distance from an aerodrome</h3>
+      <p>Twins without special approval stay within <strong>60 minutes</strong> at the one-engine cruise speed (TAS, still air) of an adequate aerodrome: 380 kt → 380 NM. With approval (extended diversion time operations) longer times such as 120 minutes open direct ocean tracks, backed by data on critical fuel and net level-off altitudes.</p>
+      <div class="related"><span class="dot"></span> Practise: 17 Class A En Route</div>
+    </section>
+
+    <section class="sec" id="ch18" data-icon="🎯" style="--acc:#78281f">
+      <h2><span class="num">18</span> Class A Landing <span class="en">Chapter 18</span></h2>
+      <p class="lead">The maximum landing mass is the lowest of the landing climb limit, the field length limit and the structural limit — and the despatch rules decide which runway and wind to use.</p>
+      <div class="glance"><span>🎯 3.2% landing climb</span><span>🎯 Approach climb 2.1%</span><span>🎯 60% / 70% of LDA</span><span>🎯 Wet ×1.15</span><span>🎯 Despatch and alternates</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Jets stop within 60% of the LDA (× 1.67), turboprops within 70% (× 1.43)</strong>, from 50 ft at VREF. A wet runway needs 15% more.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Climb case</th><th>Configuration</th><th class="num">Gradient</th></tr></thead>
+          <tbody>
+            <tr><td>Landing climb (all engines)</td><td>Landing configuration, VREF, thrust 8 s after levers to take-off</td><td class="num">3.2%</td></tr>
+            <tr><td>Approach climb (one engine out)</td><td>Gear up, approach flap (VSR ≤ 110% of landing VSR), go-around thrust, ≤ 1.4 VSR</td><td class="num">2.1 / 2.4 / 2.7%</td></tr>
+            <tr><td>Low decision height (below 200 ft)</td><td>One engine out missed approach</td><td class="num">2.5% or published</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The more limiting climb case gives the landing WAT limit.</p>
+      <details class="example"><summary>Worked example — LDA needed</summary><div class="body">
+        <ul>
+          <li>Jet, dry landing distance 1 500 m → 1 500 ÷ 0.6 = <strong>2 500 m</strong>; wet → 2 500 × 1.15 = <strong>2 875 m</strong>.</li>
+          <li>Turboprop, 1 400 m → 1 400 ÷ 0.7 = <strong>2 000 m</strong>.</li>
+          <li>LDA 2 400 m: a jet may need no more than 1 440 m.</li>
+        </ul>
+      </div></details>
+      <ul>
+        <li>🌡️ Based on pressure altitude and <strong>ISA</strong> temperature, factored wind, slope only if beyond ±2%.</li>
+        <li>🎯 VREF ≥ 1.23 VSR0 and VMCL (≤ 5° bank towards the live engine), with manoeuvring capability.</li>
+        <li>🛬 Approved steep approach or short landing: screen not below 35 ft.</li>
+      </ul>
+      <h3 class="sub">Despatch rules</h3>
+      <div class="compare">
+        <div class="card acc"><h4>Check both</h4><p>Best runway in still air and the likely runway in the forecast wind; use the lower mass. Still air 64 000, forecast wind 66 500, structure 65 000 → <strong>64 000 kg</strong>.</p></div>
+        <div class="card mid"><h4>Forecast wind case fails</h4><p>Despatch with <strong>one</strong> alternate where everything can be met.</p></div>
+        <div class="card bad"><h4>Still-air case fails (single runway)</h4><p>Despatch only with <strong>two</strong> such alternates.</p></div>
+      </div>
+      <p>Landing graphs work both ways: mass to distance, or distance available to maximum mass.</p>
+      <div class="related"><span class="dot"></span> Practise: 18 Class A Landing</div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  Performance — Pilot's Guide · general principles, independent of any aircraft or operator.
+  Always take performance figures from the flight manual and the operator's data for your own aircraft, and follow your instructor's briefing. 📈
+</footer>
+
+<button id="top-btn" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  var toc = document.getElementById('toc');
+  var scrim = document.getElementById('scrim');
+  var menuBtn = document.getElementById('menuBtn');
+  var closeToc = document.getElementById('closeToc');
+  function openToc(){ toc.classList.add('open'); scrim.classList.add('show'); }
+  function shutToc(){ toc.classList.remove('open'); scrim.classList.remove('show'); }
+  if (menuBtn) menuBtn.addEventListener('click', openToc);
+  if (closeToc) closeToc.addEventListener('click', shutToc);
+  if (scrim) scrim.addEventListener('click', shutToc);
+  var tocLinks = document.querySelectorAll('nav.toc a');
+  tocLinks.forEach(function(a){ a.addEventListener('click', function(){ shutToc(); }); });
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section.sec[id]'));
+  var linkFor = {};
+  tocLinks.forEach(function(a){ linkFor[a.getAttribute('href').slice(1)] = a; });
+  function onScroll(){
+    var y = window.scrollY + 110, current = sections[0];
+    for (var i = 0; i < sections.length; i++){ if (sections[i].offsetTop <= y) current = sections[i]; }
+    tocLinks.forEach(function(a){ a.classList.remove('active'); });
+    if (current && linkFor[current.id]) linkFor[current.id].classList.add('active');
+    var topBtn = document.getElementById('top-btn');
+    if (topBtn) topBtn.classList.toggle('show', window.scrollY > 500);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  var topBtn = document.getElementById('top-btn');
+  if (topBtn) topBtn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  
+  /* ---- quick tools ---- */
+  function el(id){ return document.getElementById(id); }
+  function num(id){ var s = (el(id).value || '').trim(); if (s === '') return NaN; var v = parseFloat(s); return isFinite(v) ? v : NaN; }
+  function txt(id){ return (el(id).value || '').trim().toUpperCase(); }
+  function put(id, html){ el(id).innerHTML = html; }
+  function f(v, d){ d = d === undefined ? 1 : d; var s = Math.abs(v).toFixed(d).split('.'); s[0] = s[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' '); return (v < 0 ? '−' : '') + s.join('.'); }
+  var FTMIN = 6080 / 60; // ft/min per kt
+
+  function grad(){
+    var t = num('grT'), g = num('grG'), r = num('grR');
+    if (!(t > 0)) { put('grOut', 'Enter the TAS.'); return; }
+    var h = t * FTMIN;
+    if (isFinite(g)) put('grOut', t + ' kt = ' + f(h, 0) + ' ft/min along<br>Rate of climb = <b>' + f(h * g / 100, 0) + ' ft/min</b>');
+    else if (isFinite(r)) put('grOut', t + ' kt = ' + f(h, 0) + ' ft/min along<br>Gradient = <b>' + f(r / h * 100, 2) + '%</b>');
+    else put('grOut', 'Enter a gradient or a rate of climb.');
+  }
+  function windg(){
+    var g = num('wgG'), t = num('wgT'), w = num('wgW');
+    if (!isFinite(g) || !(t > 0) || !isFinite(w)) { put('wgOut', 'Enter gradient, TAS and wind.'); return; }
+    var fw = w >= 0 ? w * 0.5 : w * 1.5, gs = t - fw;
+    if (!(gs > 0)) { put('wgOut', 'The factored wind exceeds the TAS.'); return; }
+    put('wgOut', (w >= 0 ? 'Headwind × 50% = ' + f(fw, 1) : 'Tailwind × 150% = ' + f(-fw, 1)) + ' kt → GS ' + f(gs, 1) + ' kt<br>Ground gradient = ' + f(g, 2) + ' × ' + t + ' ÷ ' + f(gs, 1) + ' = <b>' + f(g * t / gs, 2) + '%</b><br>Rate of climb unchanged: ' + f(g / 100 * t * FTMIN, 0) + ' ft/min');
+  }
+  function obst(){
+    var g = num('obG'), d = num('obD'), s = num('obS'), h = num('obH'), m = num('obM');
+    if (!isFinite(g) || !(d >= 0) || !(s >= 0) || !(h >= 0)) { put('obOut', 'Fill in every field.'); return; }
+    var ht = s + d * g / 100, c = ht - h;
+    var out = 'Height = ' + s + ' + ' + f(d, 0) + ' × ' + f(g / 100, 3) + ' = <b>' + f(ht, 0) + ' ft</b><br>Clearance <b>' + f(c, 0) + ' ft</b>';
+    if (m >= 0) out += c >= m ? ' ✓ (≥ ' + m + ')' : ' ✗ needs ' + m + ' — reduce mass or turn away';
+    put('obOut', out);
+  }
+  function netg(){
+    var g = num('ngG'), c = el('ngC').value;
+    if (!isFinite(g)) { put('ngOut', 'Enter the gross gradient.'); return; }
+    var t = { A2: -0.8, A3: -0.9, A4: -1.0, E2: -1.1, E3: -1.4, E4: -1.6, BC: -0.5, BD: 0.5 };
+    var n, how;
+    if (c === 'BA') { n = g * 0.77; how = f(g, 2) + ' × 0.77'; }
+    else { n = g + t[c]; how = f(g, 2) + (t[c] < 0 ? ' − ' : ' + ') + Math.abs(t[c]).toFixed(1); }
+    put('ngOut', 'Net = ' + how + ' = <b>' + f(n, 2) + '%</b>' + (c === 'BD' ? '<br>A steeper assumed descent: shorter, safer glide range.' : n < 0 ? '<br>Negative: the net path is descending.' : ''));
+  }
+  function btake(){
+    var d = num('btD'), s = parseFloat(el('btS').value), u = num('btU');
+    var a = (el('btA').value || '').split(/[,;\s]+/).filter(Boolean).map(parseFloat);
+    if (!(d > 0)) { put('btOut', 'Enter the gross take-off distance.'); return; }
+    if (!(u >= 0)) u = 0;
+    var tod = d * s * (1 + 0.05 * u);
+    var out = f(d, 0) + ' × ' + s + ' × ' + (1 + 0.05 * u).toFixed(2) + ' = <b>' + f(tod, 0) + ' ft</b> corrected TOD';
+    if (a.length === 3 && a.every(function(x){ return x > 0; })) {
+      var tora = a[0], asda = a[1], toda = a[2];
+      if (asda === tora && toda === tora) {
+        out += '<br>No stopway/clearway: × 1.25 = ' + f(tod * 1.25, 0) + ' ' + (tod * 1.25 <= tora ? '✓' : '✗') + ' TORA ' + f(tora, 0);
+      } else {
+        out += '<br>TORA ' + f(tod, 0) + ' ' + (tod <= tora ? '✓' : '✗') + ' · ASDA ×1.3 = ' + f(tod * 1.3, 0) + ' ' + (tod * 1.3 <= asda ? '✓' : '✗') + ' · TODA ×1.15 = ' + f(tod * 1.15, 0) + ' ' + (tod * 1.15 <= toda ? '✓' : '✗');
+      }
+    }
+    put('btOut', out);
+  }
+  function land(){
+    var d = num('ldD'), c = el('ldC').value, g = txt('ldG') === 'YES', s = num('ldS'), w = txt('ldW') === 'YES';
+    if (!(d > 0)) { put('ldOut', 'Enter the landing distance.'); return; }
+    if (!(s >= 0)) s = 0;
+    var x = d, steps = [];
+    if (c === 'B') {
+      if (g) { x *= 1.15; steps.push('grass × 1.15'); }
+      if (w) { x *= 1.15; steps.push('wet × 1.15'); }
+      if (s > 0) { x *= 1 + 0.05 * s; steps.push('downslope × ' + (1 + 0.05 * s).toFixed(2)); }
+      var r = x / 0.7;
+      put('ldOut', (steps.length ? steps.join(' · ') + ' → ' + f(x, 0) + '<br>' : '') + '÷ 0.7 (× 1.43) → LDA required <b>' + f(r, 0) + '</b>');
+    } else {
+      var fac = c === 'J' ? 0.6 : 0.7;
+      if (s > 2) steps.push('Slope beyond 2%: include it from the flight manual data first');
+      var dry = x / fac, out = (steps.length ? steps.join(' · ') + '<br>' : '') + '÷ ' + fac + ' → dry LDA required <b>' + f(dry, 0) + '</b>';
+      if (w) out += '<br>Wet × 1.15 → <b>' + f(dry * 1.15, 0) + '</b>';
+      put('ldOut', out);
+    }
+  }
+  function hydro(){
+    var p = num('hyP'), u = txt('hyU');
+    if (!(p > 0)) { put('hyOut', 'Enter the tyre pressure.'); return; }
+    if (u === 'BAR') p = p * 14.5; else if (u !== 'PSI') { put('hyOut', 'Type PSI or BAR.'); return; }
+    var r = Math.sqrt(p);
+    put('hyOut', (u === 'BAR' ? '≈ ' + Math.round(p) + ' psi · ' : '') + '√P = ' + r.toFixed(1) + '<br>Rotating tyre <b>' + Math.round(9 * r) + ' kt</b> · non-rotating <b>' + Math.round(7.7 * r) + ' kt</b>');
+  }
+  function glide(){
+    var h = num('glH'), g = num('glG'), l = num('glL');
+    if (!(h > 0)) { put('glOut', 'Enter the height.'); return; }
+    var dft, how;
+    if (g > 0) { dft = h / g * 100; how = f(h, 0) + ' ÷ ' + g + ' × 100'; }
+    else if (l > 0) { dft = h * l; how = f(h, 0) + ' × ' + l + ' (gradient ' + f(100 / l, 2) + '%)'; }
+    else { put('glOut', 'Enter a gradient or an L/D.'); return; }
+    put('glOut', how + ' = ' + f(dft, 0) + ' ft<br>Still-air range <b>' + f(dft / 6080, 1) + ' NM</b>');
+  }
+  function mach(){
+    var t = num('mcT'), o = num('mcO');
+    if (!(t > 0) || !isFinite(o) || o <= -273) { put('mcOut', 'Enter TAS and temperature.'); return; }
+    var a = 38.94 * Math.sqrt(o + 273.15);
+    put('mcOut', 'Speed of sound = 38.94 √(' + f(o + 273.15, 1) + ' K) = ' + f(a, 0) + ' kt<br>Mach = ' + t + ' ÷ ' + f(a, 0) + ' = <b>M ' + (t / a).toFixed(3) + '</b>');
+  }
+  function loadf(){
+    var b = num('lfB');
+    if (!(b >= 0) || b >= 90) { put('lfOut', 'Enter a bank angle below 90°.'); return; }
+    var n = 1 / Math.cos(b * Math.PI / 180);
+    put('lfOut', 'n = 1 ÷ cos ' + b + '° = <b>' + n.toFixed(2) + ' g</b><br>Stall speed × √n = × ' + Math.sqrt(n).toFixed(3) + (n >= 1.3 ? '<br>At or beyond the 1.3 g buffet margin' : ''));
+  }
+  [['grT',grad],['grG',grad],['grR',grad],['wgG',windg],['wgT',windg],['wgW',windg],['obG',obst],['obD',obst],['obS',obst],['obH',obst],['obM',obst],['ngG',netg],['ngC',netg],['btD',btake],['btS',btake],['btU',btake],['btA',btake],['ldD',land],['ldC',land],['ldG',land],['ldS',land],['ldW',land],['hyP',hydro],['hyU',hydro],['glH',glide],['glG',glide],['glL',glide],['mcT',mach],['mcO',mach],['lfB',loadf]].forEach(function(p){
+    var e = el(p[0]); if (e) { e.addEventListener('input', p[1]); e.addEventListener('change', p[1]); }
+  });
+  grad(); windg(); obst(); netg(); btake(); land(); hydro(); glide(); mach(); loadf();
+
+})();
+</script>
+</body>
+</html>

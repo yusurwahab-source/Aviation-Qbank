@@ -1,0 +1,944 @@
+[
+  {
+    "id": "MB-LOD-0001",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Building the load sheet",
+    "question": "How is the loaded CG of a light aircraft found?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Average the arms of all the items carried on board"
+      },
+      {
+        "id": "b",
+        "text": "Multiply the total mass by the arm of the heaviest item"
+      },
+      {
+        "id": "c",
+        "text": "Add the arms of all items and divide by their number"
+      },
+      {
+        "id": "d",
+        "text": "Add all masses and all moments, then divide moment by mass"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Each item's mass × arm gives its moment. The masses are added to the BEM to give the total mass, the moments are added to give the total moment, and CG = total moment ÷ total mass.",
+    "tags": [
+      "loaded cg"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0002",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Building the load sheet",
+    "question": "On a light aircraft load sheet, which mass is found first as a sub-total?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The take-off mass"
+      },
+      {
+        "id": "b",
+        "text": "The zero fuel mass"
+      },
+      {
+        "id": "c",
+        "text": "The ramp mass"
+      },
+      {
+        "id": "d",
+        "text": "The landing mass"
+      }
+    ],
+    "correct": "b",
+    "explanation": "BEM plus occupants, baggage and cargo gives the zero fuel mass. Fuel is then added for the ramp mass, taxi fuel removed for the take-off mass, and trip fuel removed for the landing mass.",
+    "tags": [
+      "load sheet order"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0003",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Building the load sheet",
+    "question": "How is the take-off mass found from the ramp mass on a light aircraft load sheet?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Subtract start, taxi and run-up fuel"
+      },
+      {
+        "id": "b",
+        "text": "Add the fuel used for start, taxi and engine run-up"
+      },
+      {
+        "id": "c",
+        "text": "Subtract the trip fuel"
+      },
+      {
+        "id": "d",
+        "text": "Subtract the reserve fuel"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Ramp mass − start, taxi and run-up fuel = take-off mass. The trip fuel is subtracted later to find the landing mass.",
+    "tags": [
+      "load sheet order"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0004",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Building the load sheet",
+    "question": "How is the landing mass of a light aircraft found?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ramp mass minus the taxi fuel"
+      },
+      {
+        "id": "b",
+        "text": "Take-off mass minus the full fuel load"
+      },
+      {
+        "id": "c",
+        "text": "TOM minus fuel and oil used in flight"
+      },
+      {
+        "id": "d",
+        "text": "Zero fuel mass plus only the final reserve fuel on board"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Landing mass = TOM − fuel (and oil) consumed in flight. The landing CG is the landing moment divided by the landing mass.",
+    "tags": [
+      "landing mass"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0005",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Building the load sheet",
+    "question": "The fuel used in flight is entered as a negative mass. What happens to its moment if the fuel arm is positive?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The arm becomes negative"
+      },
+      {
+        "id": "b",
+        "text": "The moment becomes zero"
+      },
+      {
+        "id": "c",
+        "text": "It becomes negative"
+      },
+      {
+        "id": "d",
+        "text": "The moment stays positive"
+      }
+    ],
+    "correct": "c",
+    "explanation": "A negative mass multiplied by a positive arm gives a negative moment, so it is subtracted from the take-off moment.",
+    "tags": [
+      "sign convention"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0006",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Building the load sheet",
+    "question": "Why are moments on a light aircraft load sheet often divided by 100?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To keep the numbers easy to handle"
+      },
+      {
+        "id": "b",
+        "text": "Because arms are measured in centimetres"
+      },
+      {
+        "id": "c",
+        "text": "Because the regulations require it"
+      },
+      {
+        "id": "d",
+        "text": "To convert pounds into kilograms"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Moments can have more than six digits. Dividing by 100 makes them easier to handle, but the totals must be multiplied by 100 again before dividing by the mass.",
+    "tags": [
+      "moment / 100"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0007",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Building the load sheet",
+    "question": "A load sheet shows a take-off moment/100 of 2 350.0 and a take-off mass of 2 600 lb. Where is the CG?",
+    "options": [
+      {
+        "id": "a",
+        "text": "110.6 in aft of the datum"
+      },
+      {
+        "id": "b",
+        "text": "9 040 in aft of the datum"
+      },
+      {
+        "id": "c",
+        "text": "0.90 in aft of the datum"
+      },
+      {
+        "id": "d",
+        "text": "90.4 in aft of the datum"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Moment = 2 350.0 × 100 = 235 000 lb in; CG = 235 000 ÷ 2 600 = 90.4 in. Forgetting to multiply by 100 gives 0.90 in.",
+    "tags": [
+      "calculation",
+      "moment / 100"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0008",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Building the load sheet",
+    "question": "After completing the load sheet, which limits are checked?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only the zero fuel mass and the landing mass limits"
+      },
+      {
+        "id": "b",
+        "text": "All mass limits and the CG envelope"
+      },
+      {
+        "id": "c",
+        "text": "Only the CG at take-off"
+      },
+      {
+        "id": "d",
+        "text": "Only the maximum take-off mass"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The completed sheet is checked against the maximum zero fuel mass, ramp mass, take-off mass and landing mass, and the CG positions are checked against the envelope.",
+    "tags": [
+      "checking limits"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0009",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Building the load sheet",
+    "question": "If the CG is within limits at both the zero fuel mass and the take-off mass, what can be said about the flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It stays in limits if fuel is used in sequence"
+      },
+      {
+        "id": "b",
+        "text": "It is certain to be outside limits at landing"
+      },
+      {
+        "id": "c",
+        "text": "It must still be recalculated every hour"
+      },
+      {
+        "id": "d",
+        "text": "It stays within limits whatever the fuel sequence used"
+      }
+    ],
+    "correct": "a",
+    "explanation": "With the CG within limits at both ends of the fuel range, it stays within limits throughout the flight as long as fuel is used in the correct sequence.",
+    "tags": [
+      "cg in flight"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0010",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Building the load sheet",
+    "question": "On a light aircraft, is the fuel arm normally the same for take-off and landing calculations?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only if the tanks are in the fuselage"
+      },
+      {
+        "id": "b",
+        "text": "Never; it always moves aft as the fuel is being used"
+      },
+      {
+        "id": "c",
+        "text": "Usually; on large aircraft it may vary"
+      },
+      {
+        "id": "d",
+        "text": "Always, on every type of aircraft"
+      }
+    ],
+    "correct": "c",
+    "explanation": "In light aircraft the fuel arm is usually fixed. In some large aircraft the balance arm of the fuel changes with the quantity in the tanks.",
+    "tags": [
+      "fuel arm"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0011",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Building the load sheet",
+    "question": "Why do many large aircraft operators calculate the zero fuel mass CG rather than the landing CG?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Large aircraft burn no fuel from the centre tank"
+      },
+      {
+        "id": "b",
+        "text": "The landing CG is always the same as the take-off CG on such types"
+      },
+      {
+        "id": "c",
+        "text": "The landing mass is never limiting for large aircraft"
+      },
+      {
+        "id": "d",
+        "text": "A diversion could change the actual landing mass and CG a lot"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The actual landing mass and CG could differ greatly from the estimate after a diversion. If the TOM and ZFM CGs are within limits, the CG stays in limits throughout the flight.",
+    "tags": [
+      "zero fuel mass cg"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0012",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Building the load sheet",
+    "question": "On a typical light aircraft CG envelope graph, what is shown on the vertical scale?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The CG position"
+      },
+      {
+        "id": "b",
+        "text": "The mass"
+      },
+      {
+        "id": "c",
+        "text": "The fuel quantity"
+      },
+      {
+        "id": "d",
+        "text": "The moment arm"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Mass is always on the vertical scale. The horizontal scale may show CG position, moment, or % MAC.",
+    "tags": [
+      "cg envelope"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0013",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Building the load sheet",
+    "question": "For a point on a CG envelope graph to be acceptable, where must it lie?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Inside the envelope but not on its boundary"
+      },
+      {
+        "id": "b",
+        "text": "To the right of the envelope"
+      },
+      {
+        "id": "c",
+        "text": "Inside the envelope or on its boundary"
+      },
+      {
+        "id": "d",
+        "text": "Above the envelope"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The CG must be within the envelope or on its line. A point outside means the loading is not acceptable.",
+    "tags": [
+      "cg envelope"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0014",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "A worked load sheet",
+    "question": "A light aircraft has BEM 1 650 lb at 85 in, front seats 340 lb at 80 in, rear seats 300 lb at 115 in and baggage 80 lb at 140 in. What is the zero fuel mass?",
+    "options": [
+      {
+        "id": "a",
+        "text": "2 070 lb"
+      },
+      {
+        "id": "b",
+        "text": "2 610 lb"
+      },
+      {
+        "id": "c",
+        "text": "2 290 lb"
+      },
+      {
+        "id": "d",
+        "text": "2 370 lb"
+      }
+    ],
+    "correct": "d",
+    "explanation": "ZFM = 1 650 + 340 + 300 + 80 = 2 370 lb. Leaving out the baggage gives 2 290 lb.",
+    "tags": [
+      "calculation",
+      "zero fuel mass"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0015",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "A worked load sheet",
+    "question": "For that aircraft (BEM 1 650 lb at 85, front 340 lb at 80, rear 300 lb at 115, baggage 80 lb at 140), where is the zero fuel mass CG?",
+    "options": [
+      {
+        "id": "a",
+        "text": "105.0 in aft of the datum"
+      },
+      {
+        "id": "b",
+        "text": "89.9 in aft of the datum"
+      },
+      {
+        "id": "c",
+        "text": "85.0 in aft of the datum"
+      },
+      {
+        "id": "d",
+        "text": "93.0 in aft of the datum"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Moments: 140 250 + 27 200 + 34 500 + 11 200 = 213 150 lb in; CG = 213 150 ÷ 2 370 = 89.9 in. Simply averaging the four arms gives 105 in, which ignores the different masses.",
+    "tags": [
+      "calculation",
+      "cg"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0016",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "A worked load sheet",
+    "question": "AVGAS with SG 0.72 has a mass of about how much per US gallon?",
+    "options": [
+      {
+        "id": "a",
+        "text": "6.0 lb"
+      },
+      {
+        "id": "b",
+        "text": "8.33 lb"
+      },
+      {
+        "id": "c",
+        "text": "7.2 lb"
+      },
+      {
+        "id": "d",
+        "text": "4.5 lb"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A US gallon of water is about 8.33 lb, so 8.33 × 0.72 ≈ 6.0 lb per US gallon.",
+    "tags": [
+      "fuel mass",
+      "avgas"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0017",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "A worked load sheet",
+    "question": "The same aircraft takes 40 US gal of AVGAS (6 lb/US gal) at an arm of 95 in. What is the ramp mass?",
+    "options": [
+      {
+        "id": "a",
+        "text": "2 600 lb"
+      },
+      {
+        "id": "b",
+        "text": "2 410 lb"
+      },
+      {
+        "id": "c",
+        "text": "2 610 lb"
+      },
+      {
+        "id": "d",
+        "text": "2 658 lb"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Fuel = 40 × 6 = 240 lb; ramp mass = 2 370 + 240 = 2 610 lb. Adding 288 lb (imperial gallons) gives 2 658 lb.",
+    "tags": [
+      "calculation",
+      "ramp mass"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0018",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "A worked load sheet",
+    "question": "Start, taxi and run-up use 10 lb of fuel at 95 in. With a ramp mass of 2 610 lb and ramp moment of 235 950 lb in, what is the take-off CG?",
+    "options": [
+      {
+        "id": "a",
+        "text": "90.4 in"
+      },
+      {
+        "id": "b",
+        "text": "90.0 in"
+      },
+      {
+        "id": "c",
+        "text": "90.8 in"
+      },
+      {
+        "id": "d",
+        "text": "95.0 in"
+      }
+    ],
+    "correct": "a",
+    "explanation": "TOM = 2 600 lb; moment = 235 950 − 950 = 235 000 lb in; CG = 235 000 ÷ 2 600 = 90.4 in.",
+    "tags": [
+      "calculation",
+      "take-off cg"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0019",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "A worked load sheet",
+    "question": "From a take-off mass of 2 600 lb and moment of 235 000 lb in, 150 lb of fuel at 95 in is burned. Where is the landing CG?",
+    "options": [
+      {
+        "id": "a",
+        "text": "86.2 in"
+      },
+      {
+        "id": "b",
+        "text": "90.4 in"
+      },
+      {
+        "id": "c",
+        "text": "96.0 in"
+      },
+      {
+        "id": "d",
+        "text": "90.1 in"
+      }
+    ],
+    "correct": "d",
+    "explanation": "LM = 2 450 lb; moment = 235 000 − 14 250 = 220 750 lb in; CG = 220 750 ÷ 2 450 = 90.1 in. Adding the fuel moment instead of subtracting it gives 96.0 in.",
+    "tags": [
+      "calculation",
+      "landing cg"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0020",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "A worked load sheet",
+    "question": "Fuel stored at an arm aft of the CG is burned in flight. Which way does the CG move?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It moves aft, then forward"
+      },
+      {
+        "id": "b",
+        "text": "Forward"
+      },
+      {
+        "id": "c",
+        "text": "Aft"
+      },
+      {
+        "id": "d",
+        "text": "It does not move"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Removing mass from behind the CG moves the CG forward; removing it from ahead of the CG moves the CG aft.",
+    "tags": [
+      "cg movement",
+      "fuel burn"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0021",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "A worked load sheet",
+    "question": "Fuel is burned from a tank located exactly at the aeroplane's CG. What happens to the CG?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It moves towards the datum"
+      },
+      {
+        "id": "b",
+        "text": "It moves forward"
+      },
+      {
+        "id": "c",
+        "text": "It does not move"
+      },
+      {
+        "id": "d",
+        "text": "It moves aft"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Removing mass exactly at the CG changes the total mass and moment in the same proportion, so the CG position is unchanged.",
+    "tags": [
+      "cg movement",
+      "fuel burn"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0022",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Negative arms and oil",
+    "question": "An aeroplane has a basic mass of 1 300 lb at −4 in and pilot and passenger of 340 lb at −1 in. What is the combined moment?",
+    "options": [
+      {
+        "id": "a",
+        "text": "+5 540 lb in"
+      },
+      {
+        "id": "b",
+        "text": "−4 860 lb in"
+      },
+      {
+        "id": "c",
+        "text": "−5 200 lb in"
+      },
+      {
+        "id": "d",
+        "text": "−5 540 lb in"
+      }
+    ],
+    "correct": "d",
+    "explanation": "1 300 × (−4) = −5 200; 340 × (−1) = −340; total −5 540 lb in. Both items are ahead of the datum, so both moments are negative.",
+    "tags": [
+      "calculation",
+      "negative arms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0023",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Negative arms and oil",
+    "question": "A loaded aeroplane has a total mass of 2 060 lb and a total moment of +3 750 lb in. Where is the CG?",
+    "options": [
+      {
+        "id": "a",
+        "text": "1.82 in forward of the datum"
+      },
+      {
+        "id": "b",
+        "text": "1.82 in aft of the datum"
+      },
+      {
+        "id": "c",
+        "text": "0.55 in aft of the datum"
+      },
+      {
+        "id": "d",
+        "text": "18.2 in aft of the datum"
+      }
+    ],
+    "correct": "b",
+    "explanation": "CG = 3 750 ÷ 2 060 = +1.82 in; the positive sign means aft of the datum.",
+    "tags": [
+      "calculation",
+      "cg"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0024",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Negative arms and oil",
+    "question": "A light aircraft burns oil stored 45 in forward of the datum. What does this do to the CG?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It moves the CG aft slightly"
+      },
+      {
+        "id": "b",
+        "text": "It moves the CG to the datum"
+      },
+      {
+        "id": "c",
+        "text": "It has no effect on the CG"
+      },
+      {
+        "id": "d",
+        "text": "It moves the CG forward slightly"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Removing mass from ahead of the CG moves the CG aft. In moment terms, subtracting a negative moment adds to the total.",
+    "tags": [
+      "oil consumption"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0025",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Negative arms and oil",
+    "question": "During a 2-hour flight an aeroplane uses 3.75 lb of oil from a tank at −45 in. What is the change to the total moment?",
+    "options": [
+      {
+        "id": "a",
+        "text": "+90 lb in"
+      },
+      {
+        "id": "b",
+        "text": "+168.75 lb in"
+      },
+      {
+        "id": "c",
+        "text": "−90 lb in"
+      },
+      {
+        "id": "d",
+        "text": "−168.75 lb in"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Moment change = (−3.75) × (−45) = +168.75 lb in. Removing a mass with a negative arm makes the total moment more positive.",
+    "tags": [
+      "calculation",
+      "oil moment"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0026",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Negative arms and oil",
+    "question": "An aeroplane uses 6 US gallons of AVGAS per hour. How much fuel mass is used in a 2-hour flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "72 lb"
+      },
+      {
+        "id": "b",
+        "text": "52 lb"
+      },
+      {
+        "id": "c",
+        "text": "86 lb"
+      },
+      {
+        "id": "d",
+        "text": "120 lb"
+      }
+    ],
+    "correct": "a",
+    "explanation": "2 × 6 = 12 US gal; 12 × 6 lb = 72 lb. Using imperial gallons (10 × 0.72 = 7.2 lb per gallon) gives 86 lb.",
+    "tags": [
+      "calculation",
+      "fuel used"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0027",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Negative arms and oil",
+    "question": "Oil is used at 1 US quart per hour (SG 0.9). How much oil mass is used in 2 hours?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 1.9 lb"
+      },
+      {
+        "id": "b",
+        "text": "About 7.5 lb"
+      },
+      {
+        "id": "c",
+        "text": "About 3.75 lb"
+      },
+      {
+        "id": "d",
+        "text": "About 15 lb"
+      }
+    ],
+    "correct": "c",
+    "explanation": "2 quarts = 0.5 US gal; 0.5 × 8.33 × 0.9 ≈ 3.75 lb.",
+    "tags": [
+      "calculation",
+      "oil used"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0028",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Negative arms and oil",
+    "question": "When must a light aircraft pilot normally check the landing CG?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only if the trip is longer than 3 hours"
+      },
+      {
+        "id": "b",
+        "text": "Never; light aircraft CG does not change"
+      },
+      {
+        "id": "c",
+        "text": "Only if passengers are expected to change seats in flight"
+      },
+      {
+        "id": "d",
+        "text": "With the take-off CG, as normal planning"
+      }
+    ],
+    "correct": "d",
+    "explanation": "For light aircraft it is usual to determine the landing CG as well as the take-off CG, by dividing the landing moment by the landing mass.",
+    "tags": [
+      "landing cg"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "MB-LOD-0029",
+    "subjectCode": "MB",
+    "topic": "06 Loaded Mass and CG for Light Aircraft",
+    "subtopic": "Negative arms and oil",
+    "question": "In a fuel calculation for a light aircraft, which conversion is needed if the fuel is given as a volume?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Volume ÷ arm to give a moment"
+      },
+      {
+        "id": "b",
+        "text": "Mass × arm to give the fuel volume"
+      },
+      {
+        "id": "c",
+        "text": "Volume × density gives mass"
+      },
+      {
+        "id": "d",
+        "text": "Volume × arm to give a mass"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The load sheet works in mass, so fuel volumes in gallons or litres must be converted to mass using the density or SG before the moment can be found.",
+    "tags": [
+      "fuel conversion"
+    ],
+    "status": "published",
+    "version": 1
+  }
+]

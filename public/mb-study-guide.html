@@ -1,0 +1,1103 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mass &amp; Balance — Pilot's Guide</title>
+<meta name="description" content="Mass and balance explained for airline pilots in 10 chapters: the operator's rules and standard masses, why mass and CG limits exist, mass definitions and traffic load, weighing and the basic empty mass, fuel mass, light aircraft load sheets, CG as a percentage of MAC, repositioning the CG, cargo and floor loading, and large aircraft load and trim sheets — with tables, calculators and worked examples." />
+<style>
+  :root{
+    --bg:#f6f8fb;
+    --surface:#ffffff;
+    --surface-2:#eef2f7;
+    --ink:#101826;
+    --ink-2:#3c4758;
+    --muted:#6b7686;
+    --line:#dfe6ef;
+    --brand:#0d6e7d;
+    --brand-ink:#ffffff;
+    --brand-light:#e3f4f6;
+    --warn-bg:#fdecec;
+    --warn-line:#e0413a;
+    --warn-ink:#7a1712;
+    --caution-bg:#fff6e0;
+    --caution-line:#c9821a;
+    --caution-ink:#6b4405;
+    --note-bg:#eaf1fb;
+    --note-line:#3f6fb0;
+    --note-ink:#1f3c63;
+    --white-arc:#e9edf3;
+    --green-arc:#1f9d55;
+    --yellow-arc:#e0b400;
+    --red-arc:#d9362a;
+    --radius:14px;
+    --radius-sm:8px;
+    --shadow:0 1px 2px rgba(16,24,38,.04), 0 6px 20px rgba(16,24,38,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0d1420;
+      --surface:#141d2c;
+      --surface-2:#1b263a;
+      --ink:#eef2f8;
+      --ink-2:#c3cddc;
+      --muted:#8b97ab;
+      --line:#26334a;
+      --brand:#37c3d6;
+      --brand-ink:#06232a;
+      --brand-light:#12323a;
+      --warn-bg:#3a1613;
+      --warn-line:#e4574d;
+      --warn-ink:#ffd6d1;
+      --caution-bg:#3a2c0d;
+      --caution-line:#e0a83a;
+      --caution-ink:#ffe6b0;
+      --note-bg:#122a44;
+      --note-line:#5b93d6;
+      --note-ink:#cfe2fb;
+      --white-arc:#324055;
+      --green-arc:#2bb56a;
+      --yellow-arc:#e0b400;
+      --red-arc:#e4574d;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1420; --surface:#141d2c; --surface-2:#1b263a; --ink:#eef2f8; --ink-2:#c3cddc;
+    --muted:#8b97ab; --line:#26334a; --brand:#37c3d6; --brand-ink:#06232a; --brand-light:#12323a;
+    --warn-bg:#3a1613; --warn-line:#e4574d; --warn-ink:#ffd6d1;
+    --caution-bg:#3a2c0d; --caution-line:#e0a83a; --caution-ink:#ffe6b0;
+    --note-bg:#122a44; --note-line:#5b93d6; --note-ink:#cfe2fb;
+    --white-arc:#324055; --green-arc:#2bb56a; --yellow-arc:#e0b400; --red-arc:#e4574d;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:clip}
+  body{
+    margin:0;
+    overflow-x:clip;
+    max-width:100vw;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,"Segoe UI",system-ui,Roboto,sans-serif;
+    line-height:1.75;
+    font-size:17px;
+  }
+  a{color:var(--brand)}
+  code, .kbd{
+    direction:ltr;unicode-bidi:isolate;display:inline-block;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:6px;
+    padding:0 .35em;font-size:.92em;color:var(--ink);
+  }
+  header.top{
+    position:sticky;top:0;z-index:40;
+    background:linear-gradient(180deg, var(--surface) 85%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    max-width:1180px;margin:0 auto;padding:14px 16px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .brand-mark{display:flex;align-items:center;gap:10px;min-width:0}
+  .brand-mark .plane{
+    width:34px;height:34px;flex:0 0 auto;border-radius:9px;
+    background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+  }
+  .brand-mark .txt{min-width:0}
+  .brand-mark h1{font-size:15px;margin:0;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand-mark .sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .menu-btn{
+    display:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+    border-radius:10px;padding:9px 12px;font-size:14px;cursor:pointer;flex:0 0 auto;
+  }
+  .shell{max-width:1180px;margin:0 auto;display:flex;align-items:flex-start;gap:28px;padding:20px 16px 80px}
+  nav.toc{
+    position:sticky;top:78px;flex:0 0 280px;
+    max-height:calc(100vh - 96px);overflow-y:auto;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;box-shadow:var(--shadow);
+  }
+  nav.toc h2{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:2px 8px 10px}
+  nav.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+  nav.toc li{counter-increment:toc}
+  nav.toc a{
+    display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--ink-2);
+    padding:7px 8px;border-radius:9px;font-size:13.5px;
+  }
+  nav.toc a .n{flex:0 0 auto;color:var(--brand);font-weight:700;font-size:12px;min-width:18px}
+  nav.toc a:hover{background:var(--surface-2);color:var(--ink)}
+  nav.toc a.active{background:var(--brand-light);color:var(--ink);font-weight:600}
+  nav.toc .count{margin-inline-start:auto;font-size:11px;color:var(--muted)}
+  main{flex:1 1 auto;min-width:0}
+  .hero{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 22px;margin-bottom:22px;box-shadow:var(--shadow);
+  }
+  .hero h1{margin:0 0 8px;font-size:26px}
+  .hero p{margin:0;color:var(--ink-2);font-size:15.5px}
+  .hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hero .tag{
+    font-size:12.5px;background:var(--brand-light);color:var(--brand);
+    border-radius:999px;padding:5px 12px;font-weight:600;
+  }
+  section.sec{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px 26px;margin-bottom:22px;box-shadow:var(--shadow);scroll-margin-top:76px;
+  }
+  section.sec > h2{
+    display:flex;align-items:center;gap:12px;font-size:21px;margin:0 0 6px;
+    padding-bottom:14px;border-bottom:1px solid var(--line);
+  }
+  section.sec > h2 .num{
+    flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;
+  }
+  section.sec > h2 .en{margin-inline-start:auto;font-size:12px;color:var(--muted);font-weight:600;
+    direction:ltr;background:var(--surface-2);padding:4px 10px;border-radius:999px}
+  .lead{color:var(--ink-2);font-size:16px;margin-top:14px}
+  h3.sub{font-size:16.5px;margin:26px 0 8px;color:var(--ink);border-inline-start:4px solid var(--brand);padding-inline-start:10px}
+  h4.sub2{font-size:15px;margin:18px 0 6px;color:var(--ink-2)}
+  p{margin:10px 0}
+  ul, ol{margin:10px 0;padding-inline-start:22px}
+  li{margin:5px 0}
+  strong{color:var(--ink)}
+  .table-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm)}
+  table{border-collapse:collapse;width:100%;min-width:420px;font-size:14.5px}
+  table caption{text-align:start;font-size:12.5px;color:var(--muted);padding:8px 12px 0}
+  thead th{
+    background:var(--surface-2);color:var(--ink);text-align:start;
+    padding:9px 12px;font-weight:700;white-space:nowrap;font-size:13.5px;
+  }
+  tbody td{padding:8px 12px;border-top:1px solid var(--line);color:var(--ink-2)}
+  tbody tr:nth-child(even){background:color-mix(in srgb, var(--surface-2) 45%, transparent)}
+  td.num, th.num{direction:ltr;text-align:center;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+  .callout{border-radius:var(--radius-sm);padding:12px 14px;margin:14px 0;border-inline-start:4px solid;font-size:14.5px}
+  .callout .label{display:block;font-weight:800;font-size:12px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:4px}
+  .callout.warning{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-ink)}
+  .callout.caution{background:var(--caution-bg);border-color:var(--caution-line);color:var(--caution-ink)}
+  .callout.note{background:var(--note-bg);border-color:var(--note-line);color:var(--note-ink)}
+  .eq{
+    direction:ltr;font-family:"Cambria Math","STIX Two Math","Latin Modern Math",Georgia,serif;font-size:16.5px;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);
+    padding:10px 14px;margin:12px 0;text-align:center;white-space:nowrap;color:var(--ink);
+    max-width:100%;overflow-x:auto;contain:paint;box-sizing:border-box;
+  }
+  .eq sub,.eq sup{font-size:.72em}
+  .diagram{
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;margin:18px 0;text-align:center;
+    max-width:100%;overflow-x:auto;box-sizing:border-box;
+  }
+  .diagram .cap{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .diagram svg{max-width:100%;height:auto;display:block;margin:0 auto}
+  .ref{
+    display:inline-block;direction:ltr;font-size:11.5px;color:var(--brand);
+    background:var(--brand-light);border-radius:6px;padding:1px 7px;margin-inline-start:4px;
+    font-weight:700;white-space:nowrap;
+  }
+  .related{
+    margin-top:22px;display:flex;align-items:center;gap:10px;
+    background:var(--brand-light);color:var(--brand);border-radius:999px;
+    padding:10px 16px;font-size:14px;font-weight:700;width:fit-content;
+  }
+  .related .dot{width:8px;height:8px;border-radius:50%;background:var(--brand)}
+  footer{max-width:1180px;margin:0 auto;padding:10px 16px 60px;color:var(--muted);font-size:13px;text-align:center}
+  #top-btn{
+    position:fixed;inset-inline-end:18px;bottom:18px;z-index:50;
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+    background:var(--brand);color:var(--brand-ink);font-size:18px;cursor:pointer;
+    box-shadow:var(--shadow);display:none;align-items:center;justify-content:center;
+  }
+  #top-btn.show{display:flex}
+  @media (max-width:880px){
+    .shell{flex-direction:column;padding:14px 12px 70px}
+    main{width:100%;min-width:0}
+    nav.toc{
+      position:fixed;inset:0 0 0 auto;top:0;width:82%;max-width:340px;height:100dvh;max-height:100dvh;
+      transform:translateX(100%);transition:transform .25s ease;border-radius:0;z-index:60;
+    }
+    nav.toc.open{transform:translateX(0)}
+    .toc-scrim{position:fixed;inset:0;background:rgba(6,10,18,.5);z-index:55;display:none}
+    .toc-scrim.show{display:block}
+    .menu-btn{display:inline-flex;align-items:center;gap:6px}
+    section.sec > h2{font-size:18.5px}
+    .hero h1{font-size:22px}
+    body{font-size:16px}
+  }
+  .toc-close{display:none}
+  @media (max-width:880px){
+    .toc-close{
+      display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+      padding-bottom:10px;border-bottom:1px solid var(--line);
+    }
+    .toc-close button{border:none;background:var(--surface-2);border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer;color:var(--ink)}
+  }
+
+  
+  /* ---------- PilotQBank study-guide additions ---------- */
+  :root{ --accent:var(--brand); }
+  html{scroll-padding-top:80px}
+  section.sec{border-top:5px solid var(--accent)}
+  section.sec > h2 .num{background:var(--accent);color:#fff;font-size:19px;width:40px;height:40px;border-radius:12px}
+  section.sec > h2 .en{background:color-mix(in srgb,var(--accent) 14%,var(--surface));color:var(--ink-2)}
+  h3.sub{border-inline-start-color:var(--accent)}
+  nav.toc a .n{font-size:15px;min-width:22px}
+  .hero{background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 16%,var(--surface)),var(--surface) 60%);position:relative;overflow:hidden}
+  .hero .cloud{position:absolute;inset-inline-end:-10px;top:-6px;font-size:84px;opacity:.16;pointer-events:none;user-select:none}
+  .hero .tag{background:color-mix(in srgb,var(--brand) 16%,var(--surface))}
+  .glance{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+  .glance span{font-size:13px;background:color-mix(in srgb,var(--accent) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));border-radius:999px;padding:4px 12px;color:var(--ink-2)}
+  .keyidea{margin:16px 0;padding:14px 16px;border-radius:var(--radius);background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 16%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--accent) 40%,var(--line))}
+  .keyidea .label{display:block;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+  .keyidea p{margin:4px 0}
+  .tip,.memory{margin:14px 0;padding:12px 14px;border-radius:var(--radius-sm);font-size:14.5px;border-inline-start:4px solid}
+  .tip{background:color-mix(in srgb,var(--green-arc) 12%,var(--surface));border-color:var(--green-arc);color:var(--ink)}
+  .memory{background:color-mix(in srgb,#8b5cf6 12%,var(--surface));border-color:#8b5cf6;color:var(--ink)}
+  .tip .label,.memory .label{display:block;font-weight:800;font-size:12px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+  .tip .label{color:var(--green-arc)} .memory .label{color:#8b5cf6}
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
+  .fcard{background:var(--surface-2);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:var(--radius-sm);padding:12px 14px}
+  .fcard .f{direction:ltr;font-family:"Cambria Math","STIX Two Math",Georgia,serif;font-size:18px;color:var(--ink);overflow-x:auto;white-space:nowrap}
+  .fcard .d{font-size:13.5px;color:var(--ink-2);margin-top:4px}
+  details.example{margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface);overflow:hidden}
+  details.example summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:14.5px;background:color-mix(in srgb,var(--accent) 10%,var(--surface-2));list-style:none}
+  details.example summary::-webkit-details-marker{display:none}
+  details.example summary::before{content:"▸ ";color:var(--accent)}
+  details.example[open] summary::before{content:"▾ "}
+  details.example .body{padding:6px 16px 14px}
+  .steps{counter-reset:st;list-style:none;padding:0;margin:12px 0}
+  .steps li{counter-increment:st;position:relative;padding-inline-start:40px;margin:10px 0;min-height:28px}
+  .steps li::before{content:counter(st);position:absolute;inset-inline-start:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:14px 0}
+  .compare .card{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px}
+  .compare .card h4{margin:0 0 6px;font-size:15px}
+  .compare .card.good{border-top:3px solid var(--green-arc)} .compare .card.bad{border-top:3px solid var(--red-arc)} .compare .card.mid{border-top:3px solid var(--yellow-arc)} .compare .card.acc{border-top:3px solid var(--accent)}
+  .bar{display:block;height:10px;border-radius:6px;background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 55%,#fff));min-width:4px}
+  td.barcell{min-width:130px}
+  .pill{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 9px;background:color-mix(in srgb,var(--accent) 16%,var(--surface));color:var(--ink)}
+  .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .tool{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+  .tool h3{margin:0 0 8px;font-size:15.5px}
+  .tool label{display:block;font-size:12.5px;color:var(--muted);margin-top:8px}
+  .tool input{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:16px}
+  .tool .out{margin-top:10px;padding:10px;border-radius:8px;background:color-mix(in srgb,var(--brand) 12%,var(--surface));font-size:14px;direction:ltr}
+  .tool .out b{color:var(--brand)}
+  .cheat table{min-width:340px}
+  .sec .diagram svg text{fill:var(--ink);font:600 12px -apple-system,"Segoe UI",system-ui,sans-serif}
+  .sec .diagram svg text.m{fill:var(--muted);font-weight:500;font-size:11px}
+  .sec .diagram svg text.big{font-size:14px}
+  .sec .diagram svg .ln{stroke:var(--ink-2);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sec .diagram svg .thin{stroke:var(--muted);stroke-width:1;fill:none;stroke-dasharray:4 4}
+  .sec .diagram svg .ac{stroke:var(--accent);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sec .diagram svg .af{fill:color-mix(in srgb,var(--accent) 22%,transparent);stroke:var(--accent);stroke-width:2}
+  .sec .diagram svg .gn{stroke:var(--green-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .rd{stroke:var(--red-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .yl{stroke:var(--yellow-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .gf{fill:color-mix(in srgb,var(--green-arc) 25%,transparent)}
+  .sec .diagram svg .rf{fill:color-mix(in srgb,var(--red-arc) 25%,transparent)}
+  .sec .diagram svg .yf{fill:color-mix(in srgb,var(--yellow-arc) 30%,transparent)}
+  .sec .diagram svg .bx{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
+  .sec .diagram svg .wing{fill:var(--surface);stroke:var(--ink-2);stroke-width:2}
+  .sec .diagram svg .dot{fill:var(--accent)}
+  @media (max-width:520px){.fgrid,.compare{grid-template-columns:1fr}}
+  .fgrid > *,.compare > *,.tools > *{min-width:0}
+  .fcard .f{max-width:100%}
+
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) {}
+  .diagram svg{min-width:520px}
+
+  .part{display:flex;align-items:center;gap:10px;margin:34px 0 4px;padding:8px 14px;border-radius:var(--radius-sm);background:color-mix(in srgb,var(--accent) 14%,var(--surface-2));border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));font-size:15px;font-weight:800;color:var(--ink)}
+  .part + h3.sub{margin-top:16px}
+  nav.toc a .chn{flex:0 0 auto;min-width:18px;color:var(--brand);font-weight:800;font-size:12px}
+  section.sec > h2 .en{font-weight:700}
+
+  section.sec{--accent:var(--acc,var(--brand))}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) section.sec{--accent:color-mix(in srgb,var(--acc,var(--brand)) 62%,#ffffff)}:root:not([data-theme="light"]) section.sec > h2 .num,:root:not([data-theme="light"]) .steps li::before{color:#06121a}}
+  :root[data-theme="dark"] section.sec{--accent:color-mix(in srgb,var(--acc,var(--brand)) 62%,#ffffff)}
+  :root[data-theme="dark"] section.sec > h2 .num,:root[data-theme="dark"] .steps li::before{color:#06121a}
+  td.num{white-space:normal}
+  .diagram svg.small{min-width:0;max-width:460px}
+  .tool select{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:16px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--ink-2)"/></marker>
+    <marker id="a-ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--accent)"/></marker>
+    <marker id="a-rd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--red-arc)"/></marker>
+    <marker id="a-gn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--green-arc)"/></marker>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand-mark">
+      <div class="plane">⚖️</div>
+      <div class="txt">
+        <h1>Mass &amp; Balance — Pilot's Guide</h1>
+        <div class="sub">Loading the aeroplane safely · Airline pilot theory</div>
+      </div>
+    </div>
+    <button class="menu-btn" id="menuBtn">☰ Contents</button>
+  </div>
+</header>
+
+<div class="toc-scrim" id="scrim"></div>
+
+<div class="shell">
+  <nav class="toc" id="toc">
+    <div class="toc-close"><span style="font-size:13px;color:var(--muted);font-weight:700">Contents</span><button id="closeToc">✕</button></div>
+    <h2>Chapters</h2>
+    <ol>
+      <li><a href="#tools"><span class="n">🧰</span> Quick tools &amp; cheat sheet</a></li>
+      <li><a href="#ch1"><span class="n">📜</span> <b class="chn">1</b> Mass and Balance Rules</a></li>
+      <li><a href="#ch2"><span class="n">🏋️</span> <b class="chn">2</b> Limitations and Effects of Mass and CG</a></li>
+      <li><a href="#ch3"><span class="n">🧾</span> <b class="chn">3</b> Mass Definitions and Traffic Load</a></li>
+      <li><a href="#ch4"><span class="n">🏗️</span> <b class="chn">4</b> Weighing and the Basic Empty Mass</a></li>
+      <li><a href="#ch5"><span class="n">⛽</span> <b class="chn">5</b> Fuel Mass and Fuel Terms</a></li>
+      <li><a href="#ch6"><span class="n">🛩️</span> <b class="chn">6</b> Loaded Mass and CG for Light Aircraft</a></li>
+      <li><a href="#ch7"><span class="n">📐</span> <b class="chn">7</b> CG as a Percentage of MAC</a></li>
+      <li><a href="#ch8"><span class="n">↔️</span> <b class="chn">8</b> Repositioning the CG</a></li>
+      <li><a href="#ch9"><span class="n">📦</span> <b class="chn">9</b> Cargo Handling and Floor Loading</a></li>
+      <li><a href="#ch10"><span class="n">✈️</span> <b class="chn">10</b> Large Aircraft Loading and Load Sheets</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <span class="cloud">⚖️</span>
+      <h1>⚖️ Mass &amp; Balance</h1>
+      <p>
+        How heavy the aeroplane is, and where that mass sits, decide whether it can fly safely at all. This guide follows the order of the practice topics: the operator's rules and standard masses first, then why the limits exist, the mass names, weighing, fuel, light aircraft load sheets, % MAC, moving the CG, cargo floors and the airline load and trim sheet. Each chapter opens with the one idea to hold on to, then the numbers, the formulas and worked examples you can open.
+      </p>
+      <div class="tags">
+        <span class="tag">10 chapters</span>
+        <span class="tag">410 linked questions</span>
+        <span class="tag">🧮 8 calculators</span>
+        <span class="tag">📋 Cheat sheet</span>
+        <span class="tag">Aircraft-independent</span>
+      </div>
+      <div class="tip"><span class="label">✈️ How to use this guide</span> Each chapter carries the same number as its practice topic. When you get a question wrong, jump to that chapter, read the key idea and the worked example, then go back and practise. Almost every calculation in this subject is one of three moves: <strong>add the masses</strong>, <strong>add the moments</strong>, <strong>divide moment by mass</strong>.</div>
+    </div>
+
+    <section class="sec" id="tools" data-icon="🧰" style="--acc:#2f5fb3">
+      <h2><span class="num">🧰</span> Quick tools &amp; cheat sheet <span class="en">play with the numbers</span></h2>
+      <p class="lead">Eight small calculators for the sums this subject asks for again and again, and a one-screen list of the numbers worth knowing by heart. Arms forward of the datum are negative.</p>
+
+      <div class="tools">
+        <div class="tool">
+          <h3>⚖️ Loaded mass and CG</h3>
+          <label>Item 1 — mass, arm (e.g. BEM)</label><input type="text" id="lcA" value="1650, 85">
+          <label>Item 2 — mass, arm</label><input type="text" id="lcB" value="340, 80">
+          <label>Item 3 — mass, arm</label><input type="text" id="lcC" value="300, 115">
+          <label>Item 4 — mass, arm</label><input type="text" id="lcD" value="80, 140">
+          <label>Item 5 — mass, arm (negative mass to remove)</label><input type="text" id="lcE" value="">
+          <div class="out" id="lcOut"></div>
+        </div>
+        <div class="tool">
+          <h3>📐 CG and % MAC</h3>
+          <label>Leading edge of the MAC, arm from datum</label><input type="number" inputmode="decimal" id="maL" value="625">
+          <label>MAC length (same units)</label><input type="number" inputmode="decimal" id="maM" value="134">
+          <label>CG arm from datum (leave blank to use % MAC)</label><input type="text" id="maC" value="">
+          <label>CG in % MAC</label><input type="number" inputmode="decimal" id="maP" value="18">
+          <div class="out" id="maOut"></div>
+        </div>
+        <div class="tool">
+          <h3>↔️ Moving mass already on board</h3>
+          <label>Total mass M</label><input type="number" inputmode="decimal" id="mvM" value="18000" min="0">
+          <label>CG shift wanted Δcg (distance)</label><input type="number" inputmode="decimal" id="mvG" value="2.5" min="0">
+          <label>Distance the mass is moved d (same units)</label><input type="number" inputmode="decimal" id="mvD" value="250" min="0">
+          <div class="out" id="mvOut"></div>
+        </div>
+        <div class="tool">
+          <h3>➕ Adding or removing mass</h3>
+          <label>Present total mass M</label><input type="number" inputmode="decimal" id="adM" value="2000" min="0">
+          <label>Present CG X</label><input type="number" inputmode="decimal" id="adX" value="82">
+          <label>Target CG Y</label><input type="number" inputmode="decimal" id="adY" value="85">
+          <label>Arm Z where the mass goes (or comes from)</label><input type="number" inputmode="decimal" id="adZ" value="135">
+          <div class="out" id="adOut"></div>
+        </div>
+        <div class="tool">
+          <h3>⛽ Fuel volume to mass</h3>
+          <label>Fuel volume</label><input type="number" inputmode="decimal" id="fuV" value="12000" min="0">
+          <label>Units</label><select id="fuU"><option value="L">litres</option><option value="USG">US gallons</option><option value="IG">imperial gallons</option></select>
+          <label>Specific gravity</label><input type="number" inputmode="decimal" id="fuS" value="0.80" step="0.01" min="0">
+          <div class="out" id="fuOut"></div>
+        </div>
+        <div class="tool">
+          <h3>📦 Traffic load and underload</h3>
+          <label>DOM</label><input type="number" inputmode="decimal" id="tlD" value="35000">
+          <label>Max zero fuel mass</label><input type="number" inputmode="decimal" id="tlZ" value="52000">
+          <label>Regulated take-off mass</label><input type="number" inputmode="decimal" id="tlT" value="64000">
+          <label>Regulated landing mass</label><input type="number" inputmode="decimal" id="tlL" value="55000">
+          <label>Take-off fuel</label><input type="number" inputmode="decimal" id="tlF" value="13000">
+          <label>Trip fuel</label><input type="number" inputmode="decimal" id="tlR" value="8500">
+          <label>Actual traffic load</label><input type="number" inputmode="decimal" id="tlA" value="14800">
+          <div class="out" id="tlOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🧱 Floor loading</h3>
+          <label>Mass of the item (kg)</label><input type="number" inputmode="decimal" id="flM" value="600" min="0">
+          <label>Fore-and-aft length on the floor (in)</label><input type="number" inputmode="decimal" id="flL" value="24" min="0">
+          <label>Width on the floor (in)</label><input type="number" inputmode="decimal" id="flW" value="12" min="0">
+          <label>Running load limit (kg/in)</label><input type="number" inputmode="decimal" id="flR" value="40" min="0">
+          <label>Area load limit (kg/ft²)</label><input type="number" inputmode="decimal" id="flA" value="250" min="0">
+          <div class="out" id="flOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🧍 Standard passenger masses</h3>
+          <label>Passenger seats installed</label><input type="number" inputmode="decimal" id="spN" value="15" min="1">
+          <label>Males, females, children</label><input type="text" id="spP" value="7, 3, 2">
+          <label>Holiday charter? (YES or NO, 20+ seats)</label><input type="text" id="spH" value="NO">
+          <div class="out" id="spOut"></div>
+        </div>
+      </div>
+
+      <h3 class="sub">📋 Cheat sheet — numbers worth knowing</h3>
+      <div class="table-wrap cheat">
+        <table>
+          <thead><tr><th>Idea</th><th class="num">Number / rule</th></tr></thead>
+          <tbody>
+            <tr><td>🧑‍✈️ Standard crew</td><td class="num">flight crew 85 kg · cabin crew 75 kg</td></tr>
+            <tr><td>🧍 Passengers, 20+ seats</td><td class="num">88 male · 70 female · 84 all-adult (30+ seats) · child 35</td></tr>
+            <tr><td>🏖️ Holiday charter</td><td class="num">83 · 69 · 76 kg</td></tr>
+            <tr><td>🛩️ Small aeroplanes (male/female)</td><td class="num">1–5 seats 104/86 · 6–9 96/78 · 10–19 92/74</td></tr>
+            <tr><td>🗣️ Verbal statements</td><td class="num">fewer than 10 seats only</td></tr>
+            <tr><td>🧳 Checked bag per piece (20+ seats)</td><td class="num">domestic 11 · European 13 · intercontinental 15 · other 13</td></tr>
+            <tr><td>🏗️ Reweighing</td><td class="num">4 years (individual) · 9 years (fleet)</td></tr>
+            <tr><td>📏 Re-establish DOM/CG</td><td class="num">±0.5% of max landing mass · 0.5% MAC</td></tr>
+            <tr><td>🧮 Fleet weighings</td><td class="num">2–3: n · 4–9: (n+3)/2 · 10+: (n+51)/10</td></tr>
+            <tr><td>🔩 Ultimate load</td><td class="num">DUL = 1.5 × DLL</td></tr>
+            <tr><td>⛽ Final reserve</td><td class="num">jet 30 min · piston 45 min</td></tr>
+            <tr><td>🛢️ Gallons and litres</td><td class="num">US 3.785 L · imperial 4.546 L · 1 kg = 2.205 lb</td></tr>
+            <tr><td>📐 % MAC</td><td class="num">(CG − LEMAC) ÷ MAC × 100</td></tr>
+            <tr><td>↔️ Moving mass</td><td class="num">m × d = M × Δcg</td></tr>
+            <tr><td>➕ Adding mass</td><td class="num">m = M(Y − X) ÷ (Z − Y)</td></tr>
+            <tr><td>📦 Traffic load</td><td class="num">lowest of MZFM − DOM · RTOM − DOM − TOF · RLM − DOM − landing fuel</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sec" id="ch1" data-icon="📜" style="--acc:#2f5fb3">
+      <h2><span class="num">1</span> Mass and Balance Rules <span class="en">Chapter 1</span></h2>
+      <p class="lead">An airline may not simply guess how heavy its passengers are. The rules say which masses it may use for crew, passengers and bags, when it must weigh the aeroplane again, and what the paperwork must show before every flight.</p>
+      <div class="glance"><span>🎯 Crew masses</span><span>🎯 Standard passenger tables</span><span>🎯 Baggage per piece</span><span>🎯 Documentation</span><span>🎯 Weighing intervals</span><span>🎯 Fleet masses</span><span>🎯 Mass surveys</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Actual or standard — never less than real.</strong> The operator may use weighed masses or the standard tables, and a survey may set its own values, but where the survey gives higher figures than the tables, the higher ones must be used.</p></div>
+
+      <h3 class="sub">Crew and passengers</h3>
+      <ul>
+        <li>🧑‍✈️ Crew: <strong>85 kg</strong> flight crew and <strong>75 kg</strong> cabin crew, both including hand baggage. Extra crew baggage changes the DOM <em>and</em> the CG, so its position must be used.</li>
+        <li>🗣️ <strong>Verbal statements</strong> (the passenger says how heavy they are, plus a fixed constant for hand baggage and clothing) only on aeroplanes with <strong>fewer than 10</strong> passenger seats.</li>
+        <li>⚖️ Weighed passengers are weighed with belongings and hand baggage, <strong>immediately before boarding</strong> and close to the aeroplane.</li>
+        <li>👶 An infant on an adult's lap is inside the adult's standard mass; an infant in its own seat counts as a <strong>child (35 kg)</strong>.</li>
+      </ul>
+      <div class="table-wrap">
+        <table>
+          <caption>Standard passenger masses (kg, including hand baggage)</caption>
+          <thead><tr><th>Seats</th><th class="num">Male</th><th class="num">Female</th><th class="num">All adult</th><th class="num">Child</th></tr></thead>
+          <tbody>
+            <tr><td>1–5</td><td class="num">104</td><td class="num">86</td><td class="num">—</td><td class="num">35</td></tr>
+            <tr><td>6–9</td><td class="num">96</td><td class="num">78</td><td class="num">—</td><td class="num">35</td></tr>
+            <tr><td>10–19</td><td class="num">92</td><td class="num">74</td><td class="num">—</td><td class="num">35</td></tr>
+            <tr><td>20+ (all flights except holiday charter)</td><td class="num">88</td><td class="num">70</td><td class="num">84 (30+ seats)</td><td class="num">35</td></tr>
+            <tr><td>20+ holiday charter</td><td class="num">83</td><td class="num">69</td><td class="num">76 (30+ seats)</td><td class="num">35</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li>🎒 On aeroplanes up to 19 seats, <strong>6 kg</strong> may be taken off the male and female values when no hand baggage is carried in the cabin (an overcoat, umbrella, small handbag or camera does not count as hand baggage). Children are not reduced.</li>
+        <li>🏖️ Holiday charter values only if non-revenue passengers use <strong>no more than 5%</strong> of the installed seats.</li>
+        <li>📈 Many passengers clearly heavier than standard (or many heavy bags) → weigh them or add an adequate increment, and tell the commander.</li>
+      </ul>
+      <div class="memory"><span class="label">🧠 Memory hook</span> Down the seat column the male mass drops <strong>104 → 96 → 92 → 88</strong>: minus 8, minus 4, minus 4. In the normal tables females are 18 kg lighter. Children never change.</div>
+      <details class="example"><summary>Worked example — passengers on a 15-seat aeroplane</summary><div class="body">
+        <p>7 men, 3 women and 2 children, with hand baggage in the cabin. The 10–19 seat row applies.</p>
+        <p>7 × 92 + 3 × 74 + 2 × 35 = 644 + 222 + 70 = <strong>936 kg</strong>. The 6 kg deduction is not allowed, because hand baggage is carried.</p>
+      </div></details>
+
+      <h3 class="sub">Checked baggage</h3>
+      <p>Standard bag masses apply only from <strong>20 seats</strong> upward; below that every bag is weighed.</p>
+      <div class="compare">
+        <div class="card acc"><h4>Domestic · 11 kg</h4><p>Origin and destination inside one State.</p></div>
+        <div class="card good"><h4>European region · 13 kg</h4><p>The region stretches from 72°N to 27°N and 30°W to 45°E — it includes North Africa and the Canary Islands.</p></div>
+        <div class="card mid"><h4>Intercontinental · 15 kg</h4><p>Origin and destination on different continents (outside the European region).</p></div>
+        <div class="card bad"><h4>All other flights · 13 kg</h4><p>Anything not covered above.</p></div>
+      </div>
+
+      <h3 class="sub">Documentation before every flight</h3>
+      <ul>
+        <li>📝 Shows the load and its distribution so the commander can confirm the limits are met. It names the aeroplane, flight, commander and preparer, the DOM and its CG, take-off and trip fuel, the load, TOM, LM and ZFM, the CG positions and the limits.</li>
+        <li>✍️ The loading supervisor signs that the load matches; the commander shows acceptance by countersignature or equivalent (for example electronically).</li>
+        <li>⏱️ <strong>Last minute changes</strong> are told to the commander and entered; new documentation only if the change exceeds the limit in the operations manual.</li>
+        <li>🖥️ Computerised systems are checked at intervals of no more than <strong>6 months</strong>; an onboard system as the primary despatch source needs approval; a datalinked copy of the accepted sheet stays on the ground.</li>
+      </ul>
+
+      <h3 class="sub">Weighing and fleet masses</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Rule</th><th class="num">Value</th></tr></thead>
+          <tbody>
+            <tr><td>Reweigh an individual aeroplane</td><td class="num">at least every 4 years</td></tr>
+            <tr><td>Reweigh when fleet masses are used</td><td class="num">9 years</td></tr>
+            <tr><td>Aeroplane changes operator</td><td class="num">weigh only if more than 4 years since the last weighing</td></tr>
+            <tr><td>Re-establish DOM/CG (cumulative changes)</td><td class="num">DOM ±0.5% of max landing mass, or CG 0.5% MAC</td></tr>
+            <tr><td>Scale calibration</td><td class="num">within 2 years (or the maker's period, if less)</td></tr>
+            <tr><td>Fleet tolerance — leave the fleet</td><td class="num">DOM ±0.5% of MSLM, or CG ±0.5% MAC</td></tr>
+            <tr><td>Interval between fleet mass evaluations</td><td class="num">≤ 48 months</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">2–3 aeroplanes: n</div><div class="d">Weigh them all.</div></div>
+        <div class="fcard"><div class="f">4–9: (n + 3) ÷ 2</div><div class="d">7 aeroplanes → 5 weighings.</div></div>
+        <div class="fcard"><div class="f">10+: (n + 51) ÷ 10</div><div class="d">29 aeroplanes → 8 weighings. Pick those not weighed for longest.</div></div>
+      </div>
+      <p>If only the CG is outside the fleet tolerance, the aeroplane keeps the fleet DOM with its <strong>own CG</strong>. A known, accountable difference (galley, seats) can be corrected for instead.</p>
+
+      <h3 class="sub">Revised standard masses (surveys)</h3>
+      <ul>
+        <li>🧾 Needs the authority's approval in advance, a weighing survey plan and a statistical method; the values apply only to that operator and similar circumstances, and are reviewed at least every <strong>5 years</strong>.</li>
+        <li>👥 Sample: at least the statistical number and, with 40+ seats, <strong>2 000</strong> passengers (below 40 seats: 50 × seats). Baggage: at least 2 000 pieces.</li>
+        <li>🎯 Accuracy (relative confidence range): 1% for all-adult and baggage, 2% for male/female averages.</li>
+        <li>⚖️ Scale: capacity ≥ 150 kg, graduations ≤ 500 g, accurate to 0.5% or 200 g, whichever is greater. Infants weighed with their adult.</li>
+        <li>➕ Small aeroplane increments: <strong>+16 kg</strong> (1–5 seats), +8 kg (6–9), +4 kg (10–19). All-adult assumes 80/20 male/female (holiday charter 50/50). Round passengers to 1 kg, bags to 0.5 kg.</li>
+      </ul>
+
+      <h3 class="sub">Loading and stowage</h3>
+      <p>Loading is supervised by qualified staff and must respect floor strength, running load, compartment and seating limits. Without exact seat allocation, <strong>operational margins</strong> cover the possible distribution of passengers, cargo and fuel; free seating needs procedures to correct passengers bunched at one end. Cabin items go only where they can be restrained (placarded limits, restraint bars under seats, never in toilets), and are checked before take-off, before landing and when the seat belt signs come on.</p>
+      <div class="related"><span class="dot"></span> Practise: 01 Mass and Balance Rules</div>
+    </section>
+
+    <section class="sec" id="ch2" data-icon="🏋️" style="--acc:#c0392b">
+      <h2><span class="num">2</span> Limitations and Effects of Mass and CG <span class="en">Chapter 2</span></h2>
+      <p class="lead">Why the limits exist: mass limits protect the structure and performance, CG limits protect stability and control. Getting either wrong changes how the aeroplane flies.</p>
+      <div class="glance"><span>🎯 DLL and DUL</span><span>🎯 Fatigue</span><span>🎯 Effects of more mass</span><span>🎯 Forward CG</span><span>🎯 Aft CG</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Mass → strength and performance. CG → stability and control.</strong> The stricter of the flight manual and the operations manual always applies, and the commander must satisfy himself or herself that both are met.</p></div>
+
+      <h3 class="sub">Structural loads</h3>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">DLL</div><div class="d">Design limit load: the most that can be applied again and again in normal operation without excessive fatigue. Never exceed it deliberately.</div></div>
+        <div class="fcard"><div class="f">DUL = 1.5 × DLL</div><div class="d">Design ultimate load: what the structure must take in an emergency without collapsing (50% safety factor). 40 kN DLL → 60 kN DUL.</div></div>
+      </div>
+      <p><strong>Fatigue</strong> is a permanent, cumulative, irreversible loss of strength. Weight is its main cause, so overloading makes parts fail earlier than predicted. The manufacturer sets the maximum taxi, zero fuel, take-off and landing structural masses.</p>
+
+      <h3 class="sub">What extra mass does</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Goes up ⬆️</th><th>Goes down ⬇️</th></tr></thead>
+          <tbody>
+            <tr><td>Take-off speeds, take-off and stopping distances</td><td>Climb gradient, rate of climb, ceiling</td></tr>
+            <tr><td>Stall speed and low-speed buffet speed</td><td>Maximum speed and the usable speed range</td></tr>
+            <tr><td>Drag, fuel flow, brake energy, tyre and brake wear</td><td>Range and endurance</td></tr>
+            <tr><td>Gear loads, wing root stress, fatigue</td><td>Manoeuvrability (less responsive)</td></tr>
+            <tr><td>Rate of descent on the same gradient</td><td>Buffet margin</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sub">The centre of gravity</h3>
+      <p>The CG is the point through which the whole weight acts — the balance point and the point the aeroplane rotates about. It moves with fuel burn, flap position and people moving, so it must stay inside the limits on the ground and in the air.</p>
+      <div class="diagram">
+        <svg viewBox="0 0 560 190" role="img" aria-label="Lift, weight and tail load">
+          <path class="wing" d="M60 100 Q100 80 300 88 L470 92 Q500 95 470 100 L300 110 Q100 116 60 100z"/>
+          <path class="ln" d="M440 70 L500 70"/>
+          <line class="ac" x1="250" y1="88" x2="250" y2="20" marker-end="url(#a-ac)"/>
+          <text x="258" y="30">Lift (centre of pressure)</text>
+          <line class="rd" x1="200" y1="110" x2="200" y2="175" marker-end="url(#a-rd)"/>
+          <text x="90" y="170">Weight (CG)</text>
+          <line class="gn" x1="470" y1="72" x2="470" y2="140" marker-end="url(#a-gn)"/>
+          <text x="400" y="160">Tail down load</text>
+          <text class="m" x="270" y="56">CG ahead of the lift → nose-down couple</text>
+        </svg>
+        <div class="cap">The tail pushes down to balance the nose-down couple. The further forward the CG, the bigger that down load — and the wing must carry it as if it were extra weight.</div>
+      </div>
+      <div class="compare">
+        <div class="card bad"><h4>CG forward of the limit</h4><ul><li>More tail down load → more drag, more fuel, less range</li><li>Wing carries more → higher stall speed and take-off/landing speeds</li><li>Higher VR, heavy stick forces, harder rotation and flare</li><li>Very stable, less manoeuvrable</li></ul></div>
+        <div class="card mid"><h4>CG aft of the limit</h4><ul><li>Unstable in pitch, light stick forces → easy to over-stress</li><li>Flat spin more likely, recovery harder</li><li>Pitch-up tendency, steady glide hard to hold</li><li>Constant corrections add drag beyond the limit</li></ul></div>
+      </div>
+      <div class="tip"><span class="label">✅ Within the limits</span> Aft CG is the "efficient" side: less tail load, less drag and effective weight, better range, climb and glide — but less stability. Forward CG is the "safe but costly" side.</div>
+      <div class="related"><span class="dot"></span> Practise: 02 Limitations and Effects of Mass and CG</div>
+    </section>
+
+    <section class="sec" id="ch3" data-icon="🧾" style="--acc:#1f9d8a">
+      <h2><span class="num">3</span> Mass Definitions and Traffic Load <span class="en">Chapter 3</span></h2>
+      <p class="lead">Every load sheet is built from the same ladder of mass names. Learn what is added at each rung and every traffic load question becomes simple subtraction.</p>
+      <div class="glance"><span>🎯 Datum, arm, moment</span><span>🎯 BEM vs DOM</span><span>🎯 ZFM, TOM, LM</span><span>🎯 Useful load</span><span>🎯 Traffic load formulas</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Moment = mass × arm. CG = total moment ÷ total mass.</strong> Arms are measured from the datum: forward is negative, aft is positive.</p></div>
+
+      <h3 class="sub">Datum, arms and moments</h3>
+      <ul>
+        <li>📍 The <strong>datum</strong> is chosen by the manufacturer on the longitudinal axis (or its extension).</li>
+        <li>📏 The <strong>arm</strong> is from the datum to the centroid of the mass. 60 kg at −40 in → moment −2 400 kg in.</li>
+        <li>🔢 An <strong>index</strong> is a moment divided by a constant to keep numbers small: 28 600 000 ÷ 1 000 000 = 28.6.</li>
+        <li>↔️ Lateral CG is assumed zero; only the fore-and-aft position is calculated. CG limits may be in arm or in <strong>% MAC</strong>.</li>
+      </ul>
+
+      <h3 class="sub">The mass ladder</h3>
+      <div class="diagram">
+        <svg viewBox="0 0 560 250" role="img" aria-label="Mass ladder">
+          <rect class="bx" x="40" y="200" width="200" height="34" rx="6"/><text x="56" y="222">Basic empty mass</text>
+          <rect class="af" x="40" y="160" width="230" height="34" rx="6"/><text x="56" y="182">+ crew, catering, water → DOM</text>
+          <rect class="bx" x="40" y="120" width="290" height="34" rx="6"/><text x="56" y="142">+ traffic load → zero fuel mass</text>
+          <rect class="af" x="40" y="80" width="360" height="34" rx="6"/><text x="56" y="102">+ take-off fuel → take-off mass</text>
+          <rect class="bx" x="40" y="40" width="390" height="34" rx="6"/><text x="56" y="62">+ start and taxi fuel → ramp mass</text>
+          <text class="m" x="440" y="102">− trip fuel</text><text class="m" x="440" y="118">= landing mass</text>
+          <text class="m" x="290" y="182">+ fuel = operating mass</text>
+        </svg>
+        <div class="cap">Light aircraft start from the BEM (the pilot is part of the load). Airliners start from the DOM and its CG.</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Name</th><th>What it contains</th></tr></thead>
+          <tbody>
+            <tr><td><strong>BEM</strong> basic empty mass</td><td>Airframe plus standard items: unusable fuel and fluids, engine oil, fire extinguishers, pyrotechnics, emergency oxygen, supplementary electronics</td></tr>
+            <tr><td><strong>DOM</strong> dry operating mass</td><td>BEM + crew and crew baggage, catering, removable service equipment, potable water, lavatory chemicals. No usable fuel, no traffic load</td></tr>
+            <tr><td><strong>Traffic load</strong> (old name payload)</td><td>Passengers, baggage, cargo, carry-on specialist equipment — and ballast</td></tr>
+            <tr><td><strong>ZFM</strong></td><td>DOM + traffic load</td></tr>
+            <tr><td><strong>Operating mass</strong></td><td>DOM + take-off fuel (everything except traffic load)</td></tr>
+            <tr><td><strong>Useful load</strong></td><td>Traffic load + take-off fuel = TOM − DOM</td></tr>
+            <tr><td><strong>TOM</strong> (brake release mass)</td><td>At the start of the take-off run = ramp mass − start and taxi fuel</td></tr>
+            <tr><td><strong>LM</strong></td><td>TOM − trip fuel (reserves are still on board)</td></tr>
+            <tr><td><strong>Ramp / taxi / block mass</strong></td><td>TOM + start and taxi fuel; may exceed the MSTOM on the ground only</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout note"><span class="label">Why a maximum zero fuel mass?</span> Fuel in the wings hangs down against the lift and relieves wing bending. With the wing tanks empty the wing root works hardest, so everything carried in the fuselage is limited by the MZFM.</div>
+      <p>The <strong>regulated take-off mass</strong> is the lower of the structural limit and the performance limit of the day (field, climb, obstacle, tyre speed, brake energy).</p>
+
+      <h3 class="sub">Traffic load expressions</h3>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">TL = ZFM − DOM</div><div class="d">The simplest one.</div></div>
+        <div class="fcard"><div class="f">TL = TOM − OM</div><div class="d">Operating mass is everything except TL.</div></div>
+        <div class="fcard"><div class="f">TL = TOM − DOM − TOF</div><div class="d">Take-off end.</div></div>
+        <div class="fcard"><div class="f">TL = LM − DOM − fuel left</div><div class="d">Landing end — don't forget the remaining fuel.</div></div>
+      </div>
+      <details class="example"><summary>Worked example — one aeroplane, five numbers</summary><div class="body">
+        <p>DOM 40 000 kg, traffic load 12 000 kg, take-off fuel 9 000 kg, trip fuel 6 500 kg.</p>
+        <ul>
+          <li>ZFM = 40 000 + 12 000 = <strong>52 000 kg</strong></li>
+          <li>Operating mass = 40 000 + 9 000 = <strong>49 000 kg</strong></li>
+          <li>TOM = 52 000 + 9 000 = <strong>61 000 kg</strong>; useful load = 12 000 + 9 000 = 21 000 kg</li>
+          <li>LM = 61 000 − 6 500 = <strong>54 500 kg</strong> (subtract the trip fuel, not all the fuel)</li>
+        </ul>
+      </div></details>
+      <div class="related"><span class="dot"></span> Practise: 03 Mass Definitions and Traffic Load</div>
+    </section>
+
+    <section class="sec" id="ch4" data-icon="🏗️" style="--acc:#8e44ad">
+      <h2><span class="num">4</span> Weighing and the Basic Empty Mass <span class="en">Chapter 4</span></h2>
+      <p class="lead">The basic empty mass and its CG come from putting the aeroplane on scales. Everything else on the load sheet is built on these two numbers.</p>
+      <div class="glance"><span>🎯 Weighing schedule</span><span>🎯 Equipment types</span><span>🎯 MEL</span><span>🎯 CG from scale readings</span><span>🎯 Newtons vs kg</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Add the scale readings for the mass; add reading × arm for the moment; divide.</strong> A negative CG is forward of the datum.</p></div>
+      <h3 class="sub">The weighing</h3>
+      <ul>
+        <li>🏠 In an enclosed, draught-free hangar, on calibrated and zeroed equipment, by the manufacturer or an approved maintenance organisation.</li>
+        <li>🧹 The aeroplane is clean, complete, fluids accounted for, and prepared to the same condition as the last schedule; non-basic items (passenger seats, trolleys) are removed.</li>
+        <li>📋 The person in charge compiles and signs the <strong>weighing schedule</strong>, ending with the BEM and CG. It stays in the technical log until the next weighing.</li>
+      </ul>
+      <div class="compare">
+        <div class="card acc"><h4>Platform scales</h4><p>Electronic platforms under each wheel — light aircraft.</p></div>
+        <div class="card good"><h4>Hydrostatic units</h4><p>Pascal's law; between the jacks and the jacking points.</p></div>
+        <div class="card mid"><h4>Strain gauges</h4><p>Resistance changes with load — larger aircraft.</p></div>
+      </div>
+      <p>Freight is normally weighed (standard freight masses only by special permission). The <strong>MEL</strong> lists the minimum serviceable equipment and the basic and optional role equipment, which helps define what sits in the BEM and the DOM.</p>
+      <details class="example"><summary>Worked example — CG from three scales</summary><div class="body">
+        <div class="table-wrap"><table><thead><tr><th>Wheel</th><th class="num">kg</th><th class="num">arm (in)</th><th class="num">moment</th></tr></thead><tbody>
+          <tr><td>Nose</td><td class="num">400</td><td class="num">−30</td><td class="num">−12 000</td></tr>
+          <tr><td>Left main</td><td class="num">1 800</td><td class="num">+40</td><td class="num">+72 000</td></tr>
+          <tr><td>Right main</td><td class="num">1 800</td><td class="num">+40</td><td class="num">+72 000</td></tr>
+          <tr><td><strong>Total</strong></td><td class="num">4 000</td><td class="num">+33.0</td><td class="num">+132 000</td></tr>
+        </tbody></table></div>
+        <p>CG = 132 000 ÷ 4 000 = <strong>+33.0 in</strong> (aft of the datum). Treating the nose arm as positive would give 39 in.</p>
+      </div></details>
+      <div class="callout caution"><span class="label">Newtons</span> If the scales read in newtons, mass = reading ÷ 9.81 (5 400 N ≈ 550 kg). The <strong>CG comes out the same</strong> in newtons or kilograms, because g cancels.</div>
+      <div class="related"><span class="dot"></span> Practise: 04 Weighing and the Basic Empty Mass</div>
+    </section>
+
+    <section class="sec" id="ch5" data-icon="⛽" style="--acc:#d68910">
+      <h2><span class="num">5</span> Fuel Mass and Fuel Terms <span class="en">Chapter 5</span></h2>
+      <p class="lead">Fuel is ordered by volume but loaded by mass. You need the planning terms (what each slice of fuel is for) and the conversions (litres, gallons, pounds, kilograms).</p>
+      <div class="glance"><span>🎯 Trip, contingency, alternate</span><span>🎯 Final reserve</span><span>🎯 Take-off vs block fuel</span><span>🎯 SG</span><span>🎯 Gallons and pounds</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Mass = volume × density.</strong> With SG as kg per litre: kg = litres × SG. With imperial gallons: lb = gallons × 10 × SG.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Fuel</th><th>Covers</th></tr></thead>
+          <tbody>
+            <tr><td>Start and taxi</td><td>APU and engine start, taxi — <em>not</em> part of the take-off fuel</td></tr>
+            <tr><td>Trip</td><td>Take-off, climb, cruise, descent, arrival, approach and landing at destination</td></tr>
+            <tr><td>Contingency</td><td>Unforeseen events; usually a % of trip fuel (5% of 4 600 = 230 kg)</td></tr>
+            <tr><td>Alternate</td><td>Missed approach, climb, transit, approach and landing at the alternate</td></tr>
+            <tr><td>Final reserve</td><td>Jet 30 min · piston 45 min</td></tr>
+            <tr><td>Additional</td><td>Only if the above cannot cover an engine or pressurisation failure at the critical point</td></tr>
+            <tr><td>Extra (discretionary)</td><td>Commander's choice: tankering, expected delays</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">TOF = trip + cont + alt + FR + add + extra</div><div class="d">Take-off fuel.</div></div>
+        <div class="fcard"><div class="f">Block = TOF + taxi</div><div class="d">Ramp fuel, all fuel before start.</div></div>
+        <div class="fcard"><div class="f">Landing fuel = TOF − trip</div><div class="d">Contingency, alternate and reserve normally remain.</div></div>
+      </div>
+      <h3 class="sub">Conversions</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>From</th><th class="num">Value</th></tr></thead>
+          <tbody>
+            <tr><td>1 US gallon</td><td class="num">3.785 L · water ≈ 8.33 lb</td></tr>
+            <tr><td>1 imperial gallon</td><td class="num">4.546 L ≈ 1.2 US gal · water ≈ 10 lb</td></tr>
+            <tr><td>1 kg</td><td class="num">2.205 lb (1 lb = 0.454 kg)</td></tr>
+            <tr><td>1 quart</td><td class="num">0.25 gallon</td></tr>
+            <tr><td>Fuel at SG 0.72</td><td class="num">≈ 6 lb per US gallon · 7.2 lb per imperial gallon</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>SG has no units: it compares fuel with the same volume of water. It is on the refueller's delivery note; if it is unknown, use the standard density in the operations manual. Tanks keep a small space for venting and expansion.</p>
+      <details class="example"><summary>Worked example — uplift in US gallons</summary><div class="body">
+        <p>39 000 kg of fuel is needed at SG 0.80.</p>
+        <p>39 000 ÷ 0.80 = 48 750 L; ÷ 3.785 = <strong>12 880 US gallons</strong>. Dividing by 4.546 would give imperial gallons (about 10 720).</p>
+      </div></details>
+      <div class="callout warning"><span class="label">Wrong SG, wrong range</span> If 12 000 L is entered as 12 000 kg but the SG is really 0.78, the fuel on board is only 9 360 kg — 2 640 kg less than the load sheet thinks.</div>
+      <div class="related"><span class="dot"></span> Practise: 05 Fuel Mass and Fuel Terms</div>
+    </section>
+
+    <section class="sec" id="ch6" data-icon="🛩️" style="--acc:#2e86c1">
+      <h2><span class="num">6</span> Loaded Mass and CG for Light Aircraft <span class="en">Chapter 6</span></h2>
+      <p class="lead">A light aircraft load sheet is a table of mass, arm and moment. Fill it from the BEM down, check the masses against their limits, and plot the CG points on the envelope.</p>
+      <div class="glance"><span>🎯 Load sheet order</span><span>🎯 Moment/100</span><span>🎯 Landing CG</span><span>🎯 CG envelope</span><span>🎯 Negative arms</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>If the ZFM and TOM CG points are inside the envelope, the CG stays inside throughout the flight</strong> (with fuel used in the right order) — even after a diversion.</p></div>
+      <ol class="steps">
+        <li>BEM + pilot, passengers, baggage and cargo → <strong>zero fuel mass</strong>.</li>
+        <li>+ fuel (converted to mass) → <strong>ramp mass</strong>.</li>
+        <li>− start, taxi and run-up fuel → <strong>take-off mass</strong> (its moment is subtracted too).</li>
+        <li>− trip fuel and oil → <strong>landing mass</strong>; landing CG = landing moment ÷ landing mass.</li>
+        <li>Check each mass against its maximum and each CG against the envelope.</li>
+      </ol>
+      <div class="diagram">
+        <svg viewBox="0 0 560 260" role="img" aria-label="CG envelope">
+          <line class="ln" x1="70" y1="225" x2="520" y2="225" marker-end="url(#a-ink)"/>
+          <line class="ln" x1="70" y1="225" x2="70" y2="20" marker-end="url(#a-ink)"/>
+          <text class="m" x="340" y="246">CG position / moment / % MAC</text>
+          <text class="m" x="78" y="22">Mass</text>
+          <path class="af" d="M150 215 L150 140 L210 60 L430 60 L460 215 Z"/>
+          <circle class="dot" cx="300" cy="120" r="6"/><text x="312" y="124">ZFM</text>
+          <circle class="dot" cx="285" cy="78" r="6"/><text x="297" y="82">TOM</text>
+          <circle class="dot" cx="292" cy="98" r="5"/><text x="232" y="102">LM</text>
+          <line class="thin" x1="285" y1="78" x2="300" y2="120"/>
+          <text class="m" x="160" y="200">forward limit</text><text class="m" x="400" y="200">aft limit</text>
+        </svg>
+        <div class="cap">Mass is always on the vertical scale. A point on the line is acceptable; a point outside is not.</div>
+      </div>
+      <details class="example"><summary>Worked example — a four-seat load sheet</summary><div class="body">
+        <div class="table-wrap"><table><thead><tr><th>Item</th><th class="num">lb</th><th class="num">arm (in)</th><th class="num">moment (lb in)</th></tr></thead><tbody>
+          <tr><td>BEM</td><td class="num">1 650</td><td class="num">85</td><td class="num">140 250</td></tr>
+          <tr><td>Front seats</td><td class="num">340</td><td class="num">80</td><td class="num">27 200</td></tr>
+          <tr><td>Rear seats</td><td class="num">300</td><td class="num">115</td><td class="num">34 500</td></tr>
+          <tr><td>Baggage</td><td class="num">80</td><td class="num">140</td><td class="num">11 200</td></tr>
+          <tr><td><strong>ZFM</strong></td><td class="num">2 370</td><td class="num">89.9</td><td class="num">213 150</td></tr>
+        </tbody></table></div>
+        <p>40 US gallons at about 6 lb each = 240 lb → ramp mass 2 610 lb. After taxi the TOM is 2 600 lb with a moment of 235 000 lb in: CG = <strong>90.4 in</strong>. Averaging the arms (105 in) would ignore the different masses.</p>
+      </div></details>
+      <ul>
+        <li>➖ Removing mass from <strong>behind</strong> the CG moves the CG forward; from <strong>ahead</strong> of it moves it aft; exactly at the CG — no change.</li>
+        <li>➗ Moments given as moment/100 must be multiplied by 100 again before dividing by the mass (forgetting gives 0.90 in instead of 90.4 in).</li>
+        <li>➕➖ A negative arm × positive mass = negative moment. Removing a mass with a negative arm makes the total moment more positive: (−3.75 lb) × (−45 in) = +168.75 lb in.</li>
+        <li>🛢️ Oil in quarts: 2 qt = 0.5 US gal; × 8.33 × 0.9 ≈ 3.75 lb.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 06 Loaded Mass and CG for Light Aircraft</div>
+    </section>
+
+    <section class="sec" id="ch7" data-icon="📐" style="--acc:#16a085">
+      <h2><span class="num">7</span> CG as a Percentage of MAC <span class="en">Chapter 7</span></h2>
+      <p class="lead">Airliners give the CG as a percentage of the mean aerodynamic chord, because what matters for stability is where the CG sits relative to the wing's aerodynamic forces.</p>
+      <div class="glance"><span>🎯 What the MAC is</span><span>🎯 LEMAC</span><span>🎯 % MAC ↔ arm</span><span>🎯 Negative LEMAC</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>% MAC = (CG arm − LEMAC arm) ÷ MAC length × 100.</strong> 0% is the leading edge, 100% the trailing edge; a bigger % is a more aft CG.</p></div>
+      <div class="diagram">
+        <svg viewBox="0 0 560 170" role="img" aria-label="Mean aerodynamic chord">
+          <line class="thin" x1="40" y1="30" x2="40" y2="150"/><text x="22" y="22">Datum</text>
+          <path class="wing" d="M180 90 Q200 70 260 72 L420 82 L420 92 L260 104 Q200 106 180 90z"/>
+          <line class="ac" x1="180" y1="120" x2="420" y2="120"/>
+          <text x="270" y="140">MAC length</text>
+          <circle class="dot" cx="240" cy="88" r="6"/><text x="224" y="62">CG</text>
+          <line class="thin" x1="180" y1="40" x2="180" y2="125"/><text class="m" x="150" y="36">LEMAC</text>
+          <line class="ln" x1="40" y1="160" x2="178" y2="160" marker-end="url(#a-ink)"/><text class="m" x="80" y="155">B = LEMAC arm</text>
+          <line class="ln" x1="40" y1="48" x2="238" y2="48" marker-end="url(#a-ink)"/><text class="m" x="60" y="44">A = CG arm</text>
+        </svg>
+        <div class="cap">The MAC has a fixed length and a fixed position, so % MAC and arm convert both ways. It is not just the average of root and tip chords.</div>
+      </div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">% = (A − B) ÷ MAC × 100</div><div class="d">Arm to % MAC.</div></div>
+        <div class="fcard"><div class="f">A = B + % × MAC ÷ 100</div><div class="d">% MAC to arm.</div></div>
+        <div class="fcard"><div class="f">Δarm = Δ% × MAC ÷ 100</div><div class="d">A CG shift in % MAC as a distance.</div></div>
+      </div>
+      <details class="example"><summary>Worked example — both directions</summary><div class="body">
+        <p>LEMAC 50 in, MAC 160 in, CG 82 in: (82 − 50) ÷ 160 × 100 = <strong>20% MAC</strong>.</p>
+        <p>LEMAC 110 in, MAC 90 in, CG 18% MAC: 0.18 × 90 = 16.2 in → arm <strong>126.2 in</strong>.</p>
+        <p>Negative LEMAC −12 in, MAC 50 in, aft limit +8 in: (8 − (−12)) ÷ 50 × 100 = <strong>40% MAC</strong>. Ignoring the sign would give 8%.</p>
+      </div></details>
+      <div class="callout caution"><span class="label">Units trap</span> A CG 3.5% MAC beyond the limit on a 64 in MAC is 2.24 <em>inches</em> beyond it — not 3.5 in. 1% of a 4 m MAC is 4 cm.</div>
+      <div class="related"><span class="dot"></span> Practise: 07 CG as a Percentage of MAC</div>
+    </section>
+
+    <section class="sec" id="ch8" data-icon="↔️" style="--acc:#cb4335">
+      <h2><span class="num">8</span> Repositioning the CG <span class="en">Chapter 8</span></h2>
+      <p class="lead">If the CG is out of limits for any part of the flight, the aeroplane does not take off. You either move mass already on board, or add or remove mass (ballast).</p>
+      <div class="glance"><span>🎯 m × d = M × Δcg</span><span>🎯 Ballast</span><span>🎯 Adding mass</span><span>🎯 Graph types</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Moving mass: total mass stays the same, only the moment changes.</strong> Adding mass: both change, so the new moment is divided by the <strong>new</strong> mass.</p></div>
+      <div class="compare">
+        <div class="card acc"><h4>Move mass on board</h4><div class="eq">m × d = M × Δcg</div><p>d is how far the item moves (aft hold to forward hold), not its arm.</p></div>
+        <div class="card good"><h4>Add or remove mass</h4><div class="eq">m = M(Y − X) ÷ (Z − Y)</div><p>X present CG, Y target CG, Z arm of the item — all from the datum.</p></div>
+      </div>
+      <p>Mass carried only to fix the CG is <strong>ballast</strong>, and it is part of the traffic load. The minimum correction brings the CG just onto the nearest limit; afterwards check take-off and landing CG and that no mass limit is now exceeded.</p>
+      <div class="diagram">
+        <svg viewBox="0 0 560 150" role="img" aria-label="Moving mass forward">
+          <path class="wing" d="M40 80 Q60 50 140 50 L480 56 Q520 60 520 80 Q520 100 480 104 L140 110 Q60 110 40 80z"/>
+          <rect class="af" x="400" y="66" width="40" height="28" rx="4"/><text x="406" y="85">m</text>
+          <rect class="bx" x="150" y="66" width="40" height="28" rx="4"/>
+          <line class="ac" x1="398" y1="128" x2="196" y2="128" marker-end="url(#a-ac)"/><text x="270" y="145">d</text>
+          <circle class="dot" cx="300" cy="80" r="5"/><line class="rd" x1="300" y1="30" x2="276" y2="30" marker-end="url(#a-rd)"/><text x="240" y="24">Δcg</text>
+        </svg>
+        <div class="cap">Moving m forward through d moves the whole aeroplane's CG forward by Δcg = m × d ÷ M.</div>
+      </div>
+      <details class="example"><summary>Worked example — bring the CG to mid-range</summary><div class="body">
+        <p>M = 18 000 kg, CG 121.5 in, limits 117–121 in (mid 119), so the CG is aft of the aft limit. Freight can move from +160 to −90.</p>
+        <p>Δcg = 121.5 − 119 = 2.5 in; d = 160 − (−90) = 250 in. m = 18 000 × 2.5 ÷ 250 = <strong>180 kg</strong>.</p>
+      </div></details>
+      <details class="example"><summary>Worked example — adding ballast</summary><div class="body">
+        <p>2 000 lb at 82 in; target 85 in; ballast at 135 in.</p>
+        <p>(2 000 + m) × 85 = 2 000 × 82 + 135m → 6 000 = 50m → <strong>m = 120 lb</strong>. The divisor is Z − Y = 50, not Z − X.</p>
+      </div></details>
+      <div class="tip"><span class="label">✅ Direction check</span> Added behind the CG → CG goes aft. Added ahead → forward. Removed from ahead → aft. A passenger walking aft in flight moves the CG aft with no change in mass.</div>
+      <p><strong>Graphs:</strong> mass is always the vertical scale; the horizontal shows CG position, moment or % MAC. Swept-wing jets use % MAC; some light singles plot moment/100 as slanted lines.</p>
+      <div class="related"><span class="dot"></span> Practise: 08 Repositioning the CG</div>
+    </section>
+
+    <section class="sec" id="ch9" data-icon="📦" style="--acc:#7d6608">
+      <h2><span class="num">9</span> Cargo Handling and Floor Loading <span class="en">Chapter 9</span></h2>
+      <p class="lead">Cargo holds have limits per compartment, per unit length and per unit area. A heavy box can be legal one way round and illegal the other.</p>
+      <div class="glance"><span>🎯 Containers, pallets, bulk</span><span>🎯 Running load</span><span>🎯 Area load</span><span>🎯 Load spreaders</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Running load protects the frames; area load protects the floor panels.</strong> Both must be met, plus the compartment maximum.</p></div>
+      <div class="compare">
+        <div class="card acc"><h4>Containers</h4><p>Standard sizes that lock in, each with its own mass and floor-loading limit. Moved by floor power drive units from a door panel joystick.</p></div>
+        <div class="card good"><h4>Pallets</h4><p>Held with nets or straps; often in the front of the forward hold.</p></div>
+        <div class="card mid"><h4>Bulk</h4><p>Loose items at the rear of the aft hold, behind a restraining net.</p></div>
+      </div>
+      <p>Lower holds have fire-resistant linings, are usually pressurised and heated, and normally have fire detection. Overloading a floor creases panels and speeds up fatigue that can end in collapse with little warning.</p>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">running = mass ÷ fore-aft length</div><div class="d">kg/in or kg/ft, whatever the width. Longest side fore and aft → lowest value.</div></div>
+        <div class="fcard"><div class="f">area = mass ÷ base area</div><div class="d">kg/ft² or kg/m². Largest face down → lowest value.</div></div>
+      </div>
+      <div class="diagram">
+        <svg viewBox="0 0 560 170" role="img" aria-label="Box orientation and running load">
+          <line class="thin" x1="20" y1="150" x2="540" y2="150"/><text class="m" x="440" y="165">fore-and-aft →</text>
+          <g><line class="ln" x1="60" y1="140" x2="60" y2="40"/><line class="ln" x1="90" y1="140" x2="90" y2="40"/><line class="ln" x1="120" y1="140" x2="120" y2="40"/><line class="ln" x1="150" y1="140" x2="150" y2="40"/><line class="ln" x1="180" y1="140" x2="180" y2="40"/></g>
+          <rect class="rf" x="100" y="70" width="34" height="62"/><text x="70" y="30">12 in fore-aft: 50 kg/in ✗</text>
+          <g><line class="ln" x1="330" y1="140" x2="330" y2="40"/><line class="ln" x1="360" y1="140" x2="360" y2="40"/><line class="ln" x1="390" y1="140" x2="390" y2="40"/><line class="ln" x1="420" y1="140" x2="420" y2="40"/><line class="ln" x1="450" y1="140" x2="450" y2="40"/></g>
+          <rect class="gf" x="345" y="85" width="80" height="34"/><text x="330" y="30">24 in fore-aft: 25 kg/in ✓</text>
+        </svg>
+        <div class="cap">The same 600 kg box across more frames: turning it so its long side runs fore and aft halves the running load.</div>
+      </div>
+      <details class="example"><summary>Worked example — a box on its three faces</summary><div class="body">
+        <p>720 kg box, 2 ft × 3 ft × 10 ft. Running limit 25 kg/in, area limit 100 kg/ft².</p>
+        <ul>
+          <li>Running: 2 ft (24 in) → 30 kg/in ✗ · 3 ft (36 in) → 20 kg/in ✓ · 10 ft (120 in) → 6 kg/in ✓</li>
+          <li>Area: 2 × 3 = 6 ft² → 120 kg/ft² ✗ · 2 × 10 = 20 ft² → 36 ✓ · 3 × 10 = 30 ft² → 24 ✓</li>
+        </ul>
+        <p>Lay it on a large face with the 10 ft side fore and aft.</p>
+      </div></details>
+      <ul>
+        <li>🪵 Concentrated or sharp loads need approved <strong>load spreaders</strong> (for example 2 in thick timber). 400 kg on 0.5 m² = 800 kg/m²; with a 500 kg/m² limit a spreader of at least 0.8 m² (plus its own mass) is needed.</li>
+        <li>🔁 kg/ft ÷ 12 = kg/in · 1 m² = 10.76 ft² · uniformly distributed loads still obey running and compartment limits.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 09 Cargo Handling and Floor Loading</div>
+    </section>
+
+    <section class="sec" id="ch10" data-icon="✈️" style="--acc:#1a5276">
+      <h2><span class="num">10</span> Large Aircraft Loading and Load Sheets <span class="en">Chapter 10</span></h2>
+      <p class="lead">On an airliner the questions are: how much traffic load can we take today, what spare capacity is left for last minute changes, and is the CG inside the envelope at zero fuel and at take-off?</p>
+      <div class="glance"><span>🎯 Body stations</span><span>🎯 Flap and trim effects</span><span>🎯 Three traffic load limits</span><span>🎯 Underload</span><span>🎯 Load and trim sheet</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The allowed traffic load is the lowest of the structural, take-off and landing limits.</strong> Underload = allowed − actual, and it sets the limit for last minute changes.</p></div>
+      <h3 class="sub">Stations, flaps and trim</h3>
+      <ul>
+        <li>📏 Positions are given as <strong>station numbers</strong>, water lines and buttock lines. After a fuselage plug is inserted, stations behind it keep their numbers but their arms grow (a 100 in plug adds 100 in), so a conversion chart is used.</li>
+        <li>🪶 Flaps travelling aft move the CG slightly aft: a −15 000 kg in moment change at 60 000 kg moves the CG 0.25 in forward on retraction.</li>
+        <li>🎚️ The take-off stabiliser trim comes from CG (% MAC), mass and flap: a more forward CG needs more nose-up trim units.</li>
+      </ul>
+      <h3 class="sub">Planning the traffic load</h3>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">MZFM − DOM</div><div class="d">Structural limit.</div></div>
+        <div class="fcard"><div class="f">RTOM − DOM − TOF</div><div class="d">Take-off limit.</div></div>
+        <div class="fcard"><div class="f">RLM − DOM − landing fuel</div><div class="d">Landing limit (contingency, alternate and reserve remain).</div></div>
+      </div>
+      <details class="example"><summary>Worked example — which limit bites?</summary><div class="body">
+        <p>DOM 35 000 · MZFM 52 000 · RTOM 64 000 · RLM 55 000 · TOF 13 000 · trip 8 500 (so 4 500 kg remains at landing).</p>
+        <ul>
+          <li>Structural: 52 000 − 35 000 = 17 000 kg</li>
+          <li>Take-off: 64 000 − 35 000 − 13 000 = 16 000 kg</li>
+          <li>Landing: 55 000 − 35 000 − 4 500 = <strong>15 500 kg</strong> ← lowest</li>
+        </ul>
+        <p>With 14 800 kg booked, the underload is <strong>700 kg</strong>. The same answer comes from the allowable TOM: lowest of MZFM + TOF (65 000), RTOM (64 000) and RLM + trip (63 500) → 63 500 − operating mass 48 000 = 15 500 kg.</p>
+      </div></details>
+      <div class="callout warning"><span class="label">Zero underload</span> If the aeroplane is already at its MZFM, there is no underload at all, however much take-off margin there is. Extra fuel also eats into the underload, because it raises the take-off and landing masses.</div>
+      <h3 class="sub">The load and trim sheet</h3>
+      <ol class="steps">
+        <li><strong>Part A (left)</strong>: masses — section 1 sets the limiting TOM, maximum traffic load and underload before LMC; section 2 distributes the load (TR transit, B baggage, C cargo, M mail, Pax F/C/Y); section 3 summarises and cross-checks.</li>
+        <li><strong>Part B (right)</strong>: start at the <strong>dry operating index</strong>, move along each row of boxes by the load in that zone (each box has a pitch and an arrow).</li>
+        <li>Drop a line to the <strong>ZFM</strong> — the point must be in the zero fuel envelope.</li>
+        <li>Apply the fuel index and drop to the <strong>TOM</strong> — the point must be in the take-off envelope. Then the CG stays within limits throughout, including diversions.</li>
+      </ol>
+      <p>Centre tank fuel is normally used before wing fuel, which keeps the wings loaded longer and relieves wing root bending. A DOM CG at 18% of a 134 in MAC starting at 625 in is 625 + 24.1 ≈ <strong>649 in</strong> from the datum.</p>
+      <div class="related"><span class="dot"></span> Practise: 10 Large Aircraft Loading and Load Sheets</div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  Mass &amp; Balance — Pilot's Guide · general principles, independent of any aircraft or operator.
+  Always use the flight manual, the operations manual and the load sheet for your own aircraft, and your instructor's briefing. ⚖️
+</footer>
+
+<button id="top-btn" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  var toc = document.getElementById('toc');
+  var scrim = document.getElementById('scrim');
+  var menuBtn = document.getElementById('menuBtn');
+  var closeToc = document.getElementById('closeToc');
+  function openToc(){ toc.classList.add('open'); scrim.classList.add('show'); }
+  function shutToc(){ toc.classList.remove('open'); scrim.classList.remove('show'); }
+  if (menuBtn) menuBtn.addEventListener('click', openToc);
+  if (closeToc) closeToc.addEventListener('click', shutToc);
+  if (scrim) scrim.addEventListener('click', shutToc);
+  var tocLinks = document.querySelectorAll('nav.toc a');
+  tocLinks.forEach(function(a){ a.addEventListener('click', function(){ shutToc(); }); });
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section.sec[id]'));
+  var linkFor = {};
+  tocLinks.forEach(function(a){ linkFor[a.getAttribute('href').slice(1)] = a; });
+  function onScroll(){
+    var y = window.scrollY + 110, current = sections[0];
+    for (var i = 0; i < sections.length; i++){ if (sections[i].offsetTop <= y) current = sections[i]; }
+    tocLinks.forEach(function(a){ a.classList.remove('active'); });
+    if (current && linkFor[current.id]) linkFor[current.id].classList.add('active');
+    var topBtn = document.getElementById('top-btn');
+    if (topBtn) topBtn.classList.toggle('show', window.scrollY > 500);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  var topBtn = document.getElementById('top-btn');
+  if (topBtn) topBtn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  
+  /* ---- quick tools ---- */
+  function el(id){ return document.getElementById(id); }
+  function num(id){ var s = (el(id).value || '').trim(); if (s === '') return NaN; var v = parseFloat(s); return isFinite(v) ? v : NaN; }
+  function txt(id){ return (el(id).value || '').trim().toUpperCase(); }
+  function put(id, html){ el(id).innerHTML = html; }
+  function f(v, d){ d = d === undefined ? 1 : d; var s = Math.abs(v).toFixed(d).split('.'); s[0] = s[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' '); return (v < 0 ? '−' : '') + s.join('.'); }
+  function pair(id){ var p = (el(id).value || '').split(/[,;\s]+/).filter(Boolean).map(parseFloat); return p.length === 2 && isFinite(p[0]) && isFinite(p[1]) ? p : null; }
+
+  function loadcg(){
+    var m = 0, mo = 0, n = 0, bad = false;
+    ['lcA','lcB','lcC','lcD','lcE'].forEach(function(id){
+      if (!(el(id).value || '').trim()) return;
+      var p = pair(id); if (!p) { bad = true; return; }
+      m += p[0]; mo += p[0] * p[1]; n++;
+    });
+    if (bad) { put('lcOut', 'Type each item as "mass, arm".'); return; }
+    if (!n || m === 0) { put('lcOut', 'Enter at least one item.'); return; }
+    var cg = mo / m;
+    put('lcOut', 'Total mass <b>' + f(m, 0) + '</b> · total moment <b>' + f(mo, 0) + '</b><br>CG = moment ÷ mass = <b>' + f(cg, 2) + '</b> ' + (cg < 0 ? '(forward of the datum)' : '(aft of the datum)'));
+  }
+  function mac(){
+    var l = num('maL'), c = num('maM'), a = num('maC'), p = num('maP');
+    if (!isFinite(l) || !(c > 0)) { put('maOut', 'Enter the LEMAC arm and the MAC length.'); return; }
+    if (isFinite(a)) {
+      var pc = (a - l) / c * 100;
+      put('maOut', '(' + f(a, 2) + ' − ' + f(l, 2) + ') ÷ ' + f(c, 2) + ' × 100<br>CG = <b>' + f(pc, 1) + '% MAC</b>' + (pc < 0 ? ' (ahead of the leading edge)' : ''));
+    } else if (isFinite(p)) {
+      var arm = l + p / 100 * c;
+      put('maOut', f(p, 1) + '% of ' + f(c, 2) + ' = ' + f(p / 100 * c, 2) + ' behind the leading edge<br>CG arm = <b>' + f(arm, 2) + '</b> from the datum');
+    } else put('maOut', 'Enter a CG arm or a % MAC.');
+  }
+  function move(){
+    var M = num('mvM'), g = num('mvG'), d = num('mvD');
+    if (!(M > 0) || !(g >= 0) || !(d > 0)) { put('mvOut', 'Enter M, Δcg and d.'); return; }
+    put('mvOut', 'm = M × Δcg ÷ d = ' + f(M, 0) + ' × ' + f(g, 2) + ' ÷ ' + f(d, 1) + '<br>Mass to move <b>' + f(M * g / d, 1) + '</b> · total mass unchanged');
+  }
+  function addm(){
+    var M = num('adM'), X = num('adX'), Y = num('adY'), Z = num('adZ');
+    if (!(M > 0) || !isFinite(X) || !isFinite(Y) || !isFinite(Z)) { put('adOut', 'Enter M, X, Y and Z.'); return; }
+    if (Z === Y) { put('adOut', 'Mass at the target CG cannot move the CG.'); return; }
+    var m = M * (Y - X) / (Z - Y);
+    if (m >= 0) put('adOut', 'm = M(Y − X) ÷ (Z − Y) = ' + f(M, 0) + ' × ' + f(Y - X, 2) + ' ÷ ' + f(Z - Y, 2) + '<br><b>Add ' + f(m, 1) + '</b> at ' + f(Z, 1) + ' → new mass ' + f(M + m, 1));
+    else {
+      var r = M * (Y - X) / (Y - Z);
+      if (r >= M) { put('adOut', 'Removing mass from that arm cannot reach the target.'); return; }
+      put('adOut', 'Adding there moves the CG the wrong way.<br><b>Remove ' + f(r, 1) + '</b> from ' + f(Z, 1) + ' → new mass ' + f(M - r, 1));
+    }
+  }
+  function fuel(){
+    var v = num('fuV'), u = el('fuU').value, s = num('fuS');
+    if (!(v >= 0) || !(s > 0)) { put('fuOut', 'Enter the volume and the SG.'); return; }
+    var L = u === 'L' ? v : u === 'USG' ? v * 3.785 : v * 4.546;
+    var kg = L * s;
+    put('fuOut', f(L, 0) + ' L × ' + s.toFixed(3).replace(/0+$/, '').replace(/\.$/, '') + ' = <b>' + f(kg, 0) + ' kg</b> = <b>' + f(kg * 2.205, 0) + ' lb</b><br>' + f(L / 3.785, 0) + ' US gal · ' + f(L / 4.546, 0) + ' imp gal');
+  }
+  function traffic(){
+    var D = num('tlD'), Z = num('tlZ'), T = num('tlT'), L = num('tlL'), F = num('tlF'), R = num('tlR'), A = num('tlA');
+    if ([D, Z, T, L, F, R].some(function(x){ return !isFinite(x); })) { put('tlOut', 'Fill in every mass.'); return; }
+    if (R > F) { put('tlOut', 'Trip fuel cannot exceed the take-off fuel.'); return; }
+    var s = Z - D, t = T - D - F, l = L - D - (F - R);
+    var lo = Math.min(s, t, l), name = lo === l ? 'landing' : lo === t ? 'take-off' : 'structural (MZFM)';
+    var out = 'Structural ' + f(s, 0) + ' · take-off ' + f(t, 0) + ' · landing ' + f(l, 0) + '<br>Allowed traffic load <b>' + f(lo, 0) + '</b> — ' + name + ' limited';
+    if (isFinite(A)) out += '<br>Underload <b>' + f(lo - A, 0) + '</b>' + (lo - A < 0 ? ' — overloaded, offload ' + f(A - lo, 0) : '');
+    put('tlOut', out);
+  }
+  function floor(){
+    var m = num('flM'), l = num('flL'), w = num('flW'), r = num('flR'), a = num('flA');
+    if (!(m > 0) || !(l > 0) || !(w > 0)) { put('flOut', 'Enter the mass and both floor dimensions.'); return; }
+    var run = m / l, area = m / (l * w / 144), run2 = m / w;
+    var ok1 = !(r > 0) || run <= r, ok2 = !(a > 0) || area <= a;
+    put('flOut', 'Running load <b>' + f(run, 1) + ' kg/in</b> ' + (r > 0 ? (ok1 ? '✓' : '✗ over ' + r) : '') + (l < w ? '<br>Turned through 90°: ' + f(run2, 1) + ' kg/in' : '') + '<br>Area load <b>' + f(area, 1) + ' kg/ft²</b> ' + (a > 0 ? (ok2 ? '✓' : '✗ over ' + a + ' → spreader of at least ' + f(m / a, 1) + ' ft²') : ''));
+  }
+  function stdpax(){
+    var n = Math.floor(num('spN')), p = (el('spP').value || '').split(/[,;\s]+/).filter(Boolean).map(function(x){ return parseInt(x, 10); }), h = txt('spH') === 'YES';
+    if (!(n >= 1) || p.length !== 3 || p.some(function(x){ return !(x >= 0); })) { put('spOut', 'Enter the seats and "males, females, children".'); return; }
+    var mm, ff, row;
+    if (n <= 5) { mm = 104; ff = 86; row = '1–5 seats'; }
+    else if (n <= 9) { mm = 96; ff = 78; row = '6–9 seats'; }
+    else if (n <= 19) { mm = 92; ff = 74; row = '10–19 seats'; }
+    else if (h) { mm = 83; ff = 69; row = '20+ seats, holiday charter'; }
+    else { mm = 88; ff = 70; row = '20+ seats'; }
+    var tot = p[0] * mm + p[1] * ff + p[2] * 35;
+    var out = row + ': ' + p[0] + ' × ' + mm + ' + ' + p[1] + ' × ' + ff + ' + ' + p[2] + ' × 35<br>Total <b>' + f(tot, 0) + ' kg</b>';
+    if (n >= 30) { var aa = h ? 76 : 84; out += '<br>All-adult option: ' + (p[0] + p[1]) + ' × ' + aa + ' + ' + p[2] + ' × 35 = ' + f((p[0] + p[1]) * aa + p[2] * 35, 0) + ' kg'; }
+    if (n < 10) out += '<br>Fewer than 10 seats: verbal statements also allowed.';
+    if (n <= 19) out += '<br>No hand baggage in the cabin: −6 kg per adult.';
+    put('spOut', out);
+  }
+  [['lcA',loadcg],['lcB',loadcg],['lcC',loadcg],['lcD',loadcg],['lcE',loadcg],['maL',mac],['maM',mac],['maC',mac],['maP',mac],['mvM',move],['mvG',move],['mvD',move],['adM',addm],['adX',addm],['adY',addm],['adZ',addm],['fuV',fuel],['fuU',fuel],['fuS',fuel],['tlD',traffic],['tlZ',traffic],['tlT',traffic],['tlL',traffic],['tlF',traffic],['tlR',traffic],['tlA',traffic],['flM',floor],['flL',floor],['flW',floor],['flR',floor],['flA',floor],['spN',stdpax],['spP',stdpax],['spH',stdpax]].forEach(function(p){
+    var e = el(p[0]); if (e) { e.addEventListener('input', p[1]); e.addEventListener('change', p[1]); }
+  });
+  loadcg(); mac(); move(); addm(); fuel(); traffic(); floor(); stdpax();
+
+})();
+</script>
+</body>
+</html>
