@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { requireOwner } from "@/lib/auth/require-owner";
+
 export const metadata: Metadata = {
   title: { default: "Aviation English (ICAO ELP)", template: "%s · Aviation English" },
   description: "ICAO English Language Proficiency practice: lessons, drills, a mock exam and a six-criteria score report.",
@@ -14,8 +16,13 @@ const LINKS = [
   { href: "/aviation-english/exam", label: "Mock exam" },
 ];
 
-/** Section-local sub-navigation only; the global shell is untouched. */
-export default function AviationEnglishLayout({ children }: { children: ReactNode }) {
+/**
+ * Not live yet: the whole section is owner-only (404 for everyone else)
+ * until it is released. Remove `requireOwner()` to publish it.
+ * Section-local sub-navigation only; the global shell is untouched.
+ */
+export default async function AviationEnglishLayout({ children }: { children: ReactNode }) {
+  await requireOwner();
   return (
     <div>
       <nav aria-label="Aviation English" className="mb-6 flex flex-wrap gap-2 border-b border-border pb-3">
