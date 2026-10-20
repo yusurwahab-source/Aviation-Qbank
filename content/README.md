@@ -1043,6 +1043,151 @@ Checked at 1280px and 375px with no horizontal overflow and no script errors.
 It has not been reviewed by a qualified instructor and should be before a
 student relies on it for a real exam.
 
+## The Mass & Balance bank (Flying Knowledge)
+
+The subject is **Mass & Balance** (code `MB`, ATPL 031), added the same
+content-only way as the other subjects and listed against 031 on the ATPL
+Ground School page. 410 questions across ten topics, all published.
+
+### Source, and what was not used
+
+The owner supplied CAE Oxford Aviation Academy's *Mass & Balance and
+Performance* (ATPL ground training series, Book 6) and asked for it to be
+added like the earlier subjects. The book gives Mass & Balance only two
+chapters (the rules, and one long chapter on everything else), so the second
+chapter was split by its own sections, in book order, into topics 02–10. The
+chapters were used for their facts only. The book's end-of-chapter questions,
+answers, revision questions, specimen paper and its wording and worked
+examples were not used. Every question, explanation, worked figure and the
+study guide were written by the assistant. Student-facing text names no book,
+school, regulator, regulation, syllabus or data sheet.
+
+Choices and corrections:
+
+- The book's loading-manual graphs and data sheets are not in the text, so
+  calculations use the assistant's own numbers rather than chart readings.
+- Reweighing: 4 years for individual masses, 9 years for fleet masses (the
+  current rule) — the book gives only the 4-year transfer rule.
+- One book example labels a US-gallon fuel mass in pounds when the figure is
+  kilograms; the bank keeps the units consistent (US gallon of water about
+  8.33 lb, imperial about 10 lb).
+- The MEL is described generally; "master" minimum equipment lists are the
+  manufacturer's, the MEL the operator's.
+
+### Order and format
+
+Topic names carry their chapter number. Inside each file the questions run in
+book order, grouped by `subtopic`. Explanations are two to four sentences.
+
+| # | Topic | File | Ids | Questions |
+|---|---|---|---|---|
+| 01 | 01 Mass and Balance Rules | `01-mass-and-balance-rules.json` | MB-REG-0001–0093 | 93 |
+| 02 | 02 Limitations and Effects of Mass and CG | `02-limitations-and-effects-of-mass-and-cg.json` | MB-LIM-0001–0045 | 45 |
+| 03 | 03 Mass Definitions and Traffic Load | `03-mass-definitions-and-traffic-load.json` | MB-DEF-0001–0048 | 48 |
+| 04 | 04 Weighing and the Basic Empty Mass | `04-weighing-and-the-basic-empty-mass.json` | MB-WGH-0001–0036 | 36 |
+| 05 | 05 Fuel Mass and Fuel Terms | `05-fuel-mass-and-fuel-terms.json` | MB-FUEL-0001–0037 | 37 |
+| 06 | 06 Loaded Mass and CG for Light Aircraft | `06-loaded-mass-and-cg-for-light-aircraft.json` | MB-LOD-0001–0029 | 29 |
+| 07 | 07 CG as a Percentage of MAC | `07-cg-as-a-percentage-of-mac.json` | MB-MAC-0001–0022 | 22 |
+| 08 | 08 Repositioning the CG | `08-repositioning-the-cg.json` | MB-CGR-0001–0032 | 32 |
+| 09 | 09 Cargo Handling and Floor Loading | `09-cargo-handling-and-floor-loading.json` | MB-CRG-0001–0028 | 28 |
+| 10 | 10 Large Aircraft Loading and Load Sheets | `10-large-aircraft-loading-and-load-sheets.json` | MB-LTS-0001–0040 | 40 |
+
+### Answer-shape checks
+
+Correct letters a/b/c/d are 101/103/105/101. The correct option is the single
+longest in 10 % of questions and the single shortest in 10 %. No duplicate
+stems, no "all/none of the above", no source names. Every calculation was
+re-worked by script.
+
+`public/mb-study-guide.html` is the study guide: ten chapter sections in the
+same order, each with a key-idea callout, chips, tables, comparison cards,
+diagrams and worked examples, a cheat sheet and eight calculators (loaded mass
+and CG; CG and % MAC; moving mass; adding or removing mass; fuel volume to
+mass; traffic load and underload; floor loading; standard passenger masses).
+Checked at 1280px and 375px with no horizontal overflow and no script errors.
+
+It has not been reviewed by a qualified instructor and should be before a
+student relies on it for a real exam.
+
+## The Performance bank (Flying Knowledge)
+
+The subject is **Performance** (code `PERF`, ATPL 032), added the same
+content-only way and listed against 032 on the ATPL Ground School page.
+772 questions across eighteen topics, all published.
+
+### Source, and what was not used
+
+Same book as Mass & Balance (Book 6, which covers both subjects). Its eighteen
+Performance teaching chapters were used in order, for their facts only. Its
+revision chapters, end-of-chapter questions, answers, specimen paper, wording
+and graph-reading exercises were not used. The flight manual data sheets the
+book refers to (single-engine piston, multi-engine piston and a medium-range
+jet) are not in the text, so graph questions are about how the charts work,
+and calculations use the assistant's own numbers. Student-facing text names
+no book, school, regulator, regulation, syllabus, aircraft type or data sheet
+("the large aeroplane code", "the small aeroplane code", "current rules").
+
+Choices and corrections:
+
+- Contaminated runway uses the classic definition the book gives (more than
+  25 % of the area, more than 3 mm of water or equivalent); the newer runway
+  condition format is in the Operational Procedures bank.
+- Pavement strength is asked as ACN/PCN with a note that the newer system uses
+  ACR/PCR the same way; the book's 50 % overload figure was left out.
+- Extended diversion operations: the 60-minute rule and the 120-minute example
+  are kept; the book's dated figures and the 90-minute rule for aeroplanes
+  with three or more engines were left out.
+- The book's "L/D max at about 4°" figure was left out.
+
+### Order and format
+
+Topic names carry their chapter number. Inside each file the questions run in
+book order, grouped by `subtopic`. Explanations are two to four sentences.
+The Class A en route code is `CRE` (not `CAE`, which would read as a school
+name).
+
+| # | Topic | File | Ids | Questions |
+|---|---|---|---|---|
+| 01 | 01 Performance Introduction | `01-performance-introduction.json` | PERF-INT-0001–0090 | 90 |
+| 02 | 02 General Principles of Take-off | `02-general-principles-of-take-off.json` | PERF-GTO-0001–0050 | 50 |
+| 03 | 03 General Principles of Climb | `03-general-principles-of-climb.json` | PERF-GCL-0001–0080 | 80 |
+| 04 | 04 General Principles of Descent | `04-general-principles-of-descent.json` | PERF-GDS-0001–0032 | 32 |
+| 05 | 05 General Principles of Cruise | `05-general-principles-of-cruise.json` | PERF-GCR-0001–0069 | 69 |
+| 06 | 06 General Principles of Landing | `06-general-principles-of-landing.json` | PERF-GLD-0001–0058 | 58 |
+| 07 | 07 Single-engine Class B Take-off | `07-single-engine-class-b-take-off.json` | PERF-SBT-0001–0032 | 32 |
+| 08 | 08 Single-engine Class B Climb | `08-single-engine-class-b-climb.json` | PERF-SBC-0001–0014 | 14 |
+| 09 | 09 Single-engine Class B En Route and Descent | `09-single-engine-class-b-en-route-and-descent.json` | PERF-SBE-0001–0018 | 18 |
+| 10 | 10 Single-engine Class B Landing | `10-single-engine-class-b-landing.json` | PERF-SBL-0001–0023 | 23 |
+| 11 | 11 Multi-engine Class B Take-off | `11-multi-engine-class-b-take-off.json` | PERF-MBT-0001–0042 | 42 |
+| 12 | 12 Multi-engine Class B En Route and Descent | `12-multi-engine-class-b-en-route-and-descent.json` | PERF-MBE-0001–0017 | 17 |
+| 13 | 13 Multi-engine Class B Landing | `13-multi-engine-class-b-landing.json` | PERF-MBL-0001–0020 | 20 |
+| 14 | 14 Class A Take-off | `14-class-a-take-off.json` | PERF-CAT-0001–0074 | 74 |
+| 15 | 15 Class A Additional Take-off Procedures | `15-class-a-additional-take-off-procedures.json` | PERF-CAX-0001–0028 | 28 |
+| 16 | 16 Class A Take-off Climb | `16-class-a-take-off-climb.json` | PERF-CAC-0001–0045 | 45 |
+| 17 | 17 Class A En Route | `17-class-a-en-route.json` | PERF-CRE-0001–0049 | 49 |
+| 18 | 18 Class A Landing | `18-class-a-landing.json` | PERF-CAL-0001–0031 | 31 |
+
+### Answer-shape checks
+
+Correct letters a/b/c/d are 194/192/191/195. The correct option is the single
+longest in 17 % of questions and the single shortest in 4 %. No duplicate
+stems, no "all/none of the above", no source names.
+
+`public/perf-study-guide.html` is the study guide: eighteen chapter sections
+in the same order, each with a key-idea callout, chips, tables, comparison
+cards, diagrams (declared distances, drag curve, payload–range, balanced
+field, take-off segments, buffet boundary) and worked examples, a Class A /
+Class B cheat sheet and ten calculators (gradient and rate of climb; wind and
+the ground gradient; obstacle clearance; gross to net gradient; Class B
+take-off distance; landing distance required; hydroplaning speed; glide or
+drift-down range; Mach number; load factor in a turn). Checked at 1280px and
+375px with no horizontal overflow and no script errors.
+
+**Instructor review needed:** the regulatory factors and gradients follow the
+book, which predates some changes to the performance rules; they should be
+checked against the current regulations, and the bank has not been reviewed
+by a qualified instructor.
+
 ## The B737 bank
 
 The aircraft is the **Boeing 737-800**, the stretched Next Generation variant
