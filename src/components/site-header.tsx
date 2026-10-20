@@ -88,7 +88,11 @@ export async function SiteHeader() {
   const links = visible(
     email
       ? isOwner(email, envValue("OWNER_EMAIL"))
-        ? [...SIGNED_IN_LINKS, { href: "/owner", label: "Owner" }]
+        ? [
+            ...SIGNED_IN_LINKS,
+            { href: "/aviation-english", label: "Aviation English", shortLabel: "English" },
+            { href: "/owner", label: "Owner" },
+          ]
         : SIGNED_IN_LINKS
       : SIGNED_OUT_LINKS,
   );
