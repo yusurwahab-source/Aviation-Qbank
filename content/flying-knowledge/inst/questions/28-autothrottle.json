@@ -1,0 +1,2152 @@
+[
+  {
+    "id": "INST-AT-0001",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Introduction",
+    "question": "In which terms does an autothrottle control each engine's thrust?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Throttle angle only"
+      },
+      {
+        "id": "b",
+        "text": "N1, EPR or a target airspeed"
+      },
+      {
+        "id": "c",
+        "text": "N2, fuel quantity or Mach number"
+      },
+      {
+        "id": "d",
+        "text": "Fuel flow, EGT or oil pressure"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The autothrottle positions the throttles to hold a value of fan speed (N1), engine pressure ratio (EPR) or a target airspeed set on the MCP.",
+    "tags": [
+      "autothrottle",
+      "modes"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0002",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Introduction",
+    "question": "Is there a direct indication of the thrust an engine is producing?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only on engines with a FADEC"
+      },
+      {
+        "id": "b",
+        "text": "Yes; a thrust gauge in pounds or newtons"
+      },
+      {
+        "id": "c",
+        "text": "No; N1 or EPR is used as its measure"
+      },
+      {
+        "id": "d",
+        "text": "Yes; the fuel flow gauge shows it directly"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Although thrust can be computed, there is as yet no direct thrust indicator; N1 and EPR are used as the measure of engine thrust.",
+    "tags": [
+      "autothrottle",
+      "thrust indication"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0003",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Introduction",
+    "question": "Over which part of a flight can the autothrottle control thrust or speed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "From the take-off roll to after landing"
+      },
+      {
+        "id": "b",
+        "text": "From 400 ft after take-off to the outer marker only"
+      },
+      {
+        "id": "c",
+        "text": "From the take-off roll to 400 ft only"
+      },
+      {
+        "id": "d",
+        "text": "From top of climb to top of descent only"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Using its modes the autothrottle can control thrust or speed from the beginning of the take-off roll until it is disconnected after an automatic landing.",
+    "tags": [
+      "autothrottle"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0004",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Introduction",
+    "question": "What other name is used for the autothrottle system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The power plant monitoring system"
+      },
+      {
+        "id": "b",
+        "text": "The flight management system"
+      },
+      {
+        "id": "c",
+        "text": "The fuel control system"
+      },
+      {
+        "id": "d",
+        "text": "The thrust management system"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The autothrottle is also called the thrust management system, working with the autopilot and the FMS.",
+    "tags": [
+      "autothrottle",
+      "tms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0005",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "System inputs and outputs",
+    "question": "Which of these is an input to the autothrottle system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Hydraulic pressure from the brakes"
+      },
+      {
+        "id": "b",
+        "text": "Angle of attack from the AoA sensor"
+      },
+      {
+        "id": "c",
+        "text": "Cabin altitude from the pressure controller"
+      },
+      {
+        "id": "d",
+        "text": "Oil quantity from the engine sensors"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Inputs include MCP mode selection, TAS, Mach and TAT from the ADC, attitude and acceleration from the IRS, N1 or EPR, angle of attack, radio altitude, air/ground logic, reverse demand, FMS thrust command, PLA and flap position.",
+    "tags": [
+      "autothrottle",
+      "inputs"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0006",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "System inputs and outputs",
+    "question": "Why does the autothrottle receive air/ground logic from the landing gear?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To retract the landing gear automatically after lift-off"
+      },
+      {
+        "id": "b",
+        "text": "To set the take-off thrust"
+      },
+      {
+        "id": "c",
+        "text": "To arm the reversers in flight"
+      },
+      {
+        "id": "d",
+        "text": "To know if it is on the ground or airborne"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The landing gear switch tells the system whether the aircraft is on the ground or airborne, which changes which modes and functions are available.",
+    "tags": [
+      "autothrottle",
+      "inputs"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0007",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "System inputs and outputs",
+    "question": "Which of these is an output of the autothrottle system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Signals to the throttle servo actuator"
+      },
+      {
+        "id": "b",
+        "text": "Signals to the weather radar"
+      },
+      {
+        "id": "c",
+        "text": "Signals to the elevator servos"
+      },
+      {
+        "id": "d",
+        "text": "Signals to the fuel jettison valves in an emergency"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Outputs go to the A/T servo actuator, the disengage circuit, BITE circuits, mode annunciation on EFIS, thrust limits to EICAS or ECAM, and failure warnings.",
+    "tags": [
+      "autothrottle",
+      "outputs"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0008",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "System inputs and outputs",
+    "question": "Why is there feedback from the autothrottle servo actuators to the computer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To limit the fuel flow at take-off"
+      },
+      {
+        "id": "b",
+        "text": "To measure the engine thrust directly in pounds"
+      },
+      {
+        "id": "c",
+        "text": "To control how fast the levers move"
+      },
+      {
+        "id": "d",
+        "text": "To detect an engine fire"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The system compares actual and reference values and drives the lever servos; feedback from the servos controls the rate at which the thrust levers move.",
+    "tags": [
+      "autothrottle",
+      "feedback"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0009",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Typical large twin-jet system",
+    "question": "In normal operation, what provides the autothrottle with its N1 limits?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The pilot, from a table"
+      },
+      {
+        "id": "b",
+        "text": "The FMC"
+      },
+      {
+        "id": "c",
+        "text": "The air data computer"
+      },
+      {
+        "id": "d",
+        "text": "The engine EGT sensors"
+      }
+    ],
+    "correct": "b",
+    "explanation": "In normal operation the FMC provides the autothrottle with the N1 limit values.",
+    "tags": [
+      "n1 limits"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0010",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Typical large twin-jet system",
+    "question": "How are the thrust levers moved in a typical system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By the autopilot pitch servo"
+      },
+      {
+        "id": "b",
+        "text": "By one servomotor driving both levers through a clutch"
+      },
+      {
+        "id": "c",
+        "text": "By a separate servomotor on each lever"
+      },
+      {
+        "id": "d",
+        "text": "By hydraulic jacks on the engines"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Each thrust lever has its own servomotor, which allows the system to equalise N1 by moving each lever separately.",
+    "tags": [
+      "servomotors"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0011",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Typical large twin-jet system",
+    "question": "Does moving the thrust levers by hand normally disengage the autothrottle?",
+    "options": [
+      {
+        "id": "a",
+        "text": "No, except a 10° split late on a dual approach"
+      },
+      {
+        "id": "b",
+        "text": "Yes, at any time"
+      },
+      {
+        "id": "c",
+        "text": "Yes, but only below 400 ft"
+      },
+      {
+        "id": "d",
+        "text": "No, never under any circumstances at all"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Manual positioning does not disengage it unless the levers are split by more than 10° during a dual channel approach after FLARE armed. Afterwards the A/T may reposition them, except in HOLD and ARM.",
+    "tags": [
+      "manual override"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0012",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Power management control",
+    "question": "What does the main engine control (MEC) do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It computes the N1 limits"
+      },
+      {
+        "id": "b",
+        "text": "It moves the thrust levers"
+      },
+      {
+        "id": "c",
+        "text": "It records engine data for the maintenance engineers"
+      },
+      {
+        "id": "d",
+        "text": "It schedules fuel for the thrust lever setting"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The hydromechanical MEC schedules fuel to give the thrust called for by the thrust lever setting.",
+    "tags": [
+      "mec"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0013",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Power management control",
+    "question": "What does the power management control (PMC) do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Trims the MEC electronically to obtain the desired N1"
+      },
+      {
+        "id": "b",
+        "text": "Moves the thrust levers to the N1 limit by servomotor"
+      },
+      {
+        "id": "c",
+        "text": "Replaces the MEC entirely"
+      },
+      {
+        "id": "d",
+        "text": "Computes the take-off speeds"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The PMC refines the fuel flow electronically, without moving the thrust levers, using power lever angle, N1, inlet temperature and pressure.",
+    "tags": [
+      "pmc"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0014",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Power management control",
+    "question": "What does the PMC's constant thrust climb feature give?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A constant rate of climb with varying thrust"
+      },
+      {
+        "id": "b",
+        "text": "Climb thrust held without moving the levers"
+      },
+      {
+        "id": "c",
+        "text": "A constant airspeed through pitch changes"
+      },
+      {
+        "id": "d",
+        "text": "A constant fuel flow in the climb"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Once the lever is set for climb, the PMC keeps that thrust throughout the climb with no further lever adjustment.",
+    "tags": [
+      "pmc",
+      "constant thrust"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0015",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Power management control",
+    "question": "How does the PMC signal a detectable failure?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A red warning and a fire bell"
+      },
+      {
+        "id": "b",
+        "text": "An instant N1 drop to idle"
+      },
+      {
+        "id": "c",
+        "text": "No warning is given; the MEC takes over silently"
+      },
+      {
+        "id": "d",
+        "text": "A slow N1 drift, then PMC INOP and cautions"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The PMC schedules a slow N1 drift over about 30 seconds, then lights PMC INOP, the ENG annunciator and the MASTER CAUTION lights.",
+    "tags": [
+      "pmc",
+      "failure"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0016",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Power management control",
+    "question": "After a PMC is switched off, what controls engine speed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The autothrottle servos only"
+      },
+      {
+        "id": "b",
+        "text": "The FADEC standby channel"
+      },
+      {
+        "id": "c",
+        "text": "The hydromechanical MEC only"
+      },
+      {
+        "id": "d",
+        "text": "The FMC directly"
+      }
+    ],
+    "correct": "c",
+    "explanation": "With the PMC selected off, engine speed is controlled by the hydromechanical MEC alone.",
+    "tags": [
+      "pmc",
+      "failure"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0017",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Power management control",
+    "question": "For autothrottle use, how should the two PMCs be set?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Both ON or both OFF"
+      },
+      {
+        "id": "b",
+        "text": "One ON and one OFF"
+      },
+      {
+        "id": "c",
+        "text": "Both OFF for take-off, ON for landing"
+      },
+      {
+        "id": "d",
+        "text": "It makes no difference at all"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The A/T works with PMCs on or off, but both on or both off gives the least thrust lever separation. A/T take-offs may be made with both off.",
+    "tags": [
+      "pmc",
+      "autothrottle"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0018",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Engagement and disengagement",
+    "question": "How is the autothrottle armed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By engaging the autopilot"
+      },
+      {
+        "id": "b",
+        "text": "By pressing TO/GA on the ground before take-off"
+      },
+      {
+        "id": "c",
+        "text": "By selecting a speed on the MCP"
+      },
+      {
+        "id": "d",
+        "text": "By moving the A/T Arm switch to ARM"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The A/T Arm switch at ARM arms it for engagement in N1, MCP SPD or FMC SPD. The switch is held magnetically and releases to OFF on disengagement.",
+    "tags": [
+      "engagement"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0019",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Engagement and disengagement",
+    "question": "Which of these disengages the autothrottle?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Selecting a new MCP altitude"
+      },
+      {
+        "id": "b",
+        "text": "Engaging the second autopilot on the approach"
+      },
+      {
+        "id": "c",
+        "text": "2 seconds after landing touchdown"
+      },
+      {
+        "id": "d",
+        "text": "Passing 400 ft after take-off"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The A/T disengages on the arm switch to OFF, either disengage switch, a system fault, 2 s after touchdown, or more than 10° lever split on a dual approach after FLARE.",
+    "tags": [
+      "disengagement"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0020",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Engagement and disengagement",
+    "question": "What indicates that the autothrottle has disengaged?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The thrust levers move to idle"
+      },
+      {
+        "id": "b",
+        "text": "The arm switch releases to OFF and the A/T light flashes red"
+      },
+      {
+        "id": "c",
+        "text": "The arm switch stays at ARM and a green light shows on the MCP"
+      },
+      {
+        "id": "d",
+        "text": "An aural \"retard\" call"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Disengagement is followed by the A/T Arm switch releasing to OFF and the A/T Disengage light flashing red.",
+    "tags": [
+      "disengagement",
+      "warning"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0021",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Engagement and disengagement",
+    "question": "After an automatic disengagement after landing, does the A/T disengage light come on?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes, steady amber"
+      },
+      {
+        "id": "b",
+        "text": "Yes, flashing red"
+      },
+      {
+        "id": "c",
+        "text": "Yes, steady red"
+      },
+      {
+        "id": "d",
+        "text": "No"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The A/T Disengage lights do not illuminate when the A/T disengages automatically after landing.",
+    "tags": [
+      "disengagement"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0022",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Take-off mode",
+    "question": "Which conditions engage the autothrottle take-off mode?",
+    "options": [
+      {
+        "id": "a",
+        "text": "At 84 kt, with the levers set by hand"
+      },
+      {
+        "id": "b",
+        "text": "On the ground, A/T armed, TO/GA pressed"
+      },
+      {
+        "id": "c",
+        "text": "In flight below 2000 ft, TO/GA pressed"
+      },
+      {
+        "id": "d",
+        "text": "On the ground, with the autopilot engaged in CMD"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Pressing either TOGA switch on the ground with the A/T armed and the take-off N1 limit selected on the CDU engages take-off mode; the annunciation changes from ARM to N1.",
+    "tags": [
+      "take-off mode"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0023",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Take-off mode",
+    "question": "During the take-off roll, what does THR HLD mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The levers are locked against any movement"
+      },
+      {
+        "id": "b",
+        "text": "The A/T is holding the speed target"
+      },
+      {
+        "id": "c",
+        "text": "The pilot, not the A/T, may move the levers"
+      },
+      {
+        "id": "d",
+        "text": "The thrust has been reduced to climb"
+      }
+    ],
+    "correct": "c",
+    "explanation": "THR HLD annunciates at about 84 kt (64 kt on earlier computers): the autothrottle will not change the lever position, but the levers can be moved by hand.",
+    "tags": [
+      "thr hld"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0024",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Take-off mode",
+    "question": "In a typical system, at what speed does THR HLD annunciate in the take-off roll?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 84 kt"
+      },
+      {
+        "id": "b",
+        "text": "About 100 kt"
+      },
+      {
+        "id": "c",
+        "text": "At V1"
+      },
+      {
+        "id": "d",
+        "text": "About 60 kt"
+      }
+    ],
+    "correct": "a",
+    "explanation": "THR HLD appears at about 84 kt, or 64 kt with earlier autothrottle computers.",
+    "tags": [
+      "thr hld"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0025",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Take-off mode",
+    "question": "After lift-off, when does the autothrottle change from THR HLD to ARM?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When the landing gear is retracted after take-off"
+      },
+      {
+        "id": "b",
+        "text": "Immediately at lift-off"
+      },
+      {
+        "id": "c",
+        "text": "At 1500 ft RA"
+      },
+      {
+        "id": "d",
+        "text": "Above 400 ft RA and about 18 s after lift-off"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The A/T stays in THR HLD until 400 ft RA and about 18 seconds after lift-off, then changes to ARM. Climb thrust can then be selected with the N1 switch.",
+    "tags": [
+      "take-off mode",
+      "arm"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0026",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Take-off mode",
+    "question": "For how long after lift-off is automatic reduction to climb thrust inhibited in LVL CHG or V/S?",
+    "options": [
+      {
+        "id": "a",
+        "text": "2½ minutes"
+      },
+      {
+        "id": "b",
+        "text": "5 minutes"
+      },
+      {
+        "id": "c",
+        "text": "30 seconds"
+      },
+      {
+        "id": "d",
+        "text": "1 minute"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Automatic reduction is inhibited for 2½ minutes in LVL CHG or V/S. If VNAV, ALT ACQ or ALT HOLD engages in this period, the reduction occurs normally.",
+    "tags": [
+      "take-off mode",
+      "climb thrust"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0027",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "N1 and speed modes",
+    "question": "In N1 mode, what does the autothrottle hold?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The MCP selected speed"
+      },
+      {
+        "id": "b",
+        "text": "A fixed EPR set by the crew on the panel"
+      },
+      {
+        "id": "c",
+        "text": "The N1 limit selected on the FMC CDU"
+      },
+      {
+        "id": "d",
+        "text": "The FMC economy speed"
+      }
+    ],
+    "correct": "c",
+    "explanation": "In N1 mode the A/T holds thrust at the N1 limit selected on the CDU. Pressing the N1 switch again changes the mode to ARM.",
+    "tags": [
+      "n1 mode"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0028",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "N1 and speed modes",
+    "question": "An engine fails with the autothrottle in N1 mode. What does its thrust lever do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Stays exactly where it was"
+      },
+      {
+        "id": "b",
+        "text": "Advances a little, then returns to the other"
+      },
+      {
+        "id": "c",
+        "text": "Advances to the full forward stop and stays there"
+      },
+      {
+        "id": "d",
+        "text": "Retards to idle at once"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The failed engine's lever advances a few degrees then returns to or below the other lever's position.",
+    "tags": [
+      "n1 mode",
+      "engine failure"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0029",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "N1 and speed modes",
+    "question": "In MCP SPD mode, which speed is the target?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The speed at the moment of engagement only"
+      },
+      {
+        "id": "b",
+        "text": "V2 + 20 kt"
+      },
+      {
+        "id": "c",
+        "text": "The FMC economy speed"
+      },
+      {
+        "id": "d",
+        "text": "The speed or Mach in the MCP display"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The speed or Mach shown in the MCP IAS/Mach display is the target. The A/T will not exceed the displayed N1 limit.",
+    "tags": [
+      "speed mode"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0030",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "N1 and speed modes",
+    "question": "An engine fails with the autothrottle in a speed mode. What happens?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The failed engine's lever goes back to idle"
+      },
+      {
+        "id": "b",
+        "text": "Both levers advance to hold the speed"
+      },
+      {
+        "id": "c",
+        "text": "The live engine's lever retards"
+      },
+      {
+        "id": "d",
+        "text": "The autothrottle disengages"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Both thrust levers advance together to maintain the target speed.",
+    "tags": [
+      "speed mode",
+      "engine failure"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0031",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "N1 and speed modes",
+    "question": "What autothrottle approach speed is recommended in landing configuration?",
+    "options": [
+      {
+        "id": "a",
+        "text": "VREF + 20 kt"
+      },
+      {
+        "id": "b",
+        "text": "VREF + half the gust factor"
+      },
+      {
+        "id": "c",
+        "text": "VREF + 5 kt"
+      },
+      {
+        "id": "d",
+        "text": "VREF − 5 kt"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The A/T corrects for normal gusts through speed and acceleration sensing, so wind additives are not recommended; VREF + 5 is the setting. Higher settings give excessive approach speed.",
+    "tags": [
+      "speed mode",
+      "approach"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0032",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "N1 and speed modes",
+    "question": "In FMC SPD mode, where is the target speed shown?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By the speed cursors; MCP display blank"
+      },
+      {
+        "id": "b",
+        "text": "In the MCP speed window"
+      },
+      {
+        "id": "c",
+        "text": "On the FMS control unit's performance page only"
+      },
+      {
+        "id": "d",
+        "text": "It is not shown anywhere"
+      }
+    ],
+    "correct": "a",
+    "explanation": "In FMC SPD, commanded by the FMC in VNAV, the MCP display is blank and the cursors show the FMC speed. Thrust is limited to the N1 on the thrust mode annunciator.",
+    "tags": [
+      "fmc spd"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0033",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "N1 and speed modes",
+    "question": "Up to what thrust lever separation will the autothrottle try to equalise N1?",
+    "options": [
+      {
+        "id": "a",
+        "text": "20°"
+      },
+      {
+        "id": "b",
+        "text": "2°"
+      },
+      {
+        "id": "c",
+        "text": "10°"
+      },
+      {
+        "id": "d",
+        "text": "8°"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The A/T equalises N1 through individual lever control, limited to 8° of lever separation.",
+    "tags": [
+      "n1 equalisation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0034",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Arm and retard modes",
+    "question": "When is ARM annunciated for the autothrottle?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The switch is at ARM and no A/T mode is engaged"
+      },
+      {
+        "id": "b",
+        "text": "The autothrottle is holding speed"
+      },
+      {
+        "id": "c",
+        "text": "The autothrottle is retarding the levers to idle"
+      },
+      {
+        "id": "d",
+        "text": "The autothrottle has failed"
+      }
+    ],
+    "correct": "a",
+    "explanation": "ARM shows with the switch at ARM and no mode engaged; the levers can then be moved by hand without interference.",
+    "tags": [
+      "arm mode"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0035",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Arm and retard modes",
+    "question": "In which descents does the autothrottle annunciate RETARD?",
+    "options": [
+      {
+        "id": "a",
+        "text": "All descents, including manual"
+      },
+      {
+        "id": "b",
+        "text": "LVL CHG and VNAV descents"
+      },
+      {
+        "id": "c",
+        "text": "ILS approaches below 1500 ft only"
+      },
+      {
+        "id": "d",
+        "text": "V/S descents only"
+      }
+    ],
+    "correct": "b",
+    "explanation": "RETARD engages in LVL CHG and VNAV descents and changes to ARM when the levers reach the aft stop or are held from reaching it.",
+    "tags": [
+      "retard"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0036",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Arm and retard modes",
+    "question": "When does the landing flare RETARD engage?",
+    "options": [
+      {
+        "id": "a",
+        "text": "At 50 ft RA, on every landing"
+      },
+      {
+        "id": "b",
+        "text": "At touchdown"
+      },
+      {
+        "id": "c",
+        "text": "2½ s after FLARE, or 27 ft RA if sooner"
+      },
+      {
+        "id": "d",
+        "text": "At 100 ft RA"
+      }
+    ],
+    "correct": "c",
+    "explanation": "During landing, RETARD engages 2½ seconds after FLARE engagement or at 27 ft RA, whichever comes first.",
+    "tags": [
+      "retard",
+      "flare"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0037",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Arm and retard modes",
+    "question": "On a visual approach with landing flap and no ALT ACQ or ALT HOLD, when does RETARD engage?",
+    "options": [
+      {
+        "id": "a",
+        "text": "At 50 ft RA"
+      },
+      {
+        "id": "b",
+        "text": "It does not engage"
+      },
+      {
+        "id": "c",
+        "text": "At 27 ft RA"
+      },
+      {
+        "id": "d",
+        "text": "At touchdown"
+      }
+    ],
+    "correct": "c",
+    "explanation": "For a non-precision or visual approach with flaps 15 or more and the AFDS not in ALT ACQ or ALT HOLD, RETARD engages at 27 ft RA.",
+    "tags": [
+      "retard",
+      "visual approach"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0038",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Go-around mode",
+    "question": "When is the autothrottle go-around mode armed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Below 1500 ft, with the autopilot engaged in CMD"
+      },
+      {
+        "id": "b",
+        "text": "At any height with TO/GA pressed"
+      },
+      {
+        "id": "c",
+        "text": "On glide slope capture only"
+      },
+      {
+        "id": "d",
+        "text": "Below 2000 ft RA, with the switch at ARM"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The A/T GA mode arms below 2000 ft RA with the switch at ARM, with or without the AFDS engaged, and can be used until 2 s after touchdown.",
+    "tags": [
+      "go-around mode"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0039",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Go-around mode",
+    "question": "Pressing TO/GA once in an autothrottle go-around gives what thrust?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Reduced go-around thrust for 1000–2000 fpm"
+      },
+      {
+        "id": "b",
+        "text": "Full go-around thrust at once, for maximum climb"
+      },
+      {
+        "id": "c",
+        "text": "Maximum continuous thrust"
+      },
+      {
+        "id": "d",
+        "text": "Climb thrust"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The levers advance to reduced GA thrust, giving 1000–2000 fpm climb. A second press advances to the full GA N1 limit.",
+    "tags": [
+      "go-around mode",
+      "reduced thrust"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0040",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Go-around mode",
+    "question": "How is full go-around thrust selected?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By pressing the N1 switch"
+      },
+      {
+        "id": "b",
+        "text": "By pressing TO/GA a second time"
+      },
+      {
+        "id": "c",
+        "text": "By moving the levers to the stop"
+      },
+      {
+        "id": "d",
+        "text": "By disengaging the autopilot"
+      }
+    ],
+    "correct": "b",
+    "explanation": "After reaching reduced GA thrust, a second press of TO/GA signals the A/T to advance to the full go-around N1 limit.",
+    "tags": [
+      "go-around mode",
+      "full thrust"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0041",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Go-around mode",
+    "question": "In a single-engine flight director go-around, what thrust does the autothrottle set?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Maximum continuous thrust"
+      },
+      {
+        "id": "b",
+        "text": "The full N1 limit"
+      },
+      {
+        "id": "c",
+        "text": "Reduced go-around thrust"
+      },
+      {
+        "id": "d",
+        "text": "Climb thrust"
+      }
+    ],
+    "correct": "b",
+    "explanation": "With one engine the A/T increases thrust to the full N1 limit.",
+    "tags": [
+      "go-around mode",
+      "engine failure"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0042",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Go-around mode",
+    "question": "How can the autothrottle go-around mode be ended?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By a new pitch mode, or at ALT ACQ"
+      },
+      {
+        "id": "b",
+        "text": "Automatically at 1000 ft above the field elevation"
+      },
+      {
+        "id": "c",
+        "text": "Only by disengaging the autothrottle"
+      },
+      {
+        "id": "d",
+        "text": "By pressing TO/GA a third time"
+      }
+    ],
+    "correct": "a",
+    "explanation": "After reaching reduced or full GA thrust, selecting another AFDS pitch mode or ALT ACQ engaging ends the A/T GA mode.",
+    "tags": [
+      "go-around mode"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0043",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Disengage lights",
+    "question": "What does a flashing amber A/T disengage light indicate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The thrust levers are split by more than 10°"
+      },
+      {
+        "id": "b",
+        "text": "The autothrottle has disengaged"
+      },
+      {
+        "id": "c",
+        "text": "The red filament test is selected"
+      },
+      {
+        "id": "d",
+        "text": "Speed outside +10/−5 kt of target"
+      }
+    ],
+    "correct": "d",
+    "explanation": "In flight, flaps not up and in MCP SPD or FMC SPD, a flashing amber light shows the A/T is not holding speed within +10 or −5 kt of the command.",
+    "tags": [
+      "disengage light",
+      "speed error"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0044",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Disengage lights",
+    "question": "How do you extinguish the autothrottle warning after an automatic disengagement?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Press TO/GA"
+      },
+      {
+        "id": "b",
+        "text": "Move the thrust levers to idle"
+      },
+      {
+        "id": "c",
+        "text": "Press the A/T disengage switch"
+      },
+      {
+        "id": "d",
+        "text": "Engage the autopilot"
+      }
+    ],
+    "correct": "c",
+    "explanation": "After automatic disengagement, pressing the A/T disengage switch (or the light, or re-arming) extinguishes the warning.",
+    "tags": [
+      "disengage light"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0045",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Disengage lights",
+    "question": "How does the automatic test of the flashing amber function appear?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Flashing 2 s, off 2 s, flashing 2 s"
+      },
+      {
+        "id": "b",
+        "text": "Steady amber for 10 seconds, then off"
+      },
+      {
+        "id": "c",
+        "text": "Flashing red for 5 s"
+      },
+      {
+        "id": "d",
+        "text": "A single 1 s flash"
+      }
+    ],
+    "correct": "a",
+    "explanation": "With the A/T in a speed mode, more than 150 s after lift-off with flaps extended, the amber light flashes 2 s, goes out 2 s, then flashes 2 s.",
+    "tags": [
+      "disengage light",
+      "test"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0046",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Thrust mode annunciator",
+    "question": "Where is the thrust mode annunciator panel located in a typical system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "On the FMS control unit"
+      },
+      {
+        "id": "b",
+        "text": "On the glareshield, beside the mode control panel"
+      },
+      {
+        "id": "c",
+        "text": "On the overhead panel"
+      },
+      {
+        "id": "d",
+        "text": "Centre panel, above the N1 indicators"
+      }
+    ],
+    "correct": "d",
+    "explanation": "It sits on the centre instrument panel above the N1 indicators and shows the active N1 limit reference mode.",
+    "tags": [
+      "tma"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0047",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Thrust mode annunciator",
+    "question": "When is A/T LIM annunciated?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When take-off thrust is exceeded"
+      },
+      {
+        "id": "b",
+        "text": "When FMC N1 limits are invalid"
+      },
+      {
+        "id": "c",
+        "text": "When the autothrottle is limiting the speed to VMO"
+      },
+      {
+        "id": "d",
+        "text": "When the levers reach the forward stop"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A/T LIM appears when FMC N1 limits are invalid or either engine N1 is below 18%; the A/T computer then calculates a single N1 limit.",
+    "tags": [
+      "tma",
+      "a/t lim"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0048",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Flexible take-off",
+    "question": "What is the purpose of a flexible (reduced thrust) take-off?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To save time on a long runway"
+      },
+      {
+        "id": "b",
+        "text": "To increase the climb gradient"
+      },
+      {
+        "id": "c",
+        "text": "To reduce engine wear and extend engine life"
+      },
+      {
+        "id": "d",
+        "text": "To shorten the take-off distance on a long runway"
+      }
+    ],
+    "correct": "c",
+    "explanation": "When full power is not needed, as at light weight on a long runway, reduced power lowers engine wear and increases engine life.",
+    "tags": [
+      "flex take-off"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0049",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Flexible take-off",
+    "question": "How is reduced take-off thrust set with an autothrottle?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By selecting climb thrust on the runway"
+      },
+      {
+        "id": "b",
+        "text": "By reducing the take-off weight entered"
+      },
+      {
+        "id": "c",
+        "text": "By entering a higher assumed temperature"
+      },
+      {
+        "id": "d",
+        "text": "By entering a pressure altitude higher than the airfield's"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Selecting an assumed temperature higher than ambient makes the thrust computation produce a lower EPR or N1 limit.",
+    "tags": [
+      "flex take-off",
+      "assumed temperature"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0050",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Turbulence",
+    "question": "May the autothrottle be used in light to moderate turbulence?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only below 10 000 ft"
+      },
+      {
+        "id": "b",
+        "text": "No, it must be disengaged in any turbulence"
+      },
+      {
+        "id": "c",
+        "text": "Only in speed mode"
+      },
+      {
+        "id": "d",
+        "text": "Yes, unless performance is poor"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The A/T may stay engaged in light to moderate turbulence unless performance is poor. Expect more lever activity and speed excursions of 10–15 kt.",
+    "tags": [
+      "turbulence"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0051",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Turbulence",
+    "question": "Which speed excursions are expected with the autothrottle in moderate turbulence?",
+    "options": [
+      {
+        "id": "a",
+        "text": "10–15 kt"
+      },
+      {
+        "id": "b",
+        "text": "30–40 kt"
+      },
+      {
+        "id": "c",
+        "text": "None; it holds speed exactly"
+      },
+      {
+        "id": "d",
+        "text": "1–2 kt"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Increased thrust lever activity and airspeed excursions of 10 to 15 kt are to be expected. The A/T is not used in severe turbulence.",
+    "tags": [
+      "turbulence"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0052",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "FADEC",
+    "question": "What does FADEC stand for?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Flight and data engine computer"
+      },
+      {
+        "id": "b",
+        "text": "Full authority digital engine control"
+      },
+      {
+        "id": "c",
+        "text": "Fuel automatic digital electronic control"
+      },
+      {
+        "id": "d",
+        "text": "Full automatic display of engine conditions"
+      }
+    ],
+    "correct": "b",
+    "explanation": "FADEC provides complete engine management throughout all phases of flight.",
+    "tags": [
+      "fadec"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0053",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "FADEC",
+    "question": "Which of these is a FADEC function?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Pressurisation of the cabin"
+      },
+      {
+        "id": "b",
+        "text": "Over-speed protection of N1 and N2"
+      },
+      {
+        "id": "c",
+        "text": "Control of the aircraft's elevators"
+      },
+      {
+        "id": "d",
+        "text": "Navigation along the route"
+      }
+    ],
+    "correct": "b",
+    "explanation": "FADEC controls gas generation, protects engine limits (N1 and N2 over-speed), manages power, and runs automatic and manual start sequences.",
+    "tags": [
+      "fadec",
+      "functions"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0054",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "FADEC",
+    "question": "During a manual engine start, what does the FADEC do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It monitors the start passively"
+      },
+      {
+        "id": "b",
+        "text": "It controls ignition only"
+      },
+      {
+        "id": "c",
+        "text": "Nothing; it is switched off"
+      },
+      {
+        "id": "d",
+        "text": "It controls the whole start sequence automatically"
+      }
+    ],
+    "correct": "a",
+    "explanation": "In a manual start the FADEC passively monitors the start valve, fuel, ignition, N1, N2, fuel flow and EGT. In an automatic start it controls them.",
+    "tags": [
+      "fadec",
+      "start"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0055",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "FADEC",
+    "question": "Which is an advantage of FADEC?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It removes the need for thrust levers"
+      },
+      {
+        "id": "b",
+        "text": "It allows engines to run without fuel pumps"
+      },
+      {
+        "id": "c",
+        "text": "It saves fuel and improves engine life"
+      },
+      {
+        "id": "d",
+        "text": "It makes engine instruments unnecessary"
+      }
+    ],
+    "correct": "c",
+    "explanation": "FADEC reduces workload, protects engine limits, improves engine life and saves fuel and maintenance time.",
+    "tags": [
+      "fadec",
+      "advantages"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0056",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "FADEC",
+    "question": "How many FADEC channels does each engine have?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Four, two per spool"
+      },
+      {
+        "id": "b",
+        "text": "One"
+      },
+      {
+        "id": "c",
+        "text": "Three, voting two out of three for each engine"
+      },
+      {
+        "id": "d",
+        "text": "Two, one in control and one in standby"
+      }
+    ],
+    "correct": "d",
+    "explanation": "There are two FADEC channels per engine, one controlling and one on standby for redundancy.",
+    "tags": [
+      "fadec",
+      "channels"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0057",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "FADEC",
+    "question": "What powers the FADEC once the engine is above about 12% rpm?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The aircraft battery"
+      },
+      {
+        "id": "b",
+        "text": "The aircraft AC supply through the main bus"
+      },
+      {
+        "id": "c",
+        "text": "The APU generator"
+      },
+      {
+        "id": "d",
+        "text": "Its own internal magnetic alternator"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Each channel uses aircraft AC before and during the initial start, then its own magnetic alternator above about 12% engine rpm.",
+    "tags": [
+      "fadec",
+      "power"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0058",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "FADEC",
+    "question": "What does the fuel metering valve do in a FADEC system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Shuts off fuel in a fire"
+      },
+      {
+        "id": "b",
+        "text": "Turns FADEC orders into fuel flow"
+      },
+      {
+        "id": "c",
+        "text": "Measures the fan speed, N1, for the FADEC"
+      },
+      {
+        "id": "d",
+        "text": "Supplies fuel to the APU"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The FMV converts FADEC orders, through a torque motor and servo valve, into fuel flow. Its resolver sends position feedback, and a bypass valve keeps the pressure drop constant.",
+    "tags": [
+      "fadec",
+      "fmv"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0059",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "FADEC",
+    "question": "To hold a target N1, what does the FADEC allow to vary?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Fuel pressure only"
+      },
+      {
+        "id": "b",
+        "text": "N1, within ±10%"
+      },
+      {
+        "id": "c",
+        "text": "N2, within its minimum and maximum"
+      },
+      {
+        "id": "d",
+        "text": "EGT, without any limit being applied"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The FADEC computes the fuel flow to hold target N1, letting N2 vary between N2 min and N2 max, and adjusts N2/N1 for load, bleed demand and to avoid stalls or flameout.",
+    "tags": [
+      "fadec",
+      "n2"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0060",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Fixed thrust lever systems",
+    "question": "In a FADEC system with fixed detents, how are the thrust levers moved?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only manually"
+      },
+      {
+        "id": "b",
+        "text": "By the autopilot"
+      },
+      {
+        "id": "c",
+        "text": "By the FADEC"
+      },
+      {
+        "id": "d",
+        "text": "By autothrottle servos"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Unlike many autothrottle systems, the levers are only moved by hand. Their position goes to the FADEC, which computes the rating limit and N1.",
+    "tags": [
+      "thrust levers",
+      "detents"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0061",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Fixed thrust lever systems",
+    "question": "How many detents divide the thrust lever sector in such a system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Five, giving four segments"
+      },
+      {
+        "id": "b",
+        "text": "Six, giving five segments"
+      },
+      {
+        "id": "c",
+        "text": "Four, giving three segments"
+      },
+      {
+        "id": "d",
+        "text": "Three, giving two segments"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The sector is divided into four segments by five detents or stops. There is no reverse idle detent.",
+    "tags": [
+      "thrust levers",
+      "detents"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0062",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Fixed thrust lever systems",
+    "question": "With the thrust lever between two detents, which rating limit does the FADEC select?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Idle"
+      },
+      {
+        "id": "b",
+        "text": "The higher of the two"
+      },
+      {
+        "id": "c",
+        "text": "The average of the two"
+      },
+      {
+        "id": "d",
+        "text": "The lower of the two"
+      }
+    ],
+    "correct": "b",
+    "explanation": "In a detent, the FADEC selects that detent's limit; between two detents it selects the limit of the higher mode.",
+    "tags": [
+      "thrust rating limit"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0063",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Fixed thrust lever systems",
+    "question": "On the ground with the lever in FLX-MCT, when is flex take-off thrust selected?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only above 30°C ambient"
+      },
+      {
+        "id": "b",
+        "text": "Always, regardless of any entry in the MCDU"
+      },
+      {
+        "id": "c",
+        "text": "Only with the autothrust active"
+      },
+      {
+        "id": "d",
+        "text": "When a flex temperature above TAT is set"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Flex rating is selected if a flex temperature greater than the current TAT has been entered in the MCDU; otherwise MCT is selected.",
+    "tags": [
+      "flex",
+      "mct"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0064",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Fixed thrust lever systems",
+    "question": "After take-off, how is the rating changed from FLX to MCT?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Lever to idle and back"
+      },
+      {
+        "id": "b",
+        "text": "Pressing the autothrust button on the glareshield"
+      },
+      {
+        "id": "c",
+        "text": "Lever to TO/GA or CL, then back to MCT"
+      },
+      {
+        "id": "d",
+        "text": "Automatically at 1500 ft"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Moving the lever to TO/GA or CL and back to MCT changes FLX to MCT; flex cannot then be reselected.",
+    "tags": [
+      "flex",
+      "mct"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0065",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Fixed thrust lever systems",
+    "question": "In such a system, how is maximum take-off thrust always available?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By pushing the lever fully forward"
+      },
+      {
+        "id": "b",
+        "text": "By engaging autothrust"
+      },
+      {
+        "id": "c",
+        "text": "By pressing TO/GA twice"
+      },
+      {
+        "id": "d",
+        "text": "By selecting a lower flex temperature"
+      }
+    ],
+    "correct": "a",
+    "explanation": "MAX TO thrust is always available by pushing the thrust lever fully forward.",
+    "tags": [
+      "max take-off"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-AT-0066",
+    "subjectCode": "INST",
+    "topic": "28 Autothrottle",
+    "subtopic": "Fixed thrust lever systems",
+    "question": "In automatic (autothrust) mode, how is the thrust limited?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To idle, until the pilot moves the thrust lever"
+      },
+      {
+        "id": "b",
+        "text": "To the FMGC value, with no limit"
+      },
+      {
+        "id": "c",
+        "text": "To maximum take-off thrust always"
+      },
+      {
+        "id": "d",
+        "text": "To the lever position's value, except alpha floor"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The FMGC computes the thrust, limited to the value corresponding to the lever position, unless alpha floor protection is active.",
+    "tags": [
+      "autothrust",
+      "alpha floor"
+    ],
+    "status": "published",
+    "version": 1
+  }
+]

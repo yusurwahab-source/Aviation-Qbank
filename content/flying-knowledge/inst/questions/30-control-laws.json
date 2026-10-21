@@ -1,0 +1,1424 @@
+[
+  {
+    "id": "INST-CLAW-0001",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Introduction",
+    "question": "How should the size of an autopilot's response relate to the deviation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Always the minimum possible, to keep the ride smooth"
+      },
+      {
+        "id": "b",
+        "text": "In proportion to the deviation, up to a safe limit"
+      },
+      {
+        "id": "c",
+        "text": "Fixed, whatever the deviation"
+      },
+      {
+        "id": "d",
+        "text": "Always the maximum, to correct quickly"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The control response is in proportion to the deviation or correction needed, but only up to a limit that keeps the aircraft inside the safe flight envelope.",
+    "tags": [
+      "control laws"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0002",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Introduction",
+    "question": "A light aircraft needs an 80° turn at a waypoint. Which bank angle would a sensible pilot, or autopilot, use?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 10°"
+      },
+      {
+        "id": "b",
+        "text": "About 5°"
+      },
+      {
+        "id": "c",
+        "text": "About 90°, for the quickest turn"
+      },
+      {
+        "id": "d",
+        "text": "About 30–45°"
+      }
+    ],
+    "correct": "d",
+    "explanation": "5° would take far too long and 90° would be excessive, risking the load factor limit and height loss. A 30–45° bank is sensible; for a 10° turn even 30° would be harsh.",
+    "tags": [
+      "control laws",
+      "bank"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0003",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Introduction",
+    "question": "Why must an autopilot be able to use a good part of the aircraft's performance?",
+    "options": [
+      {
+        "id": "a",
+        "text": "So that it can exceed the limits in an emergency"
+      },
+      {
+        "id": "b",
+        "text": "To save fuel in every manoeuvre"
+      },
+      {
+        "id": "c",
+        "text": "Otherwise its manoeuvres would take too long"
+      },
+      {
+        "id": "d",
+        "text": "So that the pilot can take over more easily"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The autopilot must not break limits, but it must use a satisfactory amount of performance, or manoeuvres would take too long to complete.",
+    "tags": [
+      "control laws"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0004",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Command speed limiting",
+    "question": "Which limit speeds does command speed limiting protect?",
+    "options": [
+      {
+        "id": "a",
+        "text": "VMO/MMO, flap and gear limits, and minimum speed"
+      },
+      {
+        "id": "b",
+        "text": "V1, VR and V2 only"
+      },
+      {
+        "id": "c",
+        "text": "VREF and VAPP only"
+      },
+      {
+        "id": "d",
+        "text": "The tyre speed and brake energy limits"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The AFS provides speed, pitch and thrust commands to avoid exceeding VMO/MMO, flap and gear limiting speeds and the minimum speed.",
+    "tags": [
+      "speed limiting"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0005",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Command speed limiting",
+    "question": "Is command speed limiting the same as the stall and overspeed warnings?",
+    "options": [
+      {
+        "id": "a",
+        "text": "No, it is independent of them"
+      },
+      {
+        "id": "b",
+        "text": "Yes, it replaces the stick shaker"
+      },
+      {
+        "id": "c",
+        "text": "Only above FL250"
+      },
+      {
+        "id": "d",
+        "text": "Yes, it uses the same warning"
+      }
+    ],
+    "correct": "a",
+    "explanation": "AFS command limiting and reversion is independent of the stall warning and the airspeed/Mach warning systems.",
+    "tags": [
+      "speed limiting"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0006",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Command speed limiting",
+    "question": "Can a speed above VMO/MMO be selected on the MCP?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes, with the autothrottle off"
+      },
+      {
+        "id": "b",
+        "text": "Yes, but it is not flown"
+      },
+      {
+        "id": "c",
+        "text": "Only in VNAV"
+      },
+      {
+        "id": "d",
+        "text": "No"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Speeds above VMO/MMO cannot be selected on the MCP. Speeds above flap and gear limits, or below the minimum speed, can be selected but are not flown.",
+    "tags": [
+      "speed limiting",
+      "vmo"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0007",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Command speed limiting",
+    "question": "On what is the AFS minimum speed based?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Airspeed, fixed at VREF"
+      },
+      {
+        "id": "b",
+        "text": "Angle of attack, about 1.3 VS for the flap setting"
+      },
+      {
+        "id": "c",
+        "text": "Pitch attitude and thrust setting"
+      },
+      {
+        "id": "d",
+        "text": "Ground speed and wind"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Minimum speed is based on angle of attack, sensed by vanes either side of the forward fuselage, and is about 1.3 VS for the current flap configuration.",
+    "tags": [
+      "minimum speed"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0008",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Command speed limiting",
+    "question": "Where are the angle of attack vanes for minimum speed typically fitted?",
+    "options": [
+      {
+        "id": "a",
+        "text": "On the fin"
+      },
+      {
+        "id": "b",
+        "text": "On the wing tips"
+      },
+      {
+        "id": "c",
+        "text": "Either side of the forward fuselage"
+      },
+      {
+        "id": "d",
+        "text": "Inside the engine intakes, on the fan cowls"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The angle of attack is sensed by vanes, one on either side of the forward fuselage.",
+    "tags": [
+      "minimum speed",
+      "aoa vanes"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0009",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Command speed limiting",
+    "question": "A speed above a placard limit is selected. What does the AFS do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Accelerates to just short of the limit, then holds the limit"
+      },
+      {
+        "id": "b",
+        "text": "Accelerates to the selected speed regardless of the limit"
+      },
+      {
+        "id": "c",
+        "text": "Ignores the selection entirely"
+      },
+      {
+        "id": "d",
+        "text": "Disengages the autopilot"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The AFS accelerates or decelerates to slightly short of the limit, then commands the limit speed, and the over-speed symbol appears in the MCP speed display.",
+    "tags": [
+      "speed limiting"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0010",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Command speed limiting",
+    "question": "To remove the under-speed limiting symbol, how far above the minimum speed must the selected speed be?",
+    "options": [
+      {
+        "id": "a",
+        "text": "10 kt"
+      },
+      {
+        "id": "b",
+        "text": "30 kt"
+      },
+      {
+        "id": "c",
+        "text": "15 kt"
+      },
+      {
+        "id": "d",
+        "text": "5 kt"
+      }
+    ],
+    "correct": "c",
+    "explanation": "A speed 15 kt greater than the minimum speed must be selected to remove the under-speed symbol.",
+    "tags": [
+      "minimum speed"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0011",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Reversion modes",
+    "question": "Why do reversion modes exist?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To swap autopilot channels after a fault"
+      },
+      {
+        "id": "b",
+        "text": "To return the aircraft to its departure airport after a failure"
+      },
+      {
+        "id": "c",
+        "text": "To reverse thrust after landing"
+      },
+      {
+        "id": "d",
+        "text": "The engaged mode may not be able to hold a limit speed"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Speed control by the AFDS or A/T alone may not prevent exceeding a limit speed, so the modes revert automatically to a more effective combination.",
+    "tags": [
+      "reversion"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0012",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Reversion modes",
+    "question": "When does mode reversion occur?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Exactly at the limit speed"
+      },
+      {
+        "id": "b",
+        "text": "Slightly before the limit speed is reached"
+      },
+      {
+        "id": "c",
+        "text": "10 kt after exceeding the limit"
+      },
+      {
+        "id": "d",
+        "text": "Only when the stick shaker has started to operate"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Mode reversion occurs slightly before the limit speed is reached, so the aircraft does not exceed it.",
+    "tags": [
+      "reversion"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0013",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Reversion modes",
+    "question": "A placard limit is reached, the A/T is armed but neither system is controlling speed. What happens?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The A/T reverts to SPEED mode and holds the limit"
+      },
+      {
+        "id": "b",
+        "text": "The autopilot disengages"
+      },
+      {
+        "id": "c",
+        "text": "The autopilot reverts to LVL CHG for the climb"
+      },
+      {
+        "id": "d",
+        "text": "The flaps retract automatically"
+      }
+    ],
+    "correct": "a",
+    "explanation": "If not in AFDS or A/T speed control and the A/T is armed, the A/T reverts to SPEED and controls to the placard limit.",
+    "tags": [
+      "reversion",
+      "placard"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0014",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Reversion modes",
+    "question": "With the A/T unavailable, which placard limit reversion is still provided?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The AFDS protects the flap placard limits only"
+      },
+      {
+        "id": "b",
+        "text": "The AFDS reverts to speed control for VMO/MMO"
+      },
+      {
+        "id": "c",
+        "text": "The AFDS protects the gear limits only"
+      },
+      {
+        "id": "d",
+        "text": "None at all"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Without the A/T there is no reversion for gear or flap placards, but the AFDS reverts to speed control for VMO/MMO limiting.",
+    "tags": [
+      "reversion",
+      "placard"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0015",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Reversion modes",
+    "question": "Which speed becomes the AFS commanded speed near the minimum speed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The lowest of the minimum, FMC and selected speeds"
+      },
+      {
+        "id": "b",
+        "text": "The selected speed always"
+      },
+      {
+        "id": "c",
+        "text": "The highest of minimum, FMC and selected speed"
+      },
+      {
+        "id": "d",
+        "text": "The FMC speed always"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The AFDS and A/T never control to below the minimum speed. Whichever of minimum, FMC or selected speed is highest becomes the command.",
+    "tags": [
+      "reversion",
+      "minimum speed"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0016",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Reversion modes",
+    "question": "Operating in V/S, the speed falls to the minimum speed. To which mode does the AFDS revert?",
+    "options": [
+      {
+        "id": "a",
+        "text": "VNAV"
+      },
+      {
+        "id": "b",
+        "text": "ALT HOLD"
+      },
+      {
+        "id": "c",
+        "text": "HDG SEL"
+      },
+      {
+        "id": "d",
+        "text": "LVL CHG"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The under-speed symbol appears and in V/S mode the AFDS reverts to level change, so speed is protected by pitch.",
+    "tags": [
+      "reversion",
+      "minimum speed"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0017",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Reversion modes",
+    "question": "Under minimum speed reversion, what speed does the AFS command?",
+    "options": [
+      {
+        "id": "a",
+        "text": "VREF + 20 kt"
+      },
+      {
+        "id": "b",
+        "text": "Exactly minimum speed"
+      },
+      {
+        "id": "c",
+        "text": "5 kt above minimum speed"
+      },
+      {
+        "id": "d",
+        "text": "15 kt above minimum speed"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The AFS commands a speed 5 kt above minimum. Selecting 15 kt above minimum restores normal MCP speed selection.",
+    "tags": [
+      "reversion",
+      "minimum speed"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0018",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Reversion modes",
+    "question": "In minimum speed reversion with the thrust levers not advanced, how does the AFDS increase speed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By commanding nose-down pitch"
+      },
+      {
+        "id": "b",
+        "text": "By extending the flaps"
+      },
+      {
+        "id": "c",
+        "text": "By rolling the wings level"
+      },
+      {
+        "id": "d",
+        "text": "By disengaging the autopilot and warning the crew"
+      }
+    ],
+    "correct": "a",
+    "explanation": "If the levers are not advanced, the AFDS commands nose-down pitch to gain airspeed.",
+    "tags": [
+      "reversion",
+      "minimum speed"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0019",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Reversion modes",
+    "question": "When is no minimum speed reversion available?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A/T on, in a LVL CHG climb at any level"
+      },
+      {
+        "id": "b",
+        "text": "Above FL250 in any mode"
+      },
+      {
+        "id": "c",
+        "text": "Whenever VNAV is engaged"
+      },
+      {
+        "id": "d",
+        "text": "A/T off with ALT HOLD, ALT ACQ or after G/S capture"
+      }
+    ],
+    "correct": "d",
+    "explanation": "With the A/T off and the AFDS in ALT HOLD, ALT ACQ or after glide slope capture, there is no minimum speed reversion; nothing can trade pitch for speed.",
+    "tags": [
+      "reversion",
+      "minimum speed"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0020",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Reversion modes",
+    "question": "In a LVL CHG climb at minimum speed, what happens if the minimum climb rate cannot be held without slowing?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The autothrottle reduces thrust"
+      },
+      {
+        "id": "b",
+        "text": "The A/P disengages and the FD bars retract"
+      },
+      {
+        "id": "c",
+        "text": "The autopilot reverts to ALT HOLD at the present level"
+      },
+      {
+        "id": "d",
+        "text": "The flaps extend automatically"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The autopilot disengages and the flight director bars retract, leaving the pilot to recover.",
+    "tags": [
+      "reversion",
+      "minimum speed"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0021",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Flight envelope protection",
+    "question": "Which aircraft take flight envelope protection furthest?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Light piston aircraft"
+      },
+      {
+        "id": "b",
+        "text": "Aircraft with cable controls"
+      },
+      {
+        "id": "c",
+        "text": "Aircraft without an autopilot"
+      },
+      {
+        "id": "d",
+        "text": "Fly-by-wire aircraft"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Fly-by-wire aircraft take envelope protection to the extreme, aiming to keep the aircraft within the normal envelope in all phases of flight.",
+    "tags": [
+      "envelope protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0022",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Flight envelope protection",
+    "question": "Which of these is an extreme situation the protection is designed for?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Windshear"
+      },
+      {
+        "id": "b",
+        "text": "Taxiing in a crosswind"
+      },
+      {
+        "id": "c",
+        "text": "A normal approach"
+      },
+      {
+        "id": "d",
+        "text": "A routine cruise climb"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Protection prevents envelope violation in windshear, very high turbulence, collision avoidance, GPWS or TCAS manoeuvres, and crew mismanagement.",
+    "tags": [
+      "envelope protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0023",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Flight envelope protection",
+    "question": "What is one purpose of flight envelope protection?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To hand control to the autopilot in emergencies"
+      },
+      {
+        "id": "b",
+        "text": "To prevent the pilot from making any large control input at all"
+      },
+      {
+        "id": "c",
+        "text": "To give the pilot full authority for best performance"
+      },
+      {
+        "id": "d",
+        "text": "To limit the aircraft to 15° of bank"
+      }
+    ],
+    "correct": "c",
+    "explanation": "It gives the pilot full authority to achieve the best possible performance in extreme conditions, reduces overcontrol risk, and makes the recovery easy and instinctive.",
+    "tags": [
+      "envelope protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0024",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Flight envelope protection",
+    "question": "Which parameters are protected?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cabin altitude and temperature only"
+      },
+      {
+        "id": "b",
+        "text": "Angle of attack, speed, pitch, bank and load factor"
+      },
+      {
+        "id": "c",
+        "text": "Fuel, oil, hydraulics and electrics"
+      },
+      {
+        "id": "d",
+        "text": "Heading, track, altitude and present position"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The protection keeps the aircraft from exceeding limits of angle of attack, speed, pitch attitude, bank angle and load factor.",
+    "tags": [
+      "envelope protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0025",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "High angle of attack",
+    "question": "In an emergency pull-up with high angle of attack protection, what is the technique?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Pull gently to the stick shaker"
+      },
+      {
+        "id": "b",
+        "text": "Push forward, then pull smoothly"
+      },
+      {
+        "id": "c",
+        "text": "Snatch the stick fully back"
+      },
+      {
+        "id": "d",
+        "text": "Hold the stick neutral and add thrust only"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The protection allows a rapid pull-up at maximum angle of attack without overcontrol: the pilot simply pulls the stick fully back.",
+    "tags": [
+      "high aoa protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0026",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "High angle of attack",
+    "question": "How is the pilot made aware that the normal envelope has been exceeded?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Pitch auto-trim stops and aft stick pressure is needed"
+      },
+      {
+        "id": "b",
+        "text": "The autopilot disconnects"
+      },
+      {
+        "id": "c",
+        "text": "The ailerons lock"
+      },
+      {
+        "id": "d",
+        "text": "A red light on the glareshield and a chime"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The pitch auto-trim stops and aft stick pressure is required to hold the flight path, which tells the pilot at once.",
+    "tags": [
+      "high aoa protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0027",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "High angle of attack",
+    "question": "At which angle of attack is TOGA thrust applied automatically?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The stall angle"
+      },
+      {
+        "id": "b",
+        "text": "Alpha max"
+      },
+      {
+        "id": "c",
+        "text": "Zero angle of attack, in level flight"
+      },
+      {
+        "id": "d",
+        "text": "Alpha floor, before alpha max"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Thrust is needed to hold the flight path, so the autothrust applies TOGA thrust at a set angle of attack, alpha floor, before alpha max is reached.",
+    "tags": [
+      "alpha floor"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0028",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "High angle of attack",
+    "question": "Where is the output of high angle of attack protection applied?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The ailerons and the rudder together"
+      },
+      {
+        "id": "b",
+        "text": "The elevators and the autothrust"
+      },
+      {
+        "id": "c",
+        "text": "The flaps and slats"
+      },
+      {
+        "id": "d",
+        "text": "The spoilers only"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The input is angle of attack and the output goes to the elevators and to the autothrust.",
+    "tags": [
+      "high aoa protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0029",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "High angle of attack",
+    "question": "In a fly-by-wire aircraft with the autothrust off, when can it apply TOGA thrust by itself?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Whenever the gear is lowered"
+      },
+      {
+        "id": "b",
+        "text": "At alpha floor"
+      },
+      {
+        "id": "c",
+        "text": "At 1000 ft on the approach"
+      },
+      {
+        "id": "d",
+        "text": "At VMO"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Alpha floor protection applies TOGA thrust automatically at high angle of attack, even if the autothrust was not active.",
+    "tags": [
+      "alpha floor"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0030",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "High speed",
+    "question": "How does high speed protection stop the aircraft reaching VD/MD?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It adds a nose-up g demand proportional to the overspeed"
+      },
+      {
+        "id": "b",
+        "text": "It cuts the engines to idle"
+      },
+      {
+        "id": "c",
+        "text": "It extends the speed brakes fully"
+      },
+      {
+        "id": "d",
+        "text": "It locks the stick in the neutral position until speed falls"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Beyond VMO/MMO it adds a positive nose-up g demand to the pilot's stick demand, in proportion to the overspeed, so a steep dive cannot exceed the design limits.",
+    "tags": [
+      "high speed protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0031",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "High speed",
+    "question": "What is the input to the high speed protection?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Load factor from the accelerometers"
+      },
+      {
+        "id": "b",
+        "text": "Pitch angle from the attitude gyros"
+      },
+      {
+        "id": "c",
+        "text": "Angle of attack from the vanes"
+      },
+      {
+        "id": "d",
+        "text": "Airspeed and Mach from the ADC"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The input is airspeed and Mach number from the air data computer; the output goes to the elevators.",
+    "tags": [
+      "high speed protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0032",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Pitch and bank",
+    "question": "What are the pitch attitude limits in a typical fly-by-wire system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "45° nose-up and 45° nose-down"
+      },
+      {
+        "id": "b",
+        "text": "15° nose-up and 30° nose-down"
+      },
+      {
+        "id": "c",
+        "text": "30° nose-up and 15° nose-down"
+      },
+      {
+        "id": "d",
+        "text": "20° nose-up and 10° nose-down"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Pitch attitude protection reduces the stick's pitch demand at 30° nose-up and 15° nose-down.",
+    "tags": [
+      "pitch protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0033",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Pitch and bank",
+    "question": "In which aeroplanes are pitch attitude and bank angle protections available?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Light aircraft only"
+      },
+      {
+        "id": "b",
+        "text": "Fly-by-wire aeroplanes only"
+      },
+      {
+        "id": "c",
+        "text": "Any aeroplane with a yaw damper"
+      },
+      {
+        "id": "d",
+        "text": "All aeroplanes with an autopilot"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Pitch and bank protections are only available in fly-by-wire aeroplanes, because they act on the pilot's own stick demand.",
+    "tags": [
+      "pitch protection",
+      "bank protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0034",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Pitch and bank",
+    "question": "What is the bank angle limit in the normal envelope in a typical fly-by-wire aircraft?",
+    "options": [
+      {
+        "id": "a",
+        "text": "67°"
+      },
+      {
+        "id": "b",
+        "text": "45°"
+      },
+      {
+        "id": "c",
+        "text": "33°"
+      },
+      {
+        "id": "d",
+        "text": "30°"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The limits are 67° in the normal envelope, 45° when high angle of attack protection is active and 40° with high speed protection active.",
+    "tags": [
+      "bank protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0035",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Pitch and bank",
+    "question": "With high angle of attack protection triggered, what is the bank limit?",
+    "options": [
+      {
+        "id": "a",
+        "text": "67°"
+      },
+      {
+        "id": "b",
+        "text": "40°"
+      },
+      {
+        "id": "c",
+        "text": "33°"
+      },
+      {
+        "id": "d",
+        "text": "45°"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The bank limit is 45° with high angle of attack protection triggered, 40° with high speed protection and 67° normally.",
+    "tags": [
+      "bank protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0036",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Pitch and bank",
+    "question": "With high speed protection triggered, what is the bank limit?",
+    "options": [
+      {
+        "id": "a",
+        "text": "67°"
+      },
+      {
+        "id": "b",
+        "text": "33°"
+      },
+      {
+        "id": "c",
+        "text": "40°"
+      },
+      {
+        "id": "d",
+        "text": "45°"
+      }
+    ],
+    "correct": "c",
+    "explanation": "In high speed protection the bank angle is limited to 40°.",
+    "tags": [
+      "bank protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0037",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Pitch and bank",
+    "question": "After a steep roll, the pilot releases the stick. To what bank does the aircraft return?",
+    "options": [
+      {
+        "id": "a",
+        "text": "0°"
+      },
+      {
+        "id": "b",
+        "text": "15°"
+      },
+      {
+        "id": "c",
+        "text": "67°"
+      },
+      {
+        "id": "d",
+        "text": "33°"
+      }
+    ],
+    "correct": "d",
+    "explanation": "If the pilot releases the stick beyond the normal bank range, the aircraft returns to 33° of bank.",
+    "tags": [
+      "bank protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0038",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Pitch and bank",
+    "question": "How is the bank angle limit achieved?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The spoilers are retracted"
+      },
+      {
+        "id": "b",
+        "text": "The ailerons are locked at the bank limit"
+      },
+      {
+        "id": "c",
+        "text": "The roll rate demand is reduced progressively as bank increases"
+      },
+      {
+        "id": "d",
+        "text": "The rudder opposes the roll"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The roll rate demand is progressively reduced as the bank angle increases, so the limit is reached smoothly.",
+    "tags": [
+      "bank protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0039",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Load factor",
+    "question": "How is load factor sensed for protection?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By accelerometers"
+      },
+      {
+        "id": "b",
+        "text": "By strain gauges on the wings"
+      },
+      {
+        "id": "c",
+        "text": "By the angle of attack vanes"
+      },
+      {
+        "id": "d",
+        "text": "By the air data computer"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Load factor protection senses g with accelerometers and keeps the aircraft within its structural limits while allowing an immediate evasive manoeuvre.",
+    "tags": [
+      "load factor protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0040",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Load factor",
+    "question": "In a typical fly-by-wire aircraft with flaps up, what are the protected load factor limits?",
+    "options": [
+      {
+        "id": "a",
+        "text": "+2.0 g and 0 g"
+      },
+      {
+        "id": "b",
+        "text": "+2.5 g and −1 g"
+      },
+      {
+        "id": "c",
+        "text": "+3.8 g and −1.5 g"
+      },
+      {
+        "id": "d",
+        "text": "+4.4 g and −1.76 g"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Typical limits are +2.5 g to −1 g with flaps up and +2 g to 0 g with flaps extended, matching the large aeroplane manoeuvring limits.",
+    "tags": [
+      "load factor protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0041",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Load factor",
+    "question": "To which other protection is load factor protection linked?",
+    "options": [
+      {
+        "id": "a",
+        "text": "High speed protection only"
+      },
+      {
+        "id": "b",
+        "text": "Bank angle protection only"
+      },
+      {
+        "id": "c",
+        "text": "Pitch attitude protection only, in normal law"
+      },
+      {
+        "id": "d",
+        "text": "High angle of attack protection"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Load factor protection is linked to the high angle of attack protection, so the pull-up is limited by whichever is reached first.",
+    "tags": [
+      "load factor protection"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0042",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Gain adaption",
+    "question": "How does autopilot gain scheduling change during an autoland?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The roll channel is switched off completely at 1500 ft"
+      },
+      {
+        "id": "b",
+        "text": "Pitch and roll authority is reduced near the ground"
+      },
+      {
+        "id": "c",
+        "text": "Authority is increased near the ground"
+      },
+      {
+        "id": "d",
+        "text": "Authority stays constant to touchdown"
+      }
+    ],
+    "correct": "b",
+    "explanation": "As in the flight director, autopilot authority is significantly reduced as the aircraft nears the ground during an autoland.",
+    "tags": [
+      "gain adaption"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0043",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Gain adaption",
+    "question": "An autopilot limits bank to 45° in its manual modes. What might it be on an automatic approach's final phase?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 30°"
+      },
+      {
+        "id": "b",
+        "text": "About 67°"
+      },
+      {
+        "id": "c",
+        "text": "About 15°"
+      },
+      {
+        "id": "d",
+        "text": "About 45°"
+      }
+    ],
+    "correct": "c",
+    "explanation": "For example, 45° in manual modes, 30° for VOR or localizer tracking, and 15° in the final phase of an automatic approach or autoland.",
+    "tags": [
+      "gain adaption",
+      "bank"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-CLAW-0044",
+    "subjectCode": "INST",
+    "topic": "30 Control Laws",
+    "subtopic": "Gain adaption",
+    "question": "Why is an ADC input used to reduce autopilot authority in proportion to dynamic pressure?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The autopilot could ignore artificial feel and overstress the aircraft"
+      },
+      {
+        "id": "b",
+        "text": "To set the pitch trim at take-off"
+      },
+      {
+        "id": "c",
+        "text": "To increase the autopilot's authority at high speed"
+      },
+      {
+        "id": "d",
+        "text": "To schedule the yaw damper only"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Pilots feel artificial feel forces but the autopilot does not, so authority is reduced in proportion to Q to avoid overstress.",
+    "tags": [
+      "gain adaption",
+      "q"
+    ],
+    "status": "published",
+    "version": 1
+  }
+]

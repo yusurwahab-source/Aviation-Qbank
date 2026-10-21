@@ -1,0 +1,692 @@
+[
+  {
+    "id": "INST-RA-0001",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Principle",
+    "question": "What does a radio altimeter measure?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Pressure altitude above the 1013 hPa level"
+      },
+      {
+        "id": "b",
+        "text": "Height above the surface below"
+      },
+      {
+        "id": "c",
+        "text": "Height above mean sea level"
+      },
+      {
+        "id": "d",
+        "text": "Height above the departure aerodrome"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The radio altimeter times a radio signal reflected from the ground, so it gives the true height above the terrain or sea directly beneath, not a pressure height.",
+    "tags": [
+      "radio altimeter"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0002",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Principle",
+    "question": "On what principle does a typical aircraft radio altimeter work?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Phase comparison of two fixed signals"
+      },
+      {
+        "id": "b",
+        "text": "Pulse timing like a primary radar"
+      },
+      {
+        "id": "c",
+        "text": "Frequency-modulated continuous wave"
+      },
+      {
+        "id": "d",
+        "text": "Doppler shift of a pulsed beam"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The transmitter sends a continuous wave whose frequency is swept up and down. By the time the echo returns the transmitted frequency has changed, and the difference is proportional to height.",
+    "tags": [
+      "radio altimeter",
+      "fmcw"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0003",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Principle",
+    "question": "How does an FMCW radio altimeter turn the received signal into a height?",
+    "options": [
+      {
+        "id": "a",
+        "text": "From the frequency difference"
+      },
+      {
+        "id": "b",
+        "text": "From the strength of the signal returned from the ground"
+      },
+      {
+        "id": "c",
+        "text": "From the phase of the returned pulse"
+      },
+      {
+        "id": "d",
+        "text": "From the time between two pulses"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Because the frequency sweeps steadily, the echo arrives back at a frequency that was transmitted earlier. The frequency difference is a measure of the round-trip time and so of height.",
+    "tags": [
+      "radio altimeter",
+      "frequency difference"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0004",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Frequencies",
+    "question": "In which band does the modern radio altimeter operate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The VHF band, 108–118 MHz"
+      },
+      {
+        "id": "b",
+        "text": "The UHF band, 1600–1660 MHz"
+      },
+      {
+        "id": "c",
+        "text": "The HF band, 2–30 MHz"
+      },
+      {
+        "id": "d",
+        "text": "The SHF band, 4200–4400 MHz"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Only the SHF band, 4200 to 4400 MHz, is used today. A UHF band of 1600–1660 MHz was used in the past.",
+    "tags": [
+      "radio altimeter",
+      "frequency"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0005",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Frequencies",
+    "question": "Which frequency band was used by some radio altimeters in the past but is no longer used?",
+    "options": [
+      {
+        "id": "a",
+        "text": "962–1213 MHz, UHF"
+      },
+      {
+        "id": "b",
+        "text": "1600–1660 MHz, UHF"
+      },
+      {
+        "id": "c",
+        "text": "9300–9500 MHz, SHF"
+      },
+      {
+        "id": "d",
+        "text": "4200–4400 MHz, SHF"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Two bands have been used: 1600–1660 MHz (UHF) in the past, and 4200–4400 MHz (SHF), the only one in use now.",
+    "tags": [
+      "radio altimeter",
+      "frequency"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0006",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Frequencies",
+    "question": "By how much, and how often, is the radio altimeter carrier frequency swept?",
+    "options": [
+      {
+        "id": "a",
+        "text": "±50 MHz, once a second"
+      },
+      {
+        "id": "b",
+        "text": "±500 MHz, 3000 times a second"
+      },
+      {
+        "id": "c",
+        "text": "±50 MHz, 300 times a second"
+      },
+      {
+        "id": "d",
+        "text": "±5 MHz, 30 times a second"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The carrier is swept automatically through ±50 MHz 300 times a second.",
+    "tags": [
+      "radio altimeter",
+      "sweep"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0007",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Frequencies",
+    "question": "Why must the radio altimeter frequency sweep be wide?",
+    "options": [
+      {
+        "id": "a",
+        "text": "So that a very short delay still gives a usable difference"
+      },
+      {
+        "id": "b",
+        "text": "So that the signal is not reflected back by cloud or heavy rain below"
+      },
+      {
+        "id": "c",
+        "text": "So that the altimeter can reach 50 000 ft"
+      },
+      {
+        "id": "d",
+        "text": "So that it does not interfere with the VOR"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Close to the ground the echo returns almost at once. A wide sweep makes the frequency change during that short time large enough to measure.",
+    "tags": [
+      "radio altimeter",
+      "sweep"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0008",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Antennas and beam",
+    "question": "What type of antenna transmits the radio altimeter signal?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A dish behind the nose radome"
+      },
+      {
+        "id": "b",
+        "text": "A wire loop in the tail cone"
+      },
+      {
+        "id": "c",
+        "text": "A blade on top of the fuselage"
+      },
+      {
+        "id": "d",
+        "text": "A flush horn facing down"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The signal is sent downwards from a flush-mounted horn antenna under the fuselage.",
+    "tags": [
+      "radio altimeter",
+      "antenna"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0009",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Antennas and beam",
+    "question": "Why is the radio altimeter beam made wide?",
+    "options": [
+      {
+        "id": "a",
+        "text": "So that the weather radar is not affected"
+      },
+      {
+        "id": "b",
+        "text": "So that it reflects from cloud tops"
+      },
+      {
+        "id": "c",
+        "text": "So that some energy still goes straight down"
+      },
+      {
+        "id": "d",
+        "text": "So that it can also measure the distance to terrain ahead"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The conical or elliptical beam is wide enough that part of it always travels vertically, even at about ±30° of pitch and ±60° of roll.",
+    "tags": [
+      "radio altimeter",
+      "beam"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0010",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Antennas and beam",
+    "question": "Within about what attitudes does the radio altimeter beam still cover the vertical?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About ±5° of pitch and ±10° of roll"
+      },
+      {
+        "id": "b",
+        "text": "About ±30° of pitch and ±60° of roll"
+      },
+      {
+        "id": "c",
+        "text": "Any attitude, including inverted"
+      },
+      {
+        "id": "d",
+        "text": "About ±60° of pitch and ±30° of roll"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The beam is wide enough to keep a vertical path for pitch angles of about ±30° and roll angles of about ±60°.",
+    "tags": [
+      "radio altimeter",
+      "beam"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0011",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Antennas and beam",
+    "question": "Which return does the radio altimeter use to determine height?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The shortest path, straight down"
+      },
+      {
+        "id": "b",
+        "text": "The average of all the echoes in the beam"
+      },
+      {
+        "id": "c",
+        "text": "The strongest echo, wherever it comes from"
+      },
+      {
+        "id": "d",
+        "text": "The echo from directly ahead"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The height is taken from the shortest path to the ground, which is always vertically below the aircraft.",
+    "tags": [
+      "radio altimeter"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0012",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Antennas and beam",
+    "question": "Why does the radio altimeter need a separate receive antenna?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The receive frequency is in a different band from the transmitter"
+      },
+      {
+        "id": "b",
+        "text": "The receive antenna must face upwards"
+      },
+      {
+        "id": "c",
+        "text": "The transmit antenna is too small to receive"
+      },
+      {
+        "id": "d",
+        "text": "It transmits continuously"
+      }
+    ],
+    "correct": "d",
+    "explanation": "With a continuous transmission, the receiver cannot use the transmitting antenna. A similar antenna is used, far enough away to avoid interference from the transmitter.",
+    "tags": [
+      "radio altimeter",
+      "antenna"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0013",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Antennas and beam",
+    "question": "Why is the radio altimeter receive antenna placed some distance from the transmit antenna?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To measure the aircraft's pitch angle"
+      },
+      {
+        "id": "b",
+        "text": "To allow the beam to be steered"
+      },
+      {
+        "id": "c",
+        "text": "To receive the echo from a different part of the ground"
+      },
+      {
+        "id": "d",
+        "text": "To avoid interference from the transmitted signal"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Being too close would let the strong direct signal swamp the weak echo, so the two horns are separated on the fuselage.",
+    "tags": [
+      "radio altimeter",
+      "antenna"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0014",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Antennas and beam",
+    "question": "About how much power does a radio altimeter radiate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About one megawatt"
+      },
+      {
+        "id": "b",
+        "text": "About one kilowatt"
+      },
+      {
+        "id": "c",
+        "text": "About one watt"
+      },
+      {
+        "id": "d",
+        "text": "About one milliwatt"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The radiated power is of the order of one watt, enough for the short range involved.",
+    "tags": [
+      "radio altimeter",
+      "power"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0015",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Range and use",
+    "question": "Over what range of height does an aircraft radio altimeter normally operate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "From 2500 ft up to cruise level"
+      },
+      {
+        "id": "b",
+        "text": "From the ground up to about 2500 ft"
+      },
+      {
+        "id": "c",
+        "text": "From the ground up to about 25 000 ft"
+      },
+      {
+        "id": "d",
+        "text": "From 50 ft up to 5000 ft"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The radio altimeter is used for the approach and landing phase, typically from 0 to about 2500 ft above the surface. Above that the display normally blanks.",
+    "tags": [
+      "radio altimeter",
+      "range"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0016",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Range and use",
+    "question": "Why is the radio altimeter set to read zero at touchdown?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cable delay and antenna height are allowed for"
+      },
+      {
+        "id": "b",
+        "text": "The ground echo disappears at touchdown"
+      },
+      {
+        "id": "c",
+        "text": "The barometric altimeter supplies the zero reference at the runway"
+      },
+      {
+        "id": "d",
+        "text": "The pilot resets it on each approach"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The cable lengths and the height of the antennas above the wheels are allowed for, so the indication is zero when the main wheels touch the runway.",
+    "tags": [
+      "radio altimeter",
+      "calibration"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0017",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Range and use",
+    "question": "What does the decision height bug on a radio altimeter indication do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Shows the height of the next obstacle"
+      },
+      {
+        "id": "b",
+        "text": "Disconnects the autopilot and autothrottle at the set height"
+      },
+      {
+        "id": "c",
+        "text": "Alerts the crew at the set height"
+      },
+      {
+        "id": "d",
+        "text": "Sets the barometric altimeter to QFE"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The crew sets the decision height; when the radio height reaches it an alert is given, such as a DH light, a change in the display or an aural call.",
+    "tags": [
+      "radio altimeter",
+      "decision height"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0018",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Range and use",
+    "question": "Which other systems typically use radio altimeter height?",
+    "options": [
+      {
+        "id": "a",
+        "text": "GPWS, autopilot and flight director"
+      },
+      {
+        "id": "b",
+        "text": "The cabin pressure controller and the fuel system"
+      },
+      {
+        "id": "c",
+        "text": "The air data computer and the Machmeter"
+      },
+      {
+        "id": "d",
+        "text": "The flight data recorder only"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Radio height is an input to the ground proximity warning system, to the autopilot and autothrottle for flare and autoland, to the flight director, and to ACAS for its height-dependent inhibitions.",
+    "tags": [
+      "radio altimeter",
+      "users"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0019",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Range and use",
+    "question": "Over rising ground, how will the radio altimeter reading change in level flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It increases as the terrain rises"
+      },
+      {
+        "id": "b",
+        "text": "It decreases as the terrain rises"
+      },
+      {
+        "id": "c",
+        "text": "It shows the height above mean sea level"
+      },
+      {
+        "id": "d",
+        "text": "It stays constant, as the pressure height does"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The radio altimeter shows height above the ground below. As the terrain rises beneath an aircraft at constant pressure altitude, the radio height falls.",
+    "tags": [
+      "radio altimeter"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0020",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Range and use",
+    "question": "With the aircraft in the landing configuration, what does the radio altimeter indicate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The altitude of the aircraft above sea level"
+      },
+      {
+        "id": "b",
+        "text": "The height of the aircraft above the runway threshold elevation"
+      },
+      {
+        "id": "c",
+        "text": "The height of the antenna above the ground"
+      },
+      {
+        "id": "d",
+        "text": "The height of the main wheels above the ground"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The installation is calibrated for the cable delay and the height of the antennas above the wheels, so in the landing attitude it reads the height of the wheels, zero at touchdown.",
+    "tags": [
+      "radio altimeter",
+      "wheels"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-RA-0021",
+    "subjectCode": "INST",
+    "topic": "20 Radio Altimeter",
+    "subtopic": "Range and use",
+    "question": "During a category II ILS approach, which instrument provides the height information for the decision height?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The captain's barometric altimeter"
+      },
+      {
+        "id": "b",
+        "text": "The radio altimeter"
+      },
+      {
+        "id": "c",
+        "text": "The standby altimeter"
+      },
+      {
+        "id": "d",
+        "text": "The air data computer"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Category II and III approaches use a decision height measured by the radio altimeter. Category I approaches use a barometric decision altitude.",
+    "tags": [
+      "radio altimeter",
+      "cat ii"
+    ],
+    "status": "published",
+    "version": 1
+  }
+]

@@ -1188,6 +1188,117 @@ book, which predates some changes to the performance rules; they should be
 checked against the current regulations, and the bank has not been reviewed
 by a qualified instructor.
 
+## The Instrumentation bank (Flying Knowledge)
+
+The subject is **Instrumentation** (code `INST`, ATPL 022), added the same
+content-only way and listed against 022 on the ATPL Ground School page.
+1713 questions across thirty-eight topics, all published.
+
+### Source, and what was not used
+
+The owner supplied CAE Oxford Aviation Academy's *Instrumentation* (ATPL
+ground training series, Book 5) as a text file. Its thirty-eight teaching
+chapters were used in order, for their facts. Its end-of-chapter questions,
+its AFCS revision chapter (31), its revision questions and specimen paper
+(40) and its wording were not used as questions: at the owner's request
+("use the book's questions") they were read as a **coverage checklist and a
+style guide** instead. Every fact a book question tests was checked against
+the bank, about seventy-five gap questions were written, and the book's
+common stem forms (completion stems, numbered statements to combine) were
+adopted, all in the assistant's own words with original options and
+numbers. Copying or lightly reformatting the book's questions was declined
+because the book forbids reproduction. Student-facing text names no book,
+school, regulator, regulation, syllabus or aircraft manufacturer.
+
+The supplied text is missing many figure-heavy pages (for example parts of
+the INS, radio altimeter, flight director, GPWS and ACAS chapters). Those
+gaps were filled from standard ATPL-level knowledge, and the book's own
+questions were used to find them.
+
+Choices and corrections:
+
+- Book chapter 31 (revision questions) is skipped, so book chapters 32–39
+  are topics 31–38.
+- Aircraft types and manufacturers are not named: type-specific figures
+  (take-off flight director pitch, THR HLD at 84 kt, autoland heights) are
+  asked as "in a typical system".
+- ACAS: the current software version (7.1) is used; TA/RA timing and
+  height inhibitions, missing from the text, are the standard values.
+- Cockpit voice recorder: 2 hours, with a note that newer large aeroplanes
+  keep 25 hours; underwater locator at least 30 days.
+- The book's oddities left out: a clock frequency "between 120 and 45 MHz",
+  and "ILS one dot = 1°" on the EHSI.
+- Approach categories use the current values (CAT II RVR 300 m, CAT IIIA
+  175 m, CAT IIIB 50–175 m).
+
+### Order and format
+
+Topic names carry their chapter number. Inside each file the questions run in
+book order, grouped by `subtopic`. Explanations are two to four sentences.
+Numbered-statement questions are written inline ("(1) … (2) …") because the
+test screen does not render line breaks in a stem.
+
+| # | Topic | File | Ids | Questions |
+|---|---|---|---|---|
+| 01 | 01 Characteristics and General Definitions | `01-characteristics-and-general-definitions.json` | INST-CHR-0001–0027 | 27 |
+| 02 | 02 Pitot and Static Sources | `02-pitot-and-static-sources.json` | INST-PST-0001–0070 | 70 |
+| 03 | 03 Air Temperature Measurement | `03-air-temperature-measurement.json` | INST-TMP-0001–0059 | 59 |
+| 04 | 04 The Airspeed Indicator (ASI) | `04-the-airspeed-indicator-asi.json` | INST-ASI-0001–0055 | 55 |
+| 05 | 05 The Pressure Altimeter | `05-the-pressure-altimeter.json` | INST-ALT-0001–0072 | 72 |
+| 06 | 06 The Vertical Speed Indicator | `06-the-vertical-speed-indicator.json` | INST-VSI-0001–0029 | 29 |
+| 07 | 07 The Machmeter | `07-the-machmeter.json` | INST-MACH-0001–0055 | 55 |
+| 08 | 08 Air Data Computer | `08-air-data-computer.json` | INST-ADC-0001–0029 | 29 |
+| 09 | 09 Terrestrial Magnetism | `09-terrestrial-magnetism.json` | INST-TMAG-0001–0037 | 37 |
+| 10 | 10 The Direct Indicating Compass | `10-the-direct-indicating-compass.json` | INST-DIC-0001–0046 | 46 |
+| 11 | 11 Gyroscopes | `11-gyroscopes.json` | INST-GYR-0001–0061 | 61 |
+| 12 | 12 Directional Gyro Indicator (DGI) | `12-directional-gyro-indicator-dgi.json` | INST-DGI-0001–0041 | 41 |
+| 13 | 13 The Artificial Horizon | `13-the-artificial-horizon.json` | INST-AH-0001–0034 | 34 |
+| 14 | 14 The Turn and Slip Indicator | `14-the-turn-and-slip-indicator.json` | INST-TSI-0001–0033 | 33 |
+| 15 | 15 The Turn Co-ordinator | `15-the-turn-co-ordinator.json` | INST-TC-0001–0009 | 9 |
+| 16 | 16 Aircraft Magnetism | `16-aircraft-magnetism.json` | INST-AMAG-0001–0028 | 28 |
+| 17 | 17 Remote Indicating Magnetic Compass | `17-remote-indicating-magnetic-compass.json` | INST-RIMC-0001–0033 | 33 |
+| 18 | 18 Inertial Navigation Systems | `18-inertial-navigation-systems.json` | INST-INS-0001–0047 | 47 |
+| 19 | 19 Inertial Reference System | `19-inertial-reference-system.json` | INST-IRS-0001–0048 | 48 |
+| 20 | 20 Radio Altimeter | `20-radio-altimeter.json` | INST-RA-0001–0021 | 21 |
+| 21 | 21 Flight Management System | `21-flight-management-system.json` | INST-FMS-0001–0057 | 57 |
+| 22 | 22 Electronic Flight Information Systems | `22-electronic-flight-information-systems.json` | INST-EFIS-0001–0065 | 65 |
+| 23 | 23 Basic Computers | `23-basic-computers.json` | INST-COMP-0001–0033 | 33 |
+| 24 | 24 Future Air Navigation Systems (FANS) | `24-future-air-navigation-systems-fans.json` | INST-FANS-0001–0050 | 50 |
+| 25 | 25 Flight Director Systems | `25-flight-director-systems.json` | INST-FD-0001–0069 | 69 |
+| 26 | 26 Autopilot | `26-autopilot.json` | INST-AP-0001–0123 | 123 |
+| 27 | 27 Autoland | `27-autoland.json` | INST-ALND-0001–0078 | 78 |
+| 28 | 28 Autothrottle | `28-autothrottle.json` | INST-AT-0001–0066 | 66 |
+| 29 | 29 Yaw Dampers | `29-yaw-dampers.json` | INST-YD-0001–0030 | 30 |
+| 30 | 30 Control Laws | `30-control-laws.json` | INST-CLAW-0001–0044 | 44 |
+| 31 | 31 Flight Warning Systems | `31-flight-warning-systems.json` | INST-FWS-0001–0020 | 20 |
+| 32 | 32 Aerodynamic Warnings | `32-aerodynamic-warnings.json` | INST-AERO-0001–0026 | 26 |
+| 33 | 33 Ground Proximity Warning System | `33-ground-proximity-warning-system.json` | INST-GPWS-0001–0049 | 49 |
+| 34 | 34 Airborne Collision Avoidance System | `34-airborne-collision-avoidance-system.json` | INST-ACAS-0001–0038 | 38 |
+| 35 | 35 Flight Data Recorder | `35-flight-data-recorder.json` | INST-FDR-0001–0021 | 21 |
+| 36 | 36 Cockpit Voice Recorder | `36-cockpit-voice-recorder.json` | INST-CVR-0001–0016 | 16 |
+| 37 | 37 Engine Instrumentation | `37-engine-instrumentation.json` | INST-ENG-0001–0062 | 62 |
+| 38 | 38 Electronic Instrumentation | `38-electronic-instrumentation.json` | INST-EIS-0001–0032 | 32 |
+
+### Answer-shape checks
+
+Correct letters a/b/c/d are 428/430/426/429. The correct option is the single
+longest in 10 % of questions and the single shortest in 13 %. No duplicate
+stems, no "all/none of the above", no source names. Every calculation was
+re-worked by script.
+
+`public/inst-study-guide.html` is the study guide: thirty-eight chapter
+sections in the same order, each with a key-idea callout, chips, tables,
+comparison cards, diagrams (Basic T, pitot-static system, ASI arcs, field
+components, remote compass loop, autopilot inner loop, autoland profile,
+TCAS symbols) and worked examples, a cheat sheet and ten calculators (TAT to
+SAT; speed of sound and Mach; altimeter pressure error; altimeter
+temperature error; density altitude; DGI wander; rate one turn; glide path
+rate of descent; true to compass heading; compass coefficients). Checked at
+1280px and 375px with no horizontal overflow and no script errors.
+
+It has not been reviewed by a qualified instructor and should be before a
+student relies on it for a real exam.
+
 ## The B737 bank
 
 The aircraft is the **Boeing 737-800**, the stretched Next Generation variant
