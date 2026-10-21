@@ -1,0 +1,1585 @@
+[
+  {
+    "id": "INST-IRS-0001",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Introduction",
+    "question": "Why is the laser gyro well suited to a strapdown inertial system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It senses the earth's magnetic field directly"
+      },
+      {
+        "id": "b",
+        "text": "It is a spinning rotor of very high rigidity"
+      },
+      {
+        "id": "c",
+        "text": "It is a solid-state sensor with no moving parts"
+      },
+      {
+        "id": "d",
+        "text": "It needs no computer to turn its output into attitude"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The laser gyro is a solid-state, high-precision angular rate sensor. With no gimbals, bearings or torque motors it can be fixed to the airframe, which is the strapdown idea.",
+    "tags": [
+      "irs",
+      "laser gyro"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0002",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Introduction",
+    "question": "What is inertial navigation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Finding position from satellites without a clock"
+      },
+      {
+        "id": "b",
+        "text": "Navigation using ground radio beacons and inertia reels"
+      },
+      {
+        "id": "c",
+        "text": "Navigation by dead reckoning from airspeed and wind"
+      },
+      {
+        "id": "d",
+        "text": "Finding position without outside references"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Inertial navigation determines position from measured accelerations and rotations alone, with no external reference once the system is aligned.",
+    "tags": [
+      "irs",
+      "inertial navigation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0003",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Introduction",
+    "question": "What does \"strapdown\" mean in an inertial reference system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The sensors are fixed to the airframe"
+      },
+      {
+        "id": "b",
+        "text": "The platform is strapped to the gimbals with springs"
+      },
+      {
+        "id": "c",
+        "text": "The sensors are fixed to a platform that is kept level by torque motors"
+      },
+      {
+        "id": "d",
+        "text": "The system is strapped down until alignment is complete"
+      }
+    ],
+    "correct": "a",
+    "explanation": "In a strapdown system the gyros and accelerometers are attached directly to the aircraft structure. High-speed microprocessors keep a stable platform in mathematics rather than with gimbals.",
+    "tags": [
+      "irs",
+      "strapdown"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0004",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Inertial reference unit",
+    "question": "What is the heart of an inertial reference system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The control and display unit"
+      },
+      {
+        "id": "b",
+        "text": "The inertial reference unit, IRU"
+      },
+      {
+        "id": "c",
+        "text": "The flight management computer and its database"
+      },
+      {
+        "id": "d",
+        "text": "The mode selector unit"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The inertial reference unit holds the sensors and computer and provides all the inertial outputs needed by the aircraft's avionics.",
+    "tags": [
+      "irs",
+      "iru"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0005",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Inertial reference unit",
+    "question": "Which of these is a primary attitude output of an IRU?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Pitch and roll"
+      },
+      {
+        "id": "b",
+        "text": "Angle of attack"
+      },
+      {
+        "id": "c",
+        "text": "Indicated airspeed"
+      },
+      {
+        "id": "d",
+        "text": "Pressure altitude"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The IRU's primary attitude outputs are pitch and roll. It also gives heading, accelerations, body rates, velocities, position and wind, but not air data.",
+    "tags": [
+      "irs",
+      "outputs"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0006",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Inertial reference unit",
+    "question": "Which headings can an IRU output?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Grid heading only"
+      },
+      {
+        "id": "b",
+        "text": "True and magnetic heading"
+      },
+      {
+        "id": "c",
+        "text": "True heading only"
+      },
+      {
+        "id": "d",
+        "text": "Magnetic heading only, from a flux valve"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The IRU calculates true heading and also gives magnetic heading, using magnetic variation held in its memory.",
+    "tags": [
+      "irs",
+      "heading"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0007",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Inertial reference unit",
+    "question": "Which angular rates does an IRU provide?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Roll rate only"
+      },
+      {
+        "id": "b",
+        "text": "Rate of climb and rate of descent only"
+      },
+      {
+        "id": "c",
+        "text": "Pitch, roll and yaw rates"
+      },
+      {
+        "id": "d",
+        "text": "Pitch rate only"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The three laser gyros measure rotation about all three axes, so the IRU gives pitch, roll and yaw rates, used for example by the flight control computers and the yaw damper.",
+    "tags": [
+      "irs",
+      "outputs"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0008",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Inertial reference unit",
+    "question": "Which inertial velocities are among the outputs of an IRU?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Indicated airspeed, vertical speed and the Mach number"
+      },
+      {
+        "id": "b",
+        "text": "True airspeed and Mach number"
+      },
+      {
+        "id": "c",
+        "text": "Groundspeed only"
+      },
+      {
+        "id": "d",
+        "text": "N/S and E/W velocity, ground speed, vertical rate"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The IRU gives N/S and E/W velocity, ground speed, track angle and an inertial vertical rate. TAS and Mach come from the air data computer.",
+    "tags": [
+      "irs",
+      "velocity"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0009",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Inertial reference unit",
+    "question": "Which position data does the IRU provide?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Latitude and longitude only, with no altitude"
+      },
+      {
+        "id": "b",
+        "text": "Bearing and distance from a VOR"
+      },
+      {
+        "id": "c",
+        "text": "Latitude, longitude and inertial altitude"
+      },
+      {
+        "id": "d",
+        "text": "Grid position and height above ground"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Position outputs are latitude, longitude and inertial altitude. The inertial altitude is stabilised by barometric altitude from the air data computer.",
+    "tags": [
+      "irs",
+      "position"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0010",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Inertial reference unit",
+    "question": "Which wind data does the IRU calculate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "None; wind needs a radio input"
+      },
+      {
+        "id": "b",
+        "text": "Wind speed, wind angle and drift angle"
+      },
+      {
+        "id": "c",
+        "text": "Only the wind at the departure aerodrome"
+      },
+      {
+        "id": "d",
+        "text": "Only the headwind component"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Using the TAS input from the air data computer, the IRU compares air vector and ground vector to give wind speed, wind direction and drift angle.",
+    "tags": [
+      "irs",
+      "wind"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0011",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Inertial reference unit",
+    "question": "Which of these is among the IRU's calculated data?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Radio altitude and decision height"
+      },
+      {
+        "id": "b",
+        "text": "Engine thrust and fuel flow"
+      },
+      {
+        "id": "c",
+        "text": "Indicated airspeed and static air temperature"
+      },
+      {
+        "id": "d",
+        "text": "Flight path angle and potential V/S"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Calculated outputs include flight path angle and acceleration, along- and across-track acceleration, inertial pitch and roll rate, vertical acceleration and potential vertical speed.",
+    "tags": [
+      "irs",
+      "calculated data"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0012",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Users of inertial information",
+    "question": "Which of these systems uses IRS information?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The weather radar"
+      },
+      {
+        "id": "b",
+        "text": "The engine fire detection loop"
+      },
+      {
+        "id": "c",
+        "text": "The cockpit voice recorder"
+      },
+      {
+        "id": "d",
+        "text": "The cabin pressure controller"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Inertial data goes to the FMC, flight control and thrust management computers, the stability augmentation system, the weather radar, auto-brakes, the ADI, HSI, VSI, RDMI and the flight data recorder.",
+    "tags": [
+      "irs",
+      "users"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0013",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Users of inertial information",
+    "question": "Which flight deck indicator receives IRS heading for its compass card?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The standby altimeter"
+      },
+      {
+        "id": "b",
+        "text": "The RDMI"
+      },
+      {
+        "id": "c",
+        "text": "The airspeed indicator"
+      },
+      {
+        "id": "d",
+        "text": "The engine pressure ratio gauge"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The RDMI, HSI and ADI all use IRS data: the RDMI and HSI for heading, the ADI for attitude.",
+    "tags": [
+      "irs",
+      "users"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0014",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Primary sources of information",
+    "question": "What are the IRU's own internal sensors?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Three laser gyros and three accelerometers"
+      },
+      {
+        "id": "b",
+        "text": "Three spinning gyros on a gimballed platform"
+      },
+      {
+        "id": "c",
+        "text": "Two laser gyros and two accelerometers"
+      },
+      {
+        "id": "d",
+        "text": "A flux valve and three accelerometers"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The IRU has three laser gyros and three inertial accelerometers, one for each axis. Its only other inputs are initial position, barometric altitude and TAS.",
+    "tags": [
+      "irs",
+      "sensors"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0015",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Primary sources of information",
+    "question": "Apart from its own sensors, which inputs does an IRU need?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Waypoints, wind and the flight plan"
+      },
+      {
+        "id": "b",
+        "text": "Indicated airspeed, outside air temperature and fuel quantity"
+      },
+      {
+        "id": "c",
+        "text": "Initial position, barometric altitude and true airspeed"
+      },
+      {
+        "id": "d",
+        "text": "Magnetic heading, radio altitude and ground speed"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Initial position is needed because position is computed from it; barometric altitude stabilises vertical navigation; TAS allows the wind to be calculated.",
+    "tags": [
+      "irs",
+      "inputs"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0016",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Primary sources of information",
+    "question": "Why does the IRU need an initial position?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It needs it to find true north"
+      },
+      {
+        "id": "b",
+        "text": "It needs it to find the local gravity"
+      },
+      {
+        "id": "c",
+        "text": "It uses it to choose the magnetic variation only"
+      },
+      {
+        "id": "d",
+        "text": "Position is worked out from the start point"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The IRU measures only changes of position, so it must be told where it started. The entered latitude is also checked against the latitude it detects from earth rate.",
+    "tags": [
+      "irs",
+      "initial position"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0017",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Primary sources of information",
+    "question": "Why is barometric altitude supplied to the IRU?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To allow the IRU to align in flight"
+      },
+      {
+        "id": "b",
+        "text": "To stabilise the vertical channel"
+      },
+      {
+        "id": "c",
+        "text": "To correct the horizontal position for altitude"
+      },
+      {
+        "id": "d",
+        "text": "To calculate the wind speed"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Pure inertial vertical navigation is unstable, so barometric altitude is used to stabilise the vertical velocity and inertial altitude outputs.",
+    "tags": [
+      "irs",
+      "baro input"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0018",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Primary sources of information",
+    "question": "Which input allows the IRU to calculate wind?",
+    "options": [
+      {
+        "id": "a",
+        "text": "True airspeed"
+      },
+      {
+        "id": "b",
+        "text": "Indicated airspeed"
+      },
+      {
+        "id": "c",
+        "text": "Initial position"
+      },
+      {
+        "id": "d",
+        "text": "Barometric altitude"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Wind is the difference between the ground vector, which the IRU measures, and the air vector, which needs true airspeed from the air data computer.",
+    "tags": [
+      "irs",
+      "wind"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0019",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "The laser gyro",
+    "question": "On which effect does the ring laser gyro depend?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The Schuler effect"
+      },
+      {
+        "id": "b",
+        "text": "The Doppler effect"
+      },
+      {
+        "id": "c",
+        "text": "The Sagnac effect"
+      },
+      {
+        "id": "d",
+        "text": "The Coriolis effect"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The Sagnac effect makes light beams travelling opposite ways round a rotating path take different times, giving a frequency difference that measures the rate of rotation.",
+    "tags": [
+      "laser gyro",
+      "sagnac"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0020",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "The laser gyro",
+    "question": "What condition must be met to keep a laser gyro lasing?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The two beams must always keep exactly the same frequency"
+      },
+      {
+        "id": "b",
+        "text": "The gyro must rotate at a constant rate"
+      },
+      {
+        "id": "c",
+        "text": "The block must be heated to 300°C"
+      },
+      {
+        "id": "d",
+        "text": "A whole number of wavelengths in the path"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Lasing is maintained only if the path length equals a whole number of wavelengths. When rotation changes the effective path, the frequencies change to keep this true.",
+    "tags": [
+      "laser gyro"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0021",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "The laser gyro",
+    "question": "When a ring laser gyro is rotated, what happens to the two beams?",
+    "options": [
+      {
+        "id": "a",
+        "text": "One beam is extinguished"
+      },
+      {
+        "id": "b",
+        "text": "Both rise in frequency equally with the rotation"
+      },
+      {
+        "id": "c",
+        "text": "One rises in frequency and the other falls"
+      },
+      {
+        "id": "d",
+        "text": "Both fall in frequency equally"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Rotation shortens the effective path for one beam and lengthens it for the other, so one frequency rises and the other falls. The difference is measured and is proportional to the rotation rate.",
+    "tags": [
+      "laser gyro",
+      "frequency"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0022",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "The laser gyro",
+    "question": "What does \"laser\" stand for, as given for laser gyros?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Light amplification by stimulated emission of radiation"
+      },
+      {
+        "id": "b",
+        "text": "Light angle sensing by electronic rotation"
+      },
+      {
+        "id": "c",
+        "text": "Light absorption and stimulated electron rotation of the gas"
+      },
+      {
+        "id": "d",
+        "text": "Linear amplified sensing of emitted radiation"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The laser produces a beam by light amplification by stimulated emission of radiation. Only light travelling between the mirrors is reinforced, building up to a steady beam.",
+    "tags": [
+      "laser gyro"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0023",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Construction and operation",
+    "question": "How many mirrors does a typical triangular ring laser gyro have?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Four, one at each corner"
+      },
+      {
+        "id": "b",
+        "text": "Three"
+      },
+      {
+        "id": "c",
+        "text": "Six"
+      },
+      {
+        "id": "d",
+        "text": "Two"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Three mirrors, one in each corner of a triangular glass block, send two beams round the triangular path in opposite directions.",
+    "tags": [
+      "laser gyro",
+      "construction"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0024",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Construction and operation",
+    "question": "In what is the laser path of a ring laser gyro formed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The gap between two spinning discs"
+      },
+      {
+        "id": "b",
+        "text": "A coil of optical fibre wound on a drum"
+      },
+      {
+        "id": "c",
+        "text": "A sealed metal tube filled with mercury"
+      },
+      {
+        "id": "d",
+        "text": "Tunnels in a block of stable glass"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Small tunnels are drilled parallel to the edges of a triangular block of temperature-stable glass, with mirrors at each corner. A coil of fibre is the fibre optic gyro.",
+    "tags": [
+      "laser gyro",
+      "construction"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0025",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Construction and operation",
+    "question": "Which gas is used to produce the beam in a ring laser gyro?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Helium-neon"
+      },
+      {
+        "id": "b",
+        "text": "Argon"
+      },
+      {
+        "id": "c",
+        "text": "Carbon dioxide"
+      },
+      {
+        "id": "d",
+        "text": "Nitrogen"
+      }
+    ],
+    "correct": "a",
+    "explanation": "High voltage across a helium-neon gas between anodes and cathode produces light in the pinkish-orange part of the visible spectrum.",
+    "tags": [
+      "laser gyro",
+      "construction"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0026",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Construction and operation",
+    "question": "What happens to light of unwanted frequencies in a ring laser gyro?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is passed to the read-out as noise"
+      },
+      {
+        "id": "b",
+        "text": "It is reflected back into the gas to be amplified"
+      },
+      {
+        "id": "c",
+        "text": "It is absorbed by the mirrors and their coatings"
+      },
+      {
+        "id": "d",
+        "text": "It is converted into heat in the gas tube"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The mirrors reflect only light of the design frequency. Light of other frequencies is absorbed by the mirrors and their coatings, so the beam is pure.",
+    "tags": [
+      "laser gyro"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0027",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Construction and operation",
+    "question": "If the path length of a laser gyro is decreased, how does the light's frequency change?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It falls to zero"
+      },
+      {
+        "id": "b",
+        "text": "It decreases"
+      },
+      {
+        "id": "c",
+        "text": "It stays the same"
+      },
+      {
+        "id": "d",
+        "text": "It increases"
+      }
+    ],
+    "correct": "d",
+    "explanation": "A shorter path compresses the light and raises its frequency; a longer path lowers it. The path length can be adjusted to tune the frequency.",
+    "tags": [
+      "laser gyro",
+      "frequency"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0028",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Construction and operation",
+    "question": "How does the optical path length of a laser gyro affect its accuracy?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Path length has no effect on accuracy"
+      },
+      {
+        "id": "b",
+        "text": "A longer path gives greater accuracy"
+      },
+      {
+        "id": "c",
+        "text": "Accuracy depends only on the gas used"
+      },
+      {
+        "id": "d",
+        "text": "A shorter path gives greater accuracy"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The longer the optical path, the greater the accuracy; even a small percentage increase in length gives a substantial gain.",
+    "tags": [
+      "laser gyro",
+      "accuracy"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0029",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Lock-in",
+    "question": "What is lock-in in a ring laser gyro?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The gyro locking up at its maximum measurable rotation rate"
+      },
+      {
+        "id": "b",
+        "text": "The gimbals aligning with each other"
+      },
+      {
+        "id": "c",
+        "text": "The beams locking together at low rates"
+      },
+      {
+        "id": "d",
+        "text": "The mirrors freezing at low temperature"
+      }
+    ],
+    "correct": "c",
+    "explanation": "At very low rotation rates back-scattering couples the two beams so they lock to the same frequency, the output drops to zero and small rotations are missed.",
+    "tags": [
+      "laser gyro",
+      "lock in"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0030",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Lock-in",
+    "question": "What causes lock-in?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Back-scattering between the two beams"
+      },
+      {
+        "id": "b",
+        "text": "Loss of power to the laser"
+      },
+      {
+        "id": "c",
+        "text": "Overheating of the helium-neon gas"
+      },
+      {
+        "id": "d",
+        "text": "Vibration from the aircraft engines and airframe"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Imperfections in the mirrors scatter some light from one beam into the other. At low rates this coupling pulls the frequencies together.",
+    "tags": [
+      "laser gyro",
+      "lock in"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0031",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Lock-in",
+    "question": "How is lock-in overcome?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By spinning the gyro at a constant high rate"
+      },
+      {
+        "id": "b",
+        "text": "By a dither motor that vibrates the ring"
+      },
+      {
+        "id": "c",
+        "text": "By switching off one of the beams"
+      },
+      {
+        "id": "d",
+        "text": "By heating the glass block"
+      }
+    ],
+    "correct": "b",
+    "explanation": "A piezo-electric dither motor vibrates the laser ring about its input axis through the lock-in region, so the beams never stay locked. The dither motion is removed from the output.",
+    "tags": [
+      "laser gyro",
+      "dither"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0032",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Lock-in",
+    "question": "Does the dither motion of a ring laser gyro appear in its output?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only when the aircraft is on the ground"
+      },
+      {
+        "id": "b",
+        "text": "Yes, but only at low rotation rates"
+      },
+      {
+        "id": "c",
+        "text": "Yes, as a small oscillation in attitude"
+      },
+      {
+        "id": "d",
+        "text": "No, it is decoupled from the output"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The motion caused by the dither motor is decoupled from the gyro's output, so only the aircraft's real rotation is measured.",
+    "tags": [
+      "laser gyro",
+      "dither"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0033",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Platform and strapdown principles",
+    "question": "How many gyros and accelerometers does a gimballed INS platform use?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Six gyros and no accelerometers"
+      },
+      {
+        "id": "b",
+        "text": "Two rate gyros and one accelerometer on each axis"
+      },
+      {
+        "id": "c",
+        "text": "One gyro and three accelerometers"
+      },
+      {
+        "id": "d",
+        "text": "Three gyros and three accelerometers"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The gimballed platform carries three rate-integrating gyros and accelerometers and must be held horizontal at the correct latitude.",
+    "tags": [
+      "platform",
+      "strapdown"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0034",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Platform and strapdown principles",
+    "question": "What is the main benefit of keeping the stable platform mathematically rather than mechanically?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Immunity from all errors"
+      },
+      {
+        "id": "b",
+        "text": "Greatly improved accuracy and reliability"
+      },
+      {
+        "id": "c",
+        "text": "No need for an initial position"
+      },
+      {
+        "id": "d",
+        "text": "A much shorter alignment, of a few seconds"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Removing gimbals, bearings and motors and computing the platform with high-speed processors greatly improves accuracy and reliability.",
+    "tags": [
+      "strapdown",
+      "advantages"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0035",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Platform and strapdown principles",
+    "question": "How does the IRS computer allow for gravity?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It adds gravity to the horizontal accelerations"
+      },
+      {
+        "id": "b",
+        "text": "It uses gravity to find magnetic north"
+      },
+      {
+        "id": "c",
+        "text": "It subtracts local gravity"
+      },
+      {
+        "id": "d",
+        "text": "It ignores gravity because the sensors are level"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The accelerometers sense gravity as well as motion. The microprocessor subtracts the effect of local gravity from any vertical acceleration.",
+    "tags": [
+      "strapdown",
+      "gravity"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0036",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Platform and strapdown principles",
+    "question": "At what rate does an IRS compensate for the earth's rotation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "15.04° per hour"
+      },
+      {
+        "id": "b",
+        "text": "15° per minute, as for a gyro"
+      },
+      {
+        "id": "c",
+        "text": "84.4° per hour"
+      },
+      {
+        "id": "d",
+        "text": "360° per hour"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Earth rate is about 15.04° per hour relative to inertial space, and both INS and IRS compensate for it.",
+    "tags": [
+      "strapdown",
+      "earth rate"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0037",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Platform and strapdown principles",
+    "question": "Is Schuler tuning needed in a strapdown IRS?",
+    "options": [
+      {
+        "id": "a",
+        "text": "No, it applies only to gimballed platforms"
+      },
+      {
+        "id": "b",
+        "text": "Only when the aircraft flies east or west"
+      },
+      {
+        "id": "c",
+        "text": "Yes, for the 84.4-minute oscillation"
+      },
+      {
+        "id": "d",
+        "text": "No, laser gyros cannot oscillate"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Transport over the earth still produces the Schuler oscillation with an 84.4-minute period, so the IRS computer applies Schuler tuning as the INS does.",
+    "tags": [
+      "strapdown",
+      "schuler"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0038",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Alignment",
+    "question": "How does an IRS find true north during alignment?",
+    "options": [
+      {
+        "id": "a",
+        "text": "From a radio fix on a VOR"
+      },
+      {
+        "id": "b",
+        "text": "By sensing earth rotation, stationary"
+      },
+      {
+        "id": "c",
+        "text": "From the flux valve in the wing tip"
+      },
+      {
+        "id": "d",
+        "text": "From the runway heading entered by the crew"
+      }
+    ],
+    "correct": "b",
+    "explanation": "With the aircraft stationary the only rotation the gyros sense is the earth's. Its direction gives true north.",
+    "tags": [
+      "irs",
+      "alignment"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0039",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Alignment",
+    "question": "During IRS alignment, what does the computer do with the latitude entered by the crew?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It uses it only to set the magnetic variation"
+      },
+      {
+        "id": "b",
+        "text": "It uses it to find true north"
+      },
+      {
+        "id": "c",
+        "text": "It ignores it and uses its own latitude"
+      },
+      {
+        "id": "d",
+        "text": "It checks it against earth rate"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The IRS can determine latitude from the earth-rate vector it senses and compares it with the latitude entered. A large difference is flagged.",
+    "tags": [
+      "irs",
+      "alignment",
+      "latitude"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0040",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Alignment",
+    "question": "Can an IRS determine longitude for itself during alignment?",
+    "options": [
+      {
+        "id": "a",
+        "text": "No, it must be entered"
+      },
+      {
+        "id": "b",
+        "text": "Yes, from the time of day"
+      },
+      {
+        "id": "c",
+        "text": "Yes, from the earth's rotation"
+      },
+      {
+        "id": "d",
+        "text": "Yes, from the gravity vector"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Earth rate reveals latitude but not longitude, so present position must be entered. The IRS remembers its position at the last shutdown and can warn of an entry error.",
+    "tags": [
+      "irs",
+      "alignment",
+      "longitude"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0041",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Alignment",
+    "question": "What is the IRS alignment process called?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Gyrocompassing the platform"
+      },
+      {
+        "id": "b",
+        "text": "Erecting the vertical"
+      },
+      {
+        "id": "c",
+        "text": "Establishing the trihedron"
+      },
+      {
+        "id": "d",
+        "text": "Schuler tuning the platform"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The full mathematical levelling and alignment, with the aircraft stationary, is called establishing the trihedron.",
+    "tags": [
+      "irs",
+      "alignment"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0042",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Alignment",
+    "question": "How does an IRS help the crew detect an initial position entry error?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It flags a mismatch with its stored position"
+      },
+      {
+        "id": "b",
+        "text": "It refuses all positions that are not on an aerodrome"
+      },
+      {
+        "id": "c",
+        "text": "It sounds a warning if the position is entered before the gyros are running"
+      },
+      {
+        "id": "d",
+        "text": "It compares the position with a VOR fix"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The memory keeps the position at the last landing; if the crew enters a different latitude or longitude at start-up the system indicates the error.",
+    "tags": [
+      "irs",
+      "alignment"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0043",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Alignment",
+    "question": "In a strapdown IRS, which sensors level the system in the horizontal plane during alignment?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The flux valve"
+      },
+      {
+        "id": "b",
+        "text": "The accelerometers"
+      },
+      {
+        "id": "c",
+        "text": "The air data sensors"
+      },
+      {
+        "id": "d",
+        "text": "The laser gyros"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Levelling uses the accelerometers, which sense the direction of gravity. The laser gyros sense the earth's rotation, which gives true north and latitude.",
+    "tags": [
+      "irs",
+      "levelling"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0044",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Alignment",
+    "question": "How does an IRS obtain magnetic heading?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By sensing the earth's magnetic field"
+      },
+      {
+        "id": "b",
+        "text": "From the standby compass"
+      },
+      {
+        "id": "c",
+        "text": "From a flux valve in the wing tip"
+      },
+      {
+        "id": "d",
+        "text": "By applying stored variation"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The IRS calculates true heading and applies magnetic variation stored in its memory. In the system described the stored table covers latitudes of about 73°N to 60°S.",
+    "tags": [
+      "irs",
+      "magnetic heading"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0045",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Alignment",
+    "question": "Compared with a gimballed INS, which is true of an IRS?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Shorter start-up, but lock-in is possible"
+      },
+      {
+        "id": "b",
+        "text": "Longer spin-up, but no lock-in"
+      },
+      {
+        "id": "c",
+        "text": "No correction for Coriolis is needed"
+      },
+      {
+        "id": "d",
+        "text": "No Schuler tuning is needed"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The laser gyro has almost no spin-up time but can suffer laser lock at low rotation rates, overcome by dither. Schuler tuning and Coriolis corrections are still applied.",
+    "tags": [
+      "irs",
+      "ins comparison"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0046",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Advantages",
+    "question": "How quickly can a laser gyro rate sensor be activated?",
+    "options": [
+      {
+        "id": "a",
+        "text": "In about 10 minutes, the same as alignment"
+      },
+      {
+        "id": "b",
+        "text": "Only after the engines are started"
+      },
+      {
+        "id": "c",
+        "text": "In about 3–4 minutes of warm-up"
+      },
+      {
+        "id": "d",
+        "text": "In about one second"
+      }
+    ],
+    "correct": "d",
+    "explanation": "There is no rotor to spin up, so the rate sensor is active in about a second. Full IRS alignment still takes several minutes.",
+    "tags": [
+      "irs",
+      "advantages"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0047",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Advantages",
+    "question": "Which is an advantage of the laser gyro over a spinning gyro?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It measures airspeed as well as rotation"
+      },
+      {
+        "id": "b",
+        "text": "It never needs to be aligned"
+      },
+      {
+        "id": "c",
+        "text": "It is insensitive to g and manoeuvres"
+      },
+      {
+        "id": "d",
+        "text": "It needs no electrical power"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Laser gyros are insensitive to g and to manoeuvres, mechanically simple, reliable, have a wide dynamic range and very small drift rates.",
+    "tags": [
+      "irs",
+      "advantages"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-IRS-0048",
+    "subjectCode": "INST",
+    "topic": "19 Inertial Reference System",
+    "subtopic": "Advantages",
+    "question": "In an IRS, what is usually the largest source of error?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Lock-in during cruise"
+      },
+      {
+        "id": "b",
+        "text": "The operator"
+      },
+      {
+        "id": "c",
+        "text": "Mechanical wear of the gimbals and bearings"
+      },
+      {
+        "id": "d",
+        "text": "Drift of the laser gyros"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Drift rates are very small, so the greatest errors are those induced by the operator, such as entering the wrong present position.",
+    "tags": [
+      "irs",
+      "errors"
+    ],
+    "status": "published",
+    "version": 1
+  }
+]

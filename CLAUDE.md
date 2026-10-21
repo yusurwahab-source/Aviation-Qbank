@@ -475,7 +475,7 @@ from a static list (`lib/atpl-subjects.ts`), not from the database.** A
 subject with no questions has no content folder and no row (`db:seed` would
 delete one), so "coming soon" rows cannot be database rows. A row is live
 only when a Flying Knowledge subject is named by its `code` there (POF is
-080, HPL is 040, MET is 050, RNAV is 062, LAW is 010, AGK is 021, OPS is 070, COM is 090, MB is 031, PERF is 032) and is active with published questions; live rows link to
+080, HPL is 040, MET is 050, RNAV is 062, LAW is 010, AGK is 021, OPS is 070, COM is 090, MB is 031, PERF is 032, INST is 022) and is active with published questions; live rows link to
 `/flying-knowledge/<code>`, where tests still run, and carry a pulsing
 `LiveBadge`. `/flying-knowledge` itself redirects to the picker. Adding a
 subject to the ATPL list is a content folder plus its `code` in that list.
@@ -1871,7 +1871,7 @@ over the internals.
 content/                      Question files. The source of truth.
   <code>/                     One folder per type rating aircraft (b737/, a320/ today)
   classes/<code>/             One folder per class rating aircraft (da40/ today)
-  flying-knowledge/<code>/    One folder per Flying Knowledge subject (pof/, hpl/, met/, rnav/, law/, agk/, ops/, com/, mb/, perf/ today)
+  flying-knowledge/<code>/    One folder per Flying Knowledge subject (pof/, hpl/, met/, rnav/, law/, agk/, ops/, com/, mb/, perf/, inst/ today)
 drizzle/                      Generated SQL migrations. Committed.
 public/                       Manifest icons, the service worker, and any
                               <code>-study-guide.html study guides (see the
@@ -2159,7 +2159,10 @@ two subjects: `content/flying-knowledge/mb/` (ten chapter files, 410
 questions) and `content/flying-knowledge/perf/` (eighteen chapter files, 772
 questions), with `public/mb-study-guide.html` and
 `public/perf-study-guide.html`. See the notes on both banks in
-`content/README.md`.
+`content/README.md`. Instrumentation (`INST`, 022) is the eleventh:
+`content/flying-knowledge/inst/`, thirty-eight chapter files, 1,713
+questions, and `public/inst-study-guide.html` — see the note on the
+Instrumentation bank in `content/README.md`.
 
 The one thing that does not carry over from either of the other two trees:
 **Flying Knowledge is free in full, not metered by the free-tier cap or
@@ -2504,6 +2507,12 @@ second. Both are now done — see the conventions above.)
   use original numbers rather than chart readings (see `content/README.md`).
   The performance factors and gradients follow the book and should be checked
   against the current regulations.
+- **The Instrumentation bank (INST, 1,713 questions) has not been reviewed
+  by an instructor.** It was written from the owner's supplied textbook for
+  its facts; the book's own questions were used only as a coverage checklist
+  and a style guide, never copied (see `content/README.md`). The supplied
+  text is missing many figure pages, filled from standard knowledge. Treat it
+  as revision material until a qualified instructor has checked it.
 - **The Electrics & Electronics bank (AGK, 1,000 questions) has not been
   reviewed by an instructor.** It was written from the owner's supplied
   textbook for its facts only (the book's questions not used, its errors

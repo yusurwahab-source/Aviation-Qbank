@@ -1,0 +1,953 @@
+[
+  {
+    "id": "INST-ADC-0001",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "The pitot-static system of a large aircraft",
+    "question": "In a typical airliner, how are the captain's and first officer's air data instruments supplied?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Both sets from the standby pitot and static system"
+      },
+      {
+        "id": "b",
+        "text": "Directly from pitot and static lines, with no computer"
+      },
+      {
+        "id": "c",
+        "text": "Each set by its own ADC and sources"
+      },
+      {
+        "id": "d",
+        "text": "Both sets by a single air data computer with two separate outputs"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Two ADCs, each with independent pitot and static sources, feed the two sides. They can be cross-connected if one fails, which gives redundancy.",
+    "tags": [
+      "adc",
+      "redundancy"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0002",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "The pitot-static system of a large aircraft",
+    "question": "How are the standby altimeter and standby airspeed indicator of a typical airliner supplied?",
+    "options": [
+      {
+        "id": "a",
+        "text": "From the first officer's air data computer through a relay"
+      },
+      {
+        "id": "b",
+        "text": "Directly from their own pitot and static sources"
+      },
+      {
+        "id": "c",
+        "text": "From both ADCs through a comparator"
+      },
+      {
+        "id": "d",
+        "text": "From the captain's air data computer"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The standby instruments are pneumatic and fed by a third, separate pitot-static system. They keep working even if both ADCs or their power supplies fail.",
+    "tags": [
+      "standby instruments"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0003",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "The pitot-static system of a large aircraft",
+    "question": "How many independent pitot-static systems does a typical airliner installation have?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Three"
+      },
+      {
+        "id": "b",
+        "text": "Four, one per engine"
+      },
+      {
+        "id": "c",
+        "text": "One"
+      },
+      {
+        "id": "d",
+        "text": "Two"
+      }
+    ],
+    "correct": "a",
+    "explanation": "There is one for each ADC (captain and first officer) and one for the standby instruments. Each uses cross-coupled static vents on both sides of the fuselage.",
+    "tags": [
+      "pitot static systems"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0004",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "The pitot-static system of a large aircraft",
+    "question": "Why does each of the three pitot-static systems use static vents on both sides of the fuselage?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To double the pressure fed to the ADC"
+      },
+      {
+        "id": "b",
+        "text": "To keep the systems at different temperatures"
+      },
+      {
+        "id": "c",
+        "text": "So that one vent can act as a pitot source"
+      },
+      {
+        "id": "d",
+        "text": "To reduce errors due to sideslip or yaw"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Cross-coupled vents average the pressures on the two sides. In a sideslip, the higher pressure on one side and lower on the other largely cancel.",
+    "tags": [
+      "static vents",
+      "cross coupling"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0005",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "What an air data computer does",
+    "question": "What is the basic function of an air data computer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To supply pitot pressure to the standby instruments"
+      },
+      {
+        "id": "b",
+        "text": "To turn pressures and temperature into signals"
+      },
+      {
+        "id": "c",
+        "text": "To measure the air density with a dedicated sensor"
+      },
+      {
+        "id": "d",
+        "text": "To compute the aircraft's position from measured accelerations"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The ADC turns pitot pressure, static pressure and temperature into electrical outputs. These go to the displays and to many other systems.",
+    "tags": [
+      "adc",
+      "function"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0006",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "What an air data computer does",
+    "question": "Which three inputs does an air data computer mainly use?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Static pressure, heading and attitude"
+      },
+      {
+        "id": "b",
+        "text": "Air temperature, fuel flow and the selected Mach number"
+      },
+      {
+        "id": "c",
+        "text": "Pitot pressure, ground speed and altitude"
+      },
+      {
+        "id": "d",
+        "text": "Pitot, static and air temperature"
+      }
+    ],
+    "correct": "d",
+    "explanation": "From these three it computes altitude, airspeeds, Mach number, temperature and vertical speed. Some installations add angle of attack.",
+    "tags": [
+      "adc",
+      "inputs"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0007",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "What an air data computer does",
+    "question": "Which of these is NOT normally an output of an air data computer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Mach number"
+      },
+      {
+        "id": "b",
+        "text": "Vertical speed (rate of climb)"
+      },
+      {
+        "id": "c",
+        "text": "Magnetic heading"
+      },
+      {
+        "id": "d",
+        "text": "True airspeed"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Heading comes from the compass or inertial systems. The ADC outputs pressure altitude, CAS, Mach number, TAS, static and total temperature, and vertical speed.",
+    "tags": [
+      "adc",
+      "outputs"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0008",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "What an air data computer does",
+    "question": "Which ADC module gives vertical speed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A rate module fed by the altitude module"
+      },
+      {
+        "id": "b",
+        "text": "The Mach module, using the measured total air temperature"
+      },
+      {
+        "id": "c",
+        "text": "The computed airspeed module"
+      },
+      {
+        "id": "d",
+        "text": "The true airspeed module"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Vertical speed is the rate of change of altitude. The rate module takes the altitude module's output and differentiates it.",
+    "tags": [
+      "adc",
+      "vertical speed"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0009",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "What an air data computer does",
+    "question": "Which modules may an analogue ADC be internally split into?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Heading, attitude, turn and slip"
+      },
+      {
+        "id": "b",
+        "text": "Fuel, oil, temperature and pressure"
+      },
+      {
+        "id": "c",
+        "text": "Altitude, airspeed, Mach, TAS and rate"
+      },
+      {
+        "id": "d",
+        "text": "Navigation, guidance, display and flight data recording"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Each module computes one quantity from the pressure and temperature inputs. Vertical speed comes from the altitude module through a rate of climb module.",
+    "tags": [
+      "analogue adc",
+      "modules"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0010",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "What an air data computer does",
+    "question": "Why does the ADC need an air temperature input?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To compute pressure altitude"
+      },
+      {
+        "id": "b",
+        "text": "To compute TAS and static air temperature"
+      },
+      {
+        "id": "c",
+        "text": "To compute Mach number"
+      },
+      {
+        "id": "d",
+        "text": "To compute calibrated airspeed and pressure altitude"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Pressure altitude, CAS and Mach number can all be found from pressures alone. TAS needs the speed of sound, which needs temperature, and so does the conversion of TAT to SAT.",
+    "tags": [
+      "adc",
+      "temperature"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0011",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "What an air data computer does",
+    "question": "Which ADC outputs can be computed from pitot and static pressure alone, without any temperature input?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Altitude, CAS and Mach number"
+      },
+      {
+        "id": "b",
+        "text": "TAS, Mach and SAT"
+      },
+      {
+        "id": "c",
+        "text": "TAS and static air temperature"
+      },
+      {
+        "id": "d",
+        "text": "Altitude and TAS only"
+      }
+    ],
+    "correct": "a",
+    "explanation": "All three depend only on pressures and their ratios. TAS and SAT need the measured temperature as well.",
+    "tags": [
+      "adc",
+      "outputs"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0012",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "What an air data computer does",
+    "question": "Which systems commonly receive data from an air data computer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The magnetic compass and standby horizon"
+      },
+      {
+        "id": "b",
+        "text": "The fuel quantity and engine oil pressure gauges"
+      },
+      {
+        "id": "c",
+        "text": "The standby altimeter and standby ASI"
+      },
+      {
+        "id": "d",
+        "text": "The autopilot, FMS and transponder"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The ADC is a central source of air data for many systems, including the autopilot and flight director, FMS, transponder altitude reporting, warning systems and flight recorders. The standby instruments are deliberately independent of it.",
+    "tags": [
+      "adc",
+      "users"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0013",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "Analogue and digital ADCs",
+    "question": "What distinguishes an analogue ADC from a digital one?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It represents data by continuous quantities"
+      },
+      {
+        "id": "b",
+        "text": "It uses binary numbers sent over a digital data bus"
+      },
+      {
+        "id": "c",
+        "text": "It has no built-in test equipment"
+      },
+      {
+        "id": "d",
+        "text": "It cannot compute Mach number"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Analogue computers represent measurements with continuous physical quantities such as voltage or shaft rotation. Digital ADCs convert the data into binary form for processing and transmission.",
+    "tags": [
+      "analogue adc"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0014",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "Analogue and digital ADCs",
+    "question": "In an analogue ADC's airspeed section, what turns the measured pressures into a shaft rotation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A stepper motor controlled by a microprocessor and software"
+      },
+      {
+        "id": "b",
+        "text": "A bimetallic strip"
+      },
+      {
+        "id": "c",
+        "text": "A gyroscope and torque motor"
+      },
+      {
+        "id": "d",
+        "text": "A transducer driving a servomotor"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The transducer senses the pressures and a servomotor turns a shaft. A synchro on the shaft then transmits its angle, which represents the airspeed.",
+    "tags": [
+      "analogue adc",
+      "servomotor"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0015",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "Analogue and digital ADCs",
+    "question": "In an analogue ADC, what transmits the angular position of the airspeed shaft to other units?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A pitot tube"
+      },
+      {
+        "id": "b",
+        "text": "A capsule stack"
+      },
+      {
+        "id": "c",
+        "text": "A synchro"
+      },
+      {
+        "id": "d",
+        "text": "A flux valve"
+      }
+    ],
+    "correct": "c",
+    "explanation": "A CX (control transmitter) synchro produces signals that represent its shaft angle. A matching receiver elsewhere reproduces that angle, for example on an indicator.",
+    "tags": [
+      "synchro"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0016",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "Analogue and digital ADCs",
+    "question": "In a digital ADC, how are the analogue pressure measurements turned into data for processing?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A servomotor converts them into voltages"
+      },
+      {
+        "id": "b",
+        "text": "An analogue-to-digital converter"
+      },
+      {
+        "id": "c",
+        "text": "A capsule stack drives the display directly through gearing"
+      },
+      {
+        "id": "d",
+        "text": "A synchro changes them into shaft angles"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The pressure transducers produce analogue signals, which are digitised. The microprocessor then computes the air data and sends it on data buses.",
+    "tags": [
+      "digital adc"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0017",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "Redundancy and failure warning",
+    "question": "If one ADC fails, how can the instruments on that side be restored?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By selecting the other ADC to supply them"
+      },
+      {
+        "id": "b",
+        "text": "By switching to the standby instruments on that side"
+      },
+      {
+        "id": "c",
+        "text": "By entering air data manually into the ADC"
+      },
+      {
+        "id": "d",
+        "text": "By resetting the pitot heat"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The two ADC systems can be cross-connected so one ADC supplies both sides. The standby instruments remain as a separate, independent backup.",
+    "tags": [
+      "adc",
+      "failure"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0018",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "Redundancy and failure warning",
+    "question": "Can the crew enter air data manually into an ADC if its sensors fail?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only on the ground, for testing"
+      },
+      {
+        "id": "b",
+        "text": "No, there is no provision for manual input"
+      },
+      {
+        "id": "c",
+        "text": "Yes, using the standby altimeter's subscale knob"
+      },
+      {
+        "id": "d",
+        "text": "Yes, through the flight management system keyboard"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The ADC has no manual input. Instead, built-in test equipment gives prompt indication of any malfunction so that the crew can change to another source.",
+    "tags": [
+      "adc",
+      "manual input"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0019",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "Redundancy and failure warning",
+    "question": "How is an ADC failure usually shown to the crew on the affected instruments?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By a stick shaker activation"
+      },
+      {
+        "id": "b",
+        "text": "By the pointers going to their maximum reading"
+      },
+      {
+        "id": "c",
+        "text": "By the instrument lights going out"
+      },
+      {
+        "id": "d",
+        "text": "By a failure flag on the display"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The ADC's monitoring sets a flag, and the indicator shows it rather than continuing to display misleading data. The crew then selects the other ADC or uses the standby instruments.",
+    "tags": [
+      "adc",
+      "failure warning"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0020",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "Built-in test equipment",
+    "question": "When does the power-up BITE of an ADC run?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only after an in-flight failure warning"
+      },
+      {
+        "id": "b",
+        "text": "Only when maintenance staff select a test switch"
+      },
+      {
+        "id": "c",
+        "text": "Whenever power is applied"
+      },
+      {
+        "id": "d",
+        "text": "About once every second throughout operation"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Power-up BITE checks the microprocessor, the memory and the air data functions whenever power is applied. Continuous BITE then takes over during operation.",
+    "tags": [
+      "bite",
+      "power up"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0021",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "Built-in test equipment",
+    "question": "How often does continuous BITE check an ADC's inputs and outputs?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About once every second"
+      },
+      {
+        "id": "b",
+        "text": "Once per flight"
+      },
+      {
+        "id": "c",
+        "text": "About once a minute"
+      },
+      {
+        "id": "d",
+        "text": "Only when the crew request it"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Continuous BITE is an automatic check of every stage of input and output throughout operation, roughly every second. Faults are flagged promptly.",
+    "tags": [
+      "bite",
+      "continuous"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0022",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "Built-in test equipment",
+    "question": "What is the purpose of maintenance BITE in an ADC?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To allow pilots to calibrate the ADC in flight"
+      },
+      {
+        "id": "b",
+        "text": "To test the ADC continuously during flight"
+      },
+      {
+        "id": "c",
+        "text": "To check the processor and memory when power is first applied"
+      },
+      {
+        "id": "d",
+        "text": "Ground testing, with current and past faults"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Maintenance BITE is selected with a test or test/history switch on the ground. It shows both current faults and those recorded on earlier flights.",
+    "tags": [
+      "bite",
+      "maintenance"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0023",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "Built-in test equipment",
+    "question": "What three types of BITE are found in an ADC?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Analogue, digital and hybrid"
+      },
+      {
+        "id": "b",
+        "text": "Power-up, continuous and maintenance"
+      },
+      {
+        "id": "c",
+        "text": "Primary, secondary and standby"
+      },
+      {
+        "id": "d",
+        "text": "Preflight, in-flight and post-flight"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Power-up BITE runs at switch-on, continuous BITE runs about once a second, and maintenance BITE is used by engineers on the ground.",
+    "tags": [
+      "bite"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0024",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "Advantages of an air data system",
+    "question": "How does an air data system reduce instrument and lag errors compared with mechanical instruments?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It heats the static lines"
+      },
+      {
+        "id": "b",
+        "text": "It averages the readings of all three pitot-static systems"
+      },
+      {
+        "id": "c",
+        "text": "Servomotors replace friction-prone linkages"
+      },
+      {
+        "id": "d",
+        "text": "It uses larger pitot tubes"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Friction in linkages is the major cause of instrument error and limits response, causing lag. Electrically servoed indicators largely overcome both problems.",
+    "tags": [
+      "adc",
+      "advantages"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0025",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "Advantages of an air data system",
+    "question": "Why can an air data system apply position error correction to several outputs at once?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Each indicator has its own position error correction card"
+      },
+      {
+        "id": "b",
+        "text": "The static vents are corrected by heaters"
+      },
+      {
+        "id": "c",
+        "text": "One computer works out all the quantities"
+      },
+      {
+        "id": "d",
+        "text": "Position error does not exist in an ADC system"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The position error correction can be worked out once, for example in the Mach channel, and applied in the altitude and airspeed channels too. Shaped cams or software tailor it to the aircraft.",
+    "tags": [
+      "adc",
+      "position error correction"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0026",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "Advantages of an air data system",
+    "question": "Which display formats do electrically servoed air data instruments make possible?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Digital, moving tape and combined displays"
+      },
+      {
+        "id": "b",
+        "text": "Only three-pointer dials"
+      },
+      {
+        "id": "c",
+        "text": "Only round dials with a single pointer and a counter"
+      },
+      {
+        "id": "d",
+        "text": "Only head-up displays"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Freed from mechanical linkages, designers can choose displays that are easier to read and unambiguous. Moving tapes and digital readouts are now standard.",
+    "tags": [
+      "adc",
+      "displays"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0027",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "Advantages of an air data system",
+    "question": "How does an air data system make the installation behind the panel \"cleaner\"?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It uses one static vent for all systems"
+      },
+      {
+        "id": "b",
+        "text": "Pipes are needed only for the standby instruments"
+      },
+      {
+        "id": "c",
+        "text": "It places all instruments in the avionics bay"
+      },
+      {
+        "id": "d",
+        "text": "It removes the need for any standby instruments at all"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Electrical signals replace long pressure lines to each instrument. Shorter pitot-static lines also reduce error-producing acoustic effects, and maintenance is easier.",
+    "tags": [
+      "adc",
+      "clean design"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0028",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "Advantages of an air data system",
+    "question": "Why do shorter pitot-static lines reduce errors?",
+    "options": [
+      {
+        "id": "a",
+        "text": "They reduce the density error of the ASI"
+      },
+      {
+        "id": "b",
+        "text": "They reduce the effect of temperature on the capsules"
+      },
+      {
+        "id": "c",
+        "text": "They prevent the pitot tube from icing"
+      },
+      {
+        "id": "d",
+        "text": "They reduce acoustic effects in the pipes"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Pressure changes travel down the pipes as waves and are delayed and distorted on the way. Short lines from the probes to the ADC minimise these effects.",
+    "tags": [
+      "adc",
+      "pipelines"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-ADC-0029",
+    "subjectCode": "INST",
+    "topic": "08 Air Data Computer",
+    "subtopic": "Advantages of an air data system",
+    "question": "Why is an ADC described as a central source for other systems?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It powers the other avionics systems"
+      },
+      {
+        "id": "b",
+        "text": "It feeds air data to many other systems"
+      },
+      {
+        "id": "c",
+        "text": "It controls the pitot and static heaters"
+      },
+      {
+        "id": "d",
+        "text": "It is mounted in the centre of the instrument panel"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The same computed altitude, speed, Mach and temperature data serve the instruments, autopilot, FMS, transponder, warning systems and recorders. Each system does not need its own sensors.",
+    "tags": [
+      "adc",
+      "central source"
+    ],
+    "status": "published",
+    "version": 1
+  }
+]

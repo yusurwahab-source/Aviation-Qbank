@@ -1,0 +1,1555 @@
+[
+  {
+    "id": "INST-INS-0001",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Introduction",
+    "question": "What does the inertial sensor system (ISS) at the heart of an INS consist of?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A radio receiver and a navigation database"
+      },
+      {
+        "id": "b",
+        "text": "A flux valve, a gyro and a heading indicator"
+      },
+      {
+        "id": "c",
+        "text": "Pitot-static sensors, temperature probes and an air data computer"
+      },
+      {
+        "id": "d",
+        "text": "A gyro and accelerometer platform, and a computer"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The inertial sensor system is a stable platform carrying high-quality gyros and accelerometers, together with a computer. Adding a second computer to store waypoints and steer between them turns it into an inertial navigation system.",
+    "tags": [
+      "ins",
+      "components"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0002",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Introduction",
+    "question": "How does the INS computer obtain velocity from the accelerometers?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By integrating acceleration once with time"
+      },
+      {
+        "id": "b",
+        "text": "By differentiating acceleration with time"
+      },
+      {
+        "id": "c",
+        "text": "By dividing acceleration by the elapsed time squared"
+      },
+      {
+        "id": "d",
+        "text": "By integrating acceleration twice with time"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Integrating acceleration over time gives velocity. Integrating that velocity a second time gives distance travelled, from which position is updated.",
+    "tags": [
+      "ins",
+      "integration"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0003",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Introduction",
+    "question": "How does an INS obtain distance travelled?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By multiplying acceleration by elapsed time"
+      },
+      {
+        "id": "b",
+        "text": "By counting the Schuler oscillations"
+      },
+      {
+        "id": "c",
+        "text": "By integrating velocity with time, the second integration"
+      },
+      {
+        "id": "d",
+        "text": "By integrating acceleration once with time"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The first integration turns acceleration into velocity, the second turns velocity into distance. The distance north and east is then applied to the start position.",
+    "tags": [
+      "ins",
+      "integration"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0004",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Introduction",
+    "question": "Which of these can an inertial sensor system provide without any outside reference?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Indicated airspeed, pressure altitude and Mach number"
+      },
+      {
+        "id": "b",
+        "text": "True heading, drift and ground speed"
+      },
+      {
+        "id": "c",
+        "text": "Radio bearings from ground stations"
+      },
+      {
+        "id": "d",
+        "text": "Magnetic variation, measured directly"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The ISS gives pitch, roll, true heading, true track, drift, present position, ground speed and wind (with a TAS input). Airspeed and pressure altitude come from the air data computer.",
+    "tags": [
+      "ins",
+      "outputs"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0005",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Introduction",
+    "question": "What turns an inertial sensor system into an inertial navigation system?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A radio altimeter that limits vertical errors"
+      },
+      {
+        "id": "b",
+        "text": "A computer that stores and steers to waypoints"
+      },
+      {
+        "id": "c",
+        "text": "A flux valve that supplies magnetic heading"
+      },
+      {
+        "id": "d",
+        "text": "A second set of accelerometers on the vertical axis"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The extra navigation computer lets the crew enter and store waypoints and computes track angle error, distance and time to go. These outputs can be used by the autopilot, flight director or for manual flying.",
+    "tags": [
+      "ins",
+      "waypoints"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0006",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Introduction",
+    "question": "What was special about the inertial navigation system when it was introduced?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It was the first system to show magnetic heading"
+      },
+      {
+        "id": "b",
+        "text": "It was the first system to use ground radio stations"
+      },
+      {
+        "id": "c",
+        "text": "It was the first self-contained source of all of it"
+      },
+      {
+        "id": "d",
+        "text": "It was the first system that needed no electrical power of any kind"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The INS needs no external reference once aligned and gives all the navigation data from one unit. The similar laser-gyro IRS has since joined it.",
+    "tags": [
+      "ins",
+      "self contained"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0007",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Accelerometers and the platform",
+    "question": "Why must the accelerometers of a gimballed INS be kept horizontal?",
+    "options": [
+      {
+        "id": "a",
+        "text": "So that the gyros do not precess"
+      },
+      {
+        "id": "b",
+        "text": "So that they can be aligned with magnetic north"
+      },
+      {
+        "id": "c",
+        "text": "So that they measure vertical speed directly"
+      },
+      {
+        "id": "d",
+        "text": "So that they do not sense gravity"
+      }
+    ],
+    "correct": "d",
+    "explanation": "A tilted horizontal accelerometer senses part of gravity's 1 g and treats it as an aircraft acceleration, producing a false velocity. The platform is therefore kept level with the local horizontal.",
+    "tags": [
+      "ins",
+      "accelerometers"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0008",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Accelerometers and the platform",
+    "question": "In a north-aligned INS, how are the two horizontal accelerometers arranged?",
+    "options": [
+      {
+        "id": "a",
+        "text": "One on the north-south axis, one on the east-west axis"
+      },
+      {
+        "id": "b",
+        "text": "One along the longitudinal axis, one vertical"
+      },
+      {
+        "id": "c",
+        "text": "Both along the east-west axis, for redundancy"
+      },
+      {
+        "id": "d",
+        "text": "Both along the aircraft's longitudinal axis"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The north and east accelerometers measure accelerations along true north-south and east-west. Their integrated outputs are the north and east velocities and distances.",
+    "tags": [
+      "ins",
+      "accelerometers"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0009",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Accelerometers and the platform",
+    "question": "What holds the INS platform stable in space?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A magnetic detector unit in the wing tip"
+      },
+      {
+        "id": "b",
+        "text": "The accelerometers acting as torque motors"
+      },
+      {
+        "id": "c",
+        "text": "The weight of the platform hanging below its pivot"
+      },
+      {
+        "id": "d",
+        "text": "Gyros on the platform, driving the gimbal motors"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The platform gyros sense any rotation of the platform and drive torque motors on the gimbals to cancel it, keeping the platform level and aligned.",
+    "tags": [
+      "ins",
+      "platform"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0010",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Accelerometers and the platform",
+    "question": "The east-west distance gone from an INS is a departure. How is it turned into change of longitude?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is multiplied by the cosine of the latitude"
+      },
+      {
+        "id": "b",
+        "text": "It is multiplied by the sine of the latitude"
+      },
+      {
+        "id": "c",
+        "text": "It is multiplied by the secant of the latitude"
+      },
+      {
+        "id": "d",
+        "text": "It is divided by the secant of the latitude"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Departure = change of longitude × cos latitude, so change of longitude = departure × sec latitude. Meridians converge, so one nautical mile of departure covers more longitude at high latitude.",
+    "tags": [
+      "ins",
+      "departure"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0011",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Accelerometers and the platform",
+    "question": "An INS measures 120 NM of easterly departure at a mean latitude of 60°N. What change of longitude is that?",
+    "options": [
+      {
+        "id": "a",
+        "text": "60 minutes, that is 1°"
+      },
+      {
+        "id": "b",
+        "text": "240 minutes, that is 4°"
+      },
+      {
+        "id": "c",
+        "text": "208 minutes, about 3.5°"
+      },
+      {
+        "id": "d",
+        "text": "120 minutes, that is 2°"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Change of longitude = departure × sec latitude = 120 × 2 = 240 minutes of longitude, which is 4°. Multiplying by cos 60° instead gives the 60-minute slip.",
+    "tags": [
+      "ins",
+      "departure",
+      "calculation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0012",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Accelerometers and the platform",
+    "question": "In a north-referenced INS, the second integration of the north-south acceleration gives:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Change of latitude"
+      },
+      {
+        "id": "b",
+        "text": "Departure, the east-west distance gone"
+      },
+      {
+        "id": "c",
+        "text": "Change of longitude"
+      },
+      {
+        "id": "d",
+        "text": "North-south velocity"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The first integration gives north-south speed; the second gives north-south distance, which is change of latitude in nautical miles (minutes of arc). The east-west channel gives departure.",
+    "tags": [
+      "ins",
+      "integration"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0013",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Accelerometers and the platform",
+    "question": "In flight, which effects must the computer of a north-referenced INS compensate for?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Magnetic variation and deviation"
+      },
+      {
+        "id": "b",
+        "text": "Earth rate, transport rate and Coriolis"
+      },
+      {
+        "id": "c",
+        "text": "Altimeter temperature error only"
+      },
+      {
+        "id": "d",
+        "text": "Instrument, position, density and compressibility error"
+      }
+    ],
+    "correct": "b",
+    "explanation": "To keep the platform level and pointing north the computer allows for earth rate, transport rate (movement over the curved earth) and Coriolis and centripetal accelerations.",
+    "tags": [
+      "ins",
+      "compensation"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0014",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Alignment",
+    "question": "Why must the stable element of an INS be aligned before use?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The battery must be charged during alignment"
+      },
+      {
+        "id": "b",
+        "text": "The gyros must be set to magnetic north"
+      },
+      {
+        "id": "c",
+        "text": "The waypoints for the route cannot be loaded until it is aligned"
+      },
+      {
+        "id": "d",
+        "text": "The accelerometers must sense along known axes"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The platform must be aligned in attitude (level) and in azimuth (true north) so that each accelerometer measures acceleration along its chosen axis.",
+    "tags": [
+      "ins",
+      "alignment"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0015",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Alignment",
+    "question": "What is the first stage of an INS alignment sequence?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Warm-up of the fluid-filled parts to operating temperature"
+      },
+      {
+        "id": "b",
+        "text": "Fine levelling of the platform, to within 6 seconds of arc"
+      },
+      {
+        "id": "c",
+        "text": "Entering the waypoints for the flight"
+      },
+      {
+        "id": "d",
+        "text": "Gyrocompassing, to find true north"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Alignment starts with a warm-up of the fluid-filled components to their correct temperature, then coarse alignment, fine levelling and gyrocompassing.",
+    "tags": [
+      "ins",
+      "alignment"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0016",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Alignment",
+    "question": "How long does the INS warm-up phase normally take?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 10 seconds"
+      },
+      {
+        "id": "b",
+        "text": "About 84 minutes"
+      },
+      {
+        "id": "c",
+        "text": "About 3 to 4 minutes"
+      },
+      {
+        "id": "d",
+        "text": "About 15 to 20 minutes"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Bringing the fluid-filled components to their operating temperature normally takes 3 to 4 minutes, before the platform can be levelled and aligned.",
+    "tags": [
+      "ins",
+      "alignment"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0017",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Alignment",
+    "question": "During coarse levelling, what is used as the reference to level the platform roughly?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The pilot's entry of the aircraft heading"
+      },
+      {
+        "id": "b",
+        "text": "The radio altimeter, the air data computer and the flux valve"
+      },
+      {
+        "id": "c",
+        "text": "The flux valve and the standby compass"
+      },
+      {
+        "id": "d",
+        "text": "The airframe, gravity switches or accelerometers"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Pitch and roll gimbals are first driven to 90° to each other, then the platform is roughly levelled against the airframe or using gravity switches or the horizontal accelerometers.",
+    "tags": [
+      "ins",
+      "coarse levelling"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0018",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Alignment",
+    "question": "How is coarse azimuth alignment achieved?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is turned to the best known true heading"
+      },
+      {
+        "id": "b",
+        "text": "The accelerometer outputs are reduced to zero"
+      },
+      {
+        "id": "c",
+        "text": "The east gyro is connected to the azimuth motor"
+      },
+      {
+        "id": "d",
+        "text": "The platform is aligned with magnetic north from the flux valve"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Coarse azimuth alignment turns the platform until its heading output agrees with the aircraft's best known true heading. Gyrocompassing later refines it.",
+    "tags": [
+      "ins",
+      "coarse alignment"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0019",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Alignment",
+    "question": "How closely does coarse alignment level and align the platform, and how quickly?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Exactly, in about 3 minutes"
+      },
+      {
+        "id": "b",
+        "text": "To within 1–2° in a few seconds"
+      },
+      {
+        "id": "c",
+        "text": "To within 6 seconds of arc in a few seconds"
+      },
+      {
+        "id": "d",
+        "text": "To within 1–2° in about 15 minutes"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Coarse alignment gets the platform within 1–2° in a few seconds, which shortens the time needed for the fine stages.",
+    "tags": [
+      "ins",
+      "coarse alignment"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0020",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Alignment",
+    "question": "How is fine levelling of an INS platform achieved?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By entering the aerodrome elevation"
+      },
+      {
+        "id": "b",
+        "text": "By aligning the platform with the airframe"
+      },
+      {
+        "id": "c",
+        "text": "By driving the accelerometer outputs to zero"
+      },
+      {
+        "id": "d",
+        "text": "By connecting the east gyro to the azimuth gimbal motor"
+      }
+    ],
+    "correct": "c",
+    "explanation": "A level horizontal accelerometer senses no component of gravity, so the platform is driven until both give zero output.",
+    "tags": [
+      "ins",
+      "fine levelling"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0021",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Alignment",
+    "question": "How long does fine levelling take, and to what accuracy?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 1–1½ min, to about 6 seconds of arc"
+      },
+      {
+        "id": "b",
+        "text": "About 10 minutes, to within 1 minute of arc"
+      },
+      {
+        "id": "c",
+        "text": "About 3–4 minutes, to within 6 minutes of arc"
+      },
+      {
+        "id": "d",
+        "text": "A few seconds, to within 1–2°"
+      }
+    ],
+    "correct": "a",
+    "explanation": "Fine levelling takes up to about 1–1½ minutes and levels the platform to within about 6 seconds of arc.",
+    "tags": [
+      "ins",
+      "fine levelling"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0022",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Alignment",
+    "question": "In gyrocompassing, which gyro signal is used to align the platform with true north?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The vertical accelerometer"
+      },
+      {
+        "id": "b",
+        "text": "The north gyro, which senses earth rotation when aligned"
+      },
+      {
+        "id": "c",
+        "text": "The azimuth gyro, which senses magnetic north"
+      },
+      {
+        "id": "d",
+        "text": "The east gyro's earth-rate signal"
+      }
+    ],
+    "correct": "d",
+    "explanation": "With the platform correctly aligned, the east gyro's input axis senses no component of earth rotation. When misaligned it does, and its signal torques the azimuth gyro until the platform points to true north.",
+    "tags": [
+      "ins",
+      "gyrocompassing"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0023",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Alignment",
+    "question": "When the INS platform is correctly aligned in azimuth, what does the east gyro sense of the earth's rotation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The full earth rate of 15°/h"
+      },
+      {
+        "id": "b",
+        "text": "No component of it"
+      },
+      {
+        "id": "c",
+        "text": "Earth rate × cos latitude"
+      },
+      {
+        "id": "d",
+        "text": "Earth rate × sin latitude"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The east gyro's input axis lies east-west; the earth's rotation vector lies in the north-south vertical plane, so a correctly aligned east gyro senses none of it.",
+    "tags": [
+      "ins",
+      "gyrocompassing"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0024",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Alignment",
+    "question": "Which two conditions must be met before an INS is aligned?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Waypoints loaded, and the aircraft moving slowly"
+      },
+      {
+        "id": "b",
+        "text": "Accelerometers aligned with the airframe, and platform to magnetic north"
+      },
+      {
+        "id": "c",
+        "text": "Accelerometers levelled, and platform oriented to true north"
+      },
+      {
+        "id": "d",
+        "text": "Engines running, and the pitot heaters on"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Alignment requires the accelerometers levelled (velocity set to zero) and the platform oriented to true north by gyrocompassing, with the position verified.",
+    "tags": [
+      "ins",
+      "alignment"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0025",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Alignment",
+    "question": "Why must the aircraft not be moved during INS alignment?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The battery cannot supply power while taxiing"
+      },
+      {
+        "id": "b",
+        "text": "The flux valve cannot be read on the move"
+      },
+      {
+        "id": "c",
+        "text": "Any motion is taken as an error and spoils the alignment"
+      },
+      {
+        "id": "d",
+        "text": "The waypoint memory is cleared when it moves"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Alignment works by sensing only gravity and earth rotation. Any movement adds accelerations and rotations the system cannot separate, so alignment fails or is degraded.",
+    "tags": [
+      "ins",
+      "alignment"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0026",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Alignment",
+    "question": "Why does INS alignment take longer at high latitudes?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The accelerometers freeze in the cold air"
+      },
+      {
+        "id": "b",
+        "text": "The horizontal earth rate is weaker there"
+      },
+      {
+        "id": "c",
+        "text": "The gravity vector is not vertical there"
+      },
+      {
+        "id": "d",
+        "text": "The earth's magnetic field is weaker and steeper there"
+      }
+    ],
+    "correct": "b",
+    "explanation": "Gyrocompassing uses the horizontal component of earth rate, 15° per hour × cos latitude, which shrinks towards the poles. The signal is weaker, so alignment takes longer and near the poles may not be possible.",
+    "tags": [
+      "ins",
+      "alignment",
+      "latitude"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0027",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Schuler tuning",
+    "question": "Schuler's imaginary earth pendulum has a length equal to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The height of the aircraft above the surface"
+      },
+      {
+        "id": "b",
+        "text": "The circumference of the earth"
+      },
+      {
+        "id": "c",
+        "text": "One nautical mile"
+      },
+      {
+        "id": "d",
+        "text": "The radius of the earth"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Schuler imagined a pendulum as long as the earth's radius, its bob at the earth's centre. Accelerating the suspension point would not disturb it, so a platform on it would stay level.",
+    "tags": [
+      "schuler"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0028",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Schuler tuning",
+    "question": "What is the period of the Schuler oscillation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "84.4 minutes"
+      },
+      {
+        "id": "b",
+        "text": "60 minutes"
+      },
+      {
+        "id": "c",
+        "text": "24 hours"
+      },
+      {
+        "id": "d",
+        "text": "15.04 minutes"
+      }
+    ],
+    "correct": "a",
+    "explanation": "A pendulum the length of the earth's radius would oscillate with a period of 84.4 minutes. INS errors from a platform tilt oscillate with this period.",
+    "tags": [
+      "schuler",
+      "period"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0029",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Schuler tuning",
+    "question": "How is an INS platform kept normal to the local vertical as the aircraft moves over the earth?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By resetting the platform every 84.4 minutes"
+      },
+      {
+        "id": "b",
+        "text": "By using pendulous vanes, as in an air-driven attitude indicator"
+      },
+      {
+        "id": "c",
+        "text": "By feeding back velocity to torque the gyros"
+      },
+      {
+        "id": "d",
+        "text": "By a flux valve that senses the vertical field"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The computed velocity is fed back to torque the levelling gyros so that the platform tilts at the rate the local vertical turns. This Schuler tuning keeps the accelerometers from sensing gravity.",
+    "tags": [
+      "schuler",
+      "tuning"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0030",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Schuler tuning",
+    "question": "Why does Schuler tuning keep INS errors \"bounded\" for a platform tilt?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The error reverses each time the aircraft turns through 180°"
+      },
+      {
+        "id": "b",
+        "text": "The error is removed by the pilot each hour"
+      },
+      {
+        "id": "c",
+        "text": "The error is cancelled by the radio updates"
+      },
+      {
+        "id": "d",
+        "text": "It oscillates with an 84.4-minute period"
+      }
+    ],
+    "correct": "d",
+    "explanation": "A small platform tilt produces an error that swings back and forth with the Schuler period rather than accumulating. Errors that grow with time are called unbounded.",
+    "tags": [
+      "schuler",
+      "errors"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0031",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Errors",
+    "question": "What is an unbounded INS error?",
+    "options": [
+      {
+        "id": "a",
+        "text": "One that grows with time, such as from a ground speed error"
+      },
+      {
+        "id": "b",
+        "text": "One that oscillates with the 84.4-minute Schuler period"
+      },
+      {
+        "id": "c",
+        "text": "One that appears only during manoeuvres"
+      },
+      {
+        "id": "d",
+        "text": "One that is limited to a few hundred metres"
+      }
+    ],
+    "correct": "a",
+    "explanation": "An unbounded error increases with time. A small ground speed error, integrated, gives a position error that keeps growing. Errors tied to the Schuler cycle are bounded.",
+    "tags": [
+      "ins",
+      "errors"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0032",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Errors",
+    "question": "What is the typical accuracy of an aircraft INS in navigation mode?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A position drift of about 1–2 NM per day"
+      },
+      {
+        "id": "b",
+        "text": "A position drift of about 1–2 NM per hour"
+      },
+      {
+        "id": "c",
+        "text": "No drift at all once aligned"
+      },
+      {
+        "id": "d",
+        "text": "A position drift of about 10 NM per minute"
+      }
+    ],
+    "correct": "b",
+    "explanation": "An INS drifts slowly, roughly 1–2 NM per hour of flight, because small gyro and accelerometer errors accumulate. Updating from a known fix removes the accumulated error.",
+    "tags": [
+      "ins",
+      "accuracy"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0033",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Errors",
+    "question": "Which rotation must the INS computer correct for, at about 15.04° per hour?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The earth's rotation"
+      },
+      {
+        "id": "b",
+        "text": "The Schuler oscillation"
+      },
+      {
+        "id": "c",
+        "text": "Transport wander towards the pole"
+      },
+      {
+        "id": "d",
+        "text": "The aircraft's rate of turn"
+      }
+    ],
+    "correct": "a",
+    "explanation": "The earth turns at about 15.04° per hour relative to the stars. The INS computer removes its effect so that the platform stays aligned to the local north and vertical.",
+    "tags": [
+      "ins",
+      "earth rate"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0034",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Control and display unit",
+    "question": "On the INS control and display unit, what does the waypoint thumbwheel select?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The display of track and ground speed"
+      },
+      {
+        "id": "b",
+        "text": "The mode of the system: align, nav or attitude"
+      },
+      {
+        "id": "c",
+        "text": "The brightness of the displays"
+      },
+      {
+        "id": "d",
+        "text": "The waypoint to be loaded or checked"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The waypoint selector is turned to the waypoint number when loading latitudes and longitudes before flight, reloading in flight or checking what is loaded.",
+    "tags": [
+      "ins",
+      "cdu"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0035",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Control and display unit",
+    "question": "What does the FROM/TO display on an INS control unit show?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The time to the next waypoint"
+      },
+      {
+        "id": "b",
+        "text": "The two waypoints of the leg being flown"
+      },
+      {
+        "id": "c",
+        "text": "The present position and the next fix"
+      },
+      {
+        "id": "d",
+        "text": "The departure and destination aerodromes of the flight"
+      }
+    ],
+    "correct": "b",
+    "explanation": "All read-outs and the flight director and autopilot commands are based on the leg between the FROM and TO waypoints, so a wrong pair or a wrongly loaded position leads the aircraft off course.",
+    "tags": [
+      "ins",
+      "cdu"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0036",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Control and display unit",
+    "question": "What is the track change push-button of an INS used for?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To dim the displays"
+      },
+      {
+        "id": "b",
+        "text": "To change the displayed track from true to magnetic"
+      },
+      {
+        "id": "c",
+        "text": "To set the two waypoints to fly between"
+      },
+      {
+        "id": "d",
+        "text": "To update the present position over a fix"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The track change button sets a new FROM/TO pair, for example to go direct to a waypoint or when the system is not flying the waypoints in sequence.",
+    "tags": [
+      "ins",
+      "cdu"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0037",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Control and display unit",
+    "question": "In AUTO mode, when does the INS ALERT light come on and go out?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Steady at 2 minutes to go; out at the track change"
+      },
+      {
+        "id": "b",
+        "text": "On steady 30 seconds before the waypoint, out 2 minutes after it"
+      },
+      {
+        "id": "c",
+        "text": "Flashing 2 minutes before the waypoint, out overhead"
+      },
+      {
+        "id": "d",
+        "text": "On steady overhead the waypoint, out 2 minutes later"
+      }
+    ],
+    "correct": "a",
+    "explanation": "In AUTO the alert light comes on steady about 2 minutes to run and goes out as the system changes track overhead the waypoint.",
+    "tags": [
+      "ins",
+      "alert"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0038",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Control and display unit",
+    "question": "In MANUAL mode, how does the INS ALERT light behave approaching a waypoint?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Steady at 30 seconds to go, until the track changes"
+      },
+      {
+        "id": "b",
+        "text": "Flashing at 2 minutes to go, then steady from 30 seconds to go"
+      },
+      {
+        "id": "c",
+        "text": "Off until the waypoint, then flashing for 30 seconds"
+      },
+      {
+        "id": "d",
+        "text": "Steady at 2 min; flashing from 30 s until changed"
+      }
+    ],
+    "correct": "d",
+    "explanation": "In MANUAL the light comes on steady 2 minutes before the waypoint, starts to flash 30 seconds before it, and keeps flashing until the crew changes the track.",
+    "tags": [
+      "ins",
+      "alert"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0039",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Control and display unit",
+    "question": "Why does the INS ALERT annunciator not come on at low speed?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It needs the air data computer, which is off on the ground"
+      },
+      {
+        "id": "b",
+        "text": "It is inhibited below a set speed, such as 100 kt"
+      },
+      {
+        "id": "c",
+        "text": "It is inhibited until the first waypoint is passed"
+      },
+      {
+        "id": "d",
+        "text": "It works only above the transition altitude"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The alert annunciator does not illuminate below a set ground speed, typically either 100 kt or 250 kt depending on the system, so it does not trigger while taxiing.",
+    "tags": [
+      "ins",
+      "alert"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0040",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Control and display unit",
+    "question": "What does the BAT annunciator on an INS control unit indicate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Alignment is complete and the system is ready"
+      },
+      {
+        "id": "b",
+        "text": "The battery needs to be replaced"
+      },
+      {
+        "id": "c",
+        "text": "It is running on its internal battery"
+      },
+      {
+        "id": "d",
+        "text": "The waypoint memory is full"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The battery annunciator shows that the INS has lost its normal supply and is running on internal or standby battery power.",
+    "tags": [
+      "ins",
+      "annunciators"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0041",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Control and display unit",
+    "question": "With the INS mode switch in AUTO, what happens as each waypoint is overflown?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The INS changes to the next track automatically"
+      },
+      {
+        "id": "b",
+        "text": "The crew must change the FROM/TO waypoints by hand"
+      },
+      {
+        "id": "c",
+        "text": "The INS enters attitude mode"
+      },
+      {
+        "id": "d",
+        "text": "The ALERT light starts to flash until reset"
+      }
+    ],
+    "correct": "a",
+    "explanation": "In AUTO the system switches from one track to the next as each waypoint is passed. In MANUAL the operator must update the FROM/TO read-out at each waypoint.",
+    "tags": [
+      "ins",
+      "auto manual"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0042",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Control and display unit",
+    "question": "In general terms, what does the REMOTE position of the INS auto/manual/remote switch allow?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Use of the INS with the main power off"
+      },
+      {
+        "id": "b",
+        "text": "Navigation using radio updates only"
+      },
+      {
+        "id": "c",
+        "text": "Loading several INSs from one control unit"
+      },
+      {
+        "id": "d",
+        "text": "Control of the INS from the ground"
+      }
+    ],
+    "correct": "c",
+    "explanation": "Its exact function depends on the system, but in general REMOTE allows waypoints to be inserted into several INSs at the same time from one control and display unit.",
+    "tags": [
+      "ins",
+      "remote"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0043",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Control and display unit",
+    "question": "What is the HOLD push-button on an INS control unit mainly used for?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Holding the present waypoint so it is not passed"
+      },
+      {
+        "id": "b",
+        "text": "Updating the INS position when over a reliable fix"
+      },
+      {
+        "id": "c",
+        "text": "Freezing the alignment while the aircraft is towed"
+      },
+      {
+        "id": "d",
+        "text": "Holding the aircraft in a racetrack pattern"
+      }
+    ],
+    "correct": "b",
+    "explanation": "HOLD is pressed as a reliable fix, such as a VOR overhead, is passed. The displayed position is frozen so it can be compared with the fix and the position updated.",
+    "tags": [
+      "ins",
+      "hold",
+      "update"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0044",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Control and display unit",
+    "question": "What is the INSERT push-button on an INS control unit used for?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Inserting the INS into the autopilot loop"
+      },
+      {
+        "id": "b",
+        "text": "Changing from the FROM to the TO waypoint"
+      },
+      {
+        "id": "c",
+        "text": "Inserting a holding pattern at a waypoint"
+      },
+      {
+        "id": "d",
+        "text": "Entering keyboard data into the system"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The keyboard is used to type data such as waypoint coordinates or the present position, and INSERT enters that data into the system.",
+    "tags": [
+      "ins",
+      "cdu"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0045",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Control and display unit",
+    "question": "Which INS display shows the drift angle?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Heading and drift angle, HDG/DA"
+      },
+      {
+        "id": "b",
+        "text": "Cross-track error and track angle error, XTK/TKE"
+      },
+      {
+        "id": "c",
+        "text": "Distance and time, DIS/TIME"
+      },
+      {
+        "id": "d",
+        "text": "Track and ground speed, TK/GS"
+      }
+    ],
+    "correct": "a",
+    "explanation": "HDG/DA displays true heading and drift angle. TK/GS shows track and ground speed, and XTK/TKE the cross-track distance and track angle error.",
+    "tags": [
+      "ins",
+      "displays"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0046",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Control and display unit",
+    "question": "A pilot wants to check that two sequential waypoints are correctly entered. Which comparison is useful?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The INS wind against the forecast wind"
+      },
+      {
+        "id": "b",
+        "text": "The INS heading against the standby compass"
+      },
+      {
+        "id": "c",
+        "text": "The leg distance against the flight plan"
+      },
+      {
+        "id": "d",
+        "text": "The INS ground speed against the indicated airspeed"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The DIS/TIME display gives the distance between the selected waypoints, which should match the flight plan; the desired track for the leg can also be checked against the plan.",
+    "tags": [
+      "ins",
+      "checks"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "INST-INS-0047",
+    "subjectCode": "INST",
+    "topic": "18 Inertial Navigation Systems",
+    "subtopic": "Control and display unit",
+    "question": "What does the INS track angle error (TKE) show?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The distance off the desired track"
+      },
+      {
+        "id": "b",
+        "text": "The error in the initial alignment heading"
+      },
+      {
+        "id": "c",
+        "text": "The angle between heading and track"
+      },
+      {
+        "id": "d",
+        "text": "The angle between track and desired track"
+      }
+    ],
+    "correct": "d",
+    "explanation": "Track angle error is the angular difference between the track being made good and the desired track. The distance off track is the cross-track error, XTK; the angle between heading and track is drift.",
+    "tags": [
+      "ins",
+      "displays"
+    ],
+    "status": "published",
+    "version": 1
+  }
+]

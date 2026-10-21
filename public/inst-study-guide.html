@@ -1,0 +1,1465 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Instrumentation — Pilot's Guide</title>
+<meta name="description" content="Aircraft instruments explained for airline pilots in 38 chapters: pitot-static sources, air temperature, airspeed, altimeter, VSI, Machmeter and air data computer; magnetism and compasses; gyroscopes, directional gyro, artificial horizon and turn instruments; inertial systems, radio altimeter, FMS, EFIS, computers and data link; flight director, autopilot, autoland, autothrottle, yaw dampers and control laws; warning systems, GPWS, ACAS and flight recorders; and engine and electronic instrumentation, with diagrams, calculators and worked examples." />
+<style>
+  :root{
+    --bg:#f6f8fb;
+    --surface:#ffffff;
+    --surface-2:#eef2f7;
+    --ink:#101826;
+    --ink-2:#3c4758;
+    --muted:#6b7686;
+    --line:#dfe6ef;
+    --brand:#0d6e7d;
+    --brand-ink:#ffffff;
+    --brand-light:#e3f4f6;
+    --warn-bg:#fdecec;
+    --warn-line:#e0413a;
+    --warn-ink:#7a1712;
+    --caution-bg:#fff6e0;
+    --caution-line:#c9821a;
+    --caution-ink:#6b4405;
+    --note-bg:#eaf1fb;
+    --note-line:#3f6fb0;
+    --note-ink:#1f3c63;
+    --white-arc:#e9edf3;
+    --green-arc:#1f9d55;
+    --yellow-arc:#e0b400;
+    --red-arc:#d9362a;
+    --radius:14px;
+    --radius-sm:8px;
+    --shadow:0 1px 2px rgba(16,24,38,.04), 0 6px 20px rgba(16,24,38,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0d1420;
+      --surface:#141d2c;
+      --surface-2:#1b263a;
+      --ink:#eef2f8;
+      --ink-2:#c3cddc;
+      --muted:#8b97ab;
+      --line:#26334a;
+      --brand:#37c3d6;
+      --brand-ink:#06232a;
+      --brand-light:#12323a;
+      --warn-bg:#3a1613;
+      --warn-line:#e4574d;
+      --warn-ink:#ffd6d1;
+      --caution-bg:#3a2c0d;
+      --caution-line:#e0a83a;
+      --caution-ink:#ffe6b0;
+      --note-bg:#122a44;
+      --note-line:#5b93d6;
+      --note-ink:#cfe2fb;
+      --white-arc:#324055;
+      --green-arc:#2bb56a;
+      --yellow-arc:#e0b400;
+      --red-arc:#e4574d;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1420; --surface:#141d2c; --surface-2:#1b263a; --ink:#eef2f8; --ink-2:#c3cddc;
+    --muted:#8b97ab; --line:#26334a; --brand:#37c3d6; --brand-ink:#06232a; --brand-light:#12323a;
+    --warn-bg:#3a1613; --warn-line:#e4574d; --warn-ink:#ffd6d1;
+    --caution-bg:#3a2c0d; --caution-line:#e0a83a; --caution-ink:#ffe6b0;
+    --note-bg:#122a44; --note-line:#5b93d6; --note-ink:#cfe2fb;
+    --white-arc:#324055; --green-arc:#2bb56a; --yellow-arc:#e0b400; --red-arc:#e4574d;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:clip}
+  body{
+    margin:0;
+    overflow-x:clip;
+    max-width:100vw;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,"Segoe UI",system-ui,Roboto,sans-serif;
+    line-height:1.75;
+    font-size:17px;
+  }
+  a{color:var(--brand)}
+  code, .kbd{
+    direction:ltr;unicode-bidi:isolate;display:inline-block;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:6px;
+    padding:0 .35em;font-size:.92em;color:var(--ink);
+  }
+  header.top{
+    position:sticky;top:0;z-index:40;
+    background:linear-gradient(180deg, var(--surface) 85%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    max-width:1180px;margin:0 auto;padding:14px 16px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .brand-mark{display:flex;align-items:center;gap:10px;min-width:0}
+  .brand-mark .plane{
+    width:34px;height:34px;flex:0 0 auto;border-radius:9px;
+    background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+  }
+  .brand-mark .txt{min-width:0}
+  .brand-mark h1{font-size:15px;margin:0;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand-mark .sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .menu-btn{
+    display:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+    border-radius:10px;padding:9px 12px;font-size:14px;cursor:pointer;flex:0 0 auto;
+  }
+  .shell{max-width:1180px;margin:0 auto;display:flex;align-items:flex-start;gap:28px;padding:20px 16px 80px}
+  nav.toc{
+    position:sticky;top:78px;flex:0 0 280px;
+    max-height:calc(100vh - 96px);overflow-y:auto;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;box-shadow:var(--shadow);
+  }
+  nav.toc h2{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:2px 8px 10px}
+  nav.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+  nav.toc li{counter-increment:toc}
+  nav.toc a{
+    display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--ink-2);
+    padding:7px 8px;border-radius:9px;font-size:13.5px;
+  }
+  nav.toc a .n{flex:0 0 auto;color:var(--brand);font-weight:700;font-size:12px;min-width:18px}
+  nav.toc a:hover{background:var(--surface-2);color:var(--ink)}
+  nav.toc a.active{background:var(--brand-light);color:var(--ink);font-weight:600}
+  nav.toc .count{margin-inline-start:auto;font-size:11px;color:var(--muted)}
+  main{flex:1 1 auto;min-width:0}
+  .hero{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 22px;margin-bottom:22px;box-shadow:var(--shadow);
+  }
+  .hero h1{margin:0 0 8px;font-size:26px}
+  .hero p{margin:0;color:var(--ink-2);font-size:15.5px}
+  .hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hero .tag{
+    font-size:12.5px;background:var(--brand-light);color:var(--brand);
+    border-radius:999px;padding:5px 12px;font-weight:600;
+  }
+  section.sec{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px 26px;margin-bottom:22px;box-shadow:var(--shadow);scroll-margin-top:76px;
+  }
+  section.sec > h2{
+    display:flex;align-items:center;gap:12px;font-size:21px;margin:0 0 6px;
+    padding-bottom:14px;border-bottom:1px solid var(--line);
+  }
+  section.sec > h2 .num{
+    flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;
+  }
+  section.sec > h2 .en{margin-inline-start:auto;font-size:12px;color:var(--muted);font-weight:600;
+    direction:ltr;background:var(--surface-2);padding:4px 10px;border-radius:999px}
+  .lead{color:var(--ink-2);font-size:16px;margin-top:14px}
+  h3.sub{font-size:16.5px;margin:26px 0 8px;color:var(--ink);border-inline-start:4px solid var(--brand);padding-inline-start:10px}
+  h4.sub2{font-size:15px;margin:18px 0 6px;color:var(--ink-2)}
+  p{margin:10px 0}
+  ul, ol{margin:10px 0;padding-inline-start:22px}
+  li{margin:5px 0}
+  strong{color:var(--ink)}
+  .table-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm)}
+  table{border-collapse:collapse;width:100%;min-width:420px;font-size:14.5px}
+  table caption{text-align:start;font-size:12.5px;color:var(--muted);padding:8px 12px 0}
+  thead th{
+    background:var(--surface-2);color:var(--ink);text-align:start;
+    padding:9px 12px;font-weight:700;white-space:nowrap;font-size:13.5px;
+  }
+  tbody td{padding:8px 12px;border-top:1px solid var(--line);color:var(--ink-2)}
+  tbody tr:nth-child(even){background:color-mix(in srgb, var(--surface-2) 45%, transparent)}
+  td.num, th.num{direction:ltr;text-align:center;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+  .callout{border-radius:var(--radius-sm);padding:12px 14px;margin:14px 0;border-inline-start:4px solid;font-size:14.5px}
+  .callout .label{display:block;font-weight:800;font-size:12px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:4px}
+  .callout.warning{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-ink)}
+  .callout.caution{background:var(--caution-bg);border-color:var(--caution-line);color:var(--caution-ink)}
+  .callout.note{background:var(--note-bg);border-color:var(--note-line);color:var(--note-ink)}
+  .eq{
+    direction:ltr;font-family:"Cambria Math","STIX Two Math","Latin Modern Math",Georgia,serif;font-size:16.5px;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);
+    padding:10px 14px;margin:12px 0;text-align:center;white-space:nowrap;color:var(--ink);
+    max-width:100%;overflow-x:auto;contain:paint;box-sizing:border-box;
+  }
+  .eq sub,.eq sup{font-size:.72em}
+  .diagram{
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;margin:18px 0;text-align:center;
+    max-width:100%;overflow-x:auto;box-sizing:border-box;
+  }
+  .diagram .cap{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .diagram svg{max-width:100%;height:auto;display:block;margin:0 auto}
+  .ref{
+    display:inline-block;direction:ltr;font-size:11.5px;color:var(--brand);
+    background:var(--brand-light);border-radius:6px;padding:1px 7px;margin-inline-start:4px;
+    font-weight:700;white-space:nowrap;
+  }
+  .related{
+    margin-top:22px;display:flex;align-items:center;gap:10px;
+    background:var(--brand-light);color:var(--brand);border-radius:999px;
+    padding:10px 16px;font-size:14px;font-weight:700;width:fit-content;
+  }
+  .related .dot{width:8px;height:8px;border-radius:50%;background:var(--brand)}
+  footer{max-width:1180px;margin:0 auto;padding:10px 16px 60px;color:var(--muted);font-size:13px;text-align:center}
+  #top-btn{
+    position:fixed;inset-inline-end:18px;bottom:18px;z-index:50;
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+    background:var(--brand);color:var(--brand-ink);font-size:18px;cursor:pointer;
+    box-shadow:var(--shadow);display:none;align-items:center;justify-content:center;
+  }
+  #top-btn.show{display:flex}
+  @media (max-width:880px){
+    .shell{flex-direction:column;padding:14px 12px 70px}
+    main{width:100%;min-width:0}
+    nav.toc{
+      position:fixed;inset:0 0 0 auto;top:0;width:82%;max-width:340px;height:100dvh;max-height:100dvh;
+      transform:translateX(100%);transition:transform .25s ease;border-radius:0;z-index:60;
+    }
+    nav.toc.open{transform:translateX(0)}
+    .toc-scrim{position:fixed;inset:0;background:rgba(6,10,18,.5);z-index:55;display:none}
+    .toc-scrim.show{display:block}
+    .menu-btn{display:inline-flex;align-items:center;gap:6px}
+    section.sec > h2{font-size:18.5px}
+    .hero h1{font-size:22px}
+    body{font-size:16px}
+  }
+  .toc-close{display:none}
+  @media (max-width:880px){
+    .toc-close{
+      display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+      padding-bottom:10px;border-bottom:1px solid var(--line);
+    }
+    .toc-close button{border:none;background:var(--surface-2);border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer;color:var(--ink)}
+  }
+
+  
+  /* ---------- PilotQBank study-guide additions ---------- */
+  :root{ --accent:var(--brand); }
+  html{scroll-padding-top:80px}
+  section.sec{border-top:5px solid var(--accent)}
+  section.sec > h2 .num{background:var(--accent);color:#fff;font-size:19px;width:40px;height:40px;border-radius:12px}
+  section.sec > h2 .en{background:color-mix(in srgb,var(--accent) 14%,var(--surface));color:var(--ink-2)}
+  h3.sub{border-inline-start-color:var(--accent)}
+  nav.toc a .n{font-size:15px;min-width:22px}
+  .hero{background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 16%,var(--surface)),var(--surface) 60%);position:relative;overflow:hidden}
+  .hero .cloud{position:absolute;inset-inline-end:-10px;top:-6px;font-size:84px;opacity:.16;pointer-events:none;user-select:none}
+  .hero .tag{background:color-mix(in srgb,var(--brand) 16%,var(--surface))}
+  .glance{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+  .glance span{font-size:13px;background:color-mix(in srgb,var(--accent) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));border-radius:999px;padding:4px 12px;color:var(--ink-2)}
+  .keyidea{margin:16px 0;padding:14px 16px;border-radius:var(--radius);background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 16%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--accent) 40%,var(--line))}
+  .keyidea .label{display:block;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+  .keyidea p{margin:4px 0}
+  .tip,.memory{margin:14px 0;padding:12px 14px;border-radius:var(--radius-sm);font-size:14.5px;border-inline-start:4px solid}
+  .tip{background:color-mix(in srgb,var(--green-arc) 12%,var(--surface));border-color:var(--green-arc);color:var(--ink)}
+  .memory{background:color-mix(in srgb,#8b5cf6 12%,var(--surface));border-color:#8b5cf6;color:var(--ink)}
+  .tip .label,.memory .label{display:block;font-weight:800;font-size:12px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+  .tip .label{color:var(--green-arc)} .memory .label{color:#8b5cf6}
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
+  .fcard{background:var(--surface-2);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:var(--radius-sm);padding:12px 14px}
+  .fcard .f{direction:ltr;font-family:"Cambria Math","STIX Two Math",Georgia,serif;font-size:18px;color:var(--ink);overflow-x:auto;white-space:nowrap}
+  .fcard .d{font-size:13.5px;color:var(--ink-2);margin-top:4px}
+  details.example{margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface);overflow:hidden}
+  details.example summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:14.5px;background:color-mix(in srgb,var(--accent) 10%,var(--surface-2));list-style:none}
+  details.example summary::-webkit-details-marker{display:none}
+  details.example summary::before{content:"▸ ";color:var(--accent)}
+  details.example[open] summary::before{content:"▾ "}
+  details.example .body{padding:6px 16px 14px}
+  .steps{counter-reset:st;list-style:none;padding:0;margin:12px 0}
+  .steps li{counter-increment:st;position:relative;padding-inline-start:40px;margin:10px 0;min-height:28px}
+  .steps li::before{content:counter(st);position:absolute;inset-inline-start:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:14px 0}
+  .compare .card{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px}
+  .compare .card h4{margin:0 0 6px;font-size:15px}
+  .compare .card.good{border-top:3px solid var(--green-arc)} .compare .card.bad{border-top:3px solid var(--red-arc)} .compare .card.mid{border-top:3px solid var(--yellow-arc)} .compare .card.acc{border-top:3px solid var(--accent)}
+  .bar{display:block;height:10px;border-radius:6px;background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 55%,#fff));min-width:4px}
+  td.barcell{min-width:130px}
+  .pill{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 9px;background:color-mix(in srgb,var(--accent) 16%,var(--surface));color:var(--ink)}
+  .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .tool{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+  .tool h3{margin:0 0 8px;font-size:15.5px}
+  .tool label{display:block;font-size:12.5px;color:var(--muted);margin-top:8px}
+  .tool input{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:16px}
+  .tool .out{margin-top:10px;padding:10px;border-radius:8px;background:color-mix(in srgb,var(--brand) 12%,var(--surface));font-size:14px;direction:ltr}
+  .tool .out b{color:var(--brand)}
+  .cheat table{min-width:340px}
+  .sec .diagram svg text{fill:var(--ink);font:600 12px -apple-system,"Segoe UI",system-ui,sans-serif}
+  .sec .diagram svg text.m{fill:var(--muted);font-weight:500;font-size:11px}
+  .sec .diagram svg text.big{font-size:14px}
+  .sec .diagram svg .ln{stroke:var(--ink-2);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sec .diagram svg .thin{stroke:var(--muted);stroke-width:1;fill:none;stroke-dasharray:4 4}
+  .sec .diagram svg .ac{stroke:var(--accent);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sec .diagram svg .af{fill:color-mix(in srgb,var(--accent) 22%,transparent);stroke:var(--accent);stroke-width:2}
+  .sec .diagram svg .gn{stroke:var(--green-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .rd{stroke:var(--red-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .yl{stroke:var(--yellow-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .gf{fill:color-mix(in srgb,var(--green-arc) 25%,transparent)}
+  .sec .diagram svg .rf{fill:color-mix(in srgb,var(--red-arc) 25%,transparent)}
+  .sec .diagram svg .yf{fill:color-mix(in srgb,var(--yellow-arc) 30%,transparent)}
+  .sec .diagram svg .bx{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
+  .sec .diagram svg .wing{fill:var(--surface);stroke:var(--ink-2);stroke-width:2}
+  .sec .diagram svg .dot{fill:var(--accent)}
+  @media (max-width:520px){.fgrid,.compare{grid-template-columns:1fr}}
+  .fgrid > *,.compare > *,.tools > *{min-width:0}
+  .fcard .f{max-width:100%}
+
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) {}
+  .diagram svg{min-width:520px}
+
+  .part{display:flex;align-items:center;gap:10px;margin:34px 0 4px;padding:8px 14px;border-radius:var(--radius-sm);background:color-mix(in srgb,var(--accent) 14%,var(--surface-2));border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));font-size:15px;font-weight:800;color:var(--ink)}
+  .part + h3.sub{margin-top:16px}
+  nav.toc a .chn{flex:0 0 auto;min-width:18px;color:var(--brand);font-weight:800;font-size:12px}
+  section.sec > h2 .en{font-weight:700}
+
+  section.sec{--accent:var(--acc,var(--brand))}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) section.sec{--accent:color-mix(in srgb,var(--acc,var(--brand)) 62%,#ffffff)}:root:not([data-theme="light"]) section.sec > h2 .num,:root:not([data-theme="light"]) .steps li::before{color:#06121a}}
+  :root[data-theme="dark"] section.sec{--accent:color-mix(in srgb,var(--acc,var(--brand)) 62%,#ffffff)}
+  :root[data-theme="dark"] section.sec > h2 .num,:root[data-theme="dark"] .steps li::before{color:#06121a}
+  td.num{white-space:normal}
+  .diagram svg.small{min-width:0;max-width:460px}
+  .tool select{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:16px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--ink-2)"/></marker>
+    <marker id="a-ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--accent)"/></marker>
+    <marker id="a-rd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--red-arc)"/></marker>
+    <marker id="a-gn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--green-arc)"/></marker>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand-mark">
+      <div class="plane">🎛️</div>
+      <div class="txt">
+        <h1>Instrumentation — Pilot's Guide</h1>
+        <div class="sub">How the instruments sense, compute, warn and fly · Airline pilot theory</div>
+      </div>
+    </div>
+    <button class="menu-btn" id="menuBtn">☰ Contents</button>
+  </div>
+</header>
+
+<div class="toc-scrim" id="scrim"></div>
+
+<div class="shell">
+  <nav class="toc" id="toc">
+    <div class="toc-close"><span style="font-size:13px;color:var(--muted);font-weight:700">Contents</span><button id="closeToc">✕</button></div>
+    <h2>Chapters</h2>
+    <ol>
+      <li><a href="#tools"><span class="n">🧰</span> Quick tools &amp; cheat sheet</a></li>
+      <li><a href="#ch1"><span class="n">📏</span> <b class="chn">1</b> Characteristics and General Definitions</a></li>
+      <li><a href="#ch2"><span class="n">🌬️</span> <b class="chn">2</b> Pitot and Static Sources</a></li>
+      <li><a href="#ch3"><span class="n">🌡️</span> <b class="chn">3</b> Air Temperature Measurement</a></li>
+      <li><a href="#ch4"><span class="n">⏱️</span> <b class="chn">4</b> The Airspeed Indicator (ASI)</a></li>
+      <li><a href="#ch5"><span class="n">⛰️</span> <b class="chn">5</b> The Pressure Altimeter</a></li>
+      <li><a href="#ch6"><span class="n">↕️</span> <b class="chn">6</b> The Vertical Speed Indicator</a></li>
+      <li><a href="#ch7"><span class="n">🔊</span> <b class="chn">7</b> The Machmeter</a></li>
+      <li><a href="#ch8"><span class="n">🧮</span> <b class="chn">8</b> Air Data Computer</a></li>
+      <li><a href="#ch9"><span class="n">🧲</span> <b class="chn">9</b> Terrestrial Magnetism</a></li>
+      <li><a href="#ch10"><span class="n">🧭</span> <b class="chn">10</b> The Direct Indicating Compass</a></li>
+      <li><a href="#ch11"><span class="n">🌀</span> <b class="chn">11</b> Gyroscopes</a></li>
+      <li><a href="#ch12"><span class="n">🧭</span> <b class="chn">12</b> Directional Gyro Indicator (DGI)</a></li>
+      <li><a href="#ch13"><span class="n">🛩️</span> <b class="chn">13</b> The Artificial Horizon</a></li>
+      <li><a href="#ch14"><span class="n">↩️</span> <b class="chn">14</b> The Turn and Slip Indicator</a></li>
+      <li><a href="#ch15"><span class="n">✈️</span> <b class="chn">15</b> The Turn Co-ordinator</a></li>
+      <li><a href="#ch16"><span class="n">🧲</span> <b class="chn">16</b> Aircraft Magnetism</a></li>
+      <li><a href="#ch17"><span class="n">📡</span> <b class="chn">17</b> Remote Indicating Magnetic Compass</a></li>
+      <li><a href="#ch18"><span class="n">🛰️</span> <b class="chn">18</b> Inertial Navigation Systems</a></li>
+      <li><a href="#ch19"><span class="n">💠</span> <b class="chn">19</b> Inertial Reference System</a></li>
+      <li><a href="#ch20"><span class="n">📶</span> <b class="chn">20</b> Radio Altimeter</a></li>
+      <li><a href="#ch21"><span class="n">🗂️</span> <b class="chn">21</b> Flight Management System</a></li>
+      <li><a href="#ch22"><span class="n">🖥️</span> <b class="chn">22</b> Electronic Flight Information Systems</a></li>
+      <li><a href="#ch23"><span class="n">💻</span> <b class="chn">23</b> Basic Computers</a></li>
+      <li><a href="#ch24"><span class="n">🛰️</span> <b class="chn">24</b> Future Air Navigation Systems (FANS)</a></li>
+      <li><a href="#ch25"><span class="n">🎯</span> <b class="chn">25</b> Flight Director Systems</a></li>
+      <li><a href="#ch26"><span class="n">🤖</span> <b class="chn">26</b> Autopilot</a></li>
+      <li><a href="#ch27"><span class="n">🛬</span> <b class="chn">27</b> Autoland</a></li>
+      <li><a href="#ch28"><span class="n">🎚️</span> <b class="chn">28</b> Autothrottle</a></li>
+      <li><a href="#ch29"><span class="n">🦆</span> <b class="chn">29</b> Yaw Dampers</a></li>
+      <li><a href="#ch30"><span class="n">🛡️</span> <b class="chn">30</b> Control Laws</a></li>
+      <li><a href="#ch31"><span class="n">🚨</span> <b class="chn">31</b> Flight Warning Systems</a></li>
+      <li><a href="#ch32"><span class="n">⚠️</span> <b class="chn">32</b> Aerodynamic Warnings</a></li>
+      <li><a href="#ch33"><span class="n">⛰️</span> <b class="chn">33</b> Ground Proximity Warning System</a></li>
+      <li><a href="#ch34"><span class="n">🛩️</span> <b class="chn">34</b> Airborne Collision Avoidance System</a></li>
+      <li><a href="#ch35"><span class="n">📼</span> <b class="chn">35</b> Flight Data Recorder</a></li>
+      <li><a href="#ch36"><span class="n">🎙️</span> <b class="chn">36</b> Cockpit Voice Recorder</a></li>
+      <li><a href="#ch37"><span class="n">⚙️</span> <b class="chn">37</b> Engine Instrumentation</a></li>
+      <li><a href="#ch38"><span class="n">📺</span> <b class="chn">38</b> Electronic Instrumentation</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <span class="cloud">🎛️</span>
+      <h1>🎛️ Instrumentation</h1>
+      <p>
+        Every instrument answers one question (how fast, how high, which way, what attitude, what is wrong), and every one of them can be fooled. This guide follows the instruments from the simplest pressure gauges, through gyros and inertial systems, to the computers that fly the aircraft and the systems that warn the crew. For each one, learn <em>how it senses</em> and you will know <em>how it fails</em>.
+      </p>
+      <div class="tags">
+        <span class="tag">38 chapters</span>
+        <span class="tag">1713 linked questions</span>
+        <span class="tag">🧮 10 calculators</span>
+        <span class="tag">📋 Cheat sheet</span>
+        <span class="tag">Aircraft-independent</span>
+      </div>
+      <div class="tip"><span class="label">✈️ How to use this guide</span> Each chapter carries the same number as its practice topic. Read the key idea first: most questions in this subject turn on one mechanism, what a capsule, a gyro or a filter actually responds to, and the errors follow from it.</div>
+    </div>
+
+    <section class="sec" id="tools" data-icon="🧰" style="--acc:#2f5fb3">
+      <h2><span class="num">🧰</span> Quick tools &amp; cheat sheet <span class="en">play with the numbers</span></h2>
+      <p class="lead">Ten small calculators for the sums this subject keeps asking, and a one-screen list of the figures worth knowing by heart.</p>
+
+      <div class="tools">
+        <div class="tool">
+          <h3>🌡️ TAT to SAT</h3>
+          <label>Indicated (total) temperature (°C)</label><input type="number" inputmode="decimal" id="tsT" value="-30">
+          <label>Mach number</label><input type="number" inputmode="decimal" id="tsM" value="0.78" step="0.01" min="0">
+          <label>Recovery factor (1.0 for TAT)</label><input type="number" inputmode="decimal" id="tsK" value="1" step="0.01" min="0" max="1">
+          <div class="out" id="tsOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🔊 Speed of sound and Mach</h3>
+          <label>Static air temperature (°C)</label><input type="number" inputmode="decimal" id="mcO" value="-56.5">
+          <label>TAS (kt) — or leave blank and give Mach</label><input type="text" id="mcT" value="450">
+          <label>Mach number</label><input type="text" id="mcM" value="">
+          <div class="out" id="mcOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🏔️ Altimeter: wrong subscale</h3>
+          <label>Indicated altitude (ft)</label><input type="number" inputmode="decimal" id="apA" value="5000">
+          <label>Setting on the subscale (hPa)</label><input type="number" inputmode="decimal" id="apS" value="1020">
+          <label>Actual QNH (hPa)</label><input type="number" inputmode="decimal" id="apQ" value="1002">
+          <div class="out" id="apOut"></div>
+        </div>
+        <div class="tool">
+          <h3>❄️ Altimeter: temperature</h3>
+          <label>Indicated altitude with QNH set (ft)</label><input type="number" inputmode="decimal" id="atA" value="16000">
+          <label>Outside air temperature (°C)</label><input type="number" inputmode="decimal" id="atT" value="-30">
+          <div class="out" id="atOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🔥 Density altitude</h3>
+          <label>Pressure altitude (ft)</label><input type="number" inputmode="decimal" id="daP" value="3000">
+          <label>Outside air temperature (°C)</label><input type="number" inputmode="decimal" id="daT" value="20">
+          <div class="out" id="daOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🌀 DGI wander per hour</h3>
+          <label>Latitude (°, + north / − south)</label><input type="number" inputmode="decimal" id="dwL" value="60">
+          <label>Latitude nut set for (°, blank if none)</label><input type="text" id="dwN" value="">
+          <label>Ground speed east (+) or west (−) (kt)</label><input type="number" inputmode="decimal" id="dwE" value="300">
+          <div class="out" id="dwOut"></div>
+        </div>
+        <div class="tool">
+          <h3>↩️ Rate one turn</h3>
+          <label>TAS (kt)</label><input type="number" inputmode="decimal" id="r1T" value="120" min="0">
+          <div class="out" id="r1Out"></div>
+        </div>
+        <div class="tool">
+          <h3>📉 Glide path rate of descent</h3>
+          <label>Ground speed (kt)</label><input type="number" inputmode="decimal" id="gpG" value="140" min="0">
+          <label>Glide path angle (°)</label><input type="number" inputmode="decimal" id="gpA" value="3" step="0.1" min="0">
+          <div class="out" id="gpOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🧭 True to compass heading</h3>
+          <label>True heading (°)</label><input type="number" inputmode="decimal" id="hdT" value="247">
+          <label>Variation (°, + east / − west)</label><input type="number" inputmode="decimal" id="hdV" value="-8">
+          <label>Deviation (°, + east / − west)</label><input type="number" inputmode="decimal" id="hdD" value="11">
+          <div class="out" id="hdOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🧲 Compass coefficients</h3>
+          <label>Deviations on N, E, S, W (°, + east)</label><input type="text" id="cfD" value="3, 5, -1, -1">
+          <div class="out" id="cfOut"></div>
+        </div>
+      </div>
+
+      <h3 class="sub">📋 Cheat sheet — numbers worth knowing</h3>
+      <div class="table-wrap cheat">
+        <table>
+          <thead><tr><th>Idea</th><th class="num">Figure</th></tr></thead>
+          <tbody>
+            <tr><td>🌬️ Pressures</td><td class="num">Pitot = static + dynamic · ASI, Machmeter: pitot + static · altimeter, VSI: static only</td></tr>
+            <tr><td>🚫 Blockages</td><td class="num">PUDSOD · static blocked: altimeter freezes, VSI to zero</td></tr>
+            <tr><td>⛰️ Altimeter</td><td class="num">30 ft per hPa · 4 ft per 1000 ft per °C · high to low, look out below</td></tr>
+            <tr><td>🌡️ Temperature</td><td class="num">Ram rise ≈ (TAS/100)² · SAT = TAT ÷ (1 + 0.2 Kr M²), in K</td></tr>
+            <tr><td>🔊 Mach</td><td class="num">LSS = 38.95 √T (K) · 661 kt at ISA sea level · M = TAS ÷ LSS</td></tr>
+            <tr><td>🧭 Compass</td><td class="num">Accelerate → nearer pole · NH: undershoot north, overshoot south</td></tr>
+            <tr><td>🌀 Gyro wander</td><td class="num">Earth rate 15 sin lat °/h · transport = Δlong/h × sin lat</td></tr>
+            <tr><td>↩️ Turns</td><td class="num">Rate one 3°/s · bank ≈ TAS/10 + 7 · ball inside = slip</td></tr>
+            <tr><td>🛰️ Inertial</td><td class="num">Schuler 84.4 min · earth rate 15.04°/h · drift ≈ 1–2 NM/h</td></tr>
+            <tr><td>📶 Radio altimeter</td><td class="num">4200–4400 MHz · ±50 MHz 300/s · 0–2500 ft</td></tr>
+            <tr><td>🛬 Autoland</td><td class="num">1500 ft 2nd A/P + FLARE arm · 800 ft · 50 ft flare · 27 ft retard · 2 s A/T off</td></tr>
+            <tr><td>🎯 Categories</td><td class="num">I ≥ 200 ft/550 m · II ≥ 100 ft/300 m · IIIA &lt; 100 ft/175 m · IIIB &lt; 50 ft/50 m · IIIC none</td></tr>
+            <tr><td>⛰️ GPWS</td><td class="num">50–2450 ft · 7 modes · EGPWS 40–60 s caution, 20–30 s warning</td></tr>
+            <tr><td>🛩️ TCAS</td><td class="num">1030/1090 MHz · TA ~40 s · RA ~25 s · RAs vertical · no RAs below ~1000 ft</td></tr>
+            <tr><td>📼 Recorders</td><td class="num">FDR 25 h (10 h small turbine) · CVR 2 h · stop 5 min after shutdown</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sec" id="ch1" data-icon="📏" style="--acc:#2f5fb3">
+      <h2><span class="num">1</span> Characteristics and General Definitions <span class="en">Chapter 1</span></h2>
+      <p class="lead">Before the instruments themselves: the units they read in, how a dial trades range against readability, where instruments sit on the panel, and what their colours mean.</p>
+      <div class="glance"><span>🎯 1 NM = 6080 ft = 1852 m</span><span>🎯 1013.25 hPa = 29.92 inHg</span><span>🎯 Basic T</span><span>🎯 Parallax</span><span>🎯 Colour code</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>An instrument is read in a hurry, by a tired eye.</strong> Everything in this chapter — the standard layout, the eye reference point, the colour code — exists so that a pilot finds the right instrument in the same place and reads it correctly at a glance.</p></div>
+      <h3 class="sub">Units worth knowing</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Quantity</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Nautical mile</td><td>6080 ft · 1852 m (statute mile 5280 ft · 1609 m)</td></tr>
+          <tr><td>Standard pressure</td><td>1013.25 hPa = 1013.25 mb = 29.92 inHg = 760 mmHg = 14.7 psi</td></tr>
+          <tr><td>Standard sea level temperature</td><td>+15°C = 288 K = 59°F</td></tr>
+          <tr><td>Gallons</td><td>1 imperial gallon ≈ 1.2 US gallons</td></tr>
+        </tbody></table></div>
+      <h3 class="sub">The Basic T</h3>
+      <div class="diagram">
+        <svg viewBox="0 0 420 210" role="img" aria-label="Basic T layout">
+          <rect class="bx" x="30" y="20" width="110" height="80" rx="40"/><text x="62" y="65">Airspeed</text>
+          <rect class="af" x="155" y="20" width="110" height="80" rx="40"/><text x="178" y="65">Attitude</text>
+          <rect class="bx" x="280" y="20" width="110" height="80" rx="40"/><text x="306" y="65">Altimeter</text>
+          <rect class="bx" x="155" y="115" width="110" height="80" rx="40"/><text x="181" y="160">Heading</text>
+          <text class="m" x="40" y="160">turn coordinator</text><text class="m" x="290" y="160">vertical speed</text>
+        </svg>
+        <div class="cap">Attitude top centre, airspeed left, altitude right, heading below. An electronic PFD keeps the same arrangement: speed tape left, altitude tape right.</div>
+      </div>
+      <h3 class="sub">Range, readability and colour</h3>
+      <ul>
+        <li>📐 A wide range on a small dial leaves little movement per unit, so fine reading suffers. A VSI uses a <strong>logarithmic</strong> scale to spread out the small, common rates.</li>
+        <li>👁️ Instruments are designed for an <strong>eye reference point</strong>. Viewing from the side misaligns pointer and scale: <strong>parallax</strong>.</li>
+        <li>🖥️ With glass displays, only the screens are on the flight deck; the computers live in the <strong>avionics (E&amp;E) bay</strong>.</li>
+      </ul>
+      <div class="compare">
+        <div class="card good"><h4>Green</h4><p>Normal operating range.</p></div>
+        <div class="card mid"><h4>Yellow / amber</h4><p>Caution range.</p></div>
+        <div class="card bad"><h4>Red</h4><p>Warning, unsafe range or limit.</p></div>
+      </div>
+      <p>Electronic displays add <strong>white</strong> (present status) and <strong>blue</strong> (temporary situation).</p>
+      <div class="related"><span class="dot"></span> Practise: 01 Characteristics and General Definitions</div>
+    </section>
+
+    <section class="sec" id="ch2" data-icon="🌬️" style="--acc:#2e86c1">
+      <h2><span class="num">2</span> Pitot and Static Sources <span class="en">Chapter 2</span></h2>
+      <p class="lead">Three of the four classic flight instruments live on two pressures: the still air around the aircraft, and the extra pressure of the air rushing at it.</p>
+      <div class="glance"><span>🎯 Pitot = static + dynamic</span><span>🎯 Static vents both sides</span><span>🎯 Position error</span><span>🎯 Manoeuvre-induced error</span><span>🎯 Alternate static</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Dynamic pressure cannot be measured on its own</strong>, because static pressure is always there with it. Instruments measure pitot and static and subtract: <strong>dynamic = pitot − static</strong>.</p></div>
+      <div class="diagram">
+        <svg viewBox="0 0 560 190" role="img" aria-label="Pitot static system">
+          <rect class="bx" x="20" y="60" width="90" height="26"/><text x="34" y="78">Pitot tube</text>
+          <line class="ac" x1="110" y1="73" x2="250" y2="73" marker-end="url(#a-ac)"/><text class="m" x="140" y="66">pitot (total)</text>
+          <rect class="bx" x="20" y="130" width="90" height="26"/><text x="30" y="148">Static vents</text>
+          <line class="ln" x1="110" y1="143" x2="250" y2="143" marker-end="url(#a-ink)"/><text class="m" x="140" y="160">static</text>
+          <rect class="af" x="255" y="58" width="130" height="30"/><text x="280" y="78">ASI · Machmeter</text>
+          <rect class="bx" x="255" y="128" width="130" height="30"/><text x="272" y="148">Altimeter · VSI</text>
+          <line class="thin" x1="320" y1="128" x2="320" y2="88"/><text class="m" x="400" y="112">ASI and Machmeter take static too</text>
+        </svg>
+        <div class="cap">Static only: altimeter and VSI. Pitot and static: airspeed indicator and Machmeter.</div>
+      </div>
+      <h3 class="sub">Sources and their errors</h3>
+      <ul>
+        <li>🎯 The <strong>pitot</strong> faces the airflow, outside the boundary layer, heated and drained. A <strong>static</strong> opening is at right angles to the flow.</li>
+        <li>📍 <strong>Position (pressure) error</strong>: the sensed pressure differs from the true value because of the airflow at the source. It depends on source position, airspeed and attitude (angle of attack), so flight manuals list it by flap setting.</li>
+        <li>↔️ <strong>Static vents on both sides, cross-connected</strong>, cancel most yaw and sideslip error. Pitot systems are <em>not</em> cross-coupled; they are only compared (≈ 5 kt warning).</li>
+        <li>⏱️ <strong>Manoeuvre-induced error</strong>: brief pressure changes at the vents plus line delay; worst at pitch changes, go-arounds and in rough air; about 3 s at low level, 10 s at 30 000 ft, longer for the VSI. Fly manoeuvres on the gyro instruments.</li>
+      </ul>
+      <div class="warn"><span class="label">⚠️ Alternate static</span> Usually reads <strong>lower than ambient</strong> (suction), so altimeter and ASI over-read. Corrections are in the flight manual. A cabin source works only in an unpressurised aircraft. With no alternate source, breaking the VSI glass lets cabin air into the static system.</div>
+      <div class="tip"><span class="label">✅ Preflight</span> Covers and plugs removed and stowed; holes clear; pitot heat checked briefly (feel it, ammeter rise) and switched off again — and never with the cover on.</div>
+      <div class="related"><span class="dot"></span> Practise: 02 Pitot and Static Sources</div>
+    </section>
+
+    <section class="sec" id="ch3" data-icon="🌡️" style="--acc:#1e8449">
+      <h2><span class="num">3</span> Air Temperature Measurement <span class="en">Chapter 3</span></h2>
+      <p class="lead">The outside air temperature feeds TAS, Mach, density, altimeter corrections and engine thrust — but a moving probe always reads warm.</p>
+      <div class="glance"><span>🎯 SAT · RAT · TAT</span><span>🎯 Ram rise ≈ (TAS/100)²</span><span>🎯 Recovery factor</span><span>🎯 SAT = TAT ÷ (1 + 0.2 Kr M²)</span><span>🎯 Kelvin</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Bringing air to rest heats it.</strong> Total air temperature = SAT + the full ram rise. A probe recovers a fraction of the ram rise, its <strong>recovery factor</strong> (about 0.98 for a modern TAT probe).</p></div>
+      <div class="compare">
+        <div class="card acc"><h4>SAT (COAT)</h4><p>The undisturbed air temperature: what the meteorologist means.</p></div>
+        <div class="card mid"><h4>RAT (IOAT)</h4><p>What the probe reads: SAT + Kr × ram rise.</p></div>
+        <div class="card bad"><h4>TAT</h4><p>Air brought fully to rest adiabatically: SAT + ram rise.</p></div>
+      </div>
+      <details class="example"><summary>Worked example — finding SAT</summary><div class="body">
+        <p>Indicated −30°C (243 K), M 0.78, Kr 1.0: SAT = 243 ÷ (1 + 0.2 × 0.78²) = 243 ÷ 1.1217 = 216.6 K = <strong>−56°C</strong>. Always work in kelvin.</p>
+        <p>Rapid rule: ram rise ≈ (TAS ÷ 100)². At 400 kt that is 16°C, so −8°C indicated means about −24°C SAT.</p>
+      </div></details>
+      <ul>
+        <li>🔩 Light aircraft: a <strong>bimetallic helix</strong> (invar and brass) through the windscreen — direct reading, no electrical output.</li>
+        <li>🧪 Large aircraft: a <strong>platinum resistance</strong> TAT probe that turns the air through a right angle to throw out water, bleeds off the boundary layer, and has a self-compensating heater (error under 1°C). <strong>Aspirated</strong> probes draw air past the sensor on the ground with engine or APU bleed.</li>
+        <li>❄️ ISA: +15°C at sea level, −1.98°C per 1000 ft to −56.5°C at 36 090 ft.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 03 Air Temperature Measurement</div>
+    </section>
+
+    <section class="sec" id="ch4" data-icon="⏱️" style="--acc:#7d3c98">
+      <h2><span class="num">4</span> The Airspeed Indicator (ASI) <span class="en">Chapter 4</span></h2>
+      <p class="lead">A capsule fed with pitot pressure, sitting in a case of static pressure, calibrated to read true airspeed only at ISA sea level.</p>
+      <div class="glance"><span>🎯 IAS → CAS → EAS → TAS</span><span>🎯 Colour arcs</span><span>🎯 Blockages: PUDSOD</span><span>🎯 Leaks under-read</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The ASI measures dynamic pressure, ½ρV².</strong> It is calibrated for 1.225 kg/m³, so at altitude, in thinner air, it under-reads TAS — which is exactly why stall and structural speeds are given as IAS.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Step</th><th>Correct for</th></tr></thead>
+        <tbody>
+          <tr><td>IAS → CAS</td><td>Instrument and position error (correction card)</td></tr>
+          <tr><td>CAS → EAS</td><td>Compressibility — subtract; ignored below about 300 kt TAS</td></tr>
+          <tr><td>EAS → TAS</td><td>Density — TAS = EAS ÷ √(ρ/ρ₀)</td></tr>
+        </tbody></table></div>
+      <div class="diagram">
+        <svg viewBox="0 0 560 120" role="img" aria-label="ASI arcs">
+          <line class="ln" x1="30" y1="70" x2="530" y2="70"/>
+          <line style="stroke:#ddd;stroke-width:10" x1="70" y1="50" x2="260" y2="50"/><text class="m" x="120" y="40">white: VS0 → VFE</text>
+          <line class="gn" style="stroke-width:10" x1="110" y1="70" x2="390" y2="70"/><text class="m" x="190" y="95">green: VS1 → VNO</text>
+          <line class="yl" style="stroke-width:10" x1="390" y1="70" x2="480" y2="70"/><text class="m" x="395" y="95">yellow: VNO → VNE</text>
+          <line class="rd" x1="480" y1="52" x2="480" y2="88"/><text class="m" x="470" y="110">VNE</text>
+        </svg>
+        <div class="cap">A light twin also has a red line at VMCA and a blue line at VYSE. VLE and VLO are not marked.</div>
+      </div>
+      <div class="warn"><span class="label">⚠️ Blockages — "PUDSOD"</span> <strong>P</strong>itot blocked: <strong>U</strong>nder-reads in the <strong>D</strong>escent (over-reads in the climb — it acts like an altimeter). <strong>S</strong>tatic blocked: <strong>O</strong>ver-reads in the <strong>D</strong>escent (under-reads in the climb). Pitot blocked but drain open: reading falls to zero. A pitot leak under-reads.</div>
+      <div class="related"><span class="dot"></span> Practise: 04 The Airspeed Indicator (ASI)</div>
+    </section>
+
+    <section class="sec" id="ch5" data-icon="⛰️" style="--acc:#117a65">
+      <h2><span class="num">5</span> The Pressure Altimeter <span class="en">Chapter 5</span></h2>
+      <p class="lead">An aneroid barometer graduated in feet: an evacuated capsule in a case of static pressure, read against the subscale setting chosen by the pilot.</p>
+      <div class="glance"><span>🎯 30 ft per hPa</span><span>🎯 4 ft / 1000 ft / °C</span><span>🎯 High to low, look out below</span><span>🎯 QFE · QNH · 1013</span><span>🎯 Servo altimeter</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The altimeter only knows pressure.</strong> Flying towards lower pressure, or into colder air, the aircraft is lower than the altimeter says: <em>from high to low, look out below</em>.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Setting</th><th>Reads on the ground</th><th>Reads in flight</th></tr></thead>
+        <tbody>
+          <tr><td>QFE</td><td>Zero</td><td>Height above the aerodrome</td></tr>
+          <tr><td>QNH</td><td>Aerodrome elevation</td><td>Altitude (true only in ISA temperatures)</td></tr>
+          <tr><td>1013.25</td><td>Pressure altitude</td><td>Flight level</td></tr>
+        </tbody></table></div>
+      <details class="example"><summary>Worked examples — pressure and temperature</summary><div class="body">
+        <p>Indicated 5000 ft with 1020 hPa set; actual QNH 1002: error 18 × 30 = 540 ft, true altitude about <strong>4460 ft</strong>.</p>
+        <p>Indicated 16 000 ft, OAT −30°C. ISA there is −17°C, so ISA −13: correction 16 × 13 × 4 ≈ 830 ft, true altitude about <strong>15 170 ft</strong>.</p>
+        <p>Density altitude ≈ pressure altitude + 120 ft per °C of ISA deviation: 3000 ft at +20°C (ISA +11) ≈ <strong>4320 ft</strong>.</p>
+      </div></details>
+      <ul>
+        <li>⚙️ Errors: instrument (grows with altitude), position (grows with Mach), manoeuvre-induced, barometric, temperature, lag (reads high in a descent). A vibrator overcomes friction.</li>
+        <li>🧲 The <strong>servo altimeter</strong> senses the capsule with an electromagnetic E and I bar pick-off and drives the counters by servo motor: little load on the capsule, so much less friction, lag and error, especially at high altitude.</li>
+        <li>🚫 Static blocked: the altimeter freezes at the blockage altitude (under-reads climbing, over-reads descending). A static leak into a pressurised cabin shows cabin altitude.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 05 The Pressure Altimeter</div>
+    </section>
+
+    <section class="sec" id="ch6" data-icon="↕️" style="--acc:#a04000">
+      <h2><span class="num">6</span> The Vertical Speed Indicator <span class="en">Chapter 6</span></h2>
+      <p class="lead">A capsule fed directly with static pressure, in a case fed through a restriction: the pressure difference between them measures the rate of change.</p>
+      <div class="glance"><span>🎯 Capillary + orifice</span><span>🎯 Log scale</span><span>🎯 Lag</span><span>🎯 IVSI dashpots</span><span>🎯 ROD ≈ 5 × GS</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>In a climb the case "lags behind"</strong>: the metering unit lets the case pressure follow the falling static pressure slowly, so the capsule (at current static) is lower than the case and the pointer shows a climb. Level off, and the two equalise.</p></div>
+      <ul>
+        <li>🌡️ The <strong>capillary and orifice</strong> together keep the reading correct with altitude and temperature.</li>
+        <li>⏳ Errors: <strong>lag</strong> (worst after a long, steep climb), manoeuvre-induced, and position error during sudden speed changes such as the take-off run.</li>
+        <li>⚡ The <strong>instantaneous VSI</strong> adds dashpot accelerometers that pump air at once on entering a climb — but it shows false climbs in steep turns and is more sensitive in turbulence.</li>
+        <li>🚫 Static blocked: the VSI returns to zero.</li>
+      </ul>
+      <details class="example"><summary>Worked example — glide path rate of descent</summary><div class="body">
+        <p>On a 3° path, rate of descent ≈ 5 × ground speed: 100 kt → about <strong>500 ft/min</strong>; 140 kt → about 700 ft/min.</p>
+      </div></details>
+      <div class="related"><span class="dot"></span> Practise: 06 The Vertical Speed Indicator</div>
+    </section>
+
+    <section class="sec" id="ch7" data-icon="🔊" style="--acc:#2874a6">
+      <h2><span class="num">7</span> The Machmeter <span class="en">Chapter 7</span></h2>
+      <p class="lead">An airspeed capsule and an altitude capsule linked through a ratio arm: Mach number from a pressure ratio, with no density error at all.</p>
+      <div class="glance"><span>🎯 M = TAS ÷ LSS</span><span>🎯 LSS = 38.95 √T</span><span>🎯 (Pt − Ps) ÷ Ps</span><span>🎯 Climb at CAS → Mach rises</span><span>🎯 Descend at Mach → CAS rises</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The speed of sound depends only on temperature.</strong> Climbing at constant CAS, TAS rises and the speed of sound falls, so Mach number rises fast — which is why a jet climbs at CAS and then changes to Mach.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Manoeuvre (below the tropopause)</th><th>TAS</th><th>CAS</th><th>Mach</th></tr></thead>
+        <tbody>
+          <tr><td>Climb at constant CAS</td><td>↑</td><td>—</td><td>↑ faster</td></tr>
+          <tr><td>Climb at constant Mach</td><td>↓</td><td>↓ faster</td><td>—</td></tr>
+          <tr><td>Descend at constant Mach</td><td>↑</td><td>↑ faster</td><td>—</td></tr>
+          <tr><td>Climb at constant Mach, isothermal layer</td><td>—</td><td>↓</td><td>—</td></tr>
+          <tr><td>Level, constant CAS, temperature changes</td><td>changes with √T</td><td>—</td><td>—</td></tr>
+        </tbody></table></div>
+      <details class="example"><summary>Worked examples</summary><div class="body">
+        <p>Sea level, ISA −10 (278 K): LSS = 38.95 × √278 ≈ <strong>649 kt</strong>.</p>
+        <p>FL400 ISA (216.5 K): LSS ≈ 573 kt, so 450 kt TAS is <strong>M 0.79</strong>.</p>
+      </div></details>
+      <ul>
+        <li>⚠️ Errors: instrument, position and manoeuvre-induced only. Static blocked climbing → under-reads; pitot blocked climbing → over-reads.</li>
+        <li>🔀 A combined Mach/airspeed indicator carries the errors of both, and its striped needle shows VMO (a CAS) up to the altitude where MMO takes over.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 07 The Machmeter</div>
+    </section>
+
+    <section class="sec" id="ch8" data-icon="🧮" style="--acc:#28b463">
+      <h2><span class="num">8</span> Air Data Computer <span class="en">Chapter 8</span></h2>
+      <p class="lead">One computer turns pitot, static and temperature into every air-data quantity the aircraft needs, corrected once and sent to everyone.</p>
+      <div class="glance"><span>🎯 Inputs: pitot, static, TAT</span><span>🎯 Outputs: altitude, CAS, Mach, TAS, SAT, V/S</span><span>🎯 BITE</span><span>🎯 Standby instruments direct</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Altitude, CAS and Mach need pressures only; TAS and SAT also need temperature.</strong> Position and compressibility corrections are applied once inside the ADC and reach every output.</p></div>
+      <ul>
+        <li>✈️ Each pilot's instruments have their own ADC and sources; the standby altimeter and ASI take their own pitot and static directly. Three independent systems in all.</li>
+        <li>📡 Users: autopilot, FMS, transponder (altitude reporting), flight recorder, GPWS and others.</li>
+        <li>🔁 Analogue ADCs used servo-driven shafts and synchros; digital ADCs use A/D converters. If one fails, the other is selected; there is no manual input. Failure shows as a flag.</li>
+        <li>🧪 BITE: power-up, continuous (about once a second) and maintenance.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 08 Air Data Computer</div>
+    </section>
+
+    <section class="sec" id="ch9" data-icon="🧲" style="--acc:#b9770e">
+      <h2><span class="num">9</span> Terrestrial Magnetism <span class="en">Chapter 9</span></h2>
+      <p class="lead">The earth behaves like a weak bar magnet whose poles wander; a compass uses only the horizontal part of its field.</p>
+      <div class="glance"><span>🎯 Variation, isogonals, agonic line</span><span>🎯 Dip, isoclinals</span><span>🎯 H = T cos dip</span><span>🎯 Hard and soft iron</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>H, the horizontal component, is the directive force.</strong> It is strongest at the magnetic equator (dip 0°) and vanishes at the magnetic poles (dip 90°) — so a magnetic compass becomes useless near the poles.</p></div>
+      <div class="diagram">
+        <svg viewBox="0 0 400 170" role="img" aria-label="Components of the field">
+          <line class="ln" x1="60" y1="40" x2="300" y2="40" marker-end="url(#a-ink)"/><text x="160" y="32">H = T cos θ</text>
+          <line class="ac" x1="60" y1="40" x2="300" y2="140" marker-end="url(#a-ac)"/><text x="130" y="110">T (total field)</text>
+          <line class="ln" x1="300" y1="40" x2="300" y2="140" marker-end="url(#a-ink)"/><text x="310" y="95">Z = T sin θ</text>
+          <text class="m" x="90" y="58">θ dip</text>
+        </svg>
+        <div class="cap">Dip is the angle between the lines of force and the horizontal.</div>
+      </div>
+      <ul>
+        <li>🔴 A magnet's north-seeking pole is "red"; the earth's north magnetic region is therefore a "blue" pole. Like poles repel; lines of force run red to blue.</li>
+        <li>🧭 <strong>Variation</strong>: angle between true and magnetic north; isogonals join equal variation, the agonic line zero. It changes slowly (secular change) as the poles move.</li>
+        <li>⚙️ <strong>Hard iron</strong> keeps magnetism (cobalt or chromium steel); <strong>soft iron</strong> magnetises easily and loses it.</li>
+        <li>🌩️ Magnetic storms (sunspot cycle) can shift variation by over 5° in polar regions, for up to about three days.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 09 Terrestrial Magnetism</div>
+    </section>
+    <section class="sec" id="ch10" data-icon="🧭" style="--acc:#c0392b">
+      <h2><span class="num">10</span> The Direct Indicating Compass <span class="en">Chapter 10</span></h2>
+      <p class="lead">Short magnets on a pendulous suspension, swimming in liquid: simple, independent of power, and wrong whenever the aircraft accelerates or turns.</p>
+      <div class="glance"><span>🎯 Horizontal, sensitive, aperiodic</span><span>🎯 Deviation card</span><span>🎯 Accelerate: towards nearer pole</span><span>🎯 Undershoot north, overshoot south</span><span>🎯 Liquid swirl</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The magnet assembly hangs with its CG offset from the pivot</strong> (towards the equator) to balance dip. Any acceleration acts on that offset CG and twists the magnets: that is where acceleration and turning errors come from.</p></div>
+      <div class="compare">
+        <div class="card acc"><h4>Acceleration errors</h4><p>Greatest on east and west, none on north and south, none at the magnetic equator. <strong>Accelerating</strong>: apparent turn towards the <em>nearer</em> pole. Decelerating: towards the further pole.</p></div>
+        <div class="card bad"><h4>Turning errors</h4><p>Greatest turning through north or south at high latitude. NH through north: compass <strong>sluggish</strong> — roll out early. Through south: <strong>lively</strong> — roll out late. Liquid swirl adds to the error through the nearer pole.</p></div>
+      </div>
+      <details class="example"><summary>Worked example — acceleration on 270° in the northern hemisphere</summary><div class="body">
+        <p>Accelerating on 270°: apparent turn towards north (the nearer pole), so the compass reads more than 270°. Decelerating on 270° in the southern hemisphere: apparent turn towards the further pole, north.</p>
+      </div></details>
+      <ul>
+        <li>🔧 Requirements: horizontality (pendulous suspension, small residual dip), sensitivity (strong short magnets, iridium pivot, liquid buoyancy), aperiodicity (mass near the centre, damping liquid).</li>
+        <li>🧾 <strong>Deviation</strong> is the angle between magnetic and compass north, found by a compass swing with engines and services running, and recorded on a deviation card.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 10 The Direct Indicating Compass</div>
+    </section>
+
+    <section class="sec" id="ch11" data-icon="🌀" style="--acc:#1f618d">
+      <h2><span class="num">11</span> Gyroscopes <span class="en">Chapter 11</span></h2>
+      <p class="lead">A fast rotor keeps its axis fixed in space (rigidity) and, pushed, moves at 90° to the push (precession). Every gyro instrument is built on those two properties.</p>
+      <div class="glance"><span>🎯 Rigidity ∝ inertia × rpm</span><span>🎯 Precession ∝ torque ÷ rpm</span><span>🎯 Drift and topple</span><span>🎯 Earth rate 15 sin lat</span><span>🎯 Degrees of freedom</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Precession appears 90° on from the point of the push, in the direction of rotation</strong>, and lasts only while the torque acts. Doubling the rotor speed halves the precession rate.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Instrument</th><th>Gyro type</th><th>Spin axis</th><th>Degrees of freedom</th></tr></thead>
+        <tbody>
+          <tr><td>Artificial horizon</td><td>Earth (tied to the vertical)</td><td>Vertical</td><td>2</td></tr>
+          <tr><td>Directional gyro</td><td>Tied</td><td>Horizontal</td><td>2</td></tr>
+          <tr><td>Turn indicator</td><td>Rate</td><td>Horizontal, athwartships</td><td>1</td></tr>
+        </tbody></table></div>
+      <ul>
+        <li>🔄 <strong>Wander</strong>: drift (horizontal plane) and topple (vertical). <strong>Real</strong> wander is relative to space (friction, imbalance); <strong>apparent</strong> wander is the earth turning under a fixed axis.</li>
+        <li>🌍 Earth rate on a horizontal gyro = 15° × sin latitude per hour: 0 at the equator, 15°/h at the pole. A north-pointing axis at the equator stays on north.</li>
+        <li>💡 Ring laser and fibre-optic gyros have no rotor. Suction gyros need no electrics but lose speed at altitude; electric gyros are heavier and costlier.</li>
+        <li>🔒 <strong>Gimbal lock</strong>: two gimbals align and a freedom is lost; a gimbal flip motor can prevent it.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 11 Gyroscopes</div>
+    </section>
+
+    <section class="sec" id="ch12" data-icon="🧭" style="--acc:#9a7d0a">
+      <h2><span class="num">12</span> Directional Gyro Indicator (DGI) <span class="en">Chapter 12</span></h2>
+      <p class="lead">A horizontal-axis gyro that holds a heading steady through turns — but knows nothing of north and must be reset to the compass.</p>
+      <div class="glance"><span>🎯 Earth rate −15 sin lat (NH)</span><span>🎯 Latitude nut</span><span>🎯 Transport wander</span><span>🎯 Gimballing error</span><span>🎯 Caging</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Total apparent wander = earth rate + transport wander − latitude nut correction.</strong> In the northern hemisphere earth rate makes an uncorrected DGI read lower and lower.</p></div>
+      <details class="example"><summary>Worked example — wander rates</summary><div class="body">
+        <p>Stationary at 60°N, uncorrected: 15 × sin 60 = <strong>13°/h</strong>, decreasing.</p>
+        <p>Flying east along 60°N at 300 kt: change of longitude = 300 ÷ (60 × cos 60) = 10°/h, transport wander = 10 × sin 60 ≈ <strong>8.7°/h</strong>.</p>
+        <p>Nut set for 50°N, used at 30°N: nut gives +11.5°/h, earth rate −7.5°/h: net about <strong>+4°/h</strong>.</p>
+      </div></details>
+      <ul>
+        <li>⚙️ Suction DGIs: air jets spin the rotor and tie its axis to the yawing plane. Limits: about ±55° (air) or ±85° (electric) in pitch and roll before it topples.</li>
+        <li>📐 <strong>Gimballing error</strong> appears only when banked, varies as a double sine curve, and disappears when level.</li>
+        <li>🔒 <strong>Caging</strong> squares the gimbals so the card can be set, and protects the gyro in large manoeuvres.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 12 Directional Gyro Indicator (DGI)</div>
+    </section>
+
+    <section class="sec" id="ch13" data-icon="🛩️" style="--acc:#922b21">
+      <h2><span class="num">13</span> The Artificial Horizon <span class="en">Chapter 13</span></h2>
+      <p class="lead">A vertical-axis earth gyro kept upright by pendulous vanes (air) or levelling switches and torque motors (electric).</p>
+      <div class="glance"><span>🎯 Pendulous vanes</span><span>🎯 Acceleration: false climb</span><span>🎯 Turning errors pattern</span><span>🎯 Cut-out switches</span><span>🎯 Standby horizon</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Anything that erects to gravity also erects to acceleration.</strong> The air-driven horizon shows a false climb and bank on take-off acceleration and errors in turns; electric horizons cut out erection under acceleration and in bank.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Classic horizon, steady turn</th><th>Pitch</th><th>Bank</th></tr></thead>
+        <tbody>
+          <tr><td>After 90°</td><td>Nose up</td><td>Too little</td></tr>
+          <tr><td>After 180°</td><td>Nose up</td><td>Correct</td></tr>
+          <tr><td>After 270°</td><td>Nose up</td><td>Too much</td></tr>
+          <tr><td>After 360°</td><td>Correct</td><td>Correct</td></tr>
+        </tbody></table></div>
+      <ul>
+        <li>⚡ Electric horizon: faster rotor, less pendulosity, erection cut-outs (pitch about 0.18 g, roll about 10°), fast erection knob — use only in steady unaccelerated flight.</li>
+        <li>🔋 The <strong>standby horizon</strong> has its own gyro and its own power supply.</li>
+        <li>✅ Before taxi: the bar settles level and stays level while taxiing; uncage at least five minutes before take-off.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 13 The Artificial Horizon</div>
+    </section>
+
+    <section class="sec" id="ch14" data-icon="↩️" style="--acc:#1b4f72">
+      <h2><span class="num">14</span> The Turn and Slip Indicator <span class="en">Chapter 14</span></h2>
+      <p class="lead">A one-gimbal rate gyro held by a spring shows the rate of turn; a ball in a curved tube shows whether the turn is balanced.</p>
+      <div class="glance"><span>🎯 Rate one = 3°/s</span><span>🎯 Bank ≈ TAS/10 + 7</span><span>🎯 Slip: ball inside</span><span>🎯 Skid: ball outside</span><span>🎯 Taxi check</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Step on the ball.</strong> The ball shows the resultant of gravity and sideways acceleration. Inside the turn = slip (too much bank); outside = skid (too little bank).</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Needle</th><th>Ball</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Right</td><td>Right</td><td>Right turn, too much bank (slip)</td></tr>
+          <tr><td>Right</td><td>Left</td><td>Right turn, too little bank (skid) — or a taxi turn to the right</td></tr>
+          <tr><td>Left</td><td>Right</td><td>Left turn, too little bank (skid)</td></tr>
+          <tr><td>Left</td><td>Left</td><td>Left turn, too much bank (slip)</td></tr>
+        </tbody></table></div>
+      <details class="example"><summary>Worked example — rate one</summary><div class="body">
+        <p>120 kt: bank ≈ 120 ÷ 10 + 7 = <strong>19°</strong>. A rate one turn takes 2 minutes for 360°; its radius ≈ TAS ÷ 188 NM (240 kt → about 1.3 NM radius). At a given bank, rate of turn falls as TAS rises and does not depend on weight.</p>
+      </div></details>
+      <ul><li>⚙️ Rotor slow → under-reads; rotor fast → over-reads. Looping-plane movement in a steep turn makes it over-read.</li></ul>
+      <div class="related"><span class="dot"></span> Practise: 14 The Turn and Slip Indicator</div>
+    </section>
+
+    <section class="sec" id="ch15" data-icon="✈️" style="--acc:#5b2c6f">
+      <h2><span class="num">15</span> The Turn Co-ordinator <span class="en">Chapter 15</span></h2>
+      <p class="lead">A turn indicator whose gimbal is tilted about 30° up, so it senses the roll into a turn as well as the turn itself.</p>
+      <div class="glance"><span>🎯 Gimbal tilted 30°</span><span>🎯 Rate of roll + rate of turn</span><span>🎯 No pitch information</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>It shows a turn the moment the wing goes down</strong>, before the heading changes. Once the turn is steady it shows the rate of turn. The little aircraft symbol is <em>not</em> a bank indicator, and there is no pitch information.</p></div>
+      <div class="related"><span class="dot"></span> Practise: 15 The Turn Co-ordinator</div>
+    </section>
+
+    <section class="sec" id="ch16" data-icon="🧲" style="--acc:#0e6655">
+      <h2><span class="num">16</span> Aircraft Magnetism <span class="en">Chapter 16</span></h2>
+      <p class="lead">The aircraft's own iron and wiring bend the compass: permanent (hard iron) and induced (soft iron) magnetism, resolved into coefficients and swung out.</p>
+      <div class="glance"><span>🎯 MH = CH + deviation</span><span>🎯 P, Q, R</span><span>🎯 Coefficients A, B, C</span><span>🎯 When to swing</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>True ← variation → Magnetic ← deviation → Compass.</strong> "East is least, west is best" going from true to magnetic to compass: subtract easterly, add westerly.</p></div>
+      <details class="example"><summary>Worked example — true to compass</summary><div class="body">
+        <p>True 247°, variation 8°W, deviation 11°E: magnetic = 247 + 8 = 255°; compass = 255 − 11 = <strong>244°</strong>.</p>
+        <p>Swing results N +3, E +5, S −1, W −1: A = (3 + 5 − 1 − 1) ÷ 4 = +1.5°; B = (E − W) ÷ 2 = +3°; C = (N − S) ÷ 2 = +2°.</p>
+      </div></details>
+      <div class="compare">
+        <div class="card acc"><h4>Coefficient A</h4><p>Constant on all headings; corrected by rotating the compass or detector.</p></div>
+        <div class="card mid"><h4>Coefficient B</h4><p>sin heading: greatest east and west (fore-and-aft P).</p></div>
+        <div class="card good"><h4>Coefficient C</h4><p>cos heading: greatest north and south (athwartships Q).</p></div>
+      </div>
+      <p>Swing after a lightning strike, long storage on one heading, a big change of magnetic latitude, new equipment near the compass, or a heavy ferrous load. Residual limits after correction: ±10° direct reading, ±1° remote indicating (operating rules).</p>
+      <div class="related"><span class="dot"></span> Practise: 16 Aircraft Magnetism</div>
+    </section>
+
+    <section class="sec" id="ch17" data-icon="📡" style="--acc:#4a235a">
+      <h2><span class="num">17</span> Remote Indicating Magnetic Compass <span class="en">Chapter 17</span></h2>
+      <p class="lead">A flux valve in the wing tip senses the earth's field; a gyro gives short-term stability; a slow precession loop marries the two.</p>
+      <div class="glance"><span>🎯 Flux valve: three spokes</span><span>🎯 Output 2 × excitation</span><span>🎯 Precession ≈ 3°/min</span><span>🎯 Rapid sync</span><span>🎯 DG mode</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Gyro for the short term, magnet for the long term.</strong> In a turn the gyro and the flux valve change together, so no error signal; on a steady heading any gyro drift produces an error signal that precesses it back.</p></div>
+      <div class="diagram">
+        <svg viewBox="0 0 580 120" role="img" aria-label="Remote compass loop">
+          <rect class="bx" x="10" y="40" width="95" height="36"/><text x="22" y="62">Flux valve</text>
+          <line class="ln" x1="105" y1="58" x2="140" y2="58" marker-end="url(#a-ink)"/>
+          <rect class="bx" x="140" y="40" width="100" height="36"/><text x="148" y="62">Error detector</text>
+          <line class="ln" x1="240" y1="58" x2="275" y2="58" marker-end="url(#a-ink)"/>
+          <rect class="bx" x="275" y="40" width="85" height="36"/><text x="286" y="62">Amplifier</text>
+          <line class="ln" x1="360" y1="58" x2="395" y2="58" marker-end="url(#a-ink)"/>
+          <rect class="bx" x="395" y="40" width="90" height="36"/><text x="400" y="62">Precession m.</text>
+          <line class="ln" x1="485" y1="58" x2="515" y2="58" marker-end="url(#a-ink)"/>
+          <rect class="af" x="515" y="40" width="55" height="36"/><text x="526" y="62">Gyro</text>
+          <path class="thin" d="M542 76 V100 H190 V76"/><text class="m" x="270" y="114">gyro shaft drives the detector rotor and the heading card</text>
+        </svg>
+        <div class="cap">The flux valve's AC-saturated cores give a second-harmonic signal (800 Hz from 400 Hz excitation) proportional to the direction of H.</div>
+      </div>
+      <ul>
+        <li>🪢 The detector hangs pendulously on a Hooke's joint (about ±25°), in oil for damping, fixed in azimuth.</li>
+        <li>⚡ Rapid synchronisation speeds up the slow 3°/min correction at switch-on; the annunciator shows whether the system is synchronised.</li>
+        <li>🔀 DG (free gyro) mode cuts the slaving at high latitude or with a flux valve fault.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 17 Remote Indicating Magnetic Compass</div>
+    </section>
+
+    <section class="sec" id="ch18" data-icon="🛰️" style="--acc:#78281f">
+      <h2><span class="num">18</span> Inertial Navigation Systems <span class="en">Chapter 18</span></h2>
+      <p class="lead">Accelerometers on a gyro-stabilised platform, integrated twice: velocity, then distance — the first self-contained source of all navigation data.</p>
+      <div class="glance"><span>🎯 Integrate twice</span><span>🎯 Level + true north</span><span>🎯 Schuler 84.4 min</span><span>🎯 dlong = dep × sec lat</span><span>🎯 ALERT 2 min</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>A tilted accelerometer senses gravity and takes it for motion.</strong> So the platform is levelled, aligned to true north by gyrocompassing, and Schuler-tuned so it stays level as the aircraft moves round the earth.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Alignment stage</th><th>What happens</th></tr></thead>
+        <tbody>
+          <tr><td>Warm-up</td><td>Fluid-filled parts to temperature, 3–4 min</td></tr>
+          <tr><td>Coarse</td><td>Levelled and aligned to 1–2° in seconds</td></tr>
+          <tr><td>Fine levelling</td><td>Accelerometers driven to zero output, about 1–1½ min, to 6 seconds of arc</td></tr>
+          <tr><td>Gyrocompassing</td><td>The east gyro senses earth rate until aligned to true north</td></tr>
+        </tbody></table></div>
+      <ul>
+        <li>🕰️ Errors: <strong>bounded</strong> ones oscillate with the 84.4-minute Schuler period; <strong>unbounded</strong> ones grow with time (distance gone from a ground speed error). Typical drift 1–2 NM/h.</li>
+        <li>🧮 Second integration north = change of latitude; east = departure, turned into change of longitude by × sec lat (120 NM at 60°N = 240′ = 4°).</li>
+        <li>🔔 ALERT: AUTO — steady at 2 min, out at track change; MANUAL — steady at 2 min, flashing from 30 s until changed. HOLD freezes the display over a fix for updating.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 18 Inertial Navigation Systems</div>
+    </section>
+
+    <section class="sec" id="ch19" data-icon="💠" style="--acc:#2f5fb3">
+      <h2><span class="num">19</span> Inertial Reference System <span class="en">Chapter 19</span></h2>
+      <p class="lead">Strapdown: three laser gyros and three accelerometers fixed to the airframe, with the platform kept in mathematics.</p>
+      <div class="glance"><span>🎯 Sagnac effect</span><span>🎯 Lock-in → dither</span><span>🎯 Inputs: position, baro alt, TAS</span><span>🎯 Establishing the trihedron</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Two laser beams go round a glass triangle in opposite directions.</strong> Rotation lengthens one path and shortens the other; the frequency difference measures the rate. At very low rates the beams lock together, so a dither motor shakes the ring.</p></div>
+      <ul>
+        <li>📥 Inputs besides its sensors: <strong>initial position</strong> (it only measures change), <strong>barometric altitude</strong> (to stabilise the vertical channel) and <strong>TAS</strong> (for wind).</li>
+        <li>📤 Outputs: attitude, true and magnetic heading (stored variation), body rates and accelerations, velocities, position, wind, flight path angle.</li>
+        <li>🧭 Alignment finds true north and latitude from earth rate while stationary; longitude must be entered. Accelerometers level it. Do not move the aircraft.</li>
+        <li>✅ Advantages: no spin-up, insensitive to g, reliable, tiny drift — the biggest errors are the operator's.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 19 Inertial Reference System</div>
+    </section>
+
+    <section class="sec" id="ch20" data-icon="📶" style="--acc:#2e86c1">
+      <h2><span class="num">20</span> Radio Altimeter <span class="en">Chapter 20</span></h2>
+      <p class="lead">True height above whatever is directly below, from a frequency-modulated signal bounced off the ground.</p>
+      <div class="glance"><span>🎯 4200–4400 MHz (SHF)</span><span>🎯 ±50 MHz, 300 times/s</span><span>🎯 0–2500 ft</span><span>🎯 Reads zero at touchdown</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>FMCW: the transmitted frequency keeps sweeping</strong>, so the echo returns at a frequency sent a moment earlier. The difference is proportional to height.</p></div>
+      <ul>
+        <li>📡 Separate flush horn antennas transmit and receive (continuous transmission); about 1 W; the wide beam still covers the vertical at about ±30° pitch and ±60° roll.</li>
+        <li>🛬 Calibrated for cable delay and antenna height so that, in the landing attitude, it shows wheel height. CAT II/III decision heights use it.</li>
+        <li>🔗 Users: GPWS, autopilot and autoland flare, flight director, ACAS inhibitions.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 20 Radio Altimeter</div>
+    </section>
+    <section class="sec" id="ch21" data-icon="🗂️" style="--acc:#1e8449">
+      <h2><span class="num">21</span> Flight Management System <span class="en">Chapter 21</span></h2>
+      <p class="lead">The FMS flies the route laterally (LNAV) and vertically (VNAV), from a performance database and a navigation database the crew checks before every flight.</p>
+      <div class="glance"><span>🎯 Dual · independent · single mode</span><span>🎯 Two 28-day databases</span><span>🎯 IDENT → POS INIT → RTE → PERF INIT</span><span>🎯 Cost index</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Cost index = time-related cost ÷ fuel cost.</strong> Zero gives minimum fuel (maximum range cruise); a high index buys time with fuel.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Page</th><th>What it holds</th></tr></thead>
+        <tbody>
+          <tr><td>IDENT</td><td>Model, programme, drag and fuel flow factors, database cycle</td></tr>
+          <tr><td>POS INIT</td><td>IRS position (gate or airfield datum), heading reference, time check</td></tr>
+          <tr><td>RTE</td><td>Origin, destination, flight number, company route, activate</td></tr>
+          <tr><td>PERF INIT</td><td>Weights, fuel, reserves, cost index, cruise altitude, step size</td></tr>
+        </tbody></table></div>
+      <ul>
+        <li>🔁 <strong>Dual mode</strong> is normal (both FMCs compare); <strong>independent</strong> has no cross-check; <strong>single</strong> after a failure.</li>
+        <li>🧭 Position: at least one IRS; in flight blended with DME, VOR and GPS; on the ground IRS only. After a long delay with a map shift, realign.</li>
+        <li>📉 VNAV climb: climb thrust within SID constraints, then economy speed; UNABLE NEXT ALT → choose a slower, steeper speed. Non-precision path ends 50 ft over the threshold.</li>
+        <li>🔆 Annunciators: MSG and DSPY and OFST white, FAIL amber.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 21 Flight Management System</div>
+    </section>
+
+    <section class="sec" id="ch22" data-icon="🖥️" style="--acc:#7d3c98">
+      <h2><span class="num">22</span> Electronic Flight Information Systems <span class="en">Chapter 22</span></h2>
+      <p class="lead">Two screens per pilot — attitude (PFD/EADI) and navigation (ND/EHSI) — drawn by symbol generators, with a spare in the middle.</p>
+      <div class="glance"><span>🎯 VOR · ILS · MAP · PLAN</span><span>🎯 Colour code</span><span>🎯 DH alert</span><span>🎯 73°N–65°S magnetic</span><span>🎯 VOR dot = 5°</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>MAP is the working mode; PLAN is the checking mode.</strong> MAP is a moving map oriented to track; PLAN is a static, true-north-up map for reviewing the route — no weather and no wind there.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Colour</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Green</td><td>Engaged modes, dynamic conditions</td></tr>
+          <tr><td>White</td><td>Present status, scales, armed modes</td></tr>
+          <tr><td>Magenta</td><td>Commands, fly-to symbols, active route</td></tr>
+          <tr><td>Cyan</td><td>Non-active and background data, sky</td></tr>
+          <tr><td>Amber</td><td>Cautions, faults, flags</td></tr>
+          <tr><td>Red</td><td>Warnings; heaviest weather</td></tr>
+        </tbody></table></div>
+      <ul>
+        <li>🔔 DH: chime from DH + 50 ft; at DH the marker flashes and turns amber; DH RST cancels it.</li>
+        <li>🗺️ MAP: 45° of arc either side of track; active waypoint magenta star; white trend vector in turns; green altitude arc in climb and descent.</li>
+        <li>🌦️ Weather radar shows except in PLAN and full-rose VOR/ILS: green, yellow, red, magenta for turbulence. Half-scale arc shown: 10 NM arc means 20 NM range.</li>
+        <li>🚩 Failed ILS or radio altimeter data: yellow flags. WXR/MAP RANGE DISAGREE if the ranges differ.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 22 Electronic Flight Information Systems</div>
+    </section>
+
+    <section class="sec" id="ch23" data-icon="💻" style="--acc:#117a65">
+      <h2><span class="num">23</span> Basic Computers <span class="en">Chapter 23</span></h2>
+      <p class="lead">What sits inside every box in the avionics bay: a CPU, memory and input/output, all working in binary.</p>
+      <div class="glance"><span>🎯 ALU · registers · clock</span><span>🎯 ROM vs RAM</span><span>🎯 Volatile vs non-volatile</span><span>🎯 A/D and D/A</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>RAM forgets, ROM remembers.</strong> RAM can be written and read but is normally volatile; ROM (and PROM, EPROM, EEPROM) keeps its program without power.</p></div>
+      <details class="example"><summary>Worked example — binary</summary><div class="body">
+        <p>1011₂ = 8 + 0 + 2 + 1 = <strong>11</strong>. 6 = 110₂. Eight bits hold 2⁸ = 256 values (0–255).</p>
+      </div></details>
+      <ul>
+        <li>🧠 CPU = ALU (arithmetic and logic) + shift registers (the accumulator holds the data in work) + control unit (crystal clock).</li>
+        <li>💾 Permanent storage: flash (rewritable indefinitely), optical discs (limited rewrites), magnetic disks.</li>
+        <li>🔌 Sensors are analogue, so an A/D converter feeds the computer; a D/A converter drives analogue devices. Current practice: one dedicated computer per system.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 23 Basic Computers</div>
+    </section>
+
+    <section class="sec" id="ch24" data-icon="🛰️" style="--acc:#a04000">
+      <h2><span class="num">24</span> Future Air Navigation Systems (FANS) <span class="en">Chapter 24</span></h2>
+      <p class="lead">Where there is no radar or VHF: GNSS position plus satellite and HF data link, giving ATC continuous positions and the pilot a direct line to the controller.</p>
+      <div class="glance"><span>🎯 ACARS</span><span>🎯 CPDLC · ADS-C</span><span>🎯 AFN logon</span><span>🎯 FANS A oceanic · FANS B dense</span><span>🎯 Uplink / downlink</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Better positions and better communications allow smaller separations.</strong> Procedural HF control with reports every 10° of longitude (every 30–60 minutes) needs huge gaps; FANS closes them.</p></div>
+      <ul>
+        <li>📻 VHF is line of sight (about 200 NM at FL300). HF fades and is noisy, so a radio operator relays and SELCAL calls the crew.</li>
+        <li>🛰️ Geostationary SATCOM covers to about 80° latitude; ACARS went VHF → SATCOM → HF (2001) to close the polar gap.</li>
+        <li>🔐 Logon: the pilot enters the ATSU's four-letter address; ATSU acknowledges, sends a connection request, aircraft confirms (AFN). Transfers are then automatic. Aircraft → ground is always a downlink.</li>
+        <li>🧾 ATM messages: clearances, D-ATIS. AOC messages: OOOI (out, off, on, in), load sheets, weather, maintenance.</li>
+        <li>⛔ An ATSU may not combine AFN with ADS.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 24 Future Air Navigation Systems (FANS)</div>
+    </section>
+
+    <section class="sec" id="ch25" data-icon="🎯" style="--acc:#2874a6">
+      <h2><span class="num">25</span> Flight Director Systems <span class="en">Chapter 25</span></h2>
+      <p class="lead">The FD computes what the pilot should do and shows it as command bars: fly the aircraft symbol into the bars.</p>
+      <div class="glance"><span>🎯 Raw vs computed</span><span>🎯 TO/GA: 10° down → 15° up</span><span>🎯 V2 + 20</span><span>🎯 Gain scheduling</span><span>🎯 Comparator</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Raw data says where you are; computed data says what to do.</strong> The FD uses the rate of change of deviation to command a smooth intercept. If the FD fails, the raw CDI and glide slope pointer may still be good.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Phase (typical twin jet)</th><th>FD command</th></tr></thead>
+        <tbody>
+          <tr><td>Take-off roll</td><td>10° nose down, wings level; 15° nose up from 60 kt</td></tr>
+          <tr><td>After lift-off</td><td>15° up until climbing, then MCP speed (V2) + 20 kt</td></tr>
+          <tr><td>Engine failure</td><td>Below V2: V2 · V2 to V2+20: speed at failure · above: V2+20</td></tr>
+          <tr><td>Go-around</td><td>15° up (13° with one engine), hold ground track, then manoeuvring speed</td></tr>
+        </tbody></table></div>
+      <ul>
+        <li>🚩 Flags: GYRO (vertical reference), ATT or FD (computer, amplifier or ADI), GS, NAV, compass power and DG mode.</li>
+        <li>📉 Gain scheduling softens glide slope commands near the runway: 1° is about 608 ft at 6 NM but 54 ft at ½ NM. Time → markers → radio altimeter.</li>
+        <li>⚖️ Comparator (both FDs on, no autopilot, TO/GA or APP below 800 ft) removes the bars if the two disagree.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 25 Flight Director Systems</div>
+    </section>
+
+    <section class="sec" id="ch26" data-icon="🤖" style="--acc:#28b463">
+      <h2><span class="num">26</span> Autopilot <span class="en">Chapter 26</span></h2>
+      <p class="lead">Inner loops keep the aircraft stable; outer loops steer it to a height, a heading or a route; auto-trim keeps it in trim so that letting go is gentle.</p>
+      <div class="glance"><span>🎯 Inner vs outer loop</span><span>🎯 Roll primary, pitch secondary</span><span>🎯 Fail-safe</span><span>🎯 Synchronisation</span><span>🎯 One mode per channel</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The inner loop is a closed loop</strong>: sense the disturbance (rate gyro), compute, move the surface (servo), sense the response, re-centre. Every mode — ALT HOLD, HDG SEL, LNAV — is an outer loop that tells the inner loop where to go.</p></div>
+      <div class="diagram">
+        <svg viewBox="0 0 560 150" role="img" aria-label="Inner loop">
+          <rect class="bx" x="20" y="50" width="90" height="36"/><text x="34" y="72">Rate gyro</text>
+          <line class="ln" x1="110" y1="68" x2="145" y2="68" marker-end="url(#a-ink)"/>
+          <rect class="bx" x="145" y="50" width="100" height="36"/><text x="153" y="72">Transducer</text>
+          <line class="ln" x1="245" y1="68" x2="280" y2="68" marker-end="url(#a-ink)"/>
+          <rect class="af" x="280" y="50" width="120" height="36"/><text x="290" y="72">Signal processor</text>
+          <line class="ln" x1="400" y1="68" x2="435" y2="68" marker-end="url(#a-ink)"/>
+          <rect class="bx" x="435" y="50" width="100" height="36"/><text x="448" y="72">Servomotor</text>
+          <path class="thin" d="M485 86 V120 H65 V86"/><text class="m" x="200" y="138">aerodynamic feedback: the aircraft's response is sensed again</text>
+          <text class="m" x="290" y="38">outer loop modes feed in here</text>
+        </svg>
+      </div>
+      <ul>
+        <li>⏱️ An autopilot corrects in about 50 ms; a pilot takes about 200 ms just to notice.</li>
+        <li>🛡️ Fail-safe: actuator authority or rate limited so the pilot can always override; torque limits, slipping clutches.</li>
+        <li>✋ Engagement needs no force on the wheel and the stab trim cut-out at normal; control pressure in CMD overrides to CWS.</li>
+        <li>🔄 Synchronisation washes out standing signals so engagement is smooth; auto-trim (pitch only, autopilot engaged) prevents a snatch on disengagement.</li>
+        <li>🧭 Over a VOR the autopilot holds the drift-corrected heading through the cone of confusion, then reverts to VOR. LNAV captures within 3 NM, or on an intercept of 90° or less.</li>
+        <li>📏 Typical limits ±10° pitch, ±30° bank; single pilot IFR or night needs at least ALT HOLD and HDG (two-axis).</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 26 Autopilot</div>
+    </section>
+
+    <section class="sec" id="ch27" data-icon="🛬" style="--acc:#b9770e">
+      <h2><span class="num">27</span> Autoland <span class="en">Chapter 27</span></h2>
+      <p class="lead">Two or three autopilots, two radio altimeters and a category 3 ILS: the aircraft flares, de-crabs, lands and rolls out on its own.</p>
+      <div class="glance"><span>🎯 Fail-passive = LAND 2</span><span>🎯 Fail-operational = LAND 3</span><span>🎯 1500 · 800 · 400 · 50 · 27 ft</span><span>🎯 Alert height</span><span>🎯 CAT I–IIIC</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Fail-passive: a failure ends the autoland safely. Fail-operational: a failure does not stop it.</strong> Above alert height a failure means a go-around; below it a fail-operational system carries on.</p></div>
+      <div class="diagram">
+        <svg viewBox="0 0 580 200" role="img" aria-label="Autoland profile">
+          <line class="ln" x1="20" y1="170" x2="560" y2="170"/>
+          <path class="ac" d="M30 30 L420 152 Q470 168 540 170"/>
+          <text class="m" x="40" y="24">LOC + G/S captured</text>
+          <text class="m" x="150" y="58">1500 ft: 2nd A/P · FLARE arm · LAND 2/3</text>
+          <text class="m" x="235" y="92">800 ft: last chance for 2nd A/P</text>
+          <text class="m" x="300" y="118">400–330 ft: nose-up trim bias</text>
+          <text class="m" x="380" y="140">50 ft: flare</text>
+          <text class="m" x="450" y="158">27 ft: retard</text>
+          <text class="m" x="470" y="190">touchdown · roll-out</text>
+        </svg>
+        <div class="cap">Typical sequence. The flare uses the rate of change of radio height, taking the sink rate from 10–12 ft/s to 1–2 ft/s.</div>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Category</th><th>Decision height</th><th>RVR</th></tr></thead>
+        <tbody>
+          <tr><td>I</td><td>≥ 200 ft</td><td>≥ 550 m (or visibility 800 m)</td></tr>
+          <tr><td>II</td><td>&lt; 200 ft, ≥ 100 ft</td><td>≥ 300 m</td></tr>
+          <tr><td>IIIA</td><td>&lt; 100 ft or none</td><td>≥ 175 m</td></tr>
+          <tr><td>IIIB</td><td>&lt; 50 ft or none</td><td>&lt; 175 m, ≥ 50 m</td></tr>
+          <tr><td>IIIC</td><td>none</td><td>no limit</td></tr>
+        </tbody></table></div>
+      <ul>
+        <li>📡 One radio altimeter failed → fail-passive at best. In fail-passive, the controls follow the autopilot asking for the least movement.</li>
+        <li>🎯 LOC captured by ½ dot, G/S at 2/5 dot (from below preferred). Align mode de-crabs below about 100 ft; roll-out steers on the localizer.</li>
+        <li>🔁 A/P go-around needs dual A/Ps and FLARE armed: 15° up, hold ground track, flap manoeuvring speed. Single A/P approach: 1 CH, no flare, no A/P go-around.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 27 Autoland</div>
+    </section>
+
+    <section class="sec" id="ch28" data-icon="🎚️" style="--acc:#c0392b">
+      <h2><span class="num">28</span> Autothrottle <span class="en">Chapter 28</span></h2>
+      <p class="lead">The thrust half of automatic flight: N1, EPR or speed, from the start of the take-off roll to two seconds after touchdown.</p>
+      <div class="glance"><span>🎯 THR HLD at 84 kt</span><span>🎯 ARM above 400 ft</span><span>🎯 RETARD at 27 ft</span><span>🎯 GA: reduced, then full</span><span>🎯 Flex: assumed temperature</span><span>🎯 FADEC</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Pitch holds one thing and thrust another.</strong> In LVL CHG the autopilot holds speed with pitch while the autothrottle sets N1; in ALT HOLD the autopilot holds height and the autothrottle holds speed.</p></div>
+      <ul>
+        <li>🛫 Take-off: TO/GA on the ground → N1; THR HLD at about 84 kt (the pilot can still move the levers); ARM after 400 ft and about 18 s.</li>
+        <li>⚙️ Engine failure: in N1 mode the dead engine's lever comes back to the other's; in speed mode both levers advance.</li>
+        <li>🛬 Approach speed VREF + 5 — the A/T handles gusts itself. RETARD 2½ s after FLARE or at 27 ft; disengages 2 s after touchdown.</li>
+        <li>🔁 Go-around armed below 2000 ft: first TO/GA gives reduced thrust (1000–2000 fpm), second press full GA thrust.</li>
+        <li>🌡️ Reduced (flex) take-off: enter an assumed temperature above the actual one.</li>
+        <li>🖥️ FADEC: two channels per engine, own alternator above about 12% rpm, limit protection, start control; the FMV turns orders into fuel flow; with fixed detents, between two detents the higher rating applies.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 28 Autothrottle</div>
+    </section>
+
+    <section class="sec" id="ch29" data-icon="🦆" style="--acc:#1f618d">
+      <h2><span class="num">29</span> Yaw Dampers <span class="en">Chapter 29</span></h2>
+      <p class="lead">Swept-wing jets at altitude Dutch roll; a yaw damper applies small, quick rudder inputs at just the right moment to stop it.</p>
+      <div class="glance"><span>🎯 Lateral &gt; directional stability</span><span>🎯 Worse at altitude</span><span>🎯 Phase advance</span><span>🎯 Bandpass filter</span><span>🎯 3–4° rudder</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Only the Dutch roll frequency reaches the rudder.</strong> A filter passes that low frequency and blocks steady turns and vibration, so the yaw damper damps the oscillation without fighting the pilot's turns.</p></div>
+      <ul>
+        <li>🔁 Yaw → the advancing wing lifts (more so with sweep) → roll → induced drag yaws back → and round again.</li>
+        <li>🏔️ At high TAS a given yaw rate changes the fin's angle of attack less, so natural damping is weaker. Without a yaw damper, descend.</li>
+        <li>⏩ Phase advance applies rudder at the maximum yaw rate, not when the fin is already returning the aircraft.</li>
+        <li>🧪 Test: hold left → indicator left then centre; release → right then centre. The failure light covers hydraulics, electrics, logic and gyro input; switch the failed damper off.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 29 Yaw Dampers</div>
+    </section>
+
+    <section class="sec" id="ch30" data-icon="🛡️" style="--acc:#9a7d0a">
+      <h2><span class="num">30</span> Control Laws <span class="en">Chapter 30</span></h2>
+      <p class="lead">How hard the automatics may push: speed limiting and mode reversion, and, in fly-by-wire aircraft, protections that keep the aircraft inside its envelope.</p>
+      <div class="glance"><span>🎯 Minimum speed ≈ 1.3 VS</span><span>🎯 Reversion before the limit</span><span>🎯 Alpha floor</span><span>🎯 30° up / 15° down</span><span>🎯 67° bank</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>When the engaged mode cannot hold a limit speed, the system changes mode.</strong> In V/S near minimum speed it reverts to LVL CHG so that pitch can protect the speed.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Protection (typical fly-by-wire)</th><th>Limit</th></tr></thead>
+        <tbody>
+          <tr><td>Pitch attitude</td><td>30° nose up, 15° nose down</td></tr>
+          <tr><td>Bank</td><td>67° normal · 45° high AoA · 40° high speed · returns to 33° if released</td></tr>
+          <tr><td>Load factor (clean)</td><td>+2.5 g to −1 g</td></tr>
+          <tr><td>High angle of attack</td><td>Alpha floor gives TOGA thrust before alpha max</td></tr>
+          <tr><td>High speed</td><td>Nose-up demand beyond VMO/MMO, stops short of VD/MD</td></tr>
+        </tbody></table></div>
+      <ul>
+        <li>📉 Speeds above VMO/MMO cannot be selected; above flap or gear limits or below minimum speed they can, but are not flown. Select 15 kt above minimum to clear the under-speed symbol.</li>
+        <li>🔢 Gain scheduling: bank limits drop from 45° to 30° (VOR/LOC) to 15° near the ground; authority reduced with dynamic pressure.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 30 Control Laws</div>
+    </section>
+    <section class="sec" id="ch31" data-icon="🚨" style="--acc:#922b21">
+      <h2><span class="num">31</span> Flight Warning Systems <span class="en">Chapter 31</span></h2>
+      <p class="lead">Many systems, one crew: the warning system sorts alerts by urgency and shows only what matters now.</p>
+      <div class="glance"><span>🎯 Level A · B · C</span><span>🎯 Red · amber</span><span>🎯 Stall › windshear › GPWS › ACAS</span><span>🎯 Bell · siren · wailer</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Warning = act now; caution = be alert and act; advisory = be aware.</strong> An aural alert is mandatory whenever the pilot must take control.</p></div>
+      <div class="compare">
+        <div class="card bad"><h4>Level A — warning</h4><p>Red. Immediate crew action.</p></div>
+        <div class="card mid"><h4>Level B — caution</h4><p>Amber. Immediate alertness, then action.</p></div>
+        <div class="card acc"><h4>Level C — advisory</h4><p>Any colour except red or green (amber on some displays). Awareness.</p></div>
+      </div>
+      <ul>
+        <li>🔔 Typical sounds: bell for fire; siren for cabin altitude, configuration, overspeed; wailer or "cavalry charge" for autopilot disconnect; cricket for stall in some types; voice for GPWS, windshear and TCAS.</li>
+        <li>🫨 Tactile: stick shaker for the stall approach, stick pusher to stop it getting worse.</li>
+        <li>🔴 Master warning and caution lights sit in front of each pilot, near the centre of scan.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 31 Flight Warning Systems</div>
+    </section>
+
+    <section class="sec" id="ch32" data-icon="⚠️" style="--acc:#1b4f72">
+      <h2><span class="num">32</span> Aerodynamic Warnings <span class="en">Chapter 32</span></h2>
+      <p class="lead">Three warnings about the air around the aircraft: altitude alerting, overspeed and stall.</p>
+      <div class="glance"><span>🎯 900 ft / 300 ft</span><span>🎯 Overspeed: cannot be cancelled</span><span>🎯 Barber's pole</span><span>🎯 5 kt or 5%</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Stall warning is about angle of attack, not speed.</strong> It must start at least 5 kt or 5% CAS above the stall, whichever is greater, and keep going until the angle of attack is back to about where it started.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Altitude alerting (300–900 ft system)</th><th>Indication</th></tr></thead>
+        <tbody>
+          <tr><td>900 ft to go</td><td>White box round the altitude, short tone</td></tr>
+          <tr><td>300 ft to go</td><td>Box removed</td></tr>
+          <tr><td>Deviation of 300 ft</td><td>Master caution, beeper, ALTITUDE ALERT, amber box (level B)</td></tr>
+          <tr><td>Inhibited</td><td>After G/S capture, or with landing flap and gear down</td></tr>
+        </tbody></table></div>
+      <ul>
+        <li>🚀 Overspeed above VMO/MMO (from the ADC): siren or horn, red master WARNING, OVERSPEED. Cannot be silenced except by slowing down. The barber's pole moves to a lower IAS once MMO is limiting.</li>
+        <li>🪶 Stall warning inputs: angle of attack (vanes on the forward fuselage), flap and slat position, air/ground (armed at nosewheel lift-off), airspeed. Outputs: stick shaker, voice, master WARNING.</li>
+        <li>📜 Altitude alerting is required in turbojets and in turboprops over 5700 kg or more than 9 seats.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 32 Aerodynamic Warnings</div>
+    </section>
+
+    <section class="sec" id="ch33" data-icon="⛰️" style="--acc:#5b2c6f">
+      <h2><span class="num">33</span> Ground Proximity Warning System <span class="en">Chapter 33</span></h2>
+      <p class="lead">Seven modes watching radio height, descent rate, configuration and glide slope between about 50 and 2450 ft — and, with EGPWS, the terrain ahead.</p>
+      <div class="glance"><span>🎯 Modes 1–7</span><span>🎯 Response: level wings, max climb</span><span>🎯 EGPWS 40–60 s / 20–30 s</span><span>🎯 Mode 7 top priority</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>React first, analyse later.</strong> On a warning, level the wings and climb at maximum gradient to the safe altitude; stop only if the cause is positively identified, or by day in clear visual conditions.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Mode</th><th>Threat</th><th>Alert → warning</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Excessive descent rate</td><td>"Sink rate" → "Whoop whoop pull up"</td></tr>
+          <tr><td>2</td><td>Excessive terrain closure (up to 2450 ft)</td><td>"Terrain, terrain" → "Pull up"</td></tr>
+          <tr><td>3</td><td>Height loss after take-off or go-around (50–700 ft, ~10%)</td><td>"Don't sink"</td></tr>
+          <tr><td>4A</td><td>Too low, gear up (armed above 700 ft)</td><td>"Too low gear" / "Too low terrain" above M0.35</td></tr>
+          <tr><td>4B</td><td>Too low, flaps not set</td><td>"Too low flaps" / "Too low terrain" above M0.28</td></tr>
+          <tr><td>5</td><td>More than 1.3 dots below glide slope (below 1000 ft)</td><td>"Glide slope" soft → loud</td></tr>
+          <tr><td>6</td><td>Call-outs and bank angle</td><td>"Minimums", "Bank angle"</td></tr>
+          <tr><td>7</td><td>Windshear</td><td>"Windshear" — highest priority</td></tr>
+        </tbody></table></div>
+      <ul>
+        <li>🗺️ Basic GPWS does not look ahead: a cliff gives no mode 2 warning. EGPWS compares position with a terrain database: caution (solid yellow, "caution terrain") then warning (solid red, "pull up"). Only as good as the navigation fix; never thread through terrain with it.</li>
+        <li>🔇 FLAP OVRD inhibits the flap alerts and the top of mode 2; BELOW G/S cancels mode 5 under 1000 ft.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 33 Ground Proximity Warning System</div>
+    </section>
+
+    <section class="sec" id="ch34" data-icon="🛩️" style="--acc:#0e6655">
+      <h2><span class="num">34</span> Airborne Collision Avoidance System <span class="en">Chapter 34</span></h2>
+      <p class="lead">Transponder-to-transponder: TCAS II interrogates on 1030 MHz, listens on 1090 MHz, and tells the crew to climb or descend.</p>
+      <div class="glance"><span>🎯 TA ≈ 40 s · RA ≈ 25 s</span><span>🎯 RAs vertical only</span><span>🎯 Follow the RA, not ATC</span><span>🎯 Mode A intruder: TA only</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Never manoeuvre against an RA.</strong> With Mode S on both aircraft the RAs are coordinated — the other aircraft has been told the opposite. If ATC and TCAS disagree, follow TCAS and tell ATC afterwards.</p></div>
+      <div class="diagram">
+        <svg viewBox="0 0 560 110" role="img" aria-label="TCAS symbols">
+          <rect x="30" y="35" width="26" height="26" style="fill:#c0392b"/><text x="70" y="53">RA: red square</text>
+          <circle cx="200" cy="48" r="13" style="fill:#f1c40f"/><text x="222" y="53">TA: amber circle</text>
+          <path d="M360 34 L374 48 L360 62 L346 48 Z" style="fill:#17a2b8"/><text x="382" y="53">proximate</text>
+          <path d="M480 34 L494 48 L480 62 L466 48 Z" style="fill:none;stroke:#17a2b8;stroke-width:2"/><text x="500" y="53">other</text>
+          <text class="m" x="30" y="95">Tag "+05 ↑": 500 ft above, climbing at 500 fpm or more. Proximate = within 6 NM and ±1200 ft.</text>
+        </svg>
+      </div>
+      <ul>
+        <li>🧑‍✈️ TA: look out and prepare; do not manoeuvre on a TA alone. RA: act at once; the other pilot looks out; inform ATC.</li>
+        <li>🔇 Inhibitions near the ground: no RAs below about 1000 ft, no descend RA below about 1100 ft, no increase-descent below about 1450 ft, no TA voice below about 500 ft.</li>
+        <li>🎛️ STBY · ON (transponder only) · TA ONLY (after an engine failure, parallel runways) · TA/RA. Display range changes the display only.</li>
+        <li>📜 Required at least ACAS II in turbine aeroplanes over 5700 kg or more than 19 seats.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 34 Airborne Collision Avoidance System</div>
+    </section>
+
+    <section class="sec" id="ch35" data-icon="📼" style="--acc:#4a235a">
+      <h2><span class="num">35</span> Flight Data Recorder <span class="en">Chapter 35</span></h2>
+      <p class="lead">A red box under the fin that keeps the last 10 or 25 hours of flight data for the investigators — and the engineers.</p>
+      <div class="glance"><span>🎯 25 h (&gt; 5700 kg)</span><span>🎯 10 h smaller turbines</span><span>🎯 Starts before it can move</span><span>🎯 8 flights / 72 h</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>It records from before the aeroplane can move under its own power until after it no longer can</strong> — in practice from the first engine start until 5 minutes after the last engine stops.</p></div>
+      <ul>
+        <li>📊 Main parameters: time, attitude, airspeed, pressure altitude, heading, normal acceleration, thrust and lever position, flaps and slats, spoilers. Over 27 000 kg add controls and trim, radio altitude, displayed navigation, warnings, gear.</li>
+        <li>🔖 The EVENT button bookmarks the recording. An underwater locator is fitted.</li>
+        <li>📦 Up to 5700 kg the FDR may be combined with the CVR; above that, two recorders.</li>
+        <li>🛠️ Inoperative FDR: no more than 8 further flights and 72 hours, and the required CVR must work.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 35 Flight Data Recorder</div>
+    </section>
+
+    <section class="sec" id="ch36" data-icon="🎙️" style="--acc:#78281f">
+      <h2><span class="num">36</span> Cockpit Voice Recorder <span class="en">Chapter 36</span></h2>
+      <p class="lead">An area microphone and the crew's audio channels, kept in a crash-proof box for accident investigation.</p>
+      <div class="glance"><span>🎯 2 h (25 h newer large aircraft)</span><span>🎯 AUTO / ON</span><span>🎯 Erase on ground only</span><span>🎯 Underwater locator</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>It records everything the flight deck hears</strong>: radio sent and received, the aural environment, interphone, headset audio and PA announcements by the crew.</p></div>
+      <ul>
+        <li>▶️ AUTO: starts at first engine start, stops 5 minutes after the last shutdown. ON: starts at once (for pre-start checks), returning to AUTO at engine start.</li>
+        <li>🧯 Red or orange case at the rear, built for shock, heat and fire; the underwater locator pings when wet for at least 30 days.</li>
+        <li>🧹 Erase works only on the ground (parking brake set).</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 36 Cockpit Voice Recorder</div>
+    </section>
+
+    <section class="sec" id="ch37" data-icon="⚙️" style="--acc:#2f5fb3">
+      <h2><span class="num">37</span> Engine Instrumentation <span class="en">Chapter 37</span></h2>
+      <p class="lead">How thrust, speed, temperature, pressure, vibration and fuel are sensed and shown.</p>
+      <div class="glance"><span>🎯 EPR = jet pipe ÷ intake</span><span>🎯 Set EPR by 60 kt</span><span>🎯 Thermocouple · ratiometer</span><span>🎯 Capsule · bellows · Bourdon</span><span>🎯 Capacitance reads mass</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Thrust is never measured directly</strong> — N1 or EPR stands in for it. Watch the others too: chasing a falling EPR on the take-off run can take N1, N2 and EGT over their limits.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Quantity</th><th>Sensor</th><th>Point to remember</th></tr></thead>
+        <tbody>
+          <tr><td>Torque (turboprop)</td><td>Oil pressure against helical gear thrust</td><td>Power = torque × rpm</td></tr>
+          <tr><td>Spool speed</td><td>Speed probe / phonic wheel, or 3-phase tacho generator</td><td>Frequency ∝ speed</td></tr>
+          <tr><td>EGT</td><td>Chromel-alumel thermocouples in parallel</td><td>Averages; one failure hardly matters</td></tr>
+          <tr><td>Precise temperature</td><td>Ratiometer</td><td>Unaffected by supply voltage</td></tr>
+          <tr><td>Pressure</td><td>Capsule (low) · bellows (medium) · Bourdon tube (high)</td><td>Most gauges read gauge pressure</td></tr>
+          <tr><td>Vibration</td><td>Piezo crystal or magnet in a coil, filtered</td><td>Relative amplitude</td></tr>
+          <tr><td>Fuel quantity</td><td>Capacitance probes in parallel</td><td>Dielectric ≈ 2 × air, rises with density → mass</td></tr>
+          <tr><td>Fuel flow</td><td>Impeller in the HP line</td><td>Volume, corrected for density → mass</td></tr>
+        </tbody></table></div>
+      <ul>
+        <li>❄️ An iced intake probe makes EPR <strong>over-read</strong>, so less thrust than intended is set.</li>
+        <li>🌡️ Probes: SAT + recovered ram rise; TAT probes recover about 100%. A thermocouple needs its cold junction at a known temperature.</li>
+        <li>🔴 A small red arc inside the green on an rpm gauge: a vibration band not for continuous use. A synchroscope matches engine rpm.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 37 Engine Instrumentation</div>
+    </section>
+
+    <section class="sec" id="ch38" data-icon="📺" style="--acc:#2e86c1">
+      <h2><span class="num">38</span> Electronic Instrumentation <span class="en">Chapter 38</span></h2>
+      <p class="lead">Engine and system data on screens: EICAS shows what is wrong as messages; ECAM shows what to do and the system drawing.</p>
+      <div class="glance"><span>🎯 EICAS: operational · status · maintenance</span><span>🎯 ECAM: 3 automatic + manual</span><span>🎯 Compact format</span><span>🎯 Advisory indented</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>EICAS: messages. ECAM: checklists and pictures.</strong> On EICAS the upper screen carries the primary engine parameters full-time plus the alert list; the lower carries secondary parameters. ECAM's left/upper screen gives the warning and action list; the right/lower gives the synoptic.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>EICAS colour</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td>White</td><td>Scales, normal ranges, read-outs</td></tr>
+          <tr><td>Red</td><td>Warnings, maximum limits</td></tr>
+          <tr><td>Yellow</td><td>Cautions, advisories, caution limits</td></tr>
+          <tr><td>Green</td><td>Thrust mode, target cursors</td></tr>
+          <tr><td>Cyan</td><td>Parameter names</td></tr>
+          <tr><td>Magenta</td><td>In-flight start, cross-bleed</td></tr>
+          <tr><td>Blue</td><td>Testing only</td></tr>
+        </tbody></table></div>
+      <ul>
+        <li>🖥️ Two computers, one in control; one display failed → compact format on the other; standby engine gauges as back-up.</li>
+        <li>🚦 Level A warning red, level B caution amber, level C advisory amber indented one space. A fire shows red on the upper display.</li>
+        <li>📦 ECAM modes: flight phase related, advisory (a parameter drifting to its limit), failure related, and manual. A boxed message is a primary failure affecting other systems.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 38 Electronic Instrumentation</div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  Instrumentation — Pilot's Guide · general principles, independent of any aircraft or operator.
+  Always follow the flight manual and the operator's procedures for your own aircraft, and your instructor's briefing. 🎛️
+</footer>
+
+<button id="top-btn" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  var toc = document.getElementById('toc');
+  var scrim = document.getElementById('scrim');
+  var menuBtn = document.getElementById('menuBtn');
+  var closeToc = document.getElementById('closeToc');
+  function openToc(){ toc.classList.add('open'); scrim.classList.add('show'); }
+  function shutToc(){ toc.classList.remove('open'); scrim.classList.remove('show'); }
+  if (menuBtn) menuBtn.addEventListener('click', openToc);
+  if (closeToc) closeToc.addEventListener('click', shutToc);
+  if (scrim) scrim.addEventListener('click', shutToc);
+  var tocLinks = document.querySelectorAll('nav.toc a');
+  tocLinks.forEach(function(a){ a.addEventListener('click', function(){ shutToc(); }); });
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section.sec[id]'));
+  var linkFor = {};
+  tocLinks.forEach(function(a){ linkFor[a.getAttribute('href').slice(1)] = a; });
+  function onScroll(){
+    var y = window.scrollY + 110, current = sections[0];
+    for (var i = 0; i < sections.length; i++){ if (sections[i].offsetTop <= y) current = sections[i]; }
+    tocLinks.forEach(function(a){ a.classList.remove('active'); });
+    if (current && linkFor[current.id]) linkFor[current.id].classList.add('active');
+    var topBtn = document.getElementById('top-btn');
+    if (topBtn) topBtn.classList.toggle('show', window.scrollY > 500);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  var topBtn = document.getElementById('top-btn');
+  if (topBtn) topBtn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  
+    /* ---- quick tools ---- */
+  function el(id){ return document.getElementById(id); }
+  function num(id){ var s = (el(id).value || '').trim(); if (s === '') return NaN; var v = parseFloat(s); return isFinite(v) ? v : NaN; }
+  function put(id, html){ el(id).innerHTML = html; }
+  function f(v, d){ d = d === undefined ? 1 : d; var s = Math.abs(v).toFixed(d).split('.'); s[0] = s[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' '); return (v < 0 ? '−' : '') + s.join('.'); }
+  function deg(v){ return ((v % 360) + 360) % 360; }
+  var RAD = Math.PI / 180;
+
+  function tatsat(){
+    var t = num('tsT'), m = num('tsM'), k = num('tsK');
+    if (!isFinite(t) || !(m >= 0) || !(k >= 0)) { put('tsOut', 'Enter temperature, Mach and recovery factor.'); return; }
+    var tk = t + 273.15, d = 1 + 0.2 * k * m * m, s = tk / d;
+    put('tsOut', 'SAT = ' + f(tk, 1) + ' K ÷ ' + d.toFixed(4) + ' = ' + f(s, 1) + ' K<br>SAT = <b>' + f(s - 273.15, 1) + '°C</b> · ram rise sensed ' + f(tk - s, 1) + '°C');
+  }
+  function machc(){
+    var o = num('mcO'), t = num('mcT'), m = num('mcM');
+    if (!isFinite(o) || o <= -273) { put('mcOut', 'Enter the temperature.'); return; }
+    var a = 38.95 * Math.sqrt(o + 273.15), out = 'Speed of sound = 38.95 √' + f(o + 273.15, 1) + ' K = <b>' + f(a, 0) + ' kt</b>';
+    if (t > 0) out += '<br>Mach = ' + t + ' ÷ ' + f(a, 0) + ' = <b>M ' + (t / a).toFixed(3) + '</b>';
+    else if (m > 0) out += '<br>TAS = ' + m + ' × ' + f(a, 0) + ' = <b>' + f(m * a, 0) + ' kt</b>';
+    put('mcOut', out);
+  }
+  function altp(){
+    var a = num('apA'), s = num('apS'), q = num('apQ');
+    if (!isFinite(a) || !(s > 0) || !(q > 0)) { put('apOut', 'Fill in every field.'); return; }
+    var e = (s - q) * 30, tr = a - e;
+    put('apOut', 'Error = (' + s + ' − ' + q + ') × 30 = ' + f(e, 0) + ' ft<br>True altitude ≈ <b>' + f(tr, 0) + ' ft</b>' + (e > 0 ? ' — lower than indicated' : e < 0 ? ' — higher than indicated' : ''));
+  }
+  function altt(){
+    var a = num('atA'), t = num('atT');
+    if (!isFinite(a) || !isFinite(t)) { put('atOut', 'Enter altitude and temperature.'); return; }
+    var isa = 15 - 1.98 * a / 1000, dev = t - isa, c = 4 * a / 1000 * dev;
+    put('atOut', 'ISA at ' + f(a, 0) + ' ft = ' + f(isa, 1) + '°C → ISA ' + (dev >= 0 ? '+' : '') + f(dev, 1) + '<br>Correction = 4 × ' + f(a / 1000, 1) + ' × ' + f(dev, 1) + ' = ' + f(c, 0) + ' ft<br>True altitude ≈ <b>' + f(a + c, 0) + ' ft</b>');
+  }
+  function densa(){
+    var p = num('daP'), t = num('daT');
+    if (!isFinite(p) || !isFinite(t)) { put('daOut', 'Enter pressure altitude and temperature.'); return; }
+    var isa = 15 - 1.98 * p / 1000, dev = t - isa;
+    put('daOut', 'ISA ' + f(isa, 1) + '°C → deviation ' + (dev >= 0 ? '+' : '') + f(dev, 1) + '°C<br>Density altitude ≈ ' + f(p, 0) + ' + 120 × ' + f(dev, 1) + ' = <b>' + f(p + 120 * dev, 0) + ' ft</b>');
+  }
+  function dgw(){
+    var l = num('dwL'), n = num('dwN'), e = num('dwE');
+    if (!isFinite(l) || Math.abs(l) >= 90) { put('dwOut', 'Enter a latitude below 90°.'); return; }
+    if (!isFinite(e)) e = 0;
+    var er = -15 * Math.sin(l * RAD), nut = isFinite(n) ? 15 * Math.sin(n * RAD) : 0;
+    var dl = e / (60 * Math.cos(l * RAD)), tw = -dl * Math.sin(l * RAD), tot = er + nut + tw;
+    put('dwOut', 'Earth rate ' + f(er, 1) + '°/h' + (isFinite(n) ? ' · nut ' + (nut >= 0 ? '+' : '') + f(nut, 1) + '°/h' : '') + '<br>Δlong ' + f(dl, 1) + '°/h → transport ' + f(tw, 1) + '°/h<br>Total <b>' + (tot >= 0 ? '+' : '') + f(tot, 1) + '°/h</b> (− = reading decreases)');
+  }
+  function rate1(){
+    var t = num('r1T');
+    if (!(t > 0)) { put('r1Out', 'Enter the TAS.'); return; }
+    var b = Math.atan(t * 0.5144 * 3 * RAD / 9.81) / RAD;
+    var rad = t / 188.5;
+    put('r1Out', 'Bank ≈ ' + f(t / 10 + 7, 0) + '° (rule) · exact ' + f(b, 1) + '°<br>Radius ≈ <b>' + f(rad, 2) + ' NM</b> · 360° in 2 min');
+  }
+  function gpath(){
+    var g = num('gpG'), a = num('gpA');
+    if (!(g > 0) || !(a > 0)) { put('gpOut', 'Enter ground speed and angle.'); return; }
+    var r = g * 6076.1 / 60 * Math.tan(a * RAD);
+    put('gpOut', 'Rate of descent = <b>' + f(r, 0) + ' ft/min</b>' + (Math.abs(a - 3) < 0.05 ? '<br>Rule of thumb 5 × GS = ' + f(5 * g, 0) + ' ft/min' : ''));
+  }
+  function hdg(){
+    var t = num('hdT'), v = num('hdV'), d = num('hdD');
+    if (!isFinite(t) || !isFinite(v) || !isFinite(d)) { put('hdOut', 'Fill in every field.'); return; }
+    var m = deg(t - v), c = deg(m - d);
+    put('hdOut', 'Magnetic = ' + f(t, 0) + ' − (' + f(v, 0) + ') = ' + f(m, 0) + '°<br>Compass = ' + f(m, 0) + ' − (' + f(d, 0) + ') = <b>' + f(c, 0) + '°</b><br>East is least, west is best');
+  }
+  function coeff(){
+    var a = (el('cfD').value || '').split(/[,;\s]+/).filter(Boolean).map(parseFloat);
+    if (a.length !== 4 || a.some(function(x){ return !isFinite(x); })) { put('cfOut', 'Enter four deviations: N, E, S, W.'); return; }
+    var A = (a[0] + a[1] + a[2] + a[3]) / 4, B = (a[1] - a[3]) / 2, C = (a[0] - a[2]) / 2;
+    put('cfOut', 'A = (N + E + S + W) ÷ 4 = <b>' + f(A, 2) + '°</b><br>B = (E − W) ÷ 2 = <b>' + f(B, 2) + '°</b><br>C = (N − S) ÷ 2 = <b>' + f(C, 2) + '°</b>');
+  }
+  [['tsT',tatsat],['tsM',tatsat],['tsK',tatsat],['mcO',machc],['mcT',machc],['mcM',machc],['apA',altp],['apS',altp],['apQ',altp],['atA',altt],['atT',altt],['daP',densa],['daT',densa],['dwL',dgw],['dwN',dgw],['dwE',dgw],['r1T',rate1],['gpG',gpath],['gpA',gpath],['hdT',hdg],['hdV',hdg],['hdD',hdg],['cfD',coeff]].forEach(function(p){
+    var e = el(p[0]); if (e) { e.addEventListener('input', p[1]); e.addEventListener('change', p[1]); }
+  });
+  tatsat(); machc(); altp(); altt(); densa(); dgw(); rate1(); gpath(); hdg(); coeff();
+
+})();
+</script>
+</body>
+</html>
