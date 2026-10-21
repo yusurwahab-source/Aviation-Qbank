@@ -1310,3 +1310,45 @@ export const mailboxMessages = pgTable(
 );
 
 export type MailboxMessage = typeof mailboxMessages.$inferSelect;
+
+/**
+ * One row per Instagram post the agent has made (or tried to make).
+ *
+ * `postedOn` is the UTC day and is unique: the account posts at most once a
+ * day, and the row is claimed as `pending` *before* Instagram is called, the
+ * same way `logbook_extractions` reserves a spread before the model runs —
+ * so a cron that fires twice, or a manual retry racing it, cannot publish two
+ * posts. Only a `failed` row can be claimed again. A row left `pending` (the
+ * process died mid-publish) is deliberately not retried automatically: the
+ * post may be live, and a duplicate is worse than a missed day.
+ *
+ * `contentRef` is the question id (or promo key) the post was made from, so
+ * the same question is not posted twice. No foreign key to
+ * `flying_knowledge_questions`: `db:seed` deletes questions whose files are
+ * gone, and the record that a post was made must outlive that.
+ *
+ * Read and written only by `db/instagram.ts`; no `userId`, because this is
+ * the site's own account, like `mailbox_messages`.
+ */
+export const instagramPosts = pgTable(
+  "instagram_posts",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    postedOn: varchar("posted_on", { length: 10 }).notNull(),
+    kind: varchar("kind", { length: 8 }).$type<"question" | "tip" | "promo">().notNull(),
+    contentRef: varchar("content_ref", { length: 40 }).notNull(),
+    status: varchar("status", { length: 8 }).$type<"pending" | "posted" | "failed">().notNull(),
+    mediaId: varchar("media_id", { length: 40 }),
+    permalink: text("permalink"),
+    caption: text("caption"),
+    error: text("error"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("instagram_posts_posted_on_unique").on(table.postedOn),
+    index("instagram_posts_kind_ref_idx").on(table.kind, table.contentRef),
+  ],
+);
+
+export type InstagramPost = typeof instagramPosts.$inferSelect;

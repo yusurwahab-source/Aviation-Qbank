@@ -206,6 +206,30 @@ meter rows hold token counts, not content, and deliberately survive that
 delete — otherwise deleting would hand the free spreads back. Token counts
 and cost per request are visible only at `/owner/logbook`.
 
+**The Instagram agent posts once a day, from Flying Knowledge alone.**
+`vercel.json` calls `api/cron/instagram/route.ts` daily; it is not a chatbot
+but a scheduled job with a fixed rhythm (`lib/instagram/plan.ts`, pure and
+tested): Monday, Wednesday and Friday a **question** as a two-slide carousel
+(the question, then its solution), Tuesday and Saturday a **revision card**
+from a question's explanation, Thursday and Sunday a **promo** from a
+hand-written list that states no counts. Cards are drawn by
+`api/instagram/card` with `next/og` at 1080×1350. **Only `flying_knowledge_*`
+is ever read** — it is the one bank free in full, and nothing paid may reach
+a public feed. Because Instagram must fetch each image from a public URL, the
+card route is signed (`lib/instagram/signature.ts`, HMAC with `CRON_SECRET`);
+unsigned or unknown is a 404, so it cannot be used to read answers without
+sitting a test. `instagram_posts` claims the UTC day as `pending` *before*
+Instagram is called (unique on the day, like `logbook_extractions`), so a
+double cron cannot post twice; only a `failed` row is retried, and a stuck
+`pending` is left alone because the post may be live. A question is never
+reused (`content_ref`), and one that does not fit a card is skipped, not
+shortened. It is a **dry run** — it returns the caption and image URLs and
+touches nothing — until `INSTAGRAM_POSTING_ENABLED=true`; `?preview=1` forces
+a dry run after that. Publishing is the Graph API (`lib/instagram/graph.ts`,
+`fetch` injected, no SDK) with a long-lived Page token for a Business or
+Creator account linked to a Facebook Page. The route answers 404 without
+`Authorization: Bearer $CRON_SECRET`.
+
 **Old links still work.** `/aircraft` and `/aircraft/[code]` (and its
 `/test` page) were the type rating routes before this split existed;
 `/class` and `/class/[code]` were an earlier name for the class rating
@@ -1922,6 +1946,8 @@ src/
     unsubscribe/, api/unsubscribe/   The link at the foot of a message, and one-click
     api/webhooks/stripe/      The Stripe webhook endpoint
     api/logbook/extract/      Logbook Scanner: one photo in, one transcribed page out
+    api/cron/instagram/       The Instagram agent's daily run (vercel.json schedules it)
+    api/instagram/card/       The signed card images Instagram fetches
     tools/logbook/            Logbook Scanner: landing, and [logbookId]/ the scan-review-results app
     about|pricing|faq|terms|privacy|contact/   Short pages the footer links to
     manifest.ts               Web app manifest
@@ -1969,6 +1995,7 @@ src/
     owner.ts                  THE unscoped reads, and grant/revoke/notes. /owner only; see the convention above.
     logbooks.ts               Logbook Scanner: logbooks, the spread meter, unlocks and credits (user-scoped)
     logbook-owner.ts          Logbook Scanner usage and cost, unscoped. /owner only, like owner.ts.
+    instagram.ts              The Instagram agent: pick a question, claim the day, record the post. Flying Knowledge only.
     index.ts                  Connection pool
   proxy.ts                    Mints the signed-out visitor cookie on /type-rating/* and /class-rating/*
   lib/
@@ -1990,6 +2017,7 @@ src/
     seo/
       sitemap-entries.ts       Builds sitemap.xml's URL list from the three content
                               trees (pure, tested)
+    instagram/                The Instagram agent: rhythm and captions, signed card urls, card drawing, Graph API client (pure, tested; config.ts reads env)
     logbook/                  Logbook Scanner: model, time parsing, validation engine, summary,
                               extraction schema and prompt, entitlement, exports (all pure, tested)
                               — plus claude.ts (the API call) and config.ts (env switches)
