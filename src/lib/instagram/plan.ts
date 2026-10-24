@@ -138,6 +138,7 @@ const TOPIC_TAGS: Record<string, string[]> = {
   LAW: ["#airlaw"],
   RNAV: ["#radionavigation"],
   INST: ["#instruments"],
+  FPM: ["#flightplanning"],
   OPS: ["#operationalprocedures"],
   COM: ["#aviationenglish", "#radiocomms"],
   MB: ["#massandbalance"],

@@ -1,0 +1,1272 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Flight Planning &amp; Monitoring — Pilot's Guide</title>
+<meta name="description" content="Flight planning and monitoring explained for airline pilots in 14 chapters: aeronautical information, fuel policy and in-flight fuel checks, air and ground distance, planning with piston and jet data, extended range twin operations and tankering, VFR and IFR charts, the ATC flight plan, and the point of equal time and point of safe return — with diagrams, calculators and worked examples." />
+<style>
+  :root{
+    --bg:#f6f8fb;
+    --surface:#ffffff;
+    --surface-2:#eef2f7;
+    --ink:#101826;
+    --ink-2:#3c4758;
+    --muted:#6b7686;
+    --line:#dfe6ef;
+    --brand:#0d6e7d;
+    --brand-ink:#ffffff;
+    --brand-light:#e3f4f6;
+    --warn-bg:#fdecec;
+    --warn-line:#e0413a;
+    --warn-ink:#7a1712;
+    --caution-bg:#fff6e0;
+    --caution-line:#c9821a;
+    --caution-ink:#6b4405;
+    --note-bg:#eaf1fb;
+    --note-line:#3f6fb0;
+    --note-ink:#1f3c63;
+    --white-arc:#e9edf3;
+    --green-arc:#1f9d55;
+    --yellow-arc:#e0b400;
+    --red-arc:#d9362a;
+    --radius:14px;
+    --radius-sm:8px;
+    --shadow:0 1px 2px rgba(16,24,38,.04), 0 6px 20px rgba(16,24,38,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0d1420;
+      --surface:#141d2c;
+      --surface-2:#1b263a;
+      --ink:#eef2f8;
+      --ink-2:#c3cddc;
+      --muted:#8b97ab;
+      --line:#26334a;
+      --brand:#37c3d6;
+      --brand-ink:#06232a;
+      --brand-light:#12323a;
+      --warn-bg:#3a1613;
+      --warn-line:#e4574d;
+      --warn-ink:#ffd6d1;
+      --caution-bg:#3a2c0d;
+      --caution-line:#e0a83a;
+      --caution-ink:#ffe6b0;
+      --note-bg:#122a44;
+      --note-line:#5b93d6;
+      --note-ink:#cfe2fb;
+      --white-arc:#324055;
+      --green-arc:#2bb56a;
+      --yellow-arc:#e0b400;
+      --red-arc:#e4574d;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1420; --surface:#141d2c; --surface-2:#1b263a; --ink:#eef2f8; --ink-2:#c3cddc;
+    --muted:#8b97ab; --line:#26334a; --brand:#37c3d6; --brand-ink:#06232a; --brand-light:#12323a;
+    --warn-bg:#3a1613; --warn-line:#e4574d; --warn-ink:#ffd6d1;
+    --caution-bg:#3a2c0d; --caution-line:#e0a83a; --caution-ink:#ffe6b0;
+    --note-bg:#122a44; --note-line:#5b93d6; --note-ink:#cfe2fb;
+    --white-arc:#324055; --green-arc:#2bb56a; --yellow-arc:#e0b400; --red-arc:#e4574d;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;overflow-x:clip}
+  body{
+    margin:0;
+    overflow-x:clip;
+    max-width:100vw;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,"Segoe UI",system-ui,Roboto,sans-serif;
+    line-height:1.75;
+    font-size:17px;
+  }
+  a{color:var(--brand)}
+  code, .kbd{
+    direction:ltr;unicode-bidi:isolate;display:inline-block;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:6px;
+    padding:0 .35em;font-size:.92em;color:var(--ink);
+  }
+  header.top{
+    position:sticky;top:0;z-index:40;
+    background:linear-gradient(180deg, var(--surface) 85%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    max-width:1180px;margin:0 auto;padding:14px 16px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .brand-mark{display:flex;align-items:center;gap:10px;min-width:0}
+  .brand-mark .plane{
+    width:34px;height:34px;flex:0 0 auto;border-radius:9px;
+    background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+  }
+  .brand-mark .txt{min-width:0}
+  .brand-mark h1{font-size:15px;margin:0;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand-mark .sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .menu-btn{
+    display:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+    border-radius:10px;padding:9px 12px;font-size:14px;cursor:pointer;flex:0 0 auto;
+  }
+  .shell{max-width:1180px;margin:0 auto;display:flex;align-items:flex-start;gap:28px;padding:20px 16px 80px}
+  nav.toc{
+    position:sticky;top:78px;flex:0 0 280px;
+    max-height:calc(100vh - 96px);overflow-y:auto;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;box-shadow:var(--shadow);
+  }
+  nav.toc h2{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:2px 8px 10px}
+  nav.toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+  nav.toc li{counter-increment:toc}
+  nav.toc a{
+    display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--ink-2);
+    padding:7px 8px;border-radius:9px;font-size:13.5px;
+  }
+  nav.toc a .n{flex:0 0 auto;color:var(--brand);font-weight:700;font-size:12px;min-width:18px}
+  nav.toc a:hover{background:var(--surface-2);color:var(--ink)}
+  nav.toc a.active{background:var(--brand-light);color:var(--ink);font-weight:600}
+  nav.toc .count{margin-inline-start:auto;font-size:11px;color:var(--muted)}
+  main{flex:1 1 auto;min-width:0}
+  .hero{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 22px;margin-bottom:22px;box-shadow:var(--shadow);
+  }
+  .hero h1{margin:0 0 8px;font-size:26px}
+  .hero p{margin:0;color:var(--ink-2);font-size:15.5px}
+  .hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hero .tag{
+    font-size:12.5px;background:var(--brand-light);color:var(--brand);
+    border-radius:999px;padding:5px 12px;font-weight:600;
+  }
+  section.sec{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px 26px;margin-bottom:22px;box-shadow:var(--shadow);scroll-margin-top:76px;
+  }
+  section.sec > h2{
+    display:flex;align-items:center;gap:12px;font-size:21px;margin:0 0 6px;
+    padding-bottom:14px;border-bottom:1px solid var(--line);
+  }
+  section.sec > h2 .num{
+    flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--brand);color:var(--brand-ink);
+    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;
+  }
+  section.sec > h2 .en{margin-inline-start:auto;font-size:12px;color:var(--muted);font-weight:600;
+    direction:ltr;background:var(--surface-2);padding:4px 10px;border-radius:999px}
+  .lead{color:var(--ink-2);font-size:16px;margin-top:14px}
+  h3.sub{font-size:16.5px;margin:26px 0 8px;color:var(--ink);border-inline-start:4px solid var(--brand);padding-inline-start:10px}
+  h4.sub2{font-size:15px;margin:18px 0 6px;color:var(--ink-2)}
+  p{margin:10px 0}
+  ul, ol{margin:10px 0;padding-inline-start:22px}
+  li{margin:5px 0}
+  strong{color:var(--ink)}
+  .table-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm)}
+  table{border-collapse:collapse;width:100%;min-width:420px;font-size:14.5px}
+  table caption{text-align:start;font-size:12.5px;color:var(--muted);padding:8px 12px 0}
+  thead th{
+    background:var(--surface-2);color:var(--ink);text-align:start;
+    padding:9px 12px;font-weight:700;white-space:nowrap;font-size:13.5px;
+  }
+  tbody td{padding:8px 12px;border-top:1px solid var(--line);color:var(--ink-2)}
+  tbody tr:nth-child(even){background:color-mix(in srgb, var(--surface-2) 45%, transparent)}
+  td.num, th.num{direction:ltr;text-align:center;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+  .callout{border-radius:var(--radius-sm);padding:12px 14px;margin:14px 0;border-inline-start:4px solid;font-size:14.5px}
+  .callout .label{display:block;font-weight:800;font-size:12px;letter-spacing:.03em;text-transform:uppercase;margin-bottom:4px}
+  .callout.warning{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-ink)}
+  .callout.caution{background:var(--caution-bg);border-color:var(--caution-line);color:var(--caution-ink)}
+  .callout.note{background:var(--note-bg);border-color:var(--note-line);color:var(--note-ink)}
+  .eq{
+    direction:ltr;font-family:"Cambria Math","STIX Two Math","Latin Modern Math",Georgia,serif;font-size:16.5px;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);
+    padding:10px 14px;margin:12px 0;text-align:center;white-space:nowrap;color:var(--ink);
+    max-width:100%;overflow-x:auto;contain:paint;box-sizing:border-box;
+  }
+  .eq sub,.eq sup{font-size:.72em}
+  .diagram{
+    background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;margin:18px 0;text-align:center;
+    max-width:100%;overflow-x:auto;box-sizing:border-box;
+  }
+  .diagram .cap{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .diagram svg{max-width:100%;height:auto;display:block;margin:0 auto}
+  .ref{
+    display:inline-block;direction:ltr;font-size:11.5px;color:var(--brand);
+    background:var(--brand-light);border-radius:6px;padding:1px 7px;margin-inline-start:4px;
+    font-weight:700;white-space:nowrap;
+  }
+  .related{
+    margin-top:22px;display:flex;align-items:center;gap:10px;
+    background:var(--brand-light);color:var(--brand);border-radius:999px;
+    padding:10px 16px;font-size:14px;font-weight:700;width:fit-content;
+  }
+  .related .dot{width:8px;height:8px;border-radius:50%;background:var(--brand)}
+  footer{max-width:1180px;margin:0 auto;padding:10px 16px 60px;color:var(--muted);font-size:13px;text-align:center}
+  #top-btn{
+    position:fixed;inset-inline-end:18px;bottom:18px;z-index:50;
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+    background:var(--brand);color:var(--brand-ink);font-size:18px;cursor:pointer;
+    box-shadow:var(--shadow);display:none;align-items:center;justify-content:center;
+  }
+  #top-btn.show{display:flex}
+  @media (max-width:880px){
+    .shell{flex-direction:column;padding:14px 12px 70px}
+    main{width:100%;min-width:0}
+    nav.toc{
+      position:fixed;inset:0 0 0 auto;top:0;width:82%;max-width:340px;height:100dvh;max-height:100dvh;
+      transform:translateX(100%);transition:transform .25s ease;border-radius:0;z-index:60;
+    }
+    nav.toc.open{transform:translateX(0)}
+    .toc-scrim{position:fixed;inset:0;background:rgba(6,10,18,.5);z-index:55;display:none}
+    .toc-scrim.show{display:block}
+    .menu-btn{display:inline-flex;align-items:center;gap:6px}
+    section.sec > h2{font-size:18.5px}
+    .hero h1{font-size:22px}
+    body{font-size:16px}
+  }
+  .toc-close{display:none}
+  @media (max-width:880px){
+    .toc-close{
+      display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+      padding-bottom:10px;border-bottom:1px solid var(--line);
+    }
+    .toc-close button{border:none;background:var(--surface-2);border-radius:8px;padding:6px 10px;font-size:18px;cursor:pointer;color:var(--ink)}
+  }
+
+  
+  /* ---------- PilotQBank study-guide additions ---------- */
+  :root{ --accent:var(--brand); }
+  html{scroll-padding-top:80px}
+  section.sec{border-top:5px solid var(--accent)}
+  section.sec > h2 .num{background:var(--accent);color:#fff;font-size:19px;width:40px;height:40px;border-radius:12px}
+  section.sec > h2 .en{background:color-mix(in srgb,var(--accent) 14%,var(--surface));color:var(--ink-2)}
+  h3.sub{border-inline-start-color:var(--accent)}
+  nav.toc a .n{font-size:15px;min-width:22px}
+  .hero{background:linear-gradient(135deg,color-mix(in srgb,var(--brand) 16%,var(--surface)),var(--surface) 60%);position:relative;overflow:hidden}
+  .hero .cloud{position:absolute;inset-inline-end:-10px;top:-6px;font-size:84px;opacity:.16;pointer-events:none;user-select:none}
+  .hero .tag{background:color-mix(in srgb,var(--brand) 16%,var(--surface))}
+  .glance{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+  .glance span{font-size:13px;background:color-mix(in srgb,var(--accent) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));border-radius:999px;padding:4px 12px;color:var(--ink-2)}
+  .keyidea{margin:16px 0;padding:14px 16px;border-radius:var(--radius);background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 16%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--accent) 40%,var(--line))}
+  .keyidea .label{display:block;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+  .keyidea p{margin:4px 0}
+  .tip,.memory{margin:14px 0;padding:12px 14px;border-radius:var(--radius-sm);font-size:14.5px;border-inline-start:4px solid}
+  .tip{background:color-mix(in srgb,var(--green-arc) 12%,var(--surface));border-color:var(--green-arc);color:var(--ink)}
+  .memory{background:color-mix(in srgb,#8b5cf6 12%,var(--surface));border-color:#8b5cf6;color:var(--ink)}
+  .tip .label,.memory .label{display:block;font-weight:800;font-size:12px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+  .tip .label{color:var(--green-arc)} .memory .label{color:#8b5cf6}
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
+  .fcard{background:var(--surface-2);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:var(--radius-sm);padding:12px 14px}
+  .fcard .f{direction:ltr;font-family:"Cambria Math","STIX Two Math",Georgia,serif;font-size:18px;color:var(--ink);overflow-x:auto;white-space:nowrap}
+  .fcard .d{font-size:13.5px;color:var(--ink-2);margin-top:4px}
+  details.example{margin:14px 0;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface);overflow:hidden}
+  details.example summary{cursor:pointer;padding:11px 14px;font-weight:700;font-size:14.5px;background:color-mix(in srgb,var(--accent) 10%,var(--surface-2));list-style:none}
+  details.example summary::-webkit-details-marker{display:none}
+  details.example summary::before{content:"▸ ";color:var(--accent)}
+  details.example[open] summary::before{content:"▾ "}
+  details.example .body{padding:6px 16px 14px}
+  .steps{counter-reset:st;list-style:none;padding:0;margin:12px 0}
+  .steps li{counter-increment:st;position:relative;padding-inline-start:40px;margin:10px 0;min-height:28px}
+  .steps li::before{content:counter(st);position:absolute;inset-inline-start:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:14px 0}
+  .compare .card{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px}
+  .compare .card h4{margin:0 0 6px;font-size:15px}
+  .compare .card.good{border-top:3px solid var(--green-arc)} .compare .card.bad{border-top:3px solid var(--red-arc)} .compare .card.mid{border-top:3px solid var(--yellow-arc)} .compare .card.acc{border-top:3px solid var(--accent)}
+  .bar{display:block;height:10px;border-radius:6px;background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 55%,#fff));min-width:4px}
+  td.barcell{min-width:130px}
+  .pill{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 9px;background:color-mix(in srgb,var(--accent) 16%,var(--surface));color:var(--ink)}
+  .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .tool{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+  .tool h3{margin:0 0 8px;font-size:15.5px}
+  .tool label{display:block;font-size:12.5px;color:var(--muted);margin-top:8px}
+  .tool input{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:16px}
+  .tool .out{margin-top:10px;padding:10px;border-radius:8px;background:color-mix(in srgb,var(--brand) 12%,var(--surface));font-size:14px;direction:ltr}
+  .tool .out b{color:var(--brand)}
+  .cheat table{min-width:340px}
+  .sec .diagram svg text{fill:var(--ink);font:600 12px -apple-system,"Segoe UI",system-ui,sans-serif}
+  .sec .diagram svg text.m{fill:var(--muted);font-weight:500;font-size:11px}
+  .sec .diagram svg text.big{font-size:14px}
+  .sec .diagram svg .ln{stroke:var(--ink-2);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sec .diagram svg .thin{stroke:var(--muted);stroke-width:1;fill:none;stroke-dasharray:4 4}
+  .sec .diagram svg .ac{stroke:var(--accent);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .sec .diagram svg .af{fill:color-mix(in srgb,var(--accent) 22%,transparent);stroke:var(--accent);stroke-width:2}
+  .sec .diagram svg .gn{stroke:var(--green-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .rd{stroke:var(--red-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .yl{stroke:var(--yellow-arc);stroke-width:3;fill:none;stroke-linecap:round}
+  .sec .diagram svg .gf{fill:color-mix(in srgb,var(--green-arc) 25%,transparent)}
+  .sec .diagram svg .rf{fill:color-mix(in srgb,var(--red-arc) 25%,transparent)}
+  .sec .diagram svg .yf{fill:color-mix(in srgb,var(--yellow-arc) 30%,transparent)}
+  .sec .diagram svg .bx{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
+  .sec .diagram svg .wing{fill:var(--surface);stroke:var(--ink-2);stroke-width:2}
+  .sec .diagram svg .dot{fill:var(--accent)}
+  @media (max-width:520px){.fgrid,.compare{grid-template-columns:1fr}}
+  .fgrid > *,.compare > *,.tools > *{min-width:0}
+  .fcard .f{max-width:100%}
+
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) {}
+  .diagram svg{min-width:520px}
+
+  .part{display:flex;align-items:center;gap:10px;margin:34px 0 4px;padding:8px 14px;border-radius:var(--radius-sm);background:color-mix(in srgb,var(--accent) 14%,var(--surface-2));border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));font-size:15px;font-weight:800;color:var(--ink)}
+  .part + h3.sub{margin-top:16px}
+  nav.toc a .chn{flex:0 0 auto;min-width:18px;color:var(--brand);font-weight:800;font-size:12px}
+  section.sec > h2 .en{font-weight:700}
+
+  section.sec{--accent:var(--acc,var(--brand))}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) section.sec{--accent:color-mix(in srgb,var(--acc,var(--brand)) 62%,#ffffff)}:root:not([data-theme="light"]) section.sec > h2 .num,:root:not([data-theme="light"]) .steps li::before{color:#06121a}}
+  :root[data-theme="dark"] section.sec{--accent:color-mix(in srgb,var(--acc,var(--brand)) 62%,#ffffff)}
+  :root[data-theme="dark"] section.sec > h2 .num,:root[data-theme="dark"] .steps li::before{color:#06121a}
+  td.num{white-space:normal}
+  .diagram svg.small{min-width:0;max-width:460px}
+  .tool select{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:16px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--ink-2)"/></marker>
+    <marker id="a-ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--accent)"/></marker>
+    <marker id="a-rd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--red-arc)"/></marker>
+    <marker id="a-gn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--green-arc)"/></marker>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand-mark">
+      <div class="plane">🗺️</div>
+      <div class="txt">
+        <h1>Flight Planning &amp; Monitoring — Pilot's Guide</h1>
+        <div class="sub">Fuel, charts, flight plans and the points of no return · Airline pilot theory</div>
+      </div>
+    </div>
+    <button class="menu-btn" id="menuBtn">☰ Contents</button>
+  </div>
+</header>
+
+<div class="toc-scrim" id="scrim"></div>
+
+<div class="shell">
+  <nav class="toc" id="toc">
+    <div class="toc-close"><span style="font-size:13px;color:var(--muted);font-weight:700">Contents</span><button id="closeToc">✕</button></div>
+    <h2>Chapters</h2>
+    <ol>
+      <li><a href="#tools"><span class="n">🧰</span> Quick tools &amp; cheat sheet</a></li>
+      <li><a href="#ch1"><span class="n">📚</span> <b class="chn">1</b> Air Information Publications</a></li>
+      <li><a href="#ch2"><span class="n">⛽</span> <b class="chn">2</b> Fuel Policy and Fuel Monitoring</a></li>
+      <li><a href="#ch3"><span class="n">🌬️</span> <b class="chn">3</b> Nautical Air Miles</a></li>
+      <li><a href="#ch4"><span class="n">🛩️</span> <b class="chn">4</b> Single-engine Piston Aeroplane</a></li>
+      <li><a href="#ch5"><span class="n">✈️</span> <b class="chn">5</b> Multi-engine Piston Aeroplane</a></li>
+      <li><a href="#ch6"><span class="n">📊</span> <b class="chn">6</b> MRJT Simplified Flight Planning</a></li>
+      <li><a href="#ch7"><span class="n">🧾</span> <b class="chn">7</b> MRJT Detailed Flight Planning</a></li>
+      <li><a href="#ch8"><span class="n">🌊</span> <b class="chn">8</b> MRJT Additional Procedures</a></li>
+      <li><a href="#ch9"><span class="n">🗺️</span> <b class="chn">9</b> Topographical Chart</a></li>
+      <li><a href="#ch10"><span class="n">🛣️</span> <b class="chn">10</b> Airways</a></li>
+      <li><a href="#ch11"><span class="n">🧭</span> <b class="chn">11</b> Airways — Miscellaneous Charts</a></li>
+      <li><a href="#ch12"><span class="n">📝</span> <b class="chn">12</b> ATC Flight Plan</a></li>
+      <li><a href="#ch13"><span class="n">⚖️</span> <b class="chn">13</b> Point of Equal Time</a></li>
+      <li><a href="#ch14"><span class="n">↩️</span> <b class="chn">14</b> Point of Safe Return</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <span class="cloud">🗺️</span>
+      <h1>🗺️ Flight Planning &amp; Monitoring</h1>
+      <p>
+        Every airline flight starts on paper — or on a screen — long before the engines turn. Where does the information come from? How much fuel must be on board, and how is it watched on the way? How do you read a performance table, an en route chart, a flight plan form? And on a long sea crossing, where is the point beyond which you can no longer turn back? This guide walks through all of it, in the same order as the practice topics.
+      </p>
+      <div class="tags">
+        <span class="tag">14 chapters</span>
+        <span class="tag">821 linked questions</span>
+        <span class="tag">🧮 11 calculators</span>
+        <span class="tag">📋 Cheat sheet</span>
+        <span class="tag">Worked examples</span>
+      </div>
+      <div class="tip"><span class="label">✈️ How to use this guide</span> Each chapter carries the same number as its practice topic. The subject is half rules and half arithmetic: learn the fuel and flight plan rules by heart, and practise the sums with the calculators until the method is automatic — the formula for the equal time point and the point of safe return come up again and again.</div>
+    </div>
+
+    <section class="sec" id="tools" data-icon="🧰" style="--acc:#2f5fb3">
+      <h2><span class="num">🧰</span> Quick tools &amp; cheat sheet <span class="en">play with the numbers</span></h2>
+      <p class="lead">Eleven small calculators for the sums this subject asks for again and again, and a one-screen list of the rules worth knowing by heart.</p>
+
+      <div class="tools">
+        <div class="tool">
+          <h3>⛽ Minimum fuel</h3>
+          <label>Aeroplane</label><select id="fuA"><option value="J">Jet / turboprop (30 min final reserve)</option><option value="P">Piston (45 min final reserve)</option></select>
+          <label>Trip fuel</label><input type="number" inputmode="decimal" id="fuT" value="8000" min="0">
+          <label>Holding fuel flow (per hour)</label><input type="number" inputmode="decimal" id="fuH" value="2400" min="0">
+          <label>Contingency (%) — 5, or 3 with an en route alternate</label><input type="number" inputmode="decimal" id="fuC" value="5" min="0" step="0.5">
+          <label>Alternate fuel</label><input type="number" inputmode="decimal" id="fuL" value="1500" min="0">
+          <label>Taxi fuel</label><input type="number" inputmode="decimal" id="fuX" value="200" min="0">
+          <div class="out" id="fuOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🌬️ Air ↔ ground distance (speeds)</h3>
+          <label>TAS (kt)</label><input type="number" inputmode="decimal" id="naT" value="160" min="0">
+          <label>Wind component (kt, + tail / − head)</label><input type="number" inputmode="decimal" id="naW" value="-25">
+          <label>Distance</label><input type="number" inputmode="decimal" id="naD" value="300" min="0">
+          <label>The distance given is: NAM or NGM</label><input type="text" id="naK" value="NAM">
+          <div class="out" id="naOut"></div>
+        </div>
+        <div class="tool">
+          <h3>⏱️ Air ↔ ground distance (time)</h3>
+          <label>Air distance from the table (NAM)</label><input type="number" inputmode="decimal" id="ntD" value="30" min="0">
+          <label>Time (min)</label><input type="number" inputmode="decimal" id="ntM" value="12" min="0">
+          <label>Wind component (kt, + tail / − head)</label><input type="number" inputmode="decimal" id="ntW" value="-30">
+          <div class="out" id="ntOut"></div>
+        </div>
+        <div class="tool">
+          <h3>⚖️ Point of equal time</h3>
+          <label>Total distance A to B (NM)</label><input type="number" inputmode="decimal" id="peD" value="1500" min="0">
+          <label>Ground speed ON (kt)</label><input type="number" inputmode="decimal" id="peO" value="240" min="0">
+          <label>Ground speed HOME (kt)</label><input type="number" inputmode="decimal" id="peH" value="180" min="0">
+          <label>Ground speed OUT to the PET (kt) — blank = ON</label><input type="text" id="peX" value="">
+          <div class="out" id="peOut"></div>
+        </div>
+        <div class="tool">
+          <h3>↩️ Point of safe return (time)</h3>
+          <label>Safe endurance (h)</label><input type="number" inputmode="decimal" id="psE" value="6" min="0" step="0.05">
+          <label>Ground speed OUT (kt)</label><input type="number" inputmode="decimal" id="psO" value="250" min="0">
+          <label>Ground speed HOME (kt)</label><input type="number" inputmode="decimal" id="psH" value="190" min="0">
+          <div class="out" id="psOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🛢️ Point of safe return (fuel)</h3>
+          <label>Fuel available less reserves (kg)</label><input type="number" inputmode="decimal" id="pfF" value="20000" min="0">
+          <label>Fuel flow OUT (kg/h) · GS OUT (kt)</label><input type="text" id="pfO" value="3000, 420">
+          <label>Fuel flow HOME (kg/h) · GS HOME (kt)</label><input type="text" id="pfH" value="2700, 380">
+          <div class="out" id="pfOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🧪 Fuel units</h3>
+          <label>Quantity</label><input type="number" inputmode="decimal" id="cvQ" value="40" min="0">
+          <label>Unit: L, USG, IG, KG or LB</label><input type="text" id="cvU" value="USG">
+          <label>Specific gravity</label><input type="number" inputmode="decimal" id="cvS" value="0.72" min="0" step="0.01">
+          <div class="out" id="cvOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🧭 True ↔ grid (north polar chart)</h3>
+          <label>True direction (°)</label><input type="number" inputmode="decimal" id="grD" value="310" min="0" max="360">
+          <label>Longitude (°, + east / − west)</label><input type="number" inputmode="decimal" id="grL" value="40">
+          <div class="out" id="grOut"></div>
+        </div>
+        <div class="tool">
+          <h3>📉 Start of descent</h3>
+          <label>Present level (ft)</label><input type="number" inputmode="decimal" id="tdA" value="28000" min="0">
+          <label>Level to reach (ft)</label><input type="number" inputmode="decimal" id="tdB" value="8000" min="0">
+          <label>Rate of descent (ft/min)</label><input type="number" inputmode="decimal" id="tdR" value="2000" min="0">
+          <label>Ground speed (kt)</label><input type="number" inputmode="decimal" id="tdG" value="300" min="0">
+          <label>Be level this far before the fix (NM)</label><input type="number" inputmode="decimal" id="tdX" value="8" min="0">
+          <div class="out" id="tdOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🔊 Mach ↔ TAS</h3>
+          <label>Outside air temperature (°C)</label><input type="number" inputmode="decimal" id="mcO" value="-60">
+          <label>Mach number — or blank and give TAS</label><input type="text" id="mcM" value="0.82">
+          <label>TAS (kt)</label><input type="text" id="mcT" value="">
+          <div class="out" id="mcOut"></div>
+        </div>
+        <div class="tool">
+          <h3>🧱 Semi-circular level</h3>
+          <label>Magnetic track (°)</label><input type="number" inputmode="decimal" id="clT" value="254" min="0" max="360">
+          <label>Lowest altitude needed (ft, QNH)</label><input type="number" inputmode="decimal" id="clA" value="4200" min="0">
+          <label>Regional QNH (hPa)</label><input type="number" inputmode="decimal" id="clQ" value="1023" min="900" max="1100">
+          <label>Rules: VFR or IFR</label><input type="text" id="clR" value="VFR">
+          <div class="out" id="clOut"></div>
+        </div>
+      </div>
+
+      <h3 class="sub">📋 Cheat sheet — numbers worth knowing</h3>
+      <div class="table-wrap cheat">
+        <table>
+          <thead><tr><th>Idea</th><th>Rule</th></tr></thead>
+          <tbody>
+            <tr><td>⛽ Contingency</td><td>Higher of 5% trip (3% with en route alternate) and 5 min hold at 1 500 ft over destination</td></tr>
+            <tr><td>🛟 Final reserve</td><td>Jet/turboprop 30 min · piston 45 min · hold at 1 500 ft, ISA</td></tr>
+            <tr><td>🏝️ Isolated aerodrome</td><td>Jet: 2 h at normal cruise after overhead, incl. final reserve · piston: 45 min + 15% cruise time, or 2 h, whichever less</td></tr>
+            <tr><td>➕ Additional fuel</td><td>Engine/pressurisation failure at critical point → adequate aerodrome + 15 min at 1 500 ft · no alternate → 15 min at 1 500 ft over destination</td></tr>
+            <tr><td>🌬️ Air ↔ ground</td><td>NAM / NGM = TAS / GS · NGM = NAM ± WC × min / 60</td></tr>
+            <tr><td>⚖️ PET</td><td>X = D × H / (O + H) · time = X ÷ GS out · moves into wind</td></tr>
+            <tr><td>↩️ PSR</td><td>T = E × H / (O + H) · d = T × O · or d = F / (CO + CH) · any wind shortens it</td></tr>
+            <tr><td>🧭 Grid (north polar)</td><td>Grid = true + W long − E long · convergence west, true best</td></tr>
+            <tr><td>🧱 Levels</td><td>Magnetic track 000–179 odd · 180–359 even · VFR + 500 ft</td></tr>
+            <tr><td>📝 Flight plan</td><td>File ≥ 60 min before EOBT (3 h with flow management) · delay 30 min controlled / 1 h uncontrolled → amend</td></tr>
+            <tr><td>🌀 Wake category</td><td>H ≥ 136 000 kg · M between · L ≤ 7 000 kg (maximum certificated mass)</td></tr>
+            <tr><td>🔁 Repetitive plan</td><td>IFR · same days on ≥ 10 occasions or daily ≥ 10 days · permanent changes 7 days ahead · temporary ≥ 30 min before departure</td></tr>
+            <tr><td>🛢️ Fuel units</td><td>1 USG = 3.785 L · 1 IG = 4.546 L · kg = L × SG · 1 kg = 2.205 lb</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sec" id="ch1" data-icon="📚" style="--acc:#2f5fb3">
+      <h2><span class="num">1</span> Air Information Publications <span class="en">Chapter 1</span></h2>
+      <p class="lead">Before every flight a pilot needs procedures, frequencies, navigation aids, weather services and the airspace to avoid. This chapter is about where that information officially lives.</p>
+      <div class="glance"><span>🎯 AIP, supplements, NOTAM</span><span>🎯 GEN · ENR · AD</span><span>🎯 Location indicators</span><span>🎯 AFIS and ATIS</span><span>🎯 SIGMET and VOLMET</span><span>🎯 Reading navaid entries</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>The State is the source; charts are copies.</strong> Commercial charts and route manuals only reprint information taken from the State's <em>Aeronautical Information Publication</em>. If they disagree, the AIP (with its supplements and NOTAMs) is right.</p></div>
+
+      <h3 class="sub">Three kinds of official information</h3>
+      <div class="compare">
+        <div class="card acc"><h4>📘 AIP</h4><p>Information of a <strong>lasting</strong> character essential to air navigation, issued by or for a State.</p></div>
+        <div class="card mid"><h4>📒 AIP Supplement</h4><p><strong>Temporary</strong> changes on special pages (in the United Kingdom, yellow paper in the GEN volume).</p></div>
+        <div class="card bad"><h4>📡 NOTAM</h4><p>A notice by <strong>telecommunication</strong>: temporary, short-duration information, or significant permanent changes made at short notice.</p></div>
+      </div>
+      <ul>
+        <li>🔺 Changes issued by amendment, supplement or circular are also announced by a <strong>trigger NOTAM</strong>: valid 15 days after a permanent change, or for the whole of a temporary one.</li>
+        <li>🔤 Types: <strong>NOTAMN</strong> new · <strong>NOTAMR</strong> replaces · <strong>NOTAMC</strong> cancels.</li>
+        <li>🇬🇧 United Kingdom series: international information A–H and J; domestic L–N and R; X exceptionally.</li>
+        <li>🚧 A short-term navaid failure, or a temporary danger area, is a NOTAM (or a supplement if there is time).</li>
+      </ul>
+
+      <h3 class="sub">The three parts of an AIP</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Part</th><th>What you find there</th></tr></thead>
+        <tbody>
+          <tr><td>GEN — General</td><td>Location indicators, NOTAM system, meteorological services, customs and health, search and rescue</td></tr>
+          <tr><td>ENR — En route</td><td>Navigation aids (ENR 4.1), significant point name codes (ENR 4.3), prohibited/restricted/danger areas and other navigation warnings (ENR 5)</td></tr>
+          <tr><td>AD — Aerodromes</td><td>Each aerodrome: licence, communication facilities (AD 2.18), radio navigation and landing aids (AD 2.19)</td></tr>
+        </tbody></table></div>
+      <p>Every contracting State uses the same layout, so the same information is always in the same place.</p>
+
+      <h3 class="sub">Location indicators</h3>
+      <p>Four letters: the first two the country, the last two the aerodrome or centre. Add a three-letter agency designator (<code>ZAZ</code> air traffic control unit, <code>ZIZ</code> flight information centre) and a one-letter office designator to address a message.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th class="num">Prefix</th><th>Country</th><th class="num">Prefix</th><th>Country</th></tr></thead>
+        <tbody>
+          <tr><td class="num">EG</td><td>United Kingdom</td><td class="num">LF</td><td>France</td></tr>
+          <tr><td class="num">ED · ET · EDD</td><td>Germany civil · military · international</td><td class="num">LE</td><td>Spain</td></tr>
+          <tr><td class="num">LI</td><td>Italy</td><td class="num">K…</td><td>United States</td></tr>
+          <tr><td class="num">CY · CZ</td><td>Canada</td><td class="num">—</td><td>—</td></tr>
+        </tbody></table></div>
+
+      <h3 class="sub">Aerodrome and weather services</h3>
+      <div class="compare">
+        <div class="card acc"><h4>AFIS</h4><p>Information (not control) in the aerodrome traffic zone: traffic to help avoid collisions, aerodrome state, alerting the safety services, overdue action.</p></div>
+        <div class="card good"><h4>ATIS</h4><p>Recorded routine information on a discrete frequency or a VOR voice channel. <strong>Inbound</strong> crews quote the code letter on first contact; outbound crews just make sure they have it.</p></div>
+        <div class="card mid"><h4>VOLMET</h4><p>Continuous broadcasts of aerodrome reports, updated half-hourly, in English. "SNOCLO" = aerodrome closed by snow. Runway state groups are not broadcast.</p></div>
+      </div>
+      <ul>
+        <li>⚠️ SIGMETs are prepared by Meteorological Watch Offices; crews are warned for up to <strong>500 NM or 2 hours</strong> ahead. At transonic/supersonic levels (FL250–600) moderate turbulence is a SIGMET too.</li>
+        <li>📻 Ask an ATS unit for weather only if it is not available from a broadcast.</li>
+      </ul>
+
+      <h3 class="sub">Reading navaid entries</h3>
+      <ul>
+        <li>📡 VORs are aligned with magnetic north at the published variation and year.</li>
+        <li>⭕ DOC "50 NM/50 000 ft": do not use beyond that range or height. A sector may have a larger coverage.</li>
+        <li>🪖 The TACAN channel (e.g. 72X) lets military aircraft get DME range; the DME aerial elevation allows for slant range.</li>
+        <li>🛬 "HO" = available to meet operational requirements; "H24" continuous. "L" = locator, a low-powered NDB.</li>
+        <li>📐 NDB promulgated range: daytime protection limiting bearing error to ±5°; night sky waves <em>not</em> allowed for.</li>
+        <li>✈️ The ILS reference datum is about 50 ft above the threshold, where the glide path passes.</li>
+      </ul>
+      <div class="memory"><span class="label">🧠 Memory hook</span> "N-R-C": New, Replace, Cancel. "GEN-ENR-AD": the flight in order — paperwork, the route, the arrival.</div>
+      <div class="related"><span class="dot"></span> Practise: 01 Air Information Publications</div>
+    </section>
+
+    <section class="sec" id="ch2" data-icon="⛽" style="--acc:#c0392b">
+      <h2><span class="num">2</span> Fuel Policy and Fuel Monitoring <span class="en">Chapter 2</span></h2>
+      <p class="lead">How much fuel a commercial flight must carry is set by a common rule; the amounts differ by type, the method never does. Then, once airborne, the crew must keep checking that the plan is still true.</p>
+      <div class="glance"><span>🎯 Taxi · trip · reserves · extra</span><span>🎯 Contingency rule</span><span>🎯 Final reserve 30/45 min</span><span>🎯 Additional fuel</span><span>🎯 Fuel checks</span><span>🎯 Decision point and isolated aerodrome</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Ramp fuel = taxi + trip + contingency + alternate + final reserve + additional + extra.</strong> Contingency is normally assumed <em>unused</em>, and you should never land with less than final reserve.</p></div>
+
+      <div class="diagram">
+        <svg viewBox="0 0 560 260" role="img" aria-label="Fuel stack">
+          <rect class="bx" x="60" y="210" width="200" height="30"/><text x="120" y="230">Taxi</text>
+          <rect class="af" x="60" y="110" width="200" height="100"/><text x="130" y="165">Trip fuel</text>
+          <rect class="yf" x="60" y="90" width="200" height="20"/><text x="90" y="105">Contingency</text>
+          <rect class="gf" x="60" y="60" width="200" height="30"/><text x="110" y="80">Alternate</text>
+          <rect class="rf" x="60" y="30" width="200" height="30"/><text x="100" y="50">Final reserve</text>
+          <rect class="bx" x="60" y="10" width="200" height="20" style="stroke-dasharray:4 4"/><text class="m" x="80" y="25">Additional · extra (if any)</text>
+          <line class="ln" x1="290" y1="208" x2="290" y2="12" marker-end="url(#a-ink)"/><text x="300" y="110">Take-off fuel</text>
+          <line class="ln" x1="400" y1="240" x2="400" y2="12" marker-end="url(#a-ink)"/><text x="410" y="130">Ramp (block) fuel</text>
+          <text class="m" x="300" y="125">= ramp − taxi</text>
+        </svg>
+        <div class="cap">Taxi fuel is burnt before take-off, so it is never part of endurance. Reserve fuel is contingency + alternate + final reserve + additional.</div>
+      </div>
+
+      <h3 class="sub">Each part</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Fuel</th><th>Covers</th></tr></thead>
+        <tbody>
+          <tr><td>Taxi</td><td>Start, taxi, holding before take-off, APU and pre-flight services</td></tr>
+          <tr><td>Trip</td><td>Take-off, SID, climb, cruise (with step climbs), descent and STAR, approach, landing — on the realistic routing</td></tr>
+          <tr><td>Contingency</td><td>Deviations from consumption data, forecast weather, planned route or level. <strong>Higher of 5% of trip (3% with an en route alternate) and 5 min at 1 500 ft over destination</strong></td></tr>
+          <tr><td>Alternate</td><td>Missed approach at destination to landing at the alternate. No contingency of its own</td></tr>
+          <tr><td>Final reserve</td><td>Jet/turboprop: 30 min at holding speed, 1 500 ft, ISA · piston: 45 min</td></tr>
+          <tr><td>Additional</td><td>Engine or pressurisation failure at the most critical point (descend, fly to an adequate aerodrome, hold 15 min at 1 500 ft), or no destination alternate (hold 15 min at 1 500 ft)</td></tr>
+          <tr><td>Extra</td><td>Anything above the minimum, usually at the commander's discretion</td></tr>
+        </tbody></table></div>
+
+      <details class="example"><summary>Worked example — minimum ramp fuel for a jet</summary><div class="body">
+        <p>Taxi 200 kg; cruise 4000 kg/h for 2 h; hold 2400 kg/h; alternate 1500 kg.</p>
+        <ol class="steps">
+          <li>Trip = 4000 × 2 = 8000 kg.</li>
+          <li>Contingency: 5% = 400 kg; 5 min hold = 200 kg → <strong>400 kg</strong>.</li>
+          <li>Final reserve = 2400 × 0.5 = 1200 kg.</li>
+          <li>Take-off fuel = 8000 + 400 + 1500 + 1200 = <strong>11 100 kg</strong>; ramp = <strong>11 300 kg</strong>.</li>
+        </ol>
+      </div></details>
+      <details class="example"><summary>Worked example — when the 5-minute hold wins</summary><div class="body">
+        <p>Trip 3000 kg, holding 4800 kg/h. 5% is 150 kg but 5 minutes is 4800 × 5/60 = 400 kg. Contingency is <strong>400 kg</strong>. Short sectors in large aeroplanes are where this happens.</p>
+      </div></details>
+      <details class="example"><summary>Worked example — landing masses</summary><div class="body">
+        <p>DOM 40 000, traffic load 9000, contingency 250, alternate 1400, final reserve 1200 kg. At the destination (contingency unused): 40 000 + 9000 + 250 + 1400 + 1200 = <strong>51 850 kg</strong>. At the alternate: the alternate fuel is gone → <strong>50 450 kg</strong>.</p>
+      </div></details>
+
+      <h3 class="sub">Fuel monitoring in flight</h3>
+      <ul>
+        <li>🕒 Check at regular intervals: compare actual and planned use, check enough remains, predict the arrival fuel.</li>
+        <li>⚠️ If expected arrival fuel is below alternate + final reserve, the commander weighs the conditions at destination, en route and at the alternate, and lands with at least final reserve.</li>
+        <li>💻 On a computer plan, REM against each waypoint is the minimum fuel there (often in hundreds of kg: 0043 = 4300 kg). The FMS warns when predicted arrival fuel drops below alternate + final reserve.</li>
+        <li>📈 A "howgozit" plots fuel remaining against distance to go; extrapolate the trend. The slope is steeper in the climb.</li>
+        <li>🔍 Causes of a shortfall: leaks, gauge faults, planning or uplift errors, unforecast headwinds, pound/kilogram and specific-gravity mistakes.</li>
+      </ul>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">kg = litres × SG</div><div class="d">5000 L at SG 0.80 = 4000 kg.</div></div>
+        <div class="fcard"><div class="f">1 USG = 3.785 L</div><div class="d">40 USG = 151 L; at SG 0.72 = 109 kg.</div></div>
+        <div class="fcard"><div class="f">same mass, new SG</div><div class="d">220 L/h at 0.80 = 176 kg/h → at 0.75 = 235 L/h.</div></div>
+      </div>
+
+      <h3 class="sub">Two special cases</h3>
+      <div class="compare">
+        <div class="card acc"><h4>🔀 Decision point procedure</h4><p>Carry contingency only for the leg <strong>from a decision point</strong> (e.g. top of descent into an en route alternate) to the destination. At the decision point: enough for the rest, with reserves? Continue. Otherwise divert. The most it saves is the contingency for departure → decision point.</p></div>
+        <div class="card mid"><h4>🏝️ Isolated aerodrome</h4><p>No destination alternate, so no alternate fuel. Jet: final reserve + additional = <strong>2 h at normal cruise</strong> after arriving overhead. Piston: <strong>45 min + 15% of cruise time, or 2 h, whichever is less</strong>.</p></div>
+      </div>
+      <details class="example"><summary>Worked example — piston to an island</summary><div class="body">
+        <p>4 h at cruise level: 45 + 0.15 × 240 = 81 min (less than 120) → <strong>81 min</strong>. 10 h at cruise level: 45 + 90 = 135 min → capped at <strong>120 min</strong>.</p>
+      </div></details>
+      <div class="related"><span class="dot"></span> Practise: 02 Fuel Policy and Fuel Monitoring</div>
+    </section>
+
+    <section class="sec" id="ch3" data-icon="🌬️" style="--acc:#117a65">
+      <h2><span class="num">3</span> Nautical Air Miles <span class="en">Chapter 3</span></h2>
+      <p class="lead">Fuel and time depend on how far the aeroplane flies through the air, not over the ground. Planning tables are therefore written in air miles, and the wind is applied separately.</p>
+      <div class="glance"><span>🎯 NAM vs NGM</span><span>🎯 TAS/GS ratio</span><span>🎯 Time formula for climb and descent</span><span>🎯 Return and descent sums</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>NAM / NGM = TAS / GS.</strong> Headwind: more air miles than ground miles. Tailwind: fewer. No wind: equal.</p></div>
+      <div class="diagram">
+        <svg viewBox="0 0 560 170" role="img" aria-label="Air distance and ground distance">
+          <line class="ac" x1="40" y1="50" x2="500" y2="50" marker-end="url(#a-ac)"/><text x="190" y="40">air distance flown at TAS (NAM)</text>
+          <line class="ln" x1="40" y1="110" x2="380" y2="110" marker-end="url(#a-ink)"/><text x="150" y="100">ground distance at GS (NGM)</text>
+          <line class="rd" x1="500" y1="140" x2="380" y2="140" marker-end="url(#a-rd)"/><text x="400" y="160">headwind moves the air back</text>
+        </svg>
+        <div class="cap">In the same time, the air mass carries the aircraft backwards by the headwind × time, so the ground distance is shorter.</div>
+      </div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">NGM = NAM × GS / TAS</div><div class="d">300 NAM, TAS 160, 25 kt head → 300 × 135/160 = 253 NGM.</div></div>
+        <div class="fcard"><div class="f">NGM = NAM ± WC × t/60</div><div class="d">Climb: 30 NAM in 12 min, 30 kt head → 30 − 6 = 24 NGM.</div></div>
+      </div>
+      <p>The time form is the one to use in a <strong>climb or descent</strong>, where TAS and GS keep changing but the tables give the time and the air distance.</p>
+      <details class="example"><summary>Worked example — return after a tailwind</summary><div class="body">
+        <p>20 min out at TAS 120 kt with 30 kt tail: GS 150 kt → 50 NM. Back into 30 kt head at 90 kt → 50/90 × 60 = <strong>33 min</strong>. The wind that helped you out costs more on the way back.</p>
+      </div></details>
+      <details class="example"><summary>Worked example — where to start down</summary><div class="body">
+        <p>FL280 to FL80, level 8 NM before the beacon, 2000 ft/min, GS 300 kt: 20 000 ÷ 2000 = 10 min × 5 NM/min = 50 NM, + 8 = <strong>58 NM</strong> before the beacon.</p>
+      </div></details>
+      <div class="related"><span class="dot"></span> Practise: 03 Nautical Air Miles</div>
+    </section>
+
+    <section class="sec" id="ch4" data-icon="🛩️" style="--acc:#2874a6">
+      <h2><span class="num">4</span> Single-engine Piston Aeroplane <span class="en">Chapter 4</span></h2>
+      <p class="lead">The planning single is a retractable monoplane with a constant speed propeller. Four sets of data: climb, cruise power tables, range profile and endurance profile.</p>
+      <div class="glance"><span>🎯 MTOM 3650 lb · 74 USG</span><span>🎯 Climb: subtract the airfield</span><span>🎯 Interpolate ISA ±10</span><span>🎯 Range: NAM with 45 min reserve</span><span>🎯 Endurance: wind-free</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Graphs start at sea level.</strong> For an airfield above it, read to the cruise level, read to the airfield, and take the difference.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Item</th><th class="num">Value</th></tr></thead>
+        <tbody>
+          <tr><td>Maximum take-off and landing mass</td><td class="num">3650 lb</td></tr>
+          <tr><td>Maximum fuel</td><td class="num">74 US gal = 444 lb</td></tr>
+          <tr><td>Fuel density (unless told otherwise)</td><td class="num">6 lb/US gal</td></tr>
+          <tr><td>Manifold pressure</td><td class="num">inHg · higher = more mixture burnt</td></tr>
+        </tbody></table></div>
+      <p><strong>Full throttle height</strong> is where the throttle is fully open and the selected manifold pressure can no longer be held; above it manifold pressure falls. Shaded table values are about the most the engine can give there.</p>
+      <h3 class="sub">Using the data</h3>
+      <ol class="steps">
+        <li><strong>Climb graph</strong>: time, fuel and NAM from MSL to a pressure altitude at the OAT and mass. Subtract the airfield's figures, then apply the wind to the NAM.</li>
+        <li><strong>Cruise tables</strong>: one table per power setting (MP and rpm); TAS, IAS and fuel flow for standard day, ISA +20 and ISA −20. For ISA ±10 interpolate halfway; always interpolate between altitudes.</li>
+        <li><strong>Range profile</strong>: still air range in NAM for four power settings, including taxi and run-up, climb, cruise and a 45 min reserve at economy power. Convert to NGM using the TAS shown at 4000, 8000 or 12 000 ft.</li>
+        <li><strong>Endurance profile</strong>: a <em>safe</em> endurance, as the 45 min reserve is included. Wind does not change it.</li>
+      </ol>
+      <details class="example"><summary>Worked example — climb from a high airfield</summary><div class="body">
+        <p>To FL110: 15 min, 5.5 USG, 32 NAM. To the 4000 ft airfield: 4 min, 1.5 USG, 7 NAM. Difference <strong>11 min, 4 USG, 25 NAM</strong>. With 20 kt head: 25 − 20 × 11/60 = <strong>21 NGM</strong>.</p>
+      </div></details>
+      <details class="example"><summary>Worked example — a fuel log leg</summary><div class="body">
+        <p>82 NGM at GS 168 kt with 11.9 GPH: 82/168 × 60 = 29 min; 11.9 × 29.3/60 = <strong>5.8 USG</strong>. In light winds the climb's 18 NAM is also 18 NGM, so a 100 NM first leg leaves 82 NM of cruise.</p>
+      </div></details>
+      <div class="tip"><span class="label">✅ ISA deviation first</span> ISA at a level = 15 − 2 × (thousands of feet). FL80 with OAT +4°C: ISA −1°C, so ISA +5°C.</div>
+      <div class="related"><span class="dot"></span> Practise: 04 Single-engine Piston Aeroplane (SEP)</div>
+    </section>
+
+    <section class="sec" id="ch5" data-icon="✈️" style="--acc:#1f618d">
+      <h2><span class="num">5</span> Multi-engine Piston Aeroplane <span class="en">Chapter 5</span></h2>
+      <p class="lead">A light twin with counter-rotating constant speed propellers. Climb, range, power, TAS, endurance and descent come on separate sheets.</p>
+      <div class="glance"><span>🎯 MTOM 4750 · MLM 4513 · MZFM 4470 lb</span><span>🎯 123 USG = 738 lb</span><span>🎯 75 / 65 / 55 / 45%</span><span>🎯 MP +1% per 6°C</span><span>🎯 Range ±1 NM per °C</span></div>
+      <div class="compare">
+        <div class="card bad"><h4>75% — high speed</h4><p>29.0 USG/h</p></div>
+        <div class="card mid"><h4>65% — economy</h4><p>23.3 USG/h</p></div>
+        <div class="card acc"><h4>55% — no name</h4><p>Between the two</p></div>
+        <div class="card good"><h4>45% — long range</h4><p>Lowest fuel flow: longest range and endurance</p></div>
+      </div>
+      <h3 class="sub">Rules that differ from the single</h3>
+      <ul>
+        <li>📈 The climb graph has separate reference lines for time, distance and fuel but <strong>one combined scale</strong>. Descent works the same way: read the level to MSL, subtract the airfield to MSL.</li>
+        <li>🌡️ <strong>Manifold pressure</strong>: add 1% per 6°C above ISA, subtract 1% per 6°C below. 30.0 inHg at ISA +12 → 30.6 inHg.</li>
+        <li>🏎️ The power table gives MP, rpm and fuel flow but <strong>not TAS</strong> — read that from the true airspeed graph.</li>
+        <li>📏 <strong>Range</strong> with a 45 min reserve at 45% power, or with no reserve: add 1 NM per °C above ISA, subtract 1 NM per °C below. Then convert NAM to NGM.</li>
+        <li>⏳ <strong>Endurance</strong> the same two ways: safe (with reserve) or total.</li>
+      </ul>
+      <details class="example"><summary>Worked example — range in a cold sky</summary><div class="body">
+        <p>Economy at 11 000 ft: 760 NAM at ISA. OAT −15°C, ISA −7°C → ISA −8 → 760 − 8 = <strong>752 NAM</strong>.</p>
+      </div></details>
+      <details class="example"><summary>Worked example — the zero fuel trap</summary><div class="body">
+        <p>Loaded to MZFM 4470 lb: the most fuel for MTOM 4750 lb is <strong>280 lb</strong>, far less than the 738 lb the tanks hold. Mass limits, not tank size, often set the fuel.</p>
+      </div></details>
+      <div class="related"><span class="dot"></span> Practise: 05 Multi-engine Piston Aeroplane (MEP)</div>
+    </section>
+
+    <section class="sec" id="ch6" data-icon="📊" style="--acc:#7d3c98">
+      <h2><span class="num">6</span> MRJT Simplified Flight Planning <span class="en">Chapter 6</span></h2>
+      <p class="lead">The planning medium range jet transport (MRJT) is a twin jet. Before the detailed tables come the quick graphs: optimum altitude, short distance cruise altitude, and simplified trip fuel and time.</p>
+      <div class="glance"><span>🎯 Masses and DOM</span><span>🎯 Taxi 260 kg · 11 kg/min · APU 115 kg/h</span><span>🎯 LRC = 99% of max mileage</span><span>🎯 Landing mass in · fuel out</span><span>🎯 Allowances</span></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Limit</th><th class="num">kg</th></tr></thead>
+        <tbody>
+          <tr><td>Maximum ramp (taxi) mass</td><td class="num">63 060</td></tr>
+          <tr><td>Maximum take-off mass</td><td class="num">62 800</td></tr>
+          <tr><td>Maximum landing mass</td><td class="num">54 900</td></tr>
+          <tr><td>Maximum zero fuel mass</td><td class="num">51 300</td></tr>
+          <tr><td>Average dry operating mass</td><td class="num">34 270</td></tr>
+          <tr><td>Maximum fuel (5311 USG at 3.04 kg/USG)</td><td class="num">16 145</td></tr>
+        </tbody></table></div>
+      <ul>
+        <li>🧳 <strong>DOM</strong> = ready for the operation, without usable fuel and traffic load: crew and baggage, catering, removable service equipment, water and lavatory chemicals.</li>
+        <li>👥 <strong>Traffic load</strong> = passengers, baggage and cargo, including non-revenue load. Maximum here: 51 300 − 34 270 = 17 030 kg.</li>
+        <li>🚕 Ramp − take-off mass = <strong>260 kg</strong> for APU, start, push-back and taxi.</li>
+      </ul>
+      <h3 class="sub">Which altitude?</h3>
+      <div class="compare">
+        <div class="card acc"><h4>Optimum altitude</h4><p>Best fuel mileage, for Mach 0.78 and for LRC/Mach 0.74. Two weight scales — brake release and cruise — use the right one. Heavier → lower. Off-optimum costs a % fuel penalty.</p></div>
+        <div class="card mid"><h4>Short distance cruise</h4><p>Sectors of 235 NM or less: the highest level allowing at least one minute of cruise. Temperature is interpolated only between ISA +10 and +20.</p></div>
+      </div>
+      <p>Long range cruise gives 99% of the maximum fuel mileage in still air; within 2000 ft of optimum it is close to Mach 0.74.</p>
+      <h3 class="sub">Simplified trip fuel and time</h3>
+      <ol class="steps">
+        <li>Enter with ground distance; follow the flow lines for the wind (if the wind is off the chart, convert to NAM and ignore the wind lines).</li>
+        <li>Up to the pressure altitude, across to the <strong>landing weight</strong> reference line, correct for weight, read the <strong>fuel</strong>.</li>
+        <li>From the upper pressure altitude line, across to the ISA deviation line, read the <strong>time</strong>.</li>
+      </ol>
+      <p>The charts cover brake release to touchdown with a straight-in approach. Add: APU and taxi, extra flaps-down time, cost index adjustments and reserves.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Allowance</th><th class="num">Amount</th></tr></thead>
+        <tbody>
+          <tr><td>Taxi · APU</td><td class="num">11 kg/min · 115 kg/h</td></tr>
+          <tr><td>Air conditioning packs on high flow</td><td class="num">+1% trip fuel</td></tr>
+          <tr><td>Engine anti-ice · engine and wing anti-ice (cruise)</td><td class="num">+70 kg/h · +180 kg/h</td></tr>
+          <tr><td>Engine anti-ice in the descent</td><td class="num">+50 kg</td></tr>
+          <tr><td>Each extra minute of flaps-down flying</td><td class="num">+75 kg</td></tr>
+          <tr><td>Holding table</td><td class="num">racetrack, min drag speed, ≥ 210 KIAS</td></tr>
+        </tbody></table></div>
+      <details class="example"><summary>Worked example — holding and final reserve</summary><div class="body">
+        <p>Holding table 2400 kg/h at 1500 ft → final reserve 1200 kg. A 30 min hold starting at 56 000 kg at 2700 kg/h burns 1350 kg, leaving <strong>54 650 kg</strong>.</p>
+      </div></details>
+      <div class="related"><span class="dot"></span> Practise: 06 MRJT Simplified Flight Planning</div>
+    </section>
+
+    <section class="sec" id="ch7" data-icon="🧾" style="--acc:#117864">
+      <h2><span class="num">7</span> MRJT Detailed Flight Planning <span class="en">Chapter 7</span></h2>
+      <p class="lead">For accurate plans the jet has en route climb tables, integrated range (cruise) tables and descent tables. The cruise tables work on one clever idea: subtraction.</p>
+      <div class="glance"><span>🎯 Climb: from brake release</span><span>🎯 The difference principle</span><span>🎯 TAS ±1 kt per °C</span><span>🎯 Fuel % per 10°C</span><span>🎯 Descent: landing weight</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Weight difference = fuel; distance difference = air miles.</strong> Look up the start weight to get a distance figure, subtract the sector NAM, look up that figure to get the end weight. Start − end = fuel.</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Table</th><th>Range</th></tr></thead>
+        <tbody>
+          <tr><td>En route climb (4)</td><td>ISA −15 to +25 · entered with cruise level and brake release weight · 280 KIAS/M0.74</td></tr>
+          <tr><td>Long range cruise (11)</td><td>FL270–FL370 · TAS beside each weight</td></tr>
+          <tr><td>Mach 0.74 (17)</td><td>FL210–FL370 · TAS at the top of the page</td></tr>
+          <tr><td>Mach 0.78 (6)</td><td>FL290–FL390</td></tr>
+          <tr><td>300 KIAS low level (8)</td><td>FL140–FL210</td></tr>
+          <tr><td>Descent (2)</td><td>M0.74/250 KIAS (economy) · M0.70/280 KIAS (turbulence) · idle, straight-in, gear down</td></tr>
+        </tbody></table></div>
+      <ul>
+        <li>⏱️ Climb fuel and time are from <strong>brake release</strong>; distance from <strong>1500 ft</strong>. The tabulated TAS is the climb average, used for NGM = NAM × GS/TAS. A small table corrects fuel for an airfield above MSL.</li>
+        <li>🌡️ TAS: <strong>+1 kt per °C above ISA</strong> (−1 below). Fuel: the % per 10°C printed under the table. Thrust-limited weights can be ignored.</li>
+        <li>📉 Descent: NGM = NAM ± WC × time/60; +50 kg for engine anti-ice.</li>
+      </ul>
+      <details class="example"><summary>Worked example — a long-range cruise sector</summary><div class="body">
+        <ol class="steps">
+          <li>Tabulated LRC TAS 430 kt, ISA +8 → <strong>438 kt</strong>.</li>
+          <li>1200 NGM with 40 kt tail: NAM = 1200 × 438/478 = <strong>1100 NAM</strong>.</li>
+          <li>Start weight 57 000 kg reads 4500 NAM. 4500 − 1100 = 3400 NAM reads 51 400 kg.</li>
+          <li>Fuel = 57 000 − 51 400 = 5600 kg, + 0.6% × 0.8 for ISA +8 ≈ <strong>5627 kg</strong>.</li>
+        </ol>
+      </div></details>
+      <details class="example"><summary>Worked example — fuel per ground mile</summary><div class="body">
+        <p>Mach 0.78: 3400 NAM at 52 000 kg, 2850 NAM at 49 000 kg → 550 NAM. TAS 455, 30 kt head: 550 × 425/455 = 514 NGM. 3000 kg ÷ 514 = <strong>5.84 kg/NGM</strong>.</p>
+      </div></details>
+      <div class="tip"><span class="label">✅ On the flight log</span> The "minus NAM" at the end of one sector becomes the "cruise value" that starts the next. Then add diversion, contingency, APU/taxi, packs, anti-ice and holding for ramp fuel.</div>
+      <div class="related"><span class="dot"></span> Practise: 07 MRJT Detailed Flight Planning</div>
+    </section>
+
+    <section class="sec" id="ch8" data-icon="🌊" style="--acc:#1b4f72">
+      <h2><span class="num">8</span> MRJT Additional Procedures <span class="en">Chapter 8</span></h2>
+      <p class="lead">Twins over oceans, the fuel a failure would need, ferrying with the gear down, carrying cheap fuel, and how to trust (or not) a computer flight plan.</p>
+      <div class="glance"><span>🎯 60 min threshold</span><span>🎯 Adequate vs suitable</span><span>🎯 Critical fuel</span><span>🎯 Critical point with wind</span><span>🎯 Tankering</span><span>🎯 Computer plans</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>A twin flight with any point more than one hour (still air, one engine out) from an adequate aerodrome is an extended range operation</strong>, needing approval for a rule time such as 120 or 180 minutes.</p></div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">Threshold distance</div><div class="d">60 min × one-engine-inoperative TAS (400 kt → 400 NM).</div></div>
+        <div class="fcard"><div class="f">Rule distance</div><div class="d">Rule time × that TAS (120 min at 400 kt → 800 NM).</div></div>
+        <div class="fcard"><div class="f">ETOPS segment</div><div class="d">From the entry point (first beyond threshold) to the exit point (last beyond).</div></div>
+      </div>
+      <div class="compare">
+        <div class="card acc"><h4>Adequate</h4><p>Long enough runway, services, ATC, lighting, weather reports and at least one let-down aid (radar counts). Judged by the operator.</p></div>
+        <div class="card good"><h4>Suitable</h4><p>Adequate <em>and</em> acceptable on the day: weather at or above planning minima from the earliest landing to one hour after the latest. Judged by the commander.</p></div>
+      </div>
+      <h3 class="sub">Critical fuel</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Failure at the critical point</th><th>Assumed profile</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Engine + pressurisation (worst)</strong></td><td>Emergency descent to FL100 at VMO/MMO with speed brakes, one-engine LRC at FL100</td></tr>
+          <tr><td>Pressurisation only</td><td>Same descent, all engines at FL100</td></tr>
+          <tr><td>Engine only</td><td>Drift down to the stabilising level at the selected speeds</td></tr>
+        </tbody></table></div>
+      <p>The worst case is compared with the planned fuel at the critical point; if it is more, load more. The planning graphs assume a 10 000 ft cruise, 250 KIAS descent to 1500 ft, 15 min hold, a missed approach and landing, plus 5% for wind errors; the one-engine graph includes APU fuel. Correct for temperature above ISA and for icing.</p>
+      <div class="diagram">
+        <svg viewBox="0 0 560 230" role="img" aria-label="Critical point with wind">
+          <circle class="dot" cx="90" cy="190" r="6"/><text x="70" y="214">Alternate C</text>
+          <circle class="dot" cx="470" cy="190" r="6"/><text x="440" y="214">Alternate E</text>
+          <line class="thin" x1="90" y1="190" x2="470" y2="190"/>
+          <line class="ln" x1="280" y1="200" x2="280" y2="30"/><text class="m" x="286" y="40">still-air critical line</text>
+          <line class="ac" x1="30" y1="80" x2="530" y2="80"/><text x="40" y="72">track</text>
+          <line class="rd" x1="280" y1="80" x2="230" y2="120" marker-end="url(#a-rd)"/><text class="m" x="160" y="140">wind × still-air time</text>
+          <line class="ln" x1="230" y1="200" x2="230" y2="30" style="stroke-dasharray:6 4"/><text x="150" y="30">equal time line</text>
+          <circle cx="230" cy="80" r="7" style="fill:var(--red-arc)"/>
+        </svg>
+        <div class="cap">Bisect the line joining the two furthest alternates; where it cuts the track is the still-air point. Plot back the wind for the still-air diversion time, and the parallel line through its end gives the critical point in wind.</div>
+      </div>
+      <details class="example"><summary>Worked example — the wind vector</summary><div class="body">
+        <p>690 NM to each alternate at one-engine TAS 400 kt: 103.5 min. Wind 85 kt → 85 × 103.5/60 = <strong>147 NM</strong> wind vector.</p>
+      </div></details>
+      <h3 class="sub">Other procedures</h3>
+      <ul>
+        <li>🗺️ Diversion distance chart: enter speed schedule and weight, choose the approved time, read the distance (still air, ISA). One-engine diversion graph: no pressurisation failure, drift down to the selected level.</li>
+        <li>🛞 Gear-down ferry data: all engines at 220 KIAS, climb and descent included.</li>
+        <li>💶 <strong>Tankering</strong>: enter with trip NAM, cruise level and landing weight <em>without</em> tankered fuel to get the % of extra fuel burnt carrying it. Worth it only if the destination price is above the break-even price (≈ departure price ÷ (1 − burn%)), and only if the cruise level is not affected.</li>
+      </ul>
+      <h3 class="sub">Computer flight plans</h3>
+      <p>The database holds navaids, waypoints, forecast winds, routes and tracks, fuel policy, aircraft limits and performance, alternates and fuel costs. It needs at least type, departure and destination, cruise mode, traffic load and block time — and <strong>garbage in, garbage out</strong>.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th class="num">Code</th><th>Meaning</th><th class="num">Code</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td class="num">MTR</td><td>magnetic track</td><td class="num">DFT</td><td>drift</td></tr>
+          <tr><td class="num">ZD · ZT</td><td>leg distance · leg time</td><td class="num">CT</td><td>cumulative time</td></tr>
+          <tr><td class="num">27045</td><td>wind 270°T / 45 kt</td><td class="num">GRS</td><td>ground speed</td></tr>
+          <tr><td class="num">DSTR</td><td>distance remaining</td><td class="num">REM</td><td>fuel remaining</td></tr>
+          <tr><td class="num">MXSH</td><td>max wind shear, kt/1000 ft</td><td class="num">CON</td><td>contingency</td></tr>
+        </tbody></table></div>
+      <div class="callout caution"><span class="label">⚠️ Never trust it blindly</span> Check it is current, fuel and times are sensible for the season, tracks and distances are right, winds match the forecast, alternates are acceptable and the cruise method is right. For a new route, cross-check with the simplified planning data or rules of thumb.</div>
+      <div class="related"><span class="dot"></span> Practise: 08 MRJT Additional Procedures</div>
+    </section>
+
+    <section class="sec" id="ch9" data-icon="🗺️" style="--acc:#9a7d0a">
+      <h2><span class="num">9</span> Topographical Chart <span class="en">Chapter 9</span></h2>
+      <p class="lead">Planning a VFR cross-country on a 1:500 000 chart: measuring tracks and distances, decoding symbols, and choosing a level that really clears the ground.</p>
+      <div class="glance"><span>🎯 Lambert, 1:500 000</span><span>🎯 Measure at mid-track</span><span>🎯 Variation west, magnetic best</span><span>🎯 Grid MORA</span><span>🎯 Semi-circular levels</span><span>🎯 Altimeter errors</span></div>
+      <ul>
+        <li>🌐 Lambert conformal conic, elevations in feet, co-ordinates in WGS84. Isogonals are valid for a stated year.</li>
+        <li>📐 Measure true track at the <strong>mid-point</strong> against the nearest meridian (meridians converge). Distance on the meridian scale (1′ latitude = 1 NM) or the NM scale. 1 NM = 1.852 km; 1 m = 3.28 ft.</li>
+        <li>🛬 Aerodromes: four-letter indicator, name, elevation (ft), longest runway (m), tower frequency; <strong>(v) = VDF available</strong>.</li>
+        <li>🟥 Prohibited (no flight) · restricted (flight under conditions) · danger (dangerous activity at notified times).</li>
+      </ul>
+      <div class="memory"><span class="label">🧠 Memory hook</span> <strong>Variation west, magnetic best; variation east, magnetic least.</strong> 124°T with 3°E = 121°M · 250°T with 4°W = 254°M.</div>
+      <h3 class="sub">Grid MORA</h3>
+      <p>A figure in each half-degree square, read with two noughts added (47 = 4700 ft). It clears terrain by <strong>1000 ft</strong> where the highest point is 5000 ft or less, <strong>2000 ft</strong> above that. Use it for a quick level, a cross-check, or when unsure of position. For planning, find the highest obstacle within <strong>5 NM</strong> either side of track.</p>
+      <h3 class="sub">Choosing the level</h3>
+      <div class="compare">
+        <div class="card acc"><h4>Magnetic track 000°–179°</h4><p>IFR odd thousands (FL50, FL70…) · VFR odd + 500 (FL55, FL75…)</p></div>
+        <div class="card good"><h4>Magnetic track 180°–359°</h4><p>IFR even thousands (FL60, FL80…) · VFR even + 500 (FL45, FL65…)</p></div>
+      </div>
+      <p>Always the <strong>track</strong>, not the heading.</p>
+      <h3 class="sub">Altimeter errors — "high to low, mind how you go"</h3>
+      <ul>
+        <li>📉 QNH below 1013 hPa: a flight level is lower than its number. About 30 ft per hPa.</li>
+        <li>🥶 Air colder than ISA: the altimeter <strong>over-reads</strong> — you are lower than indicated (about 4 ft per 1000 ft per °C).</li>
+        <li>🥵 Warmer than ISA: it under-reads — you are higher.</li>
+      </ul>
+      <details class="example"><summary>Worked example — lowest VFR level</summary><div class="body">
+        <ol class="steps">
+          <li>Obstacle 4600 ft + 1000 ft clearance = 5600 ft altitude needed.</li>
+          <li>QNH 1003 hPa: pressure altitude = 5600 + 10 × 30 = 5900 ft.</li>
+          <li>Track 045°M → odd + 500: FL55 is too low → <strong>FL75</strong>.</li>
+        </ol>
+      </div></details>
+      <details class="example"><summary>Worked example — cold air eats the margin</summary><div class="body">
+        <p>FL85 planned for 1000 ft over a 7500 ft hill, but on a cold day the true altitude is 8100 ft: only <strong>600 ft</strong> clearance. A higher level was needed.</p>
+      </div></details>
+      <div class="related"><span class="dot"></span> Practise: 09 Topographical Chart</div>
+    </section>
+
+    <section class="sec" id="ch10" data-icon="🛣️" style="--acc:#2e86c1">
+      <h2><span class="num">10</span> Airways <span class="en">Chapter 10</span></h2>
+      <p class="lead">IFR charts — en route, area, departure, arrival and approach — are read fast only if their vocabulary is second nature.</p>
+      <div class="glance"><span>🎯 Altitude, height, elevation</span><span>🎯 Transition altitude/level</span><span>🎯 MEA, MOCA, MORA</span><span>🎯 Airspace A–G</span><span>🎯 Holding speeds</span><span>🎯 Gradients and descent rates</span></div>
+      <h3 class="sub">Vertical words</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Term</th><th>Measured from / meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Altitude</td><td>Mean sea level (a level or point in the air)</td></tr>
+          <tr><td>Height</td><td>A specified datum (aerodrome, threshold)</td></tr>
+          <tr><td>Elevation</td><td>MSL, for a point on or fixed to the surface</td></tr>
+          <tr><td>Aerodrome elevation</td><td>Highest point of the landing area</td></tr>
+          <tr><td>Flight level</td><td>Constant-pressure surface related to 1013.2 hPa</td></tr>
+          <tr><td>Transition altitude · level · layer</td><td>Altitudes at or below · lowest FL above · the gap between</td></tr>
+          <tr><td>QFE · QNH · QNE</td><td>Pressure at the aerodrome · setting that reads elevation · height shown on landing with 1013.2 set</td></tr>
+          <tr><td>DA/H · MDA/H</td><td>Precision: missed approach point in height · non-precision/circling: no lower without visual reference</td></tr>
+        </tbody></table></div>
+      <h3 class="sub">Minimum altitudes on route charts</h3>
+      <div class="compare">
+        <div class="card acc"><h4>MEA</h4><p>Lowest published altitude between fixes giving obstacle clearance (and in many countries signal coverage), across the full airway width.</p></div>
+        <div class="card mid"><h4>MOCA</h4><p>Obstacle clearance for the segment; in the US signal coverage only within 22 NM of a VOR.</p></div>
+        <div class="card good"><h4>Route MORA</h4><p>Known obstacle clearance within 10 NM of the centreline ("2700a").</p></div>
+        <div class="card bad"><h4>Grid MORA</h4><p>1000/2000 ft clearance in a lat/long square; no signal or radio coverage. "Unsurveyed"; "+/−" = doubtful.</p></div>
+      </div>
+      <p>MAA is the highest usable level. "E" by an arrow: even levels that way (against the semi-circular rule); "O": odd levels on a one-way airway; "PPR": prior permission. "FL80 2700a" = MEA FL80, route MORA 2700 ft.</p>
+      <h3 class="sub">Airspace classes</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th class="num">Class</th><th>Flights</th><th>Separation and service</th></tr></thead>
+        <tbody>
+          <tr><td class="num">A</td><td>IFR only</td><td>All separated</td></tr>
+          <tr><td class="num">B</td><td>IFR, VFR</td><td>All separated</td></tr>
+          <tr><td class="num">C</td><td>IFR, VFR</td><td>IFR from IFR and VFR · VFR get traffic on VFR</td></tr>
+          <tr><td class="num">D</td><td>IFR, VFR</td><td>IFR from IFR · traffic information otherwise</td></tr>
+          <tr><td class="num">E</td><td>IFR, VFR</td><td>IFR from IFR · VFR not controlled</td></tr>
+          <tr><td class="num">F</td><td>IFR, VFR</td><td>Advisory service for participating IFR</td></tr>
+          <tr><td class="num">G</td><td>IFR, VFR</td><td>Flight information on request</td></tr>
+        </tbody></table></div>
+      <p>A–E are controlled airspace. In the United Kingdom airways are 5 NM either side of the centreline, lower routes end at FL245, upper routes (prefix U) run FL245–FL460, and advisory routes (suffix D) are class F.</p>
+      <h3 class="sub">Speeds and holding</h3>
+      <ul>
+        <li>🐢 250 kt IAS below FL100 unless cleared; on arrivals, maximum speed from 3 min before the holding fix or the SLP (speed limiting point).</li>
+        <li>🔁 Holding: above FL140 to FL200 <strong>240 kt</strong>, to FL340 <strong>265 kt</strong>, above <strong>M0.83</strong>; turbulence 280 kt or M0.8, whichever less. D9 = outbound leg ends at 9 NM; MHA = minimum holding altitude.</li>
+        <li>🧭 Chart courses are <strong>magnetic</strong> unless marked T or G. MSA: 1000 ft clearance within 25 NM, emergency use.</li>
+      </ul>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">ROC = ft/NM × GS / 60</div><div class="d">243 ft/NM (4%) at 240 kt → 972 ft/min.</div></div>
+        <div class="fcard"><div class="f">3° ≈ 318 ft/NM</div><div class="d">At 150 kt about 800 ft/min (rule of thumb 5 × GS).</div></div>
+        <div class="fcard"><div class="f">1% ≈ 60.8 ft/NM</div><div class="d">5.5% at 230 kt ≈ 1280 ft/min.</div></div>
+      </div>
+      <p>Approach categories by 1.3 VS0: A &lt; 91 · B 91–120 · C 121–140 · D 141–165 · E 166–210 kt.</p>
+      <div class="related"><span class="dot"></span> Practise: 10 Airways</div>
+    </section>
+
+    <section class="sec" id="ch11" data-icon="🧭" style="--acc:#4a235a">
+      <h2><span class="num">11</span> Airways — Miscellaneous Charts <span class="en">Chapter 11</span></h2>
+      <p class="lead">Polar and oceanic charts: where magnetic north stops being useful, where grid north takes over, and how the North Atlantic is planned.</p>
+      <div class="glance"><span>🎯 Polar stereographic</span><span>🎯 Grid = true ± longitude</span><span>🎯 Plotting charts</span><span>🎯 RVSM and MNPS</span><span>🎯 Mach number technique</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Near the pole both true and magnetic fail.</strong> Meridians converge so true track changes along a straight line; variation changes fast and the compass loses its directive force. <strong>Grid north</strong>, parallel to the Greenwich meridian, gives a constant direction.</p></div>
+      <div class="diagram">
+        <svg viewBox="0 0 560 240" role="img" aria-label="Grid north and convergence">
+          <circle class="dot" cx="280" cy="40" r="5"/><text x="292" y="44">North Pole</text>
+          <line class="thin" x1="280" y1="40" x2="280" y2="230"/><text class="m" x="286" y="226">Greenwich (grid datum)</text>
+          <line class="ln" x1="280" y1="40" x2="150" y2="220"/><text class="m" x="110" y="232">40°W</text>
+          <line class="ln" x1="280" y1="40" x2="410" y2="220"/><text class="m" x="400" y="232">40°E</text>
+          <line class="gn" x1="410" y1="220" x2="410" y2="130" marker-end="url(#a-gn)"/><text x="418" y="140">grid N</text>
+          <line class="ac" x1="410" y1="220" x2="345" y2="130" marker-end="url(#a-ac)"/><text x="300" y="160">true N</text>
+        </svg>
+        <div class="cap">At 40°E, true north lies 40° west of grid north: convergence 40°W. On a north polar chart convergence = longitude with sign changed, so grid = true − east longitude, + west longitude.</div>
+      </div>
+      <div class="memory"><span class="label">🧠 Memory hook</span> <strong>Convergence west, true best (grid least).</strong> 310°T at 40°E → 270°G · 230°T at 40°W → 270°G — the same grid track at both ends of a straight line.</div>
+      <h3 class="sub">The charts</h3>
+      <div class="compare">
+        <div class="card acc"><h4>Polar high altitude</h4><p>Polar stereographic: bearings correct, great circles straight near the pole. Polar track structure: 10 fixed tracks in the Reykjavik area, 5 through Bodø, FL280–390 at set times.</p></div>
+        <div class="card good"><h4>Plotting charts</h4><p>Lambert: straight line ≈ great circle, constant scale. The blow-up chart shows 820 NM/120 min and 1220 NM/180 min still-air circles round diversion aerodromes, and a midpoint-line graticule for ETPs.</p></div>
+        <div class="card mid"><h4>Orientation charts</h4><p>Distances printed on tracks, margin NM scale or meridian. Panels: navaids, VOLMET, organised tracks, communications and failure procedures, crossing clearances, contingency procedures.</p></div>
+      </div>
+      <h3 class="sub">Oceanic requirements</h3>
+      <ul>
+        <li>📏 <strong>RVSM</strong>: two independent altimetry systems, automatic altitude control, altitude alerter (Mode C in transition airspace). Primary altimeters within ±200 ft. Flight plan item 10: <code>W</code>.</li>
+        <li>🛰️ <strong>MNPS</strong>: two long range navigation systems, each showing position relative to track continuously. Item 10: <code>X</code>.</li>
+        <li>⏱️ The Mach number technique uses <strong>true</strong> Mach number. HF: higher frequencies by day, lower by night.</li>
+      </ul>
+      <details class="example"><summary>Worked example — Mach to meet a time</summary><div class="body">
+        <p>520 NM in 72 min → GS 433 kt; 30 kt head → TAS 463 kt. At −55°C the speed of sound is 38.94 × √218 = 575 kt → <strong>M0.81</strong>.</p>
+      </div></details>
+      <div class="related"><span class="dot"></span> Practise: 11 Airways - Miscellaneous Charts</div>
+    </section>
+
+    <section class="sec" id="ch12" data-icon="📝" style="--acc:#a04000">
+      <h2><span class="num">12</span> ATC Flight Plan <span class="en">Chapter 12</span></h2>
+      <p class="lead">The flight plan is advance notice of a flight — route, level, speed and who is on board — in a fixed format so that every unit can read it.</p>
+      <div class="glance"><span>🎯 Filed vs current</span><span>🎯 Filing and delay rules</span><span>🎯 Items 7 to 19</span><span>🎯 Item 15 grammar</span><span>🎯 Repetitive plans</span></div>
+      <div class="compare">
+        <div class="card acc"><h4>Filed</h4><p>As filed, with no later changes.</p></div>
+        <div class="card good"><h4>Current</h4><p>Including changes from later clearances.</p></div>
+        <div class="card mid"><h4>EOBT · ETA</h4><p>EOBT: start of movement. IFR ETA: over the point where the approach begins; VFR: over the aerodrome.</p></div>
+      </div>
+      <h3 class="sub">Filing and changing it</h3>
+      <ul>
+        <li>🕐 File at the departure reporting office normally <strong>≥ 60 min before EOBT</strong> (3 h for flights under air traffic flow management). EOBT 1540 → file by 1440, not by take-off − 60.</li>
+        <li>⏳ Delay of <strong>30 min</strong> past EOBT (controlled) or <strong>1 h</strong> (uncontrolled): amend, or cancel and refile.</li>
+        <li>📡 Filed in flight: to the station serving the unit for the airspace; wait for a clearance (or acknowledgement for advisory service).</li>
+        <li>✅ The first ATS unit receiving it checks format, completeness and accuracy and confirms acceptance.</li>
+        <li>📣 Report TAS changes of 5% or more and estimate changes of more than 3 min. Landing elsewhere: tell the destination unit within 30 min of the ETA there.</li>
+      </ul>
+      <h3 class="sub">The items</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th class="num">Item</th><th>Content</th></tr></thead>
+        <tbody>
+          <tr><td class="num">7</td><td>Identification, ≤ 7 characters: registration, or operator designator + flight number</td></tr>
+          <tr><td class="num">8</td><td>Rules I · V · Y (IFR first) · Z (VFR first) — type S · N · G · M · X</td></tr>
+          <tr><td class="num">9</td><td>Number, type (ZZZZ + TYP/ if none), wake H ≥ 136 t · M · L ≤ 7 t (maximum certificated mass)</td></tr>
+          <tr><td class="num">10</td><td>S standard · N none · W RVSM · X MNPS · Z other (item 18) — surveillance N · A · C (Mode A+C) · S (Mode S, altitude + identity)</td></tr>
+          <tr><td class="num">13</td><td>Departure + EOBT (ZZZZ + DEP/ · AFIL in flight, with the time over the first point)</td></tr>
+          <tr><td class="num">15</td><td>Speed + level, then route</td></tr>
+          <tr><td class="num">16</td><td>Destination + total EET, up to two alternates</td></tr>
+          <tr><td class="num">18</td><td>0 or EET/ REG/ SEL/ OPR/ STS/ RIF/ TYP/ DEP/ DEST/ ALTN/ RALT/ RMK/ …</td></tr>
+          <tr><td class="num">19</td><td>Not transmitted: E/ endurance · P/ persons (TBN) · R/ U V E · S/ P D M J · J/ L F U V · D/ number, capacity, C cover, colour · A/ colour · N/ remarks · C/ pilot</td></tr>
+        </tbody></table></div>
+      <h3 class="sub">Item 15 grammar</h3>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">N0485 · K0830 · M082</div><div class="d">TAS in knots, km/h, or Mach.</div></div>
+        <div class="fcard"><div class="f">F085 · A045 · S1130 · M0840 · VFR</div><div class="d">Flight level, altitude in hundreds of ft, metric levels.</div></div>
+        <div class="fcard"><div class="f">MAY/N0305F180</div><div class="d">Change of speed (≥ 5% or 0.01 M) or level: both always.</div></div>
+        <div class="fcard"><div class="f">DUB180040 · 46N078W · 4620N07805W</div><div class="d">Bearing/distance, degrees, degrees and minutes.</div></div>
+        <div class="fcard"><div class="f">LN VFR · C/48N050W/M082F290F350</div><div class="d">Change of rules · cruise climb.</div></div>
+      </div>
+      <ul>
+        <li>🧩 Off-airway start: <code>DCT</code> joining point, then the route. No DCT between two co-ordinate or bearing/distance points.</li>
+        <li>📍 Only points of change; each followed by the next route (even if the same) or DCT. A same-direction lower/upper transition needs no point.</li>
+        <li>🌍 Off-route points ≤ 30 min or 200 NM apart; east–west at 10° longitude (20° beyond 70°), north–south at 5° latitude.</li>
+      </ul>
+      <details class="example"><summary>Worked example — times in the form</summary><div class="body">
+        <p>EOBT 1000, take-off 1020, trip 150 min, 30% reserve. Item 13: <strong>1000</strong>. Item 16: <strong>0230</strong>. Item 19 E/: 150 × 1.3 = 195 min = <strong>0315</strong>.</p>
+      </div></details>
+      <h3 class="sub">Repetitive flight plans</h3>
+      <ul>
+        <li>🔁 IFR only, same days of consecutive weeks on ≥ 10 occasions or daily for ≥ 10 days, highly stable, whole flight, all authorities agreeing.</li>
+        <li>📅 Permanent changes ≥ 7 days ahead; temporary type, speed or level changes ≥ 30 min before departure (a level change alone may be given by radio).</li>
+        <li>❌ A changed identification, departure, route or destination for one day: cancel the RPL that day and file an individual plan. Delay ≥ 30 min: tell the departure unit at once.</li>
+        <li>📋 Listing: assumed IFR, scheduled, Mode A/C; sorted by departure indicator then EOBT; item K Monday = 1, 0 = no flight; − delete, + add; UFN.</li>
+      </ul>
+      <div class="related"><span class="dot"></span> Practise: 12 ATC Flight Plan</div>
+    </section>
+
+    <section class="sec" id="ch13" data-icon="⚖️" style="--acc:#1e8449">
+      <h2><span class="num">13</span> Point of Equal Time <span class="en">Chapter 13</span></h2>
+      <p class="lead">If something goes wrong over the sea, which way is quicker — back or on? The point of equal time (also called the critical point or equal time point) answers that before the flight.</p>
+      <div class="glance"><span>🎯 X = D × H / (O + H)</span><span>🎯 Time on GS out</span><span>🎯 Moves into wind</span><span>🎯 Engine failure PET</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>A time problem, not a fuel problem.</strong> From the PET the time home equals the time on. With wind the two distances differ — the PET moves <strong>into wind</strong>.</p></div>
+      <div class="diagram">
+        <svg viewBox="0 0 560 150" role="img" aria-label="Point of equal time">
+          <circle class="dot" cx="50" cy="80" r="7"/><text x="40" y="110">A</text>
+          <circle class="dot" cx="510" cy="80" r="7"/><text x="504" y="110">B</text>
+          <line class="ln" x1="50" y1="80" x2="510" y2="80"/>
+          <circle cx="310" cy="80" r="8" style="fill:var(--red-arc)"/><text x="292" y="62">PET</text>
+          <line class="thin" x1="280" y1="70" x2="280" y2="100"/><text class="m" x="252" y="120">halfway</text>
+          <line class="rd" x1="470" y1="30" x2="380" y2="30" marker-end="url(#a-rd)"/><text class="m" x="372" y="22">headwind out</text>
+          <text class="m" x="120" y="140">distance X from A</text>
+        </svg>
+        <div class="cap">With a headwind on the way out, coming home is downwind and fast, so the PET is beyond halfway — a gross error check for every answer.</div>
+      </div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">X = D × H / (O + H)</div><div class="d">O = GS on, H = GS home.</div></div>
+        <div class="fcard"><div class="f">t = X ÷ GS out</div><div class="d">Out to the PET at the all-engine ground speed.</div></div>
+      </div>
+      <details class="example"><summary>Worked example — all engines</summary><div class="body">
+        <p>A to B 2400 NM, TAS 420, 35 kt head all the way: O = 385, H = 455. X = 2400 × 455/840 = <strong>1300 NM</strong>; time = 1300/385 = <strong>3 h 23 min</strong>.</p>
+      </div></details>
+      <details class="example"><summary>Worked example — engine failure PET</summary><div class="body">
+        <p>All-engine TAS 460, one-engine TAS 360, 30 kt head out, 2600 NM. O and H on one engine: 330 and 390 → X = 2600 × 390/720 = <strong>1408 NM</strong>. Time at the all-engine GS out (430 kt) = <strong>3 h 16 min</strong>.</p>
+        <p>The all-engine PET would be close by — which is why the engine failure PET is normally used for every serious emergency.</p>
+      </div></details>
+      <div class="callout caution"><span class="label">⚠️ Crosswinds</span> If the wind is not along the track, find the ground speeds home and on separately with the computer, allowing for drift on each. There is no short cut of adding or subtracting the full wind.</div>
+      <div class="related"><span class="dot"></span> Practise: 13 Point of Equal Time (PET)</div>
+    </section>
+
+    <section class="sec" id="ch14" data-icon="↩️" style="--acc:#78281f">
+      <h2><span class="num">14</span> Point of Safe Return <span class="en">Chapter 14</span></h2>
+      <p class="lead">To an island with no alternate, the only fall-back is to turn round. The point of safe return (formerly the point of no return) is the furthest you can go and still get back with the reserves intact.</p>
+      <div class="glance"><span>🎯 Safe vs total endurance</span><span>🎯 T = E × H / (O + H)</span><span>🎯 d = F / (CO + CH)</span><span>🎯 Any wind shortens it</span></div>
+      <div class="keyidea"><span class="label">💡 Key idea</span>
+        <p><strong>Distance out = distance home; time out + time home = safe endurance.</strong> Safe endurance leaves the reserves required overhead the departure aerodrome (or its alternate); total endurance ends with empty tanks.</p></div>
+      <div class="diagram">
+        <svg viewBox="0 0 560 150" role="img" aria-label="Point of safe return">
+          <circle class="dot" cx="50" cy="70" r="7"/><text x="30" y="100">Departure</text>
+          <line class="ac" x1="50" y1="60" x2="330" y2="60" marker-end="url(#a-ac)"/><text x="150" y="50">out: time T at GS out</text>
+          <line class="gn" x1="330" y1="80" x2="56" y2="80" marker-end="url(#a-gn)"/><text x="130" y="100">home: E − T at GS home</text>
+          <circle cx="335" cy="70" r="8" style="fill:var(--red-arc)"/><text x="318" y="125">PSR</text>
+          <circle class="dot" cx="510" cy="70" r="7"/><text x="470" y="100">Isolated destination</text>
+          <line class="thin" x1="345" y1="70" x2="500" y2="70"/>
+        </svg>
+        <div class="cap">Before the PSR, check the destination weather, aids and runway for about an hour either side of the ETA. Past it, you are committed.</div>
+      </div>
+      <div class="fgrid">
+        <div class="fcard"><div class="f">T = E × H / (O + H)</div><div class="d">E = safe endurance; distance = T × O.</div></div>
+        <div class="fcard"><div class="f">d = F / (CO + CH)</div><div class="d">CO, CH = fuel flow ÷ GS out and home (kg/NM).</div></div>
+      </div>
+      <details class="example"><summary>Worked example — the wind always costs</summary><div class="body">
+        <p>E = 10 h, TAS 300 kt. Still air: 5 h out → <strong>1500 NM</strong>. 50 kt head <em>or</em> tail: <strong>1458 NM</strong>. Whatever the direction, any wind shortens the PSR, and a stronger wind shortens it more.</p>
+      </div></details>
+      <details class="example"><summary>Worked example — with fuel flows</summary><div class="body">
+        <p>Out 420 kt at 3000 kg/h (7.14 kg/NM), home 380 kt at 2700 kg/h (7.11 kg/NM), 20 000 kg available. d = 20 000 / 14.25 = <strong>1404 NM</strong>; at 420 kt that is <strong>3 h 21 min</strong>.</p>
+      </div></details>
+      <div class="compare">
+        <div class="card acc"><h4>PET</h4><p>Equal time to two aerodromes. Depends on ground speeds only.</p></div>
+        <div class="card bad"><h4>PSR</h4><p>Last point to return to departure. Depends on endurance (or fuel) and ground speeds.</p></div>
+      </div>
+      <div class="related"><span class="dot"></span> Practise: 14 Point of Safe Return (PSR)</div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  Flight Planning &amp; Monitoring — Pilot's Guide · general principles for study.
+  Always plan with your operator's procedures, the current official publications and the aircraft's own data, and follow your instructor's briefing. 🗺️
+</footer>
+
+<button id="top-btn" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  var toc = document.getElementById('toc');
+  var scrim = document.getElementById('scrim');
+  var menuBtn = document.getElementById('menuBtn');
+  var closeToc = document.getElementById('closeToc');
+  function openToc(){ toc.classList.add('open'); scrim.classList.add('show'); }
+  function shutToc(){ toc.classList.remove('open'); scrim.classList.remove('show'); }
+  if (menuBtn) menuBtn.addEventListener('click', openToc);
+  if (closeToc) closeToc.addEventListener('click', shutToc);
+  if (scrim) scrim.addEventListener('click', shutToc);
+  var tocLinks = document.querySelectorAll('nav.toc a');
+  tocLinks.forEach(function(a){ a.addEventListener('click', function(){ shutToc(); }); });
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section.sec[id]'));
+  var linkFor = {};
+  tocLinks.forEach(function(a){ linkFor[a.getAttribute('href').slice(1)] = a; });
+  function onScroll(){
+    var y = window.scrollY + 110, current = sections[0];
+    for (var i = 0; i < sections.length; i++){ if (sections[i].offsetTop <= y) current = sections[i]; }
+    tocLinks.forEach(function(a){ a.classList.remove('active'); });
+    if (current && linkFor[current.id]) linkFor[current.id].classList.add('active');
+    var topBtn = document.getElementById('top-btn');
+    if (topBtn) topBtn.classList.toggle('show', window.scrollY > 500);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  var topBtn = document.getElementById('top-btn');
+  if (topBtn) topBtn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  
+  /* ---- quick tools ---- */
+  function el(id){ return document.getElementById(id); }
+  function num(id){ var s = (el(id).value || '').trim(); if (s === '') return NaN; var v = parseFloat(s); return isFinite(v) ? v : NaN; }
+  function txt(id){ return (el(id).value || '').trim().toUpperCase(); }
+  function put(id, html){ el(id).innerHTML = html; }
+  function f(v, d){ d = d === undefined ? 0 : d; var s = Math.abs(v).toFixed(d).split('.'); s[0] = s[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' '); return (v < 0 ? '−' : '') + s.join('.'); }
+  function hm(h){ var m = Math.round(h * 60); return Math.floor(m / 60) + ' h ' + ('0' + (m % 60)).slice(-2) + ' min'; }
+  function pair(id){ return (el(id).value || '').split(/[,;\s]+/).filter(Boolean).map(parseFloat); }
+
+  function fuel(){
+    var a = el('fuA').value, t = num('fuT'), h = num('fuH'), c = num('fuC'), l = num('fuL'), x = num('fuX');
+    if (!(t >= 0) || !(h >= 0) || !(c >= 0) || !(l >= 0)) { put('fuOut', 'Fill in trip, holding, contingency and alternate.'); return; }
+    if (!(x >= 0)) x = 0;
+    var pc = t * c / 100, hold5 = h * 5 / 60, cont = Math.max(pc, hold5);
+    var fr = h * (a === 'P' ? 0.75 : 0.5), tof = t + cont + l + fr;
+    put('fuOut', 'Contingency: ' + c + '% = ' + f(pc) + ' · 5 min hold = ' + f(hold5) + ' → <b>' + f(cont) + '</b><br>Final reserve (' + (a === 'P' ? '45' : '30') + ' min) = <b>' + f(fr) + '</b><br>Take-off fuel = <b>' + f(tof) + '</b> · ramp fuel = <b>' + f(tof + x) + '</b>');
+  }
+  function nam(){
+    var t = num('naT'), w = num('naW'), d = num('naD'), k = txt('naK');
+    if (!(t > 0) || !isFinite(w) || !(d >= 0)) { put('naOut', 'Enter TAS, wind and distance.'); return; }
+    var gs = t + w;
+    if (!(gs > 0)) { put('naOut', 'The headwind is greater than the TAS.'); return; }
+    if (k === 'NGM') put('naOut', 'GS ' + f(gs) + ' kt<br>NAM = ' + f(d) + ' × ' + f(t) + ' ÷ ' + f(gs) + ' = <b>' + f(d * t / gs, 1) + ' NAM</b>');
+    else if (k === 'NAM') put('naOut', 'GS ' + f(gs) + ' kt<br>NGM = ' + f(d) + ' × ' + f(gs) + ' ÷ ' + f(t) + ' = <b>' + f(d * gs / t, 1) + ' NGM</b><br>Time = ' + hm(d / t));
+    else put('naOut', 'Type NAM or NGM.');
+  }
+  function namt(){
+    var d = num('ntD'), m = num('ntM'), w = num('ntW');
+    if (!(d >= 0) || !(m >= 0) || !isFinite(w)) { put('ntOut', 'Enter distance, time and wind.'); return; }
+    var c = w * m / 60;
+    put('ntOut', 'Wind effect = ' + f(w) + ' × ' + f(m) + ' ÷ 60 = ' + f(c, 1) + ' NM<br>Ground distance = <b>' + f(d + c, 1) + ' NGM</b>');
+  }
+  function pet(){
+    var d = num('peD'), o = num('peO'), h = num('peH'), x = num('peX');
+    if (!(d > 0) || !(o > 0) || !(h > 0)) { put('peOut', 'Enter distance and both ground speeds.'); return; }
+    if (!(x > 0)) x = o;
+    var dist = d * h / (o + h);
+    put('peOut', 'X = ' + f(d) + ' × ' + f(h) + ' ÷ (' + f(o) + ' + ' + f(h) + ') = <b>' + f(dist, 1) + ' NM</b><br>Time = ' + f(dist, 1) + ' ÷ ' + f(x) + ' = <b>' + hm(dist / x) + '</b><br>' + (dist > d / 2 + 0.5 ? 'Beyond halfway: headwind out ✓' : dist < d / 2 - 0.5 ? 'Short of halfway: tailwind out ✓' : 'Halfway: no wind'));
+  }
+  function psr(){
+    var e = num('psE'), o = num('psO'), h = num('psH');
+    if (!(e > 0) || !(o > 0) || !(h > 0)) { put('psOut', 'Enter endurance and both ground speeds.'); return; }
+    var t = e * h / (o + h);
+    put('psOut', 'T = ' + e + ' × ' + f(h) + ' ÷ (' + f(o) + ' + ' + f(h) + ') = <b>' + hm(t) + '</b><br>Distance = ' + hm(t) + ' × ' + f(o) + ' kt = <b>' + f(t * o, 0) + ' NM</b><br>Time home = ' + hm(e - t));
+  }
+  function psrf(){
+    var F = num('pfF'), a = pair('pfO'), b = pair('pfH');
+    if (!(F > 0) || a.length < 2 || b.length < 2 || !(a[1] > 0) || !(b[1] > 0)) { put('pfOut', 'Enter fuel, and fuel flow with GS for each way.'); return; }
+    var co = a[0] / a[1], ch = b[0] / b[1], d = F / (co + ch);
+    put('pfOut', 'CO = ' + f(co, 2) + ' · CH = ' + f(ch, 2) + ' kg/NM<br>d = ' + f(F) + ' ÷ ' + f(co + ch, 2) + ' = <b>' + f(d, 0) + ' NM</b><br>Time out = <b>' + hm(d / a[1]) + '</b>');
+  }
+  function conv(){
+    var q = num('cvQ'), u = txt('cvU'), s = num('cvS');
+    if (!(q >= 0) || !(s > 0)) { put('cvOut', 'Enter quantity and specific gravity.'); return; }
+    var L = { L: 1, USG: 3.785, IG: 4.546 }, litres;
+    if (L[u]) litres = q * L[u];
+    else if (u === 'KG') litres = q / s;
+    else if (u === 'LB') litres = q / 2.2046 / s;
+    else { put('cvOut', 'Type L, USG, IG, KG or LB.'); return; }
+    var kg = litres * s;
+    put('cvOut', '<b>' + f(litres, 1) + ' L</b> · ' + f(litres / 3.785, 1) + ' USG · ' + f(litres / 4.546, 1) + ' IG<br><b>' + f(kg, 1) + ' kg</b> · ' + f(kg * 2.2046, 1) + ' lb');
+  }
+  function grid(){
+    var t = num('grD'), l = num('grL');
+    if (!isFinite(t) || !isFinite(l)) { put('grOut', 'Enter direction and longitude.'); return; }
+    var g = ((t - l) % 360 + 360) % 360;
+    put('grOut', 'Convergence = ' + f(Math.abs(l)) + '°' + (l > 0 ? 'W' : l < 0 ? 'E' : '') + ' (longitude, sign changed)<br>Grid = ' + f(t) + (l >= 0 ? ' − ' : ' + ') + f(Math.abs(l)) + ' = <b>' + ('00' + Math.round(g)).slice(-3) + '°(G)</b>');
+  }
+  function tod(){
+    var a = num('tdA'), b = num('tdB'), r = num('tdR'), g = num('tdG'), x = num('tdX');
+    if (!(a > b) || !(r > 0) || !(g > 0)) { put('tdOut', 'Enter both levels, the rate and ground speed.'); return; }
+    if (!(x >= 0)) x = 0;
+    var m = (a - b) / r, d = m * g / 60;
+    put('tdOut', f(a - b) + ' ft ÷ ' + f(r) + ' = ' + f(m, 1) + ' min → ' + f(d, 1) + ' NM<br>Start descent <b>' + f(d + x, 1) + ' NM</b> before the fix');
+  }
+  function mach(){
+    var o = num('mcO'), m = num('mcM'), t = num('mcT');
+    if (!isFinite(o) || o <= -273) { put('mcOut', 'Enter the temperature.'); return; }
+    var a = 38.94 * Math.sqrt(o + 273.15);
+    if (m > 0) put('mcOut', 'Speed of sound = ' + f(a) + ' kt<br>TAS = ' + m + ' × ' + f(a) + ' = <b>' + f(m * a) + ' kt</b>');
+    else if (t > 0) put('mcOut', 'Speed of sound = ' + f(a) + ' kt<br>Mach = ' + f(t) + ' ÷ ' + f(a) + ' = <b>M' + (t / a).toFixed(3) + '</b>');
+    else put('mcOut', 'Enter a Mach number or a TAS.');
+  }
+  function level(){
+    var t = num('clT'), a = num('clA'), q = num('clQ'), r = txt('clR');
+    if (!isFinite(t) || !(a >= 0) || !(q > 0) || (r !== 'VFR' && r !== 'IFR')) { put('clOut', 'Enter track, altitude, QNH and VFR or IFR.'); return; }
+    var pa = a + (1013 - q) * 30, east = ((t % 360) + 360) % 360 < 180, fl = 0;
+    for (var k = 1; k < 60; k++) {
+      var base = k * 1000, odd = k % 2 === 1;
+      if (odd !== east) continue;
+      var lv = base + (r === 'VFR' ? 500 : 0);
+      if (lv >= pa) { fl = lv; break; }
+    }
+    put('clOut', 'Pressure altitude needed = ' + f(a) + (q < 1013 ? ' + ' : ' − ') + f(Math.abs(1013 - q) * 30) + ' = ' + f(pa) + ' ft<br>' + (east ? 'Easterly' : 'Westerly') + ' semicircle → ' + (east ? 'odd' : 'even') + (r === 'VFR' ? ' + 500' : '') + '<br>Lowest level <b>FL' + ('00' + fl / 100).slice(-3) + '</b>');
+  }
+  [['fuA',fuel],['fuT',fuel],['fuH',fuel],['fuC',fuel],['fuL',fuel],['fuX',fuel],['naT',nam],['naW',nam],['naD',nam],['naK',nam],['ntD',namt],['ntM',namt],['ntW',namt],['peD',pet],['peO',pet],['peH',pet],['peX',pet],['psE',psr],['psO',psr],['psH',psr],['pfF',psrf],['pfO',psrf],['pfH',psrf],['cvQ',conv],['cvU',conv],['cvS',conv],['grD',grid],['grL',grid],['tdA',tod],['tdB',tod],['tdR',tod],['tdG',tod],['tdX',tod],['mcO',mach],['mcM',mach],['mcT',mach],['clT',level],['clA',level],['clQ',level],['clR',level]].forEach(function(p){
+    var e = el(p[0]); if (e) { e.addEventListener('input', p[1]); e.addEventListener('change', p[1]); }
+  });
+  fuel(); nam(); namt(); pet(); psr(); psrf(); conv(); grid(); tod(); mach(); level();
+
+})();
+</script>
+</body>
+</html>
