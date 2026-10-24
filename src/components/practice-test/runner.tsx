@@ -36,6 +36,7 @@ import {
   type TestMode,
 } from "@/lib/test-options";
 
+import { ExplanationSheet } from "./explanation-sheet";
 import { QuestionNav } from "./question-nav";
 import { ResultScreen } from "./result-screen";
 import { ShortcutsOverlay } from "./shortcuts-overlay";
@@ -729,7 +730,11 @@ export function TestRunner({
 
         <fieldset className="mt-3 sm:mt-5" disabled={settled}>
           <legend className="sr-only">Choose one answer</legend>
-          <div className="space-y-1 sm:space-y-2.5">
+          {/* A phone gets more room between options than a mouse does: a
+              thumb is wider than a cursor, and a mis-tap on the wrong option
+              costs the free allowance's worth of a real answer, not just an
+              undo. */}
+          <div className="space-y-3 sm:space-y-2.5">
             {current.options.map((option) => {
               const checked = answers[current.id] === option.id;
               // Before the verdict lands, the chosen option is simply chosen.
@@ -751,7 +756,7 @@ export function TestRunner({
               return (
                 <label
                   key={option.id}
-                  className={`flex items-start gap-3 rounded-lg border p-2.5 transition sm:p-3.5 ${
+                  className={`flex items-start gap-3 rounded-lg border p-3.5 transition ${
                     settled ? "cursor-default" : "cursor-pointer"
                   } ${tone}`}
                 >
@@ -794,9 +799,14 @@ export function TestRunner({
           </p>
         ) : null}
 
+        {/* Desktop keeps the explanation inline, under the options it
+            explains. A phone gets `ExplanationSheet` instead, rendered
+            outside this card entirely — see the note beside it for why a
+            bottom sheet reads better than more text squeezed under already
+            thumb-sized options. */}
         {verdict ? (
           <div
-            className={`mt-4 rounded-lg border-l-4 p-4 ${
+            className={`mt-4 hidden rounded-lg border-l-4 p-4 lg:block ${
               verdict.isCorrect ? "border-l-correct bg-correct-soft" : "border-l-incorrect bg-incorrect-soft"
             }`}
             role="status"
@@ -851,6 +861,14 @@ export function TestRunner({
         </div>
       </Card>
       </div>
+
+      <ExplanationSheet
+        key={current.id}
+        verdict={verdict ?? null}
+        onNext={isLast ? requestFinish : goNext}
+        isLast={isLast}
+        isSubmitting={isSubmitting}
+      />
 
       {deadline !== null && remaining === 0 ? (
         <p
@@ -1004,7 +1022,11 @@ export function TestRunner({
 
       {/* Mobile: a sticky bar a thumb can always reach, and the question map
           opens as a sheet from `QuestionNav` itself rather than a separate
-          toggle here. */}
+          toggle here. Sits at z-30, one below `ExplanationSheet`'s z-40 — the
+          moment an answer is revealed, that sheet rises and covers this bar
+          entirely (it carries its own "Next question" button while it does),
+          and dismissing it hands the thumb zone straight back to Previous,
+          the map and Next here. */}
       <div className="safe-bottom fixed inset-x-0 bottom-0 z-30 border-t border-border bg-surface-elevated px-4 pt-2 lg:hidden">
         <div className="flex items-center justify-between gap-2 pb-2">
           <button
@@ -1099,7 +1121,7 @@ export function TestRunner({
   );
 }
 
-function CorrectIcon() {
+export function CorrectIcon() {
   return (
     <svg
       viewBox="0 0 20 20"
@@ -1117,7 +1139,7 @@ function CorrectIcon() {
   );
 }
 
-function IncorrectIcon() {
+export function IncorrectIcon() {
   return (
     <svg
       viewBox="0 0 20 20"
