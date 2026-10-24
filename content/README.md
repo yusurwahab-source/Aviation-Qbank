@@ -1299,6 +1299,101 @@ rate of descent; true to compass heading; compass coefficients). Checked at
 It has not been reviewed by a qualified instructor and should be before a
 student relies on it for a real exam.
 
+## The Flight Planning bank (Flying Knowledge)
+
+The subject is **Flight Planning & Monitoring** (code `FPM`, ATPL 033), added
+the same content-only way and listed against 033 on the ATPL Ground School
+page. 821 questions across fourteen topics, all published.
+
+### Source, and what was not used
+
+The owner supplied CAE Oxford Aviation Academy's *Flight Planning and
+Monitoring* (ATPL ground training series, Book 7) as a text file. Its
+fourteen teaching chapters were used in order, for their facts only. Its
+end-of-chapter questions and its revision questions (chapter 15) were not
+copied: they were read as a **coverage checklist**, and about thirty gap
+questions were written from them in the assistant's own words with original
+numbers (fuel density and unit conversions, descent planning, return-time
+and fuel-rate checks, Mach for a time, flight plan filing times, wake
+category by certificated mass, endurance in item 19). Student-facing text
+names no book, school, regulator, regulation, syllabus, chart publisher or
+aircraft manufacturer.
+
+The book's data sheets (the performance graphs and tables for the
+single-engine and multi-engine piston aeroplanes and the medium range jet,
+and the route manual charts) are not in the text. Questions that would need
+a chart reading give the chart value in the stem and test the method, using
+original figures; the aircraft limits and the fixed allowances printed in
+the book (masses, fuel loads, taxi, APU, anti-ice, flaps, holding) are used
+as stated.
+
+Choices and corrections:
+
+- Topics 06 and 07 are shortened to "06 MRJT Simplified Flight Planning" and
+  "07 MRJT Detailed Flight Planning" because a topic name may not exceed 60
+  characters.
+- Fuel policy follows the book (contingency the higher of 5% or 3% with an
+  en route alternate and 5 minutes' holding; final reserve 30/45 minutes;
+  isolated aerodrome 2 hours, or 45 minutes + 15% for pistons; decision
+  point procedure). These match the rules as the book states them and should
+  be checked against the current fuel regulations.
+- The ATC flight plan uses the current item 10 conventions (S = standard
+  equipment; W = RVSM, X = MNPS; surveillance N/A/C/S) rather than the older
+  letters the book lists (Omega, LORAN C and so on are left out). Item 18
+  questions use only indicators that are still in use.
+- The book's worked arithmetic in two places is off by 2 lb (a piston
+  alternate-fuel example); the bank uses its own numbers throughout and
+  re-worked every figure by script.
+- United Kingdom examples (NOTAM series, supplements on yellow paper, airway
+  width, upper and advisory route designators) are asked as United Kingdom
+  facts, not as general rules.
+- Chart-specific questions (named reporting points, frequencies read off a
+  particular chart) are not used, because a student here has no chart.
+
+### Order and format
+
+Topic names carry their chapter number. Inside each file the questions run
+in book order, grouped by `subtopic`; the coverage questions sit under a
+final subtopic in the topic they belong to. Explanations are one to three
+sentences.
+
+| # | Topic | File | Ids | Questions |
+|---|---|---|---|---|
+| 01 | 01 Air Information Publications | `01-air-information-publications.json` | FPM-AIP-0001–0080 | 80 |
+| 02 | 02 Fuel Policy and Fuel Monitoring | `02-fuel-policy-and-fuel-monitoring.json` | FPM-FUEL-0001–0075 | 75 |
+| 03 | 03 Nautical Air Miles | `03-nautical-air-miles.json` | FPM-NAM-0001–0034 | 34 |
+| 04 | 04 Single-engine Piston Aeroplane (SEP) | `04-single-engine-piston-aeroplane-sep.json` | FPM-SEP-0001–0042 | 42 |
+| 05 | 05 Multi-engine Piston Aeroplane (MEP) | `05-multi-engine-piston-aeroplane-mep.json` | FPM-MEP-0001–0042 | 42 |
+| 06 | 06 MRJT Simplified Flight Planning | `06-mrjt-simplified-flight-planning.json` | FPM-MRS-0001–0066 | 66 |
+| 07 | 07 MRJT Detailed Flight Planning | `07-mrjt-detailed-flight-planning.json` | FPM-MRD-0001–0048 | 48 |
+| 08 | 08 MRJT Additional Procedures | `08-mrjt-additional-procedures.json` | FPM-MRA-0001–0067 | 67 |
+| 09 | 09 Topographical Chart | `09-topographical-chart.json` | FPM-TOPO-0001–0051 | 51 |
+| 10 | 10 Airways | `10-airways.json` | FPM-AWY-0001–0096 | 96 |
+| 11 | 11 Airways - Miscellaneous Charts | `11-airways-miscellaneous-charts.json` | FPM-MISC-0001–0042 | 42 |
+| 12 | 12 ATC Flight Plan | `12-atc-flight-plan.json` | FPM-FPL-0001–0113 | 113 |
+| 13 | 13 Point of Equal Time (PET) | `13-point-of-equal-time-pet.json` | FPM-PET-0001–0034 | 34 |
+| 14 | 14 Point of Safe Return (PSR) | `14-point-of-safe-return-psr.json` | FPM-PSR-0001–0031 | 31 |
+
+### Answer-shape checks
+
+Correct letters a/b/c/d are 210/209/203/199. The correct option is the
+single longest in 7 % of questions and the single shortest in 6 %. No
+duplicate stems, no "all/none of the above", no source names. Every
+calculation was re-worked by script.
+
+`public/fpm-study-guide.html` is the study guide: fourteen chapter sections
+in the same order, each with a key-idea callout, chips, tables, comparison
+cards, diagrams (fuel stack, air and ground distance, critical point in
+wind, grid convergence, PET, PSR) and worked examples, a cheat sheet and
+eleven calculators (minimum fuel; NAM/NGM by speeds; NAM/NGM by time; point
+of equal time; point of safe return by time; point of safe return by fuel;
+fuel units and specific gravity; true to grid; start of descent; Mach and
+TAS; semi-circular level from QNH). Checked at 1280px and 375px with no
+horizontal overflow and no script errors.
+
+It has not been reviewed by a qualified instructor and should be before a
+student relies on it for a real exam.
+
 ## The B737 bank
 
 The aircraft is the **Boeing 737-800**, the stretched Next Generation variant

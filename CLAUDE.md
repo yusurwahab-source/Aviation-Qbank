@@ -499,7 +499,7 @@ from a static list (`lib/atpl-subjects.ts`), not from the database.** A
 subject with no questions has no content folder and no row (`db:seed` would
 delete one), so "coming soon" rows cannot be database rows. A row is live
 only when a Flying Knowledge subject is named by its `code` there (POF is
-080, HPL is 040, MET is 050, RNAV is 062, LAW is 010, AGK is 021, OPS is 070, COM is 090, MB is 031, PERF is 032, INST is 022) and is active with published questions; live rows link to
+080, HPL is 040, MET is 050, RNAV is 062, LAW is 010, AGK is 021, OPS is 070, COM is 090, MB is 031, PERF is 032, INST is 022, FPM is 033) and is active with published questions; live rows link to
 `/flying-knowledge/<code>`, where tests still run, and carry a pulsing
 `LiveBadge`. `/flying-knowledge` itself redirects to the picker. Adding a
 subject to the ATPL list is a content folder plus its `code` in that list.
@@ -1895,7 +1895,7 @@ over the internals.
 content/                      Question files. The source of truth.
   <code>/                     One folder per type rating aircraft (b737/, a320/ today)
   classes/<code>/             One folder per class rating aircraft (da40/ today)
-  flying-knowledge/<code>/    One folder per Flying Knowledge subject (pof/, hpl/, met/, rnav/, law/, agk/, ops/, com/, mb/, perf/, inst/ today)
+  flying-knowledge/<code>/    One folder per Flying Knowledge subject (pof/, hpl/, met/, rnav/, law/, agk/, ops/, com/, mb/, perf/, inst/, fpm/ today)
 drizzle/                      Generated SQL migrations. Committed.
 public/                       Manifest icons, the service worker, and any
                               <code>-study-guide.html study guides (see the
@@ -2190,7 +2190,10 @@ questions), with `public/mb-study-guide.html` and
 `content/README.md`. Instrumentation (`INST`, 022) is the eleventh:
 `content/flying-knowledge/inst/`, thirty-eight chapter files, 1,713
 questions, and `public/inst-study-guide.html` — see the note on the
-Instrumentation bank in `content/README.md`.
+Instrumentation bank in `content/README.md`. Flight Planning & Monitoring
+(`FPM`, 033) is the twelfth: `content/flying-knowledge/fpm/`, fourteen
+chapter files, 821 questions, and `public/fpm-study-guide.html` — see the
+note on the Flight Planning bank in `content/README.md`.
 
 The one thing that does not carry over from either of the other two trees:
 **Flying Knowledge is free in full, not metered by the free-tier cap or
@@ -2541,6 +2544,15 @@ second. Both are now done — see the conventions above.)
   and a style guide, never copied (see `content/README.md`). The supplied
   text is missing many figure pages, filled from standard knowledge. Treat it
   as revision material until a qualified instructor has checked it.
+- **The Flight Planning bank (FPM, 821 questions) has not been reviewed by
+  an instructor.** It was written from the owner's supplied textbook for its
+  facts; the book's own questions were used only as a coverage checklist,
+  never copied, and its chart and graph data sheets are not in the text, so
+  chart-reading questions give the reading in the stem (see
+  `content/README.md`). The fuel rules follow the book and the flight plan
+  uses the current item 10 letters; both should be checked against the
+  current regulations. Treat it as revision material until a qualified
+  instructor has checked it.
 - **The Electrics & Electronics bank (AGK, 1,000 questions) has not been
   reviewed by an instructor.** It was written from the owner's supplied
   textbook for its facts only (the book's questions not used, its errors
