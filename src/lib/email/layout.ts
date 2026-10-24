@@ -20,9 +20,9 @@ import { siteConfig } from "@/config/site";
  */
 
 const COLOR = {
-  navy: "#1A2536",
-  accent: "#FBC02D",
-  onAccent: "#1A2536",
+  navy: "#0A1120",
+  accent: "#38BDF8",
+  onAccent: "#0A1120",
   ink: "#212529",
   muted: "#5C6670",
   page: "#F1F3F5",

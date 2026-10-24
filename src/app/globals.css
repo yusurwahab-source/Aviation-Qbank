@@ -19,23 +19,26 @@
  *      any root carrying the attribute.
  *
  * SOLID FILLS
- * `--on-solid` is the text colour on the yellow accent fill: Deep Navy in
- * both themes (9.3:1), because the yellow is the same in both. `--on-danger`
- * is the one that still flips — light theme's red is deep, so it takes white.
+ * `--on-solid` is the text colour on the accent fill: Deep Night-Navy in
+ * both themes (8.8:1+), because the accent blue is bright enough to carry a
+ * dark label in both. `--on-danger` is the one that still flips — light
+ * theme's red is deep, so it takes white.
  * ========================================================================= */
 
 :root {
   color-scheme: dark;
 
-  /* ── Surfaces: Aviation Classic ───────────────────────────────────────
-   * The page itself is Deep Navy (#1A2536). Panels lift out of it in steps
-   * rather than by shadow, which is what reads as instrumentation rather
-   * than as paper: surface → elevated → muted, each one step lighter. */
-  --background: #1a2536;
-  --surface: #202d42;
-  --surface-elevated: #27364e;
-  --surface-muted: #2e3e58;
-  --border: #3a4b66;
+  /* ── Surfaces: Night Flight ───────────────────────────────────────────
+   * The page itself is a near-black night-navy (#0A1120) — a glass-cockpit
+   * black rather than the lighter navy-blazer this replaces. Panels lift out
+   * of it in steps rather than by shadow, which is what reads as
+   * instrumentation rather than as paper: surface → elevated → muted, each
+   * one step lighter. */
+  --background: #0a1120;
+  --surface: #10192c;
+  --surface-elevated: #16223a;
+  --surface-muted: #1d2c48;
+  --border: #2c3c5c;
 
   /* ── Text ───────────────────────────────────────────────────────────────
    * Pure white on navy (15.4:1). The two quieter tiers are measured, not
@@ -46,18 +49,23 @@
   --muted-foreground: #b8c2d1;
   --subtle-foreground: #a3afc2;
 
-  /* ── Accent: Aviation Yellow ───────────────────────────────────────────
-   * #FBC02D, the one accent. Used for the thing to do next (primary
-   * buttons), where you are (the active nav item) and how far along you are
-   * (progress). It never means right or wrong — see the semantic colours
-   * below, which are kept well away from it on purpose.
+  /* ── Accent: Glass-Cockpit Sky ─────────────────────────────────────────
+   * #38BDF8, the one accent — a bright instrument-panel cyan-blue instead of
+   * Aviation Yellow. Used for the thing to do next (primary buttons), where
+   * you are (the active nav item) and how far along you are (progress). It
+   * never means right or wrong — see the semantic colours below, which are
+   * kept well away from it on purpose (a phosphor-green accent was the other
+   * option on the table; it was dropped because it would sit on top of
+   * --success, the one colour in this file that must never be ambiguous
+   * with "the thing to press next").
    *
    * --accent-ink is the same hue for *text, lines and icons on a surface*.
-   * In dark it is the accent itself; in light, yellow on white is 1.7:1, so
-   * it deepens to a gold that reads. Fills use --accent, ink uses this. */
-  --accent: #fbc02d;
-  --accent-hover: #ffd04f;
-  --accent-ink: #fbc02d;
+   * In dark it is the accent itself; in light, this blue on white is still
+   * only ~2.4:1, so it deepens to a sky that reads. Fills use --accent, ink
+   * uses this. */
+  --accent: #38bdf8;
+  --accent-hover: #67ccff;
+  --accent-ink: #38bdf8;
   --accent-soft: color-mix(in oklab, var(--accent) 14%, var(--surface));
 
   /* ── Semantic state ───────────────────────────────────────────────────
@@ -75,10 +83,11 @@
   --flag: #b79dfb;
   --flag-soft: color-mix(in oklab, var(--flag) 15%, var(--surface));
 
-  /* Text on a solid fill. Navy on yellow is 9.3:1 and navy on the lighter
-   * semantic fills here is comfortably above AA; see the note above. */
-  --on-solid: #1a2536;
-  --on-danger: #1a2536;
+  /* Text on a solid fill. Night-navy on the sky accent is 8.8:1 and navy on
+   * the lighter semantic fills here is comfortably above AA; see the note
+   * above. */
+  --on-solid: #0a1120;
+  --on-danger: #0a1120;
 
   /* ── Shadows ───────────────────────────────────────────────────────────
    * Two levels, and no more. On a dark theme a shadow is mostly a darker
@@ -104,11 +113,12 @@
     /* See the note beside :root's --subtle-foreground — same WCAG AA fix. */
     --subtle-foreground: #646b72;
 
-    /* Yellow stays the fill; text and lines on a pale surface use the deeper
-     * gold --accent-ink (6.4:1 on #F8F9FA), because yellow itself is 1.7:1. */
-    --accent: #fbc02d;
-    --accent-hover: #f9a825;
-    --accent-ink: #7a5400;
+    /* The accent stays the same bright fill; text and lines on a pale
+     * surface use the deeper sky --accent-ink (5.9:1 on #F8F9FA), because
+     * the fill blue itself is only ~2.4:1 on white. */
+    --accent: #38bdf8;
+    --accent-hover: #0ea5e9;
+    --accent-ink: #0369a1;
     --accent-soft: color-mix(in oklab, var(--accent) 22%, var(--surface));
 
     --success: #15803d;
@@ -120,9 +130,9 @@
     --flag: #7c3aed;
     --flag-soft: color-mix(in oklab, var(--flag) 10%, var(--surface));
 
-    /* Navy on the yellow accent; white on the deep red, which a navy label
-     * would not clear. */
-    --on-solid: #1a2536;
+    /* Night-navy on the sky accent; white on the deep red, which a navy
+     * label would not clear. */
+    --on-solid: #0a1120;
     --on-danger: #ffffff;
 
     --shadow-1: 0 1px 2px 0 rgb(13 23 37 / 0.06);
@@ -147,11 +157,12 @@
   /* See the note beside :root's --subtle-foreground — same WCAG AA fix. */
   --subtle-foreground: #646b72;
 
-  /* Yellow stays the fill; text and lines on a pale surface use the deeper
-   * gold --accent-ink (6.4:1 on #F8F9FA), because yellow itself is 1.7:1. */
-  --accent: #fbc02d;
-  --accent-hover: #f9a825;
-  --accent-ink: #7a5400;
+  /* The accent stays the same bright fill; text and lines on a pale surface
+   * use the deeper sky --accent-ink (5.9:1 on #F8F9FA), because the fill
+   * blue itself is only ~2.4:1 on white. */
+  --accent: #38bdf8;
+  --accent-hover: #0ea5e9;
+  --accent-ink: #0369a1;
   --accent-soft: color-mix(in oklab, var(--accent) 22%, var(--surface));
 
   --success: #15803d;
@@ -163,9 +174,9 @@
   --flag: #7c3aed;
   --flag-soft: color-mix(in oklab, var(--flag) 10%, var(--surface));
 
-  /* Navy on the yellow accent; white on the deep red, which a navy label
+  /* Night-navy on the sky accent; white on the deep red, which a navy label
    * would not clear. */
-  --on-solid: #1a2536;
+  --on-solid: #0a1120;
   --on-danger: #ffffff;
 
   --shadow-1: 0 1px 2px 0 rgb(13 23 37 / 0.06);

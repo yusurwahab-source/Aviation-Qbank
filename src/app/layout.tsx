@@ -57,7 +57,7 @@ export const viewport: Viewport = {
   // home indicator.
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#1a2536" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a1120" },
     { media: "(prefers-color-scheme: light)", color: "#f8f9fa" },
   ],
 };
