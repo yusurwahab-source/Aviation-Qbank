@@ -25,7 +25,7 @@ const LINKS = ALL_LINKS.filter((link) => !(FREE_MODE && link.href === "/pricing"
 
 export function SiteFooter() {
   return (
-    <footer className="safe-bottom mt-12 border-t border-border bg-surface-elevated">
+    <footer className="safe-bottom clear-bottom-nav mt-12 border-t border-border bg-surface-elevated">
       <div className="mx-auto w-full max-w-5xl px-4 pt-8 sm:px-5">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
           <div className="max-w-sm">

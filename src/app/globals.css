@@ -376,6 +376,25 @@ body {
   padding-bottom: max(var(--space-4), env(safe-area-inset-bottom));
 }
 
+/* Reserves room for the fixed global mobile bottom navigation bar
+ * (`BottomNavBar`, `lg:hidden`) below the `lg` breakpoint, so the footer's
+ * own content is never covered by it at the bottom of the page. Margin, not
+ * padding, so it stacks cleanly beside `.safe-bottom`'s own padding instead
+ * of fighting it for the same property. Both are custom, unlayered rules —
+ * written outside any `@layer` block, the same as every other class in this
+ * file — so a Tailwind `pb-*` utility placed on the same element could never
+ * have overridden `.safe-bottom` here anyway: Tailwind's own utilities live
+ * inside `@layer utilities`, which always loses to unlayered CSS regardless
+ * of source order. */
+.clear-bottom-nav {
+  margin-bottom: 4rem;
+}
+@media (min-width: 1024px) {
+  .clear-bottom-nav {
+    margin-bottom: 0;
+  }
+}
+
 /* Keyboard users must always be able to see where they are. */
 :focus-visible {
   outline: 2px solid var(--accent-ink);
