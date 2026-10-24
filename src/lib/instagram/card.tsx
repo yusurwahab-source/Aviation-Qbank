@@ -18,13 +18,13 @@ import {
  */
 export const CARD_SIZE = { width: 1080, height: 1350 } as const;
 
-const BACKDROP = "#1a2536";
-const PANEL = "#202d42";
-const BORDER = "#3a4b66";
+const BACKDROP = "#0a1120";
+const PANEL = "#10192c";
+const BORDER = "#2c3c5c";
 const TEXT = "#ffffff";
 const MUTED = "#a9b6cb";
-const ACCENT = "#fbc02d";
-const ON_ACCENT = "#1a2536";
+const ACCENT = "#38bdf8";
+const ON_ACCENT = "#0a1120";
 const SUCCESS = "#4ade80";
 
 const LETTERS = ["A", "B", "C", "D", "E"];

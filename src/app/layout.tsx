@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
+import { BottomNavBar } from "@/components/bottom-nav-bar";
 import { ContactWidget } from "@/components/contact-widget";
 import { ServiceWorker } from "@/components/service-worker";
 import { SiteAnnouncement } from "@/components/site-announcement";
@@ -57,7 +58,7 @@ export const viewport: Viewport = {
   // home indicator.
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#1a2536" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a1120" },
     { media: "(prefers-color-scheme: light)", color: "#f8f9fa" },
   ],
 };
@@ -92,6 +93,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <SiteFooter />
         <UpgradePrompt />
         <ContactWidget />
+        <BottomNavBar />
         <ServiceWorker />
       </body>
     </html>

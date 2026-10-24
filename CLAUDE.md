@@ -390,26 +390,39 @@ application looks is an edit to one file. There is not a single hardcoded
 palette colour anywhere in `src/`, and adding one would be the wrong
 change.
 
-The palette is **Aviation Classic**: Deep Navy (`#1A2536`) behind, panels
+The palette is **Night Flight**: Deep Night-Navy (`#0A1120`) behind, panels
 lifted out of it in steps rather than by shadow, pure white text, and one
-accent, Aviation Yellow (`#FBC02D`). Light theme is `#F8F9FA` with carbon
-`#212529` text. Yellow is for the thing to do next (primary buttons), where
-you are (the active header link) and how far along you are (progress);
-it is never right or wrong. Semantic colour is kept pure and separate from
-that accent — success, danger, warning and flag each mean exactly one
-thing, and the warning is orange rather than amber so it cannot be read as
-the accent — so "this is important" and "this is correct" can never be
-confused with each other.
+accent, Glass-Cockpit Sky (`#38BDF8`). Light theme is `#F8F9FA` with carbon
+`#212529` text. The accent is for the thing to do next (primary buttons),
+where you are (the active header link) and how far along you are
+(progress); it is never right or wrong. Semantic colour is kept pure and
+separate from that accent — success, danger, warning and flag each mean
+exactly one thing, and the warning is orange rather than amber so it cannot
+be read as the accent — so "this is important" and "this is correct" can
+never be confused with each other.
 
-**Yellow is a fill, not a text colour, on a pale surface.** `#FBC02D` on
-white is 1.7:1. `--accent` is the fill (navy `--on-solid` text on it, 9.3:1
-in both themes); `--accent-ink` — `text-brand-ink` — is the same hue for
-text, lines and chart marks, and deepens to `#7A5400` in light. Anything
-that is text or a stroke uses the ink, anything that is a fill uses
-`bg-brand`. `--on-danger` is the one on-fill token that still flips with
-the theme. `manifest.ts`, `layout.tsx`'s `themeColor`, the social card and
-the icon cannot read CSS variables, so they carry the same hex values by
-hand — change them with the palette.
+(This replaced **Aviation Classic** — Deep Navy `#1A2536` behind a yellow
+`#FBC02D` accent — in a mobile-first redesign asked for a deeper, more
+eye-comfortable night-study theme. The sky-blue accent was picked over the
+phosphor-green the owner also offered specifically because `--success` is
+already green and means "correct answer" — a green accent would have put
+"do this next" and "this is right" one hue apart, exactly the confusion the
+paragraph above exists to prevent. Nothing about the token structure below
+changed, only the values, and every hand-kept hex copy outside this file —
+listed at the end of this section — was resynced in the same change.)
+
+**The accent is a fill, not a text colour, on a pale surface.** `#38BDF8` on
+white is roughly 2.7:1 — below AA on its own. `--accent` is the fill (navy
+`--on-solid` text on it, ~8.8:1 in both themes — dark and light now share
+the same accent hex and the same dark `--on-solid`, so the sum is identical
+either way); `--accent-ink` — `text-brand-ink` — is the same hue for text,
+lines and chart marks in dark, and deepens to `#0369A1` in light (~5.9:1 on
+white — comfortably AA for body text, short of AAA). Anything that is text
+or a stroke uses the ink, anything that is a fill uses `bg-brand`.
+`--on-danger` is the one on-fill token that still flips with the theme.
+`manifest.ts`, `layout.tsx`'s `themeColor`, the social card, the Instagram
+card generator and the email layout cannot read CSS variables, so they
+carry the same hex values by hand — change them with the palette.
 
 The scales are deliberately short: seven type sizes (12/14/16/18/24/32/40),
 four radii, two shadow levels. Spacing rides on Tailwind's own 4px step
@@ -522,7 +535,35 @@ menu button replaces the nav, because the full-size wordmark plus six links
 does not fit in `md`. The account menu shows an avatar only; the address is in
 its dropdown.
 
-Directly under the hero, `PillarsOverview` (`_landing/pillars-overview.tsx`)
+**Below `lg`, a fixed bottom navigation bar is the primary way to move
+between sections, and it is additive to the header, not a replacement for
+it.** `BottomNavBar` (`src/components/bottom-nav-bar.tsx`, `fixed inset-x-0
+bottom-0 z-40 lg:hidden`) renders four destinations — Home, Question Bank,
+Simulators, Statistics — chosen for the mobile redesign's own thumb-zone
+goal: the controls a student reaches for most now live in the bottom half
+of the screen rather than requiring a reach to the header or the hamburger
+sheet. Which of the four is "active" for a given URL, and which pages must
+never show the bar at all, are both pure functions in `src/lib/bottom-nav.ts`
+(`BOTTOM_NAV_ITEMS`, `activeBottomNavHref`, `bottomNavHidden`), not logic
+written inline in the component — the same reasoning `question-status.ts`
+and `keyboard-shortcuts.ts` already give for keeping a decision testable on
+its own. "Question Bank" is active across five real prefixes
+(`/aircraft-systems`, `/type-rating`, `/class-rating`, `/atpl-ground-school`,
+`/flying-knowledge`) because it stands for the three content-bearing
+sections at once, the same aggregation `PillarsOverview` already does for
+the landing page.
+
+The bar is hidden — not just overlaid — on `/owner` (its own chrome), any
+`/pilot-sims/<slug>` page (the simulator iframe owns the full viewport) and
+any `/test` route. That last exclusion matters most: a test screen already
+has its own fixed bottom bar (the Previous/Next/Finish row, see "A test is
+swiped on a phone" below) and, once an answer is revealed, the explanation
+sheet above that — stacking a third fixed bar under two others would leave
+a phone with three competing docked elements fighting for the same strip of
+screen. `site-footer.tsx` carries a `.clear-bottom-nav` class (`globals.css`)
+so the footer's own content clears the bar's height below `lg` without the
+bar itself needing a `main`-level reservation that would show as dead space
+on pages too short to scroll. (`_landing/pillars-overview.tsx`)
 is three cards of identical shape, one per pillar: a title, a line of
 description, a short list of what is inside, and one way in. ATPL lists its
 live subjects with a `LiveBadge` and counts the rest as coming soon;
@@ -865,6 +906,37 @@ a centre button showing "current / total" that opens the question map, and
 Next or Finish. The two navigations are not the same markup shown twice —
 they are `hidden lg:flex` and `lg:hidden` respectively, so exactly one of
 them is ever in the accessibility tree at a time.
+
+**On a phone, the revealed answer rises as a bottom sheet rather than
+appearing inline under the options.** `ExplanationSheet`
+(`src/components/practice-test/explanation-sheet.tsx`, `lg:hidden`) and the
+existing inline verdict box (now wrapped `hidden lg:block`) show the exact
+same `verdict` the runner already computed — this is presentation only, a
+second view of state that already existed, not a second source of it. The
+sheet owns the forward action while it is open: its own "Next question" /
+"Finish test" button is what the student taps, which is why it sits over
+the sticky Previous/Next bar (`z-40` against that bar's `z-30`) rather than
+beside it — a sheet and a bar both offering "Next" at once would be two
+controls for one action. Dismissing the sheet (drag it down past
+`DISMISS_THRESHOLD_PX`, in `src/lib/bottom-sheet.ts`, pure and tested; or
+tap the close button) only hides the sheet and reveals the already-settled
+card underneath — it does not re-open the question, change `verdict`, or
+touch anything grading-related, because the question is already settled
+the moment it is answered (see "A revealed question is settled" above) and
+nothing about showing or hiding a view of that answer may be allowed to
+undo it. Mounted `key={current.id}` by the runner, so a dismissed sheet on
+one question never carries its "stay dismissed" state into the next.
+
+The drag handle is deliberately its own element, a sibling of the close
+button rather than a shared parent wrapping both: pointer capture
+(`setPointerCapture`, taken on `pointerdown` so a fast flick is never lost
+to the browser treating it as a scroll) has to live on something a student
+drags, and putting it on a div that also wrapped the close button broke
+that button's own click — confirmed in a browser, not just reasoned about.
+Both pointer handlers and the close button sit outside the explanation
+text's own `overflow-y-auto` region, so a long explanation scrolls
+internally without any scroll gesture inside it being misread as a
+drag-to-dismiss.
 
 **Resuming a test reads its mode from the session row, not from `?mode=`.**
 This is a real gap the resume feature would otherwise have reopened, not a
@@ -1958,9 +2030,11 @@ src/
     opengraph-image.tsx       The 1200x630 social card
     favicon.ico                                 Generated; the rest of the favicon set is in public/ (favicon.svg, favicon-32x32.png, apple-touch-icon.png)
   components/                 Shared UI, including the shell (site-header,
-                              site-footer, mobile-nav, user-menu, theme-toggle, logo),
+                              site-footer, mobile-nav, user-menu, theme-toggle, logo,
+                              bottom-nav-bar — the lg:hidden fixed bottom bar),
                               flag-button, question-note, resume-test-banner,
-                              report-question-button
+                              report-question-button, practice-test/explanation-sheet
+                              (the lg:hidden draggable bottom sheet for a revealed answer)
   config/
     site.ts                   THE product name, tagline, description and URL — not site_settings, see the convention above
   content/
@@ -2027,6 +2101,8 @@ src/
     test-options.ts           Test length, sections, mode, the clock, and test URLs
     study-guide.ts            studyGuideHref() — whether `public/<code>-study-guide.html` exists
     keyboard-shortcuts.ts     Which key does what, and when a shortcut must stand down for a text field (pure, tested)
+    bottom-nav.ts             The bottom nav bar's four destinations, which one is active for a path, and where the bar must not render (pure, tested)
+    bottom-sheet.ts           Drag-to-dismiss math for the mobile explanation sheet (pure, tested)
     auth/
       credentials.ts          Email and password rules (pure, tested)
       rate-limit-policy.ts    When to refuse a log in or a reset (pure, tested)

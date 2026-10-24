@@ -27,9 +27,9 @@ const APP_DIR = path.join(process.cwd(), "src", "app");
  */
 async function markDataUri(): Promise<string> {
   const favicon = await readFile(path.join(OUT_DIR, "favicon.svg"), "utf8");
-  const d = favicon.match(/<path fill="#FFD300" d="([^"]+)"/)?.[1];
+  const d = favicon.match(/<path fill="#38BDF8" d="([^"]+)"/)?.[1];
   if (!d) throw new Error("public/favicon.svg has no Q path");
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="12 12 40 40" width="40" height="40"><path fill="#FFD300" d="${d}"/></svg>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="12 12 40 40" width="40" height="40"><path fill="#38BDF8" d="${d}"/></svg>`;
   return `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
 }
 

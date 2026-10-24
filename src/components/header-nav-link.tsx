@@ -6,8 +6,8 @@ import { usePathname } from "next/navigation";
 /**
  * One link in the header's desktop navigation.
  *
- * The page you are on is marked in the accent — white text, a yellow bar
- * under it — and every other link stays muted, so the yellow means "you are
+ * The page you are on is marked in the accent — white text, a sky-blue bar
+ * under it — and every other link stays muted, so the accent means "you are
  * here" and is never competing with a primary button for attention. It is
  * the only reason this is a client component: the header itself is a server
  * component and cannot know the pathname.
