@@ -1,0 +1,2478 @@
+[
+  {
+    "id": "GNAV-INS-0001",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "The platform of an inertial navigation system (INS) is maintained at rights angles to the local vertical by applying corrections for the effects of:",
+    "options": [
+      {
+        "id": "a",
+        "text": "gyroscopic inertia, earth precession and pendulous oscillation"
+      },
+      {
+        "id": "b",
+        "text": "vertical velocities, earth precession, centrifugal forces and transport drift"
+      },
+      {
+        "id": "c",
+        "text": "movement in the yawing plane, secondary precession and pendulous oscillation"
+      },
+      {
+        "id": "d",
+        "text": "aircraft manoeuvres, earth rotation, transport wander and Coriolis"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The platform must be torqued to stay level as the aircraft moves over a curved, rotating Earth: corrections are applied for aircraft movement (transport rate), Earth rotation, transport wander and Coriolis.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0002",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "How long does alignment of an IRS (Laser Ring Gyros) normally take at mid-latitudes?",
+    "options": [
+      {
+        "id": "a",
+        "text": "7 minutes."
+      },
+      {
+        "id": "b",
+        "text": "5 minutes."
+      },
+      {
+        "id": "c",
+        "text": "10 minutes."
+      },
+      {
+        "id": "d",
+        "text": "2 minutes."
+      }
+    ],
+    "correct": "c",
+    "explanation": "A ring-laser-gyro IRS typically needs about 10 minutes to align at mid-latitudes (longer at high latitudes).",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0003",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "On the B737 FMC the FAIL light when illuminated indicates:",
+    "options": [
+      {
+        "id": "a",
+        "text": "That both FMCs have a total power failure."
+      },
+      {
+        "id": "b",
+        "text": "That the relevant pilots FMC has a total power failure."
+      },
+      {
+        "id": "c",
+        "text": "That the FMC test is in progress."
+      },
+      {
+        "id": "d",
+        "text": "That no IRS information is being automatically fed to the relevant FMC."
+      }
+    ],
+    "correct": "b",
+    "explanation": "The FAIL light on a B737 CDU shows that the associated (own-side) FMC has failed.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0004",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Which component of the B737-400 Flight Management System (FMS) is used to enter flight plan routing and performance parameters?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Flight Management Computer."
+      },
+      {
+        "id": "b",
+        "text": "Multi-Function Control Display Unit."
+      },
+      {
+        "id": "c",
+        "text": "Inertial Reference System."
+      },
+      {
+        "id": "d",
+        "text": "Flight Director System."
+      }
+    ],
+    "correct": "b",
+    "explanation": "The Multi-Function Control Display Unit (CDU) is the crew interface used to enter route and performance data into the FMC.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0005",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "ATT Mode of the Inertial Reference System (IRS) is a back-up mode providing:",
+    "options": [
+      {
+        "id": "a",
+        "text": "only attitude and heading information."
+      },
+      {
+        "id": "b",
+        "text": "only attitude information."
+      },
+      {
+        "id": "c",
+        "text": "navigation information."
+      },
+      {
+        "id": "d",
+        "text": "altitude, heading and position information."
+      }
+    ],
+    "correct": "a",
+    "explanation": "ATT (attitude) mode is the reversionary mode: it provides attitude plus heading (heading must be entered manually and drifts); no navigation information.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0006",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "IRS differs from INS in that it:",
+    "options": [
+      {
+        "id": "a",
+        "text": "has a longer spin-up time and is not affected by vertical accelerations due to gravity."
+      },
+      {
+        "id": "b",
+        "text": "has a shorter spin-up time and suffers from laser lock."
+      },
+      {
+        "id": "c",
+        "text": "does not need to correct for Coriolis and central acceleration."
+      },
+      {
+        "id": "d",
+        "text": "does not experience Schuler errors as accelerometers are strapped down and are not rotated by a V/R feedback loop."
+      }
+    ],
+    "correct": "b",
+    "explanation": "Strap-down ring laser gyros spin up/align faster but suffer \"lock-in\" (laser lock) at very low rotation rates, cured by dither.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0007",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Which of the following statements concerning the position indicated on the Inertial Reference System (IRS) display is correct?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is updated when go-around is selected on take-off."
+      },
+      {
+        "id": "b",
+        "text": "It is constantly updated from information obtained by the FMC."
+      },
+      {
+        "id": "c",
+        "text": "It is not updated once the IRS mode is set to NAV."
+      },
+      {
+        "id": "d",
+        "text": "The positions from the two IRSs are compared to obtain a best position which is displayed on the IRS."
+      }
+    ],
+    "correct": "c",
+    "explanation": "IRS position is not updated once NAV is selected — it is pure inertial; the FMC computes its own updated position from radio/GPS.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0008",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "In the Boeing 737-400 FMS, the CDU is used to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "manually initialise the IRS and FMC with dispatch information."
+      },
+      {
+        "id": "b",
+        "text": "automatically initialise the IRS and FMC with dispatch information."
+      },
+      {
+        "id": "c",
+        "text": "manually initialise the Flight Director System and FMC with dispatch information."
+      },
+      {
+        "id": "d",
+        "text": "manually initialise the Flight Director System, FMC and Autothrottle with dispatch information."
+      }
+    ],
+    "correct": "a",
+    "explanation": "The CDU is used by the crew to manually initialise the IRS (present position) and the FMC (route, performance).",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0009",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "What can be used to enter positions on all INS systems?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Hexadecimals."
+      },
+      {
+        "id": "b",
+        "text": "Geographical co-ordinates."
+      },
+      {
+        "id": "c",
+        "text": "Waypoint names."
+      },
+      {
+        "id": "d",
+        "text": "Ranges and bearings."
+      }
+    ],
+    "correct": "b",
+    "explanation": "Every INS accepts positions as geographical coordinates (lat/long); names and range/bearing entries depend on the system.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0010",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Which of the following lists all the methods that can be used to enter Created Waypoints into the CDU of a B737-400 Electronic Flight Instrument System?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Identifier bearing/distance; place bearing/place bearing; latitude and longitude; waypoint name."
+      },
+      {
+        "id": "b",
+        "text": "Identifier bearing/distance; place bearing/place distance; along/across-track displacement; latitude and longitude."
+      },
+      {
+        "id": "c",
+        "text": "Identifier bearing/distance; place bearing/place bearing; along-track displacement; latitude and longitude."
+      },
+      {
+        "id": "d",
+        "text": "Identifier bearing/distance; place distance/place distance; along-track displacement; latitude and longitude."
+      }
+    ],
+    "correct": "c",
+    "explanation": "B737 created waypoints: place-bearing/distance, place-bearing/place-bearing, along-track displacement, and lat/long.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0011",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "One of the errors inherent in a ring laser gyroscope occurs at low input rotation rates tending towards zero when a phenomenon known as lock-in is experienced. What is the name of the technique, effected by means of a piezo-electric motor, that is used to correct this error?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Dither."
+      },
+      {
+        "id": "b",
+        "text": "Cavity rotation."
+      },
+      {
+        "id": "c",
+        "text": "Zero drop."
+      },
+      {
+        "id": "d",
+        "text": "Beam lock."
+      }
+    ],
+    "correct": "a",
+    "explanation": "Lock-in is overcome by \"dither\" — mechanically vibrating the laser block with a piezo-electric motor.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0012",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Which of the following statements concerning the aircraft positions indicated on a triple fit Inertial Navigation System (INS)/ Inertial Reference System (IRS) on the CDU is correct?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The positions will only differ if one of the systems has been decoupled because of a detected malfunction."
+      },
+      {
+        "id": "b",
+        "text": "The positions will be the same because they are an average of three different positions."
+      },
+      {
+        "id": "c",
+        "text": "The positions are likely to differ because they are calculated from different sources."
+      },
+      {
+        "id": "d",
+        "text": "The positions will only differ if an error has been made when inputting the present position at the departure airport."
+      }
+    ],
+    "correct": "c",
+    "explanation": "Each system computes its own position independently, so the three displayed positions will normally differ slightly.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0013",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "If an IRS fails in flight it can provide:",
+    "options": [
+      {
+        "id": "a",
+        "text": "attitude and navigation information."
+      },
+      {
+        "id": "b",
+        "text": "attitude information only."
+      },
+      {
+        "id": "c",
+        "text": "attitude and heading information"
+      },
+      {
+        "id": "d",
+        "text": "navigation information but not attitude information."
+      }
+    ],
+    "correct": "c",
+    "explanation": "After a NAV failure an IRS can still be used in ATT mode, giving attitude and (manually entered) heading.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0014",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Where and when are the IRS positions updated?",
+    "options": [
+      {
+        "id": "a",
+        "text": "During flight IRS positions are automatically updated by the FMC."
+      },
+      {
+        "id": "b",
+        "text": "Only on the ground during the alignment procedure."
+      },
+      {
+        "id": "c",
+        "text": "IRS positions are updated by pressing the Take-off/Go-around button at the start of the take-off roll."
+      },
+      {
+        "id": "d",
+        "text": "Updating is normally carried out by the crew when over-flying a known position (VOR station or NDB)."
+      }
+    ],
+    "correct": "b",
+    "explanation": "IRS positions are set only on the ground during alignment; in flight the FMC, not the IRS, is updated.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0015",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "In an Inertial Navigation System (INS), Ground Speed (GS) is calculated:",
+    "options": [
+      {
+        "id": "a",
+        "text": "from TAS and W/V from RNAV data."
+      },
+      {
+        "id": "b",
+        "text": "from TAS and W/V from Air Data Computer (ADC)."
+      },
+      {
+        "id": "c",
+        "text": "by integrating measured acceleration."
+      },
+      {
+        "id": "d",
+        "text": "by integrating gyro precession in N/S and E/W directions respectively."
+      }
+    ],
+    "correct": "c",
+    "explanation": "Accelerometers measure acceleration; integrating once gives velocity (GS), twice gives distance.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0016",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "During initial alignment an inertial navigation system is north aligned by inputs from:",
+    "options": [
+      {
+        "id": "a",
+        "text": "horizontal accelerometers and the east gyro."
+      },
+      {
+        "id": "b",
+        "text": "the aircraft remote reading compass system."
+      },
+      {
+        "id": "c",
+        "text": "computer matching of measured gravity magnitude to gravity magnitude of initial alignment."
+      },
+      {
+        "id": "d",
+        "text": "vertical accelerometers and the north gyro."
+      }
+    ],
+    "correct": "a",
+    "explanation": "During gyrocompassing the north alignment uses the horizontal accelerometers (levelling) and the east gyro sensing Earth-rate.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0017",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Which FMC/CDU page normally appears on initial power application to the B737-400 Electronic Flight Instrument System?",
+    "options": [
+      {
+        "id": "a",
+        "text": "IDENT."
+      },
+      {
+        "id": "b",
+        "text": "INITIAL."
+      },
+      {
+        "id": "c",
+        "text": "POS INIT."
+      },
+      {
+        "id": "d",
+        "text": "PERF INIT."
+      }
+    ],
+    "correct": "a",
+    "explanation": "At power-up the B737 CDU shows the IDENT page (model, nav database and its validity), followed by POS INIT.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0018",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "When is the last point at which an INS or IRS may be selected to NAV mode?",
+    "options": [
+      {
+        "id": "a",
+        "text": "After passengers and freight are aboard."
+      },
+      {
+        "id": "b",
+        "text": "Immediately prior to push back or taxi from the gate."
+      },
+      {
+        "id": "c",
+        "text": "At the holding point."
+      },
+      {
+        "id": "d",
+        "text": "On operation of the TOGA switch when opening the throttles for the take-off"
+      }
+    ],
+    "correct": "b",
+    "explanation": "NAV mode must be selected after alignment and before the aircraft is moved (before push-back/taxi).",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0019",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "What does the sensor of an INS/IRS measure?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Velocity."
+      },
+      {
+        "id": "b",
+        "text": "Precession."
+      },
+      {
+        "id": "c",
+        "text": "Horizontal Earth Rate."
+      },
+      {
+        "id": "d",
+        "text": "Acceleration."
+      }
+    ],
+    "correct": "d",
+    "explanation": "INS/IRS sensors (accelerometers) measure acceleration; velocity and distance come from integration.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0020",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "During the initial alignment of an inertial navigation system (INS) the equipment:",
+    "options": [
+      {
+        "id": "a",
+        "text": "will accept a 10° error in initial latitude but will not accept a 10° error in initial longitude."
+      },
+      {
+        "id": "b",
+        "text": "will not accept a 10° error in initial latitude but will accept a 10° error in initial longitude."
+      },
+      {
+        "id": "c",
+        "text": "will accept a 10° error in initial latitude and initial longitude."
+      },
+      {
+        "id": "d",
+        "text": "will not accept a 10° error in initial latitude or initial longitude."
+      }
+    ],
+    "correct": "b",
+    "explanation": "During gyrocompassing the INS computes latitude from Earth-rate and rejects a large latitude error; it cannot check longitude, so a longitude error is accepted.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0021",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "With reference to inertial navigation systems, a TAS input is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "not required."
+      },
+      {
+        "id": "b",
+        "text": "required to provide a W/V read out."
+      },
+      {
+        "id": "c",
+        "text": "required for Polar navigation."
+      },
+      {
+        "id": "d",
+        "text": "required for rhumb line navigation."
+      }
+    ],
+    "correct": "b",
+    "explanation": "An INS needs no air data to navigate; TAS is input only so it can compute and display the wind velocity.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0022",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "The azimuth gyro of an inertial unit has a drift of 0.01° /HR. After a flight of 12 HR with a ground speed of 500 kt, the error on the aeroplane position is approximately:",
+    "options": [
+      {
+        "id": "a",
+        "text": "6 NM."
+      },
+      {
+        "id": "b",
+        "text": "1 NM."
+      },
+      {
+        "id": "c",
+        "text": "12 NM."
+      },
+      {
+        "id": "d",
+        "text": "60 NM."
+      }
+    ],
+    "correct": "a",
+    "explanation": "A gyro drifting at a constant rate gives a heading error growing with time, so cross-track error ≈ ½ × GS × drift rate × t² = ½ × 500 × (0.01° in rad) × 12² ≈ 6 NM.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0023",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "An aircraft equipped with an Inertial Navigation system (INS) flies with INS 1 coupled with autopilot 1. Both inertial navigation systems are navigating from waypoint A to B. The inertial systems CDU s show: XTK on INS 1 = 0 XTK on INS 2 = 8L From:",
+    "options": [
+      {
+        "id": "a",
+        "text": "only inertial navigation No 1 is drifting."
+      },
+      {
+        "id": "b",
+        "text": "only inertial navigation No 2 is drifting."
+      },
+      {
+        "id": "c",
+        "text": "at least one of the inertial navigation systems is drifting."
+      },
+      {
+        "id": "d",
+        "text": "the autopilot is unserviceable in NAV mode."
+      }
+    ],
+    "correct": "c",
+    "explanation": "The autopilot keeps INS 1 at zero cross-track; INS 2 disagreeing by 8 NM only proves that at least one system is drifting.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0024",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "An Inertial Navigation System, what is the output of the first stage North/South integrator?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Groundspeed."
+      },
+      {
+        "id": "b",
+        "text": "Latitude."
+      },
+      {
+        "id": "c",
+        "text": "Velocity along the local meridian."
+      },
+      {
+        "id": "d",
+        "text": "Change of latitude."
+      }
+    ],
+    "correct": "c",
+    "explanation": "Integrating the N/S accelerometer once gives velocity along the meridian (north–south velocity); a second integration gives change of latitude.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0025",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "A typical FMS installation consists of 2 EFIS and 2 CDU. When the FMC switch is placed in the ALTN position:",
+    "options": [
+      {
+        "id": "a",
+        "text": "the related CDU and EFIS displays will be connected to the other computer."
+      },
+      {
+        "id": "b",
+        "text": "the EFIS displays will shift between the 2 FMCs every 30 seconds."
+      },
+      {
+        "id": "c",
+        "text": "the pilot will be presented with an alternative picture on his EFIS at the interval he selects."
+      },
+      {
+        "id": "d",
+        "text": "alternative sources of data are used to supply data to the FMC."
+      }
+    ],
+    "correct": "a",
+    "explanation": "The FMC ALTN switch connects that side's CDU and EFIS displays to the other (opposite) FMC.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0026",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "The drift of the azimuth gyro on an inertial unit induces an error in the position given by this unit. T being the elapsed time. The total error is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "sinusoidal."
+      },
+      {
+        "id": "b",
+        "text": "proportional to the square of time, t2."
+      },
+      {
+        "id": "c",
+        "text": "proportional to t/2."
+      },
+      {
+        "id": "d",
+        "text": "proportional to t."
+      }
+    ],
+    "correct": "b",
+    "explanation": "Azimuth gyro drift causes a heading error that grows linearly; the resulting position error grows with t².",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0027",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Aircraft position determined by radio navigation in an FMC is derived from:",
+    "options": [
+      {
+        "id": "a",
+        "text": "VOR / DME."
+      },
+      {
+        "id": "b",
+        "text": "DME ranges and / or VOR / ADF bearings."
+      },
+      {
+        "id": "c",
+        "text": "VOR / ADF."
+      },
+      {
+        "id": "d",
+        "text": "DME only."
+      }
+    ],
+    "correct": "b",
+    "explanation": "FMC radio position uses DME/DME ranges and/or VOR (and ADF) bearings.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0028",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "What is the validity period of the permanent data base of aeronautical information stored in the FMC In the B737-400 Flight Management System?",
+    "options": [
+      {
+        "id": "a",
+        "text": "28 days."
+      },
+      {
+        "id": "b",
+        "text": "One calendar month."
+      },
+      {
+        "id": "c",
+        "text": "3 calendar months."
+      },
+      {
+        "id": "d",
+        "text": "14 days."
+      }
+    ],
+    "correct": "a",
+    "explanation": "The FMC navigation database follows the 28-day AIRAC cycle.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0029",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Gyro-compassing in an INS:",
+    "options": [
+      {
+        "id": "a",
+        "text": "is possible in flight as the gyros can differentiate between acceleration due to aircraft movement and initial alignment errors."
+      },
+      {
+        "id": "b",
+        "text": "is not possible in flight as the gyros can differentiate between acceleration due to aircraft movement and initial alignment errors."
+      },
+      {
+        "id": "c",
+        "text": "is not possible in flight as the gyros cannot differentiate between acceleration due to aircraft movement and initial alignment errors."
+      },
+      {
+        "id": "d",
+        "text": "is possible in flight as the gyros cannot differentiate between acceleration due to aircraft movement and initial alignment errors."
+      }
+    ],
+    "correct": "c",
+    "explanation": "Gyrocompassing is only possible on the ground; in flight the system cannot separate aircraft accelerations from alignment errors.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0030",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "In an IRS:",
+    "options": [
+      {
+        "id": "a",
+        "text": "the accelerometers are strapped down but the platform is gyro stabilised."
+      },
+      {
+        "id": "b",
+        "text": "the platform is strapped down but the accelerometers are gyro-stabilised."
+      },
+      {
+        "id": "c",
+        "text": "accelerometers and platform are both gyro-stabilised."
+      },
+      {
+        "id": "d",
+        "text": "accelerometers and platform are both strapped down."
+      }
+    ],
+    "correct": "d",
+    "explanation": "In an IRS both gyros and accelerometers are strapped down to the airframe; the \"platform\" is computed mathematically.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0031",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "When initial position is put into an FMS, the system:",
+    "options": [
+      {
+        "id": "a",
+        "text": "rejects initial latitude error, but it will accept longitude error."
+      },
+      {
+        "id": "b",
+        "text": "rejects initial longitude error, but it will accept latitude error."
+      },
+      {
+        "id": "c",
+        "text": "rejects initial latitude or longitude error."
+      },
+      {
+        "id": "d",
+        "text": "cannot detect input errors, and accepts whatever is put in."
+      }
+    ],
+    "correct": "a",
+    "explanation": "The inertial system checks the entered latitude against its own gyrocompassing result and rejects a large error, but it cannot check longitude.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0032",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "What additional information is required to be input to an Inertial Navigation System (INS) in order to obtain an W/V readout?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Mach Number."
+      },
+      {
+        "id": "b",
+        "text": "IAS."
+      },
+      {
+        "id": "c",
+        "text": "Altitude and OAT."
+      },
+      {
+        "id": "d",
+        "text": "TAS."
+      }
+    ],
+    "correct": "d",
+    "explanation": "With TAS (and heading) from the air data computer the INS can compare air vector with ground vector to give W/V.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0033",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "What are the levels of message on the Boeing 737-400 FMC?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Urgent and Routine."
+      },
+      {
+        "id": "b",
+        "text": "Priority and Alerting."
+      },
+      {
+        "id": "c",
+        "text": "Alert and Advisory."
+      },
+      {
+        "id": "d",
+        "text": "Urgent and Advisory."
+      }
+    ],
+    "correct": "c",
+    "explanation": "B737 FMC messages are either Alerting or Advisory.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0034",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Gyrocompassing of an inertial reference system (IRS) is accomplished with the mode selector switched to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "ATT/REF."
+      },
+      {
+        "id": "b",
+        "text": "STBY."
+      },
+      {
+        "id": "c",
+        "text": "ALIGN."
+      },
+      {
+        "id": "d",
+        "text": "ON."
+      }
+    ],
+    "correct": "c",
+    "explanation": "Gyrocompassing takes place in ALIGN mode.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0035",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "What indication, if any, is given in the B737-400 Flight Management System if radio updating is not available?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A warning message is displayed on the IRS displays."
+      },
+      {
+        "id": "b",
+        "text": "A warning message is displayed on the EHSI and MFDU."
+      },
+      {
+        "id": "c",
+        "text": "A warning message is displayed on the Flight Director System."
+      },
+      {
+        "id": "d",
+        "text": "No indication is given so long as the IRS positions remain within limits."
+      }
+    ],
+    "correct": "b",
+    "explanation": "When radio updating is lost the FMC shows a message (e.g. IRS NAV ONLY) on the CDU and on the EFIS map display.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0036",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "The resultant of the first integration of the output from the east/west accelerometer of an inertial navigation system (INS) in NAV MODE is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "velocity along the local parallel of latitude."
+      },
+      {
+        "id": "b",
+        "text": "change of longitude."
+      },
+      {
+        "id": "c",
+        "text": "vehicle longitude."
+      },
+      {
+        "id": "d",
+        "text": "departure."
+      }
+    ],
+    "correct": "a",
+    "explanation": "First integration of the E/W accelerometer gives velocity along the local parallel (east–west velocity).",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0037",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "How many navigational databases are there in an FMC:",
+    "options": [
+      {
+        "id": "a",
+        "text": "2 active."
+      },
+      {
+        "id": "b",
+        "text": "2 inactive."
+      },
+      {
+        "id": "c",
+        "text": "1 active, 1 inactive."
+      },
+      {
+        "id": "d",
+        "text": "2 active, 2 inactive"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The FMC holds two navigation databases: one active and one inactive (next AIRAC cycle).",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0038",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "If an INS is switched off, then on again in flight, which of the following applies?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is unusable for the rest of the flight."
+      },
+      {
+        "id": "b",
+        "text": "You can carry on as before."
+      },
+      {
+        "id": "c",
+        "text": "It will be usable after a position update."
+      },
+      {
+        "id": "d",
+        "text": "It will be usable in ATT REF only."
+      }
+    ],
+    "correct": "a",
+    "explanation": "An INS cannot re-align in flight (gyrocompassing needs a stationary aircraft), so it is lost for the rest of the flight.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0039",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "The period of validity of an FMS database is:",
+    "options": [
+      {
+        "id": "a",
+        "text": "56 days."
+      },
+      {
+        "id": "b",
+        "text": "one week."
+      },
+      {
+        "id": "c",
+        "text": "28 days."
+      },
+      {
+        "id": "d",
+        "text": "varies depending on the area of operational cover."
+      }
+    ],
+    "correct": "c",
+    "explanation": "FMS navigation databases follow the 28-day AIRAC cycle.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0040",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "In what formats can created waypoints be entered into the scratch pad of the B737 - 400 FMS?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Place Bearing/Distance, Place Distance/Place Distance, Along-Track Displacement, Latitude and Longitude."
+      },
+      {
+        "id": "b",
+        "text": "Place Bearing/Distance, Place Bearing/Place Bearing, Across-Track Displacement, Latitude and Longitude."
+      },
+      {
+        "id": "c",
+        "text": "Place Bearing/Distance, Place Bearing/Place Bearing, Along-Track Displacement, Latitude and Longitude."
+      },
+      {
+        "id": "d",
+        "text": "Place, Place Bearing/Distance, Along-Track Displacement, Latitude and Longitude."
+      }
+    ],
+    "correct": "c",
+    "explanation": "Created waypoints: Place-Bearing/Distance, Place-Bearing/Place-Bearing, Along-Track Displacement, Lat/Long.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0041",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "For an FMS if a SID has to be entered into the route the:",
+    "options": [
+      {
+        "id": "a",
+        "text": "RTE key is pushed."
+      },
+      {
+        "id": "b",
+        "text": "PROG key is pushed."
+      },
+      {
+        "id": "c",
+        "text": "CLB key is pushed."
+      },
+      {
+        "id": "d",
+        "text": "DEP/ARR key is pushed."
+      }
+    ],
+    "correct": "d",
+    "explanation": "SIDs and STARs are selected on the DEP/ARR page.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0042",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Which mode on the CDU of an INS must be selected in order to display initial Great Circle track?",
+    "options": [
+      {
+        "id": "a",
+        "text": "HDG DA"
+      },
+      {
+        "id": "b",
+        "text": "TK GS"
+      },
+      {
+        "id": "c",
+        "text": "DSRTK STS"
+      },
+      {
+        "id": "d",
+        "text": "XTK TKE"
+      }
+    ],
+    "correct": "c",
+    "explanation": "The DSRTK/STS (desired track) display shows the great-circle track required.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0043",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "What is the name given to an Inertial Reference System (IRS) which has the gyros and accelerometers as part of the units fixture to the aircraft structure?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Solid state."
+      },
+      {
+        "id": "b",
+        "text": "Rigid."
+      },
+      {
+        "id": "c",
+        "text": "Strapdown."
+      },
+      {
+        "id": "d",
+        "text": "Ring laser."
+      }
+    ],
+    "correct": "c",
+    "explanation": "A system with gyros and accelerometers fixed to the airframe is a strap-down system.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0044",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "In an INS / IRS, an azimuth gyro is found to have a drift rate. If t is the time since selecting the MSU from ALIGN to NAV, is the azimuth gyro heading error:",
+    "options": [
+      {
+        "id": "a",
+        "text": "proportional to t."
+      },
+      {
+        "id": "b",
+        "text": "proportional to 1/t."
+      },
+      {
+        "id": "c",
+        "text": "proportional to sqrt(t)."
+      },
+      {
+        "id": "d",
+        "text": "sinusoidal."
+      }
+    ],
+    "correct": "a",
+    "explanation": "A constant gyro drift rate produces a heading error that grows linearly with time (∝ t).",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0045",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "In which of the following situations is the FMC present position of a B737-400 Electronic Flight Instrument System likely to be least accurate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "At top of descent."
+      },
+      {
+        "id": "b",
+        "text": "At top of climb."
+      },
+      {
+        "id": "c",
+        "text": "Just after take-off."
+      },
+      {
+        "id": "d",
+        "text": "On final approach."
+      }
+    ],
+    "correct": "c",
+    "explanation": "Just after take-off the FMC position relies on the runway update and IRS alone, before DME/DME radio updating is established — least accurate phase.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0046",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Which of the following lists, which compares an Inertial Reference System that utilises Ring Laser Gyroscopes (RLG) instead of conventional gyroscopes, is completely correct?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The platform is kept stable relative to the earth mathematically rather than mechanically but it has a longer spin up time."
+      },
+      {
+        "id": "b",
+        "text": "It does not suffer from lock in error and it is insensitive to gravitational (g) forces."
+      },
+      {
+        "id": "c",
+        "text": "There is little or no spin up time and it does not suffer from lock in error."
+      },
+      {
+        "id": "d",
+        "text": "There is little or no spin up time and it is insensitive to gravitational (g) forces."
+      }
+    ],
+    "correct": "d",
+    "explanation": "RLG systems need practically no spin-up and, having no moving rotor, are insensitive to g-loads (they do suffer lock-in, cured by dither).",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0047",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "The Flight management System consists of the following major units:",
+    "options": [
+      {
+        "id": "a",
+        "text": "the flight management unit and a VOR/DME computerised receiver unit."
+      },
+      {
+        "id": "b",
+        "text": "the Flight management computer and the Command display unit."
+      },
+      {
+        "id": "c",
+        "text": "the Command display unit and an INS unit."
+      },
+      {
+        "id": "d",
+        "text": "the Command and display unit and a flight-planning computer."
+      }
+    ],
+    "correct": "b",
+    "explanation": "The FMS consists of the Flight Management Computer and the Control Display Unit.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0048",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "VNAV mode will disengage:",
+    "options": [
+      {
+        "id": "a",
+        "text": "If the MCP altitude is intercepted before reaching the FMC cruise altitude."
+      },
+      {
+        "id": "b",
+        "text": "If the MCP altitude is intercepted after reaching the FMC cruise altitude."
+      },
+      {
+        "id": "c",
+        "text": "If the MCP altitude is set before reaching the FMC cruise altitude."
+      },
+      {
+        "id": "d",
+        "text": "If the MCP altitude is set after reaching the FMC cruise altitude."
+      }
+    ],
+    "correct": "a",
+    "explanation": "In climb VNAV disengages (reverts) if the MCP altitude is captured before the FMC cruise altitude.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0049",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "In order to maintain an accurate vertical using a pendulous system, an aircraft inertial platform incorporates a device:",
+    "options": [
+      {
+        "id": "a",
+        "text": "without damping and a period of 84.4 MIN."
+      },
+      {
+        "id": "b",
+        "text": "with damping and a period of 84.4 MIN."
+      },
+      {
+        "id": "c",
+        "text": "without damping and a period of 84.4 SEC."
+      },
+      {
+        "id": "d",
+        "text": "with damping and a period of 84.4 SEC."
+      }
+    ],
+    "correct": "a",
+    "explanation": "The platform is Schuler-tuned: an undamped \"pendulum\" with an 84.4-minute period keeps it aligned with the local vertical.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0050",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Alignment of INS and IRS equipments can take place in which of the following modes?",
+    "options": [
+      {
+        "id": "a",
+        "text": "ATT and ALIGN."
+      },
+      {
+        "id": "b",
+        "text": "NAV and ALIGN."
+      },
+      {
+        "id": "c",
+        "text": "ALIGN and ATT"
+      },
+      {
+        "id": "d",
+        "text": "NAV and ATT."
+      }
+    ],
+    "correct": "b",
+    "explanation": "Alignment takes place when ALIGN is selected, or automatically when NAV is selected directly from OFF.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0051",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "For an FMS, during pre-flight:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Information from the navigation database and load sheet is entered into the CDU."
+      },
+      {
+        "id": "b",
+        "text": "Information from the flight plan and navigation database is entered into the CDU."
+      },
+      {
+        "id": "c",
+        "text": "Information from the flight plan and load sheet is entered into the CDU."
+      },
+      {
+        "id": "d",
+        "text": "Information from the flight plan and load sheet and navigation database is entered into the CDU."
+      }
+    ],
+    "correct": "c",
+    "explanation": "Pre-flight, the crew enter data from the flight plan and load sheet; the navigation database is already in the FMC.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0052",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Checking and entering the necessary data in the FMS on each pre-flight page is done by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Pushing the lower right line select key."
+      },
+      {
+        "id": "b",
+        "text": "Pushing the lower left line select key."
+      },
+      {
+        "id": "c",
+        "text": "Pushing the menu key."
+      },
+      {
+        "id": "d",
+        "text": "Pushing the init ref key."
+      }
+    ],
+    "correct": "a",
+    "explanation": "Each B737 pre-flight page is completed and the next called by the lower right line select key.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0053",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Which of the following can all be stored as five letter waypoint identifiers through the CDU of a B737- 400 Electronic Flight Instrument System?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Waypoint names; navaid frequencies; runway codes; airport ICAO identifiers."
+      },
+      {
+        "id": "b",
+        "text": "Airway names; navaid identifiers; airport names; waypoint code numbers."
+      },
+      {
+        "id": "c",
+        "text": "Waypoint names; navaid identifiers; runway numbers; airport ICAO identifiers."
+      },
+      {
+        "id": "d",
+        "text": "Waypoint names; navaid positions; airport ICAO identifiers; airport names."
+      }
+    ],
+    "correct": "c",
+    "explanation": "Five-character identifiers include waypoint names, navaid identifiers, runway numbers and airport ICAO codes.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0054",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "The alignment time, at mid-latitudes, for an Inertial Navigation System using gimballed gyros is approximately:",
+    "options": [
+      {
+        "id": "a",
+        "text": "20 MIN."
+      },
+      {
+        "id": "b",
+        "text": "30 MIN."
+      },
+      {
+        "id": "c",
+        "text": "10 MIN."
+      },
+      {
+        "id": "d",
+        "text": "5 MIN."
+      }
+    ],
+    "correct": "a",
+    "explanation": "A gimballed INS needs roughly 15–20 minutes to align at mid-latitudes.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0055",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "For an FMS, when the TAKE OFF REF page is reached, it displays:",
+    "options": [
+      {
+        "id": "a",
+        "text": "PRE-FLT COMPLETE in confirmation that all required pre-flight entries have been made."
+      },
+      {
+        "id": "b",
+        "text": "TAKE-OFF in confirmation that all required pre-flight entries have been made,"
+      },
+      {
+        "id": "c",
+        "text": "PERF INIT in confirmation that all required pre-flight entries have been made."
+      },
+      {
+        "id": "d",
+        "text": "ACT RTE in confirmation that all required pre-flight entries have been made."
+      }
+    ],
+    "correct": "a",
+    "explanation": "When all required pre-flight entries are made the TAKEOFF REF page displays PRE-FLT COMPLETE.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0056",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "What is the sequence of pages on start-up of the Boeing 737 - 400 FMS?",
+    "options": [
+      {
+        "id": "a",
+        "text": "POS INIT, IDENT, DEPARTURES."
+      },
+      {
+        "id": "b",
+        "text": "IDENT, POS INIT, RTE."
+      },
+      {
+        "id": "c",
+        "text": "POS INIT, RTE, IDENT."
+      },
+      {
+        "id": "d",
+        "text": "IDENT, POS INIT, DEPARTURES."
+      }
+    ],
+    "correct": "b",
+    "explanation": "Start-up sequence: IDENT → POS INIT → RTE.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0057",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "An INS, what is the output of the E/W second-stage integrator?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Velocity N/S."
+      },
+      {
+        "id": "b",
+        "text": "Distance N/S."
+      },
+      {
+        "id": "c",
+        "text": "Distance E/W."
+      },
+      {
+        "id": "d",
+        "text": "Velocity E/W."
+      }
+    ],
+    "correct": "c",
+    "explanation": "Second integration of the E/W accelerometer gives E/W distance (departure → change of longitude).",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0058",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Which of the following statements is correct concerning Ring Laser Gyros?",
+    "options": [
+      {
+        "id": "a",
+        "text": "They are not necessarily fixed to true north and are quick to erect."
+      },
+      {
+        "id": "b",
+        "text": "They are not necessarily fixed to true north but take a long time to erect."
+      },
+      {
+        "id": "c",
+        "text": "They do not suffer from lock-in and are unaffected by the Earth’s gravitational force."
+      },
+      {
+        "id": "d",
+        "text": "Their alignment will be either with true north or the local vertical."
+      }
+    ],
+    "correct": "a",
+    "explanation": "Ring laser gyros measure rotation about their own axes (not tied to true north mechanically) and need almost no run-up.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0059",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "As the INS position of the departure aerodrome, coordinates 35° 32.7N 139° 46.3W are input instead of 35° 32.7N 139° 46.3E. When the aircraft subsequently passes point 52° N 180° W, the longitude value show on the INS will be:",
+    "options": [
+      {
+        "id": "a",
+        "text": "080° 27.4 W"
+      },
+      {
+        "id": "b",
+        "text": "099° 32.6 W"
+      },
+      {
+        "id": "c",
+        "text": "099° 32.6 E"
+      },
+      {
+        "id": "d",
+        "text": "080° 27.4 E"
+      }
+    ],
+    "correct": "b",
+    "explanation": "The INS adds the d.long actually flown (+40°13.7′ to reach 180°) to the wrong start 139°46.3′W → 099°32.6′W.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0060",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "If flying the climb speed profile would cause a violation of an altitude constraint:",
+    "options": [
+      {
+        "id": "a",
+        "text": "The NEXT ALT message appears."
+      },
+      {
+        "id": "b",
+        "text": "The ALT message appears,"
+      },
+      {
+        "id": "c",
+        "text": "The UNABLE NEXT ALT message appears."
+      },
+      {
+        "id": "d",
+        "text": "The HOLD message appears."
+      }
+    ],
+    "correct": "c",
+    "explanation": "If the climb profile would violate a constraint the FMC shows UNABLE NEXT ALT.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0061",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "What are, in order of highest priority followed by lowest, the two levels of message produced by the CDU of the B737-400 Electronic Flight Instrument System?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Priority and Alerting."
+      },
+      {
+        "id": "b",
+        "text": "Urgent and Routine."
+      },
+      {
+        "id": "c",
+        "text": "Alerting and Advisory."
+      },
+      {
+        "id": "d",
+        "text": "Urgent and Advisory."
+      }
+    ],
+    "correct": "c",
+    "explanation": "B737 FMC message levels: Alerting (higher priority) and Advisory.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0062",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Which of the following equipments does not use information from external sources in flight?",
+    "options": [
+      {
+        "id": "a",
+        "text": "INS / IRS."
+      },
+      {
+        "id": "b",
+        "text": "Pressure altimeter."
+      },
+      {
+        "id": "c",
+        "text": "Slaved gyro compass."
+      },
+      {
+        "id": "d",
+        "text": "VOR."
+      }
+    ],
+    "correct": "a",
+    "explanation": "An INS/IRS is self-contained: it uses no external signals in flight.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0063",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "In the B737-400 Flight Management System the CDUs are used during pre-flight to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "manually initialize the IRSs and FMC with dispatch information."
+      },
+      {
+        "id": "b",
+        "text": "automatically initialize the IRSs and FMC with dispatch information."
+      },
+      {
+        "id": "c",
+        "text": "manually initialize the Flight Director System and FMC with dispatch information."
+      },
+      {
+        "id": "d",
+        "text": "manually initialize the IRSs, FMC and Autothrottle with dispatch information."
+      }
+    ],
+    "correct": "a",
+    "explanation": "The CDUs are used to manually initialise the IRSs and FMC with dispatch information.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0064",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "How is the radio position determined by the FMC in the B737-400 Electronic Flight Instrument System?",
+    "options": [
+      {
+        "id": "a",
+        "text": "DME ranges and/ or VOR/ADF bearings."
+      },
+      {
+        "id": "b",
+        "text": "DME/DME or VOR/DME."
+      },
+      {
+        "id": "c",
+        "text": "DME/DME."
+      },
+      {
+        "id": "d",
+        "text": "VOR/DME range and bearing."
+      }
+    ],
+    "correct": "a",
+    "explanation": "FMC radio position: DME/DME ranges and/or VOR/ADF bearings (VOR/DME).",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0065",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "What are the positions (in the order left to right) on the Boeing 737-400 IRS MSU mode selector?",
+    "options": [
+      {
+        "id": "a",
+        "text": "OFF STBY ALIGN NAV."
+      },
+      {
+        "id": "b",
+        "text": "OFF ON ALIGN NAV."
+      },
+      {
+        "id": "c",
+        "text": "OFF STBY ATT NAV."
+      },
+      {
+        "id": "d",
+        "text": "OFF ALIGN NAV ATT."
+      }
+    ],
+    "correct": "d",
+    "explanation": "The B737 IRS mode selector reads OFF – ALIGN – NAV – ATT.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0066",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Double integration of the output from the east/west accelerometer of an inertial navigation system (INS) in the NAV MODE give:",
+    "options": [
+      {
+        "id": "a",
+        "text": "distance north/south."
+      },
+      {
+        "id": "b",
+        "text": "vehicle longitude."
+      },
+      {
+        "id": "c",
+        "text": "distance east/west."
+      },
+      {
+        "id": "d",
+        "text": "velocity east/west."
+      }
+    ],
+    "correct": "c",
+    "explanation": "Double integration of the E/W accelerometer gives E/W distance.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0067",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Some inertial reference and navigation systems are known as strapdown. This means that:",
+    "options": [
+      {
+        "id": "a",
+        "text": "only the gyros ,and not the accelerometers, become part of the units fixture to the aircraft structure."
+      },
+      {
+        "id": "b",
+        "text": "gyros, and accelerometers are mounted on a stabilised platform in the aircraft."
+      },
+      {
+        "id": "c",
+        "text": "gyros and accelerometers need satellite information input to obtain a vertical reference."
+      },
+      {
+        "id": "d",
+        "text": "the gyroscopes and accelerometers become part of the units fixture to the aircraft structure."
+      }
+    ],
+    "correct": "d",
+    "explanation": "Strap-down: gyros and accelerometers are fixed to the airframe.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0068",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "In a strap down INS the accelerometers are oriented with their axes:",
+    "options": [
+      {
+        "id": "a",
+        "text": "with the local vertical, True North and True East."
+      },
+      {
+        "id": "b",
+        "text": "with the lateral axis of the aircraft, True North/South and True East/West."
+      },
+      {
+        "id": "c",
+        "text": "along yaw, longitudinal and lateral axis of the aircraft."
+      },
+      {
+        "id": "d",
+        "text": "with the local horizontal plane, The aircraft lateral axis and True North/South."
+      }
+    ],
+    "correct": "c",
+    "explanation": "In a strap-down system the accelerometers are aligned with the aircraft's own axes (yaw, longitudinal, lateral).",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0069",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "The term drift refers to the wander of the axis of a gyro in:",
+    "options": [
+      {
+        "id": "a",
+        "text": "the vertical and horizontal plane."
+      },
+      {
+        "id": "b",
+        "text": "the vertical plane."
+      },
+      {
+        "id": "c",
+        "text": "the horizontal plane."
+      },
+      {
+        "id": "d",
+        "text": "any plane."
+      }
+    ],
+    "correct": "c",
+    "explanation": "Drift is wander of the spin axis in the horizontal plane (topple is in the vertical plane).",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0070",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "The principle of Schuler Tuning as applied to the operation of Inertial Navigation Systems Inertial Reference Systems is applicable to:",
+    "options": [
+      {
+        "id": "a",
+        "text": "both gyro-stabilised platform and strapdown systems."
+      },
+      {
+        "id": "b",
+        "text": "only gyro-stabilised systems."
+      },
+      {
+        "id": "c",
+        "text": "both gyro-stabilised and laser gyro systems but only when operating in the non strapdown mode."
+      },
+      {
+        "id": "d",
+        "text": "only to strapdown laser gyro systems."
+      }
+    ],
+    "correct": "a",
+    "explanation": "Schuler tuning applies to both stabilised-platform and strap-down systems (in strap-down it is done computationally).",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0071",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "What is the source of magnetic variation information in a Flight Management System (FMS)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Magnetic variation is calculated by each IRS based on the respective IRS position and the aircraft magnetic heading."
+      },
+      {
+        "id": "b",
+        "text": "The main directional gyro which is coupled to the magnetic sensor (flux valve) positioned in the wingtip."
+      },
+      {
+        "id": "c",
+        "text": "The FMS calculates MH and MT from the FMC position."
+      },
+      {
+        "id": "d",
+        "text": "Magnetic variation information is stored in each IRS memory; it is applied to the true heading calculated by the respective IRS."
+      }
+    ],
+    "correct": "d",
+    "explanation": "Magnetic variation tables are stored in each IRS and applied to the computed true heading.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0072",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Which of the following correctly lists the order of available selections of the Mode Selector switches of an inertial reference system (IRS) mode panel?",
+    "options": [
+      {
+        "id": "a",
+        "text": "OFF - ON - ALIGN - NAV."
+      },
+      {
+        "id": "b",
+        "text": "OFF - ALIGN - NAV - ATT."
+      },
+      {
+        "id": "c",
+        "text": "OFF - STBY - ALIGN - NAV."
+      },
+      {
+        "id": "d",
+        "text": "OFF - ALIGN - ATT - NAV."
+      }
+    ],
+    "correct": "b",
+    "explanation": "IRS mode selector: OFF – ALIGN – NAV – ATT.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0073",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "The FMC normally has 3 different types of memory:",
+    "options": [
+      {
+        "id": "a",
+        "text": "Bubble memory, RAM and PROM."
+      },
+      {
+        "id": "b",
+        "text": "Bubble memory, RAM and DATA."
+      },
+      {
+        "id": "c",
+        "text": "Bubble memory, DATA and PROM."
+      },
+      {
+        "id": "d",
+        "text": "Bubble memory, RAM and PROM DATA."
+      }
+    ],
+    "correct": "a",
+    "explanation": "FMC memory types: bubble memory, RAM and PROM.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0074",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "A pilot turns off the power to his IRS whilst in flight. If he switches the power back on after just a few seconds the effect will be:",
+    "options": [
+      {
+        "id": "a",
+        "text": "the IRS cannot be used and should be shut down."
+      },
+      {
+        "id": "b",
+        "text": "there will be no effect and the IRS can continue to be used."
+      },
+      {
+        "id": "c",
+        "text": "the IRS can be used providing the position is checked."
+      },
+      {
+        "id": "d",
+        "text": "the IRS cannot be used for navigation but can be used to give attitude information."
+      }
+    ],
+    "correct": "d",
+    "explanation": "After a power interruption the IRS cannot re-align in flight; only ATT mode (attitude, manual heading) is available.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0075",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Which of the following lists the first three pages of the FMC/CDU normally used to enter data on initial start-up of the B737-400 Electronic Flight Instrument System?",
+    "options": [
+      {
+        "id": "a",
+        "text": "IDENT - RTE - DEPARTURE."
+      },
+      {
+        "id": "b",
+        "text": "POS INIT - RTE - IDENT."
+      },
+      {
+        "id": "c",
+        "text": "IDENT - POS INIT - RTE."
+      },
+      {
+        "id": "d",
+        "text": "POS INIT - RTE - DEPARTURE."
+      }
+    ],
+    "correct": "c",
+    "explanation": "IDENT → POS INIT → RTE.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0076",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "The purpose of the Flight Management System (FMS), as for example installed in the B737-400, is to provide:",
+    "options": [
+      {
+        "id": "a",
+        "text": "both manual navigation guidance and performance management."
+      },
+      {
+        "id": "b",
+        "text": "manual navigation guidance and automatic performance management."
+      },
+      {
+        "id": "c",
+        "text": "continuous automatic navigation guidance as well as manual performance management."
+      },
+      {
+        "id": "d",
+        "text": "continuous automatic navigation guidance and performance management."
+      }
+    ],
+    "correct": "d",
+    "explanation": "The FMS provides continuous automatic navigation guidance and performance management.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0077",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Few modern INS systems use a mechanically stabilised platform and mechanical gyros. These components has been replaced by:",
+    "options": [
+      {
+        "id": "a",
+        "text": "rotating accelerometers and analogue computers."
+      },
+      {
+        "id": "b",
+        "text": "strap down Ring laser gyros and accelerometers plus advanced digital computers."
+      },
+      {
+        "id": "c",
+        "text": "a digital horizon and gyrosyn true-reading compass."
+      },
+      {
+        "id": "d",
+        "text": "a combination of rate gyros and True North gyros."
+      }
+    ],
+    "correct": "b",
+    "explanation": "Modern systems use strap-down ring laser gyros and accelerometers with powerful digital computers.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0078",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "Which of the following statements concerning the loss of alignment by an Inertial Reference System (IRS) in flight is correct?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is not usable in any mode and must be shut down for the rest of the flight."
+      },
+      {
+        "id": "b",
+        "text": "The IRS has to be coupled to the remaining serviceable system and a realignment carried out in flight."
+      },
+      {
+        "id": "c",
+        "text": "The mode selector has to be rotated to ATT then back through ALIGN to NAV in order to obtain an in-flight realignment."
+      },
+      {
+        "id": "d",
+        "text": "The navigation mode, including present position and ground speed outputs, is inoperative for the remainder of the flight."
+      }
+    ],
+    "correct": "d",
+    "explanation": "An IRS cannot be realigned in flight; NAV outputs (position, GS) are lost for the rest of the flight — ATT mode remains.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0079",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "An INS platform is kept at right angles to local gravity by applying corrections for the effects of: i. Aircraft manoeuvres ii. earth rotation iii. transport wander iv. Coriolis v. gyroscopic inertia",
+    "options": [
+      {
+        "id": "a",
+        "text": "i, iii and v"
+      },
+      {
+        "id": "b",
+        "text": "ii, iii and v"
+      },
+      {
+        "id": "c",
+        "text": "ii, iv and v"
+      },
+      {
+        "id": "d",
+        "text": "ii, iii and iv"
+      }
+    ],
+    "correct": "d",
+    "explanation": "The platform is corrected for Earth rotation, transport wander (movement over the curved Earth) and Coriolis.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  },
+  {
+    "id": "GNAV-INS-0080",
+    "subjectCode": "GNAV",
+    "topic": "14 Inertial Navigation & FMS",
+    "question": "An FMS is fed by GNSS and by standard VOR/DME. If the GNSS fails:",
+    "options": [
+      {
+        "id": "a",
+        "text": "the FMS may still be used to provide B-RNAV guidance"
+      },
+      {
+        "id": "b",
+        "text": "the FMS must be switched off to prevent spurious signals reaching the AFCS"
+      },
+      {
+        "id": "c",
+        "text": "the FMS must not be used for navigation"
+      }
+    ],
+    "correct": "a",
+    "explanation": "B-RNAV (RNAV 5) can be flown on DME/DME or VOR/DME updating, so the FMS remains usable without GNSS.",
+    "tags": [
+      "inertial-navigation-fms"
+    ],
+    "status": "published",
+    "version": 1
+  }
+]

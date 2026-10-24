@@ -1,0 +1,873 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>General Navigation · Study Guide · PilotQBank</title>
+<meta name="description" content="General navigation study guide for the EASA ATPL: fifteen chapters with worked examples and exam traps.">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --bg:#F2F5F8; --panel:#FFFFFF; --panel2:#E8EEF4; --ink:#13233A; --muted:#566880; --line:#C7D2DE;
+  --accent:#A8205F; --accent2:#1D5FAE; --sun:#D99A12;
+  --ok:#17794F; --okbg:#E2F3EA; --bad:#B8362A; --badbg:#F9E5E2;
+  --f-display:"Jost","Futura","Century Gothic",system-ui,sans-serif;
+  --f-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Consolas,monospace;
+  --r:8px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0C1522; --panel:#132134; --panel2:#1A2B42; --ink:#E4EBF3; --muted:#93A5BA; --line:#2B3D55;
+  --accent:#E25C9C; --accent2:#64A2EA; --sun:#F0B83E; --ok:#4FC28C; --okbg:#143327; --bad:#F07A6C; --badbg:#3A1C1A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C1522; --panel:#132134; --panel2:#1A2B42; --ink:#E4EBF3; --muted:#93A5BA; --line:#2B3D55;
+  --accent:#E25C9C; --accent2:#64A2EA; --sun:#F0B83E; --ok:#4FC28C; --okbg:#143327; --bad:#F07A6C; --badbg:#3A1C1A; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:var(--f-body);font-size:16px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--panel)}
+a{color:var(--accent2)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--panel);border-bottom:1px solid var(--line);
+  padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:baseline;gap:10px;min-width:0}
+.brand .code{font-family:var(--f-mono);font-size:13px;color:var(--panel);background:var(--accent);padding:2px 7px;border-radius:4px;letter-spacing:.04em}
+.brand h1{font-family:var(--f-display);font-weight:600;font-size:20px;margin:0;letter-spacing:.01em;white-space:nowrap}
+.modes{display:flex;gap:4px;margin-left:auto;max-width:100%;overflow-x:auto;background:var(--panel2);padding:3px;border-radius:999px}
+.modes button{white-space:nowrap;border:0;background:transparent;padding:6px 14px;border-radius:999px;cursor:pointer;font-size:14px;font-weight:700;color:var(--muted)}
+.modes button[aria-pressed="true"]{background:var(--panel);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.wrap{display:grid;grid-template-columns:290px minmax(0,1fr);gap:0;min-height:calc(100vh - 60px)}
+.wrap>*{min-width:0}
+.rail{min-width:0;border-right:1px solid var(--line);padding:16px 12px 40px max(12px,env(safe-area-inset-left,0px));background:var(--bg)}
+.rail h2{font-family:var(--f-display);font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:6px 8px 10px;font-weight:600}
+.ch{display:grid;grid-template-columns:34px minmax(0,1fr);gap:2px 8px;align-items:center;width:100%;text-align:left;border:0;background:transparent;padding:8px;border-radius:var(--r);cursor:pointer}
+.ch:hover{background:var(--panel2)}
+.ch[aria-current="true"]{background:var(--panel);box-shadow:inset 0 0 0 1px var(--line)}
+.ch .no{font-family:var(--f-mono);font-size:12px;color:var(--muted);grid-row:span 2;text-align:center}
+.ch .t{font-weight:700;font-size:14.5px;line-height:1.25}
+.ch .m{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);font-family:var(--f-mono)}
+.bar{flex:1;height:4px;border-radius:2px;background:var(--panel2);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok)}
+.main{min-width:0;padding-block:24px 64px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.inner{max-width:820px;margin:0 auto}
+.eyebrow{font-family:var(--f-mono);font-size:12.5px;color:var(--accent);letter-spacing:.06em}
+.chhead h2{font-family:var(--f-display);font-weight:600;font-size:clamp(26px,4vw,34px);line-height:1.15;margin:4px 0 6px;text-wrap:balance}
+.chhead p{margin:0;color:var(--muted)}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin:20px 0 22px}
+.tabs button{border:0;background:transparent;padding:10px 16px;cursor:pointer;font-weight:700;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-1px}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+/* lesson typography */
+.lesson{max-width:68ch}
+.lesson .lead{font-size:18px;line-height:1.55;margin-top:0}
+.lesson h3{font-family:var(--f-display);font-weight:600;font-size:21px;margin:30px 0 8px;text-wrap:balance}
+.lesson ul{padding-left:20px}.lesson li{margin:4px 0}
+.formula{font-family:var(--f-mono);font-size:14px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent2);padding:12px 14px;border-radius:6px;margin:14px 0;line-height:1.7;overflow-x:auto}
+.rule{background:var(--panel2);padding:12px 14px;border-radius:6px;margin:14px 0}
+.trap{border:1px dashed var(--accent);padding:12px 14px;border-radius:6px;margin:24px 0 8px;background:var(--panel)}
+.trap b:first-child{color:var(--accent)}
+.example{background:var(--panel);border:1px solid var(--line);border-radius:6px;margin:14px 0;overflow:hidden}
+.example .q{padding:10px 14px;font-weight:700;border-bottom:1px solid var(--line)}
+.example .q::before{content:"WORKED EXAMPLE";display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;color:var(--accent2);font-weight:600;margin-bottom:2px}
+.example .a{padding:10px 14px}
+.tbl{border-collapse:collapse;width:100%;margin:12px 0;font-size:14.5px;display:block;overflow-x:auto}
+.tbl th,.tbl td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+.tbl th{font-family:var(--f-display);font-weight:600;font-size:13px;letter-spacing:.03em;color:var(--muted)}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.fig{margin:18px 0;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px;overflow-x:auto}
+.fig svg{width:100%;height:auto;max-width:560px;display:block;margin:0 auto}
+.fig figcaption{font-size:13.5px;color:var(--muted);margin-top:6px}
+.svg-s{font:600 13px var(--f-body);fill:var(--ink)}
+.svg-xs{font:12px var(--f-body);fill:var(--muted)}
+.lesson-cta{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+/* buttons */
+.btn{border:1px solid var(--line);background:var(--panel);padding:9px 16px;border-radius:999px;cursor:pointer;font-weight:700;font-size:14.5px}
+.btn:hover{border-color:var(--accent2)}
+.btn.primary{background:var(--accent2);border-color:var(--accent2);color:#fff}
+.btn:disabled{opacity:.45;cursor:default}
+/* practice */
+.pbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.pbar select{font:inherit;font-size:14px;padding:7px 10px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.pbar .count{font-family:var(--f-mono);font-size:13px;color:var(--muted);margin-left:auto}
+.qcard{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px}
+.qmeta{display:flex;justify-content:space-between;gap:8px;font-family:var(--f-mono);font-size:12px;color:var(--muted);margin-bottom:10px;flex-wrap:wrap}
+.qtext{font-size:17px;margin:0 0 16px;white-space:pre-line}
+.opts{display:grid;gap:8px}
+.opt{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:start;text-align:left;border:1px solid var(--line);background:var(--bg);padding:10px 12px;border-radius:8px;cursor:pointer;font-size:15.5px}
+.opt:hover:not(:disabled){border-color:var(--accent2)}
+.opt .k{font-family:var(--f-mono);font-weight:600;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--panel2);font-size:13px}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--ok);background:var(--okbg)}.opt.right .k{background:var(--ok);color:var(--panel)}
+.opt.wrong{border-color:var(--bad);background:var(--badbg)}.opt.wrong .k{background:var(--bad);color:var(--panel)}
+.fb{margin-top:16px;padding:12px 14px;border-radius:8px;background:var(--panel2)}
+.fb .v{font-weight:700;margin-right:6px}
+.fb .v.ok{color:var(--ok)}.fb .v.no{color:var(--bad)}
+.qnav{display:flex;gap:10px;margin-top:16px;justify-content:space-between;flex-wrap:wrap}
+.dots{display:flex;flex-wrap:wrap;gap:4px;margin-top:18px}
+.dots button{width:22px;height:22px;border-radius:4px;border:1px solid var(--line);background:var(--panel);font:600 10px var(--f-mono);cursor:pointer;color:var(--muted);padding:0}
+.dots button.ok{background:var(--ok);border-color:var(--ok);color:var(--panel)}
+.dots button.no{background:var(--bad);border-color:var(--bad);color:var(--panel)}
+.dots button.cur{outline:2px solid var(--accent2);outline-offset:1px}
+.empty{padding:30px;text-align:center;color:var(--muted);background:var(--panel);border:1px dashed var(--line);border-radius:10px}
+/* exam */
+.examhead{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.timer{font-family:var(--f-mono);font-size:22px;font-weight:600;margin-left:auto;font-variant-numeric:tabular-nums}
+.timer.low{color:var(--bad)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.stat .n{font-family:var(--f-display);font-size:30px;font-weight:600;line-height:1.1}
+.stat .l{font-size:13px;color:var(--muted)}
+.pill{display:inline-block;font:700 12px var(--f-mono);padding:3px 9px;border-radius:999px}
+.pill.ok{background:var(--okbg);color:var(--ok)}.pill.no{background:var(--badbg);color:var(--bad)}
+.breakdown{width:100%;border-collapse:collapse;font-size:14.5px}
+.breakdown td,.breakdown th{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left}
+.breakdown th{font-family:var(--f-display);font-weight:600;font-size:13px;color:var(--muted)}
+.review{margin-top:24px;display:grid;gap:12px}
+.rv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.rv .rq{font-weight:700;margin-bottom:6px}
+.rv .ra{font-size:14.5px}
+.rv .re{font-size:14px;color:var(--muted);margin-top:6px}
+/* bank */
+.search{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.search input{flex:1;min-width:180px;font:inherit;padding:9px 12px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.search select{font:inherit;padding:9px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.bq{background:var(--panel);border:1px solid var(--line);border-radius:8px;margin-bottom:8px}
+.bq summary{padding:11px 14px;cursor:pointer;list-style:none;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px}
+.bq summary::-webkit-details-marker{display:none}
+.bq .tag{font:600 11px var(--f-mono);color:var(--accent2);white-space:nowrap}
+.bq .body{padding:0 14px 12px;font-size:14.5px}
+.bq .body ol{margin:6px 0;padding-left:22px}
+.bq .body li.c{color:var(--ok);font-weight:700}
+.note{font-size:13.5px;color:var(--muted)}
+.confirm{display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap}
+@media (max-width:860px){
+  .wrap{grid-template-columns:1fr}
+  .rail{border-right:0;border-bottom:1px solid var(--line);padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px))}
+  .rail h2{display:none}
+  .chlist{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+  .ch{min-width:200px;background:var(--panel);box-shadow:inset 0 0 0 1px var(--line)}
+  .ch[aria-current="true"]{box-shadow:inset 0 0 0 2px var(--accent)}
+  .main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .modes{margin-left:0}
+  .modes button{padding:6px 11px;font-size:13.5px}
+  .brand h1{font-size:18px}
+}
+@media (prefers-reduced-motion:no-preference){.opt,.btn,.ch{transition:background .15s,border-color .15s}}
+
+.guide-toc{columns:2;margin:16px 0 32px;padding-left:18px}
+.guide-toc li{margin:4px 0}
+.ch-num{display:inline-block;min-width:2.2em;color:var(--accent,#7a5400);font-variant-numeric:tabular-nums}
+section{margin:40px 0;padding-top:8px;border-top:1px solid var(--line,#ddd)}
+@media (max-width:600px){.guide-toc{columns:1}}
+</style>
+</head>
+<body>
+<main class="wrap" style="max-width:860px;margin:0 auto;padding:24px 16px">
+<header>
+<h1>General Navigation</h1>
+<p class="lead">A study guide for the EASA ATPL General Navigation subject: the Earth and time, direction and magnetism, compasses, units, speed and altitude, chart projections, dead reckoning and wind, in-flight navigation, the point of equal time and the point of safe return, and inertial navigation with the FMS.</p>
+<ol class="guide-toc"><li><a href="#ch01">01 · The Solar System</a></li><li><a href="#ch02">02 · The Earth: Position & Distance</a></li><li><a href="#ch03">03 · Time & Time Conversion</a></li><li><a href="#ch04">04 · Direction & Terrestrial Magnetism</a></li><li><a href="#ch05">05 · Compasses</a></li><li><a href="#ch06">06 · Units, Speed & Altitude</a></li><li><a href="#ch07">07 · Chart Principles & Scale</a></li><li><a href="#ch08">08 · Mercator Projections</a></li><li><a href="#ch09">09 · Lambert Conformal Conic</a></li><li><a href="#ch10">10 · Polar Stereographic & Grid</a></li><li><a href="#ch11">11 · Dead Reckoning & Wind</a></li><li><a href="#ch12">12 · In-Flight Navigation</a></li><li><a href="#ch13">13 · PET & Point of Safe Return</a></li><li><a href="#ch14">14 · Inertial Navigation & FMS</a></li><li><a href="#ch15">15 · Related Subjects</a></li></ol>
+</header>
+<section id="ch01"><h2><span class="ch-num">01</span> The Solar System</h2>
+<p class="lead">Everything in navigation that involves time, daylight and the Sun goes back to two facts: the Earth spins on a tilted axis, and it moves round the Sun on a slightly elliptical orbit.</p>
+
+<h3>Kepler and the orbit</h3>
+<ul>
+<li>Planets move in <b>ellipses</b> with the Sun at one focus (Kepler's 1st law).</li>
+<li>A line from the Sun to the planet sweeps equal areas in equal times (2nd law), so the Earth moves <b>fastest at perihelion</b> and slowest at aphelion.</li>
+<li><b>Perihelion</b> (closest, ≈ 147 million km): about <b>3 January</b>. <b>Aphelion</b> (furthest, ≈ 152 million km): about <b>4 July</b>. Distance does <i>not</i> cause the seasons — the northern winter happens near perihelion.</li>
+</ul>
+
+<h3>Axial tilt and seasons</h3>
+<p>The Earth's axis is inclined <b>66½°</b> to the plane of its orbit, which is the same as saying the equator is inclined <b>23½°</b> to the <b>ecliptic</b> (the Sun's apparent yearly path). This <b>obliquity</b> is constant through the year, and it causes the seasons and the changing length of day and night.</p>
+
+<figure class="fig">
+<svg viewBox="0 0 520 200" role="img" aria-label="Earth's orbit with solstices and equinoxes">
+  <ellipse cx="260" cy="100" rx="200" ry="70" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <circle cx="260" cy="100" r="16" fill="var(--sun)"/>
+  <text x="260" y="134" text-anchor="middle" class="svg-s">Sun</text>
+  <g><circle cx="60" cy="100" r="10" fill="var(--accent2)"/><line x1="64" y1="88" x2="56" y2="112" stroke="var(--ink)" stroke-width="2"/><text x="60" y="76" text-anchor="middle" class="svg-s">21 Jun</text><text x="60" y="130" text-anchor="middle" class="svg-xs">N summer solstice</text></g>
+  <g><circle cx="460" cy="100" r="10" fill="var(--accent2)"/><line x1="464" y1="88" x2="456" y2="112" stroke="var(--ink)" stroke-width="2"/><text x="460" y="76" text-anchor="middle" class="svg-s">21 Dec</text><text x="460" y="130" text-anchor="middle" class="svg-xs">N winter solstice</text></g>
+  <g><circle cx="260" cy="30" r="10" fill="var(--accent2)"/><text x="300" y="24" class="svg-s">23 Sep · equinox</text></g>
+  <g><circle cx="260" cy="170" r="10" fill="var(--accent2)"/><text x="300" y="186" class="svg-s">21 Mar · equinox</text></g>
+</svg>
+<figcaption>The axis keeps the same direction in space all year. In June the northern hemisphere leans towards the Sun; in December it leans away.</figcaption>
+</figure>
+
+<h3>Declination and the special parallels</h3>
+<p>The Sun's <b>declination</b> is its angular distance north or south of the celestial equator. It swings between 23½°N (June solstice) and 23½°S (December solstice), passing 0° at the equinoxes, when it changes fastest.</p>
+<table class="tbl">
+<tr><th>Parallel</th><th>Latitude</th><th>Meaning</th></tr>
+<tr><td>Tropics of Cancer / Capricorn</td><td>23½° N / S</td><td>Highest latitude where the Sun can be vertically overhead</td></tr>
+<tr><td>Arctic / Antarctic Circle</td><td>66½° N / S</td><td>Lowest latitude with at least one day of midnight sun (and one of polar night)</td></tr>
+</table>
+<div class="rule"><b>Midnight sun rule:</b> with declination <i>d</i>, the Sun stays up all day poleward of latitude (90° − <i>d</i>) on the same side, and stays below the horizon poleward of (90° − <i>d</i>) on the other side. Declination 12°S → midnight sun south of 78°S.</div>
+
+<h3>Daylight</h3>
+<ul>
+<li>At the <b>equinoxes</b> day ≈ night ≈ 12 h almost everywhere — latitude has its smallest influence.</li>
+<li>Day length changes <b>fastest around the equinoxes</b> and slowest around the solstices.</li>
+<li>With northerly declination it is summer in the north: days are longer in the northern and shorter in the southern hemisphere.</li>
+<li><b>Refraction</b> lifts the Sun's image by about 34′, so sunrise is seen <b>earlier</b> and sunset <b>later</b> than geometry alone would predict.</li>
+<li>All heavenly bodies appear to move <b>east to west</b>, because the Earth rotates west to east (counter-clockwise seen from above the North Pole).</li>
+</ul>
+
+<h3>Years</h3>
+<table class="tbl">
+<tr><td>Tropical year (seasons, calendar)</td><td class="num">365 d 5 h 48 min 45 s</td></tr>
+<tr><td>Sidereal year (relative to the stars)</td><td class="num">≈ 365 d 6 h 9 min</td></tr>
+</table>
+
+<div class="trap"><b>Exam traps.</b> "Seasons are caused by the elliptical orbit" is always wrong. The angle between the equator and the ecliptic is 23½°; the angle between the axis and the orbital plane is 66½° — read which one is asked. "Sidereal" refers to the stars.</div>
+
+</section><section id="ch02"><h2><span class="ch-num">02</span> The Earth: Position & Distance</h2>
+<p class="lead">This is the largest chapter of the exam. Master five tools — d.lat, d.long, departure, convergency and conversion angle — and most "position" questions become two-line calculations.</p>
+
+<h3>Shape of the Earth</h3>
+<ul>
+<li>The Earth is an <b>oblate spheroid</b> (ellipsoid), flattened at the poles. Compression ≈ <b>1/298</b> (≈ 1/300).</li>
+<li>Equatorial radius 6 378 km, polar 6 357 km — the polar diameter is ≈ 43 km (≈ 23 NM) shorter. Mean diameter ≈ <b>12 700 km</b>.</li>
+<li>ICAO coordinates are referenced to <b>WGS-84</b>.</li>
+<li><b>Geodetic</b> latitude (from the local vertical) and <b>geocentric</b> latitude (from the centre) differ most at about <b>45°</b> (≈ 11.6′), and agree at the equator and poles.</li>
+<li>Because the Earth is flatter near the poles, 1° of latitude is slightly <b>longer at the poles</b> (≈ 60.3 NM) and <b>shorter at the equator</b> (≈ 59.7 NM). 1′ equals exactly 1 852 m at about 45°.</li>
+</ul>
+
+<h3>Circles and lines</h3>
+<table class="tbl">
+<tr><th>Line</th><th>Definition</th><th>Notes</th></tr>
+<tr><td><b>Great circle</b></td><td>Plane passes through the Earth's centre</td><td>Shortest distance (shorter arc); the equator and every meridian pair are GCs; radio waves travel along GCs</td></tr>
+<tr><td><b>Small circle</b></td><td>Plane does not pass through the centre</td><td>All parallels except the equator</td></tr>
+<tr><td><b>Rhumb line</b> (loxodrome)</td><td>Cuts every meridian at the same angle</td><td>Constant true track; spirals towards the poles; parallels and meridians are special rhumb lines</td></tr>
+</table>
+<p>A <b>parallel of latitude</b> (other than the equator) is a small circle <i>and</i> a rhumb line, but not a great circle. A <b>meridian</b> is half a great circle, running true north–south from pole to pole. Longitude runs 0–180° E or W; the 180° meridian is the Greenwich anti-meridian.</p>
+
+<h3>Distance</h3>
+<div class="formula">1′ of great-circle arc = 1 NM &nbsp;·&nbsp; 1° = 60 NM &nbsp;·&nbsp; Earth's circumference = 21 600 NM</div>
+<ul>
+<li><b>d.lat</b>: same hemisphere → subtract, different hemispheres → add. Distance along a meridian = d.lat in minutes = NM.</li>
+<li><b>d.long</b>: same → subtract, different → add; if the sum exceeds 180°, subtract it from 360° and reverse the direction.</li>
+</ul>
+<div class="formula">Departure (NM) = d.long (′) × cos lat &nbsp;&nbsp;|&nbsp;&nbsp; Length of a parallel = 21 600 × cos lat</div>
+<p>Departure is the east–west distance along a parallel. It is greatest at the equator and zero at the poles. For two different latitudes use the mean latitude.</p>
+
+<div class="example"><div class="q">An aircraft at 60°N 005°W tracks 090°T for 315 km. Final longitude?</div>
+<div class="a">315 km ÷ 1.852 = 170 NM. d.long = 170 / cos 60° = 340′ = 5°40′. 005°W + 5°40′ east → <b>000°40′E</b>.</div></div>
+
+<div class="example"><div class="q">From 04°00′N 030°00′W fly 600 NM S, 600 NM E, 600 NM N, 600 NM W. Final position?</div>
+<div class="a">The eastward leg is flown at 6°S (cos 6° → 603.3′ d.long), the westward leg at 4°N (cos 4° → 601.5′). Net 1.8′ east → <b>04°00′N 029°58′W</b>. Whenever the "box" legs are flown at different latitudes, the leg nearer the equator covers less longitude per NM.</div></div>
+
+<h3>Great circle versus rhumb line</h3>
+<figure class="fig">
+<svg viewBox="0 0 520 210" role="img" aria-label="Great circle bulging poleward of the rhumb line">
+  <text x="260" y="22" text-anchor="middle" class="svg-s">NORTH POLE ↑</text>
+  <path d="M60 160 Q260 40 460 160" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+  <line x1="60" y1="160" x2="460" y2="160" stroke="var(--accent2)" stroke-width="2.5" stroke-dasharray="7 5"/>
+  <circle cx="60" cy="160" r="5" fill="var(--ink)"/><circle cx="460" cy="160" r="5" fill="var(--ink)"/>
+  <text x="48" y="186" class="svg-s">A</text><text x="462" y="186" class="svg-s">B</text>
+  <text x="260" y="88" text-anchor="middle" class="svg-s" fill="var(--accent)">Great circle — initial 081°, final 099°</text>
+  <text x="260" y="182" text-anchor="middle" class="svg-s">Rhumb line — constant 090°</text>
+  <path d="M60 160 l46 -38" stroke="var(--ink)" stroke-width="1" fill="none"/>
+  <text x="96" y="132" class="svg-xs">CA</text>
+</svg>
+<figcaption>Northern hemisphere, eastbound along a parallel. The GC always lies on the <b>polar side</b> of the rhumb line; the RL lies nearer the equator.</figcaption>
+</figure>
+
+<h3>Convergency and conversion angle</h3>
+<div class="formula">Convergency = d.long × sin (mean lat) &nbsp;&nbsp;|&nbsp;&nbsp; Conversion angle (CA) = ½ × convergency</div>
+<ul>
+<li><b>Convergency</b> is the angle between two meridians — equal to the change in GC direction between them.</li>
+<li><b>CA</b> is the angle between the GC and the RL at either end.</li>
+<li>GC initial + convergency = GC final; RL = GC initial ± CA.</li>
+<li>Convergency is zero at the equator and equals d.long at the poles.</li>
+</ul>
+<div class="rule"><b>Sign rule:</b> the GC is always <b>nearer the pole</b>. Northern hemisphere: eastbound GC tracks increase (081° → 099°), westbound they decrease (279° → 261°). Southern hemisphere: the opposite. In both hemispheres the GC and RL directions are equal at the mid-longitude.</div>
+
+<div class="example"><div class="q">A (55°N 000°) to B (54°N 010°E). GC track at A = 100°T. RL track at A?</div>
+<div class="a">Convergency = 10 × sin 54.5° ≈ 8.1°, CA ≈ 4°. NH eastbound: GC starts left (north) of the RL, so RL = 100 + 4 = <b>104°</b>.</div></div>
+
+<div class="example"><div class="q">INS flies the GC from 60°N 030°W to 60°N 020°W. Latitude at 025°W?</div>
+<div class="a">The vertex is at mid-longitude. tan(lat<sub>V</sub>) = tan 60° / cos 5° → <b>60°05.7′N</b>. On the next GC leg (020°W → 010°W) the track changes by the full convergency (≈ 9°) at the waypoint.</div></div>
+
+<h3>Vertex, antipodes and paths over the pole</h3>
+<ul>
+<li>A GC crossing the equator at track θ reaches a maximum latitude of 90° − θ (a GC on 062° tops out at 28°).</li>
+<li>When the two longitudes differ by exactly 180°, the GC runs over the pole: distance = (90 − lat₁) + (90 − lat₂) degrees.</li>
+<li>Antipode of (φ, λ): opposite latitude, longitude 180° − λ named the other way.</li>
+</ul>
+
+<div class="trap"><b>Exam traps.</b> km and statute miles do not change with latitude — only d.long converts with cos lat. "Shortest distance" is the <i>arc</i> of a great circle. The RL track A→B and B→A are exact reciprocals; GC tracks are not. A constant true track is always a rhumb line.</div>
+
+</section><section id="ch03"><h2><span class="ch-num">03</span> Time & Time Conversion</h2>
+<p class="lead">Time questions are pure arithmetic once you have the arc-to-time table in your head and always pass through UTC.</p>
+
+<h3>Kinds of time</h3>
+<table class="tbl">
+<tr><th>Term</th><th>Meaning</th></tr>
+<tr><td><b>Apparent (solar) time</b></td><td>Based on transits of the real Sun. Apparent days vary in length (elliptical orbit + obliquity).</td></tr>
+<tr><td><b>Mean time</b></td><td>Based on an imaginary <b>mean sun</b> moving at constant speed along the celestial equator. Every mean day is 24 h.</td></tr>
+<tr><td><b>Equation of time</b></td><td>Apparent − mean. Largest in <b>February</b> (≈ −14 min) and <b>November</b> (≈ +16 min).</td></tr>
+<tr><td><b>LMT</b></td><td>Mean time on the local meridian. 1200 LMT = mean sun over the meridian (upper transit); <b>0000 LMT</b> = mean sun over the anti-meridian (<b>lower transit</b>).</td></tr>
+<tr><td><b>UTC</b></td><td>Co-ordinated Universal Time ≈ LMT at Greenwich; the aviation reference.</td></tr>
+<tr><td><b>Standard time</b></td><td>The time <b>set by law</b> for a country or region; may differ from UTC by non-whole hours. Summer time (DST) usually adds 1 h.</td></tr>
+</table>
+
+<h3>Arc and time</h3>
+<div class="formula">360° = 24 h &nbsp;·&nbsp; 15° = 1 h &nbsp;·&nbsp; 1° = 4 min &nbsp;·&nbsp; 15′ = 1 min &nbsp;·&nbsp; 1′ = 4 s</div>
+<div class="rule"><b>Longitude east, Greenwich least; longitude west, Greenwich best.</b><br>LMT = UTC + E long (in time) &nbsp;&nbsp; LMT = UTC − W long (in time)</div>
+
+<div class="example"><div class="q">LMT at 65°25′N 123°45′W at 2200 UTC?</div>
+<div class="a">123°45′ = 8 h 15 min. West → subtract: 2200 − 0815 = <b>1345 LMT</b>. Latitude plays no part.</div></div>
+
+<div class="example"><div class="q">Depart Guam (UTC+10) 2300 ST 30 April, flight time 11 h 15. Arrival time in Los Angeles (UTC−7 in summer)?</div>
+<div class="a">2300 − 10 = 1300 UTC 30 Apr. + 11:15 = 0015 UTC 1 May. − 7 h = <b>1715 on 30 April</b>. Always convert to UTC first, add flight time, then convert to the destination's time.</div></div>
+
+<h3>The International Date Line</h3>
+<p>The date line follows the 180° meridian, bending round island groups. Crossing it <b>westbound</b> (from the east, e.g. USA → Japan) the date <b>increases</b> by one; crossing eastbound it decreases. Standard-time questions handle this automatically if you work through UTC.</p>
+
+<h3>Sunrise, sunset and twilight</h3>
+<ul>
+<li>The Air Almanac tabulates sunrise, sunset and twilight in <b>LMT</b> for each latitude — the LMT is practically the same at every longitude on that latitude for a given date. Convert to UTC with longitude.</li>
+<li>Sunrise/sunset: the Sun's <b>upper limb</b> on the visible horizon for a sea-level observer. At altitude the Sun rises earlier and sets later.</li>
+<li>LMT of sunrise depends on <b>date, latitude and elevation</b> — not longitude.</li>
+</ul>
+<table class="tbl">
+<tr><th>Twilight</th><th>Sun's centre below the horizon</th></tr>
+<tr><td>Civil</td><td class="num">0° → 6°</td></tr>
+<tr><td>Nautical</td><td class="num">6° → 12°</td></tr>
+<tr><td>Astronomical</td><td class="num">12° → 18°</td></tr>
+</table>
+<p>Twilight lasts longer at <b>high latitudes</b>, where the Sun crosses the horizon at a shallow angle. ICAO <b>night</b>: from the end of evening civil twilight to the beginning of morning civil twilight (or as prescribed by the authority).</p>
+
+<div class="example"><div class="q">Sunrise at 52°S 040°E is 0243 UTC. Same day, sunrise at 52°S 035°W?</div>
+<div class="a">Same latitude → same LMT of sunrise. The second place is 75° further west = 5 h later in UTC: <b>0743 UTC</b>.</div></div>
+
+<div class="trap"><b>Exam traps.</b> The question may give standard time at one place and ask for LMT at another — two different conversions. "Slow on UTC" means behind UTC, i.e. western longitudes. Civil twilight begins/ends at 6°, nautical at 12°, astronomical at 18°.</div>
+
+</section><section id="ch04"><h2><span class="ch-num">04</span> Direction & Terrestrial Magnetism</h2>
+<p class="lead">Directions are only meaningful with a reference: true, magnetic, compass or grid. The heading chain from compass to true is the most-tested routine in the exam.</p>
+
+<h3>The Earth's magnetic field</h3>
+<ul>
+<li>The Earth behaves like a magnet with a <b>blue pole in northern Canada</b> (it attracts the red, north-seeking end of a compass). Classic exam position of the magnetic north pole: about 73°N 100°W (it has since moved towards Siberia).</li>
+<li>Lines of force run from the red pole to the blue pole: in the northern hemisphere they point <b>down</b> into the ground.</li>
+<li>Total field <b>T</b> splits into a horizontal component <b>H</b> (the directive force for compasses) and a vertical component <b>Z</b>.</li>
+</ul>
+<div class="formula">H = T cos (dip) &nbsp;·&nbsp; Z = T sin (dip) &nbsp;·&nbsp; tan (dip) = Z / H</div>
+<table class="tbl">
+<tr><th></th><th>Magnetic equator</th><th>Magnetic poles</th></tr>
+<tr><td>Dip</td><td class="num">0° (aclinic line)</td><td class="num">90°</td></tr>
+<tr><td>H</td><td>Maximum — compass works best</td><td>≈ 0 — compass useless</td></tr>
+<tr><td>Z</td><td>0 — no acceleration/turning errors</td><td>Maximum</td></tr>
+<tr><td>T</td><td>Weakest</td><td>Strongest</td></tr>
+</table>
+
+<h3>Variation</h3>
+<p><b>Variation</b> is the angle between <b>true north and magnetic north</b>, named east (+) or west (−). It can reach 180° (between the geographic and magnetic poles) and it changes slowly over time because the magnetic poles wander — the annual change can increase or decrease the value depending on where you are.</p>
+<table class="tbl">
+<tr><td><b>Isogonal</b></td><td>Line of equal variation</td></tr>
+<tr><td><b>Agonic line</b></td><td>Zero variation (true and magnetic meridians coincide)</td></tr>
+<tr><td><b>Isoclinal</b></td><td>Line of equal dip</td></tr>
+<tr><td><b>Aclinic line</b></td><td>Zero dip = magnetic equator</td></tr>
+</table>
+<p>Isogonals converge at the magnetic poles (and the geographic poles, where all meridians meet).</p>
+
+<h3>Deviation</h3>
+<p><b>Deviation</b> is the angle between <b>magnetic north and compass north</b>, caused by the aircraft's own magnetism. It changes with heading and is recorded on the compass deviation card.</p>
+
+<h3>The heading chain</h3>
+<figure class="fig">
+<svg viewBox="0 0 560 120" role="img" aria-label="Heading conversion chain">
+  <g class="svg-s">
+    <rect x="10" y="30" width="90" height="44" rx="6" fill="var(--panel)" stroke="var(--line)"/><text x="55" y="58" text-anchor="middle">TRUE</text>
+    <rect x="235" y="30" width="90" height="44" rx="6" fill="var(--panel)" stroke="var(--line)"/><text x="280" y="58" text-anchor="middle">MAGNETIC</text>
+    <rect x="460" y="30" width="90" height="44" rx="6" fill="var(--panel)" stroke="var(--line)"/><text x="505" y="58" text-anchor="middle">COMPASS</text>
+    <line x1="100" y1="52" x2="235" y2="52" stroke="var(--accent)" stroke-width="2"/><text x="168" y="44" text-anchor="middle" fill="var(--accent)">variation</text>
+    <line x1="325" y1="52" x2="460" y2="52" stroke="var(--accent)" stroke-width="2"/><text x="392" y="44" text-anchor="middle" fill="var(--accent)">deviation</text>
+    <text x="168" y="98" text-anchor="middle" class="svg-xs">W: add · E: subtract</text>
+    <text x="392" y="98" text-anchor="middle" class="svg-xs">W: add · E: subtract</text>
+  </g>
+</svg>
+<figcaption>True → Magnetic → Compass: "<b>West is best, east is least</b>". Going the other way (C → M → T), add east and subtract west.</figcaption>
+</figure>
+<div class="rule"><b>Track to compass heading in four steps:</b> (1) apply drift — drift right means steer left of track, so HDG(T) = TR − drift R / + drift L; (2) variation west add, east subtract; (3) deviation west (−) add, east (+) subtract; (4) read the compass heading.</div>
+
+<div class="example"><div class="q">True track 348°, drift 17° left, variation 32°W, deviation 4°E. Compass heading?</div>
+<div class="a">Drift left → steer right: 348 + 17 = 005°T. +32 (W) = 037°M. −4 (E) = <b>033°C</b>.</div></div>
+
+<div class="example"><div class="q">True track 180°, drift 8° R, compass heading 195°, deviation −2°. Variation?</div>
+<div class="a">HDG(T) = 180 − 8 = 172°. HDG(M) = 195 − 2 = 193°. Magnetic exceeds true by 21° → <b>21°W</b>.</div></div>
+
+<h3>Radio bearings and variation</h3>
+<ul>
+<li><b>VOR radials</b> are magnetic at the <b>station</b>: use the variation at the VOR.</li>
+<li><b>NDB/ADF bearings</b> are measured at the <b>aircraft</b> using its heading: use the variation at the aircraft.</li>
+<li>QDM = magnetic bearing to the station; QDR = magnetic bearing from it (the radial).</li>
+</ul>
+
+<div class="trap"><b>Exam traps.</b> "Deviation +4" means easterly, so compass heading is 4° less than magnetic. A westerly variation means true north lies east of magnetic north. The magnetic equator is the aclinic line, not the agonic line.</div>
+
+</section><section id="ch05"><h2><span class="ch-num">05</span> Compasses</h2>
+<p class="lead">The direct reading compass is simple and independent of electrics, but its errors in turns and accelerations are a favourite exam topic. The remote indicating compass fixes most of them.</p>
+
+<h3>Direct reading compass (DRC) — requirements</h3>
+<table class="tbl">
+<tr><th>Requirement</th><th>How it is achieved</th></tr>
+<tr><td>Horizontality (counter dip)</td><td><b>Pendulous suspension</b>: pivot above a low centre of gravity, so the magnet hangs nearly level</td></tr>
+<tr><td>Sensitivity</td><td>Strong magnets with small mass; jewelled pivot; liquid reduces pivot friction. Sensitivity ∝ H</td></tr>
+<tr><td>Aperiodicity (dead-beat)</td><td>Mass concentrated near the pivot (small moment of inertia), <b>damping wires</b> and damping liquid</td></tr>
+</table>
+
+<h3>Acceleration errors</h3>
+<p>The magnet's CG sits on the equator side of the pivot (offset by dip). Speed changes on east/west headings swing it, giving a false turn. No error on north/south headings, and none at the magnetic equator.</p>
+<div class="rule"><b>ANDS (northern hemisphere):</b> <b>A</b>ccelerate → apparent turn <b>N</b>orth; <b>D</b>ecelerate → apparent turn <b>S</b>outh. In the southern hemisphere the error is reversed: accelerate → apparent turn south. (Easy form: acceleration always shows a turn towards the <i>nearer magnetic pole</i>.)</div>
+<table class="tbl">
+<tr><th>NH case</th><th>Indication</th><th>Card / magnet (seen from above)</th></tr>
+<tr><td>Accelerate on 090°</td><td>Turn to north (reading decreases)</td><td>Clockwise</td></tr>
+<tr><td>Accelerate on 270°</td><td>Turn to north (reading increases)</td><td>Anticlockwise</td></tr>
+<tr><td>Decelerate on 270°</td><td>Turn to south</td><td>Clockwise</td></tr>
+</table>
+
+<h3>Turning errors</h3>
+<p>Turning errors are greatest when turning through <b>north and south</b>, and grow with magnetic latitude; nil through east and west.</p>
+<div class="rule"><b>UNOS (northern hemisphere):</b> through the <b>nearer pole</b> (north) the compass is <b>sluggish</b> and under-reads → <b>U</b>ndershoot <b>N</b>orth (roll out before the compass shows the heading). Through the further pole (south) the compass is <b>lively</b> and over-reads → <b>O</b>vershoot <b>S</b>outh (roll out after). Liquid swirl adds to the error in both cases.</div>
+<div class="example"><div class="q">NH, rate-one turn right from 135° for 30 s (90°). What does the compass show at roll-out?</div>
+<div class="a">The turn passes through south, where the compass leads: it reads <b>more than 225°</b>. From 330° to 060° (through north) it would read <b>less than 060°</b>.</div></div>
+
+<h3>Aircraft magnetism and deviation</h3>
+<ul>
+<li><b>Hard iron</b>: permanent magnetism acquired mainly during construction (hammering/riveting in the Earth's field); also changed by lightning strikes, heavy shocks, long storage on one heading. Deviation from hard iron ∝ 1/H, so it decreases at lower magnetic latitudes.</li>
+<li><b>Soft iron</b>: induced magnetism that changes with heading and latitude; cannot be removed by degaussing.</li>
+<li>Hard-iron components: <b>P</b> (fore–aft), <b>Q</b> (athwartships), <b>R</b> (vertical). +P = blue pole forward, +Q = blue pole in the right wing, +R = blue pole below the compass.</li>
+</ul>
+<h3>Coefficients and the compass swing</h3>
+<div class="formula">Dev = MH − CH &nbsp;·&nbsp; A = mean of all deviations &nbsp;·&nbsp; B = (dev E − dev W)/2 &nbsp;·&nbsp; C = (dev N − dev S)/2</div>
+<ul>
+<li><b>A</b> (constant on all headings, e.g. lubber line misalignment) is corrected by rotating the compass in its mount.</li>
+<li><b>B</b> and <b>C</b> are corrected with compensating magnets.</li>
+<li>Swing with <b>engines running</b> and normal electrical/radio load on, using a landing (datum) compass to find the magnetic heading.</li>
+<li>Swing when: a compass is fitted or replaced, after major modifications, lightning strikes or heavy shocks, magnetic cargo, long storage, a <b>large permanent change in magnetic latitude</b>, or at scheduled intervals.</li>
+</ul>
+<div class="example"><div class="q">MH/CH: 358/356, 091/087, 182/186, 273/271. Coefficient A and B?</div>
+<div class="a">Deviations: +2, +4, −4, +2. A = (+2+4−4+2)/4 = <b>+1</b>. B = (+4 − (+2))/2 = <b>+1</b>.</div></div>
+
+<h3>Remote indicating (gyro-magnetic) compass</h3>
+<ul>
+<li>A <b>flux valve</b> (detector unit), usually in a <b>wingtip or fin</b> away from aircraft magnetism and wiring, <b>senses</b> the direction of H rather than seeking it — more sensitive, with no moving magnet.</li>
+<li>A directional gyro gives short-term stability; a <b>torque (precession) motor</b> slaves it slowly to the flux valve, so turning and acceleration errors are largely removed.</li>
+<li>The <b>annunciator</b> shows synchronisation between gyro and detector and helps achieve it.</li>
+<li>In a turn the detector signal and the signal selsyn rotor change together, so the system stays synchronised.</li>
+<li>Read on a dial, so parallax is least.</li>
+</ul>
+<div class="trap"><b>Exam traps.</b> Compass sensitivity is proportional to H, not Z. ANDS reverses in the southern hemisphere. Coefficient C uses north and south headings; B uses east and west.</div>
+
+</section><section id="ch06"><h2><span class="ch-num">06</span> Units, Speed & Altitude</h2>
+<p class="lead">Conversion questions are free marks if the factors are memorised and the flight computer is used carefully. Keep the units straight before you calculate.</p>
+
+<h3>Distance and length</h3>
+<table class="tbl">
+<tr><td>1 NM</td><td class="num">1 852 m · 6 076 ft · 1.15 SM</td><td>Average length of 1′ of arc of a meridian</td></tr>
+<tr><td>1 SM</td><td class="num">1 609 m · 5 280 ft</td><td></td></tr>
+<tr><td>1 km</td><td class="num">3 280 ft · 0.54 NM</td><td>Originally 1/10 000 of the equator–pole meridian distance</td></tr>
+<tr><td>1 m</td><td class="num">3.281 ft</td><td></td></tr>
+<tr><td>1 inch</td><td class="num">2.54 cm</td><td></td></tr>
+</table>
+<p>ICAO units: horizontal distance in <b>m, km and NM</b>; heights and altitudes in <b>ft or m</b>; speed in kt (or km/h); vertical speed in ft/min or m/s.</p>
+
+<h3>Speed, time, distance</h3>
+<div class="formula">Time = Distance / GS &nbsp;·&nbsp; GD = AD × GS / TAS &nbsp;·&nbsp; 1 m/s ≈ 1.944 kt &nbsp;·&nbsp; 100 ft/min ≈ 0.51 m/s</div>
+<div class="example"><div class="q">GS 122 kt, distance 985 NM. Time?</div><div class="a">985/122 = 8.074 h → 0.074 × 60 = 4.4 min → <b>8 h 04 min</b>. Convert decimal hours carefully: 0.1 h = 6 min.</div></div>
+
+<h3>Volume and mass of fuel</h3>
+<table class="tbl">
+<tr><td>1 US gal</td><td class="num">3.785 L</td></tr>
+<tr><td>1 imp gal</td><td class="num">4.546 L = 1.2 US gal</td></tr>
+<tr><td>1 kg</td><td class="num">2.205 lb</td></tr>
+<tr><td>Mass</td><td class="num">Volume (L) × specific gravity = kg</td></tr>
+</table>
+<div class="example"><div class="q">Fuel flow 22 US gal/h, fuel on board 83 imp gal. Endurance?</div><div class="a">83 × 1.201 = 99.7 US gal ÷ 22 = 4.53 h ≈ <b>4 h 32 min</b>. Put both quantities in the same gallon first.</div></div>
+
+<h3>Airspeeds and Mach</h3>
+<ul>
+<li>IAS → (instrument/position error) → <b>CAS</b> → (compressibility) → EAS → (density) → <b>TAS</b>.</li>
+<li>Below about 10 000 ft and 200 kt, TAS ≈ CAS + 2 % per 1 000 ft.</li>
+<li>Climbing at constant CAS, both TAS and Mach number increase. At constant Mach in a climb (ISA, below the tropopause), TAS decreases.</li>
+</ul>
+<div class="formula">LSS (kt) = 38.94 √T(K) &nbsp;·&nbsp; M = TAS / LSS &nbsp;·&nbsp; LSS ≈ 644 + 1.2 × t(°C)</div>
+<div class="example"><div class="q">TAS 487 kt at FL330, ISA +15. Mach number?</div><div class="a">ISA at FL330 = 15 − 2 × 33 = −51 °C; +15 → −36 °C = 237 K. LSS = 38.94 × √237 ≈ 600 kt. M = 487/600 ≈ <b>0.81</b>.</div></div>
+<p><b>Ram rise:</b> a total-air-temperature probe reads warm. Rise ≈ (TAS/100)² °C, so COAT ≈ IOAT − (TAS/100)².</p>
+
+<h3>Altimetry for navigation</h3>
+<div class="formula">ISA: 15 °C at MSL, −1.98 °C per 1 000 ft · 1 hPa ≈ 27–30 ft near MSL</div>
+<ul>
+<li><b>Pressure altitude</b> = elevation + (1013 − QNH) × 27 ft.</li>
+<li><b>Density altitude</b> ≈ PA + 120 ft per °C of ISA deviation.</li>
+<li><b>True altitude</b>: ≈ 4 % of height above the station per 10 °C off ISA — warm air: true higher than indicated; cold air: true lower ("from high to low, look out below").</li>
+</ul>
+<div class="example"><div class="q">PA 29 000 ft, OAT −55 °C. Density altitude?</div><div class="a">ISA at 29 000 ft = −43 °C → ISA −12. DA ≈ 29 000 − 12 × 120 ≈ <b>27 500 ft</b>.</div></div>
+
+<div class="trap"><b>Exam traps.</b> A distance in km or SM never changes with latitude. Time-to-go uses GS, never TAS. Check whether the question gives US or imperial gallons, and litres or kg.</div>
+
+</section><section id="ch07"><h2><span class="ch-num">07</span> Chart Principles & Scale</h2>
+<p class="lead">No flat chart can show a sphere without distortion. The chart-maker chooses which property to keep; for aviation that is almost always <b>correct angles</b> (conformality).</p>
+
+<h3>Desirable properties</h3>
+<ul>
+<li><b>Conformal (orthomorphic)</b>: angles and bearings correct, shapes correct locally. The most important property for navigation — scale is the same in all directions at any point, and meridians and parallels cross at 90°.</li>
+<li>Constant scale, great circles as straight lines, rhumb lines as straight lines — no single chart achieves all of these.</li>
+</ul>
+
+<h3>Projection surfaces</h3>
+<table class="tbl">
+<tr><th>Surface</th><th>Projection</th><th>Typical use</th></tr>
+<tr><td>Cylinder</td><td>Mercator (direct, transverse, oblique)</td><td>Equatorial, N–S strips, GC routes</td></tr>
+<tr><td>Cone</td><td>Lambert conformal conic</td><td>Mid-latitude en-route charts</td></tr>
+<tr><td>Plane</td><td>Polar stereographic (azimuthal)</td><td>Polar navigation</td></tr>
+</table>
+<p>Charts with straight meridians and scale varying with latitude, and curved rhumb lines: <b>Lambert and polar stereographic</b>.</p>
+
+<h3>Scale</h3>
+<div class="formula">Scale = chart length / earth length &nbsp;·&nbsp; 1 NM = 185 200 cm &nbsp;·&nbsp; 1 km = 100 000 cm</div>
+<p>A <b>larger</b> scale (1:250 000) shows more detail than a smaller one (1:1 000 000).</p>
+<div class="example"><div class="q">A line 4.63 cm long represents 150 NM. Scale?</div><div class="a">150 × 185 200 = 27 780 000 cm. 27 780 000 / 4.63 ≈ 6 000 000 → <b>1 : 6 000 000</b>.</div></div>
+<div class="example"><div class="q">Chart 1:500 000. What does 7 cm represent?</div><div class="a">7 × 500 000 = 3 500 000 cm = <b>35 km</b> (≈ 19 NM).</div></div>
+
+<h3>Chart features</h3>
+<ul>
+<li><b>Contour lines</b> join points of equal elevation above MSL.</li>
+<li>Isogonals on the chart show variation; isogrivs (on gridded charts) show grivation.</li>
+<li>The exact scale varies slightly across every chart, even a conformal one.</li>
+</ul>
+<div class="trap"><b>Exam traps.</b> Use 185 200 cm per NM, not 185 000. When the question says "earth distance", convert cm to km first, then to NM if needed.</div>
+
+</section><section id="ch08"><h2><span class="ch-num">08</span> Mercator Projections</h2>
+<p class="lead">On a direct Mercator chart, a straight line is a rhumb line. That one property explains the chart's strengths (constant-track plotting) and its weaknesses (scale expansion, no poles).</p>
+
+<h3>Direct Mercator</h3>
+<figure class="fig">
+<svg viewBox="0 0 520 220" role="img" aria-label="Mercator graticule with parallels spreading towards the poles">
+  <g stroke="var(--line)" stroke-width="1">
+    <line x1="60" y1="20" x2="60" y2="200"/><line x1="140" y1="20" x2="140" y2="200"/><line x1="220" y1="20" x2="220" y2="200"/><line x1="300" y1="20" x2="300" y2="200"/><line x1="380" y1="20" x2="380" y2="200"/><line x1="460" y1="20" x2="460" y2="200"/>
+    <line x1="60" y1="190" x2="460" y2="190"/><line x1="60" y1="160" x2="460" y2="160"/><line x1="60" y1="125" x2="460" y2="125"/><line x1="60" y1="80" x2="460" y2="80"/><line x1="60" y1="22" x2="460" y2="22"/>
+  </g>
+  <text x="470" y="194" class="svg-xs">0°</text><text x="470" y="164" class="svg-xs">20°</text><text x="470" y="129" class="svg-xs">40°</text><text x="470" y="84" class="svg-xs">60°</text><text x="470" y="26" class="svg-xs">75°</text>
+  <line x1="60" y1="180" x2="460" y2="40" stroke="var(--accent2)" stroke-width="2.5" stroke-dasharray="7 5"/>
+  <path d="M60 180 Q200 20 460 40" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+  <text x="300" y="150" class="svg-s" fill="var(--accent2)">rhumb line (straight)</text>
+  <text x="120" y="70" class="svg-s" fill="var(--accent)">great circle</text>
+</svg>
+<figcaption>Meridians: parallel, equally spaced, vertical. Parallels: straight, parallel, spacing increasing with latitude. Great circles are curves convex to the nearer pole (concave to the equator).</figcaption>
+</figure>
+<ul>
+<li>Cylindrical projection, tangent at the equator, made conformal mathematically.</li>
+<li><b>Scale ∝ sec lat</b>: correct at the equator, doubling at 60°, infinite at the poles (the poles cannot be shown).</li>
+<li>Chart convergency is <b>zero</b> everywhere — correct only at the equator.</li>
+<li>Every parallel is drawn the same length as the equator.</li>
+<li>Radio bearings (great circles) must be converted to rhumb lines with the <b>conversion angle</b> before plotting.</li>
+</ul>
+<div class="formula">Scale at lat = Scale at equator × sec lat &nbsp;·&nbsp; chart length of d.long is the same at every latitude</div>
+<div class="example"><div class="q">Scale 1:3 704 000 at the equator. Scale at 60°S?</div><div class="a">Denominator × cos 60° = 1 852 000 → <b>1 : 1 852 000</b> (a larger scale).</div></div>
+<div class="example"><div class="q">At 45°N a chart length represents 90 NM. What does it represent at 30°N?</div><div class="a">Earth distance ∝ cos lat: 90 × cos 30°/cos 45° ≈ <b>110 NM</b>.</div></div>
+<div class="example"><div class="q">The 53°N parallel measures 133 cm. Scale at 30°S?</div><div class="a">Every parallel = equator length on the chart: 133 cm ↔ 21 600 NM → 1 : 30 000 000 at the equator; × cos 30° ≈ <b>1 : 26 000 000</b>.</div></div>
+
+<h3>Transverse Mercator</h3>
+<ul>
+<li>Cylinder tangent along a chosen <b>central meridian</b>; scale correct along it and treated as constant within ≈ 300 NM.</li>
+<li>Used for countries with large <b>north–south</b> extent (topographical maps, e.g. the UK OS grid).</li>
+<li>Parallels (except the equator) appear as ellipses; a straight line at 90° to the central meridian is a great circle.</li>
+<li>Convergency correct at the central meridian and the equator.</li>
+</ul>
+<h3>Oblique Mercator</h3>
+<ul><li>Cylinder tangent along any chosen great circle (the "false equator"); used for strip charts along a <b>selected great-circle route</b>.</li></ul>
+<div class="trap"><b>Exam traps.</b> On Mercator the GC lies on the polar side of the straight rhumb line. "Scale expands as the secant of latitude" — not cosine. Transverse = N–S countries; oblique = GC routes.</div>
+
+</section><section id="ch09"><h2><span class="ch-num">09</span> Lambert Conformal Conic</h2>
+<p class="lead">The Lambert conformal conic is the standard en-route chart for mid-latitudes. A straight line is very nearly a great circle, and the chart's convergence is fixed by one number: the constant of the cone, <i>n</i>.</p>
+
+<h3>Construction</h3>
+<figure class="fig">
+<svg viewBox="0 0 520 200" role="img" aria-label="Lambert cone cutting the globe at two standard parallels">
+  <circle cx="200" cy="120" r="70" fill="none" stroke="var(--line)" stroke-width="1.5"/>
+  <path d="M200 10 L80 190 M200 10 L320 190" stroke="var(--accent)" stroke-width="2" fill="none"/>
+  <line x1="148" y1="88" x2="252" y2="88" stroke="var(--accent2)" stroke-width="2"/>
+  <line x1="137" y1="150" x2="263" y2="150" stroke="var(--accent2)" stroke-width="2"/>
+  <line x1="131" y1="118" x2="269" y2="118" stroke="var(--ink)" stroke-dasharray="3 4"/>
+  <text x="340" y="92" class="svg-s" fill="var(--accent2)">standard parallel</text>
+  <text x="340" y="122" class="svg-s">parallel of origin</text>
+  <text x="340" y="154" class="svg-s" fill="var(--accent2)">standard parallel</text>
+  <text x="340" y="30" class="svg-xs">scale: correct on standard</text>
+  <text x="340" y="44" class="svg-xs">parallels, contracted between,</text>
+  <text x="340" y="58" class="svg-xs">expanded outside</text>
+</svg>
+</figure>
+<ul>
+<li>Conic, conformal. Meridians are straight lines converging at the cone's apex; parallels are <b>arcs of concentric circles</b>.</li>
+<li>Scale is correct along the two <b>standard parallels</b> (the quoted/nominal scale), smallest at the parallel of origin, and varies only with latitude — constant along any parallel.</li>
+<li>Parallel spacing <b>reduces between</b> and <b>expands outside</b> the standard parallels.</li>
+<li>Great circles are curves <b>concave to the parallel of origin</b>; within the chart they are treated as straight lines. Only meridians are exactly straight GCs.</li>
+<li>Rhumb lines are curves concave to the pole.</li>
+</ul>
+
+<h3>The constant of the cone</h3>
+<div class="formula">n = sin (parallel of origin) ≈ sin (mean of the standard parallels) &nbsp;·&nbsp; Chart convergence = d.long × n</div>
+<ul>
+<li>Chart convergence equals earth convergence only at the <b>parallel of origin</b>.</li>
+<li>The angle between departure and arrival directions of a straight line = chart (map) convergence.</li>
+<li>The rhumb line between the two ends ≈ straight-line initial track ± half the chart convergence.</li>
+</ul>
+<div class="example"><div class="q">Standard parallels 63°N and 41°N. Constant of the cone?</div><div class="a">Mean = 52°; n = sin 52° ≈ <b>0.788</b>.</div></div>
+<div class="example"><div class="q">n = 0.75. A straight line from 45°N 060°W is 055°T at A. Direction at B on 028°W?</div><div class="a">Chart convergence = 32° × 0.75 = 24°. Track at B = 055 + 24 = <b>079°T</b>. The rhumb line A→B ≈ 055 + 12 = <b>067°T</b>.</div></div>
+<div class="example"><div class="q">Plotting an NDB bearing on a Lambert chart (parallel of origin 51°N). Aircraft 66°N 029°W, NDB 64°N 022°W, QDR at aircraft 118°T.</div><div class="a">Reciprocal at the aircraft = 298°T. Chart convergence = 7 × sin 51° ≈ 5.4°. Measured at the NDB the line plots as 298 + 5.4 ≈ <b>303.4°T</b>.</div></div>
+
+<h3>Measuring distance</h3>
+<p>Measure distance with the latitude scale near the middle of the line, or use the quoted scale between the standard parallels.</p>
+<div class="example"><div class="q">Course 120°T from 61°30′N to 58°30′N, scale 1:1 000 000 at 60°N. Chart distance?</div><div class="a">d.lat 3° = 180 NM; at 120°, distance = 180 / cos 60° = 360 NM = 666.7 km → <b>66.7 cm</b>.</div></div>
+<div class="trap"><b>Exam traps.</b> n uses sine, never cosine. "Scale constant along a parallel" is true; "constant over the chart" is false. Earth convergency correct at the parallel of origin, scale correct at the standard parallels.</div>
+
+</section><section id="ch10"><h2><span class="ch-num">10</span> Polar Stereographic & Grid</h2>
+<p class="lead">Near the poles meridians converge so quickly that true direction becomes useless for steering. The polar stereographic chart and a grid overlay give a direction that stays constant along a straight line.</p>
+
+<h3>Polar stereographic projection</h3>
+<ul>
+<li>A plane <b>tangent at the pole</b>, projected from the opposite pole (azimuthal, conformal).</li>
+<li>Meridians are straight lines radiating from the pole; parallels are concentric circles.</li>
+<li>Scale is correct at the pole and expands away from it (∝ sec² of half the co-latitude) — it gets <b>smaller towards the pole</b>.</li>
+<li>Convergence factor <b>n = 1</b>: chart convergence = d.long (correct at the pole).</li>
+<li>Great circles are almost straight lines (slightly concave to the pole, straighter at higher latitude); rhumb lines are curves concave to the pole.</li>
+</ul>
+<div class="example"><div class="q">Straight line from 70°N 060°W to 70°N 060°E. Initial true track?</div><div class="a">d.long 120° and n = 1, so the line leaves half of 120° from the rhumb line (090°): 090 − 60 = <b>030°T</b>. Its highest latitude is reached at the mid-longitude, 000°.</div></div>
+
+<h3>Grid navigation</h3>
+<p>Gridding a chart = choosing a <b>datum meridian</b> and drawing lines parallel to it. Grid north is the direction of the datum meridian towards the North Pole. A straight line then keeps a constant <b>grid track</b> even though its true track changes.</p>
+<figure class="fig">
+<svg viewBox="0 0 520 230" role="img" aria-label="North polar grid with datum Greenwich">
+  <circle cx="190" cy="120" r="90" fill="none" stroke="var(--line)"/>
+  <circle cx="190" cy="120" r="50" fill="none" stroke="var(--line)"/>
+  <g stroke="var(--line)"><line x1="190" y1="120" x2="190" y2="210"/><line x1="190" y1="120" x2="100" y2="120"/><line x1="190" y1="120" x2="280" y2="120"/><line x1="190" y1="120" x2="190" y2="30"/></g>
+  <text x="196" y="222" class="svg-xs">000° (datum)</text><text x="60" y="124" class="svg-xs">090°W</text><text x="286" y="124" class="svg-xs">090°E</text><text x="196" y="26" class="svg-xs">180°</text>
+  <g stroke="var(--accent)" stroke-width="1.5" opacity=".7"><line x1="110" y1="30" x2="110" y2="210"/><line x1="150" y1="30" x2="150" y2="210"/><line x1="230" y1="30" x2="230" y2="210"/><line x1="270" y1="30" x2="270" y2="210"/></g>
+  <text x="330" y="60" class="svg-s" fill="var(--accent)">grid lines ∥ datum meridian</text>
+  <text x="330" y="90" class="svg-s">Northern hemisphere:</text>
+  <text x="330" y="110" class="svg-s">G = T + W long − E long</text>
+  <text x="330" y="140" class="svg-s">Southern hemisphere:</text>
+  <text x="330" y="160" class="svg-s">G = T − W long + E long</text>
+  <text x="330" y="190" class="svg-xs">(longitude from the datum)</text>
+</svg>
+</figure>
+<div class="formula">Grid convergence (NH, Greenwich datum) = longitude: G = T + long W · G = T − long E</div>
+<p>For a datum other than Greenwich, use the longitude difference from the datum. In the southern hemisphere the signs reverse.</p>
+
+<h3>Grivation</h3>
+<div class="formula">Grivation = grid convergence + variation (algebraically) &nbsp;·&nbsp; G = M + grivation (W add, E subtract — like variation)</div>
+<ul>
+<li>Grivation is the angle between <b>grid north and magnetic north</b>. "Grivation west, magnetic best": MH = GH + griv W.</li>
+<li><b>Isogrivs</b> are lines of equal grivation.</li>
+</ul>
+
+<div class="example"><div class="q">75°N 140°W, true heading 330°. Grid aligned with Greenwich. Grid heading?</div><div class="a">NH: G = T + W long = 330 + 140 = 470 → <b>110°G</b>.</div></div>
+<div class="example"><div class="q">Thule (76°32′N 068°15′W, variation 75°W). Track radial 210 inbound. Grid track (Greenwich grid)?</div><div class="a">Inbound on radial 210 = 030°M. True = 030 − 75 = 315°T. Grid = 315 + 68 = 383 → <b>023°G</b>.</div></div>
+<div class="example"><div class="q">South polar chart, grid on Greenwich. Route 85°S 100°E → 85°S 140°W. Grid track, and true track at 180°?</div><div class="a">Mid-longitude 160°E: true track 090°. SH: G = T + E long = 090 + 160 = <b>250°G</b> (constant). At 180°: T = 250 − 180 = <b>070°T</b>.</div></div>
+<div class="trap"><b>Exam traps.</b> Check the hemisphere before applying the grid formula. Grid track is constant along a straight line on the chart; true track is not. Grivation includes variation, convergence does not.</div>
+
+</section><section id="ch11"><h2><span class="ch-num">11</span> Dead Reckoning & Wind</h2>
+<p class="lead">Dead reckoning is the triangle of velocities: what the aircraft does through the air, what the air does over the ground, and the result over the ground. Every wind question is one of three unknown sides.</p>
+
+<h3>The triangle of velocities</h3>
+<figure class="fig">
+<svg viewBox="0 0 520 220" role="img" aria-label="Triangle of velocities">
+  <defs><marker id="ar1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="var(--ink)"/></marker>
+  <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="var(--accent)"/></marker>
+  <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="var(--accent2)"/></marker></defs>
+  <line x1="60" y1="180" x2="380" y2="40" stroke="var(--ink)" stroke-width="2.5" marker-end="url(#ar1)"/>
+  <line x1="380" y1="40" x2="440" y2="150" stroke="var(--accent2)" stroke-width="2.5" marker-end="url(#ar3)"/>
+  <line x1="60" y1="180" x2="440" y2="150" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#ar2)"/>
+  <text x="120" y="88" class="svg-s">HDG / TAS (one arrow)</text>
+  <text x="420" y="92" class="svg-s" fill="var(--accent2)">W/V (three)</text>
+  <text x="200" y="190" class="svg-s" fill="var(--accent)">TR / GS (two arrows)</text>
+  <path d="M120 154 A60 60 0 0 1 116 172" fill="none" stroke="var(--ink)"/>
+  <text x="128" y="160" class="svg-xs">drift</text>
+</svg>
+<figcaption>Drift is the angle from heading to track. Wind from the left → drift right; wind from the right → drift left.</figcaption>
+</figure>
+<div class="rule"><b>Wind direction is where it blows FROM.</b> ATIS/tower winds are <b>magnetic</b> (match the runway QDM); forecast/upper winds are <b>true</b>.</div>
+
+<h3>Quick trigonometry (or the CRP-5)</h3>
+<div class="formula">WCA ≈ W × sin(wind angle) / TAS &nbsp;(in radians → × 57.3, or use 60/TAS × crosswind)<br>GS ≈ TAS × cos(WCA) − W × cos(wind angle)</div>
+<div class="formula">Headwind = W × cos θ &nbsp;·&nbsp; Crosswind = W × sin θ &nbsp;(θ = angle between wind and runway/track)</div>
+<table class="tbl"><tr><th>θ</th><td>10°</td><td>20°</td><td>30°</td><td>45°</td><td>60°</td><td>90°</td></tr><tr><th>sin θ</th><td>0.17</td><td>0.34</td><td>0.5</td><td>0.71</td><td>0.87</td><td>1</td></tr></table>
+<p>Maximum drift occurs with the wind at 90° to the <b>heading</b> (not the track); maximum drift angle = sin⁻¹(W/TAS).</p>
+
+<div class="example"><div class="q">TAS 140 kt, HDG 005°T, W/V 265/25. Drift and GS?</div><div class="a">Wind is from the left-rear → drift right. Crosswind ≈ 25 × sin 100° ≈ 24.6 kt → drift ≈ 24.6/140 × 57 ≈ 10° R. Tailwind component ≈ 4 kt → GS ≈ <b>146 kt, 10° R</b>.</div></div>
+<div class="example"><div class="q">Tailwind limit 10 kt. RWY 05 (QDM 047°), ATIS wind 210°, variation 17°E. Maximum wind strength?</div><div class="a">ATIS wind is magnetic: 210 − 047 = 163° off the nose, i.e. 17° from a direct tailwind. W = 10 / cos 17° ≈ <b>11 kt</b>. (Applying variation here is the trap.)</div></div>
+<div class="example"><div class="q">HDG 090°C, dev 2°W, var 12°E, TAS 160. Holding the 070 radial outbound, 14 NM in 6 min. W/V?</div><div class="a">HDG(T) = 090 − 2 + 12 = 100°. Track = 070 + 12 = 082°T, GS = 140 kt. Solving the triangle: <b>160°/50 kt</b>.</div></div>
+
+<h3>Air plot and ground plot</h3>
+<ul>
+<li>Air distance / ground distance = TAS / GS → GD = AD × GS / TAS.</li>
+<li>A multi-drift wind finding uses three headings and their drifts: the wind that satisfies all of them.</li>
+</ul>
+<div class="trap"><b>Exam traps.</b> Do not apply variation to an ATIS wind against a magnetic runway. Drift and wind correction angle are equal and opposite. "Track" questions want TR/GS from HDG/TAS; "heading" questions want HDG/GS from TR/TAS.</div>
+
+</section><section id="ch12"><h2><span class="ch-num">12</span> In-Flight Navigation</h2>
+<p class="lead">In-flight navigation is about correcting the plan with what the aircraft actually does: track errors, revised ETAs, speed changes to meet a time, and descent planning. The 1-in-60 rule does most of the work.</p>
+
+<h3>The 1-in-60 rule</h3>
+<div class="formula">Angle (°) ≈ 60 × offset / distance &nbsp;·&nbsp; 1° at 60 NM ≈ 1 NM</div>
+<figure class="fig">
+<svg viewBox="0 0 520 170" role="img" aria-label="Track error and closing angle">
+  <circle cx="40" cy="120" r="5" fill="var(--ink)"/><circle cx="480" cy="120" r="5" fill="var(--ink)"/>
+  <line x1="40" y1="120" x2="480" y2="120" stroke="var(--line)" stroke-width="2" stroke-dasharray="6 5"/>
+  <line x1="40" y1="120" x2="220" y2="60" stroke="var(--ink)" stroke-width="2.5"/>
+  <line x1="220" y1="60" x2="480" y2="120" stroke="var(--accent)" stroke-width="2.5"/>
+  <line x1="220" y1="60" x2="220" y2="120" stroke="var(--accent2)" stroke-dasharray="3 3"/>
+  <text x="24" y="146" class="svg-s">A</text><text x="484" y="146" class="svg-s">B</text>
+  <text x="226" y="96" class="svg-xs" fill="var(--accent2)">off-track</text>
+  <text x="80" y="88" class="svg-s">TE</text><text x="300" y="70" class="svg-s" fill="var(--accent)">CA</text>
+  <text x="120" y="160" class="svg-xs">distance gone</text><text x="330" y="160" class="svg-xs">distance to go</text>
+</svg>
+</figure>
+<div class="rule"><b>To regain track and reach B:</b> Track error TE = 60 × off / distance gone. Closing angle CA = 60 × off / distance to go. <b>Alter heading by TE + CA</b>, towards the track. To fly parallel to the planned track, alter by TE only.</div>
+<div class="example"><div class="q">A to B 100 NM. Fix 40 NM along, 6 NM left of track. Alteration to reach B?</div><div class="a">TE = 6/40 × 60 = 9°. CA = 6/60 × 60 = 6°. Alter <b>15° right</b>.</div></div>
+<p>A heading error from using the wrong variation sign (2°E instead of 2°W = 4°) gives an off-track distance of 4/60 × distance (200 NM → ≈ 13–14 NM).</p>
+
+<h3>Revised ETA and required groundspeed</h3>
+<div class="example"><div class="q">A→B 480 NM, planned GS 240 kt, depart 1000. After 150 NM the aircraft is 2 min late. Revised ETA?</div><div class="a">Planned 150 NM = 37.5 min; actual 39.5 min → GS = 150/39.5 × 60 ≈ 228 kt. 330 NM to go ÷ 228 ≈ 87 min. ETA = 1000 + 39.5 + 87 ≈ <b>1206</b>.</div></div>
+<div class="example"><div class="q">475 NM, planned GS 315, ATD 1000. At 1040 the fix is 190 NM along. GS needed for the planned ETA?</div><div class="a">Planned ETA = 1000 + 90.5 min = 1130.5. 285 NM in 50.5 min → <b>≈ 340 kt</b>.</div></div>
+
+<h3>Losing time: speed reductions</h3>
+<p>Work in groundspeed, convert to TAS (GS − wind component), then to IAS or Mach.</p>
+<div class="example"><div class="q">FL120, IAS 200 kt, −5 °C, tailwind 30 kt. Lose 5 min over the last 100 NM. New IAS?</div><div class="a">TAS ≈ 240 kt → GS 270 kt → 22.2 min. Need 27.2 min → GS 220.4 → TAS 190.4. Ratio IAS/TAS ≈ 0.83 → new IAS ≈ <b>159 kt</b> (a reduction of ≈ 41 kt).</div></div>
+
+<h3>Climb and descent</h3>
+<div class="formula">ROD (ft/min) = height to lose / time &nbsp;·&nbsp; time = distance / GS<br>ROD ≈ GS (NM/min) × 6 076 × gradient &nbsp;≈&nbsp; gradient(%) × GS(kt)<br>3° glide path ≈ 300 ft per NM &nbsp;·&nbsp; ROD on 3° ≈ 5 × GS</div>
+<div class="example"><div class="q">FL370 to cross a DME at FL120, start 100 NM out, mean GS 396 kt. Minimum ROD?</div><div class="a">25 000 ft in 100/396 h = 15.15 min → <b>≈ 1 650 ft/min</b>.</div></div>
+<div class="example"><div class="q">3° ILS, threshold crossing height 50 ft, 25 NM DME. Height above threshold?</div><div class="a">25 × 300 = 7 500 + 50 = <b>7 550 ft</b>. Glide path capture at 2 500 ft → 2 500/300 ≈ 8.3 NM.</div></div>
+
+<h3>Position lines from radar, NDB and VOR</h3>
+<ul>
+<li><b>Weather radar</b>: target X° left/right of the nose → bearing from aircraft = HDG(T) ∓ X. Plot from the target = reciprocal.</li>
+<li><b>NDB</b>: QDM = MH + relative bearing; convert to true with the <b>aircraft's</b> variation. <b>VOR</b>: radial = QDR from the station; use the <b>station's</b> variation.</li>
+<li>Radio bearings are great circles; on Mercator apply the conversion angle, on Lambert the chart convergence.</li>
+<li><b>Running fix / doubling the angle</b>: when the relative bearing changes from 45° on the bow to abeam (90°), the abeam range equals the distance flown.</li>
+<li>Bearing-change rule: range ≈ 60 × distance flown / change of bearing (for small changes near abeam).</li>
+<li><b>DME</b> gives slant range: ground range = √(slant² − height²), height in NM (6 076 ft per NM).</li>
+</ul>
+<div class="example"><div class="q">Island 30° left on the radar, MH 276°, variation 12°W. True bearing of the aircraft from the island?</div><div class="a">HDG(T) = 264°. Island bears 264 − 30 = 234°T. From the island: <b>054°T</b>.</div></div>
+<div class="example"><div class="q">At 0020 on the 310° radial at 40 NM; at 0035 on the 040° radial at 40 NM (variation 0). Track and GS?</div><div class="a">The radials are 90° apart, so the chord = 2 × 40 × sin 45° ≈ 56.6 NM. The track is perpendicular to the bisecting radial (355°), moving clockwise: <b>085°T</b>. GS = 56.6 NM in 15 min ≈ <b>226 kt</b>.</div></div>
+
+<h3>Visual navigation</h3>
+<ul>
+<li>Uncertain of position: keep visual contact, log the time, and <b>head for a large line feature</b> (coast, river, motorway), then identify your position along it.</li>
+<li>Two parallel line features crossed at 90° give a <b>groundspeed</b> check.</li>
+<li><b>White-out</b>: snow cover merges with an overcast sky, removing the horizon and surface definition.</li>
+</ul>
+<div class="trap"><b>Exam traps.</b> Use distance gone for TE and distance to go for CA. Speed-change questions are in GS until the end. A 6 % gradient is not 6°: 6 % ≈ 3.4°.</div>
+
+</section><section id="ch13"><h2><span class="ch-num">13</span> PET & Point of Safe Return</h2>
+<p class="lead">Two points answer two different questions. The <b>PET</b> (point of equal time, or critical point) tells you where going on and turning back take the same time. The <b>PSR/PNR</b> (point of safe return) tells you how far you can go and still get back with the fuel you have.</p>
+
+<h3>Point of Equal Time (PET / CP)</h3>
+<div class="formula">Distance to PET: &nbsp; x = D × H / (O + H) &nbsp;&nbsp;·&nbsp;&nbsp; Time to PET = x / O</div>
+<p>D = total distance, O = groundspeed onward (continuing), H = groundspeed home (returning). Both GS are those that apply <i>after</i> the decision — e.g. with one engine out, use the reduced TAS for O and H, but use the normal GS to work out the time taken to reach the PET.</p>
+<ul>
+<li>In still air the PET is at the midpoint. A wind moves the PET <b>into wind</b>: a headwind outbound moves it beyond the midpoint.</li>
+<li>Reducing TAS (e.g. engine failure) makes the wind relatively stronger, moving the PET further into wind.</li>
+<li>The PET does not depend on fuel. The descent is ignored because it occurs whichever way you go.</li>
+</ul>
+<div class="example"><div class="q">D = 1 973 NM, O = 430 kt, H = 385 kt. Time to PET?</div><div class="a">x = 1 973 × 385 / 815 ≈ 932 NM. Time = 932 / 430 ≈ <b>130 min</b>.</div></div>
+<div class="example"><div class="q">D = 450 NM, WC out +30, back −40, TAS 160 kt, reduced TAS 130 kt. Time from C to the PET (based on reduced TAS)?</div><div class="a">After failure O = 130 + 30 = 160, H = 130 − 40 = 90. x = 450 × 90/250 = 162 NM. Flown at normal GS (190 kt): <b>51 min</b>.</div></div>
+
+<h3>Point of Safe Return (PSR / PNR)</h3>
+<div class="formula">Time to PSR: &nbsp; T = E × H / (O + H) &nbsp;&nbsp;·&nbsp;&nbsp; Distance to PSR = T × O = E × O × H / (O + H)</div>
+<p>E = safe endurance (usable fuel excluding reserves, expressed as time). The PSR depends on fuel and groundspeeds, not on the distance to destination.</p>
+<ul>
+<li><b>Any wind</b> brings the PSR closer to the departure point than in still air.</li>
+<li>For a given wind strength, a pure crosswind reduces the radius of action least.</li>
+<li>Radius of action: the same formula, with E the time available (e.g. return before sunset).</li>
+</ul>
+<div class="example"><div class="q">D = 2 346 NM, O = 365 kt, H = 480 kt, E = 8 h 30. Time to PSR?</div><div class="a">T = 510 × 480 / 845 ≈ <b>290 min</b> (distance ≈ 1 762 NM).</div></div>
+<div class="example"><div class="q">TAS 180 kt, track 090°, W/V 045/50. How far out and back in one hour?</div><div class="a">GS out ≈ 141 kt, home ≈ 212 kt. Radius = 1 × 141 × 212 / 353 ≈ <b>85 NM</b>.</div></div>
+
+<h3>Multi-leg and fuel-based PNR</h3>
+<p>When wind or fuel flow changes along the route, work leg by leg: subtract the fuel used out-and-back on each whole leg from the usable fuel, then find how far into the next leg the remaining fuel takes you out and back (fuel per NM out + fuel per NM home).</p>
+<div class="trap"><b>Exam traps.</b> PET uses the post-failure groundspeeds; the time to the PET uses the speed you are actually flying. "Distance from PET to B" = D − x. A PSR beyond the destination is a legitimate answer.</div>
+
+</section><section id="ch14"><h2><span class="ch-num">14</span> Inertial Navigation & FMS</h2>
+<p class="lead">Inertial systems navigate with no external signals at all: they measure acceleration, integrate it into velocity and then into distance. In the current ATPL structure this material sits mainly under Radio Navigation, but it appears throughout these General Navigation banks.</p>
+
+<h3>Principle</h3>
+<figure class="fig">
+<svg viewBox="0 0 520 110" role="img" aria-label="Accelerometer integration chain">
+  <g class="svg-s">
+    <rect x="10" y="30" width="110" height="44" rx="6" fill="var(--panel)" stroke="var(--line)"/><text x="65" y="57" text-anchor="middle">acceleration</text>
+    <rect x="205" y="30" width="110" height="44" rx="6" fill="var(--panel)" stroke="var(--line)"/><text x="260" y="57" text-anchor="middle">velocity (GS)</text>
+    <rect x="400" y="30" width="110" height="44" rx="6" fill="var(--panel)" stroke="var(--line)"/><text x="455" y="57" text-anchor="middle">distance</text>
+    <line x1="120" y1="52" x2="205" y2="52" stroke="var(--accent)" stroke-width="2"/><text x="162" y="44" text-anchor="middle" class="svg-xs" fill="var(--accent)">∫ 1st</text>
+    <line x1="315" y1="52" x2="400" y2="52" stroke="var(--accent)" stroke-width="2"/><text x="357" y="44" text-anchor="middle" class="svg-xs" fill="var(--accent)">∫ 2nd</text>
+    <text x="260" y="96" text-anchor="middle" class="svg-xs">N/S channel → change of latitude · E/W channel → departure → change of longitude</text>
+  </g>
+</svg>
+</figure>
+<ul>
+<li>The sensors measure <b>acceleration</b>. GS comes from the first integration, distance from the second.</li>
+<li>The platform (real in an INS, mathematical in an IRS) must stay level and aligned: corrections for <b>Earth rotation, transport wander (movement over the curved Earth) and Coriolis</b>.</li>
+<li><b>Schuler tuning</b>: an undamped 84.4-minute period keeps the platform on the local vertical — used in both gimballed and strap-down systems.</li>
+<li>TAS (from the ADC) is needed only to compute the <b>wind</b>.</li>
+</ul>
+
+<h3>INS versus IRS</h3>
+<table class="tbl">
+<tr><th></th><th>INS (gimballed)</th><th>IRS (strap-down, ring laser gyros)</th></tr>
+<tr><td>Sensors</td><td>On a gyro-stabilised platform</td><td>Fixed to the airframe; platform computed</td></tr>
+<tr><td>Alignment at mid-latitudes</td><td class="num">≈ 15–20 min</td><td class="num">≈ 10 min</td></tr>
+<tr><td>Special errors</td><td>Gyro drift</td><td><b>Lock-in</b> at low rotation rates, cured by <b>dither</b> (piezo-electric motor)</td></tr>
+</table>
+
+<h3>Alignment and modes</h3>
+<ul>
+<li>Mode selector (B737): <b>OFF – ALIGN – NAV – ATT</b>. Alignment happens in ALIGN, or by selecting NAV directly.</li>
+<li><b>Levelling</b> uses the accelerometers; <b>gyrocompassing</b> finds true north by sensing Earth rate (east gyro / horizontal accelerometers). Only possible on the ground: in flight the system cannot separate aircraft accelerations from misalignment.</li>
+<li>The system computes latitude itself, so it <b>rejects a large latitude error</b> in the entered position but cannot check longitude.</li>
+<li>Present position is entered as <b>latitude/longitude</b> (the format every system accepts). NAV must be selected <b>before the aircraft moves</b>.</li>
+<li>IRS positions are set only during alignment; after that the IRS is not updated (the FMC is).</li>
+<li>Lost in flight (power off/on): no re-alignment — only <b>ATT mode</b> (attitude plus manually entered heading) remains.</li>
+</ul>
+
+<h3>Errors</h3>
+<ul>
+<li>Azimuth gyro drift at a constant rate: heading error ∝ t; position error ∝ t². Example: 0.01°/h for 12 h at 500 kt → ½ × 500 × 0.000175 × 144 ≈ <b>6 NM</b>.</li>
+<li>Triple-fit systems compute positions independently, so they normally differ slightly. If one INS disagrees, at least one is drifting.</li>
+<li>INS flies <b>great circles</b> between waypoints: track changes continuously; at a waypoint on the same parallel the track changes by the convergency.</li>
+</ul>
+
+<h3>FMS (B737 type)</h3>
+<ul>
+<li>Main units: <b>FMC</b> and <b>CDU</b> (MCDU). Start-up pages: <b>IDENT → POS INIT → RTE</b>; SIDs/STARs on DEP/ARR.</li>
+<li>Navigation database: 28-day AIRAC cycle, one active and one inactive.</li>
+<li>Radio position from DME/DME (and VOR/DME); messages are <b>alerting</b> or <b>advisory</b>.</li>
+<li>Magnetic variation tables are stored in the IRS and applied to true heading.</li>
+<li>Created waypoints: place-bearing/distance, place-bearing/place-bearing, along-track displacement, lat/long.</li>
+</ul>
+<div class="trap"><b>Exam traps.</b> First integration = velocity, second = distance. The IRS is not updated in flight. Gyrocompassing is ground-only. Dither cures lock-in.</div>
+
+</section><section id="ch15"><h2><span class="ch-num">15</span> Related Subjects</h2>
+<p class="lead">These questions appeared in the General Navigation sources but belong to other ATPL subjects (031 Mass &amp; Balance, 033 Flight Planning, 062 Radio Navigation, 022 Instruments). They are kept here for completeness.</p>
+<h3>Mass and traffic load</h3>
+<div class="formula">ZFM = DOM + traffic load · TOM = ZFM + take-off fuel · LM = TOM − trip fuel</div>
+<p>The maximum traffic load is the smallest of: MZFM − DOM; MTOM − DOM − take-off fuel; MLM − DOM − landing fuel; MRM − DOM − ramp fuel.</p>
+<p>A forward CG increases longitudinal stability and reduces manoeuvrability (more elevator force needed).</p>
+<h3>Radio aids</h3>
+<ul>
+<li>DME accuracy: ±0.25 NM ± 1.25 % of range.</li>
+<li>GNSS ionospheric delay depends on frequency, so dual-frequency receivers remove most of it.</li>
+<li>Coastal refraction: the same angular error gives a larger position error from the more distant beacon.</li>
+</ul>
+
+</section>
+</main>
+</body>
+</html>
