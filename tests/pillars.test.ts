@@ -23,8 +23,8 @@ describe("pillars", () => {
   it("names each pillar, and honours an owner rename of the section behind it", () => {
     expect(pillarTitle(settings(), "atpl-ground-school")).toBe("EASA ATPL Ground School");
     expect(pillarShortTitle(settings(), "atpl-ground-school")).toBe("ATPL Ground School");
-    expect(pillarTitle(settings(), "aircraft-systems")).toBe("Aircraft Systems Knowledge");
-    expect(pillarTitle(settings(), "pilot-sims")).toBe("Pilot Sims & Flight Trainers");
+    expect(pillarTitle(settings(), "aircraft-systems")).toBe("Aircraft");
+    expect(pillarTitle(settings(), "pilot-sims")).toBe("Flight Training Tools");
     expect(
       pillarTitle(settings([], { "flying-knowledge": { title: "Ground School" } }), "atpl-ground-school"),
     ).toBe("Ground School");

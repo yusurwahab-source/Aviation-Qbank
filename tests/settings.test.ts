@@ -488,7 +488,7 @@ describe("editable names", () => {
     };
     expect(sectionTitle(settings, "flying-knowledge")).toBe("Ground School");
     expect(sectionTitle(settings, "type-rating")).toBe(
-      "Type Rating Systems Knowledge",
+      "Jets & Turboprops",
     );
     const row = { code: "DA40", name: "Diamond", description: "Light." };
     expect(withItemOverride(settings, "class-rating", row)).toEqual({

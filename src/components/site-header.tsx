@@ -46,8 +46,8 @@ const WIDE_ONLY = new Set(["/contact", "/aviation-english"]);
 
 const SIGNED_OUT_LINKS: NavItem[] = [
   { href: "/atpl-ground-school", label: "EASA ATPL Ground School" },
-  { href: "/aircraft-systems", label: "Aircraft Systems Knowledge" },
-  { href: "/pilot-sims", label: "Pilot Sims" },
+  { href: "/aircraft-systems", label: "Aircraft" },
+  { href: "/pilot-sims", label: "Flight Training Tools" },
   { href: "/blog", label: "Blog" },
   { href: "/articles", label: "Articles" },
   { href: "/pricing", label: "Pricing" },
@@ -56,8 +56,8 @@ const SIGNED_OUT_LINKS: NavItem[] = [
 
 const SIGNED_IN_LINKS: NavItem[] = [
   { href: "/atpl-ground-school", label: "EASA ATPL Ground School" },
-  { href: "/aircraft-systems", label: "Aircraft Systems Knowledge" },
-  { href: "/pilot-sims", label: "Pilot Sims" },
+  { href: "/aircraft-systems", label: "Aircraft" },
+  { href: "/pilot-sims", label: "Flight Training Tools" },
   { href: "/blog", label: "Blog" },
   { href: "/articles", label: "Articles" },
   { href: "/progress", label: "Progress" },

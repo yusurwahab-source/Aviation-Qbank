@@ -35,12 +35,12 @@ export function isPillarHidden(settings: PillarSettings, pillar: PillarKey): boo
 }
 
 export function pillarTitle(settings: PillarSettings, pillar: PillarKey): string {
-  if (pillar === "aircraft-systems") return "Aircraft Systems Knowledge";
+  if (pillar === "aircraft-systems") return "Aircraft";
   return sectionTitle(settings, PILLAR_SECTIONS[pillar][0]);
 }
 
 export function pillarShortTitle(settings: PillarSettings, pillar: PillarKey): string {
-  if (pillar === "aircraft-systems") return "Aircraft Systems";
+  if (pillar === "aircraft-systems") return "Aircraft";
   return sectionShortTitle(settings, PILLAR_SECTIONS[pillar][0]);
 }
 

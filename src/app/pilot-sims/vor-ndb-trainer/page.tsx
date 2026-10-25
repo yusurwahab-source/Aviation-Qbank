@@ -9,7 +9,7 @@ import { findPilotSim } from "../sims";
 const sim = findPilotSim("vor-ndb-trainer");
 
 export const metadata: Metadata = {
-  title: "VOR/NDB Trainer — Pilot Sims",
+  title: "VOR/NDB Trainer — Flight Training Tools",
   description: sim?.description,
 };
 
@@ -19,7 +19,7 @@ export default function VorNdbTrainerPage() {
   return (
     <>
       <PageHeading
-        eyebrow="Pilot Sims"
+        eyebrow="Flight Training Tools"
         title={sim.name}
         subtitle="Practice VOR and NDB navigation. Interpret OBS settings, TO/FROM flags, and track courses using radio navigation aids."
       />

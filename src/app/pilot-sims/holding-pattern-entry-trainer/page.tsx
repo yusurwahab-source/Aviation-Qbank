@@ -9,7 +9,7 @@ import { findPilotSim } from "../sims";
 const sim = findPilotSim("holding-pattern-entry-trainer");
 
 export const metadata: Metadata = {
-  title: "Holding Pattern Entry Trainer — Pilot Sims",
+  title: "Holding Pattern Entry Trainer — Flight Training Tools",
   description: sim?.description,
 };
 
@@ -31,7 +31,7 @@ export default function HoldingPatternEntryTrainerPage() {
   return (
     <>
       <PageHeading
-        eyebrow="Pilot Sims"
+        eyebrow="Flight Training Tools"
         title={sim.name}
         subtitle="Practice mode shows the entry sector as you move the aircraft. Test mode gives an ATC clearance: set the inbound course on the HSI, pick the entry, confirm."
       />

@@ -10,7 +10,7 @@ import { envValue } from "@/lib/env";
 import { PILOT_SIMS } from "./sims";
 
 export const metadata: Metadata = {
-  title: "Pilot Sims",
+  title: "Flight Training Tools",
   description: `Interactive simulators for the procedures a pilot has to see to understand. Free on ${siteConfig.name}.`,
 };
 
@@ -26,18 +26,18 @@ export default async function PilotSimsPage() {
   return (
     <>
       <PageHeading
-        eyebrow="Pilot Sims"
-        title="Choose a simulator"
-        subtitle="Procedures worth seeing rather than memorising — practised by hand, on a screen that works on a phone."
+        eyebrow="Flight Training Tools"
+        title="Simulators and tools"
       />
 
+      <h2 className="mb-4 text-lg font-semibold text-foreground">Simulators</h2>
       <ul className="grid gap-4 sm:grid-cols-2">
         {PILOT_SIMS.map((sim) => (
           <li key={sim.slug}>
             <Link href={`/pilot-sims/${sim.slug}`} className="block h-full">
               <Card className="h-full transition hover:border-brand hover:shadow-sm">
                 <div className="flex items-start justify-between gap-3">
-                  <h2 className="text-lg font-semibold text-foreground">{sim.name}</h2>
+                  <h3 className="text-lg font-semibold text-foreground">{sim.name}</h3>
                   <Badge tone="brand">{sim.tier === "premium" ? "Premium" : "Simulator"}</Badge>
                 </div>
                 <p className="mt-3 text-sm text-muted-foreground">{sim.description}</p>

@@ -37,20 +37,20 @@ export const SECTION_KEYS = [
 export type SectionKey = (typeof SECTION_KEYS)[number];
 
 export const SECTION_LABELS: Record<SectionKey, string> = {
-  "type-rating": "Type Rating Systems Knowledge",
-  "class-rating": "Class Rating Systems Knowledge",
+  "type-rating": "Jets & Turboprops",
+  "class-rating": "Light Aircraft",
   "flying-knowledge": "EASA ATPL Ground School",
-  "pilot-sims": "Pilot Sims & Flight Trainers",
+  "pilot-sims": "Flight Training Tools",
 };
 
 /** The same sections, short enough for a navigation bar and a row of
  * buttons. Used only where space is tight; the full name stays the page's
  * own title. */
 export const SECTION_SHORT_LABELS: Record<SectionKey, string> = {
-  "type-rating": "Type Rating",
-  "class-rating": "Class Rating",
+  "type-rating": "Jets & Turboprops",
+  "class-rating": "Light Aircraft",
   "flying-knowledge": "ATPL Ground School",
-  "pilot-sims": "Pilot Sims",
+  "pilot-sims": "Training Tools",
 };
 
 /** The card text under each section on the landing page, as shipped. */

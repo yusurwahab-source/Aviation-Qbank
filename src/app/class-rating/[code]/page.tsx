@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { AircraftOptions, QUESTION_BANK_ANCHOR } from "@/components/aircraft-options";
 import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { TestBuilder, type BuilderPresets } from "@/components/practice-test/test-builder";
 import { ResumeTestBanner } from "@/components/resume-test-banner";
@@ -111,23 +112,11 @@ export default async function ClassRatingPage({ params }: PageProps) {
 
   return (
     <>
-      <PageHeading eyebrow={ratingClass.code} title={ratingClass.name} subtitle="Class rating" />
+      <PageHeading eyebrow={ratingClass.code} title={ratingClass.name} subtitle="Light aircraft" />
 
-      <Card>
-        <p className="text-sm text-muted-foreground">{ratingClass.description}</p>
-        {guideHref ? (
-          <p className="mt-3 text-sm">
-            <Link
-              href={guideHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link-standalone font-medium text-brand-ink hover:underline"
-            >
-              Read the study guide before you start →
-            </Link>
-          </p>
-        ) : null}
-      </Card>
+      <p className="-mt-2 mb-6 max-w-3xl text-sm text-muted-foreground">{ratingClass.description}</p>
+
+      <AircraftOptions guideHref={guideHref} />
 
       {incompleteSession ? (
         <div className="mt-6">
@@ -139,10 +128,10 @@ export default async function ClassRatingPage({ params }: PageProps) {
         </div>
       ) : null}
 
-      <section className="mt-6">
-        <h2 className="text-lg font-semibold text-foreground">Build a practice test</h2>
+      <section id={QUESTION_BANK_ANCHOR} className="mt-10 scroll-mt-24">
+        <h2 className="text-lg font-semibold text-foreground">Systems Question Bank</h2>
         <p className="mb-4 mt-1 text-sm text-muted-foreground">
-          Questions are picked at random from the sections you choose.
+          Build a test from any sections. Questions are picked at random.
         </p>
 
         {topics.length === 0 ? (
@@ -172,7 +161,7 @@ export default async function ClassRatingPage({ params }: PageProps) {
           href="/class-rating"
           className="link-standalone text-sm font-medium text-brand-ink hover:underline"
         >
-          ← All class ratings
+          ← Light Aircraft
         </Link>
         <Link
           href={`/progress/class/${ratingClass.code}`}
