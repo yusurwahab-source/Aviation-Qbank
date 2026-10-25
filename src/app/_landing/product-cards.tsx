@@ -1,38 +1,16 @@
-import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
 import type { ProductCard } from "@/lib/product-cards";
 import type { PillarKey } from "@/lib/pillars";
 
-import simulatorImage from "./images/simulator-tools.webp";
-
 /**
- * The homepage's three product cards: image, heading, one accurate sentence
- * and a way in. Each card is real markup — never a flattened picture — so
- * the heading is text a screen reader and a search engine can read.
- *
- * Images are 16:9 sources (1600×900) served by next/image, which picks the
- * size and format (AVIF/WebP) for the screen. A card whose image has not
- * been supplied yet shows a quiet tinted panel with its icon instead of a
- * stock photo: nothing on this page should picture something the product
- * is not. The Simulator & Tools image is a real screenshot of the VOR/NDB
- * trainer's HSI, captured from `public/pilot-sims/vor-ndb.html`.
- *
- * To add a photograph later: drop a 1600×900 WebP/JPEG into `./images/`,
- * import it here and put it in `IMAGES` with its alt text and, if the
- * subject is off-centre, an `objectPosition` that keeps it in frame when the
- * card is narrow.
+ * The homepage's three resource cards: an icon, a title, one short line and
+ * an arrow. Each card is real markup — never a flattened picture — so the
+ * title is text a screen reader and a search engine can read. The cards are
+ * the page's navigation, so there is deliberately no other button beside
+ * them.
  */
-
-type CardImage = { src: StaticImageData; alt: string; objectPosition?: string };
-
-const IMAGES: Partial<Record<PillarKey, CardImage>> = {
-  "pilot-sims": {
-    src: simulatorImage,
-    alt: "The VOR/NDB trainer's HSI showing a course deviation bar and FROM flag",
-  },
-};
 
 const ICON_PROPS = {
   viewBox: "0 0 24 24",
@@ -42,7 +20,7 @@ const ICON_PROPS = {
   strokeLinecap: "round",
   strokeLinejoin: "round",
   "aria-hidden": "true",
-  className: "h-10 w-10",
+  className: "h-7 w-7",
 } as const;
 
 const ICONS: Record<PillarKey, ReactNode> = {
@@ -66,25 +44,23 @@ const ICONS: Record<PillarKey, ReactNode> = {
   ),
 };
 
-/** Sizes that match the grid below: one column under `md`, three above. */
-const IMAGE_SIZES = "(min-width: 1024px) 320px, (min-width: 768px) 33vw, 100vw";
-
 export function ProductCards({ cards }: { cards: ProductCard[] }) {
   if (cards.length === 0) return null;
 
   return (
-    <section aria-labelledby="product-cards-heading">
-      <h2 id="product-cards-heading" className="sr-only">
-        What you can study
-      </h2>
+    <section aria-label="Learning resources">
       <ul
-        className={`mx-auto grid max-w-5xl grid-cols-1 gap-6 ${
-          cards.length === 3 ? "md:grid-cols-3" : cards.length === 2 ? "md:grid-cols-2" : "max-w-md"
+        className={`mx-auto grid w-full gap-4 sm:gap-6 ${
+          cards.length === 3
+            ? "max-w-5xl md:grid-cols-3"
+            : cards.length === 2
+              ? "max-w-3xl md:grid-cols-2"
+              : "max-w-md"
         }`}
       >
         {cards.map((card) => (
           <li key={card.key} className="h-full">
-            <ProductCardView card={card} image={IMAGES[card.key]} icon={ICONS[card.key]} />
+            <ProductCardView card={card} icon={ICONS[card.key]} />
           </li>
         ))}
       </ul>
@@ -93,60 +69,33 @@ export function ProductCards({ cards }: { cards: ProductCard[] }) {
 }
 
 /**
- * One link per card — on the heading — stretched over the whole card with
- * an `after:` overlay, so the card is one tap target and one stop for a
- * keyboard, and the accessible name is the heading itself rather than a
- * repeated "Explore".
+ * One link per card — on the title — stretched over the whole card with an
+ * `after:` overlay, so the card is one tap target and one stop for a
+ * keyboard, and the accessible name is the title itself.
  */
-function ProductCardView({
-  card,
-  image,
-  icon,
-}: {
-  card: ProductCard;
-  image: CardImage | undefined;
-  icon: ReactNode;
-}) {
+function ProductCardView({ card, icon }: { card: ProductCard; icon: ReactNode }) {
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-surface shadow-sm transition-shadow focus-within:ring-2 focus-within:ring-brand focus-within:ring-offset-2 focus-within:ring-offset-background hover:shadow-md motion-reduce:transition-none">
-      <div className="relative aspect-video w-full overflow-hidden bg-surface-muted">
-        {image ? (
-          <Image
-            src={image.src}
-            alt={image.alt}
-            fill
-            sizes={IMAGE_SIZES}
-            placeholder="blur"
-            className="object-cover"
-            style={image.objectPosition ? { objectPosition: image.objectPosition } : undefined}
-          />
-        ) : (
-          <div className="flex h-full w-full items-center justify-center bg-brand-soft text-brand-ink">
-            {icon}
-          </div>
-        )}
+    <article className="group relative flex h-full items-center gap-4 rounded-xl border border-border bg-surface p-5 shadow-sm transition focus-within:ring-2 focus-within:ring-brand focus-within:ring-offset-2 focus-within:ring-offset-background hover:border-brand hover:shadow-md motion-reduce:transition-none md:flex-col md:items-start md:gap-4 md:p-6">
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-brand-soft text-brand-ink">
+        {icon}
       </div>
-
-      <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <h3 className="text-lg font-semibold text-foreground">
+      <div className="flex min-w-0 flex-1 flex-col md:w-full">
+        <h2 className="text-lg font-semibold text-foreground">
           <Link
             href={card.href}
             className="outline-none after:absolute after:inset-0 after:content-['']"
           >
             {card.title}
           </Link>
-        </h3>
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{card.description}</p>
-        <span
-          aria-hidden="true"
-          className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-ink"
-        >
-          Explore
-          <span className="transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none">
-            →
-          </span>
-        </span>
+        </h2>
+        <p className="mt-1 text-sm text-muted-foreground">{card.description}</p>
       </div>
+      <span
+        aria-hidden="true"
+        className="shrink-0 text-lg font-semibold text-brand-ink transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none md:mt-auto"
+      >
+        →
+      </span>
     </article>
   );
 }

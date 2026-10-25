@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { AircraftOptions, QUESTION_BANK_ANCHOR } from "@/components/aircraft-options";
 import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { TestBuilder, type BuilderPresets } from "@/components/practice-test/test-builder";
 import { ResumeTestBanner } from "@/components/resume-test-banner";
@@ -132,21 +133,9 @@ export default async function AircraftPage({ params }: PageProps) {
         subtitle={`${plane.manufacturer}${plane.variant ? ` · ${plane.variant}` : ""}`}
       />
 
-      <Card>
-        <p className="text-sm text-muted-foreground">{plane.description}</p>
-        {guideHref ? (
-          <p className="mt-3 text-sm">
-            <Link
-              href={guideHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link-standalone font-medium text-brand-ink hover:underline"
-            >
-              Read the study guide before you start →
-            </Link>
-          </p>
-        ) : null}
-      </Card>
+      <p className="-mt-2 mb-6 max-w-3xl text-sm text-muted-foreground">{plane.description}</p>
+
+      <AircraftOptions guideHref={guideHref} />
 
       {incompleteSession ? (
         <div className="mt-6">
@@ -154,10 +143,10 @@ export default async function AircraftPage({ params }: PageProps) {
         </div>
       ) : null}
 
-      <section className="mt-6">
-        <h2 className="text-lg font-semibold text-foreground">Build a practice test</h2>
+      <section id={QUESTION_BANK_ANCHOR} className="mt-10 scroll-mt-24">
+        <h2 className="text-lg font-semibold text-foreground">Systems Question Bank</h2>
         <p className="mb-4 mt-1 text-sm text-muted-foreground">
-          Questions are picked at random from the sections you choose.
+          Build a test from any sections. Questions are picked at random.
         </p>
 
         {topics.length === 0 ? (
@@ -185,7 +174,7 @@ export default async function AircraftPage({ params }: PageProps) {
           href="/type-rating"
           className="link-standalone text-sm font-medium text-brand-ink hover:underline"
         >
-          ← All type ratings
+          ← Jets & Turboprops
         </Link>
         <Link
           href={`/progress/${plane.code}`}

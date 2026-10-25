@@ -14,7 +14,7 @@ import { getCurrentUser } from "@/lib/auth/session";
 import { getVisibleSiteSettings } from "@/lib/settings-visibility";
 
 export const metadata: Metadata = {
-  title: "Choose an aircraft — Class Rating Systems Knowledge",
+  title: "Light Aircraft",
   description: `Pick an aircraft and start a practice test. ${siteConfig.name} keeps a separate question bank per class.`,
 };
 
@@ -47,7 +47,7 @@ export default async function ClassRatingPickerPage() {
   } catch (error) {
     return (
       <>
-        <PageHeading eyebrow={sectionTitle(await getVisibleSiteSettings(), "class-rating")} title="Choose an aircraft" />
+        <PageHeading eyebrow="Aircraft" title={sectionTitle(await getVisibleSiteSettings(), "class-rating")} />
         <DatabaseUnavailable detail={(error as Error).message} />
       </>
     );
@@ -58,9 +58,9 @@ export default async function ClassRatingPickerPage() {
   return (
     <>
       <PageHeading
-        eyebrow={sectionTitle(await getVisibleSiteSettings(), "class-rating")}
-        title="Choose an aircraft"
-        subtitle="Pick an aircraft to start a practice test. Each class has its own question bank."
+        eyebrow="Aircraft"
+        title={sectionTitle(settings, "class-rating")}
+        subtitle="Choose an aircraft for its study materials and systems question bank."
       />
 
       {offerUpgrade ? (
@@ -95,16 +95,16 @@ export default async function ClassRatingPickerPage() {
 
       <p className="mt-6 flex flex-wrap gap-4">
         <Link
+          href="/aircraft-systems"
+          className="link-standalone text-sm font-medium text-brand-ink hover:underline"
+        >
+          ← All aircraft
+        </Link>
+        <Link
           href="/type-rating"
           className="link-standalone text-sm font-medium text-brand-ink hover:underline"
         >
-          ← Type ratings
-        </Link>
-        <Link
-          href="/flying-knowledge"
-          className="link-standalone text-sm font-medium text-brand-ink hover:underline"
-        >
-          Or Flying Knowledge →
+          Jets & Turboprops →
         </Link>
       </p>
     </>

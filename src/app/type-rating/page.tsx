@@ -14,7 +14,7 @@ import { getCurrentUser } from "@/lib/auth/session";
 import { getVisibleSiteSettings } from "@/lib/settings-visibility";
 
 export const metadata: Metadata = {
-  title: "Choose an aircraft — Type Rating Systems Knowledge",
+  title: "Jets & Turboprops",
   description: `Pick an aircraft and start a practice test. ${siteConfig.name} keeps a separate question bank per aircraft.`,
 };
 
@@ -47,7 +47,7 @@ export default async function TypeRatingPickerPage() {
   } catch (error) {
     return (
       <>
-        <PageHeading eyebrow={sectionTitle(await getVisibleSiteSettings(), "type-rating")} title="Choose an aircraft" />
+        <PageHeading eyebrow="Aircraft" title={sectionTitle(await getVisibleSiteSettings(), "type-rating")} />
         <DatabaseUnavailable detail={(error as Error).message} />
       </>
     );
@@ -58,9 +58,9 @@ export default async function TypeRatingPickerPage() {
   return (
     <>
       <PageHeading
-        eyebrow={sectionTitle(await getVisibleSiteSettings(), "type-rating")}
-        title="Choose an aircraft"
-        subtitle="Pick an aircraft to start a practice test. Each type has its own question bank."
+        eyebrow="Aircraft"
+        title={sectionTitle(settings, "type-rating")}
+        subtitle="Choose an aircraft for its study materials and systems question bank."
       />
 
       {offerUpgrade ? (
@@ -98,16 +98,16 @@ export default async function TypeRatingPickerPage() {
 
       <p className="mt-6 flex flex-wrap gap-4">
         <Link
+          href="/aircraft-systems"
+          className="link-standalone text-sm font-medium text-brand-ink hover:underline"
+        >
+          ← All aircraft
+        </Link>
+        <Link
           href="/class-rating"
           className="link-standalone text-sm font-medium text-brand-ink hover:underline"
         >
-          Practising for a class rating instead? →
-        </Link>
-        <Link
-          href="/flying-knowledge"
-          className="link-standalone text-sm font-medium text-brand-ink hover:underline"
-        >
-          Or Flying Knowledge →
+          Light Aircraft →
         </Link>
       </p>
     </>

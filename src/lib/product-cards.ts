@@ -2,25 +2,25 @@ import { isPillarHidden, PILLAR_HREFS, PILLAR_KEYS, type PillarKey } from "@/lib
 import type { SiteSettings } from "@/lib/settings";
 
 /**
- * The homepage's three product cards, as data: which ones show, what each
- * is called, where it goes and what it says.
+ * The homepage's three resource cards, as data: which ones show, what each
+ * is called, where it goes and the one short line under its title.
  *
- * The titles are fixed by the 2026-10-25 redesign brief ("ATPL Theory",
- * "Aircraft Knowledge & Systems", "Simulator & Tools") rather than read
- * from the owner's section labels, which still name the sections
- * everywhere else. A card is left out when every section behind its
- * pillar is hidden, exactly as the header does.
+ * The titles are fixed by the gateway redesign brief ("EASA ATPL Ground
+ * School", "Aircraft", "Flight Training Tools") rather than read from the
+ * owner's section labels, which still name the sections everywhere else. A
+ * card is left out when every section behind its pillar is hidden, exactly
+ * as the header does.
  *
- * Descriptions state only what is live. Counts and aircraft codes come
- * from the database; when it did not answer (`null`), each card falls back
- * to a sentence with no figures in it rather than a made-up number.
+ * Lines state only what is live. Counts come from the database; when it did
+ * not answer (`null`), each card falls back to a line with no figure in it
+ * rather than a made-up number.
  */
 
 export type ProductCardFacts = {
   /** Live ATPL subjects (active, with published questions). */
   liveAtplSubjects: number | null;
-  /** Codes of the type and class rating aircraft with published questions. */
-  aircraftCodes: string[] | null;
+  /** Type and class rating aircraft with published questions. */
+  aircraftCount: number | null;
 };
 
 export type ProductCard = {
@@ -31,9 +31,9 @@ export type ProductCard = {
 };
 
 const TITLES: Record<PillarKey, string> = {
-  "atpl-ground-school": "ATPL Theory",
-  "aircraft-systems": "Aircraft Knowledge & Systems",
-  "pilot-sims": "Simulator & Tools",
+  "atpl-ground-school": "EASA ATPL Ground School",
+  "aircraft-systems": "Aircraft",
+  "pilot-sims": "Flight Training Tools",
 };
 
 /** "A", "A and B", "A, B and C". */
@@ -47,17 +47,17 @@ function describe(key: PillarKey, facts: ProductCardFacts): string {
     case "atpl-ground-school": {
       const n = facts.liveAtplSubjects;
       return n && n > 0
-        ? `${n} EASA ATPL theory ${n === 1 ? "subject" : "subjects"} with explanations and study guides, free in full.`
-        : "EASA ATPL theory subjects with explanations and study guides, free in full.";
+        ? `${n} theory ${n === 1 ? "subject" : "subjects"}, free in full.`
+        : "ATPL theory subjects, free in full.";
     }
     case "aircraft-systems": {
-      const codes = facts.aircraftCodes;
-      return codes && codes.length > 0
-        ? `Systems questions for the ${joinWithAnd(codes)}, from light trainers to airliners.`
-        : "Systems questions for type ratings and class ratings, from light trainers to airliners.";
+      const n = facts.aircraftCount;
+      return n && n > 0
+        ? `Systems study and question banks for ${n} aircraft.`
+        : "Systems study and question banks.";
     }
     case "pilot-sims":
-      return "Practise holding entries and VOR/NDB tracking on interactive trainers, plus study tools such as the Logbook Scanner.";
+      return "Simulators and pilot tools.";
   }
 }
 

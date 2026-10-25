@@ -535,26 +535,31 @@ Every route has been opened at 375px in Chromium and measured, for
 horizontal overflow and for target sizes. `overflow-x: clip` on `html` is
 a safety net, not the fix — overflows get solved where they happen.
 
-**The landing page (2026-10-25 redesign): a plain hero, three product
-cards, then the Blog and Articles shelves.** Order: `Hero` (headline, one
-sentence, `TryFreeButton` — "Try free questions", straight into a
-ten-question Flying Knowledge test, `tryHref` from `page.tsx`, omitted when
-no active subject exists — and "Create a free account") → `ProductCards` →
-`LatestPosts` (Blog, then Articles, each only when something is published)
-→ Trust → How it works → Features → FAQ → `FinalCta`. The hero has no
-artwork: the brief asks for quality through spacing and type, not
-decoration (the drawn 737 backdrop and the try-strip were removed).
+**The landing page is a gateway: one short heading and three resource
+cards, nothing else.** Between the shared header and footer it holds only
+"What are you studying today?" and `ProductCards`
+(`_landing/product-cards.tsx`) — "EASA ATPL Ground School"
+(`/atpl-ground-school`), "Aircraft" (`/aircraft-systems`) and "Flight
+Training Tools" (`/pilot-sims`), each an icon, a title, one short line and
+one stretched link. The line comes from `lib/product-cards.ts` (pure,
+tested): the live ATPL subject count and aircraft count, or a line with no
+figure when the database does not answer. The hero copy, trust, how it
+works, features, FAQ, closing CTA and the Blog/Articles shelves were
+removed from the homepage in the gateway redesign; the FAQ's answers moved
+to `/faq`, and Blog and Articles stay in the header. Do not add
+promotional sections back.
 
-`ProductCards` (`_landing/product-cards.tsx`) are real components — image,
-heading, one sentence, one stretched link on the heading — titled exactly
-"ATPL Theory", "Aircraft Knowledge & Systems", "Simulator & Tools", linking
-to the pillar routes. Their text comes from `lib/product-cards.ts` (pure,
-tested): the live ATPL subject count and aircraft codes from the database,
-or sentences with no figures when it does not answer. Images are 1600×900
-sources served by `next/image` (AVIF, then WebP — `next.config.ts`); the
-Simulator & Tools image is a real screenshot of the VOR/NDB trainer's HSI.
-A card with no image yet shows a tinted icon panel, never a stock photo.
-To add the owner's photographs, see the comment on `IMAGES` in that file.
+**The aircraft directory has exactly two categories.** `/aircraft-systems`
+shows **Light Aircraft** (the class rating tree, `/class-rating`) and
+**Jets & Turboprops** (the type rating tree, `/type-rating`), each listing
+its aircraft. These are the default `SECTION_LABELS` for the two trees; the
+trees, routes and tables are unchanged underneath, and no student-facing
+page says "type rating" or "class rating" any more. An aircraft page leads
+with two options (`components/aircraft-options.tsx`): **Study Materials**
+(its `public/<code>-study-guide.html`, or "not available yet") and
+**Systems Question Bank** (a jump to the test builder below it, at
+`#question-bank`). The Pilot Sims section is labelled **Flight Training
+Tools**.
 
 None of the three pillars is ranked above the others. The header's desktop
 navigation uses the pillars' short names (the mobile sheet keeps the full
@@ -2044,9 +2049,7 @@ src/
     fonts.ts                  The two faces, via next/font
     layout.tsx                The shell: header, footer, metadata, viewport
     page.tsx                  The marketing landing page
-    _landing/                 Its sections: hero, product-cards (+ images/),
-                              latest-posts, trust, how it works, features, FAQ,
-                              final CTA
+    _landing/                 product-cards — the homepage's three resource cards
     _posts/                   Shared Blog/Articles list and post page implementations
     blog/, articles/          Public Blog and Articles: index and [slug] pages
     type-rating/               Type Rating Systems Knowledge picker ("Choose an aircraft")

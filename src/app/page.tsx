@@ -3,105 +3,46 @@ import { listClassRatings } from "@/db/class-queries";
 import { listFlyingKnowledgeSubjects } from "@/db/flying-knowledge-queries";
 import { listAircraft } from "@/db/queries";
 import { buildAtplRows } from "@/lib/atpl-subjects";
-import { buildProductCards } from "@/lib/product-cards";
-import { summariseSection, type SectionCounts } from "@/lib/section-counts";
-import { buildFlyingKnowledgeTestHref } from "@/lib/test-options";
+import { buildProductCards, type ProductCardFacts } from "@/lib/product-cards";
 import { withoutHidden } from "@/lib/settings";
 import { appUrl } from "@/lib/email/send";
 
-import { Faq } from "./_landing/faq";
-import { Features } from "./_landing/features";
-import { FinalCta } from "./_landing/final-cta";
-import { Hero } from "./_landing/hero";
-import { HowItWorks } from "./_landing/how-it-works";
-import { LatestPosts } from "./_landing/latest-posts";
 import { ProductCards } from "./_landing/product-cards";
-import { Trust } from "./_landing/trust";
 import { getVisibleSiteSettings } from "@/lib/settings-visibility";
 
 /**
- * The marketing landing page.
+ * The landing page: a gateway, not a brochure. One short heading and the
+ * three resource cards — EASA ATPL Ground School, Aircraft, Flight Training
+ * Tools — between the shared header and footer, and nothing else. The
+ * trust, how-it-works, features, FAQ and closing call-to-action sections
+ * were removed in the gateway redesign; the FAQ's answers moved to `/faq`.
  *
- * Everything that does not depend on the database — the hero's headline,
- * the trust block, how it works, features, the FAQ, the final CTA —
- * renders unconditionally, so a database hiccup narrows the page rather
- * than taking it down. Only the hero's card row, which shows real figures,
- * falls back to an honest notice instead of a made-up count.
+ * The cards render whatever the database says: when it does not answer,
+ * `buildProductCards` falls back to sentences with no figures rather than a
+ * made-up count, so a database hiccup never takes the page down.
  *
- * Statically rendered with an hourly revalidation, matching the brief: the
- * numbers on this page are real but do not need to be to-the-second.
+ * Statically rendered with an hourly revalidation: the figures on the cards
+ * are real but do not need to be to-the-second.
  */
 export const revalidate = 3600;
 
-type LandingData = {
-  /** False on failure — a live platform fact with no honest zero to fall
-   * back to, the same reasoning `totalAircraft` used before the three
-   * sections existed. */
-  sectionsOk: boolean;
-  typeRating: SectionCounts;
-  classRating: SectionCounts;
-  flyingKnowledge: SectionCounts;
-  atplRows: ReturnType<typeof buildAtplRows>;
-  typeCodes: string[];
-  classCodes: string[];
-  /** Where "Try free questions" goes: the first active, visible Flying
-   * Knowledge subject, because that section is free in full — no preview
-   * allowance to run out of mid-test. Null when there is none. */
-  tryHref: string | null;
-};
-
-/**
- * Sums real counts across both content trees — aircraft (type ratings) and
- * class ratings — rather than reading one featured aircraft's own numbers,
- * which is what this page did before it was three sections instead of one.
- */
-async function loadLandingData(): Promise<LandingData> {
+async function loadCardFacts(): Promise<ProductCardFacts> {
   try {
     const settings = await getVisibleSiteSettings();
     const [fleet, classes, subjects] = await Promise.all([
-      listAircraft().then((rows) =>
-        withoutHidden(settings, "type-rating", rows),
-      ),
-      listClassRatings().then((rows) =>
-        withoutHidden(settings, "class-rating", rows),
-      ),
+      listAircraft().then((rows) => withoutHidden(settings, "type-rating", rows)),
+      listClassRatings().then((rows) => withoutHidden(settings, "class-rating", rows)),
       listFlyingKnowledgeSubjects().then((rows) =>
         withoutHidden(settings, "flying-knowledge", rows),
       ),
     ]);
 
-    const typeRating = summariseSection(fleet);
-    const classRating = summariseSection(classes);
-    const flyingKnowledge = summariseSection(subjects);
-
-    const trySubject = subjects.find(
-      (subject) => subject.status === "active" && subject.publishedQuestions > 0,
-    );
-
     return {
-      sectionsOk: true,
-      tryHref: trySubject
-        ? buildFlyingKnowledgeTestHref(trySubject.code, { length: 10 })
-        : null,
-      typeRating,
-      classRating,
-      flyingKnowledge,
-      atplRows: buildAtplRows(subjects),
-      typeCodes: fleet.filter(isReady).map((plane) => plane.code),
-      classCodes: classes.filter(isReady).map((ratingClass) => ratingClass.code),
+      liveAtplSubjects: buildAtplRows(subjects).filter((row) => row.live !== null).length,
+      aircraftCount: [...fleet, ...classes].filter(isReady).length,
     };
   } catch {
-    const empty: SectionCounts = { aircraftCount: 0, questionCount: 0 };
-    return {
-      sectionsOk: false,
-      typeRating: empty,
-      classRating: empty,
-      flyingKnowledge: empty,
-      atplRows: [],
-      typeCodes: [],
-      classCodes: [],
-      tryHref: null,
-    };
+    return { liveAtplSubjects: null, aircraftCount: null };
   }
 }
 
@@ -152,33 +93,19 @@ function jsonLd(
 }
 
 export default async function LandingPage() {
-  const [
-    { sectionsOk, atplRows, typeCodes, classCodes, tryHref },
-    { featuredAircraftCode, hiddenSections, sectionLabels },
-  ] = await Promise.all([loadLandingData(), getVisibleSiteSettings()]);
+  const [facts, { featuredAircraftCode, hiddenSections, sectionLabels }] = await Promise.all([
+    loadCardFacts(),
+    getVisibleSiteSettings(),
+  ]);
 
-  const cards = buildProductCards(
-    { hiddenSections, sectionLabels },
-    sectionsOk
-      ? {
-          liveAtplSubjects: atplRows.filter((row) => row.live !== null).length,
-          aircraftCodes: [...typeCodes, ...classCodes],
-        }
-      : { liveAtplSubjects: null, aircraftCodes: null },
-  );
+  const cards = buildProductCards({ hiddenSections, sectionLabels }, facts);
 
   return (
-    <div className="font-reading flex flex-col gap-16 sm:gap-24">
-      <div className="flex flex-col gap-10 sm:gap-12">
-        <Hero tryHref={tryHref} />
-        <ProductCards cards={cards} />
-      </div>
-      <LatestPosts />
-      <Trust />
-      <HowItWorks />
-      <Features />
-      <Faq />
-      <FinalCta tryHref={tryHref} />
+    <div className="flex flex-col gap-8 pt-4 sm:gap-10 sm:pt-10">
+      <h1 className="text-center text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+        What are you studying today?
+      </h1>
+      <ProductCards cards={cards} />
 
       {jsonLd(featuredAircraftCode).map((entry) => (
         <script
