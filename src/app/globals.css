@@ -10,22 +10,83 @@
  * edit to this file and nothing else.
  *
  * THEMES
- * Dark is the default and lives on `:root`. Light is applied two ways:
- *   1. `@media (prefers-color-scheme: light)` — but only on a root that has
- *      no `data-theme` attribute, so the operating system decides only when
- *      the student has not.
- *   2. `:root[data-theme="light"]` — the explicit choice made by the header's
- *      theme toggle, which always wins because the media query above excludes
- *      any root carrying the attribute.
+ * Light is the default and lives on `:root`: white panels on a light grey
+ * page, navy ink and a restrained navy accent. It is what every visitor sees
+ * until they choose otherwise — the operating system's dark preference does
+ * not decide, at the owner's instruction (2026-10-25 redesign brief: light,
+ * elegant, professional, comfortable for long study). Dark is the student's
+ * explicit choice through the header's theme toggle, applied as
+ * `:root[data-theme="dark"]` and remembered in localStorage by `ThemeScript`.
  *
  * SOLID FILLS
- * `--on-solid` is the text colour on the accent fill: Deep Night-Navy in
- * both themes (11.6:1), because the accent yellow is bright enough to carry
- * a dark label in both. `--on-danger` is the one that still flips — light
- * theme's red is deep, so it takes white.
+ * `--on-solid` is the text colour on the accent fill: white on the light
+ * theme's navy (13.6:1), Deep Night-Navy on the dark theme's yellow (11.6:1).
+ * `--on-danger` flips the same way.
  * ========================================================================= */
 
 :root {
+  color-scheme: light;
+
+  /* ── Surfaces: Light ────────────────────────────────────────────────────
+   * A light grey page (#F7F8FA) with white panels on it. Panels separate
+   * from the page by a hairline border and a soft shadow rather than by
+   * colour steps, which is what reads as paper — calm for long study. */
+  --background: #f7f8fa;
+  --surface: #ffffff;
+  --surface-elevated: #ffffff;
+  --surface-muted: #eef1f5;
+  --border: #dfe3ea;
+
+  /* ── Text ─────────────────────────────────────────────────────────────
+   * Navy-tinted ink rather than pure black: 16.3:1 on white. The quieter
+   * tiers are measured against the darkest surface they sit on
+   * (--surface-muted): muted 6.6:1, subtle 5.5:1 — both above AA's 4.5:1. */
+  --foreground: #172033;
+  --muted-foreground: #4a5568;
+  --subtle-foreground: #566173;
+
+  /* ── Accent: navy ─────────────────────────────────────────────────────
+   * #1B2D52, the one accent on the light theme — the thing to do next
+   * (primary buttons), where you are (the active nav item) and how far
+   * along you are (progress). It never means right or wrong. Navy is dark
+   * enough to be both the fill (white text on it, 13.6:1) and the ink for
+   * links and icons (13.6:1 on white), so --accent and --accent-ink share a
+   * value here. On the light theme the dark theme's yellow survives only
+   * inside the logo mark. */
+  --accent: #1b2d52;
+  --accent-hover: #26406f;
+  --accent-ink: #1b2d52;
+  --accent-soft: color-mix(in oklab, var(--accent) 8%, var(--surface));
+
+  /* Deepened from #15803d / #c2410c so a 12px label on its own soft tint
+   * (the "Live" badge, a warning chip) clears AA: 6.1:1 and 7:1+. */
+  --success: #166534;
+  --success-soft: color-mix(in oklab, var(--success) 10%, var(--surface));
+  --danger: #be123c;
+  --danger-soft: color-mix(in oklab, var(--danger) 10%, var(--surface));
+  --warning: #9a3412;
+  --warning-soft: color-mix(in oklab, var(--warning) 10%, var(--surface));
+  --flag: #7c3aed;
+  --flag-soft: color-mix(in oklab, var(--flag) 10%, var(--surface));
+
+  --on-solid: #ffffff;
+  --on-danger: #ffffff;
+
+  --shadow-1: 0 1px 2px 0 rgb(23 32 51 / 0.06);
+  --shadow-2: 0 10px 28px -8px rgb(23 32 51 / 0.12), 0 2px 6px -2px rgb(23 32 51 / 0.06);
+}
+
+/* The explicit light choice. Identical to :root by value — stated so that
+ * "the attribute decides" holds for both settings. */
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+/* ── Dark: Modern Cockpit Calm ──────────────────────────────────────────
+ * The student's explicit choice only. Unchanged from the palette that was
+ * the default until the 2026-10-25 light redesign: Deep Night-Navy behind,
+ * panels lifted in steps, white text, a warm instrument-panel yellow accent. */
+:root[data-theme="dark"] {
   color-scheme: dark;
 
   /* ── Surfaces: Night Flight ───────────────────────────────────────────
@@ -96,99 +157,6 @@
   --shadow-2: 0 8px 24px -6px rgb(0 0 0 / 0.55), 0 2px 6px -2px rgb(0 0 0 / 0.4);
 }
 
-/* The OS decides only when the student has not: a root carrying an explicit
- * `data-theme` is excluded here, so the toggle always wins. */
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme]) {
-    color-scheme: light;
-
-    --background: #f8f9fa;
-    --surface: #ffffff;
-    --surface-elevated: #ffffff;
-    --surface-muted: #e9ecef;
-    --border: #dee2e6;
-
-    --foreground: #212529;
-    --muted-foreground: #5c636a;
-    /* See the note beside :root's --subtle-foreground — same WCAG AA fix. */
-    --subtle-foreground: #646b72;
-
-    /* The accent stays the same bright fill; text and lines on a pale
-     * surface use the deeper amber --accent-ink (6.4:1 on #F8F9FA), because
-     * the fill yellow itself is only ~1.6:1 on white. */
-    --accent: #f5c542;
-    --accent-hover: #d9a429;
-    --accent-ink: #7a5400;
-    --accent-soft: color-mix(in oklab, var(--accent) 22%, var(--surface));
-
-    --success: #15803d;
-    --success-soft: color-mix(in oklab, var(--success) 10%, var(--surface));
-    --danger: #be123c;
-    --danger-soft: color-mix(in oklab, var(--danger) 10%, var(--surface));
-    --warning: #c2410c;
-    --warning-soft: color-mix(in oklab, var(--warning) 10%, var(--surface));
-    --flag: #7c3aed;
-    --flag-soft: color-mix(in oklab, var(--flag) 10%, var(--surface));
-
-    /* Night-navy on the sky accent; white on the deep red, which a navy
-     * label would not clear. */
-    --on-solid: #0a1120;
-    --on-danger: #ffffff;
-
-    --shadow-1: 0 1px 2px 0 rgb(13 23 37 / 0.06);
-    --shadow-2: 0 10px 28px -8px rgb(13 23 37 / 0.14), 0 2px 6px -2px rgb(13 23 37 / 0.08);
-  }
-}
-
-/* The explicit choice. Identical to the media query above, and it wins over
- * it by construction rather than by specificity: the two selectors can never
- * match the same element. */
-:root[data-theme="light"] {
-  color-scheme: light;
-
-  --background: #f8f9fa;
-  --surface: #ffffff;
-  --surface-elevated: #ffffff;
-  --surface-muted: #e9ecef;
-  --border: #dee2e6;
-
-  --foreground: #212529;
-  --muted-foreground: #5c636a;
-  /* See the note beside :root's --subtle-foreground — same WCAG AA fix. */
-  --subtle-foreground: #646b72;
-
-  /* The accent stays the same bright fill; text and lines on a pale surface
-   * use the deeper amber --accent-ink (6.4:1 on #F8F9FA), because the fill
-   * yellow itself is only ~1.6:1 on white. */
-  --accent: #f5c542;
-  --accent-hover: #d9a429;
-  --accent-ink: #7a5400;
-  --accent-soft: color-mix(in oklab, var(--accent) 22%, var(--surface));
-
-  --success: #15803d;
-  --success-soft: color-mix(in oklab, var(--success) 10%, var(--surface));
-  --danger: #be123c;
-  --danger-soft: color-mix(in oklab, var(--danger) 10%, var(--surface));
-  --warning: #c2410c;
-  --warning-soft: color-mix(in oklab, var(--warning) 10%, var(--surface));
-  --flag: #7c3aed;
-  --flag-soft: color-mix(in oklab, var(--flag) 10%, var(--surface));
-
-  /* Night-navy on the sky accent; white on the deep red, which a navy label
-   * would not clear. */
-  --on-solid: #0a1120;
-  --on-danger: #ffffff;
-
-  --shadow-1: 0 1px 2px 0 rgb(13 23 37 / 0.06);
-  --shadow-2: 0 10px 28px -8px rgb(13 23 37 / 0.14), 0 2px 6px -2px rgb(13 23 37 / 0.08);
-}
-
-/* Explicit dark. Redundant with `:root` by value — stated anyway so that
- * "the attribute decides" is true for both settings and not only for one. */
-:root[data-theme="dark"] {
-  color-scheme: dark;
-}
-
 /* ── Compatibility aliases ────────────────────────────────────────────────
  * The application was built against `--brand` / `--correct` / `--incorrect`,
  * and a hundred class names in `src/` still say `bg-brand` and `text-correct`.
@@ -206,19 +174,6 @@
   --correct-soft: var(--success-soft);
   --incorrect: var(--danger);
   --incorrect-soft: var(--danger-soft);
-}
-
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme]) {
-    --brand: var(--accent);
-    --brand-strong: var(--accent-hover);
-    --brand-soft: var(--accent-soft);
-    --brand-ink: var(--accent-ink);
-    --correct: var(--success);
-    --correct-soft: var(--success-soft);
-    --incorrect: var(--danger);
-    --incorrect-soft: var(--danger-soft);
-  }
 }
 
 /* ── Scales ───────────────────────────────────────────────────────────────
@@ -410,22 +365,14 @@ body {
   display: none;
 }
 
-:root[data-theme="light"] .icon-when-dark {
+/* Light is the default, so with no attribute (or an explicit light) the
+ * moon shows — press for dark; on dark the sun shows — press for light. */
+:root:not([data-theme="dark"]) .icon-when-dark {
   display: none;
 }
 
-:root[data-theme="light"] .icon-when-light {
+:root:not([data-theme="dark"]) .icon-when-light {
   display: block;
-}
-
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme]) .icon-when-dark {
-    display: none;
-  }
-
-  :root:not([data-theme]) .icon-when-light {
-    display: block;
-  }
 }
 
 /* Long content — a reference table, a wide code sample — scrolls inside its

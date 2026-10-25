@@ -26,11 +26,9 @@ export function ThemeToggle() {
   const toggle = useCallback(() => {
     const root = document.documentElement;
 
-    // With no attribute set the theme is whatever the OS asked for, so that
-    // is what we are toggling away from.
-    const current =
-      root.dataset.theme ??
-      (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    // With no attribute set the theme is light — the site's default — so
+    // that is what we are toggling away from.
+    const current = root.dataset.theme === "dark" ? "dark" : "light";
     const next = current === "light" ? "dark" : "light";
 
     root.dataset.theme = next;
@@ -87,14 +85,14 @@ export function ThemeToggle() {
  *
  * This has to be a blocking inline script in the document head. Anything
  * that waits for React — an effect, a client component's first render —
- * runs after the browser has already painted, so a student who chose light
- * would watch the page arrive dark and then flip. Reading one key and
+ * runs after the browser has already painted, so a student who chose dark
+ * would watch the page arrive light and then flip. Reading one key and
  * setting one attribute is a fraction of a millisecond, which is the trade
  * being made here.
  *
  * It deliberately sets nothing when there is no stored choice: an absent
- * attribute is what lets `prefers-color-scheme` decide, which is the
- * behaviour somebody who has never touched the toggle should get.
+ * attribute means the default light theme, which is what somebody who has
+ * never touched the toggle should get.
  */
 export function ThemeScript() {
   const script = `
