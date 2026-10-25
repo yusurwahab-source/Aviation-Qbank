@@ -8,9 +8,13 @@ on:
 
 jobs:
   opencode:
+    # Only the repository owner can start the agent. Without this, anyone on
+    # GitHub could comment "/oc" on this public repo and spend the
+    # ANTHROPIC_API_KEY secret.
     if: |
-      contains(github.event.comment.body, '/oc') ||
-      contains(github.event.comment.body, '/opencode')
+      github.event.comment.author_association == 'OWNER' &&
+      (contains(github.event.comment.body, '/oc') ||
+       contains(github.event.comment.body, '/opencode'))
     runs-on: ubuntu-latest
     permissions:
       id-token: write

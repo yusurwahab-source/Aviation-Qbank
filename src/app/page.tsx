@@ -2,7 +2,6 @@ import { siteConfig } from "@/config/site";
 import { listClassRatings } from "@/db/class-queries";
 import { listFlyingKnowledgeSubjects } from "@/db/flying-knowledge-queries";
 import { listAircraft } from "@/db/queries";
-import {  } from "@/db/settings";
 import { buildAtplRows } from "@/lib/atpl-subjects";
 import { summariseSection, type SectionCounts } from "@/lib/section-counts";
 import { buildFlyingKnowledgeTestHref } from "@/lib/test-options";
