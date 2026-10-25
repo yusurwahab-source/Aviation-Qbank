@@ -7,6 +7,11 @@ const CHIPS = ["FCOM-sourced", "Study and Exam modes", "Works on your phone"];
  * pass-rate figures to show yet, so this says plainly who built the bank and
  * how, rather than leaving the section out or filling it with claims nobody
  * has made.
+ *
+ * Chips are neutral, not accent-coloured. The accent means "do this next" or
+ * "this is correct" everywhere else on the page; a row of yellow badges
+ * here would borrow that same weight for a credibility statement, which is
+ * exactly the confusion the token system exists to avoid.
  */
 export function Trust() {
   return (
@@ -21,7 +26,7 @@ export function Trust() {
       <ul className="mt-5 flex flex-wrap items-center justify-center gap-2">
         {CHIPS.map((chip) => (
           <li key={chip}>
-            <Badge tone="brand">{chip}</Badge>
+            <Badge>{chip}</Badge>
           </li>
         ))}
       </ul>

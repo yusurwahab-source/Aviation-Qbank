@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 import { LiveBadge } from "@/components/live-badge";
 import { FREE_MODE } from "@/config/free-mode";
-import { Badge, Card } from "@/components/ui";
+import { Badge } from "@/components/ui";
 import { PILOT_SIMS } from "@/app/pilot-sims/sims";
 import type { AtplRow } from "@/lib/atpl-subjects";
 import {
@@ -15,8 +15,6 @@ import {
 } from "@/lib/pillars";
 import type { SectionCounts } from "@/lib/section-counts";
 import { sectionDescription, type SiteSettings } from "@/lib/settings";
-
-import { SectionHeading } from "./section-heading";
 
 export type PillarsData = {
   typeRating: SectionCounts;
@@ -34,25 +32,26 @@ const SIMS_DESCRIPTION =
   "Interactive trainers for the procedures worth seeing rather than memorising — holding entries, VOR and NDB tracking.";
 
 /**
- * The three pillars the product is built around, as three cards of identical
- * shape and weight: a title, a line of description, a short list of what is
- * inside, and one way in. None is ranked above another. Pilot Sims carries a
- * "premium soon" badge because it is meant to become a paid product; today
- * it is free and nothing gates it.
+ * The three pillars the product is built around, as three large cards — the
+ * hero's main act rather than a section a visitor has to scroll to reach.
+ * None is ranked above another. Pilot Sims carries a "premium soon" badge
+ * because it is meant to become a paid product; today it is free and
+ * nothing gates it.
  *
  * Every figure is real, read from the same trees the pickers read. A pillar
- * with nothing behind it (every section hidden) is left out entirely.
+ * with nothing behind it (every section hidden) is left out of the returned
+ * list entirely, so the hero can render however many cards remain.
+ *
+ * This used to be its own section, `PillarsOverview`, titled "What's
+ * inside" — merged into the hero on the owner's instruction so a visitor
+ * sees where to start without scrolling past an explanation first. Its
+ * section copy survives as the condensed bullets at the top of
+ * `HowItWorks`.
  */
-export function PillarsOverview({
-  data,
-  settings,
-}: {
-  data: PillarsData;
-  settings: Pick<SiteSettings, "hiddenSections" | "sectionLabels">;
-}) {
-  const shown = PILLAR_KEYS.filter((pillar) => !isPillarHidden(settings, pillar));
-  if (shown.length === 0) return null;
-
+export function buildPillarCards(
+  data: PillarsData,
+  settings: Pick<SiteSettings, "hiddenSections" | "sectionLabels">,
+): { key: PillarKey; node: ReactNode }[] {
   const liveRows = data.atplRows.filter((row) => row.live);
   const comingCount = data.atplRows.length - liveRows.length;
 
@@ -113,25 +112,10 @@ export function PillarsOverview({
     ),
   };
 
-  return (
-    <section id="whats-inside" className="scroll-mt-20">
-      <SectionHeading
-        eyebrow="What's inside"
-        title={shown.length === 3 ? "Three ways to study, one way to learn" : "What you can study"}
-        subtitle="Understand the aircraft and the exam, not just the answers — pick where you're starting."
-      />
-
-      <ul
-        className={`mt-8 grid gap-4 ${shown.length === 3 ? "md:grid-cols-3" : shown.length === 2 ? "md:grid-cols-2" : ""}`}
-      >
-        {shown.map((pillar) => (
-          <li key={pillar} className="h-full">
-            {cards[pillar]}
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
+  return PILLAR_KEYS.filter((pillar) => !isPillarHidden(settings, pillar)).map((pillar) => ({
+    key: pillar,
+    node: cards[pillar],
+  }));
 }
 
 type PillarRow = {
@@ -142,6 +126,12 @@ type PillarRow = {
   muted?: boolean;
 };
 
+/**
+ * One large card. Sits on `bg-surface-elevated` rather than the hero's own
+ * `bg-surface`, so it lifts the same way every other panel in this product
+ * lifts out of the background it sits on — the hero is the one place that
+ * rule had not yet reached.
+ */
 function PillarCard({
   href,
   title,
@@ -159,7 +149,7 @@ function PillarCard({
 }) {
   return (
     <Link href={href} className="block h-full">
-      <Card className="flex h-full flex-col transition hover:border-brand hover:shadow-sm">
+      <div className="flex h-full flex-col rounded-xl border border-border bg-surface-elevated p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-brand hover:shadow-md sm:p-6">
         <div className="flex items-start justify-between gap-3">
           <h3 className="text-lg font-semibold text-foreground">{title}</h3>
           {badge}
@@ -187,7 +177,7 @@ function PillarCard({
         </ul>
 
         <p className="mt-auto pt-4 text-sm font-semibold text-brand-ink">{cta} →</p>
-      </Card>
+      </div>
     </Link>
   );
 }

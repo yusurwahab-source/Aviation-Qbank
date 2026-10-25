@@ -1,37 +1,31 @@
+import { DatabaseUnavailable } from "@/components/database-unavailable";
+import type { SiteSettings } from "@/lib/settings";
+
 import { HeroBackground } from "./hero-background";
-import { PillarLinks } from "./pillar-links";
-import { TryFreeButton } from "./try-free-button";
-
-export type HeroStats = {
-  totalQuestions: number;
-  totalSystems: number;
-  /** Aircraft and class ratings together — a platform-wide fact, not one
-   * tree's own count. See `loadLandingData` in `page.tsx`. */
-  totalTypes: number;
-};
-
-const NUMBER_FORMAT = new Intl.NumberFormat("en-GB");
+import { buildPillarCards, type PillarsData } from "./pillar-cards";
 
 /**
- * The stat strip is built from whatever `getLandingStats` actually returned.
- * A database hiccup at request or build time must not take the hero down
- * with it — `stats` is null in that case, and the strip is simply skipped
- * rather than showing a made-up number or an error banner on the page meant
- * to make a first impression.
+ * The hero asks one question — which of the three pillars are you here
+ * for? — and answers it with three large cards rather than a headline, a
+ * button and a row of small text links. The old stat strip (practice
+ * questions / systems covered / aircraft in the bank) is gone: three large
+ * numbers next to three large cards competed for the same attention, and
+ * the owner asked for the numbers to go rather than be shrunk.
  *
- * There is no featured aircraft here any more, and no single "start
- * practising" button pointed at one. The product is three pillars — EASA
- * ATPL Ground School, Aircraft Systems Knowledge, Pilot Sims & Flight
- * Trainers — and the hero asks which one a visitor is here for, through
- * `PillarLinks`, rather than assuming.
+ * `pillars` is null exactly when `sectionsOk` is false on the loading side
+ * (`page.tsx`) — a database hiccup must not take the hero down with it, so
+ * the headline still renders and the card row is replaced by the same
+ * honest notice the rest of the page uses.
  */
 export function Hero({
-  stats,
-  tryHref,
+  pillars,
+  settings,
 }: {
-  stats: HeroStats | null;
-  tryHref: string | null;
+  pillars: PillarsData | null;
+  settings: Pick<SiteSettings, "hiddenSections" | "sectionLabels">;
 }) {
+  const cards = pillars ? buildPillarCards(pillars, settings) : [];
+
   return (
     <section className="relative isolate overflow-hidden rounded-2xl border border-border bg-surface px-5 py-14 sm:px-10 sm:py-20">
       <HeroBackground />
@@ -44,40 +38,30 @@ export function Hero({
           Study system by system with an explanation for every question, then sit a timed mock
           exam before the real one does. No account needed to start.
         </p>
+      </div>
 
-        <div className="mt-8">
-          <TryFreeButton href={tryHref} />
-        </div>
-
-        <p className="mt-6 text-xs font-medium uppercase tracking-wide text-subtle-foreground">
-          Or choose what you&rsquo;re studying for
-        </p>
-        <div className="mt-3">
-          <PillarLinks />
-        </div>
-
-        {stats ? (
-          <dl className="mx-auto mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-border pt-6">
-            <div>
-              <dt className="text-xs text-muted-foreground">Practice questions</dt>
-              <dd className="mt-1 text-xl font-semibold text-foreground sm:text-2xl">
-                {NUMBER_FORMAT.format(stats.totalQuestions)}
-              </dd>
-            </div>
-            <div>
-              <dt className="text-xs text-muted-foreground">Systems covered</dt>
-              <dd className="mt-1 text-xl font-semibold text-foreground sm:text-2xl">
-                {NUMBER_FORMAT.format(stats.totalSystems)}
-              </dd>
-            </div>
-            <div>
-              <dt className="text-xs text-muted-foreground">Aircraft in the bank</dt>
-              <dd className="mt-1 text-xl font-semibold text-foreground sm:text-2xl">
-                {NUMBER_FORMAT.format(stats.totalTypes)}
-              </dd>
-            </div>
-          </dl>
-        ) : null}
+      <div className="relative mt-10 sm:mt-12">
+        {pillars === null ? (
+          <div className="mx-auto max-w-md">
+            <DatabaseUnavailable />
+          </div>
+        ) : (
+          <ul
+            className={`mx-auto grid max-w-5xl gap-4 ${
+              cards.length === 3
+                ? "md:grid-cols-3"
+                : cards.length === 2
+                  ? "sm:max-w-3xl md:grid-cols-2"
+                  : "sm:max-w-sm"
+            }`}
+          >
+            {cards.map(({ key, node }) => (
+              <li key={key} className="h-full">
+                {node}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   );
