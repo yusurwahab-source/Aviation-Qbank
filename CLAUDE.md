@@ -74,7 +74,7 @@ against a real Stripe account in test mode. See the note on payments in the
 conventions below and in "Not in scope yet".
 
 The product is called **PilotQBank**, and it has an identity to match: a
-dark flight-deck palette with a light theme beside it, two typefaces, a
+light, white-and-navy palette with a dark theme beside it, two typefaces, a
 logo mark, and an application shell — header, navigation, theme toggle,
 account menu, footer — that works down to 375px. Everything visual is
 driven by tokens in one file; see the conventions below.
@@ -229,6 +229,44 @@ a dry run after that. Publishing is the Graph API (`lib/instagram/graph.ts`,
 `fetch` injected, no SDK) with a long-lived Page token for a Business or
 Creator account linked to a Facebook Page. The route answers 404 without
 `Authorization: Bearer $CRON_SECRET`.
+
+**Blog and Articles are written in the owner console, not in the
+repository.** One table, `posts` (migration `0025_posts`), holds both kinds
+(`kind`: `blog` | `article`), slug unique per kind. Unlike questions they
+are written from a phone and published without a deploy, so the database
+is their source of truth and `db:seed` never touches the table.
+
+- **Public**: `/blog`, `/articles` (category filter, pagination, an honest
+  empty state — there are no sample posts) and `/blog/<slug>`,
+  `/articles/<slug>` (per-post metadata, BlogPosting/Article JSON-LD, ISR
+  hourly). The homepage's `LatestPosts` shows three of each. Every public
+  query in `db/posts.ts` applies **published and `published_at <= now()`** in
+  SQL, so a draft or a scheduled post cannot reach any public page, the
+  homepage or `sitemap.xml` (`buildPostSitemapEntries`), whatever a caller
+  passes. Tested against a real database (`tests/posts-db.test.ts`).
+- **Rendering**: Markdown through `react-markdown` with **no raw-HTML
+  plugin** — HTML in the text shows as text. Link and image addresses go
+  through `safeMarkdownUrl` (https, mailto, site paths, anchors; anything
+  else becomes an empty href). External links get `noopener noreferrer`;
+  a news post's source link also gets `nofollow`. Cover images are optional
+  and, coming from any host, are plain lazy `<img>`s with no referrer; no
+  cover means the section's quiet default panel (`DEFAULT_COVERS` in
+  `components/posts/post-cover.tsx` is where the owner's default Blog and
+  Articles photographs go). `.post-prose` in `globals.css` styles the text.
+- **Owner**: `/owner/content` lists everything; `/owner/content/new` and
+  `/owner/content/[id]` are the editor (live Markdown preview, save draft,
+  publish, a future date schedules, two-step unpublish), `[id]/preview` shows
+  the saved version with the public component. Both actions are
+  `ownerAction`s (requireOwner + audit log: `post.create`, `post.update`,
+  `post.publish`, `post.unpublish`); every field is validated by
+  `validatePost` in `lib/posts.ts` (pure, tested). There is deliberately no
+  delete — unpublish is reversible. Two things learned building the editor,
+  both found in a browser: React resets a form after an `action` completes
+  and that reset puts a *controlled* `<select>` back to its first option on
+  screen, so the editor submits through `onSubmit` + `startTransition`
+  instead; and a confirm button that replaces an "ask" button in the same
+  place must have its own `key`, or React reuses the element, turns it into
+  `type="submit"` during the click, and the first tap submits.
 
 **Old links still work.** `/aircraft` and `/aircraft/[code]` (and its
 `/test` page) were the type rating routes before this split existed;
@@ -390,7 +428,18 @@ application looks is an edit to one file. There is not a single hardcoded
 palette colour anywhere in `src/`, and adding one would be the wrong
 change.
 
-The palette is **Modern Cockpit Calm**: Deep Night-Navy (`#0A1120`) behind,
+**Light is the default palette (2026-10-25 redesign brief: light, elegant,
+professional, comfortable for long study).** `:root` is a light grey page
+(`#F7F8FA`), white panels, navy-tinted ink (`#172033`) and one navy accent
+(`#1B2D52`, white text on it at 13.6:1; the same navy is the ink for links
+and icons). Light-theme `--success` and `--warning` were deepened
+(`#166534`, `#9A3412`) so a 12px label on its own soft tint — the "Live"
+badge — clears AA; axe flagged the old values. The yellow below survives on
+the light theme only inside the logo mark, the social card, the Instagram
+cards and the email frame, which keep their navy-and-yellow brand colours.
+
+The **dark** palette, now only the student's explicit choice, is **Modern
+Cockpit Calm**: Deep Night-Navy (`#0A1120`) behind,
 panels lifted out of it in steps rather than by shadow, pure white text, and
 one accent, a warm instrument-panel yellow (`#F5C542`). Light theme is
 `#F8F9FA` with carbon `#212529` text. The accent is for the thing to do next
@@ -442,12 +491,12 @@ older spelling; one vocabulary with two spellings is a smaller problem
 than a rename touching every component, and that rename can happen on its
 own when it is worth the diff.
 
-**Dark is the default; light is a real second theme, and the student's
-choice always beats the operating system's.** Light is applied by
-`prefers-color-scheme` only on a root with no `data-theme` attribute, so
-the toggle's explicit value can never be overridden — the two selectors
-cannot match the same element, which is a stronger guarantee than
-specificity. The toggle writes to `localStorage` inside `try`/`catch`,
+**Light is the default; dark is a real second theme, chosen with the toggle.**
+`:root` is light for everyone who has not chosen — the operating system's
+dark preference no longer picks the theme (the owner's call in the
+2026-10-25 redesign). Dark is `:root[data-theme="dark"]`, set only by the
+toggle and restored by `ThemeScript`; no stored choice means light. The
+browser `themeColor` and the manifest colours are the light page colour. The toggle writes to `localStorage` inside `try`/`catch`,
 because that API throws outright in a locked-down browser and somebody who
 cannot save a preference must still be able to use the button.
 
@@ -486,20 +535,30 @@ Every route has been opened at 375px in Chromium and measured, for
 horizontal overflow and for target sizes. `overflow-x: clip` on `html` is
 a safety net, not the fix — overflows get solved where they happen.
 
-**The landing page's job is to start a test, and the hero asks which
-pillar rather than assuming.** `Hero` has no featured aircraft. Its one
-primary action is `TryFreeButton` (`_landing/try-free-button.tsx`), a
-yellow "Try free questions" link straight into a ten-question Flying
-Knowledge test — chosen because that section is free in full, so there is
-no preview allowance to run out of — computed in `page.tsx` as `tryHref`
-and omitted when no active subject exists. Under it, `PillarLinks`
-(`_landing/pillar-links.tsx`) is three identical outlined buttons — ATPL
-Ground School, Aircraft Systems, Pilot Sims, the short names from
-`pillarShortTitle` — for a visitor who already knows where they are going.
-`FinalCta` repeats only the try button and a sign-up link. None of the
-three pillars is ranked above the others. The header's desktop navigation
-uses the same short names (the mobile sheet keeps the full ones), and its
-sign-up button reads "Start free".
+**The landing page (2026-10-25 redesign): a plain hero, three product
+cards, then the Blog and Articles shelves.** Order: `Hero` (headline, one
+sentence, `TryFreeButton` — "Try free questions", straight into a
+ten-question Flying Knowledge test, `tryHref` from `page.tsx`, omitted when
+no active subject exists — and "Create a free account") → `ProductCards` →
+`LatestPosts` (Blog, then Articles, each only when something is published)
+→ Trust → How it works → Features → FAQ → `FinalCta`. The hero has no
+artwork: the brief asks for quality through spacing and type, not
+decoration (the drawn 737 backdrop and the try-strip were removed).
+
+`ProductCards` (`_landing/product-cards.tsx`) are real components — image,
+heading, one sentence, one stretched link on the heading — titled exactly
+"ATPL Theory", "Aircraft Knowledge & Systems", "Simulator & Tools", linking
+to the pillar routes. Their text comes from `lib/product-cards.ts` (pure,
+tested): the live ATPL subject count and aircraft codes from the database,
+or sentences with no figures when it does not answer. Images are 1600×900
+sources served by `next/image` (AVIF, then WebP — `next.config.ts`); the
+Simulator & Tools image is a real screenshot of the VOR/NDB trainer's HSI.
+A card with no image yet shows a tinted icon panel, never a stock photo.
+To add the owner's photographs, see the comment on `IMAGES` in that file.
+
+None of the three pillars is ranked above the others. The header's desktop
+navigation uses the pillars' short names (the mobile sheet keeps the full
+ones), and its sign-up button reads "Start free".
 
 **The product is presented as three pillars, over four sections.** A
 pillar (`lib/pillars.ts`, pure and tested) is only a grouping: **EASA ATPL
@@ -537,8 +596,11 @@ shrink.** The wordmark is an `<img>` in a flex row; with the default
 height stayed fixed, so the letters drew tiny inside a box that still looked
 the right size — for everybody, from the day it shipped, and nobody noticed
 because a squeezed logo still looks like a logo. It is `shrink-0` now, 24px
-tall (145px wide), and the nav links are `px-2.5`: measured at 1024, 1100 and
-1280 with the owner's seven links, the row fits exactly. Below `lg` the
+tall (145px wide), and the nav links are `px-2.5`. With Blog and Articles
+added (and About moved to the footer only), Contact and the owner-only
+English link are `WIDE_ONLY` in `site-header.tsx`: shown in the desktop row
+from `xl`, always in the mobile sheet. Measured: the owner's row fits at
+1024 and 1280 with no horizontal scroll. Below `lg` the
 menu button replaces the nav, because the full-size wordmark plus six links
 does not fit in `md`. The account menu shows an avatar only; the address is in
 its dropdown.
@@ -592,21 +654,12 @@ rule is that overflows get solved where they happen, and that is where it
 happened. `.scroll-strip`, the snapping variant built on top of it, was
 deleted along with the strip itself once nothing used it any more.
 
-**The hero's artwork is a 737 planform, drawn, and placed by CSS rather
-than cropped by a viewBox.** Still no photography, for the reason
-`hero-background.tsx` has always given: there is none to license honestly
-here, and a stock airliner would say nothing true about this product. It is
-a planform because that is the shape a type is actually identified by — the
-wing sweep, the engine position, the tailplane.
-
-The placement is the part worth keeping. One `preserveAspectRatio="slice"`
-viewBox was the obvious way and it fails on a phone: an 800×600 box sliced
-into a 375×1200 hero scales to the height and shows the middle fifth of the
-width, so both the aeroplane and the compass bezel fell outside the crop
-entirely and most visitors saw an empty panel. Each layer now carries a
-viewBox that just fits its own drawing and is positioned and sized by
-Tailwind at each breakpoint, so the composition is *designed* at 375px
-rather than merely surviving there.
+**The homepage has no drawn hero artwork any more** (removed in the
+2026-10-25 redesign with `hero-background.tsx`). If artwork ever returns,
+the lesson from it still holds: one `preserveAspectRatio="slice"` viewBox
+fails on a phone (an 800×600 box sliced into a 375×1200 hero shows only the
+middle fifth), so give each layer its own viewBox and place it with CSS per
+breakpoint.
 
 **A fixed-position layer goes in a portal, not in place.** The mobile
 sheet sits inside a `backdrop-blur` header, and a `backdrop-filter` makes
@@ -1991,10 +2044,11 @@ src/
     fonts.ts                  The two faces, via next/font
     layout.tsx                The shell: header, footer, metadata, viewport
     page.tsx                  The marketing landing page
-    _landing/                 Its sections: hero (+ the drawn 737 backdrop) with
-                              PillarLinks, pillars-overview (the three pillar
-                              cards), trust, how it works, features, FAQ, final CTA
-                              (reuses PillarLinks)
+    _landing/                 Its sections: hero, product-cards (+ images/),
+                              latest-posts, trust, how it works, features, FAQ,
+                              final CTA
+    _posts/                   Shared Blog/Articles list and post page implementations
+    blog/, articles/          Public Blog and Articles: index and [slug] pages
     type-rating/               Type Rating Systems Knowledge picker ("Choose an aircraft")
     type-rating/[code]/        One aircraft's overview
     type-rating/[code]/test/   Test runner, grading action, result screen, shortcuts-overlay
@@ -2019,6 +2073,7 @@ src/
     upgrade/                  Checkout for the two plans, and the Stripe redirect action
     redeem/                   Where a gift code becomes an active subscription
     owner/                    Owner-only: overview, insights, accounts (+ per-account detail),
+                              content (Blog & Articles editor, preview),
                               subscribers, gift codes (+ per-code detail, CSV export),
                               messages (+ per-message delivery), reports, aircraft requests,
                               settings, audit log
@@ -2077,6 +2132,7 @@ src/
     owner.ts                  THE unscoped reads, and grant/revoke/notes. /owner only; see the convention above.
     logbooks.ts               Logbook Scanner: logbooks, the spread meter, unlocks and credits (user-scoped)
     logbook-owner.ts          Logbook Scanner usage and cost, unscoped. /owner only, like owner.ts.
+    posts.ts                  Blog posts and Articles: public (published, dated) and owner queries
     instagram.ts              The Instagram agent: pick a question, claim the day, record the post. Flying Knowledge only.
     index.ts                  Connection pool
   proxy.ts                    Mints the signed-out visitor cookie on /type-rating/* and /class-rating/*
@@ -2103,6 +2159,8 @@ src/
     logbook/                  Logbook Scanner: model, time parsing, validation engine, summary,
                               extraction schema and prompt, entitlement, exports (all pure, tested)
                               — plus claude.ts (the API call) and config.ts (env switches)
+    posts.ts                  Blog/Articles rules: validation, slugs, safe links, dates (pure, tested)
+    product-cards.ts          The homepage's three product cards as data (pure, tested)
     grading.ts                Scoring (pure, tested)
     question-status.ts        What the question map may say (pure, tested)
     password.ts               scrypt hashing (pure, tested)
