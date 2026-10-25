@@ -24,7 +24,7 @@ export function Hero({
   pillars: PillarsData | null;
   settings: Pick<SiteSettings, "hiddenSections" | "sectionLabels">;
 }) {
-  const cards = pillars ? buildPillarCards(pillars, settings) : [];
+  const cards = pillars ? buildPillarCards(settings) : [];
 
   return (
     <section className="relative isolate overflow-hidden rounded-2xl border border-border bg-surface px-5 py-14 sm:px-10 sm:py-20">
@@ -47,9 +47,9 @@ export function Hero({
           </div>
         ) : (
           <ul
-            className={`mx-auto grid max-w-5xl gap-4 ${
+            className={`mx-auto grid max-w-5xl gap-6 ${
               cards.length === 3
-                ? "md:grid-cols-3"
+                ? "grid-cols-1 md:grid-cols-3"
                 : cards.length === 2
                   ? "sm:max-w-3xl md:grid-cols-2"
                   : "sm:max-w-sm"
