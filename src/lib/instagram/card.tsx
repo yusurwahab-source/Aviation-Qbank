@@ -23,7 +23,7 @@ const PANEL = "#10192c";
 const BORDER = "#2c3c5c";
 const TEXT = "#ffffff";
 const MUTED = "#a9b6cb";
-const ACCENT = "#38bdf8";
+const ACCENT = "#f5c542";
 const ON_ACCENT = "#0a1120";
 const SUCCESS = "#4ade80";
 

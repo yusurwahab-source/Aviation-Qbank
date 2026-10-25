@@ -390,39 +390,47 @@ application looks is an edit to one file. There is not a single hardcoded
 palette colour anywhere in `src/`, and adding one would be the wrong
 change.
 
-The palette is **Night Flight**: Deep Night-Navy (`#0A1120`) behind, panels
-lifted out of it in steps rather than by shadow, pure white text, and one
-accent, Glass-Cockpit Sky (`#38BDF8`). Light theme is `#F8F9FA` with carbon
-`#212529` text. The accent is for the thing to do next (primary buttons),
-where you are (the active header link) and how far along you are
-(progress); it is never right or wrong. Semantic colour is kept pure and
-separate from that accent — success, danger, warning and flag each mean
-exactly one thing, and the warning is orange rather than amber so it cannot
-be read as the accent — so "this is important" and "this is correct" can
-never be confused with each other.
+The palette is **Modern Cockpit Calm**: Deep Night-Navy (`#0A1120`) behind,
+panels lifted out of it in steps rather than by shadow, pure white text, and
+one accent, a warm instrument-panel yellow (`#F5C542`). Light theme is
+`#F8F9FA` with carbon `#212529` text. The accent is for the thing to do next
+(primary buttons), where you are (the active header link) and how far along
+you are (progress); it is never right or wrong. Semantic colour is kept
+pure and separate from that accent — success, danger, warning and flag each
+mean exactly one thing, and the warning is orange rather than amber so it
+cannot be read as the accent — so "this is important" and "this is correct"
+can never be confused with each other.
 
-(This replaced **Aviation Classic** — Deep Navy `#1A2536` behind a yellow
-`#FBC02D` accent — in a mobile-first redesign asked for a deeper, more
-eye-comfortable night-study theme. The sky-blue accent was picked over the
-phosphor-green the owner also offered specifically because `--success` is
-already green and means "correct answer" — a green accent would have put
-"do this next" and "this is right" one hue apart, exactly the confusion the
-paragraph above exists to prevent. Nothing about the token structure below
+(This is the third generation of the palette. **Aviation Classic** — Deep
+Navy `#1A2536` behind a yellow `#FBC02D` accent — was replaced by **Night
+Flight** — the same navy deepened to `#0A1120` behind a sky-blue accent,
+`#38BDF8` — in a mobile-first redesign asked for a deeper, more
+eye-comfortable night-study theme; blue was picked over the phosphor-green
+also on offer at the time specifically because `--success` is already green
+and means "correct answer". Night Flight was then replaced by this yellow,
+on the owner's explicit instruction to apply the brief's new "Modern
+Cockpit Calm" accent across the whole site, not only the homepage it was
+designed for — reintroducing yellow as the accent, now at a value chosen
+for contrast rather than the original Aviation Classic hex, and confirmed
+with the owner after a stale project note had initially misdescribed the
+live site as already yellow. Nothing about the token structure below
 changed, only the values, and every hand-kept hex copy outside this file —
 listed at the end of this section — was resynced in the same change.)
 
-**The accent is a fill, not a text colour, on a pale surface.** `#38BDF8` on
-white is roughly 2.7:1 — below AA on its own. `--accent` is the fill (navy
-`--on-solid` text on it, ~8.8:1 in both themes — dark and light now share
-the same accent hex and the same dark `--on-solid`, so the sum is identical
-either way); `--accent-ink` — `text-brand-ink` — is the same hue for text,
-lines and chart marks in dark, and deepens to `#0369A1` in light (~5.9:1 on
-white — comfortably AA for body text, short of AAA). Anything that is text
-or a stroke uses the ink, anything that is a fill uses `bg-brand`.
-`--on-danger` is the one on-fill token that still flips with the theme.
-`manifest.ts`, `layout.tsx`'s `themeColor`, the social card, the Instagram
-card generator and the email layout cannot read CSS variables, so they
-carry the same hex values by hand — change them with the palette.
+**The accent is a fill, not a text colour, on a pale surface.** `#F5C542`
+is bright enough to read as a border or a thin rule on either background,
+but body text set in it would be too low-contrast on white, so the ink
+token deepens in light mode the same way the old blue one did. `--accent`
+is the fill (navy `--on-solid` text on it, ~11.6:1 in dark and ~6.8:1 in
+light); `--accent-ink` — `text-brand-ink` — is the same hue for text, lines
+and chart marks in dark (~11.6:1 on the dark surfaces), and deepens to
+`#7A5400` in light (~6.4:1 on white — AA for body text with headroom).
+Anything that is text or a stroke uses the ink, anything that is a fill
+uses `bg-brand`. `--on-danger` is the one on-fill token that still flips
+with the theme. `manifest.ts`, `layout.tsx`'s `themeColor`, the social
+card, the Instagram card generator and the email layout cannot read CSS
+variables, so they carry the same hex values by hand — change them with
+the palette.
 
 The scales are deliberately short: seven type sizes (12/14/16/18/24/32/40),
 four radii, two shadow levels. Spacing rides on Tailwind's own 4px step

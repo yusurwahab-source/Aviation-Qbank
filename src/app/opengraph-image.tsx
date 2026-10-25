@@ -8,7 +8,7 @@ export const alt = `${siteConfig.name} — ${siteConfig.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const ACCENT = "#38bdf8";
+const ACCENT = "#f5c542";
 const BACKDROP = "#0a1120";
 const PANEL = "#0d1424";
 const BORDER = "#22304a";

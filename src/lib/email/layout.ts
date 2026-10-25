@@ -21,7 +21,7 @@ import { siteConfig } from "@/config/site";
 
 const COLOR = {
   navy: "#0A1120",
-  accent: "#38BDF8",
+  accent: "#F5C542",
   onAccent: "#0A1120",
   ink: "#212529",
   muted: "#5C6670",
