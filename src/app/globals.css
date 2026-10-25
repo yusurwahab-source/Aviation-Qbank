@@ -20,8 +20,8 @@
  *
  * SOLID FILLS
  * `--on-solid` is the text colour on the accent fill: Deep Night-Navy in
- * both themes (8.8:1+), because the accent blue is bright enough to carry a
- * dark label in both. `--on-danger` is the one that still flips — light
+ * both themes (11.6:1), because the accent yellow is bright enough to carry
+ * a dark label in both. `--on-danger` is the one that still flips — light
  * theme's red is deep, so it takes white.
  * ========================================================================= */
 
@@ -49,23 +49,23 @@
   --muted-foreground: #b8c2d1;
   --subtle-foreground: #a3afc2;
 
-  /* ── Accent: Glass-Cockpit Sky ─────────────────────────────────────────
-   * #38BDF8, the one accent — a bright instrument-panel cyan-blue instead of
-   * Aviation Yellow. Used for the thing to do next (primary buttons), where
-   * you are (the active nav item) and how far along you are (progress). It
-   * never means right or wrong — see the semantic colours below, which are
-   * kept well away from it on purpose (a phosphor-green accent was the other
-   * option on the table; it was dropped because it would sit on top of
-   * --success, the one colour in this file that must never be ambiguous
-   * with "the thing to press next").
+  /* ── Accent: Modern Cockpit Calm ───────────────────────────────────────
+   * #F5C542, the one accent — a warm instrument-panel amber-yellow back in
+   * place of the Glass-Cockpit Sky blue this replaces (and closer in spirit
+   * to the original Aviation Yellow before that). Used for the thing to do
+   * next (primary buttons), where you are (the active nav item) and how far
+   * along you are (progress). It never means right or wrong — see the
+   * semantic colours below, kept well away from it on purpose so "do this
+   * next" and "this is right" are never read as the same hue.
    *
    * --accent-ink is the same hue for *text, lines and icons on a surface*.
-   * In dark it is the accent itself; in light, this blue on white is still
-   * only ~2.4:1, so it deepens to a sky that reads. Fills use --accent, ink
+   * In dark it is the accent itself (11.6:1 on this background); in light,
+   * this yellow on white is only ~1.6:1, so it deepens to an amber that
+   * reads (6.8:1 on white, 6.4:1 on --surface). Fills use --accent, ink
    * uses this. */
-  --accent: #38bdf8;
-  --accent-hover: #67ccff;
-  --accent-ink: #38bdf8;
+  --accent: #f5c542;
+  --accent-hover: #ffe066;
+  --accent-ink: #f5c542;
   --accent-soft: color-mix(in oklab, var(--accent) 14%, var(--surface));
 
   /* ── Semantic state ───────────────────────────────────────────────────
@@ -114,11 +114,11 @@
     --subtle-foreground: #646b72;
 
     /* The accent stays the same bright fill; text and lines on a pale
-     * surface use the deeper sky --accent-ink (5.9:1 on #F8F9FA), because
-     * the fill blue itself is only ~2.4:1 on white. */
-    --accent: #38bdf8;
-    --accent-hover: #0ea5e9;
-    --accent-ink: #0369a1;
+     * surface use the deeper amber --accent-ink (6.4:1 on #F8F9FA), because
+     * the fill yellow itself is only ~1.6:1 on white. */
+    --accent: #f5c542;
+    --accent-hover: #d9a429;
+    --accent-ink: #7a5400;
     --accent-soft: color-mix(in oklab, var(--accent) 22%, var(--surface));
 
     --success: #15803d;
@@ -158,11 +158,11 @@
   --subtle-foreground: #646b72;
 
   /* The accent stays the same bright fill; text and lines on a pale surface
-   * use the deeper sky --accent-ink (5.9:1 on #F8F9FA), because the fill
-   * blue itself is only ~2.4:1 on white. */
-  --accent: #38bdf8;
-  --accent-hover: #0ea5e9;
-  --accent-ink: #0369a1;
+   * use the deeper amber --accent-ink (6.4:1 on #F8F9FA), because the fill
+   * yellow itself is only ~1.6:1 on white. */
+  --accent: #f5c542;
+  --accent-hover: #d9a429;
+  --accent-ink: #7a5400;
   --accent-soft: color-mix(in oklab, var(--accent) 22%, var(--surface));
 
   --success: #15803d;
