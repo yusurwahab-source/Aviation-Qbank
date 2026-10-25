@@ -57,10 +57,9 @@ export const viewport: Viewport = {
   // without it the bottom inset is always zero and the footer sits under the
   // home indicator.
   viewportFit: "cover",
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0a1120" },
-    { media: "(prefers-color-scheme: light)", color: "#f8f9fa" },
-  ],
+  // The light theme's page colour: light is the default for everyone, and
+  // the OS preference no longer picks the theme (see globals.css).
+  themeColor: "#f7f8fa",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

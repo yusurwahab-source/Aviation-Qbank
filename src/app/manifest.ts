@@ -27,11 +27,11 @@ export default function manifest(): MetadataRoute.Manifest {
     scope: "/",
     display: "standalone",
     orientation: "portrait-primary",
-    // Matches `--background` and `--surface-elevated` on the dark theme, so
-    // the splash screen and the status bar are the colours the application
-    // actually opens in.
-    background_color: "#0a1120",
-    theme_color: "#0a1120",
+    // Matches `--background` on the default light theme, so the splash
+    // screen and the status bar are the colours the application actually
+    // opens in.
+    background_color: "#f7f8fa",
+    theme_color: "#f7f8fa",
     categories: ["education", "productivity"],
     icons: [
       { src: "/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
