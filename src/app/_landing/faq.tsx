@@ -8,12 +8,11 @@ const ENTRIES: { question: string; answer: ReactNode }[] = [
     question: "Is this based on real exam questions?",
     answer: (
       <>
-        No — and it shouldn&rsquo;t be. Every question is written from each aircraft&rsquo;s own
-        official manuals — the FCOM and FCTM for a type rating, the AFM for a class rating — not
-        copied from leaked exam papers or the question banks that circulate between students.
-        Wrong answers are close calls rather than obviously silly ones, and the correct answer is
-        spread evenly across every option, so you can&rsquo;t learn the pattern instead of the
-        aircraft.
+        Yes — the questions are written to be very close to the ones you will meet in the real
+        exam: the same format, the same style and the same level of difficulty. They are written
+        by a commercial pilot who has sat these exams, not copied from leaked exam papers. Wrong
+        answers are close calls rather than obviously silly ones, and the correct answer is spread
+        evenly across every option, so you can&rsquo;t learn the pattern instead of the subject.
       </>
     ),
   },
@@ -51,8 +50,8 @@ const ENTRIES: { question: string; answer: ReactNode }[] = [
     question: "Can I use it alongside my FCOM?",
     answer: (
       <>
-        Yes — that is the intent. This is practice material built from the FCOM and FCTM, never a
-        substitute for either. If anything here ever seems to disagree with your own aircraft&rsquo;s
+        Yes — that is the intent. This is practice material, never a substitute for your
+        aircraft&rsquo;s own manuals. If anything here ever seems to disagree with your own aircraft&rsquo;s
         manual, the manual wins.
       </>
     ),

@@ -14,9 +14,9 @@ import { SectionHeading } from "./section-heading";
  */
 const FEATURES = [
   {
-    title: "Instant explanations, from the FCOM",
+    title: "Instant explanations",
     detail:
-      "In Study mode, the correct answer and the reasoning appear the moment you answer — written from FCOM and FCTM material, not after you finish the whole test.",
+      "In Study mode, the correct answer and the reasoning appear the moment you answer — not after you finish the whole test.",
   },
   {
     title: "Study and Exam modes",

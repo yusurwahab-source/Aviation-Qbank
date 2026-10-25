@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui";
 
-const CHIPS = ["FCOM-sourced", "Study and Exam modes", "Works on your phone"];
+const CHIPS = ["Exam-style questions", "Study and Exam modes", "Works on your phone"];
 
 /**
  * The honest alternative to a testimonial wall: there are no reviews or
@@ -17,10 +17,10 @@ export function Trust() {
   return (
     <section className="mx-auto max-w-2xl text-center">
       <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-        Built by a commercial pilot with a Frozen EASA ATPL. Every question is written from FCOM
-        source material — not from leaked exam papers or question banks passed around between
-        students — and each one is checked to cover a single distinct fact, so you are never
-        answering the same point twice under different wording.
+        Built by a commercial pilot with a Frozen EASA ATPL who has sat these exams. Questions are
+        written to match the real exams in format, style and difficulty, and each one is checked to
+        cover a single distinct fact, so you are never answering the same point twice under
+        different wording.
       </p>
 
       <ul className="mt-5 flex flex-wrap items-center justify-center gap-2">
