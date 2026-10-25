@@ -2,8 +2,8 @@ import { siteConfig } from "@/config/site";
 import { listClassRatings } from "@/db/class-queries";
 import { listFlyingKnowledgeSubjects } from "@/db/flying-knowledge-queries";
 import { listAircraft } from "@/db/queries";
-import {  } from "@/db/settings";
 import { buildAtplRows } from "@/lib/atpl-subjects";
+import { buildProductCards } from "@/lib/product-cards";
 import { summariseSection, type SectionCounts } from "@/lib/section-counts";
 import { buildFlyingKnowledgeTestHref } from "@/lib/test-options";
 import { withoutHidden } from "@/lib/settings";
@@ -14,9 +14,8 @@ import { Features } from "./_landing/features";
 import { FinalCta } from "./_landing/final-cta";
 import { Hero } from "./_landing/hero";
 import { HowItWorks } from "./_landing/how-it-works";
-import type { PillarsData } from "./_landing/pillar-cards";
+import { ProductCards } from "./_landing/product-cards";
 import { Trust } from "./_landing/trust";
-import { TryStrip } from "./_landing/try-strip";
 import { getVisibleSiteSettings } from "@/lib/settings-visibility";
 
 /**
@@ -41,7 +40,7 @@ type LandingData = {
   typeRating: SectionCounts;
   classRating: SectionCounts;
   flyingKnowledge: SectionCounts;
-  atplRows: PillarsData["atplRows"];
+  atplRows: ReturnType<typeof buildAtplRows>;
   typeCodes: string[];
   classCodes: string[];
   /** Where "Try free questions" goes: the first active, visible Flying
@@ -153,20 +152,28 @@ function jsonLd(
 
 export default async function LandingPage() {
   const [
-    { sectionsOk, typeRating, classRating, atplRows, typeCodes, classCodes, tryHref },
+    { sectionsOk, atplRows, typeCodes, classCodes, tryHref },
     { featuredAircraftCode, hiddenSections, sectionLabels },
   ] = await Promise.all([loadLandingData(), getVisibleSiteSettings()]);
 
-  const pillars: PillarsData | null = sectionsOk
-    ? { typeRating, classRating, atplRows, typeCodes, classCodes }
-    : null;
+  const cards = buildProductCards(
+    { hiddenSections, sectionLabels },
+    sectionsOk
+      ? {
+          liveAtplSubjects: atplRows.filter((row) => row.live !== null).length,
+          aircraftCodes: [...typeCodes, ...classCodes],
+        }
+      : { liveAtplSubjects: null, aircraftCodes: null },
+  );
 
   return (
     <div className="font-reading flex flex-col gap-16 sm:gap-24">
-      <Hero pillars={pillars} settings={{ hiddenSections, sectionLabels }} />
+      <div className="flex flex-col gap-10 sm:gap-12">
+        <Hero tryHref={tryHref} />
+        <ProductCards cards={cards} />
+      </div>
       <Trust />
       <HowItWorks />
-      <TryStrip tryHref={tryHref} />
       <Features />
       <Faq />
       <FinalCta tryHref={tryHref} />
