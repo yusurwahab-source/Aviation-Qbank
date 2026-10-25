@@ -1352,3 +1352,58 @@ export const instagramPosts = pgTable(
 );
 
 export type InstagramPost = typeof instagramPosts.$inferSelect;
+
+/**
+ * Blog posts and Articles, written by the owner at `/owner/content`.
+ *
+ * Unlike questions, these are *not* repository content: they are written
+ * from a phone and published without a deploy, so the database is their
+ * source of truth and `db:seed` never touches this table. One table for
+ * both kinds, told apart by `kind`, because they share every field and
+ * every rule; the public site keeps them on separate pages.
+ *
+ * A row is public only when `status` is `published` **and** `published_at`
+ * is not in the future — a future date is a scheduled post. Every public
+ * query applies both (`db/posts.ts`); a draft never reaches a public page,
+ * the sitemap or the homepage.
+ */
+export const posts = pgTable(
+  "posts",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    kind: varchar("kind", { length: 8 }).$type<"blog" | "article">().notNull(),
+    /** URL segment: /blog/<slug> or /articles/<slug>. Unique per kind. */
+    slug: varchar("slug", { length: 120 }).notNull(),
+    title: varchar("title", { length: 200 }).notNull(),
+    /** The short description shown on cards and as the meta description. */
+    excerpt: varchar("excerpt", { length: 320 }).notNull(),
+    /** Markdown. Rendered without raw HTML. */
+    body: text("body").notNull(),
+    /** Optional. https:// or a site path. Absent: the section's default image. */
+    coverImageUrl: text("cover_image_url"),
+    coverImageAlt: varchar("cover_image_alt", { length: 200 }),
+    category: varchar("category", { length: 60 }),
+    tags: jsonb("tags").$type<string[]>().notNull().default([]),
+    /** Sources for an educational article: shown as a reference list. */
+    references: jsonb("references").$type<PostReference[]>().notNull().default([]),
+    /** For a news post: who reported it, where, and when. */
+    sourceName: varchar("source_name", { length: 120 }),
+    sourceUrl: text("source_url"),
+    sourcePublishedOn: varchar("source_published_on", { length: 10 }),
+    status: varchar("status", { length: 10 }).$type<"draft" | "published">().notNull().default("draft"),
+    featured: boolean("featured").notNull().default(false),
+    /** Set on first publish (or by the owner); a future value schedules it. */
+    publishedAt: timestamp("published_at", { withTimezone: true }),
+    seoTitle: varchar("seo_title", { length: 70 }),
+    seoDescription: varchar("seo_description", { length: 170 }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("posts_kind_slug_unique").on(table.kind, table.slug),
+    index("posts_kind_status_published_idx").on(table.kind, table.status, table.publishedAt),
+  ],
+);
+
+export type PostReference = { title: string; url: string; publisher?: string; date?: string };
+export type Post = typeof posts.$inferSelect;

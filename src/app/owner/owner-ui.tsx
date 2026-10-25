@@ -20,6 +20,7 @@ export const OWNER_LINKS = [
   { href: "/owner/logbook", label: "Logbook Scanner" },
   { href: "/owner/mail", label: "Mail" },
   { href: "/owner/messages", label: "Messages" },
+  { href: "/owner/content", label: "Blog & Articles" },
   { href: "/owner/reports", label: "Reports" },
   { href: "/owner/interest", label: "Aircraft requests" },
   { href: "/owner/settings", label: "Settings" },

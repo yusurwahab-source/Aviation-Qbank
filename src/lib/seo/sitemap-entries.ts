@@ -38,6 +38,8 @@ const STATIC_PAGES = [
   },
   { path: "/tools/logbook", changeFrequency: "monthly", priority: 0.6 },
   { path: "/pricing", changeFrequency: "monthly", priority: 0.6 },
+  { path: "/blog", changeFrequency: "weekly", priority: 0.7 },
+  { path: "/articles", changeFrequency: "weekly", priority: 0.7 },
   { path: "/about", changeFrequency: "monthly", priority: 0.5 },
   { path: "/faq", changeFrequency: "monthly", priority: 0.5 },
   { path: "/contact", changeFrequency: "monthly", priority: 0.3 },
@@ -131,4 +133,22 @@ export function buildSitemapEntries(
   );
 
   return [...staticEntries, ...detailEntries];
+}
+
+/**
+ * One URL per published Blog post and Article. The caller passes only rows
+ * `listPostsForSitemap` returned — published and dated now or earlier — so
+ * a draft or a scheduled post can never be listed.
+ */
+export function buildPostSitemapEntries(
+  baseUrl: string,
+  posts: { kind: "blog" | "article"; slug: string; updatedAt: Date }[],
+): MetadataRoute.Sitemap {
+  const origin = baseUrl.replace(/\/+$/, "");
+  return posts.map((post) => ({
+    url: `${origin}${post.kind === "blog" ? "/blog" : "/articles"}/${post.slug}`,
+    lastModified: post.updatedAt,
+    changeFrequency: "monthly" as const,
+    priority: post.kind === "article" ? 0.6 : 0.5,
+  }));
 }

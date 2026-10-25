@@ -14,6 +14,7 @@ import { Features } from "./_landing/features";
 import { FinalCta } from "./_landing/final-cta";
 import { Hero } from "./_landing/hero";
 import { HowItWorks } from "./_landing/how-it-works";
+import { LatestPosts } from "./_landing/latest-posts";
 import { ProductCards } from "./_landing/product-cards";
 import { Trust } from "./_landing/trust";
 import { getVisibleSiteSettings } from "@/lib/settings-visibility";
@@ -172,6 +173,7 @@ export default async function LandingPage() {
         <Hero tryHref={tryHref} />
         <ProductCards cards={cards} />
       </div>
+      <LatestPosts />
       <Trust />
       <HowItWorks />
       <Features />

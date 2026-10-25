@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { FREE_MODE } from "@/config/free-mode";
-import { buildSitemapEntries } from "@/lib/seo/sitemap-entries";
+import { buildPostSitemapEntries, buildSitemapEntries } from "@/lib/seo/sitemap-entries";
 
 const sections = {
   aircraft: [
@@ -112,5 +112,20 @@ describe("buildSitemapEntries with hidden sections", () => {
   it("lists /pricing only when the site is not in free mode", () => {
     const urls = buildSitemapEntries("https://example.com", sections).map((entry) => entry.url);
     expect(urls.includes("https://example.com/pricing")).toBe(!FREE_MODE);
+  });
+});
+
+describe("post sitemap entries", () => {
+  it("lists each post under its own section, with its last edit", () => {
+    const updatedAt = new Date("2026-10-25T00:00:00Z");
+    const entries = buildPostSitemapEntries("https://pilotqbank.com/", [
+      { kind: "blog", slug: "news-one", updatedAt },
+      { kind: "article", slug: "vor-basics", updatedAt },
+    ]);
+    expect(entries.map((e) => e.url)).toEqual([
+      "https://pilotqbank.com/blog/news-one",
+      "https://pilotqbank.com/articles/vor-basics",
+    ]);
+    expect(entries[0].lastModified).toBe(updatedAt);
   });
 });

@@ -36,6 +36,8 @@ const GROUP_1_HREFS = new Set([
   "/aircraft-systems",
   "/pilot-sims",
   "/aviation-english",
+  "/blog",
+  "/articles",
 ]);
 const GROUP_2_HREFS = new Set(["/progress", "/pricing", "/upgrade", "/account"]);
 

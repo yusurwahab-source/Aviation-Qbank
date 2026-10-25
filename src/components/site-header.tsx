@@ -8,7 +8,6 @@ import { UserMenu } from "@/components/user-menu";
 import { getCurrentUser } from "@/lib/auth/session";
 import { isOwner } from "@/lib/auth/owner";
 import { FREE_MODE } from "@/config/free-mode";
-import {  } from "@/db/settings";
 import { envValue } from "@/lib/env";
 import {
   isPillarHidden,
@@ -37,12 +36,21 @@ type NavItem = { href: string; label: string; shortLabel?: string };
 /** Links that are hidden while the site is free (see `config/free-mode.ts`). */
 const PRICING_PATHS = new Set(["/pricing", "/upgrade"]);
 
+/**
+ * Links the desktop row shows only from `xl`. With Blog and Articles added,
+ * the owner's row (with English and Owner) no longer fits at 1024px. Contact
+ * is also the floating button on every page and in the footer; English is
+ * owner-only and not yet live. Both stay in the mobile sheet.
+ */
+const WIDE_ONLY = new Set(["/contact", "/aviation-english"]);
+
 const SIGNED_OUT_LINKS: NavItem[] = [
   { href: "/atpl-ground-school", label: "EASA ATPL Ground School" },
   { href: "/aircraft-systems", label: "Aircraft Systems Knowledge" },
   { href: "/pilot-sims", label: "Pilot Sims" },
+  { href: "/blog", label: "Blog" },
+  { href: "/articles", label: "Articles" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -50,8 +58,9 @@ const SIGNED_IN_LINKS: NavItem[] = [
   { href: "/atpl-ground-school", label: "EASA ATPL Ground School" },
   { href: "/aircraft-systems", label: "Aircraft Systems Knowledge" },
   { href: "/pilot-sims", label: "Pilot Sims" },
+  { href: "/blog", label: "Blog" },
+  { href: "/articles", label: "Articles" },
   { href: "/progress", label: "Progress" },
-  { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
   { href: "/upgrade", label: "Upgrade" },
 ];
@@ -113,6 +122,7 @@ export async function SiteHeader() {
               key={link.href}
               href={link.href}
               label={link.shortLabel ?? link.label}
+              wideOnly={WIDE_ONLY.has(link.href)}
             />
           ))}
         </nav>

@@ -16,7 +16,17 @@ import { usePathname } from "next/navigation";
  * lights `/type-rating`), and `aria-current` says the same to a screen
  * reader that the bar says to everyone else.
  */
-export function HeaderNavLink({ href, label }: { href: string; label: string }) {
+export function HeaderNavLink({
+  href,
+  label,
+  wideOnly = false,
+}: {
+  href: string;
+  label: string;
+  /** Shown in the desktop row only from `xl` (1280px): at `lg` the row is
+   * full. The link stays in the mobile sheet and the footer at every size. */
+  wideOnly?: boolean;
+}) {
   const pathname = usePathname();
   const active = pathname === href || pathname.startsWith(`${href}/`);
 
@@ -24,7 +34,7 @@ export function HeaderNavLink({ href, label }: { href: string; label: string }) 
     <Link
       href={href}
       aria-current={active ? "page" : undefined}
-      className={`tap-target relative inline-flex items-center whitespace-nowrap rounded-lg px-2.5 text-sm font-medium transition hover:bg-surface-muted hover:text-foreground ${
+      className={`tap-target relative ${wideOnly ? "hidden xl:inline-flex" : "inline-flex"} items-center whitespace-nowrap rounded-lg px-2.5 text-sm font-medium transition hover:bg-surface-muted hover:text-foreground ${
         active ? "text-foreground" : "text-muted-foreground"
       }`}
     >
