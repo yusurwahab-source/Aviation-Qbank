@@ -405,3 +405,89 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* ── Post text (Blog and Articles) ──────────────────────────────────────
+ * Long-form reading: the reading face at 17px, a ~70-character measure set
+ * by the article's own max width, generous leading, and headings that step
+ * down from the page title (the Markdown's own `#` is rendered as an h2).
+ * Colours come from the tokens, so both themes read the same way. */
+.post-prose {
+  font-family: var(--font-reading);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--foreground);
+  overflow-wrap: break-word;
+}
+.post-prose > * + * {
+  margin-top: 1.1em;
+}
+.post-prose h2,
+.post-prose h3,
+.post-prose h4 {
+  margin-top: 2em;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+.post-prose h2 {
+  font-size: 1.5rem;
+}
+.post-prose h3 {
+  font-size: 1.25rem;
+}
+.post-prose h4 {
+  font-size: 1.0625rem;
+}
+.post-prose a {
+  color: var(--accent-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.post-prose ul,
+.post-prose ol {
+  padding-left: 1.4em;
+}
+.post-prose ul {
+  list-style: disc;
+}
+.post-prose ol {
+  list-style: decimal;
+}
+.post-prose li + li {
+  margin-top: 0.35em;
+}
+.post-prose blockquote {
+  border-left: 3px solid var(--border);
+  padding-left: 1em;
+  color: var(--muted-foreground);
+}
+.post-prose code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--surface-muted);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+.post-prose pre {
+  overflow-x: auto;
+  background: var(--surface-muted);
+  border-radius: 8px;
+  padding: 1em;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.post-prose pre code {
+  background: none;
+  padding: 0;
+}
+.post-prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+.post-prose hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2em 0;
+}

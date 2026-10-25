@@ -12,6 +12,8 @@ import { siteConfig } from "@/config/site";
  */
 
 const ALL_LINKS = [
+  { href: "/blog", label: "Blog" },
+  { href: "/articles", label: "Articles" },
   { href: "/about", label: "About" },
   { href: "/pricing", label: "Pricing" },
   { href: "/faq", label: "FAQ" },

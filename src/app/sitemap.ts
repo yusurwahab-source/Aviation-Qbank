@@ -6,7 +6,8 @@ import { listAircraft } from "@/db/queries";
 import { getSiteSettings } from "@/db/settings";
 import { canonicalUrl } from "@/lib/canonical-url";
 import { withoutHidden } from "@/lib/settings";
-import { buildSitemapEntries } from "@/lib/seo/sitemap-entries";
+import { listPostsForSitemap } from "@/db/posts";
+import { buildPostSitemapEntries, buildSitemapEntries } from "@/lib/seo/sitemap-entries";
 
 /**
  * `sitemap.xml`, generated from the same three content trees the landing
@@ -65,13 +66,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  return buildSitemapEntries(
-    canonicalUrl(),
-    {
-      aircraft,
-      classRatings,
-      flyingKnowledgeSubjects,
-    },
-    hiddenSections,
-  );
+  // Published Blog posts and Articles. A failure here leaves them out of
+  // this build's sitemap rather than failing the whole file.
+  let postRows: Awaited<ReturnType<typeof listPostsForSitemap>> = [];
+  try {
+    postRows = await listPostsForSitemap();
+  } catch {
+    postRows = [];
+  }
+
+  return [
+    ...buildSitemapEntries(
+      canonicalUrl(),
+      {
+        aircraft,
+        classRatings,
+        flyingKnowledgeSubjects,
+      },
+      hiddenSections,
+    ),
+    ...buildPostSitemapEntries(canonicalUrl(), postRows),
+  ];
 }
