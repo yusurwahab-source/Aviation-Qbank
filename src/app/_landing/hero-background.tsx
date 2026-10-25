@@ -67,9 +67,9 @@ export function HeroBackground() {
       {/* The horizon: the one straight line in the composition, and the only
           layer that may stretch, which is what `preserveAspectRatio="none"`
           is for — a line has no proportions to lose.
-          Hidden on a phone, where the hero is tall enough that it lands on
-          the stat strip's own rule and reads as a second, meaningless
-          divider rather than as a horizon. */}
+          Hidden on a phone, where the hero is tall enough with the pillar
+          cards stacked below that a horizon this high would land on top of
+          the card row and read as a stray rule rather than a horizon. */}
       <svg
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
@@ -82,9 +82,8 @@ export function HeroBackground() {
       {/* The aeroplane, climbing away to the right, with its track behind it
           drawn the way a flight plan is: dashed, and going somewhere.
           Bleeding off the bottom-left on a phone so it reads as passing
-          through rather than as a logo dropped in a corner — and kept clear
-          of the stat strip, which is the one thing in this panel with a
-          number on it worth reading. */}
+          through rather than as a logo dropped in a corner — and kept to the
+          headline's half of the panel, clear of the pillar cards below. */}
       <svg
         viewBox="-210 -210 420 420"
         className="absolute -bottom-10 -left-20 h-64 w-64 sm:-left-8 sm:bottom-2 sm:h-80 sm:w-80 lg:left-2 lg:h-96 lg:w-96"

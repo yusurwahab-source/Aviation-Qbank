@@ -1,11 +1,7 @@
-import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { siteConfig } from "@/config/site";
-import { listClassRatings, listClassTopics } from "@/db/class-queries";
-import {
-  listFlyingKnowledgeSubjects,
-  listFlyingKnowledgeTopics,
-} from "@/db/flying-knowledge-queries";
-import { listAircraft, listTopics } from "@/db/queries";
+import { listClassRatings } from "@/db/class-queries";
+import { listFlyingKnowledgeSubjects } from "@/db/flying-knowledge-queries";
+import { listAircraft } from "@/db/queries";
 import {  } from "@/db/settings";
 import { buildAtplRows } from "@/lib/atpl-subjects";
 import { summariseSection, type SectionCounts } from "@/lib/section-counts";
@@ -16,20 +12,20 @@ import { appUrl } from "@/lib/email/send";
 import { Faq } from "./_landing/faq";
 import { Features } from "./_landing/features";
 import { FinalCta } from "./_landing/final-cta";
-import type { HeroStats } from "./_landing/hero";
 import { Hero } from "./_landing/hero";
 import { HowItWorks } from "./_landing/how-it-works";
-import { PillarsOverview, type PillarsData } from "./_landing/pillars-overview";
+import type { PillarsData } from "./_landing/pillar-cards";
 import { Trust } from "./_landing/trust";
+import { TryStrip } from "./_landing/try-strip";
 import { getVisibleSiteSettings } from "@/lib/settings-visibility";
 
 /**
  * The marketing landing page.
  *
- * Everything that does not depend on the database — the hero copy, the
- * trust block, how it works, features, the FAQ, the final CTA — renders
- * unconditionally, so a database hiccup narrows the page rather than taking
- * it down. Only the section that shows real numbers (`PillarsOverview`)
+ * Everything that does not depend on the database — the hero's headline,
+ * the trust block, how it works, features, the FAQ, the final CTA —
+ * renders unconditionally, so a database hiccup narrows the page rather
+ * than taking it down. Only the hero's card row, which shows real figures,
  * falls back to an honest notice instead of a made-up count.
  *
  * Statically rendered with an hourly revalidation, matching the brief: the
@@ -48,11 +44,6 @@ type LandingData = {
   atplRows: PillarsData["atplRows"];
   typeCodes: string[];
   classCodes: string[];
-  /** Distinct-topic count summed across every aircraft, class rating and
-   * Flying Knowledge subject — each one's own systems, not deduplicated
-   * against another's, because a "Fuel System" quiz on one aircraft is a
-   * different surface from another aircraft's. */
-  totalSystems: number;
   /** Where "Try free questions" goes: the first active, visible Flying
    * Knowledge subject, because that section is free in full — no preview
    * allowance to run out of mid-test. Null when there is none. */
@@ -63,9 +54,6 @@ type LandingData = {
  * Sums real counts across both content trees — aircraft (type ratings) and
  * class ratings — rather than reading one featured aircraft's own numbers,
  * which is what this page did before it was three sections instead of one.
- * The fleet is small enough that a query per aircraft for its topic count
- * is fine at this size, the same trade `insights.ts` already makes for its
- * own per-owner-page queries.
  */
 async function loadLandingData(): Promise<LandingData> {
   try {
@@ -82,23 +70,9 @@ async function loadLandingData(): Promise<LandingData> {
       ),
     ]);
 
-    const [fleetTopics, classTopics, flyingTopics] = await Promise.all([
-      Promise.all(fleet.map((plane) => listTopics(plane.code))),
-      Promise.all(
-        classes.map((ratingClass) => listClassTopics(ratingClass.code)),
-      ),
-      Promise.all(
-        subjects.map((subject) => listFlyingKnowledgeTopics(subject.code)),
-      ),
-    ]);
-
     const typeRating = summariseSection(fleet);
     const classRating = summariseSection(classes);
     const flyingKnowledge = summariseSection(subjects);
-    const totalSystems =
-      fleetTopics.reduce((sum, topics) => sum + topics.length, 0) +
-      classTopics.reduce((sum, topics) => sum + topics.length, 0) +
-      flyingTopics.reduce((sum, topics) => sum + topics.length, 0);
 
     const trySubject = subjects.find(
       (subject) => subject.status === "active" && subject.publishedQuestions > 0,
@@ -115,7 +89,6 @@ async function loadLandingData(): Promise<LandingData> {
       atplRows: buildAtplRows(subjects),
       typeCodes: fleet.filter(isReady).map((plane) => plane.code),
       classCodes: classes.filter(isReady).map((ratingClass) => ratingClass.code),
-      totalSystems,
     };
   } catch {
     const empty: SectionCounts = { aircraftCount: 0, questionCount: 0 };
@@ -127,7 +100,6 @@ async function loadLandingData(): Promise<LandingData> {
       atplRows: [],
       typeCodes: [],
       classCodes: [],
-      totalSystems: 0,
       tryHref: null,
     };
   }
@@ -181,51 +153,20 @@ function jsonLd(
 
 export default async function LandingPage() {
   const [
-    {
-      sectionsOk,
-      typeRating,
-      classRating,
-      flyingKnowledge,
-      atplRows,
-      typeCodes,
-      classCodes,
-      totalSystems,
-      tryHref,
-    },
+    { sectionsOk, typeRating, classRating, atplRows, typeCodes, classCodes, tryHref },
     { featuredAircraftCode, hiddenSections, sectionLabels },
   ] = await Promise.all([loadLandingData(), getVisibleSiteSettings()]);
 
-  const heroStats: HeroStats | null = sectionsOk
-    ? {
-        totalQuestions:
-          typeRating.questionCount +
-          classRating.questionCount +
-          flyingKnowledge.questionCount,
-        totalSystems,
-        totalTypes: typeRating.aircraftCount + classRating.aircraftCount,
-      }
+  const pillars: PillarsData | null = sectionsOk
+    ? { typeRating, classRating, atplRows, typeCodes, classCodes }
     : null;
 
   return (
-    <div className="flex flex-col gap-16 sm:gap-24">
-      <Hero stats={heroStats} tryHref={tryHref} />
-
-      {/* Directly under the hero, because it is the only section on this
-          page a student can actually start from: every other one explains
-          the product, and this one hands them a section to pick. */}
-      {sectionsOk ? (
-        <PillarsOverview
-          data={{ typeRating, classRating, atplRows, typeCodes, classCodes }}
-          settings={{ hiddenSections, sectionLabels }}
-        />
-      ) : (
-        <section id="whats-inside" className="scroll-mt-20">
-          <DatabaseUnavailable />
-        </section>
-      )}
-
+    <div className="font-reading flex flex-col gap-16 sm:gap-24">
+      <Hero pillars={pillars} settings={{ hiddenSections, sectionLabels }} />
       <Trust />
       <HowItWorks />
+      <TryStrip tryHref={tryHref} />
       <Features />
       <Faq />
       <FinalCta tryHref={tryHref} />

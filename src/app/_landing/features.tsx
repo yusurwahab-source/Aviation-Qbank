@@ -51,10 +51,12 @@ export function Features() {
       <SectionHeading eyebrow="Features" title="What you actually get" />
 
       <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {FEATURES.map((feature) => (
+        {FEATURES.map((feature, index) => (
           <li key={feature.title}>
-            <Card className="h-full">
-              <div className="h-1 w-8 rounded-full bg-brand" />
+            <Card className="h-full transition hover:-translate-y-0.5 hover:border-brand hover:shadow-sm">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-surface-muted text-sm font-semibold text-brand-ink">
+                {index + 1}
+              </span>
               <p className="mt-3 text-sm font-semibold text-foreground">{feature.title}</p>
               <p className="mt-1.5 text-sm text-muted-foreground">{feature.detail}</p>
             </Card>
