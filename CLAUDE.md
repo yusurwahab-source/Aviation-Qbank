@@ -1,7 +1,51 @@
 # CLAUDE.md — Aviation Type Rating Question Bank
 
 Working notes for this repository. Keep this file current: it is the agreed
-description of how the project is built, not a historical record.
+description of how the project is built, not a historical record. Historical
+narrative (why a decision was reversed, how a bug was found) belongs in git
+history and `content/README.md`, not here — this file states the rule that
+resulted, not the story behind it.
+
+## Working in this repo
+
+The site is feature-complete; most sessions are a targeted fix or content
+change, not new architecture. This section is the standing instruction for
+how to work here — when the user gives a new standing instruction, update
+the rule itself, rather than appending a history of who asked for what.
+
+**Autonomy.** Act directly on a clear, scoped request — investigate, then
+build — rather than checking in first. Ask first only when the request
+itself is ambiguous, or the decision is large or carries real risk (data
+loss, breaking a core flow, a destructive command); a routine technical
+choice a reasonable default already covers doesn't need to be asked about.
+Finish a multi-step task end to end and verify the result before reporting,
+rather than pausing partway through.
+
+**Search.** Use the Layout map below to go straight to the right file
+instead of a repo-wide search. Only widen the search when the map doesn't
+cover it, and reuse a decision already recorded below rather than
+re-deriving it or re-discovering the bug it was written to prevent.
+
+**Checks.** Run the specific check that covers the change (one test file,
+`lint` on the touched package, `typecheck`) rather than the full `npm run
+check` for a small, contained edit. Run the full `npm run check` —
+mandatory, not optional — whenever the change touches payments,
+authentication/sessions, the question schema/content validation, or
+anything cross-cutting; always before a push, regardless of size.
+
+**Fixes found along the way.** Fix a small, obviously-safe bug that is part
+of the task, or sitting right next to it. Name a larger or sensitive one
+and ask before touching it.
+
+**Secrets and risk.** Never put a secret, `.env` value or credential in a
+report or a commit. Never push or deploy without the user's explicit
+go-ahead for that specific push or deploy.
+
+**Git.** A commit is fine once the task and its checks are done — stage
+only this task's own changes, never unrelated changes already sitting in
+the tree.
+
+**Reporting.** End with a short final report in Arabic.
 
 ## What this is
 
@@ -157,8 +201,10 @@ parts, kept apart on purpose:
 1. **Extraction** — `api/logbook/extract/route.ts` sends one photo to the
    Anthropic Messages API (`@anthropic-ai/sdk`, the one SDK installed here,
    because the Claude API guidance is to use the official SDK rather than
-   `fetch`). The key (`ANTHROPIC_API_KEY`) and model (`LOGBOOK_MODEL`,
-   default `claude-sonnet-5-5`) are read on the server only. The model is
+   `fetch`). The key (`ANTHROPIC_API_KEY`), model (`LOGBOOK_MODEL`,
+   default `claude-sonnet-5-5`) and effort (`LOGBOOK_EFFORT`, one of
+   `low`/`medium`/`high`, default `medium` — the Messages API's own
+   `output_config.effort`) are read on the server only. The model is
    told to **transcribe, never correct**, and every cell comes back as the
    text written on the page; `lib/logbook/extraction.ts` turns it into
    minutes. The reply is held to a JSON schema by the API (structured
@@ -205,6 +251,45 @@ the tab. Extracted entries reach the database only on "Save to my account"
 meter rows hold token counts, not content, and deliberately survive that
 delete — otherwise deleting would hand the free spreads back. Token counts
 and cost per request are visible only at `/owner/logbook`.
+
+**AI Search (`/tools/ai-search`) is a free-text Q&A tool, not a question
+bank.** A student asks an aviation question in plain language and gets a
+concise answer grounded only in this site's own content — the page says
+plainly that it is not a complete or approved FCOM/FCTM/AFM. It is also
+linked from the Pilot Sims page's "Tools" list, alongside Logbook Scanner.
+Three parts:
+
+- **Backend** — `src/app/api/chat/route.ts`, a streaming POST
+  (Vercel AI SDK `streamText`) to Google's Gemini (`gemini-3.5-flash-lite`
+  via `@ai-sdk/google`) with `GEMINI_API_KEY` (read through `envValue`,
+  like every other key in this app) — the only provider here besides
+  Anthropic, Stripe and Resend.
+- **Knowledge base** — `src/lib/ai-search-knowledge.ts` reads every
+  `.json`/`.md`/`.txt` file under `content/` directly off disk (not the
+  database), cached in memory per server instance and capped at 25 MB
+  total; a question file with `status: "draft"` is filtered out, so the
+  "only published is ever shown" rule the rest of the app follows holds
+  here too. `src/lib/ai-search.ts` (pure, tested) ranks that content by
+  term overlap with the query and truncates it to `MAX_AI_SEARCH_CONTEXT_LENGTH`
+  (24,000 characters) before it reaches the model.
+- **Frontend** — `src/app/tools/ai-search/` (`page.tsx` +
+  `ai-search-form.tsx`), the Vercel AI SDK's `useChat`/`DefaultChatTransport`
+  against `/api/chat`.
+
+The system instruction tells the model to answer only from the supplied
+context, to treat both the knowledge base and the optional client-supplied
+"pilot context" as untrusted data rather than instructions, and to
+disclaim that this is not an approved manual. Server-side caps bound every
+input regardless of what the model is told (query ≤1,000 characters, pilot
+context ≤5,000, 512 output tokens, a 9-second abort deadline). **Rate
+limiting reuses the `login_attempts` table** under its own key
+(`ai-search-user:<id>` signed in, `ai-search-ip:<ip>` signed out) — 3
+requests a minute, `consumeAiSearchRequest` in `db/login-attempts.ts` —
+but unlike the other limiters in this file it checks and records under a
+Postgres advisory lock (`pg_advisory_xact_lock`) in one transaction rather
+than a plain select-then-insert, because a search request has no password
+to make failing cheap. No account is required, and nothing here touches
+billing or the free-tier cap.
 
 **The Instagram agent posts once a day, from Flying Knowledge alone.**
 `vercel.json` calls `api/cron/instagram/route.ts` daily; it is not a chatbot
@@ -457,21 +542,8 @@ mean exactly one thing, and the warning is orange rather than amber so it
 cannot be read as the accent — so "this is important" and "this is correct"
 can never be confused with each other.
 
-(This is the third generation of the palette. **Aviation Classic** — Deep
-Navy `#1A2536` behind a yellow `#FBC02D` accent — was replaced by **Night
-Flight** — the same navy deepened to `#0A1120` behind a sky-blue accent,
-`#38BDF8` — in a mobile-first redesign asked for a deeper, more
-eye-comfortable night-study theme; blue was picked over the phosphor-green
-also on offer at the time specifically because `--success` is already green
-and means "correct answer". Night Flight was then replaced by this yellow,
-on the owner's explicit instruction to apply the brief's new "Modern
-Cockpit Calm" accent across the whole site, not only the homepage it was
-designed for — reintroducing yellow as the accent, now at a value chosen
-for contrast rather than the original Aviation Classic hex, and confirmed
-with the owner after a stale project note had initially misdescribed the
-live site as already yellow. Nothing about the token structure below
-changed, only the values, and every hand-kept hex copy outside this file —
-listed at the end of this section — was resynced in the same change.)
+(The palette has changed generations before; only the current values above
+and below are load-bearing — the token *structure* has not changed.)
 
 **The accent is a fill, not a text colour, on a pale surface.** `#F5C542`
 is bright enough to read as a border or a thin rule on either background,
@@ -619,12 +691,9 @@ premium needs an access check as well as the flag, and `/pricing` and the
 upgrade dialog still say, truthfully, that Pilot Sims is free.
 
 **The header's desktop navigation starts at `lg`, and the wordmark must not
-shrink.** The wordmark is an `<img>` in a flex row; with the default
-`flex-shrink` a crowded row squeezed it to a quarter of its width while its
-height stayed fixed, so the letters drew tiny inside a box that still looked
-the right size — for everybody, from the day it shipped, and nobody noticed
-because a squeezed logo still looks like a logo. It is `shrink-0` now, 24px
-tall (145px wide), and the nav links are `px-2.5`. With Blog and Articles
+shrink.** The wordmark `<img>` is `shrink-0` (the flex default silently
+squeezed it to a quarter width while its box kept its size), 24px tall
+(145px wide), and the nav links are `px-2.5`. With Blog and Articles
 added (and About moved to the footer only), Contact and the owner-only
 English link are `WIDE_ONLY` in `site-header.tsx`: shown in the desktop row
 from `xl`, always in the mobile sheet. Measured: the owner's row fits at
@@ -1105,35 +1174,16 @@ matching the files in the repository. A separate seed step someone has to
 remember would be the worse trade — a site that builds green with an empty
 question bank.
 
-**`scripts/migrate.ts` does not call `drizzle-orm`'s own `migrate()`, because
-that function can silently skip a real migration.** Found live: the Flying
-Knowledge migration (`0019_rapid_eternals`, adding
-`flying_knowledge_subjects`/`flying_knowledge_questions`) was generated well
-before it reached `main`, and by the time its deploy ran, `drizzle`'s
-tracking table already held a *later* timestamp from a different migration
-generated afterwards but merged first. `drizzle-orm`'s built-in migrator
-(`pg-core/dialect.js`) does not check each migration by identity against
-every row it has recorded — it reads only the single most recent row and
-applies any local migration file whose own timestamp is greater than that
-one number. `db:migrate` reported "Migrations are up to date" and exited 0;
-`db:seed` then failed with `relation "flying_knowledge_subjects" does not
-exist`, on a build Vercel had no way to know was wrong until the very next
-line. A generation timestamp was never a promise about deploy order, and
-nothing here should have depended on it being one.
-
-`scripts/migrate.ts` now reads migrations the same way
-(`readMigrationFiles`, `drizzle-orm/migrator`'s own export — identical
-on-disk parsing) but decides what is pending by comparing each migration's
-sha256 hash against *every* hash already in
-`drizzle.__drizzle_migrations` — the same table, same columns, so a
-database migrated by the old code reads as fully up to date and nothing
-needs re-running. Reproduced and verified directly, not just reasoned
-about: dropping the two Flying Knowledge tables and writing a row with a
-timestamp ahead of every real migration into the tracking table makes the
-old `migrate()` claim "up to date" while the tables stay missing; running
-the fixed script against that same state correctly detects the one missing
-hash and applies exactly it, is a no-op on a second run, and works
-identically against a database that has never been migrated at all.
+**`scripts/migrate.ts` does not call `drizzle-orm`'s own `migrate()`.**
+That built-in migrator trusts only the single most recent row in
+`drizzle.__drizzle_migrations` and can report "up to date" while a real
+migration never ran, if a later-timestamped migration reached `main`
+first (this happened once, silently passing `db:migrate` while leaving
+`flying_knowledge_subjects` missing for `db:seed` to fail on next).
+`scripts/migrate.ts` instead reads migrations via `drizzle-orm/migrator`'s
+own parser but decides what's pending by comparing each migration's sha256
+hash against every hash already recorded — safe against a database
+migrated by the old logic too, and a no-op on repeat runs.
 
 **Passwords are hashed with scrypt from Node's own crypto, at OWASP's stated
 minimum cost (N=2^17, r=8, p=1 — about 128 MB and half a second per hash). No
@@ -1515,52 +1565,20 @@ Stripe's own customer portal, which may arrive without the metadata set at
 checkout, falls back to looking the row up by the subscription's own id
 (`findSubscriptionByProviderRef`).
 
-**"Directly" turned out to need a second look.** `current_period_end` moved
-off the `Subscription` object under this account's billing API behaviour —
-it lives on each line item instead
-(`items.data[0].current_period_end`), because a subscription can now hold
-several independently billed items. The first real checkout on this
-project silently failed to unlock anything because of exactly this: the
-webhook read a field that no longer existed, stored `null`, and
-`hasActiveSubscription` — correctly, given `null` — treated the row as not
-yet confirmed, on a subscription Stripe itself already showed as `active`.
-`extractCurrentPeriodEnd` in `stripe.ts` now reads the top-level field when
-present and falls back to the first item's, which is the only item any
-subscription this app creates ever has. Worth remembering if Stripe moves
-another field the same way: a webhook payload matching yesterday's
-documentation is not evidence it matches today's account.
-
-**And live mode had its own version of that lesson: every Price's Product
-needs a `tax_code`.** This account has Stripe's Managed Payments enabled by
-default, which refuses to create a Checkout Session for a product that has
-none — so the *first* live subscription attempt would have failed with
-"the product tax code is missing", and the student would have seen
-`startCheckout`'s generic "Checkout could not be started". Test mode never
-asked for it, so nothing in the test-mode verification could have caught
-this; it was found by asking Stripe for a live Checkout Session directly,
-before any student could. Both live Products carry
-`txcd_20060058` — *Training Services, Self-study Web-based*, which is what
-this app is: web-delivered, self-directed, not instructor-led, nothing
-downloadable. It is set on the **Product** in the dashboard, not in this
-repository, so it is not a deploy — but it is load-bearing, and a new plan
-added later needs it too or that plan alone will fail to check out.
-
-**A Price also has to say whether its number includes the tax.** The first
-real payment charged **€12.09** for the plan the page calls €9.99: Managed
-Payments read `tax_behavior: unspecified` as "this figure is before tax"
-and added 21% Belgian VAT on top. Nothing was broken — the charge, the
-webhook and the subscription were all correct — the *price* simply was not
-what the screen said, and only a real card could show that, because a
-Checkout Session quotes no tax until there is a customer to place. Both
-live Prices are now `tax_behavior: inclusive`, so €9.99 is what the student
-pays and the VAT is taken out of it; the old ones are archived.
-
-This is a rule about the product, not a detail of the integration: the
-prices here are shown to individual students, and a consumer price in the
-EU is quoted including VAT. Any Price added later has to be `inclusive`
-too — `tax_behavior` cannot be changed after a Price is created, so getting
-it wrong means making a new Price and re-pointing the environment variable,
-which is exactly what this cost.
+**Three Stripe fields that don't mean what they used to, or what they look
+like:** `current_period_end` lives on `items.data[0].current_period_end`,
+not the top-level `Subscription` object, under this account's billing
+behaviour — `extractCurrentPeriodEnd` in `stripe.ts` reads the top-level
+field when present and falls back to the first item's. Every live Price's
+Product needs a `tax_code` (`txcd_20060058` — *Training Services,
+Self-study Web-based* — set on the Product in the dashboard, not in this
+repo) or Managed Payments refuses to create a Checkout Session. Every live
+Price must be `tax_behavior: inclusive` (cannot be changed after
+creation — a wrong value means a new Price and re-pointing the environment
+variable), since the prices shown here are consumer prices to individual
+EU students and must already include VAT rather than have it added on top.
+A new plan added later needs both of the last two, or it will fail to
+check out, or will quote the wrong price.
 
 The general rule all three findings point at: **the live account is a
 different system from the test account, and only a live request proves a
@@ -2077,9 +2095,11 @@ src/
     unsubscribe/, api/unsubscribe/   The link at the foot of a message, and one-click
     api/webhooks/stripe/      The Stripe webhook endpoint
     api/logbook/extract/      Logbook Scanner: one photo in, one transcribed page out
+    api/chat/                 AI Search's backend: streams a Gemini answer grounded in content/
     api/cron/instagram/       The Instagram agent's daily run (vercel.json schedules it)
     api/instagram/card/       The signed card images Instagram fetches
     tools/logbook/            Logbook Scanner: landing, and [logbookId]/ the scan-review-results app
+    tools/ai-search/          AI Search: the question form and streamed answer
     about|pricing|faq|terms|privacy|contact/   Short pages the footer links to
     manifest.ts               Web app manifest
     sitemap.ts                sitemap.xml — every public page, generated from the
@@ -2154,6 +2174,8 @@ src/
     logbook/                  Logbook Scanner: model, time parsing, validation engine, summary,
                               extraction schema and prompt, entitlement, exports (all pure, tested)
                               — plus claude.ts (the API call) and config.ts (env switches)
+    ai-search.ts              AI Search: system instruction, query parsing, context ranking (pure, tested)
+    ai-search-knowledge.ts    AI Search: reads content/ off disk into ranked context (server-only)
     posts.ts                  Blog/Articles rules: validation, slugs, safe links, dates (pure, tested)
     product-cards.ts          The homepage's three product cards as data (pure, tested)
     grading.ts                Scoring (pure, tested)
@@ -2180,520 +2202,182 @@ tests/                        Vitest unit tests
 
 ## Build order
 
-1. **Phase 1 — the core loop. Done.** Pick an aircraft, answer questions one by
-   one, see a result screen. No accounts.
-2. **Phase 2 — accounts. Done.** Sign up, log in, log out, and — added
-   later, alongside Phase 5 — a password reset by emailed one-time link.
-3. **Phase 3 — attempt recording. Done.** Every answer persisted: user,
-   question, aircraft, selected option, correct or not, timestamp, test session.
-4. **Phase 4 — reports. Done.** Overall score, performance by topic (the most
-   important view), progress over time, retry incorrect questions. Scoped per
-   aircraft (`/progress/[code]`) and overall (`/progress`).
-5. **Phase 5 — refinement.** Done so far: the test builder (any sections, any
-   number of questions); per-answer recording — a signed-in student's answers
-   save as they are given, so a refresh resumes the same test and an abandoned
-   one still counts; and immediate feedback — the correct answer and the
-   explanation appear under each question as soon as it is answered, and that
-   question then settles — with an exam mode beside it that holds everything to
-   the end; a clock that belongs to the mode rather than to a setting — a
-   minute a question in exam mode, a count-up note in study — held on the
-   session row, so a reload cannot reset it and running out hands the test in;
-   and a question map for jumping between questions mid-test. The one
-   remaining item of the original Phase 5 list, filter by difficulty, is not
-   going to be built: the owner set it aside, then removed the feature
-   outright. `difficulty` is gone from the schema, the question files, the
-   database and the test screen — see the note in the conventions above.
-   Phase 5 is therefore complete as scoped.
-6. **Phase 6 — payments. Done.** A signed-in student may answer a fixed
-   number of questions free on each aircraft (`FREE_QUESTIONS_PER_AIRCRAFT`);
-   going past it needs a subscription. `/upgrade`'s "Subscribe" button starts
-   a Stripe Checkout session for a monthly or a quarterly (every three
-   months) Price; Stripe's own webhook (`/api/webhooks/stripe`) confirms it
-   and keeps the `subscriptions` table current, one row per user rather than
-   appended to. Verified end to end against a real Stripe test-mode account:
-   a checkout with Stripe's `4242 4242 4242 4242` test card, a
-   correctly-signed webhook accepted, and — after `extractCurrentPeriodEnd`
-   fixed a field that had moved under this account's billing API behaviour,
-   see the conventions above — the subscription actually recognised as
-   active. Now also **live**: the account is activated, live Prices and a
-   live webhook endpoint exist, and the deployment carries live keys — see
-   the `tax_code` note in the conventions above for what live mode asked
-   for that test mode never did, and "Known gaps" for exactly how far the
-   live path has been proven. A second way in besides Stripe now exists
-   too: `/redeem` spends a free-access gift code, minted by
-   `npm run gift:generate` — see the note on `provider` in the conventions
-   above.
-7. **Phase 7 — owner console. Done.** Everything under `/owner` grew well
-   past the four read-mostly pages Phase 6 shipped: accounts gained
-   pagination, status filters and a per-account detail page (redemption
-   history, activity, an owner-only note); gift codes became
-   general-purpose license keys (bulk generation to 200, CSV export, max
-   redemptions, expiry, disabling); a "report a problem" inbox
-   (`question_reports`) reads student-flagged problems alongside the
-   question's current text without ever writing to it; a read-only
-   insights dashboard (`/owner/insights`) surfaces a signup funnel, access
-   counts, a question-quality signal from `attempts`, and the most-flagged
-   questions; and every mutating action across all of it is wrapped in
-   `ownerAction`, which writes an entry to a new `audit_log` automatically
-   — see the conventions above for all of this in detail. Explicitly out
-   of scope, by design: editing a question's or an aircraft's own content
-   from the website — every write in this phase lands in a table content
-   does not own, and the content-file-and-deploy workflow is untouched.
-   Impersonation ("view as user") was scoped out too: it would touch the
-   session chokepoint every other feature depends on, for a nice-to-have
-   the account detail page's own activity and redemption history already
-   cover most of the need for.
+Phases 1–7 are complete and no phase is in progress: core loop (Phase 1) →
+accounts + password reset (Phase 2) → attempt recording (Phase 3) → reports
+(Phase 4) → refinement — test builder, per-answer resume, study/exam modes,
+the session-row clock, the question map (Phase 5; `difficulty` was
+deliberately removed from the schema, content, database and UI at the
+owner's request and must not be re-added) → payments — free tier, Stripe
+Checkout + webhook, live mode, gift codes as a second way in (Phase 6) →
+owner console — accounts, gift codes as license keys, reports inbox,
+insights, `ownerAction`'s audit log (Phase 7; impersonation was scoped out).
 
-Do not start a phase until the previous one works.
+Do not start new scope without the owner's direction.
 
 ## Not in scope yet
 
 An admin panel, images in questions, mobile apps. The data model must not
-make these harder later, but none of them get built now.
+make these harder later, but none of them get built now. Questions are
+authored as repository files; if they ever need to be written from inside
+the website, an admin panel gets added then — the `status`, `version` and
+`media` fields exist so that path stays open.
 
-(Payments and subscriptions were on this list until the owner asked for
-them. What exists now is Phase 6 above: a free allowance per aircraft, a
-Stripe Checkout session, and a webhook that turns a subscription on or off.
-What is still not built: a way to manage or cancel a subscription from
-inside this app — Stripe's own customer portal, or the receipt email it
-sends, is the only way to do that today. It does not make payments not work,
-but it is worth adding before this earns real revenue. Subscribing now
-needs a confirmed email address; see the note on verification above.)
+Not built: managing or cancelling a subscription from inside this app —
+Stripe's own customer portal or the receipt email is the only way today;
+subscribing requires a confirmed email address. Not built: an *invigilated*
+exam, where the mode is enforced server-side rather than chosen by the
+student — would need moving `mode` onto `test_sessions` the way the clock
+already is.
 
-(Exam simulation was on this list until the owner asked for it. What exists
-now is a mode that withholds the answers until the end, and a clock that is
-held on the session row and cannot be reset by reloading. What is still not
-built is an *invigilated* exam — one where the mode itself is enforced rather
-than chosen, which would mean moving `mode` onto the session row too, the way
-the clock already is. See the conventions above.)
-
-Questions are authored as repository files. If questions ever need to be written
-from inside the website, an admin panel gets added then — the `status`,
-`version` and `media` fields exist so that path stays open.
-
-**Flying Knowledge now has its own content tree, a third one beside
+**Flying Knowledge has its own content tree, a third one beside
 `aircraft`/`questions` and `classRatings`/`classQuestions`.**
 `flyingKnowledgeSubjects`/`flyingKnowledgeQuestions` (`src/db/schema.ts`) are
 the same shape `classRatings`/`classQuestions` already are, for the same
-reason: a subject (POF today, and whatever follows it) is a genuinely separate
-content type, so it gets its own pair of tables rather than a "kind" column
-grafted onto either of the others. `content/flying-knowledge/<code>/` holds
-one `subject.json` manifest plus a `questions/` folder, validated by
-`src/content/flying-knowledge-schema.ts` and loaded by
-`src/content/load-flying-knowledge.ts` — deliberate near-mirrors of the
-class rating equivalents, the same way those already mirror the aircraft
-ones. `db:seed` syncs this tree exactly as it syncs the other two: insert or
-update by id, delete what the files no longer hold. **Adding a second
-Flying Knowledge subject is a content-only job**, the same rule "many
-aircraft, in two trees" states for a second aircraft — see the note there.
-This is now proven, not just asserted: Principles of Flight (`POF`) was
-added as `content/flying-knowledge/pof/` alone — a `subject.json` and
-fifteen question files, 501 questions at first, rebuilt to
-1,000 and then pruned to 569 — see the note on the POF bank in `content/README.md`) — with the only application-code change being the
-same one-line addition to `lib/study-guide.ts`'s hand-kept set that any
-aircraft's own study guide already needs (see the note on that file
-above), exactly the way a second aircraft proves the rule. Human
-Performance & Limitations (`HPL`) proves it a further time: `content/flying-knowledge/hpl/` alone, a `subject.json` and sixteen
-question files, 346 questions — see the note on the HPL bank in
-`content/README.md`. Meteorology (`MET`) is the third: `content/flying-knowledge/met/`
-alone, a `subject.json` and twenty-nine question files, 1,400 questions,
-plus its study guide and the same one-line additions to `lib/study-guide.ts`
-and to `lib/atpl-subjects.ts` (code `MET` against 050) — see the note on
-the MET bank in `content/README.md`. Radio Navigation (`RNAV`, 062) is the fourth:
-`content/flying-knowledge/rnav/`, eighteen chapter files, 911 questions,
-and `public/rnav-study-guide.html` — see the note on the RNAV bank in
-`content/README.md` Air Law (`LAW`, 010) is the fifth:
-`content/flying-knowledge/law/`, twenty-six chapter files (00–25), 1,740
-questions, and `public/law-study-guide.html` — see the note on the Air Law
-bank in `content/README.md`. Electrics & Electronics (`AGK`, 021) is the
-sixth: `content/flying-knowledge/agk/`, sixteen chapter files, 1,000
-questions, and `public/agk-study-guide.html`. `AGK` is the code for the
-whole of ATPL 021, so the airframe/systems and powerplant books can later be
-added to the same subject (topics prefixed "Electrics NN …" today) — see
-the note on the Electrics bank in `content/README.md`. Operational Procedures
-(`OPS`, 070) is the seventh: `content/flying-knowledge/ops/`, nineteen
-chapter files, 986 questions, and `public/ops-study-guide.html`.
-Communications (`COM`, 090, a code reserved in `lib/atpl-subjects.ts` and
-`lib/study-guide.ts` before it had content) is the eighth:
-`content/flying-knowledge/com/`, seven chapter files, 634 questions, and
-`public/com-study-guide.html`. See the notes on both banks in
-`content/README.md`. Mass & Balance (`MB`, 031) and Performance (`PERF`, 032)
-are the ninth and tenth, both written from one supplied book that covers the
-two subjects: `content/flying-knowledge/mb/` (ten chapter files, 410
-questions) and `content/flying-knowledge/perf/` (eighteen chapter files, 772
-questions), with `public/mb-study-guide.html` and
-`public/perf-study-guide.html`. See the notes on both banks in
-`content/README.md`. Instrumentation (`INST`, 022) is the eleventh:
-`content/flying-knowledge/inst/`, thirty-eight chapter files, 1,713
-questions, and `public/inst-study-guide.html` — see the note on the
-Instrumentation bank in `content/README.md`. Flight Planning & Monitoring
-(`FPM`, 033) is the twelfth: `content/flying-knowledge/fpm/`, fourteen
-chapter files, 821 questions, and `public/fpm-study-guide.html` — see the
-note on the Flight Planning bank in `content/README.md`.
+reason: a subject is a genuinely separate content type, so it gets its own
+pair of tables. `content/flying-knowledge/<code>/` holds one `subject.json`
+manifest plus a `questions/` folder, validated by
+`src/content/flying-knowledge-schema.ts`, loaded by
+`src/content/load-flying-knowledge.ts`, and synced by `db:seed` exactly like
+the other two trees. **Adding a subject is a content-only job** — same rule
+as a second aircraft — proven twelve times over: each subject needs its
+`content/flying-knowledge/<code>/` folder, its own
+`public/<code>-study-guide.html`, and a one-line addition to both
+`lib/study-guide.ts`'s hand-kept `Set` and `lib/atpl-subjects.ts`'s code
+list. No other application code changes.
 
-The one thing that does not carry over from either of the other two trees:
+| Subject | Code (ATPL ref) | Files | Questions |
+|---|---|---|---|
+| Principles of Flight | POF (080) | 15 | 569 |
+| Human Performance & Limitations | HPL (040) | 16 | 346 |
+| Meteorology | MET (050) | 29 | 1,400 |
+| Radio Navigation | RNAV (062) | 18 | 911 |
+| Air Law | LAW (010) | 26 | 1,740 |
+| Electrics & Electronics | AGK (021) | 16 | 1,000 |
+| Operational Procedures | OPS (070) | 19 | 986 |
+| Communications | COM (090) | 7 | 634 |
+| Mass & Balance | MB (031) | 10 | 410 |
+| Performance | PERF (032) | 18 | 772 |
+| Instrumentation | INST (022) | 38 | 1,713 |
+| Flight Planning & Monitoring | FPM (033) | 14 | 821 |
+
 **Flying Knowledge is free in full, not metered by the free-tier cap or
-gated by a subscription**, decided ahead of any content existing and
-unchanged now that POF, HPL and MET are its three subjects with
-content. Every other
-section's free allowance exists because the bank behind it is something a
-student sits through once toward one exam, and the cap is what pays for
-building more of it. Flying Knowledge is the opposite kind of content — air
-law, meteorology, navigation, the material a pilot keeps reviewing rather
-than passes once and leaves behind — and metering material like that would
-work against the reason it exists. `flying-knowledge/[code]/test/actions.ts`
-is where this is actually enforced by *absence*: unlike its type-rating and
-class-rating equivalents, it never imports `db/subscriptions.ts` or
-`db/preview.ts`, never computes a `remainingFree` or `allowanceKind`, and
-`submitTest` never withholds part of the answer key (`withheld` is always
-`null`). `flying-knowledge/[code]/page.tsx` always passes `TestBuilder` its
-own documented "no cap" case (`remainingFree={null}`) rather than a computed
-allowance. A signed-out caller is still rate limited via
-`RATE_LIMIT_RULES.previewPerIp` (reusing `checkPreviewAllowed`/
-`recordPreviewRequest` from the preview flow, with no `preview_attempts` row
-ever written) — that protects the server from a scripted flood, the same
-"protect the machine, not the product" reasoning `MAX_ANSWERS` already gives
-elsewhere, and is never used to cap how much of the bank a visitor may see.
+gated by a subscription** — decided ahead of any content existing, and
+enforced by *absence*: `flying-knowledge/[code]/test/actions.ts` never
+imports `db/subscriptions.ts` or `db/preview.ts`, never computes a
+`remainingFree`, and `submitTest` never withholds any of the answer key.
+`flying-knowledge/[code]/page.tsx` always passes `TestBuilder` its
+documented "no cap" case (`remainingFree={null}`). A signed-out caller is
+still rate limited via `RATE_LIMIT_RULES.previewPerIp` (protects the
+server, never caps what a visitor may see).
 
-**The POF bank (Principles of Flight, Flying Knowledge's only subject) is
-authored content, and the honesty lives here, not on the page.** Authored by the assistant as general aerodynamics
-theory — not transcribed from the Principles of Flight book the owner
-pointed at, or from any other textbook or syllabus, and not checked against
-one. At the owner's instruction, nothing a student reads in this subject —
-guide or question — names a book, school, regulator, question bank or
-syllabus; the record of where it came from is kept in this file and
-`content/README.md` only. It was rebuilt section by section to
-1,000 compound, computational questions, then pruned to 569 at the owner's
-instruction (this site is for pilots, and the removed questions were an
-engineer's); each rebuilt section replaced its
-file with new ids and never reused a retired one. See the note on the POF bank in
-`content/README.md`, and "Known gaps, honestly" below.
-
-**The HPL bank (`HPL`, Human Performance & Limitations, Flying Knowledge's
-second subject) is the same kind of content as POF, held to the same
-honesty, for the same underlying reason.** The owner pointed at a specific
-book — CAE Oxford Aviation Academy's *Human Performance and Limitations*,
-Book 8 of its ATPL Ground Training Series — but that book is a
-copyrighted, commercially sold ground-school text, not source material
-this product may transcribe from, closely paraphrase or lean on for
-specific wording or worked examples, the same boundary POF already drew
-around the Principles of Flight book the owner pointed at there. The
-sixteen topics mirror that book's own chapter list (Safety Culture &
-Error Models through CRM & Incident Reporting, skipping only its
-Specimen Questions, Glossary and Index), because that structure is the
-standard EASA ATPL 040 "Human Performance & Limitations" syllabus taught
-broadly the same way across many ground schools, not an expression unique
-to one textbook. Every question and the study guide were authored by the
-assistant from general knowledge of that syllabus — physiological
-mechanisms, standard figures and named models (the stages of hypoxia,
-Reason's Swiss Cheese model, the Skill-Rule-Knowledge model, the five
-hazardous attitudes, somatogyral and somatogravic illusions, and so on)
-that are taught consistently across ICAO/EASA human-factors training
-generally — not transcribed from the book's own prose, worked examples or
-its own Specimen Questions chapter, and not checked against it question by
-question. At the owner's instruction, following the POF precedent exactly,
-nothing a student reads in this subject — guide or question — names a
-book, school, regulator, question bank or syllabus; the record of where
-the topic structure came from is kept in this file and
-`content/README.md` only. 346 questions across sixteen topics, all
-published. See the note on the HPL bank in `content/README.md`, and
-"Known gaps, honestly" below.
-
-**The MET bank (`MET`, Meteorology, Flying Knowledge's third subject) is
-the same kind of content again, under the same rule.** This time the owner
-bought the book and supplied it: CAE Oxford Aviation Academy's
-*Meteorology*, Book 9 of its ATPL Ground Training Series. Their instruction
-was to use it for the information only, not its content or the way it is
-written. That is the boundary POF and HPL already drew. The twenty-nine
-topics follow its chapter order (the standard EASA ATPL 050 syllabus).
-Every question, every coded report example and the study guide were
-written by the assistant from the facts, and the specimen-question
-chapters were not used. The student-facing pages name no source.
-1,400 questions, all published, with distractors rewritten until option
-length no longer gives the answer away. See the note on the MET bank in
-`content/README.md`.
+**Every Flying Knowledge subject's content (guide + questions) is authored
+by the assistant from general/standard syllabus knowledge, not transcribed
+from any supplied textbook's wording, worked examples or specimen
+questions.** Textbooks the owner supplied (HPL, MET, RNAV, LAW, AGK, OPS,
+COM, MB, PERF, INST, FPM) were used for facts/structure only; POF used no
+supplied source at all. **At the owner's explicit instruction, no
+student-facing page (guide or question, in any subject) names any book,
+school, regulator, question bank or syllabus** — `content/README.md` keeps
+the full per-subject sourcing record. None of these banks has been
+reviewed by a qualified instructor; treat all of them as revision material
+pending that review, with these specific open risks:
+- **OPS**: the all-weather tables (low-vis take-off, take-off RVR,
+  CAT II RVR by DH, circling minima) follow the book and may predate the
+  2022 all-weather-rules revision.
+- **MB / PERF / INST / FPM**: the supplied books' graph/chart data sheets
+  and (INST) many figure pages were not available, so calculations use
+  original numbers rather than chart readings, and chart-reading questions
+  give the reading in the stem.
+- **FPM**: fuel rules and the flight plan's item 10 letters follow the
+  book/current convention and should be checked against current
+  regulations.
+- **LAW**: air law dates fast; figures were updated where known, but rules
+  change between editions and States.
 
 ## Known gaps, honestly
 
-- **A signed-out visitor's preview is metered by a cookie, which they can
-  throw away.** It used to be metered by nothing at all — see "A signed-out
-  visitor gets a preview" in the conventions above for what that cost. What
-  bounds a caller who drops the cookie is `RATE_LIMIT_RULES.previewPerIp`,
-  and that is a limit on rate, not on total: forty signed-out answers per
-  address per fifteen minutes still adds up to the whole bank given a day
-  and a patient script. Closing that completely means requiring an account
-  to practise at all, which is the trade "Practice does not require an
-  account" below still declines to make.
-- **A question merely shown is not distinguished from one answered.** The
-  size cap on a freshly built test (see the conventions above) stops a
-  single test from handing a free account more than its remaining allowance,
-  but nothing records that a question was *displayed* short of being
-  answered — only `attempts` does that. A student who starts and abandons
-  several tests without answering could see more than
-  `FREE_QUESTIONS_PER_AIRCRAFT` distinct questions across those separate
-  visits, each individually within the cap. Closing this needs tracking
-  exposure on its own, which is deliberately not built — see the note on
-  `attempts` being the only usage counter, above.
-- **A gift code's `unlocks_aircraft_code` is recorded, not enforced.**
-  Redeeming a code with an aircraft set still grants full access to every
-  aircraft — see "Gift codes are now general-purpose license keys" above
-  for why, and what wiring it up for real would touch.
+- **The preview allowance is a rate limit, not a hard cap.** See "A
+  signed-out visitor gets a preview" above — `RATE_LIMIT_RULES.previewPerIp`
+  bounds the rate, not the total a patient, cookie-dropping script could
+  eventually see. Closing this fully means requiring an account to
+  practise at all (see "Gaps left open by Phase 2" below) — a deliberate
+  trade-off, not an oversight.
 - **The signup funnel's paywall stage only counts hits since `paywall_hits`
   was added.** `answerQuestion`'s `"paywall"` branch previously wrote
-  nothing at all; the insights dashboard's "hit the paywall" figure is
-  therefore accurate from this phase onward but has no history to draw on
-  for accounts that hit the limit before it existed.
-- **Live mode has taken a real payment, end to end.** A real card was
-  charged (`succeeded`, `livemode: true`), the subscription came back
-  `active` carrying the `userId` and `plan` metadata and a period end a
-  month out, and Stripe reported `pending_webhooks: 0` — every endpoint,
-  this app's included, took the `customer.subscription.created` event. The
-  same run also exercised the unhappy path by accident and passed it: an
-  earlier attempt on a card with no funds produced a **failed** charge and
-  granted nothing, which is `mapStripeSubscriptionStatus` behaving exactly
-  as documented, confirmed against real money rather than a fixture.
-
-  The one thing that first payment got wrong was the *price* — see the
-  `tax_behavior` note in the conventions above. Fixed, but the fix is why
-  live mode is worth watching rather than assuming.
-- **2Checkout was tried first and declined the merchant application before
-  any code could be tested against it.** Nothing about that attempt is left
-  in the code; it is mentioned here only so the choice of Stripe is not
-  mistaken for the original plan.
-- **A mid-test page refresh restarts the test — for a signed-out visitor.**
-  Nothing is recorded for them, so there is nothing to resume from; a refresh
-  simply draws a fresh random set, same as visiting the test page for the
-  first time. A signed-in student does not have this problem any more — see
-  the note on `answerQuestion` and `?t=` in the conventions above.
-- **`order by random()`** picks test questions. Correct and fast for banks of
-  this size; revisit if a bank ever reaches hundreds of thousands of questions.
-- **The whole DA40 bank is now sourced from the DA 40 D AFM (TAE 125 engine,
-  Doc. # 6.01.05-E, Revision 6/7).** This replaces the earlier state, where
-  only `Fuel System` was owner-sourced and `Powerplant` described a piston
-  engine on AVGAS that contradicted the diesel variant. Every question now
-  carries a `reference` to the AFM chapter/section it was drawn from. One
-  table was deliberately left unused as a source of exact figures: the
-  maneuvering load factors in AFM 2.10 print without decimal points in the
-  source document itself (confirmed by rendering the actual page, not just
-  the text extraction), so no numeric MCQ was built on it rather than
-  guessing where the decimal belongs. See `content/README.md`.
-- **A study guide is a static file, and has to live where the app actually
-  serves static files — and "checking whether one exists" cannot be an
-  `fs` call against that folder either, on Vercel.** Two rounds, both only
-  caught by opening the deployed page rather than trusting that a merged PR
-  was a shipped feature:
-
-  1. The DA40 study guide first shipped inside `content/classes/da40/`,
-     which is never read by anything but `db:seed` — it validated, it
-     committed, and it was completely invisible on the live site, because
-     nothing under `content/` is served to a browser. Moved to
-     `public/da40-study-guide.html`, where Next.js actually serves it.
-  2. `studyGuideHref()` in `src/lib/study-guide.ts` then checked for that
-     file with `existsSync(path.join(process.cwd(), "public", …))` — which
-     works in local dev and in a local `next build && next start`, and is
-     silently false in Vercel's actual deployment: the Node.js serverless
-     function that renders the overview page does not have `public/` on its
-     filesystem at all, because those files are served by Vercel's static
-     asset layer directly and are never bundled into the Lambda. The guide
-     loaded perfectly at its own URL while the link meant to point at it
-     never rendered, on the same deployment, at the same time — proof that
-     a file being served correctly says nothing about whether server-side
-     code in the same app can see it on disk.
-
-  `studyGuideHref()` now checks a small hand-kept `Set` of codes instead of
-  the filesystem. Adding a guide for the next aircraft is still "drop the
-  file in `public/`" — plus one line adding its code to that set, which is
-  what makes the app know the file is there rather than assuming it can ask
-  the filesystem at request time.
-
-  The DA40 guide itself was first drafted in Arabic before being translated
-  to English, matching the rule at the top of this file that all
-  user-facing content is English. `public/da40-study-guide-ar.html` keeps
-  that Arabic draft on disk rather than discarding it, for a possible
-  future translated edition of the product — it is reachable at its own
-  URL exactly like the English one, but `studyGuideHref()` never returns
-  it and nothing in the app links to it.
-- **The entire POF bank (Principles of Flight, Flying Knowledge's only
-  subject) was authored by the assistant, not transcribed from the
-  Principles of Flight book the owner pointed at, or from any other
-  textbook, syllabus or question bank, and not checked against one.**
-  It sticks to general aerodynamic relations and standard-atmosphere
-  values, computed rather than copied, and should be reviewed by a
-  qualified instructor before a student relies on it for a real exam.
-  The study guide does not say so on the page: the
-  owner asked for every source mention to be removed from what a student
-  reads, so this note and `content/README.md` are now the only place the
-  caveat is recorded. See the note on the POF bank in `content/README.md`.
-- **The entire HPL bank (Human Performance & Limitations, Flying
-  Knowledge's second subject) was authored by the assistant, not
-  transcribed from the CAE Oxford Aviation Academy ATPL textbook the owner
-  pointed at, or from any other textbook, syllabus or question bank, and
-  not checked against one.** Its sixteen topics follow that book's own
-  chapter structure because that structure is the standard EASA ATPL 040
-  syllabus, not a copyrightable feature of the one textbook — but every
-  question, explanation and the study guide are independently written from
-  general knowledge of standard, widely-taught human-factors concepts
-  (hypoxia physiology, vestibular illusions, stress and error models, CRM),
-  not copied or paraphrased from the book's own prose, worked examples or
-  its Specimen Questions chapter. As with POF, the study guide and
-  questions name no book, school, regulator or syllabus on the page, at the
-  owner's instruction; this note and `content/README.md` are the only
-  record of where the topic structure came from. It should be reviewed by
-  a qualified instructor before a student relies on it for a real exam.
-  See the note on the HPL bank in `content/README.md`.
-- **The entire MET bank (Meteorology, Flying Knowledge's third subject,
-  1,400 questions) was authored by the assistant from a copy of the CAE
-  Oxford Aviation Academy ATPL meteorology textbook that the owner bought
-  and supplied, using it for the facts only, at the owner's own
-  instruction: not its wording, worked examples or specimen questions.**
-  The twenty-nine topics follow the book's chapter order, which is the
-  standard EASA ATPL 050 syllabus. Every question, every METAR, TAF and
-  SIGMET example, every calculation and the study guide are original.
-  Nothing a student reads names a book, school, regulator or syllabus,
-  following the POF and HPL precedent. It has not been checked question by
-  question against the book or any other syllabus, and should be reviewed
-  by a qualified instructor before a student relies on it for a real exam.
-  See the note on the MET bank in `content/README.md`.
-- **The RNAV bank (Radio Navigation, 911 questions in eighteen chapters)
-  was authored by the assistant from the CAE Oxford Aviation Academy ATPL
-  Radio Navigation textbook the owner bought and supplied, for its facts
-  only — not its wording or its questions.** It replaced an earlier
-  382-question bank that named the source and copied stems; see the note
-  on the RNAV bank in `content/README.md`. Topics carry chapter numbers so
-  they list in order. Nothing a student reads names a book, school,
-  regulator or syllabus. It should be reviewed by a qualified instructor.
+  nothing, so the insights dashboard's "hit the paywall" figure has no
+  history before this phase.
+- **Live mode has taken a real payment, end to end** (`succeeded`,
+  `livemode: true`, correct metadata and period end, `pending_webhooks: 0`),
+  and separately exercised the failed-charge path correctly. The one thing
+  the first real payment got wrong was the price shown — see the Stripe
+  `tax_behavior` rule above.
+- **A mid-test page refresh restarts the test — for a signed-out visitor
+  only.** Nothing is recorded for them, so there is nothing to resume from.
+- **`order by random()`** picks test questions. Fine at this size; revisit
+  if a bank reaches hundreds of thousands of questions.
+- **The whole DA40 bank is sourced from the DA 40 D AFM** (TAE 125 engine,
+  Doc. # 6.01.05-E, Rev 6/7), every question carrying a `reference` to the
+  AFM chapter/section. AFM 2.10's maneuvering load factors print without
+  decimal points in the source itself, so no numeric MCQ was built on them
+  rather than guessing where the decimal belongs. See `content/README.md`.
+- **A study guide is a static file; `studyGuideHref()` cannot check for it
+  with `existsSync` in production.** It must live in
+  `public/<code>-study-guide.html` (not `content/`, which nothing serves),
+  and `studyGuideHref()` checks a hand-kept `Set` of codes rather than the
+  filesystem, because Vercel's serverless function rendering the page
+  cannot see `public/` at request time. **Adding a guide needs both the
+  file and a one-line addition to that `Set`.**
+  (`public/da40-study-guide-ar.html` is a kept-but-unlinked Arabic draft,
+  retained for a possible future translated edition — not dead weight.)
 - **The A320 bank (type rating, 751 questions, by FCOM chapter) is checked
-  against open sources, not against an FCOM.** Its facts come from the public
-  FlyByWire A32NX documentation (an A320neo simulation's docs); nothing was
-  transcribed from the copy-protected third-party PDF the owner first supplied,
-  and its drawings were not reproduced. At the owner's instruction no student-
-  facing text names the source: every question's `reference`, the study guide
-  and the aircraft description instead tell the student it is for study only
-  and to verify against their operator's FCOM. Chapters 20, 38, 45 and 46 are
-  not covered and 25, 35 and 52 are thin. The owner is reviewing every
-  question. See "The A320 bank" in `content/README.md`.
-- **Twenty-six B737 questions turn on a figure nobody has confirmed twice.** The
-  bank's wrong options were rewritten so a question cannot be answered by
-  elimination alone, and that pass deliberately left every uncorroborated number
-  and its option band exactly as authored rather than inventing plausible
-  neighbours around it. Three of them disagree with a published source outright
-  — the seating capacity, the tail height and the cockpit voice recorder
-  duration — and are waiting on an owner's decision, not a quiet edit. The list
-  and its sources are in `content/README.md`.
-- **An aircraft's display name can change; its code must not.** The code is the
-  URL segment, the prefix of every question id, and the value stored on every
-  past attempt. Renaming the DA40 to the DA 40 D TDI changed `name` and
-  `variant` only.
-
-  The 737 bank is the one exception, and it proves the rule rather than
-  softening it. It shipped as `B738` and was changed to `B737` at the owner's
-  request within hours, while the bank was one section old, nothing linked to
-  it and nobody had answered a question in it — so the rename cost two files
-  and 52 ids and orphaned no history. That window is now closed. `B737` is
-  published, and the next such request is a migration (rewriting
-  `attempts.aircraft_code` and every stored question id), not an edit.
-
-  Worth knowing if a second 737 variant is ever added: `B737` is the ICAO type
-  designator for the **-700**, and `B738` for the -800 this bank actually
-  covers. The code here names the *type rating*, which is the 737 family, so
-  `B737` is right for what the app is for — but the obvious code for a -700
-  bank is taken, and it would need a different one.
+  against open sources (public FlyByWire A32NX docs), not against an FCOM**
+  — nothing was transcribed from the copy-protected PDF the owner first
+  supplied. No student-facing text names the source; it tells the student
+  to verify against their operator's FCOM instead. Chapters 20, 38, 45, 46
+  are not covered and 25, 35, 52 are thin; the owner is reviewing every
+  question.
+- **Twenty-six B737 questions turn on a figure nobody has confirmed twice,**
+  and three of them (seating capacity, tail height, cockpit voice recorder
+  duration) disagree with a published source outright. Waiting on an
+  owner decision, not a quiet edit — list and sources in
+  `content/README.md`.
+- **An aircraft's display name can change; its code cannot.** The code is
+  the URL segment, the question-id prefix, and the value on every past
+  `attempts` row — a code change is a migration (rewriting
+  `attempts.aircraft_code` and every stored question id), not an edit. The
+  one exception, `B738`→`B737`, happened within hours of that bank's first
+  section shipping, before anyone had answered a question in it; that
+  window is closed. `B737` is technically the ICAO designator for the
+  -700, not the -800 this bank covers, but it names the *type rating*
+  (the 737 family) — this is intentional, not a bug to "fix".
 - **An aircraft's code can move between the type rating and class rating
-  trees without becoming a new aircraft.** The DA40 did exactly this —
-  `content/da40/` (an `aircraft.json`, rows in `aircraft`/`questions`) became
-  `content/classes/da40/` (a `class.json`, rows in
-  `class_ratings`/`class_questions`) — and `DA40` never changed, because
-  nothing downstream of a question id cares which tree owns the code: not
-  `attempts.aircraft_code`, not a question's own id prefix, not a flag or a
-  note. This is a smaller move than the display-name-only rule above
-  suggests it might be, and it is safe for exactly the reason "many
-  aircraft, in two trees" gives — the two content trees are a split in
-  where an aircraft is authored and served from, not a split in what an
-  aircraft *is* to the rest of the schema.
-- **`npm audit` reports a moderate advisory** in `esbuild`, reached through
-  `drizzle-kit`. It affects a development server only, never the deployed app.
-  The fix is a breaking downgrade of `drizzle-kit`, so it is being left until
-  upstream updates.
+  trees without becoming a new aircraft** (the DA40 did this) — the two
+  trees are a split in where an aircraft is authored and served from, not
+  in what it is to the rest of the schema.
+- **`npm audit` reports a moderate advisory** in `esbuild`, via
+  `drizzle-kit` — a development-server-only issue, left until upstream
+  updates (the fix is a breaking `drizzle-kit` downgrade).
 
 ### Gaps left open by Phase 2, in priority order
 
-(Rate limiting on log in was the top item here, and password reset the
-second. Both are now done — see the conventions above.)
-
-- **The deployed site needs a mail provider before password reset is any use
-  there.** Without `RESEND_API_KEY` and `EMAIL_FROM` the link goes to the
-  server log, which nobody but the owner can read. Locally that is the point;
-  in production it means the feature is present but unusable. See
-  `.env.example`.
-
 - **Nothing sweeps the housekeeping tables.** `sweepExpiredSessions()`,
   `sweepLoginAttempts()`, `sweepExpiredResetTokens()` and
-  `sweepExpiredVerificationTokens()` all exist and are
-  correct, but nothing calls them.
-  Expired rows are ignored when reading, so this is tidiness rather than
-  correctness. A scheduled job can call them later.
-- **The limiter does not stop a distributed attack.** Thousands of addresses
-  each trying a few passwords from leaked credential lists would stay under
-  both thresholds. Defending that needs rejecting known-breached passwords or a
-  second factor — neither is needed at this size, but neither comes free with
-  what is built here.
-- **Practice does not require an account — but it is now a preview, not the
-  whole bank.** Deliberate, and narrowed: signing out must not take the
-  question bank away entirely, so a visitor may sit a short test and be
-  shown its answers. Signed-out tests are still graded and recorded nowhere,
-  and the result screen still says so. What changed is the size: see "A
-  signed-out visitor gets a preview" in the conventions above. Requiring a
-  login to practise at all would still be a one-line guard in the test page
-  if the owner ever wants it — but it trades away everyone who wants to try
-  the site before committing.
-- **Signing in does not return you where you were.** `/progress` sends a signed-out
-  visitor to `/login`, which then lands them on the home page. A `?next=` parameter
-  would fix it, and must only ever accept a relative path or it becomes an open
-  redirect.
-- **The progress chart plots the last 100 tests and no more.** Fine now; a date
-  filter is the honest answer once anyone exceeds that.
-- **The Air Law bank has not been reviewed by an instructor, and air law
-  dates fast.** It was written from a supplied textbook, with dated figures
-  replaced by current ones where known (see the Air Law note in
-  `content/README.md`), but rules change between editions and between
-  States. Treat it as revision material until a qualified instructor has
-  checked it against the current regulations.
-- **The Operational Procedures bank (OPS, 986 questions) and the
-  Communications bank (COM, 634 questions) have not been reviewed by an
-  instructor.** Both were written from the owner's supplied textbooks for
-  their facts only, with dated points replaced by current values (see
-  `content/README.md`). The OPS all-weather tables — low visibility take-off,
-  take-off RVR by facilities, CAT II RVR by DH, circling minima — follow the
-  book and may differ from the 2022 revision of the all-weather rules; they
-  need checking against the current regulations.
-- **The Mass & Balance bank (MB, 410 questions) and the Performance bank
-  (PERF, 772 questions) have not been reviewed by an instructor.** Both were
-  written from the owner's supplied textbook (one book for both subjects) for
-  its facts only — not its wording, worked examples, revision or specimen
-  questions — and its graph data sheets are not in the text, so calculations
-  use original numbers rather than chart readings (see `content/README.md`).
-  The performance factors and gradients follow the book and should be checked
-  against the current regulations.
-- **The Instrumentation bank (INST, 1,713 questions) has not been reviewed
-  by an instructor.** It was written from the owner's supplied textbook for
-  its facts; the book's own questions were used only as a coverage checklist
-  and a style guide, never copied (see `content/README.md`). The supplied
-  text is missing many figure pages, filled from standard knowledge. Treat it
-  as revision material until a qualified instructor has checked it.
-- **The Flight Planning bank (FPM, 821 questions) has not been reviewed by
-  an instructor.** It was written from the owner's supplied textbook for its
-  facts; the book's own questions were used only as a coverage checklist,
-  never copied, and its chart and graph data sheets are not in the text, so
-  chart-reading questions give the reading in the stem (see
-  `content/README.md`). The fuel rules follow the book and the flight plan
-  uses the current item 10 letters; both should be checked against the
-  current regulations. Treat it as revision material until a qualified
-  instructor has checked it.
-- **The Electrics & Electronics bank (AGK, 1,000 questions) has not been
-  reviewed by an instructor.** It was written from the owner's supplied
-  textbook for its facts only (the book's questions not used, its errors
-  left out — see `content/README.md`). Treat it as revision material until
-  a qualified instructor has checked it.
+  `sweepExpiredVerificationTokens()` all exist and are correct, but nothing
+  calls them. Expired rows are ignored when reading, so this is tidiness,
+  not correctness. A scheduled job can call them later.
+- **The limiter does not stop a distributed attack.** Many addresses each
+  trying a few leaked-list passwords would stay under both thresholds.
+  Defending that needs rejecting known-breached passwords or a second
+  factor — not needed at this size, but not free either.
+- **Requiring an account to practise at all would still be a one-line
+  guard in the test page**, if ever wanted — not implemented, since it
+  trades away everyone who wants to try the site before signing up.
+- **Signing in does not return you where you were.** `/progress` sends a
+  signed-out visitor to `/login`, which lands them on the home page. A
+  `?next=` parameter would fix it, and must only ever accept a relative
+  path or it becomes an open redirect.
+- **The progress chart plots the last 100 tests and no more.** Fine now; a
+  date filter is the honest answer once anyone exceeds that.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
