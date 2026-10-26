@@ -3,62 +3,81 @@ import type { SiteSettings } from "@/lib/settings";
 
 /**
  * The homepage's three resource cards, as data: which ones show, what each
- * is called, where it goes and the one short line under its title.
+ * is called, where it goes, its picture and its short line.
  *
- * The titles are fixed by the gateway redesign brief ("EASA ATPL Ground
- * School", "Aircraft", "Flight Training Tools") rather than read from the
- * owner's section labels, which still name the sections everywhere else. A
- * card is left out when every section behind its pillar is hidden, exactly
- * as the header does.
+ * The titles and lines are fixed by the redesign brief rather than read
+ * from the owner's section labels, which still name the sections
+ * everywhere else. A card is left out when every section behind its pillar
+ * is hidden, exactly as the header does.
  *
- * Lines state only what is live. Counts come from the database; when it did
- * not answer (`null`), each card falls back to a line with no figure in it
- * rather than a made-up number.
+ * The lines name only what exists. The brief's "Calculators" is not in the
+ * Flight Training Tools line because the site has none; the Logbook Scanner
+ * is named instead. The ATPL figure is the live question count from the
+ * database, and when the database did not answer (`null`) the card simply
+ * shows no figure rather than a made-up one.
+ *
+ * The pictures live in `public/images/` under these names. Replacing one is
+ * a matter of overwriting the file with another 16:9 image of the same name.
  */
 
 export type ProductCardFacts = {
-  /** Live ATPL subjects (active, with published questions). */
-  liveAtplSubjects: number | null;
-  /** Type and class rating aircraft with published questions. */
-  aircraftCount: number | null;
+  /** Published questions across the live ATPL subjects. */
+  atplQuestionCount: number | null;
 };
+
+export type CardImage = { src: string; alt: string };
 
 export type ProductCard = {
   key: PillarKey;
   title: string;
   href: string;
   description: string;
+  /** One short fact under the description, when there is a true one. */
+  meta: string | null;
+  image: CardImage;
 };
 
-const TITLES: Record<PillarKey, string> = {
-  "atpl-ground-school": "EASA ATPL Ground School",
-  "aircraft-systems": "Aircraft",
-  "pilot-sims": "Flight Training Tools",
+export const HERO_IMAGE: CardImage = {
+  src: "/images/pilotqbank-hero.webp",
+  alt: "A passenger jet flying above a layer of clouds",
 };
 
-/** "A", "A and B", "A, B and C". */
-export function joinWithAnd(items: string[]): string {
-  if (items.length <= 1) return items.join("");
-  return `${items.slice(0, -1).join(", ")} and ${items[items.length - 1]}`;
+const CARDS: Record<PillarKey, { title: string; description: string; image: CardImage }> = {
+  "atpl-ground-school": {
+    title: "EASA ATPL Ground School",
+    description: "Question Banks · Study Notes · Summaries",
+    image: {
+      src: "/images/atpl-ground-school.webp",
+      alt: "An aeronautical chart, textbooks, study notes and a pilot headset on a desk",
+    },
+  },
+  "aircraft-systems": {
+    title: "Aircraft",
+    description: "Systems Question Banks · Study Notes · Summaries",
+    image: {
+      src: "/images/aircraft.webp",
+      alt: "A light training aircraft on the apron with a jet beyond",
+    },
+  },
+  "pilot-sims": {
+    title: "Flight Training Tools",
+    description: "Simulators · Training Aids · Logbook Scanner",
+    image: {
+      src: "/images/flight-training-tools.webp",
+      alt: "A flight simulator instrument panel",
+    },
+  },
+};
+
+/** "12,068 questions" — always in English digits, whatever the server's locale. */
+export function formatQuestionCount(n: number): string {
+  return `${n.toLocaleString("en-GB")} ${n === 1 ? "question" : "questions"}`;
 }
 
-function describe(key: PillarKey, facts: ProductCardFacts): string {
-  switch (key) {
-    case "atpl-ground-school": {
-      const n = facts.liveAtplSubjects;
-      return n && n > 0
-        ? `${n} theory ${n === 1 ? "subject" : "subjects"}, free in full.`
-        : "ATPL theory subjects, free in full.";
-    }
-    case "aircraft-systems": {
-      const n = facts.aircraftCount;
-      return n && n > 0
-        ? `Systems study and question banks for ${n} aircraft.`
-        : "Systems study and question banks.";
-    }
-    case "pilot-sims":
-      return "Simulators and pilot tools.";
-  }
+function metaFor(key: PillarKey, facts: ProductCardFacts): string | null {
+  if (key !== "atpl-ground-school") return null;
+  const n = facts.atplQuestionCount;
+  return n && n > 0 ? formatQuestionCount(n) : null;
 }
 
 export function buildProductCards(
@@ -67,8 +86,8 @@ export function buildProductCards(
 ): ProductCard[] {
   return PILLAR_KEYS.filter((key) => !isPillarHidden(settings, key)).map((key) => ({
     key,
-    title: TITLES[key],
+    ...CARDS[key],
     href: PILLAR_HREFS[key],
-    description: describe(key, facts),
+    meta: metaFor(key, facts),
   }));
 }

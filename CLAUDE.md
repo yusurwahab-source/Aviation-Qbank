@@ -239,11 +239,18 @@ is their source of truth and `db:seed` never touches the table.
 - **Public**: `/blog`, `/articles` (category filter, pagination, an honest
   empty state — there are no sample posts) and `/blog/<slug>`,
   `/articles/<slug>` (per-post metadata, BlogPosting/Article JSON-LD, ISR
-  hourly). The homepage's `LatestPosts` shows three of each. Every public
+  hourly). The homepage's `LatestArticles` shows the three newest Articles
+  (never Blog posts), strictly newest first — `featured` no longer reorders
+  it. Every public
   query in `db/posts.ts` applies **published and `published_at <= now()`** in
   SQL, so a draft or a scheduled post cannot reach any public page, the
   homepage or `sitemap.xml` (`buildPostSitemapEntries`), whatever a caller
   passes. Tested against a real database (`tests/posts-db.test.ts`).
+- **Naming**: the listing pages are titled "Articles" and "Blogs" and
+  nothing else — no eyebrow, no subtitle. Articles are structured
+  explanations (suggested categories Aircraft Systems, ATPL Theory, Flight
+  Training, Regulations); Blogs are study tips and practical advice. The
+  Blogs URL stays `/blog`, so existing links keep working.
 - **Rendering**: Markdown through `react-markdown` with **no raw-HTML
   plugin** — HTML in the text shows as text. Link and image addresses go
   through `safeMarkdownUrl` (https, mailto, site paths, anchors; anything
@@ -535,19 +542,35 @@ Every route has been opened at 375px in Chromium and measured, for
 horizontal overflow and for target sizes. `overflow-x: clip` on `html` is
 a safety net, not the fix — overflows get solved where they happen.
 
-**The landing page is a gateway: one short heading and three resource
-cards, nothing else.** Between the shared header and footer it holds only
-"What are you studying today?" and `ProductCards`
-(`_landing/product-cards.tsx`) — "EASA ATPL Ground School"
-(`/atpl-ground-school`), "Aircraft" (`/aircraft-systems`) and "Flight
-Training Tools" (`/pilot-sims`), each an icon, a title, one short line and
-one stretched link. The line comes from `lib/product-cards.ts` (pure,
-tested): the live ATPL subject count and aircraft count, or a line with no
-figure when the database does not answer. The hero copy, trust, how it
-works, features, FAQ, closing CTA and the Blog/Articles shelves were
-removed from the homepage in the gateway redesign; the FAQ's answers moved
-to `/faq`, and Blog and Articles stay in the header. Do not add
-promotional sections back.
+**The landing page is a short hub: a hero, three resource cards and the
+latest Articles, nothing else.** Between the shared header and footer:
+`Hero` (`_landing/hero.tsx` — "Your Aviation Study Hub" and "Study.
+Understand. Fly." over the hero picture, a shallow banner with a navy scrim
+from the left, the one image loaded eagerly at high fetch priority; Next 16
+deprecated `priority` for that), `ProductCards` (`_landing/product-cards.tsx`
+— "EASA ATPL Ground School" (`/atpl-ground-school`), "Aircraft"
+(`/aircraft-systems`) and "Flight Training Tools" (`/pilot-sims`), each a
+16:9 picture, a title, one line and one stretched link; a row with a
+thumbnail on a phone, a column from `md`) and `LatestArticles`
+(`_landing/latest-articles.tsx`, three cards and "View All Articles", an
+honest one-line empty state, left out if the database does not answer).
+Titles, lines and picture paths are data in `lib/product-cards.ts` (pure,
+tested). The ATPL card's figure is `atplQuestionCount` (`lib/atpl-subjects.ts`)
+— the published questions of the live ATPL rows, the same rows the ATPL page
+lists — or no figure when the database does not answer. The brief's
+"Calculators" is not in the tools line because the site has none. The old
+trust, how-it-works, features, FAQ and closing CTA sections are gone; the
+FAQ's answers live at `/faq`. Do not add promotional sections back.
+
+**The four homepage pictures are placeholders at fixed paths.**
+`public/images/pilotqbank-hero.webp`, `atpl-ground-school.webp`,
+`aircraft.webp` and `flight-training-tools.webp` are illustrations drawn as
+SVG and rendered to 1600×900 WebP with `sharp` — no AI image service could
+deliver a full-size file into the build environment (Canva's download hosts
+are blocked by its network policy). The owner will replace them with
+photographs: overwrite each file with any 16:9 image under the same name
+and nothing else changes. `tests/product-cards.test.ts` fails if a path the
+page names does not exist.
 
 **The aircraft directory has exactly two categories.** `/aircraft-systems`
 shows **Light Aircraft** (the class rating tree, `/class-rating`) and
@@ -610,43 +633,12 @@ menu button replaces the nav, because the full-size wordmark plus six links
 does not fit in `md`. The account menu shows an avatar only; the address is in
 its dropdown.
 
-**Below `lg`, a fixed bottom navigation bar is the primary way to move
-between sections, and it is additive to the header, not a replacement for
-it.** `BottomNavBar` (`src/components/bottom-nav-bar.tsx`, `fixed inset-x-0
-bottom-0 z-40 lg:hidden`) renders four destinations — Home, Question Bank,
-Simulators, Statistics — chosen for the mobile redesign's own thumb-zone
-goal: the controls a student reaches for most now live in the bottom half
-of the screen rather than requiring a reach to the header or the hamburger
-sheet. Which of the four is "active" for a given URL, and which pages must
-never show the bar at all, are both pure functions in `src/lib/bottom-nav.ts`
-(`BOTTOM_NAV_ITEMS`, `activeBottomNavHref`, `bottomNavHidden`), not logic
-written inline in the component — the same reasoning `question-status.ts`
-and `keyboard-shortcuts.ts` already give for keeping a decision testable on
-its own. "Question Bank" is active across five real prefixes
-(`/aircraft-systems`, `/type-rating`, `/class-rating`, `/atpl-ground-school`,
-`/flying-knowledge`) because it stands for the three content-bearing
-sections at once, the same aggregation `PillarsOverview` already does for
-the landing page.
-
-The bar is hidden — not just overlaid — on `/owner` (its own chrome), any
-`/pilot-sims/<slug>` page (the simulator iframe owns the full viewport) and
-any `/test` route. That last exclusion matters most: a test screen already
-has its own fixed bottom bar (the Previous/Next/Finish row, see "A test is
-swiped on a phone" below) and, once an answer is revealed, the explanation
-sheet above that — stacking a third fixed bar under two others would leave
-a phone with three competing docked elements fighting for the same strip of
-screen. `site-footer.tsx` carries a `.clear-bottom-nav` class (`globals.css`)
-so the footer's own content clears the bar's height below `lg` without the
-bar itself needing a `main`-level reservation that would show as dead space
-on pages too short to scroll. (`_landing/pillars-overview.tsx`)
-is three cards of identical shape, one per pillar: a title, a line of
-description, a short list of what is inside, and one way in. ATPL lists its
-live subjects with a `LiveBadge` and counts the rest as coming soon;
-Aircraft Systems lists Type Rating and Class Rating with their real
-question counts and aircraft codes (`summariseSection`, from both trees,
-never one featured aircraft); Pilot Sims lists its simulators. There is no
-"single engine" / "multi engine" split anywhere: a light aircraft sits
-directly under Class Rating.
+**There is no fixed bottom navigation bar any more.** A `BottomNavBar`
+(Home, Question Bank, Simulators, Statistics) sat under every page below
+`lg`; it was removed at the owner's request, with the footer's reserved
+margin. Every destination it offered is in the header and its mobile sheet
+(Statistics is Progress, signed in). The test screen's own fixed
+Previous/Next bar and the explanation sheet are unrelated and stay.
 
 The old systems strip is survived by one thing worth keeping if a
 horizontally-scrolling row of cards is ever built again: `.scroll-x`
@@ -2035,7 +2027,8 @@ content/                      Question files. The source of truth.
   classes/<code>/             One folder per class rating aircraft (da40/ today)
   flying-knowledge/<code>/    One folder per Flying Knowledge subject (pof/, hpl/, met/, rnav/, law/, agk/, ops/, com/, mb/, perf/, inst/, fpm/ today)
 drizzle/                      Generated SQL migrations. Committed.
-public/                       Manifest icons, the service worker, and any
+public/                       Manifest icons, the service worker, images/ (the four
+                              homepage placeholders, see above), and any
                               <code>-study-guide.html study guides (see the
                               note on `lib/study-guide.ts` below)
 scripts/
@@ -2049,7 +2042,7 @@ src/
     fonts.ts                  The two faces, via next/font
     layout.tsx                The shell: header, footer, metadata, viewport
     page.tsx                  The marketing landing page
-    _landing/                 product-cards — the homepage's three resource cards
+    _landing/                 hero, product-cards, latest-articles — the homepage
     _posts/                   Shared Blog/Articles list and post page implementations
     blog/, articles/          Public Blog and Articles: index and [slug] pages
     type-rating/               Type Rating Systems Knowledge picker ("Choose an aircraft")
@@ -2096,8 +2089,7 @@ src/
     opengraph-image.tsx       The 1200x630 social card
     favicon.ico                                 Generated; the rest of the favicon set is in public/ (favicon.svg, favicon-32x32.png, apple-touch-icon.png)
   components/                 Shared UI, including the shell (site-header,
-                              site-footer, mobile-nav, user-menu, theme-toggle, logo,
-                              bottom-nav-bar — the lg:hidden fixed bottom bar),
+                              site-footer, mobile-nav, user-menu, theme-toggle, logo),
                               flag-button, question-note, resume-test-banner,
                               report-question-button, practice-test/explanation-sheet
                               (the lg:hidden draggable bottom sheet for a revealed answer)
@@ -2170,7 +2162,6 @@ src/
     test-options.ts           Test length, sections, mode, the clock, and test URLs
     study-guide.ts            studyGuideHref() — whether `public/<code>-study-guide.html` exists
     keyboard-shortcuts.ts     Which key does what, and when a shortcut must stand down for a text field (pure, tested)
-    bottom-nav.ts             The bottom nav bar's four destinations, which one is active for a path, and where the bar must not render (pure, tested)
     bottom-sheet.ts           Drag-to-dismiss math for the mobile explanation sheet (pure, tested)
     auth/
       credentials.ts          Email and password rules (pure, tested)

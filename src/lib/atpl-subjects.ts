@@ -55,3 +55,13 @@ export function buildAtplRows(subjects: readonly SubjectFact[]): AtplRow[] {
     };
   });
 }
+
+/**
+ * How many questions the ATPL Ground School can actually serve: the
+ * published questions of every live row, and nothing else. A subject that
+ * is coming soon, hidden or empty adds nothing, so the figure on the
+ * homepage is always one a student could sit.
+ */
+export function atplQuestionCount(rows: readonly AtplRow[]): number {
+  return rows.reduce((total, row) => total + (row.live?.publishedQuestions ?? 0), 0);
+}

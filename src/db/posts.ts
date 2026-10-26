@@ -82,17 +82,15 @@ export async function getPublishedPost(kind: PostKind, slug: string): Promise<Po
   return row ?? null;
 }
 
-/** Newest first. For Articles, featured ones come first. */
+/** Newest first, strictly by publication date — the homepage's Latest
+ * Articles. `featured` no longer reorders it: the newest post is the one a
+ * returning reader has not seen. */
 export async function listLatestPosts(kind: PostKind, limit: number): Promise<PostSummary[]> {
   return getDb()
     .select(summaryColumns)
     .from(posts)
     .where(and(eq(posts.kind, kind), isVisible()))
-    .orderBy(
-      ...(kind === "article" ? [desc(posts.featured)] : []),
-      desc(posts.publishedAt),
-      desc(posts.createdAt),
-    )
+    .orderBy(desc(posts.publishedAt), desc(posts.createdAt))
     .limit(limit);
 }
 

@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
-import { BottomNavBar } from "@/components/bottom-nav-bar";
 import { ContactWidget } from "@/components/contact-widget";
 import { ServiceWorker } from "@/components/service-worker";
 import { SiteAnnouncement } from "@/components/site-announcement";
@@ -92,7 +91,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <SiteFooter />
         <UpgradePrompt />
         <ContactWidget />
-        <BottomNavBar />
         <ServiceWorker />
       </body>
     </html>

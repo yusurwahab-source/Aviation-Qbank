@@ -315,7 +315,7 @@ export function PostEditor({
               className="h-5 w-5 rounded border-border accent-brand"
             />
             <label htmlFor="featuredBox" className="text-sm text-foreground">
-              Feature on the homepage{values.kind === "article" ? " (shown first)" : ""}
+              Featured (a badge in the owner list only; the homepage always shows the newest articles)
             </label>
           </div>
         </div>

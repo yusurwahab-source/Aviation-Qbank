@@ -79,11 +79,14 @@ describeDb("posts", () => {
     expect(sitemapSlugs).not.toContain(`scheduled-${suffix}`);
   });
 
-  it("puts a featured article first in the homepage list", async () => {
-    await save("plain", "publish", { publishedOn: "2026-10-20" });
-    await save("featured", "publish", { publishedOn: "2020-01-01", featured: true });
+  it("lists the homepage's latest articles newest first, featured or not", async () => {
+    await save("newer", "publish", { publishedOn: "2026-10-20" });
+    await save("older", "publish", { publishedOn: "2020-01-01", featured: true });
+    await save("unpublished", "draft");
     const latest = (await listLatestPosts("article", 200)).map((p) => p.slug);
-    expect(latest.indexOf(`featured-${suffix}`)).toBeLessThan(latest.indexOf(`plain-${suffix}`));
+    expect(latest.indexOf(`newer-${suffix}`)).toBeLessThan(latest.indexOf(`older-${suffix}`));
+    expect(latest).not.toContain(`unpublished-${suffix}`);
+    expect((await listLatestPosts("blog", 200)).map((p) => p.slug)).not.toContain(`newer-${suffix}`);
   });
 
   it("takes a post down when unpublished", async () => {

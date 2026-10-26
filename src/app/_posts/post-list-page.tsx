@@ -7,9 +7,9 @@ import { listPublishedCategories, listPublishedPosts, type PostSummary } from "@
 import { POST_KIND_PATH, type PostKind } from "@/lib/posts";
 
 /**
- * The Blog and Articles index pages: one implementation, two routes
+ * The Blogs and Articles index pages: one implementation, two routes
  * (`/blog` and `/articles`), so the two sections stay visually related
- * while their own copy keeps them distinct.
+ * while each lists only its own kind of post.
  *
  * Only published posts dated now or earlier are listed (`db/posts.ts`).
  * With none yet the page says so plainly — there are no sample posts to
@@ -18,19 +18,17 @@ import { POST_KIND_PATH, type PostKind } from "@/lib/posts";
 
 export const PAGE_SIZE = 12;
 
-export const LIST_COPY: Record<PostKind, { eyebrow: string; title: string; subtitle: string; empty: string }> = {
+/** Each page is titled with its name and nothing else; `description` is
+ * for search engines only and never shown on the page. */
+export const LIST_COPY: Record<PostKind, { title: string; description: string; empty: string }> = {
   blog: {
-    eyebrow: "Blog",
-    title: "Aviation news and PilotQBank updates",
-    subtitle:
-      "Short summaries of aviation and industry news, with a link to every original source, and announcements about the platform.",
-    empty: "Nothing has been posted on the Blog yet.",
+    title: "Blogs",
+    description: "Study tips, exam preparation and practical advice for aviation students.",
+    empty: "No blog posts have been published yet.",
   },
   article: {
-    eyebrow: "Articles",
-    title: "Articles for pilots and student pilots",
-    subtitle:
-      "Longer reads on aviation theory, regulations and technical subjects, with practical guidance for your studies and references you can check.",
+    title: "Articles",
+    description: "Structured explanations of aviation theory, aircraft systems and flight training.",
     empty: "No articles have been published yet.",
   },
 };
@@ -76,7 +74,7 @@ export async function PostListPage({
 
   return (
     <div className="font-reading">
-      <PageHeading eyebrow={copy.eyebrow} title={copy.title} subtitle={copy.subtitle} />
+      <PageHeading title={copy.title} />
 
       {categories.length > 1 ? (
         <nav aria-label="Categories" className="mb-6 flex flex-wrap gap-2">

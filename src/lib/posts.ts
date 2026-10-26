@@ -21,14 +21,14 @@ export const POST_KIND_PATH: Record<PostKind, "/blog" | "/articles"> = {
 };
 
 export const POST_KIND_LABEL: Record<PostKind, { singular: string; plural: string }> = {
-  blog: { singular: "Blog post", plural: "Blog" },
+  blog: { singular: "Blog post", plural: "Blogs" },
   article: { singular: "Article", plural: "Articles" },
 };
 
 /** Suggested categories offered in the editor; any short text is allowed. */
 export const SUGGESTED_CATEGORIES: Record<PostKind, string[]> = {
-  blog: ["Aviation news", "Industry", "PilotQBank news"],
-  article: ["Theory", "Regulations", "Technical", "Study guidance"],
+  blog: ["Study Tips", "Exam Preparation", "Learning Strategies", "Practical Advice", "PilotQBank News"],
+  article: ["Aircraft Systems", "ATPL Theory", "Flight Training", "Regulations"],
 };
 
 export function isPostKind(value: unknown): value is PostKind {

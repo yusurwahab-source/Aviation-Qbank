@@ -4,7 +4,7 @@ import { LIST_COPY, PostListPage } from "../_posts/post-list-page";
 
 export const metadata: Metadata = {
   title: "Articles",
-  description: LIST_COPY.article.subtitle,
+  description: LIST_COPY.article.description,
   alternates: { canonical: "/articles" },
 };
 

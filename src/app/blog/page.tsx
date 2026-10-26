@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { LIST_COPY, PostListPage } from "../_posts/post-list-page";
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description: LIST_COPY.blog.subtitle,
+  title: "Blogs",
+  description: LIST_COPY.blog.description,
   alternates: { canonical: "/blog" },
 };
 
