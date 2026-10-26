@@ -1,53 +1,42 @@
 import { siteConfig } from "@/config/site";
-import { listClassRatings } from "@/db/class-queries";
 import { listFlyingKnowledgeSubjects } from "@/db/flying-knowledge-queries";
-import { listAircraft } from "@/db/queries";
-import { buildAtplRows } from "@/lib/atpl-subjects";
+import { atplQuestionCount, buildAtplRows } from "@/lib/atpl-subjects";
 import { buildProductCards, type ProductCardFacts } from "@/lib/product-cards";
 import { withoutHidden } from "@/lib/settings";
 import { appUrl } from "@/lib/email/send";
 
+import { Hero } from "./_landing/hero";
+import { LatestArticles } from "./_landing/latest-articles";
 import { ProductCards } from "./_landing/product-cards";
 import { getVisibleSiteSettings } from "@/lib/settings-visibility";
 
 /**
- * The landing page: a gateway, not a brochure. One short heading and the
- * three resource cards — EASA ATPL Ground School, Aircraft, Flight Training
- * Tools — between the shared header and footer, and nothing else. The
- * trust, how-it-works, features, FAQ and closing call-to-action sections
- * were removed in the gateway redesign; the FAQ's answers moved to `/faq`.
+ * The landing page, and nothing on it but what leads somewhere: a shallow
+ * hero ("Your Aviation Study Hub"), the three resource cards — EASA ATPL
+ * Ground School, Aircraft, Flight Training Tools — and the three latest
+ * Articles, between the shared header and footer. The old trust,
+ * how-it-works, features, FAQ and closing call-to-action sections are gone
+ * from here; the FAQ's answers live at `/faq`.
  *
- * The cards render whatever the database says: when it does not answer,
- * `buildProductCards` falls back to sentences with no figures rather than a
- * made-up count, so a database hiccup never takes the page down.
+ * The ATPL card's question count is read from the same rows the ATPL page
+ * lists, so it is only ever a figure a student could sit. When the database
+ * does not answer, the card shows no figure rather than a made-up one, and
+ * the articles section leaves itself out, so a database hiccup never takes
+ * the page down.
  *
- * Statically rendered with an hourly revalidation: the figures on the cards
- * are real but do not need to be to-the-second.
+ * Statically rendered with an hourly revalidation; publishing a post also
+ * revalidates `/` straight away (`owner/content/actions.ts`).
  */
 export const revalidate = 3600;
 
 async function loadCardFacts(): Promise<ProductCardFacts> {
   try {
     const settings = await getVisibleSiteSettings();
-    const [fleet, classes, subjects] = await Promise.all([
-      listAircraft().then((rows) => withoutHidden(settings, "type-rating", rows)),
-      listClassRatings().then((rows) => withoutHidden(settings, "class-rating", rows)),
-      listFlyingKnowledgeSubjects().then((rows) =>
-        withoutHidden(settings, "flying-knowledge", rows),
-      ),
-    ]);
-
-    return {
-      liveAtplSubjects: buildAtplRows(subjects).filter((row) => row.live !== null).length,
-      aircraftCount: [...fleet, ...classes].filter(isReady).length,
-    };
+    const subjects = withoutHidden(settings, "flying-knowledge", await listFlyingKnowledgeSubjects());
+    return { atplQuestionCount: atplQuestionCount(buildAtplRows(subjects)) };
   } catch {
-    return { liveAtplSubjects: null, aircraftCount: null };
+    return { atplQuestionCount: null };
   }
-}
-
-function isReady(row: { status: string; publishedQuestions: number }): boolean {
-  return row.status === "active" && row.publishedQuestions > 0;
 }
 
 /**
@@ -101,11 +90,12 @@ export default async function LandingPage() {
   const cards = buildProductCards({ hiddenSections, sectionLabels }, facts);
 
   return (
-    <div className="flex flex-col gap-8 pt-4 sm:gap-10 sm:pt-10">
-      <h1 className="text-center text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-        What are you studying today?
-      </h1>
+    <div className="flex flex-col gap-4 sm:gap-6">
+      <Hero />
       <ProductCards cards={cards} />
+      <div className="mt-6 sm:mt-8">
+        <LatestArticles />
+      </div>
 
       {jsonLd(featuredAircraftCode).map((entry) => (
         <script

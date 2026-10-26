@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { ATPL_SUBJECTS, buildAtplRows } from "@/lib/atpl-subjects";
+import { ATPL_SUBJECTS, atplQuestionCount, buildAtplRows } from "@/lib/atpl-subjects";
 
 describe("buildAtplRows", () => {
   it("lists all thirteen subjects, in syllabus order, with unique numbers", () => {
@@ -44,5 +44,22 @@ describe("buildAtplRows", () => {
     const rows = buildAtplRows([{ code: "XYZ", status: "active", publishedQuestions: 99 }]);
     expect(rows.every((row) => row.live === null)).toBe(true);
     expect(ATPL_SUBJECTS.filter((s) => s.code)).toHaveLength(13);
+  });
+});
+
+describe("atplQuestionCount", () => {
+  it("adds up the live subjects' published questions and nothing else", () => {
+    const rows = buildAtplRows([
+      { code: "POF", status: "active", publishedQuestions: 569 },
+      { code: "MET", status: "active", publishedQuestions: 1400 },
+      { code: "HPL", status: "coming_soon", publishedQuestions: 346 },
+      { code: "LAW", status: "active", publishedQuestions: 0 },
+      { code: "XYZ", status: "active", publishedQuestions: 99 },
+    ]);
+    expect(atplQuestionCount(rows)).toBe(1969);
+  });
+
+  it("is zero when nothing is live", () => {
+    expect(atplQuestionCount(buildAtplRows([]))).toBe(0);
   });
 });

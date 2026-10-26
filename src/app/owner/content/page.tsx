@@ -17,7 +17,7 @@ function firstOf(value: string | string[] | undefined): string {
 
 const KIND_FILTERS = [
   { value: "", label: "All" },
-  { value: "blog", label: "Blog" },
+  { value: "blog", label: "Blogs" },
   { value: "article", label: "Articles" },
 ] as const;
 
