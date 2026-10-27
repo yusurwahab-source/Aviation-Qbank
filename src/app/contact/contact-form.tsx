@@ -8,6 +8,7 @@ import { Card } from "@/components/ui";
 import { CONTACT_TOPICS, MAX_MESSAGE_LENGTH } from "@/lib/contact";
 
 import { sendContactMessage, type ContactFormState } from "./actions";
+import { HeroButton } from "@/components/ui/hero-button";
 
 const inputClass =
   "mt-1.5 w-full rounded-lg border border-border bg-surface px-3.5 py-2.5 text-sm text-foreground outline-none focus:border-brand";
@@ -16,13 +17,9 @@ function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="min-h-11 w-full rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
-    >
+    <HeroButton type="submit" size="sm" fullWidth loading={pending}>
       {pending ? "Sending…" : "Send message"}
-    </button>
+    </HeroButton>
   );
 }
 

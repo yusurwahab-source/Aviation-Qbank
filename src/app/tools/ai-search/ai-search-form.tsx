@@ -7,6 +7,7 @@ import ReactMarkdown from "react-markdown";
 
 import { Card } from "@/components/ui";
 import { MAX_AI_SEARCH_QUERY_LENGTH } from "@/lib/ai-search";
+import { HeroButton } from "@/components/ui/hero-button";
 
 const RATE_LIMIT_MESSAGE = "You reached the limit of 3 requests per minute. Please wait.";
 const MAX_PILOT_CONTEXT_LENGTH = 5_000;
@@ -56,14 +57,9 @@ export function AiSearchForm() {
           placeholder="Ask an aviation question…"
           className="tap-target min-w-0 flex-1 rounded-lg border border-border bg-surface px-3 text-base text-foreground placeholder:text-muted-foreground focus:border-brand focus:outline-none"
         />
-        <button
-          id="ai-search-btn"
-          type="submit"
-          disabled={isLoading}
-          className="tap-target shrink-0 rounded-lg bg-brand px-5 text-sm font-semibold text-on-solid hover:bg-brand-strong disabled:cursor-wait disabled:opacity-60"
-        >
+        <HeroButton size="sm" showArrow={false} className="shrink-0" id="ai-search-btn" type="submit" disabled={isLoading}>
           {isLoading ? "Searching…" : "Ask"}
-        </button>
+        </HeroButton>
       </form>
 
       <details className="mt-3">

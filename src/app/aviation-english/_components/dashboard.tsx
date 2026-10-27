@@ -6,6 +6,7 @@ import { Badge, Card, ScoreBar } from "@/components/ui";
 import { LESSONS, getLesson } from "@/content/aviation-english/lessons";
 import { RUBRIC } from "@/content/aviation-english/rubric";
 import { completedPercent, overallLevel, updateState, useAviationEnglishState } from "@/lib/aviation-english/storage";
+import { HeroButton } from "@/components/ui/hero-button";
 
 const ACTIONS = [
   { href: "/aviation-english/practice?mode=readback", label: "Start Listening Drill", note: "10 min" },
@@ -73,12 +74,9 @@ export function Dashboard() {
         {next ? (
           <>
             <p className="mt-1 text-sm text-muted-foreground">{next.title}</p>
-            <Link
-              href={`/aviation-english/lesson/${next.id}`}
-              className="tap-target mt-3 inline-flex items-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid"
-            >
+            <HeroButton asChild size="sm" className="mt-3"><Link href={`/aviation-english/lesson/${next.id}`}>
               Continue lesson
-            </Link>
+            </Link></HeroButton>
           </>
         ) : (
           <p className="mt-1 text-sm text-muted-foreground">

@@ -531,3 +531,75 @@ body:has(.hero-under-header) .site-top:not([data-solid]) [data-wordmark="on-ligh
   border-top: 1px solid var(--border);
   margin: 2em 0;
 }
+
+/* ── HeroButton skin ───────────────────────────────────────────────────────
+ * `components/ui/hero-button.tsx` is a vendored component with its own
+ * palette (--v-*) and sizes. This block, deliberately outside every @layer so
+ * it outranks the component's layered rules, points that palette at the
+ * site's own tokens: the accent is the fill, --on-solid the label, and both
+ * themes follow for free. Sizes: the component's `sm` is the compact button
+ * used in forms, the header and cards; `default`/`lg` are for page-level
+ * calls to action. */
+.v-btn.v-hero-button[data-slot] {
+  --font-text: var(--font-display), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --v-ink: var(--accent);
+  --v-on-ink: var(--on-solid);
+  --v-pink: var(--accent);
+  --v-pink-deep: var(--accent-hover);
+  --v-yellow: var(--accent);
+  --v-blue: var(--accent);
+  --v-olive: var(--accent);
+  --v-on-accent: var(--on-solid);
+  --v-border: var(--border);
+  --v-edge: var(--border);
+  --v-text: var(--foreground);
+  --v-text-2: var(--muted-foreground);
+  --v-canvas: var(--background);
+  --v-paper: var(--surface);
+  --v-beige: var(--surface-muted);
+  --v-danger-fill: var(--danger);
+  --v-disabled-face: var(--surface-muted);
+  --v-disabled-ink: var(--muted-foreground);
+  --v-disabled-edge: var(--border);
+  --ink-fixed: var(--foreground);
+}
+
+.v-btn.v-hero-button[data-slot][data-hero-variant="danger"] {
+  --hero-ink: var(--on-danger);
+}
+
+.v-btn.v-hero-button[data-slot][data-hero-size="sm"]:not([data-hero-appearance="seal"]) {
+  height: var(--tap-target);
+  min-width: 0;
+  padding-inline: 1.25rem;
+  gap: 0.625rem;
+  font-size: 0.875rem;
+}
+
+.v-hero-button[data-hero-size="sm"] .v-hero-button__arrow {
+  width: 28px;
+  height: 20px;
+}
+
+.v-hero-button[data-hero-size="sm"] .v-hero-button__arrow svg {
+  width: 28px;
+  height: 20px;
+}
+
+/* A button that fills its row (forms, cards) centres its label. */
+.v-btn.v-hero-button[data-slot].w-full {
+  min-width: 0;
+}
+
+/* A one-line label (header, cards) opts out of the component's wrapping. */
+.v-hero-button.hb-nowrap .v-hero-button__label {
+  white-space: nowrap;
+}
+
+/* On the homepage photograph the navy accent would vanish, so the hero's own
+ * call to action takes the hero accent, as the header's "Start free" does. */
+.v-btn.v-hero-button[data-slot].hb-on-hero {
+  --hero-fill: var(--hero-accent);
+  --hero-edge: var(--hero-accent);
+  --hero-ink: var(--hero-scrim);
+}

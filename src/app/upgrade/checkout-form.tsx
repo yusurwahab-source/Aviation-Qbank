@@ -6,6 +6,7 @@ import { useFormStatus } from "react-dom";
 import type { CheckoutPlan } from "@/lib/billing/stripe";
 
 import { startCheckout, type CheckoutState } from "./actions";
+import { HeroButton } from "@/components/ui/hero-button";
 
 /**
  * One plan's "Subscribe" button, wired the same way the sign-up and log-in
@@ -17,13 +18,9 @@ function SubmitButton({ label }: { label: string }) {
   const { pending } = useFormStatus();
 
   return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="mt-4 min-h-11 w-full rounded-lg bg-brand px-4 py-2.5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
-    >
+    <HeroButton type="submit" size="sm" fullWidth className="mt-4" loading={pending}>
       {pending ? "Redirecting…" : label}
-    </button>
+    </HeroButton>
   );
 }
 

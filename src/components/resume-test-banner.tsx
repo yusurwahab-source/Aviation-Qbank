@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import type { IncompleteSession } from "@/db/attempts";
 import { buildResumeHref } from "@/lib/test-options";
+import { HeroButton } from "@/components/ui/hero-button";
 
 /**
  * "Resume your test" — shown on the type rating or class rating overview
@@ -42,12 +43,9 @@ export function ResumeTestBanner({
           {scope ? ` · ${scope}` : ""}
         </p>
       </div>
-      <Link
-        href={hrefBuilder(session)}
-        className="inline-flex min-h-11 items-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
-      >
+      <HeroButton asChild size="sm"><Link href={hrefBuilder(session)}>
         Resume
-      </Link>
+      </Link></HeroButton>
     </div>
   );
 }

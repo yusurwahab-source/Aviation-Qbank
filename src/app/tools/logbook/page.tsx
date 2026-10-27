@@ -17,6 +17,7 @@ import {
 import { startLogbook } from "./actions";
 import { DeleteAllLogbookData } from "./delete-all-button";
 import { LogbookPrivacyNotice } from "./privacy-notice";
+import { HeroButton } from "@/components/ui/hero-button";
 
 export const metadata: Metadata = {
   title: "Logbook Scanner",
@@ -96,18 +97,12 @@ export default async function LogbookScannerPage({
             {SPREADS_PER_UNLOCK} spreads is a one-time unlock — and included once with a PilotQBank subscription.</>}
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
-            <Link
-              href="/signup"
-              className="tap-target inline-flex items-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid hover:bg-brand-strong"
-            >
+            <HeroButton asChild size="sm"><Link href="/signup">
               Create a free account
-            </Link>
-            <Link
-              href="/login"
-              className="tap-target inline-flex items-center rounded-lg border border-border px-4 text-sm font-medium text-foreground hover:border-brand"
-            >
+            </Link></HeroButton>
+            <HeroButton asChild size="sm" variant="outline" showArrow={false}><Link href="/login">
               Log in
-            </Link>
+            </Link></HeroButton>
           </div>
         </Card>
       ) : null}
@@ -129,12 +124,9 @@ export default async function LogbookScannerPage({
                     defaultValue="My logbook"
                     className="tap-target w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-brand focus:outline-none"
                   />
-                  <button
-                    type="submit"
-                    className="tap-target shrink-0 rounded-lg bg-brand px-5 text-sm font-semibold text-on-solid hover:bg-brand-strong"
-                  >
+                  <HeroButton size="sm" className="shrink-0" type="submit">
                     Start scanning
-                  </button>
+                  </HeroButton>
                 </form>
               </Card>
             ) : null}

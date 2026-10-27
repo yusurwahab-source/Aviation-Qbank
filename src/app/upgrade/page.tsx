@@ -17,6 +17,7 @@ import { getCurrentUser } from "@/lib/auth/session";
 import { envValue } from "@/lib/env";
 
 import { CheckoutForm } from "./checkout-form";
+import { HeroButton } from "@/components/ui/hero-button";
 
 export const metadata: Metadata = { title: "Upgrade" };
 export const dynamic = "force-dynamic";
@@ -143,12 +144,9 @@ export default async function UpgradePage({
             We send your receipt there, and a subscription should belong to an inbox that is
             yours. It takes a minute, and practice is not affected.
           </p>
-          <Link
-            href="/account"
-            className="tap-target mt-4 inline-flex items-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
-          >
+          <HeroButton asChild size="sm" className="mt-4"><Link href="/account">
             Confirm my email
-          </Link>
+          </Link></HeroButton>
         </Card>
       ) : (
         <ul className="grid gap-4 sm:grid-cols-2">

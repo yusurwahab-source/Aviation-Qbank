@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 
+import { HeroButton } from "@/components/ui/hero-button";
 import { HERO_IMAGE, HERO_VIDEO_SRC } from "@/lib/product-cards";
 
 import { HeaderOverHero } from "./header-over-hero";
@@ -47,6 +49,9 @@ export function Hero() {
           <p className="mt-1.5 whitespace-nowrap text-sm font-medium tracking-wide text-hero-accent sm:mt-2 sm:text-base lg:text-lg">
             Study. Understand. Fly.
           </p>
+          <HeroButton asChild size="sm" className="hb-on-hero mt-4 sm:mt-5">
+            <Link href="/atpl-ground-school">Start practising</Link>
+          </HeroButton>
         </div>
       </div>
       <HeaderOverHero />

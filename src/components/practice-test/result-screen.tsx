@@ -9,6 +9,7 @@ import { Badge, Card, ScoreBar } from "@/components/ui";
 import type { GradedQuestion, TestResult } from "@/lib/grading";
 import type { PracticeTestActions, SaveStatus } from "@/lib/practice-test-types";
 import { formatClock } from "@/lib/test-options";
+import { HeroButton } from "@/components/ui/hero-button";
 
 /**
  * The end-of-test screen: the score against a pass mark, how long it took,
@@ -197,26 +198,17 @@ export function ResultScreen({
       </section>
 
       <div className="mt-8 flex flex-wrap gap-3">
-        <Link
-          href={buildRetakeHref({ retryOnly: true })}
-          className="inline-flex min-h-11 items-center rounded-lg bg-brand px-5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
-        >
+        <HeroButton asChild size="sm"><Link href={buildRetakeHref({ retryOnly: true })}>
           Retake the questions I got wrong
-        </Link>
+        </Link></HeroButton>
         {weakestTopics.length > 0 ? (
-          <Link
-            href={buildRetakeHref({ topics: [weakestTopics[0].topic] })}
-            className="inline-flex min-h-11 items-center rounded-lg border border-border bg-surface px-5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink"
-          >
+          <HeroButton asChild size="sm" variant="outline" showArrow={false}><Link href={buildRetakeHref({ topics: [weakestTopics[0].topic] })}>
             New test on my weakest system
-          </Link>
+          </Link></HeroButton>
         ) : null}
-        <Link
-          href={backHref}
-          className="inline-flex min-h-11 items-center rounded-lg border border-border bg-surface px-5 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink"
-        >
+        <HeroButton asChild size="sm" variant="outline" showArrow={false}><Link href={backHref}>
           Back to dashboard
-        </Link>
+        </Link></HeroButton>
       </div>
 
       {/* Kept as a smaller, secondary action: the three above are what the
@@ -293,18 +285,12 @@ function SaveNotice({ status }: { status: SaveStatus }) {
           flag or make notes on the questions worth revisiting.
         </p>
         <div className="mt-3 flex gap-2">
-          <Link
-            href="/signup"
-            className="inline-flex min-h-11 items-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
-          >
+          <HeroButton asChild size="sm"><Link href="/signup">
             Create a free account
-          </Link>
-          <Link
-            href="/login"
-            className="inline-flex min-h-11 items-center rounded-lg border border-border bg-surface px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink"
-          >
+          </Link></HeroButton>
+          <HeroButton asChild size="sm" variant="outline" showArrow={false}><Link href="/login">
             Log in
-          </Link>
+          </Link></HeroButton>
         </div>
       </div>
     );

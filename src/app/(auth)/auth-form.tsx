@@ -8,6 +8,7 @@ import { Card } from "@/components/ui";
 import { MIN_PASSWORD_LENGTH } from "@/lib/auth/credentials";
 
 import type { AuthFormState } from "./actions";
+import { HeroButton } from "@/components/ui/hero-button";
 
 /**
  * The shared shape of the sign-up and log-in screens. They differ only in
@@ -18,13 +19,9 @@ function SubmitButton({ label, pendingLabel }: { label: string; pendingLabel: st
   const { pending } = useFormStatus();
 
   return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="min-h-11 w-full rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
-    >
+    <HeroButton type="submit" size="sm" fullWidth loading={pending}>
       {pending ? pendingLabel : label}
-    </button>
+    </HeroButton>
   );
 }
 
