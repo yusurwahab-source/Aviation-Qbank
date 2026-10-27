@@ -617,8 +617,9 @@ a safety net, not the fix — overflows get solved where they happen.
 **The landing page is a short hub: a hero, three resource cards and the
 latest Articles, nothing else.** Between the shared header and footer:
 `Hero` (`_landing/hero.tsx` — "Your Aviation Study Hub" and "Study.
-Understand. Fly." over the hero picture, a shallow banner with a navy scrim
-from the left, the one image loaded eagerly at high fetch priority; Next 16
+Understand. Fly." over the hero picture, edge to edge and under the header
+with navy scrims from the left and the top, 480/544/640px tall from phone to
+`lg`, the one image loaded eagerly at high fetch priority; Next 16
 deprecated `priority` for that), `ProductCards` (`_landing/product-cards.tsx`
 — "EASA ATPL Ground School" (`/atpl-ground-school`), "Aircraft"
 (`/aircraft-systems`) and "Flight Training Tools" (`/pilot-sims`), each a
@@ -656,7 +657,25 @@ seamless. `HERO_VIDEO_SRC` (`lib/product-cards.ts`) names the clip, or is
 picture and under the scrim, fades it in only once it is playing, and never
 fetches it for reduced motion or Save-Data. Both layers sit at
 `object-[70%_75%]` so the wide desktop band still shows both displays. The
-heading and tagline stay real HTML; nothing is baked into the clip.
+heading and tagline stay real HTML; nothing is baked into the clip. On a
+phone the text sits high, in the dark sky, rather than centred over the PFD.
+
+**On the homepage the header sits on the photograph.** The layout wraps the
+header and the two banners in `.site-top`, which is `display: contents`
+everywhere, so the header stays sticky as before. When the page holds a
+`.hero-under-header` (`:has()`, so the first paint is right with no script),
+globals.css fixes `.site-top` over the hero and lifts `main`'s width cap and
+side padding; the page puts everything after the hero back in the usual
+column itself. While the hero is still under the header, the header is
+transparent over a top scrim and takes the dark palette's tokens: white
+links, the yellow "Start free" and the white wordmark (`data-wordmark`), in
+either theme. The token aliases (`--brand` and friends) are redeclared in
+that scope too, because a `var()` alias resolves where it is declared, on
+`:root`. `_landing/header-over-hero.tsx` sets `data-solid` once the hero has
+scrolled out from under the header, and from then on it is the ordinary
+header. The mobile sheet is a portal into `body`, so it never takes the
+overlay styling. On the homepage the banners ride along under the header,
+fixed with it.
 
 **The aircraft directory has exactly two categories.** `/aircraft-systems`
 shows **Light Aircraft** (the class rating tree, `/class-rating`) and

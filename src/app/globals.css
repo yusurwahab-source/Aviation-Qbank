@@ -86,7 +86,8 @@
  * The student's explicit choice only. Unchanged from the palette that was
  * the default until the 2026-10-25 light redesign: Deep Night-Navy behind,
  * panels lifted in steps, white text, a warm instrument-panel yellow accent. */
-:root[data-theme="dark"] {
+:root[data-theme="dark"],
+body:has(.hero-under-header) .site-top:not([data-solid]) {
   color-scheme: dark;
 
   /* ── Surfaces: Night Flight ───────────────────────────────────────────
@@ -165,7 +166,8 @@
  * rename can happen on its own when it is worth the diff. */
 :root,
 :root[data-theme="light"],
-:root[data-theme="dark"] {
+:root[data-theme="dark"],
+body:has(.hero-under-header) .site-top:not([data-solid]) {
   --brand: var(--accent);
   --brand-strong: var(--accent-hover);
   --brand-soft: var(--accent-soft);
@@ -367,6 +369,53 @@ body {
 
 :root:not([data-theme="dark"]) .icon-when-light {
   display: block;
+}
+
+/* ── The homepage header ──────────────────────────────────────────────────
+ * Everywhere else `.site-top` (the header and the two banners) has no box
+ * of its own and the header is simply sticky. On the homepage the hero
+ * photograph runs edge to edge and under the header: `.site-top` is lifted
+ * out of the flow and fixed over it, `main` drops its width cap and side
+ * padding, and while the hero is still under the header (no `data-solid`,
+ * set by `_landing/header-over-hero.tsx`) the header is transparent and
+ * takes the dark palette above, so its links, buttons and wordmark read on
+ * the picture whichever theme the page is in. Past the hero it is the
+ * ordinary header again. Decided by `:has()` rather than by script, so the
+ * first paint is already right. */
+.site-top {
+  display: contents;
+}
+
+body:has(.hero-under-header) .site-top {
+  display: block;
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 40;
+}
+
+body:has(.hero-under-header) main {
+  max-width: none;
+  padding-inline: 0;
+  padding-top: 0;
+}
+
+body:has(.hero-under-header) .site-top:not([data-solid]) .site-header {
+  border-color: transparent;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--hero-scrim) 55%, transparent),
+    transparent
+  );
+  backdrop-filter: none;
+}
+
+body:has(.hero-under-header) .site-top:not([data-solid]) [data-wordmark="on-dark"] {
+  display: block;
+}
+
+body:has(.hero-under-header) .site-top:not([data-solid]) [data-wordmark="on-light"] {
+  display: none;
 }
 
 /* Long content — a reference table, a wide code sample — scrolls inside its
