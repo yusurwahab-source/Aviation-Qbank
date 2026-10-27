@@ -644,6 +644,16 @@ photographs: overwrite each file with any 16:9 image under the same name
 and nothing else changes. `tests/product-cards.test.ts` fails if a path the
 page names does not exist.
 
+**The hero can carry a looping clip over its picture.** `HERO_VIDEO_SRC`
+(`lib/product-cards.ts`) names a muted MP4 in `public/videos/`, or is
+`null` for the still picture alone. `_landing/hero-video.tsx` plays it over
+the picture and under the scrim, fades it in only once it is playing, and
+never fetches it for reduced motion or Save-Data. The picture stays the
+first paint, so it should be the clip's first frame. The heading and
+tagline stay real HTML; nothing is baked into the clip. The clip is
+generated in Higgsfield's own app (the connector here can only read its
+history, not generate) and fetched from that history.
+
 **The aircraft directory has exactly two categories.** `/aircraft-systems`
 shows **Light Aircraft** (the class rating tree, `/class-rating`) and
 **Jets & Turboprops** (the type rating tree, `/type-rating`), each listing

@@ -42,6 +42,13 @@ export const HERO_IMAGE: CardImage = {
   alt: "A passenger jet flying above a layer of clouds",
 };
 
+/**
+ * The hero's looping background clip, played over `HERO_IMAGE` — an MP4
+ * in `public/videos/`, or `null` for the still picture alone. When a clip
+ * is set, `HERO_IMAGE` should be its first frame so the fade-in is seamless.
+ */
+export const HERO_VIDEO_SRC: string | null = null;
+
 const CARDS: Record<PillarKey, { title: string; description: string; image: CardImage }> = {
   "atpl-ground-school": {
     title: "EASA ATPL Ground School",
