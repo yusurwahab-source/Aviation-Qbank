@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 
 import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { Badge, Card, PageHeading } from "@/components/ui";
-import { AircraftSystemsHero } from "./_hero/aircraft-systems-hero";
 import { siteConfig } from "@/config/site";
 import { listClassRatings } from "@/db/class-queries";
 import { listAircraft } from "@/db/queries";
@@ -80,7 +79,6 @@ export default async function AircraftDirectoryPage() {
   } catch (error) {
     return (
       <>
-        <AircraftSystemsHero />
         <PageHeading eyebrow={EYEBROW} title="Choose a category" />
         <DatabaseUnavailable detail={(error as Error).message} />
       </>
@@ -89,7 +87,6 @@ export default async function AircraftDirectoryPage() {
 
   return (
     <>
-      <AircraftSystemsHero />
       <PageHeading eyebrow={EYEBROW} title="Choose a category" />
 
       <ul className="grid gap-4 sm:gap-6 md:grid-cols-2">

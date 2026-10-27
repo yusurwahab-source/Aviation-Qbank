@@ -188,20 +188,6 @@ body:has(.hero-under-header) .site-top:not([data-solid]) {
   --hero-accent: #f5c542;
 }
 
-/* ── Engine simulator (Aircraft Systems hero) ────────────────────────────
- * A dark instrument panel that stays dark in both themes, like the hero
- * photograph: navy canvas, pale-sky cold air, warm heat, and the two
- * semantic colours the readouts need. */
-:root {
-  --sim-panel: #0f2142;
-  --sim-line: #2c4a7c;
-  --sim-sky: #7dd3fc;
-  --sim-heat: #ff8a3d;
-  --sim-ok: #4ade80;
-  --sim-alert: #ff7a7f;
-  --sim-muted: #b8c2d1;
-}
-
 /* ── Scales ───────────────────────────────────────────────────────────────
  * Spacing is a 4px base. Tailwind's own spacing utilities are already built
  * on that same 4px step, so these names exist for the handful of places that
@@ -252,13 +238,6 @@ body:has(.hero-under-header) .site-top:not([data-solid]) {
   --color-hero-scrim: var(--hero-scrim);
   --color-on-hero: var(--on-hero);
   --color-hero-accent: var(--hero-accent);
-  --color-sim-panel: var(--sim-panel);
-  --color-sim-line: var(--sim-line);
-  --color-sim-sky: var(--sim-sky);
-  --color-sim-heat: var(--sim-heat);
-  --color-sim-ok: var(--sim-ok);
-  --color-sim-alert: var(--sim-alert);
-  --color-sim-muted: var(--sim-muted);
 
   /* The older spellings, still used throughout `src/`. */
   --color-brand: var(--brand);
@@ -454,36 +433,6 @@ body:has(.hero-under-header) .site-top:not([data-solid]) [data-wordmark="on-ligh
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   contain: paint;
-}
-
-/* ── Engine simulator motion ─────────────────────────────────────────────
- * Speeds come from the throttle through custom properties set inline on the
- * simulator (`--sim-flow`, `--sim-spin`), so the keyframes never change. */
-@keyframes sim-flow {
-  0% { transform: translateX(0); opacity: 0; }
-  15% { opacity: 1; }
-  85% { opacity: 1; }
-  100% { transform: translateX(var(--sim-dist, 300px)); opacity: 0; }
-}
-@keyframes sim-spin {
-  to { transform: rotate(360deg); }
-}
-@keyframes sim-strobe {
-  to { stroke-dashoffset: -28; }
-}
-.sim-particle {
-  animation: sim-flow var(--sim-flow, 1.6s) linear infinite;
-}
-.sim-spin {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: sim-spin var(--sim-spin, 1s) linear infinite;
-}
-.sim-strobe {
-  animation: sim-strobe var(--sim-spin, 1s) linear infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .sim-particle { animation: none; opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
