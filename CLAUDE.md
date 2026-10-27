@@ -634,25 +634,29 @@ lists — or no figure when the database does not answer. The brief's
 trust, how-it-works, features, FAQ and closing CTA sections are gone; the
 FAQ's answers live at `/faq`. Do not add promotional sections back.
 
-**The four homepage pictures are placeholders at fixed paths.**
-`public/images/pilotqbank-hero.webp`, `atpl-ground-school.webp`,
-`aircraft.webp` and `flight-training-tools.webp` are illustrations drawn as
-SVG and rendered to 1600×900 WebP with `sharp` — no AI image service could
-deliver a full-size file into the build environment (Canva's download hosts
-are blocked by its network policy). The owner will replace them with
-photographs: overwrite each file with any 16:9 image under the same name
-and nothing else changes. `tests/product-cards.test.ts` fails if a path the
-page names does not exist.
+**The homepage pictures live at fixed paths.** `atpl-ground-school.webp`,
+`aircraft.webp` and `flight-training-tools.webp` in `public/images/` are
+placeholder illustrations drawn as SVG and rendered to 1600×900 WebP with
+`sharp`. The owner will replace them with photographs: overwrite each file
+with any 16:9 image under the same name and nothing else changes.
+`tests/product-cards.test.ts` fails if a path the page names does not exist.
+Canva's download hosts are blocked by this environment's network policy, so
+a Canva image reaches the repository only when the owner uploads the file.
 
-**The hero can carry a looping clip over its picture.** `HERO_VIDEO_SRC`
-(`lib/product-cards.ts`) names a muted MP4 in `public/videos/`, or is
-`null` for the still picture alone. `_landing/hero-video.tsx` plays it over
-the picture and under the scrim, fades it in only once it is playing, and
-never fetches it for reduced motion or Save-Data. The picture stays the
-first paint, so it should be the clip's first frame. The heading and
-tagline stay real HTML; nothing is baked into the clip. The clip is
-generated in Higgsfield's own app (the connector here can only read its
-history, not generate) and fetched from that history.
+**The hero is a looping cockpit clip over its first frame.** The source is
+one photoreal still generated in Canva (a light-aircraft glass cockpit, left
+third dark for the heading). `public/videos/pilotqbank-hero.mp4` is that
+still animated locally: an eased 3.5% drift toward the instruments and back
+over 16 s, every frame resampled sub-pixel (ffmpeg's own zoom jitters at
+this speed), H.264 at CRF 23, silent, 1600×900. It is not a crossfade loop,
+because a crossfade between two zoom levels ghosts the instrument lines.
+`public/images/pilotqbank-hero.webp` is its first frame, so the fade-in is
+seamless. `HERO_VIDEO_SRC` (`lib/product-cards.ts`) names the clip, or is
+`null` for the still alone. `_landing/hero-video.tsx` plays it over the
+picture and under the scrim, fades it in only once it is playing, and never
+fetches it for reduced motion or Save-Data. Both layers sit at
+`object-[70%_75%]` so the wide desktop band still shows both displays. The
+heading and tagline stay real HTML; nothing is baked into the clip.
 
 **The aircraft directory has exactly two categories.** `/aircraft-systems`
 shows **Light Aircraft** (the class rating tree, `/class-rating`) and
@@ -2056,7 +2060,8 @@ content/                      Question files. The source of truth.
   flying-knowledge/<code>/    One folder per Flying Knowledge subject (pof/, hpl/, met/, rnav/, law/, agk/, ops/, com/, mb/, perf/, inst/, fpm/ today)
 drizzle/                      Generated SQL migrations. Committed.
 public/                       Manifest icons, the service worker, images/ (the four
-                              homepage placeholders, see above), and any
+                              homepage pictures, see above), videos/ (the hero
+                              clip), and any
                               <code>-study-guide.html study guides (see the
                               note on `lib/study-guide.ts` below)
 scripts/

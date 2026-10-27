@@ -30,10 +30,10 @@ export function Hero() {
         loading="eager"
         fetchPriority="high"
         sizes="(min-width: 1024px) 990px, 100vw"
-        className="object-cover object-[70%_45%]"
+        className="object-cover object-[70%_75%]"
       />
       {HERO_VIDEO_SRC && (
-        <HeroVideo src={HERO_VIDEO_SRC} className="absolute inset-0 h-full w-full object-cover object-[70%_45%]" />
+        <HeroVideo src={HERO_VIDEO_SRC} className="absolute inset-0 h-full w-full object-cover object-[70%_75%]" />
       )}
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-hero-scrim/70 via-hero-scrim/30 to-transparent" />
       <div className="relative flex h-full max-w-[75%] flex-col justify-center px-5 sm:max-w-lg sm:px-8 lg:px-10">
