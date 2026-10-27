@@ -94,7 +94,7 @@ export function MobileNav({ email, links }: { email: string | null; links: NavLi
         onClick={() => setOpen(true)}
         aria-expanded={open}
         aria-label="Open menu"
-        className="tap-target inline-flex items-center justify-center rounded-lg border border-border text-foreground transition hover:border-brand hover:text-brand-ink lg:hidden"
+        className="tap-target inline-flex items-center justify-center rounded-full text-foreground transition hover:bg-surface-muted lg:hidden"
       >
         <svg
           viewBox="0 0 24 24"
@@ -202,13 +202,13 @@ export function MobileNav({ email, links }: { email: string | null; links: NavLi
                     <div className="flex flex-col gap-2">
                       <Link
                         href="/login"
-                        className="tap-target flex items-center justify-center rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink"
+                        className="tap-target flex items-center justify-center rounded-full border border-border px-4 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand-ink"
                       >
                         Log in
                       </Link>
                       <Link
                         href="/signup"
-                        className="tap-target flex items-center justify-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
+                        className="tap-target flex items-center justify-center rounded-full bg-brand px-4 text-sm font-semibold tracking-wide text-on-solid shadow-sm transition hover:bg-brand-strong hover:shadow-md"
                       >
                         Start free
                       </Link>

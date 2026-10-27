@@ -47,7 +47,7 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label="Switch between the dark and light theme"
       title="Switch theme"
-      className="tap-target inline-flex items-center justify-center rounded-lg border border-border text-muted-foreground transition hover:border-brand hover:text-brand-ink"
+      className="tap-target inline-flex items-center justify-center rounded-full text-muted-foreground transition hover:bg-surface-muted hover:text-foreground"
     >
       {/* Shown on the dark theme: press for light. */}
       <svg

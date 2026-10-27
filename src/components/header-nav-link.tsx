@@ -34,7 +34,7 @@ export function HeaderNavLink({
     <Link
       href={href}
       aria-current={active ? "page" : undefined}
-      className={`tap-target relative ${wideOnly ? "hidden xl:inline-flex" : "inline-flex"} items-center whitespace-nowrap rounded-lg px-2.5 text-sm font-medium transition hover:bg-surface-muted hover:text-foreground ${
+      className={`tap-target relative ${wideOnly ? "hidden xl:inline-flex" : "inline-flex"} items-center whitespace-nowrap rounded-full px-3 text-sm font-medium transition hover:bg-surface-muted hover:text-foreground ${
         active ? "text-foreground" : "text-muted-foreground"
       }`}
     >
@@ -42,7 +42,7 @@ export function HeaderNavLink({
       {active ? (
         <span
           aria-hidden="true"
-          className="absolute inset-x-2.5 bottom-1 h-0.5 rounded-full bg-brand"
+          className="absolute inset-x-3 bottom-1 h-0.5 rounded-full bg-brand"
         />
       ) : null}
     </Link>

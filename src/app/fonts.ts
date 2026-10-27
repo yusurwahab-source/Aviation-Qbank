@@ -1,12 +1,13 @@
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 
 /**
  * Two faces, each with one job.
  *
- * **Space Grotesk** is the interface: headings, buttons, labels, numbers. It
- * is a geometric grotesque with squared-off terminals and open counters —
- * technical without being a novelty face, and its tabular figures keep a
- * clock and a question counter from shuffling as they tick.
+ * **Plus Jakarta Sans** is the interface: headings, buttons, labels,
+ * numbers. A modern geometric sans with generous proportions and calm,
+ * open curves — premium and professional rather than technical — and,
+ * like the face it replaced, it carries tabular figures (`tnum`), which
+ * keep a clock and a question counter from shuffling as they tick.
  *
  * **Inter** is what questions are set in. It was drawn for screen text at
  * small sizes: a tall x-height, wide apertures, and — the reason it is here
@@ -21,7 +22,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
  * shift while a face arrives.
  */
 
-export const fontDisplay = Space_Grotesk({
+export const fontDisplay = Plus_Jakarta_Sans({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-display",

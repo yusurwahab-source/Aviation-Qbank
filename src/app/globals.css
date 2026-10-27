@@ -377,8 +377,9 @@ body {
  * photograph runs edge to edge and under the header: `.site-top` is lifted
  * out of the flow and fixed over it, `main` drops its width cap and side
  * padding, and while the hero is still under the header (no `data-solid`,
- * set by `_landing/header-over-hero.tsx`) the header is transparent and
- * takes the dark palette above, so its links, buttons and wordmark read on
+ * set by `_landing/header-over-hero.tsx`) the header has no background
+ * and no bottom line — its controls float on the picture, over the hero's
+ * own top scrim — and takes the dark palette above, so its links, buttons and wordmark read on
  * the picture whichever theme the page is in. Past the hero it is the
  * ordinary header again. Decided by `:has()` rather than by script, so the
  * first paint is already right. */
@@ -402,11 +403,7 @@ body:has(.hero-under-header) main {
 
 body:has(.hero-under-header) .site-top:not([data-solid]) .site-header {
   border-color: transparent;
-  background: linear-gradient(
-    to bottom,
-    color-mix(in srgb, var(--hero-scrim) 55%, transparent),
-    transparent
-  );
+  background: transparent;
   backdrop-filter: none;
 }
 

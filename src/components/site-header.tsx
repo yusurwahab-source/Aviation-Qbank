@@ -107,7 +107,7 @@ export async function SiteHeader() {
   );
 
   return (
-    <header className="site-header font-reading sticky top-0 z-40 border-b border-border bg-surface-elevated/90 backdrop-blur">
+    <header className="site-header font-reading sticky top-0 z-40 border-b border-border bg-surface-elevated/90 backdrop-blur transition-[background-color,border-color] duration-300">
       <div className="mx-auto flex w-full max-w-5xl items-center gap-3 px-4 py-2 sm:px-5 sm:py-2.5">
         <Link
           href="/"
@@ -138,13 +138,13 @@ export async function SiteHeader() {
             <div className="hidden items-center gap-2 lg:flex">
               <Link
                 href="/login"
-                className="tap-target inline-flex items-center whitespace-nowrap rounded-lg px-3 text-sm font-medium text-muted-foreground transition hover:text-foreground"
+                className="tap-target inline-flex items-center whitespace-nowrap rounded-full px-4 text-sm font-medium text-muted-foreground transition hover:bg-surface-muted hover:text-foreground"
               >
                 Log in
               </Link>
               <Link
                 href="/signup"
-                className="tap-target inline-flex items-center whitespace-nowrap rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
+                className="tap-target inline-flex items-center whitespace-nowrap rounded-full bg-brand px-5 text-sm font-semibold tracking-wide text-on-solid shadow-sm transition hover:-translate-y-px hover:bg-brand-strong hover:shadow-md motion-reduce:transition-none motion-reduce:hover:translate-y-0"
               >
                 Start free
               </Link>
