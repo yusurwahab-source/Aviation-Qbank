@@ -76,6 +76,8 @@ export function Logo({
  * `.icon-when-dark` / `.icon-when-light` rules the theme toggle uses, so it
  * cannot disagree with the theme and does not flash on hydration: the white
  * file sits on the dark palette, the black one on the light palette.
+ * `data-wordmark` lets the homepage header pick the white one over the hero
+ * photograph whatever the theme (globals.css, "The homepage header").
  */
 export function LogoWordmark({ className = "h-6" }: { className?: string }) {
   return (
@@ -86,6 +88,7 @@ export function LogoWordmark({ className = "h-6" }: { className?: string }) {
         alt="PilotQBank"
         width={180}
         height={30}
+        data-wordmark="on-dark"
         className={`icon-when-dark w-auto max-w-none shrink-0 ${className}`}
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -94,6 +97,7 @@ export function LogoWordmark({ className = "h-6" }: { className?: string }) {
         alt="PilotQBank"
         width={180}
         height={30}
+        data-wordmark="on-light"
         className={`icon-when-light w-auto max-w-none shrink-0 ${className}`}
       />
     </>

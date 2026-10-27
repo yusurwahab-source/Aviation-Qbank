@@ -617,8 +617,9 @@ a safety net, not the fix — overflows get solved where they happen.
 **The landing page is a short hub: a hero, three resource cards and the
 latest Articles, nothing else.** Between the shared header and footer:
 `Hero` (`_landing/hero.tsx` — "Your Aviation Study Hub" and "Study.
-Understand. Fly." over the hero picture, a shallow banner with a navy scrim
-from the left, the one image loaded eagerly at high fetch priority; Next 16
+Understand. Fly." over the hero picture, edge to edge and under the header
+with navy scrims from the left and the top, 480/544/640px tall from phone to
+`lg`, the one image loaded eagerly at high fetch priority; Next 16
 deprecated `priority` for that), `ProductCards` (`_landing/product-cards.tsx`
 — "EASA ATPL Ground School" (`/atpl-ground-school`), "Aircraft"
 (`/aircraft-systems`) and "Flight Training Tools" (`/pilot-sims`), each a
@@ -634,15 +635,47 @@ lists — or no figure when the database does not answer. The brief's
 trust, how-it-works, features, FAQ and closing CTA sections are gone; the
 FAQ's answers live at `/faq`. Do not add promotional sections back.
 
-**The four homepage pictures are placeholders at fixed paths.**
-`public/images/pilotqbank-hero.webp`, `atpl-ground-school.webp`,
-`aircraft.webp` and `flight-training-tools.webp` are illustrations drawn as
-SVG and rendered to 1600×900 WebP with `sharp` — no AI image service could
-deliver a full-size file into the build environment (Canva's download hosts
-are blocked by its network policy). The owner will replace them with
-photographs: overwrite each file with any 16:9 image under the same name
-and nothing else changes. `tests/product-cards.test.ts` fails if a path the
-page names does not exist.
+**The homepage pictures live at fixed paths.** `atpl-ground-school.webp`,
+`aircraft.webp` and `flight-training-tools.webp` in `public/images/` are
+placeholder illustrations drawn as SVG and rendered to 1600×900 WebP with
+`sharp`. The owner will replace them with photographs: overwrite each file
+with any 16:9 image under the same name and nothing else changes.
+`tests/product-cards.test.ts` fails if a path the page names does not exist.
+Canva's download hosts are blocked by this environment's network policy, so
+a Canva image reaches the repository only when the owner uploads the file.
+
+**The hero is a looping cockpit clip over its first frame.** The source is
+one photoreal still generated in Canva (a light-aircraft glass cockpit, left
+third dark for the heading). `public/videos/pilotqbank-hero.mp4` is that
+still animated locally: an eased 3.5% drift toward the instruments and back
+over 16 s, every frame resampled sub-pixel (ffmpeg's own zoom jitters at
+this speed), H.264 at CRF 23, silent, 1600×900. It is not a crossfade loop,
+because a crossfade between two zoom levels ghosts the instrument lines.
+`public/images/pilotqbank-hero.webp` is its first frame, so the fade-in is
+seamless. `HERO_VIDEO_SRC` (`lib/product-cards.ts`) names the clip, or is
+`null` for the still alone. `_landing/hero-video.tsx` plays it over the
+picture and under the scrim, fades it in only once it is playing, and never
+fetches it for reduced motion or Save-Data. Both layers sit at
+`object-[70%_75%]` so the wide desktop band still shows both displays. The
+heading and tagline stay real HTML; nothing is baked into the clip. On a
+phone the text sits high, in the dark sky, rather than centred over the PFD.
+
+**On the homepage the header sits on the photograph.** The layout wraps the
+header and the two banners in `.site-top`, which is `display: contents`
+everywhere, so the header stays sticky as before. When the page holds a
+`.hero-under-header` (`:has()`, so the first paint is right with no script),
+globals.css fixes `.site-top` over the hero and lifts `main`'s width cap and
+side padding; the page puts everything after the hero back in the usual
+column itself. While the hero is still under the header, the header is
+transparent over a top scrim and takes the dark palette's tokens: white
+links, the yellow "Start free" and the white wordmark (`data-wordmark`), in
+either theme. The token aliases (`--brand` and friends) are redeclared in
+that scope too, because a `var()` alias resolves where it is declared, on
+`:root`. `_landing/header-over-hero.tsx` sets `data-solid` once the hero has
+scrolled out from under the header, and from then on it is the ordinary
+header. The mobile sheet is a portal into `body`, so it never takes the
+overlay styling. On the homepage the banners ride along under the header,
+fixed with it.
 
 **The aircraft directory has exactly two categories.** `/aircraft-systems`
 shows **Light Aircraft** (the class rating tree, `/class-rating`) and
@@ -2046,7 +2079,8 @@ content/                      Question files. The source of truth.
   flying-knowledge/<code>/    One folder per Flying Knowledge subject (pof/, hpl/, met/, rnav/, law/, agk/, ops/, com/, mb/, perf/, inst/, fpm/ today)
 drizzle/                      Generated SQL migrations. Committed.
 public/                       Manifest icons, the service worker, images/ (the four
-                              homepage placeholders, see above), and any
+                              homepage pictures, see above), videos/ (the hero
+                              clip), and any
                               <code>-study-guide.html study guides (see the
                               note on `lib/study-guide.ts` below)
 scripts/

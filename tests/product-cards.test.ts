@@ -3,7 +3,7 @@ import path from "node:path";
 
 import { describe, expect, it } from "vitest";
 
-import { buildProductCards, formatQuestionCount, HERO_IMAGE } from "@/lib/product-cards";
+import { buildProductCards, formatQuestionCount, HERO_IMAGE, HERO_VIDEO_SRC } from "@/lib/product-cards";
 import type { SectionKey } from "@/lib/settings";
 
 const settings = (hiddenSections: SectionKey[] = []) => ({ hiddenSections, sectionLabels: {} });
@@ -43,6 +43,12 @@ describe("product cards", () => {
       expect(existsSync(path.join(process.cwd(), "public", image.src))).toBe(true);
       expect(image.alt.length).toBeGreaterThan(0);
     }
+  });
+
+  it("points the hero clip, when there is one, at an MP4 that exists", () => {
+    if (HERO_VIDEO_SRC === null) return;
+    expect(HERO_VIDEO_SRC).toMatch(/^\/videos\/.+\.mp4$/);
+    expect(existsSync(path.join(process.cwd(), "public", HERO_VIDEO_SRC))).toBe(true);
   });
 
   it("leaves out a card whose sections are all hidden", () => {

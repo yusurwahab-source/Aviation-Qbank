@@ -39,8 +39,15 @@ export type ProductCard = {
 
 export const HERO_IMAGE: CardImage = {
   src: "/images/pilotqbank-hero.webp",
-  alt: "A passenger jet flying above a layer of clouds",
+  alt: "The glass-cockpit displays of a light aircraft in cruise, above scattered clouds",
 };
+
+/**
+ * The hero's looping background clip, played over `HERO_IMAGE` — an MP4
+ * in `public/videos/`, or `null` for the still picture alone. When a clip
+ * is set, `HERO_IMAGE` should be its first frame so the fade-in is seamless.
+ */
+export const HERO_VIDEO_SRC: string | null = "/videos/pilotqbank-hero.mp4";
 
 const CARDS: Record<PillarKey, { title: string; description: string; image: CardImage }> = {
   "atpl-ground-school": {

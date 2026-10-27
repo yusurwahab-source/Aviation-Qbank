@@ -80,9 +80,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Skip to content
         </a>
 
-        <SiteHeader />
-        <SiteAnnouncement />
-        <VerifyEmailBanner />
+        {/* No box of its own (`display: contents`), so the header stays sticky
+            against the page; on the homepage it lifts the header and banners
+            over the hero photograph (globals.css, "The homepage header"). */}
+        <div className="site-top">
+          <SiteHeader />
+          <SiteAnnouncement />
+          <VerifyEmailBanner />
+        </div>
 
         <main id="main" className="mx-auto w-full max-w-5xl flex-1 px-4 pb-8 pt-4 sm:px-5 sm:pt-8">
           {children}
