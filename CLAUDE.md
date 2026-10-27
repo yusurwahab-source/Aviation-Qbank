@@ -38,8 +38,10 @@ of the task, or sitting right next to it. Name a larger or sensitive one
 and ask before touching it.
 
 **Secrets and risk.** Never put a secret, `.env` value or credential in a
-report or a commit. Never push or deploy without the user's explicit
-go-ahead for that specific push or deploy.
+report or a commit. Push the session's own branch (and open a draft
+PR) once the task and its checks are done, without asking each time — that
+is the owner's standing go-ahead. Never push to `main` or deploy to
+production without the user's explicit go-ahead for that specific one.
 
 **Git.** A commit is fine once the task and its checks are done — stage
 only this task's own changes, never unrelated changes already sitting in
