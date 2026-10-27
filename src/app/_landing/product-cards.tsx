@@ -4,11 +4,12 @@ import Link from "next/link";
 import type { ProductCard } from "@/lib/product-cards";
 
 /**
- * The homepage's three resource cards: a 16:9 picture, a title, one short
- * line, an optional fact and an arrow. Below `md` each card is a row —
- * thumbnail beside the text — so all three fit on a phone screen under the
- * hero; from `md` they stand as three columns with the picture on top. The
- * picture keeps the same 16:9 crop in both.
+ * The homepage's three resource cards. Each one reads top to bottom: the
+ * title, one short line and an optional fact beside a round arrow, then the
+ * picture inside the card beneath them. The text grows to fill the card, so
+ * in the three-column row the pictures line up along the bottom whatever
+ * the length of the text above them. Wider than tall on a phone (2:1) so the
+ * three still sit close under the hero; 16:9 from `md`.
  *
  * One link per card, on the title, stretched over the whole card, so the
  * card is one tap target and one stop for a keyboard.
@@ -31,17 +32,8 @@ export function ProductCards({ cards }: { cards: ProductCard[] }) {
 
 function ProductCardView({ card }: { card: ProductCard }) {
   return (
-    <article className="group relative flex h-full items-center gap-4 overflow-hidden rounded-xl border border-border bg-surface p-3 shadow-sm transition focus-within:ring-2 focus-within:ring-brand focus-within:ring-offset-2 focus-within:ring-offset-background hover:border-brand hover:shadow-md motion-reduce:transition-none md:flex-col md:items-stretch md:gap-0 md:p-0">
-      <div className="relative aspect-video w-28 shrink-0 overflow-hidden rounded-lg bg-surface-muted sm:w-36 md:w-full md:rounded-none">
-        <Image
-          src={card.image.src}
-          alt={card.image.alt}
-          fill
-          sizes="(min-width: 768px) 330px, 144px"
-          className="object-cover"
-        />
-      </div>
-      <div className="flex min-w-0 flex-1 items-center gap-3 md:items-end md:p-5">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface p-4 shadow-sm transition duration-300 focus-within:ring-2 focus-within:ring-brand focus-within:ring-offset-2 focus-within:ring-offset-background hover:-translate-y-0.5 hover:border-brand hover:shadow-md motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:p-5">
+      <div className="flex flex-1 items-start gap-3">
         <div className="min-w-0 flex-1">
           <h2 className="text-base font-semibold leading-snug text-foreground sm:text-lg">
             <Link href={card.href} className="outline-none after:absolute after:inset-0 after:content-['']">
@@ -53,10 +45,21 @@ function ProductCardView({ card }: { card: ProductCard }) {
         </div>
         <span
           aria-hidden="true"
-          className="shrink-0 text-lg font-semibold text-brand-ink transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-soft text-brand-ink transition duration-300 group-hover:bg-brand group-hover:text-on-solid motion-reduce:transition-none"
         >
-          →
+          <svg viewBox="0 0 16 16" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 motion-reduce:transition-none" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 8h10M9 4l4 4-4 4" />
+          </svg>
         </span>
+      </div>
+      <div className="relative mt-4 aspect-[2/1] w-full overflow-hidden rounded-xl bg-surface-muted md:aspect-video">
+        <Image
+          src={card.image.src}
+          alt={card.image.alt}
+          fill
+          sizes="(min-width: 768px) 320px, 100vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+        />
       </div>
     </article>
   );

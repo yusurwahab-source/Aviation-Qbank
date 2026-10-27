@@ -503,7 +503,10 @@ trade while the application had no visual identity to carry, and the wrong
 one once it did. The build now depends on Google Fonts at build time, which
 is the cost.
 
-Space Grotesk is the interface. Inter is what question text is set in, and
+Plus Jakarta Sans is the interface (it replaced Space Grotesk for a more
+premium, professional look; it keeps tabular figures, so clocks and counters
+do not shuffle). The social card and the Instagram cards still load Space
+Grotesk themselves. Inter is what question text is set in, and
 that is the decision that actually matters here — a student reads far more
 question text than interface, for hours at a time, so the reading face was
 chosen for letterforms that stay distinct from one another when tired, not
@@ -618,13 +621,14 @@ a safety net, not the fix — overflows get solved where they happen.
 latest Articles, nothing else.** Between the shared header and footer:
 `Hero` (`_landing/hero.tsx` — "Your Aviation Study Hub" and "Study.
 Understand. Fly." over the hero picture, edge to edge and under the header
-with navy scrims from the left and the top, 480/544/640px tall from phone to
+with navy scrims from the left and the top, 352/400/464px tall from phone to
 `lg`, the one image loaded eagerly at high fetch priority; Next 16
 deprecated `priority` for that), `ProductCards` (`_landing/product-cards.tsx`
 — "EASA ATPL Ground School" (`/atpl-ground-school`), "Aircraft"
-(`/aircraft-systems`) and "Flight Training Tools" (`/pilot-sims`), each a
-16:9 picture, a title, one line and one stretched link; a row with a
-thumbnail on a phone, a column from `md`) and `LatestArticles`
+(`/aircraft-systems`) and "Flight Training Tools" (`/pilot-sims`), each
+read top to bottom: the title, one line and a round arrow, then the picture
+inside the card beneath them (2:1 on a phone, 16:9 from `md`, lined up along
+the bottom of the row), one stretched link) and `LatestArticles`
 (`_landing/latest-articles.tsx`, three cards and "View All Articles", an
 honest one-line empty state, left out if the database does not answer).
 Titles, lines and picture paths are data in `lib/product-cards.ts` (pure,
@@ -666,8 +670,9 @@ everywhere, so the header stays sticky as before. When the page holds a
 `.hero-under-header` (`:has()`, so the first paint is right with no script),
 globals.css fixes `.site-top` over the hero and lifts `main`'s width cap and
 side padding; the page puts everything after the hero back in the usual
-column itself. While the hero is still under the header, the header is
-transparent over a top scrim and takes the dark palette's tokens: white
+column itself. While the hero is still under the header, the header has
+no background and no bottom line, so its controls float on the picture over
+the hero's own top scrim, and it takes the dark palette's tokens: white
 links, the yellow "Start free" and the white wordmark (`data-wordmark`), in
 either theme. The token aliases (`--brand` and friends) are redeclared in
 that scope too, because a `var()` alias resolves where it is declared, on
@@ -722,6 +727,12 @@ subject to the ATPL list is a content folder plus its `code` in that list.
 the landing card says "Premium soon" and shows each sim's tier. Making a sim
 premium needs an access check as well as the flag, and `/pricing` and the
 upgrade dialog still say, truthfully, that Pilot Sims is free.
+
+**The header's controls are pills, not boxes.** Nav links, "Log in", the
+account menu, the theme toggle and the menu button are borderless
+`rounded-full` controls with a soft hover fill; "Start free" is a filled
+`rounded-full` pill with a small shadow that lifts on hover (not under
+reduced motion). The mobile sheet's two buttons match.
 
 **The header's desktop navigation starts at `lg`, and the wordmark must not
 shrink.** The wordmark `<img>` is `shrink-0` (the flex default silently

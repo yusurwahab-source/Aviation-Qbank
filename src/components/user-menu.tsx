@@ -44,7 +44,7 @@ export function UserMenu({ email }: { email: string }) {
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
         aria-haspopup="menu"
-        className="tap-target flex items-center gap-2 rounded-lg border border-border px-3 text-sm font-medium text-foreground transition hover:border-brand hover:text-brand-ink"
+        className="tap-target flex items-center gap-2 rounded-full px-2.5 text-sm font-medium text-foreground transition hover:bg-surface-muted"
       >
         <span
           aria-hidden="true"
