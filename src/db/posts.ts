@@ -134,7 +134,7 @@ export async function getPostById(id: string): Promise<Post | null> {
 export type SaveIntent = "draft" | "publish";
 
 export type SaveResult =
-  | { ok: true; id: string; kind: PostKind; slug: string; status: PostStatus; previousSlug: string | null }
+  | { ok: true; id: string; kind: PostKind; slug: string; status: PostStatus; previousSlug: string | null; previousCoverImageUrl: string | null }
   | { ok: false; reason: "slug_taken" | "not_found" };
 
 function isUniqueViolation(error: unknown): boolean {
@@ -201,10 +201,11 @@ export async function savePost(
         slug: input.slug,
         status,
         previousSlug: existing.slug !== input.slug || existing.kind !== input.kind ? existing.slug : null,
+        previousCoverImageUrl: existing.coverImageUrl,
       };
     }
     const [row] = await db.insert(posts).values(values).returning({ id: posts.id });
-    return { ok: true, id: row.id, kind: input.kind, slug: input.slug, status, previousSlug: null };
+    return { ok: true, id: row.id, kind: input.kind, slug: input.slug, status, previousSlug: null, previousCoverImageUrl: null };
   } catch (error) {
     if (isUniqueViolation(error)) return { ok: false, reason: "slug_taken" };
     throw error;

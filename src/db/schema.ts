@@ -1,6 +1,7 @@
 import { sql } from "drizzle-orm";
 import {
   boolean,
+  customType,
   index,
   integer,
   jsonb,
@@ -1407,3 +1408,29 @@ export const posts = pgTable(
 
 export type PostReference = { title: string; url: string; publisher?: string; date?: string };
 export type Post = typeof posts.$inferSelect;
+
+/**
+ * A cover image the owner uploaded for a Blog post or Article.
+ *
+ * The bytes live in the database because it is the one store this app has
+ * that survives a deploy (a serverless filesystem does not), and a cover is
+ * capped at 4 MB. Served by `/api/post-images/[id]`; the post keeps that
+ * path in `cover_image_url`, with no foreign key — an image uploaded and
+ * never saved is an orphan, swept by `deleteStalePostImages`, and a post
+ * pointing at a removed image degrades to a broken picture rather than
+ * blocking a deploy or an edit (the same reasoning as `attempts`).
+ */
+const bytea = customType<{ data: Buffer }>({ dataType: () => "bytea" });
+
+export const postImages = pgTable("post_images", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  contentType: varchar("content_type", { length: 20 }).notNull(),
+  byteSize: integer("byte_size").notNull(),
+  data: bytea("data").notNull(),
+  /** A sanitised label only; never used to address the file. */
+  fileName: varchar("file_name", { length: 100 }).notNull(),
+  uploadedBy: varchar("uploaded_by", { length: 254 }).notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+export type PostImage = typeof postImages.$inferSelect;

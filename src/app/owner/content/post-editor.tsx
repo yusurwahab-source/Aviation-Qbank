@@ -14,6 +14,7 @@ import {
   type PostStatus,
 } from "@/lib/posts";
 
+import { CoverImageField } from "./cover-image-field";
 import { savePostAction, unpublishPostAction, type PostEditorState, type UnpublishState } from "./actions";
 
 /**
@@ -251,10 +252,8 @@ export function PostEditor({
 
         <fieldset className="space-y-4 rounded-xl border border-border p-4">
           <legend className="px-1 text-sm font-semibold text-foreground">Cover image (optional)</legend>
-          <Field label="Image link" htmlFor="coverImageUrl" hint="A 1200×675 image, starting with https://. Leave empty to use the section's default image.">
-            <input id="coverImageUrl" name="coverImageUrl" value={values.coverImageUrl} onChange={(e) => set("coverImageUrl", e.target.value)} className={inputClass} inputMode="url" autoCapitalize="none" />
-          </Field>
-          <Field label="Image description (alt text)" htmlFor="coverImageAlt" hint="What the image shows, for readers who cannot see it.">
+          <CoverImageField url={values.coverImageUrl} onChange={(url) => set("coverImageUrl", url)} inputClass={inputClass} />
+          <Field label="Image description (alt text)" htmlFor="coverImageAlt" hint="Required when there is a cover image. What it shows, for readers who cannot see it.">
             <input id="coverImageAlt" name="coverImageAlt" value={values.coverImageAlt} onChange={(e) => set("coverImageAlt", e.target.value)} className={inputClass} maxLength={200} />
           </Field>
         </fieldset>

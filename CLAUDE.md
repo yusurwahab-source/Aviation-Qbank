@@ -336,6 +336,24 @@ is their source of truth and `db:seed` never touches the table.
   explanations (suggested categories Aircraft Systems, ATPL Theory, Flight
   Training, Regulations); Blogs are study tips and practical advice. The
   Blogs URL stays `/blog`, so existing links keep working.
+- **Cover images are uploaded, not only linked.** The editor's Cover image
+  field (`owner/content/cover-image-field.tsx`) uploads a JPEG, PNG or WebP
+  (4 MB — Vercel refuses request bodies over 4.5 MB) to
+  `POST /api/owner/post-images`, which answers anyone but the owner with a
+  plain 404, decides the format from the file's own bytes
+  (`lib/post-images.ts`: SVG, GIF and HEIC are refused, the client's file
+  name is reduced to a label and never addresses anything), stores the bytes
+  in `post_images` (migration `0026`) and returns `/api/post-images/<uuid>`,
+  which goes into the same `coverImageUrl` a pasted link fills — so cards,
+  detail pages, metadata and the homepage needed no change. The bytes are in
+  Postgres because no object storage is configured and the database is the
+  one store that survives a deploy; `db/post-images.ts` is the only module to
+  swap if a bucket is added later. The image route is public, sends the
+  detected type with `nosniff` and a sandboxing CSP, and caches for a year
+  (an id never changes content). Saving a post deletes its previous upload
+  if nothing else uses it; each upload sweeps unused images older than a day
+  (`deleteStalePostImages`). Uploads are audit-logged as `post.image.upload`.
+  Alt text stays required whenever a cover is set.
 - **Rendering**: Markdown through `react-markdown` with **no raw-HTML
   plugin** — HTML in the text shows as text. Link and image addresses go
   through `safeMarkdownUrl` (https, mailto, site paths, anchors; anything
@@ -2182,6 +2200,7 @@ src/
     logbooks.ts               Logbook Scanner: logbooks, the spread meter, unlocks and credits (user-scoped)
     logbook-owner.ts          Logbook Scanner usage and cost, unscoped. /owner only, like owner.ts.
     posts.ts                  Blog posts and Articles: public (published, dated) and owner queries
+    post-images.ts            Uploaded cover images: store, serve, clean up
     instagram.ts              The Instagram agent: pick a question, claim the day, record the post. Flying Knowledge only.
     index.ts                  Connection pool
   proxy.ts                    Mints the signed-out visitor cookie on /type-rating/* and /class-rating/*
@@ -2211,6 +2230,7 @@ src/
     ai-search.ts              AI Search: system instruction, query parsing, context ranking (pure, tested)
     ai-search-knowledge.ts    AI Search: reads content/ off disk into ranked context (server-only)
     posts.ts                  Blog/Articles rules: validation, slugs, safe links, dates (pure, tested)
+    post-images.ts            Cover upload rules: size, real format, safe names, upload urls (pure, tested)
     product-cards.ts          The homepage's three product cards as data (pure, tested)
     grading.ts                Scoring (pure, tested)
     question-status.ts        What the question map may say (pure, tested)
