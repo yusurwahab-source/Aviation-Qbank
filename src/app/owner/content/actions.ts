@@ -2,8 +2,10 @@
 
 import { revalidatePath } from "next/cache";
 
+import { deletePostImageIfUnused } from "@/db/post-images";
 import { savePost, unpublishPost } from "@/db/posts";
 import { ownerAction } from "@/lib/owner/audited-action";
+import { uploadedImageId } from "@/lib/post-images";
 import { POST_KIND_PATH, postPath, validatePost, type PostInput, type PostStatus } from "@/lib/posts";
 
 /**
@@ -88,6 +90,13 @@ export const savePostAction = ownerAction<PostEditorState, SaveInput>({
     }
 
     refreshPublicPages(post.kind, [result.slug, result.previousSlug]);
+
+    // A replaced or removed upload is deleted now that nothing saved points
+    // at it (the delete itself refuses while any post still does).
+    const oldImage = uploadedImageId(result.previousCoverImageUrl);
+    if (oldImage && result.previousCoverImageUrl !== post.coverImageUrl) {
+      await deletePostImageIfUnused(oldImage).catch((error) => console.error("Old cover cleanup failed:", error));
+    }
 
     return {
       ok: true,
