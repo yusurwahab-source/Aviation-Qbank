@@ -737,13 +737,19 @@ from a static list (`lib/atpl-subjects.ts`), not from the database.** A
 subject with no questions has no content folder and no row (`db:seed` would
 delete one), so "coming soon" rows cannot be database rows. A row is live
 only when a Flying Knowledge subject is named by its `code` there (POF is
-080, HPL is 040, MET is 050, RNAV is 062, LAW is 010, AGK is 021, OPS is 070, COM is 090, MB is 031, PERF is 032, INST is 022, FPM is 033) and is active with published questions; each subject is a
-cover card (`atpl-ground-school/subject-card.tsx`) with its question count,
-study guide link and a link to `/flying-knowledge/<code>`, where tests still
-run; opening the cover widens it to the full row and lists the subject's
-chapters (its topics, `listFlyingKnowledgeChapters`, one query for all
-subjects), each with its count and a link to a test on that chapter. There
-is no "Live" badge. `/flying-knowledge` itself redirects to the picker. Adding a
+080, HPL is 040, MET is 050, RNAV is 062, LAW is 010, AGK is 021, OPS is 070, COM is 090, MB is 031, PERF is 032, INST is 022, FPM is 033) and is active with published questions; the page is
+an `ExpandableGallery` (`components/ui/gallery-animation.tsx`, 21st.dev's
+gallery adapted to the tokens, a portal dialog, Escape/arrow keys and
+reduced motion): from `lg`, two rows of book spines that widen into a cover
+on hover; below it, one column of covers. Opening a subject shows its
+question count, the Question bank (`/flying-knowledge/<code>`, where tests
+still run), its study guide and its chapters (its topics,
+`listFlyingKnowledgeChapters`, one query for all subjects), each with its
+count and a link to a test on that chapter. The panel and dialog content
+are server components in `atpl-ground-school/subject-panels.tsx`. There is
+no "Live" badge. The gallery uses the installed `motion` package
+(`motion/react`), the current name of `framer-motion`; do not add the
+latter as a second copy. `/flying-knowledge` itself redirects to the picker. Adding a
 subject to the ATPL list is a content folder plus its `code` in that list.
 
 **Pilot Sims is meant to become a paid product, and nothing gates it yet.**
@@ -2195,7 +2201,7 @@ src/
                               free-tier cap, no subscription gate
     flying-knowledge/[code]/
     flying-knowledge/[code]/test/
-    atpl-ground-school/         The EASA ATPL Ground School picker: thirteen subjects as cover cards that open to their chapters
+    atpl-ground-school/         The EASA ATPL Ground School picker: thirteen subjects as an expandable gallery that opens to their chapters
     aircraft-systems/           A thin chooser in front of type-rating/ and class-rating/
     aircraft/, class/,
     aviation-knowledge/         Legacy redirects only — see "Old links still work" above
@@ -2227,7 +2233,7 @@ src/
     opengraph-image.tsx       The 1200x630 social card
     favicon.ico                                 Generated; the rest of the favicon set is in public/ (favicon.svg, favicon-32x32.png, apple-touch-icon.png)
   components/ui/              shadcn-style components (button, contact-with-globe,
-                              globe-wireframe, hero-button)
+                              gallery-animation, globe-wireframe, hero-button)
   components/                 Shared UI, including the shell (site-header,
                               site-footer + footer-globe, mobile-nav, user-menu,
                               theme-toggle, logo),

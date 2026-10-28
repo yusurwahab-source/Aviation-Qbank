@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 
 import { DatabaseUnavailable } from "@/components/database-unavailable";
 import { PageHeading } from "@/components/ui";
+import { ExpandableGallery } from "@/components/ui/gallery-animation";
 import { siteConfig } from "@/config/site";
 import {
   listFlyingKnowledgeChapters,
@@ -19,7 +20,7 @@ import { isItemHidden, withoutHidden } from "@/lib/settings";
 import { getVisibleSiteSettings } from "@/lib/settings-visibility";
 import { studyGuideHref } from "@/lib/study-guide";
 
-import { SubjectCard } from "./subject-card";
+import { SubjectDetail, SubjectPanel } from "./subject-panels";
 
 export const metadata: Metadata = {
   title: "EASA ATPL Ground School",
@@ -31,10 +32,10 @@ export const dynamic = "force-dynamic";
 const EYEBROW = "EASA ATPL Ground School";
 
 /**
- * The thirteen ATPL theory subjects as cover cards. A subject with a bank
- * opens to its chapters and question counts, with its study guide and its
- * `/flying-knowledge/<code>` question bank, where tests still run; the rest
- * are inert "coming soon" covers. Free in full, like the
+ * The thirteen ATPL theory subjects as an expandable gallery: a shelf of
+ * covers that widen on hover, each opening to its chapters and question
+ * counts, its study guide and its `/flying-knowledge/<code>` question bank,
+ * where tests still run. A subject without a bank opens to "coming soon". Free in full, like the
  * Flying Knowledge tree behind it — nothing here mentions an allowance.
  * The owner still sees a subject hidden from students, marked as such.
  */
@@ -79,16 +80,24 @@ export default async function AtplGroundSchoolPage() {
         subtitle={`${rows.length} subjects, ${questionCount.toLocaleString("en-GB")} questions. Open a subject to see its chapters. Learn why each answer is right, not just which one — free in full, for everyone.`}
       />
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {rows.map((row) => (
-          <SubjectCard
-            key={row.number}
-            row={row}
-            guideHref={row.live ? studyGuideHref(row.live.code) : null}
-            hiddenFromStudents={row.live ? hiddenCodes.has(row.live.code) : false}
-          />
-        ))}
-      </div>
+      <ExpandableGallery
+        perRow={7}
+        items={rows.map((row) => {
+          const hidden = row.live ? hiddenCodes.has(row.live.code) : false;
+          return {
+            id: row.number,
+            label: `${row.number} ${row.name}`,
+            panel: <SubjectPanel row={row} hiddenFromStudents={hidden} />,
+            detail: (
+              <SubjectDetail
+                row={row}
+                guideHref={row.live ? studyGuideHref(row.live.code) : null}
+                hiddenFromStudents={hidden}
+              />
+            ),
+          };
+        })}
+      />
 
       <p className="mt-6 flex flex-wrap gap-4">
         <Link
