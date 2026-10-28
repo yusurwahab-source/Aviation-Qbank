@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
-import { Button } from "@/components/ui/button";
 import { CONTACT_TOPICS, MAX_MESSAGE_LENGTH } from "@/lib/contact";
 
 import { sendContactMessage, type ContactFormState } from "./actions";
@@ -20,9 +19,6 @@ function SubmitButton() {
     <HeroButton type="submit" size="sm" fullWidth loading={pending}>
       {pending ? "Sending…" : "Send message"}
     </HeroButton>
-    <Button type="submit" disabled={pending} className="w-full sm:w-fit sm:px-8">
-      {pending ? "Sending…" : "Send message"}
-    </Button>
   );
 }
 
