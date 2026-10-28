@@ -1,14 +1,19 @@
 import Link from "next/link";
 
+import { TestBuilder } from "@/components/practice-test/test-builder";
 import { Badge } from "@/components/ui";
-import { buttonVariants } from "@/components/ui/button";
 import type { AtplRow } from "@/lib/atpl-subjects";
-import { buildFlyingKnowledgeTestHref } from "@/lib/test-options";
 
 /**
  * What one ATPL subject shows inside the expandable gallery: its panel (the
  * cover on the shelf) and its detail (the dialog it opens to). Both are
  * server components handed to the client gallery as finished markup.
+ *
+ * The detail is where a test starts: the same `TestBuilder` the subject's
+ * own page uses, over its chapters, with study or exam mode. It has no
+ * presets (weak, flagged, wrong, unseen) — those are per student and per
+ * subject, and computing them for all thirteen on every visit is not worth
+ * it here; the subject's page, linked beside the builder, has them.
  *
  * A panel is a `@container`. Below 16rem it is a book spine: the syllabus
  * number over the name set vertically. Wider, and on a phone where every
@@ -81,44 +86,36 @@ export function SubjectDetail({
 
         {live ? (
           <>
-            <div className="flex flex-wrap gap-3">
-              <Link href={`/flying-knowledge/${live.code}`} className={buttonVariants()}>
-                Question bank →
-              </Link>
+            <div className="flex flex-wrap items-center gap-x-5">
               {guideHref ? (
                 <a
                   href={guideHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={buttonVariants({ variant: "outline" })}
+                  className="link-standalone text-sm font-medium text-brand-ink hover:underline"
                 >
                   Study guide ↗
                 </a>
               ) : null}
+              <Link
+                href={`/flying-knowledge/${live.code}`}
+                className="link-standalone text-sm font-medium text-brand-ink hover:underline"
+              >
+                Subject page: progress, flagged and unseen →
+              </Link>
             </div>
 
-            <section>
-              <h3 className="mb-2 text-sm font-semibold text-foreground">Chapters</h3>
-              {live.chapters.length === 0 ? (
-                <p className="text-sm text-muted-foreground">No chapters published yet.</p>
-              ) : (
-                <ol className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-                  {live.chapters.map((chapter) => (
-                    <li key={chapter.topic}>
-                      <Link
-                        href={buildFlyingKnowledgeTestHref(live.code, { topics: [chapter.topic] })}
-                        className="tap-target flex h-full items-center justify-between gap-3 rounded-lg border border-border bg-surface-muted px-3 py-2 text-sm transition-colors hover:border-brand-ink"
-                      >
-                        <span className="font-medium text-foreground">{chapter.topic}</span>
-                        <span className="shrink-0 text-xs text-muted-foreground">
-                          {chapter.questionCount} Q
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ol>
-              )}
-            </section>
+            {live.chapters.length === 0 ? (
+              <p className="text-sm text-muted-foreground">No chapters published yet.</p>
+            ) : (
+              <TestBuilder
+                aircraftCode={live.code}
+                topics={live.chapters}
+                remainingFree={null}
+                basePath="/flying-knowledge"
+                unit="chapter"
+              />
+            )}
           </>
         ) : (
           <p className="text-sm text-muted-foreground">

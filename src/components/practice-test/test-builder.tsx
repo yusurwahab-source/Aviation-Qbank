@@ -73,6 +73,7 @@ export function TestBuilder({
   allowanceKind = "free-tier",
   presets = null,
   basePath,
+  unit = "section",
 }: {
   aircraftCode: string;
   topics: PracticeTopicSummary[];
@@ -87,6 +88,9 @@ export function TestBuilder({
    * `lib/test-options.ts`.
    */
   basePath: string;
+  /** What a topic is called on screen: an aircraft's sections, or a
+   * subject's chapters on the ATPL Ground School page. */
+  unit?: "section" | "chapter";
 }) {
   const fieldId = useId();
 
@@ -252,7 +256,9 @@ export function TestBuilder({
 
       <fieldset disabled={activePreset !== null} className={activePreset ? "opacity-50" : ""}>
         <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-          <legend className="text-sm font-semibold text-foreground">Sections</legend>
+          <legend className="text-sm font-semibold text-foreground">
+            {unit === "chapter" ? "Chapters" : "Sections"}
+          </legend>
           <div className="flex gap-3 text-sm">
             <button
               type="button"
@@ -279,7 +285,9 @@ export function TestBuilder({
           </div>
         </div>
         <p className="mt-1 text-sm text-muted-foreground">
-          Tick one section to work on a single system, or several to mix them.
+          {unit === "chapter"
+            ? "Tick one chapter to work on it alone, or several to mix them."
+            : "Tick one section to work on a single system, or several to mix them."}
         </p>
 
         <ul className="mt-3 grid gap-2 sm:grid-cols-2">
@@ -315,7 +323,7 @@ export function TestBuilder({
         <h3 className="text-sm font-semibold text-foreground">How many questions?</h3>
         <p className="mt-1 text-sm text-muted-foreground" aria-live="polite">
           {activePreset === null && available === 0
-            ? "Choose at least one section to see how many questions are available."
+            ? `Choose at least one ${unit} to see how many questions are available.`
             : `${available} ${available === 1 ? "question is" : "questions are"} available${
                 activePreset ? "" : " in your selection"
               }.`}
