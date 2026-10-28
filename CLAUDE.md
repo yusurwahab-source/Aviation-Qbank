@@ -741,11 +741,15 @@ only when a Flying Knowledge subject is named by its `code` there (POF is
 an `ExpandableGallery` (`components/ui/gallery-animation.tsx`, 21st.dev's
 gallery adapted to the tokens, a portal dialog, Escape/arrow keys and
 reduced motion): from `lg`, two rows of book spines that widen into a cover
-on hover; below it, one column of covers. Opening a subject shows its
-question count, the Question bank (`/flying-knowledge/<code>`, where tests
-still run), its study guide and its chapters (its topics,
-`listFlyingKnowledgeChapters`, one query for all subjects), each with its
-count and a link to a test on that chapter. The panel and dialog content
+on hover; below it, one column of covers. Opening a subject is where a test
+starts: its question count, its study guide, a link to its subject page
+(`/flying-knowledge/<code>`, which keeps the resume banner and the
+per-student presets), and the same `TestBuilder` over its chapters (its
+topics, `listFlyingKnowledgeChapters`, one query for all subjects) — tick
+chapters, choose how many, study or exam, start. The builder there has no
+presets (they are per student and per subject; thirteen sets per visit is
+not worth it) and says "Chapters" (`unit="chapter"`). The dialog's arrow
+keys stand down while a form field has focus (`shouldHandleShortcut`). The panel and dialog content
 are server components in `atpl-ground-school/subject-panels.tsx`. There is
 no "Live" badge. The gallery uses the installed `motion` package
 (`motion/react`), the current name of `framer-motion`; do not add the

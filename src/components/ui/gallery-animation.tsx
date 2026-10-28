@@ -4,6 +4,7 @@ import { AnimatePresence, MotionConfig, motion } from "motion/react";
 import { useEffect, useId, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 
+import { shouldHandleShortcut } from "@/lib/keyboard-shortcuts";
 import { cn } from "@/lib/utils";
 
 /**
@@ -14,7 +15,8 @@ import { cn } from "@/lib/utils";
  * Adapted rather than pasted: it takes any content for a panel and its
  * detail, not only an image; its colours are the app's tokens; the dialog is
  * a portal into `body` (see the note on fixed layers in CLAUDE.md); Escape
- * closes it and the arrow keys move between items; motion follows the
+ * closes it and the arrow keys move between items (not while a form field
+ * has focus); motion follows the
  * visitor's reduced-motion setting. Below `lg` the panels stack into one
  * column and only the dialog remains. Each panel is a `@container`, so its
  * content can lay itself out for the width it has been given.
@@ -142,6 +144,8 @@ function GalleryDialog({
     if (!open) return;
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
+      // A detail can hold a form, where the arrow keys belong to the field.
+      else if (!shouldHandleShortcut({ ...event, target: event.target as HTMLElement | null })) return;
       else if (items.length > 1 && event.key === "ArrowRight") onMove(1);
       else if (items.length > 1 && event.key === "ArrowLeft") onMove(-1);
     };
