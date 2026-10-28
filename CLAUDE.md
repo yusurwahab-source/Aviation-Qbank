@@ -541,7 +541,9 @@ Components use Tailwind utilities — `bg-surface`, `text-brand`,
 custom properties defined at the top of that file. Changing how the whole
 application looks is an edit to one file. There is not a single hardcoded
 palette colour anywhere in `src/`, and adding one would be the wrong
-change.
+change. (One owner-approved exception: the ATPL subject panels use
+Tailwind `emerald-*` for their "active bank" marks. Prefer a token for
+anything new.)
 
 **Light is the default palette (2026-10-25 redesign brief: light, elegant,
 professional, comfortable for long study).** `:root` is a light grey page

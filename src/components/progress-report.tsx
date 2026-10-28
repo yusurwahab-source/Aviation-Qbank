@@ -49,33 +49,50 @@ export function ProgressReport({ data }: { data: ProgressReportData }) {
     <>
       <section aria-label="Overall figures">
         <div className="grid gap-3 sm:grid-cols-3">
-          <Card>
-            <p className="text-sm text-muted-foreground">Overall score</p>
-            <p className="mt-1 text-4xl font-semibold tracking-tight text-foreground">
-              {summary.percentage}%
-            </p>
-            <p className="mt-1 text-sm text-muted-foreground">
+          <Card className="flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between">
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Overall score</p>
+                <span
+                  className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-semibold ${
+                    summary.percentage >= 75
+                      ? "bg-correct-soft text-correct"
+                      : "bg-surface-muted text-muted-foreground"
+                  }`}
+                >
+                  {summary.percentage >= 75 ? "Pass standard" : "Target: 75%"}
+                </span>
+              </div>
+              <p className="mt-2 text-4xl font-bold tracking-tight text-foreground font-mono">
+                {summary.percentage}%
+              </p>
+            </div>
+            <p className="mt-2 text-xs text-muted-foreground">
               {summary.correct} of {summary.answered} correct
             </p>
           </Card>
-          <Card>
-            <p className="text-sm text-muted-foreground">Questions answered</p>
-            <p className="mt-1 text-4xl font-semibold tracking-tight text-foreground">
-              {summary.answered}
-            </p>
-            <p className="mt-1 text-sm text-muted-foreground">
-              {summary.questionsSeen} different {summary.questionsSeen === 1 ? "question" : "questions"}
+          <Card className="flex flex-col justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Questions answered</p>
+              <p className="mt-2 text-4xl font-bold tracking-tight text-foreground font-mono">
+                {summary.answered}
+              </p>
+            </div>
+            <p className="mt-2 text-xs text-muted-foreground">
+              {summary.questionsSeen} unique {summary.questionsSeen === 1 ? "question" : "questions"} reviewed
             </p>
           </Card>
-          <Card>
-            <p className="text-sm text-muted-foreground">Tests taken</p>
-            <p className="mt-1 text-4xl font-semibold tracking-tight text-foreground">
-              {summary.testsTaken}
-            </p>
-            <p className="mt-1 text-sm text-muted-foreground">
+          <Card className="flex flex-col justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Tests taken</p>
+              <p className="mt-2 text-4xl font-bold tracking-tight text-foreground font-mono">
+                {summary.testsTaken}
+              </p>
+            </div>
+            <p className="mt-2 text-xs text-muted-foreground">
               {summary.lastPractised
-                ? `Last practised ${summary.lastPractised.toLocaleDateString()}`
-                : "Not practised yet"}
+                ? `Last session: ${summary.lastPractised.toLocaleDateString()}`
+                : "No sessions recorded"}
             </p>
           </Card>
         </div>
@@ -98,7 +115,7 @@ export function ProgressReport({ data }: { data: ProgressReportData }) {
                 </span>
               </div>
               <div className="mt-2">
-                <ScoreBar percentage={topic.percentage} tone="score" />
+                <ScoreBar percentage={topic.percentage} tone="score" passMark={75} />
               </div>
               {/* The point of showing a weak topic is being able to act on it. */}
               {aircraftCode ? (

@@ -70,8 +70,16 @@ export function Badge({
   );
 }
 
-/** A labelled horizontal bar. Used for per-topic scores. */
-export function ScoreBar({ percentage, tone = "brand" }: { percentage: number; tone?: "brand" | "score" }) {
+/** A labelled horizontal bar. Used for per-topic scores and overall results. */
+export function ScoreBar({
+  percentage,
+  tone = "brand",
+  passMark,
+}: {
+  percentage: number;
+  tone?: "brand" | "score";
+  passMark?: number;
+}) {
   const clamped = Math.max(0, Math.min(100, percentage));
   const color =
     tone === "brand"
@@ -83,8 +91,16 @@ export function ScoreBar({ percentage, tone = "brand" }: { percentage: number; t
           : "bg-incorrect";
 
   return (
-    <div className="h-2 w-full overflow-hidden rounded-full bg-surface-muted">
-      <div className={`h-full rounded-full ${color}`} style={{ width: `${clamped}%` }} />
+    <div className="relative h-2.5 w-full overflow-hidden rounded-full bg-surface-muted">
+      <div className={`h-full rounded-full transition-all duration-500 ${color}`} style={{ width: `${clamped}%` }} />
+      {passMark !== undefined ? (
+        <div
+          aria-hidden="true"
+          title={`Pass mark: ${passMark}%`}
+          className="absolute inset-y-0 w-0.5 bg-foreground/40"
+          style={{ left: `${Math.max(0, Math.min(100, passMark))}%` }}
+        />
+      ) : null}
     </div>
   );
 }

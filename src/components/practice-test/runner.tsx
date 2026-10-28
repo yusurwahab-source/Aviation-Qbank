@@ -642,17 +642,24 @@ export function TestRunner({
                 // Announced politely rather than on every tick: a screen
                 // reader reading out each second would be unusable.
                 aria-live="off"
-                className={`font-mono font-semibold tabular-nums ${
+                className={`inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-2.5 py-0.5 font-mono text-xs font-semibold tabular-nums shadow-xs sm:text-sm ${
                   // Amber with a fifth of the clock left, red with a
                   // twentieth — prominent, not alarming: colour only, no
                   // motion, and nothing changes about what the numbers say.
                   remainingFraction !== null && remainingFraction <= 0.05
-                    ? "text-incorrect"
+                    ? "border-incorrect/40 text-incorrect"
                     : remainingFraction !== null && remainingFraction <= 0.2
-                      ? "text-warning"
+                      ? "border-warning/40 text-warning"
                       : "text-foreground"
                 }`}
               >
+                <span className={`h-1.5 w-1.5 rounded-full ${
+                  remainingFraction !== null && remainingFraction <= 0.05
+                    ? "bg-incorrect animate-ping"
+                    : remainingFraction !== null && remainingFraction <= 0.2
+                      ? "bg-warning"
+                      : "bg-brand"
+                }`} />
                 <span className="sr-only">Time remaining: </span>
                 {formatClock(remaining)}
               </span>
@@ -661,7 +668,8 @@ export function TestRunner({
               // hangs on it. Deliberately quieter than the exam countdown —
               // same typeface, muted rather than bold, and it never turns
               // red, because there is nothing to warn about.
-              <span aria-live="off" className="font-mono tabular-nums">
+              <span aria-live="off" className="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-surface-muted/60 px-2 py-0.5 font-mono text-xs tabular-nums text-muted-foreground sm:text-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/60" />
                 <span className="sr-only">Time taken so far: </span>
                 {formatClock(elapsed)}
               </span>
@@ -768,8 +776,18 @@ export function TestRunner({
                     onChange={() => select(current.id, option.id)}
                     className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--brand)]"
                   />
-                  <span className="flex flex-1 flex-wrap gap-x-2 gap-y-1 font-reading text-base text-foreground">
-                    <span className="font-mono font-semibold uppercase text-muted-foreground">
+                  <span className="flex flex-1 flex-wrap items-baseline gap-x-2.5 gap-y-1 font-reading text-base text-foreground">
+                    <span
+                      className={`inline-flex h-5 w-5 shrink-0 items-center justify-center rounded text-xs font-mono font-bold uppercase transition ${
+                        isAnswer
+                          ? "bg-correct text-on-solid"
+                          : isWrongPick
+                            ? "bg-incorrect text-on-danger"
+                            : checked
+                              ? "bg-brand text-on-solid"
+                              : "border border-border/80 bg-surface-muted/80 text-foreground"
+                      }`}
+                    >
                       {option.id}
                     </span>
                     <span className="min-w-0 flex-1 basis-0">{option.text}</span>

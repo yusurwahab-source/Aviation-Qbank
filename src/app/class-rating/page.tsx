@@ -114,25 +114,39 @@ function ClassCard({ ratingClass }: { ratingClass: ClassRatingSummary }) {
 
   const body = (
     <Card
-      className={`h-full transition ${
-        ready ? "hover:border-brand hover:shadow-sm" : "opacity-70"
+      className={`group h-full transition-all duration-300 ${
+        ready ? "hover:border-brand hover:shadow-md" : "opacity-70"
       }`}
     >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="font-mono text-xs font-semibold uppercase tracking-wider text-brand-ink">
-            {ratingClass.code}
-          </p>
-          <h2 className="mt-1 text-lg font-semibold text-foreground">{ratingClass.name}</h2>
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-brand-ink">
+              {ratingClass.code}
+            </span>
+            <span className="rounded bg-surface-muted px-1.5 py-0.2 font-mono text-[10px] text-muted-foreground uppercase">
+              Class Rating
+            </span>
+          </div>
+          <h2 className="mt-1.5 text-lg font-bold text-foreground group-hover:text-brand-ink transition-colors">
+            {ratingClass.name}
+          </h2>
         </div>
         {!ready ? (
           <Badge>Coming soon</Badge>
         ) : (
-          <Badge tone="brand">{ratingClass.publishedQuestions} questions</Badge>
+          <Badge tone="brand">{ratingClass.publishedQuestions.toLocaleString("en-GB")} Q</Badge>
         )}
       </div>
 
-      <p className="mt-3 text-sm text-muted-foreground">{ratingClass.description}</p>
+      <p className="mt-3 text-xs leading-relaxed text-muted-foreground sm:text-sm">{ratingClass.description}</p>
+
+      {ready && (
+        <div className="mt-4 flex items-center justify-between border-t border-border/60 pt-3 text-xs font-semibold text-brand-ink">
+          <span>Question bank &amp; AFM study</span>
+          <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
+        </div>
+      )}
     </Card>
   );
 
