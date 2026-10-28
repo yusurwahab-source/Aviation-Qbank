@@ -6,6 +6,7 @@ import { useEffect, useId, useRef, useState } from "react";
 
 import { siteConfig } from "@/config/site";
 import { contactWidgetHidden, whatsappHref } from "@/lib/contact-links";
+import { HeroButton } from "@/components/ui/hero-button";
 
 /**
  * A small "talk to us" button fixed to the corner of public pages. It opens a
@@ -64,14 +65,9 @@ export function ContactWidget() {
             aircraft? Write to us.
           </p>
           <div className="mt-3 flex flex-col gap-2">
-            <a
-              href={whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="tap-target inline-flex items-center justify-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
-            >
+            <HeroButton asChild size="sm" showArrow={false} fullWidth><a href={whatsapp} target="_blank" rel="noopener noreferrer">
               WhatsApp {siteConfig.whatsapp.display}
-            </a>
+            </a></HeroButton>
             <Link
               href="/contact"
               onClick={() => setOpen(false)}

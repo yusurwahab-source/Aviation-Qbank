@@ -8,6 +8,7 @@ import { siteConfig } from "@/config/site";
 import { subscriptionBenefits, UPGRADE_PROMPT_PRICE } from "@/config/pricing";
 import { getSiteSettings } from "@/db/settings";
 import { getCurrentUser } from "@/lib/auth/session";
+import { HeroButton } from "@/components/ui/hero-button";
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -68,12 +69,9 @@ export default async function PricingPage() {
               </li>
             ))}
           </ul>
-          <Link
-            href={user ? "/upgrade" : "/signup"}
-            className="tap-target mt-6 inline-flex items-center justify-center rounded-lg bg-brand px-6 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
-          >
+          <HeroButton asChild size="default" className="mt-6"><Link href={user ? "/upgrade" : "/signup"}>
             {user ? "See plans and subscribe" : "Create an account to subscribe"}
-          </Link>
+          </Link></HeroButton>
         </Card>
       </div>
 

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { logOut } from "@/app/(auth)/actions";
+import { HeroButton } from "@/components/ui/hero-button";
 
 /**
  * The header on a phone: one button, and everything else behind it.
@@ -206,12 +207,9 @@ export function MobileNav({ email, links }: { email: string | null; links: NavLi
                       >
                         Log in
                       </Link>
-                      <Link
-                        href="/signup"
-                        className="tap-target flex items-center justify-center rounded-full bg-brand px-4 text-sm font-semibold tracking-wide text-on-solid shadow-sm transition hover:bg-brand-strong hover:shadow-md"
-                      >
+                      <HeroButton asChild size="sm" showArrow={false} fullWidth className="hb-nowrap"><Link href="/signup">
                         Start free
-                      </Link>
+                      </Link></HeroButton>
                     </div>
                   )}
                 </div>

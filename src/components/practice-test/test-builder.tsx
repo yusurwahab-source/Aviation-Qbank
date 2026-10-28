@@ -17,6 +17,7 @@ import {
   type TestLength,
   type TestMode,
 } from "@/lib/test-options";
+import { HeroButton } from "@/components/ui/hero-button";
 
 /**
  * The quick presets, computed server-side from the student's own history —
@@ -479,27 +480,17 @@ export function TestBuilder({
       </fieldset>
 
       {size > 0 ? (
-        <Link
-          href={href}
-          className="inline-block rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
-        >
+        <HeroButton asChild size="default"><Link href={href}>
           Start test · {size} {size === 1 ? "question" : "questions"}
-        </Link>
+        </Link></HeroButton>
       ) : remainingFree === 0 ? (
-        <Link
-          href={allowanceKind === "preview" ? "/signup" : "/upgrade"}
-          className="inline-block rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
-        >
+        <HeroButton asChild size="default"><Link href={allowanceKind === "preview" ? "/signup" : "/upgrade"}>
           {allowanceKind === "preview" ? "Sign up to keep going" : "Upgrade to keep going"}
-        </Link>
+        </Link></HeroButton>
       ) : (
-        <button
-          type="button"
-          disabled
-          className="inline-block cursor-not-allowed rounded-lg bg-surface-muted px-5 py-3 text-sm font-semibold text-muted-foreground"
-        >
+        <HeroButton disabled showArrow={false}>
           Start test
-        </button>
+        </HeroButton>
       )}
     </div>
   );

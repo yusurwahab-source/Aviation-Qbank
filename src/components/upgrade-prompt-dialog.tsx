@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { subscriptionBenefits, UPGRADE_PROMPT_PRICE } from "@/config/pricing";
+import { HeroButton } from "@/components/ui/hero-button";
 
 /**
  * The "here is what a subscription gets you" dialog.
@@ -148,13 +149,9 @@ export function UpgradePromptDialog({
         </ul>
 
         <div className="mt-6 flex flex-col gap-2">
-          <Link
-            href={signedIn ? "/upgrade" : "/signup"}
-            onClick={snooze}
-            className="tap-target inline-flex items-center justify-center rounded-lg bg-brand px-6 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
-          >
+          <HeroButton asChild size="default"><Link href={signedIn ? "/upgrade" : "/signup"} onClick={snooze}>
             {signedIn ? "See plans and subscribe" : "Create a free account"}
-          </Link>
+          </Link></HeroButton>
           {signedIn ? null : (
             <Link
               href="/login"

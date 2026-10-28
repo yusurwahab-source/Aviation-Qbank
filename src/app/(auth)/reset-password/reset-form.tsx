@@ -8,6 +8,7 @@ import { Card } from "@/components/ui";
 import { PASSWORD_HINT } from "../auth-form";
 
 import { resetPassword, type ResetPasswordState } from "../actions";
+import { HeroButton } from "@/components/ui/hero-button";
 
 /**
  * Setting a new password from a link.
@@ -21,13 +22,9 @@ function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="min-h-11 w-full rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
-    >
+    <HeroButton type="submit" size="sm" fullWidth loading={pending}>
       {pending ? "Saving…" : "Set new password"}
-    </button>
+    </HeroButton>
   );
 }
 
