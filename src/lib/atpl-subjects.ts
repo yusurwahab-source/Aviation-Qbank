@@ -30,10 +30,12 @@ export const ATPL_SUBJECTS: readonly AtplSubject[] = [
   { number: "090", name: "Communications", code: "COM" },
 ];
 
+export type AtplChapter = { topic: string; questionCount: number };
+
 export type AtplRow = {
   number: string;
   name: string;
-  live: { code: string; publishedQuestions: number } | null;
+  live: { code: string; publishedQuestions: number; chapters: AtplChapter[] } | null;
 };
 
 type SubjectFact = {
@@ -42,16 +44,36 @@ type SubjectFact = {
   publishedQuestions: number;
 };
 
-/** One row per ATPL subject; `live` is set only for a subject that can be sat. */
-export function buildAtplRows(subjects: readonly SubjectFact[]): AtplRow[] {
+type ChapterFact = AtplChapter & { subjectCode: string };
+
+/**
+ * One row per ATPL subject; `live` is set only for a subject that can be
+ * sat, and carries that subject's chapters (its topics) in the order given.
+ */
+export function buildAtplRows(
+  subjects: readonly SubjectFact[],
+  chapters: readonly ChapterFact[] = [],
+): AtplRow[] {
   const byCode = new Map(subjects.map((subject) => [subject.code, subject]));
+  const chaptersByCode = new Map<string, AtplChapter[]>();
+  for (const { subjectCode, topic, questionCount } of chapters) {
+    const list = chaptersByCode.get(subjectCode) ?? [];
+    list.push({ topic, questionCount });
+    chaptersByCode.set(subjectCode, list);
+  }
   return ATPL_SUBJECTS.map((entry) => {
     const found = entry.code ? byCode.get(entry.code) : undefined;
     const ready = found && found.status === "active" && found.publishedQuestions > 0;
     return {
       number: entry.number,
       name: entry.name,
-      live: ready ? { code: found.code, publishedQuestions: found.publishedQuestions } : null,
+      live: ready
+        ? {
+            code: found.code,
+            publishedQuestions: found.publishedQuestions,
+            chapters: chaptersByCode.get(found.code) ?? [],
+          }
+        : null,
     };
   });
 }
