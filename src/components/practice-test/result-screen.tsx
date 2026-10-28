@@ -108,7 +108,7 @@ export function ResultScreen({
           </div>
         </div>
         <div className="mt-4">
-          <ScoreBar percentage={result.percentage} tone="score" />
+          <ScoreBar percentage={result.percentage} tone="score" passMark={passMarkPercent} />
         </div>
 
         <p className="mt-4 border-t border-border pt-4 text-sm text-muted-foreground">

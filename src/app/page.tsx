@@ -93,7 +93,7 @@ export default async function LandingPage() {
     <div className="flex flex-col">
       {/* Edge to edge and under the header; everything after it sits in the
           page's usual column, which `main` gives up on this page only. */}
-      <Hero />
+      <Hero questionCount={facts.atplQuestionCount} />
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 px-4 pt-6 sm:gap-6 sm:px-5 sm:pt-8">
         <ProductCards cards={cards} />
         <div className="mt-6 sm:mt-8">

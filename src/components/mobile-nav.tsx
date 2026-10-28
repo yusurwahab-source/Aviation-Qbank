@@ -42,6 +42,12 @@ const GROUP_1_HREFS = new Set([
 ]);
 const GROUP_2_HREFS = new Set(["/progress", "/pricing", "/upgrade", "/account"]);
 
+const GROUP_TITLES = [
+  "Ground School & Fleet",
+  "Student Portal",
+  "Resources & Support",
+];
+
 function groupLinks(links: NavLink[]): [NavLink[], NavLink[], NavLink[]] {
   const group1 = links.filter((link) => GROUP_1_HREFS.has(link.href));
   const group2 = links.filter((link) => GROUP_2_HREFS.has(link.href));
@@ -164,19 +170,23 @@ export function MobileNav({ email, links }: { email: string | null; links: NavLi
                     group.length === 0 ? null : (
                       <div
                         key={index}
-                        className={`flex flex-col gap-y-3 ${
+                        className={`flex flex-col gap-y-1.5 ${
                           index === 0 ? "" : "mt-4 border-t border-border pt-4"
                         }`}
                       >
+                        <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/80 mb-1">
+                          {GROUP_TITLES[index]}
+                        </p>
                         {group.map((link) => (
                           <Link
                             key={link.href}
                             href={link.href}
-                            className={`tap-target flex items-center text-base font-medium transition hover:text-brand-ink ${
-                              pathname === link.href ? "text-brand-ink" : "text-foreground"
+                            className={`tap-target flex items-center justify-between rounded-lg px-2 text-base font-medium transition hover:bg-surface-muted hover:text-brand-ink ${
+                              pathname === link.href ? "text-brand-ink font-semibold bg-brand-soft/40" : "text-foreground"
                             }`}
                           >
-                            {link.label}
+                            <span>{link.label}</span>
+                            <span aria-hidden="true" className="text-xs text-muted-foreground/60">→</span>
                           </Link>
                         ))}
                       </div>

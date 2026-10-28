@@ -30,18 +30,36 @@ export function ProductCards({ cards }: { cards: ProductCard[] }) {
   );
 }
 
+const PILLAR_TAGS: Record<string, string> = {
+  "atpl-ground-school": "EASA Theory",
+  "aircraft-systems": "Systems Knowledge",
+  "pilot-sims": "Flight Simulators",
+};
+
 function ProductCardView({ card }: { card: ProductCard }) {
+  const tag = PILLAR_TAGS[card.key];
+
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface p-4 shadow-sm transition duration-300 focus-within:ring-2 focus-within:ring-brand focus-within:ring-offset-2 focus-within:ring-offset-background hover:-translate-y-0.5 hover:border-brand hover:shadow-md motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:p-5">
       <div className="flex flex-1 items-start gap-3">
         <div className="min-w-0 flex-1">
+          {tag ? (
+            <span className="inline-block mb-1 text-[11px] font-semibold uppercase tracking-wider text-brand-ink">
+              {tag}
+            </span>
+          ) : null}
           <h2 className="text-base font-semibold leading-snug text-foreground sm:text-lg">
             <Link href={card.href} className="outline-none after:absolute after:inset-0 after:content-['']">
               {card.title}
             </Link>
           </h2>
           <p className="mt-1 text-xs text-muted-foreground sm:text-sm">{card.description}</p>
-          {card.meta ? <p className="mt-1 text-xs font-semibold text-brand-ink sm:text-sm">{card.meta}</p> : null}
+          {card.meta ? (
+            <p className="mt-2 inline-flex items-center gap-1.5 rounded-md bg-brand-soft px-2 py-0.5 text-xs font-semibold text-brand-ink sm:text-xs">
+              <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+              {card.meta}
+            </p>
+          ) : null}
         </div>
         <span
           aria-hidden="true"
@@ -52,7 +70,7 @@ function ProductCardView({ card }: { card: ProductCard }) {
           </svg>
         </span>
       </div>
-      <div className="relative mt-4 aspect-[2/1] w-full overflow-hidden rounded-xl bg-surface-muted md:aspect-video">
+      <div className="relative mt-4 aspect-[2/1] w-full overflow-hidden rounded-xl border border-border/50 bg-surface-muted md:aspect-video">
         <Image
           src={card.image.src}
           alt={card.image.alt}
