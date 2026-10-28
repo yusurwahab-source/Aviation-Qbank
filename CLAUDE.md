@@ -759,6 +759,11 @@ the default size for page-level calls to action; `asChild` wraps a `Link`;
 secondary action beside a primary one. In-flow controls — test runner
 Previous/Next/Finish, tabs, filter chips, toggles, progress bars — are
 deliberately not `HeroButton`: they are small, dense and repeated.
+**The header bar is thin: 53px.** `py-1` around 44px controls, so a target
+never drops below the minimum while the bar takes as little of the hero
+photograph as it can; the hero's top scrim under it is 80px (`h-20`, 60%).
+Nothing else is keyed to the header's height except `scroll-mt-24` on the
+aircraft pages' question-bank anchor, which still clears it.
 
 **The header's controls are pills, not boxes.** Nav links, "Log in", the
 account menu, the theme toggle and the menu button are borderless
@@ -1453,6 +1458,38 @@ lost to a failed notification) and `sendEmail`. The visitor's address is only
 ever `reply_to`; the `from` stays the verified domain. In production a send
 that only reached the log is reported to the visitor as a failure rather than
 "sent".
+
+**`/contact` is laid out by `components/ui/contact-with-globe.tsx`** (ScrollX
+UI's contact section, adapted): heading, the page's own text, WhatsApp and
+phone links, a spinning wireframe globe, and the real `ContactForm` passed in
+as its child. The globe is its own component, `components/ui/globe-wireframe.tsx`:
+`d3-geo` + `topojson-client` only (not all of d3), one country mesh drawn by
+setting `d` in a requestAnimationFrame loop rather than re-rendering,
+`world-atlas`'s 110m map as a lazy chunk from this site (never a CDN), spinning
+only while on screen and not at all under reduced motion.
+
+**The footer is dressed like the homepage hero, with the globe in it.**
+`site-footer.tsx` is a navy band (`bg-hero-scrim`) in both themes: `.site-footer`
+takes the dark palette in globals.css through the same selector list as the
+header over the hero, so its tokens, white wordmark and pill links match that
+header. Left: wordmark, the tagline in the hero's yellow, the disclaimer and
+the header's pill links (wrapping); right: the globe in `hero-accent`, under
+the hero's left-to-right navy scrim. The footer is on every page, so
+`footer-globe.tsx` fetches the globe's code and map only when the footer is
+within a screen of the viewport, and it is decorative (`aria-hidden`, no
+pointer). One globe per page: a section marked `data-globe-section` (the
+contact one) hides the footer's by CSS (`body:has(...)`), not by a pathname
+check — reading the path in the root layout's client component mismatched on
+hydration.
+
+**`src/components/ui/` is the shadcn folder.** A component pasted from
+shadcn or a shadcn-style library goes there, with its colours rewritten
+onto the tokens above (no zinc/rose/`bg-primary`). `@/lib/utils` holds
+`cn` (clsx + tailwind-merge) so those files resolve unchanged;
+`ui/button.tsx` is shadcn's Button on this app's tokens, 44px tall.
+`src/components/ui.tsx` (PageHeading, Card, Badge…) is a separate,
+older file, and `@/components/ui` still resolves to it. There is no
+`components.json`: nothing here runs the shadcn CLI, and none is needed.
 
 **Contact is in the main navigation, and a floating button offers WhatsApp.**
 `/contact` is a header link (desktop and the mobile sheet), signed in or out.
@@ -2185,8 +2222,11 @@ src/
                               legacy redirects and every account-only page
     opengraph-image.tsx       The 1200x630 social card
     favicon.ico                                 Generated; the rest of the favicon set is in public/ (favicon.svg, favicon-32x32.png, apple-touch-icon.png)
+  components/ui/              shadcn-style components (button, contact-with-globe,
+                              globe-wireframe, hero-button)
   components/                 Shared UI, including the shell (site-header,
-                              site-footer, mobile-nav, user-menu, theme-toggle, logo),
+                              site-footer + footer-globe, mobile-nav, user-menu,
+                              theme-toggle, logo),
                               flag-button, question-note, resume-test-banner,
                               report-question-button, practice-test/explanation-sheet
                               (the lg:hidden draggable bottom sheet for a revealed answer)
@@ -2252,6 +2292,7 @@ src/
     logbook/                  Logbook Scanner: model, time parsing, validation engine, summary,
                               extraction schema and prompt, entitlement, exports (all pure, tested)
                               — plus claude.ts (the API call) and config.ts (env switches)
+    utils.ts                  cn() — the shadcn class-name helper
     ai-search.ts              AI Search: system instruction, query parsing, context ranking (pure, tested)
     ai-search-knowledge.ts    AI Search: reads content/ off disk into ranked context (server-only)
     posts.ts                  Blog/Articles rules: validation, slugs, safe links, dates (pure, tested)

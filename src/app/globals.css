@@ -85,9 +85,12 @@
 /* ── Dark: Modern Cockpit Calm ──────────────────────────────────────────
  * The student's explicit choice only. Unchanged from the palette that was
  * the default until the 2026-10-25 light redesign: Deep Night-Navy behind,
- * panels lifted in steps, white text, a warm instrument-panel yellow accent. */
+ * panels lifted in steps, white text, a warm instrument-panel yellow accent.
+ * Also always the palette of the header while it sits over the homepage
+ * hero, and of the footer, which is dressed like the hero in both themes. */
 :root[data-theme="dark"],
-body:has(.hero-under-header) .site-top:not([data-solid]) {
+body:has(.hero-under-header) .site-top:not([data-solid]),
+.site-footer {
   color-scheme: dark;
 
   /* ── Surfaces: Night Flight ───────────────────────────────────────────
@@ -167,7 +170,8 @@ body:has(.hero-under-header) .site-top:not([data-solid]) {
 :root,
 :root[data-theme="light"],
 :root[data-theme="dark"],
-body:has(.hero-under-header) .site-top:not([data-solid]) {
+body:has(.hero-under-header) .site-top:not([data-solid]),
+.site-footer {
   --brand: var(--accent);
   --brand-strong: var(--accent-hover);
   --brand-soft: var(--accent-soft);
@@ -407,11 +411,20 @@ body:has(.hero-under-header) .site-top:not([data-solid]) .site-header {
   backdrop-filter: none;
 }
 
-body:has(.hero-under-header) .site-top:not([data-solid]) [data-wordmark="on-dark"] {
+body:has(.hero-under-header) .site-top:not([data-solid]) [data-wordmark="on-dark"],
+:root .site-footer [data-wordmark="on-dark"] {
   display: block;
 }
 
-body:has(.hero-under-header) .site-top:not([data-solid]) [data-wordmark="on-light"] {
+body:has(.hero-under-header) .site-top:not([data-solid]) [data-wordmark="on-light"],
+:root .site-footer [data-wordmark="on-light"] {
+  display: none;
+}
+
+/* One globe per page: the footer's stays away when the page already has
+ * one (`ui/contact-with-globe.tsx` marks its section). Hidden, it has no
+ * box, so its observer never fires and nothing is downloaded. */
+body:has([data-globe-section]) .footer-globe {
   display: none;
 }
 
