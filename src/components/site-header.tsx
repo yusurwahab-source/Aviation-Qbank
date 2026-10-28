@@ -108,7 +108,7 @@ export async function SiteHeader() {
 
   return (
     <header className="site-header font-reading sticky top-0 z-40 border-b border-border bg-surface-elevated/90 backdrop-blur transition-[background-color,border-color] duration-300">
-      <div className="mx-auto flex w-full max-w-5xl items-center gap-3 px-4 py-2 sm:px-5 sm:py-2.5">
+      <div className="mx-auto flex w-full max-w-5xl items-center gap-3 px-4 py-1 sm:px-5">
         <Link
           href="/"
           className="tap-target flex shrink-0 items-center rounded-lg text-foreground transition hover:text-brand-ink"

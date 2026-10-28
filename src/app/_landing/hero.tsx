@@ -38,7 +38,7 @@ export function Hero() {
         <HeroVideo src={HERO_VIDEO_SRC} className="absolute inset-0 h-full w-full object-cover object-[70%_75%]" />
       )}
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-hero-scrim/75 via-hero-scrim/30 to-transparent" />
-      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-hero-scrim/70 to-transparent" />
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-hero-scrim/60 to-transparent" />
       <div className="relative mx-auto flex h-full w-full max-w-5xl flex-col justify-start px-4 pt-28 sm:justify-center sm:px-5 sm:pt-16">
         <div className="max-w-[75%] sm:max-w-lg">
           <h1 id="hero-heading" className="text-xl font-semibold text-on-hero sm:text-2xl lg:text-3xl">
