@@ -10,6 +10,7 @@ import type {
   TestScore,
   TopicPerformance,
 } from "@/db/reports";
+import { HeroButton } from "@/components/ui/hero-button";
 
 /**
  * The report itself, shared by the overall view and the per-aircraft view.
@@ -157,14 +158,15 @@ export function ProgressReport({ data }: { data: ProgressReportData }) {
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <h2 className="text-lg font-semibold text-foreground">Worth another look</h2>
           {aircraftCode && retry.length > 0 ? (
-            <Link
-              // Every outstanding question, not a fixed slice: the button says
-              // how many there are, so it has to deliver that many.
-              href={buildTestHref(aircraftCode, { retryOnly: true, length: ALL_QUESTIONS })}
-              className="inline-flex min-h-11 items-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
-            >
-              Retry these {retry.length > 1 ? `${retry.length} questions` : "questions"}
-            </Link>
+            <HeroButton asChild size="sm">
+              <Link
+                // Every outstanding question, not a fixed slice: the button says
+                // how many there are, so it has to deliver that many.
+                href={buildTestHref(aircraftCode, { retryOnly: true, length: ALL_QUESTIONS })}
+              >
+                Retry these {retry.length > 1 ? `${retry.length} questions` : "questions"}
+              </Link>
+            </HeroButton>
           ) : null}
         </div>
 

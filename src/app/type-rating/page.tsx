@@ -12,6 +12,7 @@ import { hasActiveSubscription } from "@/lib/billing/access-policy";
 import {  } from "@/db/settings";
 import { getCurrentUser } from "@/lib/auth/session";
 import { getVisibleSiteSettings } from "@/lib/settings-visibility";
+import { HeroButton } from "@/components/ui/hero-button";
 
 export const metadata: Metadata = {
   title: "Jets & Turboprops",
@@ -69,12 +70,9 @@ export default async function TypeRatingPickerPage() {
             Practising is free up to {settings.freeQuestionsPerAircraft} questions on each aircraft.
             Subscribe for unlimited questions on every type.
           </p>
-          <Link
-            href="/upgrade"
-            className="inline-flex min-h-11 shrink-0 items-center rounded-lg bg-brand px-4 text-sm font-semibold text-on-solid transition hover:bg-brand-strong"
-          >
+          <HeroButton asChild size="sm" className="shrink-0"><Link href="/upgrade">
             Upgrade
-          </Link>
+          </Link></HeroButton>
         </Card>
       ) : null}
 

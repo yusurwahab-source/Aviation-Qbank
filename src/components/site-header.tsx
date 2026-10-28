@@ -16,6 +16,7 @@ import {
   pillarTitle,
 } from "@/lib/pillars";
 import { getVisibleSiteSettings } from "@/lib/settings-visibility";
+import { HeroButton } from "@/components/ui/hero-button";
 
 /**
  * The application shell's header.
@@ -142,12 +143,9 @@ export async function SiteHeader() {
               >
                 Log in
               </Link>
-              <Link
-                href="/signup"
-                className="tap-target inline-flex items-center whitespace-nowrap rounded-full bg-brand px-5 text-sm font-semibold tracking-wide text-on-solid shadow-sm transition hover:-translate-y-px hover:bg-brand-strong hover:shadow-md motion-reduce:transition-none motion-reduce:hover:translate-y-0"
-              >
+              <HeroButton asChild size="sm" showArrow={false} className="hb-nowrap"><Link href="/signup">
                 Start free
-              </Link>
+              </Link></HeroButton>
             </div>
           )}
 

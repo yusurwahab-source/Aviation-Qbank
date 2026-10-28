@@ -758,6 +758,17 @@ the landing card says "Premium soon" and shows each sim's tier. Making a sim
 premium needs an access check as well as the flag, and `/pricing` and the
 upgrade dialog still say, truthfully, that Pilot Sims is free.
 
+**Calls to action and form submits are `HeroButton`.** `components/ui/hero-button.tsx`
+is a vendored third-party component (MIT, eslint disabled on purpose, kept
+verbatim except that its web fonts and `--font-*` tokens were removed). It is
+re-skinned to this site's tokens by one unlayered block at the end of
+`globals.css` (accent fill, `--on-solid` label, both themes), so it needs no
+colour of its own. Use `size="sm"` (44px) in the header, forms and cards and
+the default size for page-level calls to action; `asChild` wraps a `Link`;
+`loading` replaces `disabled` on a pending submit; `variant="outline"` is the
+secondary action beside a primary one. In-flow controls — test runner
+Previous/Next/Finish, tabs, filter chips, toggles, progress bars — are
+deliberately not `HeroButton`: they are small, dense and repeated.
 **The header bar is thin: 53px.** `py-1` around 44px controls, so a target
 never drops below the minimum while the bar takes as little of the hero
 photograph as it can; the hero's top scrim under it is 80px (`h-20`, 60%).

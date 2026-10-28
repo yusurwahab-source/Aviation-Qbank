@@ -7,6 +7,7 @@ import { useFormStatus } from "react-dom";
 import { Card } from "@/components/ui";
 
 import { requestPasswordReset, type ResetRequestState } from "../actions";
+import { HeroButton } from "@/components/ui/hero-button";
 
 /**
  * Asking for a reset link.
@@ -21,13 +22,9 @@ function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="min-h-11 w-full rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
-    >
+    <HeroButton type="submit" size="sm" fullWidth loading={pending}>
       {pending ? "Sending…" : "Email me a link"}
-    </button>
+    </HeroButton>
   );
 }
 

@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
-import { Button } from "@/components/ui/button";
 import { CONTACT_TOPICS, MAX_MESSAGE_LENGTH } from "@/lib/contact";
 
 import { sendContactMessage, type ContactFormState } from "./actions";
+import { HeroButton } from "@/components/ui/hero-button";
 
 const inputClass =
   "mt-1.5 w-full rounded-lg border border-border bg-surface px-3.5 py-2.5 text-sm text-foreground outline-none focus:border-brand";
@@ -16,9 +16,9 @@ function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <Button type="submit" disabled={pending} className="w-full sm:w-fit sm:px-8">
+    <HeroButton type="submit" size="sm" fullWidth loading={pending}>
       {pending ? "Sending…" : "Send message"}
-    </Button>
+    </HeroButton>
   );
 }
 
