@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
-import { Card } from "@/components/ui";
+import { Button } from "@/components/ui/button";
 import { CONTACT_TOPICS, MAX_MESSAGE_LENGTH } from "@/lib/contact";
 
 import { sendContactMessage, type ContactFormState } from "./actions";
@@ -16,13 +16,9 @@ function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="min-h-11 w-full rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-on-solid transition hover:bg-brand-strong disabled:cursor-not-allowed disabled:opacity-60"
-    >
+    <Button type="submit" disabled={pending} className="w-full sm:w-fit sm:px-8">
       {pending ? "Sending…" : "Send message"}
-    </button>
+    </Button>
   );
 }
 
@@ -40,8 +36,8 @@ export function ContactForm({ defaultEmail }: { defaultEmail?: string }) {
 
   if (state.done) {
     return (
-      <Card>
-        <h2 className="text-lg font-semibold text-foreground">Message sent</h2>
+      <div role="status">
+        <h3 className="text-lg font-semibold text-foreground">Message sent</h3>
         <p className="mt-2 text-sm text-muted-foreground">
           Thank you. We read every message and will reply to the email address you gave.
         </p>
@@ -50,7 +46,7 @@ export function ContactForm({ defaultEmail }: { defaultEmail?: string }) {
             ← Back home
           </Link>
         </p>
-      </Card>
+      </div>
     );
   }
 
@@ -58,14 +54,14 @@ export function ContactForm({ defaultEmail }: { defaultEmail?: string }) {
   const errors = state.fieldErrors ?? {};
 
   return (
-    <Card>
-      <form action={formAction} className="space-y-4" noValidate>
-        {state.error ? (
-          <p role="alert" className="rounded-lg bg-incorrect-soft px-4 py-3 text-sm text-incorrect">
-            {state.error}
-          </p>
-        ) : null}
+    <form action={formAction} className="space-y-4" noValidate>
+      {state.error ? (
+        <p role="alert" className="rounded-lg bg-incorrect-soft px-4 py-3 text-sm text-incorrect">
+          {state.error}
+        </p>
+      ) : null}
 
+      <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-foreground">
             Your name
@@ -100,74 +96,74 @@ export function ContactForm({ defaultEmail }: { defaultEmail?: string }) {
           />
           <FieldError id="email-error" message={errors.email} />
         </div>
+      </div>
 
-        <div>
-          <label htmlFor="topic" className="block text-sm font-medium text-foreground">
-            What is it about?
-          </label>
-          <select
-            id="topic"
-            name="topic"
-            defaultValue={values?.topic ?? ""}
-            aria-invalid={errors.topic ? true : undefined}
-            aria-describedby={errors.topic ? "topic-error" : undefined}
-            className={inputClass}
-          >
-            <option value="" disabled>
-              Choose one…
+      <div>
+        <label htmlFor="topic" className="block text-sm font-medium text-foreground">
+          What is it about?
+        </label>
+        <select
+          id="topic"
+          name="topic"
+          defaultValue={values?.topic ?? ""}
+          aria-invalid={errors.topic ? true : undefined}
+          aria-describedby={errors.topic ? "topic-error" : undefined}
+          className={inputClass}
+        >
+          <option value="" disabled>
+            Choose one…
+          </option>
+          {CONTACT_TOPICS.map((topic) => (
+            <option key={topic.value} value={topic.value}>
+              {topic.label}
             </option>
-            {CONTACT_TOPICS.map((topic) => (
-              <option key={topic.value} value={topic.value}>
-                {topic.label}
-              </option>
-            ))}
-          </select>
-          <FieldError id="topic-error" message={errors.topic} />
-        </div>
+          ))}
+        </select>
+        <FieldError id="topic-error" message={errors.topic} />
+      </div>
 
-        <div>
-          <label htmlFor="questionId" className="block text-sm font-medium text-foreground">
-            Question id <span className="font-normal text-muted-foreground">(optional)</span>
-          </label>
-          <input
-            id="questionId"
-            name="questionId"
-            type="text"
-            maxLength={40}
-            placeholder="B737-ELEC-0042"
-            defaultValue={values?.questionId}
-            aria-invalid={errors.questionId ? true : undefined}
-            aria-describedby={errors.questionId ? "questionId-error" : undefined}
-            className={`${inputClass} font-mono`}
-          />
-          <FieldError id="questionId-error" message={errors.questionId} />
-        </div>
+      <div>
+        <label htmlFor="questionId" className="block text-sm font-medium text-foreground">
+          Question id <span className="font-normal text-muted-foreground">(optional)</span>
+        </label>
+        <input
+          id="questionId"
+          name="questionId"
+          type="text"
+          maxLength={40}
+          placeholder="B737-ELEC-0042"
+          defaultValue={values?.questionId}
+          aria-invalid={errors.questionId ? true : undefined}
+          aria-describedby={errors.questionId ? "questionId-error" : undefined}
+          className={`${inputClass} font-mono`}
+        />
+        <FieldError id="questionId-error" message={errors.questionId} />
+      </div>
 
-        <div>
-          <label htmlFor="message" className="block text-sm font-medium text-foreground">
-            Message
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            rows={6}
-            maxLength={MAX_MESSAGE_LENGTH}
-            defaultValue={values?.message}
-            aria-invalid={errors.message ? true : undefined}
-            aria-describedby={errors.message ? "message-error" : undefined}
-            className={inputClass}
-          />
-          <FieldError id="message-error" message={errors.message} />
-        </div>
+      <div>
+        <label htmlFor="message" className="block text-sm font-medium text-foreground">
+          Message
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          rows={6}
+          maxLength={MAX_MESSAGE_LENGTH}
+          defaultValue={values?.message}
+          aria-invalid={errors.message ? true : undefined}
+          aria-describedby={errors.message ? "message-error" : undefined}
+          className={inputClass}
+        />
+        <FieldError id="message-error" message={errors.message} />
+      </div>
 
-        {/* Honeypot: off-screen, skipped by keyboards and screen readers. */}
-        <div aria-hidden="true" style={{ position: "absolute", left: "-10000px" }}>
-          <label htmlFor="website">Leave this empty</label>
-          <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
-        </div>
+      {/* Honeypot: off-screen, skipped by keyboards and screen readers. */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-10000px" }}>
+        <label htmlFor="website">Leave this empty</label>
+        <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
 
-        <SubmitButton />
-      </form>
-    </Card>
+      <SubmitButton />
+    </form>
   );
 }

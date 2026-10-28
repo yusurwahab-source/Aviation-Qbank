@@ -1442,6 +1442,24 @@ ever `reply_to`; the `from` stays the verified domain. In production a send
 that only reached the log is reported to the visitor as a failure rather than
 "sent".
 
+**`/contact` is laid out by `components/ui/contact-with-globe.tsx`** (ScrollX
+UI's contact section, adapted): heading, the page's own text, WhatsApp and
+phone links, a spinning wireframe globe, and the real `ContactForm` passed in
+as its child. The globe is `d3-geo` + `topojson-client` only (not all of d3),
+draws one country mesh by setting `d` in a requestAnimationFrame loop rather
+than re-rendering, loads `world-atlas`'s 110m map as a lazy chunk from this
+site (never a CDN), spins only while on screen and not at all under reduced
+motion.
+
+**`src/components/ui/` is the shadcn folder.** A component pasted from
+shadcn or a shadcn-style library goes there, with its colours rewritten
+onto the tokens above (no zinc/rose/`bg-primary`). `@/lib/utils` holds
+`cn` (clsx + tailwind-merge) so those files resolve unchanged;
+`ui/button.tsx` is shadcn's Button on this app's tokens, 44px tall.
+`src/components/ui.tsx` (PageHeading, Card, Badge…) is a separate,
+older file, and `@/components/ui` still resolves to it. There is no
+`components.json`: nothing here runs the shadcn CLI, and none is needed.
+
 **Contact is in the main navigation, and a floating button offers WhatsApp.**
 `/contact` is a header link (desktop and the mobile sheet), signed in or out.
 `ContactWidget` (`components/contact-widget.tsx`, mounted in `layout.tsx`) is a
@@ -2173,6 +2191,7 @@ src/
                               legacy redirects and every account-only page
     opengraph-image.tsx       The 1200x630 social card
     favicon.ico                                 Generated; the rest of the favicon set is in public/ (favicon.svg, favicon-32x32.png, apple-touch-icon.png)
+  components/ui/              shadcn-style components (button, contact-with-globe, hero-button)
   components/                 Shared UI, including the shell (site-header,
                               site-footer, mobile-nav, user-menu, theme-toggle, logo),
                               flag-button, question-note, resume-test-banner,
@@ -2240,6 +2259,7 @@ src/
     logbook/                  Logbook Scanner: model, time parsing, validation engine, summary,
                               extraction schema and prompt, entitlement, exports (all pure, tested)
                               — plus claude.ts (the API call) and config.ts (env switches)
+    utils.ts                  cn() — the shadcn class-name helper
     ai-search.ts              AI Search: system instruction, query parsing, context ranking (pure, tested)
     ai-search-knowledge.ts    AI Search: reads content/ off disk into ranked context (server-only)
     posts.ts                  Blog/Articles rules: validation, slugs, safe links, dates (pure, tested)
