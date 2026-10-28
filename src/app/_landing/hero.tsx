@@ -21,7 +21,7 @@ import { HeroVideo } from "./hero-video";
  * The top padding clears the header, and the text lines up with the
  * page's own content column beneath.
  */
-export function Hero() {
+export function Hero({ questionCount }: { questionCount: number | null }) {
   return (
     <section
       aria-labelledby="hero-heading"
@@ -54,7 +54,9 @@ export function Hero() {
             Study. Understand. Fly.
           </p>
           <p className="mt-2 text-xs sm:text-sm text-on-hero/85 leading-relaxed max-w-md hidden sm:block">
-            Master aircraft systems and pass your theoretical exams with confidence. 14,000+ verified multiple-choice questions with detailed technical explanations.
+            Master aircraft systems and pass your theoretical exams with confidence. {questionCount !== null && questionCount > 0
+              ? `${questionCount.toLocaleString("en-GB")} verified ATPL theory questions with detailed technical explanations.`
+              : "Verified multiple-choice questions with detailed technical explanations."}
           </p>
           <div className="mt-4 sm:mt-6 flex flex-wrap items-center gap-3">
             <HeroButton asChild size="sm" className="hb-on-hero">

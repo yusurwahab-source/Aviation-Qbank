@@ -11,6 +11,7 @@ import type {
   TopicPerformance,
 } from "@/db/reports";
 import { HeroButton } from "@/components/ui/hero-button";
+import { getSiteSettings } from "@/db/settings";
 
 /**
  * The report itself, shared by the overall view and the per-aircraft view.
@@ -30,7 +31,9 @@ export type ProgressReportData = {
   aircraftCode?: string;
 };
 
-export function ProgressReport({ data }: { data: ProgressReportData }) {
+export async function ProgressReport({ data }: { data: ProgressReportData }) {
+  // The owner's pass mark (never throws; falls back to the default).
+  const { passMarkPercent } = await getSiteSettings();
   const { summary, topics, scores, retry, aircraft, aircraftCode } = data;
 
   if (summary.answered === 0) {
@@ -55,12 +58,12 @@ export function ProgressReport({ data }: { data: ProgressReportData }) {
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Overall score</p>
                 <span
                   className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-semibold ${
-                    summary.percentage >= 75
+                    summary.percentage >= passMarkPercent
                       ? "bg-correct-soft text-correct"
                       : "bg-surface-muted text-muted-foreground"
                   }`}
                 >
-                  {summary.percentage >= 75 ? "Pass standard" : "Target: 75%"}
+                  {summary.percentage >= passMarkPercent ? "Pass standard" : `Target: ${passMarkPercent}%`}
                 </span>
               </div>
               <p className="mt-2 text-4xl font-bold tracking-tight text-foreground font-mono">
@@ -115,7 +118,7 @@ export function ProgressReport({ data }: { data: ProgressReportData }) {
                 </span>
               </div>
               <div className="mt-2">
-                <ScoreBar percentage={topic.percentage} tone="score" passMark={75} />
+                <ScoreBar percentage={topic.percentage} tone="score" passMark={passMarkPercent} />
               </div>
               {/* The point of showing a weak topic is being able to act on it. */}
               {aircraftCode ? (
