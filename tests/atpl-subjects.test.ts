@@ -47,6 +47,32 @@ describe("buildAtplRows", () => {
   });
 });
 
+describe("buildAtplRows chapters", () => {
+  it("gives each live subject its own chapters, in the order given", () => {
+    const rows = buildAtplRows(
+      [
+        { code: "COM", status: "active", publishedQuestions: 30 },
+        { code: "POF", status: "coming_soon", publishedQuestions: 5 },
+      ],
+      [
+        { subjectCode: "COM", topic: "01 Definitions", questionCount: 10 },
+        { subjectCode: "POF", topic: "01 Lift", questionCount: 5 },
+        { subjectCode: "COM", topic: "02 Phraseology", questionCount: 20 },
+      ],
+    );
+    expect(rows.find((row) => row.number === "090")?.live?.chapters).toEqual([
+      { topic: "01 Definitions", questionCount: 10 },
+      { topic: "02 Phraseology", questionCount: 20 },
+    ]);
+    expect(rows.find((row) => row.number === "080")?.live).toBeNull();
+  });
+
+  it("gives a live subject an empty chapter list when none are passed", () => {
+    const rows = buildAtplRows([{ code: "MET", status: "active", publishedQuestions: 9 }]);
+    expect(rows.find((row) => row.number === "050")?.live?.chapters).toEqual([]);
+  });
+});
+
 describe("atplQuestionCount", () => {
   it("adds up the live subjects' published questions and nothing else", () => {
     const rows = buildAtplRows([

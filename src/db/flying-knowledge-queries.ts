@@ -115,6 +115,28 @@ export async function listFlyingKnowledgeTopics(
   return rows.map((row) => ({ topic: row.topic, questionCount: Number(row.questionCount) }));
 }
 
+export type FlyingKnowledgeChapterSummary = FlyingKnowledgeTopicSummary & {
+  subjectCode: string;
+};
+
+/** Every subject's chapters (its topics) with their published question
+ * counts, in one query — the ATPL Ground School page shows all of them at
+ * once, and thirteen round trips for one page would be the wrong trade. */
+export async function listFlyingKnowledgeChapters(): Promise<FlyingKnowledgeChapterSummary[]> {
+  const rows = await getDb()
+    .select({
+      subjectCode: flyingKnowledgeQuestions.subjectCode,
+      topic: flyingKnowledgeQuestions.topic,
+      questionCount: count(),
+    })
+    .from(flyingKnowledgeQuestions)
+    .where(eq(flyingKnowledgeQuestions.status, "published"))
+    .groupBy(flyingKnowledgeQuestions.subjectCode, flyingKnowledgeQuestions.topic)
+    .orderBy(asc(flyingKnowledgeQuestions.subjectCode), asc(flyingKnowledgeQuestions.topic));
+
+  return rows.map((row) => ({ ...row, questionCount: Number(row.questionCount) }));
+}
+
 function publishedIn(code: string, topics: string[] = []) {
   return and(
     eq(flyingKnowledgeQuestions.subjectCode, code.toUpperCase()),

@@ -732,14 +732,18 @@ sections. A label the owner saved in `site_settings` still beats the new
 default, so an old "Flying Knowledge" label stays until it is cleared at
 `/owner/settings`.
 
-**The ATPL Ground School page lists the fourteen EASA ATPL theory subjects
+**The ATPL Ground School page lists the thirteen EASA ATPL theory subjects
 from a static list (`lib/atpl-subjects.ts`), not from the database.** A
 subject with no questions has no content folder and no row (`db:seed` would
 delete one), so "coming soon" rows cannot be database rows. A row is live
 only when a Flying Knowledge subject is named by its `code` there (POF is
-080, HPL is 040, MET is 050, RNAV is 062, LAW is 010, AGK is 021, OPS is 070, COM is 090, MB is 031, PERF is 032, INST is 022, FPM is 033) and is active with published questions; live rows link to
-`/flying-knowledge/<code>`, where tests still run, and carry a pulsing
-`LiveBadge`. `/flying-knowledge` itself redirects to the picker. Adding a
+080, HPL is 040, MET is 050, RNAV is 062, LAW is 010, AGK is 021, OPS is 070, COM is 090, MB is 031, PERF is 032, INST is 022, FPM is 033) and is active with published questions; each subject is a
+cover card (`atpl-ground-school/subject-card.tsx`) with its question count,
+study guide link and a link to `/flying-knowledge/<code>`, where tests still
+run; opening the cover widens it to the full row and lists the subject's
+chapters (its topics, `listFlyingKnowledgeChapters`, one query for all
+subjects), each with its count and a link to a test on that chapter. There
+is no "Live" badge. `/flying-knowledge` itself redirects to the picker. Adding a
 subject to the ATPL list is a content folder plus its `code` in that list.
 
 **Pilot Sims is meant to become a paid product, and nothing gates it yet.**
@@ -2191,7 +2195,7 @@ src/
                               free-tier cap, no subscription gate
     flying-knowledge/[code]/
     flying-knowledge/[code]/test/
-    atpl-ground-school/         The EASA ATPL Ground School picker: fourteen subjects, live or coming soon
+    atpl-ground-school/         The EASA ATPL Ground School picker: thirteen subjects as cover cards that open to their chapters
     aircraft-systems/           A thin chooser in front of type-rating/ and class-rating/
     aircraft/, class/,
     aviation-knowledge/         Legacy redirects only — see "Old links still work" above
